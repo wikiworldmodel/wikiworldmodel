@@ -7,6 +7,7 @@ import type { Constraint, Conflict } from '../../../../core/stn.ts';
 import { toMa } from '../../../../core/time.ts';
 import { claimGroups, solveAlternatives, solveWorld, subjects } from '../chronology.ts';
 import { resolvePoints } from '../importer.ts';
+import { loadManifest } from '../manifest.ts';
 import { WORLD } from '../paths.ts';
 import { loadWorld, schemaDir, type Entity, type World } from '../world.ts';
 
@@ -210,10 +211,28 @@ async function checkFrames(world: World, issues: Issue[]): Promise<void> {
   }
 }
 
+/** Every dataset is pinned by checksum, licensed, credited and tied to a source record. */
+async function checkManifest(world: World, issues: Issue[]): Promise<void> {
+  const sources = new Set(world.sources.map((s) => s.data.id));
+  for (const [id, d] of Object.entries((await loadManifest()).datasets)) {
+    const where = `datasets.${id}`;
+    const file = 'manifest.yaml';
+    if (!/^[0-9a-f]{64}$/.test(d.sha256 ?? '')) issues.push({ level: 'error', check: 'manifest', file, where, message: 'sha256 must be 64 hex digits' });
+    if (!/^https:\/\//.test(d.url ?? '')) issues.push({ level: 'error', check: 'manifest', file, where, message: 'url must be https' });
+    if (!d.license) issues.push({ level: 'error', check: 'manifest', file, where, message: 'license is required' });
+    if (!d.credit) issues.push({ level: 'error', check: 'manifest', file, where, message: 'credit (the attribution to display) is required' });
+    if (!sources.has(d.source)) issues.push({ level: 'error', check: 'manifest', file, where, message: `unknown source "${d.source}"` });
+    for (const [name, f] of Object.entries(d.files ?? {})) {
+      if (!/^[0-9a-f]{64}$/.test(f.sha256 ?? '')) issues.push({ level: 'error', check: 'manifest', file, where: `${where}.files.${name}`, message: 'sha256 must be 64 hex digits' });
+    }
+  }
+}
+
 export async function validateWorld(world: World, opts: { frames?: boolean } = {}): Promise<Issue[]> {
   const issues: Issue[] = world.parseErrors.map((e) => ({ level: 'error', check: 'parse', file: e.file, message: e.message }));
   checkSchemas(world, issues);
   checkIdsAndRefs(world, issues);
+  if (world.root === WORLD) await checkManifest(world, issues);
   if (!issues.some((i) => i.level === 'error')) checkChronology(world, issues);
   if (opts.frames !== false && !issues.some((i) => i.level === 'error')) await checkFrames(world, issues);
   return issues;

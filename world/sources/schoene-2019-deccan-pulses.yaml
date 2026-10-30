@@ -4,7 +4,14 @@ citation: >-
   Schoene, B., Eddy, M.P., Samperton, K.M., Keller, C.B., Keller, G., Adatte, T. & Khadri,
   S.F.R. (2019). U-Pb constraints on pulsed eruption of the Deccan Traps across the
   end-Cretaceous mass extinction. Science 363(6429), 862–866.
-authors: [Schoene, B., Eddy, M.P., Samperton, K.M., Keller, C.B., Keller, G., Adatte, T., Khadri, S.F.R.]
+authors:
+  - "Schoene, B."
+  - "Eddy, M.P."
+  - "Samperton, K.M."
+  - "Keller, C.B."
+  - "Keller, G."
+  - "Adatte, T."
+  - "Khadri, S.F.R."
 year: 2019
 title: U-Pb constraints on pulsed eruption of the Deccan Traps across the end-Cretaceous mass extinction
 container: Science 363(6429), 862–866

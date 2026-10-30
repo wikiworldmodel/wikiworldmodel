@@ -49,6 +49,20 @@ function overlaps(f: Feature, span: [number, number]): boolean {
   });
 }
 
+/** Attribution for what the build shows: its datasets, and the databases its records cite. */
+function credits(world: Awaited<ReturnType<typeof loadWorld>>, manifest: Awaited<ReturnType<typeof loadManifest>>): Tileset['credits'] {
+  const out: Tileset['credits'] = Object.values(manifest.datasets).map((d) => ({ label: d.credit, license: d.license }));
+  const sources = new Map(world.sources.map((s) => [s.data.id, s.data]));
+  const cited = new Set(world.entities.flatMap((e) => Object.values(e.data.claims).map((c) => c.source)));
+  const databases = new Map<string, string>();
+  for (const id of cited) {
+    const s = sources.get(id);
+    if (s?.type === 'database-record' && s.license && s.container) databases.set(s.container, s.license);
+  }
+  for (const [label, license] of [...databases].sort()) out.push({ label, license });
+  return out;
+}
+
 export async function runBuild(args: string[]): Promise<number> {
   const log = (s: string) => console.log(s);
   const out = new Map<string, Uint8Array | string>(); // path → content
@@ -185,6 +199,7 @@ export async function runBuild(args: string[]): Promise<number> {
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
     files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/' },
+    credits: credits(world, manifest),
   };
   const contentHash = sha256([...out.entries()].sort(([a], [b]) => (a < b ? -1 : 1)).map(([p, c]) => `${p} ${sha256(c)}`).join('\n') + stableStringify(tileset));
   const buildId = contentHash.slice(0, 16);

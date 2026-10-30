@@ -4,7 +4,13 @@ citation: >-
   Hu, X., Garzanti, E., Wang, J., Huang, W., An, W. & Webb, A. (2016). The timing of
   India-Asia collision onset – Facts, theories, controversies. Earth-Science Reviews 160,
   264–299.
-authors: [Hu, X., Garzanti, E., Wang, J., Huang, W., An, W., Webb, A.]
+authors:
+  - "Hu, X."
+  - "Garzanti, E."
+  - "Wang, J."
+  - "Huang, W."
+  - "An, W."
+  - "Webb, A."
 year: 2016
 title: The timing of India-Asia collision onset – Facts, theories, controversies
 container: Earth-Science Reviews 160, 264–299

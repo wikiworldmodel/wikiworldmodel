@@ -5,7 +5,20 @@ citation: >-
   Godoy, P.L., Nicholl, C.S.C., Buffan, L., Dillon, E.M., Flannery-Sutherland, J.T. &
   Chiarenza, A.A. (2023). palaeoverse: A community-driven R package to support
   palaeobiological analysis. Methods in Ecology and Evolution 14(9), 2205–2215.
-authors: [Jones, L.A., Gearty, W., Allen, B.J., Eichenseer, K., Dean, C.D., Galván, S., Kouvari, M., Godoy, P.L., Nicholl, C.S.C., Buffan, L., Dillon, E.M., Flannery-Sutherland, J.T., Chiarenza, A.A.]
+authors:
+  - "Jones, L.A."
+  - "Gearty, W."
+  - "Allen, B.J."
+  - "Eichenseer, K."
+  - "Dean, C.D."
+  - "Galván, S."
+  - "Kouvari, M."
+  - "Godoy, P.L."
+  - "Nicholl, C.S.C."
+  - "Buffan, L."
+  - "Dillon, E.M."
+  - "Flannery-Sutherland, J.T."
+  - "Chiarenza, A.A."
 year: 2023
 title: "palaeoverse: A community-driven R package to support palaeobiological analysis"
 container: Methods in Ecology and Evolution

@@ -129,6 +129,8 @@ export interface Tileset {
   lods: LodInfo[];
   tiles: TileRef[];
   files: { frames: string; periods: string; search: string; records: string };
+  /** attribution the viewer must show for the data it displays */
+  credits: { label: string; license: string }[];
 }
 
 /** The plate index maps the plate ids used in field tiles to dense indices for the GPU. */

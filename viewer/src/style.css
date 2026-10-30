@@ -49,6 +49,7 @@ canvas.globe:active { cursor: grabbing; }
 .sw.derived { border: 1.5px dashed var(--text); }
 
 .markers { position: absolute; inset: 0; pointer-events: none; }
+.credits { position: absolute; left: 16px; bottom: 6px; max-width: calc(100% - 32px); color: var(--muted); font-size: 11px; text-shadow: 0 1px 2px #000; pointer-events: none; }
 .marker { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 5px; padding: 0; border: 0; background: none; pointer-events: none; cursor: pointer; white-space: nowrap; will-change: transform; }
 .marker .dot, .marker .label { pointer-events: auto; }
 .marker .dot { width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; border: 2px solid #0a0e18; background: var(--evidence); box-shadow: 0 0 0 1.5px rgba(255,255,255,0.75); flex: none; }

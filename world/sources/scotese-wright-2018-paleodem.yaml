@@ -3,7 +3,9 @@ type: dataset
 citation: >-
   Scotese, C.R. & Wright, N. (2018). PALEOMAP Paleodigital Elevation Models (PaleoDEMS)
   for the Phanerozoic. PALEOMAP Project. Version 2. https://doi.org/10.5281/zenodo.5460860
-authors: [Scotese, C.R., Wright, N.]
+authors:
+  - "Scotese, C.R."
+  - "Wright, N."
 year: 2018
 title: PALEOMAP Paleodigital Elevation Models (PaleoDEMS) for the Phanerozoic
 container: PALEOMAP Project (Zenodo)

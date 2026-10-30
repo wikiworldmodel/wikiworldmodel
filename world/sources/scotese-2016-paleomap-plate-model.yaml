@@ -3,7 +3,8 @@ type: dataset
 citation: >-
   Scotese, C.R. (2016). PALEOMAP PaleoAtlas for GPlates and the PaleoData Plotter Program.
   PALEOMAP Project. (Global plate model m15g60_v2d3, plate polygons ContOceanPolyv10u_v2d3.)
-authors: [Scotese, C.R.]
+authors:
+  - "Scotese, C.R."
 year: 2016
 title: PALEOMAP PaleoAtlas for GPlates and the PaleoData Plotter Program
 container: PALEOMAP Project

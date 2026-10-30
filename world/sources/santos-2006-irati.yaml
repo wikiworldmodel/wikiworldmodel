@@ -4,7 +4,14 @@ citation: >-
   Santos, R.V., Souza, P.A., Alvarenga, C.J.S., Dantas, E.L., Pimentel, M.M., Oliveira, C.G.
   & Araújo, L.M. (2006). Shrimp U–Pb zircon dating and palynology of bentonitic layers from
   the Permian Irati Formation, Paraná Basin, Brazil. Gondwana Research 9(4), 456–463.
-authors: [Santos, R.V., Souza, P.A., Alvarenga, C.J.S., Dantas, E.L., Pimentel, M.M., Oliveira, C.G., Araújo, L.M.]
+authors:
+  - "Santos, R.V."
+  - "Souza, P.A."
+  - "Alvarenga, C.J.S."
+  - "Dantas, E.L."
+  - "Pimentel, M.M."
+  - "Oliveira, C.G."
+  - "Araújo, L.M."
 year: 2006
 title: Shrimp U–Pb zircon dating and palynology of bentonitic layers from the Permian Irati Formation, Paraná Basin, Brazil
 container: Gondwana Research 9(4), 456–463

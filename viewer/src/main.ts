@@ -88,6 +88,10 @@ async function start(root: HTMLElement): Promise<void> {
 
   const markers = new Markers();
   stage.appendChild(markers.el);
+  const credits = document.createElement('div');
+  credits.className = 'credits';
+  credits.textContent = `Data: ${ts.credits.map((c) => `${c.label}, ${c.license}`).join(' · ')}`;
+  stage.appendChild(credits);
   const kindLabel = (k: string) => k.split('/').pop()!.replace(/-/g, ' ');
   const labelOf = (id: string) => build.search.entities.find((e) => e.id === id)?.label ?? id;
   const inspect = new InspectPanel({

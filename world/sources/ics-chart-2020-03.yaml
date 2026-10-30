@@ -3,7 +3,11 @@ type: chart
 citation: >-
   Cohen, K.M., Finney, S.C., Gibbard, P.L. & Fan, J.-X. (2013; updated). The ICS
   International Chronostratigraphic Chart. Episodes 36, 199–204. Chart version v2020/03.
-authors: [Cohen, K.M., Finney, S.C., Gibbard, P.L., Fan, J.-X.]
+authors:
+  - "Cohen, K.M."
+  - "Finney, S.C."
+  - "Gibbard, P.L."
+  - "Fan, J.-X."
 year: 2020
 title: International Chronostratigraphic Chart v2020/03
 container: International Commission on Stratigraphy

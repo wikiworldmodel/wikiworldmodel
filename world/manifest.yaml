@@ -5,6 +5,7 @@
 datasets:
   paleomap-plate-model:
     title: PALEOMAP Global Plate Model (rotations m15g60_v2d3, plate polygons ContOceanPolyv10u_v2d3)
+    credit: PALEOMAP plate model (Scotese 2016)
     source: scotese-2016-paleomap-plate-model
     version: PALEOMAP PaleoAtlas for GPlates v3, rotation file dated 2016-02-01
     url: https://raw.githubusercontent.com/gplates/rgplates/4d62bba877ec383324dafd5a5ce6e057182b9eaa/inst/extdata/paleomap_v3.zip
@@ -29,6 +30,7 @@ datasets:
 
   paleodem-v2:
     title: PALEOMAP PaleoDEMs v2, 1° grids, 0–540 Ma every 5 Myr
+    credit: PALEOMAP PaleoDEMs (Scotese & Wright 2018)
     source: scotese-wright-2018-paleodem
     version: v2 (Zenodo record 5460860), lossless Parquet repackaging by vis.gl
     url: https://media.githubusercontent.com/media/visgl/deck.gl-data/0a873024cfc3fbb78d44027143013b8908fd8873/earth/paleogeography/v1/paleodem/paleodem.parquet

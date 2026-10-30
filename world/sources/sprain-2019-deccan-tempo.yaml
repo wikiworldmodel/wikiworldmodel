@@ -4,7 +4,13 @@ citation: >-
   Sprain, C.J., Renne, P.R., Vanderkluysen, L., Pande, K., Self, S. & Mittal, T. (2019).
   The eruptive tempo of Deccan volcanism in relation to the Cretaceous-Paleogene boundary.
   Science 363(6429), 866–870.
-authors: [Sprain, C.J., Renne, P.R., Vanderkluysen, L., Pande, K., Self, S., Mittal, T.]
+authors:
+  - "Sprain, C.J."
+  - "Renne, P.R."
+  - "Vanderkluysen, L."
+  - "Pande, K."
+  - "Self, S."
+  - "Mittal, T."
 year: 2019
 title: The eruptive tempo of Deccan volcanism in relation to the Cretaceous-Paleogene boundary
 container: Science 363(6429), 866–870

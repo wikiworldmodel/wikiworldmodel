@@ -9,7 +9,11 @@
     "id": { "$ref": "defs.json#/$defs/id" },
     "type": { "enum": ["publication", "dataset", "database-record", "chart"] },
     "citation": { "type": "string", "minLength": 10 },
-    "authors": { "type": "array", "items": { "type": "string" } },
+    "authors": {
+      "description": "\"Surname, Initials\" each; quote them in YAML, or a flow list splits every name at its comma",
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[^,]+, [^,]+$" }
+    },
     "year": { "type": "integer" },
     "title": { "type": "string" },
     "container": { "type": "string", "description": "Journal, book or database" },

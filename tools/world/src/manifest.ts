@@ -9,6 +9,8 @@ export interface DatasetFile {
 
 export interface Dataset {
   title: string;
+  /** short attribution shown wherever the data is displayed */
+  credit: string;
   source: string;
   version: string;
   url: string;

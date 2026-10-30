@@ -5,7 +5,19 @@ citation: >-
   Han, J., Liebke, U., Oliver, G., Parrish, R. & Vezzoli, G. (2010). Timing of India-Asia
   collision: Geological, biostratigraphic, and palaeomagnetic constraints. Journal of
   Geophysical Research 115, B12416.
-authors: [Najman, Y., Appel, E., Boudagher-Fadel, M., Bown, P., Carter, A., Garzanti, E., Godin, L., Han, J., Liebke, U., Oliver, G., Parrish, R., Vezzoli, G.]
+authors:
+  - "Najman, Y."
+  - "Appel, E."
+  - "Boudagher-Fadel, M."
+  - "Bown, P."
+  - "Carter, A."
+  - "Garzanti, E."
+  - "Godin, L."
+  - "Han, J."
+  - "Liebke, U."
+  - "Oliver, G."
+  - "Parrish, R."
+  - "Vezzoli, G."
 year: 2010
 title: "Timing of India-Asia collision: Geological, biostratigraphic, and palaeomagnetic constraints"
 container: Journal of Geophysical Research 115, B12416
