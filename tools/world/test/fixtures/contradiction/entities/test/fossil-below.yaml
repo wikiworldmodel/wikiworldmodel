@@ -1,0 +1,14 @@
+id: test/fossil-below
+kind: occurrence
+author: fixture
+claims:
+  date:
+    prop: date
+    value: { mean: 68.0 Ma, sd: 0.1 Myr }
+    source: { ref: src:test/lab-report }
+relations:
+  below-flow:
+    rel: before
+    to: test/lava-flow
+    source: { ref: src:test/field-notes }
+    note: Found in the beds under the flow, so it predates it.

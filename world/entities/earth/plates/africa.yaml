@@ -1,0 +1,9 @@
+id: earth/plates/africa
+kind: plate
+summary: Plate 701 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: south-central Africa }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 701", quote: "AFR south-central Africa" }

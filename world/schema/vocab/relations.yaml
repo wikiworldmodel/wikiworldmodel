@@ -1,0 +1,43 @@
+# Relation types. A relation is a claim whose value is another record: it has sources,
+# valid time, confidence, status and rank like any claim. It is stored once, in its
+# subject's file, and the build derives the inverse.
+#
+#   family    temporal | spatial | structural | lineage | causal | participation
+#   inverse   the derived relation, as seen from the target
+#   from, to  the kinds the subject and the target may be (with their children); omitted
+#             means any
+#   time      the constraints the relation adds to the date solver, each "a to b": b − a
+#             lies in the relation's lag if `lag: true` (default lag: zero to unbounded),
+#             else b is not earlier than a. `self` is the subject, `other` the target,
+#             each at its start or end; a moment's start and end are its date.
+relations:
+  before:
+    family: temporal
+    inverse: after
+    description: The subject ends before the target starts; a lag of 0 means it ends as the target starts.
+    time: [{ from: self.end, to: other.start, lag: true }]
+  after:
+    family: temporal
+    inverse: before
+    description: The subject starts after the target ends.
+    time: [{ from: other.end, to: self.start, lag: true }]
+  during:
+    family: temporal
+    inverse: contains
+    description: The subject lies within the target's interval.
+    time: [{ from: other.start, to: self.start }, { from: self.end, to: other.end }]
+  part-of:
+    family: structural
+    inverse: has-part
+    description: A part lies within its whole, in time as well as space.
+    time: [{ from: other.start, to: self.start }, { from: self.end, to: other.end }]
+  member-of:
+    family: structural
+    inverse: has-member
+    description: A member of a group, such as an occurrence of its taxon.
+  caused-by:
+    family: causal
+    inverse: caused
+    to: [event]
+    description: The target caused the subject. A cause precedes its effect.
+    time: [{ from: other.start, to: self.start, lag: true }]

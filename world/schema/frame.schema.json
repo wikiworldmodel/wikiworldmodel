@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lightworld.invalid/schema/frame.json",
+  "title": "Frame",
+  "description": "A coordinate frame whose transform to its parent is a function of time.",
+  "type": "object",
+  "required": ["id", "type", "kind", "title"],
+  "properties": {
+    "id": { "type": "string", "$ref": "defs.json#/$defs/record_id", "pattern": "^frame:" },
+    "type": { "const": "frame" },
+    "kind": { "enum": ["body-fixed", "snapshot", "plate", "site-grid"] },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "note": { "type": "string" },
+    "parent": { "$ref": "defs.json#/$defs/ref" },
+    "entity": { "$ref": "defs.json#/$defs/ref", "description": "The entity that defines this frame, such as a plate" },
+    "transform": {
+      "type": "object",
+      "properties": {
+        "rotations": { "$ref": "defs.json#/$defs/ref" },
+        "file": { "type": "string" },
+        "plate": { "type": "integer" },
+        "interp": { "enum": ["slerp"] },
+        "snapshot_of": { "$ref": "defs.json#/$defs/ref" },
+        "at": { "$ref": "defs.json#/$defs/time" }
+      },
+      "additionalProperties": false
+    },
+    "extent": {
+      "type": "object",
+      "required": ["polygons", "file", "plate"],
+      "properties": { "polygons": { "$ref": "defs.json#/$defs/ref" }, "file": { "type": "string" }, "plate": { "type": "integer" } },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

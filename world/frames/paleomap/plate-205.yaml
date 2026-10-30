@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-205
+type: frame
+kind: plate
+title: Yucatan (PALEOMAP plate 205)
+entity: earth/plates/yucatan
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 205
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 205

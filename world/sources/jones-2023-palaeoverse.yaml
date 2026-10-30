@@ -1,0 +1,33 @@
+id: src:jones-2023-palaeoverse
+type: publication
+kind: software
+citation: >-
+  Jones, L.A., Gearty, W., Allen, B.J., Eichenseer, K., Dean, C.D., Galván, S., Kouvari, M.,
+  Godoy, P.L., Nicholl, C.S.C., Buffan, L., Dillon, E.M., Flannery-Sutherland, J.T. &
+  Chiarenza, A.A. (2023). palaeoverse: A community-driven R package to support
+  palaeobiological analysis. Methods in Ecology and Evolution 14(9), 2205–2215.
+authors:
+  - "Jones, L.A."
+  - "Gearty, W."
+  - "Allen, B.J."
+  - "Eichenseer, K."
+  - "Dean, C.D."
+  - "Galván, S."
+  - "Kouvari, M."
+  - "Godoy, P.L."
+  - "Nicholl, C.S.C."
+  - "Buffan, L."
+  - "Dillon, E.M."
+  - "Flannery-Sutherland, J.T."
+  - "Chiarenza, A.A."
+published: 2023
+title: "palaeoverse: A community-driven R package to support palaeobiological analysis"
+container: Methods in Ecology and Evolution
+doi: 10.1111/2041-210X.14099
+note: >-
+  Its example dataset `tetrapods` (data/tetrapods.rda, palaeoverse/palaeoverse@d01a895)
+  is an unaltered Paleobiology Database download of Carboniferous–Early Triassic tetrapod
+  occurrences, made on 14 July 2022, which is how the PBDB records cited here were read.
+verified:
+  by: machine:claude-code
+  how: Citation copied from the package's inst/CITATION file.

@@ -1,0 +1,16 @@
+id: src:verma-khosla-2019-deccan
+type: publication
+kind: review
+citation: >-
+  Verma, O. & Khosla, A. (2019). Developments in the stratigraphy of the Deccan Volcanic
+  Province, peninsular India. Comptes Rendus Geoscience 351(7), 461–476.
+authors:
+  - "Verma, O."
+  - "Khosla, A."
+published: 2019
+title: Developments in the stratigraphy of the Deccan Volcanic Province, peninsular India
+container: Comptes Rendus Geoscience 351(7), 461–476
+doi: 10.1016/j.crte.2019.10.002
+verified:
+  by: machine:claude-code
+  how: Quoted sentence matched by web search.

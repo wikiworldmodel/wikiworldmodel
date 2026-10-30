@@ -1,0 +1,10 @@
+id: alt:time-scale/pbdb-2022
+type: alternative
+kind: reading
+group: alt:time-scale
+title: PBDB interval ages (July 2022 download)
+description: >-
+  The ages the Paleobiology Database gave its stratigraphic intervals in the download the
+  Mesosaurus records come from, which are not those of the ICS chart v2020/03. Only the
+  boundaries that differ and that records here depend on are given; the rest of the chart
+  is unchanged.

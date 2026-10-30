@@ -1,0 +1,16 @@
+id: src:eid-chicxulub
+type: database-record
+kind: compilation
+citation: >-
+  Earth Impact Database (Planetary and Space Science Centre, University of New Brunswick),
+  entry "Chicxulub".
+container: Earth Impact Database
+url: http://www.passc.net/EarthImpactDatabase/New%20website_05-2018/Chicxulub.html
+via: >-
+  The table scraped from the database by cjwinchester/earth-impact-data@9e0bfcf
+  (earth-impact-craters.csv, 2022): latitude 21.3333, longitude -89.5, diameter 150 km,
+  age "64.98 ± 0.05".
+reliability: A curated compilation; its age entry follows Swisher et al. (1992) and predates the recalibrated ages.
+verified:
+  by: machine:claude-code
+  how: Values read from the scraped CSV; the database page itself was not reachable.

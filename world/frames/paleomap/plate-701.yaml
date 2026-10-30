@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-701
+type: frame
+kind: plate
+title: south-central Africa (PALEOMAP plate 701)
+entity: earth/plates/africa
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 701
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 701

@@ -1,0 +1,13 @@
+id: test/fossil-above
+kind: occurrence
+author: fixture
+claims:
+  date:
+    prop: date
+    value: { mean: 66.0 Ma, sd: 0.25 Myr }
+    source: { ref: src:test/lab-report }
+relations:
+  above-flow:
+    rel: after
+    to: test/lava-flow
+    source: { ref: src:test/field-notes }

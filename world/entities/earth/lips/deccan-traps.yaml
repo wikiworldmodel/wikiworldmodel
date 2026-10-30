@@ -1,0 +1,60 @@
+id: earth/lips/deccan-traps
+kind: large-igneous-province
+summary: Flood basalts of west-central India, erupted around the end of the Cretaceous.
+author: machine:claude-code
+# Phases tile the lifetime: the province starts with its main eruptive interval and, with
+# no end, still exists.
+phases:
+  - id: main
+    label: Main eruptive interval
+  - id: after
+    label: After the main eruptions
+claims:
+  name:
+    prop: name
+    value: { en: Deccan Traps }
+    source: { ref: src:schoene-2019-deccan-pulses, loc: title }
+  location:
+    prop: location
+    value: { lat: 17.917, lon: 73.667, frame: frame:earth/present-day }
+    source: { ref: src:choudhary-jadhav-2014-mahabaleshwar, loc: "Mahabaleshwar section, 17°55′N 73°40′E" }
+    method: survey
+    note: >-
+      A representative locality, the Mahabaleshwar section in the Western Ghats; the
+      province itself covers about half a million square kilometres.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-501
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area:
+    prop: area
+    value: 500000
+    valid: 0 Ma
+    source:
+      ref: src:verma-khosla-2019-deccan
+      quote: The Deccan Volcanic Province has been considered as one of the largest magmatic regions, involving an aerial coverage of ca. 500,000 km2.
+    note: The present-day extent.
+  main-start:
+    prop: start
+    subject: "@main"
+    value: 66.413 Ma
+    source:
+      ref: src:sprain-2019-deccan-tempo
+      quote: from ∼66.413 Ma ago [the date for Jawhar Formation (Fm.) sample KAS15-3]
+    method: radiometric/ar-ar
+    note: >-
+      The lowest dated lava formation. The paper gives an uncertainty for each sample (its
+      Fig. 1); it is not recorded here.
+  main-end:
+    prop: end
+    subject: "@main"
+    value: 65.422 Ma
+    source:
+      ref: src:sprain-2019-deccan-tempo
+      quote: to ∼65.422 Ma ago (the date for upper Mahabaleshwar Fm. sample PAN15-3)
+    method: radiometric/ar-ar
+    note: >-
+      The highest dated lava formation. The paper gives an uncertainty for each sample (its
+      Fig. 1); it is not recorded here.

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lightworld.invalid/schema/source.json",
+  "title": "Source",
+  "description": "A work: a publication, dataset version, database record or chart. One record per work; claims cite it with a locator.",
+  "type": "object",
+  "required": ["id", "type", "kind", "citation"],
+  "properties": {
+    "id": { "type": "string", "$ref": "defs.json#/$defs/record_id", "pattern": "^src:" },
+    "type": { "type": "string", "description": "What the work is (schema/vocab/sources.yaml)" },
+    "kind": { "type": "string", "description": "What sort of evidence it is (schema/vocab/sources.yaml)" },
+    "citation": { "type": "string", "minLength": 10 },
+    "authors": {
+      "description": "\"Surname, Initials\" each; quote them in YAML, or a flow list splits every name at its comma",
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[^,]+, [^,]+$" }
+    },
+    "published": { "type": "integer", "description": "The year of publication: when the source was written is a fact about the source" },
+    "snapshot": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "For a database record: the date of the snapshot read" },
+    "title": { "type": "string" },
+    "container": { "type": "string", "description": "Journal, book or database" },
+    "doi": { "type": "string", "pattern": "^10\\.[0-9]{4,9}/\\S+$" },
+    "url": { "type": "string", "format": "uri" },
+    "license": { "type": "string" },
+    "license_note": { "type": "string" },
+    "via": { "type": "string", "description": "How this source reached us, if not directly" },
+    "reliability": { "type": "string" },
+    "verified": {
+      "type": "object",
+      "description": "What has been checked against the source itself, by whom and how",
+      "required": ["by", "how"],
+      "properties": { "by": { "type": "string" }, "how": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "note": { "type": "string" }
+  },
+  "additionalProperties": false
+}

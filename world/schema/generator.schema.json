@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lightworld.invalid/schema/generator.json",
+  "title": "Generator",
+  "description": "Versioned code plus parameters plus a seed, run identically by the build and the client.",
+  "type": "object",
+  "required": ["id", "type", "title", "version", "code", "runs_in", "outputs", "inputs", "slots", "params"],
+  "properties": {
+    "id": { "type": "string", "$ref": "defs.json#/$defs/record_id", "pattern": "^gen:" },
+    "type": { "const": "generator" },
+    "title": { "type": "string" },
+    "version": { "type": "integer", "minimum": 1 },
+    "code": { "type": "string" },
+    "runs_in": { "type": "array", "items": { "enum": ["build", "client"] } },
+    "outputs": {
+      "type": "object",
+      "required": ["basis"],
+      "properties": { "basis": { "const": "procedural" } },
+      "additionalProperties": false
+    },
+    "inputs": { "type": "array", "items": { "$ref": "defs.json#/$defs/ref" } },
+    "slots": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "$ref": "defs.json#/$defs/key" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["place", "seed"],
+        "properties": { "place": { "type": "string" }, "seed": { "type": "string", "minLength": 1 } },
+        "additionalProperties": false
+      }
+    },
+    "params": { "type": "object" }
+  },
+  "additionalProperties": false
+}

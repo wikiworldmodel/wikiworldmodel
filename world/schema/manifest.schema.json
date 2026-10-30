@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lightworld.invalid/schema/manifest.json",
+  "title": "Manifest",
+  "description": "External datasets, pinned by checksum. Each dataset version is also a source.",
+  "type": "object",
+  "required": ["publish", "datasets"],
+  "properties": {
+    "publish": {
+      "type": "object",
+      "required": ["licenses"],
+      "properties": { "licenses": { "type": "array", "items": { "type": "string" } } },
+      "additionalProperties": false
+    },
+    "datasets": {
+      "type": "object",
+      "propertyNames": { "pattern": "^src:[a-z0-9][a-z0-9.-]*(/[a-z0-9][a-z0-9.-]*)*$" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["type", "kind", "citation", "version", "credit", "license", "fetch"],
+        "properties": {
+          "type": { "const": "dataset" },
+          "kind": { "type": "string" },
+          "title": { "type": "string" },
+          "citation": { "type": "string", "minLength": 10 },
+          "authors": { "type": "array", "items": { "type": "string", "pattern": "^[^,]+, [^,]+$" } },
+          "published": { "type": "integer" },
+          "version": { "type": "string" },
+          "container": { "type": "string" },
+          "doi": { "type": "string", "pattern": "^10\\.[0-9]{4,9}/\\S+$" },
+          "url": { "type": "string", "format": "uri" },
+          "credit": { "type": "string", "description": "The short attribution shown wherever the data is displayed" },
+          "license": { "type": "string" },
+          "license_note": { "type": "string" },
+          "reliability": { "type": "string" },
+          "note": { "type": "string" },
+          "verified": {
+            "type": "object",
+            "required": ["by", "how"],
+            "properties": { "by": { "type": "string" }, "how": { "type": "string" } },
+            "additionalProperties": false
+          },
+          "fetch": {
+            "type": "object",
+            "required": ["url", "sha256", "bytes", "format"],
+            "properties": {
+              "url": { "type": "string", "pattern": "^https://" },
+              "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+              "bytes": { "type": "integer", "minimum": 1 },
+              "format": { "enum": ["zip", "parquet"] },
+              "files": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "object",
+                  "required": ["path", "sha256"],
+                  "properties": { "path": { "type": "string" }, "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" } },
+                  "additionalProperties": false
+                }
+              },
+              "upstream": {
+                "type": "object",
+                "required": ["url", "sha256"],
+                "properties": { "url": { "type": "string", "format": "uri" }, "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" } },
+                "additionalProperties": false
+              },
+              "via": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

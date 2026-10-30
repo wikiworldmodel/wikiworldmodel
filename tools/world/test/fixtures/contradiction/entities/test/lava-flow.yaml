@@ -1,0 +1,12 @@
+id: test/lava-flow
+kind: large-igneous-province
+author: fixture
+claims:
+  start:
+    prop: start
+    value: 70.0 Ma
+    source: { ref: src:test/lab-report }
+  end:
+    prop: end
+    value: 69.0 Ma
+    source: { ref: src:test/lab-report }

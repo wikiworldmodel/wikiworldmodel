@@ -1,0 +1,21 @@
+id: src:pbdb/collection-90863
+type: database-record
+kind: compilation
+snapshot: "2022-07-14"
+citation: >-
+  The Paleobiology Database, collection 90863 ("Arroyo de La Mina", UY), occurrence 824823.
+  Downloaded 14 July 2022 (palaeoverse `tetrapods` dataset).
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=90863
+license: CC-BY-4.0
+via: src:jones-2023-palaeoverse
+reliability: >-
+  A database record compiled from the literature; its primary references are listed in the
+  PBDB but were not part of the snapshot read here. Ages are the PBDB's for the stratigraphic
+  interval the collection is assigned to (Artinskian), as of the download date.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from palaeoverse data/tetrapods.rda: collection_no 90863, occurrence_no 824823,
+    identified_name "Mesosaurus brasiliensis", accepted_name "Mesosaurus tenuidens", lat -31.933332, lng -54.016666, formation
+    "Melo", member "Mangrullo", early_interval Artinskian, max_ma 290.1, min_ma 279.3.

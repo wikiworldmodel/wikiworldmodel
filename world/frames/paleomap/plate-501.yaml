@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-501
+type: frame
+kind: plate
+title: India (PALEOMAP plate 501)
+entity: earth/plates/india
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 501
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 501

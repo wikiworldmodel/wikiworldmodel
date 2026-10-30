@@ -1,0 +1,22 @@
+id: src:hildebrand-1991-chicxulub
+type: publication
+kind: measurement
+citation: >-
+  Hildebrand, A.R., Penfield, G.T., Kring, D.A., Pilkington, M., Camargo Z., A., Jacobsen,
+  S.B. & Boynton, W.V. (1991). Chicxulub Crater: A possible Cretaceous/Tertiary boundary
+  impact crater on the Yucatán Peninsula, Mexico. Geology 19(9), 867–871.
+authors:
+  - "Hildebrand, A.R."
+  - "Penfield, G.T."
+  - "Kring, D.A."
+  - "Pilkington, M."
+  - "Camargo Z., A."
+  - "Jacobsen, S.B."
+  - "Boynton, W.V."
+published: 1991
+title: "Chicxulub Crater: A possible Cretaceous/Tertiary boundary impact crater on the Yucatán Peninsula, Mexico"
+container: Geology 19(9), 867–871
+doi: 10.1130/0091-7613(1991)019<0867:CCAPCT>2.3.CO;2
+verified:
+  by: machine:claude-code
+  how: Abstract sentence matched verbatim by web search; DOI from the publisher listing.

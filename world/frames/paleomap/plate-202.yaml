@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-202
+type: frame
+kind: plate
+title: Parana Basin (PALEOMAP plate 202)
+entity: earth/plates/parana-basin
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 202
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 202

@@ -1,0 +1,53 @@
+# Kinds: what sort of thing an entity is. Kinds form a tree: a child is written
+# parent/child (event/impact), and whatever applies to a kind applies to its children.
+# A new kind is a small reviewed change, proposed with the first records that need it.
+#
+# Rules a kind may carry:
+#   moment: true   the entity is a moment at the time resolution of the world: it has one
+#                  date, not a start and an end (an impact lasts seconds).
+kinds:
+  event:
+    label: Event
+    description: >-
+      A change that needs its own date, cause or record. Events last from seconds to
+      hundreds of millions of years; relations link them to what they changed.
+    children:
+      impact:
+        label: Impact
+        description: A bolide impact.
+        moment: true
+      collision:
+        label: Continental collision (onset)
+        description: The first contact between two continental plates; the collision itself goes on for tens of millions of years.
+        moment: true
+  landform:
+    label: Landform
+    description: A shape of the land surface or the rock below it.
+    children:
+      impact-crater:
+        label: Impact crater
+        description: The structure left by an impact, from its formation on.
+      mountain-range:
+        label: Mountain range
+        description: An orogen or mountain range, from the start of its growth on.
+  large-igneous-province:
+    label: Large igneous province
+    description: A very large accumulation of igneous rock, erupted over a geologically short time.
+  occurrence:
+    label: Fossil occurrence
+    description: A taxon recorded at a locality, at the time its fossils were deposited.
+    moment: true
+  plate:
+    label: Tectonic plate
+    description: A rigid plate of a plate model. It also defines a frame, which moves with it.
+  period:
+    label: Named period
+    description: A named interval of time. Its boundaries are claims, with sources and alternatives, like anything else.
+    children:
+      eon: { label: Eon, description: The largest unit of the geologic time scale. }
+      era: { label: Era, description: A subdivision of an eon. }
+      period: { label: Period, description: A subdivision of an era. }
+      sub-period: { label: Sub-period, description: A subdivision of a period. }
+      epoch: { label: Epoch, description: A subdivision of a period. }
+      sub-epoch: { label: Sub-epoch, description: A subdivision of an epoch. }
+      stage: { label: Stage, description: The smallest unit of the chart; as time, an age. }

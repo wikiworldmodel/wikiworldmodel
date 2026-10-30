@@ -1,0 +1,52 @@
+id: earth/events/india-asia-collision
+kind: event/collision
+summary: The first contact between India and Asia, recorded by a change in sediment provenance in southern Tibet.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: India–Asia collision onset }
+    source: { ref: src:hu-2016-india-asia-collision, loc: title }
+  location:
+    prop: location
+    value: { lat: 29.26, lon: 85.23, frame: frame:earth/present-day }
+    source:
+      ref: src:decelles-2014-sangdanlin
+      quote: The Sangdanlin section is located ~8 km south of the town of Saga, in south-central Tibet.
+    method: gazetteer
+    note: >-
+      Approximate: about 8 km south of Saga, taking Saga at 29.33°N 85.23°E from a gazetteer
+      rather than from the source.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-613
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date-hu-2016:
+    prop: date
+    value: { mean: 59 Ma, sd: 1 Myr }
+    source:
+      ref: src:hu-2016-india-asia-collision
+      loc: abstract
+      quote: initial collision in the central-eastern Himalaya is dated directly at the middle Paleocene (59 ± 1 Ma) by the abrupt change in sediment provenance recorded in trench settings
+    method: stratigraphic
+    rank: preferred
+    note: Biostratigraphy and detrital-zircon provenance at the Sangdanlin section. The ± is read as 1σ.
+  date-yin-harrison-2000:
+    prop: date
+    value: 70 Ma
+    source:
+      ref: src:yin-harrison-2000-himalaya
+      loc: abstract
+      quote: since the onset of the Indo-Asian collision at about 70 Ma
+    method: expert-estimate
+    note: Stated as "about 70 Ma", without an uncertainty; an earlier view than the one Hu et al. (2016) review.
+  earlier-than-najman-2010:
+    prop: earlier_than
+    value: 50.6 Ma
+    source:
+      ref: src:najman-2010-india-asia
+      quote: thereby constraining India‐Asia collision at prior to 50.6 Ma
+    method: stratigraphic
+    note: Youngest marine facies and first Asian detritus in the Qumiba section.

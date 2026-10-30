@@ -1,0 +1,510 @@
+// Validators: CI for history (section 9.2 of WORLD-MODEL.md). Each check adds issues; any
+// error fails the run. The chronology and frame checks run on the default picture and again
+// on every alternative combined with it.
+import { existsSync, readFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import { Ajv2020 } from 'ajv/dist/2020.js';
+import addFormats from 'ajv-formats';
+import { parseRef, RefError, splitRef } from '../../../../core/refs.ts';
+import type { Constraint, Conflict, Solution } from '../../../../core/stn.ts';
+import { parseLag, parseTime, TimeError, toMa } from '../../../../core/time.ts';
+import { available, chosen, claimGroups, pictures, pointOf, solveScenario, solveVariants, type Scenario } from '../chronology.ts';
+import { resolvePoints } from '../importer.ts';
+import { WORLD } from '../paths.ts';
+import { kindIs, loadWorld, schemaDir, type Claim, type Entity, type Relation, type World } from '../world.ts';
+
+export interface Issue {
+  level: 'error' | 'warning' | 'info';
+  check: string;
+  file?: string;
+  where?: string;
+  message: string;
+}
+
+/** A reference to a record that does not exist yet (section 4.1), and who makes it. */
+export interface Wanted {
+  ref: string;
+  from: { file: string; where: string }[];
+}
+
+export interface Report {
+  issues: Issue[];
+  wanted: Wanted[];
+}
+
+const SCHEMA = 'https://lightworld.invalid/schema/';
+const SCHEMAS = ['defs', 'entity', 'source', 'frame', 'field', 'generator', 'alternative', 'manifest'];
+
+function ajvFor(root: string) {
+  const dir = schemaDir(root);
+  const ajv = new Ajv2020({ allErrors: true, strict: true, allowUnionTypes: true, strictRequired: false });
+  (addFormats as unknown as (a: Ajv2020) => void)(ajv);
+  for (const name of SCHEMAS) ajv.addSchema(JSON.parse(readFileSync(join(dir, `${name}.schema.json`), 'utf8')));
+  return ajv;
+}
+
+function checkSchemas(world: World, issues: Issue[]): void {
+  const ajv = ajvFor(world.root);
+  const run = (schema: string, file: string, data: unknown) => {
+    const validate = ajv.getSchema(SCHEMA + schema)!;
+    if (validate(data)) return;
+    // oneOf failures repeat every branch's complaint; report each message once per place.
+    const seen = new Set<string>();
+    const errs = validate.errors ?? [];
+    const missing = (path: string, prop: string) => errs.some((e) => e.instancePath === path && e.keyword === 'required' && e.params.missingProperty === prop);
+    for (const e of errs) {
+      let message = `${e.message}${e.params && 'additionalProperty' in e.params ? `: ${e.params.additionalProperty}` : ''}`;
+      if (e.keyword === 'required' && ['source', 'unsourced'].includes(e.params.missingProperty) && missing(e.instancePath, 'source') && missing(e.instancePath, 'unsourced')) {
+        message = 'a claim needs a source, or `unsourced:` saying why it has none';
+      }
+      const key = `${e.instancePath} ${message}`;
+      if (seen.has(key) || e.keyword === 'oneOf' || e.keyword === 'if') continue;
+      seen.add(key);
+      issues.push({ level: 'error', check: 'schema', file, where: e.instancePath || '/', message });
+    }
+  };
+  for (const r of world.raw) run(`${r.type}.json`, r.file, r.data);
+}
+
+/** Every record id, by id, with the file it is in. */
+function registry(world: World, issues: Issue[]): Map<string, { type: string; file: string }> {
+  const out = new Map<string, { type: string; file: string }>();
+  const add = (id: string, type: string, file: string) => {
+    const prev = out.get(id);
+    if (prev) issues.push({ level: 'error', check: 'ids', file, message: `id "${id}" is also used by ${prev.file}` });
+    else out.set(id, { type, file });
+  };
+  for (const e of world.entities) add(e.id, 'entity', e.file);
+  for (const s of world.sources) add(s.id, 'src', s.file === 'manifest.yaml' ? `manifest.yaml (${s.id})` : s.file);
+  for (const f of world.frames) add(f.id, 'frame', f.file);
+  for (const f of world.fields) add(f.id, 'field', f.file);
+  for (const g of world.generators) add(g.id, 'gen', g.file);
+  for (const a of world.alternatives) add(a.id, 'alt', a.file);
+  return out;
+}
+
+class RefChecker {
+  readonly wanted = new Map<string, Wanted>();
+  constructor(
+    private world: World,
+    private ids: Map<string, { type: string; file: string }>,
+    private issues: Issue[],
+  ) {}
+
+  /**
+   * Check a reference: it must parse, be of an expected type, and resolve, or be reported as
+   * wanted. Returns the referenced entity when it is one that exists.
+   */
+  check(s: unknown, file: string, where: string, opts: { self?: string; types?: string[] } = {}): Entity | undefined {
+    if (typeof s !== 'string') {
+      this.issues.push({ level: 'error', check: 'refs', file, where, message: `not a reference: ${JSON.stringify(s)}` });
+      return undefined;
+    }
+    let r;
+    try {
+      r = parseRef(s, opts.self);
+    } catch (e) {
+      this.issues.push({ level: 'error', check: 'refs', file, where, message: (e as RefError).message });
+      return undefined;
+    }
+    if (opts.types && !opts.types.includes(r.type)) {
+      this.issues.push({ level: 'error', check: 'refs', file, where, message: `"${s}" should name a ${opts.types.join(' or ')} record` });
+      return undefined;
+    }
+    if (r.type === 'external') return undefined;
+    if (!this.ids.has(r.id)) {
+      const w = this.wanted.get(r.id) ?? { ref: r.id, from: [] };
+      w.from.push({ file, where });
+      this.wanted.set(r.id, w);
+      return undefined;
+    }
+    if (r.type !== 'entity') return undefined;
+    const e = this.world.entity.get(r.id)!;
+    if (r.phase && !e.phases.some((p) => p.id === r.phase)) {
+      this.issues.push({ level: 'error', check: 'refs', file, where, message: `${r.id} has no phase "${r.phase}"` });
+    }
+    if (r.part && !e.claims.some((c) => c.key === r.part) && !e.relations.some((x) => x.key === r.part)) {
+      this.issues.push({ level: 'error', check: 'refs', file, where, message: `${r.id} has no claim or relation "${r.part}"` });
+    }
+    return e;
+  }
+}
+
+/** "a plate", "an occurrence". */
+const article = (word: string) => `${/^[aeiou]/.test(word) ? 'an' : 'a'} ${word}`;
+
+/** Does a subject of kind `kind` (undefined for a phase) fit a property's `applies_to`? */
+function applies(world: World, appliesTo: string[] | undefined, kind: string | undefined): boolean {
+  if (!appliesTo) return true;
+  const moment = kind !== undefined && !!world.vocab.kinds[kind]?.moment;
+  return appliesTo.some((a) => (a === 'moments' ? moment : a === 'lasting' ? !moment : kind !== undefined && kindIs(kind, a)));
+}
+
+function checkValue(world: World, refs: RefChecker, c: Claim, issues: Issue[]): void {
+  const prop = world.vocab.properties[c.prop];
+  const bad = (message: string) => issues.push({ level: 'error', check: 'values', file: c.file, where: `${c.where}.value`, message });
+  const v = c.value;
+  switch (prop.type) {
+    case 'time':
+      try {
+        const t = parseTime(v as never);
+        if (t.kind === 'ref') refs.check(t.ref, c.file, `${c.where}.value.ref`, { self: c.entity, types: ['entity'] });
+        if (t.kind === 'unknown' && c.prop !== 'end') bad(`only an end may be unknown`);
+      } catch (e) {
+        bad((e as TimeError).message);
+      }
+      break;
+    case 'point': {
+      const p = v as { lat?: unknown; lon?: unknown; frame?: unknown };
+      if (!p || typeof p.lat !== 'number' || typeof p.lon !== 'number') bad('a point needs lat and lon');
+      else refs.check(p.frame, c.file, `${c.where}.value.frame`, { types: ['frame'] });
+      break;
+    }
+    case 'ref':
+      refs.check(v, c.file, `${c.where}.value`, { self: c.entity, types: prop.ref_types });
+      break;
+    case 'text':
+      if (!v || typeof v !== 'object' || Array.isArray(v) || !Object.values(v).every((x) => typeof x === 'string' && x)) bad('text needs its language, e.g. { en: … }');
+      break;
+    case 'string':
+      if (typeof v !== 'string' || !v) bad(`not a string`);
+      break;
+    case 'quantity':
+      if (typeof v !== 'number' || !Number.isFinite(v)) bad(`a quantity is a number, in ${prop.unit}`);
+      break;
+    case 'color':
+      if (typeof v !== 'string' || !/^#[0-9A-F]{6}$/.test(v)) bad('a colour is #RRGGBB');
+      break;
+  }
+}
+
+/** Claims and relations: what they share (section 4.3). */
+function checkClaimCommon(world: World, refs: RefChecker, c: Claim | Relation, issues: Issue[]): void {
+  const at = (where: string) => ({ file: c.file, where: `${c.where}${where}` });
+  for (const [i, s] of c.sources.entries()) refs.check(s.ref, c.file, `${c.where}.source${c.sources.length > 1 ? `[${i}]` : ''}`, { types: ['src'] });
+  if (c.alt) {
+    refs.check(c.alt, c.file, `${c.where}.alt`, { types: ['alt'] });
+    const a = world.alternative.get(c.alt);
+    if (a && a.type !== 'alternative') issues.push({ level: 'error', check: 'refs', ...at('.alt'), message: `${c.alt} is a group; a claim names one of its alternatives` });
+  }
+  if (c.valid !== undefined) {
+    try {
+      parseTime(c.valid as never);
+    } catch (e) {
+      issues.push({ level: 'error', check: 'values', ...at('.valid'), message: (e as TimeError).message });
+    }
+  }
+  if (typeof c.confidence === 'string' && !world.vocab.confidence[c.confidence]) {
+    issues.push({ level: 'error', check: 'vocab', ...at('.confidence'), message: `unknown confidence word "${c.confidence}"; use a probability or one of ${Object.keys(world.vocab.confidence).join(', ')}` });
+  }
+  if (c.author.startsWith('machine:') && c.status === 'accepted') {
+    issues.push({ level: 'error', check: 'review', ...at(''), message: `made by ${c.author} but marked accepted; a person has to accept it` });
+  }
+}
+
+function checkRecords(world: World, issues: Issue[]): Wanted[] {
+  const ids = registry(world, issues);
+  const refs = new RefChecker(world, ids, issues);
+  for (const e of world.entities) {
+    const kind = world.vocab.kinds[e.kind];
+    if (!kind) issues.push({ level: 'error', check: 'vocab', file: e.file, where: 'kind', message: `unknown kind "${e.kind}"` });
+    const keys = new Set<string>();
+    for (const x of [...e.claims, ...e.relations]) {
+      if (keys.has(x.key)) issues.push({ level: 'error', check: 'ids', file: e.file, where: x.where, message: `"${x.key}" is used by a claim and a relation; they share one namespace` });
+      keys.add(x.key);
+    }
+    const phases = new Set<string>();
+    for (const p of e.phases) {
+      if (phases.has(p.id)) issues.push({ level: 'error', check: 'ids', file: e.file, where: `phases.${p.id}`, message: 'duplicate phase id' });
+      phases.add(p.id);
+    }
+    if (kind?.moment && e.phases.length) issues.push({ level: 'error', check: 'values', file: e.file, where: 'phases', message: `${article(e.kind)} is a moment and has no phases` });
+    for (const c of e.claims) {
+      const subjectEntity = refs.check(c.subject, c.file, `${c.where}.subject`, { self: e.id, types: ['entity'] });
+      if (subjectEntity && subjectEntity.id !== e.id) issues.push({ level: 'error', check: 'refs', file: c.file, where: `${c.where}.subject`, message: `a claim lives in its subject's file: move it to ${subjectEntity.file}` });
+      const phaseSubject = !!splitRef(c.subject).phase;
+      checkClaimCommon(world, refs, c, issues);
+      const prop = world.vocab.properties[c.prop];
+      if (!prop) {
+        issues.push({ level: 'error', check: 'vocab', file: c.file, where: c.where, message: `unknown property "${c.prop}"` });
+        continue;
+      }
+      if (kind && !applies(world, prop.applies_to, phaseSubject ? undefined : e.kind)) {
+        issues.push({ level: 'error', check: 'fit', file: c.file, where: c.where, message: `"${c.prop}" does not apply to ${phaseSubject ? 'a phase' : article(e.kind)} (it applies to ${prop.applies_to!.join(', ')})` });
+      }
+      if (c.method && !world.vocab.methods[c.method]) issues.push({ level: 'error', check: 'vocab', file: c.file, where: `${c.where}.method`, message: `unknown method "${c.method}"` });
+      checkValue(world, refs, c, issues);
+    }
+    for (const r of e.relations) {
+      const subjectEntity = refs.check(r.subject, r.file, `${r.where}.subject`, { self: e.id, types: ['entity'] });
+      if (subjectEntity && subjectEntity.id !== e.id) issues.push({ level: 'error', check: 'refs', file: r.file, where: `${r.where}.subject`, message: `a relation lives in its subject's file: move it to ${subjectEntity.file}` });
+      checkClaimCommon(world, refs, r, issues);
+      const type = world.vocab.relations[r.rel] as (typeof world.vocab.relations)[string] | undefined;
+      // A relation that constrains time must point to an entity or a phase.
+      const target = refs.check(r.to, r.file, `${r.where}.to`, { self: e.id, types: type?.time ? ['entity'] : undefined });
+      if (!type) {
+        issues.push({ level: 'error', check: 'vocab', file: r.file, where: r.where, message: `unknown relation type "${r.rel}"` });
+        continue;
+      }
+      if (type.from && !type.from.some((k) => kindIs(e.kind, k))) issues.push({ level: 'error', check: 'fit', file: r.file, where: r.where, message: `"${r.rel}" joins ${article(type.from.join(' or '))}, not ${article(e.kind)}` });
+      if (type.to && target && !type.to.some((k) => kindIs(target.kind, k))) issues.push({ level: 'error', check: 'fit', file: r.file, where: `${r.where}.to`, message: `"${r.rel}" points to ${article(type.to.join(' or '))}, not ${article(target.kind)}` });
+      try {
+        parseLag(r.lag);
+      } catch (err) {
+        issues.push({ level: 'error', check: 'values', file: r.file, where: `${r.where}.lag`, message: (err as TimeError).message });
+      }
+    }
+  }
+  for (const s of world.sources) {
+    const file = s.file;
+    if (!world.vocab.sourceTypes[s.type]) issues.push({ level: 'error', check: 'vocab', file, where: 'type', message: `unknown source type "${s.type}"` });
+    if (!world.vocab.sourceKinds[s.kind]) issues.push({ level: 'error', check: 'vocab', file, where: 'kind', message: `unknown source kind "${s.kind}"` });
+    if (s.via?.startsWith('src:')) refs.check(s.via, file, 'via', { types: ['src'] });
+  }
+  for (const f of world.frames) {
+    if (f.parent) refs.check(f.parent, f.file, 'parent', { types: ['frame'] });
+    if (f.entity) refs.check(f.entity, f.file, 'entity', { types: ['entity'] });
+    if (f.transform?.rotations) checkDataset(world, refs, f.transform.rotations, f.file, 'transform.rotations', f.transform.file, issues);
+    if (f.transform?.snapshot_of) refs.check(f.transform.snapshot_of, f.file, 'transform.snapshot_of', { types: ['frame'] });
+    if (f.extent) checkDataset(world, refs, f.extent.polygons, f.file, 'extent.polygons', f.extent.file, issues);
+  }
+  for (const f of world.fields) {
+    if (f.frame) refs.check(f.frame, f.file, 'frame', { types: ['frame'] });
+    if (f.data) checkDataset(world, refs, f.data.from, f.file, 'data.from', undefined, issues);
+    if (f.moves_with) checkDataset(world, refs, f.moves_with, f.file, 'moves_with', undefined, issues);
+    for (const [i, x] of (f.from ?? []).entries()) refs.check(x, f.file, `from[${i}]`, { types: ['field'] });
+  }
+  for (const g of world.generators) {
+    for (const [i, x] of (g.inputs ?? []).entries()) refs.check(x, g.file, `inputs[${i}]`);
+    if (!existsSync(join(world.root === WORLD ? WORLD : world.root, g.code)) && !existsSync(join(WORLD, g.code))) {
+      issues.push({ level: 'error', check: 'refs', file: g.file, where: 'code', message: `no code at ${g.code}` });
+    }
+  }
+  for (const a of world.alternatives) {
+    if (a.type === 'alternative') {
+      refs.check(a.group, a.file, 'group', { types: ['alt'] });
+      const g = a.group ? world.alternative.get(a.group) : undefined;
+      if (g && g.type !== 'group') issues.push({ level: 'error', check: 'refs', file: a.file, where: 'group', message: `${a.group} is not a group` });
+    } else {
+      for (const [i, m] of (a.show ?? []).entries()) {
+        refs.check(m, a.file, `show[${i}]`, { types: ['alt'] });
+        const alt = world.alternative.get(m);
+        if (alt && alt.group !== a.id) issues.push({ level: 'error', check: 'refs', file: a.file, where: `show[${i}]`, message: `${m} is not in this group` });
+      }
+      if (a.default && !a.show?.includes(a.default)) issues.push({ level: 'error', check: 'refs', file: a.file, where: 'default', message: 'the default must be one of the members shown' });
+    }
+  }
+  return [...refs.wanted.values()].sort((a, b) => (a.ref < b.ref ? -1 : 1));
+}
+
+function checkDataset(world: World, refs: RefChecker, id: string, file: string, where: string, member: string | undefined, issues: Issue[]): void {
+  refs.check(id, file, where, { types: ['src'] });
+  const d = world.manifest.datasets[id];
+  if (world.source.has(id) && !d) issues.push({ level: 'error', check: 'refs', file, where, message: `${id} is a source but not a dataset in the manifest, so the build cannot fetch it` });
+  if (d && member && !d.fetch.files?.[member]) issues.push({ level: 'error', check: 'refs', file, where, message: `${id} has no file "${member}"` });
+}
+
+/** Competing claims need one of them preferred, in each picture they compete in. */
+function checkRanks(world: World, issues: Issue[]): void {
+  for (const p of pictures(world)) {
+    for (const g of claimGroups(world)) {
+      const avail = available(g, p).filter((c) => c.rank !== 'deprecated');
+      if (avail.length < 2 || chosen(g, p)) continue;
+      const n = avail.filter((c) => c.rank === 'preferred').length;
+      issues.push({
+        level: 'error',
+        check: 'ranks',
+        file: avail[0].file,
+        where: avail.map((c) => c.where).join(', '),
+        message: `competing "${g.prop}" claims need exactly one rank: preferred${p.alts ? ` (in ${p.alts.join(', ')})` : ''}; found ${n}`,
+      });
+    }
+  }
+}
+
+/** A claim restating another's value belongs to it as a corroborating source. */
+function checkDuplicates(world: World, issues: Issue[]): void {
+  for (const g of claimGroups(world)) {
+    const seen = new Map<string, Claim>();
+    for (const c of g.claims) {
+      const k = `${c.alt ?? ''} ${JSON.stringify(c.value)} ${JSON.stringify(c.valid ?? null)}`;
+      const prev = seen.get(k);
+      if (prev) issues.push({ level: 'warning', check: 'duplicates', file: c.file, where: c.where, message: `restates ${prev.where}; add its source to that claim instead, as corroboration` });
+      else seen.set(k, c);
+    }
+  }
+}
+
+const fmtMa = (year: number) => `${toMa(year).toFixed(3)} Ma`;
+
+function fmtYears(y: number): string {
+  const a = Math.abs(y);
+  return a >= 1e6 ? `${+(a / 1e6).toFixed(3)} Myr` : a >= 1e3 ? `${+(a / 1e3).toFixed(1)} kyr` : `${+a.toFixed(1)} yr`;
+}
+
+function pointLabel(point: string): string {
+  const [subject, edge] = point.split('|');
+  return `${subject} (${edge})`;
+}
+
+/** One constraint in words: "X (start) = 70.000 Ma", "Y (date) is not before X (start)". */
+export function describeConstraint(c: Constraint): string {
+  if (c.from === '$origin') {
+    const p = pointLabel(c.to);
+    const lo = Number.isFinite(c.lo);
+    const hi = Number.isFinite(c.hi);
+    if (lo && hi && c.lo === c.hi) return `${p} = ${fmtMa(c.lo)}`;
+    if (lo && hi) return `${p} between ${fmtMa(c.lo)} and ${fmtMa(c.hi)}`;
+    if (hi) return `${p} no later than ${fmtMa(c.hi)}`;
+    return `${p} no earlier than ${fmtMa(c.lo)}`;
+  }
+  const a = pointLabel(c.from);
+  const b = pointLabel(c.to);
+  if (c.lo === 0 && c.hi === 0) return `${b} is ${a}`;
+  const parts: string[] = [];
+  if (Number.isFinite(c.lo)) parts.push(c.lo === 0 ? `${b} is not before ${a}` : `${b} is at least ${fmtYears(c.lo)} after ${a}`);
+  if (Number.isFinite(c.hi)) parts.push(`${b} is at most ${fmtYears(c.hi)} after ${a}`);
+  return parts.join(', and ');
+}
+
+/** Where a constraint comes from: the file and claim or relation of its source. */
+export function sourceOf(world: World, source: string): { file: string; where: string } {
+  const { record, part: key } = splitRef(source);
+  const e = world.entity.get(record);
+  if (!e) return { file: record, where: '' };
+  if (!key) return { file: e.file, where: '(structure)' };
+  const x = e.claims.find((c) => c.key === key) ?? e.relations.find((r) => r.key === key);
+  return { file: e.file, where: x?.where ?? key };
+}
+
+export function describeConflict(world: World, conflict: Conflict): string {
+  const lines = conflict.constraints.map((c: Constraint) => {
+    const s = sourceOf(world, c.source);
+    return `    ${s.file} ${s.where}: ${describeConstraint(c)}${c.note ? ` (${c.note})` : ''}`;
+  });
+  return `these constraints cannot all hold; together they are ${fmtYears(conflict.slack)} short:\n${lines.join('\n')}`;
+}
+
+function pictureName(s: Scenario): string {
+  return s.alts?.length ? `with ${s.alts.join(' and ')}` : 'in the default picture';
+}
+
+function checkChronology(world: World, issues: Issue[]): void {
+  for (const v of solveVariants(world)) {
+    if (v.solution.ok) continue;
+    const pick = v.scenario.picks?.[0];
+    if (!pick) {
+      issues.push({ level: 'error', check: 'chronology', message: `${pictureName(v.scenario)}, ${describeConflict(world, v.solution.conflict)}` });
+      continue;
+    }
+    const { record, part } = splitRef(pick);
+    const c = world.entity.get(record)!.claims.find((x) => x.key === part)!;
+    issues.push({
+      level: c.rank === 'deprecated' ? 'info' : 'warning',
+      check: 'chronology',
+      file: c.file,
+      where: c.where,
+      message: `this competing "${c.prop}" claim (rank ${c.rank}) contradicts the rest of the world ${pictureName(v.scenario)}: ${describeConflict(world, v.solution.conflict)}`,
+    });
+  }
+}
+
+/** The chosen claim of an entity's property in a picture. */
+export function claimOf(world: World, subject: string, prop: string, s: Scenario = {}): Claim | undefined {
+  const g = claimGroups(world).find((x) => x.subject === subject && x.prop === prop);
+  return g ? chosen(g, s) : undefined;
+}
+
+/**
+ * Frames: an entity with a location must say which frame it moves with, the build must be
+ * able to carry the location there, and a plate frame must hold the location in its
+ * polygon while the entity exists, in every picture.
+ */
+async function checkFrames(world: World, issues: Issue[]): Promise<void> {
+  const sols = pictures(world).map((p) => solveScenario(world, p)).filter((s): s is Solution & { ok: true } => s.ok);
+  if (!sols.length) return;
+  const queries = [];
+  const expect = new Map<string, number>();
+  for (const e of world.entities) {
+    const loc = claimOf(world, e.id, 'location');
+    const fr = claimOf(world, e.id, 'frame');
+    if (!loc) continue;
+    if (!fr) {
+      issues.push({ level: 'error', check: 'frames', file: e.file, where: loc.where, message: 'a location needs a frame claim: the frame it moves with' });
+      continue;
+    }
+    const p = loc.value as { lat: number; lon: number; frame: string };
+    const frame = world.frame.get(fr.value as string);
+    if (!frame) continue; // wanted
+    if (p.frame !== 'frame:earth/present-day' || frame.kind !== 'plate' || !frame.extent) {
+      if (p.frame !== frame.id) issues.push({ level: 'error', check: 'frames', file: e.file, where: loc.where, message: `the build cannot yet carry coordinates from ${p.frame} into ${frame.id}` });
+      continue;
+    }
+    const earliest = Math.min(...sols.map((s) => s.bounds.get(pointOf(world, e.id, 'start'))!.lo));
+    const ages = Number.isFinite(earliest) ? [0, Math.round(toMa(earliest) * 1000) / 1000] : [0];
+    queries.push({ id: e.id, lat: p.lat, lon: p.lon, agesMa: ages });
+    expect.set(e.id, frame.extent.plate);
+  }
+  if (!queries.length) return;
+  for (const r of await resolvePoints(queries)) {
+    const e = world.entity.get(r.id)!;
+    const where = claimOf(world, e.id, 'frame')!.where;
+    if (r.plate !== expect.get(r.id)) {
+      issues.push({ level: 'error', check: 'frames', file: e.file, where, message: r.plate === null ? 'the location is outside every plate polygon of the plate model' : `the location is in plate ${r.plate}'s polygon, not plate ${expect.get(r.id)}'s` });
+      continue;
+    }
+    for (const [age, exists] of Object.entries(r.existsAt ?? {})) {
+      if (!exists) issues.push({ level: 'error', check: 'frames', file: e.file, where, message: `plate ${r.plate}'s polygon at this location does not exist at ${age} Ma, within the entity's lifetime` });
+    }
+  }
+}
+
+/**
+ * The license filter: what a published build may include (section 13). It applies to the
+ * datasets, whose content the build copies into tiles; publications and database records
+ * contribute single facts and short quotes, with credit.
+ */
+function checkLicenses(world: World, issues: Issue[]): void {
+  const allowed = new Set(world.manifest.publish.licenses);
+  for (const [id, d] of Object.entries(world.manifest.datasets)) {
+    if (!allowed.has(d.license ?? 'unknown')) issues.push({ level: 'error', check: 'licenses', file: 'manifest.yaml', where: id, message: `license "${d.license ?? 'none'}" is not one a published build may include (${[...allowed].join(', ')})` });
+  }
+}
+
+export async function validateWorld(world: World, opts: { frames?: boolean } = {}): Promise<Report> {
+  const issues: Issue[] = world.loadIssues.map((e) => ({ level: 'error', check: 'load', file: e.file, where: e.where, message: e.message }));
+  checkSchemas(world, issues);
+  const wanted = checkRecords(world, issues);
+  checkRanks(world, issues);
+  checkDuplicates(world, issues);
+  if (world.root === WORLD || existsSync(join(world.root, 'manifest.yaml'))) checkLicenses(world, issues);
+  for (const w of wanted) {
+    issues.push({ level: 'info', check: 'wanted', message: `${w.ref} is wanted: referenced ${w.from.length} time${w.from.length > 1 ? 's' : ''} (${w.from.map((f) => `${f.file} ${f.where}`).join('; ')}) but not written yet` });
+  }
+  const ok = () => !issues.some((i) => i.level === 'error');
+  if (ok()) checkChronology(world, issues);
+  if (opts.frames !== false && ok()) await checkFrames(world, issues);
+  return { issues, wanted };
+}
+
+export function formatIssue(i: Issue): string {
+  const loc = [i.file, i.where].filter(Boolean).join(' ');
+  return `${i.level.padEnd(7)} ${i.check.padEnd(11)} ${loc ? loc + ': ' : ''}${i.message}`;
+}
+
+export async function runValidate(args: string[]): Promise<number> {
+  const wi = args.indexOf('--world');
+  const root = wi >= 0 ? resolve(args[wi + 1]) : WORLD;
+  const world = await loadWorld(root);
+  const { issues, wanted } = await validateWorld(world, { frames: !args.includes('--no-frames') });
+  for (const i of issues) if (i.level !== 'info' || args.includes('--verbose')) console.log(formatIssue(i));
+  const n = (l: Issue['level']) => issues.filter((i) => i.level === l).length;
+  const claims = world.entities.flatMap((e) => e.claims);
+  const unsourced = [...claims, ...world.entities.flatMap((e) => e.relations)].filter((c) => c.unsourced).length;
+  console.log(
+    `${world.entities.length} entities, ${claims.length} claims, ${world.sources.length} sources: ${n('error')} errors, ${n('warning')} warnings; ` +
+      `${unsourced} unsourced claims, ${wanted.length} wanted records${n('info') && !args.includes('--verbose') ? ` (--verbose lists ${n('info')} notes)` : ''}`,
+  );
+  return n('error') ? 1 : 0;
+}
+

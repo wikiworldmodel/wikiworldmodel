@@ -1,0 +1,44 @@
+id: life/mesosaurus/calvinia
+kind: occurrence
+summary: Mesosaurus tenuidens from the Whitehill Formation at Calvinia, Northern Cape, South Africa. PBDB collection 90311.
+same_as: { pbdb: "occ:820897" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Mesosaurus, Calvinia" }
+    unsourced: An editorial label, from the taxon and the collection's place name.
+  identified:
+    prop: identified_as
+    value: Mesosaurus tenuidens
+    source: { ref: src:pbdb/collection-90311, loc: "occurrence 820897, identified_name" }
+  location:
+    prop: location
+    value: { lat: -31.466667, lon: 19.766666, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-90311, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Whitehill Formation
+    source: { ref: src:pbdb/collection-90311, loc: formation }
+  date:
+    prop: date
+    value: { ref: ics/artinskian }
+    source: { ref: src:pbdb/collection-90311, loc: early_interval }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Assigned to the Artinskian stage. The PBDB's own ages for it (max_ma 290.1, min_ma
+      279.3) come from its time scale; here the stage's ages come from its period record,
+      so they follow the time scale chosen.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mesosaurus-tenuidens
+    source: { ref: src:pbdb/collection-90311, loc: "occurrence 820897, accepted_name" }

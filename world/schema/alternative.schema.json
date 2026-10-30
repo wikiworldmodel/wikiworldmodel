@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lightworld.invalid/schema/alternative.json",
+  "title": "Alternative or group",
+  "description": "An alternative is a named set of claims that stand or fall together: a hypothesis, perspective, scenario or reading. Members of a group exclude each other; groups combine freely.",
+  "type": "object",
+  "required": ["id", "type", "title"],
+  "properties": {
+    "id": { "type": "string", "$ref": "defs.json#/$defs/record_id", "pattern": "^alt:" },
+    "type": { "enum": ["group", "alternative"] },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "kind": { "enum": ["hypothesis", "perspective", "scenario", "reading"] },
+    "group": { "$ref": "defs.json#/$defs/record_id" },
+    "show": { "type": "array", "items": { "$ref": "defs.json#/$defs/record_id" }, "description": "The members a build shows (a steward decision)" },
+    "default": { "oneOf": [{ "$ref": "defs.json#/$defs/record_id" }, { "type": "null" }], "description": "The member a build shows by default; null for the default picture" }
+  },
+  "additionalProperties": false,
+  "if": { "properties": { "type": { "const": "alternative" } } },
+  "then": { "required": ["group", "kind"], "not": { "anyOf": [{ "required": ["show"] }, { "required": ["default"] }] } },
+  "else": { "required": ["show", "default"], "not": { "anyOf": [{ "required": ["group"] }, { "required": ["kind"] }] } }
+}

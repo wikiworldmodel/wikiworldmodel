@@ -1,0 +1,4 @@
+# Pinned so that imports (and therefore builds) are reproducible.
+numpy==2.5.4
+pyarrow==26.0.0
+pygplates==1.0.0

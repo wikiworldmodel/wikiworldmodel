@@ -1,0 +1,57 @@
+id: life/mesosaurus/sao-mateus-do-sul
+kind: occurrence
+summary: Mesosaurus tenuidens from the Irati Formation at São Mateus do Sul, Paraná, Brazil. PBDB collection 90190.
+same_as: { pbdb: "occ:820351" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Mesosaurus, São Mateus do Sul" }
+    unsourced: An editorial label, from the taxon and the collection's place name.
+  identified:
+    prop: identified_as
+    value: Mesosaurus tenuidens
+    source: { ref: src:pbdb/collection-90190, loc: "occurrence 820351, identified_name" }
+  location:
+    prop: location
+    value: { lat: -25.844444, lon: -50.422222, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-90190, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-201
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Irati Formation
+    source: { ref: src:pbdb/collection-90190, loc: formation }
+  date:
+    prop: date
+    value: { ref: ics/artinskian }
+    source: { ref: src:pbdb/collection-90190, loc: early_interval }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Assigned to the Artinskian stage. The PBDB's own ages for it (max_ma 290.1, min_ma
+      279.3) come from its time scale; here the stage's ages come from its period record,
+      so they follow the time scale chosen.
+  date-santos-2006:
+    prop: date
+    value: { mean: 278.4 Ma, sd: 1.1 Myr }
+    source:
+      ref: src:santos-2006-irati
+      loc: abstract
+      quote: SHRIMP analysis performed on the euhedral and prismatic grains revealed an age of ca. 278.4 ± 2.2 Ma (7 points with 95% confidence)
+    method: radiometric/u-pb
+    confidence: likely
+    note: >-
+      U–Pb zircon age of bentonite layers in the Irati Formation; the stated ±2.2 Ma is a 95%
+      interval, so sd ≈ 1.1 Myr. It dates this occurrence only if the fossils are coeval with
+      the dated beds, hence the confidence.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mesosaurus-tenuidens
+    source: { ref: src:pbdb/collection-90190, loc: "occurrence 820351, accepted_name" }

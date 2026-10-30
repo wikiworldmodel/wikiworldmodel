@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lightworld.invalid/schema/entity.json",
+  "title": "Entity",
+  "description": "Anything with identity over time, with its phases, claims and relations. One entity per file; claims and relations live in their subject's file.",
+  "type": "object",
+  "required": ["id", "kind"],
+  "properties": {
+    "id": { "$ref": "defs.json#/$defs/entity_id" },
+    "kind": { "type": "string" },
+    "summary": { "type": "string" },
+    "same_as": {
+      "description": "External ids, by scheme",
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z][a-z0-9-]*$" },
+      "additionalProperties": { "type": ["string", "integer"] }
+    },
+    "author": { "$ref": "defs.json#/$defs/author", "description": "The author of this file's claims, unless a claim says otherwise" },
+    "phases": {
+      "description": "Time-bounded states, in order. They tile the entity's lifetime.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id"],
+        "properties": {
+          "id": { "$ref": "defs.json#/$defs/key" },
+          "label": { "type": "string" },
+          "gap": { "type": "boolean", "description": "A stretch of the lifetime whose state is unknown" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "claims": {
+      "type": "object",
+      "propertyNames": { "$ref": "defs.json#/$defs/key" },
+      "additionalProperties": { "$ref": "#/$defs/claim" }
+    },
+    "relations": {
+      "type": "object",
+      "propertyNames": { "$ref": "defs.json#/$defs/key" },
+      "additionalProperties": { "$ref": "#/$defs/relation" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "claim": {
+      "type": "object",
+      "required": ["prop", "value"],
+      "allOf": [{ "$ref": "defs.json#/$defs/claim_common" }],
+      "properties": {
+        "prop": { "type": "string" },
+        "value": {},
+        "method": { "type": "string" },
+        "subject": true, "valid": true, "source": true, "unsourced": true, "confidence": true, "basis": true,
+        "alt": true, "author": true, "status": true, "rank": true, "note": true
+      },
+      "additionalProperties": false
+    },
+    "relation": {
+      "type": "object",
+      "required": ["rel", "to"],
+      "allOf": [{ "$ref": "defs.json#/$defs/claim_common" }],
+      "properties": {
+        "rel": { "type": "string" },
+        "to": { "$ref": "defs.json#/$defs/ref" },
+        "lag": { "$ref": "defs.json#/$defs/lag" },
+        "subject": true, "valid": true, "source": true, "unsourced": true, "confidence": true, "basis": true,
+        "alt": true, "author": true, "status": true, "rank": true, "note": true
+      },
+      "additionalProperties": false
+    }
+  }
+}

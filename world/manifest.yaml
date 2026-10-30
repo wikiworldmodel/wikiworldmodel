@@ -1,0 +1,93 @@
+# External datasets. They are referenced, not copied: `npm run fetch` downloads each one
+# from its pinned URL into .cache/ and checks it against the sha256 recorded here, and the
+# build reads them from there. Changing a dataset means changing its entry (and its hash).
+#
+# Each dataset version is also a source (section 4.8), cited as its id: the fields above
+# `fetch` are the source record, the ones under it say how the build gets the files.
+
+# What a published build may include: datasets and database records with any other licence,
+# or none, are refused. Cited publications contribute only facts and short quotes.
+publish:
+  licenses: [CC-BY-4.0, CC0-1.0, public-domain]
+
+datasets:
+  src:paleomap-plate-model:
+    type: dataset
+    kind: model
+    title: PALEOMAP PaleoAtlas for GPlates and the PaleoData Plotter Program
+    citation: >-
+      Scotese, C.R. (2016). PALEOMAP PaleoAtlas for GPlates and the PaleoData Plotter Program.
+      PALEOMAP Project. (Global plate model m15g60_v2d3, plate polygons ContOceanPolyv10u_v2d3.)
+    authors:
+      - "Scotese, C.R."
+    published: 2016
+    version: PALEOMAP PaleoAtlas for GPlates v3, rotation file dated 2016-02-01
+    container: PALEOMAP Project
+    url: http://www.earthbyte.org/paleomap-paleoatlas-for-gplates/
+    credit: PALEOMAP plate model (Scotese 2016)
+    license: CC-BY-4.0
+    license_note: >-
+      Stated by the rgplates package that redistributes these files. The upstream EarthByte
+      page was not reachable when this entry was written; confirm upstream terms before
+      publishing derived builds.
+    reliability: >-
+      A plate reconstruction model: positions in the past are model output, fitted by the
+      author to paleomagnetic, geological and paleogeographic constraints. Its absolute
+      reference frame (plate 0) is paleomagnetic.
+    note: >-
+      GPlates' plate-model-manager distributes the same atlas (Scotese_PaleoAtlas_2016_v3.zip)
+      as Zenodo record 10596609; that record was not checked here.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Citation as given in the GPlates web service model documentation; model and polygon
+        version names from the header of PALEOMAP_PlateModel.rot.
+    fetch:
+      url: https://raw.githubusercontent.com/gplates/rgplates/4d62bba877ec383324dafd5a5ce6e057182b9eaa/inst/extdata/paleomap_v3.zip
+      sha256: 5a3805a5eaa0218893f44363e76d9615b1a0a3a978abf9f0c31eb024ce01fcbb
+      bytes: 967732
+      format: zip
+      files:
+        rotations:
+          path: PALEOMAP_PlateModel.rot
+          sha256: d56846bb3c6260805d088171066bc18e9d54e831892b660fd31315260e288022
+        polygons:
+          path: PALEOMAP_PlatePolygons.gpml
+          sha256: 4925c064a415cfa6e7fd3f5e0682585baa9908f01bee9e053ca5dea0b0dc57ca
+      via: >-
+        The copy shipped with the rgplates R package (gplates/rgplates, inst/extdata), which
+        repackages the "PALEOMAP Global Plate Model" folder of Scotese_Paleoatlas_v3.zip.
+
+  src:paleodem-v2:
+    type: dataset
+    kind: model
+    title: PALEOMAP Paleodigital Elevation Models (PaleoDEMS) for the Phanerozoic
+    citation: >-
+      Scotese, C.R. & Wright, N. (2018). PALEOMAP Paleodigital Elevation Models (PaleoDEMS)
+      for the Phanerozoic. PALEOMAP Project. Version 2. https://doi.org/10.5281/zenodo.5460860
+    authors:
+      - "Scotese, C.R."
+      - "Wright, N."
+    published: 2018
+    version: v2 (Zenodo record 5460860), 1° grids, 0–540 Ma every 5 Myr
+    container: PALEOMAP Project (Zenodo)
+    doi: 10.5281/zenodo.5460860
+    url: https://zenodo.org/records/5460860
+    credit: PALEOMAP PaleoDEMs (Scotese & Wright 2018)
+    license: CC-BY-4.0
+    license_note: The upstream archive's License.txt states CC BY 4.0.
+    reliability: >-
+      A model reconstruction, not a measurement: elevations and depths estimated from
+      paleogeographic maps (shorelines, mountains, basins) placed with the PALEOMAP plate
+      model. 0 m is the paleo-shoreline.
+    fetch:
+      url: https://media.githubusercontent.com/media/visgl/deck.gl-data/0a873024cfc3fbb78d44027143013b8908fd8873/earth/paleogeography/v1/paleodem/paleodem.parquet
+      sha256: 273da657c3edfb5802ea8ef1ace41f702c0da435f91a9e72710924f5e530f026
+      bytes: 3111980
+      format: parquet
+      upstream:
+        url: https://zenodo.org/records/5460860/files/PaleoDEMS_long_lat_elev_csv_v2.zip
+        sha256: db43e6261411ff468c9030ca240778a73f224bf34bf8186c735477e41454c873
+      via: >-
+        visgl/deck.gl-data, earth/paleogeography/v1/paleodem: every node and value of the
+        109 upstream CSV snapshots, converted to Parquet without resampling or correction.
