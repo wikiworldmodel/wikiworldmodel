@@ -133,7 +133,7 @@ diameter-hildebrand-1991:
 | Fields | 4.7 | One file per field. The coastline is declared as a derivation of the elevation field, never stored. |
 | Sources | 4.8 | A source has a type (what the work is) and a kind (what sort of evidence it is), its date and a reliability note. Each dataset version in the manifest is a source too, cited as `src:paleodem-v2`. |
 | Generators | 4.8, 7 | A record holds the version, parameters and seeds; the code sits next to it. Each item has a stable slot id (`globe`), which seeds it. The build refuses a record whose version differs from the code's. |
-| Periods | 4.9 | Periods are entities of kind `period/<rank>`. Each boundary is stated once, as the start of the unit above it; a unit ends where the next of its rank starts (`before` with no lag), and lies within its parent (`part-of`). |
+| Periods | 4.9 | Periods are entities of kind `period/<rank>`. A period's start is a claim citing the chart; its end is not restated, but comes from the next period of its rank (`before` with no lag). A period lies within its parent (`part-of`). |
 | Alternatives | 4.4 | Groups and members are records. A claim joins the default picture unless it names an alternative, and within a group an alternative's own claims replace the default ones. Each alternative is validated as its own world with the default. The group records the steward decision: what a build shows, and its default. |
 | Time | 5 | Each bound takes its own unit: a year, `CE`, `BCE`, `BP`, `ka`, `Ma`, `Ga`, `Myr/Gyr from now`. `lo` is always the earlier time, and a whole year means that year. Values are a point, `{lo, hi}` (either end may be left open; `unknown` says it ended at an unknown time), `{mean, sd}`, or another record's interval or edge: `{ref, edge, lag}`. |
 | Basis | 7 | Claims carry a basis. Derived content takes the weakest basis among its inputs: a marker's place at past times is a reconstruction (it comes from the plate model), its place today is its measured location's, and its dates take the basis of the claims they rest on. |
@@ -247,10 +247,10 @@ the hash of its contents.
      `review`.
    - The confidence words, IPCC AR6's likelihood scale, mapped to probability ranges.
    - The period ranks, as kinds.
-8. **Each boundary of the time scale is stated once.** A period's start is a claim citing
-   the chart. Its end comes from the next period of its rank (`before`, with no lag), so an
-   alternative that moves a boundary changes one claim, and both periods follow. A period
-   with no successor of its rank states its end, unless it still holds.
+8. **A period's end is not restated.** A period's start is a claim citing the chart. Its
+   end comes from the next period of its rank (`before`, with no lag), so an alternative
+   that moves a stage boundary changes one claim, and both stages follow. A period with no
+   successor of its rank states its end, unless it still holds.
 9. **The time-scale alternative.** The PBDB gives the Artinskian as 290.1–279.3 Ma, from
    its own time scale; the ICS chart v2020/03 gives 290.1–283.5 Ma. The Mesosaurus records
    now cite the stage, not the PBDB's numbers. So under the ICS chart (the default
