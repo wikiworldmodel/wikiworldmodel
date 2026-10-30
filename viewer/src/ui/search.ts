@@ -36,8 +36,10 @@ export class Search {
     if (!q) return this.close();
     const words = q.split(/\s+/);
     const match = (s: string) => words.every((w) => s.toLowerCase().includes(w));
+    // Records whose name matches come before those that match only in their summary or id.
     const ents: SearchHit[] = this.index.entities
       .filter((e) => match(`${e.label} ${e.summary ?? ''} ${e.id}`))
+      .sort((a, b) => Number(match(b.label)) - Number(match(a.label)))
       .map((e) => ({ type: 'entity', id: e.id, label: e.label, detail: kindLabel(e.kind), located: e.located }));
     const pers: SearchHit[] = this.periods
       .filter((p) => match(p.name))

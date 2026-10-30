@@ -1,0 +1,18 @@
+id: src:ashton-1948-industrial-revolution
+type: publication
+kind: review
+citation: >-
+  Ashton, T.S. (1948). The Industrial Revolution, 1760–1830. Home University Library.
+  London: Oxford University Press.
+authors:
+  - "Ashton, T.S."
+published: 1948
+title: The Industrial Revolution, 1760–1830
+container: Home University Library, Oxford University Press
+url: https://archive.org/details/dli.ernet.237785
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in the Internet Archive's OCR text of the 1964 reprint (Digital Library of India
+    copy dli.ernet.237785), whose imprint page gives "First edition 1948"; the dates are the
+    book's title, and the caveat quoted is on p. 2.

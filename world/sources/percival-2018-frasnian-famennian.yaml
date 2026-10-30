@@ -1,0 +1,21 @@
+id: src:percival-2018-frasnian-famennian
+type: publication
+kind: measurement
+citation: >-
+  Percival, L.M.E., Davies, J.H.F.L., Schaltegger, U., De Vleeschouwer, D., Da Silva, A.-C. &
+  Föllmi, K.B. (2018). Precisely dating the Frasnian–Famennian boundary: implications for
+  the cause of the Late Devonian mass extinction. Scientific Reports 8, 9578.
+authors:
+  - "Percival, L.M.E."
+  - "Davies, J.H.F.L."
+  - "Schaltegger, U."
+  - "De Vleeschouwer, D."
+  - "Da Silva, A.-C."
+  - "Föllmi, K.B."
+published: 2018
+title: "Precisely dating the Frasnian–Famennian boundary: implications for the cause of the Late Devonian mass extinction"
+container: Scientific Reports 8, 9578
+doi: 10.1038/s41598-018-27847-7
+verified:
+  by: machine:claude-code
+  how: Abstract read verbatim from the Europe PMC record (PMID 29934550); citation from Crossref.

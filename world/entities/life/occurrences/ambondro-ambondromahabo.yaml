@@ -1,0 +1,49 @@
+id: life/occurrences/ambondro-ambondromahabo
+kind: occurrence
+summary: >-
+  Ambondro mahabo from the Isalo IIIb unit near Ambondromahabo, Mahajanga Basin, Madagascar: the
+  oldest crown-group mammal, an australosphenidan. PBDB collection 92151.
+same_as: { pbdb: "occ:832285" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Ambondro, Ambondromahabo" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Ambondro mahabo n. gen. n. sp.
+    source: { ref: src:pbdb/collection-92151, loc: "occurrence 832285, identified_name" }
+  location:
+    prop: location
+    value: { lat: -16.549999, lon: 46.983334, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-92151, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-702
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Isalo IIIb
+    source: { ref: src:pbdb/collection-92151, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/bathonian }
+    source:
+      - { ref: src:pbdb/collection-92151, loc: "early_interval" }
+      - { ref: src:benton-2015-animal-calibrations, loc: "CROWN MAMMALIA (57), age justification" }
+    method: stratigraphic
+    rank: preferred
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mammalia
+    source:
+      - { ref: src:pbdb/collection-92151, loc: "occurrence 832285, accepted_name; Mammalia" }
+      - { ref: src:benton-2015-animal-calibrations, loc: "CROWN MAMMALIA (57), fossil taxon and phylogenetic justification" }
+    note: >-
+      Benton et al. place Ambondro in the monotreme clade Australosphenida, within crown
+      mammals.

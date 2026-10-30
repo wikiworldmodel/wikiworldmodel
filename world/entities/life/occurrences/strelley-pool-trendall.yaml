@@ -1,0 +1,55 @@
+id: life/occurrences/strelley-pool-trendall
+kind: occurrence
+summary: >-
+  Silicified microbial mats, above stromatolitic carbonates, in the Strelley Pool Formation at
+  the Trendall locality, Pilbara, Western Australia: the oldest widely accepted record of life
+  placed here.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Strelley Pool microbial mats, Trendall locality" }
+    unsourced: An editorial label, from the formation and the locality.
+  identified:
+    prop: identified_as
+    value: microbial mats
+    source: { ref: src:duda-2016-strelley-pool, loc: "abstract" }
+    note: >-
+      Not a taxon: a sign of life, a silicified microbial mat facies that Duda et al. interpret
+      as biogenic.
+  location:
+    prop: location
+    value: { lat: -21.206878, lon: 119.307694, frame: frame:earth/present-day }
+    source: { ref: src:duda-2016-strelley-pool, loc: "Methods (21°12′24.76″S; 119°18′27.70″E)" }
+    method: survey
+    note: >-
+      The coordinates Duda et al. give for the Trendall locality and its counterpart across the
+      Shaw River, converted to decimal degrees.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Strelley Pool Formation
+    source: { ref: src:duda-2016-strelley-pool, loc: "Geological Framework" }
+  date:
+    prop: date
+    value: { lo: 3.43 Ga, hi: 3.35 Ga }
+    source: { ref: src:duda-2016-strelley-pool, loc: "Geological Framework", quote: "The 3.43–3.35 Ga Strelley Pool Formation" }
+    method: stratigraphic
+    note: >-
+      The age of the formation; at the Trendall locality it lies on the Mount Ada Basalt (3469 ±
+      3 Ma) and under the Euro Basalt (3350 ± 3 Ma), as Duda et al. give them.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/cellular-organisms
+    source:
+      - { ref: src:duda-2016-strelley-pool, loc: "abstract" }
+      - { ref: src:betts-2018-timescale-of-life, loc: "Results: calibrations of LUCA" }
+    note: >-
+      Betts et al. (2018) take the Strelley Pool biota as the oldest undisputed record of life
+      and use it as the minimum age of LUCA.

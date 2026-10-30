@@ -1,0 +1,59 @@
+id: earth/lips/siberian-traps
+kind: large-igneous-province
+summary: >-
+  Flood basalts, sills and pyroclastic rocks of northern Siberia, emplaced before, during
+  and after the end-Permian mass extinction.
+author: machine:claude-code
+# Phases tile the lifetime: the province starts with its main magmatic interval and, with
+# no end, still exists.
+phases:
+  - id: main
+    label: Main magmatic interval
+  - id: after
+    label: After the main magmatism
+claims:
+  name:
+    prop: name
+    value: { en: Siberian Traps }
+    source: { ref: src:burgess-2017-siberian-sills, loc: title }
+  location:
+    prop: location
+    value: { lat: 69.3333, lon: 88.2167, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-norilsk, loc: "Q175517, P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A representative locality: the Noril'sk lava section, placed at the town of Noril'sk
+      from a gazetteer. Burgess and Bowring (2015) take the Noril'sk and Maymecha-Kotuy
+      sections as the most complete record of the lava pile.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-401
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  main-start:
+    prop: start
+    subject: "@main"
+    value: { mean: 252.24 Ma, sd: 0.06 Myr }
+    source:
+      ref: src:burgess-bowring-2015-siberian-traps
+      loc: Results, lavas of the Maymecha-Kotuy section
+      quote: at 252.24 ± 0.12 Ma, as the best estimate of the minimum age of magmatism
+    method: radiometric/u-pb
+    note: >-
+      The mean of two perovskite dates from the base of the Maymecha-Kotuy lava section. The
+      pyroclastic rocks below the lavas are older, but single zircons give them only maximum
+      ages, near 256 Ma. The ± is 2σ, so sd = 0.06 Myr.
+  main-end:
+    prop: end
+    subject: "@main"
+    value: { mean: 251.354 Ma, sd: 0.044 Myr }
+    source:
+      ref: src:burgess-bowring-2015-siberian-traps
+      loc: Table 1, sample 194/35/860 (Nepa, lower sill, Scholokhovskoie pipe)
+      quote: a weighted mean 206Pb/238U date of 251.354 ± 0.088 Ma
+    method: radiometric/u-pb
+    note: >-
+      The youngest date in the paper, from a sill; magmatism went on at least this long
+      (lavas for at least 500 kyr after the extinction ended, sills for at least 500 kyr into
+      the Triassic). The ± is 2σ (analytical only), so sd = 0.044 Myr.

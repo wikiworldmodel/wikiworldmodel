@@ -1,0 +1,24 @@
+id: src:connelly-2012-cai-chronology
+type: publication
+kind: measurement
+citation: >-
+  Connelly, J.N., Bizzarro, M., Krot, A.N., Nordlund, Å., Wielandt, D. & Ivanova, M.A.
+  (2012). The absolute chronology and thermal processing of solids in the solar
+  protoplanetary disk. Science 338(6107), 651–655.
+authors:
+  - "Connelly, J.N."
+  - "Bizzarro, M."
+  - "Krot, A.N."
+  - "Nordlund, Å."
+  - "Wielandt, D."
+  - "Ivanova, M.A."
+published: 2012
+title: The absolute chronology and thermal processing of solids in the solar protoplanetary disk
+container: Science 338(6107), 651–655
+doi: 10.1126/science.1226919
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read verbatim from the Europe PMC record (PMID 23118187); citation from
+    Crossref. The confidence level of the stated ± is not in the abstract and the full text
+    was not reached.

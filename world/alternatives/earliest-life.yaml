@@ -1,0 +1,11 @@
+# A group of alternatives: its members exclude each other, and groups combine freely. A
+# claim belongs to the default picture unless it names an alternative (section 4.4).
+id: alt:earliest-life
+type: group
+title: Earliest evidence of life
+description: >-
+  Which contested evidence older than the Strelley Pool Formation (3.43–3.35 Ga) counts as a
+  record of life. The default picture counts none of it, so the dates it derives do not depend
+  on it.
+show: [alt:earliest-life/isua-stromatolites]
+default: null

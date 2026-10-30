@@ -1,12 +1,17 @@
-# First slice: Pangaea to today
+# First slice: Cambrian to today
 
 Status: built and passing its tests, conformed to the revised [WORLD-MODEL.md](WORLD-MODEL.md)
 and to the decisions in [examples/GAPS.md](../examples/GAPS.md). It is the first
 end-to-end run of the design: a thin slice through every layer, from pinned datasets and
 sourced records through validation, chronology solving and a versioned 4D tile set to the
-viewer.
+viewer. It began at 300 Ma, with Pangaea; it now begins at 540 Ma, the age of the oldest
+elevation grid, with the same two datasets.
 
-The slice covers 300 Ma to today, with:
+The second slice, [SECOND-SLICE.md](SECOND-SLICE.md), widens the world to its whole span,
+from the Hadean to the far future. Where the two differ (the time control, the tiling, the
+fields), that document describes the current build.
+
+The slice covers 540 Ma to today, with:
 
 - moving plates from a published rotation model;
 - reconstructed elevation and bathymetry, with coastlines derived from them;
@@ -43,7 +48,7 @@ TypeScript on Node 22.19+ or 24+.
 | Building twice gives byte-identical tiles | `tools/world/test/build.test.ts` | identical (every file's sha256) |
 | The Mesosaurus sites meet in the Artinskian | `tools/world/test/mesosaurus.test.ts`, and in the browser `viewer.spec.ts` | 6,762–6,917 km apart today; 707–1,745 km apart at 285 and at 280 Ma |
 | The contradiction fixture fails CI and names the conflicting claims | `tools/world/test/contradiction.test.ts`, and a CI step | fails, naming exactly the 3 clashing constraints |
-| Golden-image renders at 3 times stay stable | `viewer/test/e2e/golden.spec.ts` (today, 66.03 Ma, 280 Ma) | match; unchanged by the conformance work |
+| Golden-image renders at 3 times stay stable | `viewer/test/e2e/golden.spec.ts` (today, 66.03 Ma, 280 Ma) | match; unchanged by the conformance work and by the move to 540 Ma |
 | A shared link reproduces the same view | `viewer/test/e2e/viewer.spec.ts` | same state, markers and pixels, exactly |
 
 Also checked:
@@ -65,8 +70,9 @@ Also checked:
   record is reported as wanted, and no id is checked against its file's path.
 - **Ids carry no meaning.** Moving a record to another directory changes nothing: the
   world test validates and solves a copy with a file moved.
-- **Rotations.** The TypeScript rotation model matches pyGPlates on 2,313 reference cases:
-  every plate at 9 ages, crossovers included. The worst difference is 4·10⁻¹⁰°.
+- **Rotations.** The TypeScript rotation model matches pyGPlates on 3,341 reference cases:
+  every plate at 13 ages from 0 to 540 Ma, crossovers included. The worst difference is
+  4·10⁻¹⁰°.
 - **Scrubbing.** Moving through time inside a tile's span fetches nothing.
 - **Competing claims.** They switch. The URL records the pick (`pick=entity#claim`), and
   dates derived from the picked claim follow.
@@ -164,8 +170,8 @@ checked from here; the known gaps are under [Limitations](#limitations).
 
 | Level | Space | Time bins (Ma) | Keyframes per tile |
 |---|---|---|---|
-| 0 | the globe, 2° grid | 0–20, 20–40, 40–80, 80–160, 160–300 (log-scaled) | 5–29 |
-| 1 | 8 cells of 90° × 90°, 1° grid | each level-0 bin halved | 3–15 |
+| 0 | the globe, 2° grid | 0–20, 20–40, 40–80, 80–160, 160–320, 320–540 (log-scaled: each bin twice as long as the one after it) | 5–45 |
+| 1 | 8 cells of 90° × 90°, 1° grid | each level-0 bin halved | 3–23 |
 
 Each tile carries every keyframe needed inside its span, so the viewer can scrub without
 refetching. The level-0 tiles also carry:
@@ -183,17 +189,19 @@ the build shows and the kind labels. The viewer:
 - draws the coarse parent while finer tiles load;
 - prefetches the neighbouring spans in time.
 
-A build is 85 tiles, plus a record for each of the 179 entities, periods, a search index,
-the baked rotation keyframes and the coverage file: 24.4 MB uncompressed. The build id is
-the hash of its contents.
+At the end of this slice a build was 102 tiles, plus a record for each of the 179 entities,
+periods, a search index, the baked rotation keyframes and the coverage file: 41.3 MB
+uncompressed. The build id is the hash of its contents. The second slice extends the bins
+over the whole span, past and future, and splits them where a field starts or ends.
 
 ## Decisions, and where this departs from the design
 
 1. **Rotation model: PALEOMAP, not Merdith et al. 2021.** The elevation grids (Scotese &
    Wright 2018) were made with the PALEOMAP model, and they are given in its frame. Moving
    them, or the fossils, with another model would put fossils off their own coastlines.
-   - The importer checks the pairing: 85–100% (mean 92%) of PaleoDEM land falls inside the
-     model's reconstructed continental polygons at every snapshot.
+   - The importer checks the pairing: 85–100% (mean 93%) of PaleoDEM land falls inside the
+     model's reconstructed continental polygons at every snapshot from 0 to 540 Ma. The 48
+     snapshots older than 300 Ma score 90–98%.
    - Shifting the grid against the polygons by 2–4° lowers the score; at 100 Ma and 280 Ma
      the fit peaks at zero offset or within 2° of it.
    - The choice of model stays an open question (section 14 of the design). Swapping
@@ -218,7 +226,7 @@ the hash of its contents.
    - Each pole row is replaced by its median, since a pole row is a single point.
    - The missing 90°S row of the 150–395 Ma grids is added.
    - The duplicated 180°E column of the other grids is dropped.
-   - 32 values above 8,849 m, impossible as 1° averages, are replaced by the median of their
+   - 33 values above 8,849 m, impossible as 1° averages, are replaced by the median of their
      neighbours. Most of them are colour-scale markers.
 5. **Chronology.**
    - Dates are solved, not stored: claims and relations become a simple temporal network.
@@ -323,6 +331,9 @@ The slice does not exercise these parts of the design:
   so most ocean nodes are on no plate and do not move. The plate polygons are only partly
   reconciled with the elevation grids: most of the land fits, some shelf does not.
 - **Resolution.** The source is a 1° grid, so the coast is soft at close range.
+- **Uncertainty with age.** The plate model and the elevation grids rest on sparser evidence
+  the further back they go, most of all in the early Paleozoic, yet the build gives them all
+  the same basis, reconstruction. Nothing records yet how their uncertainty grows with age.
 - **Uncompressed tiles.** They should be served with gzip or brotli.
 - **Data licence.** None has been chosen for Lightworld itself (section 13 of the design).
   The datasets used are CC BY 4.0 as stated by their distributors; confirm upstream terms
@@ -330,7 +341,9 @@ The slice does not exercise these parts of the design:
 
 ## Next slices
 
-The order is as proposed when this slice was planned:
+The whole span ([SECOND-SLICE.md](SECOND-SLICE.md)) came next, ahead of these two, so that
+the whole timeline is covered coarsely before any era in depth. These remain, in the order
+proposed when this slice was planned:
 
 1. **Last Glacial Maximum to today.** This adds:
    - ice sheets and sea level on a fixed datum, so coastlines need a sea-level field;

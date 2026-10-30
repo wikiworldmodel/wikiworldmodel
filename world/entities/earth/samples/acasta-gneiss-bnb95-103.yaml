@@ -1,0 +1,47 @@
+id: earth/samples/acasta-gneiss-bnb95-103
+kind: sample
+summary: >-
+  Tonalitic gneiss BNB95-103 from the Acasta Gneiss Complex, Northwest Territories, Canada,
+  among the oldest known rocks on Earth.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Acasta Gneiss, sample BNB95-103" }
+    unsourced: An editorial label, from the rock unit and the sample number.
+  formation:
+    prop: formation
+    value: Acasta Gneiss Complex
+    source: { ref: src:stern-bleeker-1998-acasta, loc: "title; Figure 1" }
+  date-stern-bleeker-1998:
+    prop: date
+    value: { mean: 4.025 Ga, sd: 7.5 Myr }
+    source:
+      ref: src:stern-bleeker-1998-acasta
+      loc: p. 30
+      quote: zircon is at least 4.025 ± 0.015 Ga at the 95% confidence level
+    method: radiometric/u-pb
+    note: >-
+      SHRIMP U–Pb ages of the oldest zircon in the tonalite, which the authors take as its
+      crystallization at about 4.03 Ga. It is a minimum: the oldest single spots are 4.037
+      ± 0.024 and 4.034 ± 0.026 Ga. The ± is at 95%, so sd = 7.5 Myr. The authors find it
+      indistinguishable from the 4.031 ± 0.004 Ga that Williams and Bowring reported for
+      another tonalite of the complex.
+  location:
+    prop: location
+    value: { lat: 65.1686, lon: -115.5592, frame: frame:earth/present-day }
+    source:
+      ref: src:trail-2009-acasta-field-report
+      loc: "p. 2, sample AG09008"
+      quote: "AG09008 (GPS: 65o10.118’ W115o33.549’)"
+    method: survey
+    note: >-
+      A representative point: a sample site (65°10.118′N, 115°33.549′W) on the island in the
+      Acasta River that the report gives as probably the place where the first ~4.0 Ga rocks
+      were found. Stern and Bleeker map the complex but give no coordinates for BNB95-103.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

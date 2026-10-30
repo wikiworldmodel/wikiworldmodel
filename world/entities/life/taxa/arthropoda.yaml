@@ -1,0 +1,27 @@
+id: life/taxa/arthropoda
+kind: taxon
+summary: >-
+  Arthropods: the crown group (Euarthropoda), including the trilobites.
+same_as: { ott: 632179, pbdb: "txn:18891" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: arthropods, la: Arthropoda }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott632179: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-dos-reis-2015:
+    prop: start
+    value: { lo: 560.7 Ma, hi: 530.8 Ma }
+    source:
+      ref: src:dos-reis-2015-metazoan-timescale
+      loc: "Table 1, node 99 (Euarthropoda), Composite"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. A composite of the 95% HPD intervals of the paper’s main analyses.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/bilateria
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Arthropoda (ott632179) lies within Bilateria (ott117569)" }

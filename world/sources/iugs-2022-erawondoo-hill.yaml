@@ -1,0 +1,20 @@
+id: src:iugs-2022-erawondoo-hill
+type: database-record
+kind: compilation
+citation: >-
+  IUGS International Commission on Geoheritage. Archean Zircons of Erawondoo Hill, IUGS
+  Geological Heritage Site record (page published 19 July 2022).
+published: 2022
+snapshot: 2026-10-30
+title: Archean Zircons of Erawondoo Hill
+container: IUGS Geological Heritage Sites (iugs-geoheritage.org)
+url: https://iugs-geoheritage.org/geoheritage_sites/archean-zircons-of-erawondoo-hill/
+reliability: >-
+  A curated description of a heritage site; its coordinates mark the hill, not the spot
+  where any one grain was found.
+verified:
+  by: machine:claude-code
+  how: >-
+    Page read directly (iugs-geoheritage.org/?p=2848): location "Erawondoo Hill (Jack Hills)
+    Murchison District, Western Australia", coordinates 26°10′58.0″S 116°55′57.0″E, and the
+    zircon ages 4.4–4.0 Ga; publication date from the page's metadata.

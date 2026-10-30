@@ -119,8 +119,17 @@ export interface EntityRecord {
   wanted: string[];
 }
 
+export interface SearchEntry {
+  id: string;
+  label: string;
+  kind: string;
+  summary?: string;
+  time: FeatureTime;
+  located: boolean;
+}
+
 export interface SearchFile {
-  entities: { id: string; label: string; kind: string; summary?: string; time: FeatureTime; located: boolean }[];
+  entities: SearchEntry[];
 }
 
 export interface PeriodRecord {
@@ -140,6 +149,32 @@ export interface PeriodRecord {
 export interface PeriodsFile {
   periods: PeriodRecord[];
   sources: Record<string, SourceRecord>;
+}
+
+/** A global series: one value for the whole planet at each time, with a band around it. */
+export interface SeriesRecord {
+  id: string;
+  title: string;
+  quantity?: string;
+  unit?: string;
+  description?: string;
+  /** the basis of its values up to `projectedAfter`; after it they are projections */
+  basis: Basis;
+  projectedAfter?: number;
+  interpolation: string;
+  /** what the lo–hi band is */
+  band?: string;
+  /** [year, value, lo, hi], oldest first; lo and hi are null where there is no band */
+  points: [number, number, number | null, number | null][];
+  /** where it comes from: a dataset, or the source of the rule it is computed with */
+  source: CitationRecord;
+  sourceRecord?: SourceRecord;
+  /** for a computed series: the rule and its parameters */
+  rule?: { name: string; params: Record<string, unknown> };
+}
+
+export interface SeriesFile {
+  series: SeriesRecord[];
 }
 
 export interface CoverageFile {

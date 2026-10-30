@@ -113,7 +113,7 @@ export interface Dataset extends Source {
     url: string;
     sha256: string;
     bytes: number;
-    format: 'zip' | 'parquet';
+    format: 'zip' | 'parquet' | 'csv' | 'tsv' | 'xlsx';
     files?: Record<string, DatasetFile>;
     upstream?: { url: string; sha256: string };
     via?: string;
@@ -141,20 +141,37 @@ export interface Frame {
 export interface Field {
   id: string;
   title: string;
+  description?: string;
   quantity?: string;
   unit?: string;
   datum?: string;
   frame?: string;
-  grid?: { kind: string; res_deg: number };
-  time?: { lo: TimeInput; hi: TimeInput; step: string };
-  data?: { from: string };
+  /** a grid on a frame, or a series: one value for the whole planet at each time */
+  grid?: { kind: 'lonlat'; res_deg: number } | { kind: 'series' };
+  time?: { lo: TimeInput; hi: TimeInput; step?: string };
+  data?: {
+    from: string;
+    file?: string;
+    /** for a series read from a table: column names, or a workbook's column letters */
+    columns?: { time: string; value: string; lo?: string; hi?: string };
+    /** for a workbook: the sheet, and the first row of data */
+    sheet?: string;
+    first_row?: number;
+    time_unit?: 'Ma' | 'ka' | 'BP' | 'CE';
+    band?: string;
+  };
   basis?: Basis;
   interp?: string;
   moves_with?: string;
+  /** after its youngest snapshot, the field holds it as a projection until `until` */
+  projection?: { method: 'hold'; until: TimeInput; note?: string };
   derived?: boolean;
   from?: string[];
   rule?: string;
   isoline_m?: number;
+  params?: Record<string, unknown>;
+  /** where a derived field's rule comes from */
+  source?: Citation;
   file: string;
 }
 
@@ -187,6 +204,8 @@ export interface Kind {
   label: string;
   description?: string;
   moment?: boolean;
+  /** latest: a start derived only from relations is shown at the latest time they allow */
+  start?: 'latest';
 }
 
 export interface Property {

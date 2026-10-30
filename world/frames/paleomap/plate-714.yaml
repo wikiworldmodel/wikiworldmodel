@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-714
+type: frame
+kind: plate
+title: Northwest Africa (PALEOMAP plate 714)
+entity: earth/plates/northwest-africa
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 714
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 714

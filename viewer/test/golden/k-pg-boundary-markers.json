@@ -1,10 +1,18 @@
 {
+ "life/occurrences/altiatlasius-adrar-mgorn": [
+  1045,
+  162
+ ],
  "earth/events/chicxulub-impact": [
-  586,
-  182
+  588,
+  173
  ],
  "earth/structures/chicxulub-crater": [
-  586,
-  199
+  588,
+  190
+ ],
+ "earth/lips/central-atlantic-magmatic-province": [
+  1039,
+  359
  ]
 }

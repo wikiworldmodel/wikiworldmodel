@@ -1,0 +1,59 @@
+id: earth/events/great-oxidation-event
+kind: event/transition
+summary: >-
+  The first significant build-up of oxygen in the atmosphere, in the early Paleoproterozoic.
+  Oxygen levels oscillated for some 200 million years before oxygenation became permanent.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Great Oxidation Event }
+    source: { ref: src:gumsley-2017-goe-timing, loc: title }
+  start-gumsley-2017:
+    prop: start
+    value: { lo: 2460 Ma, hi: 2426 Ma }
+    source:
+      ref: src:gumsley-2017-goe-timing
+      loc: abstract
+      quote: the onset of the GOE occurred between ca. 2,460 and 2,426 Ma
+    method: radiometric/u-pb
+    rank: preferred
+    note: >-
+      The onset coincides with the first Paleoproterozoic global glaciation; its younger
+      bound is the age of 2,426 ± 3 Ma for Ongeluk Formation magmatism (Kaapvaal Craton).
+  start-warke-2020:
+    prop: start
+    value: { lo: 2501.5 Ma, hi: 2434 Ma }
+    source:
+      ref: src:warke-2020-goe-snowball
+      loc: abstract
+      quote: between 2,501.5 ± 1.7 Ma and 2,434 ± 6.6 Ma
+    method: stratigraphic
+    note: >-
+      The disappearance of mass-independent sulfur-isotope fractionation, the key indicator
+      of the GOE, between two dated levels of the Seidorechka and Polisarka formations on
+      the Fennoscandian Shield. The ± on each bound is not added.
+  end-poulton-2021:
+    prop: end
+    value: 2.22 Ga
+    source:
+      ref: src:poulton-2021-oxygenation-delay
+      loc: abstract
+      quote: finally arriving with the Lomagundi carbon isotope excursion at about 2.22 billion years ago
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      When atmospheric oxygenation became permanent, after oxygen had fluctuated across 10⁻⁵
+      of the present level for about 200 Myr (Transvaal Supergroup, South Africa). Stated as
+      "about", without an uncertainty.
+  end-gumsley-2017:
+    prop: end
+    value: 2060 Ma
+    source:
+      ref: src:gumsley-2017-goe-timing
+      loc: abstract
+      quote: continued until the end of the Lomagundi carbon isotope excursion ca. 2,060 Ma
+    method: stratigraphic
+    note: >-
+      A wider definition, in which the GOE lasts to the end of the Lomagundi excursion; the
+      same paper has oxygen oscillating until 2,250–2,240 Ma or later.

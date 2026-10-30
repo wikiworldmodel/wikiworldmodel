@@ -1,0 +1,46 @@
+id: life/occurrences/buriolestes-buriol
+kind: occurrence
+summary: >-
+  Buriolestes schultzi from the Alemoa Member of the Santa Maria Formation at the Buriol site,
+  Rio Grande do Sul, Brazil: one of the oldest dinosaurs. The PBDB’s older "Dinosauria" are
+  footprints and doubtful bones. PBDB collection 175578.
+same_as: { pbdb: "occ:1347762" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Buriolestes, Buriol" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Buriolestes schultzi n. gen. n. sp.
+    source: { ref: src:pbdb/collection-175578, loc: "occurrence 1347762, identified_name" }
+  location:
+    prop: location
+    value: { lat: -29.658611, lon: -53.435833, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-175578, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-202
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Santa Maria Formation
+    source: { ref: src:pbdb/collection-175578, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/carnian }
+    source: { ref: src:pbdb/collection-175578, loc: "early_interval" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Assigned to the Carnian stage. The PBDB’s own ages for it (max_ma 237, min_ma 227.3) come
+      from its time scale; here the stage’s ages come from its period record.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/dinosauria
+    source: { ref: src:pbdb/collection-175578, loc: "occurrence 1347762, accepted_name; the PBDB classification places Buriolestes in Sauropodomorpha, Saurischia, Dinosauria" }

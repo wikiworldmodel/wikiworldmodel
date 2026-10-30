@@ -1,0 +1,32 @@
+id: src:richter-2017-jebel-irhoud
+type: publication
+kind: measurement
+citation: >-
+  Richter, D., Grün, R., Joannes-Boyau, R., Steele, T.E., Amani, F., Rué, M., Fernandes, P.,
+  Raynal, J.-P., Geraads, D., Ben-Ncer, A., Hublin, J.-J. & McPherron, S.P. (2017). The age of
+  the hominin fossils from Jebel Irhoud, Morocco, and the origins of the Middle Stone Age.
+  Nature 546(7657), 293–296.
+authors:
+  - "Richter, D."
+  - "Grün, R."
+  - "Joannes-Boyau, R."
+  - "Steele, T.E."
+  - "Amani, F."
+  - "Rué, M."
+  - "Fernandes, P."
+  - "Raynal, J.-P."
+  - "Geraads, D."
+  - "Ben-Ncer, A."
+  - "Hublin, J.-J."
+  - "McPherron, S.P."
+published: 2017
+title: "The age of the hominin fossils from Jebel Irhoud, Morocco, and the origins of the Middle Stone Age"
+container: Nature 546(7657), 293–296
+doi: 10.1038/nature22335
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC: thermoluminescence ages of heated flints associated with the
+    H. sapiens remains give a weighted average of 315 ± 34 thousand years; a recalculated
+    U-series/ESR age for the Irhoud 3 mandible is 286 ± 32 thousand years. The confidence level
+    of the ± was not checked.

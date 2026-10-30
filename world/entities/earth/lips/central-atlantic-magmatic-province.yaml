@@ -1,0 +1,38 @@
+id: earth/lips/central-atlantic-magmatic-province
+kind: large-igneous-province
+summary: >-
+  Basalts, sills and dykes of the Central Atlantic Magmatic Province (CAMP), spread over
+  some 8,000 km and emplaced around the end of the Triassic.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Central Atlantic Magmatic Province }
+    source: { ref: src:blackburn-2013-camp-extinction, loc: title }
+  location:
+    prop: location
+    value: { lat: 9.7707, lon: -13.4477, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-kakoulima, loc: "Q24850744, P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A representative locality: the Kakoulima layered mafic intrusion in Guinea, which
+      gives the province's oldest age, placed at the Kakoulima massif from a gazetteer.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-714
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  start:
+    prop: start
+    value: { mean: 201.635 Ma, sd: 0.0145 Myr }
+    source:
+      ref: src:davies-2017-camp-intrusive
+      loc: Results
+      quote: Our age of 201.635±0.029 Myr for the Kakoulima layered mafic intrusion
+    method: radiometric/u-pb
+    note: >-
+      The oldest dated CAMP magmatism, about 100 kyr before the earliest dated lava flows in
+      Morocco and North America. Davies et al. report 2σ uncertainties, so sd = 0.0145 Myr.
+      There is no end claim: the rocks remain, and the end of the magmatism is not recorded
+      here (Blackburn et al. 2013 find four pulses over about 600 kyr).

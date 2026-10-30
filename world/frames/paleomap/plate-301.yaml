@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-301
+type: frame
+kind: plate
+title: Europe (PALEOMAP plate 301)
+entity: earth/plates/europe
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 301
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 301

@@ -1,0 +1,19 @@
+# Before the oldest elevation grid, the plate model still says where its continental blocks
+# were, back to the oldest age its rotations reach. This field is that and nothing more.
+id: field:earth/continental-blocks
+type: field
+title: Continental blocks of the plate model
+quantity: inside a continental block
+description: >-
+  Where the plate model puts its continental blocks: each block is a present-day piece of
+  continent, moved to its place at the time. These are not the coastlines of the time. The
+  shapes are today's, and how much of each block stood above the sea is not known here.
+frame: frame:earth/geographic
+grid: { kind: lonlat, res_deg: 1 }
+time: { lo: 1100 Ma, hi: 540 Ma, step: 10 Myr }
+# The plate model's polygons, partitioned on the grid at each age; a polygon whose plate the
+# rotations do not reach at an age is left out.
+data: { from: src:paleomap-plate-model, file: polygons }
+basis: reconstruction
+interp: plate-warp
+moves_with: src:paleomap-plate-model

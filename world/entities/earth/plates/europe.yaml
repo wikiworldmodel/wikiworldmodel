@@ -1,0 +1,11 @@
+id: earth/plates/europe
+kind: plate
+summary: Plate 301 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Europe }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 301", quote: "EUR-NAM Europe-North America" }
+    note: >-
+      From the label of plate 301's 75 Myr-from-now rotation; its present-day line reads "EUR fixed to Afr".

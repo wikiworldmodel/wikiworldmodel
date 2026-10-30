@@ -1,0 +1,12 @@
+id: src:wikidata-norilsk
+type: database-record
+kind: compilation
+citation: Wikidata, item Q175517 (Norilsk, city in Russia), property P625 (coordinate location).
+snapshot: 2026-10-30
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q175517
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a town to a few kilometres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (69.333333, 88.216667) read from the item's JSON (Special:EntityData/Q175517.json).

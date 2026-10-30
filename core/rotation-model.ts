@@ -152,6 +152,12 @@ export class RotationModel {
     return this.tree.get(plate) ?? IDENTITY;
   }
 
+  /** Does the model say where `plate` was at `ageMa`? Where it doesn't, `total` is the identity. */
+  reaches(plate: number, ageMa: number): boolean {
+    if (ageMa !== this.treeAge) this.build(ageMa);
+    return plate === this.baked.anchor || this.tree.has(plate);
+  }
+
   private build(age: number): void {
     const tree = new Map<number, Quat>();
     const anchor = this.baked.anchor;

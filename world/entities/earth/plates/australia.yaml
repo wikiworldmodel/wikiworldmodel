@@ -1,0 +1,9 @@
+id: earth/plates/australia
+kind: plate
+summary: Plate 801 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Australian craton }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 801", quote: "AUS Australian craton" }

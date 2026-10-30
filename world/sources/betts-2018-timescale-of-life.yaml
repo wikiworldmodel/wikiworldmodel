@@ -1,0 +1,27 @@
+id: src:betts-2018-timescale-of-life
+type: publication
+kind: model
+citation: >-
+  Betts, H.C., Puttick, M.N., Clark, J.W., Williams, T.A., Donoghue, P.C.J. & Pisani, D. (2018).
+  Integrated genomic and fossil evidence illuminates life’s early evolution and eukaryote
+  origin. Nature Ecology & Evolution 2(10), 1556–1562.
+authors:
+  - "Betts, H.C."
+  - "Puttick, M.N."
+  - "Clark, J.W."
+  - "Williams, T.A."
+  - "Donoghue, P.C.J."
+  - "Pisani, D."
+published: 2018
+title: "Integrated genomic and fossil evidence illuminates life’s early evolution and eukaryote origin"
+container: Nature Ecology & Evolution 2(10), 1556–1562
+doi: 10.1038/s41559-018-0644-x
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; full text (PMC6152910) searched for the crown ages cited:
+    crown Eubacteria and Archaebacteria younger than 3.4 Ga (abstract), crown Cyanobacteria
+    1947–1023 Ma and crown Eukaryota 1842–1210 Ma (Discussion), and the fossil calibrations
+    (Strelley Pool Formation as the oldest undisputed record of life; Bangiomorpha assigned to
+    the red algal total group; Changcheng acritarchs as the oldest certain eukaryotes). Metadata
+    from Crossref.

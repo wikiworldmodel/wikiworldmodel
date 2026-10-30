@@ -1,0 +1,21 @@
+id: src:poulton-2021-oxygenation-delay
+type: publication
+kind: measurement
+citation: >-
+  Poulton, S.W., Bekker, A., Cumming, V.M., Zerkle, A.L., Canfield, D.E. & Johnston, D.T.
+  (2021). A 200-million-year delay in permanent atmospheric oxygenation. Nature 592(7853),
+  232–236.
+authors:
+  - "Poulton, S.W."
+  - "Bekker, A."
+  - "Cumming, V.M."
+  - "Zerkle, A.L."
+  - "Canfield, D.E."
+  - "Johnston, D.T."
+published: 2021
+title: A 200-million-year delay in permanent atmospheric oxygenation
+container: Nature 592(7853), 232–236
+doi: 10.1038/s41586-021-03393-7
+verified:
+  by: machine:claude-code
+  how: Abstract read verbatim from the Europe PMC record (PMID 33782617); citation from Crossref.

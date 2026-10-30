@@ -1,0 +1,28 @@
+id: life/taxa/mammalia
+kind: taxon
+summary: >-
+  Mammals: the crown group (monotremes, marsupials, placentals and their last common ancestor).
+  Older mammaliaforms are not members here.
+same_as: { ott: 244265, pbdb: "txn:36651" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: mammals, la: Mammalia }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott244265: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-dos-reis-2015:
+    prop: start
+    value: { lo: 204.7 Ma, hi: 164.8 Ma }
+    source:
+      ref: src:dos-reis-2015-metazoan-timescale
+      loc: "Table 1, node 73 (Mammalia), Composite"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. A composite of the 95% HPD intervals of the paper’s main analyses.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/amniota
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Mammalia (ott244265) lies within Amniota (ott229560)" }

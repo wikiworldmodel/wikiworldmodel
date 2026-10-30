@@ -1,0 +1,41 @@
+id: space/events/milky-way-andromeda-merger
+kind: event/astronomical
+summary: >-
+  A possible merger of the Milky Way with the Andromeda galaxy (M31). The newest orbit
+  calculations find it about as likely as not within the next 10 billion years.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Milky Way–Andromeda merger }
+    source: { ref: src:sawala-2025-mw-m31, loc: abstract }
+  date-sawala-2025:
+    prop: date
+    value: { lo: 0 Gyr from now, hi: 10 Gyr from now }
+    source:
+      ref: src:sawala-2025-mw-m31
+      loc: abstract; text on the merger-time distribution (Fig. 3)
+      quote: a probability of close to 50% that there will be no Milky Way–Andromeda merger
+    method: model
+    basis: projection
+    confidence: 0.5
+    rank: preferred
+    note: >-
+      Monte Carlo orbits of the Milky Way, M31, M33 and the Large Magellanic Cloud that
+      sample the uncertainties of current Gaia and Hubble data: just over half merge within
+      10 Gyr, with a median merger time of 7.6 Gyr for those that do, and most of the rest
+      come no closer than 200 kpc in that time. Preferred as the analysis of the newest data
+      that carries their uncertainties through.
+  date-van-der-marel-2012:
+    prop: date
+    value: { lo: 5.14 Gyr from now, hi: 7.47 Gyr from now }
+    source:
+      ref: src:van-der-marel-2012-m31-future
+      loc: abstract; section 4 (medians and 68.3% confidence regions)
+      quote: the MW and M31 will merge t = 5.86 (+1.61-0.72) Gyr from now
+    method: model
+    basis: projection
+    note: >-
+      The median merger time, 5.86 Gyr from now, and its 68.3% Monte Carlo region, after a
+      first pericentre at 3.87 (+0.42 −0.32) Gyr. The interval is narrower than a 95% one,
+      and the model includes M33 but not the Large Magellanic Cloud.

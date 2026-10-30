@@ -1,0 +1,20 @@
+id: src:coiro-2019-angiosperm-age
+type: publication
+kind: review
+citation: >-
+  Coiro, M., Doyle, J.A. & Hilton, J. (2019). How deep is the conflict between molecular and
+  fossil evidence on the age of angiosperms? New Phytologist 223(1), 83–99.
+authors:
+  - "Coiro, M."
+  - "Doyle, J.A."
+  - "Hilton, J."
+published: 2019
+title: "How deep is the conflict between molecular and fossil evidence on the age of angiosperms?"
+container: New Phytologist 223(1), 83–99
+doi: 10.1111/nph.15708
+verified:
+  by: machine:claude-code
+  how: >-
+    Summary read via Europe PMC and Crossref: pollen floras document a northern Gondwanan
+    appearance of monosulcate angiosperms in the Valanginian, and pre-Cretaceous molecular ages
+    conflict with the fossil record. The full text was not read.

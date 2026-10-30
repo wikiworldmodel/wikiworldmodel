@@ -30,9 +30,10 @@ export class Toolbar {
       ${selects}
       <div class="legend" hidden>
         <div><span class="sw evidence"></span>Evidence: sourced records</div>
-        <div><span class="sw reconstruction"></span>Reconstruction: PaleoDEM terrain; ringed markers are placed by the plate model</div>
-        <div><span class="sw procedural"></span>Procedural: generated clouds</div>
+        <div><span class="sw reconstruction"></span>Reconstruction: PaleoDEM terrain, the plate model's blocks; ringed markers are placed by the plate model</div>
+        <div><span class="sw procedural"></span>Procedural: generated clouds; projection: values after the present</div>
         <div><span class="sw derived"></span>Dashed: dates derived by the solver</div>
+        <div><span class="sw unknown"></span>Plain globe: no geography known at this time</div>
       </div>
       <div class="build" title="Data version: the build this view shows">build ${buildId}</div>`;
     this.el.querySelector<HTMLButtonElement>('.tg-evidence')!.onclick = () => this.onChange({ evidence: !this.is('.tg-evidence') });

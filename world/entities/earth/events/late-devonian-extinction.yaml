@@ -1,0 +1,35 @@
+id: earth/events/late-devonian-extinction
+kind: event/extinction
+summary: >-
+  The Late Devonian mass extinction at the Frasnian–Famennian boundary, one of the most
+  catastrophic of the Phanerozoic.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Frasnian–Famennian extinction }
+    source: { ref: src:percival-2018-frasnian-famennian, loc: abstract }
+  date-percival-2018:
+    prop: date
+    value: { lo: 371.93 Ma, hi: 371.78 Ma }
+    source:
+      ref: src:percival-2018-frasnian-famennian
+      loc: abstract
+      quote: can be further constrained to 371.93-371.78 Ma using a pre-existing Late Devonian age model
+    method: radiometric/u-pb
+    rank: preferred
+    note: >-
+      A U–Pb zircon age of 372.36 ± 0.053 Ma for a bentonite in uppermost-Frasnian beds at
+      Steinbruch Schmidt (Germany) makes the boundary no older than 372.4 Ma; an existing
+      astrochronological age model then places it at 371.93–371.78 Ma.
+  date-ics:
+    prop: date
+    value: { ref: ics/famennian, edge: start }
+    source:
+      ref: src:percival-2018-frasnian-famennian
+      loc: abstract
+      quote: The Frasnian-Famennian boundary records one of the most catastrophic mass extinctions
+    method: stratigraphic
+    note: >-
+      At the base of the Famennian, so this date follows the time scale chosen (372.2 Ma in
+      the ICS chart v2020/03).

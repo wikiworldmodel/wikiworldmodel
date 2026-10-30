@@ -1,0 +1,45 @@
+id: src:langergraber-2012-ape-generation-times
+type: publication
+kind: model
+citation: >-
+  Langergraber, K.E., Prüfer, K., Rowney, C., Boesch, C., Crockford, C., Fawcett, K., Inoue, E.,
+  Inoue-Muruyama, M., Mitani, J.C., Muller, M.N., Robbins, M.M., Schubert, G., Stoinski, T.S.,
+  Viola, B., Watts, D., Wittig, R.M., Wrangham, R.W., Zuberbühler, K., Pääbo, S. & Vigilant, L.
+  (2012). Generation times in wild chimpanzees and gorillas suggest earlier divergence times in
+  great ape and human evolution. Proceedings of the National Academy of Sciences 109(39),
+  15716–15721.
+authors:
+  - "Langergraber, K.E."
+  - "Prüfer, K."
+  - "Rowney, C."
+  - "Boesch, C."
+  - "Crockford, C."
+  - "Fawcett, K."
+  - "Inoue, E."
+  - "Inoue-Muruyama, M."
+  - "Mitani, J.C."
+  - "Muller, M.N."
+  - "Robbins, M.M."
+  - "Schubert, G."
+  - "Stoinski, T.S."
+  - "Viola, B."
+  - "Watts, D."
+  - "Wittig, R.M."
+  - "Wrangham, R.W."
+  - "Zuberbühler, K."
+  - "Pääbo, S."
+  - "Vigilant, L."
+published: 2012
+title: "Generation times in wild chimpanzees and gorillas suggest earlier divergence times in great ape and human evolution"
+container: Proceedings of the National Academy of Sciences 109(39), 15716–15721
+doi: 10.1073/pnas.1211740109
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC and Crossref: split times from generation times of wild
+    chimpanzees and mountain gorillas and the human mutation rate per generation, independent of
+    fossil calibration; the human–chimpanzee split is at least 7–8 million years old, and the
+    population split between Neanderthals and modern humans 400,000–800,000 years ago. The
+    Results, read on the PMC page (PMC3465451), put the human–chimpanzee split between 7 and 13
+    million years, from the lowest and highest published human mutation rates and generation
+    times of 25–29 years.

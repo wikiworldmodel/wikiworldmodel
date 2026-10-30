@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-604
+type: frame
+kind: plate
+title: North China (PALEOMAP plate 604)
+entity: earth/plates/north-china
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 604
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 604

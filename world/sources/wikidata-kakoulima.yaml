@@ -1,0 +1,12 @@
+id: src:wikidata-kakoulima
+type: database-record
+kind: compilation
+citation: Wikidata, item Q24850744 (Kakoulima, mountain in Guinea), property P625 (coordinate location).
+snapshot: 2026-10-30
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q24850744
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry for the mountain, which is the Kakoulima intrusion's massif.
+verified:
+  by: machine:claude-code
+  how: Coordinates (9.7707, -13.4477) read from the item's JSON (Special:EntityData/Q24850744.json).

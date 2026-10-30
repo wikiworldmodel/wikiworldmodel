@@ -1,0 +1,49 @@
+id: life/taxa/eukaryota
+kind: taxon
+summary: >-
+  Eukaryotes: cells with a nucleus. The molecular dates are for the crown group, from the last
+  eukaryotic common ancestor (LECA); the oldest eukaryote fossils placed here may belong to its
+  stem.
+same_as: { ott: 304358, pbdb: "txn:1" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: eukaryotes, la: Eukaryota }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott304358: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-betts-2018:
+    prop: start
+    value: { lo: 1842 Ma, hi: 1210 Ma }
+    source:
+      ref: src:betts-2018-timescale-of-life
+      loc: "Discussion"
+      quote: "in the middle Proterozoic (1842-1210 Ma)"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. Not preferred: its middle, about 1.53 Ga, is younger than the oldest
+      eukaryote fossils placed here (Qingshania, before 1634.8 ± 6.9 Ma). Betts et al. treat
+      fossils of that age as possible stem eukaryotes.
+  start-parfrey-2011:
+    prop: start
+    value: { lo: 1866 Ma, hi: 1679 Ma }
+    source:
+      ref: src:parfrey-2011-eukaryote-clock
+      loc: "abstract"
+      quote: "the last common ancestor lived between 1866 and 1679 Ma"
+    method: molecular-clock
+    rank: preferred
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. Preferred because the whole interval is older than the oldest eukaryote
+      fossils placed here, about 1.63 Ga. Whether it is one analysis’s 95% interval or a span
+      across analyses was not checked; Betts et al. (2018) cite it as agreeing with theirs.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/cellular-organisms
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Eukaryota (ott304358) lies within cellular organisms (ott93302)" }
+    note: >-
+      The synthesis keeps Archaea, Bacteria and Eukaryota as three branches of cellular
+      organisms; the view that eukaryotes arose within Archaea is not represented.

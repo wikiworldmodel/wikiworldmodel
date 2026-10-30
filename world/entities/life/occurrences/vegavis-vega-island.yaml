@@ -1,0 +1,47 @@
+id: life/occurrences/vegavis-vega-island
+kind: occurrence
+summary: >-
+  Vegavis iaai from the López de Bertodano Formation at Cape Lamb, Vega Island, Antarctica: the
+  oldest crown-group bird. PBDB collection 45325.
+same_as: { pbdb: "occ:460015" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Vegavis, Vega Island" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Vegavis iaai n. gen. n. sp.
+    source: { ref: src:pbdb/collection-45325, loc: "occurrence 460015, identified_name" }
+  location:
+    prop: location
+    value: { lat: -63.870556, lon: -57.574444, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-45325, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-803
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: López de Bertodano Formation
+    source: { ref: src:pbdb/collection-45325, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/maastrichtian }
+    source: { ref: src:pbdb/collection-45325, loc: "early_interval (Late Maastrichtian)" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The PBDB gives the late Maastrichtian (72.2–66 Ma on its scale); Benton et al. (2015) give
+      mid- to late Maastrichtian, about 68–66 Ma.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/aves
+    source:
+      - { ref: src:pbdb/collection-45325, loc: "occurrence 460015, accepted_name; the PBDB classification places Vegavis in Anseriformes, Neognathae, Neornithes, Aves" }
+      - { ref: src:benton-2015-animal-calibrations, loc: "CROWN NEORNITHES (53), fossil taxon" }

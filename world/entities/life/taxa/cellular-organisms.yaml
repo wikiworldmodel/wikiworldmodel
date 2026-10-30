@@ -1,0 +1,24 @@
+id: life/taxa/cellular-organisms
+kind: taxon
+summary: >-
+  All cellular life: the last universal common ancestor (LUCA) and its descendants. The root of
+  this backbone; its origin is the age of LUCA.
+same_as: { ott: 93302 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: cellular organisms }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott93302: name" }
+    note: Open Tree’s name for the group, which it takes from NCBI; there is no Latin name.
+  start-moody-2024:
+    prop: start
+    value: { lo: 4.33 Ga, hi: 4.09 Ga }
+    source:
+      ref: src:moody-2024-luca
+      loc: "abstract; Fig. 1 legend (95% confidence interval, ILN clock)"
+      quote: "LUCA lived ~4.2 Ga (4.09–4.33 Ga)"
+    method: molecular-clock
+    note: >-
+      The age of LUCA, dated from pre-LUCA gene duplicates with cross-bracing. Under the GBM
+      clock the 95% interval is 4.18–4.33 Ga.

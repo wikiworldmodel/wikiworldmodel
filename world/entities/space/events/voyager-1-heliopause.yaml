@@ -1,0 +1,31 @@
+id: space/events/voyager-1-heliopause
+kind: event/spaceflight
+summary: >-
+  Voyager 1 crosses the heliopause into interstellar space, about 122 astronomical units
+  from the Sun.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Voyager 1 crosses the heliopause }
+    source:
+      ref: src:gurnett-2013-voyager-interstellar-plasma
+      loc: abstract
+      quote: strong evidence that Voyager 1 has crossed the heliopause into the nearby interstellar plasma
+  date:
+    prop: date
+    value: { lo: 2012.647541, hi: 2012.650273 }
+    source:
+      - ref: src:jpl-2013-voyager-interstellar
+        loc: release text
+        quote: changes in the density of energetic particles that were first detected on Aug. 25, 2012
+      - ref: src:stone-2013-voyager-cosmic-rays
+        loc: abstract
+        quote: On 25 August 2012, Voyager 1 was at 122 astronomical units
+    method: documentary
+    note: >-
+      The UTC day of 25 August 2012, as decimal years. That day the low-energy ions from
+      inside the heliosphere vanished and galactic cosmic rays rose (Stone et al. 2013),
+      though the magnetic field then suggested that Voyager 1 was still inside. Plasma
+      oscillations recorded from 9 April 2013 showed interstellar densities (Gurnett et al.
+      2013), and the Voyager team took 25 August 2012 as the date of the crossing (JPL 2013).

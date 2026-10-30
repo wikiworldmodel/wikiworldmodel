@@ -1,0 +1,48 @@
+id: life/occurrences/haikouichthys-haikou
+kind: occurrence
+summary: >-
+  Haikouichthys ercaicunensis from the Yuanshan Formation at Haikou, near Kunming, Yunnan: one
+  of the oldest vertebrates. PBDB collection 68083.
+same_as: { pbdb: "occ:632612" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Haikouichthys, Haikou" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Haikouichthys ercaicunensis n. gen. n. sp.
+    source: { ref: src:pbdb/collection-68083, loc: "occurrence 632612, identified_name" }
+  location:
+    prop: location
+    value: { lat: 24.806944, lon: 102.584999, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-68083, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Yuanshan Formation
+    source: { ref: src:pbdb/collection-68083, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/stage-3 }
+    source: { ref: src:pbdb/collection-68083, loc: "early_interval" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The PBDB assigns the collection to the Atdabanian, which it dates 521–516 Ma, within
+      Cambrian Stage 3 (521–514 Ma in the ICS chart).
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/vertebrata
+    source: { ref: src:pbdb/collection-68083, loc: "occurrence 632612, accepted_name; the PBDB classification places Haikouichthys in Vertebrata" }
+    note: >-
+      A stem vertebrate on most views: Benton et al. (2015) take the Ordovician Arandaspis as
+      the oldest crown vertebrate.

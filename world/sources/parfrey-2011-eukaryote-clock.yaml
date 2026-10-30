@@ -1,0 +1,22 @@
+id: src:parfrey-2011-eukaryote-clock
+type: publication
+kind: model
+citation: >-
+  Parfrey, L.W., Lahr, D.J.G., Knoll, A.H. & Katz, L.A. (2011). Estimating the timing of early
+  eukaryotic diversification with multigene molecular clocks. Proceedings of the National
+  Academy of Sciences 108(33), 13624–13629.
+authors:
+  - "Parfrey, L.W."
+  - "Lahr, D.J.G."
+  - "Knoll, A.H."
+  - "Katz, L.A."
+published: 2011
+title: "Estimating the timing of early eukaryotic diversification with multigene molecular clocks"
+container: Proceedings of the National Academy of Sciences 108(33), 13624–13629
+doi: 10.1073/pnas.1110633108
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC and Crossref (last common ancestor of eukaryotes 1866–1679 Ma).
+    The full text was not read, so whether this range is one analysis’s 95% interval or a span
+    across analyses was not checked.

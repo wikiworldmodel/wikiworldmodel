@@ -1,0 +1,33 @@
+id: life/taxa/cyanobacteria
+kind: taxon
+summary: >-
+  Cyanobacteria: the crown group of the oxygen-producing bacteria. Betts et al. (2018) argue
+  that oxygenic photosynthesis arose earlier, on its stem.
+same_as: { ott: 225495, pbdb: "txn:67023" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: cyanobacteria, la: Cyanobacteria }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott225495: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-betts-2018:
+    prop: start
+    value: { lo: 1947 Ma, hi: 1023 Ma }
+    source:
+      ref: src:betts-2018-timescale-of-life
+      loc: "Discussion"
+      quote: "Crown-Cyanobacteria diverged 1947–1023 Ma"
+    method: molecular-clock
+    rank: deprecated
+    note: >-
+      A crown-group age, kept for reference but deprecated: its middle, about 1.49 Ga, is
+      younger than Eoentophysalis (1.89–1.84 Ga), the oldest fossil interpreted with certainty
+      as a cyanobacterium. Betts et al. place the origin of oxygenic photosynthesis on the
+      cyanobacterial stem, so such fossils may be stem members; no fossil-consistent molecular
+      estimate was found.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/bacteria
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Cyanobacteria (ott225495) lies within Bacteria (ott844192)" }

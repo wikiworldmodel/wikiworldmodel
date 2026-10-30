@@ -1,0 +1,34 @@
+id: space/events/sputnik-1-launch
+kind: event/spaceflight
+summary: >-
+  The launch of Sputnik 1 (PS-1) on a Sputnik 8K71PS rocket from launch complex 1 at
+  Baikonur, the site GCAT lists for 1957 as NIIP-5.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Launch of Sputnik 1 }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: 1957.7583877
+    source:
+      ref: src:mcdowell-gcat
+      loc: "launch.tsv, launch 1957 ALP, Launch_Date"
+      quote: "1957 Oct  4 1928:34"
+    method: documentary
+    note: >-
+      19:28:34 UTC on 4 October 1957, written as a decimal year: the fraction of the UTC
+      year 1957 that had elapsed.
+  location:
+    prop: location
+    value: { lat: 45.9203, lon: 63.3423, frame: frame:earth/present-day }
+    source: { ref: src:mcdowell-gcat, loc: "lp.tsv, launch point GIK-5 LC1" }
+    method: compilation
+    note: Launch complex 1 (Ploshchadka 1) at Baikonur; GCAT gives the position to 0.0001°.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-402
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

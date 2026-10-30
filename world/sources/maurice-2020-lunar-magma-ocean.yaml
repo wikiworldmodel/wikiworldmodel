@@ -1,0 +1,21 @@
+id: src:maurice-2020-lunar-magma-ocean
+type: publication
+kind: model
+citation: >-
+  Maurice, M., Tosi, N., Schwinger, S., Breuer, D. & Kleine, T. (2020). A long-lived magma
+  ocean on a young Moon. Science Advances 6(28), eaba8949.
+authors:
+  - "Maurice, M."
+  - "Tosi, N."
+  - "Schwinger, S."
+  - "Breuer, D."
+  - "Kleine, T."
+published: 2020
+title: A long-lived magma ocean on a young Moon
+container: Science Advances 6(28), eaba8949
+doi: 10.1126/sciadv.aba8949
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read verbatim from the Europe PMC record (PMID 32695879); citation from
+    Crossref. The confidence level of the stated ± is not in the abstract.

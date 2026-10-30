@@ -1,0 +1,28 @@
+id: src:opentree-synthesis-16.1
+type: dataset
+kind: compilation
+citation: >-
+  Open Tree of Life (2025). Synthetic tree of life, release opentree16.1 (2,385,875 tips),
+  built on the Open Tree Taxonomy. https://tree.opentreeoflife.org/about/synthesis-release/v16.1
+published: 2025
+title: Open Tree of Life synthetic tree, version 16.1
+container: Open Tree of Life
+url: https://tree.opentreeoflife.org/about/synthesis-release/v16.1
+license: CC0-1.0
+license_note: >-
+  The Open Tree "Data rights" statement (tree.opentreeoflife.org/about/licenses): where not
+  limited by pre-existing terms of use, all data are published with a CC0 public domain
+  dedication.
+reliability: >-
+  A supertree that summarises 2,064 published phylogenies (1,931 studies) on the Open Tree
+  Taxonomy; where no input tree resolves a group, the taxonomy places it. Some named groups
+  are not clades in the synthesis ("broken" taxa: here Archaeplastida and Dinosauria).
+verified:
+  by: machine:claude-code
+  how: >-
+    Read through the v3 API on 30 October 2026. tree_of_life/about: synth_id opentree16.1,
+    date_created 2025-12-20, taxonomy_version 3.7draft3, root ott93302 "cellular organisms",
+    2,385,875 tips, 2,064 source trees, 1,931 source studies. tree_of_life/node_info for each
+    backbone OTT id (ott5268475 and ott90215 are flagged broken), and tree_of_life/induced_subtree
+    of the backbone ids, whose nesting each descends-from locator cites. The release page gives
+    the version and tip count and names the taxonomy OTT 3.7.3.

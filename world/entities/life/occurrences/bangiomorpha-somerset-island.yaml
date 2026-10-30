@@ -1,0 +1,52 @@
+id: life/occurrences/bangiomorpha-somerset-island
+kind: occurrence
+summary: >-
+  Bangiomorpha pubescens from the Hunting Formation at field locality 87-HUST, Somerset Island,
+  Nunavut: the oldest widely accepted red alga, and the oldest fossil assigned to a living
+  eukaryote group. PBDB collection 227556.
+same_as: { pbdb: "occ:1608344" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Bangiomorpha, Somerset Island" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Bangiomorpha pubescens n. gen. n. sp.
+    source: { ref: src:pbdb/collection-227556, loc: "occurrence 1608344, identified_name" }
+  location:
+    prop: location
+    value: { lat: 73.591667, lon: -94.76667, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-227556, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Hunting Formation
+    source: { ref: src:pbdb/collection-227556, loc: "formation" }
+  date:
+    prop: date
+    value: { lo: 1.060 Ga, hi: 1.030 Ga }
+    source: { ref: src:gibson-2018-bangiomorpha, loc: "abstract (Caltech Authors record)", quote: "revise its first appearance to 1.047 +0.013/–0.017 Ga" }
+    method: radiometric/re-os
+    confidence: likely
+    note: >-
+      Re–Os ages of shales bracketing B. pubescens in the Bylot Supergroup of Baffin Island.
+      They date this Somerset Island occurrence only if the two successions are coeval, as the
+      paper’s "first appearance" implies, hence the confidence. The PBDB assigns the collection
+      to the Stenian, 1200–1000 Ma.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/rhodophyta
+    source:
+      - { ref: src:pbdb/collection-227556, loc: "occurrence 1608344, accepted_name; phylum Rhodophyta" }
+      - { ref: src:betts-2018-timescale-of-life, loc: "Results: fossil calibrations" }
+    note: >-
+      Betts et al. assign Bangiomorpha confidently to the red algal total group.

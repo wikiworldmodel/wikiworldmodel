@@ -5,12 +5,15 @@ import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { parseDuration, parsePoint, toMa, type TimePointInput } from '../../../core/time.ts';
 import { datasetFile, loadManifest } from './manifest.ts';
-import { CACHE, REPO, WORLD } from './paths.ts';
-import { readYaml, sha256, stableStringify } from './util.ts';
+import { CACHE, REPO } from './paths.ts';
+import { sha256, stableStringify } from './util.ts';
 import type { Field } from './world.ts';
 
 const IMPORTER = join(REPO, 'tools/world/importers/paleomap.py');
 const REQUIREMENTS = join(REPO, 'tools/world/importers/requirements.txt');
+
+/** The plate model frames and gridded fields move with. */
+export const PLATE_MODEL = 'src:paleomap-plate-model';
 
 export function python(): string {
   if (process.env.LIGHTWORLD_PYTHON) return process.env.LIGHTWORLD_PYTHON;
@@ -18,20 +21,20 @@ export function python(): string {
   return existsSync(venv) ? venv : 'python3';
 }
 
-/** The field the build renders, and the plate model its nodes move with. */
-export const ELEVATION = 'field:earth/elevation';
-
-export async function loadField(): Promise<Field> {
-  const f = (await readYaml<Field>(join(WORLD, 'fields/earth/elevation.yaml')));
-  if (f.id !== ELEVATION) throw new Error(`fields/earth/elevation.yaml is ${f.id}, not ${ELEVATION}`);
-  return f;
-}
-
 /** A field's time span in Ma, oldest first. */
 export function fieldAgesMa(f: Field): { maxAgeMa: number; minAgeMa: number; stepMyr: number } {
   const lo = toMa(parsePoint(f.time!.lo as TimePointInput).t);
   const hi = toMa(parsePoint(f.time!.hi as TimePointInput).t);
-  return { maxAgeMa: Math.round(lo * 1e6) / 1e6, minAgeMa: Math.round(hi * 1e6) / 1e6, stepMyr: parseDuration(f.time!.step) / 1e6 };
+  return { maxAgeMa: Math.round(lo * 1e6) / 1e6, minAgeMa: Math.round(hi * 1e6) / 1e6, stepMyr: parseDuration(f.time!.step!) / 1e6 };
+}
+
+/**
+ * What a gridded field is made from: elevation grids (a dataset of snapshots, partitioned by
+ * the plate model's polygons), or the plate model's polygons alone (where its continental
+ * blocks are).
+ */
+export function fieldSource(f: Field): 'elevation' | 'blocks' {
+  return f.data?.from === f.moves_with && f.data?.file === 'polygons' ? 'blocks' : 'elevation';
 }
 
 async function importKey(parts: unknown): Promise<string> {
@@ -40,49 +43,53 @@ async function importKey(parts: unknown): Promise<string> {
   return sha256(stableStringify({ code: sha256(code), reqs: sha256(reqs), parts })).slice(0, 16);
 }
 
-async function inputs() {
+async function plateModel(id: string = PLATE_MODEL) {
   const manifest = await loadManifest();
-  const field = await loadField();
-  const pmId = field.moves_with!;
-  const demId = field.data!.from;
-  const pm = manifest.datasets[pmId];
-  const dem = manifest.datasets[demId];
-  if (!pm || !dem) throw new Error(`${ELEVATION}: ${!pm ? pmId : demId} is not a dataset in the manifest`);
-  return {
-    field,
-    rotations: datasetFile(pmId, pm, 'rotations'),
-    polygons: datasetFile(pmId, pm, 'polygons'),
-    paleodem: datasetFile(demId, dem),
-    checksums: { [pmId]: pm.fetch.sha256, [demId]: dem.fetch.sha256 },
-  };
+  const pm = manifest.datasets[id];
+  if (!pm) throw new Error(`${id} is not a dataset in the manifest`);
+  return { manifest, rotations: datasetFile(id, pm, 'rotations'), polygons: datasetFile(id, pm, 'polygons'), sha256: pm.fetch.sha256 };
 }
 
-/** Normalized snapshots + per-node plate ids; returns the output directory. */
-export async function importFields(log: (s: string) => void = console.log): Promise<string> {
-  const inp = await inputs();
-  const request = {
-    rotations: inp.rotations,
-    polygons: inp.polygons,
-    paleodem: inp.paleodem,
-    minAgeMa: fieldAgesMa(inp.field).minAgeMa,
-    maxAgeMa: fieldAgesMa(inp.field).maxAgeMa,
-  };
-  const key = await importKey({ checksums: inp.checksums, min: request.minAgeMa, max: request.maxAgeMa });
-  const out = join(CACHE, 'import', `paleomap-fields@${key}`);
+/** Run the importer once per distinct request; returns the output directory. */
+async function run(command: string, name: string, key: string, request: Record<string, unknown>, log: (s: string) => void): Promise<string> {
+  const out = join(CACHE, 'import', `${name}@${key}`);
   if (existsSync(join(out, 'meta.json'))) {
-    log(`fields: cached (${key})`);
+    log(`${name}: cached (${key})`);
     return out;
   }
-  for (const p of [request.rotations, request.polygons, request.paleodem]) {
-    if (!existsSync(p)) throw new Error(`missing ${p}; run \`npm run fetch\` first`);
+  for (const p of Object.values(request)) {
+    if (typeof p === 'string' && p.startsWith('/') && !existsSync(p)) throw new Error(`missing ${p}; run \`npm run fetch\` first`);
   }
   await rm(out, { recursive: true, force: true });
   await mkdir(out, { recursive: true });
   const reqPath = join(out, 'request.json');
   await writeFile(reqPath, JSON.stringify({ ...request, out }, null, 1));
-  log(`fields: importing ${request.maxAgeMa}–${request.minAgeMa} Ma with pyGPlates (${key})`);
-  execFileSync(python(), [IMPORTER, 'fields', reqPath], { stdio: 'inherit' });
+  log(`${name}: importing with pyGPlates (${key})`);
+  execFileSync(python(), [IMPORTER, command, reqPath], { stdio: 'inherit' });
   return out;
+}
+
+/** Normalized elevation snapshots + per-node plate ids for an elevation field. */
+export async function importElevation(field: Field, log: (s: string) => void = console.log): Promise<string> {
+  const pm = await plateModel(field.moves_with);
+  const demId = field.data!.from;
+  const dem = pm.manifest.datasets[demId];
+  if (!dem) throw new Error(`${field.id}: ${demId} is not a dataset in the manifest`);
+  const { minAgeMa, maxAgeMa } = fieldAgesMa(field);
+  const request = { rotations: pm.rotations, polygons: pm.polygons, paleodem: datasetFile(demId, dem), minAgeMa, maxAgeMa };
+  const key = await importKey({ checksums: { [field.moves_with!]: pm.sha256, [demId]: dem.fetch.sha256 }, min: minAgeMa, max: maxAgeMa });
+  return run('fields', 'paleomap-fields', key, request, log);
+}
+
+/** Per-node plate ids where the plate model puts its blocks, at each of a blocks field's ages. */
+export async function importBlocks(field: Field, log: (s: string) => void = console.log): Promise<string> {
+  const pm = await plateModel(field.moves_with);
+  const { minAgeMa, maxAgeMa, stepMyr } = fieldAgesMa(field);
+  const agesMa: number[] = [];
+  for (let a = minAgeMa; a <= maxAgeMa + 1e-9; a += stepMyr) agesMa.push(Math.round(a * 1e6) / 1e6);
+  const request = { rotations: pm.rotations, polygons: pm.polygons, agesMa };
+  const key = await importKey({ checksums: { [field.moves_with!]: pm.sha256 }, agesMa });
+  return run('blocks', 'paleomap-blocks', key, request, log);
 }
 
 export interface PointQuery {
@@ -101,9 +108,9 @@ export interface PointResult {
 
 /** Which plate polygon contains each present-day point, and whether it exists at given ages. */
 export async function resolvePoints(points: PointQuery[]): Promise<PointResult[]> {
-  const inp = await inputs();
-  const request = { rotations: inp.rotations, polygons: inp.polygons, points };
-  const key = await importKey({ checksums: inp.checksums, points });
+  const pm = await plateModel();
+  const request = { rotations: pm.rotations, polygons: pm.polygons, points };
+  const key = await importKey({ checksums: { [PLATE_MODEL]: pm.sha256 }, points });
   const cached = join(CACHE, 'import', `points@${key}.json`);
   if (existsSync(cached)) return JSON.parse(await readFile(cached, 'utf8')).points;
   await mkdir(join(CACHE, 'import'), { recursive: true });

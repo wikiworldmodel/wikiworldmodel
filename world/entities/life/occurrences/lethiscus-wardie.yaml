@@ -1,0 +1,50 @@
+id: life/occurrences/lethiscus-wardie
+kind: occurrence
+summary: >-
+  The aïstopod Lethiscus stocki from the Wardie Shales on the Wardie shore, north of Edinburgh:
+  the oldest crown-group tetrapod. PBDB collection 140937.
+same_as: { pbdb: "occ:1302352" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Lethiscus, Wardie shore" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Lethiscus stocki n. gen. n. sp.
+    source: { ref: src:pbdb/collection-140937, loc: "occurrence 1302352, identified_name" }
+  location:
+    prop: location
+    value: { lat: 55.98, lon: -3.21, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-140937, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-313
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Wardie Shales
+    source: { ref: src:benton-2015-animal-calibrations, loc: "CROWN TETRAPODA (41), fossil taxon" }
+  date:
+    prop: date
+    value: { ref: ics/visean }
+    source:
+      - { ref: src:pbdb/collection-140937, loc: "early_interval, late_interval" }
+      - { ref: src:benton-2015-animal-calibrations, loc: "CROWN TETRAPODA (41), age justification" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The PBDB assigns it to the Holkerian–Asbian (346.7–335.9 Ma), regional substages that lie
+      within the ICS Viséan (346.7–330.9 Ma); Benton et al. assign the Wardie Shales to the
+      Holkerian.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/tetrapoda
+    source:
+      - { ref: src:pbdb/collection-140937, loc: "occurrence 1302352, accepted_name; the PBDB classification places Lethiscus in Tetrapoda" }
+      - { ref: src:benton-2015-animal-calibrations, loc: "CROWN TETRAPODA (41), phylogenetic justification", quote: "Lethiscus is the oldest crown tetrapod" }

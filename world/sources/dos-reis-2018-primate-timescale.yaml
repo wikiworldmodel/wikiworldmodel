@@ -1,0 +1,25 @@
+id: src:dos-reis-2018-primate-timescale
+type: publication
+kind: model
+citation: >-
+  dos Reis, M., Gunnell, G.F., Barba-Montoya, J., Wilkins, A., Yang, Z. & Yoder, A.D. (2018).
+  Using phylogenomic data to explore the effects of relaxed clocks and calibration strategies on
+  divergence time estimation: primates as a test case. Systematic Biology 67(4), 594–615.
+authors:
+  - "dos Reis, M."
+  - "Gunnell, G.F."
+  - "Barba-Montoya, J."
+  - "Wilkins, A."
+  - "Yang, Z."
+  - "Yoder, A.D."
+published: 2018
+title: "Using Phylogenomic Data to Explore the Effects of Relaxed Clocks and Calibration Strategies on Divergence Time Estimation: Primates as a Test Case"
+container: Systematic Biology 67(4), 594–615
+doi: 10.1093/sysbio/syy001
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; full text (PMC6005039) read for the Results: under calibration
+    strategy A and the autocorrelated-rates clock, which the paper prefers, crown Primates
+    originated 79.2–70.0 Ma.

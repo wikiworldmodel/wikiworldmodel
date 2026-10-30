@@ -1,0 +1,48 @@
+id: life/occurrences/eoentophysalis-belcher-islands
+kind: occurrence
+summary: >-
+  Eoentophysalis belcherensis from the Kasegalik Formation, Belcher Group, at the north end of
+  Churchill Sound, Belcher Islands, Nunavut: the oldest microfossil interpreted with certainty
+  as a cyanobacterium. PBDB collection 227442.
+same_as: { pbdb: "occ:1607853" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Eoentophysalis, Belcher Islands" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Eoentophysalis belcherensis
+    source: { ref: src:pbdb/collection-227442, loc: "occurrence 1607853, accepted_name" }
+    note: >-
+      The record gives no identified name; this is the accepted name.
+  location:
+    prop: location
+    value: { lat: 56.490002, lon: -79.510002, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-227442, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Kasegalik Formation
+    source: { ref: src:pbdb/collection-227442, loc: "formation" }
+  date:
+    prop: date
+    value: { lo: 1.89 Ga, hi: 1.84 Ga }
+    source: { ref: src:demoulin-2019-cyanobacteria-fossils, loc: "section on cyanobacterial microfossils", quote: "1.89–1.84 Ga silicified stromatolites of the Belcher Supergroup" }
+    note: >-
+      The age of the fossiliferous stromatolites of the Belcher Supergroup as the review gives
+      it; the PBDB assigns the collection to the Orosirian, 2050–1800 Ma.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/cyanobacteria
+    source:
+      - { ref: src:pbdb/collection-227442, loc: "occurrence 1607853, accepted_name; phylum Cyanobacteria" }
+      - { ref: src:demoulin-2019-cyanobacteria-fossils, loc: "section on cyanobacterial microfossils" }

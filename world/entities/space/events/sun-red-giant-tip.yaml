@@ -1,0 +1,29 @@
+id: space/events/sun-red-giant-tip
+kind: event/astronomical
+summary: >-
+  The Sun reaches the tip of the red-giant branch, at its largest: about 256 times its
+  present radius (1.2 au). The Earth is expected to have been engulfed just before.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: The Sun reaches the tip of the red-giant branch }
+    source: { ref: src:schroder-smith-2008-sun-future, loc: section 4.3 }
+  date:
+    prop: date
+    value: { mean: 7.59 Gyr from now, sd: 0.05 Gyr }
+    source:
+      ref: src:schroder-smith-2008-sun-future
+      loc: section 4.3
+      quote: the Sun reaches the tip of the RGB, 7.59 Gy (±0.05 Gy) from now
+    method: model
+    basis: projection
+    note: >-
+      At a model age of 12.17 Gy (Table 1), with a radius of 256 solar radii (1.2 au) and a
+      luminosity 2730 times today's. The ± level is not given, so it is read as 1σ. In this
+      model the Earth is engulfed about 500,000 years earlier.
+relations:
+  after-main-sequence:
+    rel: after
+    to: space/events/sun-leaves-main-sequence
+    source: { ref: src:schroder-smith-2008-sun-future, loc: Table 1 }

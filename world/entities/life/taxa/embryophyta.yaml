@@ -1,0 +1,29 @@
+id: life/taxa/embryophyta
+kind: taxon
+summary: >-
+  Land plants: the crown group. Its oldest widely accepted traces, Dapingian cryptospores from
+  northwestern Argentina (Rubinstein et al. 2010), are not placed here, because their site could
+  not be located from a source read.
+same_as: { ott: 56610, pbdb: "txn:250231" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: land plants, la: Embryophyta }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott56610: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-morris-2018:
+    prop: start
+    value: { lo: 514.8 Ma, hi: 473.5 Ma }
+    source:
+      ref: src:morris-2018-land-plant-timescale
+      loc: "Table 3, Embryophyta (monophyletic bryophytes)"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. 95% HPD interval; under the hornworts-sister topology it is 515.2–482.1 Ma.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/eukaryota
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Embryophyta (ott56610) lies within Eukaryota (ott304358)" }

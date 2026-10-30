@@ -1,0 +1,19 @@
+id: src:claramunt-cracraft-2015-bird-timetree
+type: publication
+kind: model
+citation: >-
+  Claramunt, S. & Cracraft, J. (2015). A new time tree reveals Earth history’s imprint on the
+  evolution of modern birds. Science Advances 1(11), e1501005.
+authors:
+  - "Claramunt, S."
+  - "Cracraft, J."
+published: 2015
+title: "A new time tree reveals Earth history’s imprint on the evolution of modern birds"
+container: Science Advances 1(11), e1501005
+doi: 10.1126/sciadv.1501005
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; full text (PMC4730849) read for the crown age of Neornithes:
+    genomic data set, median 96.6 Ma, 95% HPD 84.2 to 114.3 Ma; RAG data set, median 91.5 Ma,
+    95% HPD 79.8 to 106.8 Ma.

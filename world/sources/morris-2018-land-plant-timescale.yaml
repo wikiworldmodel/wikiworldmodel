@@ -1,0 +1,29 @@
+id: src:morris-2018-land-plant-timescale
+type: publication
+kind: model
+citation: >-
+  Morris, J.L., Puttick, M.N., Clark, J.W., Edwards, D., Kenrick, P., Pressel, S., Wellman,
+  C.H., Yang, Z., Schneider, H. & Donoghue, P.C.J. (2018). The timescale of early land plant
+  evolution. Proceedings of the National Academy of Sciences 115(10), E2274–E2283.
+authors:
+  - "Morris, J.L."
+  - "Puttick, M.N."
+  - "Clark, J.W."
+  - "Edwards, D."
+  - "Kenrick, P."
+  - "Pressel, S."
+  - "Wellman, C.H."
+  - "Yang, Z."
+  - "Schneider, H."
+  - "Donoghue, P.C.J."
+published: 2018
+title: "The timescale of early land plant evolution"
+container: Proceedings of the National Academy of Sciences 115(10), E2274–E2283
+doi: 10.1073/pnas.1719588115
+license: CC-BY-NC-ND-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; full text (PMC5877938) read for Table 3, the 95% HPD age
+    estimates of named nodes under the two main topologies; the values cited are those under
+    monophyletic bryophytes. Metadata from Crossref.

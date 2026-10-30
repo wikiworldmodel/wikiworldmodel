@@ -1,0 +1,16 @@
+id: src:jpl-2013-voyager-interstellar
+type: publication
+kind: review
+citation: >-
+  NASA Jet Propulsion Laboratory (2013). NASA spacecraft embarks on historic journey into
+  interstellar space. News release 2013-277, 12 September 2013.
+published: 2013
+title: NASA Spacecraft Embarks on Historic Journey Into Interstellar Space
+container: NASA Jet Propulsion Laboratory news releases
+url: https://www.jpl.nasa.gov/news/nasa-spacecraft-embarks-on-historic-journey-into-interstellar-space
+reliability: The mission's own announcement, reporting the Voyager team's analysis published in Science the same week.
+verified:
+  by: machine:claude-code
+  how: >-
+    Page read through a fetch tool that returns extracts, not the raw page (direct download
+    failed): the quoted phrase, the release number and its date.

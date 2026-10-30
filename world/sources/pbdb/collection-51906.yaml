@@ -1,0 +1,23 @@
+id: src:pbdb/collection-51906
+type: database-record
+kind: compilation
+snapshot: "2026-10-30"
+citation: >-
+  The Paleobiology Database, collection 51906 ("Sequence C, Zimnie Gory, White Sea, Russia", RU), occurrences 513202 and 513207. Read through
+  the PBDB data service (data1.2) on 30 October 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=51906
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 30 October 2026, states "Data License: Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/). The slice's earlier PBDB
+  records, from a 2022 download, give CC BY 4.0.
+reliability: >-
+  A database record compiled from the literature: collection reference Martin et al. 2000 (Science 288, 841–845); occurrence
+  reference Martin et al. 2000. Interval ages are the PBDB's own, for the interval the collection is
+  assigned to; the primary references were not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=51906&show=loc,strat,ref and occs/list.json?coll_id=51906&show=ident,class:
+    collection name "Sequence C, Zimnie Gory, White Sea, Russia", lat 65.550003, lng 39.766666, formation "Zimnie Gory", group "Ust-Pinega", member "C", early_interval Ediacaran, max_ma 635, min_ma 538.8; occurrence 513202, identified_name "Dickinsonia sp.", accepted_name "Dickinsonia"; occurrence 513207, identified_name "Kimberella sp.", accepted_name "Kimberella". The PBDB classifies Dickinsonia in Bilateria (via Dickinsoniomorpha) and Kimberella only in Animalia.

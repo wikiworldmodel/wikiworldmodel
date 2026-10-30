@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-801
+type: frame
+kind: plate
+title: Australian craton (PALEOMAP plate 801)
+entity: earth/plates/australia
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 801
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 801

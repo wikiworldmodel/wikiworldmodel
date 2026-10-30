@@ -1,0 +1,26 @@
+id: src:warke-2020-goe-snowball
+type: publication
+kind: measurement
+citation: >-
+  Warke, M.R., Di Rocco, T., Zerkle, A.L., Lepland, A., Prave, A.R., Martin, A.P., Ueno, Y.,
+  Condon, D.J. & Claire, M.W. (2020). The Great Oxidation Event preceded a Paleoproterozoic
+  "snowball Earth". Proceedings of the National Academy of Sciences 117(24), 13314–13320.
+authors:
+  - "Warke, M.R."
+  - "Di Rocco, T."
+  - "Zerkle, A.L."
+  - "Lepland, A."
+  - "Prave, A.R."
+  - "Martin, A.P."
+  - "Ueno, Y."
+  - "Condon, D.J."
+  - "Claire, M.W."
+published: 2020
+title: The Great Oxidation Event preceded a Paleoproterozoic "snowball Earth"
+container: Proceedings of the National Academy of Sciences 117(24), 13314–13320
+doi: 10.1073/pnas.2003090117
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read verbatim from the Europe PMC record (PMID 32482849); citation from
+    Crossref. The confidence level of the ± on the two bounding ages is not in the abstract.

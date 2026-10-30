@@ -1,0 +1,43 @@
+id: life/taxa/vertebrata
+kind: taxon
+summary: >-
+  Vertebrates with their stem members: the vertebrate lineage since its split from the
+  tunicates. Haikouichthys, the oldest vertebrate placed here, is commonly placed on the stem;
+  Benton et al. (2015) take the Darriwilian Arandaspis as the oldest crown vertebrate.
+same_as: { ott: 801601, pbdb: "txn:67149" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: vertebrates, la: Vertebrata }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott801601: name (unique name \"Vertebrata (subphylum in Deuterostomia)\")" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-dos-reis-2015-olfactores:
+    prop: start
+    value: { lo: 600.0 Ma, hi: 516.3 Ma }
+    source:
+      ref: src:dos-reis-2015-metazoan-timescale
+      loc: "Table 1, node 66 (Olfactores), Composite"
+    method: molecular-clock
+    rank: preferred
+    note: >-
+      The split of vertebrates from tunicates (the crown age of Olfactores), which is the origin
+      of the vertebrate lineage with its stem: a composite of the 95% HPD intervals of the
+      paper’s main analyses.
+  start-dos-reis-2015:
+    prop: start
+    value: { lo: 533.8 Ma, hi: 459.3 Ma }
+    source:
+      ref: src:dos-reis-2015-metazoan-timescale
+      loc: "Table 1, node 68 (Vertebrata), Composite"
+    method: molecular-clock
+    rank: deprecated
+    note: >-
+      A composite of the 95% HPD intervals of the paper’s main analyses for the crown group
+      (cyclostomes and jawed vertebrates), kept for reference but deprecated: its middle, about
+      497 Ma, is younger than Haikouichthys (Cambrian Stage 3, 521–514 Ma), a stem vertebrate.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/bilateria
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Vertebrata (ott801601) lies within Bilateria (ott117569)" }

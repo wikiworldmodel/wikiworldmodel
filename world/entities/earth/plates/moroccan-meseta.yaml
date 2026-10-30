@@ -1,0 +1,9 @@
+id: earth/plates/moroccan-meseta
+kind: plate
+summary: Plate 707 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Moroccan Meseta }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 707", quote: "MOR-AFR Moroccan Meseta-Africa" }

@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-503
+type: frame
+kind: plate
+title: Arabia (PALEOMAP plate 503)
+entity: earth/plates/arabia
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 503
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 503

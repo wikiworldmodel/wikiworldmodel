@@ -1,6 +1,10 @@
 // The globe: background (stars, atmosphere halo), the surface shaded from the field cube map,
 // and the cloud layer. The coastline is derived here, as the sea-level isoline of the
 // blended field, so it is never stored and always agrees with the terrain under it.
+//
+// The surface has three modes, after the field that covers the time shown: elevation;
+// continental blocks (inside a block or not, no relief and no sea level); and none, where no
+// geography is known and the globe is drawn plain.
 import { program, setUniforms, texture2D, type GL, type Program } from './context.ts';
 import type { Mat4 } from '../mat.ts';
 
@@ -24,6 +28,7 @@ uniform vec3 uEye;
 uniform float uEvidence;
 uniform float uCoast;
 uniform float uTexel;
+uniform int uMode;
 in vec3 vN;
 out vec4 o;
 
@@ -60,8 +65,28 @@ vec3 ramp(float e) {
   return mix(c, peak, smoothstep(2.8, 5.0, h));
 }
 
+// Continental blocks: bare crust and open water, their relief and depth unknown.
+vec3 blockRamp(float e) {
+  return e < 0.0 ? vec3(0.07, 0.24, 0.40) : vec3(0.52, 0.48, 0.42);
+}
+
+// No geography known: a plain sphere with a 30° graticule.
+vec3 unknownSurface(vec3 n) {
+  float lat = degrees(asin(clamp(n.z, -1.0, 1.0)));
+  float lon = degrees(atan(n.y, n.x));
+  float glat = 1.0 - smoothstep(0.0, 1.5 * fwidth(lat), abs(mod(lat + 15.0, 30.0) - 15.0));
+  float glon = 1.0 - smoothstep(0.0, 1.5 * fwidth(lon), abs(mod(lon + 15.0, 30.0) - 15.0));
+  float light = 0.35 + 0.75 * max(dot(n, uSun), 0.0);
+  return vec3(0.11, 0.14, 0.20) * light + vec3(0.32, 0.38, 0.50) * max(glat, glon) * 0.3;
+}
+
 void main() {
   vec3 n = normalize(vN);
+  if (uMode == 2) {
+    float rim0 = pow(1.0 - max(dot(n, normalize(uEye - n)), 0.0), 3.0);
+    o = vec4(unknownSurface(n) + vec3(0.25, 0.45, 0.85) * rim0 * 0.45, 1.0);
+    return;
+  }
   vec3 ref = abs(n.z) < 0.99 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);
   vec3 t1 = normalize(cross(ref, n));
   vec3 t2 = cross(n, t1);
@@ -69,12 +94,12 @@ void main() {
   float h = uTexel;
   float ex = elev(normalize(n + t1 * h)) - elev(normalize(n - t1 * h));
   float ey = elev(normalize(n + t2 * h)) - elev(normalize(n - t2 * h));
-  float exaggeration = e > 0.0 ? 30.0 : 8.0;  // e is relative to the coastline isoline
+  float exaggeration = uMode == 1 ? 0.0 : e > 0.0 ? 30.0 : 8.0;  // e is relative to the coastline isoline
   vec3 grad = (t1 * ex + t2 * ey) / (2.0 * h * 6371000.0) * exaggeration;
   vec3 bump = normalize(n - grad);
   vec3 view = normalize(uEye - n);
   float diffuse = max(dot(bump, uSun), 0.0);
-  vec3 c = ramp(e) * (0.22 + 0.85 * diffuse);
+  vec3 c = (uMode == 1 ? blockRamp(e) : ramp(e)) * (0.22 + 0.85 * diffuse);
   if (e < 0.0) {
     float spec = pow(max(dot(reflect(-uSun, n), view), 0.0), 60.0);
     c += vec3(0.55, 0.65, 0.75) * spec * 0.35;
@@ -192,6 +217,8 @@ export interface GlobeFrame {
   mix: number;
   evidence: number;
   coast: number;
+  /** 0: elevation, 1: continental blocks, 2: no geography known */
+  mode: number;
   showClouds: boolean;
 }
 
@@ -267,6 +294,7 @@ export class GlobeRenderer {
       uCoast: f.coast,
       uTexel: 1.5 / this.cubeSize,
     });
+    setUniforms(gl, this.surface, { uMode: f.mode }, ['uMode']);
     gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_INT, 0);
 
     if (f.showClouds && this.cloudTex) {

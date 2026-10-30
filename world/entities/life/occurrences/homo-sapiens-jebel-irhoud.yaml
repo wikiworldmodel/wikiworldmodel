@@ -1,0 +1,58 @@
+id: life/occurrences/homo-sapiens-jebel-irhoud
+kind: occurrence
+summary: >-
+  Early Homo sapiens from the Middle Stone Age site of Jebel Irhoud, Morocco: the oldest fossils
+  assigned to the species. PBDB collection 196693.
+same_as: { pbdb: "occ:1419170" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Homo sapiens, Jebel Irhoud" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Homo sapiens
+    source: { ref: src:pbdb/collection-196693, loc: "occurrence 1419170, accepted_name" }
+    note: >-
+      The record gives no identified name; this is the accepted name.
+  location:
+    prop: location
+    value: { lat: 31.869167, lon: -8.874444, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-196693, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      The PBDB’s coordinate is based on the mountain of Djebel Irhoud.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-707
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-richter-2017:
+    prop: date
+    value: { mean: 315 ka, sd: 34 kyr }
+    source: { ref: src:richter-2017-jebel-irhoud, loc: "abstract", quote: "places these Middle Stone Age artefacts and fossils at 315 ± 34" }
+    method: radiometric
+    rank: preferred
+    note: >-
+      Thermoluminescence of heated flints found with the fossils, a trapped-charge method the
+      vocabulary has no term for. The ± level was not checked, so it is read as 1σ. A
+      U-series/ESR age for the Irhoud 3 mandible is 286 ± 32 ka.
+  date:
+    prop: date
+    value: { ref: ics/chibanian }
+    source: { ref: src:pbdb/collection-196693, loc: "early_interval (Middle Pleistocene)" }
+    method: stratigraphic
+    note: >-
+      The PBDB’s Middle Pleistocene is the Chibanian Stage.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      - { ref: src:pbdb/collection-196693, loc: "occurrence 1419170, accepted_name" }
+      - { ref: src:hublin-2017-jebel-irhoud, loc: "abstract" }
+    note: >-
+      Hublin et al. place the fossils at an early stage of the H. sapiens clade: modern faces
+      and teeth with a more primitive braincase.

@@ -1,11 +1,11 @@
 // The inspect panel: what something is, when and where, every claim with its sources and
 // locators, the competing claims (which can be picked), its relations and the ones other
 // records make to it, and what the derived dates rest on.
-import type { CitationRecord, ClaimRecord, EntityRecord, SourceRecord } from '../../../core/records.ts';
+import type { CitationRecord, ClaimRecord, EntityRecord, SeriesRecord, SourceRecord } from '../../../core/records.ts';
 import { splitRef } from '../../../core/refs.ts';
 import { scenarioKey, type Scenario } from '../../../core/scenario.ts';
 import type { Estimate, FeatureTime } from '../../../core/tileset.ts';
-import { formatTime } from '../../../core/time.ts';
+import { formatTime, PRESENT_YEAR } from '../../../core/time.ts';
 
 const esc = (s: unknown) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
@@ -20,7 +20,8 @@ function short(s: SourceRecord | undefined, ref: string): string {
 const finite = (x: number) => Number.isFinite(x);
 
 function fmtEstimate(e: Estimate, open: 'start' | 'end', unknown = false): string {
-  if (e.best === null) return open === 'end' ? (unknown ? 'end unknown' : 'still exists') : 'unknown';
+  if (e.best === null && open === 'end') return unknown ? 'end unknown' : 'still exists';
+  if (e.best === null) return finite(e.lo) ? `unknown, no earlier than ${formatTime(e.lo, 1e3)}` : finite(e.hi) ? `unknown, no later than ${formatTime(e.hi, 1e3)}` : 'unknown';
   const main = formatTime(e.best, 1e3);
   const lo = finite(e.lo) ? formatTime(e.lo, 1e3) : null;
   const hi = finite(e.hi) ? formatTime(e.hi, 1e3) : null;
@@ -63,6 +64,8 @@ const REL_LABEL: Record<string, string> = {
   'has-member': 'has member',
   'caused-by': 'caused by',
   caused: 'caused',
+  'descends-from': 'descends from',
+  'gave-rise-to': 'gave rise to',
   carries: 'carries',
 };
 
@@ -76,6 +79,8 @@ export interface InspectCallbacks {
 }
 
 export interface TerrainInfo {
+  /** elevation: metres of the time; blocks: positive inside a continental block */
+  mode: 'elevation' | 'blocks';
   lat: number;
   lon: number;
   elevation: number;
@@ -86,9 +91,20 @@ export interface TerrainInfo {
   t: number;
   source: SourceRecord | undefined;
   fieldTitle: string;
-  coastline: string;
-  datum: string;
+  fieldDescription?: string;
+  coastline?: string;
+  datum?: string;
 }
+
+/** A series' value at a time, with its band, interpolated between its points. */
+export interface SeriesValue {
+  value: number;
+  lo: number | null;
+  hi: number | null;
+}
+
+/** A number to three significant figures, as people write it. */
+export const fmtValue = (x: number) => Number(x.toPrecision(3)).toLocaleString('en-US');
 
 export class InspectPanel {
   readonly el: HTMLElement;
@@ -221,14 +237,55 @@ export class InspectPanel {
     const [k0, k1] = info.keyframes;
     const blend = k0 === k1 ? `the ${k0} Ma snapshot` : `the ${k0} and ${k1} Ma snapshots (${Math.round(info.mix * 100)}% of the way to ${k1} Ma)`;
     const s = info.source;
+    const source = `<section><h3>Source</h3><ol class="sources"><li><p>${esc(s?.citation ?? '')}</p>${s?.doi ? `<a href="https://doi.org/${encodeURI(s.doi)}" target="_blank" rel="noopener">doi:${esc(s.doi)}</a>` : ''}${s?.reliability ? `<p class="note">${esc(s.reliability)}</p>` : ''}</li></ol></section>`;
+    if (info.mode === 'blocks') {
+      const inside = info.elevation > 0;
+      this.frame(
+        inside ? 'Continental block' : 'Between the blocks',
+        `<div class="meta"><span class="kind">${esc(info.fieldTitle)}</span><span class="badge basis-reconstruction">reconstruction</span></div>
+        <section><h3>Here, at ${esc(formatTime(info.t, 1e4))}</h3>
+        <p class="big">${inside ? 'Inside a continental block' : 'Outside the continental blocks'}</p>
+        <p>${lat}, ${lon} in the geographic frame of this time${info.plate ? `, on plate ${info.plate}${info.plateLabel ? ` (${esc(info.plateLabel)})` : ''}` : ''}.</p>
+        ${info.fieldDescription ? `<p class="note">${esc(info.fieldDescription)}</p>` : ''}
+        <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time.</p></section>${source}`,
+      );
+      return;
+    }
     this.frame(
       info.elevation >= 0 ? 'Land surface' : 'Sea floor',
       `<div class="meta"><span class="kind">${esc(info.fieldTitle)}</span><span class="badge basis-reconstruction">reconstruction</span></div>
       <section><h3>Here, at ${esc(formatTime(info.t, 1e4))}</h3>
       <p class="big">${info.elevation >= 0 ? '' : '−'}${Math.abs(Math.round(info.elevation)).toLocaleString('en-US')} m <span class="muted">${info.elevation >= 0 ? 'above' : 'below'} the sea level of the time</span></p>
       <p>${lat}, ${lon} in the geographic frame of this time${info.plate ? `, on plate ${info.plate}${info.plateLabel ? ` (${esc(info.plateLabel)})` : ''}` : ', on no plate polygon (ocean floor the model does not track)'}.</p>
-      <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time. The ${esc(info.coastline.toLowerCase())} is derived, not stored: the ${esc(info.datum === 'contemporaneous-sea-level' ? '0 m' : 'sea-level')} isoline of this field.</p></section>
-      <section><h3>Source</h3><ol class="sources"><li><p>${esc(s?.citation ?? '')}</p>${s?.doi ? `<a href="https://doi.org/${encodeURI(s.doi)}" target="_blank" rel="noopener">doi:${esc(s.doi)}</a>` : ''}${s?.reliability ? `<p class="note">${esc(s.reliability)}</p>` : ''}</li></ol></section>`,
+      <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time. The ${esc((info.coastline ?? 'coastline').toLowerCase())} is derived, not stored: the ${esc(info.datum === 'contemporaneous-sea-level' ? '0 m' : 'sea-level')} isoline of this field.</p></section>${source}`,
+    );
+  }
+
+  /** The globe where no field covers the time shown: what is not known, and why. */
+  showUnknown(t: number, why: string): void {
+    this.frame(
+      'Geography unknown',
+      `<section><h3>At ${esc(formatTime(t, 1e4))}</h3><p>${esc(why)}</p>
+      <p class="note">The globe is drawn plain on purpose: nothing here rests on evidence, a reconstruction or a projection.</p></section>`,
+    );
+  }
+
+  /** A global series: its value at a time, how it is known, and its source. */
+  showSeries(s: SeriesRecord, t: number, v: SeriesValue | null): void {
+    const src = s.sourceRecord;
+    const projected = s.projectedAfter !== undefined && t > s.projectedAfter;
+    const basis = projected ? 'projection' : s.basis;
+    const band = v && v.lo !== null && v.hi !== null ? `<p>${fmtValue(v.lo)} – ${fmtValue(v.hi)} ${esc(s.unit ?? '')}${s.band ? `: ${esc(s.band)}` : ''}</p>` : '';
+    const when = (t: number) => (t === PRESENT_YEAR ? 'the present' : formatTime(t));
+    const span = `${when(s.points[0][0])} to ${when(s.points.at(-1)![0])}`;
+    this.frame(
+      s.title,
+      `<div class="meta"><span class="kind">${esc(s.quantity ?? 'Global series')}</span><span class="badge basis-${esc(basis)}">${esc(basis)}</span></div>
+      ${s.description ? `<p class="summary">${esc(s.description)}</p>` : ''}
+      <section><h3>At ${esc(formatTime(t, 1e4))}</h3>
+      <p class="big">${v ? `${fmtValue(v.value)} ${esc(s.unit ?? '')}` : '<span class="muted">No value at this time</span>'}</p>${band}
+      <p class="method">${s.rule ? `Computed with ${esc(s.rule.name)}${Object.keys(s.rule.params).length ? ` (${Object.entries(s.rule.params).map(([k, x]) => `${esc(k)} ${esc(String(x))}`).join(', ')})` : ''}, every step from ${esc(span)}` : `Read from the dataset's table, from ${esc(span)}`}; between its ${s.points.length.toLocaleString('en-US')} points the value is interpolated (${esc(s.interpolation)}).${projected ? ' After the present it is a projection.' : ''}</p></section>
+      <section><h3>Source</h3><ol class="sources"><li><p>${esc(src?.citation ?? s.source.ref)}${s.source.loc ? `, ${esc(s.source.loc)}` : ''}</p>${src?.doi ? `<a href="https://doi.org/${encodeURI(src.doi)}" target="_blank" rel="noopener">doi:${esc(src.doi)}</a>` : ''}${src?.reliability ? `<p class="note">${esc(src.reliability)}</p>` : ''}${src?.verified ? `<p class="verified">Checked: ${esc(src.verified.how)}</p>` : ''}</li></ol></section>`,
     );
   }
 }

@@ -1,0 +1,22 @@
+id: src:prave-2016-marinoan-duration
+type: publication
+kind: measurement
+citation: >-
+  Prave, A.R., Condon, D.J., Hoffmann, K.H., Tapster, S. & Fallick, A.E. (2016). Duration and
+  nature of the end-Cryogenian (Marinoan) glaciation. Geology 44(8), 631–634.
+authors:
+  - "Prave, A.R."
+  - "Condon, D.J."
+  - "Hoffmann, K.H."
+  - "Tapster, S."
+  - "Fallick, A.E."
+published: 2016
+title: Duration and nature of the end-Cryogenian (Marinoan) glaciation
+container: Geology 44(8), 631–634
+doi: 10.1130/G38089.1
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from Crossref. The full uncertainties (x/y/z, 95% confidence) and the ash
+    beds' sites were read from the authors' manuscript on EarthArXiv (object 1590, linked
+    from OpenAlex as the open copy), not from the published version.

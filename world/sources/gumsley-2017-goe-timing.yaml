@@ -1,0 +1,22 @@
+id: src:gumsley-2017-goe-timing
+type: publication
+kind: measurement
+citation: >-
+  Gumsley, A.P., Chamberlain, K.R., Bleeker, W., Söderlund, U., de Kock, M.O., Larsson, E.R.
+  & Bekker, A. (2017). Timing and tempo of the Great Oxidation Event. Proceedings of the
+  National Academy of Sciences 114(8), 1811–1816.
+authors:
+  - "Gumsley, A.P."
+  - "Chamberlain, K.R."
+  - "Bleeker, W."
+  - "Söderlund, U."
+  - "de Kock, M.O."
+  - "Larsson, E.R."
+  - "Bekker, A."
+published: 2017
+title: Timing and tempo of the Great Oxidation Event
+container: Proceedings of the National Academy of Sciences 114(8), 1811–1816
+doi: 10.1073/pnas.1608824114
+verified:
+  by: machine:claude-code
+  how: Abstract read verbatim from the Europe PMC record (PMID 28167763); citation from Crossref.

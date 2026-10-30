@@ -1,0 +1,23 @@
+id: src:pbdb/collection-10721
+type: database-record
+kind: compilation
+snapshot: "2026-10-30"
+citation: >-
+  The Paleobiology Database, collection 10721 ("Rhynie cherts (Tait collection)", UK), occurrence 129836. Read through
+  the PBDB data service (data1.2) on 30 October 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=10721
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 30 October 2026, states "Data License: Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/). The slice's earlier PBDB
+  records, from a 2022 download, give CC BY 4.0.
+reliability: >-
+  A database record compiled from the literature: collection reference Kidston & Lang 1917; occurrence
+  reference Kidston & Lang 1921 (Rhynie Chert Bed, Part V, the Thallophyta). Interval ages are the PBDB's own, for the interval the collection is
+  assigned to; the primary references were not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=10721&show=loc,strat,ref and occs/list.json?coll_id=10721&show=ident,class:
+    collection name "Rhynie cherts (Tait collection)", Scotland, lat 57.337002, lng -2.85, formation "Dryden Flags", early_interval Pragian, max_ma 413.02, min_ma 410.62; occurrence 129836, identified_name "Palaeomyces gordonii", accepted_name "Palaeomyces"; the PBDB classification (taxa/list rel=all_parents) places Palaeomyces in Fungi.

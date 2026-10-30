@@ -1,0 +1,19 @@
+id: field:earth/co2
+type: field
+title: Atmospheric CO₂
+quantity: concentration of CO₂ in the atmosphere
+unit: ppm
+description: >-
+  A fit through published proxy estimates of CO₂ over the last 420 million years (Foster,
+  Royer & Lunt 2017): its most likely value, with its 68% interval.
+grid: { kind: series }
+time: { lo: 419.5 Ma, hi: 0 Ma }
+data:
+  from: src:foster-2017-co2
+  sheet: LOESS Fit
+  first_row: 3
+  columns: { time: A, value: B, lo: D, hi: E }
+  time_unit: Ma
+  band: 68% interval
+basis: reconstruction
+interp: linear

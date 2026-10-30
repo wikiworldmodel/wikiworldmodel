@@ -1,0 +1,23 @@
+id: src:pbdb/collection-227442
+type: database-record
+kind: compilation
+snapshot: "2026-10-30"
+citation: >-
+  The Paleobiology Database, collection 227442 ("GSC 42766, north end of Churchill Sound, Belcher Islands", CA), occurrence 1607853. Read through
+  the PBDB data service (data1.2) on 30 October 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=227442
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 30 October 2026, states "Data License: Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/). The slice's earlier PBDB
+  records, from a 2022 download, give CC BY 4.0.
+reliability: >-
+  A database record compiled from the literature: collection reference Hofmann 1976 (J. Paleontol. 50, 1040–1073); occurrence
+  reference Hofmann 1976. Interval ages are the PBDB's own, for the interval the collection is
+  assigned to; the primary references were not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=227442&show=loc,strat,ref and occs/list.json?coll_id=227442&show=ident,class:
+    collection name "GSC 42766, north end of Churchill Sound, Belcher Islands", lat 56.490002, lng -79.510002, formation "Kasegalik", group "Belcher", early_interval Orosirian, max_ma 2050, min_ma 1800; occurrence 1607853, identified_name empty, accepted_name "Eoentophysalis belcherensis" (phylum Cyanobacteria, family Entophysalidaceae).

@@ -1,0 +1,20 @@
+id: src:woods-2010-visible-language
+type: publication
+kind: review
+citation: >-
+  Woods, C. (ed.), with Emberling, G. & Teeter, E. (2010). Visible Language: Inventions of
+  Writing in the Ancient Middle East and Beyond. Oriental Institute Museum Publications 32.
+  Chicago: The Oriental Institute of the University of Chicago. Including Woods, C., "The
+  Earliest Mesopotamian Writing", pp. 33–50, and the catalog entries, pp. 51–84.
+authors:
+  - "Woods, C."
+published: 2010
+title: "Visible Language: Inventions of Writing in the Ancient Middle East and Beyond"
+container: Oriental Institute Museum Publications 32
+url: https://isac.uchicago.edu/sites/default/files/uploads/shared/docs/oimp32.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the PDF that ISAC (formerly the Oriental Institute) publishes; the
+    dating sentences are on pp. 35 and 71, the chapter's pages from the table of contents.
+    The PDF may be the 2015 second printing, with minor corrections.

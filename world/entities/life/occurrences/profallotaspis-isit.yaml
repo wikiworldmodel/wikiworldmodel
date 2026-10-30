@@ -1,0 +1,53 @@
+id: life/occurrences/profallotaspis-isit
+kind: occurrence
+summary: >-
+  The trilobite Profallotaspis jakutensis from the Pestrotsvet Formation (Nokhoroy Member) on
+  the Lena River opposite Isit’, Yakutia, Siberia: among the oldest trilobites, the first
+  crown-group arthropods in the record. PBDB collection 10065.
+same_as: { pbdb: "occ:867879" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Profallotaspis, Isit’" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Profallotaspis jakutensis
+    source: { ref: src:pbdb/collection-10065, loc: "occurrence 867879, accepted_name" }
+    note: >-
+      The record gives no identified name; this is the accepted name.
+  location:
+    prop: location
+    value: { lat: 60.816666, lon: 125.316666, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-10065, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-401
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Pestrotsvet Formation
+    source: { ref: src:pbdb/collection-10065, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/stage-3 }
+    source: { ref: src:pbdb/collection-10065, loc: "early_interval" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The PBDB assigns the collection to the Atdabanian, a Siberian stage it dates 521–516 Ma,
+      within Cambrian Stage 3 (521–514 Ma in the ICS chart).
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/arthropoda
+    source:
+      - { ref: src:pbdb/collection-10065, loc: "occurrence 867879, accepted_name; Arthropoda, Trilobita" }
+      - { ref: src:daley-2018-euarthropoda, loc: "abstract" }
+    note: >-
+      Daley et al. (2018): trilobites are crown-group euarthropods and appear at 521 Ma. Trace
+      fossils of total-group arthropods are older, about 537 Ma.

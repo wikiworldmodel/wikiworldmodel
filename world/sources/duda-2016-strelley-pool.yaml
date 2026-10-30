@@ -1,0 +1,28 @@
+id: src:duda-2016-strelley-pool
+type: publication
+kind: measurement
+citation: >-
+  Duda, J.-P., Van Kranendonk, M.J., Thiel, V., Ionescu, D., Strauss, H., Schäfer, N. & Reitner,
+  J. (2016). A rare glimpse of Paleoarchean life: geobiology of an exceptionally preserved
+  microbial mat facies from the 3.4 Ga Strelley Pool Formation, Western Australia. PLoS ONE
+  11(1), e0147629.
+authors:
+  - "Duda, J.-P."
+  - "Van Kranendonk, M.J."
+  - "Thiel, V."
+  - "Ionescu, D."
+  - "Strauss, H."
+  - "Schäfer, N."
+  - "Reitner, J."
+published: 2016
+title: "A Rare Glimpse of Paleoarchean Life: Geobiology of an Exceptionally Preserved Microbial Mat Facies from the 3.4 Ga Strelley Pool Formation, Western Australia"
+container: PLoS ONE 11(1), e0147629
+doi: 10.1371/journal.pone.0147629
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; full text (PMC4726515) read for the Geological Framework (the
+    3.43–3.35 Ga Strelley Pool Formation, between the Mount Ada Basalt, 3469 ± 3 Ma, and the
+    Euro Basalt, 3350 ± 3 Ma) and Methods (sample coordinates 21°12′24.76″S, 119°18′27.70″E).
+    Metadata and licence from Crossref.

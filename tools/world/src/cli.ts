@@ -1,6 +1,7 @@
 // Lightworld world tools: fetch datasets, import them, validate the world, build tile sets.
 import { fetchAll } from './fetch.ts';
-import { importFields } from './importer.ts';
+import { fieldSource, importBlocks, importElevation } from './importer.ts';
+import { loadWorld } from './world.ts';
 
 const commands: Record<string, (args: string[]) => Promise<number | void>> = {
   async fetch() {
@@ -8,7 +9,10 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
   },
   async import() {
     await fetchAll();
-    await importFields();
+    const world = await loadWorld();
+    for (const f of world.fields.filter((x) => !x.derived && x.grid?.kind === 'lonlat')) {
+      await (fieldSource(f) === 'elevation' ? importElevation(f) : importBlocks(f));
+    }
   },
   async validate(args) {
     const { runValidate } = await import('./validate/index.ts');

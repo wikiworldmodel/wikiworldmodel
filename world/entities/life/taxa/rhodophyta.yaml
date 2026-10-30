@@ -1,0 +1,18 @@
+id: life/taxa/rhodophyta
+kind: taxon
+summary: >-
+  Red algae. Chosen here over Archaeplastida, which is not a clade in synthesis 16.1 (a "broken"
+  taxon), so red algae attach directly to the eukaryotes in this backbone.
+same_as: { ott: 878953, pbdb: "txn:54808" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: red algae, la: Rhodophyta }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott878953: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/eukaryota
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Rhodophyta (ott878953) lies within Eukaryota (ott304358)" }

@@ -1,6 +1,8 @@
 // The time control: a strip that zooms like a map. Across the whole range it is close to
-// logarithmic in age; zoomed in, it becomes linear. Bands show the named periods.
-import type { PeriodRecord } from '../../../core/records.ts';
+// logarithmic in distance from the present, on both sides of it, so the deep past and the far
+// future both fit; zoomed in, it becomes linear. Bands show the named periods, and a track
+// below them shows the world's dated records.
+import type { PeriodRecord, SearchEntry } from '../../../core/records.ts';
 import { lookup, type Scenario } from '../../../core/scenario.ts';
 import { formatTime, PRESENT_YEAR } from '../../../core/time.ts';
 
@@ -8,36 +10,42 @@ type Win = [number, number];
 
 const age = (t: number) => PRESENT_YEAR - t;
 
-/** The warp's offset: log(age + c) with c a fraction of the window's span. */
-function offset(win: Win): number {
-  return Math.max((age(win[0]) - age(win[1])) / 8, 1);
-}
+/**
+ * The warp's offset: log(1 + |age| / c), with c an eighth of the window's span, so a narrow
+ * window is close to linear. It is capped, so a window of billions of years stays
+ * logarithmic near the present.
+ */
+const MAX_OFFSET = 5e7;
+const offsetFor = (span: number) => Math.max(Math.min(span / 8, MAX_OFFSET), 1);
+const offset = (win: Win) => offsetFor(age(win[0]) - age(win[1]));
+
+/** Signed log distance from the present: positive in the past, negative in the future. */
+const warp = (a: number, c: number) => Math.sign(a) * Math.log1p(Math.abs(a) / c);
+const unwarp = (v: number, c: number) => Math.sign(v) * c * Math.expm1(Math.abs(v));
 
 export function xOf(t: number, win: Win, width: number): number {
   const c = offset(win);
-  const uo = Math.log(age(win[0]) + c);
-  const un = Math.log(age(win[1]) + c);
-  return (width * (uo - Math.log(Math.max(age(t), -c * 0.999) + c))) / (uo - un);
+  const uo = warp(age(win[0]), c);
+  const un = warp(age(win[1]), c);
+  return (width * (uo - warp(age(t), c))) / (uo - un);
 }
 
 export function tOf(x: number, win: Win, width: number): number {
   const c = offset(win);
-  const uo = Math.log(age(win[0]) + c);
-  const un = Math.log(age(win[1]) + c);
-  const u = uo - (x / width) * (uo - un);
-  return PRESENT_YEAR - (Math.exp(u) - c);
+  const uo = warp(age(win[0]), c);
+  const un = warp(age(win[1]), c);
+  return PRESENT_YEAR - unwarp(uo - (x / width) * (uo - un), c);
 }
 
 /** Zoom by `factor` (>1 zooms in) keeping time `tp` at screen fraction `s`; keep within `limits`. */
 export function zoomAround(win: Win, tp: number, s: number, factor: number, limits: Win, minSpan = 1e4): Win {
   const fullSpan = age(limits[0]) - age(limits[1]);
   const span = Math.min(fullSpan, Math.max(minSpan, (age(win[0]) - age(win[1])) / factor));
+  const c = offsetFor(span);
   const ap = age(tp);
   const frac = (an: number) => {
-    const c = Math.max(span / 8, 1);
-    const ao = an + span;
-    const uo = Math.log(ao + c);
-    return (uo - Math.log(ap + c)) / (uo - Math.log(an + c));
+    const uo = warp(an + span, c);
+    return (uo - warp(ap, c)) / (uo - warp(an, c));
   };
   let lo = ap - span;
   let hi = ap;
@@ -60,30 +68,50 @@ export function clampWindow(win: Win, limits: Win): Win {
 }
 
 const ROWS: { rank: string; h: number }[] = [
+  { rank: 'eon', h: 13 },
   { rank: 'era', h: 15 },
   { rank: 'period', h: 18 },
   { rank: 'epoch', h: 15 },
   { rank: 'stage', h: 13 },
 ];
 const RULER = 22;
+const TRACK = 16;
 const PAD = 4;
 
-function niceSteps(): number[] {
-  const out: number[] = [];
-  for (let e = 3; e <= 9; e++) for (const m of [1, 2, 5]) out.push(m * 10 ** e);
-  return out;
-}
+/** Ages worth a tick: 1, 2 and 5 times a power of ten, from a thousand years to 10 Gyr. */
+const NICE: number[] = [];
+for (let e = 10; e >= 3; e--) for (const m of [5, 2, 1]) NICE.push(m * 10 ** e);
 
 function tickLabel(a: number, step: number): string {
   if (a === 0) return '0';
-  if (step >= 1e6) return `${+(a / 1e6).toFixed(Math.max(0, -Math.floor(Math.log10(step / 1e6))))}`;
-  return `${+(a / 1e6).toFixed(Math.min(4, Math.max(1, 6 - Math.floor(Math.log10(step)))))}`;
+  const v = Math.abs(a) / 1e6;
+  const digits = step >= 1e6 ? 0 : Math.min(4, Math.max(1, 6 - Math.floor(Math.log10(step))));
+  return `${a < 0 ? '+' : ''}${+v.toFixed(digits)}`;
+}
+
+const TRACK_COLORS: Record<string, string> = {
+  event: '#ff7a59',
+  occurrence: '#9be38a',
+  sample: '#c8a2ff',
+  taxon: '#5fd4c4',
+  development: '#ffd36b',
+  'large-igneous-province': '#ff9f43',
+  landform: '#c8a2ff',
+};
+
+/** A dated record on the track: where it starts, and where it ends if it ended. */
+interface TrackItem {
+  entry: SearchEntry;
+  start: number;
+  end: number | null;
 }
 
 export interface TimebarCallbacks {
   onTime(t: number): void;
   onWindow(w: Win): void;
   onPlay(): void;
+  /** a record on the track was chosen */
+  onRecord(id: string): void;
 }
 
 export class Timebar {
@@ -91,10 +119,13 @@ export class Timebar {
   private canvas: HTMLCanvasElement;
   private readout: HTMLElement;
   private playBtn: HTMLButtonElement;
+  private tip: HTMLElement;
   private t = 0;
   private win: Win;
   private drag: { mode: 'scrub' | 'pan'; x: number; win: Win } | null = null;
   private keyframes: number[] = [];
+  private track: TrackItem[] = [];
+  private hovered: TrackItem | null = null;
 
   /** the periods as the current scenario dates them */
   private periods: PeriodRecord[];
@@ -119,10 +150,14 @@ export class Timebar {
         <button class="tb-zoom-out" aria-label="Zoom out on time" title="Zoom out">−</button>
         <button class="tb-reset" aria-label="Show the whole time range" title="Whole range">⤢</button>
       </div>
-      <canvas class="tb-canvas" aria-label="Time control: drag to move through time, scroll to zoom, drag the ruler to pan"></canvas>`;
+      <div class="tb-strip">
+        <canvas class="tb-canvas" aria-label="Time control: drag to move through time, scroll to zoom, drag the ruler to pan; the bottom track lists dated records"></canvas>
+        <div class="tb-tip" hidden></div>
+      </div>`;
     this.canvas = this.el.querySelector('canvas')!;
     this.readout = this.el.querySelector('.tb-readout')!;
     this.playBtn = this.el.querySelector('.tb-play')!;
+    this.tip = this.el.querySelector('.tb-tip')!;
     this.playBtn.onclick = () => this.cb.onPlay();
     this.el.querySelector<HTMLButtonElement>('.tb-zoom-in')!.onclick = () => this.zoom(2, this.t);
     this.el.querySelector<HTMLButtonElement>('.tb-zoom-out')!.onclick = () => this.zoom(0.5, this.t);
@@ -131,6 +166,7 @@ export class Timebar {
     this.canvas.addEventListener('pointermove', (e) => this.move(e));
     this.canvas.addEventListener('pointerup', (e) => this.up(e));
     this.canvas.addEventListener('pointercancel', (e) => this.up(e));
+    this.canvas.addEventListener('pointerleave', () => this.hover(null));
     this.canvas.addEventListener('wheel', (e) => {
       e.preventDefault();
       const x = e.offsetX;
@@ -143,13 +179,38 @@ export class Timebar {
     this.keyframes = years;
   }
 
+  /** The records on the track, each at its start in the default picture. */
+  setRecords(entries: SearchEntry[]): void {
+    this.track = entries
+      .filter((e) => e.time.start.best !== null && Number.isFinite(e.time.start.best))
+      .map((e) => ({ entry: e, start: e.time.start.best!, end: e.time.instant ? null : e.time.end.best }))
+      .sort((a, b) => a.start - b.start);
+  }
+
   /** Date the periods as a scenario's alternatives do (period boundaries are claims too). */
   setScenario(s: Scenario): void {
     this.periods = this.all.map((p) => ({ ...p, ...lookup(p.variants, { alts: s.alts }, { start: p.start, end: p.end }) }));
   }
 
+  /** How many years `px` pixels of the strip span at time t. */
+  yearsPerPixels(t: number, px: number): number {
+    const w = this.width();
+    return Math.abs(tOf(Math.min(w, xOf(t, this.win, w) + px), this.win, w) - t) || Math.abs(t - tOf(Math.max(0, xOf(t, this.win, w) - px), this.win, w));
+  }
+
+  /** The time a fraction of the strip's width after t (before it, if negative), within the data. */
+  stepFrom(t: number, fraction: number): number {
+    const w = this.width();
+    const next = tOf(xOf(t, this.win, w) + fraction * w, this.win, w);
+    return Math.max(this.dataRange[0], Math.min(this.dataRange[1], next));
+  }
+
   private width(): number {
     return this.canvas.clientWidth || 1;
+  }
+
+  private height(): number {
+    return RULER + ROWS.reduce((s, r) => s + r.h, 0) + TRACK + PAD;
   }
 
   private zoom(factor: number, tp: number, s?: number): void {
@@ -157,7 +218,41 @@ export class Timebar {
     this.cb.onWindow(zoomAround(this.win, tp, frac, factor, this.limits));
   }
 
+  /** The track item under a point of the strip, if any. */
+  private itemAt(x: number, y: number): TrackItem | null {
+    const top = this.height() - PAD - TRACK;
+    if (y < top - 2 || y > top + TRACK + 2) return null;
+    let best: TrackItem | null = null;
+    let bestD = 7;
+    for (const it of this.track) {
+      const d = Math.abs(xOf(it.start, this.win, this.width()) - x);
+      if (d < bestD) (best = it), (bestD = d);
+    }
+    return best;
+  }
+
+  private hover(it: TrackItem | null): void {
+    if (it === this.hovered) return;
+    this.hovered = it;
+    this.canvas.style.cursor = it ? 'pointer' : '';
+    if (!it) {
+      this.tip.hidden = true;
+    } else {
+      const when = it.end !== null && it.end !== it.start ? `${formatTime(it.start)} – ${formatTime(it.end)}` : formatTime(it.start);
+      this.tip.textContent = `${it.entry.label} · ${when}`;
+      this.tip.hidden = false;
+      const x = xOf(it.start, this.win, this.width());
+      this.tip.style.left = `${Math.max(4, Math.min(this.width() - 220, x - 40))}px`;
+    }
+    this.draw();
+  }
+
   private down(e: PointerEvent): void {
+    const it = this.itemAt(e.offsetX, e.offsetY);
+    if (it) {
+      this.cb.onRecord(it.entry.id);
+      return;
+    }
     this.canvas.setPointerCapture(e.pointerId);
     const mode = e.offsetY < RULER || e.shiftKey ? 'pan' : 'scrub';
     this.drag = { mode, x: e.offsetX, win: this.win };
@@ -165,7 +260,10 @@ export class Timebar {
   }
 
   private move(e: PointerEvent): void {
-    if (!this.drag) return;
+    if (!this.drag) {
+      this.hover(this.itemAt(e.offsetX, e.offsetY));
+      return;
+    }
     if (this.drag.mode === 'scrub') this.scrubTo(e.offsetX);
     else {
       const w = this.width();
@@ -216,11 +314,12 @@ export class Timebar {
     this.win = win;
     this.playBtn.textContent = playing ? '❚❚' : '▶';
     this.playBtn.setAttribute('aria-label', playing ? 'Pause' : 'Play');
-    const res = (age(win[0]) - age(win[1])) / 2000;
+    const res = this.yearsPerPixels(t, 1);
     const stage = this.periodAt(t, 'stage');
+    const named = stage ?? this.periodAt(t, 'period') ?? this.periodAt(t, 'era') ?? this.periodAt(t, 'eon');
     const period = this.periodAt(t, 'period');
-    const where = [stage?.name, period && period.name !== stage?.name ? period.name : undefined].filter(Boolean).join(', ');
-    const label = t >= PRESENT_YEAR ? 'Today' : formatTime(t, res);
+    const where = [named?.name, period && period.name !== named?.name ? period.name : undefined].filter(Boolean).join(', ');
+    const label = t === PRESENT_YEAR ? 'Today' : formatTime(t, res);
     this.readout.innerHTML = `<strong>${label}</strong>${where ? ` <span>${where}</span>` : ''}`;
     this.draw();
   }
@@ -228,7 +327,7 @@ export class Timebar {
   draw(): void {
     const dpr = window.devicePixelRatio || 1;
     const w = this.width();
-    const h = RULER + ROWS.reduce((s, r) => s + r.h, 0) + PAD;
+    const h = this.height();
     if (this.canvas.width !== Math.round(w * dpr) || this.canvas.height !== Math.round(h * dpr)) {
       this.canvas.width = Math.round(w * dpr);
       this.canvas.height = Math.round(h * dpr);
@@ -249,7 +348,7 @@ export class Timebar {
       for (const p of this.periods) {
         if (p.rank !== row.rank || p.end < this.win[0] || p.start > this.win[1]) continue;
         const x0 = Math.max(0, x(p.start));
-        const x1 = Math.min(w, x(p.end));
+        const x1 = Math.min(w, x(Math.min(p.end, PRESENT_YEAR)));
         if (x1 - x0 < 0.5) continue;
         g.fillStyle = p.color ?? '#888';
         g.fillRect(x0, top, x1 - x0, row.h - 1);
@@ -264,30 +363,50 @@ export class Timebar {
       top += row.h;
     }
 
+    // The track: dated records, a dot at each start and a line to the end of what has ended.
+    const ty = top + TRACK / 2;
+    for (const it of this.track) {
+      const x0 = x(it.start);
+      if (x0 < -4 || x0 > w + 4) continue;
+      const color = TRACK_COLORS[it.entry.kind.split('/')[0]] ?? '#9aa6bd';
+      g.fillStyle = color;
+      g.globalAlpha = it === this.hovered ? 1 : 0.85;
+      if (it.end !== null && it.end > it.start) g.fillRect(x0, ty - 1, Math.max(1, Math.min(w, x(it.end)) - x0), 2);
+      g.beginPath();
+      g.arc(x0, ty, it === this.hovered ? 4.5 : 3, 0, 2 * Math.PI);
+      g.fill();
+    }
+    g.globalAlpha = 1;
+
     // Outside the data range: dim it.
     g.fillStyle = 'rgba(8, 10, 16, 0.65)';
     if (this.win[0] < this.dataRange[0]) g.fillRect(0, RULER, Math.max(0, x(this.dataRange[0])), h - RULER);
+    if (this.win[1] > this.dataRange[1]) {
+      const x1 = Math.min(w, x(this.dataRange[1]));
+      g.fillRect(x1, RULER, w - x1, h - RULER);
+    }
 
-    // Ruler: keyframes and ticks, placed greedily from the roundest values down.
+    // Ruler: keyframes, then ticks at round ages, chosen along the strip so they space
+    // evenly whatever the warp.
     g.fillStyle = 'rgba(255,255,255,0.35)';
     const kx = this.keyframes.map(x).filter((v) => v >= 0 && v <= w);
     if (kx.length < 2 || kx.every((v, i) => i === 0 || Math.abs(v - kx[i - 1]) > 4)) for (const v of kx) g.fillRect(v - 0.5, RULER - 5, 1, 4);
     const placed: number[] = [];
-    const steps = niceSteps().reverse();
-    const ao = age(this.win[0]);
-    const an = age(this.win[1]);
     g.fillStyle = '#cfd6e6';
-    g.font = '11px system-ui, -apple-system, Segoe UI, sans-serif';
-    for (const step of steps) {
-      if ((ao - an) / step > 400) break;
-      for (let a = Math.ceil(an / step) * step; a <= ao; a += step) {
-        const px = x(PRESENT_YEAR - a);
-        if (px < 24 || px > w || placed.some((q) => Math.abs(q - px) < 58)) continue;
-        placed.push(px);
-        g.fillRect(px, RULER - 7, 1, 7);
-        const label = tickLabel(a, step);
-        const tw = g.measureText(label).width;
-        g.fillText(label, Math.min(w - tw - 2, Math.max(2, px - tw / 2)), 8);
+    for (let px = 24; px < w; px += 64) {
+      const a = age(tOf(px, this.win, w));
+      for (const step of NICE) {
+        const r = Math.round(a / step) * step;
+        const rx = x(PRESENT_YEAR - r);
+        if (Math.abs(rx - px) > 28) continue;
+        if (rx >= 24 && rx <= w && !placed.some((q) => Math.abs(q - rx) < 58)) {
+          placed.push(rx);
+          g.fillRect(rx, RULER - 7, 1, 7);
+          const label = tickLabel(r, step);
+          const tw = g.measureText(label).width;
+          g.fillText(label, Math.min(w - tw - 2, Math.max(2, rx - tw / 2)), 8);
+        }
+        break;
       }
     }
     g.fillStyle = 'rgba(207,214,230,0.6)';

@@ -1,0 +1,28 @@
+id: life/taxa/gnathostomata
+kind: taxon
+summary: >-
+  Jawed vertebrates: the crown group (cartilaginous fishes, bony fishes and their last common
+  ancestor).
+same_as: { ott: 278114, pbdb: "txn:67344" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: jawed vertebrates, la: Gnathostomata }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott278114: name (unique name \"Gnathostomata (superclass in phylum Chordata)\")" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-dos-reis-2015:
+    prop: start
+    value: { lo: 468.1 Ma, hi: 432.1 Ma }
+    source:
+      ref: src:dos-reis-2015-metazoan-timescale
+      loc: "Table 1, node 69 (Gnathostomata), Composite"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. A composite of the 95% HPD intervals of the paper’s main analyses.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/vertebrata
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Gnathostomata (ott278114) lies within Vertebrata (ott801601)" }

@@ -1,0 +1,23 @@
+id: src:pbdb/collection-53664
+type: database-record
+kind: compilation
+snapshot: "2026-10-30"
+citation: >-
+  The Paleobiology Database, collection 53664 ("Yea locality", AU), occurrence 522062. Read through
+  the PBDB data service (data1.2) on 30 October 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=53664
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 30 October 2026, states "Data License: Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/). The slice's earlier PBDB
+  records, from a 2022 download, give CC BY 4.0.
+reliability: >-
+  A database record compiled from the literature: collection reference Garratt & Rickards 1984 (Proc. Yorks. Geol. Soc. 44, 377–384); occurrence
+  reference Garratt & Rickards 1984. Interval ages are the PBDB's own, for the interval the collection is
+  assigned to; the primary references were not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=53664&show=loc,strat,ref and occs/list.json?coll_id=53664&show=ident,class:
+    collection name "Yea locality", Victoria, lat -37.216667, lng 145.433334, formation "Yea", early_interval Ludlow, max_ma 426.7, min_ma 422.7; occurrence 522062, identified_name empty, accepted_name "Baragwanathia longifolia" (Lycopodophyta).

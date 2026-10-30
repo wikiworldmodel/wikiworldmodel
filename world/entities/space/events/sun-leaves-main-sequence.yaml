@@ -1,0 +1,37 @@
+id: space/events/sun-leaves-main-sequence
+kind: event/astronomical
+summary: >-
+  The end of the Sun's main-sequence life, when hydrogen burning moves from its core to a
+  shell around it and the Sun starts to climb the red-giant branch.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: The Sun leaves the main sequence }
+    source: { ref: src:schroder-smith-2008-sun-future, loc: section 3 }
+  date-schroder-smith-2008:
+    prop: date
+    value: { mean: 5.42 Gyr from now, sd: 0.05 Gyr }
+    source:
+      ref: src:schroder-smith-2008-sun-future
+      loc: "section 3 and Table 1 (MS:final, 10.00 Gy); section 2 (present age 4.58 ± 0.05 Gy)"
+      quote: the Sun comes to leave the main sequence, around an age of 10 Gy
+    method: model
+    basis: projection
+    rank: preferred
+    note: >-
+      The model's last main-sequence stage, at an age of 10.00 Gy, less the Sun's present
+      age in the same model, 4.58 Gy. The ± is that of the present age, as the paper gives it
+      for the tip of the red-giant branch; its level is not given, so it is read as 1σ.
+  date-sackmann-1993:
+    prop: date
+    value: 6.5 Gyr from now
+    source:
+      ref: src:sackmann-1993-our-sun
+      loc: abstract
+      quote: grows from 0.7 Lsun, 4.5 Gyr ago, to 2.2 Lsun, 6.5 Gyr from now
+    method: model
+    basis: projection
+    note: >-
+      The end of the hydrogen-burning main sequence in an older model, in which the Sun
+      spends 11 Gyr on the main sequence; no uncertainty is given.

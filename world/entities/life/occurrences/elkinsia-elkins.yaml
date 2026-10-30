@@ -1,0 +1,50 @@
+id: life/occurrences/elkinsia-elkins
+kind: occurrence
+summary: >-
+  The seed plant Elkinsia polymorpha, with cupulate ovules, from the upper Hampshire Formation
+  near Elkins, West Virginia: among the oldest seed plants. PBDB collection 21025.
+same_as: { pbdb: "occ:200780" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Elkinsia, Elkins" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Elkinsia polymorpha
+    source: { ref: src:pbdb/collection-21025, loc: "occurrence 200780, identified_name" }
+  location:
+    prop: location
+    value: { lat: 38.906944, lon: -79.728333, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-21025, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Upper Hampshire Formation
+    source: { ref: src:pbdb/collection-21025, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/famennian }
+    source: { ref: src:pbdb/collection-21025, loc: "early_interval" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Assigned to the Famennian stage. The PBDB’s own ages for it (max_ma 372.15, min_ma 358.86)
+      come from its time scale; here the stage’s ages come from its period record.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/spermatophyta
+    source:
+      - { ref: src:rothwell-1989-elkinsia, loc: "title" }
+      - { ref: src:pbdb/collection-21025, loc: "occurrence 200780, identified_name" }
+    note: >-
+      A gymnosperm with ovules, so a seed plant; it may lie on the seed-plant stem rather than
+      in the crown.

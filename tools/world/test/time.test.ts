@@ -48,6 +48,14 @@ describe('time axis', () => {
       expect(timeFromParam(timeToParam(r))).toBe(r);
     }
   });
+  it('writes the future from now, and reads it back', () => {
+    expect(parseTime('10 kyr from now')).toEqual({ kind: 'instant', t: PRESENT_YEAR + 1e4 });
+    expect(formatTime(PRESENT_YEAR + 5e9)).toBe('5 Gyr from now');
+    expect(formatTime(PRESENT_YEAR + 1.08e9)).toBe('1.08 Gyr from now');
+    expect(formatTime(PRESENT_YEAR + 4e4)).toBe('40 kyr from now');
+    expect(formatTime(2012)).toBe('2012 CE');
+    for (const t of [PRESENT_YEAR + 62, PRESENT_YEAR + 7.6e9]) expect(timeFromParam(timeToParam(t))).toBe(t);
+  });
   it('formats by magnitude', () => {
     expect(formatTime(fromMa(66.04))).toBe('66.04 Ma');
     expect(formatTime(fromMa(280))).toBe('280 Ma');

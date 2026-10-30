@@ -1,0 +1,22 @@
+id: src:daley-2018-euarthropoda
+type: publication
+kind: review
+citation: >-
+  Daley, A.C., Antcliffe, J.B., Drage, H.B. & Pates, S. (2018). Early fossil record of
+  Euarthropoda and the Cambrian Explosion. Proceedings of the National Academy of Sciences
+  115(21), 5323–5331.
+authors:
+  - "Daley, A.C."
+  - "Antcliffe, J.B."
+  - "Drage, H.B."
+  - "Pates, S."
+published: 2018
+title: "Early fossil record of Euarthropoda and the Cambrian Explosion"
+container: Proceedings of the National Academy of Sciences 115(21), 5323–5331
+doi: 10.1073/pnas.1719962115
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC and Crossref: trilobites are crown-group euarthropods that
+    appear in the fossil record at 521 Ma; trace fossils of total-group Euarthropoda appear
+    around 537 Ma.

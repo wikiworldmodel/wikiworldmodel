@@ -1,0 +1,33 @@
+id: life/taxa/homo-sapiens
+kind: taxon
+summary: >-
+  Modern humans, from the split of their lineage from the Neanderthals’. The oldest fossils
+  assigned to the species are much younger than that split.
+same_as: { ott: 770315, pbdb: "txn:83088" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: humans, la: "Homo sapiens" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott770315: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss. Open Tree’s taxonomy wrongly flags the species as extinct.
+  start-langergraber-2012:
+    prop: start
+    value: { lo: 800 ka, hi: 400 ka }
+    source:
+      ref: src:langergraber-2012-ape-generation-times
+      loc: "abstract"
+      quote: "the population split between Neanderthals and modern humans to 400,000–800,000 y ago"
+    method: molecular-clock
+    note: >-
+      The population split between Neanderthals and modern humans, from generation times and
+      per-generation mutation rates rather than fossil calibrations: the origin of the lineage
+      that leads to Homo sapiens, taken here as the species’ origin.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source: { ref: src:pbdb/taxon-91486, loc: "classification: Homo sapiens (txn:83088) < Homo (txn:40901) < Hominini (txn:91486)" }
+    note: >-
+      From the PBDB, since Open Tree has no hominin tribe; in the synthesis, Homo sapiens lies
+      within Homo and Homininae.

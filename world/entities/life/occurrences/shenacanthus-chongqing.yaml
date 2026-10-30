@@ -1,0 +1,50 @@
+id: life/occurrences/shenacanthus-chongqing
+kind: occurrence
+summary: >-
+  The chondrichthyan Shenacanthus vermiformis from the Huixingshao Formation, Chongqing
+  Lagerstätte near Lianghe village, Xiushan County: among the oldest jawed vertebrates. PBDB
+  collection 236761.
+same_as: { pbdb: "occ:1667737" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Shenacanthus, Chongqing" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Shenacanthus vermiformis n. gen. n. sp.
+    source: { ref: src:pbdb/collection-236761, loc: "occurrence 1667737, identified_name" }
+  location:
+    prop: location
+    value: { lat: 28.611084, lon: 109.122192, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-236761, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Huixingshao Formation
+    source: { ref: src:pbdb/collection-236761, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/telychian }
+    source:
+      - { ref: src:pbdb/collection-236761, loc: "early_interval" }
+      - { ref: src:zhu-2022-chongqing-fishes, loc: "abstract", quote: "early Silurian (Telychian age, around 436 Ma)" }
+    method: stratigraphic
+    rank: preferred
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/gnathostomata
+    source:
+      - { ref: src:pbdb/collection-236761, loc: "occurrence 1667737, accepted_name; Chondrichthyes" }
+      - { ref: src:zhu-2022-chongqing-fishes, loc: "abstract" }
+    note: >-
+      A cartilaginous fish, so a crown-group jawed vertebrate. Disarticulated scales from the
+      Ordovician may be older jawed vertebrates.

@@ -1,0 +1,57 @@
+id: life/occurrences/dickinsonia-zimnie-gory
+kind: occurrence
+summary: >-
+  Dickinsonia from sequence C of the Zimnie Gory Formation, White Sea, Russia: among the oldest
+  animals, confirmed as an animal by its cholesteroid biomarkers. PBDB collection 51906.
+same_as: { pbdb: "occ:513202" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Dickinsonia, Zimnie Gory" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Dickinsonia sp.
+    source: { ref: src:pbdb/collection-51906, loc: "occurrence 513202, identified_name" }
+  location:
+    prop: location
+    value: { lat: 65.550003, lon: 39.766666, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-51906, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-301
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Zimnie Gory Formation
+    source: { ref: src:pbdb/collection-51906, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/ediacaran }
+    source: { ref: src:pbdb/collection-51906, loc: "early_interval (Ediacaran), max_ma, min_ma" }
+    method: stratigraphic
+    note: >-
+      Assigned to the Ediacaran Period. The PBDB's own ages for it (max_ma 635, min_ma 538.8)
+      come from its time scale; here the period's ages come from its record, so they follow the
+      time scale chosen.
+  earlier-than:
+    prop: earlier_than
+    value: { mean: 555.3 Ma, sd: 0.3 Myr }
+    source: { ref: src:martin-2000-white-sea, loc: "abstract", quote: "occurred before 555.3 ± 0.3 million years ago" }
+    method: radiometric/u-pb
+    note: >-
+      A U–Pb zircon age for a volcanic ash in the Zimnie Gory section, above the fossils. The ±
+      level is not stated, so it is read as 1σ.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/metazoa
+    source: { ref: src:bobrovskiy-2018-dickinsonia, loc: "abstract" }
+    note: >-
+      Bobrovskiy et al. find that Dickinsonia produced only cholesteroids, a hallmark of
+      animals. Benton et al. (2015) did not use Dickinsonia to calibrate crown animals, so it
+      may lie on the animal stem.

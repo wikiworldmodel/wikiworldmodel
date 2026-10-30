@@ -1,0 +1,19 @@
+id: src:schroder-smith-2008-sun-future
+type: publication
+kind: model
+citation: >-
+  Schröder, K.-P. & Smith, R.C. (2008). Distant future of the Sun and Earth revisited.
+  Monthly Notices of the Royal Astronomical Society 386(1), 155–163.
+authors:
+  - "Schröder, K.-P."
+  - "Smith, R.C."
+published: 2008
+title: Distant future of the Sun and Earth revisited
+container: Monthly Notices of the Royal Astronomical Society 386(1), 155–163
+doi: 10.1111/j.1365-2966.2008.13022.x
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract and full text read from arXiv (0801.4031): Table 1 (ages of the evolutionary
+    stages), section 2 (present age 4.58 ± 0.05 Gy) and section 4.3 (tip of the RGB 7.59 ±
+    0.05 Gy from now). Citation from Crossref.

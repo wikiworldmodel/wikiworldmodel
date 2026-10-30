@@ -1,0 +1,19 @@
+id: src:burgess-bowring-2015-siberian-traps
+type: publication
+kind: measurement
+citation: >-
+  Burgess, S.D. & Bowring, S.A. (2015). High-precision geochronology confirms voluminous
+  magmatism before, during, and after Earth's most severe extinction. Science Advances 1(7),
+  e1500470.
+authors:
+  - "Burgess, S.D."
+  - "Bowring, S.A."
+published: 2015
+title: High-precision geochronology confirms voluminous magmatism before, during, and after Earth's most severe extinction
+container: Science Advances 1(7), e1500470
+doi: 10.1126/sciadv.1500470
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract and full text read from Europe PMC (PMC4643808), including Table 1, whose
+    uncertainties are 2σ (x/y/z). Citation from Crossref.

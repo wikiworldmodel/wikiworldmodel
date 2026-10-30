@@ -5,18 +5,19 @@ import { conj, mul, type Quat } from '../../core/quat.ts';
 import type { EntityRecord } from '../../core/records.ts';
 import { splitRef } from '../../core/refs.ts';
 import { lookup, type Scenario } from '../../core/scenario.ts';
-import type { Feature, FeatureTime, GeneratorConstraint } from '../../core/tileset.ts';
-import { fromMa, PRESENT_YEAR, toMa } from '../../core/time.ts';
+import type { Feature, FeatureTime, FieldInfo, GeneratorConstraint } from '../../core/tileset.ts';
+import { formatTime, fromMa, PRESENT_YEAR, toMa } from '../../core/time.ts';
 import { GENERATOR as CLOUDS, generateClouds, type CloudParams } from '../../world/generators/earth/clouds/v1.ts';
 import { Camera, MAX_DIST, MIN_DIST } from './camera.ts';
 import { fetchLog, latestBuild, loadBuild, loadRecord, type Build } from './data.ts';
 import { FieldRenderer, type FieldTileGPU } from './gl/field.ts';
 import { GlobeRenderer } from './gl/globe.ts';
 import { add, cross, norm, scale, type V3 } from './mat.ts';
-import { fromSearch, quantize, toSearch, type ViewState } from './state.ts';
+import { buildOf, fromSearch, quantize, toSearch, type ViewState } from './state.ts';
 import { TileManager, type LoadedTile } from './tiles.ts';
 import { InspectPanel } from './ui/inspect.ts';
 import { Markers, timeFor, visibility } from './ui/markers.ts';
+import { PlanetPanel, valueAt } from './ui/planet.ts';
 import { Search } from './ui/search.ts';
 import { Timebar } from './ui/timebar.ts';
 import { Toolbar } from './ui/toolbar.ts';
@@ -50,10 +51,19 @@ function fail(root: HTMLElement, message: string): void {
 }
 
 async function start(root: HTMLElement): Promise<void> {
+  const buildId = buildOf(location.search) ?? (await latestBuild(ROOT));
+  const build: Build = await loadBuild(ROOT, buildId);
+  const ts = build.tileset;
+  const dataRange: [number, number] = ts.timeRange;
+  // The time control reaches a little past the data at each end, so the data's edges show.
+  const pad = (t: number) => Math.abs(PRESENT_YEAR - t) / 15;
+  const limits: [number, number] = [dataRange[0] - pad(dataRange[0]), dataRange[1] + pad(dataRange[1])];
+  /** The gridded field that covers a time, if any: the first listed where two meet. */
+  const fieldAt = (t: number): FieldInfo | undefined => ts.fields.find((f) => f.coverage[0] <= t && t <= f.coverage[1]);
   const defaults: ViewState = {
     t: PRESENT_YEAR,
     cam: { lat: 12, lon: -28, dist: 3.3 },
-    window: [fromMa(320), PRESENT_YEAR],
+    window: limits,
     evidence: false,
     clouds: true,
     alt: [],
@@ -61,11 +71,6 @@ async function start(root: HTMLElement): Promise<void> {
     sel: null,
   };
   const parsed = fromSearch(location.search, defaults);
-  const buildId = parsed.build ?? (await latestBuild(ROOT));
-  const build: Build = await loadBuild(ROOT, buildId);
-  const ts = build.tileset;
-  const limits: [number, number] = [fromMa(320), PRESENT_YEAR];
-  const dataRange: [number, number] = ts.timeRange;
   let state: ViewState = quantize({ ...parsed.state, t: Math.max(dataRange[0], Math.min(dataRange[1], parsed.state.t)) });
 
   // Page structure.
@@ -116,7 +121,10 @@ async function start(root: HTMLElement): Promise<void> {
   top.className = 'topbar';
   const brand = document.createElement('div');
   brand.className = 'brand';
-  brand.innerHTML = `<strong>Lightworld</strong><span>Pangaea to today</span>`;
+  // Named for the span the build covers: the finest named period at its start, to its end.
+  const named = (t: number) => ['period', 'era', 'eon'].map((rank) => build.periods.periods.find((p) => p.rank === rank && p.start <= t && t <= p.end)).find(Boolean);
+  const until = dataRange[1] > PRESENT_YEAR ? formatTime(dataRange[1]) : 'today';
+  brand.innerHTML = `<strong>Lightworld</strong><span>${named(dataRange[0])?.name ?? formatTime(dataRange[0])} to ${until}</span>`;
   const search = new Search(build.search, build.periods.periods, kindLabel);
   const toolbar = new Toolbar(build.id, ts.alternatives);
   top.append(brand, search.el, toolbar.el);
@@ -126,10 +134,20 @@ async function start(root: HTMLElement): Promise<void> {
     onTime: (t) => setState({ t }),
     onWindow: (w) => setState({ window: w }),
     onPlay: () => togglePlay(),
+    onRecord: (id) => goTo(id),
   });
-  timebar.setKeyframes(ts.keyframesMa.map(fromMa));
+  timebar.setKeyframes([...new Set(ts.fields.flatMap((f) => f.keyframesMa))].map(fromMa));
+  timebar.setRecords(build.search.entities.filter((e) => e.kind !== 'plate'));
   timebar.setScenario(scenario());
   root.appendChild(timebar.el);
+
+  const planet = new PlanetPanel(build.series.series);
+  planet.onOpen = (id) => showSeries(id);
+  stage.appendChild(planet.el);
+  const notice = document.createElement('div');
+  notice.className = 'notice';
+  notice.hidden = true;
+  stage.appendChild(notice);
 
   // State.
   let dirty = true;
@@ -174,14 +192,14 @@ async function start(root: HTMLElement): Promise<void> {
 
   function togglePlay(): void {
     playing = !playing;
-    if (playing && state.t >= state.window[1] - 1) setState({ t: state.window[0] });
+    if (playing && state.t >= Math.min(state.window[1], dataRange[1]) - 1) setState({ t: Math.max(state.window[0], dataRange[0]) });
     lastFrame = performance.now();
     dirty = true;
   }
 
   // Tiles → GPU, features, generator constraints.
   tiles.onLoad = (t: LoadedTile) => {
-    gpuTiles.set(t.ref.id, field.addTile(t.ref.id, t.ref.lod, t.header.field.grid, t.keyframes));
+    if (t.header.field) gpuTiles.set(t.ref.id, field.addTile(t.ref.id, t.ref.lod, t.header.field.grid, t.keyframes));
     for (const f of t.header.features) features.set(f.id, f);
     if (!cloudSpec && t.header.generators.length) {
       cloudSpec = t.header.generators.find((g) => g.generator === CLOUDS) ?? null;
@@ -227,6 +245,7 @@ async function start(root: HTMLElement): Promise<void> {
   let cubeKey = '';
   let frameMix = 0;
   let frameKeys: [number, number] = [0, 0];
+  let frameField: FieldInfo | undefined;
 
   function render(): void {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -237,23 +256,31 @@ async function start(root: HTMLElement): Promise<void> {
       canvas.height = h;
     }
     camera.update(state.cam, stage.clientWidth, stage.clientHeight);
-    const age = toMa(state.t);
-    const keys = ts.keyframesMa;
-    let k1 = keys.find((k) => k >= age) ?? keys[keys.length - 1];
-    let k0 = [...keys].reverse().find((k) => k <= age) ?? keys[0];
-    if (k0 > k1) [k0, k1] = [k1, k0];
-    const mix = k1 === k0 ? 0 : (age - k0) / (k1 - k0);
-    frameMix = mix;
-    frameKeys = [k0, k1];
-
+    // A projection holds the field's youngest keyframe, and the plates where they are then.
+    const fi = fieldAt(state.t);
+    const age = fi ? Math.max(toMa(state.t), fi.keyframesMa[0]) : toMa(state.t);
+    let mix = 0;
     const loaded = tiles.update(state.t, camera.eye);
-    const drawn = loaded.map((l) => gpuTiles.get(l.ref.id)).filter((g): g is FieldTileGPU => !!g);
-    const key = `${state.t}|${drawn.map((d) => d.id).join(',')}`;
-    if (key !== cubeKey && drawn.length) {
-      const now = totalsAt(age);
-      field.render(k0, k1, deltas(now, totalsAt(k0)), deltas(now, totalsAt(k1)), drawn);
-      cubeKey = key;
-    }
+    if (fi) {
+      const keys = fi.keyframesMa;
+      let k1 = keys.find((k) => k >= age) ?? keys[keys.length - 1];
+      let k0 = [...keys].reverse().find((k) => k <= age) ?? keys[0];
+      if (k0 > k1) [k0, k1] = [k1, k0];
+      mix = k1 === k0 ? 0 : (age - k0) / (k1 - k0);
+      frameKeys = [k0, k1];
+      const drawn = loaded.filter((l) => l.header.field?.id === fi.id).map((l) => gpuTiles.get(l.ref.id)).filter((g): g is FieldTileGPU => !!g);
+      const key = `${state.t}|${fi.id}|${drawn.map((d) => d.id).join(',')}`;
+      if (key !== cubeKey && drawn.length) {
+        const now = totalsAt(age);
+        field.render(k0, k1, deltas(now, totalsAt(k0)), deltas(now, totalsAt(k1)), drawn);
+        cubeKey = key;
+      }
+    } else cubeKey = `${state.t}|none`;
+    frameMix = mix;
+    frameField = fi;
+    const why = fi ? '' : unknownWhy(state.t);
+    if (notice.textContent !== why) notice.textContent = why;
+    notice.hidden = !why;
 
     // Light from over the viewer's left shoulder, so the visible side is lit.
     const eye = camera.eye;
@@ -269,7 +296,8 @@ async function start(root: HTMLElement): Promise<void> {
         sun,
         mix,
         evidence: state.evidence ? 1 : 0,
-        coast: ts.field.coastline.isolineM,
+        coast: fi?.coastline?.isolineM ?? 0,
+        mode: !fi ? 2 : fi.mode === 'blocks' ? 1 : 0,
         showClouds: state.clouds && cloudsReady,
       },
       w,
@@ -279,7 +307,7 @@ async function start(root: HTMLElement): Promise<void> {
     const nowTotals = new Map<number, Quat>();
     markers.update([...features.values()], camera, {
       t: state.t,
-      windowSpan: state.window[1] - state.window[0],
+      halo: halo(state.t),
       evidence: state.evidence,
       scenario: scenario(),
       selected: state.sel,
@@ -291,8 +319,11 @@ async function start(root: HTMLElement): Promise<void> {
         }
         return q;
       },
+      // Where no field covers the time, or the plate model does not reach, nothing is placed.
+      placed: (plate) => !!fi && build.model.reaches(plate, age),
     });
     timebar.set(state.t, state.window, playing);
+    planet.update(state.t);
     toolbar.set({ evidence: state.evidence, clouds: state.clouds, alt: state.alt });
     document.body.classList.toggle('evidence', state.evidence);
   }
@@ -300,9 +331,9 @@ async function start(root: HTMLElement): Promise<void> {
   function frame(now: number): void {
     requestAnimationFrame(frame);
     if (playing) {
+      // Play at an even pace along the time control, whatever its warp: a 24th of it a second.
       const dt = Math.min(0.1, (now - lastFrame) / 1000);
-      const span = state.window[1] - state.window[0];
-      const t = state.t + (span / 24) * dt;
+      const t = timebar.stepFrom(state.t, dt / 24);
       if (t >= Math.min(state.window[1], dataRange[1])) {
         playing = false;
         setState({ t: Math.min(state.window[1], dataRange[1]) });
@@ -349,12 +380,15 @@ async function start(root: HTMLElement): Promise<void> {
       inspect.hide();
       return;
     }
+    setState({ sel: null });
+    shownRecord = null;
+    const fi = frameField;
+    if (!fi) return inspect.showUnknown(state.t, unknownWhy(state.t));
     const [e0, e1, p0] = field.sample(hit.point);
     const elevation = e0 + (e1 - e0) * frameMix;
     const plate = build.frames.plateIndex[Math.round(p0)] || null;
-    setState({ sel: null });
-    shownRecord = null;
     inspect.showTerrain({
+      mode: fi.mode,
       lat: hit.lat,
       lon: hit.lon,
       elevation,
@@ -363,11 +397,34 @@ async function start(root: HTMLElement): Promise<void> {
       keyframes: frameKeys,
       mix: frameMix,
       t: state.t,
-      source: ts.field.sourceRecord,
-      fieldTitle: ts.field.title,
-      coastline: ts.field.coastline.title,
-      datum: ts.field.datum,
+      source: fi.sourceRecord,
+      fieldTitle: fi.title,
+      fieldDescription: fi.description,
+      coastline: fi.coastline?.title,
+      datum: fi.datum,
     });
+  }
+
+  /** Why no geography is shown at a time: before the plate model reaches, or after the projection. */
+  function unknownWhy(t: number): string {
+    const oldest = Math.min(...ts.fields.map((f) => f.coverage[0]));
+    const furthest = Math.max(...ts.fields.map((f) => f.coverage[1]));
+    if (t < oldest) return `Geography unknown: the plate model reaches back to ${formatTime(oldest)}.`;
+    if (t > furthest) return `Geography unknown: today's map is held only to ${formatTime(furthest)}, and nothing models it after.`;
+    return '';
+  }
+
+  function showSeries(id: string): void {
+    const s = build.series.series.find((x) => x.id === id);
+    if (!s) return;
+    setState({ sel: null });
+    shownRecord = null;
+    inspect.showSeries(s, state.t, valueAt(s, state.t));
+  }
+
+  /** How long an instant stays visible around its time: a dozen pixels of the time control. */
+  function halo(t: number): number {
+    return Math.max(timebar.yearsPerPixels(t, 12), 2e4);
   }
 
   markers.onSelect = (id) => setState({ sel: id });
@@ -378,12 +435,18 @@ async function start(root: HTMLElement): Promise<void> {
       setState({ window: [Math.max(limits[0], h.start - pad), Math.min(limits[1], h.end + pad)], t: Math.max(dataRange[0], Math.min(dataRange[1], (h.start + h.end) / 2)) });
       return;
     }
-    const f = features.get(h.id) ?? null;
-    const entry = build.search.entities.find((e) => e.id === h.id)!;
-    if (!h.located) return setState({ sel: h.id });
+    goTo(h.id);
+  };
+
+  /** Open an entity, and move to its time and place if it is not in view. */
+  function goTo(id: string): void {
+    const f = features.get(id) ?? null;
+    const entry = build.search.entities.find((e) => e.id === id)!;
     const time = f ? timeFor(f, scenario()) : entry.time;
     let t = state.t;
-    if (visibility(time, t, state.window[1] - state.window[0], false) < 0.5) t = time.start.best ?? t;
+    if (visibility(time, t, halo(t), false) < 0.5) t = time.start.best ?? t;
+    t = Math.max(dataRange[0], Math.min(dataRange[1], t));
+    if (!entry.located) return setState({ t, sel: id });
     const ageAt = toMa(t);
     const loc = f?.location;
     let cam = state.cam;
@@ -395,17 +458,16 @@ async function start(root: HTMLElement): Promise<void> {
       const p = add(v, scale(add(scale(c, q[0]), cross(u, c)), 2));
       cam = { lat: (Math.asin(Math.max(-1, Math.min(1, p[2]))) * 180) / Math.PI, lon: (Math.atan2(p[1], p[0]) * 180) / Math.PI, dist: Math.min(state.cam.dist, 2.4) };
     }
-    setState({ t, cam, sel: h.id });
-  };
+    setState({ t, cam, sel: id });
+  }
 
   window.addEventListener('keydown', (e) => {
     if ((e.target as HTMLElement).tagName === 'INPUT') return;
-    const span = state.window[1] - state.window[0];
     if (e.key === 'e' || e.key === 'E') setState({ evidence: !state.evidence });
     else if (e.key === 'c' || e.key === 'C') setState({ clouds: !state.clouds });
     else if (e.key === ' ') togglePlay();
-    else if (e.key === 'ArrowLeft') setState({ t: state.t - span / 200 });
-    else if (e.key === 'ArrowRight') setState({ t: state.t + span / 200 });
+    else if (e.key === 'ArrowLeft') setState({ t: timebar.stepFrom(state.t, -1 / 200) });
+    else if (e.key === 'ArrowRight') setState({ t: timebar.stepFrom(state.t, 1 / 200) });
     else if (e.key === '/') search.focus();
     else if (e.key === 'Escape') setState({ sel: null });
     else return;

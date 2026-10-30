@@ -1,7 +1,8 @@
 # Lightworld world model — design overview
 
-Status: draft proposal. A first end-to-end slice is built (Pangaea to today);
-[FIRST-SLICE.md](FIRST-SLICE.md) says what it tests and where it departs from
+Status: draft proposal. Two slices are built: Cambrian to today, and the whole
+span from the Hadean to the far future. [FIRST-SLICE.md](FIRST-SLICE.md) and
+[SECOND-SLICE.md](SECOND-SLICE.md) say what they test and where they depart from
 this document. It covers the world model and its main consumer, an
 interactive viewer for flying through space and time. The film is a second
 consumer: a scripted flight through the same world, rendered offline.

@@ -1,0 +1,24 @@
+id: src:gough-1981-solar-luminosity
+type: publication
+kind: model
+citation: >-
+  Gough, D.O. (1981). Solar interior structure and luminosity variations. Solar Physics
+  74(1), 21–34.
+authors:
+  - "Gough, D.O."
+published: 1981
+title: Solar interior structure and luminosity variations
+container: Solar Physics 74(1), 21–34
+doi: 10.1007/BF00151270
+reliability: >-
+  An interpolation formula, L = L☉ / (1 + 2/5 (1 − t/t☉)) with t the time since the Sun
+  reached the main sequence, fitted to stellar-evolution calculations. Feulner (2012, Reviews
+  of Geophysics 50, RG2006) finds it agrees well with standard solar models except in the
+  Sun's first ~0.2 Gyr on the main sequence.
+verified:
+  by: machine:claude-code
+  how: >-
+    Citation and DOI from Crossref. The formula as restated in Feulner (2012) and in Gough
+    (2015, Space Science Reviews 196, 15–47); the 1981 paper itself could not be opened (the
+    publisher's page asked for a bot check), so its own wording of the range of validity was
+    not read.

@@ -1,0 +1,45 @@
+id: earth/events/end-permian-extinction
+kind: event/extinction
+summary: >-
+  The end-Permian mass extinction, the most severe of the Phanerozoic, dated at the
+  Permian–Triassic boundary stratotype at Meishan, China.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: End-Permian mass extinction }
+    source: { ref: src:burgess-2014-end-permian-timeline, loc: abstract }
+  date-burgess-2014:
+    prop: date
+    value: { lo: 251.941 Ma, hi: 251.880 Ma }
+    source:
+      ref: src:burgess-2014-end-permian-timeline
+      loc: abstract
+      quote: The extinction occurred between 251.941 ± 0.037 and 251.880 ± 0.031 Mya
+    method: radiometric/u-pb
+    note: >-
+      U–Pb zircon dates of ash beds at Meishan bracket the extinction, an interval of 60 ±
+      48 kyr; the record spans the interval between the two central dates. The ± on each
+      bound is 2σ (Burgess & Bowring 2015, Table 1) and is not added.
+relations:
+  caused-by-siberian-traps:
+    rel: caused-by
+    to: earth/lips/siberian-traps
+    source:
+      - ref: src:burgess-2017-siberian-sills
+        loc: title
+        quote: Initial pulse of Siberian Traps sills as the trigger of the end-Permian mass extinction
+      - ref: src:burgess-bowring-2015-siberian-traps
+        loc: abstract
+        quote: consistent with Siberian Traps LIP magmatism as a trigger for the end-Permian mass extinction
+    note: >-
+      Burgess et al. (2017) place the trigger in the first pulse of sills, whose heat
+      released greenhouse gases from the sediments they intruded; the relation names the
+      province as a whole.
+  during-siberian-traps:
+    rel: during
+    to: earth/lips/siberian-traps@main
+    source:
+      ref: src:burgess-bowring-2015-siberian-traps
+      loc: abstract
+      quote: about two-thirds of the total lava/pyroclastic volume was erupted over ~300 ky, before and concurrent

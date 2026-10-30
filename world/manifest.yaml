@@ -91,3 +91,79 @@ datasets:
       via: >-
         visgl/deck.gl-data, earth/paleogeography/v1/paleodem: every node and value of the
         109 upstream CSV snapshots, converted to Parquet without resampling or correction.
+
+  src:foster-2017-co2:
+    type: dataset
+    kind: compilation
+    title: "Supplementary Data 2: a LOESS fit through the compiled CO₂ proxy estimates"
+    citation: >-
+      Foster, G.L., Royer, D.L. & Lunt, D.J. (2017). Future climate forcing potentially without
+      precedent in the last 420 million years. Nature Communications 8, 14845. Supplementary
+      Data 2.
+    authors:
+      - "Foster, G.L."
+      - "Royer, D.L."
+      - "Lunt, D.J."
+    published: 2017
+    version: Supplementary Data 2 of the article (sheet "LOESS Fit", 0–419.5 Ma every 0.5 Myr)
+    container: Nature Communications 8, 14845
+    doi: 10.1038/ncomms14845
+    url: https://doi.org/10.1038/ncomms14845
+    credit: Atmospheric CO₂ (Foster, Royer & Lunt 2017)
+    license: CC-BY-4.0
+    license_note: The article and its supplementary files are CC BY 4.0, per the article and its Crossref licence record.
+    reliability: >-
+      A fit through published proxy estimates of CO₂, not a measurement: its value is the fit's
+      most likely value, with 68% and 95% intervals, on the GTS2012 time scale. The lower 95%
+      bound is negative in places, so the 68% interval is the band shown.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Citation, DOI and licence from Crossref; the sheet's columns read from the file itself
+        (Age (Ma), pCO2 probability maximum, lw95%, lw68%, up68%, up95%; 840 rows).
+    fetch:
+      url: https://static-content.springer.com/esm/art%3A10.1038%2Fncomms14845/MediaObjects/41467_2017_BFncomms14845_MOESM2875_ESM.xlsx
+      sha256: 84df255974cb77c95d298d324fb281fe2ac40a0696ea92598985816e7095c74c
+      bytes: 79529
+      format: xlsx
+
+  src:vandermeer-2022-sea-level:
+    type: dataset
+    kind: model
+    title: "Supplementary Table 1: Phanerozoic sea level, temperature and their inputs, 0–540 Ma"
+    citation: >-
+      van der Meer, D.G., Scotese, C.R., Mills, B.J.W., Sluijs, A., van den Berg van Saparoea,
+      A.-P. & van de Weg, R.M.B. (2022). Long-term Phanerozoic global mean sea level: Insights
+      from strontium isotope variations and estimates of continental glaciation. Gondwana
+      Research 111, 103–121. Supplementary Table 1.
+    authors:
+      - "van der Meer, D.G."
+      - "Scotese, C.R."
+      - "Mills, B.J.W."
+      - "Sluijs, A."
+      - "van den Berg van Saparoea, A.-P."
+      - "van de Weg, R.M.B."
+    published: 2022
+    version: Supplementary Table 1 of the article (sheet "SuppTable", 0–540 Ma every 1 Myr)
+    container: Gondwana Research 111, 103–121
+    doi: 10.1016/j.gr.2022.07.014
+    url: https://doi.org/10.1016/j.gr.2022.07.014
+    credit: Sea level and temperature (van der Meer et al. 2022; Scotese et al. 2021)
+    license: CC-BY-4.0
+    license_note: The version of record and its supplement are CC BY 4.0, per the article and its Crossref licence record.
+    reliability: >-
+      Model reconstructions, not measurements. Sea level comes from strontium isotopes and
+      estimates of ice volume; its band combines tectonic and ice-volume uncertainty. The
+      temperature column republishes the curve of Scotese et al. (2021, Earth-Science Reviews
+      215, 103503), with a range from this study. Other reconstructions disagree with both by a
+      wide margin in places.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Citation, DOI and licence from Crossref; columns read from the file itself (A: Ma; K–M:
+        GAT_degC AVG, MIN, MAX; AI–AK: TGE_SL_isocorr_m AVG, MIN, MAX; data from row 5).
+    fetch:
+      url: https://ars.els-cdn.com/content/image/1-s2.0-S1342937X22002192-mmc1.xlsx
+      sha256: 800b34928378ae902426fc16ef002debfc064465f8ac663cbeeb7bd0c77c074f
+      bytes: 263101
+      format: xlsx

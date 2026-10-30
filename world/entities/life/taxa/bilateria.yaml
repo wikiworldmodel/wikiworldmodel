@@ -1,0 +1,28 @@
+id: life/taxa/bilateria
+kind: taxon
+summary: >-
+  Bilaterian animals: the crown group (protostomes, deuterostomes and their last common
+  ancestor).
+same_as: { ott: 117569, pbdb: "txn:67103" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: bilaterians, la: Bilateria }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott117569: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-dos-reis-2015:
+    prop: start
+    value: { lo: 688.3 Ma, hi: 595.7 Ma }
+    source:
+      ref: src:dos-reis-2015-metazoan-timescale
+      loc: "Table 1, node 63 (Bilateria), Composite"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. A composite of the 95% HPD intervals of the paper’s main analyses.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/metazoa
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Bilateria (ott117569) lies within Metazoa (ott691846)" }

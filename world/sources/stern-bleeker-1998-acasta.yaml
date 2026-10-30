@@ -1,0 +1,20 @@
+id: src:stern-bleeker-1998-acasta
+type: publication
+kind: measurement
+citation: >-
+  Stern, R.A. & Bleeker, W. (1998). Age of the world's oldest rocks refined using Canada's
+  SHRIMP: the Acasta Gneiss Complex, Northwest Territories, Canada. Geoscience Canada 25(1),
+  27–31.
+authors:
+  - "Stern, R.A."
+  - "Bleeker, W."
+published: 1998
+title: "Age of the World's Oldest Rocks Refined Using Canada's SHRIMP: The Acasta Gneiss Complex, Northwest Territories, Canada"
+container: Geoscience Canada 25(1), 27–31
+url: https://journals.lib.unb.ca/index.php/GC/article/view/3966
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read on the journal's page (journals.lib.unb.ca); the quoted age and its 95%
+    confidence level read from the full-text PDF there, a scan read by OCR (p. 30), which
+    renders ± as "÷". Sample number BNB95-103 from the same text and Figure 1.

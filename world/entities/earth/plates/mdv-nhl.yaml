@@ -1,0 +1,11 @@
+id: earth/plates/mdv-nhl
+kind: plate
+summary: Plate 313 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: MDV-NHL }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 313", quote: "MDV-NHL MCKERROW AND SCOTESE (1985)" }
+    note: >-
+      The model gives only codes for this plate. Its fixed plate, 303, is labelled "NHL Northern Highlands, Scotland"; MDV is not spelled out in the file.

@@ -1,0 +1,17 @@
+id: src:burgess-2017-siberian-sills
+type: publication
+kind: measurement
+citation: >-
+  Burgess, S.D., Muirhead, J.D. & Bowring, S.A. (2017). Initial pulse of Siberian Traps sills
+  as the trigger of the end-Permian mass extinction. Nature Communications 8, 164.
+authors:
+  - "Burgess, S.D."
+  - "Muirhead, J.D."
+  - "Bowring, S.A."
+published: 2017
+title: Initial pulse of Siberian Traps sills as the trigger of the end-Permian mass extinction
+container: Nature Communications 8, 164
+doi: 10.1038/s41467-017-00083-9
+verified:
+  by: machine:claude-code
+  how: Abstract read verbatim from the Europe PMC record (PMID 28761160); citation from Crossref.

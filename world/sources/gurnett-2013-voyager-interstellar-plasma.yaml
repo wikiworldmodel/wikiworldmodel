@@ -1,0 +1,20 @@
+id: src:gurnett-2013-voyager-interstellar-plasma
+type: publication
+kind: measurement
+citation: >-
+  Gurnett, D.A., Kurth, W.S., Burlaga, L.F. & Ness, N.F. (2013). In situ observations of
+  interstellar plasma with Voyager 1. Science 341(6153), 1489–1492.
+authors:
+  - "Gurnett, D.A."
+  - "Kurth, W.S."
+  - "Burlaga, L.F."
+  - "Ness, N.F."
+published: 2013
+title: In situ observations of interstellar plasma with Voyager 1
+container: Science 341(6153), 1489–1492
+doi: 10.1126/science.1241681
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read verbatim from the Europe PMC record (PMID 24030496); citation from
+    Crossref. The full text, with the authors' dating of the crossing, was not reached.

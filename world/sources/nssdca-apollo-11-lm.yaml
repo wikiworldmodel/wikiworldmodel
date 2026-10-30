@@ -1,0 +1,12 @@
+id: src:nssdca-apollo-11-lm
+type: database-record
+kind: compilation
+citation: >-
+  NASA Space Science Data Coordinated Archive (NSSDCA), Master Catalog: Apollo 11 Lunar
+  Module / EASEP, NSSDCA/COSPAR ID 1969-059C.
+snapshot: 2026-10-30
+container: NSSDCA Master Catalog
+url: https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-059C
+verified:
+  by: machine:claude-code
+  how: Page read directly; mission profile gives the landing time.

@@ -1,0 +1,27 @@
+id: src:blackburn-2013-camp-extinction
+type: publication
+kind: measurement
+citation: >-
+  Blackburn, T.J., Olsen, P.E., Bowring, S.A., McLean, N.M., Kent, D.V., Puffer, J., McHone,
+  G., Rasbury, E.T. & Et-Touhami, M. (2013). Zircon U-Pb geochronology links the end-Triassic
+  extinction with the Central Atlantic Magmatic Province. Science 340(6135), 941–945.
+authors:
+  - "Blackburn, T.J."
+  - "Olsen, P.E."
+  - "Bowring, S.A."
+  - "McLean, N.M."
+  - "Kent, D.V."
+  - "Puffer, J."
+  - "McHone, G."
+  - "Rasbury, E.T."
+  - "Et-Touhami, M."
+published: 2013
+title: Zircon U-Pb geochronology links the end-Triassic extinction with the Central Atlantic Magmatic Province
+container: Science 340(6135), 941–945
+doi: 10.1126/science.1234204
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read verbatim from the Europe PMC record (PMID 23519213); citation from
+    Crossref. The full text, with the extinction age, was not reached; that age is read
+    from Davies et al. (2017), who cite it.

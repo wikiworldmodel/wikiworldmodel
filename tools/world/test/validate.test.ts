@@ -62,17 +62,33 @@ describe('validators', () => {
 
   it('check that properties fit their subject and relations join the kinds their type allows', async () => {
     const issues = await check({
-      'entities/a.yaml': entity('test/fossil', 'occurrence', `claims:\n  d: { prop: diameter, value: 3, ${cite} }\n  s: { prop: start, value: 70 Ma, ${cite} }\nrelations:\n  r: { rel: caused-by, to: test/flow, ${cite} }\n`),
+      'entities/a.yaml': entity('test/fossil', 'occurrence', `claims:\n  d: { prop: diameter, value: 3, ${cite} }\n  s: { prop: start, value: 70 Ma, ${cite} }\nrelations:\n  r: { rel: caused-by, to: test/plate, ${cite} }\n  l: { rel: descends-from, to: test/flow, ${cite} }\n`),
       'entities/b.yaml': entity('test/flow', 'large-igneous-province', `claims:\n  date: { prop: date, value: 70 Ma, ${cite} }\n`),
+      'entities/c.yaml': entity('test/plate', 'plate', ''),
     });
     expect(errors(issues).map((i) => [i.check, i.message])).toEqual(
       expect.arrayContaining([
         ['fit', '"diameter" does not apply to an occurrence (it applies to landform/impact-crater)'],
         ['fit', '"start" does not apply to an occurrence (it applies to lasting)'],
-        ['fit', '"caused-by" points to an event, not a large-igneous-province'],
+        ['fit', '"caused-by" points to an event or large-igneous-province, not a plate'],
+        ['fit', '"descends-from" joins a taxon, not an occurrence'],
+        ['fit', '"descends-from" points to a taxon, not a large-igneous-province'],
         ['fit', '"date" does not apply to a large-igneous-province (it applies to moments)'],
       ]),
     );
+  });
+
+  it('date a taxon no later than its oldest member, and a subgroup no earlier than its group', async () => {
+    const member = await check({
+      'entities/a.yaml': entity('test/fossil', 'occurrence', `claims:\n  date: { prop: date, value: 300 Ma, ${cite} }\nrelations:\n  m: { rel: member-of, to: test/clade, ${cite} }\n`),
+      'entities/b.yaml': entity('test/clade', 'taxon', `claims:\n  start: { prop: start, value: 250 Ma, ${cite} }\n`),
+    });
+    expect(errors(member).map((i) => i.check)).toContain('chronology');
+    const nested = await check({
+      'entities/a.yaml': entity('test/clade', 'taxon', `claims:\n  start: { prop: start, value: 250 Ma, ${cite} }\n`),
+      'entities/b.yaml': entity('test/subclade', 'taxon', `claims:\n  start: { prop: start, value: 300 Ma, ${cite} }\nrelations:\n  p: { rel: descends-from, to: test/clade, ${cite} }\n`),
+    });
+    expect(errors(nested).map((i) => i.check)).toContain('chronology');
   });
 
   it('keep each claim in its subject\'s file', async () => {

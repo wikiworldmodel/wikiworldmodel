@@ -1,0 +1,17 @@
+id: src:sackmann-1993-our-sun
+type: publication
+kind: model
+citation: >-
+  Sackmann, I.-J., Boothroyd, A.I. & Kraemer, K.E. (1993). Our Sun. III. Present and future.
+  The Astrophysical Journal 418, 457.
+authors:
+  - "Sackmann, I.-J."
+  - "Boothroyd, A.I."
+  - "Kraemer, K.E."
+published: 1993
+title: Our Sun. III. Present and Future
+container: The Astrophysical Journal 418, 457
+doi: 10.1086/173407
+verified:
+  by: machine:claude-code
+  how: Abstract read from the OpenAlex record (reconstructed from its index); citation from Crossref.

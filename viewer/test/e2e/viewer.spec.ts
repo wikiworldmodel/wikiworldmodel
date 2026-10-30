@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { xOf } from '../../src/ui/timebar.ts';
 import { canvasPng, idle, latestBuild, markerPositions, settledUrl } from './helpers.ts';
 
 const year = (ma: number) => Math.round(1950 - ma * 1e6);
@@ -84,7 +85,9 @@ test('a claim that contradicts the world cannot be chosen, and says why', async 
   await idle(page);
   const swisher = page.locator('.inspect input[value="earth/events/chicxulub-impact#date-swisher-1992"]');
   await expect(swisher).toBeDisabled();
-  await expect(page.locator('.inspect .claim.inconsistent')).toContainText('Deccan Traps');
+  // Too young for the Deccan eruptions it falls within, and for the extinction it caused:
+  // the panel names one minimal set of the clashing claims.
+  await expect(page.locator('.inspect .claim.inconsistent')).toContainText(/Deccan Traps|Cretaceous–Paleogene mass extinction/);
 });
 
 test('clicking the ground shows the field and its source', async ({ page }) => {
@@ -149,7 +152,7 @@ test('switching the time-scale alternative re-dates the stages and the records t
   await expect(panel).toContainText('PBDB interval ages');
 });
 
-test('a record shows the relations others make to it, and the records it wants', async ({ page }) => {
+test('a record shows the relations others make to it, and leads into the tree of life', async ({ page }) => {
   await page.goto(`/?b=${latestBuild()}`);
   await idle(page);
   await page.fill('.search input', 'south-central');
@@ -162,6 +165,69 @@ test('a record shows the relations others make to it, and the records it wants',
   await panel.locator('.relations.inverse a', { hasText: 'Kabus' }).click();
   await idle(page);
   await expect(panel.locator('h2')).toHaveText('Mesosaurus, Kabus');
-  await expect(panel.locator('.relations')).toContainText('member of life/taxa/mesosaurus-tenuidens wanted');
+  await expect(panel.locator('.relations')).toContainText('member of Mesosaurus');
   await expect(panel).toContainText('No source: An editorial label');
+  // The taxon: where it sits in the tree, and the fossils that are its members.
+  await panel.locator('.relations:not(.inverse) a', { hasText: 'Mesosaurus' }).click();
+  await idle(page);
+  await expect(panel.locator('h2')).toHaveText('Mesosaurus');
+  await expect(panel.locator('.relations:not(.inverse)')).toContainText('descends from sauropsids');
+  await expect(panel.locator('.relations.inverse')).toContainText('has member Mesosaurus, Kabus');
+});
+
+test('before the plate model reaches, the globe shows no geography and says why', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}&t=2400Ma&lat=-10&lon=40&d=3.3`);
+  await idle(page);
+  await expect(page.locator('.notice')).toContainText('the plate model reaches back to 1100 Ma');
+  await expect(page.locator('.tb-readout')).toContainText('Siderian');
+  await page.mouse.click(640, 300);
+  await expect(page.locator('.inspect h2')).toHaveText('Geography unknown');
+});
+
+test('between 1100 and 540 Ma the globe shows where the plate model puts its continental blocks', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}&t=900Ma&lat=-20&lon=150&d=3.6`);
+  await idle(page);
+  await expect(page.locator('.notice')).toBeHidden();
+  await expect(page.locator('.tb-readout')).toContainText('Tonian');
+  await page.mouse.click(640, 300);
+  const panel = page.locator('.inspect');
+  await expect(panel.locator('h2')).toHaveText(/Continental block|Between the blocks/);
+  await expect(panel).toContainText('not the coastlines of the time');
+  await expect(panel).toContainText('Scotese');
+});
+
+test('the future: today\'s map is held for 10 kyr, and the Sun\'s brightness is a projection', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}&t=-0.00015Ma`);
+  await idle(page);
+  await expect(page.locator('.tb-readout')).toContainText('2100 CE');
+  await expect(page.locator('.notice')).toBeHidden();
+  await page.evaluate(() => window.__lightworld!.set({ t: 1950 + 1e9 }));
+  await idle(page);
+  await expect(page.locator('.tb-readout')).toContainText('1 Gyr from now');
+  await expect(page.locator('.notice')).toContainText('held only to 10 kyr from now');
+  const sun = page.locator('.planet-row[data-series="field:sun/luminosity"]');
+  await expect(sun).toContainText('1.1 L☉');
+  await sun.click();
+  await expect(page.locator('.inspect h2')).toHaveText('Brightness of the Sun');
+  await expect(page.locator('.inspect .badge.basis-projection')).toBeVisible();
+  await expect(page.locator('.inspect')).toContainText('Gough');
+});
+
+test('the time control spans the Hadean to the far future, and its track opens records', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}`);
+  await idle(page);
+  await expect(page.locator('.brand span')).toHaveText(/^Hadean to \d+(\.\d+)? Gyr from now$/);
+  // Point at the Chicxulub impact's time on the track: the record nearest the pointer is
+  // named in a tip, and a click opens it.
+  const box = (await page.locator('.tb-canvas').boundingBox())!;
+  const { window: win } = await page.evaluate(() => window.__lightworld!.state());
+  await page.mouse.move(box.x + xOf(1950 - 66.038e6, win, box.width), box.y + box.height - 12);
+  const tip = page.locator('.tb-tip');
+  await expect(tip).toBeVisible();
+  const label = (await tip.textContent())!.split(' · ')[0];
+  await page.mouse.down();
+  await page.mouse.up();
+  await idle(page);
+  await expect(page.locator('.inspect h2')).toHaveText(label);
+  expect(await settledUrl(page)).toContain('sel=');
 });

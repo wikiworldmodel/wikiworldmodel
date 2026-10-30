@@ -1,0 +1,28 @@
+id: src:opentree-taxonomy-3.7
+type: dataset
+kind: compilation
+citation: >-
+  Open Tree of Life. Open Tree Taxonomy (OTT), version 3.7 (ott3.7draft3), as served by the
+  Open Tree v3 API. https://tree.opentreeoflife.org/about/taxonomy-version/ott3.7
+published: 2025
+title: Open Tree Taxonomy 3.7
+container: Open Tree of Life
+url: https://tree.opentreeoflife.org/about/taxonomy-version/ott3.7
+license: CC0-1.0
+license_note: >-
+  The Open Tree "Data rights" statement (tree.opentreeoflife.org/about/licenses): where not
+  limited by pre-existing terms of use, all data are published with a CC0 public domain
+  dedication.
+reliability: >-
+  A reference taxonomy merged from NCBI, GBIF, IRMNG, SILVA, WoRMS and others. Its higher
+  taxa follow those sources and are not all clades; fossil taxa are often incertae sedis, and
+  some flags are wrong (it flags Homo sapiens as extinct).
+note: >-
+  The year is that of the synthesis release that uses this taxonomy; the taxonomy's own
+  release date was not checked here.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read through the v3 API on 30 October 2026. taxonomy/about: name ott, version 3.7, source
+    ott3.7draft3. tnrs/match_names for every backbone name, and taxonomy/taxon_info with
+    include_lineage for the taxa whose names, flags and lineages the records cite.

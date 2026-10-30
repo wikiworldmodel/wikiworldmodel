@@ -1,0 +1,18 @@
+id: src:toynbee-1884-industrial-revolution
+type: publication
+kind: review
+citation: >-
+  Toynbee, A. (1884). Lectures on the Industrial Revolution in England: Popular Addresses,
+  Notes and Other Fragments. With a short memoir by B. Jowett. London: Rivingtons.
+authors:
+  - "Toynbee, A."
+published: 1884
+title: "Lectures on the Industrial Revolution in England: Popular Addresses, Notes and Other Fragments"
+container: London, Rivingtons
+url: https://archive.org/details/lecturesindustrit00toynuoft
+note: The lectures were given at Oxford in 1881–82 and published after the author's death.
+verified:
+  by: machine:claude-code
+  how: >-
+    The quoted sentence read in the Internet Archive's OCR text of the 1884 edition
+    (lecturesindustrit00toynuoft), chapter II, p. 32; title page from the same text.

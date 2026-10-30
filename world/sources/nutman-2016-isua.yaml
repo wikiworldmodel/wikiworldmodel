@@ -1,0 +1,26 @@
+id: src:nutman-2016-isua
+type: publication
+kind: measurement
+citation: >-
+  Nutman, A.P., Bennett, V.C., Friend, C.R.L., Van Kranendonk, M.J. & Chivas, A.R. (2016). Rapid
+  emergence of life shown by discovery of 3,700-million-year-old microbial structures. Nature
+  537(7621), 535–538.
+authors:
+  - "Nutman, A.P."
+  - "Bennett, V.C."
+  - "Friend, C.R.L."
+  - "Van Kranendonk, M.J."
+  - "Chivas, A.R."
+published: 2016
+title: "Rapid emergence of life shown by discovery of 3,700-million-year-old microbial structures"
+container: Nature 537(7621), 535–538
+doi: 10.1038/nature19355
+reliability: >-
+  Contested: Allwood et al. (2018, Nature 563, 241–244) interpret the structures as
+  non-biological deformation features.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (1–4-cm-high stromatolites in 3,700-Myr-old metacarbonate rocks
+    of the Isua supracrustal belt). The full text, with the outcrop location and the dating, was
+    not available here. The 2018 reassessment was read as an abstract only.

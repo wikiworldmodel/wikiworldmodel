@@ -1,0 +1,19 @@
+# Computed, not stored: the build evaluates the rule over the span (section 9.1).
+id: field:sun/luminosity
+type: field
+title: Brightness of the Sun
+quantity: luminosity of the Sun, relative to today's
+unit: L☉
+description: >-
+  How bright the Sun is relative to today, from Gough's (1981) fit to stellar-evolution
+  models. It is computed, not measured: a reconstruction before the present, a projection
+  after it. The fit holds for the Sun on the main sequence and is less good in its first
+  ~0.2 Gyr there, so the series starts at 4.3 Ga and ends as the Sun leaves the main sequence.
+grid: { kind: series }
+time: { lo: 4.3 Ga, hi: 5 Gyr from now, step: 10 Myr }
+derived: true
+rule: gough-1981
+# The Sun's age today, taken as the age of the Solar System's oldest solids.
+params: { sun_age: 4.567 Gyr }
+source: { ref: src:gough-1981-solar-luminosity, loc: eq. (1) }
+interp: linear

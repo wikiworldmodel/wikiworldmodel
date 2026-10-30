@@ -1,0 +1,31 @@
+id: life/taxa/angiospermae
+kind: taxon
+summary: >-
+  Flowering plants: the crown group. Open Tree names it Magnoliopsida, following NCBI, and lists
+  Angiospermae as a synonym.
+same_as: { ott: 99252, pbdb: "txn:54885" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: flowering plants, la: Angiospermae }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "tnrs/match_names: Angiospermae is a synonym of ott99252, accepted name Magnoliopsida" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-morris-2018:
+    prop: start
+    value: { lo: 246.5 Ma, hi: 197.5 Ma }
+    source:
+      ref: src:morris-2018-land-plant-timescale
+      loc: "Table 3, Angiospermae (monophyletic bryophytes)"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. 95% HPD interval. Coiro et al. (2019) argue that Triassic and Early Jurassic
+      molecular ages conflict with the fossil record, whose oldest angiosperm pollen is
+      Valanginian; the two do not contradict each other here, since a fossil only bounds the
+      origin from below.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/spermatophyta
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Magnoliopsida (ott99252) lies within Spermatophyta (ott10218)" }

@@ -1,0 +1,33 @@
+id: people/developments/industrial-revolution
+kind: development
+summary: >-
+  The Industrial Revolution in Britain, in its conventional dating of 1760 to 1830. It has
+  no location here: it was a change of the whole economy, not of one place.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Industrial Revolution }
+    source: { ref: src:ashton-1948-industrial-revolution, loc: title }
+  start:
+    prop: start
+    value: 1760
+    source:
+      - ref: src:ashton-1948-industrial-revolution
+        loc: title
+      - ref: src:toynbee-1884-industrial-revolution
+        loc: "ch. II, England in 1760, p. 32"
+        quote: Previously to 1760 the old industrial system obtained in England
+    method: expert-estimate
+    note: >-
+      A conventional starting year: Toynbee's lectures describe England in 1760, before the
+      great mechanical inventions, and Ashton's survey spans 1760–1830.
+  end:
+    prop: end
+    value: 1830
+    source: { ref: src:ashton-1948-industrial-revolution, loc: title }
+    method: expert-estimate
+    note: >-
+      Ashton's closing year, a convention: he notes (p. 2) that the system sometimes called
+      capitalism had its origins long before 1760 and attained its full development long
+      after 1830. Industrialization goes on after the end recorded here.

@@ -116,7 +116,7 @@ export class TileManager {
       getBytes(this.build.base + r.url)
         .then((buf) => {
           const { header, arrays } = decodeTile<TileHeader>(buf);
-          const keyframes = header.field.keyframes.map((k) => ({
+          const keyframes = (header.field?.keyframes ?? []).map((k) => ({
             ageMa: k.ageMa,
             elev: arrays[k.elev] as Int16Array,
             plate: arrays[k.plate] as Uint16Array,

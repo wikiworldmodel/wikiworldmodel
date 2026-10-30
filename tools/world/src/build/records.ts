@@ -4,7 +4,7 @@ import { conj, rotate, toLatLon, unitVector } from '../../../../core/quat.ts';
 import { parseRef, splitRef } from '../../../../core/refs.ts';
 import type { RotationModel } from '../../../../core/rotation-model.ts';
 import type { Bounds, Solution } from '../../../../core/stn.ts';
-import { formatDuration, formatTimeValue, parseLag, parseTime, PRESENT_YEAR, type TimeValue } from '../../../../core/time.ts';
+import { centre, formatDuration, formatTimeValue, parseLag, parseTime, PRESENT_YEAR, type TimeValue } from '../../../../core/time.ts';
 import type { Basis, Estimate, Feature, FeatureBasis, FeatureName, FeatureTime } from '../../../../core/tileset.ts';
 import { chosen, pointOf, scenarioKey, subjectExists, type ClaimGroup, type Variant } from '../chronology.ts';
 import { BASES, isMoment, type Claim, type Entity, type Source, type World } from '../world.ts';
@@ -41,6 +41,12 @@ function estimate(b: Bounds, centres: Bounds | undefined, point: string, direct:
   return { best: c ? mid(c.lo, c.hi) : mid(v.lo, v.hi), lo: v.lo, hi: v.hi, derived: !direct };
 }
 
+/** Does a claimed time bound only one side, such as "younger than 3.4 Ga"? */
+function oneSided(c: Claim): boolean {
+  const v = parseTime(c.value as never);
+  return v.kind === 'interval' && (!Number.isFinite(v.lo) || !Number.isFinite(v.hi));
+}
+
 /** The chosen claim of a subject's property in the default picture. */
 export function claimOf(s: Solved, subject: string, prop: string): Claim | undefined {
   const g = s.groups.find((x) => x.subject === subject && x.prop === prop);
@@ -61,6 +67,8 @@ function timeOf(s: Solved, subject: string, b: Bounds, centres?: Bounds): Featur
   const w = s.world;
   if (isMoment(w, subject)) {
     const e = estimate(b, centres, pointOf(w, subject, 'start'), !!directTime(s, subject, 'date'));
+    const bounded = boundedBest(s, subject, b);
+    if (bounded !== null) e.best = Math.min(Math.max(bounded, e.lo), e.hi);
     return { start: e, end: e, instant: true };
   }
   const endClaim = claimOf(s, subject, 'end');
@@ -68,9 +76,60 @@ function timeOf(s: Solved, subject: string, b: Bounds, centres?: Bounds): Featur
   const unknown = endClaim?.value === 'unknown';
   // Something with no stated or derivable end still holds.
   if ((!endClaim || unknown) && end.hi === Infinity) end.best = null;
-  const t: FeatureTime = { start: estimate(b, centres, pointOf(w, subject, 'start'), !!directTime(s, subject, 'start')), end, instant: false };
+  const { record, phase } = splitRef(subject);
+  const latest = !phase && w.vocab.kinds[w.entity.get(record)?.kind ?? '']?.start === 'latest';
+  const claimed = directTime(s, subject, 'start');
+  const start = estimate(b, centres, pointOf(w, subject, 'start'), !!claimed);
+  // A start the kind shows at the latest time the evidence allows, where no claim pins it:
+  // at the best date of the member or subgroup that limits it, else at that limit; unknown
+  // if nothing limits it, rather than at a bound or midway between bounds.
+  if (latest && (!claimed || oneSided(claimed))) {
+    const x = latestBest(s, subject, b, centres);
+    const hi = (centres ?? b).get(pointOf(w, subject, 'start'))!.hi;
+    start.best = x !== null ? Math.min(Math.max(x, start.lo), start.hi) : Number.isFinite(hi) ? hi : null;
+  }
+  const t: FeatureTime = { start, end, instant: false };
   if (unknown) t.endUnknown = true;
   return t;
+}
+
+/**
+ * A moment whose date is bounded by one-sided evidence tighter than the rest ("before an ash
+ * bed dated 555.3 Ma", within a 96 Myr period) is shown at that evidence, not midway through
+ * the period: the solver says which claims set each bound.
+ */
+function boundedBest(s: Solved, subject: string, b: Bounds): number | null {
+  const v = b.get(pointOf(s.world, subject, 'start'));
+  if (!v) return null;
+  const at = (refs: string[], prop: 'earlier_than' | 'later_than') => {
+    for (const ref of refs) {
+      const { record, part } = splitRef(ref);
+      const c = record === subject ? s.world.entity.get(record)?.claims.find((x) => x.key === part && x.prop === prop) : undefined;
+      const t = c ? parseTime(c.value as never) : undefined;
+      if (t && t.kind !== 'ref' && Number.isFinite(centre(t)[0])) return centre(t)[0];
+    }
+    return null;
+  };
+  const before = Number.isFinite(v.hi) ? at(v.hiBy, 'earlier_than') : null;
+  const after = Number.isFinite(v.lo) ? at(v.loBy, 'later_than') : null;
+  return before !== null && after !== null ? (before + after) / 2 : (before ?? after);
+}
+
+/**
+ * A start shown at the latest time the evidence allows is limited by a member (a fossil) or a
+ * subgroup: show it at that record's best date, not at the edge of its uncertainty.
+ */
+function latestBest(s: Solved, subject: string, b: Bounds, centres: Bounds | undefined, depth = 0): number | null {
+  const v = (centres ?? b).get(pointOf(s.world, subject, 'start'));
+  if (!v || !Number.isFinite(v.hi) || depth > 50) return null;
+  for (const src of v.hiBy) {
+    const { record, part } = splitRef(src);
+    const r = part ? s.world.entity.get(record)?.relations.find((x) => x.key === part) : undefined;
+    if (!r || splitRef(r.to).record !== subject) continue;
+    if (r.rel === 'member-of') return timeOf(s, r.subject, b, centres).start.best;
+    if (r.rel === 'descends-from') return latestBest(s, r.subject, b, centres, depth + 1) ?? timeOf(s, r.subject, b, centres).start.best;
+  }
+  return null;
 }
 
 function sameTime(a: FeatureTime, b: FeatureTime): boolean {

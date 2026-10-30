@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-401
+type: frame
+kind: plate
+title: Siberia (PALEOMAP plate 401)
+entity: earth/plates/siberia
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 401
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 401

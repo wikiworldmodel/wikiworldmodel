@@ -1,0 +1,23 @@
+id: src:pbdb/collection-45325
+type: database-record
+kind: compilation
+snapshot: "2026-10-30"
+citation: >-
+  The Paleobiology Database, collection 45325 ("VEG9303, Cape Lamb", AQ), occurrence 460015. Read through
+  the PBDB data service (data1.2) on 30 October 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=45325
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 30 October 2026, states "Data License: Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/). The slice's earlier PBDB
+  records, from a 2022 download, give CC BY 4.0.
+reliability: >-
+  A database record compiled from the literature: collection reference Noriega & Tambussi 1995 (Ameghiniana 32, 57–61); occurrence
+  reference Clarke et al. 2005 (Nature 433, 305–308). Interval ages are the PBDB's own, for the interval the collection is
+  assigned to; the primary references were not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=45325&show=loc,strat,ref and occs/list.json?coll_id=45325&show=ident,class:
+    collection name "VEG9303, Cape Lamb", Vega Island, lat -63.870556, lng -57.574444, formation "López de Bertodano", early_interval "Late Maastrichtian", max_ma 72.2, min_ma 66; occurrence 460015, identified_name "Vegavis iaai n. gen. n. sp.", accepted_name "Vegavis iaai"; the PBDB classification places Vegavis in Anseriformes, Neognathae, Neornithes, Aves.

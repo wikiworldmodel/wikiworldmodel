@@ -1,4 +1,4 @@
-"""Write the ICS chart's Phanerozoic intervals as period entities, one file each.
+"""Write the ICS chart's intervals, Hadean to Holocene, as period entities, one file each.
 
     python ics_periods.py <palaeoverse>/data/GTS2020.rda world/entities/periods/ics
 
@@ -10,6 +10,9 @@ interval of the same rank (a `before` relation with no lag), so each boundary is
 once; an interval with no successor of its rank states its end, unless it is the youngest,
 which still holds. Claims and relations whose keys start with "ics-" are rewritten on
 re-import; any others in an existing file are kept. Requires `pip install rdata`.
+
+Two kinds of row are skipped: the informal Precambrian super-eon, and the four Archean
+"… System" rows, which repeat the Archean eras (the chart has no Archean periods).
 """
 import os
 import re
@@ -55,8 +58,7 @@ def kept_entries(text, section):
 
 def main(path, outdir):
     df = rdata.conversion.convert(rdata.parser.parse_file(path))['GTS2020']
-    df = df[df['max_ma'] <= 541.0 + 1e-9]
-    rows = [r for r in df.to_dict('records')]
+    rows = [r for r in df.to_dict('records') if r['rank'] in RANKS and not r['interval_name'].endswith(' System')]
     rows.sort(key=lambda r: (RANKS.index(r['rank']), -r['max_ma']))
     # A few names are used at two ranks (the Pridoli is an epoch and its only stage);
     # the lower-ranked one gets the rank as a suffix.

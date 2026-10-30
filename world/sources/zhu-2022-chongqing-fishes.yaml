@@ -1,0 +1,29 @@
+id: src:zhu-2022-chongqing-fishes
+type: publication
+kind: measurement
+citation: >-
+  Zhu, Y., Li, Q., Lu, J., Chen, Y., Wang, J., Gai, Z., Zhao, W., Wei, G., Yu, Y., Ahlberg, P.E.
+  & Zhu, M. (2022). The oldest complete jawed vertebrates from the early Silurian of China.
+  Nature 609(7929), 954–958.
+authors:
+  - "Zhu, Y."
+  - "Li, Q."
+  - "Lu, J."
+  - "Chen, Y."
+  - "Wang, J."
+  - "Gai, Z."
+  - "Zhao, W."
+  - "Wei, G."
+  - "Yu, Y."
+  - "Ahlberg, P.E."
+  - "Zhu, M."
+published: 2022
+title: "The oldest complete jawed vertebrates from the early Silurian of China"
+container: Nature 609(7929), 954–958
+doi: 10.1038/s41586-022-05136-8
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC: a Konservat-Lagerstätte of the early Silurian (Telychian age,
+    around 436 Ma) of Chongqing with the chondrichthyan Shenacanthus vermiformis. The full text
+    was not read.

@@ -1,0 +1,25 @@
+id: src:demoulin-2019-cyanobacteria-fossils
+type: publication
+kind: review
+citation: >-
+  Demoulin, C.F., Lara, Y.J., Cornet, L., François, C., Baurain, D., Wilmotte, A. & Javaux, E.J.
+  (2019). Cyanobacteria evolution: insight from the fossil record. Free Radical Biology and
+  Medicine 140, 206–223.
+authors:
+  - "Demoulin, C.F."
+  - "Lara, Y.J."
+  - "Cornet, L."
+  - "François, C."
+  - "Baurain, D."
+  - "Wilmotte, A."
+  - "Javaux, E.J."
+published: 2019
+title: "Cyanobacteria evolution: Insight from the fossil record"
+container: Free Radical Biology and Medicine 140, 206–223
+doi: 10.1016/j.freeradbiomed.2019.05.007
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; full text (PMC6880289) searched for Eoentophysalis: "the
+    oldest microfossil interpreted with certainty as a cyanobacterium", described from 1.89–1.84
+    Ga silicified stromatolites of the Belcher Supergroup. Metadata from Crossref.

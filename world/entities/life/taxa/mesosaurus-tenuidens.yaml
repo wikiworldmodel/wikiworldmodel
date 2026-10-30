@@ -1,0 +1,28 @@
+id: life/taxa/mesosaurus-tenuidens
+kind: taxon
+summary: >-
+  The mesosaur Mesosaurus tenuidens, Gervais 1865, the taxon of the slice’s four Artinskian
+  occurrences. Open Tree’s taxonomy places Mesosauridae within Testudines and so within
+  Sauropsida; the PBDB places Mesosauria directly in Amniota. It is pruned from the synthetic
+  tree.
+same_as: { ott: 3621344, pbdb: "txn:149291" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Mesosaurus, la: "Mesosaurus tenuidens" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott3621344: name" }
+    note: Open Tree gives the scientific name; the English name, the genus name, is an editorial gloss.
+  end:
+    prop: end
+    value: unknown
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott3621344: flags extinct, incertae_sedis" }
+    note: The species is extinct; when it died out is not recorded here.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/sauropsida
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott3621344, lineage: Mesosaurus < Mesosauridae < Testudines < Archelosauria < Sauria < Sauropsida" }
+    note: >-
+      Sauropsida is the nearest group of this backbone in Open Tree’s placement; the species is
+      not in the synthetic tree (node_info: pruned_ott_id).

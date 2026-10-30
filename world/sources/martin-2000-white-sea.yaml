@@ -1,0 +1,24 @@
+id: src:martin-2000-white-sea
+type: publication
+kind: measurement
+citation: >-
+  Martin, M.W., Grazhdankin, D.V., Bowring, S.A., Evans, D.A.D., Fedonkin, M.A. & Kirschvink,
+  J.L. (2000). Age of Neoproterozoic bilatarian body and trace fossils, White Sea, Russia:
+  implications for metazoan evolution. Science 288(5467), 841–845.
+authors:
+  - "Martin, M.W."
+  - "Grazhdankin, D.V."
+  - "Bowring, S.A."
+  - "Evans, D.A.D."
+  - "Fedonkin, M.A."
+  - "Kirschvink, J.L."
+published: 2000
+title: "Age of Neoproterozoic Bilatarian Body and Trace Fossils, White Sea, Russia: Implications for Metazoan Evolution"
+container: Science 288(5467), 841–845
+doi: 10.1126/science.288.5467.841
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC and Crossref: a U–Pb zircon age for a volcanic ash in the
+    Zimnie Gory section shows the body and trace fossils occurred before 555.3 ± 0.3 Ma, a
+    minimum for Kimberella. The confidence level of the ± was not checked.

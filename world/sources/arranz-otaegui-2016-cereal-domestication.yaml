@@ -1,0 +1,21 @@
+id: src:arranz-otaegui-2016-cereal-domestication
+type: publication
+kind: review
+citation: >-
+  Arranz-Otaegui, A., Colledge, S., Zapata, L., Teira-Mayolini, L.C. & Ibáñez, J.J. (2016).
+  Regional diversity on the timing for the initial appearance of cereal cultivation and
+  domestication in southwest Asia. Proceedings of the National Academy of Sciences 113(49),
+  14001–14006.
+authors:
+  - "Arranz-Otaegui, A."
+  - "Colledge, S."
+  - "Zapata, L."
+  - "Teira-Mayolini, L.C."
+  - "Ibáñez, J.J."
+published: 2016
+title: Regional diversity on the timing for the initial appearance of cereal cultivation and domestication in southwest Asia
+container: Proceedings of the National Academy of Sciences 113(49), 14001–14006
+doi: 10.1073/pnas.1612797113
+verified:
+  by: machine:claude-code
+  how: Abstract read verbatim from the Europe PMC record (PMID 27930348); citation from Crossref.

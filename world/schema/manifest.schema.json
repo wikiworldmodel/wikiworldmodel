@@ -47,7 +47,7 @@
               "url": { "type": "string", "pattern": "^https://" },
               "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
               "bytes": { "type": "integer", "minimum": 1 },
-              "format": { "enum": ["zip", "parquet"] },
+              "format": { "enum": ["zip", "parquet", "csv", "tsv", "xlsx"] },
               "files": {
                 "type": "object",
                 "additionalProperties": {

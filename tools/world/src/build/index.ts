@@ -1,28 +1,30 @@
 // The build: validate the world, solve its chronology, and compile it into a versioned 4D
-// tile set plus the records, search index, periods, frames and coverage the viewer reads.
+// tile set plus the records, search index, periods, series, frames and coverage the viewer
+// reads.
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { encodeTile } from '../../../../core/container.ts';
-import type { CoverageFile, PeriodsFile } from '../../../../core/records.ts';
+import type { CoverageFile, PeriodRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../../core/records.ts';
 import { bakeRotationModel, parseRot, RotationModel } from '../../../../core/rotation-model.ts';
-import { fromMa } from '../../../../core/time.ts';
-import type { Basis, Feature, FieldKeyframe, FramesFile, GeneratorConstraint, TileHeader, TileRef, Tileset } from '../../../../core/tileset.ts';
+import { fromMa, parsePoint, PRESENT_YEAR, toMa, type TimePointInput } from '../../../../core/time.ts';
+import type { Basis, Feature, FieldInfo, FieldKeyframe, FramesFile, GeneratorConstraint, TileHeader, TileRef, Tileset } from '../../../../core/tileset.ts';
 import { GENERATOR as CLOUDS, VERSION as CLOUDS_VERSION, generateClouds, type CloudParams } from '../../../../world/generators/earth/clouds/v1.ts';
 import { claimGroups, solveScenario, solveVariants } from '../chronology.ts';
-import { ELEVATION, fieldAgesMa, importFields } from '../importer.ts';
+import { fieldAgesMa, fieldSource, importBlocks, importElevation, PLATE_MODEL } from '../importer.ts';
 import { datasetFile } from '../manifest.ts';
 import { BUILDS, REPO } from '../paths.ts';
 import { sha256, stableStringify } from '../util.ts';
 import { formatIssue, validateWorld } from '../validate/index.ts';
 import { loadWorld, type World } from '../world.ts';
-import { fieldLods, loadSnapshots, sliceField, tileGrid } from './fields.ts';
+import { fieldFor, fieldLods, loadBlocks, loadSnapshots, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
 import { features as buildFeatures, periods as buildPeriods, records as buildRecords, search as buildSearch, sourceRecord, type Solved } from './records.ts';
+import { series as buildSeries } from './series.ts';
 
 // Share of PaleoDEM land that must fall inside the plate model's polygons at every snapshot,
 // a coarse check that field and frames come from the same model. This pair scores 0.85–1.00
-// (mean 0.92); the score drops when the grid is shifted against the polygons.
+// (mean 0.93); the score drops when the grid is shifted against the polygons.
 const MIN_ALIGNMENT = 0.8;
 
 function git(args: string[]): string {
@@ -54,12 +56,13 @@ function overlaps(f: Feature, span: [number, number]): boolean {
 function credits(world: World): Tileset['credits'] {
   const out: Tileset['credits'] = Object.values(world.manifest.datasets).map((d) => ({ label: d.credit!, license: d.license! }));
   const cited = new Set(world.entities.flatMap((e) => [...e.claims, ...e.relations].flatMap((c) => c.sources.map((s) => s.ref))));
-  const databases = new Map<string, string>();
+  // A database may have changed its licence between the snapshots read: credit each one.
+  const databases = new Map<string, Set<string>>();
   for (const id of cited) {
     const s = world.source.get(id);
-    if (s?.type === 'database-record' && s.license && s.container) databases.set(s.container, s.license);
+    if (s?.type === 'database-record' && s.license && s.container) databases.set(s.container, (databases.get(s.container) ?? new Set()).add(s.license));
   }
-  for (const [label, license] of [...databases].sort()) out.push({ label, license });
+  for (const [label, licenses] of [...databases].sort(([a], [b]) => (a < b ? -1 : 1))) out.push({ label, license: [...licenses].sort().join(' and ') });
   return out;
 }
 
@@ -74,6 +77,19 @@ function shownAlternatives(world: World): Tileset['alternatives'] {
       default: g.default ?? null,
       members: g.show!.map((id) => world.alternative.get(id)!).map((a) => ({ id: a.id, title: a.title, description: a.description, kind: a.kind })),
     }));
+}
+
+/**
+ * The span of the world, in astronomical years: from the oldest time any record, period,
+ * field or series reaches to the furthest projection, and at least to the present.
+ */
+function worldSpan(periods: PeriodRecord[], found: SearchFile, grids: GridField[], series: SeriesFile['series']): [number, number] {
+  const times: number[] = [PRESENT_YEAR];
+  for (const p of periods) times.push(p.start, ...(Number.isFinite(p.end) ? [p.end] : []));
+  for (const e of found.entities) for (const x of [e.time.start.best, e.time.end.best]) if (x !== null && Number.isFinite(x)) times.push(x);
+  for (const g of grids) times.push(fromMa(g.coverMa[0]), fromMa(g.coverMa[1]));
+  for (const s of series) times.push(s.points[0][0], s.points.at(-1)![0]);
+  return [Math.min(...times), Math.max(...times)];
 }
 
 /** Claims and wanted records, and how much of each tile's area and era rests on each basis. */
@@ -109,6 +125,29 @@ function coverage(world: World, wanted: { ref: string; from: { file: string; whe
   };
 }
 
+/** What the viewer needs to know of a gridded field: what it is, and when it covers. */
+function fieldInfo(world: World, g: GridField): FieldInfo {
+  const f = g.field;
+  const src = world.source.get(f.data!.from);
+  const coastline = world.fields.find((c) => c.derived && c.rule === 'isoline' && c.from?.includes(f.id));
+  return {
+    id: f.id,
+    title: f.title,
+    mode: g.mode,
+    description: f.description,
+    units: f.unit,
+    datum: f.datum,
+    basis: f.basis!,
+    interpolation: f.interp!,
+    source: f.data!.from,
+    sourceRecord: src ? sourceRecord(src) : undefined,
+    coverage: [fromMa(g.coverMa[0]), fromMa(g.coverMa[1])],
+    keyframesMa: g.snapshots.map((s) => s.ageMa),
+    projection: f.projection ? { method: f.projection.method, until: parsePoint(f.projection.until as TimePointInput).t, note: f.projection.note } : undefined,
+    coastline: coastline ? { id: coastline.id, title: coastline.title, isolineM: coastline.isoline_m ?? 0 } : undefined,
+  };
+}
+
 export async function runBuild(args: string[]): Promise<number> {
   const log = (s: string) => console.log(s);
   const out = new Map<string, Uint8Array | string>(); // path → content
@@ -124,11 +163,8 @@ export async function runBuild(args: string[]): Promise<number> {
   }
 
   // 2. Frames: the plate model's rotations, baked for the client.
-  const field = world.fields.find((f) => f.id === ELEVATION)!;
-  const coastline = world.fields.find((f) => f.derived && f.from?.includes(ELEVATION) && f.rule === 'isoline')!;
-  const pmId = field.moves_with!;
-  const pm = world.manifest.datasets[pmId];
-  const rot = await readFile(datasetFile(pmId, pm, 'rotations'), 'latin1');
+  const pm = world.manifest.datasets[PLATE_MODEL];
+  const rot = await readFile(datasetFile(PLATE_MODEL, pm, 'rotations'), 'latin1');
   const baked = bakeRotationModel(parseRot(rot));
   const model = new RotationModel(baked);
 
@@ -146,17 +182,34 @@ export async function runBuild(args: string[]): Promise<number> {
     model,
   };
 
-  // 4. Fields.
-  const importDir = await importFields(log);
-  const { meta, snapshots } = await loadSnapshots(importDir);
-  for (const s of meta.snapshots) {
-    if (s.alignment.land_inside_polygons < MIN_ALIGNMENT) {
-      log(`error   fields      ${s.ageMa} Ma: only ${s.alignment.land_inside_polygons} of PaleoDEM land lies inside the plate model's polygons (min ${MIN_ALIGNMENT}); field and frames disagree`);
-      return 1;
+  // 4. Gridded fields: elevation grids, and before them the plate model's blocks.
+  const grids: GridField[] = [];
+  const imports: Record<string, string> = {};
+  let pygplates = '';
+  for (const f of world.fields.filter((x) => !x.derived && x.grid?.kind === 'lonlat')) {
+    const mode = fieldSource(f);
+    const dir = mode === 'elevation' ? await importElevation(f, log) : await importBlocks(f, log);
+    imports[f.id] = dir.split('/').pop()!;
+    const { meta, snapshots } = mode === 'elevation' ? await loadSnapshots(dir) : await loadBlocks(dir);
+    pygplates = meta.pygplates;
+    if (mode === 'elevation') {
+      for (const s of (meta as Awaited<ReturnType<typeof loadSnapshots>>['meta']).snapshots) {
+        if (s.alignment.land_inside_polygons < MIN_ALIGNMENT) {
+          log(`error   fields      ${f.id} ${s.ageMa} Ma: only ${s.alignment.land_inside_polygons} of its land lies inside the plate model's polygons (min ${MIN_ALIGNMENT}); field and frames disagree`);
+          return 1;
+        }
+      }
     }
+    const { maxAgeMa } = fieldAgesMa(f);
+    const oldest = Math.min(maxAgeMa, Math.max(...snapshots.map((s) => s.ageMa)));
+    const youngest = Math.min(...snapshots.map((s) => s.ageMa));
+    const until = f.projection ? toMa(parsePoint(f.projection.until as TimePointInput).t) : youngest;
+    grids.push({ field: f, mode, snapshots, coverMa: [oldest, Math.min(youngest, until)] });
   }
+  // Where two fields meet, the younger one is preferred at the shared age.
+  grids.sort((a, b) => a.coverMa[1] - b.coverMa[1]);
   const plateIds = new Set<number>();
-  for (const s of snapshots) for (const p of s.plate) if (p) plateIds.add(p);
+  for (const g of grids) for (const s of g.snapshots) for (const p of s.plate) if (p) plateIds.add(p);
   const plateIndexList = [0, ...[...plateIds].sort((a, b) => a - b)];
   const plateIndex = new Map(plateIndexList.map((p, i) => [p, i]));
   const frames: FramesFile = {
@@ -182,11 +235,17 @@ export async function runBuild(args: string[]): Promise<number> {
     outputSha256: sha256(generateClouds(s.seed, gen.params as unknown as CloudParams)),
   }));
 
-  // 6. Tiles.
+  // 6. Records, periods, search and series, whose times set the span of the tile set.
   const allFeatures = buildFeatures(solved);
-  const { maxAgeMa } = fieldAgesMa(field);
-  const maxAge = Math.min(maxAgeMa, Math.max(...snapshots.map((s) => s.ageMa)));
-  const lods = fieldLods(maxAge);
+  const periodList = buildPeriods(solved);
+  const found = buildSearch(solved, allFeatures);
+  const seriesList = await buildSeries(world);
+  const span = worldSpan(periodList, found, grids, seriesList);
+
+  // 7. Tiles: every span of time has LOD 0 tiles (its features and generator constraints, and
+  // the field that covers it, if any); spans with a field also have finer LOD 1 tiles.
+  const cuts = grids.flatMap((g) => [g.snapshots[0].ageMa, g.snapshots.at(-1)!.ageMa]);
+  const lods = fieldLods(timeBins(toMa(span[0]), toMa(span[1]), cuts), grids);
   const tiles: TileRef[] = [];
   for (const lod of lods) {
     lod.cells.forEach((cell, ci) => {
@@ -194,39 +253,43 @@ export async function runBuild(args: string[]): Promise<number> {
       const x = lod.lod === 0 ? 0 : ci % 4;
       const y = lod.lod === 0 ? 0 : Math.floor(ci / 4);
       lod.binsMa.forEach(([older, younger], bi) => {
-        const keys = snapshots.filter((s) => s.ageMa >= younger && s.ageMa <= older);
-        const sliced = sliceField(keys, grid, plateIndex);
+        const g = fieldFor(grids, [older, younger]);
         const arrays: (Int16Array | Uint16Array)[] = [];
-        const keyframes: FieldKeyframe[] = sliced.map((k) => {
-          arrays.push(k.elev, k.plate);
-          return { t: fromMa(k.ageMa), ageMa: k.ageMa, elev: arrays.length - 2, plate: arrays.length - 1 };
-        });
-        const span: [number, number] = [fromMa(older), fromMa(younger)];
+        let field: TileHeader['field'] = null;
+        if (g) {
+          const keys = g.snapshots.filter((s) => s.ageMa >= younger && s.ageMa <= older);
+          const keyframes: FieldKeyframe[] = sliceField(keys, grid, plateIndex).map((k) => {
+            arrays.push(k.elev, k.plate);
+            return { t: fromMa(k.ageMa), ageMa: k.ageMa, elev: arrays.length - 2, plate: arrays.length - 1 };
+          });
+          field = { id: g.field.id, grid, keyframes };
+        }
+        const time: [number, number] = [fromMa(older), fromMa(younger)];
         const id = `${lod.lod}/${x}-${y}/b${bi}`;
         const parentBin = lods[0].binsMa.findIndex(([o, yy]) => younger >= yy && older <= o);
         const header: TileHeader = {
-          format: 'lightworld-tile@2',
+          format: 'lightworld-tile@3',
           id,
           lod: lod.lod,
           bbox: cell,
-          time: span,
-          field: { id: field.id, grid, keyframes },
-          features: lod.lod === 0 ? allFeatures.filter((f) => overlaps(f, span)) : [],
+          time,
+          field,
+          features: lod.lod === 0 ? allFeatures.filter((f) => overlaps(f, time)) : [],
           generators: lod.lod === 0 ? generators : [],
         };
         const bytes = encodeTile(header as unknown as Record<string, unknown>, arrays, stableStringify);
         const url = `tiles/${lod.lod}/${x}-${y}/b${bi}.lwt`;
         put(url, bytes);
-        tiles.push({ id, lod: lod.lod, bbox: cell, time: span, url, bytes: bytes.length, sha256: sha256(bytes), parent: lod.lod === 0 ? null : `0/0-0/b${parentBin}` });
+        tiles.push({ id, lod: lod.lod, bbox: cell, time, url, bytes: bytes.length, sha256: sha256(bytes), parent: lod.lod === 0 ? null : `0/0-0/b${parentBin}` });
       });
     });
   }
 
-  // 7. Records, search, periods, coverage.
+  // 8. Records, periods, search, series, coverage.
   const recs = buildRecords(solved);
   for (const r of recs) put(`records/${r.id}.json`, stableStringify(r));
   const periods: PeriodsFile = {
-    periods: buildPeriods(solved),
+    periods: periodList,
     sources: Object.fromEntries(
       [...new Set(world.entities.filter((e) => e.kind.startsWith('period/')).flatMap((e) => e.claims.flatMap((c) => c.sources.map((s) => s.ref))))]
         .sort()
@@ -234,29 +297,18 @@ export async function runBuild(args: string[]): Promise<number> {
     ),
   };
   put('periods.json', stableStringify(periods));
-  put('search.json', stableStringify(buildSearch(solved, allFeatures)));
+  put('search.json', stableStringify(found));
+  put('series.json', stableStringify({ series: seriesList } satisfies SeriesFile));
   put('coverage.json', stableStringify(coverage(world, wanted, allFeatures, tiles)));
 
-  // 8. Index and identity.
-  const demId = field.data!.from;
+  // 9. Index and identity.
   const tileset: Omit<Tileset, 'build'> = {
-    format: 'lightworld-tileset@2',
-    field: {
-      id: field.id,
-      title: field.title,
-      units: field.unit!,
-      datum: field.datum!,
-      basis: field.basis!,
-      interpolation: field.interp!,
-      source: demId,
-      sourceRecord: sourceRecord(world.source.get(demId)!),
-      coastline: { id: coastline.id, title: coastline.title, isolineM: coastline.isoline_m ?? 0 },
-    },
-    keyframesMa: snapshots.map((s) => s.ageMa),
-    timeRange: [fromMa(maxAge), fromMa(0)],
+    format: 'lightworld-tileset@3',
+    fields: grids.map((g) => fieldInfo(world, g)),
+    timeRange: span,
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
-    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json' },
+    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json' },
     credits: credits(world),
     alternatives,
     kinds: Object.fromEntries(Object.entries(world.vocab.kinds).map(([k, v]) => [k, v.label])),
@@ -276,14 +328,14 @@ export async function runBuild(args: string[]): Promise<number> {
         generators: Object.fromEntries(world.generators.map((g) => [g.id, { version: g.version, seeds: Object.fromEntries(Object.entries(g.slots).map(([k, v]) => [k, v.seed])) }])),
         alternatives: { shown: alternatives.flatMap((g) => g.members.map((m) => m.id)), default: Object.fromEntries(alternatives.map((g) => [g.id, g.default])) },
         licenses: { allowed: world.manifest.publish.licenses, datasets: Object.fromEntries(Object.entries(world.manifest.datasets).map(([id, d]) => [id, d.license])) },
-        importer: { output: importDir.split('/').pop(), pygplates: meta.pygplates },
+        importer: { outputs: imports, pygplates },
         counts: { entities: world.entities.length, claims: world.entities.reduce((n, e) => n + e.claims.length + e.relations.length, 0), sources: world.sources.length, tiles: tiles.length, wanted: wanted.length },
       },
       1,
     ),
   );
 
-  // 9. Write: to a temporary directory, then move into place.
+  // 10. Write: to a temporary directory, then move into place.
   const dest = join(BUILDS, buildId);
   const tmp = `${dest}.tmp-${process.pid}`;
   await rm(tmp, { recursive: true, force: true });
@@ -300,7 +352,7 @@ export async function runBuild(args: string[]): Promise<number> {
   index.latest = buildId;
   await writeFile(indexPath, JSON.stringify(index, null, 1) + '\n');
   const total = [...out.values()].reduce((s, c) => s + (typeof c === 'string' ? Buffer.byteLength(c) : c.length), 0);
-  log(`build ${buildId}: ${tiles.length} tiles, ${recs.length} records, ${(total / 1e6).toFixed(1)} MB → ${dest}`);
+  log(`build ${buildId}: ${tiles.length} tiles, ${recs.length} records, ${seriesList.length} series, ${(total / 1e6).toFixed(1)} MB → ${dest}`);
   if (args.includes('--print-id')) console.log(buildId);
   return 0;
 }

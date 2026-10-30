@@ -1,0 +1,19 @@
+id: life/taxa/sauropsida
+kind: taxon
+summary: >-
+  Sauropsids: reptiles and birds and their extinct relatives, the amniotes closer to them than
+  to mammals. Its origin is the split of the amniote crown, so no separate molecular date is
+  given.
+same_as: { ott: 639642, pbdb: "txn:135358" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: sauropsids, la: Sauropsida }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott639642: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/amniota
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Sauropsida (ott639642) lies within Amniota (ott229560)" }

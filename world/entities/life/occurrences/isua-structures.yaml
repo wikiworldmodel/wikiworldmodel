@@ -1,0 +1,47 @@
+id: life/occurrences/isua-structures
+kind: occurrence
+summary: >-
+  Conical and domical structures 1–4 cm high in 3,700-Myr-old metacarbonate rocks of the Isua
+  supracrustal belt, Greenland: stromatolites to Nutman et al. (2016), deformation structures to
+  Allwood et al. (2018). Only the alternative "Isua stromatolites" counts them as life.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Isua structures" }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: stromatolites
+    source: { ref: src:nutman-2016-isua, loc: "abstract" }
+    note: >-
+      Not a taxon: structures Nutman et al. attribute to microbial communities. Contested.
+  location:
+    prop: location
+    value: { lat: 65.09, lon: -50.04, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-isua-greenstone-belt, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A representative point for the whole belt, at 0.01° precision, not the outcrop Nutman et
+      al. describe, which was not located from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-102
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 3700 Ma
+    source: { ref: src:nutman-2016-isua, loc: "abstract", quote: "3,700-Myr-old metacarbonate rocks" }
+    note: >-
+      The age of the host rocks as the abstract states it, without an uncertainty.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/cellular-organisms
+    alt: alt:earliest-life/isua-stromatolites
+    source: { ref: src:nutman-2016-isua, loc: "abstract" }
+    note: >-
+      Holds only in the alternative "Isua stromatolites". Allwood et al. (2018, Nature 563,
+      241–244) argue that the structures are not biological.

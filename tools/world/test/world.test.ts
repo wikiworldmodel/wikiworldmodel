@@ -20,9 +20,9 @@ describe('the world', async () => {
     expect(report.issues.filter((i) => i.level === 'warning')).toEqual([]);
   });
 
-  it('reports the records it refers to but does not have yet as wanted, not as errors', () => {
-    expect(report.wanted.map((w) => w.ref)).toEqual(['life/taxa/mesosaurus-tenuidens']);
-    expect(report.wanted[0].from).toHaveLength(4);
+  it('has every record it refers to: the Mesosaurus taxon, once wanted, is written', () => {
+    expect(report.wanted).toEqual([]);
+    expect(world.entity.get('life/taxa/mesosaurus-tenuidens')?.kind).toBe('taxon');
   });
 
   it('marks every machine-made claim as proposed', () => {
@@ -63,16 +63,19 @@ describe('the world', async () => {
     expect(pbdb.ok && at(pbdb.bounds, 'ics/artinskian', 'end')).toEqual([279.3, 279.3]);
   });
 
-  it('finds the 1992 Chicxulub date inconsistent with the Deccan eruption dates', () => {
+  it('finds the 1992 Chicxulub date inconsistent with the rest of the world, and says why', () => {
     const variants = solveVariants(world);
     const swisher = variants.find((v) => v.key === 'earth/events/chicxulub-impact#date-swisher-1992')!;
     expect(swisher.solution.ok).toBe(false);
     if (swisher.solution.ok) return;
-    expect(swisher.solution.conflict.constraints.map((c) => c.source).sort()).toEqual([
-      'earth/events/chicxulub-impact#date-swisher-1992',
-      'earth/events/chicxulub-impact#during-deccan',
-      'earth/lips/deccan-traps#main-end',
-    ]);
+    // It is too young for the Deccan eruptions it falls within, and for the extinction it
+    // caused at the base of the Danian; the solver names one minimal set of the clashing
+    // constraints.
+    const clash = swisher.solution.conflict.constraints.map((c) => c.source).sort();
+    expect([
+      ['earth/events/chicxulub-impact#date-swisher-1992', 'earth/events/chicxulub-impact#during-deccan', 'earth/lips/deccan-traps#main-end'],
+      ['earth/events/chicxulub-impact#date-swisher-1992', 'earth/events/kpg-extinction#caused-by-chicxulub', 'earth/events/kpg-extinction#date-ics', 'ics/danian#ics-start'],
+    ]).toContainEqual(clash);
     const yin = variants.find((v) => v.key === 'earth/events/india-asia-collision#date-yin-harrison-2000')!;
     expect(yin.centres.ok && at(yin.centres.bounds, 'earth/orogens/himalaya', 'start')[0]).toBeCloseTo(70, 6);
   });

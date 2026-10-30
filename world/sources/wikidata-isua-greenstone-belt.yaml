@@ -1,0 +1,19 @@
+id: src:wikidata-isua-greenstone-belt
+type: database-record
+kind: compilation
+citation: Wikidata, item Q1626318 (Isua greenstone belt, southwestern Greenland), property P625 (coordinate location).
+snapshot: "2026-10-30"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q1626318
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement (API siteinfo): all structured data from the main and property
+  namespace is available under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry for the whole belt, imported from Wikipedia; a point at 0.01°
+  precision, not the site of any particular outcrop.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (65.09, -50.04; precision 0.01) read from the item's JSON
+    (Special:EntityData/Q1626318.json, last revision 2509382727, modified 2026-06-22).

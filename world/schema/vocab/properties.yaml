@@ -62,8 +62,8 @@ properties:
     description: The taxon name as identified in the original record.
   formation:
     type: string
-    applies_to: [occurrence]
-    description: The geological formation the fossils come from.
+    applies_to: [occurrence, sample]
+    description: The geological formation the fossils or the sample come from.
   diameter:
     type: quantity
     unit: km
@@ -89,6 +89,18 @@ methods:
     children:
       ar-ar: { label: 40Ar/39Ar dating }
       u-pb: { label: U–Pb dating }
+      pb-pb: { label: Pb–Pb dating }
+      re-os: { label: Re–Os dating }
+      radiocarbon: { label: Radiocarbon dating }
+  molecular-clock:
+    label: Molecular clock
+    description: Dated from genetic differences between living groups, calibrated with fossils.
+  model:
+    label: Model projection
+    description: Computed with a physical model, such as a model of the Sun's evolution or of galaxies' orbits.
+  documentary:
+    label: Documentary record
+    description: Read from contemporary records of the event, such as mission logs.
   stratigraphic:
     label: Stratigraphic dating
     description: Dated by the position of the beds in a dated sequence, or by their fossils.

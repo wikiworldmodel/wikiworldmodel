@@ -1,0 +1,59 @@
+id: life/occurrences/clavatipollenites-kokhav-2
+kind: occurrence
+summary: >-
+  Angiosperm pollen, Clavatipollenites, from the Helez Formation (Kurnub Group) in core 3 of the
+  Kokhav 2 well, Israel: among the oldest flowering-plant fossils, from the
+  Valanginian–Hauterivian of northern Gondwana. PBDB collection 140287.
+same_as: { pbdb: "occ:1108817" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Clavatipollenites, Kokhav 2 well" }
+    unsourced: An editorial label, from the taxon and the well’s name.
+  identified:
+    prop: identified_as
+    value: Clavatipollenites <sp. B>
+    source: { ref: src:pbdb/collection-140287, loc: "occurrence 1108817, identified_name" }
+  location:
+    prop: location
+    value: { lat: 31.561943, lon: 34.69611, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-140287, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      The well’s location; the pollen comes from a core.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-508
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Helez Formation
+    source: { ref: src:pbdb/collection-140287, loc: "formation" }
+  later-than:
+    prop: later_than
+    value: { ref: ics/valanginian, edge: start }
+    source: { ref: src:pbdb/collection-140287, loc: "early_interval" }
+    method: stratigraphic
+    note: >-
+      Assigned to the Valanginian–Hauterivian, so no older than the base of the Valanginian.
+  earlier-than:
+    prop: earlier_than
+    value: { ref: ics/hauterivian, edge: end }
+    source: { ref: src:pbdb/collection-140287, loc: "late_interval" }
+    method: stratigraphic
+    note: >-
+      Assigned to the Valanginian–Hauterivian, so no younger than the top of the Hauterivian.
+      The PBDB’s own ages are 137.05–125.77 Ma.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source:
+      - { ref: src:pbdb/collection-140287, loc: "occurrence 1108817, accepted_name Clavatipollenites; Angiospermae, Chloranthaceae" }
+      - { ref: src:coiro-2019-angiosperm-age, loc: "summary" }
+    note: >-
+      Coiro et al. (2019) find that monosulcate angiosperm pollen first appears in the
+      Valanginian of northern Gondwana.

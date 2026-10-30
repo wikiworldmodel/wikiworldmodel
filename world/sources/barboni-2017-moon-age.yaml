@@ -1,0 +1,22 @@
+id: src:barboni-2017-moon-age
+type: publication
+kind: measurement
+citation: >-
+  Barboni, M., Boehnke, P., Keller, B., Kohl, I.E., Schoene, B., Young, E.D. & McKeegan, K.D.
+  (2017). Early formation of the Moon 4.51 billion years ago. Science Advances 3(1),
+  e1602365.
+authors:
+  - "Barboni, M."
+  - "Boehnke, P."
+  - "Keller, B."
+  - "Kohl, I.E."
+  - "Schoene, B."
+  - "Young, E.D."
+  - "McKeegan, K.D."
+published: 2017
+title: Early formation of the Moon 4.51 billion years ago
+container: Science Advances 3(1), e1602365
+doi: 10.1126/sciadv.1602365
+verified:
+  by: machine:claude-code
+  how: Abstract read verbatim from the Europe PMC record (PMID 28097222); citation from Crossref.

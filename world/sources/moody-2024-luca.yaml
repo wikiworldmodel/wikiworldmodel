@@ -1,0 +1,40 @@
+id: src:moody-2024-luca
+type: publication
+kind: model
+citation: >-
+  Moody, E.R.R., Álvarez-Carretero, S., Mahendrarajah, T.A., Clark, J.W., Betts, H.C.,
+  Dombrowski, N., Szánthó, L.L., Boyle, R.A., Daines, S., Chen, X., Lane, N., Yang, Z., Shields,
+  G.A., Szöllősi, G.J., Spang, A., Pisani, D., Williams, T.A., Lenton, T.M. & Donoghue, P.C.J.
+  (2024). The nature of the last universal common ancestor and its impact on the early Earth
+  system. Nature Ecology & Evolution 8(9), 1654–1666.
+authors:
+  - "Moody, E.R.R."
+  - "Álvarez-Carretero, S."
+  - "Mahendrarajah, T.A."
+  - "Clark, J.W."
+  - "Betts, H.C."
+  - "Dombrowski, N."
+  - "Szánthó, L.L."
+  - "Boyle, R.A."
+  - "Daines, S."
+  - "Chen, X."
+  - "Lane, N."
+  - "Yang, Z."
+  - "Shields, G.A."
+  - "Szöllősi, G.J."
+  - "Spang, A."
+  - "Pisani, D."
+  - "Williams, T.A."
+  - "Lenton, T.M."
+  - "Donoghue, P.C.J."
+published: 2024
+title: "The nature of the last universal common ancestor and its impact on the early Earth system"
+container: Nature Ecology & Evolution 8(9), 1654–1666
+doi: 10.1038/s41559-024-02461-1
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; full text (open access) searched for the age of LUCA: the Fig.
+    1 legend gives the 95% confidence interval, 4.09–4.33 Ga under the ILN clock (4.18–4.33 Ga
+    under GBM). Metadata and licence from Crossref.

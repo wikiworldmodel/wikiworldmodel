@@ -1,0 +1,23 @@
+id: earth/events/end-ordovician-extinction
+kind: event/extinction
+summary: >-
+  The Late Ordovician mass extinction, the earliest of the five largest, in two phases
+  during the Hirnantian, as a major ice age began.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Late Ordovician mass extinction }
+    source: { ref: src:harper-2024-late-ordovician-extinction, loc: title }
+  date:
+    prop: date
+    value: { ref: ics/hirnantian }
+    source:
+      ref: src:harper-2024-late-ordovician-extinction
+      loc: abstract
+      quote: Two phases have been identified near the start of the Hirnantian period
+    method: stratigraphic
+    note: >-
+      Dated by the stage, so its ages follow the time scale chosen (445.2–443.8 Ma in the ICS
+      chart v2020/03). The first phase lies near the start of the Hirnantian and the second in
+      its middle; the source dates neither, so the record spans the stage.

@@ -1,0 +1,40 @@
+id: earth/events/kpg-extinction
+kind: event/extinction
+summary: >-
+  The mass extinction at the Cretaceous–Paleogene boundary, triggered by the Chicxulub
+  impact.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Cretaceous–Paleogene mass extinction }
+    source: { ref: src:schulte-2010-chicxulub-extinction, loc: title }
+  date-ics:
+    prop: date
+    value: { ref: ics/danian, edge: start }
+    source: { ref: src:schulte-2010-chicxulub-extinction, loc: "abstract, first sentence" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      At the Cretaceous–Paleogene boundary, the base of the Danian, so the date follows the
+      time scale chosen (66.0 Ma in the ICS chart v2020/03). The abstract's own figure, about
+      65.5 Ma, comes from an older time scale.
+  date-renne-2013:
+    prop: date
+    value: { ref: earth/events/chicxulub-impact, edge: start, lag: { hi: 32 kyr } }
+    source:
+      ref: src:renne-2013-kpg-timescales
+      loc: abstract
+      quote: with the Chicxulub bolide impact to within 32,000 years
+    method: radiometric/ar-ar
+    note: >-
+      40Ar/39Ar data that make the boundary and its extinctions synchronous with the impact
+      to within 32 kyr. The lag is one-sided because the impact came first, as the cause.
+relations:
+  caused-by-chicxulub:
+    rel: caused-by
+    to: earth/events/chicxulub-impact
+    source:
+      ref: src:schulte-2010-chicxulub-extinction
+      loc: abstract
+      quote: lead us to conclude that the Chicxulub impact triggered the mass extinction

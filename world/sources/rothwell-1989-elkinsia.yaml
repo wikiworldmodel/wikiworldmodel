@@ -1,0 +1,19 @@
+id: src:rothwell-1989-elkinsia
+type: publication
+kind: measurement
+citation: >-
+  Rothwell, G.W., Scheckler, S.E. & Gillespie, W.H. (1989). Elkinsia gen. nov., a Late Devonian
+  gymnosperm with cupulate ovules. Botanical Gazette 150(2), 170–189.
+authors:
+  - "Rothwell, G.W."
+  - "Scheckler, S.E."
+  - "Gillespie, W.H."
+published: 1989
+title: "Elkinsia gen. nov., a Late Devonian Gymnosperm with Cupulate Ovules"
+container: Botanical Gazette 150(2), 170–189
+doi: 10.1086/337763
+verified:
+  by: machine:claude-code
+  how: >-
+    Title and bibliographic data from Crossref; no abstract was available, so only the title’s
+    identification of Elkinsia as a Late Devonian gymnosperm with ovules is relied on.

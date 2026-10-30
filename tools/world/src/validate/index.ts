@@ -270,8 +270,9 @@ function checkRecords(world: World, issues: Issue[]): Wanted[] {
   }
   for (const f of world.fields) {
     if (f.frame) refs.check(f.frame, f.file, 'frame', { types: ['frame'] });
-    if (f.data) checkDataset(world, refs, f.data.from, f.file, 'data.from', undefined, issues);
+    if (f.data) checkDataset(world, refs, f.data.from, f.file, 'data.from', f.data.file, issues);
     if (f.moves_with) checkDataset(world, refs, f.moves_with, f.file, 'moves_with', undefined, issues);
+    if (f.source) refs.check(f.source.ref, f.file, 'source.ref', { types: ['src'] });
     for (const [i, x] of (f.from ?? []).entries()) refs.check(x, f.file, `from[${i}]`, { types: ['field'] });
   }
   for (const g of world.generators) {

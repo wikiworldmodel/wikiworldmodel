@@ -1,0 +1,26 @@
+id: src:dos-reis-2015-metazoan-timescale
+type: publication
+kind: model
+citation: >-
+  dos Reis, M., Thawornwattana, Y., Angelis, K., Telford, M.J., Donoghue, P.C.J. & Yang, Z.
+  (2015). Uncertainty in the timing of origin of animals and the limits of precision in
+  molecular timescales. Current Biology 25(22), 2939–2950.
+authors:
+  - "dos Reis, M."
+  - "Thawornwattana, Y."
+  - "Angelis, K."
+  - "Telford, M.J."
+  - "Donoghue, P.C.J."
+  - "Yang, Z."
+published: 2015
+title: "Uncertainty in the Timing of Origin of Animals and the Limits of Precision in Molecular Timescales"
+container: Current Biology 25(22), 2939–2950
+doi: 10.1016/j.cub.2015.09.066
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; full text (PMC4651906) read for Table 1, the 95% HPD limits of
+    crown-group divergence times; the values cited are its Composite columns, which combine the
+    95% intervals of all analyses except calibration strategies 3 and 4 and the alternative
+    topologies.

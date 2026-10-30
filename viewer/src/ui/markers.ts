@@ -10,13 +10,22 @@ import type { V3 } from '../mat.ts';
 
 export interface MarkerContext {
   t: number;
-  /** the time control's window span, years: sets how long instants stay visible */
-  windowSpan: number;
+  /** how long, in years, an instant stays visible either side of its time */
+  halo: number;
   evidence: boolean;
   scenario: Scenario;
   selected: string | null;
   plateRotation: (plate: number) => Quat;
+  /** whether the frames say where a plate is at time t; where they don't, its markers are hidden */
+  placed: (plate: number) => boolean;
 }
+
+const KIND_CLASS_PREFIX: [string, string][] = [
+  ['event/', 'event'],
+  ['occurrence', 'fossil'],
+  ['sample', 'structure'],
+  ['large-igneous-province', 'lip'],
+];
 
 const KIND_CLASS: Record<string, string> = {
   occurrence: 'fossil',
@@ -46,11 +55,10 @@ export function basisAt(f: Feature, t: number): Basis {
 
 /**
  * How visible a feature is at time t, 0–1. Intervals show from start to end (or now);
- * instants show within a halo that scales with the time window, so they can be found while
+ * instants show within a halo of the time control's scale, so they can be found while
  * scrubbing at any zoom. In evidence mode, uncertain edges fade across their bounds.
  */
-export function visibility(time: FeatureTime, t: number, windowSpan: number, evidence: boolean): number {
-  const halo = Math.max(windowSpan * 0.012, 2e4);
+export function visibility(time: FeatureTime, t: number, halo: number, evidence: boolean): number {
   if (time.instant) {
     const lo = Number.isFinite(time.start.lo) ? time.start.lo : time.start.best!;
     const hi = Number.isFinite(time.start.hi) ? time.start.hi : time.start.best!;
@@ -89,8 +97,9 @@ export class Markers {
     const placed: { f: Feature; x: number; y: number; vis: number; t: FeatureTime }[] = [];
     for (const f of features) {
       const time = timeFor(f, ctx.scenario);
-      const vis = visibility(time, ctx.t, ctx.windowSpan, ctx.evidence);
+      const vis = visibility(time, ctx.t, ctx.halo, ctx.evidence);
       if (vis <= 0.01) continue;
+      if (f.plate && !ctx.placed(f.plate)) continue;
       const q = f.plate ? ctx.plateRotation(f.plate) : ([1, 0, 0, 0] as Quat);
       const p = rotate(q, unitVector(f.location.lat, f.location.lon)) as V3;
       const s = camera.project(p);
@@ -110,7 +119,7 @@ export class Markers {
       let node = this.nodes.get(m.f.id);
       if (!node) {
         node = document.createElement('button');
-        node.className = `marker ${KIND_CLASS[m.f.kind] ?? 'other'}`;
+        node.className = `marker ${KIND_CLASS[m.f.kind] ?? KIND_CLASS_PREFIX.find(([k]) => m.f.kind.startsWith(k))?.[1] ?? 'other'}`;
         node.dataset.entity = m.f.id;
         node.innerHTML = `<span class="dot"></span><span class="label"></span>`;
         node.addEventListener('click', (e) => {

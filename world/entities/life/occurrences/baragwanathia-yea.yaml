@@ -1,0 +1,55 @@
+id: life/occurrences/baragwanathia-yea
+kind: occurrence
+summary: >-
+  The club moss Baragwanathia longifolia from the Yea Formation at the Yea locality, Victoria,
+  Australia: among the earliest vascular plants, and a member of the living lycophyte lineage.
+  PBDB collection 53664.
+same_as: { pbdb: "occ:522062" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Baragwanathia, Yea" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Baragwanathia longifolia
+    source: { ref: src:pbdb/collection-53664, loc: "occurrence 522062, accepted_name" }
+    note: >-
+      The record gives no identified name; this is the accepted name.
+  location:
+    prop: location
+    value: { lat: -37.216667, lon: 145.433334, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-53664, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Yea Formation
+    source: { ref: src:pbdb/collection-53664, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/gorstian }
+    source:
+      - { ref: src:rickards-2000-baragwanathia, loc: "abstract" }
+      - { ref: src:pbdb/collection-53664, loc: "early_interval" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Rickards dates the earliest Baragwanathia flora of Victoria to the Gorstian by
+      graptolites; the PBDB gives only the Ludlow Series (426.7–422.7 Ma).
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/tracheophyta
+    source:
+      - { ref: src:pbdb/collection-53664, loc: "occurrence 522062, accepted_name; Lycopodophyta" }
+      - { ref: src:rickards-2000-baragwanathia, loc: "abstract" }
+    note: >-
+      A club moss, so a lycophyte: within crown vascular plants (Morris et al. 2018 date
+      Lycopodiophyta as one of its lineages, Table 3).

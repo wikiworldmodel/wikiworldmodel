@@ -1,0 +1,21 @@
+id: src:stone-2013-voyager-cosmic-rays
+type: publication
+kind: measurement
+citation: >-
+  Stone, E.C., Cummings, A.C., McDonald, F.B., Heikkila, B.C., Lal, N. & Webber, W.R.
+  (2013). Voyager 1 observes low-energy galactic cosmic rays in a region depleted of
+  heliospheric ions. Science 341(6142), 150–153.
+authors:
+  - "Stone, E.C."
+  - "Cummings, A.C."
+  - "McDonald, F.B."
+  - "Heikkila, B.C."
+  - "Lal, N."
+  - "Webber, W.R."
+published: 2013
+title: Voyager 1 observes low-energy galactic cosmic rays in a region depleted of heliospheric ions
+container: Science 341(6142), 150–153
+doi: 10.1126/science.1236408
+verified:
+  by: machine:claude-code
+  how: Abstract read verbatim from the Europe PMC record (PMID 23811227); citation from Crossref.

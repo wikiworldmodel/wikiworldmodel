@@ -1,0 +1,25 @@
+id: earth/events/atmospheric-deoxygenation
+kind: event/transition
+summary: >-
+  The projected end of Earth's oxygen-rich atmosphere: as the Sun brightens, atmospheric
+  oxygen drops sharply to levels like those of the Archean.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: End of the oxygen-rich atmosphere }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { mean: 1.08 Gyr from now, sd: 0.14 Gyr }
+    source:
+      ref: src:ozaki-reinhard-2021-oxygen-lifespan
+      loc: abstract
+      quote: more than 1% of the present atmospheric level, is 1.08 ± 0.14 billion years (1σ)
+    method: model
+    basis: projection
+    note: >-
+      The mean remaining lifespan of an atmosphere with more than 1% of today's oxygen, from
+      a stochastic biogeochemistry and climate model; the ± is 1σ, as stated. The model has
+      the deoxygenation most probably begin before moist-greenhouse conditions and the
+      large-scale loss of surface water.

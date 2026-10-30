@@ -1,0 +1,23 @@
+id: src:miao-2024-qingshania
+type: publication
+kind: measurement
+citation: >-
+  Miao, L., Yin, Z., Knoll, A.H., Qu, Y. & Zhu, M. (2024). 1.63-billion-year-old multicellular
+  eukaryotes from the Chuanlinggou Formation in North China. Science Advances 10(4), eadk3208.
+authors:
+  - "Miao, L."
+  - "Yin, Z."
+  - "Knoll, A.H."
+  - "Qu, Y."
+  - "Zhu, M."
+published: 2024
+title: "1.63-billion-year-old multicellular eukaryotes from the Chuanlinggou Formation in North China"
+container: Science Advances 10(4), eadk3208
+doi: 10.1126/sciadv.adk3208
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; full text (PMC10807817) read for the geological setting:
+    Wengjiazhuang section (40°35′15″N, 118°32′15″E), Kuancheng County, Hebei; shales about 100 m
+    below the top of the Chuanlinggou Formation; an ash bed about 40 m above the fossil horizon
+    dated by U–Pb zircon at 1634.8 ± 6.9 Ma. Metadata from Crossref.

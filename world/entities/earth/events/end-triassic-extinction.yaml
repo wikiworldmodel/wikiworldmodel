@@ -1,0 +1,51 @@
+id: earth/events/end-triassic-extinction
+kind: event/extinction
+summary: >-
+  The end-Triassic mass extinction, one of the largest of the Phanerozoic, which began with
+  the first magmatism of the Central Atlantic Magmatic Province.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: End-Triassic mass extinction }
+    source: { ref: src:davies-2017-camp-intrusive, loc: title }
+  date-blackburn-2013:
+    prop: date
+    value: { mean: 201.564 Ma, sd: 0.015 Myr }
+    source:
+      ref: src:davies-2017-camp-intrusive
+      loc: Results, citing Blackburn et al. (2013), their ref. 1
+      quote: the age for the ETE in the Newark basin is 201.564±0.015 Myr
+    method: radiometric/u-pb
+    rank: preferred
+    note: >-
+      The extinction horizon in the Newark basin, eastern North America, dated by Blackburn
+      et al. (2013) from U–Pb ages of CAMP rocks and the basin's orbitally tuned sediments;
+      Davies et al. use it as the age of the extinction. The ± level is not stated with it,
+      so it is read as 1σ.
+  date-marine:
+    prop: date
+    value: { mean: 201.51 Ma, sd: 0.15 Myr }
+    source:
+      ref: src:davies-2017-camp-intrusive
+      loc: Results, citing their refs 5 and 22
+      quote: the main phase of extinction of 201.51±0.15 Myr ago
+    method: radiometric/u-pb
+    note: >-
+      The carbon-isotope shift that marks the main phase of extinction in marine sections,
+      dated by ash beds; it overlaps the Newark age. The ± level is not stated with it, so
+      it is read as 1σ.
+relations:
+  caused-by-camp:
+    rel: caused-by
+    to: earth/lips/central-atlantic-magmatic-province
+    source:
+      - ref: src:davies-2017-camp-intrusive
+        loc: title
+        quote: End-Triassic mass extinction started by intrusive CAMP activity
+      - ref: src:blackburn-2013-camp-extinction
+        loc: abstract
+        quote: This chronology demonstrates synchroneity between the earliest volcanism and extinction
+    note: >-
+      Davies et al. (2017) tie the extinction to sills intruded about 100 kyr before the
+      first dated lavas, whose degassing of organic-rich sediments drove the climate change.

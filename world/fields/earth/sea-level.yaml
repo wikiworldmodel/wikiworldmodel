@@ -1,0 +1,21 @@
+id: field:earth/sea-level
+type: field
+title: Sea level
+quantity: global mean sea level, relative to today's
+unit: m
+description: >-
+  Long-term global mean sea level from strontium isotopes and estimates of ice volume (van der
+  Meer et al. 2022), corrected for isostasy, with its uncertainty range. It follows changes
+  over millions of years, not glacial cycles. In a few rows the value lies outside the range
+  the table gives; both are shown as given.
+grid: { kind: series }
+time: { lo: 540 Ma, hi: 0 Ma }
+data:
+  from: src:vandermeer-2022-sea-level
+  sheet: SuppTable
+  first_row: 5
+  columns: { time: A, value: AI, lo: AJ, hi: AK }
+  time_unit: Ma
+  band: the uncertainty range the table gives
+basis: reconstruction
+interp: linear

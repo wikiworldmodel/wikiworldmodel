@@ -1,0 +1,56 @@
+id: life/occurrences/sahelanthropus-toros-menalla
+kind: occurrence
+summary: >-
+  Sahelanthropus tchadensis (Toumaï) from locality TM 266, Toros-Menalla, Djurab Desert, Chad:
+  the oldest hominin. PBDB collection 59839.
+same_as: { pbdb: "occ:570375" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Sahelanthropus, Toros-Menalla" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Sahelanthropus tchadensis n. gen. n. sp.
+    source: { ref: src:pbdb/collection-59839, loc: "occurrence 570375, identified_name" }
+  location:
+    prop: location
+    value: { lat: 16.241667, lon: 17.475, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-59839, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      The PBDB takes the coordinate from Brunet et al. (2002); Lebatard et al. (2008) give
+      16°15′N, 17°29′E.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-lebatard-2008:
+    prop: date
+    value: { lo: 7.2 Ma, hi: 6.8 Ma }
+    source: { ref: src:lebatard-2008-sahelanthropus, loc: "abstract", quote: "the age of Sahelanthropus tchadensis to lie between 6.8 and 7.2 Ma" }
+    method: radiometric
+    rank: preferred
+    note: >-
+      28 authigenic 10Be/9Be ages of the anthracotheriid unit that holds the fossils.
+  date:
+    prop: date
+    value: { ref: ics/messinian }
+    source: { ref: src:pbdb/collection-59839, loc: "early_interval" }
+    method: stratigraphic
+    note: >-
+      The stage the PBDB assigns, from the associated fauna.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/hominini
+    source:
+      - { ref: src:pbdb/collection-59839, loc: "occurrence 570375, accepted_name; the PBDB classification places Sahelanthropus in Hominini" }
+      - { ref: src:brunet-2002-sahelanthropus, loc: "abstract" }
+      - { ref: src:benton-2015-animal-calibrations, loc: "CHIMPANZEE-HUMAN (87)" }
+    note: >-
+      Brunet et al. describe it as a hominid near the human–chimpanzee divergence; Benton et al.
+      use it as the minimum age of that split. Its place on the human side is debated.

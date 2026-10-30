@@ -1,0 +1,45 @@
+id: earth/samples/jack-hills-zircon
+kind: sample
+summary: >-
+  A detrital zircon from metamorphosed sediments of the Jack Hills, Narryer Gneiss Terrane,
+  Yilgarn Craton, Western Australia; when dated in 2001 it was about 130 million years older
+  than any zircon found before on Earth.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Jack Hills zircon, 4.4 Ga" }
+    unsourced: An editorial label, from the locality and the age.
+  date-wilde-2001:
+    prop: date
+    value: { mean: 4404 Ma, sd: 8 Myr }
+    source:
+      ref: src:wilde-2001-jack-hills-zircon
+      loc: abstract
+      quote: the discovery of a detrital zircon with an age as old as 4,404+/-8 Myr
+    method: radiometric/u-pb
+    note: >-
+      The crystallization age of the grain, from an ion-microprobe study. The ± level is not
+      given in the abstract, so it is read as 1σ. Valley et al. (2014, Nature Geoscience 7,
+      219–223) later confirmed by atom-probe tomography that the U–Pb age of a 4.4-Gyr-old
+      Jack Hills zircon is not biased by lead mobility; whether that is this grain was not
+      checked.
+  location:
+    prop: location
+    value: { lat: -26.1828, lon: 116.9325, frame: frame:earth/present-day }
+    source:
+      ref: src:iugs-2022-erawondoo-hill
+      loc: Location
+      quote: "26°10’58.0″S, 116°55’57.0″E"
+    method: compilation
+    note: >-
+      Erawondoo Hill in the Jack Hills, which hosts the 4.4–4.0 Ga zircons; the grain's own
+      position on the hill is not recorded here. The grain is detrital: it grew in a
+      granitic melt and was later laid down in these sediments, so where it formed is only
+      approximately here.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

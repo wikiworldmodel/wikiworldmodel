@@ -1,0 +1,51 @@
+id: life/occurrences/qingshania-kuancheng
+kind: occurrence
+summary: >-
+  Qingshania magnifica, large multicellular filaments from shales of the upper Chuanlinggou
+  Formation, Wengjiazhuang section, Kuancheng County, Hebei, North China: among the oldest
+  eukaryotes, and reported as the oldest multicellular ones.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Qingshania, Wengjiazhuang section" }
+    unsourced: An editorial label, from the taxon and the section’s name.
+  identified:
+    prop: identified_as
+    value: Qingshania magnifica
+    source: { ref: src:miao-2024-qingshania, loc: "abstract" }
+  location:
+    prop: location
+    value: { lat: 40.5875, lon: 118.5375, frame: frame:earth/present-day }
+    source: { ref: src:miao-2024-qingshania, loc: "Geological setting (40°35′15″N; 118°32′15″E)" }
+    method: survey
+    note: >-
+      The Wengjiazhuang section, converted to decimal degrees.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Chuanlinggou Formation
+    source: { ref: src:miao-2024-qingshania, loc: "Geological setting" }
+  earlier-than:
+    prop: earlier_than
+    value: { mean: 1634.8 Ma, sd: 6.9 Myr }
+    source: { ref: src:miao-2024-qingshania, loc: "Geological setting and age constraint", quote: "U-Pb zircon age of 1634.8 ± 6.9 Ma" }
+    method: radiometric/u-pb
+    note: >-
+      An ash bed about 40 m above the fossil horizon, so the fossils are older. The ± level is
+      not stated, so it is read as 1σ.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/eukaryota
+    source: { ref: src:miao-2024-qingshania, loc: "abstract" }
+    note: >-
+      Miao et al. interpret the fossils as eukaryotes, likely photosynthetic. Betts et al.
+      (2018) hold that eukaryotes of this age cannot be assigned to any crown clade, so the
+      fossils may belong to the eukaryote stem rather than the crown the molecular dates refer
+      to.

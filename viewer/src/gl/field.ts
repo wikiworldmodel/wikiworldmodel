@@ -82,6 +82,13 @@ export class FieldRenderer {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
     this.vao = gl.createVertexArray()!;
+    // Until the first tiles arrive, the map is open ocean everywhere.
+    for (const fb of this.cube.framebuffers) {
+      gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
+      gl.clearColor(OCEAN_DEFAULT, OCEAN_DEFAULT, 0, 0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+    }
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
   }
 
   addTile(id: string, lod: number, grid: FieldGrid, keyframes: { ageMa: number; elev: Int16Array; plate: Uint16Array }[]): FieldTileGPU {

@@ -105,12 +105,13 @@ export interface GeneratorConstraint {
 }
 
 export interface TileHeader {
-  format: 'lightworld-tile@2';
+  format: 'lightworld-tile@3';
   id: string;
   lod: number;
   bbox: [number, number, number, number];
   time: [number, number];
-  field: FieldContent;
+  /** the gridded field that covers the tile's span, if any does */
+  field: FieldContent | null;
   features: Feature[];
   generators: GeneratorConstraint[];
 }
@@ -146,26 +147,41 @@ export interface AlternativeGroupInfo {
   members: { id: string; title: string; description?: string; kind?: string }[];
 }
 
-export interface Tileset {
-  format: 'lightworld-tileset@2';
-  build: string;
-  field: {
-    id: string;
-    title: string;
-    units: string;
-    datum: string;
-    basis: Basis;
-    interpolation: string;
-    source: string;
-    sourceRecord?: import('./records.ts').SourceRecord;
-    /** the derived coastline field */
-    coastline: { id: string; title: string; isolineM: number };
-  };
+/**
+ * A gridded field the tiles carry, and the span it covers. Its int16 values are metres of
+ * elevation, or for `blocks` a mask: positive inside a continental block of the plate model.
+ */
+export interface FieldInfo {
+  id: string;
+  title: string;
+  mode: 'elevation' | 'blocks';
+  description?: string;
+  units?: string;
+  datum?: string;
+  basis: Basis;
+  interpolation: string;
+  /** the dataset it comes from */
+  source: string;
+  sourceRecord?: import('./records.ts').SourceRecord;
+  /** [older, younger] astronomical years, its projection included */
+  coverage: [number, number];
   keyframesMa: number[];
+  /** after its youngest keyframe, the field holds that keyframe as a projection until `until` */
+  projection?: { method: 'hold'; until: number; note?: string };
+  /** the coastline derived from it, for an elevation field */
+  coastline?: { id: string; title: string; isolineM: number };
+}
+
+export interface Tileset {
+  format: 'lightworld-tileset@3';
+  build: string;
+  /** gridded fields, in order of preference where two cover the same time */
+  fields: FieldInfo[];
+  /** the span of the world: its oldest record to its furthest projection */
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string; coverage: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string };
   /** attribution the viewer must show for the data it displays */
   credits: { label: string; license: string }[];
   /** the alternatives this build shows, by group */

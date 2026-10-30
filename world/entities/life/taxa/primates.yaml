@@ -1,0 +1,30 @@
+id: life/taxa/primates
+kind: taxon
+summary: >-
+  Primates: the crown group (strepsirrhines, haplorhines and their last common ancestor).
+  Plesiadapiforms are not members here.
+same_as: { ott: 913935, pbdb: "txn:40700" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: primates, la: Primates }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott913935: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-dos-reis-2018:
+    prop: start
+    value: { lo: 79.2 Ma, hi: 70.0 Ma }
+    source:
+      ref: src:dos-reis-2018-primate-timescale
+      loc: "Results, A Timeline of Primate Evolution (calibration strategy A, autocorrelated rates)"
+      quote: "crown Primates originated 79.2–70.0 million years ago (Ma)"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. The 95% interval under the clock model the paper prefers; independent rates
+      give older ages.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Primates (ott913935) lies within Mammalia (ott244265)" }

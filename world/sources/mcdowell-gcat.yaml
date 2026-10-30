@@ -1,0 +1,20 @@
+id: src:mcdowell-gcat
+type: database-record
+kind: compilation
+citation: >-
+  McDowell, J.C. General Catalog of Artificial Space Objects (GCAT): launch list
+  (launch.tsv) and launch points (lp.tsv), files updated 29 October 2026.
+authors:
+  - "McDowell, J.C."
+snapshot: 2026-10-30
+title: General Catalog of Artificial Space Objects
+container: planet4589.org
+url: https://planet4589.org/space/gcat/
+reliability: A curated compilation of every orbital launch, from launch records and the literature; times are UTC.
+verified:
+  by: machine:claude-code
+  how: >-
+    launch.tsv read directly: row "1957 ALP", Launch_Date "1957 Oct  4 1928:34", vehicle
+    Sputnik 8K71PS, payload PS-1, site NIIP-5 pad LC1. lp.tsv: launch point GIK-5 LC1
+    ("Ploshchadka 1 PU 17P32-5, GIK-5, Baykonur"), longitude 63.3423, latitude 45.9203,
+    error 0.0001°; sites.tsv lists GIK-5 as the later name of NIIP-5.

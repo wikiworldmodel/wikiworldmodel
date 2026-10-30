@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-715
+type: frame
+kind: plate
+title: Northeast Africa (PALEOMAP plate 715)
+entity: earth/plates/northeast-africa
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 715
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 715

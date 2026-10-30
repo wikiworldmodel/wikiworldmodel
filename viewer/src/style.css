@@ -49,6 +49,7 @@ canvas.globe:active { cursor: grabbing; }
 .sw.reconstruction { background: repeating-linear-gradient(45deg, var(--reconstruction) 0 3px, transparent 3px 6px); border: 1px solid var(--reconstruction); }
 .sw.procedural { background: var(--procedural); }
 .sw.derived { border: 1.5px dashed var(--text); }
+.sw.unknown { background: #1c2333; border: 1px solid #52607c; }
 
 .markers { position: absolute; inset: 0; pointer-events: none; }
 .credits { position: absolute; left: 16px; bottom: 6px; max-width: calc(100% - 32px); color: var(--muted); font-size: 11px; text-shadow: 0 1px 2px #000; pointer-events: none; }
@@ -110,7 +111,19 @@ body.evidence .inspect { top: 184px; }
 .tb-readout strong { color: var(--accent); font-size: 14px; }
 .tb-readout span { color: var(--muted); margin-left: 6px; }
 .tb-spacer { flex: 1; }
+.tb-strip { position: relative; }
 .tb-canvas { display: block; width: 100%; cursor: ew-resize; touch-action: none; }
+.tb-tip { position: absolute; bottom: calc(100% + 4px); max-width: 320px; padding: 4px 8px; border-radius: 6px; background: var(--panel); border: 1px solid var(--panel-border); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; pointer-events: none; }
+
+.planet { position: absolute; top: 76px; left: 16px; display: grid; gap: 2px; padding: 6px; min-width: 210px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 8px; }
+.planet-row { display: flex; justify-content: space-between; gap: 12px; padding: 3px 6px; border: 0; border-radius: 5px; background: none; text-align: left; cursor: pointer; font-size: 12px; }
+.planet-row:hover { background: rgba(255, 255, 255, 0.06); }
+.planet-title { color: var(--muted); }
+.planet-value { font-variant-numeric: tabular-nums; }
+.planet-row.empty .planet-value { color: var(--muted); }
+body.evidence .planet-row.projection .planet-value { color: var(--procedural); }
+
+.notice { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); max-width: min(560px, calc(100% - 32px)); padding: 6px 12px; border-radius: 8px; background: var(--panel); border: 1px solid var(--panel-border); color: var(--muted); font-size: 12px; text-align: center; pointer-events: none; }
 
 @media (max-width: 640px) {
   .topbar { flex-wrap: wrap; padding: 8px 16px; }
@@ -118,4 +131,5 @@ body.evidence .inspect { top: 184px; }
   .search { width: 100%; order: 3; }
   .toolbar { max-width: none; }
   .inspect { top: auto; height: 55vh; left: 16px; right: 16px; width: auto; }
+  .planet { top: auto; bottom: 28px; left: 16px; min-width: 0; }
 }

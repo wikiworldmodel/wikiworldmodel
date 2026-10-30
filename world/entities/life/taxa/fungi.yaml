@@ -1,0 +1,18 @@
+id: life/taxa/fungi
+kind: taxon
+summary: >-
+  Fungi. No molecular date is given: Lutzoni et al. (2018) give a point estimate of about 1020
+  Ma for their origin, without an interval in the text.
+same_as: { ott: 352914, pbdb: "txn:151419" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: fungi, la: Fungi }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott352914: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/eukaryota
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Fungi (ott352914) lies within Eukaryota (ott304358)" }

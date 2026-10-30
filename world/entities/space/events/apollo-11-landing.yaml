@@ -1,0 +1,23 @@
+id: space/events/apollo-11-landing
+kind: event/spaceflight
+summary: >-
+  The landing of the Apollo 11 lunar module Eagle in the Sea of Tranquility, the first
+  crewed landing on the Moon.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Apollo 11 Moon landing }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: 1969.5502619
+    source:
+      ref: src:nssdca-apollo-11-lm
+      loc: Mission Profile
+      quote: "The LM landed at 20:17:40 UT (4:17:40 p.m. EDT) on 20 July 1969"
+    method: documentary
+    note: >-
+      20:17:40 UT on 20 July 1969, written as a decimal year: the fraction of the UTC year
+      1969 that had elapsed. The landing site is on the Moon, so the record has no location
+      on Earth.

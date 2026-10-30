@@ -1,0 +1,21 @@
+id: src:trail-2009-acasta-field-report
+type: publication
+kind: measurement
+citation: >-
+  Trail, D. A field and geochemical investigation of the oldest known rocks on Earth: the
+  ca. 4.03 billion year old Acasta Gneiss complex, Canada. Project report, Lewis & Clark
+  Fund for Exploration and Field Research in Astrobiology (field work of summer 2009;
+  posted by the NASA Astrobiology Institute).
+authors:
+  - "Trail, D."
+title: "A field and geochemical investigation of the oldest known rocks on Earth: the ca. 4.03 billion year old Acasta Gneiss complex, Canada"
+container: Lewis & Clark Fund for Exploration and Field Research in Astrobiology, project report
+url: https://astrobiology.nasa.gov/nai/media/medialibrary/2015/08/Trail_LC_report.pdf
+note: The report is undated; it describes field work done in the summer of 2009.
+reliability: A short field report; its GPS positions are the author's, for his own samples.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (3-page PDF) read directly; the GPS position of sample AG09008, collected on
+    the island in the Acasta River, and the description of that island as the probable
+    place of the first ~4.0 Ga finds were read from p. 1–2.

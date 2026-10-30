@@ -1,0 +1,32 @@
+id: life/taxa/archaea
+kind: taxon
+summary: >-
+  Archaea (Archaebacteria): the crown group, from the last archaeal common ancestor. The PBDB
+  has no record of the domain (its "Archaea" is a genus of spiders), so no PBDB id is given.
+same_as: { ott: 996421 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: archaea, la: Archaea }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott996421: name (unique name \"Archaea (domain silva:D37982/#1)\")" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-betts-2018:
+    prop: start
+    value: { lo: 3.4 Ga }
+    source:
+      ref: src:betts-2018-timescale-of-life
+      loc: "abstract"
+      quote: "Eubacteria and Archaebacteria, emerged much later (<3.4 Ga)"
+    method: molecular-clock
+    note: >-
+      Only a bound: the crown group is younger than 3.4 Ga. The interval itself is drawn in the
+      paper’s Fig. 3 and was not read here.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/cellular-organisms
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Archaea (ott996421) lies within cellular organisms (ott93302)" }
+    note: >-
+      The synthesis keeps Archaea, Bacteria and Eukaryota as three branches of cellular
+      organisms; the view that eukaryotes arose within Archaea is not represented.

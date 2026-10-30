@@ -1,0 +1,30 @@
+id: life/taxa/amniota
+kind: taxon
+summary: >-
+  Amniotes: the crown group (reptiles, birds, mammals and their last common ancestor). Its
+  oldest member placed here, Hylonomus, is recorded on the reptile side, as a member of
+  Sauropsida.
+same_as: { ott: 229560, pbdb: "txn:53189" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: amniotes, la: Amniota }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott229560: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-dos-reis-2015:
+    prop: start
+    value: { lo: 331.5 Ma, hi: 318.0 Ma }
+    source:
+      ref: src:dos-reis-2015-metazoan-timescale
+      loc: "Table 1, node 72 (Amniota), Composite"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. A composite of the 95% HPD intervals of the paper’s main analyses: the
+      bird–mammal split.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/tetrapoda
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Amniota (ott229560) lies within Tetrapoda (ott229562)" }

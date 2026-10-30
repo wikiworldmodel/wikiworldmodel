@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-611
+type: frame
+kind: plate
+title: South China (PALEOMAP plate 611)
+entity: earth/plates/south-china
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 611
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 611

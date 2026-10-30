@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-101
+type: frame
+kind: plate
+title: North America (PALEOMAP plate 101)
+entity: earth/plates/north-america
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 101
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 101

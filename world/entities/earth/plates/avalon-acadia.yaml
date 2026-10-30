@@ -1,0 +1,9 @@
+id: earth/plates/avalon-acadia
+kind: plate
+summary: Plate 108 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Avalon/Acadia }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 108", quote: "AVA-NAM Avalon/Acadia-North America" }

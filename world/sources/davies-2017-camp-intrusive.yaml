@@ -1,0 +1,25 @@
+id: src:davies-2017-camp-intrusive
+type: publication
+kind: measurement
+citation: >-
+  Davies, J.H.F.L., Marzoli, A., Bertrand, H., Youbi, N., Ernesto, M. & Schaltegger, U.
+  (2017). End-Triassic mass extinction started by intrusive CAMP activity. Nature
+  Communications 8, 15596.
+authors:
+  - "Davies, J.H.F.L."
+  - "Marzoli, A."
+  - "Bertrand, H."
+  - "Youbi, N."
+  - "Ernesto, M."
+  - "Schaltegger, U."
+published: 2017
+title: End-Triassic mass extinction started by intrusive CAMP activity
+container: Nature Communications 8, 15596
+doi: 10.1038/ncomms15596
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract and full text read from Europe PMC (PMC5460029): the Kakoulima age and the
+    statement that reported ages carry 2σ uncertainties (Methods), and the extinction ages
+    the paper takes from Blackburn et al. (2013) and the marine record. Citation from
+    Crossref.

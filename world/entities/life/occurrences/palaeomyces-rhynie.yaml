@@ -1,0 +1,46 @@
+id: life/occurrences/palaeomyces-rhynie
+kind: occurrence
+summary: >-
+  The fungus Palaeomyces gordonii in the Rhynie chert, Aberdeenshire, Scotland. Not the oldest
+  fungus known: older fungal hyphae and spores from the Ordovician of Wisconsin (about 460 Ma;
+  Redecker et al. 2000) could not be located from a source read. PBDB collection 10721.
+same_as: { pbdb: "occ:129836" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Palaeomyces, Rhynie chert" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Palaeomyces gordonii
+    source: { ref: src:pbdb/collection-10721, loc: "occurrence 129836, identified_name" }
+  location:
+    prop: location
+    value: { lat: 57.337002, lon: -2.85, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-10721, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-313
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Dryden Flags Formation
+    source: { ref: src:pbdb/collection-10721, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/pragian }
+    source: { ref: src:pbdb/collection-10721, loc: "early_interval" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Assigned to the Pragian stage. The PBDB’s own ages for it (max_ma 413.02, min_ma 410.62)
+      come from its time scale; here the stage’s ages come from its period record.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/fungi
+    source: { ref: src:pbdb/collection-10721, loc: "occurrence 129836, accepted_name Palaeomyces; the PBDB classification places Palaeomyces in Fungi" }

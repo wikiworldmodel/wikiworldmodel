@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-313
+type: frame
+kind: plate
+title: MDV-NHL (PALEOMAP plate 313)
+entity: earth/plates/mdv-nhl
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 313
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 313

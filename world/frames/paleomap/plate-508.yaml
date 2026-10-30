@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-508
+type: frame
+kind: plate
+title: Sinai (PALEOMAP plate 508)
+entity: earth/plates/sinai
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 508
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 508

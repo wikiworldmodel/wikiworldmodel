@@ -1,0 +1,21 @@
+id: field:earth/surface-temperature
+type: field
+title: Global mean surface temperature
+quantity: global average surface temperature
+unit: °C
+description: >-
+  The Scotese et al. (2021) curve of global average temperature, as republished by van der
+  Meer et al. (2022), with their range around it. It is one reconstruction among several: the
+  data assimilation of Judd et al. (2024) is warmer by as much as 13 °C in places, but its
+  data have no open licence, so a published build cannot include them.
+grid: { kind: series }
+time: { lo: 540 Ma, hi: 0 Ma }
+data:
+  from: src:vandermeer-2022-sea-level
+  sheet: SuppTable
+  first_row: 5
+  columns: { time: A, value: K, lo: L, hi: M }
+  time_unit: Ma
+  band: the range van der Meer et al. (2022) give around the curve
+basis: reconstruction
+interp: linear

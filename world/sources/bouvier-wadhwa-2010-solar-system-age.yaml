@@ -1,0 +1,18 @@
+id: src:bouvier-wadhwa-2010-solar-system-age
+type: publication
+kind: measurement
+citation: >-
+  Bouvier, A. & Wadhwa, M. (2010). The age of the Solar System redefined by the oldest
+  Pb–Pb age of a meteoritic inclusion. Nature Geoscience 3(9), 637–641.
+authors:
+  - "Bouvier, A."
+  - "Wadhwa, M."
+published: 2010
+title: The age of the Solar System redefined by the oldest Pb–Pb age of a meteoritic inclusion
+container: Nature Geoscience 3(9), 637–641
+doi: 10.1038/ngeo941
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read on the publisher's article page (nature.com); citation from Crossref. The
+    abstract gives the age without its uncertainty, which is in the full text, not reached.

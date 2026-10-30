@@ -1,0 +1,34 @@
+id: space/events/solar-system-formation
+kind: event/formation
+summary: >-
+  The formation of the Solar System, dated by its oldest solids: the calcium–aluminium-rich
+  inclusions (CAIs) found in primitive meteorites.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Formation of the Solar System }
+    unsourced: An editorial label for the event that the ages of the first solids date.
+  date-connelly-2012:
+    prop: date
+    value: { mean: 4567.30 Ma, sd: 0.16 Myr }
+    source:
+      ref: src:connelly-2012-cai-chronology
+      loc: abstract
+      quote: corresponding to an age of 4567.30 ± 0.16 million years
+    method: radiometric/pb-pb
+    rank: preferred
+    note: >-
+      U-corrected Pb–Pb ages of individual CAIs, which define a brief formation interval.
+      The confidence level of the ± was not found, so it is read as 1σ, the wider reading.
+  date-bouvier-wadhwa-2010:
+    prop: date
+    value: 4568.2 Ma
+    source:
+      ref: src:bouvier-wadhwa-2010-solar-system-age
+      loc: abstract
+      quote: which indicate that the inclusion formed 4,568.2 million years ago
+    method: radiometric/pb-pb
+    note: >-
+      The Pb–Pb age of a single CAI from the Northwest Africa 2364 CV3 chondrite. The
+      abstract gives no uncertainty, so the date is recorded as a point.

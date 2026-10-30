@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-702
+type: frame
+kind: plate
+title: Madagascar (PALEOMAP plate 702)
+entity: earth/plates/madagascar
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 702
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 702

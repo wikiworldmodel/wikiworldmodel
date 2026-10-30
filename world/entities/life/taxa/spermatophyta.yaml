@@ -1,0 +1,44 @@
+id: life/taxa/spermatophyta
+kind: taxon
+summary: >-
+  Seed plants with their stem lineage: the lineage since its split from the ferns. The first
+  seeds, such as those of the Famennian Elkinsia, appear later on that stem; the crown group
+  (living gymnosperms and flowering plants) is younger still.
+same_as: { ott: 10218, pbdb: "txn:55350" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: seed plants, la: Spermatophyta }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott10218: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-morris-2018-euphyllophyta:
+    prop: start
+    value: { lo: 437.6 Ma, hi: 402.2 Ma }
+    source:
+      ref: src:morris-2018-land-plant-timescale
+      loc: "Table 3, Euphyllophyta (monophyletic bryophytes)"
+    method: molecular-clock
+    rank: preferred
+    note: >-
+      The split of the seed-plant lineage from the ferns (the crown age of Euphyllophyta), which
+      is the origin of seed plants with their stem: the 95% HPD interval; under the
+      hornworts-sister topology it is 435.7–402.2 Ma.
+  start-morris-2018:
+    prop: start
+    value: { lo: 365.0 Ma, hi: 330.9 Ma }
+    source:
+      ref: src:morris-2018-land-plant-timescale
+      loc: "Table 3, Spermatophyta (monophyletic bryophytes)"
+    method: molecular-clock
+    rank: deprecated
+    note: >-
+      The 95% HPD interval for the crown group (living gymnosperms and flowering plants), kept
+      for reference but deprecated: its middle, about 348 Ma, is younger than the Famennian
+      seeds of Elkinsia (372.2–358.9 Ma), which lie on the seed-plant stem. No molecular
+      estimate for the stem’s origin was found.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/tracheophyta
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Spermatophyta (ott10218) lies within Tracheophyta (ott10210)" }

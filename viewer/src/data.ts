@@ -1,6 +1,6 @@
 // Loading a build: its index files, and records on demand. Every URL is under the build's
 // own directory, so a link that names a build keeps showing that build.
-import type { BuildIndex, EntityRecord, PeriodsFile, SearchFile } from '../../core/records.ts';
+import type { BuildIndex, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../core/records.ts';
 import { RotationModel } from '../../core/rotation-model.ts';
 import { PRESENT_YEAR } from '../../core/time.ts';
 import type { FramesFile, Tileset } from '../../core/tileset.ts';
@@ -13,6 +13,7 @@ export interface Build {
   model: RotationModel;
   periods: PeriodsFile;
   search: SearchFile;
+  series: SeriesFile;
 }
 
 /** Every URL the viewer fetched, in order; tests read it to check what scrubbing loads. */
@@ -39,17 +40,18 @@ export async function latestBuild(root: string): Promise<string> {
 export async function loadBuild(root: string, id: string): Promise<Build> {
   const base = `${root}builds/${id}/`;
   const tileset = await getJSON<Tileset>(`${base}tileset.json`);
-  const [frames, periods, search] = await Promise.all([
+  const [frames, periods, search, series] = await Promise.all([
     getJSON<FramesFile>(base + tileset.files.frames),
     getJSON<PeriodsFile>(base + tileset.files.periods),
     getJSON<SearchFile>(base + tileset.files.search),
+    getJSON<SeriesFile>(base + tileset.files.series),
   ]);
   // A period that still holds has no end; on the time axis it runs to the present.
   for (const p of periods.periods) {
     p.end ??= PRESENT_YEAR;
     for (const v of Object.values(p.variants ?? {})) v.end ??= PRESENT_YEAR;
   }
-  return { id, base, tileset, frames, model: new RotationModel(frames.rotations), periods, search };
+  return { id, base, tileset, frames, model: new RotationModel(frames.rotations), periods, search, series };
 }
 
 const records = new Map<string, Promise<EntityRecord>>();

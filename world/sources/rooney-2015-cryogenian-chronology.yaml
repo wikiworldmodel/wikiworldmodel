@@ -1,0 +1,19 @@
+id: src:rooney-2015-cryogenian-chronology
+type: publication
+kind: measurement
+citation: >-
+  Rooney, A.D., Strauss, J.V., Brandon, A.D. & Macdonald, F.A. (2015). A Cryogenian
+  chronology: Two long-lasting synchronous Neoproterozoic glaciations. Geology 43(5),
+  459–462.
+authors:
+  - "Rooney, A.D."
+  - "Strauss, J.V."
+  - "Brandon, A.D."
+  - "Macdonald, F.A."
+published: 2015
+title: "A Cryogenian chronology: Two long-lasting synchronous Neoproterozoic glaciations"
+container: Geology 43(5), 459–462
+doi: 10.1130/G36511.1
+verified:
+  by: machine:claude-code
+  how: Abstract read from the OpenAlex record (reconstructed from its index); citation from Crossref.

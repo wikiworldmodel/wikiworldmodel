@@ -1,0 +1,27 @@
+id: life/taxa/tracheophyta
+kind: taxon
+summary: >-
+  Vascular plants: the crown group (lycophytes, ferns and seed plants).
+same_as: { ott: 10210, pbdb: "txn:55150" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: vascular plants, la: Tracheophyta }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott10210: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-morris-2018:
+    prop: start
+    value: { lo: 450.8 Ma, hi: 431.2 Ma }
+    source:
+      ref: src:morris-2018-land-plant-timescale
+      loc: "Table 3, Tracheophyta (monophyletic bryophytes)"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. 95% HPD interval; under the hornworts-sister topology it is 450.8–430.4 Ma.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/embryophyta
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Tracheophyta (ott10210) lies within Embryophyta (ott56610)" }

@@ -1,0 +1,28 @@
+id: src:benton-2015-animal-calibrations
+type: publication
+kind: review
+citation: >-
+  Benton, M.J., Donoghue, P.C.J., Vinther, J., Asher, R.J., Friedman, M. & Near, T.J. (2015).
+  Constraints on the timescale of animal evolutionary history. Palaeontologia Electronica
+  18.1.1FC, 1–106.
+authors:
+  - "Benton, M.J."
+  - "Donoghue, P.C.J."
+  - "Vinther, J."
+  - "Asher, R.J."
+  - "Friedman, M."
+  - "Near, T.J."
+published: 2015
+title: "Constraints on the timescale of animal evolutionary history"
+container: Palaeontologia Electronica 18.1.1FC, 1–106
+doi: 10.26879/424
+url: https://palaeo-electronica.org/content/fc-1
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the journal’s web page for the oldest crown-group fossils and their ages:
+    crown Bilateria (Kimberella quadrata, White Sea), crown Tetrapoda (Lethiscus stocki, Wardie
+    Shales, Holkerian), crown Amniota (Hylonomus lyelli, Joggins Formation, later Bashkirian),
+    crown Neornithes (Vegavis iaai, Vega Island), crown Mammalia (Ambondro mahabo, Bathonian),
+    crown Primates (Altiatlasius koulchii, late Thanetian), the chimpanzee–human split
+    (Sahelanthropus) and crown Vertebrata (Arandaspis prionotolepis, Darriwilian).

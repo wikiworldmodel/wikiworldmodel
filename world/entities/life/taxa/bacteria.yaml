@@ -1,0 +1,28 @@
+id: life/taxa/bacteria
+kind: taxon
+summary: >-
+  Bacteria (Eubacteria): the crown group, from the last bacterial common ancestor.
+same_as: { ott: 844192, pbdb: "txn:288515" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: bacteria, la: Bacteria }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott844192: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-betts-2018:
+    prop: start
+    value: { lo: 3.4 Ga }
+    source:
+      ref: src:betts-2018-timescale-of-life
+      loc: "abstract"
+      quote: "Eubacteria and Archaebacteria, emerged much later (<3.4 Ga)"
+    method: molecular-clock
+    note: >-
+      Only a bound: the crown group is younger than 3.4 Ga. The interval itself is drawn in the
+      paper’s Fig. 3 and was not read here.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/cellular-organisms
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Bacteria (ott844192) lies within cellular organisms (ott93302)" }

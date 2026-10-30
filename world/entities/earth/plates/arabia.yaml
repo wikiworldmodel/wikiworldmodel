@@ -1,0 +1,12 @@
+id: earth/plates/arabia
+kind: plate
+summary: Plate 503 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Arabia }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 503", quote: "ARB-NE AFR CRS 05/16/92" }
+    note: >-
+      The label gives only the plate's code, ARB, moving against northeast Africa; the file
+      does not spell the code out, so "Arabia" is an editorial reading of it.

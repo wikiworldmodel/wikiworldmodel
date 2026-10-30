@@ -1,0 +1,30 @@
+id: src:brunet-2002-sahelanthropus
+type: publication
+kind: measurement
+citation: >-
+  Brunet, M., Guy, F., Pilbeam, D., Mackaye, H.T., Likius, A., Ahounta, D., Beauvilain, A.,
+  Blondel, C., Bocherens, H., Boisserie, J.-R. et al. (2002). A new hominid from the Upper
+  Miocene of Chad, Central Africa. Nature 418(6894), 145–151.
+authors:
+  - "Brunet, M."
+  - "Guy, F."
+  - "Pilbeam, D."
+  - "Mackaye, H.T."
+  - "Likius, A."
+  - "Ahounta, D."
+  - "Beauvilain, A."
+  - "Blondel, C."
+  - "Bocherens, H."
+  - "Boisserie, J.-R."
+published: 2002
+title: "A new hominid from the Upper Miocene of Chad, Central Africa"
+container: Nature 418(6894), 145–151
+doi: 10.1038/nature00879
+note: >-
+  The author list is shortened to its first ten; Crossref lists 38 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC: six hominid specimens from Chad, between 6 and 7 million years
+    old, are a new genus and species of the hominid clade, from near the divergence of the human
+    and chimpanzee lineages.

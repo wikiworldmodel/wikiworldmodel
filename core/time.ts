@@ -6,7 +6,7 @@
 //   80 CE, 44 BCE  calendar years (whole years)
 //   4550 BP        years before 1950
 //   66.043 Ma      also ka, Ga
-//   5 Gyr from now also Myr; counted from the present of the axis (1950)
+//   5 Gyr from now also kyr and Myr; counted from the present of the axis (1950)
 // A time value is a point, an interval {lo, hi} (lo is always the earlier time; either end
 // may be left open), a normal distribution {mean, sd}, `unknown`, or a reference to another
 // record's interval or one of its edges, {ref, edge, lag}. Durations (sd, lag) are a number
@@ -43,7 +43,7 @@ export type TimeValue =
 export class TimeError extends Error {}
 
 const AGE_UNITS: Record<string, number> = { BP: 1, ka: 1e3, Ma: 1e6, Ga: 1e9 };
-const FUTURE_UNITS: Record<string, number> = { Myr: 1e6, Gyr: 1e9 };
+const FUTURE_UNITS: Record<string, number> = { kyr: 1e3, Myr: 1e6, Gyr: 1e9 };
 const DURATION_UNITS: Record<string, number> = { yr: 1, kyr: 1e3, Myr: 1e6, Gyr: 1e9 };
 
 /**
@@ -55,8 +55,8 @@ export function parsePoint(input: TimePointInput): { t: number; wholeYear: boole
     if (!Number.isFinite(input)) throw new TimeError(`not a time: ${input}`);
     return { t: input, wholeYear: Number.isInteger(input) };
   }
-  const m = /^\s*(-?\d+(?:\.\d+)?(?:e[+-]?\d+)?)\s+(CE|BCE|BP|ka|Ma|Ga|Myr from now|Gyr from now)\s*$/.exec(input);
-  if (!m) throw new TimeError(`not a time: "${input}" (write a year, or a number with CE, BCE, BP, ka, Ma, Ga, or Myr/Gyr from now)`);
+  const m = /^\s*(-?\d+(?:\.\d+)?(?:e[+-]?\d+)?)\s+(CE|BCE|BP|ka|Ma|Ga|kyr from now|Myr from now|Gyr from now)\s*$/.exec(input);
+  if (!m) throw new TimeError(`not a time: "${input}" (write a year, or a number with CE, BCE, BP, ka, Ma, Ga, or kyr/Myr/Gyr from now)`);
   const x = Number(m[1]);
   const unit = m[2];
   if (unit === 'CE') return { t: x, wholeYear: Number.isInteger(x) };
@@ -150,6 +150,13 @@ export function formatTime(year: number, resolution?: number): string {
   if (year === -Infinity) return 'open';
   if (year === Infinity) return 'open';
   const age = PRESENT_YEAR - year;
+  // The future, beyond the span where a calendar year reads naturally.
+  if (age <= -1e4) {
+    const ahead = -age;
+    const [div, unit] = ahead >= 1e9 ? [1e9, 'Gyr'] : ahead >= 1e6 ? [1e6, 'Myr'] : [1e3, 'kyr'];
+    const digits = resolution ? Math.max(0, Math.min(6, Math.ceil(-Math.log10(resolution / div)))) : 2;
+    return `${trimNumber(ahead / div, digits)} ${unit} from now`;
+  }
   if (age >= 1e6) {
     const digits = resolution ? Math.max(0, Math.min(6, Math.ceil(-Math.log10(resolution / 1e6)))) : age >= 1e8 ? 1 : 2;
     return `${trimNumber(age / 1e6, digits)} Ma`;

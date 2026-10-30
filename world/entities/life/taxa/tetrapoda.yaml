@@ -1,0 +1,28 @@
+id: life/taxa/tetrapoda
+kind: taxon
+summary: >-
+  Tetrapods: the crown group (amphibians, amniotes and their last common ancestor). The older,
+  Devonian limbed vertebrates lie on its stem and are not members here.
+same_as: { ott: 229562, pbdb: "txn:53190" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: tetrapods, la: Tetrapoda }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott229562: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-dos-reis-2015:
+    prop: start
+    value: { lo: 354.0 Ma, hi: 338.2 Ma }
+    source:
+      ref: src:dos-reis-2015-metazoan-timescale
+      loc: "Table 1, node 71 (Tetrapoda), Composite"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. A composite of the 95% HPD intervals of the paper’s main analyses.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/gnathostomata
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Tetrapoda (ott229562) lies within Gnathostomata (ott278114)" }

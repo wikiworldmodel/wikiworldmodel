@@ -1,0 +1,16 @@
+id: src:harper-2024-late-ordovician-extinction
+type: publication
+kind: review
+citation: >-
+  Harper, D.A.T. (2024). Late Ordovician Mass Extinction: Earth, fire and ice. National
+  Science Review 11(1), nwad319.
+authors:
+  - "Harper, D.A.T."
+published: 2024
+title: "Late Ordovician Mass Extinction: Earth, fire and ice"
+container: National Science Review 11(1), nwad319
+doi: 10.1093/nsr/nwad319
+note: Published online in December 2023 (Crossref's issue date); the volume is 2024's.
+verified:
+  by: machine:claude-code
+  how: Abstract read verbatim from the Europe PMC record (PMID 38250024); citation from Crossref.

@@ -1,0 +1,22 @@
+id: src:van-der-marel-2012-m31-future
+type: publication
+kind: model
+citation: >-
+  van der Marel, R.P., Besla, G., Cox, T.J., Sohn, S.T. & Anderson, J. (2012). The M31
+  velocity vector. III. Future Milky Way M31–M33 orbital evolution, merging, and fate of
+  the Sun. The Astrophysical Journal 753(1), 9.
+authors:
+  - "van der Marel, R.P."
+  - "Besla, G."
+  - "Cox, T.J."
+  - "Sohn, S.T."
+  - "Anderson, J."
+published: 2012
+title: "The M31 Velocity Vector. III. Future Milky Way M31–M33 Orbital Evolution, Merging, and Fate of the Sun"
+container: The Astrophysical Journal 753(1), 9
+doi: 10.1088/0004-637X/753/1/9
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from arXiv (1205.6865); that quoted values are medians with 68.3%
+    confidence regions was read in the arXiv full text (section 4). Citation from Crossref.

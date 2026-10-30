@@ -1,0 +1,23 @@
+id: src:kumar-2005-human-chimp
+type: publication
+kind: model
+citation: >-
+  Kumar, S., Filipski, A., Swarna, V., Walker, A. & Hedges, S.B. (2005). Placing confidence
+  limits on the molecular age of the human–chimpanzee divergence. Proceedings of the National
+  Academy of Sciences 102(52), 18842–18847.
+authors:
+  - "Kumar, S."
+  - "Filipski, A."
+  - "Swarna, V."
+  - "Walker, A."
+  - "Hedges, S.B."
+published: 2005
+title: "Placing confidence limits on the molecular age of the human–chimpanzee divergence"
+container: Proceedings of the National Academy of Sciences 102(52), 18842–18847
+doi: 10.1073/pnas.0509585102
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC and Crossref: the generally accepted 23.8–35 Ma for the ape–Old
+    World monkey divergence yields 4.98–7.02 Ma for the human–chimpanzee divergence. The full
+    text was not read.

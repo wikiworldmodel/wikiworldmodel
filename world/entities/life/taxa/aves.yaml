@@ -1,0 +1,32 @@
+id: life/taxa/aves
+kind: taxon
+summary: >-
+  Birds: the crown group (Neornithes, modern birds). Stem birds such as Archaeopteryx are not
+  members here.
+same_as: { ott: 81461, pbdb: "txn:36616" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: birds, la: Aves }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott81461: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-claramunt-cracraft-2015:
+    prop: start
+    value: { lo: 114.3 Ma, hi: 84.2 Ma }
+    source:
+      ref: src:claramunt-cracraft-2015-bird-timetree
+      loc: "Results: crown age of Neornithes, genomic data set"
+      quote: "95% highest posterior density (HPD), 84.2 to 114.3 Ma"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. The 95% HPD interval from the genomic data set (median 96.6 Ma); the RAG data
+      set gives 106.8–79.8 Ma.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/dinosauria
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott81461, lineage: Aves < Coelurosauria < Theropoda < Saurischia < Dinosauria" }
+    note: >-
+      From the taxonomy rather than the synthesis tree, in which Dinosauria is a broken taxon.

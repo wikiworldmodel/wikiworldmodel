@@ -1,6 +1,7 @@
 """Import the PALEOMAP PaleoDEMs and plate model into Lightworld's field format.
 
     python paleomap.py fields <request.json>
+    python paleomap.py blocks <request.json>
     python paleomap.py points <request.json>
 
 `fields` normalizes each PaleoDEM snapshot in the requested age range onto one grid
@@ -9,6 +10,11 @@ the plate that contains it at that age, by partitioning with the PALEOMAP plate 
 reconstructed to that age. Nodes outside every polygon get plate 0 (they do not move).
 It writes, per snapshot, `elev/<age>.i16` (int16 metres) and `plate/<age>.u16` (uint16
 plate id), little-endian, row-major from the north-west corner, plus `meta.json`.
+
+`blocks` does the partition alone, on the same grid, at the requested ages: where the plate
+model puts its continental blocks when there is no elevation grid. A polygon whose plate
+has no rotation at an age is left out at that age, since the model does not say where it
+was. It writes `plate/<age>.u16` and `meta.json`.
 
 `points` resolves present-day points to the plate polygon that contains them, and reports
 whether that polygon exists over the requested ages.
@@ -140,6 +146,35 @@ def fields(req):
         f.write('\n')
 
 
+def blocks(req):
+    out = req['out']
+    os.makedirs(os.path.join(out, 'plate'), exist_ok=True)
+    rotations = pygplates.RotationModel(req['rotations'])
+    polygons = list(pygplates.FeatureCollection(req['polygons']))
+    snapshots = []
+    for age in req['agesMa']:
+        alive = [f for f in polygons if f.is_valid_at_time(age)]
+        placed = [f for f in alive if rotations.get_rotation(float(age), f.get_reconstruction_plate_id(), anchor_plate_id=0,
+                                                             use_identity_for_missing_plate_ids=False) is not None]
+        plates = partition(placed, rotations, age)
+        inside = plates > 0
+        plates.astype('<u2').tofile(os.path.join(out, 'plate', f'{age}.u16'))
+        snapshots.append({'ageMa': age, 'polygons': len(placed), 'polygons_without_rotation': len(alive) - len(placed),
+                          'nodes_on_plates': round(float(inside.mean()), 6), 'plates': sorted(int(p) for p in np.unique(plates) if p)})
+        print(f'  {age:4d} Ma: {len(placed)} polygons ({len(alive) - len(placed)} without a rotation), nodes on plates {inside.mean():.3f}', flush=True)
+    doc = {
+        'format': 'lightworld-blocks-import@1',
+        'grid': {'width': WIDTH, 'height': HEIGHT, 'lon0': -180, 'lat0': 90, 'step': 1,
+                 'order': 'row-major from (90N, 180W), longitude fastest'},
+        'arrays': {'plate': 'uint16 little-endian plate id, plate/<age>.u16'},
+        'pygplates': pygplates.__version__,
+        'snapshots': snapshots,
+    }
+    with open(os.path.join(out, 'meta.json'), 'w') as f:
+        json.dump(doc, f, indent=1, sort_keys=True)
+        f.write('\n')
+
+
 def points(req):
     rotations = pygplates.RotationModel(req['rotations'])
     polygons = pygplates.FeatureCollection(req['polygons'])
@@ -166,4 +201,4 @@ if __name__ == '__main__':
     command, request_path = sys.argv[1], sys.argv[2]
     with open(request_path) as f:
         request = json.load(f)
-    {'fields': fields, 'points': points}[command](request)
+    {'fields': fields, 'blocks': blocks, 'points': points}[command](request)

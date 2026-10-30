@@ -1,0 +1,53 @@
+id: life/occurrences/altiatlasius-adrar-mgorn
+kind: occurrence
+summary: >-
+  Altiatlasius koulchii from the Jbel Guersif Formation at Adrar Mgorn 1, Ouarzazate Basin,
+  Morocco: regarded as the oldest crown-group primate. PBDB collection 88301.
+same_as: { pbdb: "occ:807748" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Altiatlasius, Adrar Mgorn" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Altiatlasius koulchii n. gen. n. sp.
+    source: { ref: src:pbdb/collection-88301, loc: "occurrence 807748, identified_name" }
+  location:
+    prop: location
+    value: { lat: 31.610001, lon: -5.66, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-88301, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      The PBDB’s coordinate is based on the Adrar Mkorn ridge.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-714
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Jbel Guersif Formation
+    source: { ref: src:pbdb/collection-88301, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/thanetian }
+    source:
+      - { ref: src:pbdb/collection-88301, loc: "early_interval" }
+      - { ref: src:benton-2015-animal-calibrations, loc: "CROWN PRIMATES (81), age justification" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Benton et al. narrow it, by magnetostratigraphy, to the late or latest Thanetian.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/primates
+    source:
+      - { ref: src:pbdb/collection-88301, loc: "occurrence 807748, accepted_name; Mammalia, Primates" }
+      - { ref: src:benton-2015-animal-calibrations, loc: "CROWN PRIMATES (81), fossil taxon and phylogenetic justification" }
+    note: >-
+      Benton et al. regard it as the oldest euprimate; the earliest undoubted euprimates, such
+      as Teilhardina, are early Eocene.

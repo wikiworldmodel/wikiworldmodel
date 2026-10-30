@@ -1,0 +1,53 @@
+id: life/occurrences/hylonomus-joggins
+kind: occurrence
+summary: >-
+  Hylonomus lyelli from coal group 15, section XV, division 4 of the Joggins Formation, Coal
+  Mine Point, Nova Scotia: the oldest reptile, and so the oldest crown-group amniote. PBDB
+  collection 28069.
+same_as: { pbdb: "occ:297342" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Hylonomus, Joggins" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Hylonomus lyelli n. gen. n. sp.
+    source: { ref: src:pbdb/collection-28069, loc: "occurrence 297342, identified_name" }
+  location:
+    prop: location
+    value: { lat: 45.698612, lon: -64.451385, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-28069, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-108
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Joggins Formation
+    source: { ref: src:pbdb/collection-28069, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/bashkirian }
+    source:
+      - { ref: src:benton-2015-animal-calibrations, loc: "CROWN AMNIOTA (47), age justification" }
+      - { ref: src:pbdb/collection-28069, loc: "early_interval" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Benton et al. place the Joggins Formation in the Langsettian, in the later part of the
+      Bashkirian Stage; the PBDB gives Westphalian A (318.7–316.9 Ma).
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/sauropsida
+    source:
+      - { ref: src:pbdb/collection-28069, loc: "occurrence 297342, accepted_name; Reptilia, which the PBDB places in Sauropsida" }
+      - { ref: src:benton-2015-animal-calibrations, loc: "CROWN AMNIOTA (47), phylogenetic justification" }
+    note: >-
+      Benton et al. place Hylonomus in Eureptilia, on the stem to Diapsida, and use it as the
+      oldest crown amniote; the amniotes’ bound follows from Sauropsida descending from Amniota.

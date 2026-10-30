@@ -1,0 +1,23 @@
+id: src:bobrovskiy-2018-dickinsonia
+type: publication
+kind: measurement
+citation: >-
+  Bobrovskiy, I., Hope, J.M., Ivantsov, A., Nettersheim, B.J., Hallmann, C. & Brocks, J.J.
+  (2018). Ancient steroids establish the Ediacaran fossil Dickinsonia as one of the earliest
+  animals. Science 361(6408), 1246–1249.
+authors:
+  - "Bobrovskiy, I."
+  - "Hope, J.M."
+  - "Ivantsov, A."
+  - "Nettersheim, B.J."
+  - "Hallmann, C."
+  - "Brocks, J.J."
+published: 2018
+title: "Ancient steroids establish the Ediacaran fossil Dickinsonia as one of the earliest animals"
+container: Science 361(6408), 1246–1249
+doi: 10.1126/science.aat7228
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC: Dickinsonia and its relatives produced only cholesteroids, a
+    hallmark of animals. The full text, with the sampled localities, was not read.

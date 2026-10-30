@@ -1,0 +1,23 @@
+id: src:pbdb/collection-196693
+type: database-record
+kind: compilation
+snapshot: "2026-10-30"
+citation: >-
+  The Paleobiology Database, collection 196693 ("Jebel Irhoud", MA), occurrence 1419170. Read through
+  the PBDB data service (data1.2) on 30 October 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=196693
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 30 October 2026, states "Data License: Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/). The slice's earlier PBDB
+  records, from a 2022 download, give CC BY 4.0.
+reliability: >-
+  A database record compiled from the literature: collection reference Hublin et al. 2017 (Nature 546, 289–292); occurrence
+  reference Hublin et al. 2017. Interval ages are the PBDB's own, for the interval the collection is
+  assigned to; the primary references were not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=196693&show=loc,strat,ref and occs/list.json?coll_id=196693&show=ident,class:
+    collection name "Jebel Irhoud", lat 31.869167, lng -8.874444, geographic note "Co-ordinates based on the mountain of Djebel Irhoud.", early_interval "Middle Pleistocene", max_ma 0.774, min_ma 0.129; occurrence 1419170, identified_name empty, accepted_name "Homo sapiens".

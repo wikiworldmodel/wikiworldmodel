@@ -1,0 +1,26 @@
+id: src:sawala-2025-mw-m31
+type: publication
+kind: model
+citation: >-
+  Sawala, T., Delhomelle, J., Deason, A.J., Frenk, C.S., Häkkinen, J., Johansson, P.H.,
+  Keitaanranta, A., Rawlings, A. & Wright, R. (2025). No certainty of a Milky Way–Andromeda
+  collision. Nature Astronomy 9(8), 1206–1217.
+authors:
+  - "Sawala, T."
+  - "Delhomelle, J."
+  - "Deason, A.J."
+  - "Frenk, C.S."
+  - "Häkkinen, J."
+  - "Johansson, P.H."
+  - "Keitaanranta, A."
+  - "Rawlings, A."
+  - "Wright, R."
+published: 2025
+title: No certainty of a Milky Way–Andromeda collision
+container: Nature Astronomy 9(8), 1206–1217
+doi: 10.1038/s41550-025-02563-1
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract and the median merger times read on the publisher's article page (nature.com);
+    the same values are in the arXiv preprint 2408.00064. Citation from Crossref.

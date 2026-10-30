@@ -1,0 +1,48 @@
+id: life/taxa/hominini
+kind: taxon
+summary: >-
+  Hominins: the human lineage since its split from the chimpanzees’, so its origin is the
+  human–chimpanzee divergence. Open Tree’s taxonomy has no tribe Hominini, and the PBDB’s
+  Hominini (txn:91486) also includes Pan, so no external id is given.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: hominins, la: Hominini }
+    source: { ref: src:pbdb/taxon-91486, loc: "taxon 91486: Hominini Gray 1825" }
+    note: The Latin name as the PBDB has it, for a broader tribe that includes the chimpanzees; the English name is an editorial gloss.
+  start-langergraber-2012:
+    prop: start
+    value: { lo: 13 Ma, hi: 7 Ma }
+    source:
+      ref: src:langergraber-2012-ape-generation-times
+      loc: "Results"
+      quote: "between 7 and 13 million years"
+    method: molecular-clock
+    rank: preferred
+    note: >-
+      The human–chimpanzee split, from generation times of wild chimpanzees and gorillas and the
+      range of published human mutation rates per generation, not from fossil calibrations; the
+      range spans those rates and generation times and is not a 95% interval. Preferred because
+      the whole range is older than Sahelanthropus.
+  start-kumar-2005:
+    prop: start
+    value: { lo: 7.02 Ma, hi: 4.98 Ma }
+    source:
+      ref: src:kumar-2005-human-chimp
+      loc: "abstract"
+      quote: "yields a range of 4.98-7.02 millions of years ago for human-chimpanzee divergence"
+    method: molecular-clock
+    note: >-
+      The human–chimpanzee divergence. Not a 95% interval: the range the paper derives from the
+      generally accepted 23.8–35 Ma for the ape–Old World monkey split. Not preferred: its
+      middle, 6.0 Ma, is younger than Sahelanthropus (6.8–7.2 Ma); only its oldest part agrees
+      with that fossil.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/primates
+    source: { ref: src:pbdb/taxon-91486, loc: "classification: Hominini < Homininae < Hominidae < Hominoidea < Catarrhini < Anthropoidea < Haplorhini < Primates" }
+    note: >-
+      From the PBDB, since Open Tree has no hominin tribe; the human lineage lies within the
+      PBDB’s broader Hominini.

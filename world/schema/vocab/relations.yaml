@@ -34,10 +34,20 @@ relations:
   member-of:
     family: structural
     inverse: has-member
-    description: A member of a group, such as an occurrence of its taxon.
+    description: >-
+      A member of a group, such as an occurrence of its taxon. A member lies within its
+      group's lifetime, so a taxon's oldest fossil bounds its origin.
+    time: [{ from: other.start, to: self.start }, { from: self.end, to: other.end }]
+  descends-from:
+    family: lineage
+    inverse: gave-rise-to
+    from: [taxon]
+    to: [taxon]
+    description: A group nested in the target in the tree of life. It arose no earlier than the target.
+    time: [{ from: other.start, to: self.start }]
   caused-by:
     family: causal
     inverse: caused
-    to: [event]
+    to: [event, large-igneous-province]
     description: The target caused the subject. A cause precedes its effect.
     time: [{ from: other.start, to: self.start, lag: true }]

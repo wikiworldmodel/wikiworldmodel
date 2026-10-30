@@ -48,6 +48,11 @@ export function toSearch(build: string, s: ViewState): string {
   return `?${p.toString()}`;
 }
 
+/** The build a link names, if any. It is read first: the view's defaults depend on the build. */
+export function buildOf(search: string): string | undefined {
+  return new URLSearchParams(search).get('b') ?? undefined;
+}
+
 export function fromSearch(search: string, defaults: ViewState): { build?: string; state: ViewState } {
   const p = new URLSearchParams(search);
   const num = (k: string, d: number) => {
@@ -74,5 +79,5 @@ export function fromSearch(search: string, defaults: ViewState): { build?: strin
     picks: list('pick'),
     sel: p.get('sel'),
   });
-  return { build: p.get('b') ?? undefined, state };
+  return { build: buildOf(search), state };
 }

@@ -1,0 +1,20 @@
+id: src:burgess-2014-end-permian-timeline
+type: publication
+kind: measurement
+citation: >-
+  Burgess, S.D., Bowring, S. & Shen, S.-Z. (2014). High-precision timeline for Earth's most
+  severe extinction. Proceedings of the National Academy of Sciences 111(9), 3316–3321.
+authors:
+  - "Burgess, S.D."
+  - "Bowring, S."
+  - "Shen, S.-Z."
+published: 2014
+title: High-precision timeline for Earth's most severe extinction
+container: Proceedings of the National Academy of Sciences 111(9), 3316–3321
+doi: 10.1073/pnas.1317692111
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read verbatim from the Europe PMC record (PMID 24516148); citation from
+    Crossref. The 2σ level of the ± comes from Burgess & Bowring (2015), Table 1, which
+    restates these two dates; the full text of this paper was not reached.

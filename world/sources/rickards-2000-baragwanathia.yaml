@@ -1,0 +1,17 @@
+id: src:rickards-2000-baragwanathia
+type: publication
+kind: measurement
+citation: >-
+  Rickards, R.B. (2000). The age of the earliest club mosses: the Silurian Baragwanathia flora
+  in Victoria, Australia. Geological Magazine 137(2), 207–209.
+authors:
+  - "Rickards, R.B."
+published: 2000
+title: "The age of the earliest club mosses: the Silurian Baragwanathia flora in Victoria, Australia"
+container: Geological Magazine 137(2), 207–209
+doi: 10.1017/S0016756800003800
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from the Crossref record: graptolite evidence that the earliest club mosses
+    were of Gorstian (Ludlow, Silurian) age. The full text was not read.

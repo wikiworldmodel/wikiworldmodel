@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-707
+type: frame
+kind: plate
+title: Moroccan Meseta (PALEOMAP plate 707)
+entity: earth/plates/moroccan-meseta
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 707
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 707

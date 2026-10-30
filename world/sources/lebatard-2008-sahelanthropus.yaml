@@ -1,0 +1,33 @@
+id: src:lebatard-2008-sahelanthropus
+type: publication
+kind: measurement
+citation: >-
+  Lebatard, A.-E., Bourlès, D.L., Duringer, P., Jolivet, M., Braucher, R., Carcaillet, J.,
+  Schuster, M., Arnaud, N., Monié, P., Lihoreau, F., Likius, A., Mackaye, H.T., Vignaud, P. &
+  Brunet, M. (2008). Cosmogenic nuclide dating of Sahelanthropus tchadensis and Australopithecus
+  bahrelghazali: Mio-Pliocene hominids from Chad. Proceedings of the National Academy of
+  Sciences 105(9), 3226–3231.
+authors:
+  - "Lebatard, A.-E."
+  - "Bourlès, D.L."
+  - "Duringer, P."
+  - "Jolivet, M."
+  - "Braucher, R."
+  - "Carcaillet, J."
+  - "Schuster, M."
+  - "Arnaud, N."
+  - "Monié, P."
+  - "Lihoreau, F."
+  - "Likius, A."
+  - "Mackaye, H.T."
+  - "Vignaud, P."
+  - "Brunet, M."
+published: 2008
+title: "Cosmogenic nuclide dating of Sahelanthropus tchadensis and Australopithecus bahrelghazali: Mio-Pliocene hominids from Chad"
+container: Proceedings of the National Academy of Sciences 105(9), 3226–3231
+doi: 10.1073/pnas.0708015105
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC and Crossref: TM 266 locality at 16°15′N, 17°29′E; 28
+    authigenic 10Be/9Be ages bracket Sahelanthropus tchadensis between 6.8 and 7.2 Ma.

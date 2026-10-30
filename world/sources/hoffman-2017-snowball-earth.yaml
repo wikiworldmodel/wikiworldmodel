@@ -1,0 +1,47 @@
+id: src:hoffman-2017-snowball-earth
+type: publication
+kind: review
+citation: >-
+  Hoffman, P.F., Abbot, D.S., Ashkenazy, Y., Benn, D.I., Brocks, J.J., Cohen, P.A., Cox, G.M.,
+  Creveling, J.R., Donnadieu, Y., Erwin, D.H., Fairchild, I.J., Ferreira, D., Goodman, J.C.,
+  Halverson, G.P., Jansen, M.F., Le Hir, G., Love, G.D., Macdonald, F.A., Maloof, A.C.,
+  Partin, C.A., Ramstein, G., Rose, B.E.J., Rose, C.V., Sadler, P.M., Tziperman, E., Voigt,
+  A. & Warren, S.G. (2017). Snowball Earth climate dynamics and Cryogenian
+  geology-geobiology. Science Advances 3(11), e1600983.
+authors:
+  - "Hoffman, P.F."
+  - "Abbot, D.S."
+  - "Ashkenazy, Y."
+  - "Benn, D.I."
+  - "Brocks, J.J."
+  - "Cohen, P.A."
+  - "Cox, G.M."
+  - "Creveling, J.R."
+  - "Donnadieu, Y."
+  - "Erwin, D.H."
+  - "Fairchild, I.J."
+  - "Ferreira, D."
+  - "Goodman, J.C."
+  - "Halverson, G.P."
+  - "Jansen, M.F."
+  - "Le Hir, G."
+  - "Love, G.D."
+  - "Macdonald, F.A."
+  - "Maloof, A.C."
+  - "Partin, C.A."
+  - "Ramstein, G."
+  - "Rose, B.E.J."
+  - "Rose, C.V."
+  - "Sadler, P.M."
+  - "Tziperman, E."
+  - "Voigt, A."
+  - "Warren, S.G."
+published: 2017
+title: Snowball Earth climate dynamics and Cryogenian geology-geobiology
+container: Science Advances 3(11), e1600983
+doi: 10.1126/sciadv.1600983
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract and full text read from Europe PMC (PMC5677351); the onset and termination
+    brackets are from its Table 1, whose footnote gives errors at 2σ. Citation from Crossref.

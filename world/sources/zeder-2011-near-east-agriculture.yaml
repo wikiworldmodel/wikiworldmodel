@@ -1,0 +1,15 @@
+id: src:zeder-2011-near-east-agriculture
+type: publication
+kind: review
+citation: >-
+  Zeder, M.A. (2011). The origins of agriculture in the Near East. Current Anthropology
+  52(S4), S221–S235.
+authors:
+  - "Zeder, M.A."
+published: 2011
+title: The Origins of Agriculture in the Near East
+container: Current Anthropology 52(S4), S221–S235
+doi: 10.1086/659307
+verified:
+  by: machine:claude-code
+  how: Abstract read from the OpenAlex record (reconstructed from its index); citation from Crossref.

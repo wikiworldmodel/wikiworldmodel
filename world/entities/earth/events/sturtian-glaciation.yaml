@@ -1,0 +1,53 @@
+id: earth/events/sturtian-glaciation
+kind: event/glaciation
+summary: >-
+  The first Cryogenian Snowball Earth glaciation, when grounded ice sheets reached sea level
+  at all latitudes; it lasted about 58 million years.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Sturtian glaciation }
+    source: { ref: src:hoffman-2017-snowball-earth, loc: abstract }
+  start-hoffman-2017:
+    prop: start
+    value: { lo: 717.5 Ma, hi: 716.3 Ma }
+    source:
+      ref: src:hoffman-2017-snowball-earth
+      loc: Table 1
+      quote: "Sturtian glacial onset: 717.5 to 716.3 Ma"
+    method: compilation
+    rank: preferred
+    note: >-
+      The bracket given by U–Pb ages from Laurentia, Oman and South China; the table's
+      errors are 2σ.
+  start-rooney-2015:
+    prop: start
+    value: 717 Ma
+    source:
+      ref: src:rooney-2015-cryogenian-chronology
+      loc: abstract
+      quote: confirms previous constraints on a long duration for the 717–660 Ma Sturtian glacial epoch
+    method: expert-estimate
+    note: A rounded value, without an uncertainty.
+  end-hoffman-2017:
+    prop: end
+    value: { lo: 659.3 Ma, hi: 658.5 Ma }
+    source:
+      ref: src:hoffman-2017-snowball-earth
+      loc: Table 1
+      quote: "Sturtian deglaciation/cap carbonate: 659.3 to 658.5 Ma"
+    method: compilation
+    rank: preferred
+    note: The deglaciation, marked by the cap carbonate; the table's errors are 2σ.
+  end-rooney-2015:
+    prop: end
+    value: 660 Ma
+    source:
+      ref: src:rooney-2015-cryogenian-chronology
+      loc: abstract
+      quote: Sturtian (717–660 Ma) and Marinoan (635 Ma termination) glacial deposits
+    method: expert-estimate
+    note: >-
+      A rounded value, supported by their Re–Os age of 659.0 ± 4.5 Ma just above a Sturtian
+      diamictite in Mongolia.

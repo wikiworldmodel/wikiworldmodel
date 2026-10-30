@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-402
+type: frame
+kind: plate
+title: Kazakhstania (PALEOMAP plate 402)
+entity: earth/plates/kazakhstania
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 402
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 402

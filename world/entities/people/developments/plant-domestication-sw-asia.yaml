@@ -1,0 +1,38 @@
+id: people/developments/plant-domestication-sw-asia
+kind: development
+summary: >-
+  The domestication of crop plants, cereals first among them, across the Fertile Crescent of
+  southwest Asia, after a long period of managing their wild ancestors. It has no location
+  here: it happened across the region, at different times in different parts of it.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Plant domestication in southwest Asia }
+    unsourced: An editorial label.
+  start-arranz-otaegui-2016:
+    prop: start
+    value: { lo: 10.7 ka, hi: 10.2 ka }
+    source:
+      ref: src:arranz-otaegui-2016-cereal-domestication
+      loc: abstract
+      quote: Around 10.7-10.2 ka Cal BP (early Pre-Pottery Neolithic B)
+    method: compilation
+    rank: preferred
+    note: >-
+      The first significant proportions (~30%) of domesticated-type cereal chaff, in the
+      southern-central Levant; in the eastern Fertile Crescent and the Euphrates such chaff
+      (>10%) appears only in the middle and late Pre-Pottery Neolithic B, 10.2–8.3 ka cal BP.
+      Calibrated BP counts back from 1950, as ka does here.
+  start-zeder-2011:
+    prop: start
+    value: { hi: 11.5 ka }
+    source:
+      ref: src:zeder-2011-near-east-agriculture
+      loc: abstract
+      quote: reaching back to at least 11,500 cal BP, if not earlier
+    method: expert-estimate
+    note: >-
+      The earliest management of morphologically wild future domesticates, which came long
+      before domestication traits show in the plants; open at the earlier end, as the source
+      allows.

@@ -1,0 +1,9 @@
+id: earth/plates/sinai
+kind: plate
+summary: Plate 508 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Sinai }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 508", quote: "SIN-AFR Sinai-Africa" }

@@ -1,0 +1,23 @@
+id: src:jacobson-2014-moon-forming-impact
+type: publication
+kind: model
+citation: >-
+  Jacobson, S.A., Morbidelli, A., Raymond, S.N., O'Brien, D.P., Walsh, K.J. & Rubie, D.C.
+  (2014). Highly siderophile elements in Earth's mantle as a clock for the Moon-forming
+  impact. Nature 508(7494), 84–87.
+authors:
+  - "Jacobson, S.A."
+  - "Morbidelli, A."
+  - "Raymond, S.N."
+  - "O'Brien, D.P."
+  - "Walsh, K.J."
+  - "Rubie, D.C."
+published: 2014
+title: Highly siderophile elements in Earth's mantle as a clock for the Moon-forming impact
+container: Nature 508(7494), 84–87
+doi: 10.1038/nature13172
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read verbatim from the Europe PMC record (PMID 24695310); citation from
+    Crossref. The confidence level of the stated ± is not in the abstract.

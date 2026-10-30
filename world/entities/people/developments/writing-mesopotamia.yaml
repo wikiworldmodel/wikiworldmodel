@@ -1,0 +1,37 @@
+id: people/developments/writing-mesopotamia
+kind: development
+summary: >-
+  Writing in Mesopotamia, from the proto-cuneiform tablets of the Uruk IV phase found at
+  Uruk in southern Iraq, the earliest writing known.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Writing in Mesopotamia }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 3200 BCE
+    source:
+      ref: src:woods-2010-visible-language
+      loc: "p. 71 (catalog, Uruk IV texts); p. 35 (ch. 2)"
+      quote: The earliest Mesopotamian texts, conventionally dated to about 3200 bc
+    method: expert-estimate
+    note: >-
+      The tablets of the earlier of the two archaic script phases, Uruk IV, conventionally
+      dated to about 3200 BC; the source gives no uncertainty. Woods (ch. 2, p. 34) places
+      the invention of writing in the Late Uruk period, ca. 3350–3100 BC.
+  location:
+    prop: location
+    value: { lat: 31.3234, lon: 45.6391, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-uruk, loc: representative point }
+    method: gazetteer
+    note: >-
+      Uruk (Tall al-Warkāʾ), whose Eanna district yielded the Uruk IV tablets (Woods 2010,
+      catalog nos. 41–46).
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

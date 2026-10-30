@@ -1,0 +1,18 @@
+id: src:fedonkin-waggoner-1997-kimberella
+type: publication
+kind: measurement
+citation: >-
+  Fedonkin, M.A. & Waggoner, B.M. (1997). The Late Precambrian fossil Kimberella is a
+  mollusc-like bilaterian organism. Nature 388(6645), 868–871.
+authors:
+  - "Fedonkin, M.A."
+  - "Waggoner, B.M."
+published: 1997
+title: "The Late Precambrian fossil Kimberella is a mollusc-like bilaterian organism"
+container: Nature 388(6645), 868–871
+doi: 10.1038/42242
+verified:
+  by: machine:claude-code
+  how: >-
+    Title and bibliographic data from Crossref; no abstract was available, so only the title’s
+    identification of Kimberella as a bilaterian is relied on.

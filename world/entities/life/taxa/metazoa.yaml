@@ -1,0 +1,29 @@
+id: life/taxa/metazoa
+kind: taxon
+summary: >-
+  Animals: the crown group (sponges, the other animals, and their last common ancestor). The
+  PBDB treats Metazoa as a synonym of Animalia, whose id is given.
+same_as: { ott: 691846, pbdb: "txn:67091" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: animals, la: Metazoa }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott691846: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-dos-reis-2015:
+    prop: start
+    value: { lo: 833.5 Ma, hi: 649.8 Ma }
+    source:
+      ref: src:dos-reis-2015-metazoan-timescale
+      loc: "Table 1, node 55 (Metazoa), Composite"
+    method: molecular-clock
+    note: >-
+      A crown-group age: the last common ancestor of the living members, which is this group’s
+      origin here. A composite of the 95% HPD intervals of the paper’s main analyses; its text
+      rounds it to 833–650 Ma.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/eukaryota
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of the backbone ids: Metazoa (ott691846) lies within Eukaryota (ott304358)" }

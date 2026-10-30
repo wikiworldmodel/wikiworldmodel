@@ -1,0 +1,22 @@
+id: src:wilde-2001-jack-hills-zircon
+type: publication
+kind: measurement
+citation: >-
+  Wilde, S.A., Valley, J.W., Peck, W.H. & Graham, C.M. (2001). Evidence from detrital zircons
+  for the existence of continental crust and oceans on the Earth 4.4 Gyr ago. Nature
+  409(6817), 175–178.
+authors:
+  - "Wilde, S.A."
+  - "Valley, J.W."
+  - "Peck, W.H."
+  - "Graham, C.M."
+published: 2001
+title: Evidence from detrital zircons for the existence of continental crust and oceans on the Earth 4.4 Gyr ago
+container: Nature 409(6817), 175–178
+doi: 10.1038/35051550
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read verbatim from the Europe PMC record (PMID 11196637); citation from
+    Crossref. The confidence level of the stated ± and the grain's number are not in the
+    abstract; the full text was not reached.

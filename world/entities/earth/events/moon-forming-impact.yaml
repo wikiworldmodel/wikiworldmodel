@@ -1,0 +1,51 @@
+id: earth/events/moon-forming-impact
+kind: event/impact
+summary: >-
+  The giant impact on the young Earth that formed the Moon. Published ages for it disagree:
+  the three here put it within 60 Myr, about 95 Myr and about 140 Myr after the first
+  solids of the Solar System.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Moon-forming impact }
+    source: { ref: src:jacobson-2014-moon-forming-impact, loc: title }
+  date-barboni-2017:
+    prop: date
+    value: { ref: space/events/solar-system-formation, edge: start, lag: { hi: 60 Myr } }
+    source:
+      ref: src:barboni-2017-moon-age
+      loc: abstract
+      quote: indicating the formation of the Moon within the first ~60 million years
+    method: radiometric/u-pb
+    rank: preferred
+    note: >-
+      U–Pb ages and Hf isotopes of Apollo 14 zircon fragments show that the lunar crust had
+      differentiated by 4.51 billion years ago, so the Moon formed within about 60 Myr of the
+      Solar System's first solids. Preferred because it is measured on lunar samples, where
+      the other two ages come from models.
+  date-maurice-2020:
+    prop: date
+    value: { mean: 4.425 Ga, sd: 0.025 Gyr }
+    source:
+      ref: src:maurice-2020-lunar-magma-ocean
+      loc: abstract
+      quote: indicates that the Moon formed 4.425 ± 0.025 billion years ago
+    method: model
+    note: >-
+      From a model in which the lunar magma ocean took 150–200 Myr to solidify, combined with
+      the ages and isotopic compositions of lunar samples. The ± level is not given in the
+      abstract, so it is read as 1σ.
+  date-jacobson-2014:
+    prop: date
+    value: { ref: space/events/solar-system-formation, edge: start, lag: { lo: 31 Myr, hi: 159 Myr } }
+    source:
+      ref: src:jacobson-2014-moon-forming-impact
+      loc: abstract
+      quote: we determine a Moon-formation age of 95 ± 32 Myr after condensation
+    method: model
+    note: >-
+      From N-body simulations that relate the time of the last giant impact to the mass
+      Earth accreted afterwards, and the abundance of highly siderophile elements in Earth's
+      mantle. The ± level is not given, so it is read as 1σ, and the lag spans ±2σ: 31 to
+      159 Myr after the first solids condensed.

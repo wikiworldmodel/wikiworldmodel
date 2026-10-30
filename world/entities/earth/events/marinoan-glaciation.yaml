@@ -1,0 +1,53 @@
+id: earth/events/marinoan-glaciation
+kind: event/glaciation
+summary: >-
+  The second Cryogenian Snowball Earth glaciation, after a brief nonglacial interlude; it
+  lasted at least 5 million years.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Marinoan glaciation }
+    source: { ref: src:prave-2016-marinoan-duration, loc: title }
+  start-hoffman-2017:
+    prop: start
+    value: { lo: 649.9 Ma, hi: 639.0 Ma }
+    source:
+      ref: src:hoffman-2017-snowball-earth
+      loc: Table 1
+      quote: "Marinoan glacial onset: 649.9 to 639.0 Ma"
+    method: compilation
+    note: >-
+      Only loosely constrained: by a pre-Marinoan Re–Os age of 645.1 ± 4.8 Ma in South
+      Australia and a syn-glacial U–Pb age of 639.29 ± 0.26 Ma in Namibia (Prave et al.
+      2016). The table's errors are 2σ.
+  end-hoffman-2017:
+    prop: end
+    value: { lo: 636.0 Ma, hi: 634.7 Ma }
+    source:
+      ref: src:hoffman-2017-snowball-earth
+      loc: Table 1
+      quote: "Marinoan deglaciation/cap carbonate: 636.0 to 634.7 Ma"
+    method: compilation
+    rank: preferred
+    note: The deglaciation, marked by the cap carbonate; the table's errors are 2σ.
+  end-prave-2016:
+    prop: end
+    value: { mean: 635.21 Ma, sd: 0.46 Myr }
+    source:
+      ref: src:prave-2016-marinoan-duration
+      loc: abstract
+      quote: "Ghaub Formation in Namibia: 639.29 ± 0.26 Ma and 635.21 ± 0.59 Ma"
+    method: radiometric/u-pb
+    note: >-
+      The younger ash bed (NAV-00-2B, Navachab), which the authors take, with a 635.2 ± 0.5
+      Ma ash in the cap carbonate in China, to date the termination. Its ± including the
+      systematic uncertainties is 0.92 Ma at 95% (authors' manuscript), so sd = 0.46 Myr.
+relations:
+  after-sturtian:
+    rel: after
+    to: earth/events/sturtian-glaciation
+    source:
+      ref: src:hoffman-2017-snowball-earth
+      loc: introduction, with Fig. 2
+      quote: the paired Neoproterozoic Snowball Earths and the brief nonglacial interlude

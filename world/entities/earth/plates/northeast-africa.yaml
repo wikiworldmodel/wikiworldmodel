@@ -1,0 +1,9 @@
+id: earth/plates/northeast-africa
+kind: plate
+summary: Plate 715 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Northeast Africa }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 715", quote: "NEA-NWA Northeast Africa-Northwest Africa" }

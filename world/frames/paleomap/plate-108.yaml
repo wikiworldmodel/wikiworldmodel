@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-108
+type: frame
+kind: plate
+title: Avalon/Acadia (PALEOMAP plate 108)
+entity: earth/plates/avalon-acadia
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 108
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 108

@@ -5,6 +5,10 @@
 # Rules a kind may carry:
 #   moment: true   the entity is a moment at the time resolution of the world: it has one
 #                  date, not a start and an end (an impact lasts seconds).
+#   start: latest  a start that no claim pins, only relations or a one-sided claim, is shown
+#                  at the latest time the evidence allows rather than midway between bounds:
+#                  a taxon at its oldest member found (its first appearance), or unknown if
+#                  nothing limits it.
 kinds:
   event:
     label: Event
@@ -20,6 +24,33 @@ kinds:
         label: Continental collision (onset)
         description: The first contact between two continental plates; the collision itself goes on for tens of millions of years.
         moment: true
+      formation:
+        label: Formation
+        description: The formation of a body or a system, such as the Solar System, dated by its first solids.
+        moment: true
+      extinction:
+        label: Mass extinction
+        description: A mass extinction, dated by its main pulse; extinctions with several pulses say which one in a note.
+        moment: true
+      glaciation:
+        label: Glaciation
+        description: A long glaciation, such as a Snowball Earth episode, from the onset of ice to its retreat.
+      transition:
+        label: Earth-system transition
+        description: A lasting change of the Earth system, such as the oxygenation of the atmosphere.
+      spaceflight:
+        label: Spaceflight
+        description: An event in spaceflight, such as a launch, a landing or a spacecraft crossing a boundary.
+        moment: true
+      astronomical:
+        label: Astronomical event
+        description: A stage in the life of a star, or an encounter between galaxies; in the future, a projection.
+        moment: true
+  development:
+    label: Development
+    description: >-
+      A practice or technology people developed, such as farming or writing, from its earliest
+      known evidence on.
   landform:
     label: Landform
     description: A shape of the land surface or the rock below it.
@@ -35,8 +66,20 @@ kinds:
     description: A very large accumulation of igneous rock, erupted over a geologically short time.
   occurrence:
     label: Fossil occurrence
-    description: A taxon recorded at a locality, at the time its fossils were deposited.
+    description: >-
+      A taxon recorded at a locality, by body fossils, traces or other signs of life, at the
+      time they formed.
     moment: true
+  sample:
+    label: Dated sample
+    description: A rock or mineral sample at its locality, at the time it formed.
+    moment: true
+  taxon:
+    label: Taxon
+    description: >-
+      A group of organisms, a species or a clade, from its origin to its extinction if it has
+      died out. Its origin is no later than its oldest member found.
+    start: latest
   plate:
     label: Tectonic plate
     description: A rigid plate of a plate model. It also defines a frame, which moves with it.

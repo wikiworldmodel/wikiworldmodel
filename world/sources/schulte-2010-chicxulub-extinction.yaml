@@ -1,0 +1,21 @@
+id: src:schulte-2010-chicxulub-extinction
+type: publication
+kind: review
+citation: >-
+  Schulte, P., Alegret, L., Arenillas, I., Arz, J.A., Barton, P.J., et al. (41 authors)
+  (2010). The Chicxulub asteroid impact and mass extinction at the Cretaceous-Paleogene
+  boundary. Science 327(5970), 1214–1218.
+authors:
+  - "Schulte, P."
+  - "Alegret, L."
+  - "Arenillas, I."
+  - "Arz, J.A."
+  - "Barton, P.J."
+published: 2010
+title: The Chicxulub asteroid impact and mass extinction at the Cretaceous-Paleogene boundary
+container: Science 327(5970), 1214–1218
+doi: 10.1126/science.1177265
+note: Only the first five of the 41 authors are listed here.
+verified:
+  by: machine:claude-code
+  how: Abstract read verbatim from the Europe PMC record (PMID 20203042); citation and author count from Crossref.

@@ -1,0 +1,21 @@
+id: life/taxa/dinosauria
+kind: taxon
+summary: >-
+  Dinosaurs, birds included. No molecular date is given: nearly all dinosaurs are extinct, and
+  molecular clocks date only splits between living groups.
+same_as: { ott: 90215, pbdb: "txn:52775" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: dinosaurs, la: Dinosauria }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott90215: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/sauropsida
+    source: { ref: src:opentree-synthesis-16.1, loc: "node_info ott90215: broken taxon; its members’ common ancestor is Sauria (ott329823), which lies within Sauropsida (ott639642)" }
+    note: >-
+      Dinosauria is not resolved as a clade in synthesis 16.1; Open Tree’s taxonomy places it in
+      Archosauria, Archelosauria, Sauria and Sauropsida (taxon_info ott90215, lineage).

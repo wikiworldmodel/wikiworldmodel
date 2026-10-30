@@ -20,10 +20,10 @@
     },
     "key": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
     "time_point": {
-      "description": "A decimal astronomical year, or a number with CE, BCE, BP, ka, Ma, Ga, or Myr/Gyr from now",
+      "description": "A decimal astronomical year, or a number with CE, BCE, BP, ka, Ma, Ga, or kyr/Myr/Gyr from now",
       "oneOf": [
         { "type": "number" },
-        { "type": "string", "pattern": "^-?\\d+(\\.\\d+)?(e[+-]?\\d+)? (CE|BCE|BP|ka|Ma|Ga|Myr from now|Gyr from now)$" }
+        { "type": "string", "pattern": "^-?\\d+(\\.\\d+)?(e[+-]?\\d+)? (CE|BCE|BP|ka|Ma|Ga|kyr from now|Myr from now|Gyr from now)$" }
       ]
     },
     "duration": {

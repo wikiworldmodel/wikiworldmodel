@@ -1,0 +1,33 @@
+id: src:gibson-2018-bangiomorpha
+type: publication
+kind: measurement
+citation: >-
+  Gibson, T.M., Shih, P.M., Cumming, V.M., Fischer, W.W., Crockford, P.W., Hodgskiss, M.S.W.,
+  Wörndle, S., Creaser, R.A., Rainbird, R.H., Skulski, T.M. & Halverson, G.P. (2018). Precise
+  age of Bangiomorpha pubescens dates the origin of eukaryotic photosynthesis. Geology 46(2),
+  135–138.
+authors:
+  - "Gibson, T.M."
+  - "Shih, P.M."
+  - "Cumming, V.M."
+  - "Fischer, W.W."
+  - "Crockford, P.W."
+  - "Hodgskiss, M.S.W."
+  - "Wörndle, S."
+  - "Creaser, R.A."
+  - "Rainbird, R.H."
+  - "Skulski, T.M."
+  - "Halverson, G.P."
+published: 2018
+title: "Precise age of Bangiomorpha pubescens dates the origin of eukaryotic photosynthesis"
+container: Geology 46(2), 135–138
+doi: 10.1130/G39829.1
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract was read from the Caltech Authors record
+    (authors.library.caltech.edu/records/7brz9-8mw86): Re–Os ages of rocks that
+    stratigraphically bracket B. pubescens revise its first appearance to 1.047 +0.013/–0.017
+    Ga. The publisher’s page was not reachable; the record’s supplement (GSA Data Repository
+    2018030) was read for the sampled sections (Arctic Bay and Victor Bay formations, Borden
+    Basin). The confidence level of the bounds was not found. Metadata from Crossref.

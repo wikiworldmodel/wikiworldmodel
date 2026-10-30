@@ -1,0 +1,23 @@
+id: src:pbdb/collection-140287
+type: database-record
+kind: compilation
+snapshot: "2026-10-30"
+citation: >-
+  The Paleobiology Database, collection 140287 ("Kokhav 2 Well, Core 3", IL), occurrence 1108817. Read through
+  the PBDB data service (data1.2) on 30 October 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=140287
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 30 October 2026, states "Data License: Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/). The slice's earlier PBDB
+  records, from a 2022 download, give CC BY 4.0.
+reliability: >-
+  A database record compiled from the literature: collection reference Brenner & Bickoff 1992 (Palynology 16, 137–185); occurrence
+  reference Brenner & Bickoff 1992. Interval ages are the PBDB's own, for the interval the collection is
+  assigned to; the primary references were not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=140287&show=loc,strat,ref and occs/list.json?coll_id=140287&show=ident,class:
+    collection name "Kokhav 2 Well, Core 3", Negev, lat 31.561943, lng 34.69611, formation "Helez", group "Kurnub", early_interval Valanginian, late_interval Hauterivian, max_ma 137.05, min_ma 125.77; occurrence 1108817, identified_name "Clavatipollenites <sp. B>", accepted_name "Clavatipollenites" (Angiospermae, Chloranthaceae).
