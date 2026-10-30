@@ -25,18 +25,19 @@ async function verified(path: string, expected: string): Promise<boolean> {
 
 async function fetchDataset(id: string, d: Dataset, log: (s: string) => void): Promise<void> {
   const path = datasetPath(id, d);
-  if (!(await verified(path, d.sha256))) {
-    log(`${id}: downloading ${d.url}`);
-    await download(d.url, path);
+  const { url, sha256: expected, format, files } = d.fetch;
+  if (!(await verified(path, expected))) {
+    log(`${id}: downloading ${url}`);
+    await download(url, path);
     const got = await sha256File(path);
-    if (got !== d.sha256) {
+    if (got !== expected) {
       await rm(path);
-      throw new Error(`${id}: checksum mismatch\n  expected ${d.sha256}\n  got      ${got}`);
+      throw new Error(`${id}: checksum mismatch\n  expected ${expected}\n  got      ${got}`);
     }
   }
-  if (d.format === 'zip' && d.files) {
+  if (format === 'zip' && files) {
     let entries: Record<string, Uint8Array> | undefined;
-    for (const [name, f] of Object.entries(d.files)) {
+    for (const [name, f] of Object.entries(files)) {
       const out = join(datasetDir(id, d), f.path);
       if (await verified(out, f.sha256)) continue;
       entries ??= unzipSync(new Uint8Array(await readFile(path)));
@@ -46,7 +47,7 @@ async function fetchDataset(id: string, d: Dataset, log: (s: string) => void): P
       await writeFile(out, data);
     }
   }
-  log(`${id}: ok (${d.sha256.slice(0, 12)})`);
+  log(`${id}: ok (${expected.slice(0, 12)})`);
 }
 
 export async function fetchAll(log: (s: string) => void = console.log): Promise<void> {

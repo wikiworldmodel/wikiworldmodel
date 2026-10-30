@@ -41,6 +41,8 @@ canvas.globe:active { cursor: grabbing; }
 .toolbar button { padding: 7px 11px; border-radius: 8px; border: 1px solid var(--panel-border); background: var(--panel); cursor: pointer; }
 .toolbar button[aria-pressed='true'] { border-color: var(--accent); color: var(--accent); }
 .toolbar .build { flex-basis: 100%; text-align: right; color: var(--muted); font-size: 11px; font-variant-numeric: tabular-nums; }
+.toolbar .alt-group { display: flex; align-items: center; gap: 6px; padding: 3px 4px 3px 10px; border-radius: 8px; border: 1px solid var(--panel-border); background: var(--panel); font-size: 12px; color: var(--muted); }
+.toolbar .alt-group select { max-width: 210px; padding: 3px 4px; border-radius: 6px; border: 1px solid var(--panel-border); background: #0f1420; color: var(--text); font: inherit; }
 .legend { flex-basis: 100%; display: grid; gap: 3px; padding: 8px 10px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 8px; font-size: 12px; }
 .legend .sw { display: inline-block; width: 10px; height: 10px; margin-right: 6px; border-radius: 2px; vertical-align: -1px; }
 .sw.evidence { background: var(--evidence); }
@@ -65,8 +67,12 @@ canvas.globe:active { cursor: grabbing; }
 .marker:focus-visible .label { outline: 2px solid var(--accent); }
 .marker.derived .dot { border-style: dashed; border-color: #fff; }
 body.evidence .marker.proposed .label::after { content: ' · proposed'; color: var(--muted); }
+body.evidence .marker.basis-reconstruction .dot { box-shadow: 0 0 0 2.5px var(--reconstruction); }
+body.evidence .marker.basis-projection .dot,
+body.evidence .marker.basis-procedural .dot { box-shadow: 0 0 0 2.5px var(--procedural); }
 
 .inspect { position: absolute; top: 76px; right: 16px; bottom: 12px; width: min(400px, calc(100vw - 32px)); overflow: auto; padding: 0 16px 16px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 10px; }
+body.evidence .inspect { top: 184px; }
 .inspect header { position: sticky; top: 0; display: flex; align-items: center; justify-content: space-between; padding: 14px 0 8px; background: var(--panel); }
 .inspect h2 { margin: 0; font-size: 17px; }
 .inspect h3 { margin: 16px 0 6px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }

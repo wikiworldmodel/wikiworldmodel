@@ -1,0 +1,13 @@
+# A group of alternatives: its members exclude each other, and groups combine freely. A
+# claim belongs to the default picture unless it names an alternative (section 4.4).
+id: alt:time-scale
+type: group
+title: Geologic time scale
+description: >-
+  Which ages date the stages that records are assigned to. Records cite a stage, not its
+  ages, so their dates follow the time scale chosen here. The default picture uses the ICS
+  chart v2020/03.
+# A steward decision: what a build shows, and which member it shows by default (none: the
+# default picture).
+show: [alt:time-scale/pbdb-2022]
+default: null

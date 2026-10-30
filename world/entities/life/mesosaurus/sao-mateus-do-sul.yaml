@@ -1,58 +1,57 @@
 id: life/mesosaurus/sao-mateus-do-sul
-kind: life/occurrence
-label: Mesosaurus, São Mateus do Sul
+kind: occurrence
 summary: Mesosaurus tenuidens from the Irati Formation at São Mateus do Sul, Paraná, Brazil. PBDB collection 90190.
-frame: earth/plates
-same_as: { pbdb_collection: 90190, pbdb_occurrence: 820351 }
+same_as: { pbdb: "occ:820351" }
+author: machine:claude-code
 claims:
-  taxon:
-    prop: taxon
-    value: Mesosaurus tenuidens
-    source: pbdb/collection-90190
-    locator: occurrence 820351, accepted name
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+  name:
+    prop: name
+    value: { en: "Mesosaurus, São Mateus do Sul" }
+    unsourced: An editorial label, from the taxon and the collection's place name.
   identified:
     prop: identified_as
     value: Mesosaurus tenuidens
-    source: pbdb/collection-90190
-    locator: occurrence 820351, identified name
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    source: { ref: src:pbdb/collection-90190, loc: "occurrence 820351, identified_name" }
   location:
     prop: location
-    value: { lat: -25.844444, lon: -50.422222 }
-    source: pbdb/collection-90190
-    locator: collection coordinates (lat, lng)
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    value: { lat: -25.844444, lon: -50.422222, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-90190, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-201
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
   formation:
     prop: formation
     value: Irati Formation
-    source: pbdb/collection-90190
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    source: { ref: src:pbdb/collection-90190, loc: formation }
   date:
     prop: date
-    value: { ma: [290.1, 279.3] }
-    source: pbdb/collection-90190
-    locator: early_interval Artinskian; max_ma, min_ma
-    method: Stratigraphic assignment to the Artinskian stage, with the PBDB's ages for it.
-    author: machine:claude-code
-    status: proposed
+    value: { ref: ics/artinskian }
+    source: { ref: src:pbdb/collection-90190, loc: early_interval }
+    method: stratigraphic
     rank: preferred
+    note: >-
+      Assigned to the Artinskian stage. The PBDB's own ages for it (max_ma 290.1, min_ma
+      279.3) come from its time scale; here the stage's ages come from its period record,
+      so they follow the time scale chosen.
   date-santos-2006:
     prop: date
-    value: { ma: 278.4, pm: 2.2, sigma: 2 }
-    source: santos-2006-irati
-    quote: SHRIMP analysis performed on the euhedral and prismatic grains revealed an age of ca. 278.4 ± 2.2 Ma (7 points with 95% confidence)
-    method: U-Pb (SHRIMP) zircon age of bentonite layers in the Irati Formation.
-    note: Applies to this occurrence only if it is coeval with the dated beds.
-    confidence: medium
-    author: machine:claude-code
-    status: proposed
-    rank: normal
+    value: { mean: 278.4 Ma, sd: 1.1 Myr }
+    source:
+      ref: src:santos-2006-irati
+      loc: abstract
+      quote: SHRIMP analysis performed on the euhedral and prismatic grains revealed an age of ca. 278.4 ± 2.2 Ma (7 points with 95% confidence)
+    method: radiometric/u-pb
+    confidence: likely
+    note: >-
+      U–Pb zircon age of bentonite layers in the Irati Formation; the stated ±2.2 Ma is a 95%
+      interval, so sd ≈ 1.1 Myr. It dates this occurrence only if the fossils are coeval with
+      the dated beds, hence the confidence.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mesosaurus-tenuidens
+    source: { ref: src:pbdb/collection-90190, loc: "occurrence 820351, accepted_name" }

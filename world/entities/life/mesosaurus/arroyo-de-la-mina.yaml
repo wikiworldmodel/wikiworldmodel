@@ -1,47 +1,44 @@
 id: life/mesosaurus/arroyo-de-la-mina
-kind: life/occurrence
-label: Mesosaurus, Arroyo de La Mina
+kind: occurrence
 summary: Mesosaurus tenuidens (identified as Mesosaurus brasiliensis) from the Melo Formation at Arroyo de La Mina, Uruguay. PBDB collection 90863.
-frame: earth/plates
-same_as: { pbdb_collection: 90863, pbdb_occurrence: 824823 }
+same_as: { pbdb: "occ:824823" }
+author: machine:claude-code
 claims:
-  taxon:
-    prop: taxon
-    value: Mesosaurus tenuidens
-    source: pbdb/collection-90863
-    locator: occurrence 824823, accepted name
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+  name:
+    prop: name
+    value: { en: "Mesosaurus, Arroyo de La Mina" }
+    unsourced: An editorial label, from the taxon and the collection's place name.
   identified:
     prop: identified_as
     value: Mesosaurus brasiliensis
-    source: pbdb/collection-90863
-    locator: occurrence 824823, identified name
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    source: { ref: src:pbdb/collection-90863, loc: "occurrence 824823, identified_name" }
   location:
     prop: location
-    value: { lat: -31.933332, lon: -54.016666 }
-    source: pbdb/collection-90863
-    locator: collection coordinates (lat, lng)
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    value: { lat: -31.933332, lon: -54.016666, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-90863, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-202
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
   formation:
     prop: formation
     value: Melo Formation
-    source: pbdb/collection-90863
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    source: { ref: src:pbdb/collection-90863, loc: formation }
   date:
     prop: date
-    value: { ma: [290.1, 279.3] }
-    source: pbdb/collection-90863
-    locator: early_interval Artinskian; max_ma, min_ma
-    method: Stratigraphic assignment to the Artinskian stage, with the PBDB's ages for it.
-    author: machine:claude-code
-    status: proposed
+    value: { ref: ics/artinskian }
+    source: { ref: src:pbdb/collection-90863, loc: early_interval }
+    method: stratigraphic
     rank: preferred
+    note: >-
+      Assigned to the Artinskian stage. The PBDB's own ages for it (max_ma 290.1, min_ma
+      279.3) come from its time scale; here the stage's ages come from its period record,
+      so they follow the time scale chosen.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mesosaurus-tenuidens
+    source: { ref: src:pbdb/collection-90863, loc: "occurrence 824823, accepted_name" }

@@ -1,12 +1,14 @@
-id: pbdb/collection-90190
+id: src:pbdb/collection-90190
 type: database-record
+kind: compilation
+snapshot: "2022-07-14"
 citation: >-
   The Paleobiology Database, collection 90190 ("Sao Mateus do Sul", BR), occurrence 820351.
   Downloaded 14 July 2022 (palaeoverse `tetrapods` dataset).
 container: The Paleobiology Database
 url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=90190
 license: CC-BY-4.0
-via: jones-2023-palaeoverse
+via: src:jones-2023-palaeoverse
 reliability: >-
   A database record compiled from the literature; its primary references are listed in the
   PBDB but were not part of the snapshot read here. Ages are the PBDB's for the stratigraphic

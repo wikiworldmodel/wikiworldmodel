@@ -1,5 +1,6 @@
-id: renne-2013-kpg-timescales
+id: src:renne-2013-kpg-timescales
 type: publication
+kind: measurement
 citation: >-
   Renne, P.R., Deino, A.L., Hilgen, F.J., Kuiper, K.F., Mark, D.F., Mitchell, W.S. III,
   Morgan, L.E., Mundil, R. & Smit, J. (2013). Time scales of critical events around the
@@ -14,7 +15,7 @@ authors:
   - "Morgan, L.E."
   - "Mundil, R."
   - "Smit, J."
-year: 2013
+published: 2013
 title: Time scales of critical events around the Cretaceous-Paleogene boundary
 container: Science 339(6120), 684–687
 doi: 10.1126/science.1230492

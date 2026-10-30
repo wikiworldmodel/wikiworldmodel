@@ -1,6 +1,7 @@
 // The time control: a strip that zooms like a map. Across the whole range it is close to
 // logarithmic in age; zoomed in, it becomes linear. Bands show the named periods.
 import type { PeriodRecord } from '../../../core/records.ts';
+import { lookup, type Scenario } from '../../../core/scenario.ts';
 import { formatTime, PRESENT_YEAR } from '../../../core/time.ts';
 
 type Win = [number, number];
@@ -95,14 +96,18 @@ export class Timebar {
   private drag: { mode: 'scrub' | 'pan'; x: number; win: Win } | null = null;
   private keyframes: number[] = [];
 
+  /** the periods as the current scenario dates them */
+  private periods: PeriodRecord[];
+
   constructor(
-    private periods: PeriodRecord[],
+    private all: PeriodRecord[],
     private limits: Win,
     /** the time span the build has data for */
     private dataRange: Win,
     private cb: TimebarCallbacks,
   ) {
     this.win = limits;
+    this.periods = all;
     this.el = document.createElement('div');
     this.el.className = 'timebar';
     this.el.innerHTML = `
@@ -136,6 +141,11 @@ export class Timebar {
 
   setKeyframes(years: number[]): void {
     this.keyframes = years;
+  }
+
+  /** Date the periods as a scenario's alternatives do (period boundaries are claims too). */
+  setScenario(s: Scenario): void {
+    this.periods = this.all.map((p) => ({ ...p, ...lookup(p.variants, { alts: s.alts }, { start: p.start, end: p.end }) }));
   }
 
   private width(): number {

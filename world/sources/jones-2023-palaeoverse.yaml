@@ -1,5 +1,6 @@
-id: jones-2023-palaeoverse
+id: src:jones-2023-palaeoverse
 type: publication
+kind: software
 citation: >-
   Jones, L.A., Gearty, W., Allen, B.J., Eichenseer, K., Dean, C.D., Galván, S., Kouvari, M.,
   Godoy, P.L., Nicholl, C.S.C., Buffan, L., Dillon, E.M., Flannery-Sutherland, J.T. &
@@ -19,7 +20,7 @@ authors:
   - "Dillon, E.M."
   - "Flannery-Sutherland, J.T."
   - "Chiarenza, A.A."
-year: 2023
+published: 2023
 title: "palaeoverse: A community-driven R package to support palaeobiological analysis"
 container: Methods in Ecology and Evolution
 doi: 10.1111/2041-210X.14099

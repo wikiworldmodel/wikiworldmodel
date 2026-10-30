@@ -1,0 +1,10 @@
+id: frame:earth/present-day
+type: frame
+kind: snapshot
+title: Present-day latitude and longitude
+description: >-
+  WGS84 latitude and longitude today: the geographic frame at the present, held fixed.
+  Coordinates measured today are recorded in it, and the build carries them into each
+  record's own frame with that frame's transform at the present.
+parent: frame:earth/geographic
+transform: { snapshot_of: frame:earth/geographic, at: 0 Ma }

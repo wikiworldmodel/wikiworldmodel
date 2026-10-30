@@ -1,0 +1,9 @@
+id: earth/plates/parana-basin
+kind: plate
+summary: Plate 202 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Parana Basin }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 202", quote: "PRB-SAM Parana Basin-South America" }

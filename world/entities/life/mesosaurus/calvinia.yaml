@@ -1,47 +1,44 @@
 id: life/mesosaurus/calvinia
-kind: life/occurrence
-label: Mesosaurus, Calvinia
+kind: occurrence
 summary: Mesosaurus tenuidens from the Whitehill Formation at Calvinia, Northern Cape, South Africa. PBDB collection 90311.
-frame: earth/plates
-same_as: { pbdb_collection: 90311, pbdb_occurrence: 820897 }
+same_as: { pbdb: "occ:820897" }
+author: machine:claude-code
 claims:
-  taxon:
-    prop: taxon
-    value: Mesosaurus tenuidens
-    source: pbdb/collection-90311
-    locator: occurrence 820897, accepted name
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+  name:
+    prop: name
+    value: { en: "Mesosaurus, Calvinia" }
+    unsourced: An editorial label, from the taxon and the collection's place name.
   identified:
     prop: identified_as
     value: Mesosaurus tenuidens
-    source: pbdb/collection-90311
-    locator: occurrence 820897, identified name
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    source: { ref: src:pbdb/collection-90311, loc: "occurrence 820897, identified_name" }
   location:
     prop: location
-    value: { lat: -31.466667, lon: 19.766666 }
-    source: pbdb/collection-90311
-    locator: collection coordinates (lat, lng)
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    value: { lat: -31.466667, lon: 19.766666, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-90311, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
   formation:
     prop: formation
     value: Whitehill Formation
-    source: pbdb/collection-90311
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    source: { ref: src:pbdb/collection-90311, loc: formation }
   date:
     prop: date
-    value: { ma: [290.1, 279.3] }
-    source: pbdb/collection-90311
-    locator: early_interval Artinskian; max_ma, min_ma
-    method: Stratigraphic assignment to the Artinskian stage, with the PBDB's ages for it.
-    author: machine:claude-code
-    status: proposed
+    value: { ref: ics/artinskian }
+    source: { ref: src:pbdb/collection-90311, loc: early_interval }
+    method: stratigraphic
     rank: preferred
+    note: >-
+      Assigned to the Artinskian stage. The PBDB's own ages for it (max_ma 290.1, min_ma
+      279.3) come from its time scale; here the stage's ages come from its period record,
+      so they follow the time scale chosen.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mesosaurus-tenuidens
+    source: { ref: src:pbdb/collection-90311, loc: "occurrence 820897, accepted_name" }

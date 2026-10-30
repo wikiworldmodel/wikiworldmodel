@@ -1,12 +1,13 @@
-id: yin-harrison-2000-himalaya
+id: src:yin-harrison-2000-himalaya
 type: publication
+kind: review
 citation: >-
   Yin, A. & Harrison, T.M. (2000). Geologic evolution of the Himalayan-Tibetan orogen.
   Annual Review of Earth and Planetary Sciences 28, 211–280.
 authors:
   - "Yin, A."
   - "Harrison, T.M."
-year: 2000
+published: 2000
 title: Geologic evolution of the Himalayan-Tibetan orogen
 container: Annual Review of Earth and Planetary Sciences 28, 211–280
 doi: 10.1146/annurev.earth.28.1.211

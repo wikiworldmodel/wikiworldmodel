@@ -1,0 +1,9 @@
+id: earth/plates/yucatan
+kind: plate
+summary: Plate 205 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Yucatan }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 205", quote: "YUC-NAM Yucatan-North America" }

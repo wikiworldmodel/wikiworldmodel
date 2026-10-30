@@ -2,6 +2,7 @@
 // own directory, so a link that names a build keeps showing that build.
 import type { BuildIndex, EntityRecord, PeriodsFile, SearchFile } from '../../core/records.ts';
 import { RotationModel } from '../../core/rotation-model.ts';
+import { PRESENT_YEAR } from '../../core/time.ts';
 import type { FramesFile, Tileset } from '../../core/tileset.ts';
 
 export interface Build {
@@ -43,6 +44,11 @@ export async function loadBuild(root: string, id: string): Promise<Build> {
     getJSON<PeriodsFile>(base + tileset.files.periods),
     getJSON<SearchFile>(base + tileset.files.search),
   ]);
+  // A period that still holds has no end; on the time axis it runs to the present.
+  for (const p of periods.periods) {
+    p.end ??= PRESENT_YEAR;
+    for (const v of Object.values(p.variants ?? {})) v.end ??= PRESENT_YEAR;
+  }
   return { id, base, tileset, frames, model: new RotationModel(frames.rotations), periods, search };
 }
 

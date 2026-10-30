@@ -1,0 +1,19 @@
+id: field:earth/elevation
+type: field
+title: Surface elevation and ocean depth
+quantity: elevation
+unit: m
+# 0 m is the shoreline of the time: the PaleoDEMs map paleo-shorelines to 0 m, so sea level
+# is already part of this field. A field on a fixed datum (e.g. a present-day DEM) would
+# need a sea-level field to derive coastlines.
+datum: contemporaneous-sea-level
+# Grid coordinates are paleo-longitude and latitude, in the geographic frame of each time.
+frame: frame:earth/geographic
+grid: { kind: lonlat, res_deg: 1 }
+time: { lo: 300 Ma, hi: 0 Ma, step: 5 Myr }
+data: { from: src:paleodem-v2 }
+basis: reconstruction
+# Between snapshots, each snapshot is moved with the plate under each node (the same
+# rotation model that moves every entity), and the two moved snapshots are blended.
+interp: plate-warp
+moves_with: src:paleomap-plate-model

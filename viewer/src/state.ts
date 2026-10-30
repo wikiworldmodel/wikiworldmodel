@@ -12,8 +12,10 @@ export interface ViewState {
   window: [number, number];
   evidence: boolean;
   clouds: boolean;
-  /** competing-claim choices: group ("subject|prop") → claim id */
-  alts: Record<string, string>;
+  /** alternatives shown instead of the default picture, at most one per group */
+  alt: string[];
+  /** competing claims picked over their group's default (entity#key) */
+  picks: string[];
   /** the entity whose record is open */
   sel: string | null;
 }
@@ -40,8 +42,8 @@ export function toSearch(build: string, s: ViewState): string {
   p.set('w', `${timeToParam(s.window[0])}~${timeToParam(s.window[1])}`);
   if (s.evidence) p.set('ev', '1');
   if (!s.clouds) p.set('cl', '0');
-  const alts = Object.entries(s.alts).sort(([a], [b]) => (a < b ? -1 : 1));
-  if (alts.length) p.set('alt', alts.map(([g, c]) => `${g}=${c}`).join(','));
+  if (s.alt.length) p.set('alt', [...s.alt].sort().join(','));
+  if (s.picks.length) p.set('pick', [...s.picks].sort().join(','));
   if (s.sel) p.set('sel', s.sel);
   return `?${p.toString()}`;
 }
@@ -61,18 +63,15 @@ export function fromSearch(search: string, defaults: ViewState): { build?: strin
     const b = timeFromParam(w[1]);
     if (a !== undefined && b !== undefined && a < b) window = [a, b];
   }
-  const alts: Record<string, string> = {};
-  for (const pair of (p.get('alt') ?? '').split(',').filter(Boolean)) {
-    const i = pair.lastIndexOf('=');
-    if (i > 0) alts[pair.slice(0, i)] = pair.slice(i + 1);
-  }
+  const list = (k: string) => [...new Set((p.get(k) ?? '').split(',').filter(Boolean))].sort();
   const state = quantize({
     t,
     cam: { lat: num('lat', defaults.cam.lat), lon: num('lon', defaults.cam.lon), dist: num('d', defaults.cam.dist) },
     window,
     evidence: p.get('ev') === '1',
     clouds: p.get('cl') !== '0',
-    alts,
+    alt: list('alt'),
+    picks: list('pick'),
     sel: p.get('sel'),
   });
   return { build: p.get('b') ?? undefined, state };

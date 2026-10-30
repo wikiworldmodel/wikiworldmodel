@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-201
+type: frame
+kind: plate
+title: South America (PALEOMAP plate 201)
+entity: earth/plates/south-america
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 201
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 201

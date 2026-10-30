@@ -1,0 +1,14 @@
+# Sources. A source is a work: one record per work, cited by claims with a locator.
+#   types: what the work is
+#   kinds: what sort of evidence it is (section 4.8)
+types:
+  publication: A paper, book or chapter.
+  dataset: A version of a dataset; the ones the build fetches are in manifest.yaml.
+  database-record: A record in a database, as of a dated snapshot.
+  chart: A reference chart, such as the geologic time scale.
+kinds:
+  measurement: Reports its own measurements or observations.
+  review: Synthesizes published work.
+  compilation: Compiles values from the literature, such as a database or a standard chart.
+  model: A model reconstruction, fitted to evidence by its authors.
+  software: Software, cited for how data reached us.

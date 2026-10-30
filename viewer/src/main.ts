@@ -2,9 +2,12 @@
 // it is and how we know. Everything shown comes from one build of the world.
 import './style.css';
 import { conj, mul, type Quat } from '../../core/quat.ts';
-import type { Feature, GeneratorConstraint } from '../../core/tileset.ts';
+import type { EntityRecord } from '../../core/records.ts';
+import { splitRef } from '../../core/refs.ts';
+import { lookup, type Scenario } from '../../core/scenario.ts';
+import type { Feature, FeatureTime, GeneratorConstraint } from '../../core/tileset.ts';
 import { fromMa, PRESENT_YEAR, toMa } from '../../core/time.ts';
-import { generateClouds, type CloudParams } from '../../world/generators/clouds/v1.ts';
+import { GENERATOR as CLOUDS, generateClouds, type CloudParams } from '../../world/generators/earth/clouds/v1.ts';
 import { Camera, MAX_DIST, MIN_DIST } from './camera.ts';
 import { fetchLog, latestBuild, loadBuild, loadRecord, type Build } from './data.ts';
 import { FieldRenderer, type FieldTileGPU } from './gl/field.ts';
@@ -53,7 +56,8 @@ async function start(root: HTMLElement): Promise<void> {
     window: [fromMa(320), PRESENT_YEAR],
     evidence: false,
     clouds: true,
-    alts: {},
+    alt: [],
+    picks: [],
     sel: null,
   };
   const parsed = fromSearch(location.search, defaults);
@@ -92,17 +96,19 @@ async function start(root: HTMLElement): Promise<void> {
   credits.className = 'credits';
   credits.textContent = `Data: ${ts.credits.map((c) => `${c.label}, ${c.license}`).join(' · ')}`;
   stage.appendChild(credits);
-  const kindLabel = (k: string) => k.split('/').pop()!.replace(/-/g, ' ');
-  const labelOf = (id: string) => build.search.entities.find((e) => e.id === id)?.label ?? id;
+  const kindLabel = (k: string) => ts.kinds[k] ?? k;
+  const labelOf = (ref: string) => {
+    const id = splitRef(ref).record;
+    return build.search.entities.find((e) => e.id === id)?.label ?? build.periods.periods.find((p) => p.id === id)?.name ?? ref;
+  };
+  const altTitle = (id: string) => ts.alternatives.flatMap((g) => g.members).find((m) => m.id === id)?.title ?? id;
+  const scenario = (): Scenario => ({ alts: state.alt, picks: state.picks });
   const inspect = new InspectPanel({
-    onChoose: (group, claim) => {
-      const alts = { ...state.alts };
-      if (claim) alts[group] = claim;
-      else delete alts[group];
-      setState({ alts });
-    },
+    onPick: (group, claim) => setState({ picks: [...state.picks.filter((p) => !group.includes(p)), ...(claim ? [claim] : [])].sort() }),
     onClose: () => setState({ sel: null }),
+    onOpen: (id) => setState({ sel: id }),
     labelOf,
+    altTitle,
   });
   stage.appendChild(inspect.el);
 
@@ -111,8 +117,8 @@ async function start(root: HTMLElement): Promise<void> {
   const brand = document.createElement('div');
   brand.className = 'brand';
   brand.innerHTML = `<strong>Lightworld</strong><span>Pangaea to today</span>`;
-  const search = new Search(build.search, kindLabel);
-  const toolbar = new Toolbar(build.id);
+  const search = new Search(build.search, build.periods.periods, kindLabel);
+  const toolbar = new Toolbar(build.id, ts.alternatives);
   top.append(brand, search.el, toolbar.el);
   root.appendChild(top);
 
@@ -122,6 +128,7 @@ async function start(root: HTMLElement): Promise<void> {
     onPlay: () => togglePlay(),
   });
   timebar.setKeyframes(ts.keyframesMa.map(fromMa));
+  timebar.setScenario(scenario());
   root.appendChild(timebar.el);
 
   // State.
@@ -135,8 +142,9 @@ async function start(root: HTMLElement): Promise<void> {
     const next = quantize({ ...state, ...p });
     next.t = Math.max(dataRange[0], Math.min(dataRange[1], next.t));
     const selChanged = next.sel !== state.sel;
-    const altsChanged = JSON.stringify(next.alts) !== JSON.stringify(state.alts);
+    const altsChanged = JSON.stringify([next.alt, next.picks]) !== JSON.stringify([state.alt, state.picks]);
     state = next;
+    if (altsChanged) timebar.setScenario(scenario());
     dirty = true;
     clearTimeout(urlTimer);
     urlTimer = window.setTimeout(() => history.replaceState(null, '', toSearch(build.id, state)), 120);
@@ -154,7 +162,14 @@ async function start(root: HTMLElement): Promise<void> {
     if (state.sel !== id) return;
     const f = features.get(id);
     shownRecord = id;
-    inspect.showEntity(r, state.alts, f ? timeFor(f, state.alts) : r.time);
+    inspect.showEntity(r, scenario(), f ? timeFor(f, scenario()) : recordTime(r, scenario()));
+  }
+
+  /** An entity's interval in a scenario, from its record (for entities with no marker). */
+  function recordTime(r: EntityRecord, s: Scenario): FeatureTime {
+    const v: Record<string, FeatureTime> = {};
+    for (const x of r.variants) if (x.time) v[x.key] = x.time;
+    return lookup(v, s, r.time);
   }
 
   function togglePlay(): void {
@@ -169,7 +184,7 @@ async function start(root: HTMLElement): Promise<void> {
     gpuTiles.set(t.ref.id, field.addTile(t.ref.id, t.ref.lod, t.header.field.grid, t.keyframes));
     for (const f of t.header.features) features.set(f.id, f);
     if (!cloudSpec && t.header.generators.length) {
-      cloudSpec = t.header.generators.find((g) => g.generator === 'clouds') ?? null;
+      cloudSpec = t.header.generators.find((g) => g.generator === CLOUDS) ?? null;
       if (cloudSpec) void makeClouds(cloudSpec);
     }
     if (state.sel && !shownRecord) void showSelection();
@@ -254,7 +269,7 @@ async function start(root: HTMLElement): Promise<void> {
         sun,
         mix,
         evidence: state.evidence ? 1 : 0,
-        coast: ts.field.coastlineM,
+        coast: ts.field.coastline.isolineM,
         showClouds: state.clouds && cloudsReady,
       },
       w,
@@ -266,7 +281,7 @@ async function start(root: HTMLElement): Promise<void> {
       t: state.t,
       windowSpan: state.window[1] - state.window[0],
       evidence: state.evidence,
-      alts: state.alts,
+      scenario: scenario(),
       selected: state.sel,
       plateRotation: (plate) => {
         let q = nowTotals.get(plate);
@@ -278,7 +293,7 @@ async function start(root: HTMLElement): Promise<void> {
       },
     });
     timebar.set(state.t, state.window, playing);
-    toolbar.set({ evidence: state.evidence, clouds: state.clouds });
+    toolbar.set({ evidence: state.evidence, clouds: state.clouds, alt: state.alt });
     document.body.classList.toggle('evidence', state.evidence);
   }
 
@@ -350,6 +365,7 @@ async function start(root: HTMLElement): Promise<void> {
       t: state.t,
       source: ts.field.sourceRecord,
       fieldTitle: ts.field.title,
+      coastline: ts.field.coastline.title,
       datum: ts.field.datum,
     });
   }
@@ -364,7 +380,8 @@ async function start(root: HTMLElement): Promise<void> {
     }
     const f = features.get(h.id) ?? null;
     const entry = build.search.entities.find((e) => e.id === h.id)!;
-    const time = f ? timeFor(f, state.alts) : entry.time;
+    if (!h.located) return setState({ sel: h.id });
+    const time = f ? timeFor(f, scenario()) : entry.time;
     let t = state.t;
     if (visibility(time, t, state.window[1] - state.window[0], false) < 0.5) t = time.start.best ?? t;
     const ageAt = toMa(t);

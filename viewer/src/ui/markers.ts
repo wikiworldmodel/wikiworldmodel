@@ -2,7 +2,9 @@
 // click resolves to the entity's record. Positions come from the frames: a marker rides its
 // plate, so at 250 Ma it is where its locality was then.
 import { rotate, unitVector, type Quat } from '../../../core/quat.ts';
-import type { Feature, FeatureTime } from '../../../core/tileset.ts';
+import { lookup, type Scenario } from '../../../core/scenario.ts';
+import { PRESENT_YEAR } from '../../../core/time.ts';
+import type { Basis, Feature, FeatureTime } from '../../../core/tileset.ts';
 import type { Camera } from '../camera.ts';
 import type { V3 } from '../mat.ts';
 
@@ -11,27 +13,35 @@ export interface MarkerContext {
   /** the time control's window span, years: sets how long instants stay visible */
   windowSpan: number;
   evidence: boolean;
-  alts: Record<string, string>;
+  scenario: Scenario;
   selected: string | null;
   plateRotation: (plate: number) => Quat;
 }
 
 const KIND_CLASS: Record<string, string> = {
-  'life/occurrence': 'fossil',
-  'earth/event/impact': 'event',
-  'earth/event/collision': 'event',
-  'earth/large-igneous-province': 'lip',
-  'earth/structure/impact-crater': 'structure',
-  'earth/mountain-range': 'range',
+  occurrence: 'fossil',
+  'event/impact': 'event',
+  'event/collision': 'event',
+  'large-igneous-province': 'lip',
+  'landform/impact-crater': 'structure',
+  'landform/mountain-range': 'range',
 };
 
-/** The interval a feature has under the chosen claims. */
-export function timeFor(f: Feature, alts: Record<string, string>): FeatureTime {
-  for (const [group, claim] of Object.entries(alts)) {
-    const t = f.alternatives?.[`${group}=${claim}`];
-    if (t) return t;
-  }
-  return f.time;
+/** The interval a feature has in a scenario. */
+export function timeFor(f: Feature, s: Scenario): FeatureTime {
+  return lookup(f.variants, s, f.time);
+}
+
+/** A feature's label at time t: the name in use then, or today's name where it had none. */
+export function labelAt(f: Feature, t: number): string {
+  return f.names?.find((n) => n.valid && n.valid[0] <= t && t <= n.valid[1])?.text ?? f.label;
+}
+
+/** How directly what is shown rests on evidence: at the present, the measured place. */
+export function basisAt(f: Feature, t: number): Basis {
+  const place = t >= PRESENT_YEAR ? f.basis.placeNow : f.basis.place;
+  const order: Basis[] = ['evidence', 'reconstruction', 'projection', 'procedural'];
+  return order[Math.max(order.indexOf(place), order.indexOf(f.basis.time))];
 }
 
 /**
@@ -78,7 +88,7 @@ export class Markers {
     const boxes: { x0: number; y0: number; x1: number; y1: number }[] = [];
     const placed: { f: Feature; x: number; y: number; vis: number; t: FeatureTime }[] = [];
     for (const f of features) {
-      const time = timeFor(f, ctx.alts);
+      const time = timeFor(f, ctx.scenario);
       const vis = visibility(time, ctx.t, ctx.windowSpan, ctx.evidence);
       if (vis <= 0.01) continue;
       const q = f.plate ? ctx.plateRotation(f.plate) : ([1, 0, 0, 0] as Quat);
@@ -112,9 +122,10 @@ export class Markers {
         this.nodes.set(m.f.id, node);
       }
       const label = node.querySelector<HTMLElement>('.label')!;
-      if (label.textContent !== m.f.label) label.textContent = m.f.label;
-      node.setAttribute('aria-label', `${m.f.label} (${m.f.kind})`);
-      const w = 8 + m.f.label.length * 6.6;
+      const text = labelAt(m.f, ctx.t);
+      if (label.textContent !== text) label.textContent = text;
+      node.setAttribute('aria-label', `${text} (${m.f.kind})`);
+      const w = 8 + text.length * 6.6;
       let dy = 0;
       for (let i = 0; i < 6; i++) {
         const box = { x0: m.x, y0: m.y - 9 + dy, x1: m.x + 14 + w, y1: m.y + 9 + dy };
@@ -130,6 +141,8 @@ export class Markers {
       node.classList.toggle('selected', ctx.selected === m.f.id);
       node.classList.toggle('derived', ctx.evidence && (m.t.start.derived || m.t.end.derived));
       node.classList.toggle('proposed', ctx.evidence && m.f.status === 'proposed');
+      const basis = basisAt(m.f, ctx.t);
+      for (const b of ['reconstruction', 'projection', 'procedural']) node.classList.toggle(`basis-${b}`, ctx.evidence && basis === b);
       node.style.display = '';
     }
     for (const [id, node] of this.nodes) if (!seen.has(id)) node.style.display = 'none';

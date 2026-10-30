@@ -1,5 +1,6 @@
-id: choudhary-jadhav-2014-mahabaleshwar
+id: src:choudhary-jadhav-2014-mahabaleshwar
 type: publication
+kind: measurement
 citation: >-
   Choudhary, B.R. & Jadhav, G.N. (2014). Petrogenesis of fractionated basaltic lava flows of
   Poladpur-Mahabaleshwar formation around Mahabaleshwar, Western Ghats, India. Journal of
@@ -7,7 +8,7 @@ citation: >-
 authors:
   - "Choudhary, B.R."
   - "Jadhav, G.N."
-year: 2014
+published: 2014
 title: Petrogenesis of fractionated basaltic lava flows of Poladpur-Mahabaleshwar formation around Mahabaleshwar, Western Ghats, India
 container: Journal of the Geological Society of India 84(2), 197–208
 doi: 10.1007/s12594-014-0124-0

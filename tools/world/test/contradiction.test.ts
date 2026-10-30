@@ -2,7 +2,7 @@
 import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { solveWorld } from '../src/chronology.ts';
+import { solveScenario } from '../src/chronology.ts';
 import { REPO } from '../src/paths.ts';
 import { validateWorld } from '../src/validate/index.ts';
 import { loadWorld } from '../src/world.ts';
@@ -11,18 +11,14 @@ const FIXTURE = join(REPO, 'tools/world/test/fixtures/contradiction');
 
 describe('contradiction fixture', () => {
   it('has a chronology conflict made of exactly the three clashing constraints', async () => {
-    const sol = solveWorld(await loadWorld(FIXTURE));
+    const sol = solveScenario(await loadWorld(FIXTURE));
     expect(sol.ok).toBe(false);
     if (sol.ok) return;
-    expect(sol.conflict.constraints.map((c) => c.source).sort()).toEqual([
-      'test/fossil-below:claims.date',
-      'test/fossil-below:relations.below-flow',
-      'test/lava-flow:claims.start',
-    ]);
+    expect(sol.conflict.constraints.map((c) => c.source).sort()).toEqual(['test/fossil-below#below-flow', 'test/fossil-below#date', 'test/lava-flow#start']);
   });
 
   it('fails validation with one chronology error naming them, and nothing about the other fossil', async () => {
-    const issues = await validateWorld(await loadWorld(FIXTURE), { frames: false });
+    const { issues } = await validateWorld(await loadWorld(FIXTURE), { frames: false });
     const errors = issues.filter((i) => i.level === 'error');
     expect(errors).toHaveLength(1);
     expect(errors[0].check).toBe('chronology');

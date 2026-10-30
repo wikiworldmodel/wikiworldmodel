@@ -1,0 +1,12 @@
+# Every geometry lives in a frame whose transform to its parent is a function of time.
+id: frame:earth/geographic
+type: frame
+kind: body-fixed
+title: Earth, geographic coordinates
+description: >-
+  Latitude and longitude on the Earth at each time, relative to its spin axis: where things
+  were, then. The plate model's absolute reference frame (its plate 0, which PALEOMAP ties to
+  the paleomagnetic pole) is taken as this frame, and the PaleoDEM grids are given in it.
+note: >-
+  The root of this world's frames. Its own parent, the Sun's frame (orbit, spin and tilt
+  over time), is not modelled yet.

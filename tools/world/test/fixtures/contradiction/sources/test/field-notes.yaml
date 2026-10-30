@@ -1,3 +1,4 @@
-id: test/field-notes
+id: src:test/field-notes
 type: publication
+kind: measurement
 citation: Fixture source for the contradiction test (not a real publication).

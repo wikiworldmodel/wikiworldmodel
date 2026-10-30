@@ -1,5 +1,6 @@
-id: eid-chicxulub
+id: src:eid-chicxulub
 type: database-record
+kind: compilation
 citation: >-
   Earth Impact Database (Planetary and Space Science Centre, University of New Brunswick),
   entry "Chicxulub".

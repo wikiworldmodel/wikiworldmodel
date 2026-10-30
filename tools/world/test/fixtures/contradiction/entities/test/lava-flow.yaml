@@ -1,19 +1,12 @@
 id: test/lava-flow
-kind: earth/large-igneous-province
-label: Fixture lava flow
-frame: earth/paleomap
+kind: large-igneous-province
+author: fixture
 claims:
   start:
     prop: start
-    value: { ma: 70.0 }
-    source: test/lab-report
-    author: Fixture
-    status: accepted
-    rank: preferred
+    value: 70.0 Ma
+    source: { ref: src:test/lab-report }
   end:
     prop: end
-    value: { ma: 69.0 }
-    source: test/lab-report
-    author: Fixture
-    status: accepted
-    rank: preferred
+    value: 69.0 Ma
+    source: { ref: src:test/lab-report }

@@ -22,20 +22,45 @@ export interface FeatureTime {
   /** for instants, end === start */
   end: Estimate;
   instant: boolean;
+  /** it ended, at a time no claim gives (rather than still holding) */
+  endUnknown?: boolean;
+}
+
+export type Basis = 'evidence' | 'reconstruction' | 'projection' | 'procedural';
+
+/**
+ * How directly a feature rests on evidence: derived content takes the weakest basis among
+ * its inputs (section 7). Its place at the present is its measured location; at other
+ * times the location is also moved by its frame.
+ */
+export interface FeatureBasis {
+  time: Basis;
+  place: Basis;
+  placeNow: Basis;
+}
+
+export interface FeatureName {
+  text: string;
+  /** when the name was in use; absent: always */
+  valid?: [number, number];
 }
 
 export interface Feature {
   id: string;
+  /** today's name */
   label: string;
+  /** names in use at other times, if any */
+  names?: FeatureName[];
   kind: string;
-  basis: 'evidence' | 'reconstruction' | 'procedural';
-  /** frame the location is given in; for earth/plates, `plate` is the plate it rides */
+  basis: FeatureBasis;
+  /** the frame the feature moves with; for a plate frame, `plate` is the plate it rides */
   frame: string;
   plate?: number;
+  /** in the feature's own frame (plate-local), carried there from where it was measured */
   location: { lat: number; lon: number };
   time: FeatureTime;
-  /** interval under each alternative claim: "subject|prop=claimId" → time */
-  alternatives?: Record<string, FeatureTime>;
+  /** interval under other scenarios (keyed by scenario key), where it differs */
+  variants?: Record<string, FeatureTime>;
   status: 'proposed' | 'accepted' | 'disputed' | 'deprecated';
 }
 
@@ -67,9 +92,11 @@ export interface FieldContent {
 }
 
 export interface GeneratorConstraint {
-  id: string;
+  /** the generator record */
   generator: string;
   version: number;
+  /** the stable slot id of what it makes here, and the seed that slot declares */
+  slot: string;
   seed: string;
   basis: 'procedural';
   params: Record<string, unknown>;
@@ -78,7 +105,7 @@ export interface GeneratorConstraint {
 }
 
 export interface TileHeader {
-  format: 'lightworld-tile@1';
+  format: 'lightworld-tile@2';
   id: string;
   lod: number;
   bbox: [number, number, number, number];
@@ -110,31 +137,47 @@ export interface LodInfo {
   binsMa: [number, number][];
 }
 
+export interface AlternativeGroupInfo {
+  id: string;
+  title: string;
+  description?: string;
+  /** the member shown by default; null: the default picture */
+  default: string | null;
+  members: { id: string; title: string; description?: string; kind?: string }[];
+}
+
 export interface Tileset {
-  format: 'lightworld-tileset@1';
+  format: 'lightworld-tileset@2';
   build: string;
   field: {
     id: string;
     title: string;
     units: string;
     datum: string;
-    basis: string;
+    basis: Basis;
     interpolation: string;
     source: string;
     sourceRecord?: import('./records.ts').SourceRecord;
-    coastlineM: number;
+    /** the derived coastline field */
+    coastline: { id: string; title: string; isolineM: number };
   };
   keyframesMa: number[];
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string };
   /** attribution the viewer must show for the data it displays */
   credits: { label: string; license: string }[];
+  /** the alternatives this build shows, by group */
+  alternatives: AlternativeGroupInfo[];
+  /** kind labels, for display */
+  kinds: Record<string, string>;
 }
 
 /** The plate index maps the plate ids used in field tiles to dense indices for the GPU. */
 export interface FramesFile {
   rotations: import('./rotation-model.ts').BakedRotationModel;
   plateIndex: number[];
+  /** the frames records use: plate frames name their plate and the entity that defines them */
+  frames: { id: string; title: string; kind: string; plate?: number; entity?: string }[];
 }

@@ -36,7 +36,7 @@ describe('quaternions', () => {
 });
 
 describe('PALEOMAP rotation model', async () => {
-  const rotPath = await dataset('paleomap-plate-model', 'rotations');
+  const rotPath = await dataset('src:paleomap-plate-model', 'rotations');
   const text = readFileSync(rotPath, 'latin1');
   const model = new RotationModel(bakeRotationModel(parseRot(text)));
   const golden = JSON.parse(readFileSync(new URL('./fixtures/paleomap-rotations-pygplates.json', import.meta.url), 'utf8'));

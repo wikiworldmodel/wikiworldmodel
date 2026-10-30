@@ -1,0 +1,12 @@
+# A derived field: declared, never stored (section 9.1). The renderer draws it from the
+# blended elevation field, so it always agrees with the terrain under it.
+id: field:earth/coastline
+type: field
+title: Coastline
+derived: true
+from: [field:earth/elevation]
+rule: isoline
+# The PaleoDEM values come in 40 m steps (20 m at 0 Ma), with a large class at exactly 0 m
+# along shores. The isoline sits between that class and the first land class, so 0 m
+# nodes count as sea; that reproduces the present-day land fraction (29%).
+isoline_m: 20

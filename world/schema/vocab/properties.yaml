@@ -1,0 +1,123 @@
+# Properties: the type of value a claim takes, its unit, how it changes over time, and the
+# kinds of subject it applies to. Validators reject properties, methods and confidence
+# words that are not declared here.
+#
+#   type        time | point | ref | text (with language) | string | quantity | color
+#   unit        for quantities: values are written in this unit
+#   interp      how a state changes between known points: step | linear | log-time | slerp
+#   moment      evidence about a moment: it feeds the date solver (section 5) and is never
+#               interpolated
+#   applies_to  kinds (with their children), or `moments` (kinds with moment: true) or
+#               `lasting` (the others, and every phase); omitted means any subject
+#   ref_types   for refs: the record types the value may name
+#   inverse     for refs: a claim whose value is another record is a relation, and the
+#               build derives its inverse under this name
+properties:
+  name:
+    type: text
+    interp: step
+    description: >-
+      A name, with its language. `valid` says when the name was in use; the viewer labels a
+      thing by the name in use at the time shown, or by today's name where it had none.
+  date:
+    type: time
+    moment: true
+    applies_to: [moments]
+    description: When a moment happened.
+  start:
+    type: time
+    moment: true
+    applies_to: [lasting]
+    description: When an entity or phase began.
+  end:
+    type: time
+    moment: true
+    applies_to: [lasting]
+    description: When an entity or phase ended. With no end claim and nothing implying one, it still holds.
+  earlier_than:
+    type: time
+    moment: true
+    applies_to: [moments]
+    description: A moment happened before this time (a terminus ante quem).
+  later_than:
+    type: time
+    moment: true
+    applies_to: [moments]
+    description: A moment happened after this time (a terminus post quem).
+  location:
+    type: point
+    interp: step
+    description: A point, with the frame its coordinates were measured in.
+  frame:
+    type: ref
+    ref_types: [frame]
+    interp: step
+    inverse: carries
+    description: >-
+      The frame the subject's geometry lives in, and moves with. Like a relation, it is
+      stored once; the build derives the inverse on the entity that defines the frame.
+  identified_as:
+    type: string
+    applies_to: [occurrence]
+    description: The taxon name as identified in the original record.
+  formation:
+    type: string
+    applies_to: [occurrence]
+    description: The geological formation the fossils come from.
+  diameter:
+    type: quantity
+    unit: km
+    interp: step
+    applies_to: [landform/impact-crater]
+    description: Diameter.
+  area:
+    type: quantity
+    unit: km²
+    interp: linear
+    applies_to: [large-igneous-province]
+    description: Area of the outcrop.
+  color:
+    type: color
+    applies_to: [period]
+    description: The standard colour of a period on its chart, as #RRGGBB.
+
+# Methods: how the value of a claim was established. A method's children are written
+# parent/child (radiometric/ar-ar).
+methods:
+  radiometric:
+    label: Radiometric dating
+    children:
+      ar-ar: { label: 40Ar/39Ar dating }
+      u-pb: { label: U–Pb dating }
+  stratigraphic:
+    label: Stratigraphic dating
+    description: Dated by the position of the beds in a dated sequence, or by their fossils.
+  expert-estimate:
+    label: Expert estimate
+    description: A value a source states without the measurement behind it.
+  survey:
+    label: Survey
+    description: Measured in the field, for example a section's coordinates.
+  compilation:
+    label: Compilation
+    description: Read from a database or chart that compiles the literature.
+  gazetteer:
+    label: Gazetteer
+    description: Placed from a gazetteer's coordinates for a named place.
+  plate-polygon:
+    label: Plate polygon
+    description: Assigned to the plate whose polygon, in the plate model, contains the present-day location.
+  editorial:
+    label: Editorial choice
+    description: Chosen by an editor, such as a representative point to place a marker.
+
+# Confidence: a probability, or a calibrated word that stands for a range of them (the
+# IPCC AR6 likelihood scale).
+confidence:
+  virtually-certain: [0.99, 1]
+  very-likely: [0.9, 1]
+  likely: [0.66, 1]
+  about-as-likely-as-not: [0.33, 0.66]
+  unlikely: [0, 0.33]
+  very-unlikely: [0, 0.1]
+  exceptionally-unlikely: [0, 0.01]

@@ -56,15 +56,16 @@ test('clicking an entity shows its claims and sources, and competing claims swit
   await page.keyboard.press('Enter');
   await idle(page);
   const panel = page.locator('.inspect');
-  await expect(panel.locator('h2')).toHaveText('India–Asia collision (onset)');
+  await expect(panel.locator('h2')).toHaveText('India–Asia collision onset');
   await expect(panel).toContainText('59 ± 1 Ma');
   await expect(panel).toContainText('machine-made, needs review');
   await expect(panel.locator('.sources')).toContainText('Earth-Science Reviews 160');
   await expect(panel.locator('.sources a').first()).toHaveAttribute('href', /doi\.org\/10\./);
-  // Switch to the older claim; the URL records it and the dates follow.
-  await panel.locator('input[value="date-yin-harrison-2000"]').check();
+  await expect(panel).toContainText('Hu et al. 2016, abstract');
+  // Pick the older claim; the URL records it and the dates follow.
+  await panel.locator('input[value="earth/events/india-asia-collision#date-yin-harrison-2000"]').check();
   await idle(page);
-  expect(await settledUrl(page)).toContain('alt=earth%2Fevents%2Findia-asia-collision%7Cdate%3Ddate-yin-harrison-2000');
+  expect(await settledUrl(page)).toContain('pick=earth%2Fevents%2Findia-asia-collision%23date-yin-harrison-2000');
   await expect(panel.locator('.when')).toContainText('70 Ma');
   // The Himalaya's start is derived from the collision, so it moves too.
   await page.fill('.search input', 'himalaya');
@@ -81,7 +82,7 @@ test('a claim that contradicts the world cannot be chosen, and says why', async 
   await page.fill('.search input', 'chicxulub impact');
   await page.keyboard.press('Enter');
   await idle(page);
-  const swisher = page.locator('.inspect input[value="date-swisher-1992"]');
+  const swisher = page.locator('.inspect input[value="earth/events/chicxulub-impact#date-swisher-1992"]');
   await expect(swisher).toBeDisabled();
   await expect(page.locator('.inspect .claim.inconsistent')).toContainText('Deccan Traps');
 });
@@ -116,8 +117,8 @@ test('the browser runs the cloud generator to the same bytes as the build', asyn
   expect(clouds.expected).toMatch(/^[0-9a-f]{64}$/);
 });
 
-test('the Mesosaurus localities sit together at 280 Ma', async ({ page }) => {
-  await page.goto(`/?b=${latestBuild()}&t=280Ma&lat=-38&lon=-22&d=3`);
+test('the Mesosaurus localities sit together in the Artinskian', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}&t=285Ma&lat=-38&lon=-22&d=3`);
   await idle(page);
   const m = await markerPositions(page);
   const ids = Object.keys(m).filter((id) => id.startsWith('life/mesosaurus/'));
@@ -127,4 +128,40 @@ test('the Mesosaurus localities sit together at 280 Ma', async ({ page }) => {
   await idle(page);
   const now = await markerPositions(page);
   expect(Object.keys(now).filter((id) => id.startsWith('life/mesosaurus/'))).toEqual([]);
+});
+
+test('switching the time-scale alternative re-dates the stages and the records that cite them', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}&t=281Ma&lat=-38&lon=-22&d=3`);
+  await idle(page);
+  await expect(page.locator('.tb-readout')).toContainText('Kungurian');
+  await page.fill('.search input', 'mateus');
+  await page.keyboard.press('Enter');
+  await idle(page);
+  const panel = page.locator('.inspect');
+  await expect(panel.locator('.when')).toContainText('290.1 Ma – 283.5 Ma');
+  await expect(panel).toContainText('during Artinskian');
+  // The PBDB's own time scale ends the Artinskian at 279.3 Ma.
+  await page.selectOption('select[data-group="alt:time-scale"]', 'alt:time-scale/pbdb-2022');
+  await idle(page);
+  expect(await settledUrl(page)).toContain('alt=alt%3Atime-scale%2Fpbdb-2022');
+  await expect(page.locator('.tb-readout')).toContainText('Artinskian');
+  await expect(panel.locator('.when')).toContainText('290.1 Ma – 279.3 Ma');
+  await expect(panel).toContainText('PBDB interval ages');
+});
+
+test('a record shows the relations others make to it, and the records it wants', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}`);
+  await idle(page);
+  await page.fill('.search input', 'south-central');
+  await page.keyboard.press('Enter');
+  await idle(page);
+  const panel = page.locator('.inspect');
+  await expect(panel.locator('h2')).toHaveText('south-central Africa');
+  await expect(panel.locator('.relations.inverse')).toContainText('carries Mesosaurus, Calvinia');
+  await expect(panel.locator('.relations.inverse')).toContainText('carries Mesosaurus, Kabus');
+  await panel.locator('.relations.inverse a', { hasText: 'Kabus' }).click();
+  await idle(page);
+  await expect(panel.locator('h2')).toHaveText('Mesosaurus, Kabus');
+  await expect(panel.locator('.relations')).toContainText('member of life/taxa/mesosaurus-tenuidens wanted');
+  await expect(panel).toContainText('No source: An editorial label');
 });

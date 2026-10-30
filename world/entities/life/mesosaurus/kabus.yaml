@@ -1,47 +1,44 @@
 id: life/mesosaurus/kabus
-kind: life/occurrence
-label: Mesosaurus, Kabus
+kind: occurrence
 summary: Mesosaurus tenuidens from the Whitehill Formation at Kabus, Namibia. PBDB collection 90755.
-frame: earth/plates
-same_as: { pbdb_collection: 90755, pbdb_occurrence: 823897 }
+same_as: { pbdb: "occ:823897" }
+author: machine:claude-code
 claims:
-  taxon:
-    prop: taxon
-    value: Mesosaurus tenuidens
-    source: pbdb/collection-90755
-    locator: occurrence 823897, accepted name
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+  name:
+    prop: name
+    value: { en: "Mesosaurus, Kabus" }
+    unsourced: An editorial label, from the taxon and the collection's place name.
   identified:
     prop: identified_as
     value: Mesosaurus tenuidens
-    source: pbdb/collection-90755
-    locator: occurrence 823897, identified name
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    source: { ref: src:pbdb/collection-90755, loc: "occurrence 823897, identified_name" }
   location:
     prop: location
-    value: { lat: -26.319445, lon: 18.246944 }
-    source: pbdb/collection-90755
-    locator: collection coordinates (lat, lng)
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    value: { lat: -26.319445, lon: 18.246944, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-90755, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
   formation:
     prop: formation
     value: Whitehill Formation
-    source: pbdb/collection-90755
-    author: machine:claude-code
-    status: proposed
-    rank: preferred
+    source: { ref: src:pbdb/collection-90755, loc: formation }
   date:
     prop: date
-    value: { ma: [290.1, 279.3] }
-    source: pbdb/collection-90755
-    locator: early_interval Artinskian; max_ma, min_ma
-    method: Stratigraphic assignment to the Artinskian stage, with the PBDB's ages for it.
-    author: machine:claude-code
-    status: proposed
+    value: { ref: ics/artinskian }
+    source: { ref: src:pbdb/collection-90755, loc: early_interval }
+    method: stratigraphic
     rank: preferred
+    note: >-
+      Assigned to the Artinskian stage. The PBDB's own ages for it (max_ma 290.1, min_ma
+      279.3) come from its time scale; here the stage's ages come from its period record,
+      so they follow the time scale chosen.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mesosaurus-tenuidens
+    source: { ref: src:pbdb/collection-90755, loc: "occurrence 823897, accepted_name" }

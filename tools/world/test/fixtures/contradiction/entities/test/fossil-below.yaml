@@ -1,20 +1,14 @@
 id: test/fossil-below
-kind: life/occurrence
-label: Fixture fossil below the flow
-frame: earth/paleomap
+kind: occurrence
+author: fixture
 claims:
   date:
     prop: date
-    value: { ma: 68.0, pm: 0.2, sigma: 2 }
-    source: test/lab-report
-    author: Fixture
-    status: accepted
-    rank: preferred
+    value: { mean: 68.0 Ma, sd: 0.1 Myr }
+    source: { ref: src:test/lab-report }
 relations:
   below-flow:
-    type: before
-    of: test/lava-flow
-    source: test/field-notes
+    rel: before
+    to: test/lava-flow
+    source: { ref: src:test/field-notes }
     note: Found in the beds under the flow, so it predates it.
-    author: Fixture
-    status: accepted

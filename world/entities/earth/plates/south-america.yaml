@@ -1,0 +1,9 @@
+id: earth/plates/south-america
+kind: plate
+summary: Plate 201 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: South America }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 201", quote: "SAM-AFR South America-Africa" }

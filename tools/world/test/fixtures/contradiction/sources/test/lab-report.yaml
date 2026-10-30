@@ -1,3 +1,4 @@
-id: test/lab-report
+id: src:test/lab-report
 type: publication
+kind: measurement
 citation: Fixture source for the contradiction test (not a real publication).

@@ -1,19 +1,13 @@
 id: test/fossil-above
-kind: life/occurrence
-label: Fixture fossil above the flow
-frame: earth/paleomap
+kind: occurrence
+author: fixture
 claims:
   date:
     prop: date
-    value: { ma: 66.0, pm: 0.5, sigma: 2 }
-    source: test/lab-report
-    author: Fixture
-    status: accepted
-    rank: preferred
+    value: { mean: 66.0 Ma, sd: 0.25 Myr }
+    source: { ref: src:test/lab-report }
 relations:
   above-flow:
-    type: after
-    of: test/lava-flow
-    source: test/field-notes
-    author: Fixture
-    status: accepted
+    rel: after
+    to: test/lava-flow
+    source: { ref: src:test/field-notes }

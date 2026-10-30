@@ -1,0 +1,40 @@
+# A generator: versioned code plus parameters plus a seed. It makes plausible filler where
+# there is no evidence (nobody observed the weather of 66 Ma), the same bytes in the build
+# and in the browser. Changing its output is a new version, not an edit.
+id: gen:earth/clouds
+type: generator
+title: Cloud cover
+version: 1
+code: generators/earth/clouds/v1.ts
+runs_in: [build, client]
+outputs: { basis: procedural }
+# It takes no constraints from the world yet; a later version should follow the climate
+# fields (temperature, CO₂, land and sea) of each time.
+inputs: []
+# Each item it makes has a stable slot id, which seeds it: editing anything else in the
+# world never changes it. This version makes one global cloud layer, used at every time.
+slots:
+  globe:
+    place: the whole globe
+    seed: earth/clouds
+params:
+  width: 512
+  height: 256
+  scale: 3.5
+  octaves: 5
+  # A generic Hadley-cell pattern: cloudy equatorial band, clearer subtropics, cloudy storm
+  # tracks, clearer poles. [latitude°, cloud fraction] knots, linearly interpolated.
+  profile:
+    - [-90, 0.25]
+    - [-60, 0.55]
+    - [-45, 0.45]
+    - [-25, 0.14]
+    - [-8, 0.34]
+    - [0, 0.45]
+    - [8, 0.34]
+    - [25, 0.14]
+    - [45, 0.45]
+    - [60, 0.55]
+    - [90, 0.25]
+  sharpness: 2.6
+  warp: 0.7

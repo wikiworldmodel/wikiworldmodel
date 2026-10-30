@@ -6,7 +6,8 @@ import { describe, expect, it } from 'vitest';
 import { decodeTile } from '../../../core/container.ts';
 import { fromMa } from '../../../core/time.ts';
 import type { TileHeader, Tileset } from '../../../core/tileset.ts';
-import { generateClouds, type CloudParams } from '../../../world/generators/clouds/v1.ts';
+import type { CoverageFile, EntityRecord } from '../../../core/records.ts';
+import { GENERATOR, generateClouds, type CloudParams } from '../../../world/generators/earth/clouds/v1.ts';
 import { runBuild } from '../src/build/index.ts';
 import { latestBuild } from './helpers.ts';
 
@@ -73,8 +74,33 @@ describe('build', () => {
     const dir = latestBuild();
     const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
     const { header } = decodeTile<TileHeader>(readFileSync(join(dir, ts.tiles[0].url)).buffer.slice(0) as ArrayBuffer);
-    const g = header.generators.find((x) => x.generator === 'clouds')!;
+    const g = header.generators.find((x) => x.generator === GENERATOR)!;
+    expect([g.slot, g.seed]).toEqual(['globe', 'earth/clouds']);
     const out = generateClouds(g.seed, g.params as unknown as CloudParams);
     expect(createHash('sha256').update(out).digest('hex')).toBe(g.outputSha256);
+  });
+
+  it('records what it was made from: commit, datasets, generators, alternatives shown, license filter', () => {
+    const b = JSON.parse(readFileSync(join(latestBuild(), 'build.json'), 'utf8'));
+    expect(Object.keys(b.datasets)).toEqual(['src:paleodem-v2', 'src:paleomap-plate-model']);
+    expect(b.generators['gen:earth/clouds']).toEqual({ version: 1, seeds: { globe: 'earth/clouds' } });
+    expect(b.alternatives).toEqual({ shown: ['alt:time-scale/pbdb-2022'], default: { 'alt:time-scale': null } });
+    expect(b.licenses.allowed).toContain('CC-BY-4.0');
+    expect(b.data.commit).toMatch(/^[0-9a-f]{40}$/);
+  });
+
+  it('derives inverse relations instead of storing them', () => {
+    const rec = (id: string) => JSON.parse(readFileSync(join(latestBuild(), 'records', `${id}.json`), 'utf8')) as EntityRecord;
+    expect(rec('earth/events/chicxulub-impact').inverse).toEqual([expect.objectContaining({ rel: 'caused', from: 'earth/structures/chicxulub-crater', via: 'earth/structures/chicxulub-crater#formed-by' })]);
+    expect(rec('earth/lips/deccan-traps').inverse).toEqual([expect.objectContaining({ rel: 'contains', from: 'earth/events/chicxulub-impact' })]);
+    expect(rec('earth/plates/africa').inverse.map((x) => x.from)).toEqual(['life/mesosaurus/calvinia', 'life/mesosaurus/kabus']);
+  });
+
+  it('writes a coverage map: unsourced claims, wanted records, basis by tile', () => {
+    const c = JSON.parse(readFileSync(join(latestBuild(), 'coverage.json'), 'utf8')) as CoverageFile;
+    expect(c.wanted.map((w) => w.ref)).toEqual(['life/taxa/mesosaurus-tenuidens']);
+    expect(c.claims.unsourced).toContain('earth/orogens/himalaya#location');
+    expect(c.tiles).toHaveLength(85);
+    expect(c.tiles.find((t) => t.tile === '0/0-0/b4')!.features).toEqual({ reconstruction: 4 });
   });
 });

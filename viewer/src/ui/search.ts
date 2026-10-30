@@ -1,8 +1,8 @@
 // Search entities and named periods; choosing a result flies there.
-import type { SearchFile } from '../../../core/records.ts';
+import type { PeriodRecord, SearchFile } from '../../../core/records.ts';
 
 export type SearchHit =
-  | { type: 'entity'; id: string; label: string; detail: string }
+  | { type: 'entity'; id: string; label: string; detail: string; located: boolean }
   | { type: 'period'; id: string; label: string; detail: string; start: number; end: number };
 
 export class Search {
@@ -13,7 +13,7 @@ export class Search {
   private active = 0;
   onChoose: (h: SearchHit) => void = () => {};
 
-  constructor(private index: SearchFile, kindLabel: (k: string) => string) {
+  constructor(private index: SearchFile, private periods: PeriodRecord[], kindLabel: (k: string) => string) {
     this.el = document.createElement('div');
     this.el.className = 'search';
     this.el.innerHTML = `<input type="search" placeholder="Search places, events, periods…" aria-label="Search" autocomplete="off"><ul role="listbox" hidden></ul>`;
@@ -38,8 +38,8 @@ export class Search {
     const match = (s: string) => words.every((w) => s.toLowerCase().includes(w));
     const ents: SearchHit[] = this.index.entities
       .filter((e) => match(`${e.label} ${e.summary ?? ''} ${e.id}`))
-      .map((e) => ({ type: 'entity', id: e.id, label: e.label, detail: kindLabel(e.kind) }));
-    const pers: SearchHit[] = this.index.periods
+      .map((e) => ({ type: 'entity', id: e.id, label: e.label, detail: kindLabel(e.kind), located: e.located }));
+    const pers: SearchHit[] = this.periods
       .filter((p) => match(p.name))
       .map((p) => ({ type: 'period', id: p.id, label: p.name, detail: p.rank, start: p.start, end: p.end }));
     this.hits = [...ents, ...pers].slice(0, 12);

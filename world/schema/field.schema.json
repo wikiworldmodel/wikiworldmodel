@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lightworld.invalid/schema/field.json",
+  "title": "Field",
+  "description": "A continuous quantity over space and time; its arrays live outside git. A derived field is declared, never stored.",
+  "type": "object",
+  "required": ["id", "type", "title"],
+  "properties": {
+    "id": { "type": "string", "$ref": "defs.json#/$defs/record_id", "pattern": "^field:" },
+    "type": { "const": "field" },
+    "title": { "type": "string" },
+    "quantity": { "type": "string" },
+    "unit": { "type": "string" },
+    "datum": { "type": "string" },
+    "frame": { "$ref": "defs.json#/$defs/ref" },
+    "grid": {
+      "type": "object",
+      "required": ["kind", "res_deg"],
+      "properties": { "kind": { "enum": ["lonlat"] }, "res_deg": { "type": "number", "exclusiveMinimum": 0 } },
+      "additionalProperties": false
+    },
+    "time": {
+      "type": "object",
+      "required": ["lo", "hi", "step"],
+      "properties": { "lo": { "$ref": "defs.json#/$defs/time_point" }, "hi": { "$ref": "defs.json#/$defs/time_point" }, "step": { "$ref": "defs.json#/$defs/duration" } },
+      "additionalProperties": false
+    },
+    "data": {
+      "type": "object",
+      "required": ["from"],
+      "properties": { "from": { "$ref": "defs.json#/$defs/ref" } },
+      "additionalProperties": false
+    },
+    "basis": { "$ref": "defs.json#/$defs/basis" },
+    "interp": { "enum": ["step", "linear", "log-time", "plate-warp"] },
+    "moves_with": { "$ref": "defs.json#/$defs/ref" },
+    "derived": { "const": true },
+    "from": { "type": "array", "minItems": 1, "items": { "$ref": "defs.json#/$defs/ref" } },
+    "rule": { "enum": ["isoline"] },
+    "isoline_m": { "type": "number" }
+  },
+  "additionalProperties": false,
+  "if": { "required": ["derived"] },
+  "then": { "required": ["from", "rule"], "not": { "anyOf": [{ "required": ["data"] }, { "required": ["basis"] }] } },
+  "else": { "required": ["data", "basis", "frame", "grid", "time"] }
+}

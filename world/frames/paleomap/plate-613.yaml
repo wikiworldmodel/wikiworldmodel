@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-613
+type: frame
+kind: plate
+title: Lhasa block (PALEOMAP plate 613)
+entity: earth/plates/lhasa
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 613
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 613

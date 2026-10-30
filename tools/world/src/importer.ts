@@ -3,9 +3,11 @@ import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { parseDuration, parsePoint, toMa, type TimePointInput } from '../../../core/time.ts';
 import { datasetFile, loadManifest } from './manifest.ts';
 import { CACHE, REPO, WORLD } from './paths.ts';
 import { readYaml, sha256, stableStringify } from './util.ts';
+import type { Field } from './world.ts';
 
 const IMPORTER = join(REPO, 'tools/world/importers/paleomap.py');
 const REQUIREMENTS = join(REPO, 'tools/world/importers/requirements.txt');
@@ -16,23 +18,20 @@ export function python(): string {
   return existsSync(venv) ? venv : 'python3';
 }
 
-export interface FieldDef {
-  id: string;
-  title: string;
-  quantity: string;
-  units: string;
-  datum: string;
-  dataset: string;
-  plate_model: string;
-  frame: string;
-  time: { from: { ma: number }; to: { ma: number }; step_myr: number };
-  basis: string;
-  interpolation: string;
-  derived?: { coastline?: { isoline_m: number } };
+/** The field the build renders, and the plate model its nodes move with. */
+export const ELEVATION = 'field:earth/elevation';
+
+export async function loadField(): Promise<Field> {
+  const f = (await readYaml<Field>(join(WORLD, 'fields/earth/elevation.yaml')));
+  if (f.id !== ELEVATION) throw new Error(`fields/earth/elevation.yaml is ${f.id}, not ${ELEVATION}`);
+  return f;
 }
 
-export async function loadField(): Promise<FieldDef> {
-  return readYaml<FieldDef>(join(WORLD, 'fields/elevation.yaml'));
+/** A field's time span in Ma, oldest first. */
+export function fieldAgesMa(f: Field): { maxAgeMa: number; minAgeMa: number; stepMyr: number } {
+  const lo = toMa(parsePoint(f.time!.lo as TimePointInput).t);
+  const hi = toMa(parsePoint(f.time!.hi as TimePointInput).t);
+  return { maxAgeMa: Math.round(lo * 1e6) / 1e6, minAgeMa: Math.round(hi * 1e6) / 1e6, stepMyr: parseDuration(f.time!.step) / 1e6 };
 }
 
 async function importKey(parts: unknown): Promise<string> {
@@ -44,14 +43,17 @@ async function importKey(parts: unknown): Promise<string> {
 async function inputs() {
   const manifest = await loadManifest();
   const field = await loadField();
-  const pm = manifest.datasets[field.plate_model];
-  const dem = manifest.datasets[field.dataset];
+  const pmId = field.moves_with!;
+  const demId = field.data!.from;
+  const pm = manifest.datasets[pmId];
+  const dem = manifest.datasets[demId];
+  if (!pm || !dem) throw new Error(`${ELEVATION}: ${!pm ? pmId : demId} is not a dataset in the manifest`);
   return {
     field,
-    rotations: datasetFile(field.plate_model, pm, 'rotations'),
-    polygons: datasetFile(field.plate_model, pm, 'polygons'),
-    paleodem: datasetFile(field.dataset, dem),
-    checksums: { [field.plate_model]: pm.sha256, [field.dataset]: dem.sha256 },
+    rotations: datasetFile(pmId, pm, 'rotations'),
+    polygons: datasetFile(pmId, pm, 'polygons'),
+    paleodem: datasetFile(demId, dem),
+    checksums: { [pmId]: pm.fetch.sha256, [demId]: dem.fetch.sha256 },
   };
 }
 
@@ -62,8 +64,8 @@ export async function importFields(log: (s: string) => void = console.log): Prom
     rotations: inp.rotations,
     polygons: inp.polygons,
     paleodem: inp.paleodem,
-    minAgeMa: inp.field.time.to.ma,
-    maxAgeMa: inp.field.time.from.ma,
+    minAgeMa: fieldAgesMa(inp.field).minAgeMa,
+    maxAgeMa: fieldAgesMa(inp.field).maxAgeMa,
   };
   const key = await importKey({ checksums: inp.checksums, min: request.minAgeMa, max: request.maxAgeMa });
   const out = join(CACHE, 'import', `paleomap-fields@${key}`);
