@@ -1,0 +1,14 @@
+id: decelles-2014-sangdanlin
+type: publication
+citation: >-
+  DeCelles, P.G. et al. (2014). Paleocene-Eocene foreland basin evolution in the Himalaya of
+  southern Tibet and Nepal: implications for the age of initial India-Asia collision.
+  Tectonics 33.
+authors: [DeCelles, P.G.]
+year: 2014
+container: Tectonics
+doi: 10.1002/2014TC003522
+note: Title and co-authors were not checked here; the DOI and the quoted sentence were.
+verified:
+  by: machine:claude-code
+  how: Quoted sentence found via web search under this DOI.

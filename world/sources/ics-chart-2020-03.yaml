@@ -1,0 +1,13 @@
+id: ics-chart-2020-03
+type: chart
+citation: >-
+  Cohen, K.M., Finney, S.C., Gibbard, P.L. & Fan, J.-X. (2013; updated). The ICS
+  International Chronostratigraphic Chart. Episodes 36, 199–204. Chart version v2020/03.
+authors: [Cohen, K.M., Finney, S.C., Gibbard, P.L., Fan, J.-X.]
+year: 2020
+title: International Chronostratigraphic Chart v2020/03
+container: International Commission on Stratigraphy
+doi: 10.18814/epiiugs/2013/v36i3/002
+url: https://stratigraphy.org/ICSchart/ChronostratChart2020-03.pdf
+via: palaeoverse GTS2020 table (palaeoverse/palaeoverse@d01a895, data/GTS2020.rda), compiled from the chart PDF
+note: Newer chart versions exist; this one is pinned because it is available here in machine-readable form.

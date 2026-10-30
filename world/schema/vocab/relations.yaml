@@ -1,0 +1,23 @@
+# Relation types. `temporal` gives the constraint a relation adds to the chronology solver,
+# between this entity (or phase) and the related one (`of`), with an optional `lag`.
+#   this.start/end and of.start/end; an instant has start = end = date.
+relations:
+  before:
+    family: temporal
+    temporal: of.start - this.end in [lag.min ?? 0, lag.max ?? inf]
+  after:
+    family: temporal
+    temporal: this.start - of.end in [lag.min ?? 0, lag.max ?? inf]
+  during:
+    family: temporal
+    temporal: this.start - of.start >= 0 and of.end - this.end >= 0
+  overlaps:
+    family: temporal
+    temporal: of.end - this.start >= 0 and this.end - of.start >= 0
+  caused-by:
+    family: causal
+    temporal: this.start - of.start in [lag.min ?? 0, lag.max ?? inf]
+  within:
+    family: spatial
+  part-of:
+    family: spatial

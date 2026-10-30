@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lightworld.invalid/schema/defs.json",
+  "title": "Shared definitions",
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*(/[a-z0-9][a-z0-9-]*)*$"
+    },
+    "ref": {
+      "description": "An entity id, optionally with #phase",
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]*(/[a-z0-9][a-z0-9-]*)*(#[a-z0-9][a-z0-9-]*)?$"
+    },
+    "number_or_range": {
+      "oneOf": [
+        { "type": "number" },
+        { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 }
+      ]
+    },
+    "time": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["ma"],
+          "properties": { "ma": { "$ref": "#/$defs/number_or_range" }, "pm": { "type": "number", "exclusiveMinimum": 0 }, "sigma": { "enum": [1, 2] } },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["ka"],
+          "properties": { "ka": { "$ref": "#/$defs/number_or_range" }, "pm": { "type": "number", "exclusiveMinimum": 0 }, "sigma": { "enum": [1, 2] } },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["year"],
+          "properties": { "year": { "$ref": "#/$defs/number_or_range" }, "pm": { "type": "number", "exclusiveMinimum": 0 }, "sigma": { "enum": [1, 2] } },
+          "additionalProperties": false
+        },
+        { "type": "object", "required": ["ce"], "properties": { "ce": { "type": "number" } }, "additionalProperties": false },
+        { "type": "object", "required": ["bce"], "properties": { "bce": { "type": "number" } }, "additionalProperties": false }
+      ]
+    },
+    "duration": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 1,
+      "properties": { "myr": { "type": "number" }, "kyr": { "type": "number" }, "yr": { "type": "number" } },
+      "additionalProperties": false
+    },
+    "point": {
+      "type": "object",
+      "required": ["lat", "lon"],
+      "properties": {
+        "lat": { "type": "number", "minimum": -90, "maximum": 90 },
+        "lon": { "type": "number", "minimum": -180, "maximum": 180 }
+      },
+      "additionalProperties": false
+    },
+    "author": {
+      "description": "A person's name, or machine:<tool> for machine-made content",
+      "type": "string",
+      "pattern": "^(machine:[a-z0-9][a-z0-9-]*|[^:]+)$"
+    },
+    "status": { "enum": ["proposed", "accepted", "disputed", "deprecated"] },
+    "rank": { "enum": ["preferred", "normal", "deprecated"] },
+    "confidence": { "enum": ["high", "medium", "low"] }
+  }
+}

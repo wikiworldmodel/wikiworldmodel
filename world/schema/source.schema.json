@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lightworld.invalid/schema/source.json",
+  "title": "Source",
+  "description": "A citation: a publication, dataset version, database record or chart. One per file.",
+  "type": "object",
+  "required": ["id", "type", "citation"],
+  "properties": {
+    "id": { "$ref": "defs.json#/$defs/id" },
+    "type": { "enum": ["publication", "dataset", "database-record", "chart"] },
+    "citation": { "type": "string", "minLength": 10 },
+    "authors": { "type": "array", "items": { "type": "string" } },
+    "year": { "type": "integer" },
+    "title": { "type": "string" },
+    "container": { "type": "string", "description": "Journal, book or database" },
+    "doi": { "type": "string", "pattern": "^10\\.[0-9]{4,9}/\\S+$" },
+    "url": { "type": "string", "format": "uri" },
+    "license": { "type": "string" },
+    "via": { "type": "string", "description": "How this source reached us, if not directly" },
+    "reliability": { "type": "string" },
+    "verified": {
+      "type": "object",
+      "description": "What has been checked against the source itself, by whom and how",
+      "required": ["by", "how"],
+      "properties": { "by": { "type": "string" }, "how": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "note": { "type": "string" }
+  },
+  "additionalProperties": false
+}

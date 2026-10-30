@@ -1,0 +1,58 @@
+id: life/mesosaurus/sao-mateus-do-sul
+kind: life/occurrence
+label: Mesosaurus, São Mateus do Sul
+summary: Mesosaurus tenuidens from the Irati Formation at São Mateus do Sul, Paraná, Brazil. PBDB collection 90190.
+frame: earth/plates
+same_as: { pbdb_collection: 90190, pbdb_occurrence: 820351 }
+claims:
+  taxon:
+    prop: taxon
+    value: Mesosaurus tenuidens
+    source: pbdb/collection-90190
+    locator: occurrence 820351, accepted name
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  identified:
+    prop: identified_as
+    value: Mesosaurus tenuidens
+    source: pbdb/collection-90190
+    locator: occurrence 820351, identified name
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  location:
+    prop: location
+    value: { lat: -25.844444, lon: -50.422222 }
+    source: pbdb/collection-90190
+    locator: collection coordinates (lat, lng)
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  formation:
+    prop: formation
+    value: Irati Formation
+    source: pbdb/collection-90190
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  date:
+    prop: date
+    value: { ma: [290.1, 279.3] }
+    source: pbdb/collection-90190
+    locator: early_interval Artinskian; max_ma, min_ma
+    method: Stratigraphic assignment to the Artinskian stage, with the PBDB's ages for it.
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  date-santos-2006:
+    prop: date
+    value: { ma: 278.4, pm: 2.2, sigma: 2 }
+    source: santos-2006-irati
+    quote: SHRIMP analysis performed on the euhedral and prismatic grains revealed an age of ca. 278.4 ± 2.2 Ma (7 points with 95% confidence)
+    method: U-Pb (SHRIMP) zircon age of bentonite layers in the Irati Formation.
+    note: Applies to this occurrence only if it is coeval with the dated beds.
+    confidence: medium
+    author: machine:claude-code
+    status: proposed
+    rank: normal

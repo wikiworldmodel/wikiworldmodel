@@ -1,0 +1,20 @@
+# Frames: every geometry lives in a frame whose transform to its parent is a function of time.
+frames:
+  earth/paleomap:
+    title: PALEOMAP absolute reference frame
+    description: >-
+      The planet body frame of this build: paleo-latitude/longitude in the absolute
+      (paleomagnetic) reference frame of the PALEOMAP plate model, plate 0. The PaleoDEM
+      grids are given in it.
+    dataset: paleomap-plate-model
+  earth/plates:
+    title: Tectonic plates (PALEOMAP)
+    parent: earth/paleomap
+    description: >-
+      An entity in this frame rides on whichever plate contains its present-day location,
+      according to the plate model's polygons; the build resolves the plate, and the
+      rotation model moves it. Coordinates in this frame are present-day coordinates.
+    dataset: paleomap-plate-model
+    rotations: rotations
+    polygons: polygons
+    anchor: 0

@@ -1,0 +1,36 @@
+{
+  "name": "lightworld",
+  "private": true,
+  "type": "module",
+  "description": "A 4D world model of Earth, life and civilization, and a viewer for flying through it.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "world": "tsx tools/world/src/cli.ts",
+    "fetch": "tsx tools/world/src/cli.ts fetch",
+    "import": "tsx tools/world/src/cli.ts import",
+    "validate": "tsx tools/world/src/cli.ts validate",
+    "build:world": "tsx tools/world/src/cli.ts build",
+    "dev": "vite --config viewer/vite.config.ts",
+    "build:viewer": "vite build --config viewer/vite.config.ts",
+    "serve": "vite preview --config viewer/vite.config.ts --port 4173 --strictPort",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "npm run typecheck && npm run validate && npm test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.6",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "fflate": "0.8.3",
+    "tsx": "4.23.15",
+    "typescript": "7.0.2",
+    "undici": "8.12.3",
+    "vite": "8.3.5",
+    "vitest": "5.0.5",
+    "yaml": "2.9.1"
+  }
+}

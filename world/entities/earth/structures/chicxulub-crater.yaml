@@ -1,0 +1,39 @@
+id: earth/structures/chicxulub-crater
+kind: earth/structure/impact-crater
+label: Chicxulub crater
+summary: The buried impact structure left by the Chicxulub impact.
+frame: earth/plates
+claims:
+  location:
+    prop: location
+    value: { lat: 21.3333, lon: -89.5 }
+    source: eid-chicxulub
+    locator: latitude, longitude (21°20′N, 89°30′W)
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  diameter-hildebrand-1991:
+    prop: diameter_km
+    value: 180
+    source: hildebrand-1991-chicxulub
+    quote: We suggest that a buried 180-km-diameter circular structure on the northern Yucatán Peninsula, Mexico, is an impact crater.
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  diameter-eid:
+    prop: diameter_km
+    value: 150
+    source: eid-chicxulub
+    author: machine:claude-code
+    status: proposed
+    rank: normal
+relations:
+  formed-by:
+    type: caused-by
+    of: earth/events/chicxulub-impact
+    lag: { min: { yr: 0 }, max: { yr: 0 } }
+    source: hildebrand-1991-chicxulub
+    quote: We suggest that a buried 180-km-diameter circular structure on the northern Yucatán Peninsula, Mexico, is an impact crater.
+    note: The crater forms at the moment of the impact, so its start is the impact's date.
+    author: machine:claude-code
+    status: proposed

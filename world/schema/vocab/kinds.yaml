@@ -1,0 +1,27 @@
+# The `kind` vocabulary for entities. A kind says what sort of thing an entity is, how the
+# viewer draws it, and which validators apply. Add kinds here before using them.
+kinds:
+  life/occurrence:
+    label: Fossil occurrence
+    description: A taxon recorded at a locality, at the time its fossils were deposited.
+    temporal: instant
+  earth/event/impact:
+    label: Impact event
+    description: A bolide impact.
+    temporal: instant
+  earth/event/collision:
+    label: Continental collision (onset)
+    description: The onset of collision between two continental plates.
+    temporal: instant
+  earth/large-igneous-province:
+    label: Large igneous province
+    description: A very large accumulation of igneous rock erupted over a short time.
+    temporal: interval
+  earth/structure/impact-crater:
+    label: Impact crater
+    description: The structure left by an impact, from its formation onward.
+    temporal: interval
+  earth/mountain-range:
+    label: Mountain range
+    description: An orogen or mountain range, from the start of its growth onward.
+    temporal: interval

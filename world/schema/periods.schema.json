@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lightworld.invalid/schema/periods.json",
+  "title": "Named periods",
+  "type": "object",
+  "required": ["source", "periods"],
+  "properties": {
+    "source": { "$ref": "defs.json#/$defs/id" },
+    "periods": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "rank", "start", "end"],
+        "properties": {
+          "id": { "$ref": "defs.json#/$defs/id" },
+          "name": { "type": "string" },
+          "rank": { "enum": ["eon", "era", "period", "sub-system", "epoch", "sub-epoch", "stage"] },
+          "start": { "$ref": "defs.json#/$defs/time" },
+          "end": { "$ref": "defs.json#/$defs/time" },
+          "color": { "type": "string", "pattern": "^#[0-9A-F]{6}$" },
+          "parent": { "$ref": "defs.json#/$defs/id" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

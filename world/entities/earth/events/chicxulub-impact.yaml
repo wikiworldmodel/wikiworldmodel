@@ -1,0 +1,48 @@
+id: earth/events/chicxulub-impact
+kind: earth/event/impact
+label: Chicxulub impact
+summary: The bolide impact on the northern Yucatán Peninsula at the end of the Cretaceous.
+frame: earth/plates
+claims:
+  date-renne-2013:
+    prop: date
+    value: { ma: 66.038, pm: 0.049 }
+    source: renne-2013-kpg-timescales
+    locator: 40Ar/39Ar ages of tektites
+    quote: Combining all data yields an age of 66.038 ± 0.025/0.049 Ma for the tektites.
+    method: 40Ar/39Ar dating of impact tektites (Beloc, Haiti), pooled with earlier studies; the ± used includes systematic uncertainties.
+    note: The confidence level of the ± was not checked here, so it is read as 1σ, the wider reading.
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  date-swisher-1992:
+    prop: date
+    value: { ma: 64.98, pm: 0.05 }
+    source: swisher-1992-chicxulub-ages
+    quote: a mean plateau age of 64.98 +/- 0.05 million years ago (Ma)
+    method: 40Ar/39Ar dating of melt rock from the Chicxulub 1 well.
+    note: >-
+      Computed against an earlier calibration of the 40Ar/39Ar age standards. Renne et al.
+      (2013) find earlier tektite ages indistinguishable from theirs once normalized to the
+      same calibration, and Kuiper et al. (2008, Science 320, 500–504) give a mutually
+      consistent age of about 65.95 Ma for the boundary after recalibrating the standard.
+    author: machine:claude-code
+    status: proposed
+    rank: deprecated
+  location:
+    prop: location
+    value: { lat: 21.3333, lon: -89.5 }
+    source: eid-chicxulub
+    locator: latitude, longitude (21°20′N, 89°30′W)
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+relations:
+  during-deccan:
+    type: during
+    of: earth/lips/deccan-traps#main
+    source: sprain-2019-deccan-tempo
+    quote: ">90% of DT volume erupted in <1 million years, with ∼75% emplaced post-KPB"
+    note: Schoene et al. (2019) likewise find eruption pulses before and after the impact.
+    author: machine:claude-code
+    status: proposed

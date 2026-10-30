@@ -1,0 +1,47 @@
+id: life/mesosaurus/kabus
+kind: life/occurrence
+label: Mesosaurus, Kabus
+summary: Mesosaurus tenuidens from the Whitehill Formation at Kabus, Namibia. PBDB collection 90755.
+frame: earth/plates
+same_as: { pbdb_collection: 90755, pbdb_occurrence: 823897 }
+claims:
+  taxon:
+    prop: taxon
+    value: Mesosaurus tenuidens
+    source: pbdb/collection-90755
+    locator: occurrence 823897, accepted name
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  identified:
+    prop: identified_as
+    value: Mesosaurus tenuidens
+    source: pbdb/collection-90755
+    locator: occurrence 823897, identified name
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  location:
+    prop: location
+    value: { lat: -26.319445, lon: 18.246944 }
+    source: pbdb/collection-90755
+    locator: collection coordinates (lat, lng)
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  formation:
+    prop: formation
+    value: Whitehill Formation
+    source: pbdb/collection-90755
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  date:
+    prop: date
+    value: { ma: [290.1, 279.3] }
+    source: pbdb/collection-90755
+    locator: early_interval Artinskian; max_ma, min_ma
+    method: Stratigraphic assignment to the Artinskian stage, with the PBDB's ages for it.
+    author: machine:claude-code
+    status: proposed
+    rank: preferred

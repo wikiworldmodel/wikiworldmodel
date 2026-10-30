@@ -1,0 +1,47 @@
+id: life/mesosaurus/arroyo-de-la-mina
+kind: life/occurrence
+label: Mesosaurus, Arroyo de La Mina
+summary: Mesosaurus tenuidens (identified as Mesosaurus brasiliensis) from the Melo Formation at Arroyo de La Mina, Uruguay. PBDB collection 90863.
+frame: earth/plates
+same_as: { pbdb_collection: 90863, pbdb_occurrence: 824823 }
+claims:
+  taxon:
+    prop: taxon
+    value: Mesosaurus tenuidens
+    source: pbdb/collection-90863
+    locator: occurrence 824823, accepted name
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  identified:
+    prop: identified_as
+    value: Mesosaurus brasiliensis
+    source: pbdb/collection-90863
+    locator: occurrence 824823, identified name
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  location:
+    prop: location
+    value: { lat: -31.933332, lon: -54.016666 }
+    source: pbdb/collection-90863
+    locator: collection coordinates (lat, lng)
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  formation:
+    prop: formation
+    value: Melo Formation
+    source: pbdb/collection-90863
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+  date:
+    prop: date
+    value: { ma: [290.1, 279.3] }
+    source: pbdb/collection-90863
+    locator: early_interval Artinskian; max_ma, min_ma
+    method: Stratigraphic assignment to the Artinskian stage, with the PBDB's ages for it.
+    author: machine:claude-code
+    status: proposed
+    rank: preferred

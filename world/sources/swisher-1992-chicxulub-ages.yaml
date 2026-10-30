@@ -1,0 +1,14 @@
+id: swisher-1992-chicxulub-ages
+type: publication
+citation: >-
+  Swisher, C.C. III, Grajales-Nishimura, J.M., Montanari, A., Margolis, S.V., Claeys, P.,
+  et al. (1992). Coeval 40Ar/39Ar ages of 65.0 million years ago from Chicxulub crater melt
+  rock and Cretaceous-Tertiary boundary tektites. Science 257(5072), 954–958.
+authors: [Swisher, C.C. III, Grajales-Nishimura, J.M., Montanari, A., Margolis, S.V., Claeys, P.]
+year: 1992
+title: Coeval 40Ar/39Ar ages of 65.0 million years ago from Chicxulub crater melt rock and Cretaceous-Tertiary boundary tektites
+container: Science 257(5072), 954–958
+doi: 10.1126/science.257.5072.954
+verified:
+  by: machine:claude-code
+  how: DOI and quoted values checked against the NASA NTRS abstract; full author list not checked.

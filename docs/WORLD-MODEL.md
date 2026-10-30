@@ -1,6 +1,8 @@
 # Lightworld world model — design overview
 
-Status: draft proposal, nothing built yet. It covers the world model and its
+Status: draft proposal. A first end-to-end slice is built (Pangaea to today); see
+[FIRST-SLICE.md](FIRST-SLICE.md) for what it tested and where it departs from this
+document. It covers the world model and its
 main consumer, an interactive viewer for flying through space and time. The
 film is a second consumer: a scripted flight through the same
 world, rendered offline.
@@ -455,6 +457,7 @@ world/
   generators/          procedural rules (code + tests), shared by build and viewer
   fields/              field definitions; arrays live in the blob store
   tours/               authored camera-and-time paths with captions (the film is one)
+core/                  runtime code shared by build and viewer (time, frames, tile format)
 tools/world/           validators, solver, importers, build
 viewer/                the interactive viewer
 ```

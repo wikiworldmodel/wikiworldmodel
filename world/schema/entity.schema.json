@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://lightworld.invalid/schema/entity.json",
+  "title": "Entity",
+  "description": "Anything with identity over time, with its phases, claims and relations. One entity per file.",
+  "type": "object",
+  "required": ["id", "kind", "label", "frame", "claims"],
+  "properties": {
+    "id": { "$ref": "defs.json#/$defs/id" },
+    "kind": { "type": "string" },
+    "label": { "type": "string", "minLength": 1 },
+    "summary": { "type": "string" },
+    "frame": { "$ref": "defs.json#/$defs/id" },
+    "basis": { "enum": ["evidence", "reconstruction", "procedural"], "default": "evidence" },
+    "same_as": {
+      "type": "object",
+      "additionalProperties": { "type": ["string", "integer"] }
+    },
+    "phases": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z0-9][a-z0-9-]*$" },
+      "additionalProperties": {
+        "type": "object",
+        "required": ["label"],
+        "properties": { "label": { "type": "string" }, "summary": { "type": "string" } },
+        "additionalProperties": false
+      }
+    },
+    "claims": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": { "pattern": "^[a-z0-9][a-z0-9-]*$" },
+      "additionalProperties": { "$ref": "#/$defs/claim" }
+    },
+    "relations": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[a-z0-9][a-z0-9-]*$" },
+      "additionalProperties": { "$ref": "#/$defs/relation" }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "claim": {
+      "type": "object",
+      "required": ["prop", "value", "source", "author", "status", "rank"],
+      "properties": {
+        "prop": { "type": "string" },
+        "phase": { "type": "string" },
+        "value": {},
+        "source": { "$ref": "defs.json#/$defs/id" },
+        "locator": { "type": "string", "description": "Where in the source: page, figure, table, record" },
+        "quote": { "type": "string" },
+        "method": { "type": "string" },
+        "confidence": { "$ref": "defs.json#/$defs/confidence" },
+        "author": { "$ref": "defs.json#/$defs/author" },
+        "status": { "$ref": "defs.json#/$defs/status" },
+        "rank": { "$ref": "defs.json#/$defs/rank" },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "relation": {
+      "type": "object",
+      "required": ["type", "of", "source", "author", "status"],
+      "properties": {
+        "type": { "type": "string" },
+        "phase": { "type": "string", "description": "The phase of this entity the relation applies to" },
+        "of": { "$ref": "defs.json#/$defs/ref" },
+        "lag": {
+          "type": "object",
+          "properties": { "min": { "$ref": "defs.json#/$defs/duration" }, "max": { "$ref": "defs.json#/$defs/duration" } },
+          "additionalProperties": false
+        },
+        "source": { "$ref": "defs.json#/$defs/id" },
+        "locator": { "type": "string" },
+        "quote": { "type": "string" },
+        "author": { "$ref": "defs.json#/$defs/author" },
+        "status": { "$ref": "defs.json#/$defs/status" },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

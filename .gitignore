@@ -1,0 +1,10 @@
+node_modules/
+.venv/
+.cache/
+dist/
+test-results/
+playwright-report/
+viewer/test/e2e/__diff__/
+*.log
+.DS_Store
+__pycache__/

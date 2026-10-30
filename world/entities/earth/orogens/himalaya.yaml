@@ -1,0 +1,23 @@
+id: earth/orogens/himalaya
+kind: earth/mountain-range
+label: Himalaya
+summary: The mountain range raised as India pushed into Asia.
+frame: earth/plates
+claims:
+  location:
+    prop: location
+    value: { lat: 27.988, lon: 86.925 }
+    source: yin-harrison-2000-himalaya
+    method: A representative point near Mount Everest, chosen to place the marker; the source describes the orogen, not this point.
+    confidence: low
+    author: machine:claude-code
+    status: proposed
+    rank: preferred
+relations:
+  raised-by:
+    type: caused-by
+    of: earth/events/india-asia-collision
+    source: yin-harrison-2000-himalaya
+    quote: at least 1400 km of north-south shortening has been absorbed by the orogen since the onset of the Indo-Asian collision
+    author: machine:claude-code
+    status: proposed

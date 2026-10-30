@@ -1,0 +1,45 @@
+# External datasets. They are referenced, not copied: `npm run fetch` downloads each one
+# from its pinned URL into .cache/ and checks it against the sha256 recorded here, and the
+# build reads them from there. Changing a dataset means changing its entry (and its hash).
+
+datasets:
+  paleomap-plate-model:
+    title: PALEOMAP Global Plate Model (rotations m15g60_v2d3, plate polygons ContOceanPolyv10u_v2d3)
+    source: scotese-2016-paleomap-plate-model
+    version: PALEOMAP PaleoAtlas for GPlates v3, rotation file dated 2016-02-01
+    url: https://raw.githubusercontent.com/gplates/rgplates/4d62bba877ec383324dafd5a5ce6e057182b9eaa/inst/extdata/paleomap_v3.zip
+    sha256: 5a3805a5eaa0218893f44363e76d9615b1a0a3a978abf9f0c31eb024ce01fcbb
+    bytes: 967732
+    format: zip
+    files:
+      rotations:
+        path: PALEOMAP_PlateModel.rot
+        sha256: d56846bb3c6260805d088171066bc18e9d54e831892b660fd31315260e288022
+      polygons:
+        path: PALEOMAP_PlatePolygons.gpml
+        sha256: 4925c064a415cfa6e7fd3f5e0682585baa9908f01bee9e053ca5dea0b0dc57ca
+    via: >-
+      The copy shipped with the rgplates R package (gplates/rgplates, inst/extdata), which
+      repackages the "PALEOMAP Global Plate Model" folder of Scotese_Paleoatlas_v3.zip.
+    license: CC-BY-4.0
+    license_note: >-
+      Stated by the rgplates package that redistributes these files. The upstream EarthByte
+      page was not reachable when this entry was written; confirm upstream terms before
+      publishing derived builds.
+
+  paleodem-v2:
+    title: PALEOMAP PaleoDEMs v2, 1° grids, 0–540 Ma every 5 Myr
+    source: scotese-wright-2018-paleodem
+    version: v2 (Zenodo record 5460860), lossless Parquet repackaging by vis.gl
+    url: https://media.githubusercontent.com/media/visgl/deck.gl-data/0a873024cfc3fbb78d44027143013b8908fd8873/earth/paleogeography/v1/paleodem/paleodem.parquet
+    sha256: 273da657c3edfb5802ea8ef1ace41f702c0da435f91a9e72710924f5e530f026
+    bytes: 3111980
+    format: parquet
+    upstream:
+      url: https://zenodo.org/records/5460860/files/PaleoDEMS_long_lat_elev_csv_v2.zip
+      sha256: db43e6261411ff468c9030ca240778a73f224bf34bf8186c735477e41454c873
+    via: >-
+      visgl/deck.gl-data, earth/paleogeography/v1/paleodem: every node and value of the
+      109 upstream CSV snapshots, converted to Parquet without resampling or correction.
+    license: CC-BY-4.0
+    license_note: The upstream archive's License.txt states CC BY 4.0.

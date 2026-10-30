@@ -1,0 +1,26 @@
+id: earth/elevation
+title: Surface elevation and ocean depth
+quantity: elevation
+units: m
+# 0 m is the shoreline of the time: the PaleoDEMs map paleo-shorelines to 0 m, so sea level
+# is already part of this field. A field on a fixed datum (e.g. a present-day DEM) would
+# instead have to subtract a sea-level curve before deriving coastlines.
+datum: contemporaneous-sea-level
+dataset: paleodem-v2
+plate_model: paleomap-plate-model
+# Grid coordinates are paleo-longitude/latitude in the plate model's absolute frame.
+frame: earth/paleomap
+time:
+  from: { ma: 300 }
+  to: { ma: 0 }
+  step_myr: 5
+basis: reconstruction
+# Between snapshots, each snapshot is moved with the plate under each node (the same
+# rotation model that moves every entity), and the two moved snapshots are blended.
+interpolation: plate-warp
+derived:
+  # The PaleoDEM values come in 40 m steps (20 m at 0 Ma), with a large class at exactly 0 m
+  # along shores. The isoline sits between that class and the first land class, so 0 m
+  # nodes count as sea; that reproduces the present-day land fraction (29%).
+  coastline:
+    isoline_m: 20

@@ -1,0 +1,14 @@
+id: renne-2013-kpg-timescales
+type: publication
+citation: >-
+  Renne, P.R., Deino, A.L., Hilgen, F.J., Kuiper, K.F., Mark, D.F., Mitchell, W.S. III,
+  Morgan, L.E., Mundil, R. & Smit, J. (2013). Time scales of critical events around the
+  Cretaceous-Paleogene boundary. Science 339(6120), 684–687.
+authors: [Renne, P.R., Deino, A.L., Hilgen, F.J., Kuiper, K.F., Mark, D.F., Mitchell, W.S. III, Morgan, L.E., Mundil, R., Smit, J.]
+year: 2013
+title: Time scales of critical events around the Cretaceous-Paleogene boundary
+container: Science 339(6120), 684–687
+doi: 10.1126/science.1230492
+verified:
+  by: machine:claude-code
+  how: Citation, DOI and quoted values checked against abstract and full-text copies found by web search; the confidence level of the stated ± was not found.

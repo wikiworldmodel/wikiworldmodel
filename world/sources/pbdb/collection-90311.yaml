@@ -1,0 +1,19 @@
+id: pbdb/collection-90311
+type: database-record
+citation: >-
+  The Paleobiology Database, collection 90311 ("Calvinia", ZA), occurrence 820897.
+  Downloaded 14 July 2022 (palaeoverse `tetrapods` dataset).
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=90311
+license: CC-BY-4.0
+via: jones-2023-palaeoverse
+reliability: >-
+  A database record compiled from the literature; its primary references are listed in the
+  PBDB but were not part of the snapshot read here. Ages are the PBDB's for the stratigraphic
+  interval the collection is assigned to (Artinskian), as of the download date.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from palaeoverse data/tetrapods.rda: collection_no 90311, occurrence_no 820897,
+    identified_name "Mesosaurus tenuidens", accepted_name "Mesosaurus tenuidens", lat -31.466667, lng 19.766666, formation
+    "Whitehill", stratgroup "Ecca", early_interval Artinskian, max_ma 290.1, min_ma 279.3.

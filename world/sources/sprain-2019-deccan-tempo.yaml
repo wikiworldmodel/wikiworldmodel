@@ -1,0 +1,14 @@
+id: sprain-2019-deccan-tempo
+type: publication
+citation: >-
+  Sprain, C.J., Renne, P.R., Vanderkluysen, L., Pande, K., Self, S. & Mittal, T. (2019).
+  The eruptive tempo of Deccan volcanism in relation to the Cretaceous-Paleogene boundary.
+  Science 363(6429), 866–870.
+authors: [Sprain, C.J., Renne, P.R., Vanderkluysen, L., Pande, K., Self, S., Mittal, T.]
+year: 2019
+title: The eruptive tempo of Deccan volcanism in relation to the Cretaceous-Paleogene boundary
+container: Science 363(6429), 866–870
+doi: 10.1126/science.aav1446
+verified:
+  by: machine:claude-code
+  how: Abstract and the sentence giving the 66.413 and 65.422 Ma bounds checked via web search; per-sample uncertainties (in the paper's Fig. 1) not retrieved.
