@@ -1,0 +1,8 @@
+id: field:earth/plate-polygons
+type: field
+quantity: plate and terrane outlines
+grid: { kind: vector }               # GAP-47: vector features keyed by plate_id are not a gridded field
+frame: frame:earth/mantle
+time: { lo: { unit: ga, mean: 1.0 }, hi: 1950, interp: step }
+data: { from: ds:merdith2021, layer: continental-polygons }
+basis: reconstruction

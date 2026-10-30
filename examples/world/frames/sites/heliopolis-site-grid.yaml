@@ -1,0 +1,6 @@
+id: frame:heliopolis/site-grid
+type: frame
+kind: site-grid
+parent: frame:plates/701
+anchor: { point: { lon: 31.3075, lat: 30.1294, h: 20 }, datum: WGS84 }   # illustrative
+axes: { x: east, y: north, z: up, unit: m }

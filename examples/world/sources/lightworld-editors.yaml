@@ -1,0 +1,12 @@
+# GAP-17: authors are referenced as person:<handle> and machine:<tool>, but
+# the doc defines no record for them. This file is a stand-in registry.
+id: src:lightworld-editors
+type: registry
+people:
+  example-editor: { role: contributor }
+  example-steward-rome: { role: steward, scope: { region: places/italy/rome, era: { lo: -753, hi: 1600 } } }
+  example-steward-deeptime: { role: steward, scope: { region: earth, era: { lo: { unit: ga, mean: 4.6 }, hi: { unit: ma, mean: 0.01 } } } }
+machines:
+  claim-extractor: { versions: ["0.3.1"], model: "llm-based", note: "quoted spans required" }
+  map-vectorizer: { versions: ["0.9.0"] }
+  date-proposer: { versions: ["0.1.0"] }

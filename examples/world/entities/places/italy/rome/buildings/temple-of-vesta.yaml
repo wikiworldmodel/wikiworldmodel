@@ -1,0 +1,41 @@
+# "A temple rebuilt after three fires is one entity with four phases."
+id: rome/temple-of-vesta
+kind: building/temple
+frame: frame:rome/site-grid
+same_as: { wikidata: Q1153537 }     # illustrative
+phases:
+  - id: early
+    start: { lo: -700, hi: -600 }    # tradition: Numa
+    end: -240
+    basis: reconstruction
+    geometry: { generator: gen:rome/round-temple, params: { diameter_m: { lo: 10, hi: 15 } } }
+  - id: republican
+    start: -240
+    end: 64.54
+    basis: reconstruction
+    geometry: { generator: gen:rome/round-temple, params: { diameter_m: 15 } }
+  - id: flavian
+    start: { ref: rome/events/great-fire-64, edge: end, lag: { lo: 1, hi: 15 } }
+    end: 191.0
+    basis: reconstruction
+  - id: severan
+    start: { lo: 191.0, hi: 200 }    # rebuilt by Julia Domna
+    end: 394
+    basis: evidence
+    geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000f1
+  # GAP-61: after 394 the cult ends but the building stands until it is
+  # dismantled in 1549. No phase covers 394–1549; is "disused" a phase?
+claims:
+  c1: { prop: cause, subject: "@early", value: "fire, 241 BCE", source: { ref: src:lightworld-editors, loc: "placeholder: Livy, Periochae 19" } }
+  c2:
+    prop: cause
+    subject: "@republican"
+    value: "destroyed in the Great Fire of 64"
+    source: { ref: src:tacitus-annals, loc: "15.41" }
+    author: machine:claim-extractor@0.3.1
+    status: proposed
+    rank: normal
+  c3: { prop: cause, subject: "@flavian", value: "fire under Commodus, 191", source: { ref: src:herodian-history, loc: "1.14" } }
+relations:
+  r1: { rel: destroyed-by, to: rome/events/great-fire-64, from: "@republican" }   # GAP-26: relation from a phase, not the entity
+  r2: { rel: within, to: places/italy/rome }

@@ -1,0 +1,7 @@
+id: field:earth/coastline
+type: field
+derived: true                        # section 9.1: never stored
+from: [field:earth/elevation, field:earth/sea-level, field:earth/ice-thickness]
+rule: "zero contour of elevation − sea level, masked by grounded ice"
+basis: derived                       # GAP-51: derived output takes the weakest basis of its inputs?
+validated_by: [places/italy/ostia#c1, places/italy/ostia#c2]

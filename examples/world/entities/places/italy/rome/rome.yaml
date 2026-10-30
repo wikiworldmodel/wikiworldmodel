@@ -1,0 +1,23 @@
+id: places/italy/rome
+kind: settlement/city
+frame: frame:rome/site-grid
+same_as: { wikidata: Q220, pleiades: "423025" }
+phases:
+  - id: settlement
+    start: { lo: -1000, hi: -753 }   # archaeology vs the traditional founding date
+    basis: evidence
+    geometry: { field: field:people/population-density, threshold: { gt: 1000, unit: persons/km2 } }   # urban extent from a field
+claims:
+  c1: { prop: founded, value: -752.30, source: { ref: src:lightworld-editors, loc: "placeholder: Varro" },
+        note: "21 Apr 753 BCE: a legendary date", rank: normal, basis: reconstruction }   # GAP-58: myth vs evidence has no basis value
+  c2: { prop: founded, value: { lo: -1000, hi: -800 }, method: excavation, rank: preferred }
+  c3: { prop: population, value: { lo: 450000, hi: 1200000 }, valid: { lo: 90, hi: 110 }, method: expert-estimate,
+        rank: preferred, budget: gen:rome/insula }   # generator must place housing for this many people
+  c4: { prop: population, value: { lo: 20000, hi: 35000 }, valid: { lo: 1370, hi: 1380 }, method: expert-estimate }
+  c5:
+    prop: insula_count
+    value: 46602
+    valid: { lo: 312, hi: 357 }
+    source: { ref: src:regionary-catalogues, loc: "Breviarium" }   # illustrative locator
+    status: disputed
+    note: "Count unit disputed: buildings vs rental units. A ×3 swing in implied population (GAP-55)"

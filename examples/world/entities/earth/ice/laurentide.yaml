@@ -1,0 +1,22 @@
+id: earth/ice/laurentide
+kind: ice-sheet
+frame: frame:plates/101
+same_as: { wikidata: Q1340938 }     # illustrative
+phases:
+  - id: lgm
+    start: { unit: ka, lo: 33, hi: 26 }
+    end: { unit: ka, lo: 20, hi: 19 }
+    basis: reconstruction
+    geometry: { field: field:earth/ice-thickness, threshold: { gt: 10, unit: m } }   # outline derived from a field
+  - id: deglaciation
+    start: { unit: ka, lo: 20, hi: 19 }
+    end: { unit: ka, lo: 7.5, hi: 6.5 }
+    basis: reconstruction
+    interp: linear
+    geometry: { field: field:earth/ice-thickness, threshold: { gt: 10, unit: m } }
+claims:
+  c1: { prop: sea_level_equivalent, subject: "@lgm", value: { lo: 65, hi: 80 },   # illustrative
+        source: { ref: src:peltier-2015 }, method: model,
+        budget: field:earth/sea-level }   # GAP-55: budget validators need to know which claims feed which totals
+relations:
+  r1: { rel: caused-by, to: earth/events/deglaciation-meltwater-pulse-1a, at: "@deglaciation" }   # GAP-02: unresolved on purpose; also: direction is wrong (pulse is caused by the ice loss)

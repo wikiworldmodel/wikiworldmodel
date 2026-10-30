@@ -1,0 +1,40 @@
+id: people/persons/otzi
+kind: human-remains
+same_as: { wikidata: Q171291 }      # illustrative
+sensitivity: human-remains          # GAP-62: display rules (no default 3D body in tours?) have no home in the doc
+phases:
+  - id: alive
+    frame: frame:alps/tisenjoch
+    start: { derive: ["#c1"], minus: { lo: 40, hi: 50 } }   # age at death ~45; GAP-10: date arithmetic syntax
+    end: { derive: ["#c1"] }
+    basis: reconstruction
+  - id: in-ice
+    frame: frame:alps/tisenjoch
+    start: { derive: ["#c1"] }
+    end: 1991.715                    # found 19 Sep 1991
+    basis: evidence
+    geometry: { point: { x: 0, y: 0, z: 0 } }   # the anchor is the find spot
+  - id: museum
+    frame: frame:bolzano/south-tyrol-museum      # GAP-02: unresolved on purpose
+    start: 1998.08
+    basis: evidence
+  # GAP-61: gap 1991.715–1998.08 (Innsbruck) left implicit; continuity validator should flag it
+claims:
+  c1:
+    prop: c14_age
+    value: { mean: 4550, sd: 19, unit: yr_bp }   # illustrative measurement
+    calibrate_with: ds:intcal20                  # GAP-14: calibration is a derivation the claim requests
+    derived: { lo: -3349, hi: -3104 }            # cache of the solved date: GAP-57 (derived data in git?)
+    method: radiocarbon
+    source: { ref: src:otzi-c14-1994 }
+  c2:
+    prop: location
+    subject: "@in-ice"
+    value: "92 m south of the Austria–Italy watershed boundary"
+    source: { ref: src:otzi-border-survey-1991 }
+    note: "GAP-56: the border is a modern polity claim projected onto a 5,000-year-old body"
+  c3: { prop: cause, value: "arrow wound to the left shoulder", confidence: high }
+  c4: { prop: name, value: { de: "Ötzi", en: "the Iceman", it: "l'uomo venuto dal ghiaccio" }, valid: { lo: 1991.75, hi: null } }
+relations:
+  r1: { rel: found-by, to: person:helmut-and-erika-simon, at: 1991.715 }
+  r2: { rel: within, to: field:earth/ice-thickness, note: "GAP-26: preservation depended on a field, which relations cannot target" }

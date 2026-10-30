@@ -1,0 +1,7 @@
+id: period:ics/maastrichtian
+type: period
+scheme: ICS chart v2023/09
+rank: age
+parent: period:ics/cretaceous
+start: { unit: ma, mean: 72.1, sd: 0.2 }
+end:   { ref: earth/events/chicxulub-impact }

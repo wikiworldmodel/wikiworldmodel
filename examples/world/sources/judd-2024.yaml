@@ -1,0 +1,6 @@
+id: src:judd-2024
+type: publication
+citation: "Judd, E. J. et al. (2024). A 485-million-year history of Earth's surface temperature. Science 385, eadk3705."
+dataset: ds:judd2024-phanda
+license: publisher
+reliability: "Data assimilation of proxies with climate-model priors; output is a reconstruction, not raw evidence (GAP-51)."

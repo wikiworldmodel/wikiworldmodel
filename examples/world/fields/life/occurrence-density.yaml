@@ -1,0 +1,9 @@
+id: field:life/occurrence-density
+type: field
+quantity: fossil occurrence density per clade
+derived: true
+from: [ds:pbdb]
+frame: frame:earth/mantle            # occurrences carry paleo-coordinates from a rotation model PBDB chose, not ours (GAP-43)
+grid: { kind: lonlat, res_deg: 2.0 }
+time: { bins: period:ics, interp: step }   # GAP-52: time bins are ICS stages, not numbers
+basis: evidence

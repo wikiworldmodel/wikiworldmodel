@@ -1,0 +1,14 @@
+id: frame:earth/body
+type: frame
+kind: body-fixed
+parent: frame:space/heliocentric-ecliptic
+body: earth/earth
+transform:
+  orbit: { model: "secular orbital solution", basis: reconstruction }
+  rotation:
+    model: "spin with tidal slowdown"
+    note: >
+      GAP-42: day length was ~6 h after the Moon formed and ~22 h in the
+      late Precambrian; precession and obliquity are chaotic past ~50 Ma.
+      The doc treats the planet frame as given.
+  interp: slerp

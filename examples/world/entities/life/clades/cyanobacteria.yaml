@@ -1,0 +1,11 @@
+id: life/clades/cyanobacteria
+kind: clade
+frame: frame:earth/pre-1ga
+same_as: { wikidata: Q93172 }       # illustrative
+phases:
+  - id: extant
+    start: { unit: ga, lo: 3.0, hi: 2.7 }   # illustrative
+    end: null                        # extant; GAP-39: open end = "still exists" or "unknown"?
+    basis: reconstruction
+relations:
+  r1: { rel: descends-from, to: life/clades/luca }

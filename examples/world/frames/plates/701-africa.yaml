@@ -1,0 +1,6 @@
+id: frame:plates/701
+type: frame
+kind: plate
+plate_id: 701                      # illustrative
+parent: frame:earth/mantle
+transform: { from: ds:merdith2021, interp: slerp }

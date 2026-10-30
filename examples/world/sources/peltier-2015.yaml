@@ -1,0 +1,6 @@
+id: src:peltier-2015
+type: publication
+citation: "Peltier, W. R., Argus, D. F. & Drummond, R. (2015). Space geodesy constrains ice age terminal deglaciation: the global ICE-6G_C (VM5a) model. JGR Solid Earth 120, 450–487."
+dataset: ds:ice6g-c
+license: publisher
+reliability: "Glacial isostatic adjustment model fitted to relative sea level and GPS."

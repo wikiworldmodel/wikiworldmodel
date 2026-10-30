@@ -1,0 +1,16 @@
+id: earth/events/kpg-extinction
+kind: event/extinction
+frame: frame:earth/body
+phases:
+  - id: extinction
+    start: { ref: earth/events/chicxulub-impact, edge: start }
+    duration: { lo: 1, hi: 100000 }   # years; "geologically instant"
+    basis: evidence
+    interp: event
+claims:
+  c1: { prop: species_lost_fraction, value: { lo: 0.70, hi: 0.80 }, confidence: medium, method: model }
+  c2: { prop: cause, value: "Deccan Traps volcanism as main driver", status: disputed, rank: normal }
+relations:
+  r1: { rel: caused-by, to: earth/events/chicxulub-impact, confidence: high, rank: preferred }
+  r2: { rel: caused-by, to: earth/events/deccan-traps, confidence: low, status: disputed }   # GAP-02: unresolved on purpose
+  r3: { rel: destroyed, to: life/clades/tyrannosaurus-rex }   # GAP-26: inverse written by hand; fan-out to ~thousands of clades

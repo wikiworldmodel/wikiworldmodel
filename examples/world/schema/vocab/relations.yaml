@@ -1,0 +1,26 @@
+# Relation vocabulary (section 4.3), with the inverse each implies.
+# GAP-25: the doc's example writes the type as the key ({ after: X }); here
+# relations are { rel: after, to: X, ... } so they can carry source, lag,
+# confidence and status like claims. A relation is stored once, in the file
+# of its `from` entity, and the build materialises the inverse (GAP-26).
+families:
+  temporal: { before: after, after: before, during: contains, overlaps: overlaps }
+  spatial:  { within: contains, adjacent: adjacent, connects: connects }
+  lineage:
+    replaces: replaced-by
+    splits-into: split-from
+    merges-into: merged-from
+    moved-to: moved-from
+    reused-in: reuses
+    descends-from: ancestor-of
+    sister-of: sister-of          # GAP-27: phylogeny needs sister groups, not only descent
+    promoted-from: promoted-to    # GAP-63: generated draft → real entity
+  causal:
+    caused-by: caused
+    destroyed-by: destroyed
+    built-for: served-by
+    damaged-by: damaged           # GAP-28: partial damage is not destruction
+  participation:                  # GAP-29: events need roles (who fought whom)
+    participant: participated-in
+    agent: acted-in
+    found-by: found

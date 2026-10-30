@@ -1,0 +1,6 @@
+id: frame:moon/body
+type: frame
+kind: body-fixed
+parent: frame:earth/body           # GAP-40: or heliocentric? orbit and recession over 4.5 Gyr
+body: earth/moon
+transform: { model: "lunar orbit with tidal recession", basis: reconstruction, interp: linear }

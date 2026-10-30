@@ -1,0 +1,10 @@
+id: src:regionary-catalogues
+type: ancient-text
+title: "Curiosum urbis Romae regionum XIIII and Notitia urbis Romae (the Regionary Catalogues)"
+composed: { lo: 312, hi: 357 }
+license: public-domain
+reliability: >
+  Per-regio lists of monuments and counts of insulae and domus. What
+  "insula" counts (buildings? apartments? tax units?) is disputed, which
+  matters because the Rome insula generator is constrained by these counts.
+locator_scheme: "Regio <roman numeral>"

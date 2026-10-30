@@ -1,0 +1,12 @@
+id: period:ics/anthropocene
+type: period
+scheme: proposed
+rank: epoch
+status: deprecated                 # rejected by the IUGS Subcommission on Quaternary Stratigraphy in 2024
+start: { lo: 1950, hi: 1953 }      # proposed Crawford Lake GSSP
+note: >
+  GAP-19: periods have no claims. A rejected-but-widely-used period needs
+  status, rank and competing start dates (1610, 1784, 1950) like any claim.
+alternatives:
+  - { start: 1610, basis_note: "Orbis spike" }
+  - { start: 1784, basis_note: "steam engine" }

@@ -1,0 +1,13 @@
+id: frame:rome/site-grid
+type: frame
+kind: site-grid
+parent: frame:plates/301
+anchor:
+  point: { lon: 12.4924, lat: 41.8902, h: 21.0 }   # present-day WGS84, near the Colosseum
+  surveyed: 2010                                   # illustrative
+  datum: WGS84
+axes: { x: east, y: north, z: up, unit: m }
+note: >
+  GAP-46: Rome's ground level rose 6–10 m since antiquity. Is that a frame
+  change (z offset by time) or a field (elevation)? Here: elevation field;
+  the grid itself is fixed to the anchor.

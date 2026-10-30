@@ -1,0 +1,8 @@
+id: src:pliny-nh
+type: ancient-text
+title: "Naturalis Historia"
+author: Pliny the Elder
+composed: { lo: 77, hi: 79 }
+license: public-domain
+reliability: "Encyclopedic compiler; book 36 covers obelisks brought to Rome."
+locator_scheme: "<book>.<section>"

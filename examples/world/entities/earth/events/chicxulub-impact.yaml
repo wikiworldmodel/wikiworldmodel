@@ -1,0 +1,28 @@
+id: earth/events/chicxulub-impact
+kind: event/impact
+frame: frame:plates/101             # rides on North America; site is plate-local, not present-day lat/lon
+same_as: { wikidata: Q207427 }      # illustrative
+phases:
+  - id: impact
+    start: { derive: ["#c1"] }
+    duration: { lo: 0.00000003, hi: 0.00001 }   # seconds to minutes, in years (~1 s = 3.2e-8 yr)
+    basis: evidence
+    interp: event
+    geometry: { point: { lon: -89.5, lat: 21.4 }, crs: present-day }   # GAP-08: present-day coords; build must back-rotate
+  - id: crater
+    start: { ref: "@impact", edge: end }
+    basis: evidence
+    geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000c1   # buried crater model
+claims:
+  c1: { prop: stratigraphic_age, value: { unit: ma, mean: 66.043, sd: 0.011 }, method: radiometric,
+        source: { ref: src:renne-2013 }, confidence: high, rank: preferred }
+  c2: { prop: diameter, subject: "@crater", value: { lo: 180, hi: 200 }, source: { ref: src:hildebrand-1991 } }
+  c3: { prop: impact_energy, value: { mean: 4.0e23, sd: 1.0e23 }, confidence: medium }   # illustrative
+  c4:
+    prop: cause
+    subject: earth/events/kpg-extinction      # GAP-24: a claim filed here about another entity
+    value: "asteroid impact"
+    source: { ref: src:alvarez-1980 }
+    confidence: high
+relations:
+  r1: { rel: within, to: period:ics/maastrichtian, edge: end }   # GAP-26: relation target is a period, not an entity

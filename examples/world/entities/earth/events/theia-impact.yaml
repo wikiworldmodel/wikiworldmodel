@@ -1,0 +1,20 @@
+id: earth/events/theia-impact
+kind: event/impact
+frame: frame:space/heliocentric-ecliptic
+same_as: { wikidata: Q13423 }       # illustrative (giant-impact hypothesis)
+phases:
+  - id: impact
+    start: { unit: ga, mean: 4.51, sd: 0.05 }
+    duration: { lo: 0.0001, hi: 0.01 }   # years: hours to days; GAP-06: phases have start/end, events want duration
+    basis: reconstruction
+    interp: event
+claims:
+  c1: { prop: mechanism, value: "single giant impact with a Mars-sized body", rank: preferred, status: disputed, method: model }
+  c2: { prop: mechanism, value: "high-energy impact forming a synestia", rank: normal, status: disputed, method: model }
+  c3: { prop: mechanism, value: "many smaller impacts building moonlets", rank: normal, status: disputed, method: model }
+  c4: { prop: impact_energy, value: { lo: 1.0e31, hi: 1.0e32 }, confidence: low }   # illustrative
+  # GAP-35: competing *mechanisms* imply different entity graphs (c3 has no
+  # Theia). Claims switch values; they can't switch which entities exist.
+relations:
+  r1: { rel: participant, to: earth/bodies/theia, role: impactor }
+  r2: { rel: participant, to: earth/earth, role: target }

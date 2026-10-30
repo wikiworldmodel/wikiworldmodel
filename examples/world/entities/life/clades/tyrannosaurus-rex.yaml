@@ -1,0 +1,21 @@
+id: life/clades/tyrannosaurus-rex
+kind: clade/species
+frame: frame:plates/101
+same_as: { wikidata: Q14332, pbdb: "taxon:54833", opentree: "ott…" }   # illustrative
+phases:
+  - id: living
+    start: { unit: ma, lo: 68.5, hi: 67.0 }
+    end: { ref: earth/events/kpg-extinction, edge: start }
+    basis: evidence
+    geometry:
+      from: ds:pbdb                  # range = occurrences in paleo-coordinates
+      query: { taxon: "Tyrannosaurus rex" }
+      method: alpha-hull
+      note: "GAP-47: geometry computed from an imported dataset at build time; is the hull a derived value or a claim?"
+claims:
+  c1: { prop: name, value: { la: "Tyrannosaurus rex" }, valid: { lo: 1905, hi: null },
+        note: "Osborn 1905. GAP-31: taxonomic names have authority, priority and synonyms; 'name' as text is too weak." }
+relations:
+  r1: { rel: sister-of, to: life/clades/tarbosaurus-bataar, rank: preferred }   # GAP-02: unresolved on purpose
+  r2: { rel: descends-from, to: life/clades/tyrannosaurus-mcraeensis, status: disputed, rank: normal,
+        note: "Anagenetic ancestor hypothesis (2024); others treat it as a sister species or a synonym" }

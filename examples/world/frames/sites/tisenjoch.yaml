@@ -1,0 +1,6 @@
+id: frame:alps/tisenjoch
+type: frame
+kind: site-grid
+parent: frame:plates/301
+anchor: { point: { lon: 10.8403, lat: 46.7789, h: 3210 }, datum: WGS84 }
+axes: { x: east, y: north, z: up, unit: m }

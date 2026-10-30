@@ -1,0 +1,56 @@
+# Property vocabulary: value type, unit and interpolation rule per property.
+# GAP-22: the doc says "each property declares how it changes" but not where.
+# Here it is declared once per property; a claim may override with `interp:`.
+# GAP-23: `none` is added for evidence props (begun_under, dedicated) that
+# are facts about a moment, not states to interpolate.
+interp: [step, linear, log-time, slerp, event, none]
+
+methods: [textual, epigraphic, stratigraphic, radiometric, radiocarbon,
+          paleomagnetic, molecular-clock, phylogenetic, survey, excavation,
+          remote-sensing, model, data-assimilation, ephemeris, expert-estimate,
+          catalogue-count, machine-extraction]
+
+properties:
+  # identity and naming
+  name:               { type: text, multilingual: true, interp: step }
+  same_as_note:       { type: text, interp: none }
+  # time evidence (feeds the date solver, section 5)
+  begun_under:        { type: ref, ref_kinds: [office, person, polity], interp: none }
+  dedicated:          { type: time, interp: none }
+  founded:            { type: time, interp: none }
+  c14_age:            { type: measurement, unit: yr_bp, interp: none }
+  stratigraphic_age:  { type: time, interp: none }
+  # geometry and position
+  location:           { type: geometry, interp: step }
+  footprint:          { type: geometry, interp: step }
+  territory:          { type: geometry, interp: event }
+  height:             { type: quantity, unit: m, interp: linear }
+  diameter:           { type: quantity, unit: km, interp: none }
+  shoreline_distance: { type: quantity, unit: km, interp: linear }
+  plate_id:           { type: int, interp: step }
+  # people and polities
+  population:         { type: quantity, unit: persons, interp: linear }
+  capital:            { type: ref, ref_kinds: [settlement], interp: step }
+  ruler:              { type: ref, ref_kinds: [person], interp: step }
+  owner:              { type: ref, interp: step }
+  insula_count:       { type: quantity, unit: count, interp: step }
+  domus_count:        { type: quantity, unit: count, interp: step }
+  # life
+  existence:          { type: probability, interp: none }
+  sex:                { type: enum, values: [male, female, unknown], interp: none }
+  collection_number:  { type: text, interp: step }
+  species_lost_fraction: { type: quantity, unit: fraction, interp: none }
+  # earth and space
+  mechanism:          { type: enum-open, interp: none }
+  impact_energy:      { type: quantity, unit: J, interp: none }
+  sea_level_equivalent: { type: quantity, unit: m, interp: linear }
+  sea_level_anomaly:  { type: quantity, unit: m, interp: linear }
+  heliocentric_distance: { type: quantity, unit: au, interp: linear }
+  closest_approach:   { type: quantity, unit: ly, interp: none }
+  material:           { type: text, interp: step }
+  inscription:        { type: text, interp: none }
+  cause:              { type: text, interp: none }
+  # added after the first check run: props the examples needed
+  dissolved:          { type: time, interp: none }
+  end_state:          { type: text, interp: none }
+  habitat:            { type: text, interp: step }

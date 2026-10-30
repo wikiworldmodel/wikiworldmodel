@@ -1,0 +1,9 @@
+id: period:periodo/flavian
+type: period
+scheme: PeriodO
+periodo: "p0xxxxx"                 # illustrative
+label: { en: "Flavian period", it: "età flavia" }
+spatial_coverage: [wikidata:Q2277]
+start: { ref: rome/reign/vespasian, edge: start }
+end: { ref: rome/reign/domitian, edge: end }   # GAP-02: unresolved on purpose
+note: "GAP-34: reigns are entities (section 5) and periods (PeriodO). Which wins? Here the period is defined by the reigns."

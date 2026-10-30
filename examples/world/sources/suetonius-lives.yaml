@@ -1,0 +1,16 @@
+id: src:suetonius-lives
+type: ancient-text
+title: "De vita Caesarum (Lives of the Caesars)"
+author: Suetonius
+composed: { lo: 119, hi: 122 }       # valid-time of the source itself; GAP-15: sources are dated too
+editions:
+  - { id: rolfe-1914, label: "Loeb, trans. J. C. Rolfe", license: public-domain }
+license: public-domain
+reliability: >
+  Biographer writing ~40 years after the Flavians, with access to imperial
+  archives; anecdotal and moralising. Good for building programmes, weak on
+  exact dates.
+# GAP-16: the doc's example cites `suetonius/titus/7.3`, implying one source
+# per passage. Here a source is the work and claims add a locator
+# (`loc: "Tit. 7.3"`), so there is one file per work, not per passage.
+locator_scheme: "<Life abbrev>. <chapter>.<section>, e.g. Vesp. 9.1"

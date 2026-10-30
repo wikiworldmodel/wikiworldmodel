@@ -1,0 +1,12 @@
+id: gen:earth/clouds
+type: generator
+version: "2.3.0"
+code: generators/earth/clouds/index.js
+runs_in: [client]
+seed: "hash(generator.id, cell.id, floor(t / 1 day))"   # GAP-69: time-seeded output across deep time. Seed per day for 4.5 Gyr?
+inputs:
+  constraints:
+    - { from: field:earth/surface-temperature }
+    - { from: field:earth/co2 }
+    - { from: field:earth/elevation }
+outputs: { basis: procedural }

@@ -1,0 +1,25 @@
+# A lost temple with two proposed sites (section 3.1, evidence mode).
+id: rome/temple-of-jupiter-stator
+kind: building/temple
+frame: frame:rome/site-grid
+phases:
+  - id: temple
+    start: { lo: -294, hi: -290 }    # vowed in battle, 294 BCE
+    end: { lo: 64, hi: 400 }         # illustrative
+    basis: reconstruction
+claims:
+  c1:
+    prop: location
+    value: { point: { x: -310, y: 40 } }        # illustrative: on the Velia, near the Arch of Titus
+    rank: preferred
+    status: disputed
+    confidence: medium
+  c2:
+    prop: location
+    value: { point: { x: -520, y: -60 } }       # illustrative: lower on the Palatine slope
+    rank: normal
+    status: disputed
+    confidence: low
+  # GAP-59: two locations → two geometries. Does the footprint validator
+  # (no two buildings share a footprint) check every alternative, or only
+  # preferred ones? Here alt c2 overlaps a generated insula block.

@@ -1,0 +1,18 @@
+id: rome/districts/regio-iii
+kind: district/regio
+frame: frame:rome/site-grid
+phases:
+  - id: augustan-regio
+    start: { lo: -7, hi: -6 }        # Augustus's 14 regiones, 7 BCE
+    end: { lo: 400, hi: 600 }
+    basis: reconstruction
+    geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000d3   # traced over Lanciani FUR
+claims:
+  c1: { prop: name, value: { la: "Isis et Serapis" }, valid: { lo: 300, hi: 400 }, note: "Regio names are late; Augustan regiones were numbered" }
+  c2: { prop: insula_count, value: 2757, valid: { lo: 312, hi: 357 }, source: { ref: src:regionary-catalogues, loc: "Regio III" } }   # illustrative
+  c3: { prop: domus_count, value: 60, valid: { lo: 312, hi: 357 }, source: { ref: src:regionary-catalogues, loc: "Regio III" } }        # illustrative
+generator_constraints:              # GAP-66: where constraints live: here, on the district, read by gen:rome/insula
+  - { generator: gen:rome/insula, from: ["#c2", "#c3"], excludes: [rome/colosseum, rome/buildings/baths-of-trajan] }   # GAP-02: baths unresolved on purpose
+relations:
+  r1: { rel: within, to: places/italy/rome }
+  r2: { rel: adjacent, to: rome/colosseum }

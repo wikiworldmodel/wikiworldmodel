@@ -1,0 +1,16 @@
+id: earth/landmasses/pangaea
+kind: landmass/supercontinent
+frame: frame:earth/mantle           # GAP-41: an assemblage spans many plate frames; which frame does it live in?
+same_as: { wikidata: Q83055 }       # illustrative
+phases:
+  - id: assembled
+    start: { unit: ma, lo: 340, hi: 320 }
+    end: { unit: ma, lo: 200, hi: 175 }
+    basis: reconstruction
+    geometry: { derived: union, of: [earth/plates/laurentia] }   # GAP-48: derived geometry (union of member plates) has no syntax
+claims:
+  c1: { prop: name, value: { en: Pangaea, de: Pangäa }, valid: { lo: 1915, hi: null },   # Wegener's coinage
+        note: "GAP-31: a modern name for an ancient thing; valid time here means 'name in use', not 'true of the world'" }
+relations:
+  r1: { rel: splits-into, to: earth/landmasses/laurasia, confidence: high }   # GAP-02: unresolved on purpose
+  r2: { rel: splits-into, to: earth/landmasses/gondwana, confidence: high }   # GAP-02: unresolved on purpose

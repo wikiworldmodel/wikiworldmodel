@@ -1,0 +1,21 @@
+id: life/clades/eukaryota
+kind: clade/domain
+frame: frame:earth/pre-1ga          # GAP-09: a clade spanning the 1 Ga frame seam needs a time-varying frame
+same_as: { wikidata: Q19088, opentree: "ott304358" }   # illustrative
+phases:
+  - id: stem
+    start: { derive: ["#c1", "#c2", "#c3"] }
+    basis: reconstruction
+    geometry: { field: field:life/occurrence-density, select: { clade: life/clades/eukaryota } }
+claims:
+  c1: { prop: founded, value: { unit: ga, lo: 2.3, hi: 1.8 }, method: molecular-clock, rank: normal, status: disputed }
+  c2: { prop: founded, value: { unit: ga, lo: 1.9, hi: 1.6 }, method: molecular-clock, rank: preferred }
+  c3:
+    prop: founded
+    value: { unit: ga, mean: 1.63, sd: 0.02 }
+    method: stratigraphic
+    note: "Oldest widely accepted fossils (Changcheng Group) give a minimum, not an estimate."
+    constraint: before               # GAP-38: a fossil gives 'origin is earlier than X', a one-sided bound
+relations:
+  r1: { rel: descends-from, to: life/clades/archaea, status: accepted, note: "Two-domain tree" }
+  r2: { rel: merged-from, to: life/clades/alphaproteobacteria, note: "mitochondrial endosymbiosis" }   # GAP-27: reticulate (non-tree) lineage

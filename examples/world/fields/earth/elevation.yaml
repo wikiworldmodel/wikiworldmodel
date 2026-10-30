@@ -1,0 +1,11 @@
+id: field:earth/elevation
+type: field
+quantity: surface elevation and bathymetry
+unit: m
+frame: frame:earth/mantle            # GAP-08: PALEOMAP grids are in paleo-lat/lon per time slice, i.e. not plate-local
+grid: { kind: lonlat, res_deg: 1.0 }
+time: { slices_ma: [0, 5, 10, 15, 20, "…", 540], interp: step }   # GAP-52: 5-Myr slices; step vs morph between slices
+data: { from: ds:paleomap-dem }
+basis: reconstruction
+local_overrides:                     # GAP-46: Rome's ground level rose ~6–10 m since antiquity
+  - { frame: frame:rome/site-grid, data: asset:sha256:00000000000000000000000000000000000000000000000000000000000001b1, res_m: 2, time: { lo: -500, hi: 2020 } }

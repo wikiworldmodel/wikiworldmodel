@@ -1,0 +1,23 @@
+# GAP-50: futures branch. A scenario is not a thing in the world but a
+# condition on claims. Here it is an entity of kind `scenario` and claims
+# opt in with `scenario:`; the viewer would offer a branch switch like it
+# offers competing claims, but branches are exclusive *sets* of claims.
+id: future/scenarios/ssp5-85
+kind: scenario
+frame: null
+phases:
+  - id: scenario
+    start: 2015
+    end: 2100
+    basis: projection
+claims:
+  c1: { prop: name, value: { en: "SSP5-8.5 (fossil-fuelled development, very high emissions)" } }
+  c2:
+    prop: sea_level_anomaly
+    subject: earth/earth            # GAP-24: a scenario-conditioned claim about Earth, filed on the scenario
+    scenario: future/scenarios/ssp5-85
+    value: { lo: 0.63, hi: 1.01 }   # m in 2100 relative to 1995–2014 ("likely" range)
+    valid: 2100
+    source: { ref: src:ipcc-ar6-wg1, loc: "Table 9.9" }   # illustrative locator
+    confidence: { likely: 0.66 }    # GAP-20: IPCC calibrated language as confidence
+    basis: projection

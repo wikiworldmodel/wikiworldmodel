@@ -1,0 +1,7 @@
+id: src:otzi-c14-1994
+type: lab-report
+title: "AMS radiocarbon dating of the Tyrolean Iceman (tissue, bone and grass samples)"
+labs: [ETH Zürich, Oxford]   # illustrative
+year: 1994
+license: publisher
+reliability: "Multiple labs and sample types agree; calibration curve has been revised since (IntCal20)."

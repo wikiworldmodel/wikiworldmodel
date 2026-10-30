@@ -1,0 +1,7 @@
+id: frame:plates/301
+type: frame
+kind: plate
+plate_id: 301                      # illustrative
+parent: frame:earth/mantle
+transform: { from: ds:merdith2021, interp: slerp }
+note: "GAP-45: Rome sits on deforming Apennine crust; a rigid plate is an approximation the doc doesn't flag."

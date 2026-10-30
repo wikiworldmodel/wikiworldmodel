@@ -1,0 +1,24 @@
+id: people/developments/agriculture-sw-asia
+kind: development/practice
+frame: frame:plates/301
+# GAP-33: agriculture arose independently in maybe 7–11 centres. One entity
+# per centre (this file) plus a global "agriculture" concept entity? The doc
+# lists high-level developments as a priority but has no kind or pattern.
+phases:
+  - id: pre-domestic-cultivation
+    start: { lo: -11500, hi: -10500 }
+    end: { lo: -9500, hi: -8500 }
+    basis: evidence
+  - id: domesticated
+    start: { lo: -9500, hi: -8500 }
+    basis: evidence
+    geometry: { field: field:people/land-use, select: { class: cropland } }   # extent = where the field says crops are
+claims:
+  c1: { prop: material, value: "einkorn, emmer, barley, lentil, pea, chickpea, bitter vetch, flax" }
+  c2:
+    prop: location
+    value: { region: "Fertile Crescent", wikidata: Q170596 }
+    note: "GAP-08: a region by name, no geometry; resolver needed"
+relations:
+  r1: { rel: caused-by, to: earth/events/holocene-onset, confidence: medium }   # GAP-02: unresolved on purpose
+  r2: { rel: after, to: earth/ice/laurentide@lgm, lag: { lo: 7000, hi: 10000 } }

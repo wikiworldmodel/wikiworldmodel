@@ -1,0 +1,14 @@
+id: rome/reign/vespasian
+kind: office/reign
+frame: null
+phases:
+  - id: reign
+    start: { lo: 69.5, hi: 69.97 }   # acclaimed 1 Jul 69; senate recognition Dec 69
+    end: 79.48
+    basis: evidence
+claims:
+  c1: { prop: ruler, value: rome/vespasian }
+  # GAP-03: acclaimed by the legions at Alexandria (1 Jul 69) or recognised by the senate (Dec 69)? Which start event defines the interval?
+relations:
+  r1: { rel: during, to: rome/vespasian@life }
+  r2: { rel: during, to: people/polities/roman-empire@principate }

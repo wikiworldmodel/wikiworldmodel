@@ -1,0 +1,35 @@
+id: places/turkey/istanbul
+kind: settlement/city
+frame: frame:plates/301
+same_as: { wikidata: Q406, pleiades: "520985" }   # illustrative Pleiades ID
+phases:
+  - id: byzantion
+    start: { lo: -667, hi: -657 }    # traditional Megarian foundation
+    end: 330.36
+    basis: evidence
+  - id: constantinople
+    start: 330.36                    # dedicated 11 May 330
+    end: 1453.41                     # 29 May 1453
+    basis: evidence
+  - id: ottoman-and-modern
+    start: 1453.41
+    basis: evidence
+claims:
+  c1: { prop: name, value: { grc: "Βυζάντιον", la: Byzantium }, valid: { lo: -667, hi: 330.36 } }
+  c2: { prop: name, value: { la: "Nova Roma" }, valid: { lo: 330.36, hi: 340 }, confidence: low, note: "Official epithet; usage unclear" }
+  c3: { prop: name, value: { grc: "Κωνσταντινούπολις", la: Constantinopolis }, valid: { lo: 330.36, hi: 1930.24 } }
+  c4: { prop: name, value: { ota: "قسطنطينيه", tr: Kostantiniyye }, valid: { lo: 1453.41, hi: 1930.24 }, perspective: ottoman-official }
+  c5:
+    prop: name
+    value: { tr: İstanbul }
+    valid: { lo: 1453.41, hi: null }  # in vernacular use; earliest form attested before 1453
+    note: "From Greek 'εἰς τὴν Πόλιν' (to the City)"
+  c6: { prop: name, value: { tr: İstanbul }, valid: { lo: 1930.24, hi: null }, source: { ref: src:turkish-postal-law-1930 },
+        perspective: official, rank: preferred }
+  c7: { prop: name, value: { el: Κωνσταντινούπολη }, valid: { lo: 1930.24, hi: null }, perspective: greek-orthodox-usage, rank: normal }
+  # GAP-56: c4–c7 overlap. `perspective` lets the viewer switch, but rank
+  # alone can't express "preferred per perspective".
+  c8: { prop: population, value: { lo: 300000, hi: 500000 }, valid: { lo: 530, hi: 541 }, method: expert-estimate }
+  c9: { prop: population, value: 15.7e6, valid: 2023, method: survey }   # GAP-11: a bare year as valid time = whole year?
+relations:
+  r1: { rel: replaces, to: places/turkey/istanbul@byzantion, note: "GAP-26: a phase replacing a phase of the same entity is redundant with phase order" }

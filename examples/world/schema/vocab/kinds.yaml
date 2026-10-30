@@ -1,0 +1,26 @@
+# Lightworld `kind` vocabulary (section 9.3). Hierarchical: a record of kind
+# building/temple also matches building.
+# GAP-30: the doc names the vocabulary but not its shape, whether kinds carry
+# rules (e.g. "events must have a duration"), or who may extend it.
+kinds:
+  body:           { children: [star, planet, moon] }
+  plate:          { note: "also defines a frame; see GAP-41" }
+  landmass:       { children: [craton, supercontinent] }
+  ice-sheet: {}
+  clade:          { children: [domain, kingdom, species], note: "hypothetical clades allowed (LUCA)" }
+  specimen:       { children: [fossil] }
+  human-remains:  { note: "sensitive; see GAP-62" }
+  person: {}
+  office:         { children: [reign] }
+  polity:         { children: [empire, kingdom, republic] }
+  settlement:     { children: [city, colony] }
+  district:       { children: [regio] }
+  building:       { children: [amphitheatre, temple, insula, baths] }
+  object:         { children: [obelisk] }
+  spacecraft: {}
+  development:    { children: [technology, practice], note: "GAP-33: abstract, diffusing things" }
+  scenario:       { note: "GAP-50: a branch of the future, not a thing in it" }
+  event:
+    rule: "must have start and end (or duration) and at least one relation"
+    children: [impact, eruption, fire, earthquake, battle, edict, extinction,
+               oxidation, stellar, discovery, transfer, crossing, launch, flyby]
