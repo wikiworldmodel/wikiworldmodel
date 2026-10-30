@@ -185,6 +185,10 @@ the data commit, the dataset checksums and the generator versions.
   - The Mahabaleshwar coordinates.
   - The collision site, placed approximately 8 km south of Saga.
   - The Himalaya's marker point, which is a display choice (the claim says so).
+- **Two time scales.** The PBDB gives the Artinskian as 290.1–279.3 Ma, from an older time
+  scale than the ICS 2020/03 chart used for the periods (290.1–283.5 Ma). So at 280 Ma the
+  time control says Kungurian while the Mesosaurus records, dated "Artinskian", are still
+  shown. Records should eventually cite stages and take their ages from one chart.
 - **Ocean floor.** The model only tracks continents and some ocean floor into the past,
   so most ocean nodes are on no plate and do not move. The plate polygons are only partly
   reconciled with the elevation grids: most of the land fits, some shelf does not.
