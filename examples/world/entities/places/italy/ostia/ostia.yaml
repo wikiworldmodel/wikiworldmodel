@@ -1,0 +1,18 @@
+id: places/italy/ostia
+kind: settlement/city
+frame: frame:plates/301
+same_as: { wikidata: Q232897, pleiades: "422995" }   # illustrative
+phases:
+  - id: colony
+    start: { lo: -400, hi: -300 }   # castrum; tradition says Ancus Marcius, 7th c. BCE
+    end: { lo: 600, hi: 900 }
+    basis: evidence
+claims:
+  c1:
+    prop: shoreline_distance
+    value: { lo: 0, hi: 0.5 }
+    valid: { lo: 90, hi: 110 }
+    method: excavation
+    role: validation                # GAP-54: an evidence claim that checks a derived field, not an input to it
+    checks: field:earth/coastline
+  c2: { prop: shoreline_distance, value: { lo: 3, hi: 4 }, valid: 2020, method: survey, role: validation, checks: field:earth/coastline }

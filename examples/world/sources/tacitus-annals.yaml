@@ -1,0 +1,8 @@
+id: src:tacitus-annals
+type: ancient-text
+title: "Annales"
+author: Tacitus
+composed: { lo: 109, hi: 120 }
+license: public-domain
+reliability: "Senatorial historian; hostile to Nero. Chapters 15.38–41 are the main account of the fire of 64."
+locator_scheme: "<book>.<chapter>, e.g. 15.41"

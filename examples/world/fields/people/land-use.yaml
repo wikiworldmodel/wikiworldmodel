@@ -1,0 +1,9 @@
+id: field:people/land-use
+type: field
+quantity: land-use fractions (cropland, pasture, urban)
+unit: fraction
+frame: frame:earth/body
+grid: { kind: lonlat, res_deg: 0.0833 }
+time: { lo: -10000, hi: 2023, interp: linear }
+data: { from: ds:hyde32 }
+basis: reconstruction

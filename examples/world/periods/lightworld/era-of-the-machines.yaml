@@ -1,0 +1,7 @@
+id: period:lightworld/machine-era
+type: period
+scheme: lightworld
+label: { en: "Machine era" }
+start: { lo: 1950, hi: 2050 }
+end: null                          # open-ended into the future
+basis: projection                  # GAP-50

@@ -1,0 +1,12 @@
+id: field:earth/sea-level
+type: field
+quantity: global mean sea level relative to present
+unit: m
+grid: { kind: scalar }               # GAP-52: a 0-D time series; is that a field or a claim series?
+time: { lo: { unit: ma, mean: 541 }, hi: 2100, sampling: irregular, interp: linear }
+data: asset:sha256:00000000000000000000000000000000000000000000000000000000000001a1
+basis: reconstruction
+sources: [ { ref: src:peltier-2015, covers: { lo: { unit: ka, mean: 26 }, hi: 1950 } } ]   # GAP-53: a stitched field, many sources by time
+uncertainty: { kind: band, lo: asset:sha256:00000000000000000000000000000000000000000000000000000000000001a2, hi: asset:sha256:00000000000000000000000000000000000000000000000000000000000001a3 }
+budget: { equals: "−sum(sea_level_equivalent of ice sheets) + thermosteric", tolerance_m: 5 }
+note: "GAP-50: past 2014 the series depends on the scenario; one field cannot hold both futures"

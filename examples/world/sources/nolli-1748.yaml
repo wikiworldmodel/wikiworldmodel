@@ -1,0 +1,14 @@
+id: src:nolli-1748
+type: map-sheet
+title: "Nuova pianta di Roma (Giambattista Nolli, 1748)"
+depicts: 1748               # GAP-15: date shown ≠ date made ≠ date of survey (1736–1748)
+surveyed: { lo: 1736, hi: 1748 }
+sheets: 12
+scan: asset:sha256:00000000000000000000000000000000000000000000000000000000000000d1   # COG in blob store
+georeference:
+  method: thin-plate-spline
+  gcps: asset:sha256:00000000000000000000000000000000000000000000000000000000000000d2
+  frame: frame:rome/site-grid
+  rmse_m: 3.5               # illustrative
+license: public-domain       # GAP-73: the scan's license can differ from the map's
+reliability: "Ichnographic plan, very accurate for its time; the backdrop for tracing 1748 street geometry."

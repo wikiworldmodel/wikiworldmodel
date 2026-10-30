@@ -1,0 +1,24 @@
+id: rome/events/great-fire-64
+kind: event/fire
+frame: frame:rome/site-grid
+same_as: { wikidata: Q1048627 }     # illustrative
+phases:
+  - id: burning
+    start: { lo: 64.543, hi: 64.546 }    # night of 18–19 July 64
+    end: { lo: 64.559, hi: 64.570 }      # 6 days, then a second outbreak of ~3 days
+    basis: evidence
+    interp: event
+    geometry:
+      kind: spread                       # GAP-06: an event's geometry changes during the event
+      keyframes:                         # burned area by time; illustrative
+        - { t: 64.544, geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000f5 }
+        - { t: 64.552, geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000f6 }
+        - { t: 64.565, geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000f7 }
+claims:
+  c1: { prop: cause, value: "accident", rank: preferred, status: disputed, source: { ref: src:tacitus-annals, loc: "15.38" } }
+  c2: { prop: cause, value: "set on Nero's orders", rank: normal, status: disputed, source: { ref: src:suetonius-lives, loc: "Nero 38" },
+        note: "Tacitus reports both versions; Suetonius asserts arson" }
+  c3: { prop: species_lost_fraction, value: 0.71, note: "GAP-22: wrong prop on purpose (meant 'districts destroyed', 10 of 14 regiones damaged)" }
+relations:
+  r1: { rel: destroyed, to: rome/temple-of-vesta@republican }
+  r2: { rel: participant, to: rome/nero, role: emperor }   # GAP-02: unresolved on purpose

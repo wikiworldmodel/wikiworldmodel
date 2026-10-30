@@ -1,0 +1,8 @@
+id: frame:plates/101
+type: frame
+kind: plate
+plate_id: 101                      # GPlates plate ID; illustrative
+entity: earth/plates/laurentia     # GAP-41: the plate is both an entity and a frame
+parent: frame:earth/mantle
+transform: { from: ds:merdith2021, interp: slerp }
+valid: { lo: { unit: ga, mean: 1.0 }, hi: 2100 }   # future: GAP-52, extrapolate at present motion?

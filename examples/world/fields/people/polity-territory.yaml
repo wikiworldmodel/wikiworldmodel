@@ -1,0 +1,9 @@
+id: field:people/polity-territory
+type: field
+quantity: polity control
+grid: { kind: vector }
+frame: frame:earth/body
+time: { lo: -3000, hi: 2026, interp: event }
+data: { from: ds:seshat, note: "Seshat codes polities, not borders. Borders would come from OpenHistoricalMap, which isn't in the manifest (GAP-70)" }
+basis: reconstruction
+alternatives_by: perspective         # GAP-56: contested borders as attributed alternatives

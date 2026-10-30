@@ -1,0 +1,5 @@
+id: frame:space/galactocentric
+type: frame
+kind: inertial
+parent: null                       # GAP-40: two roots, or icrf parents to this?
+transform: { model: "galactic orbit of the Sun", basis: reconstruction, interp: linear }

@@ -1,0 +1,21 @@
+id: future/scenarios/ssp2-45
+kind: scenario
+frame: null
+phases:
+  - id: scenario
+    start: 2015
+    end: 2100
+    basis: projection
+claims:
+  c1: { prop: name, value: { en: "SSP2-4.5 (middle of the road)" } }
+  c2:
+    prop: sea_level_anomaly
+    subject: earth/earth
+    scenario: future/scenarios/ssp2-45
+    value: { lo: 0.44, hi: 0.76 }
+    valid: 2100
+    source: { ref: src:ipcc-ar6-wg1, loc: "Table 9.9" }
+    confidence: { likely: 0.66 }
+    basis: projection
+relations:
+  r1: { rel: overlaps, to: future/scenarios/ssp5-85, note: "GAP-50: should say 'exclusive-with'; no relation for alternatives" }

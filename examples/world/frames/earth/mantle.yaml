@@ -1,0 +1,9 @@
+id: frame:earth/mantle
+type: frame
+kind: absolute-reference
+parent: frame:earth/body
+note: >
+  GAP-43: plate rotations are relative; the chain needs an absolute frame
+  (paleomagnetic, hotspot or mantle-optimised), and the choice moves every
+  continent by hundreds of km in deep time. True polar wander also belongs here.
+transform: { from: ds:merdith2021, plate_id: 0, interp: slerp }

@@ -1,0 +1,13 @@
+id: earth/bodies/sun          # GAP-05: IDs are sharded by domain; the Sun under earth/ is odd but there is no space/ shard
+kind: body/star
+frame: frame:space/heliocentric-ecliptic
+same_as: { wikidata: Q525 }
+phases:
+  - id: main-sequence
+    start: { unit: ga, mean: 4.567 }
+    end: { ref: earth/events/sun-leaves-main-sequence, edge: start }
+    basis: evidence
+  - id: red-giant
+    start: { ref: earth/events/sun-leaves-main-sequence, edge: end }
+    end: { unit: from_now_gyr, mean: 7.7 }
+    basis: projection

@@ -1,0 +1,6 @@
+id: src:ipcc-ar6-wg1
+type: publication
+citation: "IPCC (2021). Climate Change 2021: The Physical Science Basis. Working Group I contribution to the Sixth Assessment Report. Chapter 9."
+dataset: ds:ipcc-ar6-slr
+license: CC-BY-4.0            # illustrative
+reliability: "Assessed likely ranges, conditional on emissions scenario."

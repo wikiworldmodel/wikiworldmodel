@@ -1,0 +1,11 @@
+id: gen:latium/field-system
+type: generator
+version: "0.3.0"
+code: generators/latium/field-system/index.js
+runs_in: [client]
+seed: "hash(generator.id, cell.id)"
+inputs:
+  constraints:
+    - { from: field:people/land-use, select: cropland }
+    - { from: "centuriation grids (entities of kind district)" }
+outputs: { basis: procedural }

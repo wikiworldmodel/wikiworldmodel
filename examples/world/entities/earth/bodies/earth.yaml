@@ -1,0 +1,48 @@
+id: earth/earth
+kind: body/planet
+frame: frame:earth/body
+same_as: { wikidata: Q2 }
+phases:
+  - id: proto
+    start: { derive: ["#c1"] }
+    end: { ref: earth/events/theia-impact, edge: start }   # GAP-03: phase edges pinned to events
+    basis: reconstruction
+    geometry: { generator: gen:earth/planet-sphere, params: { radius_km: { lo: 5000, hi: 6400 } } }  # illustrative
+  - id: hadean
+    start: { ref: earth/events/theia-impact, edge: end }
+    end: { unit: ga, mean: 4.0 }
+    basis: reconstruction
+    geometry: { generator: gen:earth/planet-sphere, params: { radius_km: 6371 } }
+  - id: modern
+    start: { unit: ga, mean: 4.0 }
+    end: { derive: ["#c3"] }                    # the planet's fate is a projection
+    basis: evidence
+    geometry: { generator: gen:earth/planet-sphere, params: { radius_km: 6371 } }
+    note: >
+      GAP-04: 4 Gyr in one phase. Phases are for discrete states; the planet
+      changes continuously through fields, so a phase boundary at 4.0 Ga is
+      arbitrary. Doc doesn't say when to cut a new phase vs vary a field.
+claims:
+  c1: { prop: founded, value: { unit: ga, mean: 4.543, sd: 0.047 }, method: radiometric,
+        source: { ref: src:lightworld-editors, loc: "placeholder: Pb–Pb meteorite ages" },  # GAP-16b: no real source filed
+        confidence: high }
+  c2: { prop: name, value: { en: Earth, la: Tellus, grc: "Γαῖα" }, valid: { lo: -3000, hi: null } }   # GAP-31: names before anyone named it?
+  c3:
+    prop: end_state
+    value: "engulfed by the red-giant Sun"
+    valid: { unit: from_now_gyr, mean: 7.59 }
+    basis: projection                     # GAP-50: claim-level basis for the future
+    confidence: medium
+    status: disputed
+    rank: preferred
+    source: { ref: src:lightworld-editors, loc: "placeholder: Schröder & Smith 2008" }
+  c3b:
+    prop: end_state
+    value: "survives as a scorched planet beyond the red-giant Sun's radius"
+    valid: { unit: from_now_gyr, mean: 7.59 }
+    basis: projection
+    confidence: low
+    status: disputed
+    rank: normal
+relations:
+  r1: { rel: merges-into, from: earth/bodies/theia, to: earth/earth, via: earth/events/theia-impact }   # GAP-26: relation filed here though `from` is Theia

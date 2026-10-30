@@ -1,0 +1,84 @@
+# External datasets, referenced not copied (sections 8.1, 12).
+# All sha256 values are placeholders.  # illustrative
+# GAP-70: live sources (Wikidata, PBDB, Pleiades) have no stable versions;
+# pinning needs a snapshot date + our own mirror, or the build is not
+# reproducible.
+# GAP-71: a dataset can be both a source (cited by claims) and an input
+# (fetched by the build). Here `ds:` entries are cited directly; no separate
+# src: file is needed.
+datasets:
+  merdith2021:
+    title: "Merdith et al. 2021 plate model, 1 Ga–present"
+    url: https://www.earthbyte.org/                # illustrative
+    version: "1.1"
+    sha256: "0000000000000000000000000000000000000000000000000000000000000001"
+    license: CC-BY-4.0
+    kind: rotation-model
+    covers: { lo: { ga: 1.0 }, hi: 1950 }          # GAP-12: unit-as-key form also seen in the wild
+  paleomap-dem:
+    title: "Scotese & Wright 2018 PALEOMAP PaleoDEMs"
+    version: "2018"
+    sha256: "0000000000000000000000000000000000000000000000000000000000000002"
+    license: CC-BY-4.0
+    kind: field
+  judd2024-phanda:
+    title: "PhanDA global mean surface temperature, 485 Myr (Judd et al. 2024)"
+    version: "1.0"
+    sha256: "0000000000000000000000000000000000000000000000000000000000000003"
+    license: CC-BY-4.0
+    kind: field
+  intcal20:
+    title: "IntCal20 Northern Hemisphere radiocarbon calibration curve"
+    version: "IntCal20"
+    sha256: "0000000000000000000000000000000000000000000000000000000000000004"
+    license: CC-BY-4.0                            # illustrative
+    kind: calibration-curve                       # GAP-14: curves are a dataset kind the doc never names
+  ice6g-c:
+    title: "ICE-6G_C (VM5a) ice thickness, 26 ka–present (Peltier et al. 2015)"
+    version: "C"
+    sha256: "0000000000000000000000000000000000000000000000000000000000000005"
+    license: unknown                              # GAP-72: build must refuse or filter unknown licenses
+    kind: field
+  hyde32:
+    title: "HYDE 3.2 population and land use (Klein Goldewijk et al. 2017)"
+    version: "3.2.1"
+    variants: [lower, baseline, upper]            # GAP-53: dataset-level uncertainty as variants
+    sha256: "0000000000000000000000000000000000000000000000000000000000000006"
+    license: CC-BY-4.0
+    kind: field
+  pbdb:
+    title: "Paleobiology Database occurrence snapshot"
+    version: "snapshot-2026-10-01"
+    sha256: "0000000000000000000000000000000000000000000000000000000000000007"
+    license: CC-BY-4.0
+    kind: occurrences
+  opentree:
+    title: "Open Tree of Life synthetic tree"
+    version: "15.1"                               # illustrative
+    sha256: "0000000000000000000000000000000000000000000000000000000000000008"
+    license: CC0-1.0
+    kind: phylogeny
+  pleiades:
+    title: "Pleiades gazetteer dump"
+    version: "snapshot-2026-10-01"
+    sha256: "0000000000000000000000000000000000000000000000000000000000000009"
+    license: CC-BY-3.0
+    kind: gazetteer
+  seshat:
+    title: "Seshat Global History Databank, Equinox release"
+    version: "2020"
+    sha256: "000000000000000000000000000000000000000000000000000000000000000a"
+    license: CC-BY-NC-SA-4.0                      # GAP-72: NC/SA terms constrain what a build may publish
+    kind: polities
+  jpl-horizons-voyager1:
+    title: "JPL Horizons ephemeris export, Voyager 1 (-31)"
+    version: "export-2026-10-01"
+    sha256: "000000000000000000000000000000000000000000000000000000000000000b"
+    license: public-domain
+    kind: ephemeris
+  ipcc-ar6-slr:
+    title: "IPCC AR6 WG1 sea-level projections"
+    version: "AR6"
+    sha256: "000000000000000000000000000000000000000000000000000000000000000c"
+    license: CC-BY-4.0                            # illustrative
+    kind: projection

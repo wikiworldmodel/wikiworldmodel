@@ -1,0 +1,7 @@
+id: frame:chicago/field-museum
+type: frame
+kind: building
+parent: frame:plates/101
+entity: chicago/field-museum       # GAP-02: referenced but no entity file exists (checker should warn)
+anchor: { point: { lon: -87.6170, lat: 41.8663, h: 180 }, datum: WGS84 }
+axes: { x: building-east, y: building-north, z: up, unit: m }

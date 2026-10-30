@@ -1,0 +1,8 @@
+id: gen:earth/planet-sphere
+type: generator
+version: "1.0.0"
+code: generators/earth/planet-sphere/index.js
+runs_in: [build, client]
+seed: null                                   # deterministic, no randomness
+params_schema: { radius_km: number-or-interval }
+outputs: { basis: reconstruction }

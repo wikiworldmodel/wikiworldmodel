@@ -1,0 +1,12 @@
+id: earth/events/sun-leaves-main-sequence
+kind: event/stellar
+frame: frame:space/heliocentric-ecliptic
+phases:
+  - id: transition
+    start: { unit: from_now_gyr, lo: 4.5, hi: 5.5 }
+    duration: { lo: 1.0e8, hi: 1.0e9 }
+    basis: projection                 # GAP-50: not in evidence | reconstruction | procedural
+    interp: event
+claims:
+  c1: { prop: heliocentric_distance, subject: earth/earth, value: { lo: 1.0, hi: 1.7 },
+        valid: { unit: from_now_gyr, mean: 7.5 }, basis: projection, confidence: low }

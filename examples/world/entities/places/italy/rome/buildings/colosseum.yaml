@@ -1,0 +1,58 @@
+# The doc's section 6 example, filled out with all later phases.
+id: rome/colosseum
+kind: building/amphitheatre
+frame: frame:rome/site-grid
+same_as: { wikidata: Q10285, pleiades: "…" }   # GAP-02: placeholder ID kept from the doc
+phases:
+  - id: flavian
+    start: { derive: ["#c1", "#r1"] }           # solved: 69–79 CE
+    end: { ref: "#r3", edge: start }            # the 217 lightning fire
+    geometry: asset:sha256:9f2c0000000000000000000000000000000000000000000000000000000000a1
+    basis: evidence
+  - id: severan-restoration
+    start: { ref: "#r3", edge: end }
+    end: { lo: 520, hi: 535 }                   # last recorded games ~523
+    geometry: asset:sha256:9f2c0000000000000000000000000000000000000000000000000000000000a2
+    basis: reconstruction
+  - id: medieval
+    start: { lo: 520, hi: 535 }
+    end: { ref: "#r4", edge: start }
+    geometry: asset:sha256:9f2c0000000000000000000000000000000000000000000000000000000000a3
+    basis: reconstruction
+    note: "Housing, workshops, Frangipane fortress. GAP-64: sub-entities (houses inside the arena) vs attributes"
+  - id: ruin-quarried
+    start: { ref: "#r4", edge: end }
+    end: 1749
+    geometry: { asset: asset:sha256:9f2c0000000000000000000000000000000000000000000000000000000000a4, interp: event }
+    basis: reconstruction
+    note: "GAP-06: four centuries of stone removal is a slow 'event'. Geometry morphs between two meshes?"
+  - id: protected
+    start: 1749                                 # consecrated by Benedict XIV; quarrying stops
+    geometry: asset:sha256:9f2c0000000000000000000000000000000000000000000000000000000000a5
+    basis: evidence
+claims:
+  c1: { prop: begun_under, value: rome/vespasian, source: { ref: src:suetonius-lives, loc: "Vesp. 9.1" },
+        note: "GAP-34: the doc's value is the person; the date solver needs the reign (rome/reign/vespasian)" }
+  c2: { prop: dedicated, value: 80, source: { ref: src:suetonius-lives, loc: "Tit. 7.3" }, confidence: high }
+  c2m:
+    prop: dedicated
+    value: 80
+    source: { ref: src:suetonius-lives, loc: "Tit. 7.3", edition: rolfe-1914, quote: "At the dedication of the amphitheatre" }
+    author: machine:claim-extractor@0.3.1
+    status: proposed
+    note: "GAP-21: duplicate of c2 from a machine pass. Dedupe, or keep as corroboration?"
+  c3: { prop: height, value: 48, subject: "@flavian", confidence: medium }
+  c4:
+    prop: footprint
+    subject: "@flavian"
+    value: { ellipse: { a: 94, b: 78, centre: { x: 0, y: 0 }, rotation_deg: 0 } }   # half-axes in m; illustrative
+    basis: evidence
+  c5: { prop: name, value: { la: "Amphitheatrum Flavium" }, valid: { lo: 80, hi: null } }
+  c6: { prop: name, value: { la: Colosseum, it: Colosseo, en: Colosseum }, valid: { lo: 1000, hi: null }, confidence: low,
+        note: "Probably from the nearby Colossus of Nero" }
+relations:
+  r1: { rel: after, to: rome/domus-aurea@lake, note: "built over the drained lake of Nero's palace" }
+  r2: { rel: reused-in, to: rome/buildings/palazzo-venezia, note: "travertine spolia; GAP-02: unresolved on purpose", at: { lo: 1450, hi: 1470 } }
+  r3: { rel: damaged-by, to: rome/events/lightning-fire-217 }   # GAP-02: unresolved on purpose
+  r4: { rel: damaged-by, to: rome/events/earthquake-1349 }      # GAP-02: unresolved on purpose
+  r5: { rel: built-for, to: rome/vespasian, note: "GAP-28: built-for expects a purpose (games), not a patron" }

@@ -1,0 +1,16 @@
+id: field:people/population-density
+type: field
+quantity: population density
+unit: persons/km2
+frame: frame:earth/body
+grid: { kind: lonlat, res_deg: 0.0833 }   # 5 arc-minutes
+time:
+  lo: -10000
+  hi: 2023
+  sampling: [ { lo: -10000, hi: 0, step: 1000 }, { lo: 0, hi: 1700, step: 100 }, { lo: 1700, hi: 2000, step: 10 }, { lo: 2000, hi: 2023, step: 1 } ]
+  interp: linear
+data: { from: ds:hyde32 }
+variants: { lower: { from: ds:hyde32, variant: lower }, baseline: { from: ds:hyde32, variant: baseline, rank: preferred }, upper: { from: ds:hyde32, variant: upper } }
+basis: reconstruction
+budget_overrides:                    # GAP-55: when a city claim disagrees with HYDE, who wins locally?
+  - { entity: places/italy/rome, claim: places/italy/rome#c3, policy: claim-wins-redistribute }

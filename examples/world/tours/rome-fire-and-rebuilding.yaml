@@ -1,0 +1,15 @@
+id: tour:rome-fire-and-rebuilding
+type: tour
+role: guided
+declares: [ { region: places/italy/rome, time: { lo: 60, hi: 200 }, lod: building } ]
+keyframes:
+  - world_time: 64.545
+    camera: { frame: frame:rome/site-grid, position_m: [-600, -500, 300], look_at: rome/events/great-fire-64 }
+    caption: { text: "July 64: fire breaks out by the Circus Maximus.", refs: [rome/events/great-fire-64#c1, rome/events/great-fire-64#c2] }
+    pause: true                     # user may step off and explore
+  - world_time: 75
+    camera: { frame: frame:rome/site-grid, position_m: [-100, -100, 150], look_at: rome/domus-aurea@lake }
+    caption: { text: "Nero's lake is drained to build the amphitheatre.", refs: [rome/colosseum#r1] }
+  - world_time: 192
+    camera: { frame: frame:rome/site-grid, position_m: [-300, 50, 80], look_at: rome/temple-of-vesta@severan }
+    caption: { text: "The temple of Vesta burns again and is rebuilt by Julia Domna.", refs: [rome/temple-of-vesta#c3] }

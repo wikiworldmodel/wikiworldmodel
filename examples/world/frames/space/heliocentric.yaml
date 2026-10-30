@@ -1,0 +1,5 @@
+id: frame:space/heliocentric-ecliptic
+type: frame
+kind: body-centred
+parent: frame:space/icrf
+transform: { from: ds:jpl-horizons-voyager1, interp: linear }   # Sun barycentre offset, illustrative

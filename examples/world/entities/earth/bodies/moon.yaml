@@ -1,0 +1,12 @@
+id: earth/moon
+kind: body/moon
+frame: frame:moon/body
+same_as: { wikidata: Q405 }
+phases:
+  - id: formed
+    start: { ref: earth/events/theia-impact, edge: end, lag: { lo: 0, hi: 100 } }   # years; accretes from the disk within ~centuries
+    basis: reconstruction
+claims:
+  c1: { prop: name, value: { en: Moon, la: Luna } }
+relations:
+  r1: { rel: caused-by, to: earth/events/theia-impact, confidence: medium }

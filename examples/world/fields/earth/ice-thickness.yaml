@@ -1,0 +1,9 @@
+id: field:earth/ice-thickness
+type: field
+quantity: grounded ice thickness
+unit: m
+frame: frame:earth/body
+grid: { kind: lonlat, res_deg: 1.0 }
+time: { lo: { unit: ka, mean: 26 }, hi: 1950, step_ka: 0.5, interp: linear }
+data: { from: ds:ice6g-c, var: stgit }   # illustrative variable name
+basis: reconstruction

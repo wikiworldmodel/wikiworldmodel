@@ -1,0 +1,8 @@
+id: frame:space/icrf
+type: frame
+kind: inertial
+parent: null                       # root
+note: >
+  GAP-40: ICRF is a present-day realisation. Over Gyr the Sun moves ~20
+  times around the galaxy; for "into the stars" a galactocentric root is
+  needed, and the doc's chain stops at "space".

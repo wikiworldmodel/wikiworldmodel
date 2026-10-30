@@ -1,0 +1,7 @@
+id: frame:earth/pre-1ga
+type: frame
+kind: placeholder
+parent: frame:earth/mantle
+valid: { lo: { unit: ga, mean: 4.54 }, hi: { unit: ga, mean: 1.0 } }
+transform: { model: "none: no rotation model before 1 Ga", basis: procedural }
+note: "GAP-44: what geometry may be placed in a frame whose transform is unknown?"

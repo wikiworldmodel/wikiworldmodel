@@ -1,0 +1,12 @@
+id: rome/vespasian                  # ID from the doc's example; not under people/ like the other persons (GAP-05)
+kind: person
+frame: null                         # GAP-36: persons move constantly; no geometry
+same_as: { wikidata: Q1419 }        # illustrative
+phases:
+  - id: life
+    start: 9.88                     # 17 Nov 9 CE
+    end: 79.48                      # 23 Jun 79
+    basis: evidence
+claims:
+  c1: { prop: name, value: { la: "Titus Flavius Vespasianus", en: Vespasian } }
+  c2: { prop: name, value: { la: "Imperator Caesar Vespasianus Augustus" }, valid: { lo: 69.97, hi: 79.48 } }

@@ -1,0 +1,34 @@
+id: people/polities/roman-empire
+kind: polity/empire
+frame: frame:earth/body             # GAP-41: a territory spanning plates; plate-relative borders would drift apart
+same_as: { wikidata: Q2277, seshat: "it_roman_principate" }   # illustrative Seshat ID
+phases:
+  - id: principate
+    start: { derive: ["#c1"] }
+    end: 284
+    basis: evidence
+    geometry: { field: field:people/polity-territory, select: { polity: people/polities/roman-empire } }
+  - id: dominate
+    start: 284
+    end: { derive: ["#c2", "#c3"] }
+    basis: evidence
+    geometry: { field: field:people/polity-territory, select: { polity: people/polities/roman-empire } }
+claims:
+  c1: { prop: founded, value: -26.04, note: "16 Jan 27 BCE, Octavian named Augustus", confidence: high }
+  c2: { prop: dissolved, value: 476.67, note: "Deposition of Romulus Augustulus (West)", rank: preferred,
+        perspective: western-historiography }   # GAP-56: attributed alternatives need a field; `perspective` added
+  c3: { prop: dissolved, value: 1453.41, note: "Fall of Constantinople; Byzantium as the same polity", rank: normal,
+        perspective: continuity-historiography }
+  c4:
+    prop: population
+    value: { lo: 50.0e6, hi: 70.0e6 }
+    valid: { lo: 150, hi: 165 }
+    method: expert-estimate
+    confidence: medium
+    budget: field:people/population-density   # sum of the field over territory must match (section 9.2)
+  c5: { prop: capital, value: places/italy/rome, valid: { lo: -26.04, hi: 330.36 } }
+  c6: { prop: capital, value: places/turkey/istanbul, valid: { lo: 330.36, hi: 1453.41 }, note: "Eastern capital; overlaps with Rome, Milan and Ravenna in the West" }
+relations:
+  r1: { rel: replaces, to: people/polities/roman-republic }   # GAP-02: unresolved on purpose
+  r2: { rel: splits-into, to: people/polities/western-roman-empire, at: 395.05, status: disputed,
+        note: "Whether 395 is a split or an administrative division is itself the debate behind c2/c3" }

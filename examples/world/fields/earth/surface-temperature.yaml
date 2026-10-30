@@ -1,0 +1,11 @@
+id: field:earth/surface-temperature
+type: field
+quantity: global mean and gridded surface temperature
+unit: degC
+frame: frame:earth/mantle
+grid: { kind: lonlat, res_deg: 1.9 }  # illustrative model grid
+time: { lo: { unit: ma, mean: 485 }, hi: 1950, slices: 85, interp: linear }   # illustrative
+data: { from: ds:judd2024-phanda }
+basis: reconstruction                # GAP-51: data assimilation = proxies (evidence) + model prior; basis is a blend
+ensemble: { members: { lo: 100, hi: 1000 } }
+validated_against: [lithology:coal, lithology:evaporite, lithology:tillite]   # GAP-54: indicator datasets not in the manifest

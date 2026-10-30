@@ -1,0 +1,40 @@
+id: space/voyager-1                 # GAP-05: no space/ shard in the doc's layout
+kind: spacecraft
+same_as: { wikidata: Q48469, nssdc: "1977-084A" }   # illustrative
+phases:
+  - id: launch
+    frame: frame:earth/body
+    start: 1977.677                 # 5 Sep 1977
+    end: 1977.68
+    basis: evidence
+  - id: planetary-tour
+    frame: frame:space/heliocentric-ecliptic
+    start: 1977.68
+    end: 1980.87                    # after the Saturn flyby, 12 Nov 1980
+    basis: evidence
+    trajectory: { from: ds:jpl-horizons-voyager1, interp: linear }   # GAP-47: geometry as an ephemeris, sampled not keyframed
+  - id: heliosphere-exit
+    frame: frame:space/heliocentric-ecliptic
+    start: 1980.87
+    end: 2012.65                    # crossed the heliopause, 25 Aug 2012
+    basis: evidence
+    trajectory: { from: ds:jpl-horizons-voyager1, interp: linear }
+  - id: interstellar
+    frame: frame:space/heliocentric-ecliptic
+    start: 2012.65
+    end: null                       # GAP-39: still flying; open end
+    basis: evidence
+    trajectory: { from: ds:jpl-horizons-voyager1, interp: linear, extrapolate: ballistic, extrapolated_basis: projection }
+    note: "GAP-50: one phase is evidence up to 'now' and projection after. Basis changes at knowledge time, inside a phase."
+claims:
+  c1: { prop: heliocentric_distance, value: 121.6, valid: 2012.65, method: ephemeris }
+  c2:
+    prop: closest_approach
+    value: 1.6
+    valid: { from_now_yr: 40000 }   # GAP-12: yet another time form
+    note: "Passes within ~1.6 ly of Gliese 445"
+    basis: projection
+  c3: { prop: end_state, value: "end of science operations as RTG power fails", valid: { lo: 2025, hi: 2036 }, basis: projection, confidence: medium }
+relations:
+  r1: { rel: built-for, to: people/polities/united-states }   # GAP-02: unresolved on purpose; built-for a polity or a purpose?
+  r2: { rel: moved-to, to: frame:space/heliocentric-ecliptic, at: 1977.68 }

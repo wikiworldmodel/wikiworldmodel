@@ -1,0 +1,8 @@
+id: period:ics/cretaceous
+type: period
+scheme: ICS chart v2023/09        # illustrative version
+rank: period
+parent: period:ics/mesozoic        # GAP-02: unresolved on purpose
+start: { unit: ma, mean: 143.1, sd: 0.6 }      # base Cretaceous is not GSSP-defined; illustrative
+end:   { ref: earth/events/chicxulub-impact }  # GAP-18: a period boundary pinned to an event's date
+note: "GAP-18: ICS boundaries are defined by GSSPs (a rock layer), dated separately. Boundary-as-claim or boundary-as-reference?"

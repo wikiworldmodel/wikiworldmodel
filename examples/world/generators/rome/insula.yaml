@@ -1,0 +1,18 @@
+id: gen:rome/insula
+type: generator
+version: "1.2.0"
+code: generators/rome/insula/index.js        # not written; shared by build and viewer (section 3.2)
+tests: generators/rome/insula/test/
+runs_in: [build, client]
+seed: "hash(generator.id, district.id, block.id, lot.index)"   # stable IDs and places, not build order (section 7)
+inputs:
+  constraints:
+    - { from: "district.claims[insula_count]", as: target_count }
+    - { from: "district.claims[domus_count]", as: domus_count }
+    - { from: "places/italy/rome#c3", as: population_budget }
+  excludes: "entities with basis evidence whose footprint overlaps the lot"
+  street_network: gen:rome/minor-streets      # GAP-67: generators depending on generators; ordering and seeds compose how?
+params: { storeys: { lo: 3, hi: 6 }, ground_floor: tabernae, lot_m2: { lo: 300, hi: 1200 } }
+outputs: { basis: procedural, kind: building/insula, attributes: [footprint, height, population] }
+valid: { lo: -100, hi: 410 }                 # GAP-66: typology valid for which era? sack of 410 as a cut-off is arbitrary
+review: { render_diff_sites: [rome/districts/regio-iii, rome/districts/regio-viii] }   # GAP-68: generator drift review (section 14)

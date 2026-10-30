@@ -1,0 +1,18 @@
+id: rome/domus-aurea
+kind: building
+frame: frame:rome/site-grid
+same_as: { wikidata: Q271525 }      # illustrative
+phases:
+  - id: lake
+    start: { ref: rome/events/great-fire-64, edge: end, lag: { lo: 0, hi: 4 } }
+    end: { lo: 70, hi: 72 }
+    basis: reconstruction
+    geometry: { generator: gen:rome/garden-lake, params: { area_m2: { lo: 15000, hi: 25000 } } }   # illustrative
+  - id: buried
+    start: { lo: 104, hi: 109 }      # Trajan's baths built over the palace
+    end: 1480                        # rediscovered; Renaissance painters lower into the "grottoes"
+    basis: evidence
+    note: "GAP-61: lake ends ~70, buried starts ~104: undocumented gap, should fail continuity"
+relations:
+  r1: { rel: built-for, to: rome/nero }   # GAP-02: unresolved on purpose
+  r2: { rel: after, to: rome/events/great-fire-64 }

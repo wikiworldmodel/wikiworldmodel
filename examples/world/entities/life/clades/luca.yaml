@@ -1,0 +1,35 @@
+id: life/clades/luca
+kind: clade
+frame: frame:earth/pre-1ga
+same_as: { wikidata: Q1052287 }     # illustrative
+phases:
+  - id: population
+    start: { derive: ["#c1", "#c2"] }
+    end: { derive: ["#c1"], note: "ends when it diverges into Bacteria and Archaea" }
+    basis: reconstruction
+    geometry: null                   # GAP-36: no known place. Render nowhere, everywhere, or at a hypothesised vent?
+claims:
+  c1:
+    prop: founded
+    value: { unit: ga, mean: 4.2, lo: 4.09, hi: 4.33 }    # GAP-11: mean + interval together; which form wins?
+    method: molecular-clock
+    source: { ref: src:moody-2024 }
+    rank: preferred
+  c2:
+    prop: founded
+    value: { unit: ga, lo: 3.8, hi: 3.5 }
+    method: expert-estimate
+    rank: normal
+    status: disputed
+    note: "Older consensus; younger because of the fossil record's limits."
+  c3: { prop: existence, value: 0.95, note: "Single ancestor vs a communal gene pool" }
+  c4:
+    prop: habitat
+    value: "hydrothermal vent"
+    status: proposed
+    author: machine:claim-extractor@0.3.1
+    source: { ref: src:moody-2024, loc: "p. 1654", quote: "…" }   # GAP-37: quote required but copyright limits how much may be stored
+    confidence: low
+relations:
+  r1: { rel: splits-into, to: life/clades/bacteria }   # GAP-02: unresolved on purpose
+  r2: { rel: splits-into, to: life/clades/archaea }    # GAP-02: unresolved on purpose

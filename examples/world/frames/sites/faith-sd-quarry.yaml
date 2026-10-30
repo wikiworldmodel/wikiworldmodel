@@ -1,0 +1,6 @@
+id: frame:south-dakota/sue-quarry
+type: frame
+kind: site-grid
+parent: frame:plates/101
+anchor: { point: { lon: -101.9, lat: 45.2, h: 700 }, datum: WGS84 }   # illustrative, near Faith SD
+axes: { x: east, y: north, z: up, unit: m }

@@ -1,0 +1,27 @@
+id: earth/plates/laurentia
+kind: landmass/craton
+frame: frame:plates/101
+same_as: { wikidata: Q1050932 }    # illustrative
+phases:
+  - id: assembled
+    start: { unit: ga, lo: 1.9, hi: 1.8 }
+    end: { ref: earth/landmasses/pangaea, edge: start }
+    basis: reconstruction
+    geometry: { field: field:earth/plate-polygons, select: { plate_id: 101 } }   # GAP-47: geometry from a dataset, not an asset
+  - id: in-pangaea
+    start: { ref: earth/landmasses/pangaea, edge: start }
+    end: { ref: earth/landmasses/pangaea, edge: end }
+    basis: reconstruction
+    geometry: { field: field:earth/plate-polygons, select: { plate_id: 101 } }
+  - id: north-america
+    start: { ref: earth/landmasses/pangaea, edge: end }
+    basis: evidence
+    geometry: { field: field:earth/plate-polygons, select: { plate_id: 101 } }
+claims:
+  c1: { prop: plate_id, value: 101, source: { ref: ds:merdith2021 } }
+  c2: { prop: name, subject: "@north-america", value: { en: "North American Plate" } }
+  # GAP-09: before 1 Ga the rotation model ends (frame:earth/pre-1ga); this
+  # craton existed but its first phase has no valid frame transform.
+relations:
+  r1: { rel: merges-into, to: earth/landmasses/pangaea, at: "@assembled" }
+  r2: { rel: split-from, to: earth/landmasses/pangaea, at: "@north-america" }

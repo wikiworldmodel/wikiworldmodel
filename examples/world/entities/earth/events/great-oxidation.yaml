@@ -1,0 +1,15 @@
+id: earth/events/great-oxidation
+kind: event/oxidation
+frame: frame:earth/body
+phases:
+  - id: rise
+    start: { unit: ga, lo: 2.50, hi: 2.43 }
+    end:   { unit: ga, lo: 2.10, hi: 2.06 }
+    basis: evidence
+    interp: event
+    note: "GAP-07: a 300-Myr 'event'. Event vs phase-of-the-atmosphere vs field (pO2) is a modelling choice the doc leaves open."
+claims:
+  c1: { prop: cause, value: "oxygenic photosynthesis by cyanobacteria outpacing sinks", confidence: medium }
+relations:
+  r1: { rel: caused-by, to: life/clades/cyanobacteria, confidence: medium }   # GAP-02: unresolved on purpose
+  r2: { rel: after, to: life/clades/luca, lag: { lo: { unit: gyr, mean: 1.0 }, hi: { unit: gyr, mean: 2.0 } } }   # GAP-10: lag units

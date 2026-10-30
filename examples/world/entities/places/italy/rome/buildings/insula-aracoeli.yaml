@@ -1,0 +1,33 @@
+# Promotion (section 7): a generated insula slot replaced by a real entity.
+id: rome/insula-aracoeli
+kind: building/insula
+frame: frame:rome/site-grid
+same_as: { wikidata: Q3800669 }     # illustrative
+promoted_from:                      # GAP-63: the generated thing has no ID except generator + seed + slot
+  generator: gen:rome/insula
+  version: "1.2.0"
+  slot: "regio-viii/block-0417/lot-3"   # illustrative
+  draft_geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000b1
+phases:
+  - id: built
+    start: { lo: 100, hi: 150 }
+    end: { lo: 1100, hi: 1200 }      # illustrative: upper storeys lost, church built over it
+    basis: evidence
+    geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000b2
+    parts:                           # GAP-65: per-part basis (surviving floors evidence, the rest reconstruction)
+      - { selector: "floors 1-4", basis: evidence }
+      - { selector: "floor 5+, roof", basis: reconstruction }
+  - id: under-church
+    start: { lo: 1100, hi: 1200 }
+    end: 1930
+    basis: evidence
+  - id: exposed
+    start: 1930
+    basis: evidence
+claims:
+  c1: { prop: height, subject: "@built", value: { lo: 15, hi: 20 }, source: { ref: src:insula-aracoeli-reports } }
+  c2: { prop: population, subject: "@built", value: { lo: 300, hi: 400 }, method: expert-estimate, confidence: low,
+        budget: places/italy/rome#c3 }   # GAP-55: rolls up into the city total
+relations:
+  r1: { rel: promoted-from, to: gen:rome/insula }
+  r2: { rel: within, to: rome/districts/regio-viii }   # GAP-02: unresolved on purpose

@@ -1,0 +1,11 @@
+id: earth/bodies/theia
+kind: body/planet
+frame: frame:space/heliocentric-ecliptic
+phases:
+  - id: only
+    start: { unit: ga, lo: 4.6, hi: 4.56 }   # GAP-13: with "ago" units, is lo the earlier time (4.6) or the smaller number?
+    end: { ref: earth/events/theia-impact, edge: start }
+    basis: reconstruction
+claims:
+  c1: { prop: existence, value: 0.8, method: model, confidence: medium,     # illustrative probability
+        note: "Hypothetical body. Under the synestia or multiple-impact models there is no Theia." }

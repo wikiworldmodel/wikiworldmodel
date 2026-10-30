@@ -1,0 +1,44 @@
+# "An obelisk shipped from Heliopolis to Rome, then moved across the city in
+# 1589, is one entity that changes parent frame twice."
+id: rome/obelisk-flaminio
+kind: object/obelisk
+same_as: { wikidata: Q1340437 }     # illustrative
+phases:
+  - id: heliopolis
+    frame: frame:heliopolis/site-grid
+    start: { lo: -1290, hi: -1279 }  # Seti I, finished under Ramesses II
+    end: -10
+    basis: evidence
+    geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000a7
+  - id: in-transit
+    frame: frame:earth/body         # GAP-49: a ship voyage; the object rides a moving frame (the ship) that isn't an entity
+    start: -10
+    end: -9
+    basis: reconstruction
+    geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000a7
+  - id: circus-maximus
+    frame: frame:rome/site-grid
+    start: -9
+    end: { lo: 400, hi: 900 }       # fell; when is unknown
+    basis: evidence
+    geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000a7
+    placement: { point: { x: -620, y: -480, z: 0 }, rotation_deg: 0 }   # illustrative; GAP-61: placement inside a phase vs location claim
+  - id: fallen-buried
+    frame: frame:rome/site-grid
+    start: { lo: 400, hi: 900 }
+    end: 1587
+    basis: reconstruction
+    geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000a8   # three broken pieces
+  - id: piazza-del-popolo
+    frame: frame:rome/site-grid
+    start: 1589.25
+    basis: evidence
+    geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000a9   # repaired; new base
+  # GAP-61: 1587–1589.25 (excavated, repaired, moved) has no phase
+claims:
+  c1: { prop: height, value: 23.3, unit: m, note: "shaft only; GAP-22: unit on the claim overrides the vocab unit?" }
+  c2: { prop: inscription, subject: "@circus-maximus", value: "Augustan dedication to Sol (CIL VI 701)", method: epigraphic }   # illustrative CIL number
+  c3: { prop: location, subject: "@circus-maximus", value: "spina of the Circus Maximus", source: { ref: src:pliny-nh, loc: "36.71" } }
+relations:
+  r1: { rel: moved-to, to: frame:rome/site-grid, at: -9, agent: people/persons/augustus }   # GAP-02: unresolved on purpose
+  r2: { rel: moved-to, to: frame:rome/site-grid, at: 1589.25, agent: people/persons/sixtus-v, note: "same frame, new place: a move is not always a frame change" }

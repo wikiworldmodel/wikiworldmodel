@@ -1,0 +1,38 @@
+id: tour:lifeforce-opening
+type: tour
+role: film                          # the film is a tour rendered offline (section 2)
+build: null                         # GAP-68: a film should pin a build; a draft tour floats on latest
+declares:                           # section 8.4: what it shows, to steer detail work
+  - { region: earth, time: { lo: { unit: ga, mean: 4.6 }, hi: { unit: ga, mean: 4.0 } }, lod: planet }
+  - { region: places/italy/rome, time: { lo: 60, hi: 90 }, lod: building }
+keyframes:
+  - t_film: 0.0                     # seconds into the film
+    world_time: { unit: ga, mean: 4.52 }
+    time_scale: log                 # GAP-12: the time control's zoom state is part of a shot
+    camera: { frame: frame:space/heliocentric-ecliptic, position_km: [0, -400000, 120000], look_at: earth/earth }
+    caption: { text: "Something the size of Mars is about to hit the young Earth.", refs: [earth/events/theia-impact#c1] }
+  - t_film: 8.0
+    world_time: { ref: earth/events/theia-impact, edge: end }   # GAP-03: tour time pinned to a derived date shifts when the date does
+    camera: { frame: frame:earth/body, position_km: [0, 0, 60000], look_at: earth/moon }
+    caption: { text: "The Moon forms from the debris.", refs: [earth/moon#r1] }
+    show_alternatives: [earth/events/theia-impact#c2, earth/events/theia-impact#c3]   # GAP-35: a tour showing competing claims
+  - t_film: 20.0
+    world_time: { unit: ma, mean: 66.05 }
+    camera: { frame: frame:plates/101, position_km: [0, 0, 2000], look_at: earth/events/chicxulub-impact }
+    caption: { text: "66 million years ago, an asteroid strikes what is now Yucatán.", refs: [earth/events/chicxulub-impact#c1] }
+    note: "GAP-31: the caption hard-codes '66 million' and 'Yucatán'; section 9.1 wants captions built from claims"
+  - t_film: 34.0
+    world_time: 80.4
+    time_scale: linear
+    camera: { frame: frame:rome/site-grid, position_m: [-250, -180, 60], look_at: rome/colosseum }
+    caption: { template: "Rome, {year}. The Flavian Amphitheatre opens with 100 days of games.", bind: { year: rome/colosseum#c2 } }
+    evidence_mode: true
+  - t_film: 48.0
+    world_time: 2012.65
+    camera: { frame: frame:space/heliocentric-ecliptic, position_km: [1.8e10, 0, 0], look_at: space/voyager-1 }
+    caption: { text: "Voyager 1 leaves the heliosphere.", refs: [space/voyager-1@interstellar] }
+  - t_film: 60.0
+    world_time: { unit: from_now_gyr, mean: 5.0 }
+    scenario: null                  # GAP-50: deep future has no scenario; 2100 does. Which applies to a shot?
+    camera: { frame: frame:space/heliocentric-ecliptic, position_km: [0, 0, 5.0e8], look_at: earth/bodies/sun }
+    caption: { text: "In about five billion years the Sun swells into a red giant.", refs: [earth/events/sun-leaves-main-sequence] }

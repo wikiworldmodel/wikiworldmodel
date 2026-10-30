@@ -1,0 +1,48 @@
+id: life/specimens/fmnh-pr-2081
+kind: specimen/fossil
+same_as: { wikidata: Q1196466 }     # illustrative
+# GAP-60: one entity for the living animal and the fossil? Here yes: the
+# organism dies, is buried, fossilises and is dug up, all phases of one
+# entity, so "the T. rex you can click in Chicago" links to where it lived.
+phases:
+  - id: alive
+    frame: frame:south-dakota/sue-quarry     # per-phase frame: GAP-49 (doc puts frame on the entity)
+    start: { unit: ma, lo: 67.5, hi: 66.5 }
+    end: { derive: ["#c1"], note: "death; age at death ~28–33 years" }
+    basis: reconstruction
+    geometry: { generator: gen:life/skeleton-pose, params: { pose: walking } }
+  - id: buried
+    frame: frame:south-dakota/sue-quarry
+    start: { ref: "@alive", edge: end }
+    end: { ref: "#r2", edge: start }
+    basis: evidence
+    geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000e1   # in-situ excavation scan
+  - id: in-custody
+    frame: frame:south-dakota/sue-quarry
+    start: 1990.611                 # 12 Aug 1990
+    end: 2000.375
+    basis: evidence
+    geometry: null                  # GAP-61: crated and moved between labs; frame tracked by #c5…#c7, geometry unknown
+  - id: on-display
+    frame: frame:chicago/field-museum
+    start: 2000.375                 # unveiled 17 May 2000
+    basis: evidence
+    geometry: asset:sha256:00000000000000000000000000000000000000000000000000000000000000e2
+claims:
+  c1: { prop: stratigraphic_age, value: { unit: ma, lo: 67.5, hi: 66.5 }, method: stratigraphic, note: "Hell Creek Formation" }
+  c2: { prop: sex, value: unknown, rank: preferred }
+  c3: { prop: sex, value: female, rank: deprecated, status: deprecated, note: "Medullary-bone argument does not apply; name is from the finder" }
+  c4: { prop: collection_number, value: "FMNH PR 2081", valid: { lo: 1997.8, hi: null }, source: { ref: src:fmnh-sue-records } }
+  c5: { prop: owner, subject: "@in-custody", value: person:maurice-williams, valid: { lo: 1990.611, hi: 1997.8 },   # GAP-17: person: refs to people who are entities?
+        status: disputed, note: "Black Hills Institute, the Cheyenne River Sioux Tribe and the US government also claimed it" }
+  c6: { prop: owner, value: chicago/field-museum, valid: { lo: 1997.8, hi: null }, source: { ref: src:fmnh-sue-records } }
+  c7:
+    prop: location
+    subject: "@on-display"
+    value: { point: { x: 12.0, y: 40.0, z: 0 } }   # illustrative, building grid
+    valid: { lo: 2000.375, hi: 2018.0 }
+    note: "Stanley Field Hall. Moved to the Griffin Halls in 2018: a move inside one frame is a claim, not a frame change"
+relations:
+  r1: { rel: within, to: life/clades/tyrannosaurus-rex, note: "GAP-26: instance-of is not 'within'; the vocabulary has no membership relation" }
+  r2: { rel: found-by, to: person:sue-hendrickson, at: 1990.611 }   # the excavation is a relation, not an event entity
+  r3: { rel: moved-to, to: frame:chicago/field-museum, at: 2000.0 }  # GAP-49: moves as relations to frames vs per-phase frames: two ways to say one thing

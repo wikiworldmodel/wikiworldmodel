@@ -1,0 +1,7 @@
+id: gen:rome/garden-lake
+type: generator
+version: "0.1.0"
+code: generators/rome/garden-lake/index.js
+runs_in: [build]                             # pre-baked (section 3.2)
+seed: "hash(generator.id, entity.id)"
+outputs: { basis: procedural }

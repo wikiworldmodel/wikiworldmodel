@@ -1,0 +1,9 @@
+id: field:earth/co2
+type: field
+quantity: atmospheric CO2
+unit: ppm
+grid: { kind: scalar }
+time: { lo: { unit: ma, mean: 485 }, hi: 2025, sampling: irregular, interp: log-time }
+data: asset:sha256:00000000000000000000000000000000000000000000000000000000000001c1
+basis: reconstruction
+ensemble: { members: 1000, stats: [p5, p50, p95] }   # illustrative
