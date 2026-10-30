@@ -12,7 +12,7 @@ design, are in [examples/](examples/README.md).
 
 ## Quick start
 
-Needs Node 22 and Python 3.12 or newer.
+Needs Node 22.19 or newer (22 LTS or 24+; odd releases such as 23 are unsupported) and Python 3.12 or newer.
 
 ```sh
 npm install

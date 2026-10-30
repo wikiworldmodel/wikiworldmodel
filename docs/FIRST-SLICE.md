@@ -34,7 +34,7 @@ npm run build:viewer && npm run test:e2e   # browser tests in headless Chromium 
 that contradict the world. The build uses pyGPlates, through a Python importer, to
 partition the elevation grids by plate and to check plate frames. Point
 `LIGHTWORLD_PYTHON` at an interpreter if you don't use `.venv`. Everything else is
-TypeScript on Node 22.
+TypeScript on Node 22.19+ or 24+.
 
 ## Pass criteria
 

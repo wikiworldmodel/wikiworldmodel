@@ -4,7 +4,7 @@
   "type": "module",
   "description": "A 4D world model of Earth, life and civilization, and a viewer for flying through it.",
   "engines": {
-    "node": ">=22"
+    "node": "^22.19.0 || >=24"
   },
   "scripts": {
     "world": "tsx tools/world/src/cli.ts",

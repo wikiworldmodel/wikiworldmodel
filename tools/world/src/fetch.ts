@@ -2,12 +2,16 @@
 import { existsSync } from 'node:fs';
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
-import { EnvHttpProxyAgent, setGlobalDispatcher } from 'undici';
 import { unzipSync } from 'fflate';
 import { datasetDir, datasetPath, loadManifest, type Dataset } from './manifest.ts';
 import { sha256, sha256File } from './util.ts';
 
-if (process.env.HTTPS_PROXY || process.env.https_proxy) setGlobalDispatcher(new EnvHttpProxyAgent());
+// Node's fetch ignores HTTPS_PROXY; undici's agent honours it. It is loaded only when a proxy
+// is set, since recent undici needs a newer Node (zstd in zlib) than the tools otherwise do.
+if (process.env.HTTPS_PROXY || process.env.https_proxy) {
+  const { EnvHttpProxyAgent, setGlobalDispatcher } = await import('undici');
+  setGlobalDispatcher(new EnvHttpProxyAgent());
+}
 
 async function download(url: string, dest: string): Promise<void> {
   const res = await fetch(url);
