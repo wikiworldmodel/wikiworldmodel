@@ -59,13 +59,17 @@ export class CityScene {
   private queue: { key: number; detail: number }[] = [];
   private selected = 0;
   onChange: () => void = () => {};
-  /** every cell has its coarse mesh, and every near one its fine mesh */
+  /** every cell has its coarse mesh, and every near one its fine mesh (in the fast way, none) */
   get settled(): boolean {
     return this.ready && this.inflight === 0 && this.queue.length === 0;
   }
 
-  constructor(gl: GL, private build: Build) {
-    this.renderer = new CityRenderer(gl);
+  /** the lighter way to draw: coarse meshes only, and the renderer's cheap passes */
+  private fast: boolean;
+
+  constructor(gl: GL, private build: Build, opts: { fast?: boolean } = {}) {
+    this.fast = !!opts.fast;
+    this.renderer = new CityRenderer(gl, { fast: this.fast });
     this.renderer.shadowCells = (focus, radius) => this.near(focus, radius);
   }
 
@@ -141,7 +145,7 @@ export class CityScene {
       const cy = (c.box[1] + c.box[3]) / 2;
       const d = Math.hypot(cx - v.eye[0], cy - v.eye[1], Math.max(v.clearance, 0));
       if (!c.coarse && !c.asked[0]) want.push({ key: c.key, detail: 0, d });
-      if (d < FINE_DISTANCE + CELL * 0.71 && !c.fine && !c.asked[1]) want.push({ key: c.key, detail: 1, d: d - 1e5 });
+      if (!this.fast && d < FINE_DISTANCE + CELL * 0.71 && !c.fine && !c.asked[1]) want.push({ key: c.key, detail: 1, d: d - 1e5 });
     }
     want.sort((a, b) => a.d - b.d);
     for (const w of want) {

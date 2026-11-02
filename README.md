@@ -77,6 +77,13 @@ npm test              # unit tests
 npm run build:viewer && npm run test:e2e   # browser tests, golden renders included
 ```
 
+The browser tests come in three groups, which can be run alone with `--project`: `globe` (the
+globe and the viewer), `city` (the city's behaviour, drawn the fast way) and `city-views` (the
+city at full quality, minutes a view in software). CI runs the first two on every change, and
+`city-views` on changes to what the city is drawn from, nightly and on demand. Adding
+`quality=fast` to a link draws the city without shadows, occlusion, bloom or multisampling, from
+coarse meshes, for slow machines.
+
 After an intended change to the renderer or the world, regenerate the golden renders with
 `npx playwright test --update-snapshots` and review the image diff.
 

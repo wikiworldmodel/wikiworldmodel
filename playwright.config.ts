@@ -18,6 +18,14 @@ export default defineConfig({
     deviceScaleFactor: 1,
     launchOptions: { args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] },
   },
+  // Three groups, which CI runs as separate jobs: the globe and the viewer; the city's
+  // behaviour, drawn the fast way; and the city's full-quality views, which take minutes each in
+  // software. Locally, `npm run test:e2e` runs all three.
+  projects: [
+    { name: 'globe', testMatch: /(golden|viewer)\.spec\.ts$/ },
+    { name: 'city', testMatch: /city\.spec\.ts$/ },
+    { name: 'city-views', testMatch: /city-views\.spec\.ts$/ },
+  ],
   webServer: {
     command: 'npm run serve',
     url: 'http://localhost:4173/',

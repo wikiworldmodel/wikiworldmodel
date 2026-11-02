@@ -678,7 +678,7 @@ async function start(root: HTMLElement): Promise<void> {
   async function loadCity(): Promise<void> {
     cityLoading = true;
     try {
-      const scene = new CityScene(gl!, build);
+      const scene = new CityScene(gl!, build, { fast: state.quality === 'fast' });
       scene.onChange = () => (dirty = true);
       await scene.load();
       city = scene;
