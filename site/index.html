@@ -57,7 +57,7 @@
   --white: #FFFFFF;
   --space: #050607;
   --on-bright: #0B0F0E;
-  --hero-ground: #3A332A;
+  --hero-ground: #050607;
   --hero-shadow: rgb(0 0 0 / 0.3);
 
   /* The International Chronostratigraphic Chart's colours, as the world's period records give them. */
@@ -148,7 +148,7 @@ h3 { font: 600 1rem/1.35 var(--sans); }
 .hero img {
   display: block; width: 100%; height: auto;
   aspect-ratio: 1280 / 606; max-height: 84vh;
-  object-fit: cover; object-position: 50% 55%;
+  object-fit: cover; object-position: 50% 50%;
 }
 .play {
   position: absolute; left: 50%; top: 50%;
@@ -296,7 +296,7 @@ footer { border-top: 1px solid var(--rule); }
   .slices > div { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 720px) {
-  .hero img { aspect-ratio: 4 / 3; object-position: 30% 55%; }
+  .hero img { aspect-ratio: 4 / 3; }
   .plates { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.75rem; }
 }
 @media (max-width: 600px) {
@@ -328,15 +328,15 @@ footer { border-top: 1px solid var(--rule); }
 <main>
   <figure class="hero">
     <div class="hero-frame">
-      <img src="img/rome-315.jpg" width="1280" height="606" fetchpriority="high"
-        alt="Rome in 315 CE in evening light, looking west over the Colosseum and the roofs of the city towards the Tiber and the open country, as the viewer draws it.">
-      <a class="play" href="world/?t=315.5&amp;lat=41.8915&amp;lon=12.49&amp;d=1.00012&amp;h=280&amp;v=72&amp;hour=18.2" aria-label="Open the viewer here, in Rome in 315 CE">
+      <img src="img/earth-today.jpg" width="1280" height="606" fetchpriority="high"
+        alt="Earth from space as it is today: the Atlantic Ocean under cloud, between South America and Africa, with Europe at the top.">
+      <a class="play" href="world/?t=0Ma&amp;lat=12&amp;lon=-28&amp;d=3.3" aria-label="Open the viewer here, at Earth today">
         <svg viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0.8v12.4a.8.8 0 0 0 1.2.7l10.4-6.2a.8.8 0 0 0 0-1.4L1.2.1A.8.8 0 0 0 0 .8z" fill="currentColor"/></svg>
       </a>
     </div>
     <figcaption class="wrap hero-cap">
-      <span>Rome in 315 CE, drawn by the viewer</span>
-      <span>41.8915° N, 12.4900° E · 315.5 CE</span>
+      <span>Earth today, drawn by the viewer</span>
+      <span>12° N, 28° W · now</span>
     </figcaption>
   </figure>
 
@@ -344,7 +344,7 @@ footer { border-top: 1px solid var(--rule); }
     <h1><span>Fly through Earth’s history.</span> <span>Check every fact.</span></h1>
     <p class="lede">World Model Zero is a history of Earth, life and civilization in space and time, from the Solar System’s first solids to the far future, with a viewer to fly through it. Every date, place and building in it rests on a claim that cites its source, and whatever is generated to fill a gap is marked as generated.</p>
     <div class="actions">
-      <a class="button" href="world/?t=315.5&amp;lat=41.8915&amp;lon=12.49&amp;d=1.00012&amp;h=280&amp;v=72&amp;hour=18.2">
+      <a class="button" href="world/?t=0Ma&amp;lat=12&amp;lon=-28&amp;d=3.3">
         <svg viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0.8v12.4a.8.8 0 0 0 1.2.7l10.4-6.2a.8.8 0 0 0 0-1.4L1.2.1A.8.8 0 0 0 0 .8z" fill="currentColor"/></svg>
         Open the viewer
       </a>
@@ -385,7 +385,7 @@ footer { border-top: 1px solid var(--rule); }
       <div class="ribbon" id="ribbon-phanerozoic">
         <ol class="marks" aria-label="Views on this page in the Phanerozoic">
           <li style="--at: 48.244%"><b>Pangaea <span>280 Ma</span></b></li>
-          <li class="end" style="--at: 100%"><b>Rome <span>120, 315 CE</span></b></li>
+          <li class="end" style="--at: 100%"><b>Rome <span>120 CE</span> · Earth <span>now</span></b></li>
         </ol>
         <div class="bar" role="img" aria-label="Eras: Paleozoic from 541 Ma, Mesozoic from 251.902 Ma, Cenozoic from 66 Ma">
           <span class="seg" style="--from: 0%; --to: 53.4377%; background: var(--ics-paleozoic)"><span class="long">Paleozoic</span><span class="short">Paleozoic</span></span>
