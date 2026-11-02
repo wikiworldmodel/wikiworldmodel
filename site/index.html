@@ -1,0 +1,576 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>World Model Zero</title>
+<meta name="description" content="A sourced, four-dimensional history of Earth, life and civilization, with a viewer to fly through it. Every fact in it is a claim that cites its source.">
+<meta property="og:title" content="World Model Zero">
+<meta property="og:description" content="A sourced, four-dimensional history of Earth, life and civilization, with a viewer to fly through it.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%23161D1B' stroke-width='3'/%3E%3Cpath d='M4 16h24' stroke='%23161D1B' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/newsreader-latin-opsz-wght.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* fonts:start */
+@font-face {
+  font-family: 'Newsreader';
+  src: url(fonts/newsreader-latin-opsz-wght.woff2) format('woff2');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Sans';
+  src: url(fonts/ibm-plex-sans-latin-wght.woff2) format('woff2');
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url(fonts/ibm-plex-mono-latin-400.woff2) format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url(fonts/ibm-plex-mono-latin-500.woff2) format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* fonts:end */
+
+/* Layout: a survey sheet. The render runs edge to edge; under it, one left-aligned measure on
+   limestone, and the time scale drawn to scale across the full width. One theme, light. */
+:root {
+  --limestone: #F3F4F1;
+  --well: #E7EAE5;
+  --ink: #161D1B;
+  --ink-soft: #535D59;
+  --rule: #D2D7D1;
+  --rule-strong: #A3ACA7;
+  --white: #FFFFFF;
+  --space: #050607;
+  --on-bright: #0B0F0E;
+  --hero-ground: #3A332A;
+  --hero-shadow: rgb(0 0 0 / 0.3);
+
+  /* The International Chronostratigraphic Chart's colours, as the world's period records give them. */
+  --ics-hadean: #AE027E;
+  --ics-archean: #F0047F;
+  --ics-proterozoic: #F73563;
+  --ics-phanerozoic: #9AD9DD;
+  --ics-paleozoic: #99C08D;
+  --ics-mesozoic: #67C5CA;
+  --ics-cenozoic: #F2F91D;
+
+  --serif: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+  --page: 72rem;
+  --measure: 38rem;
+  --gap: clamp(1rem, 0.6rem + 1.6vw, 2rem);
+  --section: clamp(3.5rem, 2.6rem + 3.6vw, 6rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--limestone);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--sans);
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img { max-width: 100%; }
+p, h1, h2, h3, ol, ul, dl, dd, figure, pre { margin: 0; }
+ol, ul { padding: 0; }
+
+a { color: inherit; text-decoration-line: underline; text-decoration-color: var(--rule-strong); text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+a:hover { text-decoration-color: currentColor; }
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+code { font: 0.875em/1 var(--mono); background: var(--well); padding: 0.1em 0.35em; border-radius: 2px; white-space: nowrap; }
+
+.wrap {
+  max-width: calc(var(--page) + 80px);
+  margin-inline: auto;
+  padding-left: max(clamp(16px, 4vw, 40px), env(safe-area-inset-left, 0px));
+  padding-right: max(clamp(16px, 4vw, 40px), env(safe-area-inset-right, 0px));
+}
+
+/* Type */
+h1 {
+  font: 400 clamp(2.4rem, 1.5rem + 3.6vw, 4.25rem)/1.02 var(--serif);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+h1 span { display: block; }
+h2 {
+  font: 400 clamp(1.8rem, 1.35rem + 1.7vw, 2.75rem)/1.08 var(--serif);
+  letter-spacing: -0.012em;
+  text-wrap: balance;
+  max-width: 22ch;
+}
+h3 { font: 600 1rem/1.35 var(--sans); }
+.eyebrow {
+  font: 500 0.75rem/1.2 var(--mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.lede { font: 400 clamp(1.2rem, 1.08rem + 0.45vw, 1.45rem)/1.45 var(--serif); max-width: var(--measure); text-wrap: pretty; }
+.prose { max-width: var(--measure); text-wrap: pretty; }
+.prose + .prose { margin-top: 1em; }
+.soft { color: var(--ink-soft); }
+
+/* Header */
+.top-in { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 1rem; }
+.mark {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font: 500 0.8125rem/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase;
+  text-decoration: none; white-space: nowrap;
+}
+.mark svg { width: 1rem; height: 1rem; flex: none; }
+.top nav { display: flex; gap: clamp(0.9rem, 0.5rem + 1.5vw, 1.75rem); font-size: 0.9375rem; }
+.top nav a { text-decoration: none; }
+.top nav a:hover { text-decoration: underline; }
+
+/* Hero: the render, and a way in */
+.hero-frame { position: relative; background: var(--hero-ground); }
+.hero img {
+  display: block; width: 100%; height: auto;
+  aspect-ratio: 1280 / 606; max-height: 84vh;
+  object-fit: cover; object-position: 50% 55%;
+}
+.play {
+  position: absolute; left: 50%; top: 50%;
+  width: clamp(4.25rem, 3rem + 4vw, 6.5rem); aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: rgb(255 255 255 / 0.9);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  box-shadow: 0 12px 40px var(--hero-shadow), inset 0 0 0 1px rgb(255 255 255 / 0.6);
+  color: var(--ink);
+}
+.play svg { width: 34%; height: 34%; margin-left: 9%; }
+.play:hover { background: var(--white); }
+.play:focus-visible { outline: 3px solid var(--white); outline-offset: 4px; }
+.hero-cap {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.25rem 1.5rem;
+  padding-block: 0.75rem 0;
+  font: 400 0.8125rem/1.5 var(--mono); color: var(--ink-soft);
+}
+
+/* Intro */
+.intro { padding-block: clamp(3rem, 2rem + 4vw, 5.5rem) clamp(3rem, 2.2rem + 3vw, 5rem); display: grid; gap: 1.75rem; }
+.actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.75rem 1.75rem; margin-top: 0.5rem; }
+.button {
+  display: inline-flex; align-items: center; gap: 0.65rem;
+  padding: 0.85rem 1.3rem 0.85rem 1.1rem;
+  background: var(--ink); color: var(--limestone);
+  font: 500 0.9375rem/1 var(--sans); text-decoration: none; border-radius: 2px;
+}
+.button svg { width: 0.7rem; height: 0.7rem; }
+.button:hover { background: #000; }
+.why { font: 400 0.875rem/1.55 var(--mono); color: var(--ink-soft); max-width: 34rem; }
+
+/* Sections */
+.section { position: relative; padding-block: var(--section); display: grid; gap: 1.5rem; }
+.section::before {
+  content: ""; position: absolute; top: 0; height: 1px; background: var(--rule);
+  left: max(clamp(16px, 4vw, 40px), env(safe-area-inset-left, 0px));
+  right: max(clamp(16px, 4vw, 40px), env(safe-area-inset-right, 0px));
+}
+.section > .eyebrow { margin-bottom: -0.5rem; }
+
+/* The time scale, to scale */
+.scale { margin-top: 1.5rem; display: grid; }
+.ribbon { position: relative; }
+.marks { list-style: none; position: relative; height: 2.6rem; }
+.marks li { position: absolute; left: var(--at); top: 0; bottom: 0; width: 0; }
+.marks li::before { content: ""; position: absolute; left: -0.5px; top: 1.5rem; bottom: 0; width: 1px; background: var(--ink); }
+.marks b {
+  position: absolute; top: 0; left: 0; transform: translateX(-50%);
+  font: 500 0.75rem/1.2 var(--mono); white-space: nowrap;
+}
+.marks b span { font-weight: 400; color: var(--ink-soft); }
+.marks .start b { transform: none; }
+.marks .end b { transform: translateX(-100%); }
+.bar { position: relative; height: 1.6rem; display: block; }
+.seg {
+  position: absolute; top: 0; bottom: 0; left: var(--from); width: calc(var(--to) - var(--from));
+  display: flex; align-items: center; padding-inline: 0.4rem; overflow: hidden;
+  font: 500 0.6875rem/1 var(--mono); letter-spacing: 0.02em; white-space: nowrap;
+  color: var(--on-bright); border-right: 1px solid var(--limestone);
+}
+.seg:last-child { border-right: 0; }
+.seg.dark-fill { color: var(--white); }
+.seg .short { display: none; }
+.ticks { list-style: none; position: relative; height: 1.6rem; font: 400 0.6875rem/1 var(--mono); color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.ticks li { position: absolute; left: var(--at); top: 0; transform: translateX(-50%); padding-top: 0.55rem; white-space: nowrap; }
+.ticks li::before { content: ""; position: absolute; left: 50%; top: 0; width: 1px; height: 0.35rem; background: var(--rule-strong); }
+.ticks .start { transform: none; }
+.ticks .start::before { left: 0; }
+.ticks .end { transform: translateX(-100%); }
+.ticks .end::before { left: auto; right: 0; }
+.zoom { display: block; width: 100%; height: 2.75rem; overflow: visible; }
+.zoom path { fill: var(--well); stroke: var(--rule-strong); stroke-width: 1; }
+.scale figcaption { margin-top: 1.25rem; font: 400 0.875rem/1.55 var(--mono); color: var(--ink-soft); max-width: 44rem; }
+.scale figcaption output { color: var(--ink); font-weight: 500; }
+
+/* What is in it */
+.plates { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); margin-top: 1rem; }
+.plates figure { min-width: 0; }
+.plates a { display: block; text-decoration: none; }
+.plates img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; background: var(--space); }
+.plates figcaption { margin-top: 0.7rem; font: 500 0.9375rem/1.35 var(--sans); }
+.plates figcaption span { display: block; margin-top: 0.15rem; font: 400 0.75rem/1.4 var(--mono); color: var(--ink-soft); }
+.plates a:hover figcaption { text-decoration: underline; text-underline-offset: 0.2em; }
+.slices { margin-top: 1.5rem; border-top: 1px solid var(--rule); }
+.slices > div { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 0.25rem var(--gap); padding-block: 1.1rem; border-bottom: 1px solid var(--rule); }
+.slices dt { font: 400 1.3rem/1.3 var(--serif); }
+.slices dd { max-width: var(--measure); color: var(--ink-soft); }
+
+/* How it is made */
+.method { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem var(--gap); margin-top: 1rem; }
+.method > div { display: grid; gap: 0.4rem; align-content: start; max-width: 32rem; }
+.method p { color: var(--ink-soft); }
+
+/* Status */
+.counts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap); margin-top: 1rem; }
+.counts > div { display: flex; flex-direction: column-reverse; gap: 0.35rem; border-top: 1px solid var(--ink); padding-top: 0.8rem; }
+.counts dd { font: 400 clamp(1.9rem, 1.5rem + 1.4vw, 2.6rem)/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; }
+.counts dt { font: 400 0.8125rem/1.35 var(--mono); color: var(--ink-soft); }
+.note { font: 400 0.8125rem/1.5 var(--mono); color: var(--ink-soft); }
+
+/* Contribute */
+.contribute-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--section) var(--gap); margin-top: 1rem; align-items: start; }
+.steps { list-style: none; counter-reset: step; display: grid; gap: 1.6rem; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: 0.2rem 0.5rem; }
+.steps li::before { content: counter(step); grid-row: span 2; font: 500 0.8125rem/1.55 var(--mono); color: var(--ink-soft); padding-top: 0.05rem; }
+.steps p { color: var(--ink-soft); max-width: 34rem; }
+.side { display: grid; gap: 2.25rem; }
+.prompt { background: var(--well); border-radius: 2px; }
+.prompt-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.7rem 0.7rem 0 1.1rem; }
+.prompt-head span { font: 500 0.75rem/1.2 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-soft); }
+.prompt button {
+  font: 500 0.75rem/1 var(--mono); color: var(--ink); background: var(--limestone);
+  border: 1px solid var(--rule-strong); border-radius: 2px; padding: 0.45rem 0.7rem; cursor: pointer; min-width: 5.5rem;
+}
+.prompt button:hover { border-color: var(--ink); }
+.prompt pre { padding: 0.8rem 1.1rem 1.1rem; font: 400 0.84rem/1.6 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; }
+.rules { display: grid; gap: 0.75rem; }
+.rules ul { list-style: none; display: grid; gap: 0.55rem; }
+.rules li { position: relative; padding-left: 1.1rem; color: var(--ink-soft); font-size: 0.975rem; }
+.rules li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 0.45rem; height: 1px; background: var(--ink); }
+.review { display: grid; gap: 0.5rem; border-top: 1px solid var(--rule); padding-top: 1.5rem; max-width: var(--measure); }
+.review p { color: var(--ink-soft); }
+
+/* Footer */
+footer { border-top: 1px solid var(--rule); }
+.foot { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 1.5rem var(--gap); padding-block: 2.5rem 3.5rem; font-size: 0.875rem; color: var(--ink-soft); }
+.foot nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; margin-top: 0.9rem; }
+.foot .mark { color: var(--ink); }
+.foot p + p { margin-top: 0.75em; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .play { transition: transform 160ms ease, background-color 160ms ease; }
+  .play:hover { transform: translate(-50%, -50%) scale(1.06); }
+  .plates img { transition: opacity 160ms ease; }
+  .plates a:hover img { opacity: 0.88; }
+}
+
+@media (max-width: 860px) {
+  .contribute-grid, .foot { grid-template-columns: minmax(0, 1fr); }
+  .method { grid-template-columns: minmax(0, 1fr); }
+  .counts { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.75rem; }
+  .slices > div { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 720px) {
+  .hero img { aspect-ratio: 4 / 3; object-position: 30% 55%; }
+  .plates { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.75rem; }
+}
+@media (max-width: 600px) {
+  .seg .long { display: none; }
+  .seg .short { display: inline; }
+}
+@media (max-width: 420px) {
+  .top nav .wide-only { display: none; }
+}
+</style>
+<script src="main.js" defer></script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap top-in">
+    <a class="mark" href="./">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.75 8h12.5" stroke="currentColor" stroke-width="1"/></svg>
+      World Model Zero
+    </a>
+    <nav aria-label="Site">
+      <a class="wide-only" href="world/">Viewer</a>
+      <a href="#contribute">Contribute</a>
+      <a href="https://github.com/kvh/lightworld">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <figure class="hero">
+    <div class="hero-frame">
+      <img src="img/rome-315.jpg" width="1280" height="606" fetchpriority="high"
+        alt="Rome in 315 CE in evening light, looking west over the Colosseum and the roofs of the city towards the Tiber and the open country, as the viewer draws it.">
+      <a class="play" href="world/?t=315.5&amp;lat=41.8915&amp;lon=12.49&amp;d=1.00012&amp;h=280&amp;v=72&amp;hour=18.2" aria-label="Open the viewer here, in Rome in 315 CE">
+        <svg viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0.8v12.4a.8.8 0 0 0 1.2.7l10.4-6.2a.8.8 0 0 0 0-1.4L1.2.1A.8.8 0 0 0 0 .8z" fill="currentColor"/></svg>
+      </a>
+    </div>
+    <figcaption class="wrap hero-cap">
+      <span>Rome in 315 CE, drawn by the viewer</span>
+      <span>41.8915° N, 12.4900° E · 315.5 CE</span>
+    </figcaption>
+  </figure>
+
+  <section class="wrap intro">
+    <h1><span>Fly through Earth’s history.</span> <span>Check every fact.</span></h1>
+    <p class="lede">World Model Zero is a history of Earth, life and civilization in space and time, from the Solar System’s first solids to the far future, with a viewer to fly through it. Every date, place and building in it rests on a claim that cites its source, and whatever is generated to fill a gap is marked as generated.</p>
+    <div class="actions">
+      <a class="button" href="world/?t=315.5&amp;lat=41.8915&amp;lon=12.49&amp;d=1.00012&amp;h=280&amp;v=72&amp;hour=18.2">
+        <svg viewBox="0 0 12 14" aria-hidden="true"><path d="M0 0.8v12.4a.8.8 0 0 0 1.2.7l10.4-6.2a.8.8 0 0 0 0-1.4L1.2.1A.8.8 0 0 0 0 .8z" fill="currentColor"/></svg>
+        Open the viewer
+      </a>
+      <a href="#contribute">Put your agent to work</a>
+    </div>
+    <p class="why">Why “Zero”: it is meant as ground truth, a base layer of evidence that generated world models can be checked against.</p>
+  </section>
+
+  <section class="wrap section" id="span" aria-labelledby="span-title">
+    <p class="eyebrow">The span · 4,600 million years, to scale</p>
+    <h2 id="span-title">From the first solids to the far future</h2>
+    <p class="prose">The world begins with the Solar System’s first solids, 4,567 million years ago, and runs on to the Sun’s red-giant phase, about 7.6 billion years from now. Here is the past to scale, in the colours of the International Chronostratigraphic Chart, with the views on this page marked.</p>
+
+    <figure class="scale">
+      <div class="ribbon" id="ribbon-all">
+        <ol class="marks" aria-label="Views on this page">
+          <li class="start" style="--at: 1.3913%"><b>Magma ocean <span>4,536 Ma</span></b></li>
+          <li class="end" style="--at: 85%"><b>Snowball <span>690 Ma</span></b></li>
+        </ol>
+        <div class="bar" role="img" aria-label="Eons: Hadean from 4,600 Ma, Archean from 4,000 Ma, Proterozoic from 2,500 Ma, Phanerozoic from 541 Ma">
+          <span class="seg dark-fill" style="--from: 0%; --to: 13.0435%; background: var(--ics-hadean)"><span class="long">Hadean</span><span class="short">Had.</span></span>
+          <span class="seg" style="--from: 13.0435%; --to: 45.6522%; background: var(--ics-archean)"><span class="long">Archean</span><span class="short">Arch.</span></span>
+          <span class="seg" style="--from: 45.6522%; --to: 88.2391%; background: var(--ics-proterozoic)"><span class="long">Proterozoic</span><span class="short">Prot.</span></span>
+          <span class="seg" style="--from: 88.2391%; --to: 100%; background: var(--ics-phanerozoic)"><span class="long">Phanerozoic</span><span class="short">Ph.</span></span>
+        </div>
+        <ol class="ticks" aria-hidden="true">
+          <li class="start" style="--at: 0%">4.6</li>
+          <li style="--at: 13.0435%">4</li>
+          <li style="--at: 34.7826%">3</li>
+          <li style="--at: 56.5217%">2</li>
+          <li style="--at: 78.2609%">1 Ga</li>
+          <li class="end" style="--at: 100%">now</li>
+        </ol>
+      </div>
+      <svg class="zoom" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M88.2391 0 L100 0 L100 100 L0 100 Z" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="ribbon" id="ribbon-phanerozoic">
+        <ol class="marks" aria-label="Views on this page in the Phanerozoic">
+          <li style="--at: 48.244%"><b>Pangaea <span>280 Ma</span></b></li>
+          <li class="end" style="--at: 100%"><b>Rome <span>120, 315 CE</span></b></li>
+        </ol>
+        <div class="bar" role="img" aria-label="Eras: Paleozoic from 541 Ma, Mesozoic from 251.902 Ma, Cenozoic from 66 Ma">
+          <span class="seg" style="--from: 0%; --to: 53.4377%; background: var(--ics-paleozoic)"><span class="long">Paleozoic</span><span class="short">Paleozoic</span></span>
+          <span class="seg" style="--from: 53.4377%; --to: 87.7997%; background: var(--ics-mesozoic)"><span class="long">Mesozoic</span><span class="short">Mesozoic</span></span>
+          <span class="seg" style="--from: 87.7997%; --to: 100%; background: var(--ics-cenozoic)"><span class="long">Cenozoic</span><span class="short">Cen.</span></span>
+        </div>
+        <ol class="ticks" aria-hidden="true">
+          <li class="start" style="--at: 0%">541</li>
+          <li style="--at: 26.0628%">400</li>
+          <li style="--at: 44.5471%">300</li>
+          <li style="--at: 63.0314%">200</li>
+          <li style="--at: 81.5157%">100 Ma</li>
+          <li class="end" style="--at: 100%">now</li>
+        </ol>
+      </div>
+      <figcaption>Rome sits at the right-hand edge of the lower line. Its 2,205 years, from 753 BCE to 1453 CE, would be <output data-sliver data-of="ribbon-phanerozoic" data-years="2205" data-span-ma="541">a few thousandths of a pixel</output> wide on it.</figcaption>
+    </figure>
+  </section>
+
+  <section class="wrap section" id="contents" aria-labelledby="contents-title">
+    <p class="eyebrow">What is in it · five slices</p>
+    <h2 id="contents-title">Built in slices, each through every layer</h2>
+    <p class="prose">A slice is a thin piece of the world taken all the way through: sources, records, checks, the build and the viewer. Five are built.</p>
+
+    <div class="plates">
+      <figure>
+        <a href="world/?t=4536Ma&amp;lat=10&amp;lon=20&amp;d=3.3">
+          <img src="img/magma-ocean-4536ma.jpg" width="606" height="606" loading="lazy" alt="Earth as a magma ocean: dark crust broken by glowing cracks, under white cloud.">
+          <figcaption>The magma ocean<span>4,536 Ma · 10° N 20° E</span></figcaption>
+        </a>
+      </figure>
+      <figure>
+        <a href="world/?t=690Ma&amp;lat=0&amp;lon=100&amp;d=3.3">
+          <img src="img/snowball-690ma.jpg" width="606" height="606" loading="lazy" alt="Earth white with ice from pole to pole, the outlines of continents just visible.">
+          <figcaption>A Snowball Earth<span>690 Ma · 0° 100° E</span></figcaption>
+        </a>
+      </figure>
+      <figure>
+        <a href="world/?t=280Ma&amp;lat=-38&amp;lon=-22&amp;d=3">
+          <img src="img/pangaea-280ma.jpg" width="606" height="606" loading="lazy" alt="The supercontinent Pangaea, green and brown with mountain ranges, and shallow seas along its coasts.">
+          <figcaption>Pangaea<span>280 Ma · 38° S 22° W</span></figcaption>
+        </a>
+      </figure>
+      <figure>
+        <a href="world/?t=120&amp;lat=38&amp;lon=18&amp;d=2.4">
+          <img src="img/roman-empire-120.jpg" width="606" height="606" loading="lazy" alt="The Mediterranean seen from orbit with the Roman Empire's territory shaded red around it.">
+          <figcaption>The Roman Empire<span>120 CE · 38° N 18° E</span></figcaption>
+        </a>
+      </figure>
+    </div>
+
+    <dl class="slices">
+      <div>
+        <dt>Cambrian to today</dt>
+        <dd>Plates, terrain and coastlines from 540 million years ago to the present, with sourced events, the geologic periods, and an alternative time scale you can switch to.</dd>
+      </div>
+      <div>
+        <dt>The whole span</dt>
+        <dd>The Precambrian time scale, continental blocks back to 1,100 million years ago, the Sun’s brightness and Earth’s surface temperature through time, a basic tree of life, and 24 milestones from the first solids to the Sun’s red-giant phase.</dd>
+      </div>
+      <div>
+        <dt>Earth’s states</dt>
+        <dd>The planet as the sources say it was: the rock-vapour atmosphere and magma ocean left by the Moon-forming impact, the first oceans, and the ice of the Snowball Earths.</dd>
+      </div>
+      <div>
+        <dt>Rome</dt>
+        <dd>The Roman state from its legendary founding to the fall of Constantinople: its borders year by year from the Cliopatria dataset, and dates to the day from ancient texts, including the dates they disagree on.</dd>
+      </div>
+      <div>
+        <dt>Rome, the city</dt>
+        <dd>Rome in 315 CE at street level: outlines from OpenHistoricalMap, 96 monuments written from sources, and a generated fabric of houses and streets, marked as generated, whose density follows the Regionary Catalogues.</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="wrap section" id="method" aria-labelledby="method-title">
+    <p class="eyebrow">How it is made</p>
+    <h2 id="method-title">Records, checks and builds</h2>
+    <div class="method">
+      <div>
+        <h3>Records</h3>
+        <p>One file per thing: a battle, a temple, a plate, a species. Each property is a claim with its source, the page or table row it comes from, and a short quote copied from the text.</p>
+      </div>
+      <div>
+        <h3>Checks</h3>
+        <p>A validator checks every record against the schema, every reference, and time itself. A cause dated after its effect fails, and dates that cannot all be true are reported with the claims behind them.</p>
+      </div>
+      <div>
+        <h3>Builds</h3>
+        <p>The build works out what follows from the evidence, such as coastlines, positions on ancient plates and dates fixed by other dates. The same commit always makes the same bytes, and a link to a view keeps its build.</p>
+      </div>
+      <div>
+        <h3>Disagreement</h3>
+        <p>When sources disagree, both claims stay, each with its source, and one is marked preferred with a reason. In the viewer you can switch between them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap section" id="status" aria-labelledby="status-title">
+    <p class="eyebrow">Status · early</p>
+    <h2 id="status-title">Everything here is a proposal</h2>
+    <p class="prose">Every claim so far was drafted by a machine and is waiting for a person to check it against its source. Nothing has been reviewed yet, and 112 claims have no source at all. Read it as a draft.</p>
+    <dl class="counts">
+      <div><dt>entities</dt><dd>1,162</dd></div>
+      <div><dt>claims and relations</dt><dd>6,445</dd></div>
+      <div><dt>sources</dt><dd>174</dd></div>
+      <div><dt>reviewed by a person</dt><dd>0</dd></div>
+    </dl>
+    <p class="note">Counted by the validator on 2 November 2026.</p>
+  </section>
+
+  <section class="wrap section" id="contribute" aria-labelledby="contribute-title">
+    <p class="eyebrow">Contribute · agents welcome</p>
+    <h2 id="contribute-title">Put your agent to work</h2>
+    <p class="prose">Most of the world is still missing, and most of the work is careful research: finding the best source, reading it, and writing down exactly what it says. A coding agent can do a lot of that, as long as it keeps to the rules.</p>
+
+    <div class="contribute-grid">
+      <ol class="steps">
+        <li>
+          <h3>Give it the guide</h3>
+          <p><a href="https://github.com/kvh/lightworld/blob/master/AGENTS.md">AGENTS.md</a> has the rules, how to research, and how to write records. Many coding agents read it on their own; Claude Code reaches it through CLAUDE.md.</p>
+        </li>
+        <li>
+          <h3>Pick one bounded task</h3>
+          <p><a href="https://github.com/kvh/lightworld/blob/master/docs/DATA-OUTLINE.md">The data outline</a> lists what a complete history needs, domain by domain, with candidate sources and their licenses. Good tasks can be checked, such as the reigns of the Julio-Claudian emperors from Suetonius.</p>
+        </li>
+        <li>
+          <h3>Let it research and write</h3>
+          <p>It cites only what it has read, copies each quote exactly, labels its work as made by a machine and leaves it proposed.</p>
+        </li>
+        <li>
+          <h3>Validate, then open a pull request</h3>
+          <p><code>npm run validate</code> checks the records. CI builds the world, and a person reviews each claim before it is accepted. Validation needs only the datasets hosted on GitHub, so an agent in a sandbox that can reach GitHub can do all of this.</p>
+        </li>
+      </ol>
+
+      <div class="side">
+        <div class="prompt">
+          <div class="prompt-head">
+            <span id="prompt-label">A prompt to start with</span>
+            <button type="button" id="copy-prompt" data-copy="prompt-text" aria-describedby="prompt-label">Copy</button>
+          </div>
+          <pre id="prompt-text">Read AGENTS.md in https://github.com/kvh/lightworld. Then pick one row marked missing in docs/DATA-OUTLINE.md that you can research from sources you can actually read. Write the records it needs, check every quote against the retrieved text by script, run `npm run validate -- --verbose` until it is clean, and open a pull request using the template in AGENTS.md.</pre>
+        </div>
+        <div class="rules">
+          <h3>The rules, briefly</h3>
+          <ul>
+            <li>Never invent a source, a locator, a quote, a number or an identifier.</li>
+            <li>Label machine work and leave it proposed. Only a person accepts a claim.</li>
+            <li>Give every claim a source with a locator, or say why it has none.</li>
+            <li>Write disagreement as competing claims. Never overwrite another claim.</li>
+            <li>Store the evidence, never a value the build can work out.</li>
+            <li>Bring in only CC0, CC BY or public-domain data.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="review">
+      <h3>No agent? Review.</h3>
+      <p>Every claim needs a person to check it against its source, and that is the most useful thing anyone can do right now. Pick a claim, read its source, and open an issue saying what you checked and what you found.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div>
+      <a class="mark" href="./">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.75 8h12.5" stroke="currentColor" stroke-width="1"/></svg>
+        World Model Zero
+      </a>
+      <nav aria-label="Project">
+        <a href="https://github.com/kvh/lightworld">GitHub</a>
+        <a href="https://github.com/kvh/lightworld/blob/master/AGENTS.md">AGENTS.md</a>
+        <a href="https://github.com/kvh/lightworld/blob/master/docs/DATA-OUTLINE.md">Data outline</a>
+        <a href="https://github.com/kvh/lightworld/blob/master/docs/WORLD-MODEL.md">Design</a>
+      </nav>
+    </div>
+    <div>
+      <p>World Model Zero is a working title; the repository is lightworld. Its datasets come from the PALEOMAP plate model and PaleoDEMs, Cliopatria, OpenHistoricalMap, SRTM, ETOPO 2022, TINITALY and others, each CC0, CC BY or public domain; the viewer shows their credits.</p>
+      <p>Licenses for the code and the records are still to be chosen; Apache-2.0 and CC0 are proposed. Set in Newsreader and IBM Plex, under the SIL Open Font License.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

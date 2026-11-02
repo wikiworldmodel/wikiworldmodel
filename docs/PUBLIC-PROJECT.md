@@ -286,7 +286,7 @@ GitHub ── merge to main ──► CI: validate, build (content-hashed), test
                               │
                               ├─► object store:  builds/<build id>/…       immutable, kept by policy
                               │                  releases.json             channels: stable, next
-                              ├─► static host:   lightworld.example        the viewer, stable channel
+                              ├─► static host:   lightworld.example        the landing page; the viewer at /world/
                               │                  next.lightworld.example   the viewer, next channel
                               │                  pr-<n>.preview…           per pull request
                               └─► entity pages:  lightworld.example/w/<id> static HTML per record
@@ -294,8 +294,9 @@ GitHub ── merge to main ──► CI: validate, build (content-hashed), test
 
 | URL | What |
 |---|---|
-| `/` | the viewer, on the latest stable build |
-| `/?b=<build>&t=…&sel=…` | a pinned view, as today |
+| `/` | the landing page ([site/](../site/)): a still from the viewer with a way in, what the world holds, and how to contribute |
+| `/world/` | the viewer, on the latest stable build |
+| `/world/?b=<build>&t=…&sel=…` | a pinned view, as today |
 | `/w/<entity id>` | a record's page: name, kind, when, where, claims with sources, reviews, and "open in 3D" |
 | `/review` | the review queue (Phase 1, read-only; Phase 2, interactive) |
 | `/coverage` | the coverage map as an overlay, with a table of wanted and unsourced records (section 8.4) |
@@ -323,20 +324,56 @@ GitHub ── merge to main ──► CI: validate, build (content-hashed), test
 
 - **Hosting.** Cloudflare R2 for builds and the dataset mirror. It has no egress fees,
   which matters for a viewer that streams tiles (section 12). Cloudflare Pages serves the
-  viewer and the entity pages.
+  landing page, the viewer and the entity pages.
 - **Headers.**
   - Builds: `Cache-Control: public, max-age=31536000, immutable`.
   - `releases.json` and the HTML: a short TTL.
   - CORS open for reads.
 - **Compression.** Tiles are uncompressed today (a limitation in FIRST-SLICE). The build
   writes `.br` or `.gz` beside each tile, with `Content-Encoding` stored on the object.
-- **The dataset mirror.** Every pinned dataset is copied to `blobs/sha256/<hash>`. The
-  manifest keeps the upstream URL and adds the mirror, and fetch tries the mirror first.
-  This is allowed for every dataset in use (CC BY, CC0 and public domain) and makes builds
-  survive their upstreams.
+- **The dataset mirror.** See [Datasets: storage and backup](#datasets-storage-and-backup).
 - **Entity pages.** The build renders them from the records: plain HTML with JSON-LD
   (schema.org `Place`, `Event`, `CreativeWork`) and an Open Graph image. They load fast,
   work without WebGL, can be indexed by search engines, and are what people share and cite.
+
+### Datasets: storage and backup
+
+The datasets are not records, and they are not in the repository. A build reads 11 files,
+165 MB, each named in the manifest with its URL and sha256, and the importers turn them into
+fields and layers; only researched facts become records (section 12 of the design). The one
+exception is the OpenHistoricalMap snapshot (380 kB), kept in `world/snapshots/` because no
+stable URL serves an extract of a changing database. Everything else comes from its
+publisher on every fresh build:
+
+| Host | Datasets | Size |
+|---|---|---|
+| GitHub (raw and LFS) | the PALEOMAP plate model, the PaleoDEMs, Cliopatria | 50 MB |
+| NOAA | two ETOPO 2022 tiles | 50 MB |
+| INGV | a TINITALY tile | 44 MB |
+| OpenTopography | two SRTM tiles | 21 MB |
+| Springer, Elsevier | the CO₂ and sea-level supplementary tables | 0.3 MB |
+
+A pin detects a changed file but cannot replace a lost one, and one missing host breaks every
+build. Sandboxes often reach only a few hosts: the one this plan was written in reached GitHub
+and none of the others. So the datasets need a copy the project controls:
+
+- **A mirror, addressed by hash.** Each pinned file is copied to `blobs/sha256/<hash>`.
+  Fetch tries the mirrors first, then the publisher's URL, and checks the hash either way, so
+  a mirror can never change what a build reads. Every dataset in use is CC0, CC BY or public
+  domain, so redistributing them is allowed; their credits travel with each build as now.
+- **On GitHub first.** Until R2 exists, a release of this repository (`datasets-<date>`)
+  holds the same files as assets, uploaded by a workflow run by hand. It costs nothing, and
+  it lets agents in sandboxes that reach GitHub and little else build the world.
+- **On R2 with the site.** The mirror moves to the object store when the site does.
+- **An archive with each stable release.** The exact inputs of a stable build are deposited
+  on Zenodo with its DOI (see Releases), so the data behind a citation outlives the
+  project's own storage.
+- **Changing databases** (OpenHistoricalMap, the PBDB, Wikidata) are kept as dated
+  snapshots with the query that made them: in `world/snapshots/` while they are small, in
+  the blob store when they are not.
+- **Not backed up:** what the importers make of the datasets (`.cache/import`) and the
+  tiles of `next` builds. Both are made again from the datasets and the code; CI caches them
+  only for speed.
 
 ### What visitors' devices need
 
@@ -458,7 +495,8 @@ keep it in hand:
       issue and pull-request templates, `CODEOWNERS`.
 - [ ] Policies: sourcing, contested history, people and remains, machine contributions,
       takedown.
-- [ ] Mirror the datasets on R2 by sha256, with fetch trying the mirror first.
+- [ ] Mirror the datasets by sha256, with fetch trying the mirror first: a GitHub release
+      now, R2 with the site (section 7).
 - [ ] Deploy pipeline:
   - the domain and R2;
   - `next` on every merge;

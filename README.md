@@ -33,7 +33,10 @@ it and its limitations. Hand-written example records for every record type, and 
 they exposed in the design, are in [examples/](examples/README.md).
 
 The plan for opening the project to contributors and putting it on a public site is in
-[docs/PUBLIC-PROJECT.md](docs/PUBLIC-PROJECT.md).
+[docs/PUBLIC-PROJECT.md](docs/PUBLIC-PROJECT.md), and the site's landing page is in
+[site/](site/README.md). To contribute, people and agents alike, start with
+[CONTRIBUTING.md](CONTRIBUTING.md) and [AGENTS.md](AGENTS.md); what the world still lacks is
+outlined in [docs/DATA-OUTLINE.md](docs/DATA-OUTLINE.md).
 
 ## Quick start
 
