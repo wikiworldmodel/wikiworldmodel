@@ -2,7 +2,9 @@
 # contradiction fixture must fail), builds it, runs the unit tests (which build twice and compare)
 # and builds the viewer. Two jobs then drive the viewer in Chromium on that build, in parallel:
 # the globe and the viewer against their goldens, and the city's behaviour drawn the fast way. The
-# city's full-quality views take minutes each in software; city-views.yml runs them.
+# city's full-quality views take minutes each in software; city-views.yml runs them. When all pass,
+# a push to this repository is published to Cloudflare Pages: master to worldmodelzero.com, any
+# other branch to a preview address.
 name: CI
 
 on:
@@ -120,3 +122,48 @@ jobs:
           name: test-results-${{ matrix.project }}
           path: test-results
           retention-days: 7
+
+  deploy:
+    needs: [world, browser]
+    if: github.event_name == 'push' && github.repository == 'kvh/lightworld'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    concurrency:
+      group: deploy-${{ github.ref }}
+      cancel-in-progress: false
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      PROJECT: worldmodelzero
+      WRANGLER: wrangler@4.151.2
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - uses: actions/download-artifact@v7
+        with:
+          name: site
+          path: dist
+
+      - name: Put the site together
+        run: npm run build:site -- dist/public
+
+      - name: Publish to Cloudflare Pages
+        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != ''
+        run: |
+          # The project is made on the first deployment; after that this fails and is ignored.
+          npx --yes "$WRANGLER" pages project create "$PROJECT" --production-branch=master 2>/dev/null || true
+          npx --yes "$WRANGLER" pages deploy dist/public --project-name="$PROJECT" \
+            --branch="${{ github.ref_name }}" --commit-hash="${{ github.sha }}"
+
+      - name: Say why nothing was published
+        if: env.CLOUDFLARE_API_TOKEN == '' || env.CLOUDFLARE_ACCOUNT_ID == ''
+        run: |
+          echo "::notice::Not published: the repository has no CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID secrets (see site/README.md)."

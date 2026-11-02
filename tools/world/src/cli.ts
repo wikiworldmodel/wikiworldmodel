@@ -40,6 +40,12 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
     const { runBuild } = await import('./build/index.ts');
     return runBuild(args);
   },
+  // The public site for Cloudflare Pages, from site/, the built viewer and the latest build.
+  async site([out = 'dist/public']) {
+    const { assembleSite } = await import('./site.ts');
+    const r = assembleSite({ landing: join(REPO, 'site'), viewer: join(REPO, 'dist/site'), builds: join(REPO, 'dist/builds'), out: join(REPO, out) });
+    console.log(`site: build ${r.build}, ${r.files} files, ${(r.bytes / 1e6).toFixed(1)} MB → ${out}`);
+  },
 };
 
 const [name, ...args] = process.argv.slice(2);

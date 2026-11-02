@@ -81,7 +81,7 @@ for the OHM snapshot; public domain for SRTM and ETOPO. Their credits stay in th
 
 Also:
 
-- **Domain.** Register the project's domain (here `lightworld.example`, a placeholder).
+- **Domain.** `worldmodelzero.com`, registered.
 - **Name.** Check the name for trademark conflicts before launch.
 
 ## 5. Governance
@@ -186,7 +186,7 @@ A bot comments on every pull request, updating the comment on each push:
 - **Render diffs.** Before and after images at the places and times the changed records
   touch, chosen from their locations and dates, in the same harness as the goldens.
 - **A preview link,** deployed from the pull request's build and opening at the changed
-  record: `https://pr-123.preview.lightworld.example/?sel=…&t=…`.
+  record: `https://pr-123.worldmodelzero.pages.dev/world/?sel=…&t=…`.
 
 Pull requests from forks build in an untrusted job with no secrets. A separate
 `workflow_run` job, which never checks out the pull request's code, uploads the
@@ -286,10 +286,10 @@ GitHub ── merge to main ──► CI: validate, build (content-hashed), test
                               │
                               ├─► object store:  builds/<build id>/…       immutable, kept by policy
                               │                  releases.json             channels: stable, next
-                              ├─► static host:   lightworld.example        the landing page; the viewer at /world/
-                              │                  next.lightworld.example   the viewer, next channel
+                              ├─► static host:   worldmodelzero.com        the landing page; the viewer at /world/
+                              │                  next.worldmodelzero.com   the viewer, next channel
                               │                  pr-<n>.preview…           per pull request
-                              └─► entity pages:  lightworld.example/w/<id> static HTML per record
+                              └─► entity pages:  worldmodelzero.com/w/<id> static HTML per record
 ```
 
 | URL | What |
@@ -325,6 +325,12 @@ GitHub ── merge to main ──► CI: validate, build (content-hashed), test
 - **Hosting.** Cloudflare R2 for builds and the dataset mirror. It has no egress fees,
   which matters for a viewer that streams tiles (section 12). Cloudflare Pages serves the
   landing page, the viewer and the entity pages.
+- **Today.** CI publishes every push to Cloudflare Pages once its tests pass: `master` to
+  worldmodelzero.com, other branches to preview addresses on `worldmodelzero.pages.dev`.
+  Each deployment carries the landing page, the viewer and the latest build, put together by
+  `npm run build:site` (`tools/world/src/site.ts`). That is enough while a build is tens of
+  megabytes and one is kept; builds move to R2 when pinned links need older builds, or when
+  a build outgrows Pages' limits of 25 MiB a file and 20,000 files, which the step checks.
 - **Headers.**
   - Builds: `Cache-Control: public, max-age=31536000, immutable`.
   - `releases.json` and the HTML: a short TTL.
@@ -508,7 +514,7 @@ keep it in hand:
 - [ ] Privacy-respecting page analytics and error reporting.
 
 Done when a stranger can clone, build and get a green pull request within an hour, and
-`lightworld.example` serves the stable build.
+`worldmodelzero.com` serves the stable build.
 
 ### Phase 1: contributions by pull request (1–3 months after)
 

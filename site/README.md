@@ -21,4 +21,29 @@ two are served together.
   font service, so the page makes no third-party requests.
 
 To look at it locally: `python3 -m http.server -d site`, then open http://localhost:8000/. The
-viewer links need the viewer beside the page, so they lead nowhere locally.
+viewer links need the viewer beside the page, so they lead nowhere locally; for the whole site,
+build the world and the viewer, then `npm run build:site` and serve `dist/public`.
+
+## Publishing
+
+CI publishes the site to Cloudflare Pages, project `worldmodelzero`, once a push's tests pass
+(the `deploy` job in `.github/workflows/ci.yml`): `master` to production, any other branch of
+this repository to a preview at `<branch>.worldmodelzero.pages.dev`. `_headers` sets the
+caching: a build's files never change, so they are cached for a year; the index naming the
+latest build is not cached.
+
+Setting it up, once, in Cloudflare and GitHub:
+
+1. **The domain on Cloudflare.** If worldmodelzero.com was bought from Cloudflare Registrar it
+   is already a zone in the account. If not, add it as a site (Websites → Add a domain, Free
+   plan) and set the nameservers Cloudflare gives at the registrar.
+2. **An API token.** My Profile → API Tokens → Create Token → Custom token, with the account
+   permission *Cloudflare Pages: Edit*. Note the account ID too (on the account's home page).
+3. **The secrets.** In GitHub, Settings → Secrets and variables → Actions: add
+   `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. Without them the deploy job says so and
+   publishes nothing.
+4. **The first deployment.** Push to `master` (or re-run CI on it). The job creates the Pages
+   project the first time.
+5. **The domain on the project.** Workers & Pages → worldmodelzero → Custom domains: add
+   `worldmodelzero.com`, and `www.worldmodelzero.com` if wanted (a redirect rule can send it to
+   the bare domain). Cloudflare adds the DNS records and the certificate.

@@ -1,0 +1,47 @@
+import { mkdirSync, mkdtempSync, readFileSync, existsSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
+import { describe, expect, it } from 'vitest';
+import { assembleSite } from '../src/site.ts';
+
+function fixture() {
+  const root = mkdtempSync(join(tmpdir(), 'site-'));
+  const put = (p: string, text = 'x') => {
+    mkdirSync(join(root, p, '..'), { recursive: true });
+    writeFileSync(join(root, p), text);
+  };
+  put('site/index.html', '<!doctype html>');
+  put('site/README.md');
+  put('site/img/a.jpg');
+  put('viewer/index.html', '<!doctype html>');
+  put('viewer/assets/main.js');
+  put('builds/b-old/build.json');
+  put('builds/b-new/build.json');
+  put('builds/b-new/tiles/0.lwt');
+  put('builds/index.json', JSON.stringify({ builds: [{ id: 'b-new', commit: 'c2' }, { id: 'b-old', commit: 'c1' }], latest: 'b-new' }));
+  const opts = { landing: join(root, 'site'), viewer: join(root, 'viewer'), builds: join(root, 'builds'), out: join(root, 'out') };
+  return { root, opts, put };
+}
+
+describe('the public site', () => {
+  it('puts the landing page at /, the viewer at /world/ and only the latest build beside it', () => {
+    const { root, opts } = fixture();
+    const r = assembleSite(opts);
+    const out = join(root, 'out');
+    expect(r.build).toBe('b-new');
+    expect(existsSync(join(out, 'index.html'))).toBe(true);
+    expect(existsSync(join(out, 'img/a.jpg'))).toBe(true);
+    expect(existsSync(join(out, 'README.md'))).toBe(false);
+    expect(existsSync(join(out, 'world/index.html'))).toBe(true);
+    expect(existsSync(join(out, 'world/assets/main.js'))).toBe(true);
+    expect(existsSync(join(out, 'world/builds/b-new/tiles/0.lwt'))).toBe(true);
+    expect(existsSync(join(out, 'world/builds/b-old'))).toBe(false);
+    expect(JSON.parse(readFileSync(join(out, 'world/builds/index.json'), 'utf8'))).toEqual({ builds: [{ id: 'b-new', commit: 'c2' }], latest: 'b-new' });
+  });
+
+  it('refuses a file larger than Cloudflare Pages serves', () => {
+    const { opts, put } = fixture();
+    put('builds/b-new/tiles/huge.lwt', 'x'.repeat(25 * 1024 * 1024 + 1));
+    expect(() => assembleSite(opts)).toThrow(/huge\.lwt/);
+  });
+});
