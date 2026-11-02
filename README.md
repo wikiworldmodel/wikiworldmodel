@@ -32,6 +32,9 @@ Each document says what its slice contains, how it follows the design, the decis
 it and its limitations. Hand-written example records for every record type, and the gaps
 they exposed in the design, are in [examples/](examples/README.md).
 
+The plan for opening the project to contributors and putting it on a public site is in
+[docs/PUBLIC-PROJECT.md](docs/PUBLIC-PROJECT.md).
+
 ## Quick start
 
 Needs Node 22.19 or newer (22 LTS or 24+; odd releases such as 23 are unsupported) and Python 3.12 or newer.
