@@ -1,0 +1,20 @@
+id: src:socrates-ecclesiastical-history
+type: text
+kind: historian
+citation: >-
+  Socrates Scholasticus, Ecclesiastical History, translated by A. C. Zenos, in Nicene and
+  Post-Nicene Fathers, Second Series, vol. 2, ed. P. Schaff and H. Wace (New York, 1890).
+published: 1890
+written: { lo: 439 CE, hi: 450 CE }
+title: Ecclesiastical History
+url: https://www.ccel.org/ccel/schaff/npnf202.ii.viii.xxvii.html
+via: The Christian Classics Ethereal Library's text of the NPNF volume; also read on New Advent.
+reliability: >-
+  A lawyer at Constantinople writing a history of the church from 305 to 439, a generation
+  after Theodosius' death, from earlier historians, documents and living witnesses; he dates by
+  consuls and gives days for the deaths of emperors.
+verified:
+  by: machine:claude-code
+  how: >-
+    1.16, 5.26 and 6.1 read in Zenos' translation on CCEL (with the NPNF notes and page marks),
+    and checked against New Advent's revised text of the same translation.

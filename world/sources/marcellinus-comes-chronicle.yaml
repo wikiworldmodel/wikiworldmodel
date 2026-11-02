@@ -1,0 +1,23 @@
+id: src:marcellinus-comes-chronicle
+type: text
+kind: historian
+citation: >-
+  Marcellinus Comes, Chronicon ad a. DXVIII continuatum ad a. DXXXIV, ed. Th. Mommsen, in
+  Chronica minora saec. IV. V. VI. VII., vol. 2 (Monumenta Germaniae Historica, Auctores
+  antiquissimi 11; Berlin: Weidmann, 1894), from p. 37.
+published: 1894
+written: { lo: 518 CE, hi: 534 CE }
+title: Chronicon
+url: https://archive.org/details/chronicaminorasa11momm
+via: The Internet Archive's scan of the MGH volume (University of Florida copy).
+reliability: >-
+  A Latin chronicle by an official at the court of Constantinople, written to 518 and continued
+  to 534, two generations after the events of 476–480, from eastern and Italian sources. Its
+  verdict on 476, that the western empire perished with Augustulus, is a judgement made at
+  Constantinople fifty years on.
+verified:
+  by: machine:claude-code
+  how: >-
+    The entries for 474–480 read on pp. 91–92 in the page images of the Internet Archive's scan
+    (chronicaminorasa11momm, leaves 103–104), not only in its OCR; title from the volume's
+    contents.

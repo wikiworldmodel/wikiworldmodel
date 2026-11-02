@@ -1,0 +1,41 @@
+id: people/events/battle-of-actium
+kind: event/battle
+summary: >-
+  The sea battle off the promontory of Actium, at the mouth of the Ambracian Gulf, in which
+  Octavian's fleet under Agrippa defeated Antony and Cleopatra. Cassius Dio dates Augustus'
+  sole rule from it.
+author: machine:claude-code
+same_as: { wikidata: Q160387 }
+claims:
+  name:
+    prop: name
+    value: { en: Battle of Actium }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: 2 September 31 BCE
+    source:
+      ref: src:cassius-dio-roman-history
+      loc: "51.1.1, vol. 6 p. 3"
+      quote: Such was the naval battle in which they engaged on the second of September.
+    method: historical-account
+    note: >-
+      The year is that of the consulship of Caesar (for the third time) and M. Valerius
+      Corvinus Messalla, 31 BCE, in which Dio's book 51 opens. In the early decades of the
+      Julian calendar the pontiffs misapplied its leap years, so Roman dates of these years may
+      differ by a day or more from the proleptic Julian dates of the time axis, by an amount
+      that depends on the reconstruction; the Roman date is kept.
+  location:
+    prop: location
+    value: { lat: 38.923568, lon: 20.749775, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-actium-promontory, loc: representative point }
+    method: gazetteer
+    note: >-
+      Pleiades places the battle in the sea off this promontory, on the southern side of the
+      entrance to the Ambracian Gulf; marked at its point for the cape, located from imagery.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

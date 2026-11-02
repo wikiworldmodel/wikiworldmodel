@@ -1,0 +1,45 @@
+id: people/events/dedication-of-constantinople
+kind: event/political
+summary: >-
+  Constantine's dedication of his enlarged Byzantium as Constantinople, his new capital, on 11
+  May 330, with games in the Hippodrome; the day was kept afterwards as the city's birthday.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Dedication of Constantinople }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: 11 May 330 CE
+    source:
+      - ref: src:consularia-constantinopolitana
+        loc: "a. 330 (MGH AA 9, p. 233)"
+        quote: His conss. dedicata est Constantinopoli die V idus Mai.
+      - ref: src:chronicon-paschale
+        loc: "a. 330 (MGH AA 9, p. 234)"
+      - ref: src:bury-1923-later-roman-empire
+        loc: vol. 1, p. 69
+        quote: Constantinople was dedicated in A.D. 330 (May 11)
+    method: historical-account
+    note: >-
+      In English: in the consulship of Gallicanus and Symmachus (330) Constantinople was
+      dedicated on the fifth day before the Ides of May, that is, 11 May. The Chronicon
+      Paschale, printed beside it, gives the same day (the fifth before the Ides of May), a
+      Monday in the third indiction; 11 May 330 was a Monday in the Julian calendar. It is
+      cited without a quote because its Greek accents could not be read with certainty in the
+      scan. Bury notes that the city's anniversary was kept on this day.
+  location:
+    prop: location
+    value: { lat: 41.005902, lon: 28.973881, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-byzantium, loc: representative point }
+    method: editorial
+    note: >-
+      What was dedicated was the city itself; marked at the city's representative point
+      (places/constantinople).
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-511
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

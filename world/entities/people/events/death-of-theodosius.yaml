@@ -1,0 +1,49 @@
+id: people/events/death-of-theodosius
+kind: event/political
+summary: >-
+  The death of the emperor Theodosius I at Milan on 17 January 395, after which his sons ruled
+  the empire between them, Arcadius in the east from Constantinople and Honorius in the west.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Death of Theodosius I; the empire divided between his sons" }
+    source:
+      ref: src:socrates-ecclesiastical-history
+      loc: "6.1"
+      quote: his two sons undertook the administration of the Roman empire. Thus Arcadius assumed the government of the East, and Honorius of the West.
+    note: >-
+      An editorial label for the death and the division that followed it, from Socrates'
+      account; the empire stayed one in law (people/polities/western-roman-empire).
+  date:
+    prop: date
+    value: 17 January 395 CE
+    source:
+      ref: src:socrates-ecclesiastical-history
+      loc: "5.26"
+      quote: when the night came on he died, it being the seventeenth of January, during consulate of Olybrius and Probus
+    method: historical-account
+    note: >-
+      The consulship of Olybrius and Probinus ("Probus" in this translation of 5.26; Probinus
+      in 6.1) is 395 CE, as the NPNF note has it. Socrates puts it in the first year of the
+      294th Olympiad. He died in the night, so the day may be the evening of 17 January or the
+      hours after.
+  location:
+    prop: location
+    value: { lat: 45.463746, lon: 9.18806, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-mediolanum
+        loc: representative point
+      - ref: src:socrates-ecclesiastical-history
+        loc: "5.26"
+        quote: After his son’s arrival at Milan, he seemed to recover a little
+    method: gazetteer
+    note: >-
+      Socrates has him summon Honorius to Milan and die there after games in the Hippodrome;
+      marked at Pleiades' point for Mediolanum.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

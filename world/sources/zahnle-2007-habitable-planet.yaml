@@ -1,0 +1,25 @@
+id: src:zahnle-2007-habitable-planet
+type: publication
+kind: review
+citation: >-
+  Zahnle, K., Arndt, N., Cockell, C., Halliday, A., Nisbet, E., Selsis, F. & Sleep, N.H.
+  (2007). Emergence of a habitable planet. Space Science Reviews 129(1–3), 35–78.
+authors:
+  - "Zahnle, K."
+  - "Arndt, N."
+  - "Cockell, C."
+  - "Halliday, A."
+  - "Nisbet, E."
+  - "Selsis, F."
+  - "Sleep, N.H."
+published: 2007
+title: Emergence of a habitable planet
+container: Space Science Reviews 129(1–3), 35–78
+doi: 10.1007/s11214-007-9225-z
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract and full text read in a PDF of the published article (Springer typesetting,
+    pages 35–78) on a University of Chicago research group's website; the Springer page
+    itself could not be reached (bot check). Citation from Crossref. Page numbers in
+    locators are the journal's.

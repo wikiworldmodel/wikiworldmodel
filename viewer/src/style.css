@@ -52,6 +52,11 @@ canvas.globe:active { cursor: grabbing; }
 .sw.unknown { background: #1c2333; border: 1px solid #52607c; }
 
 .markers { position: absolute; inset: 0; pointer-events: none; }
+.territory-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.territory-label { position: absolute; left: 0; top: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; opacity: 0.82; text-shadow: 0 1px 3px #000, 0 0 8px rgba(0, 0, 0, 0.7); will-change: transform; }
+.territory-label.selected { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+.inspect .here p { margin: 0 0 6px; }
+.inspect .written { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
 .credits { position: absolute; left: 16px; bottom: 6px; max-width: calc(100% - 32px); color: var(--muted); font-size: 11px; text-shadow: 0 1px 2px #000; pointer-events: none; }
 .marker { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 5px; padding: 0; border: 0; background: none; pointer-events: none; cursor: pointer; white-space: nowrap; will-change: transform; }
 .marker .dot, .marker .label { pointer-events: auto; }
@@ -121,6 +126,8 @@ body.evidence .inspect { top: 184px; }
 .planet-title { color: var(--muted); }
 .planet-value { font-variant-numeric: tabular-nums; }
 .planet-row.empty .planet-value { color: var(--muted); }
+.planet-row[hidden] { display: none; }
+.planet-row.planet-phase .planet-value, .planet-row.planet-ice .planet-value { font-variant-numeric: normal; text-align: right; }
 body.evidence .planet-row.projection .planet-value { color: var(--procedural); }
 
 .notice { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); max-width: min(560px, calc(100% - 32px)); padding: 6px 12px; border-radius: 8px; background: var(--panel); border: 1px solid var(--panel-border); color: var(--muted); font-size: 12px; text-align: center; pointer-events: none; }

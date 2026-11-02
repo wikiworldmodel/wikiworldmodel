@@ -3,9 +3,9 @@
 // records make to it, and what the derived dates rest on.
 import type { CitationRecord, ClaimRecord, EntityRecord, SeriesRecord, SourceRecord } from '../../../core/records.ts';
 import { splitRef } from '../../../core/refs.ts';
-import { scenarioKey, type Scenario } from '../../../core/scenario.ts';
+import { lookup, scenarioKey, type Scenario } from '../../../core/scenario.ts';
 import type { Estimate, FeatureTime } from '../../../core/tileset.ts';
-import { formatTime, PRESENT_YEAR } from '../../../core/time.ts';
+import { formatTime, historical, PRESENT_YEAR } from '../../../core/time.ts';
 
 const esc = (s: unknown) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
@@ -14,17 +14,24 @@ function short(s: SourceRecord | undefined, ref: string): string {
   if (!s) return ref;
   const names = (s.authors ?? []).map((a) => a.split(',')[0]);
   const who = names.length === 0 ? s.container ?? s.title ?? s.id : names.length === 1 ? names[0] : names.length === 2 ? `${names[0]} & ${names[1]}` : `${names[0]} et al.`;
-  return s.published ? `${who} ${s.published}` : who;
+  // A text is cited by its author, as classicists do; its edition's year is not when it was written.
+  return s.published && s.type !== 'text' ? `${who} ${s.published}` : who;
 }
 
 const finite = (x: number) => Number.isFinite(x);
 
+/** The precision an estimate supports: a day or a month where its bounds are that close, else a year (or the age's). */
+const resolutionOf = (e: Estimate) => (finite(e.lo) && finite(e.hi) && historical(e.lo) && e.hi - e.lo < 1 ? Math.max(e.hi - e.lo, 1e-6) : 1e3);
+
 function fmtEstimate(e: Estimate, open: 'start' | 'end', unknown = false): string {
+  const res = resolutionOf(e);
+  // An upper bound is where the last unit inside it ends: 16 March for a moment on 15 March.
+  const upper = (x: number) => formatTime(historical(x) ? x - 1e-7 : x, res);
   if (e.best === null && open === 'end') return unknown ? 'end unknown' : 'still exists';
-  if (e.best === null) return finite(e.lo) ? `unknown, no earlier than ${formatTime(e.lo, 1e3)}` : finite(e.hi) ? `unknown, no later than ${formatTime(e.hi, 1e3)}` : 'unknown';
-  const main = formatTime(e.best, 1e3);
-  const lo = finite(e.lo) ? formatTime(e.lo, 1e3) : null;
-  const hi = finite(e.hi) ? formatTime(e.hi, 1e3) : null;
+  if (e.best === null) return finite(e.lo) ? `unknown, no earlier than ${formatTime(e.lo, res)}` : finite(e.hi) ? `unknown, no later than ${upper(e.hi)}` : 'unknown';
+  const main = formatTime(e.best, res);
+  const lo = finite(e.lo) ? formatTime(e.lo, res) : null;
+  const hi = finite(e.hi) ? upper(e.hi) : null;
   let range = '';
   if (lo && hi && lo !== hi) range = ` (${lo} – ${hi})`;
   else if (lo && !hi && lo !== main) range = ` (no earlier than ${lo})`;
@@ -51,6 +58,10 @@ const PROP_LABEL: Record<string, string> = {
   diameter: 'Diameter',
   area: 'Area',
   color: 'Chart colour',
+  surface: 'Surface',
+  atmosphere: 'Atmosphere',
+  ice_reach: 'Ice reached',
+  territory: 'Territory',
 };
 
 const REL_LABEL: Record<string, string> = {
@@ -94,6 +105,25 @@ export interface TerrainInfo {
   fieldDescription?: string;
   coastline?: string;
   datum?: string;
+  state?: PlanetStateInfo;
+}
+
+/** The planet's phase and ice at the time shown, and the records that say so. */
+export interface PlanetStateInfo {
+  planet: string;
+  phase: string;
+  ice?: { id: string; label: string; reach: string };
+}
+
+/** Where a click on the globe fell inside a polity's territory: the dataset's row drawn there. */
+export interface TerritoryHere {
+  t: number;
+  /** the dataset's name for the row, and the years it holds */
+  name: string;
+  from: number;
+  to: number;
+  area: number;
+  source: SourceRecord | undefined;
 }
 
 /** A series' value at a time, with its band, interpolated between its points. */
@@ -124,7 +154,19 @@ export class InspectPanel {
   private frame(title: string, body: string): void {
     this.el.innerHTML = `<header><h2>${esc(title)}</h2><button class="close" aria-label="Close">×</button></header>${body}`;
     this.el.querySelector<HTMLButtonElement>('.close')!.onclick = () => this.cb.onClose();
+    for (const a of this.el.querySelectorAll<HTMLAnchorElement>('a.open')) {
+      a.onclick = (e) => {
+        e.preventDefault();
+        this.cb.onOpen(a.dataset.entity!);
+      };
+    }
     this.el.hidden = false;
+  }
+
+  /** The planet's state at the time, with links to the records it comes from. */
+  private stateSection(s: PlanetStateInfo | undefined): string {
+    if (!s) return '';
+    return `<section class="planet-state"><h3>The planet then</h3><p>${this.link(s.planet, s.phase)}${s.ice ? `, with ice to ${esc(s.ice.reach)} during the ${this.link(s.ice.id, s.ice.label)}` : ''}.</p></section>`;
   }
 
   private cites(r: EntityRecord, cs: CitationRecord[], unsourced?: string): string {
@@ -138,7 +180,7 @@ export class InspectPanel {
     return `<a href="#" class="open" data-entity="${esc(id)}">${esc(label)}</a>`;
   }
 
-  showEntity(r: EntityRecord, scenario: Scenario, time: FeatureTime): void {
+  showEntity(r: EntityRecord, scenario: Scenario, time: FeatureTime, here?: TerritoryHere): void {
     const status = r.claims.every((c) => c.status === 'accepted') ? 'accepted' : r.claims.some((c) => c.status === 'disputed') ? 'disputed' : 'proposed';
     const machine = r.claims.some((c) => c.author.startsWith('machine:'));
     const alts = new Set(scenario.alts ?? []);
@@ -195,20 +237,23 @@ export class InspectPanel {
       .join('');
     const inverse = r.inverse.map((x) => `<li><strong>${esc(REL_LABEL[x.rel] ?? x.rel)}</strong> ${this.link(x.from, x.fromLabel)} <span class="muted">(stated by that record)</span></li>`).join('');
     const sources = Object.values(r.sources)
-      .map((s) => `<li id="src-${esc(s.id)}"><p>${esc(s.citation)}</p>${s.doi ? `<a href="https://doi.org/${encodeURI(s.doi)}" target="_blank" rel="noopener">doi:${esc(s.doi)}</a>` : s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url)}</a>` : ''} <span class="badge">${esc(s.kind)}</span>${s.license ? ` <span class="badge">${esc(s.license)}</span>` : ''}${s.verified ? `<p class="verified">Checked: ${esc(s.verified.how)}</p>` : ''}</li>`)
+      .map((s) => `<li id="src-${esc(s.id)}"><p>${esc(s.citation)}</p>${s.doi ? `<a href="https://doi.org/${encodeURI(s.doi)}" target="_blank" rel="noopener">doi:${esc(s.doi)}</a>` : s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url)}</a>` : ''} <span class="badge">${esc(s.kind)}</span>${s.license ? ` <span class="badge">${esc(s.license)}</span>` : ''}${s.written ? `<p class="written">Written ${esc(s.written)}.</p>` : ''}${s.type === 'text' && s.reliability ? `<p class="note">${esc(s.reliability)}</p>` : ''}${s.verified ? `<p class="verified">Checked: ${esc(s.verified.how)}</p>` : ''}</li>`)
       .join('');
     const f = r.frame;
     const where = !f
-      ? 'No location: shown through what it is related to.'
+      ? r.claims.some((c) => c.prop === 'territory')
+        ? 'Its territory is drawn on the globe, from the rows of a borders dataset, for the years each row gives.'
+        : 'No location: shown through what it is related to.'
       : f.plate !== undefined
         ? `Moves with ${f.entity ? this.link(f.entity, f.entityLabel ?? f.entity) : esc(f.title)} (plate ${f.plate} of the PALEOMAP model); its position at other times is reconstructed by the plate model.`
         : esc(f.title);
-    const phases = r.phases.map((p) => `<li>${esc(p.label)}${p.gap ? ' <span class="badge">gap</span>' : ''}: ${esc(fmtTime(p.time))}</li>`).join('');
+    const phases = r.phases.map((p) => `<li>${esc(p.label)}${p.gap ? ' <span class="badge">gap</span>' : ''}: ${esc(fmtTime(lookup(p.variants, scenario, p.time)))}</li>`).join('');
     const chosenAlts = [...alts].filter((a) => r.claims.some((c) => c.alt === a) || r.variants.some((v) => v.key.split(' ').includes(a)));
     this.frame(
       r.label,
       `<div class="meta"><span class="kind">${esc(r.kindLabel)}</span><span class="badge basis-${esc(r.basis.time)}" title="How directly its dates rest on evidence">${esc(r.basis.time)}</span><span class="badge status-${status}">${status}${machine && status === 'proposed' ? ' · machine-made, needs review' : ''}</span></div>
       ${r.summary ? `<p class="summary">${esc(r.summary)}</p>` : ''}
+      ${here ? this.hereSection(here) : ''}
       <section><h3>When</h3><p class="when">${esc(fmtTime(time))}${picks.size || chosenAlts.length ? ' <span class="badge">with your choices</span>' : ''}</p>
       ${chosenAlts.map((a) => `<p class="method">In the alternative “${esc(this.cb.altTitle(a))}”.</p>`).join('')}
       ${phases ? `<ul class="phases">${phases}</ul>` : ''}
@@ -223,12 +268,14 @@ export class InspectPanel {
     for (const input of this.el.querySelectorAll<HTMLInputElement>('input[type=radio]')) {
       input.onchange = () => this.cb.onPick(input.dataset.members!.split(' '), input.value === input.dataset.default ? null : input.value);
     }
-    for (const a of this.el.querySelectorAll<HTMLAnchorElement>('a.open')) {
-      a.onclick = (e) => {
-        e.preventDefault();
-        this.cb.onOpen(a.dataset.entity!);
-      };
-    }
+  }
+
+  /** Inside a polity's territory: which of the dataset's rows is drawn there, and for what years. */
+  private hereSection(h: TerritoryHere): string {
+    const years = formatTime(h.from) === formatTime(h.to - 1) ? formatTime(h.from) : `${formatTime(h.from)} – ${formatTime(h.to - 1)}`;
+    const area = h.area >= 1e6 ? `${fmtValue(h.area / 1e6)} million km²` : `${fmtValue(h.area)} km²`;
+    const who = h.source ? short(h.source, h.source.id) : 'its dataset';
+    return `<section class="here"><h3>Here, at ${esc(formatTime(h.t))}</h3><p>Inside its territory, as ${esc(who)} draws it for ${esc(years)}: the row named “${esc(h.name)}”, ${esc(area)}.</p>${h.source?.reliability ? `<p class="note">${esc(h.source.reliability)}</p>` : ''}</section>`;
   }
 
   showTerrain(info: TerrainInfo): void {
@@ -247,7 +294,7 @@ export class InspectPanel {
         <p class="big">${inside ? 'Inside a continental block' : 'Outside the continental blocks'}</p>
         <p>${lat}, ${lon} in the geographic frame of this time${info.plate ? `, on plate ${info.plate}${info.plateLabel ? ` (${esc(info.plateLabel)})` : ''}` : ''}.</p>
         ${info.fieldDescription ? `<p class="note">${esc(info.fieldDescription)}</p>` : ''}
-        <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time.</p></section>${source}`,
+        <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time.</p></section>${this.stateSection(info.state)}${source}`,
       );
       return;
     }
@@ -257,16 +304,19 @@ export class InspectPanel {
       <section><h3>Here, at ${esc(formatTime(info.t, 1e4))}</h3>
       <p class="big">${info.elevation >= 0 ? '' : '−'}${Math.abs(Math.round(info.elevation)).toLocaleString('en-US')} m <span class="muted">${info.elevation >= 0 ? 'above' : 'below'} the sea level of the time</span></p>
       <p>${lat}, ${lon} in the geographic frame of this time${info.plate ? `, on plate ${info.plate}${info.plateLabel ? ` (${esc(info.plateLabel)})` : ''}` : ', on no plate polygon (ocean floor the model does not track)'}.</p>
-      <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time. The ${esc((info.coastline ?? 'coastline').toLowerCase())} is derived, not stored: the ${esc(info.datum === 'contemporaneous-sea-level' ? '0 m' : 'sea-level')} isoline of this field.</p></section>${source}`,
+      <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time. The ${esc((info.coastline ?? 'coastline').toLowerCase())} is derived, not stored: the ${esc(info.datum === 'contemporaneous-sea-level' ? '0 m' : 'sea-level')} isoline of this field.</p></section>${this.stateSection(info.state)}${source}`,
     );
   }
 
-  /** The globe where no field covers the time shown: what is not known, and why. */
-  showUnknown(t: number, why: string): void {
+  /** The globe where no field covers the time shown: what is not known, and why; and the planet's state, if it has one. */
+  showUnknown(t: number, why: string, state?: PlanetStateInfo): void {
+    const note = state
+      ? 'Where the land was is not known, so none is drawn. What covers the planet, and any ice, follows its states; the patterns they are drawn with are procedural.'
+      : 'The globe is drawn plain on purpose: nothing here rests on evidence, a reconstruction or a projection.';
     this.frame(
       'Geography unknown',
       `<section><h3>At ${esc(formatTime(t, 1e4))}</h3><p>${esc(why)}</p>
-      <p class="note">The globe is drawn plain on purpose: nothing here rests on evidence, a reconstruction or a projection.</p></section>`,
+      <p class="note">${esc(note)}</p></section>${this.stateSection(state)}`,
     );
   }
 

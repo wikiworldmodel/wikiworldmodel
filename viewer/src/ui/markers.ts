@@ -43,7 +43,7 @@ export function timeFor(f: Feature, s: Scenario): FeatureTime {
 
 /** A feature's label at time t: the name in use then, or today's name where it had none. */
 export function labelAt(f: Feature, t: number): string {
-  return f.names?.find((n) => n.valid && n.valid[0] <= t && t <= n.valid[1])?.text ?? f.label;
+  return f.names?.find((n) => n.valid && (n.valid[0] ?? -Infinity) <= t && t < (n.valid[1] ?? Infinity))?.text ?? f.label;
 }
 
 /** How directly what is shown rests on evidence: at the present, the measured place. */

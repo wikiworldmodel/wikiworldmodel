@@ -1,0 +1,187 @@
+id: space/bodies/earth
+kind: body/planet
+summary: >-
+  The Earth, from the start of its accretion. Its phases are the states of its surface and
+  atmosphere: a proto-Earth that grew by collisions and was remelted by giant impacts; the
+  rock-vapour atmosphere and the magma ocean under steam left by the Moon-forming impact;
+  oceans of water; and, as the Sun brightens, a planet without them.
+author: machine:claude-code
+same_as: { wikidata: Q2 }
+phases:
+  - id: proto-earth
+    label: Proto-Earth
+  - id: rock-vapour
+    label: Rock-vapour atmosphere
+  - id: magma-ocean
+    label: Magma ocean under steam
+  - id: oceans
+    label: Oceans
+  - id: without-oceans
+    label: Without oceans
+claims:
+  name:
+    prop: name
+    value: { en: Earth }
+    unsourced: An editorial label, the planet's name in English.
+  start:
+    prop: start
+    value: { ref: space/events/solar-system-formation, edge: start, lag: { hi: 1 Myr } }
+    source:
+      ref: src:zahnle-2007-habitable-planet
+      loc: section 9, p. 71
+      quote: The embryos of the terrestrial planets formed quickly, perhaps less than 1 million years after the origin of the solar system.
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      The planet is taken to begin with its embryo, within about 1 Myr of the Solar System's
+      first solids, which the paper takes as the start of the Solar System (section 3). Earth
+      then grew by collisions between embryos over some 50 Myr (section 2.2); with growth
+      falling off exponentially, it reached 63% of its mass in about 11 Myr (section 3.2).
+  proto-earth-surface:
+    prop: surface
+    subject: "@proto-earth"
+    value: crust-and-magma
+    source:
+      ref: src:elkins-tanton-2012-magma-oceans
+      loc: abstract
+      quote: The apparent ubiquity of melting during giant accretionary impacts suggests that silicate and metallic material may be processed through multiple magma oceans
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Giant impacts melted the growing planets, likely more than once. When each melt froze,
+      and how much of the surface was crust between impacts, is not dated; the abstract
+      itself hedges.
+  proto-earth-end:
+    prop: end
+    subject: "@proto-earth"
+    value: { ref: earth/events/moon-forming-impact }
+    source:
+      ref: src:jacobson-2014-moon-forming-impact
+      loc: abstract
+      quote: the last giant impact on Earth formed the Moon and initiated the final phase of core formation by melting Earth's mantle
+    method: expert-estimate
+    note: >-
+      The paper's premise ("According to the generally accepted scenario"), not its result.
+      Afterwards Earth accreted no more than 1% of its mass.
+  rock-vapour-atmosphere:
+    prop: atmosphere
+    subject: "@rock-vapour"
+    value: rock-vapour
+    source:
+      ref: src:zahnle-2007-habitable-planet
+      loc: section 5.1, p. 50
+      quote: Once the atmosphere settled down it was mostly rock vapor topped by silicate clouds at ∼2,500 K.
+    method: model
+    basis: reconstruction
+  rock-vapour-surface:
+    prop: surface
+    subject: "@rock-vapour"
+    value: magma
+    source:
+      ref: src:zahnle-2007-habitable-planet
+      loc: Fig. 5 caption, p. 51
+      quote: For 1,000 years Earth is enveloped in rock vapor.
+    method: model
+    basis: reconstruction
+    note: The impact melted the mantle (the end of the proto-Earth), so magma lay under the rock vapour.
+  rock-vapour-end:
+    prop: end
+    subject: "@rock-vapour"
+    value: { ref: earth/events/moon-forming-impact, edge: start, lag: 1 kyr }
+    source:
+      ref: src:zahnle-2007-habitable-planet
+      loc: abstract
+      quote: The Moon-forming impact left Earth enveloped in a hot silicate atmosphere that cooled and condensed over ∼1,000 yrs.
+    method: model
+    note: An order of magnitude from one model, without an uncertainty.
+  magma-ocean-atmosphere:
+    prop: atmosphere
+    subject: "@magma-ocean"
+    value: steam
+    source:
+      ref: src:zahnle-2007-habitable-planet
+      loc: Fig. 10 caption, p. 58
+      quote: after the Moon-forming impact the atmosphere would have been in a runaway greenhouse state for ∼2 million years
+    method: model
+    basis: reconstruction
+    note: >-
+      A runaway greenhouse of water vapour: the steam atmosphere that condensed into the
+      oceans once the mantle had solidified (Fig. 5 caption).
+  magma-ocean-surface:
+    prop: surface
+    subject: "@magma-ocean"
+    value: magma
+    source:
+      ref: src:zahnle-2007-habitable-planet
+      loc: Fig. 5 caption, p. 51
+      quote: A substantial greenhouse effect and tidal heating maintain the magma ocean for some 2 million years.
+    method: model
+    basis: reconstruction
+  magma-ocean-end:
+    prop: end
+    subject: "@magma-ocean"
+    value: { ref: earth/events/moon-forming-impact, edge: start, lag: 2 Myr }
+    source:
+      ref: src:zahnle-2007-habitable-planet
+      loc: abstract
+      quote: It took another ∼2 Myrs for the magma ocean to freeze at the surface.
+    method: model
+    note: >-
+      "Another" follows the thousand years of rock vapour, so the surface froze about 2 Myr
+      after the impact. The steam's greenhouse effect and tidal heating by the young Moon set
+      how long it took; one model, without an uncertainty.
+  oceans-surface:
+    prop: surface
+    subject: "@oceans"
+    value: ocean
+    source:
+      ref: src:zahnle-2007-habitable-planet
+      loc: Fig. 5 caption, p. 51
+      quote: After the mantle solidified the steam atmosphere condensed to form a warm (∼500 K) water ocean under ∼100 bars of CO2.
+    method: model
+    basis: reconstruction
+    note: >-
+      The steam rained out at about a metre a year (section 5.2.1), quickly on this scale, so
+      the oceans begin as the magma ocean froze. They began hot, under dense CO2; Earth could
+      have been habitable 10–20 Myr after the impact if CO2 entered the mantle efficiently
+      (section 9).
+  oceans-end-goldblatt-watson-2012:
+    prop: end
+    subject: "@oceans"
+    value: 2 Gyr from now
+    source:
+      ref: src:goldblatt-watson-2012-runaway-greenhouse
+      loc: abstract
+      quote: Venus experienced a runaway greenhouse in the past, and we expect that the Earth will in around 2 billion years as solar luminosity increases.
+    method: expert-estimate
+    basis: projection
+    rank: preferred
+    note: >-
+      A round figure without an uncertainty, which the paper does not derive. The runaway
+      greenhouse of a brightening Sun would evaporate the oceans.
+  oceans-end-wolf-toon-2014:
+    prop: end
+    subject: "@oceans"
+    value: { lo: 1.5 Gyr from now }
+    source:
+      ref: src:wolf-toon-2014-delayed-greenhouse
+      loc: abstract
+      quote: Earth's climate may remain safe against both water loss and thermal runaway limits for at least another 1.5 billion years and probably for much longer
+    method: model
+    basis: projection
+    note: >-
+      A lower bound from a three-dimensional climate model, leaving the end open; picked, the
+      oceans are shown lost at the bound, the earliest it allows.
+  without-oceans-surface:
+    prop: surface
+    subject: "@without-oceans"
+    value: bare-rock
+    source:
+      ref: src:goldblatt-watson-2012-runaway-greenhouse
+      loc: abstract
+      quote: This would evaporate the entire ocean and exterminate all planetary life.
+    method: expert-estimate
+    basis: projection
+    note: >-
+      What follows the runaway greenhouse. The water would first be steam, and be lost to
+      space over time; neither is dated here, so no atmosphere is claimed.

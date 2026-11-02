@@ -46,6 +46,20 @@ kinds:
         label: Astronomical event
         description: A stage in the life of a star, or an encounter between galaxies; in the future, a projection.
         moment: true
+      political:
+        label: Political event
+        description: >-
+          A founding, a change of constitution, a division or a deposition: a change in how a
+          state is governed, or by whom, dated to its day where the sources allow.
+        moment: true
+      battle:
+        label: Battle
+        description: A battle on land or at sea, dated to its day where the sources allow.
+        moment: true
+      conquest:
+        label: Conquest
+        description: The capture of a city or the fall of a state to another, on the day it fell.
+        moment: true
   development:
     label: Development
     description: >-
@@ -80,6 +94,23 @@ kinds:
       A group of organisms, a species or a clade, from its origin to its extinction if it has
       died out. Its origin is no later than its oldest member found.
     start: latest
+  body:
+    label: Body
+    description: A natural body in space, such as a planet or a moon.
+    children:
+      planet:
+        label: Planet
+        description: >-
+          A planet, from the start of its accretion on. Its phases are the states of its
+          surface and atmosphere, such as a magma ocean or oceans of water.
+  polity:
+    label: Polity
+    description: >-
+      A state or other political unit, from its founding to its end. Its phases are its forms
+      of government, such as a kingdom that became a republic; its territory is a claim.
+  settlement:
+    label: Settlement
+    description: A town or a city, from its founding or first settlement on; its names may change.
   plate:
     label: Tectonic plate
     description: A rigid plate of a plate model. It also defines a frame, which moves with it.

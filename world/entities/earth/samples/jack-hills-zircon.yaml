@@ -43,3 +43,18 @@ claims:
     source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
     method: plate-polygon
     basis: reconstruction
+relations:
+  during-oceans:
+    rel: during
+    to: space/bodies/earth@oceans
+    source:
+      - ref: src:wilde-2001-jack-hills-zircon
+        loc: abstract
+        quote: Magmatic oxygen isotope ratios in this range point toward the involvement of supracrustal material that has undergone low-temperature interaction with a liquid hydrosphere.
+      - ref: src:wilde-2001-jack-hills-zircon
+        loc: abstract
+        quote: This zircon thus represents the earliest evidence for continental crust and oceans on the Earth.
+    basis: reconstruction
+    note: >-
+      The grain's oxygen isotopes record rock that had been altered by liquid water at the
+      surface before it melted, so oceans existed when it grew. The evidence is indirect.

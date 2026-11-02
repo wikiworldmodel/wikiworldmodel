@@ -11,6 +11,7 @@ import { bakeRotationModel, parseRot, RotationModel } from '../../../../core/rot
 import { fromMa, parsePoint, PRESENT_YEAR, toMa, type TimePointInput } from '../../../../core/time.ts';
 import type { Basis, Feature, FieldInfo, FieldKeyframe, FramesFile, GeneratorConstraint, TileHeader, TileRef, Tileset } from '../../../../core/tileset.ts';
 import { GENERATOR as CLOUDS, VERSION as CLOUDS_VERSION, generateClouds, type CloudParams } from '../../../../world/generators/earth/clouds/v1.ts';
+import { GENERATOR as SURFACE, VERSION as SURFACE_VERSION, generateSurface, type SurfaceParams } from '../../../../world/generators/earth/surface/v1.ts';
 import { claimGroups, solveScenario, solveVariants } from '../chronology.ts';
 import { fieldAgesMa, fieldSource, importBlocks, importElevation, PLATE_MODEL } from '../importer.ts';
 import { datasetFile } from '../manifest.ts';
@@ -20,7 +21,9 @@ import { formatIssue, validateWorld } from '../validate/index.ts';
 import { loadWorld, type World } from '../world.ts';
 import { fieldFor, fieldLods, loadBlocks, loadSnapshots, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
 import { features as buildFeatures, periods as buildPeriods, records as buildRecords, search as buildSearch, sourceRecord, type Solved } from './records.ts';
+import { planet as buildPlanet } from './planet.ts';
 import { series as buildSeries } from './series.ts';
+import { territory as buildTerritory } from './territory.ts';
 
 // Share of PaleoDEM land that must fall inside the plate model's polygons at every snapshot,
 // a coarse check that field and frames come from the same model. This pair scores 0.85–1.00
@@ -220,20 +223,29 @@ export async function runBuild(args: string[]): Promise<number> {
   put('frames.json', stableStringify(frames));
 
   // 5. Generators: run each slot from its record's seed and parameters.
-  const gen = world.generators.find((g) => g.id === CLOUDS);
-  if (!gen || gen.version !== CLOUDS_VERSION) {
-    log(`error   generators  ${CLOUDS}: the record is version ${gen?.version ?? 'missing'}, the code version ${CLOUDS_VERSION}`);
-    return 1;
+  const code = [
+    { id: CLOUDS, version: CLOUDS_VERSION, run: (seed: string, p: unknown) => generateClouds(seed, p as CloudParams) },
+    { id: SURFACE, version: SURFACE_VERSION, run: (seed: string, p: unknown) => generateSurface(seed, p as SurfaceParams) },
+  ];
+  const generators: GeneratorConstraint[] = [];
+  for (const c of code) {
+    const gen = world.generators.find((g) => g.id === c.id);
+    if (!gen || gen.version !== c.version) {
+      log(`error   generators  ${c.id}: the record is version ${gen?.version ?? 'missing'}, the code version ${c.version}`);
+      return 1;
+    }
+    for (const [slot, s] of Object.entries(gen.slots)) {
+      generators.push({
+        generator: gen.id,
+        version: gen.version,
+        slot,
+        seed: s.seed,
+        basis: gen.outputs.basis as 'procedural',
+        params: gen.params,
+        outputSha256: sha256(c.run(s.seed, gen.params)),
+      });
+    }
   }
-  const generators: GeneratorConstraint[] = Object.entries(gen.slots).map(([slot, s]) => ({
-    generator: gen.id,
-    version: gen.version,
-    slot,
-    seed: s.seed,
-    basis: gen.outputs.basis as 'procedural',
-    params: gen.params,
-    outputSha256: sha256(generateClouds(s.seed, gen.params as unknown as CloudParams)),
-  }));
 
   // 6. Records, periods, search and series, whose times set the span of the tile set.
   const allFeatures = buildFeatures(solved);
@@ -299,6 +311,8 @@ export async function runBuild(args: string[]): Promise<number> {
   put('periods.json', stableStringify(periods));
   put('search.json', stableStringify(found));
   put('series.json', stableStringify({ series: seriesList } satisfies SeriesFile));
+  put('planet.json', stableStringify(buildPlanet(solved)));
+  put('territory.json', stableStringify(await buildTerritory(solved, log)));
   put('coverage.json', stableStringify(coverage(world, wanted, allFeatures, tiles)));
 
   // 9. Index and identity.
@@ -308,7 +322,7 @@ export async function runBuild(args: string[]): Promise<number> {
     timeRange: span,
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
-    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json' },
+    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json' },
     credits: credits(world),
     alternatives,
     kinds: Object.fromEntries(Object.entries(world.vocab.kinds).map(([k, v]) => [k, v.label])),

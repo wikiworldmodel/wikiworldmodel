@@ -2,13 +2,17 @@
 # kinds of subject it applies to. Validators reject properties, methods and confidence
 # words that are not declared here.
 #
-#   type        time | point | ref | text (with language) | string | quantity | color
+#   type        time | point | ref | text (with language) | string | quantity | color | geometry
+#               (a geometry is taken from a dataset in the manifest: { from: src:…, names: […] }
+#               names the rows that belong to the subject)
 #   unit        for quantities: values are written in this unit
+#   values      for strings: the values allowed, each with what it means
 #   interp      how a state changes between known points: step | linear | log-time | slerp
 #   moment      evidence about a moment: it feeds the date solver (section 5) and is never
 #               interpolated
-#   applies_to  kinds (with their children), or `moments` (kinds with moment: true) or
-#               `lasting` (the others, and every phase); omitted means any subject
+#   applies_to  kinds (with their children; a phase is of its entity's kind), or `moments`
+#               (kinds with moment: true) or `lasting` (the others, and every phase);
+#               omitted means any subject
 #   ref_types   for refs: the record types the value may name
 #   inverse     for refs: a claim whose value is another record is a relation, and the
 #               build derives its inverse under this name
@@ -80,6 +84,40 @@ properties:
     type: color
     applies_to: [period]
     description: The standard colour of a period on its chart, as #RRGGBB.
+  surface:
+    type: string
+    interp: step
+    applies_to: [body/planet]
+    values:
+      magma: Molten rock open to the sky, a magma ocean.
+      crust-and-magma: Crust over magma, remelted in places.
+      ocean: Oceans of liquid water, with land where the geography has it.
+      bare-rock: Rock, with no oceans.
+    description: What covers most of a planet's surface.
+  atmosphere:
+    type: string
+    interp: step
+    applies_to: [body/planet]
+    values:
+      rock-vapour: Vaporized rock, thousands of degrees hot.
+      steam: A thick atmosphere of water vapour, its clouds hiding the surface.
+    description: The kind of atmosphere, where it changes how the planet looks from space.
+  ice_reach:
+    type: quantity
+    unit: °
+    interp: step
+    applies_to: [event/glaciation]
+    description: >-
+      The lowest latitude, north or south, at which ice reached sea level during a glaciation,
+      as sea ice or as grounded ice, in degrees: 0 is ice to the equator.
+  territory:
+    type: geometry
+    interp: step
+    applies_to: [polity]
+    description: >-
+      The land a polity held, as polygons, from a dataset of borders through time. The claim
+      names the dataset's rows that are this polity; each row holds for the years it gives,
+      within the polity's lifetime.
 
 # Methods: how the value of a claim was established. A method's children are written
 # parent/child (radiometric/ar-ar).
@@ -100,7 +138,17 @@ methods:
     description: Computed with a physical model, such as a model of the Sun's evolution or of galaxies' orbits.
   documentary:
     label: Documentary record
-    description: Read from contemporary records of the event, such as mission logs.
+    description: >-
+      Read from records made at the time of the event: mission logs, an eyewitness's diary, an
+      official calendar inscribed in stone.
+  historical-account:
+    label: Historical account
+    description: Stated by a historian or chronicler writing after the events, from earlier sources.
+  tradition:
+    label: Tradition
+    description: >-
+      Handed down rather than recorded at the time: a founding legend, or a date that later
+      antiquarians reckoned from one, for example by counting the reigns of legendary kings.
   stratigraphic:
     label: Stratigraphic dating
     description: Dated by the position of the beds in a dated sequence, or by their fossils.
@@ -110,6 +158,9 @@ methods:
   survey:
     label: Survey
     description: Measured in the field, for example a section's coordinates.
+  paleomagnetic:
+    label: Palaeomagnetism
+    description: A latitude or a position read from the magnetization that rocks kept from when they formed.
   compilation:
     label: Compilation
     description: Read from a database or chart that compiles the literature.

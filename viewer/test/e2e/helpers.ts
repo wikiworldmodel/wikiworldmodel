@@ -40,3 +40,25 @@ export async function markerPositions(page: Page): Promise<Record<string, [numbe
     return out;
   });
 }
+
+/** A file of the latest world build, parsed. */
+export function buildFile<T>(name: string): T {
+  return JSON.parse(readFileSync(join(REPO, 'dist/builds', latestBuild(), name), 'utf8')) as T;
+}
+
+/** The mean colour of a square patch of the globe's canvas, `size` pixels wide, around a point given as fractions of its size. */
+export async function canvasPatch(page: Page, fx: number, fy: number, size = 9): Promise<[number, number, number]> {
+  return page.evaluate(([fx, fy, size]) => {
+    const src = document.querySelector('canvas.globe') as HTMLCanvasElement;
+    const c = document.createElement('canvas');
+    c.width = src.width;
+    c.height = src.height;
+    const g = c.getContext('2d')!;
+    g.drawImage(src, 0, 0);
+    const h = Math.floor(size / 2);
+    const d = g.getImageData(Math.round(fx * src.width) - h, Math.round(fy * src.height) - h, size, size).data;
+    const sum = [0, 0, 0];
+    for (let i = 0; i < d.length; i += 4) for (let k = 0; k < 3; k++) sum[k] += d[i + k];
+    return sum.map((s) => Math.round(s / (d.length / 4))) as [number, number, number];
+  }, [fx, fy, size]);
+}

@@ -1,0 +1,23 @@
+id: src:fasti-vindobonenses-priores
+type: text
+kind: historian
+citation: >-
+  Fasti Vindobonenses priores, ed. Th. Mommsen, Consularia Italica II, in Chronica minora saec.
+  IV. V. VI. VII., vol. 1 (Monumenta Germaniae Historica, Auctores antiquissimi 9; Berlin:
+  Weidmann, 1892), pp. 274–336.
+published: 1892
+written: { lo: 480 CE }
+title: Fasti Vindobonenses priores
+url: https://archive.org/details/chronicaminorasa09momm
+via: The Internet Archive's scan of the MGH volume (University of Florida copy).
+reliability: >-
+  Annals of consuls and events in Italy, kept at Ravenna (Mommsen's Consularia Italica),
+  surviving in a fifteenth-century Vienna manuscript with ninth-century excerpts at St Gall.
+  The entries for the 470s and 480s are terse notices of the day and place of events at the
+  western court; when each was written is not known.
+verified:
+  by: machine:claude-code
+  how: >-
+    Entries 617–626 (475–480) read on pp. 308–310 in the page images of the Internet Archive's
+    scan (chronicaminorasa09momm, leaves 326–328), not only in its OCR; the manuscripts from
+    Mommsen's list on p. 249.

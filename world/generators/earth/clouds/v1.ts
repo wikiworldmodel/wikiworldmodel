@@ -31,7 +31,7 @@ export function hashString(s: string): number {
   return h >>> 0;
 }
 
-function hash3(x: number, y: number, z: number, seed: number): number {
+export function hash3(x: number, y: number, z: number, seed: number): number {
   let h = seed ^ Math.imul(x | 0, 0x27d4eb2d) ^ Math.imul(y | 0, 0x165667b1) ^ Math.imul(z | 0, 0x9e3779b1);
   h = Math.imul(h ^ (h >>> 15), 0x85ebca6b);
   h = Math.imul(h ^ (h >>> 13), 0xc2b2ae35);
@@ -41,7 +41,7 @@ function hash3(x: number, y: number, z: number, seed: number): number {
 
 const fade = (t: number) => t * t * t * (t * (t * 6 - 15) + 10);
 
-function noise3(x: number, y: number, z: number, seed: number): number {
+export function noise3(x: number, y: number, z: number, seed: number): number {
   const xi = Math.floor(x);
   const yi = Math.floor(y);
   const zi = Math.floor(z);
@@ -65,7 +65,7 @@ function noise3(x: number, y: number, z: number, seed: number): number {
   return y0 + (y1 - y0) * w;
 }
 
-function fbm(x: number, y: number, z: number, octaves: number, seed: number): number {
+export function fbm(x: number, y: number, z: number, octaves: number, seed: number): number {
   let sum = 0;
   let amp = 0.5;
   let norm = 0;

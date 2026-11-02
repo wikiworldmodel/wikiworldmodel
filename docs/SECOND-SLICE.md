@@ -7,6 +7,10 @@ Hadean to the Sun reaching the tip of the red-giant branch. It came ahead of the
 the first one proposed next (the Last Glacial Maximum, a sliver of Rome), so that the whole
 timeline is covered before any part of it in detail.
 
+The third slice, [THIRD-SLICE.md](THIRD-SLICE.md), draws the planet's states on the globe:
+the magma ocean, the oceans and Snowball ice. Where the two differ (the plain globe before
+1,100 Ma, the renderer), that document describes the current build.
+
 The slice covers 4,600 Ma to 7.6 Gyr from now, with:
 
 - the whole ICS chart: the Precambrian's 3 eons, 7 eras and 10 periods beside the
@@ -83,7 +87,8 @@ level. A build is 157 tiles (21 coarse, 136 fine), 63 MB uncompressed.
 
 - **Warp.** Logarithmic in distance from the present on both sides, log(1 + |age| / c), with
   c an eighth of the window's span, capped at 50 Myr. Windows in the past up to 400 Myr wide
-  map exactly as before.
+  map exactly as before. (Since replaced by a fixed scale that gives recent history room: see
+  [`timescale.ts`](../viewer/src/ui/timescale.ts).)
 - **Ticks** are chosen along the strip, so they space evenly whatever the warp. Future ages
   are marked +.
 - **Track.** A row below the bands marks every dated record: point at one for its name and

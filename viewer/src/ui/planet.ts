@@ -1,5 +1,7 @@
-// The planet at the time shown: each global series' value there, with its band, or a dash
-// where the series has no value. Clicking one opens how it is known.
+// The planet at the time shown: its state (the phase of its record, and any ice), then each
+// global series' value there, or a dash where the series has no value. Clicking a row opens
+// how it is known.
+import type { Look } from '../../../core/planet.ts';
 import type { SeriesRecord } from '../../../core/records.ts';
 import { fmtValue, type SeriesValue } from './inspect.ts';
 
@@ -24,13 +26,33 @@ export function valueAt(s: SeriesRecord, t: number): SeriesValue | null {
 export class PlanetPanel {
   readonly el: HTMLElement;
   private rows = new Map<string, { value: HTMLElement; row: HTMLElement }>();
+  private phase: { row: HTMLButtonElement; value: HTMLElement } | null = null;
+  private ice: { row: HTMLButtonElement; title: HTMLElement; value: HTMLElement } | null = null;
+  /** the records the state rows open */
+  private open = { phase: '', ice: '' };
+  /** a series was chosen */
   onOpen: (id: string) => void = () => {};
+  /** a record was chosen: the planet's, or a glaciation's */
+  onRecord: (id: string) => void = () => {};
 
-  constructor(private series: SeriesRecord[]) {
+  constructor(private series: SeriesRecord[], planetLabel?: string) {
     this.el = document.createElement('section');
     this.el.className = 'planet';
-    this.el.hidden = series.length === 0;
+    this.el.hidden = series.length === 0 && !planetLabel;
     this.el.setAttribute('aria-label', 'The planet at this time');
+    const stateRow = (cls: string, title: string, which: 'phase' | 'ice') => {
+      const row = document.createElement('button');
+      row.className = `planet-row ${cls}`;
+      row.innerHTML = `<span class="planet-title"></span><span class="planet-value"></span>`;
+      row.querySelector('.planet-title')!.textContent = title;
+      row.onclick = () => this.open[which] && this.onRecord(this.open[which]);
+      this.el.appendChild(row);
+      return { row, title: row.querySelector<HTMLElement>('.planet-title')!, value: row.querySelector<HTMLElement>('.planet-value')! };
+    };
+    if (planetLabel) {
+      this.phase = stateRow('planet-phase', planetLabel, 'phase');
+      this.ice = stateRow('planet-ice', 'Ice', 'ice');
+    }
     for (const s of series) {
       const row = document.createElement('button');
       row.className = 'planet-row';
@@ -43,7 +65,21 @@ export class PlanetPanel {
     }
   }
 
-  update(t: number): void {
+  update(t: number, look?: Look): void {
+    if (this.phase && this.ice) {
+      const phase = look && !look.formed ? 'not formed yet' : (look?.phase?.label ?? '—');
+      if (this.phase.value.textContent !== phase) this.phase.value.textContent = phase;
+      this.phase.row.classList.toggle('empty', !look?.phase);
+      this.open.phase = look?.phase ? look.phase.subject.split('@')[0] : '';
+      const ice = look?.ice;
+      this.ice.row.hidden = !ice;
+      this.open.ice = ice?.subject ?? '';
+      if (ice) {
+        const reach = look!.iceReach <= 0 ? 'to the equator' : `to ${look!.iceReach}°`;
+        if (this.ice.value.textContent !== reach) this.ice.value.textContent = reach;
+        if (this.ice.title.textContent !== ice.label) this.ice.title.textContent = ice.label;
+      }
+    }
     for (const s of this.series) {
       const r = this.rows.get(s.id)!;
       const v = valueAt(s, t);

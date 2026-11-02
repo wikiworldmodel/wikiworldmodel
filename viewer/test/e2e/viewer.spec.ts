@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test';
+import type { PlanetFile } from '../../../core/planet.ts';
 import { xOf } from '../../src/ui/timebar.ts';
-import { canvasPng, idle, latestBuild, markerPositions, settledUrl } from './helpers.ts';
+import { buildFile, canvasPatch, canvasPng, idle, latestBuild, markerPositions, settledUrl } from './helpers.ts';
 
 const year = (ma: number) => Math.round(1950 - ma * 1e6);
 
@@ -112,12 +113,14 @@ test('evidence mode marks reconstruction and procedural content', async ({ page 
   expect((await canvasPng(page)).equals(plain)).toBe(false);
 });
 
-test('the browser runs the cloud generator to the same bytes as the build', async ({ page }) => {
+test('the browser runs the cloud and surface generators to the same bytes as the build', async ({ page }) => {
   await page.goto(`/?b=${latestBuild()}`);
   await idle(page);
-  const clouds = await page.evaluate(() => window.__lightworld!.clouds);
-  expect(clouds.actual).toBe(clouds.expected);
-  expect(clouds.expected).toMatch(/^[0-9a-f]{64}$/);
+  for (const name of ['clouds', 'surface'] as const) {
+    const out = await page.evaluate((n) => window.__lightworld![n], name);
+    expect(out.actual).toBe(out.expected);
+    expect(out.expected).toMatch(/^[0-9a-f]{64}$/);
+  }
 });
 
 test('the Mesosaurus localities sit together in the Artinskian', async ({ page }) => {
@@ -213,6 +216,77 @@ test('the future: today\'s map is held for 10 kyr, and the Sun\'s brightness is 
   await expect(page.locator('.inspect')).toContainText('Gough');
 });
 
+test('Earth\'s states: nothing before it formed, a magma ocean after the Moon-forming impact, then oceans', async ({ page }) => {
+  const { planet } = buildFile<PlanetFile>('planet.json');
+  const middle = (id: string) => {
+    const { time } = planet!.phases.find((p) => p.subject.endsWith(`@${id}`))!;
+    return Math.round((time.start.best! + time.end.best!) / 2);
+  };
+  await page.goto(`/?b=${latestBuild()}&t=4590Ma&lat=10&lon=20&d=3.3&cl=0`);
+  await idle(page);
+  await expect(page.locator('.notice')).toContainText('Before Earth: it began to form');
+  await expect(page.locator('.planet-phase')).toContainText('not formed yet');
+  expect(Math.max(...(await canvasPatch(page, 0.5, 0.5)))).toBeLessThan(30);
+  // The magma ocean, seen without its steam: molten rock glows red.
+  await page.evaluate((t) => window.__lightworld!.set({ t }), middle('magma-ocean'));
+  await idle(page);
+  await expect(page.locator('.planet-phase')).toContainText('Magma ocean under steam');
+  const [r, , b] = await canvasPatch(page, 0.5, 0.5, 61);
+  expect(r).toBeGreaterThan(b + 15);
+  // A click on the globe says the map is unknown, and which record says what covered it.
+  await page.mouse.click(640, 300);
+  const panel = page.locator('.inspect');
+  await expect(panel.locator('h2')).toHaveText('Geography unknown');
+  await panel.locator('.planet-state a', { hasText: 'Magma ocean under steam' }).click();
+  await idle(page);
+  await expect(panel.locator('h2')).toHaveText('Earth');
+  await expect(panel.locator('.phases')).toContainText('Proto-Earth');
+  // 2 Ga: an ocean world, its land not drawn because nothing says where it was.
+  await page.evaluate(() => window.__lightworld!.set({ t: 1950 - 2e9, sel: null }));
+  await idle(page);
+  await expect(page.locator('.planet-phase')).toContainText('Oceans');
+  const [r2, , b2] = await canvasPatch(page, 0.5, 0.5);
+  expect(b2).toBeGreaterThan(r2 + 20);
+});
+
+test('Snowball Earth: the Sturtian ice reaches the equator, unless a claim that leaves open water is picked', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}&t=690Ma&lat=0&lon=100&d=3.3&cl=0`);
+  await idle(page);
+  const ice = page.locator('.planet-ice');
+  await expect(ice).toContainText('Sturtian glaciation');
+  await expect(ice).toContainText('to the equator');
+  expect(Math.min(...(await canvasPatch(page, 0.5, 0.5)))).toBeGreaterThan(150);
+  await ice.click();
+  await idle(page);
+  const panel = page.locator('.inspect');
+  await expect(panel.locator('h2')).toHaveText('Sturtian glaciation');
+  const group = panel.locator('.claim-group', { hasText: 'Ice reached' });
+  await expect(group.locator('.badge', { hasText: 'competing claims' })).toBeVisible();
+  await group.locator('input[value="earth/events/sturtian-glaciation#ice-reach-abbot-2011"]').check();
+  await idle(page);
+  await expect(ice).toContainText('to 10°');
+  expect(await settledUrl(page)).toContain('pick=');
+  // The equator is open water now.
+  expect(Math.min(...(await canvasPatch(page, 0.5, 0.5)))).toBeLessThan(120);
+});
+
+test('the band under the track names the planet\'s states, and opens their records inside them', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}&t=2000Ma`);
+  await idle(page);
+  const box = (await page.locator('.tb-canvas').boundingBox())!;
+  const { window: win } = await page.evaluate(() => window.__lightworld!.state());
+  await page.mouse.move(box.x + xOf(1950 - 690e6, win, box.width), box.y + box.height - 6);
+  await expect(page.locator('.tb-tip')).toContainText('Sturtian glaciation: ice to the equator');
+  await page.mouse.down();
+  await page.mouse.up();
+  await idle(page);
+  await expect(page.locator('.inspect h2')).toHaveText('Sturtian glaciation');
+  // The time moved into the glaciation.
+  const { t } = await page.evaluate(() => window.__lightworld!.state());
+  expect(t).toBeGreaterThan(1950 - 717e6);
+  expect(t).toBeLessThan(1950 - 658e6);
+});
+
 test('the time control spans the Hadean to the far future, and its track opens records', async ({ page }) => {
   await page.goto(`/?b=${latestBuild()}`);
   await idle(page);
@@ -230,4 +304,107 @@ test('the time control spans the Hadean to the far future, and its track opens r
   await idle(page);
   await expect(page.locator('.inspect h2')).toHaveText(label);
   expect(await settledUrl(page)).toContain('sel=');
+});
+
+test('Rome: its territory at the time shown, drawn from its dataset, and a click opens its record', async ({ page }) => {
+  // Umbria, in view of Rome but clear of its marker.
+  await page.goto(`/?b=${latestBuild()}&t=120&lat=43.1&lon=12.4&d=1.6&cl=0`);
+  await idle(page);
+  await expect(page.locator('.territory-label', { hasText: 'Rome' })).toHaveText('Rome · Empire');
+  const [r1, g1] = await canvasPatch(page, 0.5, 0.5, 15);
+  // A click on the land opens the state's record, and says which of the dataset's rows is drawn there.
+  const box = (await page.locator('canvas.globe').boundingBox())!;
+  await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+  await idle(page);
+  const panel = page.locator('.inspect');
+  await expect(panel.locator('h2')).toHaveText('Rome');
+  await expect(panel.locator('.here')).toContainText('117 CE – 126 CE: the row named “Roman Empire”');
+  await expect(panel.locator('.phases')).toContainText('Republic');
+  // Before the founding there is no territory to tint the land.
+  await page.evaluate(() => window.__lightworld!.set({ t: -900, sel: null }));
+  await idle(page);
+  await expect(page.locator('.territory-labels')).toBeHidden();
+  const [r0, g0] = await canvasPatch(page, 0.5, 0.5, 15);
+  expect(r1 - g1).toBeGreaterThan(r0 - g0 + 10);
+  // Two courts in 420, and nothing left of either after Constantinople fell.
+  await page.evaluate(() => window.__lightworld!.set({ t: 420 }));
+  await idle(page);
+  await expect(page.locator('.territory-label', { hasText: 'Western Roman Empire' })).toBeVisible();
+  await page.evaluate(() => window.__lightworld!.set({ t: 1460 }));
+  await idle(page);
+  await expect(page.locator('.territory-labels')).toBeHidden();
+});
+
+test('the time control zooms to a few years, reads the day, and keeps it in the link', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}&t=-42.7986&w=-45.5~-41.5&lat=41.9&lon=12.5&d=2`);
+  await idle(page);
+  await expect(page.locator('.tb-readout strong')).toHaveText('15 March 44 BCE');
+  expect(await settledUrl(page)).toContain('t=-42.799');
+  // The Ides of March, on its day.
+  const ides = page.locator('.marker[data-entity="people/events/assassination-of-julius-caesar"]');
+  await expect(ides).toBeVisible();
+  await ides.locator('.dot').click();
+  await idle(page);
+  await expect(page.locator('.inspect .when')).toContainText('15 March 44 BCE');
+  // Zooming in stops at a few years.
+  await page.locator('.tb-canvas').hover({ position: { x: 600, y: 50 } });
+  for (let i = 0; i < 6; i++) await page.mouse.wheel(0, -800);
+  await idle(page);
+  const { window: win } = await page.evaluate(() => window.__lightworld!.state());
+  expect(win[1] - win[0]).toBeGreaterThan(3.9);
+  expect(win[1] - win[0]).toBeLessThan(4.1);
+});
+
+test('the whole strip gives recent history room: years to the pixel, and its moments apart', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}`);
+  await idle(page);
+  const box = (await page.locator('.tb-canvas').boundingBox())!;
+  const { window: win } = await page.evaluate(() => window.__lightworld!.state());
+  // Scrubbing to Rome reads a year, and lands within a few years of it.
+  await page.mouse.click(box.x + xOf(120, win, box.width), box.y + 60);
+  await idle(page);
+  await expect(page.locator('.tb-readout strong')).toHaveText(/^\d+ CE$/);
+  const { t } = await page.evaluate(() => window.__lightworld!.state());
+  expect(Math.abs(t - 120)).toBeLessThan(10);
+  // The track tells Actium from the fall of Constantinople, without zooming.
+  const tip = page.locator('.tb-tip');
+  await page.mouse.move(box.x + xOf(-30, win, box.width), box.y + box.height - 12);
+  await expect(tip).toContainText('Actium');
+  await page.mouse.move(box.x + xOf(1453.4, win, box.width), box.y + box.height - 12);
+  await expect(tip).toContainText('Constantinople');
+  // A moment 315 kyr old is far from today now.
+  await page.evaluate(() => window.__lightworld!.set({ t: 1950 }));
+  await idle(page);
+  await expect(page.locator('.marker[data-entity="life/occurrences/homo-sapiens-jebel-irhoud"]')).toHaveCount(0);
+});
+
+test('a city is labelled by the name it had at the time shown', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}&t=300&lat=41&lon=29&d=2&w=-800~2000`);
+  await idle(page);
+  const city = page.locator('.marker[data-entity="places/constantinople"] .label');
+  await expect(city).toHaveText('Byzantium');
+  await page.evaluate(() => window.__lightworld!.set({ t: 400 }));
+  await idle(page);
+  await expect(city).toHaveText('Constantinople');
+  await page.evaluate(() => window.__lightworld!.set({ t: 1950 }));
+  await idle(page);
+  await expect(city).toHaveText('Istanbul');
+});
+
+test('opening a record of the last few thousand years fits the time control to it, and flies to a polity\'s land', async ({ page }) => {
+  await page.goto(`/?b=${latestBuild()}`);
+  await idle(page);
+  await page.fill('.search input', 'Western Roman');
+  await page.keyboard.press('Enter');
+  await idle(page);
+  const s = await page.evaluate(() => window.__lightworld!.state());
+  expect(s.sel).toBe('people/polities/western-roman-empire');
+  expect(s.window[1] - s.window[0]).toBeLessThan(500);
+  // Its start: the death of Theodosius, 17 January 395.
+  expect(s.t).toBeGreaterThan(395);
+  expect(s.t).toBeLessThan(395.1);
+  expect(s.cam.lat).toBeGreaterThan(30);
+  expect(s.cam.lat).toBeLessThan(50);
+  expect(s.cam.lon).toBeGreaterThan(-10);
+  expect(s.cam.lon).toBeLessThan(25);
 });

@@ -1,0 +1,45 @@
+id: places/rome
+kind: settlement
+summary: >-
+  The city of Rome on the Tiber, from its first settlement. Human activity on the site is found
+  in place by the late second millennium BCE, on the hills and by the river; the founding by
+  Romulus that the Romans dated to 753 BCE belongs to the legend, and starts the Roman state
+  (people/polities/rome), not the settlement.
+author: machine:claude-code
+same_as: { wikidata: Q220, pleiades: 423025 }
+claims:
+  name:
+    prop: name
+    value: { en: Rome }
+    source: { ref: src:pleiades-rome, loc: names }
+    note: Pleiades gives Rome as the modern English name; the Latin is Roma.
+  start:
+    prop: start
+    value: { hi: 1001 BCE }
+    source:
+      ref: src:brock-terrenato-2016-forum-boarium
+      loc: abstract, p. 654
+      quote: in situ deposits of anthropic activity, which date to the late second millennium BC
+    method: radiometric/radiocarbon
+    note: >-
+      Archaeology, not the legend. Cores below the church of Sant'Omobono, in the Forum Boarium
+      by the Tiber, found deposits of human activity in place dated to the late second
+      millennium BC; the abstract adds that early settlement was not restricted to the summits
+      or slopes of the Palatine and Capitoline, and that earlier finds came mostly from
+      secondary deposits. Settlement had therefore begun by the end of the second millennium,
+      1001 BCE at the latest; when it began is left open. Only the abstract could be read, so
+      the dates behind "late second millennium" were not seen.
+  location:
+    prop: location
+    value: { lat: 41.889977, lon: 12.491258, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-rome, loc: representative point }
+    method: gazetteer
+    note: >-
+      Pleiades' representative point for Roma, in the centre of the ancient city near the
+      Colosseum; the record has no located points of its own.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

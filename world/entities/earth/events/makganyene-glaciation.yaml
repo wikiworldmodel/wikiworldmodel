@@ -1,0 +1,110 @@
+id: earth/events/makganyene-glaciation
+kind: event/glaciation
+summary: >-
+  An early Paleoproterozoic glaciation, recorded by glaciomarine diamictites in South Africa
+  that were laid down about 11° from the equator, and taken to be the oldest Snowball Earth.
+  It ended about 2,426 million years ago, as the Ongeluk lavas erupted over its last deposits.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Makganyene glaciation }
+    source:
+      ref: src:gumsley-2017-goe-timing
+      loc: Discussion, Comparing the Paleoproterozoic with the Neoproterozoic
+      quote: methane was probably a more important greenhouse gas before the Makganyene glaciation
+  start-gumsley-2017:
+    prop: start
+    value: { lo: 2460 Ma, hi: 2426 Ma }
+    source:
+      ref: src:gumsley-2017-goe-timing
+      loc: abstract
+      quote: the first Paleoproterozoic global glaciation and the onset of the GOE occurred between ca. 2,460 and 2,426 Ma
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The bracket of the first Paleoproterozoic global glaciation, whose deposits Gumsley et
+      al. correlate across cratons with the Makganyene diamictites: 2,460 Ma is the age of
+      volcanic rocks near the base of the Huronian Supergroup in Canada, and 2,426 Ma the age
+      of the Ongeluk lavas over the diamictites. They also suggest that the 2,442 ± 2 Ma
+      Seidorechka and overlying 2,435 ± 2 Ma Polisarka formations of Fennoscandia, the latter
+      with correlative glacial deposits, may bracket the glaciation more tightly, to under 7
+      Myr.
+  start-kopp-2005:
+    prop: start
+    value: { lo: 2.3 Ga, hi: 2.2 Ga }
+    source:
+      ref: src:kopp-2005-paleoproterozoic-snowball
+      loc: abstract
+      quote: the ≈2.3–2.2 Ga Makganyene “snowball Earth” (global glaciation)
+    method: expert-estimate
+    rank: deprecated
+    note: >-
+      The dating before 2017, when the Ongeluk lavas over the diamictites were thought to be
+      about 2.2 Gyr old: Evans et al. (1997) call them ∼2.2 billion years old, and Gumsley et
+      al. (2017) note the long-accepted 2,222 ± 13 Ma whole-rock Pb–Pb age before redating
+      the lavas to 2,426 ± 3 Ma.
+  end-gumsley-2017:
+    prop: end
+    value: { mean: 2425.5 Ma, sd: 1.3 Myr }
+    source:
+      - ref: src:gumsley-2017-goe-timing
+        loc: Discussion, The Ongeluk LIP
+        quote: we calculate a weighted mean date of 2,425.5 ± 2.6 Ma (Fig. 2) as the age of a single relatively short-lived magmatic event
+      - ref: src:warke-2020-goe-snowball
+        loc: Conclusions
+        quote: the ca. 2,428- to 2,423-Ma snowball Earth glaciation
+    method: radiometric/u-pb
+    rank: preferred
+    note: >-
+      The weighted mean of U–Pb baddeleyite ages for the Ongeluk large igneous province, whose
+      lavas conformably overlie and interfinger with the uppermost Makganyene diamictites, so
+      it dates the last glacial deposits; Gumsley et al. take the lavas' CO2 to have helped
+      end the glaciation. The paper quotes all ages at 2σ, so sd = 1.3 Myr. Warke et al.
+      (2020) date the glaciation by the same age.
+  end-kopp-2005:
+    prop: end
+    value: { lo: 2.3 Ga, hi: 2.2 Ga }
+    source:
+      ref: src:kopp-2005-paleoproterozoic-snowball
+      loc: abstract
+      quote: the ≈2.3–2.2 Ga Makganyene “snowball Earth” (global glaciation)
+    method: expert-estimate
+    rank: deprecated
+    note: The dating before 2017, superseded as for the start.
+  ice-reach-paleolatitude:
+    prop: ice_reach
+    value: 11
+    source:
+      - ref: src:evans-1997-low-latitude-glaciation
+        loc: abstract
+        quote: Here we report a palaeomagnetic estimate of 11 ± 5° depositional latitude for the lavas, and hence for the underlying contemporaneous glacial rocks
+      - ref: src:gumsley-2017-goe-timing
+        loc: abstract
+        quote: positions the Kaapvaal Craton at equatorial latitudes of 11° ± 6° at this time
+    method: paleomagnetic
+    basis: reconstruction
+    note: >-
+      The paleolatitude of the Ongeluk lavas, from their remanent magnetization, and so of
+      the glaciomarine diamictites beneath and among them: ice reached the sea about 11° from
+      the equator. This is how far the ice is known to have reached, not a measure of its
+      limit, so picking it shows the least the evidence requires. Neither abstract gives the
+      confidence level of the ±.
+  ice-reach-snowball:
+    prop: ice_reach
+    value: 0
+    source:
+      - ref: src:gumsley-2017-goe-timing
+        loc: Transvaal Supergroup
+        quote: indicate that these glacial sedimentary rocks were deposited at low latitude, implying a glacial event of global extent
+      - ref: src:kopp-2005-paleoproterozoic-snowball
+        loc: abstract
+        quote: Makganyene “snowball Earth” (global glaciation)
+    method: expert-estimate
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      The reading of the glaciation as a Snowball Earth, with ice to the equator, inferred
+      from the low paleolatitude of its deposits rather than observed; preferred because both
+      sources that date or describe it read it so. Warke et al. (2020) are more cautious: the
+      deposits suggest it may have been one.

@@ -10,6 +10,8 @@ export interface SourceRecord {
   citation: string;
   authors?: string[];
   published?: number;
+  /** when a text from before printing was written, as text */
+  written?: string;
   snapshot?: string;
   title?: string;
   container?: string;
@@ -106,7 +108,8 @@ export interface EntityRecord {
   basis: FeatureBasis;
   frame?: { id: string; title: string; plate?: number; entity?: string; entityLabel?: string };
   same_as?: Record<string, string | number>;
-  phases: { id: string; label: string; gap?: boolean; time: FeatureTime }[];
+  /** each phase's interval in the default picture, and under the scenarios that move it */
+  phases: { id: string; label: string; gap?: boolean; time: FeatureTime; variants?: Record<string, FeatureTime> }[];
   time: FeatureTime;
   claims: ClaimRecord[];
   relations: RelationRecord[];

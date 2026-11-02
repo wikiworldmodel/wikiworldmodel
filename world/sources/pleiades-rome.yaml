@@ -1,0 +1,20 @@
+id: src:pleiades-rome
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 423025, "Roma" (Italy).
+snapshot: 2026-10-30
+container: Pleiades
+url: https://pleiades.stoa.org/places/423025
+license: CC-BY-3.0
+reliability: >-
+  A scholarly gazetteer of ancient places. This record has no located points of its own in the
+  snapshot read; its representative point lies in the centre of the ancient city, near the
+  Colosseum.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/423025/json) read directly: representative point
+    41.889977°N, 12.491258°E; no locations listed; names include Roma (Latin) and Rome
+    (English, modern); its own Wikidata reference is Q18287233 (the ancient city), while
+    Wikidata's Q220 (Rome) gives this Pleiades id too.

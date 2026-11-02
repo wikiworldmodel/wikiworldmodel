@@ -1,25 +1,29 @@
 // The Lightworld viewer: fly around the globe and through time, click anything to see what
 // it is and how we know. Everything shown comes from one build of the world.
 import './style.css';
+import { lookAt, spanOf, valueOf, type Look } from '../../core/planet.ts';
 import { conj, mul, type Quat } from '../../core/quat.ts';
 import type { EntityRecord } from '../../core/records.ts';
 import { splitRef } from '../../core/refs.ts';
 import { lookup, type Scenario } from '../../core/scenario.ts';
+import type { TerritoryFile } from '../../core/territory.ts';
 import type { Feature, FeatureTime, FieldInfo, GeneratorConstraint } from '../../core/tileset.ts';
-import { formatTime, fromMa, PRESENT_YEAR, toMa } from '../../core/time.ts';
+import { formatTime, fromMa, historical, PRESENT_YEAR, toMa } from '../../core/time.ts';
 import { GENERATOR as CLOUDS, generateClouds, type CloudParams } from '../../world/generators/earth/clouds/v1.ts';
+import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../world/generators/earth/surface/v1.ts';
 import { Camera, MAX_DIST, MIN_DIST } from './camera.ts';
-import { fetchLog, latestBuild, loadBuild, loadRecord, type Build } from './data.ts';
+import { fetchLog, getJSON, latestBuild, loadBuild, loadRecord, type Build } from './data.ts';
 import { FieldRenderer, type FieldTileGPU } from './gl/field.ts';
-import { GlobeRenderer } from './gl/globe.ts';
+import { globeLook, GlobeRenderer } from './gl/globe.ts';
 import { add, cross, norm, scale, type V3 } from './mat.ts';
 import { buildOf, fromSearch, quantize, toSearch, type ViewState } from './state.ts';
 import { TileManager, type LoadedTile } from './tiles.ts';
-import { InspectPanel } from './ui/inspect.ts';
+import { InspectPanel, type PlanetStateInfo, type TerritoryHere } from './ui/inspect.ts';
 import { Markers, timeFor, visibility } from './ui/markers.ts';
 import { PlanetPanel, valueAt } from './ui/planet.ts';
 import { Search } from './ui/search.ts';
-import { Timebar } from './ui/timebar.ts';
+import { TERRITORY_COLORS, TerritoryLayer } from './ui/territory.ts';
+import { clampWindow, fitWindow, Timebar, xOf, type StateBand } from './ui/timebar.ts';
 import { Toolbar } from './ui/toolbar.ts';
 
 declare global {
@@ -36,10 +40,24 @@ export interface LightworldHandle {
   url(): string;
   requests: string[];
   clouds: { expected: string; actual: string | null };
+  surface: { expected: string; actual: string | null };
   set(s: Partial<ViewState>): void;
 }
 
 const ROOT = new URL('./', location.href).href;
+
+/** Time-control colours for the planet's states, by atmosphere or else by surface. */
+const STATE_COLORS: Record<string, string> = {
+  'rock-vapour': '#ffc061',
+  steam: '#c9ced8',
+  magma: '#e2572b',
+  'crust-and-magma': '#8a3a1a',
+  ocean: '#2f6fa3',
+  'bare-rock': '#9b7d5b',
+};
+
+/** How far ice reached, in words: "the equator", or a latitude. */
+const reachText = (deg: number) => (deg <= 0 ? 'the equator' : `${deg}°`);
 
 async function sha256Hex(data: Uint8Array): Promise<string> {
   const d = await crypto.subtle.digest('SHA-256', data as unknown as ArrayBuffer);
@@ -94,6 +112,24 @@ async function start(root: HTMLElement): Promise<void> {
   let cloudSpec: GeneratorConstraint | null = null;
   const clouds = { expected: '', actual: null as string | null };
   let cloudsReady = false;
+  let surfaceSpec: GeneratorConstraint | null = null;
+  const surface = { expected: '', actual: null as string | null };
+  let surfaceReady = false;
+  const earth = build.planet.planet;
+
+  // Territory loads behind the first globe: it is only drawn for the times it covers.
+  const territory = new TerritoryLayer();
+  stage.appendChild(territory.el);
+  let territoryReady = !ts.files.territory;
+  if (ts.files.territory) {
+    void getJSON<TerritoryFile>(build.base + ts.files.territory).then((f) => {
+      territory.setFile(f);
+      territoryReady = true;
+      dirty = true;
+    });
+  }
+  /** Where the last click inside a territory fell, for the record it opened. */
+  let here: { entity: string; source: string; info: Omit<TerritoryHere, 'source'> } | null = null;
 
   const markers = new Markers();
   stage.appendChild(markers.el);
@@ -135,14 +171,22 @@ async function start(root: HTMLElement): Promise<void> {
     onWindow: (w) => setState({ window: w }),
     onPlay: () => togglePlay(),
     onRecord: (id) => goTo(id),
+    // Open a state's record, moving into the state if the time shown is outside it.
+    onState: (b) => {
+      const end = Number.isFinite(b.end) ? b.end : dataRange[1];
+      const t = state.t >= b.start && state.t < b.end ? state.t : (Math.max(b.start, dataRange[0]) + Math.min(end, dataRange[1])) / 2;
+      setState({ sel: b.id, t });
+    },
   });
   timebar.setKeyframes([...new Set(ts.fields.flatMap((f) => f.keyframesMa))].map(fromMa));
   timebar.setRecords(build.search.entities.filter((e) => e.kind !== 'plate'));
   timebar.setScenario(scenario());
+  timebar.setStates(stateBands(scenario()));
   root.appendChild(timebar.el);
 
-  const planet = new PlanetPanel(build.series.series);
+  const planet = new PlanetPanel(build.series.series, earth?.label);
   planet.onOpen = (id) => showSeries(id);
+  planet.onRecord = (id) => setState({ sel: id });
   stage.appendChild(planet.el);
   const notice = document.createElement('div');
   notice.className = 'notice';
@@ -162,7 +206,10 @@ async function start(root: HTMLElement): Promise<void> {
     const selChanged = next.sel !== state.sel;
     const altsChanged = JSON.stringify([next.alt, next.picks]) !== JSON.stringify([state.alt, state.picks]);
     state = next;
-    if (altsChanged) timebar.setScenario(scenario());
+    if (altsChanged) {
+      timebar.setScenario(scenario());
+      timebar.setStates(stateBands(scenario()));
+    }
     dirty = true;
     clearTimeout(urlTimer);
     urlTimer = window.setTimeout(() => history.replaceState(null, '', toSearch(build.id, state)), 120);
@@ -180,7 +227,8 @@ async function start(root: HTMLElement): Promise<void> {
     if (state.sel !== id) return;
     const f = features.get(id);
     shownRecord = id;
-    inspect.showEntity(r, scenario(), f ? timeFor(f, scenario()) : recordTime(r, scenario()));
+    const inside = here?.entity === id ? { ...here.info, source: r.sources[here.source] } : undefined;
+    inspect.showEntity(r, scenario(), f ? timeFor(f, scenario()) : recordTime(r, scenario()), inside);
   }
 
   /** An entity's interval in a scenario, from its record (for entities with no marker). */
@@ -205,6 +253,10 @@ async function start(root: HTMLElement): Promise<void> {
       cloudSpec = t.header.generators.find((g) => g.generator === CLOUDS) ?? null;
       if (cloudSpec) void makeClouds(cloudSpec);
     }
+    if (!surfaceSpec && t.header.generators.length) {
+      surfaceSpec = t.header.generators.find((g) => g.generator === SURFACE) ?? null;
+      if (surfaceSpec) void makeSurface(surfaceSpec);
+    }
     if (state.sel && !shownRecord) void showSelection();
     dirty = true;
   };
@@ -225,6 +277,33 @@ async function start(root: HTMLElement): Promise<void> {
     dirty = true;
   }
 
+  async function makeSurface(spec: GeneratorConstraint): Promise<void> {
+    const p = spec.params as unknown as SurfaceParams;
+    const rgba = generateSurface(spec.seed, p);
+    globe.setPattern(p.width, p.height, rgba);
+    surface.expected = spec.outputSha256;
+    surface.actual = await sha256Hex(rgba);
+    if (surface.actual !== surface.expected) console.error(`surface generator output differs from the build's: ${surface.actual} vs ${surface.expected}`);
+    surfaceReady = true;
+    dirty = true;
+  }
+
+  /** The planet's phases and episodes along the time control, each coloured by how it looks. */
+  function stateBands(s: Scenario): StateBand[] {
+    const out: StateBand[] = [];
+    for (const ph of earth?.phases ?? []) {
+      const [start, end] = spanOf(ph, s);
+      const look = String(valueOf(ph, 'atmosphere', s) ?? valueOf(ph, 'surface', s) ?? '');
+      out.push({ id: earth!.id, label: `${earth!.label}: ${ph.label}`, start, end, color: STATE_COLORS[look] ?? '#5b6b85', over: false });
+    }
+    for (const ep of build.planet.episodes) {
+      const [start, end] = spanOf(ep, s);
+      const reach = valueOf(ep, 'ice_reach', s);
+      if (typeof reach === 'number') out.push({ id: ep.subject, label: `${ep.label}: ice to ${reachText(reach)}`, start, end, color: '#eef4fa', over: true });
+    }
+    return out;
+  }
+
   // Rotations: totals per keyframe are cached; deltas move each keyframe to the current time.
   const plateIds = build.frames.plateIndex;
   const keyTotals = new Map<number, Quat[]>();
@@ -243,6 +322,7 @@ async function start(root: HTMLElement): Promise<void> {
   };
 
   let cubeKey = '';
+  let frameLook: Look = lookAt(build.planet, state.t, scenario());
   let frameMix = 0;
   let frameKeys: [number, number] = [0, 0];
   let frameField: FieldInfo | undefined;
@@ -278,7 +358,9 @@ async function start(root: HTMLElement): Promise<void> {
     } else cubeKey = `${state.t}|none`;
     frameMix = mix;
     frameField = fi;
-    const why = fi ? '' : unknownWhy(state.t);
+    const look = lookAt(build.planet, state.t, scenario());
+    frameLook = look;
+    const why = !look.formed ? beforeWhy() : fi ? '' : unknownWhy(state.t);
     if (notice.textContent !== why) notice.textContent = why;
     notice.hidden = !why;
 
@@ -288,6 +370,8 @@ async function start(root: HTMLElement): Promise<void> {
     const right = norm(cross(fwd, [0, 0, 1]));
     const up = cross(right, fwd);
     const sun = norm(add(add(scale(norm(eye), 0.75), scale(right, -0.45)), scale(up, 0.5))) as V3;
+    if (territory.update(state.t, scenario())) globe.setTerritory(territory.canvas);
+    const showTerritory = territory.shown && !!fi && look.formed;
     globe.render(
       {
         viewProj: camera.viewProj,
@@ -298,7 +382,9 @@ async function start(root: HTMLElement): Promise<void> {
         evidence: state.evidence ? 1 : 0,
         coast: fi?.coastline?.isolineM ?? 0,
         mode: !fi ? 2 : fi.mode === 'blocks' ? 1 : 0,
+        look: globeLook(look, (surfaceSpec?.params as unknown as SurfaceParams | undefined)?.draw),
         showClouds: state.clouds && cloudsReady,
+        territory: { on: showTerritory, colors: TERRITORY_COLORS, selected: territory.channelOf(state.sel) },
       },
       w,
       h,
@@ -322,8 +408,10 @@ async function start(root: HTMLElement): Promise<void> {
       // Where no field covers the time, or the plate model does not reach, nothing is placed.
       placed: (plate) => !!fi && build.model.reaches(plate, age),
     });
+    territory.el.hidden = !showTerritory;
+    if (showTerritory) territory.place(camera, state.t, scenario(), state.sel);
     timebar.set(state.t, state.window, playing);
-    planet.update(state.t);
+    planet.update(state.t, look);
     toolbar.set({ evidence: state.evidence, clouds: state.clouds, alt: state.alt });
     document.body.classList.toggle('evidence', state.evidence);
   }
@@ -382,8 +470,18 @@ async function start(root: HTMLElement): Promise<void> {
     }
     setState({ sel: null });
     shownRecord = null;
+    here = null;
     const fi = frameField;
-    if (!fi) return inspect.showUnknown(state.t, unknownWhy(state.t));
+    if (!frameLook.formed) return inspect.hide();
+    // Inside a polity's territory: open its record, saying which row of its dataset is drawn here.
+    const inside = fi && territory.shown ? territory.pick(hit.lon, hit.lat) : undefined;
+    if (inside) {
+      const entity = splitRef(inside.at.territory.subject).record;
+      const { name, from, to, area } = inside.row;
+      here = { entity, source: inside.at.claim.source, info: { t: state.t, name, from, to, area } };
+      return setState({ sel: entity });
+    }
+    if (!fi) return inspect.showUnknown(state.t, unknownWhy(state.t), stateOf(frameLook));
     const [e0, e1, p0] = field.sample(hit.point);
     const elevation = e0 + (e1 - e0) * frameMix;
     const plate = build.frames.plateIndex[Math.round(p0)] || null;
@@ -402,7 +500,24 @@ async function start(root: HTMLElement): Promise<void> {
       fieldDescription: fi.description,
       coastline: fi.coastline?.title,
       datum: fi.datum,
+      state: stateOf(frameLook),
     });
+  }
+
+  /** The planet's phase and ice at a time, for the panels: what they are and which records say so. */
+  function stateOf(look: Look): PlanetStateInfo | undefined {
+    if (!earth || !look.phase) return undefined;
+    return {
+      planet: earth.id,
+      phase: look.phase.label,
+      ice: look.ice ? { id: look.ice.subject, label: look.ice.label, reach: reachText(look.iceReach) } : undefined,
+    };
+  }
+
+  /** Why the globe is empty: the planet's record has not started. */
+  function beforeWhy(): string {
+    const born = earth ? lookup(earth.variants, scenario(), earth.time).start.best : null;
+    return earth && born !== null ? `Before ${earth.label}: it began to form ${formatTime(born)}.` : '';
   }
 
   /** Why no geography is shown at a time: before the plate model reaches, or after the projection. */
@@ -424,29 +539,52 @@ async function start(root: HTMLElement): Promise<void> {
 
   /** How long an instant stays visible around its time: a dozen pixels of the time control. */
   function halo(t: number): number {
-    return Math.max(timebar.yearsPerPixels(t, 12), 2e4);
+    return Math.max(timebar.yearsPerPixels(t, 12), 1e-3);
   }
 
-  markers.onSelect = (id) => setState({ sel: id });
+  markers.onSelect = (id) => {
+    here = null;
+    setState({ sel: id });
+  };
   toolbar.onChange = (s) => setState(s);
   search.onChoose = (h) => {
     if (h.type === 'period') {
-      const pad = (h.end - h.start) * 0.06;
-      setState({ window: [Math.max(limits[0], h.start - pad), Math.min(limits[1], h.end + pad)], t: Math.max(dataRange[0], Math.min(dataRange[1], (h.start + h.end) / 2)) });
+      setState({ window: fitWindow(h.start, h.end, limits), t: Math.max(dataRange[0], Math.min(dataRange[1], (h.start + h.end) / 2)) });
       return;
     }
     goTo(h.id);
   };
 
+  /**
+   * A window that shows a record of the calendar's times, if it would be lost in the window
+   * shown, taking under a thirtieth of the strip: deep time is browsed by zooming.
+   */
+  function windowFor(time: FeatureTime): [number, number] | undefined {
+    const a = time.start.best;
+    if (a === null || !historical(a)) return undefined;
+    const b = time.instant ? a : Math.min(time.end.best ?? PRESENT_YEAR, PRESENT_YEAR);
+    const span = Math.max(b - a, 40);
+    if (xOf(a + span, state.window, 1) - xOf(a, state.window, 1) > 1 / 30) return undefined;
+    const pad = span * 0.15 + 5;
+    return clampWindow([a - pad, b + pad], limits);
+  }
+
   /** Open an entity, and move to its time and place if it is not in view. */
   function goTo(id: string): void {
+    here = null;
     const f = features.get(id) ?? null;
     const entry = build.search.entities.find((e) => e.id === id)!;
     const time = f ? timeFor(f, scenario()) : entry.time;
     let t = state.t;
     if (visibility(time, t, halo(t), false) < 0.5) t = time.start.best ?? t;
     t = Math.max(dataRange[0], Math.min(dataRange[1], t));
-    if (!entry.located) return setState({ t, sel: id });
+    const window = windowFor(time) ?? state.window;
+    if (!entry.located) {
+      // A polity is where its land was drawn then.
+      const c = territory.centre(id, t, scenario());
+      const cam = c ? { lat: c[1], lon: c[0], dist: Math.min(state.cam.dist, 2.6) } : state.cam;
+      return setState({ t, sel: id, window, cam });
+    }
     const ageAt = toMa(t);
     const loc = f?.location;
     let cam = state.cam;
@@ -458,7 +596,7 @@ async function start(root: HTMLElement): Promise<void> {
       const p = add(v, scale(add(scale(c, q[0]), cross(u, c)), 2));
       cam = { lat: (Math.asin(Math.max(-1, Math.min(1, p[2]))) * 180) / Math.PI, lon: (Math.atan2(p[1], p[0]) * 180) / Math.PI, dist: Math.min(state.cam.dist, 2.4) };
     }
-    setState({ t, cam, sel: id });
+    setState({ t, cam, sel: id, window });
   }
 
   window.addEventListener('keydown', (e) => {
@@ -482,11 +620,12 @@ async function start(root: HTMLElement): Promise<void> {
   history.replaceState(null, '', toSearch(build.id, state));
   window.__lightworld = {
     build: build.id,
-    idle: () => !tiles.busy && !dirty && cloudsReady && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel),
+    idle: () => !tiles.busy && !dirty && cloudsReady && surfaceReady && territoryReady && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel),
     state: () => state,
     url: () => toSearch(build.id, state),
     requests: fetchLog,
     clouds,
+    surface,
     set: (s) => setState(s),
   };
   if (state.sel) void showSelection();

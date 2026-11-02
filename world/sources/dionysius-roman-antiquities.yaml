@@ -1,0 +1,24 @@
+id: src:dionysius-roman-antiquities
+type: text
+kind: historian
+citation: >-
+  Dionysius of Halicarnassus, Roman Antiquities, translated by E. Cary (Loeb Classical
+  Library): vol. 1 (1937), books 1–2; vol. 3 (1940).
+published: 1937
+written: { lo: 30 BCE, hi: 7 BCE }
+title: Roman Antiquities
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Dionysius_of_Halicarnassus/home.html
+via: LacusCurtius, which reproduces Cary's public-domain translation.
+reliability: >-
+  A Greek rhetorician and historian at Rome under Augustus. For the founding he sets the
+  reckonings of earlier writers side by side, Greek (Timaeus, Polybius) and Roman (Fabius
+  Pictor, Cincius Alimentus, Cato), whose works are lost, and argues for his own, which puts
+  the founding and the first consuls a year or two later than Varro's era. All of these were
+  reckoned centuries after the events.
+verified:
+  by: machine:claude-code
+  how: >-
+    Book 1, 1.74–75 (vol. 1, pp. 245–251), and book 5, 5.1 (vol. 3, p. 3), read in Cary's
+    translation on LacusCurtius, with Cary's notes converting the Olympiad years (813, 728,
+    747, 751 and 750 B.C.; 507 B.C. for the first consuls). LacusCurtius marks both pages as
+    not yet proofread. Fetched over plain HTTP; the site's TLS handshake failed from here.

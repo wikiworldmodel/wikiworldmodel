@@ -1,0 +1,20 @@
+id: src:plutarch-romulus
+type: text
+kind: historian
+citation: >-
+  Plutarch, Life of Romulus. In Plutarch's Lives, vol. 1, translated by B. Perrin (Loeb
+  Classical Library, 1914).
+published: 1914
+written: { lo: 96 CE, hi: 120 CE }
+title: Romulus
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Plutarch/Lives/Romulus*.html
+via: LacusCurtius, which reproduces Perrin's public-domain translation.
+reliability: >-
+  A Greek biographer writing some eight centuries after the events he tells, from Greek and
+  Roman writers, Varro among them. For the founding he reports the tradition and the
+  antiquarians' reckonings, not evidence of the time.
+verified:
+  by: machine:claude-code
+  how: >-
+    Chapter 12.1–6 read in Perrin's translation on LacusCurtius (marked there as proofread),
+    Loeb vol. 1, p. 121. Fetched over plain HTTP; the site's TLS handshake failed from here.

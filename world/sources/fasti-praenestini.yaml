@@ -1,0 +1,22 @@
+id: src:fasti-praenestini
+type: inscription
+kind: eyewitness
+citation: >-
+  Fasti Praenestini, the annotated marble calendar set up in the forum of Praeneste under
+  Augustus, CIL I² p. 231; entry for 16 January.
+written: { lo: 27 BCE, hi: 14 CE }
+title: Fasti Praenestini
+via: src:neumann-1896-re-augustus
+reliability: >-
+  An official calendar of the time, inscribed in Augustus' reign and annotated by the
+  grammarian Verrius Flaccus, marking the anniversaries of the emperor's honours; the fragment
+  for this day is broken and its words are partly restored by the editors.
+verified:
+  by: machine:claude-code
+  how: >-
+    The inscription itself was not seen. Its entry is read as quoted, with the editors'
+    restorations in brackets and assigned to 16 January, in Neumann's RE article (1896, col.
+    2370) on German Wikisource; the calendar's setting and its annotation by Verrius Flaccus
+    from J. Grout's Encyclopaedia Romana page on it, which suggests it was dedicated about AD
+    8. No online text of CIL I² p. 231 could be reached from here (EAGLE and EDCS did not
+    respond).

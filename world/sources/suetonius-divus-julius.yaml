@@ -1,0 +1,19 @@
+id: src:suetonius-divus-julius
+type: text
+kind: historian
+citation: >-
+  Suetonius, The Lives of the Caesars, book 1, The Deified Julius. In Suetonius, vol. 1,
+  translated by J. C. Rolfe (Loeb Classical Library, 1913).
+published: 1913
+written: { lo: 119 CE, hi: 122 CE }
+title: Divus Julius
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Suetonius/12Caesars/Julius*.html
+via: LacusCurtius, which reproduces Rolfe's public-domain translation (its date for the volume is used here).
+reliability: >-
+  An imperial secretary and biographer writing about 165 years after the murder, from earlier
+  writers and archives. The day he gives is the one the contemporary letters of Cicero use.
+verified:
+  by: machine:claude-code
+  how: >-
+    Chapters 80–82 and 88 read in Rolfe's translation on LacusCurtius (marked there as
+    proofread). Fetched over plain HTTP; the site's TLS handshake failed from here.

@@ -1,0 +1,23 @@
+id: src:jerome-chronicle
+type: text
+kind: historian
+citation: >-
+  Jerome, Chronicle (Jerome's Latin version and continuation of the Chronicle of Eusebius of
+  Caesarea), Latin text following R. Helm's edition (1956), with an English translation by R.
+  Pearse and others (2005), on tertullian.org.
+published: 2005
+written: { lo: 380 CE, hi: 381 CE }
+title: Chronicon
+url: https://www.tertullian.org/fathers/jerome_chronicle_05_latin_part1.htm
+via: tertullian.org (Early Church Fathers, additional texts); the translation is placed in the public domain there.
+reliability: >-
+  A chronological table of the world's kingdoms, composed by Jerome around 380 from Eusebius'
+  Chronicle of about 311, which drew on Hellenistic chronographers. Its dates for the founding
+  of Greek colonies in the seventh century BCE were reckoned many centuries later, and some
+  disagree with Herodotus.
+verified:
+  by: machine:claude-code
+  how: >-
+    The table rows for the 23rd to 30th Olympiads read in the Latin and English pages of the
+    online edition, which mark each Olympiad and give a BC year for each row (column "BC/AD");
+    the dates of composition from its preface.

@@ -1,0 +1,41 @@
+id: people/events/fall-of-constantinople
+kind: event/conquest
+summary: >-
+  The capture of Constantinople by the Ottoman sultan Mehmed II on Tuesday 29 May 1453, after a
+  siege begun in April, in which the last emperor, Constantine XI, died: the end of the Roman
+  state ruled from the city.
+author: machine:claude-code
+same_as: { wikidata: Q160077 }
+claims:
+  name:
+    prop: name
+    value: { en: Fall of Constantinople }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: 29 May 1453 CE
+    source:
+      ref: src:barbaro-1453-diary
+      loc: "29 May, p. 59 (ed. Cornet 1856)"
+      quote: questo fo el fenimento de la prexa de Costantinopoli, che fo del mile e quatrocento e cinquantatre, adì vinti nuove del mexe de maxo, e fo de marti
+    method: documentary
+    note: >-
+      In English: this was the end of the taking of Constantinople, which was in 1453, on the
+      29th of the month of May, and it was a Tuesday. Barbaro's entry for the day has the
+      general assault begin three hours before daybreak and the fighting last from dawn to
+      nones, after which the Turks went through the city sacking it. The date is Julian; 29 May
+      1453 (Julian) was a Tuesday.
+  location:
+    prop: location
+    value: { lat: 41.005902, lon: 28.973881, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-byzantium, loc: representative point }
+    method: editorial
+    note: >-
+      The assault was on the land walls, and the city as a whole was taken; marked at the
+      city's representative point (places/constantinople).
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-511
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

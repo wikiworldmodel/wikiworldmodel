@@ -5,6 +5,16 @@
 // The surface has three modes, after the field that covers the time shown: elevation;
 // continental blocks (inside a block or not, no relief and no sea level); and none, where no
 // geography is known and the globe is drawn plain.
+//
+// Over the mode go the planet's states at the time (core/planet.ts): a magma ocean or a
+// crust over magma, an atmosphere of rock vapour or steam, the ice of a glaciation, and,
+// where the map is unknown, the oceans or bare rock of the time. The states are claims; how
+// they look here, and the surface generator's pattern they are drawn with, is procedural.
+//
+// Over the land, polities' territory (ui/territory.ts): one polity per channel of a map
+// texture, its land tinted and its frontiers outlined. Its coasts are the field's.
+import type { Look } from '../../../core/planet.ts';
+import type { SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
 import { program, setUniforms, texture2D, type GL, type Program } from './context.ts';
 import type { Mat4 } from '../mat.ts';
 
@@ -22,6 +32,7 @@ void main() {
 const SURFACE_FS = `#version 300 es
 precision highp float;
 uniform highp samplerCube uField;
+uniform highp sampler2D uPattern;
 uniform float uMix;
 uniform vec3 uSun;
 uniform vec3 uEye;
@@ -29,6 +40,18 @@ uniform float uEvidence;
 uniform float uCoast;
 uniform float uTexel;
 uniform int uMode;
+// The planet's state: surface 0 as the mode draws it, 1 oceans, 2 magma, 3 crust over
+// magma, 4 bare rock; air 0 today's sky, 1 rock vapour.
+uniform int uSurface;
+uniform int uAir;
+uniform float uCrust;
+uniform float uIceReach;
+uniform float uIceEdge;
+uniform vec3 uRim;
+uniform highp sampler2D uTerritory;
+uniform float uTerritoryOn;
+uniform mat3 uTerritoryColors;
+uniform int uTerritorySel;
 in vec3 vN;
 out vec4 o;
 
@@ -70,21 +93,117 @@ vec3 blockRamp(float e) {
   return e < 0.0 ? vec3(0.07, 0.24, 0.40) : vec3(0.52, 0.48, 0.42);
 }
 
-// No geography known: a plain sphere with a 30° graticule.
-vec3 unknownSurface(vec3 n) {
+float graticule(vec3 n) {
   float lat = degrees(asin(clamp(n.z, -1.0, 1.0)));
   float lon = degrees(atan(n.y, n.x));
   float glat = 1.0 - smoothstep(0.0, 1.5 * fwidth(lat), abs(mod(lat + 15.0, 30.0) - 15.0));
   float glon = 1.0 - smoothstep(0.0, 1.5 * fwidth(lon), abs(mod(lon + 15.0, 30.0) - 15.0));
+  return max(glat, glon);
+}
+
+// No geography known: a plain sphere with a 30° graticule.
+vec3 unknownSurface(vec3 n) {
   float light = 0.35 + 0.75 * max(dot(n, uSun), 0.0);
-  return vec3(0.11, 0.14, 0.20) * light + vec3(0.32, 0.38, 0.50) * max(glat, glon) * 0.3;
+  return vec3(0.11, 0.14, 0.20) * light + vec3(0.32, 0.38, 0.50) * graticule(n) * 0.3;
+}
+
+// Where a direction falls on an equirectangular map, row 0 at the north pole.
+vec2 mapUv(vec3 n) {
+  float lon = atan(n.y, n.x);
+  float lat = asin(clamp(n.z, -1.0, 1.0));
+  return vec2(lon / 6.28318530718 + 0.5, 0.5 - lat / 3.14159265359);
+}
+
+// The surface generator's pattern: R when a spot crusts over, G hot and cool melt, B the
+// ice's edge, A fine texture.
+vec4 pattern(vec3 n) {
+  return textureGrad(uPattern, mapUv(n), vec2(0.0), vec2(0.0));
+}
+
+// Territory over the land: each channel's polity tinted, its frontier outlined, brighter for
+// the one selected. Nothing is drawn over the sea, so the coasts stay the field's.
+vec3 territory(vec3 c, vec3 n, float land, float diffuse) {
+  vec3 cover = textureGrad(uTerritory, mapUv(n), vec2(0.0), vec2(0.0)).rgb;
+  for (int i = 0; i < 3; i++) {
+    float v = cover[i];
+    vec3 col = uTerritoryColors[i];
+    float w = max(fwidth(v), 0.02);
+    float frontier = (1.0 - smoothstep(0.0, 1.6 * w, abs(v - 0.5))) * land;
+    c = mix(c, col * (0.3 + 0.8 * diffuse), smoothstep(0.3, 0.7, v) * land * 0.34);
+    c = mix(c, mix(col, vec3(1.0), 0.4), frontier * (i == uTerritorySel ? 1.0 : 0.7));
+  }
+  return c;
+}
+
+// Glowing rock, from dull red to yellow-white as x goes from 0 to 1.
+vec3 heat(float x) {
+  vec3 c = mix(vec3(0.22, 0.02, 0.0), vec3(0.85, 0.22, 0.02), smoothstep(0.0, 0.4, x));
+  c = mix(c, vec3(1.0, 0.62, 0.14), smoothstep(0.35, 0.75, x));
+  return mix(c, vec3(1.0, 0.93, 0.68), smoothstep(0.7, 1.0, x));
+}
+
+// Molten rock where the crust has not formed yet, dark crust where it has; the crust glows
+// a little where it is youngest, next to the melt.
+vec3 magma(vec4 p, float crust, float light) {
+  float w = max(fwidth(p.r), 0.004);
+  float solid = 1.0 - smoothstep(crust - w, crust + w, p.r);
+  float hot = clamp((p.r - crust) / 0.3, 0.0, 1.0);
+  vec3 melt = heat(clamp(0.38 + 0.42 * hot + 1.1 * (p.g - 0.5), 0.0, 1.0));
+  float young = smoothstep(crust - 0.1, crust, p.r);
+  vec3 rock = vec3(0.075, 0.062, 0.058) * (0.25 + 0.9 * light) * (0.8 + 0.4 * p.a) + vec3(0.32, 0.05, 0.0) * young * 0.55;
+  return mix(melt, rock, solid);
+}
+
+// How much of a spot is under ice: poleward of the claimed reach, its edge made ragged.
+float iceCover(vec3 n, vec4 p) {
+  if (uIceReach >= 90.0) return 0.0;
+  if (uIceReach <= 0.0) return 1.0;
+  float lat = abs(degrees(asin(clamp(n.z, -1.0, 1.0))));
+  float edge = uIceReach + clamp((p.b - 0.5) * 4.0, -1.0, 1.0) * uIceEdge;
+  float w = max(fwidth(lat), 0.08);
+  return smoothstep(edge - w, edge + w, lat);
 }
 
 void main() {
   vec3 n = normalize(vN);
+  vec3 view = normalize(uEye - n);
+  float rim = pow(1.0 - max(dot(n, view), 0.0), 3.0);
+  float hatch = step(0.62, fract((gl_FragCoord.x + gl_FragCoord.y) / 9.0));
+  vec3 magenta = vec3(0.92, 0.25, 0.75);
+  vec4 p = pattern(n);
+  // An atmosphere of rock vapour hides the surface: the planet glows like an ember.
+  if (uAir == 1) {
+    float mu = max(dot(n, view), 0.0);
+    vec3 c = heat(clamp(0.74 + 0.9 * (p.g - 0.5), 0.0, 1.0)) * (0.5 + 0.5 * pow(mu, 0.45));
+    c = mix(c, magenta, uEvidence * (0.14 + 0.26 * hatch));
+    o = vec4(c + uRim * rim * 0.45, 1.0);
+    return;
+  }
+  // Magma, or crust over magma, covers whatever the map has.
+  if (uSurface == 2 || uSurface == 3) {
+    vec3 c = magma(p, uCrust, max(dot(n, uSun), 0.0));
+    c = mix(c, vec3(0.88, 0.9, 0.93) * (0.35 + 0.75 * max(dot(n, uSun), 0.0)), iceCover(n, p));
+    c = mix(c, magenta, uEvidence * (0.14 + 0.26 * hatch));
+    o = vec4(c + uRim * rim * 0.45, 1.0);
+    return;
+  }
   if (uMode == 2) {
-    float rim0 = pow(1.0 - max(dot(n, normalize(uEye - n)), 0.0), 3.0);
-    o = vec4(unknownSurface(n) + vec3(0.25, 0.45, 0.85) * rim0 * 0.45, 1.0);
+    // No map: the plain globe, or the oceans or bare rock of the time with a faint graticule,
+    // since where the land was is not known.
+    float diffuse = max(dot(n, uSun), 0.0);
+    vec3 c = unknownSurface(n);
+    if (uSurface == 1) {
+      c = vec3(0.035, 0.15, 0.30) * (0.22 + 0.85 * diffuse);
+      c += vec3(0.55, 0.65, 0.75) * pow(max(dot(reflect(-uSun, n), view), 0.0), 60.0) * 0.35;
+      c += vec3(0.32, 0.38, 0.50) * graticule(n) * 0.12;
+    } else if (uSurface == 4) {
+      c = vec3(0.46, 0.38, 0.30) * (0.75 + 0.5 * p.a) * (0.22 + 0.85 * diffuse);
+      c += vec3(0.32, 0.38, 0.50) * graticule(n) * 0.12;
+    }
+    float ice = iceCover(n, p);
+    c = mix(c, vec3(0.80, 0.87, 0.93) * (0.86 + 0.24 * p.a) * (0.35 + 0.75 * diffuse), ice);
+    if (uSurface != 0) c = mix(c, magenta, uEvidence * (0.14 + 0.26 * hatch));
+    o = vec4(c + uRim * rim * 0.45, 1.0);
     return;
   }
   vec3 ref = abs(n.z) < 0.99 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);
@@ -97,22 +216,26 @@ void main() {
   float exaggeration = uMode == 1 ? 0.0 : e > 0.0 ? 30.0 : 8.0;  // e is relative to the coastline isoline
   vec3 grad = (t1 * ex + t2 * ey) / (2.0 * h * 6371000.0) * exaggeration;
   vec3 bump = normalize(n - grad);
-  vec3 view = normalize(uEye - n);
   float diffuse = max(dot(bump, uSun), 0.0);
   vec3 c = (uMode == 1 ? blockRamp(e) : ramp(e)) * (0.22 + 0.85 * diffuse);
   if (e < 0.0) {
     float spec = pow(max(dot(reflect(-uSun, n), view), 0.0), 60.0);
     c += vec3(0.55, 0.65, 0.75) * spec * 0.35;
   }
-  // Coastline: the sea-level isoline, about one pixel wide.
+  // Ice: sheets over the land, sea ice over the water, their pattern procedural.
   float de = max(fwidth(e), 1.0);
+  float ice = iceCover(n, p);
+  if (ice > 0.0) {
+    vec3 sheet = mix(vec3(0.80, 0.87, 0.93) * (0.86 + 0.24 * p.a), vec3(0.93, 0.95, 0.97), smoothstep(-0.5, 0.5, e / de));
+    c = mix(c, sheet * (0.35 + 0.75 * diffuse), ice);
+  }
+  // Coastline: the sea-level isoline, about one pixel wide; fainter under ice.
   float line = 1.0 - smoothstep(0.5, 1.5, abs(e) / de);
-  c = mix(c, vec3(0.93, 0.96, 0.95), line * 0.85);
-  // Evidence mode: the whole field is a reconstruction — amber hatching.
-  float hatch = step(0.62, fract((gl_FragCoord.x + gl_FragCoord.y) / 9.0));
-  c = mix(c, vec3(0.95, 0.65, 0.18), uEvidence * (0.14 + 0.26 * hatch));
-  float rim = pow(1.0 - max(dot(n, view), 0.0), 3.0);
-  c += vec3(0.25, 0.45, 0.85) * rim * 0.45;
+  if (uTerritoryOn > 0.5) c = territory(c, n, smoothstep(0.5, 1.5, e / de), diffuse);
+  c = mix(c, vec3(0.93, 0.96, 0.95), line * 0.85 * (1.0 - 0.5 * ice));
+  // Evidence mode: the whole field is a reconstruction — amber hatching; the ice is procedural.
+  c = mix(c, mix(vec3(0.95, 0.65, 0.18), magenta, ice), uEvidence * (0.14 + 0.26 * hatch));
+  c += uRim * rim * 0.45;
   o = vec4(c, 1.0);
 }`;
 
@@ -123,6 +246,9 @@ uniform vec3 uSun;
 uniform vec3 uEye;
 uniform float uEvidence;
 uniform float uOpacity;
+uniform float uBase;
+uniform vec3 uTint;
+uniform vec3 uGlow;
 in vec3 vN;
 out vec4 o;
 void main() {
@@ -132,8 +258,9 @@ void main() {
   vec2 uv = vec2(lon / 6.28318530718 + 0.5, 0.5 - lat / 3.14159265359);
   float d = textureGrad(uClouds, uv, vec2(0.0), vec2(0.0)).r;
   float light = 0.35 + 0.75 * max(dot(n, uSun), 0.0);
-  vec3 c = vec3(1.0) * light;
-  float a = d * uOpacity;
+  // Lit from above, and from below by anything glowing under the clouds.
+  vec3 c = uTint * light + uGlow * max(1.0 - light, 0.0);
+  float a = min(d * uOpacity + uBase, 1.0);
   // Evidence mode: procedural — magenta, thinned.
   c = mix(c, vec3(0.92, 0.25, 0.75), uEvidence * 0.75);
   a *= 1.0 - 0.45 * uEvidence;
@@ -153,6 +280,7 @@ const SKY_FS = `#version 300 es
 precision highp float;
 uniform mat4 uInvViewProj;
 uniform vec3 uEye;
+uniform vec3 uHalo;
 in vec2 vNdc;
 out vec4 o;
 float hash(vec3 p) {
@@ -177,7 +305,7 @@ void main() {
   c += vec3(0.9, 0.93, 1.0) * star;
   if (bq < 0.0) {
     float glow = exp(-max(r - 1.0, 0.0) * 28.0) * smoothstep(0.97, 1.0, r);
-    c += vec3(0.22, 0.42, 0.95) * glow * 0.9;
+    c += uHalo * glow * 0.9;
   }
   o = vec4(c, 1.0);
 }`;
@@ -209,6 +337,67 @@ function sphere(segLon: number, segLat: number): { pos: Float32Array; idx: Uint3
   return { pos, idx };
 }
 
+type RGB = [number, number, number];
+
+/** How the globe draws the planet's state: what the shaders are told. */
+export interface GlobeLook {
+  /** false: the planet has not formed, and only the sky is drawn */
+  formed: boolean;
+  /** 0 as the mode draws it, 1 oceans, 2 magma, 3 crust over magma, 4 bare rock */
+  surface: number;
+  /** 0 today's sky, 1 rock vapour */
+  air: number;
+  /** the share of a molten surface crusted over, 0–1 */
+  crust: number;
+  /** the lowest latitude ice reaches, in degrees; 90 is none */
+  iceReach: number;
+  iceEdge: number;
+  rim: RGB;
+  halo: RGB;
+  /** cover is density × opacity + base */
+  clouds: { opacity: number; base: number; tint: RGB; glow: RGB } | null;
+}
+
+const RIM: RGB = [0.25, 0.45, 0.85];
+const HALO: RGB = [0.22, 0.42, 0.95];
+const CLEAR_CLOUDS = { opacity: 0.78, base: 0, tint: [1, 1, 1] as RGB, glow: [0, 0, 0] as RGB };
+const NONE: RGB = [0, 0, 0];
+
+/** As the world was drawn before it had states: today's sky, clouds, no ice. */
+export const PLAIN_LOOK: GlobeLook = { formed: true, surface: 0, air: 0, crust: 0, iceReach: 90, iceEdge: 0, rim: RIM, halo: HALO, clouds: CLEAR_CLOUDS };
+
+const SURFACES: Record<string, number> = { ocean: 1, magma: 2, 'crust-and-magma': 3, 'bare-rock': 4 };
+
+/**
+ * The drawing of a state. Clouds need water: oceans or a steam atmosphere, which is all but
+ * overcast and lit from below by the magma; over a Snowball Earth they are thin. Where no
+ * atmosphere is claimed the sky is today's, except over a molten surface, drawn bare.
+ */
+export function globeLook(look: Look, draw: SurfaceParams['draw'] | undefined): GlobeLook {
+  if (!look.formed) return { ...PLAIN_LOOK, formed: false, rim: NONE, halo: NONE, clouds: null };
+  const surface = SURFACES[look.surface ?? ''] ?? 0;
+  const crustAt = draw?.crust ?? { start: 0, end: 0.96, over_magma: 0.82 };
+  const crust = surface === 3 ? crustAt.over_magma : crustAt.start + (crustAt.end - crustAt.start) * look.progress;
+  const base = { ...PLAIN_LOOK, surface, crust, iceReach: look.iceReach, iceEdge: draw?.ice_edge ?? 5 };
+  if (look.atmosphere === 'rock-vapour') return { ...base, air: 1, rim: [1.0, 0.62, 0.28], halo: [1.0, 0.55, 0.2], clouds: null };
+  if (look.atmosphere === 'steam') {
+    const glow = 1 - crust;
+    return { ...base, rim: [0.82, 0.82, 0.84], halo: [0.78, 0.8, 0.86], clouds: { opacity: 0.6, base: 0.55, tint: [0.88, 0.88, 0.9], glow: [0.55 * glow, 0.12 * glow, 0.02 * glow] } };
+  }
+  if (surface === 2 || surface === 3) return { ...base, rim: NONE, halo: NONE, clouds: null };
+  if (surface === 4) return { ...base, clouds: null };
+  if (look.iceReach <= 0) return { ...base, clouds: { ...CLEAR_CLOUDS, opacity: 0.45 } };
+  return base;
+}
+
+/** Polities' territory over the land: whether any is drawn, each channel's colour, and the one selected. */
+export interface GlobeTerritory {
+  on: boolean;
+  colors: [number, number, number][];
+  /** the channel of the polity selected, or −1 */
+  selected: number;
+}
+
 export interface GlobeFrame {
   viewProj: Mat4;
   invViewProj: Mat4;
@@ -219,7 +408,9 @@ export interface GlobeFrame {
   coast: number;
   /** 0: elevation, 1: continental blocks, 2: no geography known */
   mode: number;
+  look: GlobeLook;
   showClouds: boolean;
+  territory?: GlobeTerritory;
 }
 
 export class GlobeRenderer {
@@ -229,6 +420,8 @@ export class GlobeRenderer {
   private vao: WebGLVertexArrayObject;
   private count: number;
   private cloudTex: WebGLTexture | null = null;
+  private patternTex: WebGLTexture;
+  private territoryTex: WebGLTexture;
   private emptyVao: WebGLVertexArrayObject;
 
   constructor(private gl: GL, private fieldCube: WebGLTexture, private cubeSize: number) {
@@ -252,6 +445,17 @@ export class GlobeRenderer {
     this.count = idx.length;
     gl.bindVertexArray(null);
     this.emptyVao = gl.createVertexArray()!;
+    // Until the surface generator has run, a flat pattern: nothing is drawn from it.
+    this.patternTex = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([128, 128, 128, 128]), filter: gl.LINEAR, wrapS: gl.REPEAT });
+    this.territoryTex = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0, 0, 0, 255]), filter: gl.LINEAR, wrapS: gl.REPEAT });
+  }
+
+  /** Polities' territory: an equirectangular map, one polity per colour channel. */
+  setTerritory(map: HTMLCanvasElement): void {
+    const gl = this.gl;
+    gl.bindTexture(gl.TEXTURE_2D, this.territoryTex);
+    gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE, map);
   }
 
   setClouds(width: number, height: number, density: Uint8Array): void {
@@ -260,8 +464,16 @@ export class GlobeRenderer {
     this.cloudTex = texture2D(gl, { width, height, internal: gl.R8, format: gl.RED, type: gl.UNSIGNED_BYTE, data: density, filter: gl.LINEAR, wrapS: gl.REPEAT });
   }
 
+  /** The surface generator's pattern: RGBA over an equirectangular grid. */
+  setPattern(width: number, height: number, rgba: Uint8Array): void {
+    const gl = this.gl;
+    gl.deleteTexture(this.patternTex);
+    this.patternTex = texture2D(gl, { width, height, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: rgba, filter: gl.LINEAR, wrapS: gl.REPEAT });
+  }
+
   render(f: GlobeFrame, width: number, height: number): void {
     const gl = this.gl;
+    const look = f.look;
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     gl.viewport(0, 0, width, height);
     gl.clearColor(0, 0, 0, 1);
@@ -270,9 +482,13 @@ export class GlobeRenderer {
     gl.disable(gl.DEPTH_TEST);
     gl.disable(gl.BLEND);
     gl.useProgram(this.sky.program);
-    setUniforms(gl, this.sky, { uInvViewProj: f.invViewProj, uEye: f.eye });
+    setUniforms(gl, this.sky, { uInvViewProj: f.invViewProj, uEye: f.eye, uHalo: look.halo });
     gl.bindVertexArray(this.emptyVao);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
+    if (!look.formed) {
+      gl.bindVertexArray(null);
+      return;
+    }
 
     gl.enable(gl.DEPTH_TEST);
     gl.depthFunc(gl.LESS);
@@ -283,7 +499,13 @@ export class GlobeRenderer {
     gl.useProgram(this.surface.program);
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_CUBE_MAP, this.fieldCube);
-    setUniforms(gl, this.surface, { uField: 0 }, ['uField']);
+    gl.activeTexture(gl.TEXTURE1);
+    gl.bindTexture(gl.TEXTURE_2D, this.patternTex);
+    gl.activeTexture(gl.TEXTURE2);
+    gl.bindTexture(gl.TEXTURE_2D, this.territoryTex);
+    setUniforms(gl, this.surface, { uField: 0, uPattern: 1, uTerritory: 2 }, ['uField', 'uPattern', 'uTerritory']);
+    const ter = f.territory;
+    setUniforms(gl, this.surface, { uTerritoryOn: ter?.on ? 1 : 0, uTerritoryColors: (ter?.colors ?? [[0, 0, 0], [0, 0, 0], [0, 0, 0]]).flat(), uTerritorySel: ter?.selected ?? -1 }, ['uTerritorySel']);
     setUniforms(gl, this.surface, {
       uViewProj: f.viewProj,
       uRadius: 1,
@@ -293,11 +515,16 @@ export class GlobeRenderer {
       uEvidence: f.evidence,
       uCoast: f.coast,
       uTexel: 1.5 / this.cubeSize,
+      uCrust: look.crust,
+      uIceReach: look.iceReach,
+      uIceEdge: look.iceEdge,
+      uRim: look.rim,
     });
-    setUniforms(gl, this.surface, { uMode: f.mode }, ['uMode']);
+    setUniforms(gl, this.surface, { uMode: f.mode, uSurface: look.surface, uAir: look.air }, ['uMode', 'uSurface', 'uAir']);
     gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_INT, 0);
+    gl.activeTexture(gl.TEXTURE0);
 
-    if (f.showClouds && this.cloudTex) {
+    if (f.showClouds && this.cloudTex && look.clouds) {
       gl.enable(gl.BLEND);
       gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
       gl.depthMask(false);
@@ -305,7 +532,7 @@ export class GlobeRenderer {
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, this.cloudTex);
       setUniforms(gl, this.clouds, { uClouds: 0 }, ['uClouds']);
-      setUniforms(gl, this.clouds, { uViewProj: f.viewProj, uRadius: 1.008, uSun: f.sun, uEye: f.eye, uEvidence: f.evidence, uOpacity: 0.78 });
+      setUniforms(gl, this.clouds, { uViewProj: f.viewProj, uRadius: 1.008, uSun: f.sun, uEye: f.eye, uEvidence: f.evidence, uOpacity: look.clouds.opacity, uBase: look.clouds.base, uTint: look.clouds.tint, uGlow: look.clouds.glow });
       gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_INT, 0);
       gl.depthMask(true);
       gl.disable(gl.BLEND);

@@ -1,0 +1,21 @@
+id: src:bury-1893-roman-empire
+type: publication
+kind: review
+citation: >-
+  Bury, J.B. (1893). A History of the Roman Empire from its Foundation to the Death of Marcus
+  Aurelius (27 B.C.–180 A.D.). New York: Harper.
+authors:
+  - "Bury, J.B."
+published: 1893
+title: A History of the Roman Empire from its Foundation to the Death of Marcus Aurelius (27 B.C.–180 A.D.)
+container: New York, Harper
+url: https://archive.org/details/historyofromanem00buryuoft
+reliability: >-
+  A standard modern history; its title dates the foundation of the Empire to 27 B.C., the
+  convention that ends the Republic with the settlement of that January.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in the Internet Archive's scan of the 1893 edition (historyofromanem00buryuoft): the
+    passage on p. 10 checked against the page image, not only the OCR; title and imprint from
+    the item's metadata and OCR.

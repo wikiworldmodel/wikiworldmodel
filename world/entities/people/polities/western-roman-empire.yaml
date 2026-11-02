@@ -1,0 +1,84 @@
+id: people/polities/western-roman-empire
+kind: polity
+summary: >-
+  The western part of the Roman Empire under its own emperors, from the death of Theodosius I
+  in 395, when his sons divided the government between them, to the end of the western line:
+  the deposition of Romulus Augustulus in 476 or, counting the last western emperor recognised
+  at Constantinople, the death of Julius Nepos in 480. In law it remained part of one Roman
+  Empire.
+author: machine:claude-code
+same_as: { wikidata: Q42834 }
+claims:
+  name:
+    prop: name
+    value: { en: Western Roman Empire }
+    unsourced: >-
+      An editorial label, the modern name; contemporaries spoke of the western parts of one
+      empire.
+  start:
+    prop: start
+    value: { ref: people/events/death-of-theodosius }
+    source:
+      - ref: src:socrates-ecclesiastical-history
+        loc: "6.1"
+        quote: his two sons undertook the administration of the Roman empire. Thus Arcadius assumed the government of the East, and Honorius of the West.
+      - ref: src:bury-1923-later-roman-empire
+        loc: vol. 1, p. 16
+        quote: From A.D. 395 to A.D. 476, or rather 480, the division into two realms is practically continuous
+    method: historical-account
+    note: >-
+      Earlier emperors had shared the empire between them too, but from 395 the division
+      lasted.
+  end-marcellinus:
+    prop: end
+    value: { ref: people/events/deposition-of-romulus-augustulus }
+    source:
+      ref: src:marcellinus-comes-chronicle
+      loc: "a. 476.2 (MGH AA 11, p. 91)"
+      quote: Hesperium Romanae gentis imperium, quod septingentesimo nono urbis conditae anno primus Augustorum Octavianus Augustus tenere coepit, cum hoc Augustulo periit
+    method: historical-account
+    rank: preferred
+    note: >-
+      In English: the western empire of the Roman people, which Octavian Augustus, first of the
+      Augusti, began to hold in the 709th year from the founding of the city, perished with
+      this Augustulus. The conventional end.
+  end-bury-1923:
+    prop: end
+    value: { ref: people/events/death-of-julius-nepos }
+    source:
+      - ref: src:bury-1923-later-roman-empire
+        loc: vol. 1, p. 405
+        quote: in whose eyes Nepos was still the Augustus of the West
+      - ref: src:bury-1923-later-roman-empire
+        loc: vol. 1, p. 16
+        quote: From A.D. 395 to A.D. 476, or rather 480, the division into two realms is practically continuous
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Romulus Augustulus was never recognised by the emperor at Constantinople, for whom Nepos,
+      driven to Dalmatia in 475, remained the western emperor until his murder in 480 (Bury,
+      pp. 405–410); on that reckoning the western line ends with him.
+  territory:
+    prop: territory
+    value: { from: src:cliopatria-0.2.1, names: [Western Roman Empire] }
+    source: { ref: src:cliopatria-0.2.1, loc: rows named Western Roman Empire }
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The dataset's rows run from 395 to 475; when the polity ended, in 476 or 480, is the
+      record's own claim.
+relations:
+  part-of:
+    rel: part-of
+    to: people/polities/rome
+    source:
+      - ref: src:bury-1923-later-roman-empire
+        loc: vol. 1, p. 17
+        quote: general laws promulgated by either and transmitted for publication to the chancery of his associate were valid throughout the whole Empire
+      - ref: src:bury-1923-later-roman-empire
+        loc: vol. 1, p. 408
+        quote: There was only one Roman Empire, which sometimes was governed by two or more Augusti.
+    note: >-
+      Two courts, one empire: laws issued by either emperor in their joint names held
+      throughout it, the death of one extended the other's authority to the whole until a
+      colleague was chosen, and each named one of the year's two consuls (Bury, pp. 16–18).

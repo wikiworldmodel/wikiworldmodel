@@ -1,0 +1,21 @@
+id: src:barbaro-1453-diary
+type: text
+kind: eyewitness
+citation: >-
+  Nicolò Barbaro, Giornale dell'assedio di Costantinopoli 1453, corredato di note e documenti
+  per Enrico Cornet (Vienna: Libreria Tendler & Comp., 1856).
+published: 1856
+written: 1453 CE
+title: Giornale dell'assedio di Costantinopoli 1453
+url: https://archive.org/details/giornale-dell-assedio-di-costantinopoli-1453-1856
+via: The Internet Archive's scan of the 1856 edition (marked public domain there).
+reliability: >-
+  The diary, in Venetian, of a Venetian with the galleys in the harbour through the siege, who
+  escaped with them the day the city fell; it is dated day by day.
+verified:
+  by: machine:claude-code
+  how: >-
+    The entries for 29 May read in the Internet Archive's OCR and the closing passage checked
+    against the page image of p. 59 (leaf 72); title and imprint from the title page. Barbaro's
+    escape on the galleys is from the same pages. No public-domain English translation was
+    found, so the original is quoted.

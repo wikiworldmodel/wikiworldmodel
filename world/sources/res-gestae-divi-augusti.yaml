@@ -1,0 +1,24 @@
+id: src:res-gestae-divi-augusti
+type: inscription
+kind: eyewitness
+citation: >-
+  Res Gestae Divi Augusti, the account of his deeds Augustus left with the Vestal Virgins to be
+  inscribed at his mausoleum, known chiefly from the copy at Ancyra (the Monumentum Ancyranum).
+  Latin and Greek text, with a translation by F. W. Shipley, in Velleius Paterculus and Res
+  Gestae Divi Augusti (Loeb Classical Library, 1924).
+published: 1924
+written: { lo: 13 CE, hi: 14 CE }
+title: Res Gestae Divi Augusti
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Augustus/Res_Gestae/6*.html
+via: LacusCurtius, which reproduces Shipley's public-domain edition and translation.
+reliability: >-
+  The participant's own account, finished, by its last chapter, in his seventy-sixth year:
+  self-presentation, written forty years after the settlement of 27 BCE. It describes the
+  settlement and the naming but gives no day.
+verified:
+  by: machine:claude-code
+  how: >-
+    Chapters 34–35 read in Shipley's Latin, Greek and translation on LacusCurtius (pp. 399–401,
+    marked there as proofread), with Shipley's note dating the naming to January 16, 27 B.C.;
+    the copies and the deposit with the Vestals from his introduction. Fetched over plain HTTP;
+    the site's TLS handshake failed from here.

@@ -1,7 +1,7 @@
 // View state and its URL form. The URL always names the build, the time, the camera and
 // any non-default choices, so every view is a reproducible link. State is quantized to what
 // the URL can carry, so a view and the view reloaded from its link are the same.
-import { timeFromParam, timeToParam } from '../../core/time.ts';
+import { quantizeTime, timeFromParam, timeToParam } from '../../core/time.ts';
 import type { CameraState } from './camera.ts';
 
 export interface ViewState {
@@ -26,9 +26,9 @@ export function quantize(s: ViewState): ViewState {
   const lon = ((((s.cam.lon + 180) % 360) + 360) % 360) - 180;
   return {
     ...s,
-    t: Math.round(s.t),
+    t: quantizeTime(s.t),
     cam: { lat: q(Math.max(-89.5, Math.min(89.5, s.cam.lat)), 3), lon: q(lon, 3), dist: q(s.cam.dist, 3) },
-    window: [Math.round(s.window[0]), Math.round(s.window[1])],
+    window: [quantizeTime(s.window[0]), quantizeTime(s.window[1])],
   };
 }
 

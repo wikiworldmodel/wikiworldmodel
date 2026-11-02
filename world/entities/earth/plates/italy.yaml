@@ -1,0 +1,12 @@
+id: earth/plates/italy
+kind: plate
+summary: Plate 307 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Italy }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 307", quote: "ITL-AFR" }
+    note: >-
+      The label gives only the plate's code, ITL, moving against plate 714; "Italy" is an
+      editorial reading of the code. The model puts Rome, Milan, Ravenna, Salona and Actium on it.

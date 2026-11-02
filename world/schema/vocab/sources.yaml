@@ -6,9 +6,16 @@ types:
   dataset: A version of a dataset; the ones the build fetches are in manifest.yaml.
   database-record: A record in a database, as of a dated snapshot.
   chart: A reference chart, such as the geologic time scale.
+  text: >-
+    A text from before printing, ancient or medieval, cited by its traditional divisions (book,
+    chapter, section) rather than by page. Quotes come from a named edition or translation.
+  inscription: A text inscribed on stone or bronze, cited by its number in a corpus.
 kinds:
   measurement: Reports its own measurements or observations.
   review: Synthesizes published work.
   compilation: Compiles values from the literature, such as a database or a standard chart.
   model: A model reconstruction, fitted to evidence by its authors.
   software: Software, cited for how data reached us.
+  eyewitness: Written by someone who saw the events or took part in them, at the time or soon after.
+  historian: A history or a chronicle written after the events, from earlier sources, many of them now lost.
+  tradition: Hands down a legend or a tradition; the dates it gives were reckoned long after the events.

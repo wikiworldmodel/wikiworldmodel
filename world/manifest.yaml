@@ -167,3 +167,61 @@ datasets:
       sha256: 800b34928378ae902426fc16ef002debfc064465f8ac663cbeeb7bd0c77c074f
       bytes: 263101
       format: xlsx
+
+  src:cliopatria-0.2.1:
+    type: dataset
+    kind: compilation
+    title: Cliopatria, a geospatial database of world-wide political entities from 3400 BCE to 2024 CE
+    citation: >-
+      Bennett, J.S., Mutch, E., Tollefson, A., Chalstrey, E., Benam, M., Cioni, E., Reddish, J.,
+      Zsambok, J., Levine, J., Cook, C.J., Francois, P., Hoyer, D. & Turchin, P. (2025).
+      Cliopatria - A geospatial database of world-wide political entities from 3400BCE to
+      2024CE. Scientific Data 12, 247. Data version 0.2.1.
+    authors:
+      - "Bennett, J.S."
+      - "Mutch, E."
+      - "Tollefson, A."
+      - "Chalstrey, E."
+      - "Benam, M."
+      - "Cioni, E."
+      - "Reddish, J."
+      - "Zsambok, J."
+      - "Levine, J."
+      - "Cook, C.J."
+      - "Francois, P."
+      - "Hoyer, D."
+      - "Turchin, P."
+    published: 2025
+    version: v0.2.1 (cliopatria_polities_only_v021.geojson), GitHub commit 5f43337 of 3 October 2026
+    container: Seshat Global History Databank (Scientific Data 12, 247)
+    doi: 10.1038/s41597-025-04516-9
+    url: https://github.com/Seshat-Global-History-Databank/cliopatria
+    credit: Borders from Cliopatria (Bennett et al. 2025, Seshat)
+    license: CC-BY-4.0
+    license_note: The repository's LICENSE.md and the article (Europe PMC record) both state CC BY 4.0.
+    reliability: >-
+      Borders digitized from hand-coloured world maps drawn at sampled years (A. Tollefson's
+      "508 World Maps"), revised against general atlases and regional histories. The article
+      says the dataset "does not currently encode possible border uncertainty and territorial
+      disputes": each row is one reading of a polity's extent, for the years it gives. Years
+      are integers, negative for BCE; a row holds from FromYear to ToYear inclusive.
+    note: >-
+      The data splits Rome by its own names (Roman Kingdom, Roman Republic, Roman Empire,
+      Eastern and Western Roman Empire, Byzantine Empire); records here say which rows are one
+      entity. A few rows carry a year 0, which the BCE convention does not have; it is read as
+      1 BCE.
+    verified:
+      by: machine:claude-code
+      how: >-
+        LICENSE.md and README.md read on GitHub at this commit; the article's full text read
+        through Europe PMC (PMC11822181); the archive's rows for the Roman polities listed with
+        their years, areas and Wikidata ids.
+    fetch:
+      url: https://raw.githubusercontent.com/Seshat-Global-History-Databank/cliopatria/5f433377139a6eeaeacbdc894b70f8805b72c8b5/cliopatria.geojson.zip
+      sha256: e10a4e429fca708788ff9e7572a95fce801fae55852d217cffabc1c59cd4eed4
+      bytes: 46005176
+      format: zip
+      files:
+        polities:
+          path: cliopatria_polities_only_v021.geojson
+          sha256: fc6f0d1e4cc42f45da83522b3696db6f2cc85ec0d12259a85c89b31347b8fc0a

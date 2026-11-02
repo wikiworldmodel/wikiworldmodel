@@ -1,0 +1,22 @@
+id: src:brock-terrenato-2016-forum-boarium
+type: publication
+kind: measurement
+citation: >-
+  Brock, A.L. & Terrenato, N. (2016). Rome in the Bronze Age: late second-millennium BC
+  radiocarbon dates from the Forum Boarium. Antiquity 90(351), 654–664.
+authors:
+  - "Brock, A.L."
+  - "Terrenato, N."
+published: 2016
+title: "Rome in the Bronze Age: late second-millennium BC radiocarbon dates from the Forum Boarium"
+container: Antiquity 90(351), 654–664
+doi: 10.15184/aqy.2016.65
+reliability: >-
+  Reports the authors' own cores below the church of Sant'Omobono and their radiocarbon dates:
+  the first deposits of human activity in Rome found in place, rather than in later fill.
+verified:
+  by: machine:claude-code
+  how: >-
+    Only the abstract was read, on the article's Cambridge Core page; the article is not open
+    access, so its dates, calibration and the uncertainty of "late second millennium" were not
+    seen. Citation, pages and DOI from Crossref and the same page.

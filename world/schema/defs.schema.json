@@ -20,17 +20,18 @@
     },
     "key": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
     "time_point": {
-      "description": "A decimal astronomical year, or a number with CE, BCE, BP, ka, Ma, Ga, or kyr/Myr/Gyr from now",
+      "description": "A decimal astronomical year; a number with CE, BCE, BP, ka, Ma, Ga, or kyr/Myr/Gyr from now; or a calendar date or month, such as 15 March 44 BCE (Julian before 15 October 1582, Gregorian after, unless it names its calendar)",
       "oneOf": [
         { "type": "number" },
-        { "type": "string", "pattern": "^-?\\d+(\\.\\d+)?(e[+-]?\\d+)? (CE|BCE|BP|ka|Ma|Ga|kyr from now|Myr from now|Gyr from now)$" }
+        { "type": "string", "pattern": "^-?\\d+(\\.\\d+)?(e[+-]?\\d+)? (CE|BCE|BP|ka|Ma|Ga|kyr from now|Myr from now|Gyr from now)$" },
+        { "type": "string", "pattern": "^(\\d{1,2} )?(January|February|March|April|May|June|July|August|September|October|November|December) \\d+ (CE|BCE)( Julian| Gregorian)?$" }
       ]
     },
     "duration": {
-      "description": "Years, or a number with yr, kyr, Myr or Gyr",
+      "description": "Years, or a number with days, yr, kyr, Myr or Gyr",
       "oneOf": [
         { "type": "number", "minimum": 0 },
-        { "type": "string", "pattern": "^\\d+(\\.\\d+)?(e[+-]?\\d+)? (yr|kyr|Myr|Gyr)$" }
+        { "type": "string", "pattern": "^\\d+(\\.\\d+)?(e[+-]?\\d+)? (days?|yr|kyr|Myr|Gyr)$" }
       ]
     },
     "lag": {

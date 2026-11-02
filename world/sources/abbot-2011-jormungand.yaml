@@ -1,0 +1,21 @@
+id: src:abbot-2011-jormungand
+type: publication
+kind: model
+citation: >-
+  Abbot, D.S., Voigt, A. & Koll, D. (2011). The Jormungand global climate state and
+  implications for Neoproterozoic glaciations. Journal of Geophysical Research 116(D18),
+  D18103.
+authors:
+  - "Abbot, D.S."
+  - "Voigt, A."
+  - "Koll, D."
+published: 2011
+title: The Jormungand global climate state and implications for Neoproterozoic glaciations
+container: Journal of Geophysical Research 116(D18), D18103
+doi: 10.1029/2011JD015927
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from the OpenAlex record (reconstructed from its index); the AGU/Wiley
+    page and NASA ADS could not be reached (bot checks), and the body text was not read.
+    Citation from Crossref.

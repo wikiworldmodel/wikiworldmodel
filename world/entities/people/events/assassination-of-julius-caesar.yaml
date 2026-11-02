@@ -1,0 +1,52 @@
+id: people/events/assassination-of-julius-caesar
+kind: event/political
+summary: >-
+  The killing of the dictator C. Julius Caesar by senators led by Cassius and the Bruti, at a
+  meeting of the senate in the hall of Pompey's portico on the Ides of March, 44 BCE.
+author: machine:claude-code
+same_as: { wikidata: Q1025466 }
+claims:
+  name:
+    prop: name
+    value: { en: Assassination of Julius Caesar }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: 15 March 44 BCE
+    source:
+      - ref: src:cicero-letters-to-atticus
+        loc: "14.14.3"
+        quote: contenti Idibus Martiis simus; quae quidem nostris amicis divinis viris aditum ad caelum dederunt, libertatem populo Romano non dederunt
+      - ref: src:suetonius-divus-julius
+        loc: "80.4"
+        quote: a meeting of the Senate was called for the Ides of March in the Hall of Pompey, they readily gave that time and place the preference
+    method: documentary
+    note: >-
+      Cicero, writing on 27 April 44 BCE, six weeks later, tells Atticus to be content with the
+      Ides of March, which opened heaven to their friends but did not give the Roman people
+      liberty: the killing is known by its day. Suetonius (80.4; 81.4; 88) gives the day of the
+      meeting at which Caesar was killed. The Ides of March are the 15th; the year is that of
+      Caesar's fifth consulship, 44 BCE. The Julian calendar was in its second year, and the
+      pontiffs then misapplied its leap years for some decades, so Roman dates of these years
+      may differ by a day or more from the proleptic Julian dates of the time axis, by an
+      amount that depends on the reconstruction; the Roman date is kept.
+  location:
+    prop: location
+    value: { lat: 41.895185, lon: 12.475508, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-porticus-pompei
+        loc: representative point
+      - ref: src:suetonius-divus-julius
+        loc: "88"
+        quote: It was voted that the hall in which he was slain be walled up
+    method: gazetteer
+    note: >-
+      The meeting was in the hall (curia) of Pompey, which Pleiades places within the portico
+      of Pompey's theatre in the Campus Martius; it is marked at the portico's representative
+      point, the hall itself not being located.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

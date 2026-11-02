@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { bounds, centre, formatTime, formatTimeValue, fromMa, parseLag, parseTime, PRESENT_YEAR, timeFromParam, timeToParam, toMa } from '../../../core/time.ts';
+import { bounds, centre, dateAt, formatTime, formatTimeValue, fromMa, parseLag, parsePoint, parseTime, PRESENT_YEAR, quantizeTime, timeFromParam, timeToParam, toMa } from '../../../core/time.ts';
 
 describe('time axis', () => {
   it('uses astronomical years: 44 BCE is −43, and a bare year is that whole year', () => {
@@ -60,5 +60,65 @@ describe('time axis', () => {
     expect(formatTime(fromMa(66.04))).toBe('66.04 Ma');
     expect(formatTime(fromMa(280))).toBe('280 Ma');
     expect(formatTime(-43)).toBe('44 BCE');
+  });
+  it('names the calendar year a time falls in, and its middle is still that year', () => {
+    // 44 BCE runs from −43 to −42: −42.2 is in it, −43.8 in the year before.
+    expect(formatTime(-42.2)).toBe('44 BCE');
+    expect(formatTime(-43.8)).toBe('45 BCE');
+    expect(formatTime(80.5)).toBe('80 CE');
+    expect(formatTime(-3198.5)).toBe('3200 BCE');
+    expect(formatTimeValue(parseTime('80 CE'))).toBe('80 CE');
+    expect(formatTimeValue(parseTime({ lo: 1990, hi: 2000 }))).toBe('1990 CE – 2000 CE');
+    expect(formatTimeValue(parseTime({ hi: '600 BCE' }))).toBe('no later than 600 BCE');
+  });
+});
+
+describe('calendar dates', () => {
+  it('reads a day as that whole day, in the Julian calendar before 1582', () => {
+    const ides = parseTime('15 March 44 BCE');
+    expect(ides.kind).toBe('interval');
+    if (ides.kind !== 'interval') return;
+    // 73 days into a common year of 365.
+    expect(ides.lo).toBeCloseTo(-43 + 73 / 365, 12);
+    expect(ides.hi - ides.lo).toBeCloseTo(1 / 365, 12);
+    expect(formatTimeValue(ides)).toBe('15 March 44 BCE');
+    expect(dateAt(ides.lo)).toEqual({ year: -43, month: 3, day: 15 });
+  });
+  it('reads a month as that whole month, and ranges of days', () => {
+    expect(formatTimeValue(parseTime('March 44 BCE'))).toBe('March 44 BCE');
+    expect(formatTimeValue(parseTime({ lo: '2 September 31 BCE', hi: '16 January 27 BCE' }))).toBe('2 September 31 BCE – 16 January 27 BCE');
+    expect(formatTimeValue(parseTime({ lo: '1 Ga', hi: 2100 }))).toBe('1000 Ma – 2100 CE');
+  });
+  it('switches to the Gregorian calendar on 15 October 1582, with no gap on the axis', () => {
+    const a = parsePoint('4 October 1582 CE');
+    const b = parsePoint('15 October 1582 CE');
+    // 1582 lost ten days, so its days are a 355th of the year.
+    expect(b.t - a.t).toBeCloseTo(1 / 355, 12);
+    expect(a.whole).toBeCloseTo(1 / 355, 12);
+    expect(formatTimeValue(parseTime('25 October 1917 CE Julian'))).toBe('7 November 1917 CE');
+    expect(formatTime(parsePoint('31 December 1 BCE').t, 1 / 365)).toBe('31 December 1 BCE');
+    expect(parsePoint('1 January 1 CE').t).toBe(1);
+  });
+  it('rejects days a calendar does not have, and dates before day numbers start', () => {
+    expect(() => parseTime('29 February 1900 CE')).toThrow(/not a date in the Gregorian calendar/);
+    expect(() => parseTime('30 February 44 BCE')).toThrow(/not a date in the Julian calendar/);
+    expect(() => parseTime('15 March 5000 BCE')).toThrow(/from 4713 BCE/);
+    expect(() => parseTime('15 March 44')).toThrow(/not a time/);
+  });
+  it('shows a month or a day when the resolution asks for it', () => {
+    expect(formatTime(-42.79, 0.01)).toBe('March 44 BCE');
+    expect(formatTime(-42.7986, 0.001)).toBe('15 March 44 BCE');
+    expect(formatTime(-42.79, 1)).toBe('44 BCE');
+  });
+  it('takes lags in days', () => {
+    expect(parseLag('40 days')).toEqual([40 / 365.25, 40 / 365.25]);
+  });
+  it('carries historical times in the URL to a thousandth of a year, deep times in Ma', () => {
+    expect(timeToParam(-42.79612)).toBe('-42.796');
+    expect(timeFromParam('-42.796')).toBe(-42.796);
+    expect(quantizeTime(-42.79612)).toBe(-42.796);
+    expect(timeToParam(fromMa(66.043))).toBe('66.043Ma');
+    expect(timeFromParam('44BCE')).toBe(-43);
+    expect(timeFromParam('476CE')).toBe(476);
   });
 });

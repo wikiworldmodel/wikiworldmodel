@@ -1,0 +1,18 @@
+id: src:pleiades-salona
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 197488, "Salona" (Croatia).
+snapshot: 2026-10-30
+container: Pleiades
+url: https://pleiades.stoa.org/places/197488
+license: CC-BY-3.0
+reliability: >-
+  A scholarly gazetteer of ancient places; its point for the city is from the Digital Atlas of
+  Roman and Medieval Civilizations.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/197488/json) read directly: the record's one
+    location (DARMC location 4839, certain, accuracy 10 m), 43.539561°N, 16.483426°E, also its
+    representative point; names Salona and Solin.

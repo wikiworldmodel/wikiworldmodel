@@ -1,0 +1,77 @@
+id: people/events/expulsion-of-the-kings
+kind: event/political
+summary: >-
+  The expulsion of Tarquinius Superbus, the last king, and the election of the first consuls,
+  which began the Republic. The tradition put it 244 years after the founding; on Varro's era
+  that is 509 BCE, while Dionysius and Polybius reckoned a year later.
+author: machine:claude-code
+same_as: { wikidata: Q16931679 }
+claims:
+  name:
+    prop: name
+    value: { en: Expulsion of the kings }
+    unsourced: An editorial label.
+  date-livy:
+    prop: date
+    value: 509 BCE
+    source:
+      ref: src:livy-ab-urbe-condita
+      loc: "1.60.3"
+      quote: The rule of the kings at Rome, from its foundation to its liberation, lasted two hundred and forty-four years.
+    method: tradition
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      Livy gives the length of the kings' rule, not a year; he names the first consuls, L.
+      Junius Brutus and L. Tarquinius Collatinus. Counted from Varro's founding in 753 BCE
+      (founding-of-rome), the first consular year is the 245th of the city, 509 BCE: the
+      Varronian date.
+  date-dionysius:
+    prop: date
+    value: { lo: 508 BCE, hi: 507 BCE }
+    source:
+      ref: src:dionysius-roman-antiquities
+      loc: "5.1.1, vol. 3 p. 3"
+      quote: at the beginning of the sixty-eighth Olympiad (the one in which Ischomachus of Croton won the foot-race), Isagoras being the annual archon at Athens
+    method: tradition
+    basis: reconstruction
+    note: >-
+      Dionysius also counts 244 years of kings, but from his own founding date (Ol. 7.1), so he
+      puts the overthrow at Ol. 68.1, in the archonship of Isagoras, and (5.1.2) the first
+      consuls with about four months of that year left. Converted with Ol. 1.1 = 776/775 BCE
+      (Cary's note: 507 B.C.). He reaches the same year from the census records in 1.74.
+  date-polybius:
+    prop: date
+    value: 508 BCE
+    source:
+      - ref: src:polybius-histories
+        loc: "3.22.1, vol. 2 p. 53"
+        quote: Lucius Junius Brutus and Marcus Horatius, the first Consuls after the expulsion of the kings
+      - ref: src:polybius-histories
+        loc: "3.22.2, vol. 2 p. 53"
+        quote: This is twenty-eight years before the crossing of Xerxes to Greece.
+    method: tradition
+    basis: reconstruction
+    note: >-
+      Polybius dates the first treaty with Carthage, made by the first consuls, 28 years before
+      Xerxes crossed into Greece in 480 BCE: 508 BCE. He names Horatius, not Collatinus, as
+      Brutus' colleague.
+  location:
+    prop: location
+    value: { lat: 41.889977, lon: 12.491258, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-rome
+        loc: representative point
+      - ref: src:livy-ab-urbe-condita
+        loc: "1.60.2"
+        quote: Against Tarquinius the gates were closed and exile was pronounced.
+    method: editorial
+    note: >-
+      The tradition sets the revolt in Rome itself, with the king shut out of the city; it is
+      marked at the city's representative point.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

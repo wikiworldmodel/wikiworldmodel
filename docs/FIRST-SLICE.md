@@ -349,7 +349,9 @@ proposed when this slice was planned:
    - ice sheets and sea level on a fixed datum, so coastlines need a sea-level field;
    - population;
    - the budget validators (ice volume ↔ sea level).
-2. **A sliver of Rome.** This adds:
+2. **A sliver of Rome.** The fourth slice ([FOURTH-SLICE.md](FOURTH-SLICE.md)) took up
+   Rome's history at the scale of the empire, with dates derived from historical evidence;
+   the city itself is still to come. This adds:
    - phases with gaps;
    - dates derived from historical evidence;
    - site-grid frames, generators at city scale;

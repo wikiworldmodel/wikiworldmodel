@@ -1,0 +1,52 @@
+id: people/events/deposition-of-romulus-augustulus
+kind: event/political
+summary: >-
+  Odoacer, raised king by the army in Italy, killed the patrician Orestes and his brother
+  Paulus, entered Ravenna and deposed Orestes' son Romulus Augustulus, the last emperor in
+  Italy, sending him to live in Campania; in 476, on or just after 4 September.
+author: machine:claude-code
+same_as: { wikidata: Q4350094 }
+claims:
+  name:
+    prop: name
+    value: { en: Deposition of Romulus Augustulus }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: 4 September 476 CE
+    source:
+      - ref: src:fasti-vindobonenses-priores
+        loc: "620, a. 476 (MGH AA 9, p. 310)"
+        quote: eo anno occisus est Paulus frater eius Ravenna in pinita prid. non. Sept.
+      - ref: src:anonymus-valesianus
+        loc: "8.37, Loeb p. 533"
+        quote: killed the patrician Orestes at Placentia, and his brother Paulus at the Pine Grove, outside the Classis at Ravenna
+      - ref: src:anonymus-valesianus
+        loc: "8.38, Loeb p. 533"
+        quote: Then he entered Ravenna, deposed Augustulus from his throne, but in pity for his tender years, granted him his life
+    method: historical-account
+    note: >-
+      No source read here dates the deposition itself. The Ravenna annals date the killing of
+      Paulus "in the pine wood" at Ravenna to the day before the Nones of September (4
+      September) in the consulship of Basiliscus (II) and Armatus, 476; the Anonymus has
+      Odoacer kill Paulus and then, entering Ravenna, depose Augustulus. The deposition is
+      dated to that day by putting the two together, the usual reckoning; strictly the sources
+      make it no earlier. The Auctarium Havniense (margin) gives Paulus' death as the day
+      before the Kalends of September (31 August) instead. Marcellinus Comes (a. 476) has
+      Augustulus exiled to the Lucullanum in Campania in 476.
+  location:
+    prop: location
+    value: { lat: 44.415718, lon: 12.196604, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-ravenna
+        loc: representative point
+      - ref: src:anonymus-valesianus
+        loc: "8.38, Loeb p. 533"
+        quote: Then he entered Ravenna, deposed Augustulus from his throne
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

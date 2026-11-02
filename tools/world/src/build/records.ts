@@ -148,13 +148,16 @@ function namesOf(s: Solved, e: Entity): { label: string; names: FeatureName[] } 
     const n: FeatureName = { text: text(c.value) };
     if (c.valid !== undefined) {
       const v = parseTime(c.valid as never);
-      if (v.kind === 'interval') n.valid = [v.lo, v.hi];
+      const open = (x: number) => (Number.isFinite(x) ? x : null);
+      // An unknown end: the name was dropped at some time no claim gives, so it is shown up
+      // to the present, where today's name takes over.
+      if (v.kind === 'interval') n.valid = [open(v.lo), v.hiUnknown ? PRESENT_YEAR : open(v.hi)];
       else if (v.kind === 'instant') n.valid = [v.t, v.t];
     }
     names.push(n);
   }
   const chosenName = claimOf(s, e.id, 'name');
-  const today = names.filter((n) => !n.valid || (n.valid[0] <= PRESENT_YEAR && PRESENT_YEAR <= n.valid[1]));
+  const today = names.filter((n) => !n.valid || ((n.valid[0] ?? -Infinity) <= PRESENT_YEAR && PRESENT_YEAR < (n.valid[1] ?? Infinity)));
   const label = chosenName && (!chosenName.valid || today.some((n) => n.text === text(chosenName.value))) ? text(chosenName.value) : (today[0]?.text ?? names.at(-1)?.text ?? e.id);
   return { label, names };
 }
@@ -238,6 +241,13 @@ function variantTimes(s: Solved, subject: string, base: FeatureTime): Record<str
   return out;
 }
 
+/** A subject's interval (an entity's, or a phase's) in the default picture, and in the scenarios where it differs. */
+export function subjectTime(s: Solved, subject: string): { time: FeatureTime; variants?: Record<string, FeatureTime> } {
+  const time = timeOf(s, subject, s.sol.bounds, boundsOf(s.centres));
+  const variants = variantTimes(s, subject, time);
+  return Object.keys(variants).length ? { time, variants } : { time };
+}
+
 export function features(s: Solved): Feature[] {
   const out: Feature[] = [];
   for (const e of s.world.entities) {
@@ -280,7 +290,15 @@ function valueText(s: Solved, c: Claim, labelOf: (ref: string) => string): strin
     case 'text':
       return Object.entries(v as Record<string, string>).map(([lang, t]) => (lang === 'en' ? t : `${t} (${lang})`)).join(' · ');
     case 'quantity':
-      return `${(v as number).toLocaleString('en-US')} ${prop.unit}`;
+      return `${(v as number).toLocaleString('en-US')}${prop.unit === '°' ? '' : ' '}${prop.unit}`;
+    case 'string':
+      return prop.values?.[String(v)] ?? String(v);
+    case 'geometry': {
+      const g = v as { from: string; names: string[] };
+      const names = g.names.map((n) => `“${n}”`);
+      const list = names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names.at(-1)}` : names[0];
+      return `The dataset's rows named ${list}`;
+    }
     default:
       return String(v);
   }
@@ -302,7 +320,8 @@ function lagText(lag: unknown): string | undefined {
 /** A source as the viewer shows it: the record, without how the build fetches it. */
 export function sourceRecord(src: Source): SourceRecord {
   const { id, type, kind, citation, authors, published, snapshot, title, container, doi, url, license, via, reliability, verified, note } = src;
-  return { id, type, kind, citation, authors, published, snapshot, title, container, doi, url, license, via, reliability, verified, note };
+  const written = src.written === undefined ? undefined : formatTimeValue(parseTime(src.written as never));
+  return { id, type, kind, citation, authors, published, written, snapshot, title, container, doi, url, license, via, reliability, verified, note };
 }
 
 /** A label for any reference: an entity's or phase's name, a record's title, or the reference itself. */
@@ -429,7 +448,7 @@ export function records(s: Solved): EntityRecord[] {
       basis: pl ? { ...pl.basis, time: timeBasis(s, [...by.start, ...by.end]) } : { time: timeBasis(s, [...by.start, ...by.end]), place: 'evidence', placeNow: 'evidence' },
       frame: frame ? { id: frame.id, title: frame.title, plate: pl!.plate, entity: frame.entity, entityLabel: frame.entity ? labelOf(frame.entity) : undefined } : undefined,
       same_as: e.same_as,
-      phases: e.phases.map((p) => ({ id: p.id, label: p.label ?? p.id, gap: p.gap, time: timeOf(s, `${e.id}@${p.id}`, s.sol.bounds, boundsOf(s.centres)) })),
+      phases: e.phases.map((p) => ({ id: p.id, label: p.label ?? p.id, gap: p.gap, ...subjectTime(s, `${e.id}@${p.id}`) })),
       time,
       claims,
       relations,

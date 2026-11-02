@@ -1,0 +1,22 @@
+id: src:cassius-dio-roman-history
+type: text
+kind: historian
+citation: >-
+  Cassius Dio, Roman History, vol. 6 (books 51–55), translated by E. Cary (Loeb Classical
+  Library, 1917).
+published: 1917
+written: { lo: 200 CE, hi: 235 CE }
+title: Roman History
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/51*.html
+via: LacusCurtius, which reproduces Cary's public-domain translation.
+reliability: >-
+  A Roman senator and consul writing in Greek two and a half centuries after Actium, from
+  earlier histories. He says he notes the day of the battle only because Augustus' years of
+  sole rule were reckoned from it.
+verified:
+  by: machine:claude-code
+  how: >-
+    51.1.1–2 read in Cary's translation on LacusCurtius, vol. 6, pp. 3–5 (marked there as not
+    yet proofread), with the book's heading giving the consuls of the year, Caesar (III) and M.
+    Valerius Corvinus Messalla. Fetched over plain HTTP; the site's TLS handshake failed from
+    here.

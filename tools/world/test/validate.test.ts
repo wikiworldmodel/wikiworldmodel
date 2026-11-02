@@ -78,6 +78,35 @@ describe('validators', () => {
     );
   });
 
+  it('fit a phase to its entity\'s kind, keep strings to their declared values, and count a lag from an edge', async () => {
+    const issues = await check({
+      'entities/a.yaml': entity('test/planet', 'body/planet', `phases:\n  - id: hot\n  - id: wet\nclaims:\n  s1: { prop: surface, subject: "@hot", value: magma, ${cite} }\n  s2: { prop: surface, subject: "@wet", value: lava, ${cite} }\n  e: { prop: end, subject: "@hot", value: { ref: test/flow, lag: 1 Myr }, ${cite} }\n`),
+      'entities/b.yaml': entity('test/flow', 'large-igneous-province', `claims:\n  start: { prop: start, value: 70 Ma, ${cite} }\n  s: { prop: surface, value: magma, ${cite} }\n`),
+    });
+    expect(errors(issues).map((i) => [i.where, i.message])).toEqual([
+      ['claims.s2.value', 'not one of the values of surface: magma, crust-and-magma, ocean, bare-rock'],
+      ['claims.e.value', 'a lag counts from an edge of the record: add edge: start or end'],
+      ['claims.s', '"surface" does not apply to a large-igneous-province (it applies to body/planet)'],
+    ]);
+  });
+
+  it('read dates to the day, take a polity\'s territory from a dataset, and date a text', async () => {
+    const issues = await check({
+      'entities/a.yaml': entity(
+        'test/state',
+        'polity',
+        `claims:\n  start: { prop: start, value: 21 April 753 BCE, ${cite} }\n  end: { prop: end, value: 30 February 1453 CE, ${cite} }\n  t1: { prop: territory, value: { from: src:test/report }, ${cite} }\n  t2: { prop: territory, value: { from: src:test/report, names: [Rome] }, rank: preferred, ${cite} }\n`,
+      ),
+      'sources/text.yaml': `id: src:test/text\ntype: text\nkind: historian\ncitation: A fixture text, not a real work.\nwritten: { lo: 17 CE, hi: 27 BCE }\n`,
+    });
+    expect(errors(issues).map((i) => [i.where, i.message])).toEqual([
+      ['claims.end.value', '"30 February 1453 CE" is not a date in the Julian calendar'],
+      ['claims.t1.value', 'a geometry names its dataset and rows: { from: src:…, names: [...] }'],
+      ['claims.t2.value.from', 'src:test/report is a source but not a dataset in the manifest, so the build cannot fetch it'],
+      ['written', 'lo is later than hi (17 CE after 27 BCE); lo is always the earlier time'],
+    ]);
+  });
+
   it('date a taxon no later than its oldest member, and a subgroup no earlier than its group', async () => {
     const member = await check({
       'entities/a.yaml': entity('test/fossil', 'occurrence', `claims:\n  date: { prop: date, value: 300 Ma, ${cite} }\nrelations:\n  m: { rel: member-of, to: test/clade, ${cite} }\n`),

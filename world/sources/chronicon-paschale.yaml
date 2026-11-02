@@ -1,0 +1,22 @@
+id: src:chronicon-paschale
+type: text
+kind: historian
+citation: >-
+  Chronicon Paschale, a. 330, as printed beside the Consularia Constantinopolitana by Th.
+  Mommsen, Chronica minora saec. IV. V. VI. VII., vol. 1 (Monumenta Germaniae Historica,
+  Auctores antiquissimi 9; Berlin: Weidmann, 1892), pp. 233–234.
+published: 1892
+written: { lo: 630 CE, hi: 641 CE }
+title: Chronicon Paschale
+url: https://archive.org/details/chronicaminorasa09momm
+via: The Internet Archive's scan of the MGH volume (University of Florida copy).
+reliability: >-
+  A Greek world chronicle compiled at Constantinople under Heraclius, three centuries after the
+  dedication. For the dedication it gives the day with its weekday and indiction, and describes
+  the festival.
+verified:
+  by: machine:claude-code
+  how: >-
+    The Greek entry for 330 read in the page images of pp. 233–234 of the Internet Archive's
+    scan (chronicaminorasa09momm, leaves 251–252). Its accents could not be read with certainty
+    from the scan, so it is cited without a quote.

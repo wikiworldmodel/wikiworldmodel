@@ -1,0 +1,22 @@
+id: src:consularia-constantinopolitana
+type: text
+kind: historian
+citation: >-
+  Consularia Constantinopolitana ad a. CCCXCV cum additamento Hydatii ad a. CCCCLXVIII, ed. Th.
+  Mommsen, in Chronica minora saec. IV. V. VI. VII., vol. 1 (Monumenta Germaniae Historica,
+  Auctores antiquissimi 9; Berlin: Weidmann, 1892).
+published: 1892
+written: { lo: 395 CE, hi: 468 CE }
+title: Consularia Constantinopolitana
+url: https://archive.org/details/chronicaminorasa09momm
+via: The Internet Archive's scan of the MGH volume (University of Florida copy).
+reliability: >-
+  Annals of consuls and events kept at Constantinople, in the form Mommsen edits: to 395, with
+  a continuation by Hydatius to 468. Its notices for the fourth century are terse entries of
+  the day and the event, not a narrative written long after.
+verified:
+  by: machine:claude-code
+  how: >-
+    The entry for 330 read on p. 233 in the page image of the Internet Archive's scan
+    (chronicaminorasa09momm, leaf 251), not only in its OCR, which garbles it; title and
+    imprint from the volume's title page and contents.

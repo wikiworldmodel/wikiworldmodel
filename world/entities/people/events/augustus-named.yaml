@@ -1,0 +1,70 @@
+id: people/events/augustus-named
+kind: event/political
+summary: >-
+  The senate names Octavian Augustus in January 27 BCE, days after he handed the state back to
+  the senate and people: the close of the settlement that is taken to begin the Principate. The
+  calendars and Censorinus differ by a day.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Octavian named Augustus }
+    source:
+      ref: src:res-gestae-divi-augusti
+      loc: "34.2, Loeb p. 399"
+      quote: For this service on my part I was given the title of Augustus by decree of the senate
+    note: >-
+      Augustus' own account: the name was the senate's reward for transferring the republic to
+      the senate and people in his sixth and seventh consulships (28–27 BCE). It gives no day.
+  date-fasti-praenestini:
+    prop: date
+    value: 16 January 27 BCE
+    source:
+      - ref: src:fasti-praenestini
+        loc: entry for 16 January (CIL I² p. 231), as quoted in RE II,2 col. 2370
+        quote: "Imp. Caesar [Augustus est a]ppell[a]tus"
+      - ref: src:neumann-1896-re-augustus
+        loc: col. 2370
+        quote: erhielt er am 16. Januar den Beinamen
+      - ref: src:haverfield-1915-name-augustus
+        loc: p. 249
+        quote: on 16th January he received from the senate the cognomen Augustus
+    method: documentary
+    rank: preferred
+    note: >-
+      The calendar of Praeneste, set up in Augustus' reign, marks the anniversary under 16
+      January; the brackets are the editors' restorations of the broken stone. Neumann (RE) and
+      Haverfield give the same day, as did Shipley in his note to the Res Gestae (1924). The
+      year, 27 BCE, is that of Caesar's seventh consulship with Agrippa's third. In the early
+      decades of the Julian calendar the pontiffs misapplied its leap years, so this Roman date
+      may differ by a day or more from the proleptic Julian date of the time axis, by an amount
+      that depends on the reconstruction; the Roman date is kept.
+  date-censorinus:
+    prop: date
+    value: 17 January 27 BCE
+    source:
+      ref: src:censorinus-de-die-natali
+      loc: "21.8"
+      quote: quamvis ex ante diem XVI kal. Febr. imperator Caesar, Divi filius, sententia L. Munati Planci a senatu ceterisque civibus Augustus appellatus est
+    method: historical-account
+    note: >-
+      In English: although Imperator Caesar, son of the Deified, was named Augustus by the
+      senate and the other citizens, on the motion of L. Munatius Plancus, on the sixteenth day
+      before the Kalends of February, in his seventh consulship and Agrippa's third: 27 BCE. In
+      the Julian calendar a. d. XVI Kal. Feb. is 17 January; the Praeneste calendar's day, 16
+      January, is a. d. XVII Kal. Feb. Censorinus' text as edited by Cholodniak (1889) reads
+      XVI; whether that is his own reckoning or a slip in the manuscripts was not checked.
+  location:
+    prop: location
+    value: { lat: 41.889977, lon: 12.491258, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-rome, loc: representative point }
+    method: editorial
+    note: >-
+      The senate met in Rome; the sources read here do not name the building, so it is marked
+      at the city's representative point.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

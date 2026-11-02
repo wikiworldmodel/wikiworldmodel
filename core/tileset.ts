@@ -41,8 +41,12 @@ export interface FeatureBasis {
 
 export interface FeatureName {
   text: string;
-  /** when the name was in use; absent: always */
-  valid?: [number, number];
+  /**
+   * when the name was in use, [from, to); absent: always. null is an open end (JSON has no
+   * infinity). A name whose use ended at an unknown time is given up to the present, where
+   * today's name takes over.
+   */
+  valid?: [number | null, number | null];
 }
 
 export interface Feature {
@@ -181,7 +185,7 @@ export interface Tileset {
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string };
   /** attribution the viewer must show for the data it displays */
   credits: { label: string; license: string }[];
   /** the alternatives this build shows, by group */

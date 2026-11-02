@@ -1,0 +1,22 @@
+id: src:kopp-2005-paleoproterozoic-snowball
+type: publication
+kind: review
+citation: >-
+  Kopp, R.E., Kirschvink, J.L., Hilburn, I.A. & Nash, C.Z. (2005). The Paleoproterozoic
+  snowball Earth: A climate disaster triggered by the evolution of oxygenic photosynthesis.
+  Proceedings of the National Academy of Sciences 102(32), 11131–11136.
+authors:
+  - "Kopp, R.E."
+  - "Kirschvink, J.L."
+  - "Hilburn, I.A."
+  - "Nash, C.Z."
+published: 2005
+title: "The Paleoproterozoic snowball Earth: A climate disaster triggered by the evolution of oxygenic photosynthesis"
+container: Proceedings of the National Academy of Sciences 102(32), 11131–11136
+doi: 10.1073/pnas.0504878102
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read in the Europe PMC record (PMID 16061801) and in the publisher's deposit
+    in Crossref, whose typeset text the quotes follow; citation from Crossref. The full
+    text was not reached.

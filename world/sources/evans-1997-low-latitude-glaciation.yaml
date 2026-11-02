@@ -1,0 +1,19 @@
+id: src:evans-1997-low-latitude-glaciation
+type: publication
+kind: measurement
+citation: >-
+  Evans, D.A., Beukes, N.J. & Kirschvink, J.L. (1997). Low-latitude glaciation in the
+  Palaeoproterozoic era. Nature 386(6622), 262–266.
+authors:
+  - "Evans, D.A."
+  - "Beukes, N.J."
+  - "Kirschvink, J.L."
+published: 1997
+title: Low-latitude glaciation in the Palaeoproterozoic era
+container: Nature 386(6622), 262–266
+doi: 10.1038/386262a0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read on the publisher's article page (nature.com); citation from Crossref. The
+    confidence level of the ± on the paleolatitude is not in the abstract.

@@ -86,6 +86,8 @@ export interface Source {
   citation: string;
   authors?: string[];
   published?: number;
+  /** when a text from before printing was written, as a time value */
+  written?: unknown;
   snapshot?: string;
   title?: string;
   container?: string;
@@ -209,8 +211,10 @@ export interface Kind {
 }
 
 export interface Property {
-  type: 'time' | 'point' | 'ref' | 'text' | 'string' | 'quantity' | 'color';
+  type: 'time' | 'point' | 'ref' | 'text' | 'string' | 'quantity' | 'color' | 'geometry';
   unit?: string;
+  /** for strings: the values allowed, each with what it means */
+  values?: Record<string, string>;
   interp?: string;
   moment?: boolean;
   applies_to?: string[];

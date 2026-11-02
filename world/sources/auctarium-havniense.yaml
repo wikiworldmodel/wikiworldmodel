@@ -1,0 +1,22 @@
+id: src:auctarium-havniense
+type: text
+kind: historian
+citation: >-
+  Continuatio Havniensis Prosperi (the Auctarium Havniense), ed. Th. Mommsen, Consularia
+  Italica V, in Chronica minora saec. IV. V. VI. VII., vol. 1 (Monumenta Germaniae Historica,
+  Auctores antiquissimi 9; Berlin: Weidmann, 1892), pp. 298–339.
+published: 1892
+written: { lo: 480 CE }
+title: Auctarium Havniense
+url: https://archive.org/details/chronicaminorasa09momm
+via: The Internet Archive's scan of the MGH volume (University of Florida copy).
+reliability: >-
+  A continuation of Prosper's chronicle drawing on the Italian annals, surviving in one
+  twelfth-century Copenhagen manuscript in two arrangements (ordo prior and ordo posterior),
+  with notes in its margin; the two give different days for the same event.
+verified:
+  by: machine:claude-code
+  how: >-
+    The entries for 476–480 read on pp. 309 and 311 in the page images of the Internet
+    Archive's scan (chronicaminorasa09momm, leaves 327 and 329), not only in its OCR; the
+    manuscript from Mommsen's list on p. 249.

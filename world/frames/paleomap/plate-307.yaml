@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-307
+type: frame
+kind: plate
+title: Italy (PALEOMAP plate 307)
+entity: earth/plates/italy
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 307
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 307

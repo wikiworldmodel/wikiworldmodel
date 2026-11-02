@@ -1,0 +1,18 @@
+id: src:elkins-tanton-2012-magma-oceans
+type: publication
+kind: review
+citation: >-
+  Elkins-Tanton, L.T. (2012). Magma oceans in the inner solar system. Annual Review of Earth
+  and Planetary Sciences 40, 113–139.
+authors:
+  - "Elkins-Tanton, L.T."
+published: 2012
+title: Magma oceans in the inner solar system
+container: Annual Review of Earth and Planetary Sciences 40, 113–139
+doi: 10.1146/annurev-earth-042711-105503
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from the publisher's deposit in Crossref; the Annual Reviews page and
+    NASA ADS could not be reached (bot checks), and the body text was not read. Citation
+    from Crossref.

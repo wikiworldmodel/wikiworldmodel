@@ -1,0 +1,22 @@
+id: src:bury-1923-later-roman-empire
+type: publication
+kind: review
+citation: >-
+  Bury, J.B. (1923). History of the Later Roman Empire, vol. 1. London: Macmillan.
+authors:
+  - "Bury, J.B."
+published: 1923
+title: History of the Later Roman Empire, vol. 1
+container: London, Macmillan
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/secondary/BURLAT/home.html
+via: LacusCurtius, which reproduces the book (public domain).
+reliability: >-
+  A standard modern history of the empire from 395, which argues that there was one Roman
+  Empire throughout, ruled at times by two or more emperors, and that it lasted at
+  Constantinople until 1453.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read on LacusCurtius (pages marked there as proofread): vol. 1, ch. I (pp. 3–4, 16–18), ch.
+    III (p. 69) and ch. XII (pp. 405–410), with the page numbers it marks. Fetched over plain
+    HTTP; the site's TLS handshake failed from here.

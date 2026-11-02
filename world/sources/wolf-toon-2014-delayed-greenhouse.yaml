@@ -1,0 +1,18 @@
+id: src:wolf-toon-2014-delayed-greenhouse
+type: publication
+kind: model
+citation: >-
+  Wolf, E.T. & Toon, O.B. (2014). Delayed onset of runaway and moist greenhouse climates
+  for Earth. Geophysical Research Letters 41(1), 167–172.
+authors:
+  - "Wolf, E.T."
+  - "Toon, O.B."
+published: 2014
+title: Delayed onset of runaway and moist greenhouse climates for Earth
+container: Geophysical Research Letters 41(1), 167–172
+doi: 10.1002/2013GL058376
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from the publisher's deposit in Crossref; the AGU/Wiley page could not be
+    reached (bot check), and the body text was not read. Citation from Crossref.

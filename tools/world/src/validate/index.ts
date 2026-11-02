@@ -133,10 +133,10 @@ class RefChecker {
 /** "a plate", "an occurrence". */
 const article = (word: string) => `${/^[aeiou]/.test(word) ? 'an' : 'a'} ${word}`;
 
-/** Does a subject of kind `kind` (undefined for a phase) fit a property's `applies_to`? */
-function applies(world: World, appliesTo: string[] | undefined, kind: string | undefined): boolean {
+/** Does a subject of kind `kind` fit a property's `applies_to`? A phase is lasting, and of its entity's kind. */
+function applies(world: World, appliesTo: string[] | undefined, kind: string | undefined, phase = false): boolean {
   if (!appliesTo) return true;
-  const moment = kind !== undefined && !!world.vocab.kinds[kind]?.moment;
+  const moment = !phase && kind !== undefined && !!world.vocab.kinds[kind]?.moment;
   return appliesTo.some((a) => (a === 'moments' ? moment : a === 'lasting' ? !moment : kind !== undefined && kindIs(kind, a)));
 }
 
@@ -149,6 +149,7 @@ function checkValue(world: World, refs: RefChecker, c: Claim, issues: Issue[]): 
       try {
         const t = parseTime(v as never);
         if (t.kind === 'ref') refs.check(t.ref, c.file, `${c.where}.value.ref`, { self: c.entity, types: ['entity'] });
+        if (t.kind === 'ref' && !t.edge && (v as { lag?: unknown }).lag !== undefined) bad('a lag counts from an edge of the record: add edge: start or end');
         if (t.kind === 'unknown' && c.prop !== 'end') bad(`only an end may be unknown`);
       } catch (e) {
         bad((e as TimeError).message);
@@ -168,6 +169,7 @@ function checkValue(world: World, refs: RefChecker, c: Claim, issues: Issue[]): 
       break;
     case 'string':
       if (typeof v !== 'string' || !v) bad(`not a string`);
+      else if (prop.values && !Object.hasOwn(prop.values, v)) bad(`not one of the values of ${c.prop}: ${Object.keys(prop.values).join(', ')}`);
       break;
     case 'quantity':
       if (typeof v !== 'number' || !Number.isFinite(v)) bad(`a quantity is a number, in ${prop.unit}`);
@@ -175,6 +177,12 @@ function checkValue(world: World, refs: RefChecker, c: Claim, issues: Issue[]): 
     case 'color':
       if (typeof v !== 'string' || !/^#[0-9A-F]{6}$/.test(v)) bad('a colour is #RRGGBB');
       break;
+    case 'geometry': {
+      const g = v as { from?: unknown; names?: unknown };
+      if (!g || typeof g.from !== 'string' || !Array.isArray(g.names) || !g.names.length || !g.names.every((n) => typeof n === 'string' && n)) bad('a geometry names its dataset and rows: { from: src:…, names: [...] }');
+      else checkDataset(world, refs, g.from, c.file, `${c.where}.value.from`, undefined, issues);
+      break;
+    }
   }
 }
 
@@ -229,8 +237,8 @@ function checkRecords(world: World, issues: Issue[]): Wanted[] {
         issues.push({ level: 'error', check: 'vocab', file: c.file, where: c.where, message: `unknown property "${c.prop}"` });
         continue;
       }
-      if (kind && !applies(world, prop.applies_to, phaseSubject ? undefined : e.kind)) {
-        issues.push({ level: 'error', check: 'fit', file: c.file, where: c.where, message: `"${c.prop}" does not apply to ${phaseSubject ? 'a phase' : article(e.kind)} (it applies to ${prop.applies_to!.join(', ')})` });
+      if (kind && !applies(world, prop.applies_to, e.kind, phaseSubject)) {
+        issues.push({ level: 'error', check: 'fit', file: c.file, where: c.where, message: `"${c.prop}" does not apply to ${phaseSubject ? `a phase of ${article(e.kind)}` : article(e.kind)} (it applies to ${prop.applies_to!.join(', ')})` });
       }
       if (c.method && !world.vocab.methods[c.method]) issues.push({ level: 'error', check: 'vocab', file: c.file, where: `${c.where}.method`, message: `unknown method "${c.method}"` });
       checkValue(world, refs, c, issues);
@@ -260,6 +268,14 @@ function checkRecords(world: World, issues: Issue[]): Wanted[] {
     if (!world.vocab.sourceTypes[s.type]) issues.push({ level: 'error', check: 'vocab', file, where: 'type', message: `unknown source type "${s.type}"` });
     if (!world.vocab.sourceKinds[s.kind]) issues.push({ level: 'error', check: 'vocab', file, where: 'kind', message: `unknown source kind "${s.kind}"` });
     if (s.via?.startsWith('src:')) refs.check(s.via, file, 'via', { types: ['src'] });
+    if (s.written !== undefined) {
+      try {
+        const w = parseTime(s.written as never);
+        if (w.kind === 'ref' || w.kind === 'unknown') throw new TimeError('when a text was written is a time or a range');
+      } catch (e) {
+        issues.push({ level: 'error', check: 'values', file, where: 'written', message: (e as TimeError).message });
+      }
+    }
   }
   for (const f of world.frames) {
     if (f.parent) refs.check(f.parent, f.file, 'parent', { types: ['frame'] });

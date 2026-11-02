@@ -1,0 +1,21 @@
+id: src:neumann-1896-re-augustus
+type: publication
+kind: review
+citation: >-
+  Neumann, K.J. (1896). Augustus. In Paulys Realencyclopädie der classischen
+  Altertumswissenschaft, vol. II,2, cols. 2370–2372.
+authors:
+  - "Neumann, K.J."
+published: 1896
+title: Augustus
+container: Paulys Realencyclopädie der classischen Altertumswissenschaft II,2
+url: https://de.wikisource.org/wiki/RE:Augustus
+via: German Wikisource's transcription of the RE article.
+reliability: >-
+  The standard encyclopaedia of classical antiquity; the article on the name Augustus quotes
+  the calendars and the Res Gestae for the day the name was given.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article read in German Wikisource's transcription (column marks 2371 and 2372 shown;
+    the passage used falls before 2371, in col. 2370).

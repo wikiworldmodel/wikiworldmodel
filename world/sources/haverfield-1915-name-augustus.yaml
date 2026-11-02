@@ -1,0 +1,18 @@
+id: src:haverfield-1915-name-augustus
+type: publication
+kind: review
+citation: >-
+  Haverfield, F. (1915). The name Augustus. Journal of Roman Studies 5, 249–250.
+authors:
+  - "Haverfield, F."
+published: 1915
+title: The Name Augustus
+container: Journal of Roman Studies 5, 249–250
+doi: 10.2307/296309
+url: https://penelope.uchicago.edu/Thayer/E/Journals/JRS/5/Augustus*.html
+via: LacusCurtius, which reproduces the article (public domain; the author died in 1919).
+verified:
+  by: machine:claude-code
+  how: >-
+    Read on LacusCurtius (marked there as proofread), p. 249; the DOI and pages from Crossref.
+    Fetched over plain HTTP; the site's TLS handshake failed from here.

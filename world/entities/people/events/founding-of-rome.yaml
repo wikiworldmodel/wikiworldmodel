@@ -1,0 +1,126 @@
+id: people/events/founding-of-rome
+kind: event/political
+summary: >-
+  The founding of Rome by Romulus on the Palatine, as Roman tradition told it. Ancient writers
+  reckoned its year differently; Varro's reckoning, 753 BCE on the day of the Parilia, became
+  the era of the city (ab urbe condita). The settlement on the site is older (places/rome).
+author: machine:claude-code
+same_as: { wikidata: Q1247524 }
+claims:
+  name:
+    prop: name
+    value: { en: Founding of Rome }
+    unsourced: An editorial label.
+  date-censorinus-varro:
+    prop: date
+    value: 21 April 753 BCE
+    source:
+      - ref: src:censorinus-de-die-natali
+        loc: "21.6"
+        quote: a Roma autem condita nongentesimus nonagensimus primus, et quidem ex Parilibus, unde urbis anni numerantur
+      - ref: src:plutarch-romulus
+        loc: "12.1, vol. 1 p. 121"
+        quote: Now it is agreed that the city was founded on the twenty-first of April, and this day the Romans celebrate with a festival
+    method: tradition
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      Varro's reckoning, which became the standard era. Censorinus counts the year in which he
+      wrote, the consulship of Pius and Pontianus (238 CE), as the 991st from the founding by
+      Varro's reckoning, counted from the Parilia: year 1 began at the Parilia of 753 BCE.
+      Plutarch gives the day, the festival of the Parilia, and (12.2) the tradition that an
+      eclipse that day was the one of the third year of the sixth Olympiad, 754/753 BCE. The
+      day is a festival of the Roman calendar of the time, which was not the Julian; it is
+      written here as a proleptic Julian date by convention.
+  date-dionysius-timaeus:
+    prop: date
+    value: { lo: 814 BCE, hi: 813 BCE }
+    source:
+      ref: src:dionysius-roman-antiquities
+      loc: "1.74.1, vol. 1 p. 245"
+      quote: places it at the same time as the founding of Carthage, that is, in the thirty-eighth year before the first Olympiad
+    method: tradition
+    basis: reconstruction
+    note: >-
+      Timaeus of Tauromenium (lost), as Dionysius reports him, who says he does not know on
+      what principle Timaeus made Rome as old as Carthage. The 38th year before Ol. 1.1:
+      Olympiad years are converted with Ol. 1.1 = 776/775 BCE, each Olympic year running
+      midsummer to midsummer, so the range is two calendar years (Cary's note: 813 B.C.).
+  date-dionysius-cincius-alimentus:
+    prop: date
+    value: { lo: 729 BCE, hi: 728 BCE }
+    source:
+      ref: src:dionysius-roman-antiquities
+      loc: "1.74.1, vol. 1 p. 245"
+      quote: Lucius Cincius, a member of the senate, places it about the fourth year of the twelfth Olympiad
+    method: tradition
+    basis: reconstruction
+    note: >-
+      L. Cincius Alimentus, a senator who wrote a history of Rome in Greek in the late third
+      century BCE (lost), as Dionysius reports him; "about" is his. Ol. 12.4, converted with
+      Ol. 1.1 = 776/775 BCE (Cary's note: 728 B.C.).
+  date-dionysius-fabius-pictor:
+    prop: date
+    value: { lo: 748 BCE, hi: 747 BCE }
+    source:
+      ref: src:dionysius-roman-antiquities
+      loc: "1.74.1, vol. 1 p. 245"
+      quote: and Quintus Fabius in the first year of the eighth Olympiad
+    method: tradition
+    basis: reconstruction
+    note: >-
+      Q. Fabius Pictor, the first Roman historian (late third century BCE; lost), as Dionysius
+      reports him. Ol. 8.1, converted with Ol. 1.1 = 776/775 BCE (Cary's note: 747 B.C.).
+  date-dionysius-cato:
+    prop: date
+    value: { lo: 752 BCE, hi: 751 BCE }
+    source:
+      - ref: src:dionysius-roman-antiquities
+        loc: "1.74.2, vol. 1 p. 245"
+        quote: he places its founding four hundred and thirty-two years after the Trojan war
+      - ref: src:dionysius-roman-antiquities
+        loc: "1.74.2, vol. 1 p. 247"
+        quote: being compared with the Chronicles of Eratosthenes, corresponds to the first year of the seventh Olympiad
+      - ref: src:dionysius-roman-antiquities
+        loc: "1.75.3, vol. 1 p. 251"
+        quote: Romulus, the first ruler of the city, began his reign in the first year of the seventh Olympiad
+    method: tradition
+    basis: reconstruction
+    note: >-
+      M. Porcius Cato (Origines, lost), as Dionysius reports him: 432 years after the fall of
+      Troy, which Dionysius converts with Eratosthenes' date for Troy (1183 B.C. in Cary's
+      note) to Ol. 7.1. Dionysius adopts the same year himself (1.75.3), from the 244 years of
+      the kings counted back from the first consuls. Ol. 7.1, converted with Ol. 1.1 = 776/775
+      BCE (Cary's note: 751 B.C.).
+  date-dionysius-polybius:
+    prop: date
+    value: { lo: 751 BCE, hi: 750 BCE }
+    source:
+      ref: src:dionysius-roman-antiquities
+      loc: "1.74.3, vol. 1 p. 247"
+      quote: to say merely that I believe Rome was built in the second year of the seventh Olympiad
+    method: tradition
+    basis: reconstruction
+    note: >-
+      Polybius, as Dionysius reports him, from a lost part of his work (Cary: probably book 6).
+      Dionysius sets his own reasoned date against Polybius' bare statement and against resting
+      on the single tablet kept by the pontiffs. Ol. 7.2, converted with Ol. 1.1 = 776/775 BCE
+      (Cary's note: 750 B.C.).
+  location:
+    prop: location
+    value: { lat: 41.889306, lon: 12.487109, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-palatine
+        loc: representative point
+      - ref: src:livy-ab-urbe-condita
+        loc: "1.7.3"
+        quote: His first act was to fortify the Palatine, on which he had himself been reared.
+    method: gazetteer
+    note: >-
+      The tradition puts Romulus' city on the Palatine; marked at Pleiades' point for the hill.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

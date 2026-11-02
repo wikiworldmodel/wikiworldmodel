@@ -6,8 +6,11 @@ import { describe, expect, it } from 'vitest';
 import { decodeTile } from '../../../core/container.ts';
 import { fromMa, PRESENT_YEAR, toMa } from '../../../core/time.ts';
 import type { TileHeader, Tileset } from '../../../core/tileset.ts';
+import { chosenClaim, type PlanetFile } from '../../../core/planet.ts';
+import { territoriesAt, type TerritoryFile } from '../../../core/territory.ts';
 import type { CoverageFile, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../core/records.ts';
 import { GENERATOR, generateClouds, type CloudParams } from '../../../world/generators/earth/clouds/v1.ts';
+import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
 import { runBuild } from '../src/build/index.ts';
 import { latestBuild } from './helpers.ts';
 
@@ -92,12 +95,16 @@ describe('build', () => {
     expect([g.slot, g.seed]).toEqual(['globe', 'earth/clouds']);
     const out = generateClouds(g.seed, g.params as unknown as CloudParams);
     expect(createHash('sha256').update(out).digest('hex')).toBe(g.outputSha256);
+    const sg = header.generators.find((x) => x.generator === SURFACE)!;
+    expect([sg.slot, sg.seed]).toEqual(['globe', 'earth/surface']);
+    expect(createHash('sha256').update(generateSurface(sg.seed, sg.params as unknown as SurfaceParams)).digest('hex')).toBe(sg.outputSha256);
   });
 
   it('records what it was made from: commit, datasets, generators, alternatives shown, license filter', () => {
     const b = JSON.parse(readFileSync(join(latestBuild(), 'build.json'), 'utf8'));
-    expect(Object.keys(b.datasets)).toEqual(['src:foster-2017-co2', 'src:paleodem-v2', 'src:paleomap-plate-model', 'src:vandermeer-2022-sea-level']);
+    expect(Object.keys(b.datasets)).toEqual(['src:cliopatria-0.2.1', 'src:foster-2017-co2', 'src:paleodem-v2', 'src:paleomap-plate-model', 'src:vandermeer-2022-sea-level']);
     expect(b.generators['gen:earth/clouds']).toEqual({ version: 1, seeds: { globe: 'earth/clouds' } });
+    expect(b.generators['gen:earth/surface']).toEqual({ version: 1, seeds: { globe: 'earth/surface' } });
     expect(b.alternatives).toEqual({ shown: ['alt:earliest-life/isua-stromatolites', 'alt:time-scale/pbdb-2022'], default: { 'alt:earliest-life': null, 'alt:time-scale': null } });
     expect(b.licenses.allowed).toContain('CC-BY-4.0');
     expect(b.data.commit).toMatch(/^[0-9a-f]{40}$/);
@@ -185,6 +192,54 @@ describe('build', () => {
     expect(toMa(start('life/taxa/archaea').lo)).toBe(3400);
     // A molecular date that pins an origin is shown at its centre.
     expect(toMa(start('life/taxa/cellular-organisms').best!)).toBeCloseTo(4210, 6);
+  });
+
+  it('writes the planet\'s states: its phases in order, tied to the dates they follow, and the ice of its glaciations', () => {
+    const { planet, episodes } = JSON.parse(readFileSync(join(latestBuild(), 'planet.json'), 'utf8')) as PlanetFile;
+    const { entities } = JSON.parse(readFileSync(join(latestBuild(), 'search.json'), 'utf8')) as SearchFile;
+    expect(planet!.phases.map((p) => p.label)).toEqual(['Proto-Earth', 'Rock-vapour atmosphere', 'Magma ocean under steam', 'Oceans', 'Without oceans']);
+    expect(planet!.phases.map((p) => p.values.surface?.map((c) => c.value))).toEqual([['crust-and-magma'], ['magma'], ['magma'], ['ocean'], ['bare-rock']]);
+    // Earth begins within 1 Myr of the Solar System's first solids; the proto-Earth ends at the impact.
+    const date = (id: string) => entities.find((e) => e.id === id)!.time.start.best!;
+    const phase = (id: string) => planet!.phases.find((p) => p.subject === `space/bodies/earth@${id}`)!;
+    const born = planet!.time.start.best! - date('space/events/solar-system-formation');
+    expect(born).toBeGreaterThanOrEqual(0);
+    expect(born).toBeLessThanOrEqual(1e6);
+    expect(phase('proto-earth').time.end.best).toBe(date('earth/events/moon-forming-impact'));
+    // The oceans are lost about 2 Gyr from now, a projection.
+    expect(phase('oceans').time.end.best).toBe(PRESENT_YEAR + 2e9);
+    expect(phase('magma-ocean').time.end.best! - date('earth/events/moon-forming-impact')).toBeCloseTo(2e6, 0);
+    // Picking another date for the impact moves the magma ocean with it.
+    const maurice = phase('magma-ocean').variants!['earth/events/moon-forming-impact#date-maurice-2020'];
+    expect(toMa(maurice.start.best!)).toBeCloseTo(4425, 0);
+    // The Snowballs' ice reaches the equator in the default picture; a competing claim leaves open water.
+    for (const id of ['earth/events/makganyene-glaciation', 'earth/events/sturtian-glaciation', 'earth/events/marinoan-glaciation']) {
+      const reach = episodes.find((e) => e.subject === id)!.values.ice_reach;
+      expect(chosenClaim(reach, {})!.value).toBe(0);
+      expect(reach.filter((c) => c.value !== 0).length).toBe(1);
+    }
+  });
+
+  it('draws Rome\'s territory from its dataset: one state across the dataset\'s names, within its lifetime', () => {
+    const dir = latestBuild();
+    const file = JSON.parse(readFileSync(join(dir, 'territory.json'), 'utf8')) as TerritoryFile;
+    const rome = file.territories.find((t) => t.subject === 'people/polities/rome')!;
+    const rows = rome.claims[0].rows;
+    expect(new Set(rows.map((r) => r.name))).toEqual(new Set(['Roman Kingdom', 'Roman Republic', 'Roman Empire', 'Eastern Roman Empire', 'Nicaean Empire', 'Byzantine Empire']));
+    // The dataset's years are inclusive and negative for BCE: its first Republic row, −500
+    // to −481, runs from the start of 500 BCE to the end of 481 BCE.
+    const republic = rows.find((r) => r.name === 'Roman Republic')!;
+    expect([republic.from, republic.to]).toEqual([-499, -479]);
+    // Its rows wholly after the fall of Constantinople are left out.
+    expect(Math.max(...rows.map((r) => r.from))).toBeLessThan(rome.time.end.best!);
+    // At its height, under Trajan and Hadrian.
+    const peak = rows.reduce((a, b) => (b.area > a.area ? b : a));
+    expect([peak.name, peak.from, peak.to, Math.round(peak.area / 1e5)]).toEqual(['Roman Empire', 117, 127, 53]);
+    // In 420 CE there were two courts: the West drawn as its own polity, part of Rome.
+    expect(territoriesAt(file, 420, {}).map((a) => a.territory.subject).sort()).toEqual(['people/polities/rome', 'people/polities/western-roman-empire']);
+    expect(territoriesAt(file, 1460, {})).toEqual([]);
+    const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
+    expect(ts.credits.map((c) => c.label)).toContain('Borders from Cliopatria (Bennett et al. 2025, Seshat)');
   });
 
   it('shows a moment at the one-sided evidence that bounds it, where that is tighter than its date', () => {

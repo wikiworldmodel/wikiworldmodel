@@ -1,0 +1,71 @@
+id: people/events/death-of-julius-nepos
+kind: event/political
+summary: >-
+  The murder of Julius Nepos, the last western emperor recognised at Constantinople, by his own
+  men in his country house near Salona in Dalmatia in 480, five years after Orestes drove him
+  out of Italy. The Italian annals give three different days.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Death of Julius Nepos }
+    unsourced: An editorial label.
+  date-fasti-vindobonenses:
+    prop: date
+    value: 9 May 480 CE
+    source:
+      ref: src:fasti-vindobonenses-priores
+      loc: "626, a. 480 (MGH AA 9, p. 310)"
+      quote: his cons. occiditur Nepos imp. VII idus Maias.
+    method: historical-account
+    rank: preferred
+    note: >-
+      In English: in this consulship (of Basilius iunior, 480) the emperor Nepos is killed on
+      the seventh day before the Ides of May, that is, 9 May. Bury (1923, vol. 1, p. 410) dates
+      the murder to May 480. Marcellinus Comes puts it in the same consulship without a day.
+  date-auctarium-havniense-prior:
+    prop: date
+    value: 22 June 480 CE
+    source:
+      ref: src:auctarium-havniense
+      loc: "ordo prior, a. 480 (MGH AA 9, p. 311)"
+      quote: a suis inprovisis ictibus confossus interiit X k. Iul.
+    method: historical-account
+    note: >-
+      In English: he died, stabbed by his own men with unforeseen blows, on the tenth day
+      before the Kalends of July, that is, 22 June, in the consulship of Basilius iunior (480).
+  date-auctarium-havniense-posterior:
+    prop: date
+    value: 25 April 480 CE
+    source:
+      ref: src:auctarium-havniense
+      loc: "ordo posterior, a. 480 (MGH AA 9, p. 311)"
+      quote: a suis occiditur VII k. Mai.
+    method: historical-account
+    note: >-
+      In English: he is killed by his own men on the seventh day before the Kalends of May,
+      that is, 25 April, in the consulship of Basilius iunior (480). The same manuscript's
+      other arrangement gives 22 June.
+  location:
+    prop: location
+    value: { lat: 43.539561, lon: 16.483426, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-salona
+        loc: representative point
+      - ref: src:marcellinus-comes-chronicle
+        loc: "a. 480.2 (MGH AA 11, p. 92)"
+        quote: Nepos, quem dudum Orestes imperio abdicaverat, Viatoris et Ovidae comitum suorum insidiis haut longe a Salonis sua in villa occisus est
+      - ref: src:anonymus-valesianus
+        loc: "7.36, Loeb p. 531"
+        quote: fled to Salona, where he remained for five years; but later he was slain by his own men
+    method: gazetteer
+    note: >-
+      In English, Marcellinus: Nepos, whom Orestes had long since removed from power, was
+      killed by the treachery of his companions Viator and Ovida in his own villa not far from
+      Salona. The villa is not located; marked at Pleiades' point for Salona.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

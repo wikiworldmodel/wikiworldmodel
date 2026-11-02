@@ -1,0 +1,21 @@
+id: src:polybius-histories
+type: text
+kind: historian
+citation: >-
+  Polybius, The Histories, vol. 2 (books 3–4), translated by W. R. Paton (Loeb Classical
+  Library, 1922).
+published: 1922
+written: { lo: 167 BCE, hi: 118 BCE }
+title: The Histories
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Polybius/3*.html
+via: LacusCurtius, which reproduces Paton's public-domain translation.
+reliability: >-
+  A Greek statesman and historian of the second century BCE who lived in Rome from 167 BCE. He
+  dates the first treaty with Carthage, and with it the first consuls, by Greek chronology; he
+  gives the treaty itself from its archaic Latin text, which he says could only be partly made
+  out.
+verified:
+  by: machine:claude-code
+  how: >-
+    3.22.1–3 read in Paton's translation on LacusCurtius, vol. 2, p. 53 (marked there as not
+    yet proofread). Fetched over plain HTTP; the site's TLS handshake failed from here.

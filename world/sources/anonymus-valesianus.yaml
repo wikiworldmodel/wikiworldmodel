@@ -1,0 +1,24 @@
+id: src:anonymus-valesianus
+type: text
+kind: historian
+citation: >-
+  Anonymus Valesianus, pars posterior (Excerpta Valesiana II), translated by J. C. Rolfe, in
+  Ammianus Marcellinus, vol. 3 (Loeb Classical Library, 1939), pp. 530–569; Latin text ed. Th.
+  Mommsen, Chronica minora saec. IV. V. VI. VII., vol. 1 (Monumenta Germaniae Historica,
+  Auctores antiquissimi 9; Berlin: Weidmann, 1892), pp. 306–328.
+published: 1939
+written: { lo: 526 CE }
+title: Anonymus Valesianus, pars posterior
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Excerpta_Valesiana/2*.html
+via: LacusCurtius, which reproduces Rolfe's public-domain translation; the Latin read in the MGH scan.
+reliability: >-
+  An anonymous history of Theoderic's Italy, written after the king's death (526) from Italian
+  sources, half a century after Odoacer's coup. It tells the order of events at Ravenna but
+  gives no days.
+verified:
+  by: machine:claude-code
+  how: >-
+    7.36–8.38 read in Rolfe's translation on LacusCurtius (marked there as proofread; Loeb pp.
+    531–533), and in Mommsen's Latin on pp. 308–310 of the Internet Archive's scan of MGH AA 9
+    (page images, leaves 326–328). LacusCurtius fetched over plain HTTP; its TLS handshake
+    failed from here.

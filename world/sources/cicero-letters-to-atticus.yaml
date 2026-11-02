@@ -1,0 +1,21 @@
+id: src:cicero-letters-to-atticus
+type: text
+kind: eyewitness
+citation: >-
+  Cicero, Letters to Atticus. Latin text ed. L. C. Purser (Oxford Classical Texts), as given by
+  the Perseus Digital Library; English translation by E. S. Shuckburgh, The Letters of Cicero
+  (London: George Bell and Sons, 1908–1909).
+written: { lo: 68 BCE, hi: 44 BCE }
+title: Epistulae ad Atticum
+url: https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0008:book=14:letter=14
+via: The Perseus Digital Library (Purser's Latin and Shuckburgh's translation); the Latin also read in The Latin Library.
+reliability: >-
+  Private letters, written as events happened. Those of April 44 BCE, written weeks after the
+  murder, refer to it by its day, the Ides of March; Cicero was in Rome then and attended the
+  senate two days later (14.14.2), but the letters do not narrate the killing.
+verified:
+  by: machine:claude-code
+  how: >-
+    Letter 14.14 (dated in the Latin Library's text to a.d. V Kal. Mai. 44 BCE, 27 April;
+    Shuckburgh's heading: 27 April) read in Purser's Latin on Perseus and in The Latin Library,
+    and in Shuckburgh's translation on Perseus.

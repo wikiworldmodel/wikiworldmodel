@@ -1,0 +1,21 @@
+id: src:angold-1975-byzantine-government-in-exile
+type: publication
+kind: review
+citation: >-
+  Angold, M. (1975). A Byzantine Government in Exile: Government and Society under the
+  Laskarids of Nicaea, 1204–1261. Oxford Historical Monographs. London: Oxford University
+  Press.
+authors:
+  - "Angold, M."
+published: 1975
+title: "A Byzantine Government in Exile: Government and Society under the Laskarids of Nicaea, 1204–1261"
+container: Oxford Historical Monographs (Oxford University Press)
+reliability: >-
+  A monograph on the empire of Nicaea, which treats it as the Byzantine state carried on in
+  exile after the Latin conquest of Constantinople in 1204, until its recovery in 1261.
+verified:
+  by: machine:claude-code
+  how: >-
+    Only the bibliographic record was checked, in library catalogues (the DAI's Zenon and
+    the BnF): title, publisher, year and series. The book itself was not read; it is cited
+    for the reading its title states.

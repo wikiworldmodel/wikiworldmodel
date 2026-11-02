@@ -1,0 +1,36 @@
+# A generator: versioned code plus parameters plus a seed. It makes the patterns the renderer
+# draws a planet's states with where nobody saw them: the plates of crust on a cooling magma
+# ocean, and the ragged edge of the ice of a glaciation. Which pattern shows, and how much of
+# it, follows the planet's states (planet.json): its phases' surface and atmosphere claims,
+# and the ice reach claimed for each glaciation. The pattern itself takes nothing from the
+# world, so it has no inputs. Changing its output is a new version, not an edit.
+id: gen:earth/surface
+type: generator
+title: Surface patterns
+version: 1
+code: generators/earth/surface/v1.ts
+runs_in: [build, client]
+outputs: { basis: procedural }
+inputs: []
+slots:
+  globe:
+    place: the whole globe
+    seed: earth/surface
+params:
+  width: 512
+  height: 256
+  # Plates of crust about 10° across, with cracks a fifth of a plate wide between them.
+  cells: 5
+  crack: 0.22
+  jitter: 0.3
+  warp: 0.6
+  glow_scale: 6
+  ice_scale: 2.5
+  detail_scale: 22
+  # How the renderer draws with the pattern. A magma ocean crusts over evenly through its
+  # phase, from none of it to nearly all; a surface of crust over magma is mostly crust, with
+  # melt glowing in its cracks. The edge of the ice strays up to this many degrees either
+  # side of the latitude the ice is claimed to reach.
+  draw:
+    crust: { start: 0, end: 0.96, over_magma: 0.82 }
+    ice_edge: 5

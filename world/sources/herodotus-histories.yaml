@@ -1,0 +1,18 @@
+id: src:herodotus-histories
+type: text
+kind: historian
+citation: >-
+  Herodotus, Histories, with an English translation by A. D. Godley (Loeb Classical Library;
+  Cambridge, Mass.: Harvard University Press, 1920).
+published: 1920
+written: { lo: 445 BCE, hi: 425 BCE }
+title: Histories
+url: https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.01.0126:book=4:chapter=144
+via: The Perseus Digital Library, which gives Godley's translation.
+reliability: >-
+  A historian of the fifth century BCE, two centuries after the founding of Byzantion, telling
+  a story current among the Greeks of the Hellespont; he gives the interval between the
+  foundings of Calchedon and Byzantion, not a date.
+verified:
+  by: machine:claude-code
+  how: Godley's translation of 4.144 read on Perseus.

@@ -1,0 +1,20 @@
+id: src:goldblatt-watson-2012-runaway-greenhouse
+type: publication
+kind: review
+citation: >-
+  Goldblatt, C. & Watson, A.J. (2012). The runaway greenhouse: implications for future
+  climate change, geoengineering and planetary atmospheres. Philosophical Transactions of
+  the Royal Society A 370(1974), 4197–4216.
+authors:
+  - "Goldblatt, C."
+  - "Watson, A.J."
+published: 2012
+title: "The runaway greenhouse: implications for future climate change, geoengineering and planetary atmospheres"
+container: Philosophical Transactions of the Royal Society A 370(1974), 4197–4216
+doi: 10.1098/rsta.2012.0004
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from the Europe PMC record (PMID 22869797) and in a PDF of the published
+    article, whose body gives no more on the timing than the abstract does. Citation from
+    Crossref.

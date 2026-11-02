@@ -1,0 +1,22 @@
+id: src:livy-ab-urbe-condita
+type: text
+kind: historian
+citation: >-
+  Livy, Ab urbe condita (History of Rome), books 1–2, with an English translation by B. O.
+  Foster (Loeb Classical Library; Cambridge, Mass.: Harvard University Press; London:
+  Heinemann, 1919).
+published: 1919
+written: { lo: 29 BCE, hi: 17 CE }
+title: Ab urbe condita
+url: https://www.perseus.tufts.edu/hopper/text?doc=Perseus:text:1999.02.0151
+via: The Perseus Digital Library, which gives Foster's translation; the Latin checked in The Latin Library.
+reliability: >-
+  The Augustan historian of Rome, writing book 1 some seven centuries after the regal period
+  from the Roman annalists, who were themselves late. The length of the kings' rule is the
+  tradition's count, the sum of the reigns it gave the seven kings.
+verified:
+  by: machine:claude-code
+  how: >-
+    Foster's translation of 1.7.3 and 1.60.2–3 read on Perseus (Perseus:text:1999.02.0151,
+    bibliography as given there); the Latin of the same passages read in The Latin Library's
+    text of book 1.

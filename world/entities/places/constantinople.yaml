@@ -1,0 +1,95 @@
+id: places/constantinople
+kind: settlement
+summary: >-
+  The city on the Bosporus, founded as Byzantion by Greek colonists in the seventh century BCE,
+  enlarged by Constantine and dedicated as Constantinople on 11 May 330, and Istanbul today.
+  Wikidata splits it into three items, Byzantium (Q23725), Constantinople (Q16869) and Istanbul
+  (Q406), and Pleiades into two (520985 and 520998); one of each is given here.
+author: machine:claude-code
+same_as: { wikidata: Q406, pleiades: 520985 }
+claims:
+  name-byzantium:
+    prop: name
+    value: { en: Byzantium }
+    valid: { hi: 10 May 330 CE }
+    source:
+      - ref: src:pleiades-byzantium
+        loc: names
+      - ref: src:socrates-ecclesiastical-history
+        loc: "1.16"
+        quote: in the city named after him, which being previously called Byzantium
+    note: >-
+      Byzantion in Greek, Byzantium in Latin, from the founding until the city was dedicated
+      under its new name on 11 May 330 (people/events/dedication-of-constantinople).
+  name-constantinople:
+    prop: name
+    value: { en: Constantinople }
+    valid: { lo: 11 May 330 CE, hi: unknown }
+    source:
+      - ref: src:socrates-ecclesiastical-history
+        loc: "1.16"
+        quote: having rendered it equal to imperial Rome, he named it Constantinople, establishing by law that it should be designated New Rome
+      - ref: src:chronicon-paschale
+        loc: "a. 330 (MGH AA 9, p. 234)"
+      - ref: src:pleiades-constantinopolis
+        loc: names
+    note: >-
+      The Chronicon Paschale has Constantine name the city Constantinople on the day of the
+      dedication. Its end in English use is left unknown: the name Istanbul is often said to
+      have become official through a Turkish postal measure of 28 March 1930, but no reliable
+      source for that could be read from here, and the accounts found disagree on whether it
+      was a law, a postal circular or no formal renaming at all. Pleiades also lists the
+      Ottoman Turkish Kostantiniyye among the city's names.
+  name-istanbul:
+    prop: name
+    value: { en: Istanbul }
+    source: { ref: src:pleiades-constantinopolis, loc: names }
+    rank: preferred
+    note: >-
+      Today's name, preferred as the label. Pleiades lists Istanbul as the city's modern
+      Turkish name; when it replaced Constantinople in English use is not recorded here.
+  start-jerome:
+    prop: start
+    value: { lo: 659 BCE, hi: 658 BCE }
+    source:
+      ref: src:jerome-chronicle
+      loc: Olympiad 30.2 (the edition's year 659 BC)
+      quote: Byzantium conditum.
+    method: tradition
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      Jerome's version of Eusebius' Chronicle enters "Byzantium founded" in the second year of
+      the 30th Olympiad, converted with Ol. 1.1 = 776/775 BCE. It is a date reckoned by
+      chronographers centuries later; earlier remains on the site, if any, are not counted.
+  start-herodotus-jerome:
+    prop: start
+    value: { lo: 668 BCE, hi: 667 BCE }
+    source:
+      - ref: src:herodotus-histories
+        loc: "4.144.2"
+        quote: the people of Calchedon had founded their town seventeen years before the Byzantines had founded theirs
+      - ref: src:jerome-chronicle
+        loc: Olympiad 23.4 (the edition's year 685 BC)
+        quote: Calchedon condita.
+    method: tradition
+    basis: reconstruction
+    note: >-
+      Herodotus gives only an interval: Byzantion was founded seventeen years after Calchedon,
+      across the strait. Counted from Jerome's date for Calchedon, Ol. 23.4 (685/684 BCE), that
+      gives 668/667 BCE. Jerome's own dates for the two cities are 26 years apart, not 17, so
+      the Chronicle and Herodotus cannot both be followed.
+  location:
+    prop: location
+    value: { lat: 41.005902, lon: 28.973881, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-byzantium, loc: representative point }
+    method: gazetteer
+    note: >-
+      Pleiades' representative point for Byzantium, the midpoint of its two points for the
+      ancient city, near the Hippodrome.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-511
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

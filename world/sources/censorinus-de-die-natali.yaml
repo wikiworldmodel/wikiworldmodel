@@ -1,0 +1,23 @@
+id: src:censorinus-de-die-natali
+type: text
+kind: historian
+citation: >-
+  Censorinus, De die natali. Latin text ed. J. Cholodniak (St Petersburg: Imperial Russian
+  Academy of Sciences, 1889).
+published: 1889
+written: 238 CE
+title: De die natali
+url: https://penelope.uchicago.edu/Thayer/L/Roman/Texts/Censorinus/text*.html
+via: LacusCurtius, which reproduces Cholodniak's Latin text; it has no English translation.
+reliability: >-
+  A grammarian's treatise on time, written for a patron's birthday in the year it names as the
+  consulship of Pius and Pontianus (238 CE). Its count of the years of the city is Varro's,
+  made in the first century BCE, nearly seven centuries after the date it fixes; it also gives
+  the day from which the years of the Augusti were counted.
+verified:
+  by: machine:claude-code
+  how: >-
+    Chapter 21 read in the Latin on LacusCurtius: 21.5–6, Varro's reckoning and the year count
+    from the Parilia; 21.8, the day Octavian was named Augustus. Edition details from the
+    LacusCurtius Latin home page. Fetched over plain HTTP; the site's TLS handshake failed from
+    here.

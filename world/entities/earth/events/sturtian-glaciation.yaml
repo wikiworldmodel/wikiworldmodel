@@ -51,3 +51,38 @@ claims:
     note: >-
       A rounded value, supported by their Re–Os age of 659.0 ± 4.5 Ma just above a Sturtian
       diamictite in Mongolia.
+  ice-reach-hoffman-2017:
+    prop: ice_reach
+    value: 0
+    source:
+      - ref: src:hoffman-2017-snowball-earth
+        loc: abstract
+        quote: Geological evidence indicates that grounded ice sheets reached sea level at all latitudes during two long-lived Cryogenian (58 and ≥5 My) glaciations.
+      - ref: src:hoffman-2017-snowball-earth
+        loc: Sea-glacier development on the Snowball ocean
+        quote: A Snowball Earth ensues when sea ice, having reached a critical latitude, advances uncontrollably to the equator through ice-albedo feedback
+    method: compilation
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      Glacial deposits laid down at sea level at low paleomagnetic latitudes; in the Snowball
+      Earth the paper reviews, sea ice covered the whole ocean as well. The abstract's 58-Myr
+      glaciation is the Sturtian.
+  ice-reach-abbot-2011:
+    prop: ice_reach
+    value: 10
+    source:
+      - ref: src:abbot-2011-jormungand
+        loc: abstract
+        quote: In this state the ocean is very nearly globally ice-covered, but a very small strip of the tropical ocean remains ice-free.
+      - ref: src:hoffman-2017-snowball-earth
+        loc: Waterbelt solutions
+        quote: sea-ice margins are stable at 5° to 15° latitude (236)
+    method: model
+    basis: reconstruction
+    note: >-
+      The Jormungand or "waterbelt" state, which Abbot et al. offer as a possible model for
+      the Neoproterozoic glaciations, "although further study of this issue is needed". Its
+      abstract gives no latitude for the ice's edge; Hoffman et al. (2017), citing it, put the
+      sea-ice margin at 5° to 15°, recorded here as the middle, 10°. Ice sheets could still
+      grow on high ground near the equator.

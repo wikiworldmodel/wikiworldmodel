@@ -1,0 +1,10 @@
+id: earth/plates/black-sea
+kind: plate
+summary: Plate 511 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Black Sea }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 511", quote: "BLK  Black Sea  Should be same as Europe" }
+    note: The model fixes it to Europe (plate 301) at every age; it carries Constantinople.
