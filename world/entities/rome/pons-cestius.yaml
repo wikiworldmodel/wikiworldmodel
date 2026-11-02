@@ -1,0 +1,56 @@
+# Footprint measured on the map: 75 m by 1 m, long axis on bearing 16° / 196°.
+id: rome/pons-cestius
+kind: works/bridge
+summary: >-
+  The first stone bridge from the Tiber island to the right bank, built between 62 and 27 BCE,
+  probably by one of the Cestii. In 369 to 370 it was replaced by what was in effect a new bridge,
+  the Pons Gratiani, which kept its form; the old bridge still stood in 315.
+author: machine:claude-code
+same_as: { wikidata: Q734903, ohm: way/198283988 }
+claims:
+  name:
+    prop: name
+    value: { en: "Pons Cestius", la: "Pons Cestius" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 62 BCE, hi: 27 BCE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Pons Cestius, p. 399"
+      quote: "the bridge was probably constructed by one of them, while curator viarum, between 62 and 27 B.C."
+    method: historical-account
+    note: >-
+      Probably built soon after the Pons Fabricius of 62 BCE.
+  form:
+    prop: form
+    value: { type: bridge, arches: 3, width: 8.2 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pons Cestius, p. 400"
+        quote: "was 48 metres long and 8.20 wide, with one central arch, 23.65 metres in span, and a small arch on each side"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pons Cestius, p. 400"
+        quote: "the general appearance and form of the two bridges were doubtless about the same"
+    basis: reconstruction
+    note: >-
+      The figures are those of the Pons Gratiani of 369 to 370, which Platner and Ashby think kept
+      the form of the earlier bridge.
+  location:
+    prop: location
+    value: { lat: 41.890062, lon: 12.477339, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283988 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198283988] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283988 }
+    method: map-trace
+    basis: reconstruction

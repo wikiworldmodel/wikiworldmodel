@@ -1,0 +1,67 @@
+# Footprint measured on the map: 108 m by 38 m, long axis on bearing 139° / 319°.
+id: rome/forum-of-caesar
+kind: open/forum
+summary: >-
+  The first of the imperial fora, begun by Julius Caesar around the temple of Venus Genetrix and
+  dedicated, unfinished, on 26 September 46 BCE; Octavian completed it. It burned in 283 and was
+  restored by Diocletian.
+author: machine:claude-code
+same_as: { wikidata: Q856968, pleiades: 445545537, ohm: way/198576352 }
+claims:
+  name:
+    prop: name
+    value: { en: "Forum of Caesar", la: "Forum Iulium" }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Iulium, p. 226"
+        quote: "While the official designation was forum Iulium"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Iulium, p. 226"
+        quote: "it appears regularly in our sources as forum Caesaris"
+  start:
+    prop: start
+    value: 26 September 46 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum Iulium, p. 226"
+      quote: "Temple and forum were dedicated on the last day of Caesar’s great triumph, 26th September, 46 B.c."
+    method: historical-account
+    note: >-
+      The forum was not finished by Caesar but by Octavian after the dictator's death. The fire
+      of 283 and Diocletian's restoration (p. 226) are those of the forum of c. 315.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576352 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: court, wall_height: 12, faces: 139 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Iulium, p. 227"
+        quote: "was rectangular, about 115 metres long and 30 wide, surrounded by a colonnade and wall"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Iulium, p. 227"
+        quote: "12 metres high and 3.70 thick"
+    note: >-
+      faces is read from the plan.
+  location:
+    prop: location
+    value: { lat: 41.893656, lon: 12.485413, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576352 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576352] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576352 }
+    method: map-trace
+    basis: reconstruction

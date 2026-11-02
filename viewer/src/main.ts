@@ -11,12 +11,16 @@ import type { Feature, FeatureTime, FieldInfo, GeneratorConstraint } from '../..
 import { formatTime, fromMa, historical, PRESENT_YEAR, toMa } from '../../core/time.ts';
 import { GENERATOR as CLOUDS, generateClouds, type CloudParams } from '../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../world/generators/earth/surface/v1.ts';
+import { EARTH_RADIUS, fromLocal, toLocal, type CityStructure } from '../../core/city.ts';
 import { Camera, MAX_DIST, MIN_DIST } from './camera.ts';
+import { CityScene } from './city/scene.ts';
+import { autoTilt, groundHit, localView, projectLocal, rayOf, sunAt, type LocalView } from './city/view.ts';
+import { CityLabels } from './ui/citylabels.ts';
 import { fetchLog, getJSON, latestBuild, loadBuild, loadRecord, type Build } from './data.ts';
 import { FieldRenderer, type FieldTileGPU } from './gl/field.ts';
 import { globeLook, GlobeRenderer } from './gl/globe.ts';
 import { add, cross, norm, scale, type V3 } from './mat.ts';
-import { buildOf, fromSearch, quantize, toSearch, type ViewState } from './state.ts';
+import { buildOf, DEFAULT_HOUR, fromSearch, HOURS, quantize, toSearch, type ViewState } from './state.ts';
 import { TileManager, type LoadedTile } from './tiles.ts';
 import { InspectPanel, type PlanetStateInfo, type TerritoryHere } from './ui/inspect.ts';
 import { Markers, timeFor, visibility } from './ui/markers.ts';
@@ -41,8 +45,22 @@ export interface LightworldHandle {
   requests: string[];
   clouds: { expected: string; actual: string | null };
   surface: { expected: string; actual: string | null };
+  /** the plan of the city's generated fabric, here and in the build */
+  fabric(): { expected: string; actual: string | null } | null;
+  /** how much of the city is on the GPU */
+  cityStats(): { cells: number; coarse: number; fine: number; megabytes: number } | null;
+  /** where a structure's label would be on the screen, for tests */
+  structureAt(id: string): { x: number; y: number } | undefined;
   set(s: Partial<ViewState>): void;
 }
+
+/** Below this the city's scene is drawn, fading in over the globe; and below the lower height the globe is gone. */
+const CITY_TOP = 1.1e6;
+const CITY_SOLID = 4.5e5;
+const GLOBE_GONE = 4.5e4;
+const RAD = Math.PI / 180;
+/** Kinds that belong to a city: they are drawn and named in the city's scene, not on the globe. */
+const cityKind = (k: string) => /^(building|monument|works|open)(\/|$)/.test(k);
 
 const ROOT = new URL('./', location.href).href;
 
@@ -87,6 +105,7 @@ async function start(root: HTMLElement): Promise<void> {
     alt: [],
     picks: [],
     sel: null,
+    hour: DEFAULT_HOUR,
   };
   const parsed = fromSearch(location.search, defaults);
   let state: ViewState = quantize({ ...parsed.state, t: Math.max(dataRange[0], Math.min(dataRange[1], parsed.state.t)) });
@@ -133,6 +152,23 @@ async function start(root: HTMLElement): Promise<void> {
 
   const markers = new Markers();
   stage.appendChild(markers.el);
+  // The city: its scene loads as the camera comes near it, or at once if a link starts there.
+  const site = ts.site;
+  let city: CityScene | null = null;
+  let cityLoading = false;
+  const labels = new CityLabels();
+  labels.el.hidden = true;
+  stage.appendChild(labels.el);
+  const cityBar = document.createElement('div');
+  cityBar.className = 'citybar';
+  cityBar.hidden = true;
+  cityBar.innerHTML = `<label title="The hour of the day">Light <input type="range" min="${HOURS[0]}" max="${HOURS[1]}" step="0.05" aria-label="Hour of the day" /></label><button class="to-globe" title="Back out to the whole Earth">Globe</button><span class="city-help" title="Drag to move over the ground. Right-drag or shift-drag to turn and tilt. Scroll to go towards what the pointer is on. W, A, S and D to walk. L for the light. Click anything to see how we know.">?</span>`;
+  stage.appendChild(cityBar);
+  const cityEnter = document.createElement('button');
+  cityEnter.className = 'city-enter';
+  cityEnter.hidden = true;
+  stage.appendChild(cityEnter);
+  let frameView: LocalView | null = null;
   const credits = document.createElement('div');
   credits.className = 'credits';
   credits.textContent = `Data: ${ts.credits.map((c) => `${c.label}, ${c.license}`).join(' · ')}`;
@@ -179,7 +215,7 @@ async function start(root: HTMLElement): Promise<void> {
     },
   });
   timebar.setKeyframes([...new Set(ts.fields.flatMap((f) => f.keyframesMa))].map(fromMa));
-  timebar.setRecords(build.search.entities.filter((e) => e.kind !== 'plate'));
+  timebar.setRecords(build.search.entities.filter((e) => e.kind !== 'plate' && !cityKind(e.kind)));
   timebar.setScenario(scenario());
   timebar.setStates(stateBands(scenario()));
   root.appendChild(timebar.el);
@@ -200,15 +236,37 @@ async function start(root: HTMLElement): Promise<void> {
   let lastFrame = performance.now();
   let shownRecord: string | null = null;
 
+  /** Is a time one the site is drawn for? */
+  const siteOpen = (t: number) => !!site && t >= site.span[0] && t <= site.span[1];
+  /** How far a point on the globe is from the site, in metres. */
+  function siteDistance(lat: number, lon: number): number {
+    if (!site) return Infinity;
+    const dLat = (lat - site.origin.lat) * RAD;
+    const dLon = (lon - site.origin.lon) * RAD;
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat * RAD) * Math.cos(site.origin.lat * RAD) * Math.sin(dLon / 2) ** 2;
+    return 2 * EARTH_RADIUS * Math.asin(Math.min(1, Math.sqrt(a)));
+  }
+  /** How close to the Earth a view may come here: to the street at the site, nowhere near it elsewhere. */
+  function lowestDist(cam: ViewState['cam'], t: number): number {
+    if (!siteOpen(t)) return MIN_DIST;
+    const d = siteDistance(cam.lat, cam.lon);
+    if (d > 1.4e6) return MIN_DIST;
+    if (d < 7e4) return 1 + 2 / EARTH_RADIUS;
+    return 1 + (((MIN_DIST - 1) * EARTH_RADIUS) * ((d - 7e4) / 1.33e6) ** 1.2) / EARTH_RADIUS + 3e3 / EARTH_RADIUS;
+  }
+
   function setState(p: Partial<ViewState>): void {
     const next = quantize({ ...state, ...p });
     next.t = Math.max(dataRange[0], Math.min(dataRange[1], next.t));
+    // A time the site is not drawn for takes the camera back up to the globe.
+    if (next.cam.dist < MIN_DIST && !siteOpen(next.t)) next.cam = { lat: next.cam.lat, lon: next.cam.lon, dist: MIN_DIST };
     const selChanged = next.sel !== state.sel;
     const altsChanged = JSON.stringify([next.alt, next.picks]) !== JSON.stringify([state.alt, state.picks]);
     state = next;
     if (altsChanged) {
       timebar.setScenario(scenario());
       timebar.setStates(stateBands(scenario()));
+      city?.setScenario(scenario());
     }
     dirty = true;
     clearTimeout(urlTimer);
@@ -336,6 +394,12 @@ async function start(root: HTMLElement): Promise<void> {
       canvas.height = h;
     }
     camera.update(state.cam, stage.clientWidth, stage.clientHeight);
+    const range = (state.cam.dist - 1) * EARTH_RADIUS;
+    const wantsCity = !!site && siteOpen(state.t) && range < CITY_TOP * 1.4 && siteDistance(state.cam.lat, state.cam.lon) < 1.6e6;
+    // Loaded before it is needed: as soon as the way down is on offer.
+    if (site && siteOpen(state.t) && state.cam.dist < 2.2 && siteDistance(state.cam.lat, state.cam.lon) < 2e6 && !city && !cityLoading) void loadCity();
+    const inCity = wantsCity && !!city?.ready && range < CITY_TOP;
+    const globeHidden = inCity && range < GLOBE_GONE;
     // A projection holds the field's youngest keyframe, and the plates where they are then.
     const fi = fieldAt(state.t);
     const age = fi ? Math.max(toMa(state.t), fi.keyframesMa[0]) : toMa(state.t);
@@ -372,7 +436,7 @@ async function start(root: HTMLElement): Promise<void> {
     const sun = norm(add(add(scale(norm(eye), 0.75), scale(right, -0.45)), scale(up, 0.5))) as V3;
     if (territory.update(state.t, scenario())) globe.setTerritory(territory.canvas);
     const showTerritory = territory.shown && !!fi && look.formed;
-    globe.render(
+    if (!globeHidden) globe.render(
       {
         viewProj: camera.viewProj,
         invViewProj: camera.invViewProj,
@@ -389,9 +453,39 @@ async function start(root: HTMLElement): Promise<void> {
       w,
       h,
     );
+    frameView = null;
+    if (inCity) {
+      const v = localView(state.cam, site!.origin, city!.ground, stage.clientWidth, stage.clientHeight);
+      // The scene's own frame, its pixel size in device pixels.
+      v.width = stage.clientWidth;
+      v.height = stage.clientHeight;
+      frameView = v;
+      const t0 = 1 - Math.max(0, Math.min(1, (range - CITY_SOLID) / (CITY_TOP - CITY_SOLID)));
+      const alpha = t0 * t0 * (3 - 2 * t0);
+      city!.select(state.sel);
+      city!.render(v, sunAt(state.hour, site!.origin.lat), state.t, state.evidence, alpha, globeHidden, w, h);
+      labels.update(v, city!.ground, city!.skyline, state.t, state.sel);
+    }
+    labels.el.hidden = !inCity || range > 2.2e4;
+    planet.el.hidden = inCity && range < 6e4;
+    credits.classList.toggle('in-city', inCity && range < 6e4);
+    cityBar.hidden = !inCity || range > CITY_SOLID;
+    canvas.classList.toggle('in-city', inCity);
+    if (inCity) cityBar.querySelector<HTMLInputElement>('input')!.value = String(state.hour);
+    const enter = !!site && !inCity && state.cam.dist < 2.2 && siteDistance(state.cam.lat, state.cam.lon) < 1.5e6;
+    cityEnter.hidden = !enter;
+    if (enter) cityEnter.textContent = `Fly down into ${site!.label}, ${formatTime(site!.slice)}`;
+    if (inCity) {
+      const slice = site!.slice;
+      const why = state.t < -200 || state.t > 700 ? `${site!.label}'s ordinary housing is generated for ${formatTime(slice)}; what stands here at this date is only what the records and the map date to it.` : '';
+      if (why && notice.textContent !== why) notice.textContent = why;
+      notice.hidden = !why;
+    }
 
     const nowTotals = new Map<number, Quat>();
-    markers.update([...features.values()], camera, {
+    const onGlobe = [...features.values()].filter((f) => !cityKind(f.kind));
+    markers.el.hidden = inCity && range < 1.2e5;
+    markers.update(onGlobe, camera, {
       t: state.t,
       halo: halo(state.t),
       evidence: state.evidence,
@@ -427,6 +521,8 @@ async function start(root: HTMLElement): Promise<void> {
         setState({ t: Math.min(state.window[1], dataRange[1]) });
       } else setState({ t });
     }
+    if (flight) stepFlight(now);
+    if (walking.size && frameView) walk((now - lastFrame) / 1000);
     lastFrame = now;
     if (!dirty) return;
     dirty = false;
@@ -435,19 +531,41 @@ async function start(root: HTMLElement): Promise<void> {
     if (tiles.busy) dirty = true;
   }
 
-  // Globe interaction.
-  let drag: { x: number; y: number; cam: ViewState['cam']; moved: boolean } | null = null;
+  // Globe interaction, and near the ground, a map's: drag the ground, turn with the right button
+  // or shift, and scroll towards what the pointer is on.
+  let drag: { x: number; y: number; cam: ViewState['cam']; moved: boolean; turn: boolean } | null = null;
+  canvas.addEventListener('contextmenu', (e) => e.preventDefault());
   canvas.addEventListener('pointerdown', (e) => {
     canvas.setPointerCapture(e.pointerId);
-    drag = { x: e.clientX, y: e.clientY, cam: { ...state.cam }, moved: false };
+    flight = null;
+    drag = { x: e.clientX, y: e.clientY, cam: { ...state.cam }, moved: false, turn: e.button === 2 || e.shiftKey || e.altKey };
   });
   canvas.addEventListener('pointermove', (e) => {
     if (!drag) return;
     const dx = e.clientX - drag.x;
     const dy = e.clientY - drag.y;
     if (Math.abs(dx) + Math.abs(dy) > 3) drag.moved = true;
+    const range = (drag.cam.dist - 1) * EARTH_RADIUS;
+    if (frameView && drag.turn) {
+      setState({ cam: { ...drag.cam, heading: (drag.cam.heading ?? 0) + dx * 0.28, tilt: Math.max(0, Math.min(112, (drag.cam.tilt ?? 0) + dy * 0.22)) } });
+      return;
+    }
+    if (frameView && range < 6e5) {
+      // The ground follows the pointer.
+      const v = frameView;
+      const tilt = ((drag.cam.tilt ?? 0) * Math.PI) / 180;
+      const k = (range * 2 * Math.tan(v.fov / 2)) / v.height;
+      const along = (dy * k) / Math.max(0.3, Math.cos(Math.min(tilt, 1.2)));
+      const h = ((drag.cam.heading ?? 0) * Math.PI) / 180;
+      const mx = -dx * k * Math.cos(h) + along * Math.sin(h);
+      const my = dx * k * Math.sin(h) + along * Math.cos(h);
+      const [x, y] = toLocal(site!.origin, drag.cam.lat, drag.cam.lon);
+      const [lat, lon] = fromLocal(site!.origin, x + mx, y + my);
+      setState({ cam: { ...drag.cam, lat, lon } });
+      return;
+    }
     const k = (0.22 * (drag.cam.dist - 1)) / 2.3;
-    setState({ cam: { lat: drag.cam.lat + dy * k, lon: drag.cam.lon - dx * k, dist: drag.cam.dist } });
+    setState({ cam: { ...drag.cam, lat: drag.cam.lat + dy * k, lon: drag.cam.lon - dx * k } });
   });
   canvas.addEventListener('pointerup', (e) => {
     const d = drag;
@@ -457,11 +575,175 @@ async function start(root: HTMLElement): Promise<void> {
   });
   canvas.addEventListener('wheel', (e) => {
     e.preventDefault();
-    const dist = Math.max(MIN_DIST, Math.min(MAX_DIST, 1 + (state.cam.dist - 1) * Math.exp(e.deltaY * 0.0012)));
-    setState({ cam: { ...state.cam, dist } });
+    flight = null;
+    zoomBy(e.deltaY, e.offsetX, e.offsetY);
   }, { passive: false });
 
+  // Walking: W, A, S and D move the camera over the ground, at a pace that suits its height.
+  const walking = new Set<string>();
+  function walk(dt: number): void {
+    const range = (state.cam.dist - 1) * EARTH_RADIUS;
+    const speed = Math.max(5, range * 0.7) * Math.min(dt, 0.1);
+    const h = ((state.cam.heading ?? 0) * Math.PI) / 180;
+    const go = (walking.has('w') ? 1 : 0) - (walking.has('s') ? 1 : 0);
+    const side = (walking.has('d') ? 1 : 0) - (walking.has('a') ? 1 : 0);
+    const [x, y] = toLocal(site!.origin, state.cam.lat, state.cam.lon);
+    const [lat, lon] = fromLocal(site!.origin, x + (Math.sin(h) * go + Math.cos(h) * side) * speed, y + (Math.cos(h) * go - Math.sin(h) * side) * speed);
+    setState({ cam: { ...state.cam, lat, lon } });
+  }
+  window.addEventListener('keyup', (e) => walking.delete(e.key.toLowerCase()));
+  window.addEventListener('blur', () => walking.clear());
+
+  /** Zoom: from orbit, towards the site if it is near; close by, towards what the pointer is on. */
+  function zoomBy(deltaY: number, sx: number, sy: number): void {
+    const cam = state.cam;
+    const factor = Math.exp(deltaY * 0.0012);
+    const lowest = lowestDist(cam, state.t);
+    const dist = Math.max(lowest, Math.min(MAX_DIST, 1 + (cam.dist - 1) * factor));
+    const before = (cam.dist - 1) * EARTH_RADIUS;
+    const after = (dist - 1) * EARTH_RADIUS;
+    let lat = cam.lat;
+    let lon = cam.lon;
+    if (frameView && deltaY < 0 && after <= (lowest - 1) * EARTH_RADIUS + 0.01) {
+      // At the street, scrolling on walks forward.
+      const v = frameView;
+      const step = Math.min(6, -deltaY * 0.03);
+      const [x, y] = toLocal(site!.origin, cam.lat, cam.lon);
+      [lat, lon] = fromLocal(site!.origin, x + Math.sin(((cam.heading ?? 0) * Math.PI) / 180) * step, y + Math.cos(((cam.heading ?? 0) * Math.PI) / 180) * step);
+      void v;
+    } else if (site && dist < MIN_DIST && siteOpen(state.t)) {
+      if (frameView && before < 4e5) {
+        // Keep the ground under the pointer where it is.
+        const hit = groundHit(frameView, rayOf(frameView, sx, sy), city!.ground);
+        if (hit) {
+          const [x, y] = toLocal(site.origin, cam.lat, cam.lon);
+          const k = after / before;
+          [lat, lon] = fromLocal(site.origin, hit[0] + (x - hit[0]) * k, hit[1] + (y - hit[1]) * k);
+        }
+      } else if (deltaY < 0) {
+        // Coming down from orbit, drift towards the city.
+        const k = Math.min(1, (before - after) / Math.max(before, 1)) * 0.9;
+        lat += (site.origin.lat - lat) * k;
+        lon += (site.origin.lon - lon) * k;
+      }
+    }
+    const tilt = Math.max(0, Math.min(112, (cam.tilt ?? 0) + autoTilt(after) - autoTilt(before)));
+    const high = after > 4.2e5;
+    setState({ cam: { lat, lon, dist, heading: high ? 0 : cam.heading, tilt: high ? 0 : tilt } });
+  }
+
+  /** A flight: from where the camera is to a view, over a few seconds, in the logarithm of its height. */
+  interface Flight {
+    from: ViewState['cam'];
+    to: ViewState['cam'];
+    t0: number;
+    ms: number;
+  }
+  let flight: Flight | null = null;
+
+  function flyTo(to: ViewState['cam'], ms = 3600): void {
+    // A link is the place it names: tests and shared views arrive at once.
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return setState({ cam: to });
+    flight = { from: { ...state.cam, heading: state.cam.heading ?? 0, tilt: state.cam.tilt ?? 0 }, to: { ...to, heading: to.heading ?? 0, tilt: to.tilt ?? 0 }, t0: performance.now(), ms };
+    dirty = true;
+  }
+
+  function stepFlight(now: number): void {
+    const f = flight!;
+    let u = Math.min(1, (now - f.t0) / f.ms);
+    // A flight into the city waits above it until the city is ready.
+    if (u > 0.3 && f.to.dist < MIN_DIST && !city?.ready) {
+      u = 0.3;
+      f.t0 = now - u * f.ms;
+    }
+    const e = u * u * (3 - 2 * u);
+    // The place arrives before the height does, so the descent ends over the city.
+    const g = Math.min(1, e * 1.5);
+    const a0 = Math.log(f.from.dist - 1);
+    const a1 = Math.log(f.to.dist - 1);
+    let dh = ((f.to.heading! - f.from.heading! + 540) % 360) - 180;
+    if (Math.abs(dh) < 1e-6) dh = 0;
+    setState({
+      cam: {
+        lat: f.from.lat + (f.to.lat - f.from.lat) * g,
+        lon: f.from.lon + (f.to.lon - f.from.lon) * g,
+        dist: 1 + Math.exp(a0 + (a1 - a0) * e),
+        heading: f.from.heading! + dh * e,
+        tilt: f.from.tilt! + (f.to.tilt! - f.from.tilt!) * e,
+      },
+    });
+    if (u >= 1) flight = null;
+  }
+
+  async function loadCity(): Promise<void> {
+    cityLoading = true;
+    try {
+      const scene = new CityScene(gl!, build);
+      scene.onChange = () => (dirty = true);
+      await scene.load();
+      city = scene;
+      scene.setScenario(scenario());
+      labels.setStructures(scene.file.structures, scene.tops, scene.file.site.label, (s) => s.label);
+      labels.onSelect = (id) => goTo(id);
+    } catch (err) {
+      // The globe still works without the city.
+      console.error(`city: ${err instanceof Error ? err.message : String(err)}`.slice(0, 900));
+      notice.textContent = `The city could not be drawn here: ${err instanceof Error ? err.message.split('\n')[0] : err}`;
+      notice.hidden = false;
+    }
+    dirty = true;
+  }
+
+  /** The default way into the city: from the south-east, over the Colosseum towards the Forum. */
+  const cityCam = (): ViewState['cam'] => {
+    const [lat, lon] = fromLocal(site!.origin, 240, -60);
+    return { lat, lon, dist: 1 + 1500 / EARTH_RADIUS, heading: 302, tilt: 66 };
+  };
+
+  function enterCity(): void {
+    if (!site) return;
+    if (!city && !cityLoading) void loadCity();
+    const inSlice = state.t >= -200 && state.t <= 700;
+    setState({ t: inSlice ? state.t : site.slice, window: inSlice ? state.window : clampWindow([-800, 1200], limits) });
+    flyTo(cityCam(), 5200);
+  }
+  cityEnter.onclick = () => enterCity();
+  cityBar.querySelector<HTMLInputElement>('input')!.oninput = (e) => setState({ hour: Number((e.target as HTMLInputElement).value) });
+  cityBar.querySelector<HTMLButtonElement>('.to-globe')!.onclick = () => flyTo({ lat: state.cam.lat, lon: state.cam.lon, dist: 2.6 }, 4200);
+
+  /** Fly to a structure of the city, looking at its front, at a time it stands. */
+  function flyToStructure(s: CityStructure): void {
+    const a = s.time.start.best ?? -Infinity;
+    const b = s.time.end.best ?? Infinity;
+    const t = state.t >= a && state.t <= b ? state.t : site!.slice >= a && site!.slice <= b ? site!.slice : Math.max(a, Math.min(b, state.t));
+    const [lat, lon] = fromLocal(site!.origin, s.at[0], s.at[1]);
+    let extent = 60;
+    for (const r of s.rings) for (let i = 0; i < r.length; i += 2) extent = Math.max(extent, Math.hypot(r[i] - s.at[0], r[i + 1] - s.at[1]));
+    const range = Math.max(90, Math.min(1800, extent * 2.6));
+    setState({ t, sel: s.id, window: t >= state.window[0] && t <= state.window[1] && state.window[1] - state.window[0] < 5000 ? state.window : clampWindow([-800, 1200], limits) });
+    flyTo({ lat, lon, dist: 1 + range / EARTH_RADIUS, heading: state.cam.dist < 1.01 ? state.cam.heading : 330, tilt: 62 }, state.cam.dist < 1.001 ? 1800 : 4600);
+  }
+
   function pickAt(x: number, y: number): void {
+    if (frameView && city && (state.cam.dist - 1) * EARTH_RADIUS < 6e4) {
+      const dpr = canvas.width / stage.clientWidth;
+      const found = city.pick(Math.round(x * dpr), canvas.height - 1 - Math.round(y * dpr));
+      dirty = true;
+      here = null;
+      if (found.structure) return setState({ sel: found.structure.id });
+      setState({ sel: null });
+      shownRecord = null;
+      if (found.lot !== undefined) {
+        const reg = city.file.fabric.regions[city.lotRegion[found.lot]];
+        const kind = city.lotType[found.lot];
+        const words = kind === 0 ? 'A block of apartments and shops' : kind === 1 ? 'A town house' : 'A house outside the walls';
+        return inspect.showGenerated(words, 'Generated building', `In ${reg?.label ?? 'the city'}. Nothing is known of this building: the generator placed it here so that the city stands around its monuments.`, `${city.file.fabric.generator}, version ${city.file.fabric.version}, seed "${city.file.fabric.seed}": its streets and lots are invented, and only how densely it builds each region comes from the world, from what the Regionary Catalogues count there.`);
+      }
+      if (found.tree) return inspect.showGenerated('A tree', 'Generated', 'Trees are placed by the generator in the mapped gardens and across the open country. No one recorded this one.', `${city.file.fabric.generator}, version ${city.file.fabric.version}.`);
+      if (found.crowd) return inspect.showGenerated('A passer-by', 'Generated', 'Figures to give the streets and squares their scale. Nobody in particular.', `${city.file.fabric.generator}, version ${city.file.fabric.version}.`);
+      inspect.hide();
+      return;
+    }
     const hit = camera.pick(x, y);
     if (!hit) {
       setState({ sel: null });
@@ -574,6 +856,20 @@ async function start(root: HTMLElement): Promise<void> {
     here = null;
     const f = features.get(id) ?? null;
     const entry = build.search.entities.find((e) => e.id === id)!;
+    if (entry && cityKind(entry.kind) && site) {
+      const open = () => {
+        const s = city?.file.structures.find((x) => x.id === id);
+        if (s) flyToStructure(s);
+        else setState({ sel: id });
+      };
+      if (city) open();
+      else if (!cityLoading) void loadCity().then(open);
+      return;
+    }
+    if (id === 'places/rome' && site) {
+      setState({ sel: id });
+      return enterCity();
+    }
     const time = f ? timeFor(f, scenario()) : entry.time;
     let t = state.t;
     if (visibility(time, t, halo(t), false) < 0.5) t = time.start.best ?? t;
@@ -601,11 +897,19 @@ async function start(root: HTMLElement): Promise<void> {
 
   window.addEventListener('keydown', (e) => {
     if ((e.target as HTMLElement).tagName === 'INPUT') return;
+    if (frameView && 'wasd'.includes(e.key.toLowerCase()) && e.key.length === 1) {
+      walking.add(e.key.toLowerCase());
+      flight = null;
+      dirty = true;
+      e.preventDefault();
+      return;
+    }
     if (e.key === 'e' || e.key === 'E') setState({ evidence: !state.evidence });
     else if (e.key === 'c' || e.key === 'C') setState({ clouds: !state.clouds });
     else if (e.key === ' ') togglePlay();
     else if (e.key === 'ArrowLeft') setState({ t: timebar.stepFrom(state.t, -1 / 200) });
     else if (e.key === 'ArrowRight') setState({ t: timebar.stepFrom(state.t, 1 / 200) });
+    else if (e.key === 'l' || e.key === 'L') setState({ hour: state.hour >= HOURS[1] ? HOURS[0] : state.hour + 0.4 });
     else if (e.key === '/') search.focus();
     else if (e.key === 'Escape') setState({ sel: null });
     else return;
@@ -617,15 +921,23 @@ async function start(root: HTMLElement): Promise<void> {
     setState(p.state);
   });
 
+  /** Is the view waiting on the city's scene? */
+  const cityWanted = () => !!site && siteOpen(state.t) && (state.cam.dist - 1) * EARTH_RADIUS < CITY_TOP * 1.4 && siteDistance(state.cam.lat, state.cam.lon) < 1.6e6 && !(city?.settled && city.plan.actual);
   history.replaceState(null, '', toSearch(build.id, state));
   window.__lightworld = {
     build: build.id,
-    idle: () => !tiles.busy && !dirty && cloudsReady && surfaceReady && territoryReady && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel),
+    idle: () => !tiles.busy && !dirty && cloudsReady && surfaceReady && territoryReady && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
     state: () => state,
     url: () => toSearch(build.id, state),
     requests: fetchLog,
     clouds,
     surface,
+    fabric: () => (city ? city.plan : null),
+    cityStats: () => (city ? city.stats() : null),
+    structureAt: (id) => {
+      const s = city?.file.structures.find((x) => x.id === id);
+      return s && frameView ? projectLocal(frameView, s.at[0], s.at[1], s.base) : undefined;
+    },
     set: (s) => setState(s),
   };
   if (state.sel) void showSelection();

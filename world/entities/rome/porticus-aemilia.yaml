@@ -1,0 +1,55 @@
+# Footprint measured on the map: 270 m by 31 m, long axis on bearing 44° / 224°.
+id: rome/porticus-aemilia
+kind: building/warehouse
+summary: >-
+  A porticus outside the Porta Trigemina at the foot of the Aventine, built in 193 BCE by the
+  aediles L. Aemilius Lepidus and L. Aemilius Paullus and restored in 174 BCE. Platner and Ashby
+  (1929) give its dates and position but do not describe its form; the long warehouse hall mapped
+  here comes from the map's identification.
+author: machine:claude-code
+same_as: { wikidata: Q2366205, ohm: way/199858615 }
+claims:
+  name:
+    prop: name
+    value: { en: "Porticus Aemilia", la: "Porticus Aemilia" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Porticus Aemilia, p. 420"
+      quote: "extra portam Trigeminam, built by the aediles"
+  start:
+    prop: start
+    value: 193 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Porticus Aemilia, p. 420"
+      quote: "built by the aediles L. Aemilius Lepidus and L. Aemilius Paullus in 193"
+    method: historical-account
+    note: >-
+      From Livy 35.10.12, as P&A cite it; the censors Q. Fulvius Flaccus and A. Postumius Albinus
+      restored it in 174 BCE (Livy 41.27.8). Under Emporium P&A call the large opus incertum
+      structure near the Marmorata 'wrongly' attributed to the Porticus Aemilia, so the footprint
+      mapped here, which comes from the map and not from P&A, should be checked against later work.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199858615 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.884377, lon: 12.478036, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199858615 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199858615, way/199858692] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199858615 }
+    method: map-trace
+    basis: reconstruction

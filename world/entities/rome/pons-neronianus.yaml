@@ -1,0 +1,56 @@
+# Footprint measured on the map: 107 m by 1 m, long axis on bearing 136° / 316°.
+id: rome/pons-neronianus
+kind: works/bridge
+summary: >-
+  A bridge across the Tiber just below the present Ponte Vittorio Emanuele II, joining the Campus
+  Martius to the Vatican meadows, the gardens of Agrippina and the Circus of Nero; probably built
+  by Nero. Platner and Ashby infer that it was probably already in ruins in the fourth century,
+  because the Notitia leaves it out.
+author: machine:claude-code
+same_as: { wikidata: Q1902995, ohm: way/198283996 }
+claims:
+  name:
+    prop: name
+    value: { en: "Pons Neronianus", la: "Pons Neronianus" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 54 CE, hi: 68 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pons Neronianus, p. 401"
+        quote: "It was probably built by Nero to facilitate communication between this district and the city"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 595"
+        quote: "Pons Neronianus, 401"
+    method: historical-account
+    note: >-
+      Probably built by Nero (reign 54 to 68); the index lists it among his works after the fire
+      of 64. Platner and Ashby are unsure whether the name is ancient or only mediaeval.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283996 }
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Platner and Ashby say the bridge was in ruins in the fifteenth century 'and probably in the
+      fourth, as it is not mentioned in Not.', so it may not have stood in 315.
+  location:
+    prop: location
+    value: { lat: 41.901157, lon: 12.464385, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283996 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198283996] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283996 }
+    method: map-trace
+    basis: reconstruction

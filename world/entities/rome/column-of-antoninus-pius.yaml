@@ -1,0 +1,72 @@
+# Footprint measured on the map: 4 m by 4 m, long axis on bearing 0° / 180°.
+id: rome/column-of-antoninus-pius
+kind: monument/column
+summary: >-
+  A monolithic red granite column, 14.75 m high and 1.90 m across, set up by Marcus Aurelius and
+  Lucius Verus in memory of Antoninus Pius on the edge of the Monte Citorio rise in the Campus
+  Martius. It stood on a white marble pedestal carved with reliefs, under a statue of Antoninus;
+  the lower part of the shaft still projected above ground before the eighteenth century.
+author: machine:claude-code
+same_as: { wikidata: Q599302, ohm: way/199861077 }
+claims:
+  name:
+    prop: name
+    value: { en: "Column of Antoninus Pius", la: "Columna Antonini Pii" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 161 CE, hi: 180 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Columna Antonini Pii, p. 131"
+        quote: "erected in memory of Antoninus Pius by his two adopted sons, Marcus Aurelius and Lucius Verus"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 597"
+        quote: "M. Aurelius and L. Verus build column of Antoninus Pius, 131"
+    method: historical-account
+    note: >-
+      Antoninus Pius died in 161; the index places the column in the reign of Marcus Aurelius, 161
+      to 180.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199861077 }
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Platner and Ashby say only that the lower part of the shaft projected about 6 m above the
+      ground before the eighteenth century; when the column fell is not stated.
+  form:
+    prop: form
+    value: { type: column, diameter: 1.9, statue: true, spiral: false }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Columna Antonini Pii, p. 131"
+        quote: "The column was a monolith of red granite, 14.75 metres in height and 1.90 in diameter"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Columna Antonini Pii, p. 131"
+        quote: "and was surmounted by a statue of Antoninus"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Columna Antonini Pii, p. 131"
+        quote: "Three of the sides of the pedestal, which is now in the Giardino della Pigna in the Vatican, are covered with reliefs."
+    note: >-
+      A smooth monolithic shaft, with the reliefs on the pedestal and none on the shaft. The 14.75
+      m is the shaft alone; the pedestal's height is not given, so no overall height is claimed.
+  location:
+    prop: location
+    value: { lat: 41.900963, lon: 12.478007, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199861077 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199861077] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199861077 }
+    method: map-trace
+    basis: reconstruction

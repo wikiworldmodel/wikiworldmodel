@@ -1,0 +1,65 @@
+# Footprint measured on the map: 148 m by 99 m, long axis on bearing 42° / 222°.
+id: rome/domus-flavia
+kind: building/palace
+summary: >-
+  The state half of Domitian's palace on the Palatine, rebuilt by his architect Rabirius and
+  finished in 92 CE; the name Domus Flavia is modern. State apartments, halls and a great dining
+  room, are grouped round a huge peristyle, entered by the main door of the palace on the
+  north-west.
+author: machine:claude-code
+same_as: { wikidata: Q529806, ohm: relation/2693296 }
+claims:
+  name:
+    prop: name
+    value: { en: "Domus Flavia", la: "Domus Flavia" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Domus: Augustiana, p. 158"
+      quote: "are modern terms for the parts erected by these several Emperors"
+    note: >-
+      P&A, quoting a handbook, say Domus Flavia and Domus Severiana are modern terms for the parts
+      of the palace built by those emperors; the ancient name for the whole imperial residence was
+      Augustiana.
+  start:
+    prop: start
+    value: 92 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Domus: Augustiana, pp. 158-159"
+      quote: "architect Rabirius, which was only completed in 92"
+    method: historical-account
+    note: >-
+      P&A: what stands above ground is chiefly Domitian's great restoration of the palace by his
+      architect Rabirius, completed in 92 (Martial 7.56).
+  form:
+    prop: form
+    value: { type: palace, court: true, faces: 312 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Augustiana, p. 160"
+        quote: "The state apartments are arranged round a huge peristyle with columns of Numidian marble"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Augustiana, p. 160"
+        quote: "from the north-west, where the main door of the palace was"
+    note: >-
+      Faces 312 is the footprint's bearing towards the north-west, where P&A put the main door; the
+      court is the peristyle with a shallow water basin in its centre. The number of storeys is not
+      given.
+  location:
+    prop: location
+    value: { lat: 41.888657, lon: 12.486511, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2693296 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2693296] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2693296 }
+    method: map-trace
+    basis: reconstruction

@@ -4,6 +4,7 @@ import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { unzipSync } from 'fflate';
 import { datasetDir, datasetPath, loadManifest, type Dataset } from './manifest.ts';
+import { REPO } from './paths.ts';
 import { sha256, sha256File } from './util.ts';
 
 // Node's fetch ignores HTTPS_PROXY; undici's agent honours it. It is loaded only when a proxy
@@ -14,9 +15,14 @@ if (process.env.HTTPS_PROXY || process.env.https_proxy) {
 }
 
 async function download(url: string, dest: string): Promise<void> {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`GET ${url}: HTTP ${res.status}`);
-  const buf = new Uint8Array(await res.arrayBuffer());
+  // A snapshot of a changing database is kept in the repository until there is a blob store.
+  let buf: Uint8Array;
+  if (url.startsWith('repo:')) buf = new Uint8Array(await readFile(join(REPO, url.slice('repo:'.length))));
+  else {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`GET ${url}: HTTP ${res.status}`);
+    buf = new Uint8Array(await res.arrayBuffer());
+  }
   await mkdir(dirname(dest), { recursive: true });
   const tmp = `${dest}.part`;
   await writeFile(tmp, buf);
@@ -48,6 +54,7 @@ async function fetchDataset(id: string, d: Dataset, log: (s: string) => void): P
       const data = entries[f.path];
       if (!data) throw new Error(`${id}: archive has no member ${f.path}`);
       if (sha256(data) !== f.sha256) throw new Error(`${id}: member ${f.path} (${name}) checksum mismatch`);
+      await mkdir(dirname(out), { recursive: true });
       await writeFile(out, data);
     }
   }

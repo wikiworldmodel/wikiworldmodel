@@ -1,0 +1,66 @@
+# Footprint measured on the map: 46 m by 30 m, long axis on bearing 50° / 230°.
+id: rome/temple-of-mars-ultor
+kind: building/temple
+summary: >-
+  The temple of Mars the Avenger at the head of the Forum of Augustus, vowed by Octavian at
+  Philippi and dedicated in 2 BCE: a Corinthian octostyle temple whose back was against the
+  forum's precinct wall. Three of its columns, with their architrave, still stand.
+author: machine:claude-code
+same_as: { wikidata: Q679665, pleiades: 823121346, ohm: way/198576374 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Mars Ultor", la: "Templum Martis Ultoris" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 2 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum Augustum, p. 220"
+      quote: "actual dedication is said to have taken place on Ist August, 2 B.c."
+    method: historical-account
+    note: >-
+      P&A says the actual dedication of the forum is said to have been on 1 August 2 BCE, at the
+      same time as that of the temple (Cassius Dio, Velleius); the work on the temple was
+      greatly delayed. Ovid seems to give 12 May for the temple. The scan of P&A prints 1st as
+      Ist.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576374 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: temple, plan: sine-postico, order: corinthian, front: 8, column_height: 15.3, shaft: marble, faces: 230 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Augustum, p. 222"
+        quote: "The temple was octostyle, and peripteral except at the north-east end, where it joined the forum wall"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Augustum, p. 222"
+        quote: "They are of white marble, fluted, 15.30 metres high and 1.76 in diameter, with Corinthian capitals"
+    note: >-
+      sine-postico: no columns along the back, where the temple met the precinct wall. The
+      column height is the 15.30 m P&A measures on the three standing columns. faces is read
+      from the plan: the temple stands against the north-east wall of the forum and looks
+      south-west down it.
+  location:
+    prop: location
+    value: { lat: 41.894428, lon: 12.487062, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576374 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576374] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576374 }
+    method: map-trace
+    basis: reconstruction

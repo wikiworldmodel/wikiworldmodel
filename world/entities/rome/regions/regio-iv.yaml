@@ -1,0 +1,54 @@
+id: rome/regions/regio-iv
+kind: open/region
+summary: >-
+  The region of the Temple of Peace, listed with the Colossus and the Meta Sudans, the temples of
+  Rome and Venus and of Faustina, the Basilica Nova, the Forum Transitorium and the Subura.
+author: machine:claude-code
+same_as: { ohm: node/2109009043 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio IV Templum Pacis", en: "Region IV, Temple of Peace" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009043 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009043 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.891927, lon: 12.491155, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009043 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 2757
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio IV, ed. Jordan 1871, vol. 2 p. 547, Curiosum column"
+      quote: "insulae II. DCCLVII"
+    method: documentary
+    note: >-
+      The same count as Region III; see the note there. The Notitia has the same figure.
+  domus:
+    prop: domus
+    value: 88
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio IV, ed. Jordan 1871, vol. 2 p. 547, Curiosum column"
+      quote: "dom. LXXXVIII"
+    method: documentary
+    note: >-
+      The Notitia has the same figure; the Curiosum's manuscript C reads 'LXXX novem' (89)
+      (Jordan, p. 547).

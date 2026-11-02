@@ -1,0 +1,22 @@
+id: src:uw-honors-rome-2004-pantheon
+type: publication
+kind: review
+citation: >-
+  University of Washington Honors Program in Rome (2004). The Pantheon. Course article in the
+  Historical Rome web resource, University of Washington.
+published: 2004
+title: The Pantheon
+container: Historical Rome, University of Washington Honors Program in Rome
+url: https://depts.washington.edu/hrome/Authors/asc1/ThePantheon/pub_zbarticle_view_printable.html
+license: all-rights-reserved
+license_note: A university web page; quoted briefly, under 15 words at a time.
+reliability: >-
+  A course article by a participant in the programme, not a refereed publication. It is used here
+  only for the date range of the brick stamps, which overlaps the Hadrianic dates of Lanciani and
+  of Platner and Ashby.
+verified:
+  by: machine:claude-code
+  how: >-
+    The printable page fetched as HTML and read as text on 2026-11-01. The sentence dating the
+    Pantheon by its brick stamps to 120-128 AD, with construction possibly from 118, was found in
+    it verbatim.

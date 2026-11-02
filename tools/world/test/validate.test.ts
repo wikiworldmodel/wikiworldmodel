@@ -47,13 +47,13 @@ describe('validators', () => {
 
   it('reject terms that were never declared', async () => {
     const issues = await check({
-      'entities/a.yaml': entity('test/thing', 'volcano', `claims:\n  x: { prop: height, value: 3, ${cite}, method: guessing, confidence: probably }\n`),
+      'entities/a.yaml': entity('test/thing', 'volcano', `claims:\n  x: { prop: altitude, value: 3, ${cite}, method: guessing, confidence: probably }\n`),
       'entities/b.yaml': entity('test/other', 'occurrence', `relations:\n  r: { rel: inspired-by, to: test/thing, ${cite} }\n`),
     });
     expect(errors(issues).map((i) => i.message)).toEqual(
       expect.arrayContaining([
         'unknown kind "volcano"',
-        'unknown property "height"',
+        'unknown property "altitude"',
         expect.stringContaining('unknown confidence word "probably"'),
         'unknown relation type "inspired-by"',
       ]),
@@ -101,7 +101,7 @@ describe('validators', () => {
     });
     expect(errors(issues).map((i) => [i.where, i.message])).toEqual([
       ['claims.end.value', '"30 February 1453 CE" is not a date in the Julian calendar'],
-      ['claims.t1.value', 'a geometry names its dataset and rows: { from: src:…, names: [...] }'],
+      ['claims.t1.value', 'a geometry names its dataset and rows or elements: { from: src:…, names: [...] } or { from: src:…, elements: [...] }'],
       ['claims.t2.value.from', 'src:test/report is a source but not a dataset in the manifest, so the build cannot fetch it'],
       ['written', 'lo is later than hi (17 CE after 27 BCE); lo is always the earlier time'],
     ]);

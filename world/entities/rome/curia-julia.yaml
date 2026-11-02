@@ -1,0 +1,48 @@
+# Footprint measured on the map: 30 m by 26 m, long axis on bearing 50° / 230°.
+id: rome/curia-julia
+kind: building/civic
+summary: >-
+  The senate house, begun by Julius Caesar in 44 BCE and dedicated by Augustus in 29 BCE. The
+  building of c. 315 is Diocletian's, put up after the fire of Carinus in 283 and still
+  standing; it became the church of S. Adriano in the seventh century.
+author: machine:claude-code
+same_as: { wikidata: Q1144514, pleiades: 837078212, ohm: way/198576334 }
+claims:
+  name:
+    prop: name
+    value: { en: "Curia Julia", la: "Curia Iulia" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 29 BCE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Curia Iulia, p. 143"
+        quote: "It was completed and dedicated in 29 B.c. by Augustus"
+      - ref: src:cassius-dio-roman-history
+        loc: "51.22.1 (Loeb vol. 6, p. 63)"
+        quote: "Caesar dedicated the temple of Minerva, called also the Chalcidicum, and the Curia Iulia"
+    method: historical-account
+    note: >-
+      Dio puts the dedication after Octavian's triumph of 29 BCE. The curia was burnt in the
+      fire of Carinus and rebuilt by Diocletian, and P&A says the existing building dates from
+      his time (p. 144). It does not say how far Diocletian's hall followed the plan of
+      Augustus's, so the Augustan date is kept as the start.
+  location:
+    prop: location
+    value: { lat: 41.892991, lon: 12.485439, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576334 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576334] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576334 }
+    method: map-trace
+    basis: reconstruction

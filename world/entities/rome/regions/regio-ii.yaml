@@ -1,0 +1,54 @@
+id: rome/regions/regio-ii
+kind: open/region
+summary: >-
+  The Caelian hill, listed with the Temple of Claudius, the Macellum Magnum, the Castra Peregrina,
+  the barracks of a cohort of the Vigiles and the training schools of the arena, the Ludus
+  Matutinus and the Ludus Dacicus.
+author: machine:claude-code
+same_as: { ohm: node/2109009045 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio II Caelimontium", en: "Region II, Caelimontium" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009045 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009045 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.884276, lon: 12.499094, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009045 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 3600
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio II, ed. Jordan 1871, vol. 2 p. 544, Curiosum column"
+      quote: "insulae III. DC"
+    method: documentary
+    note: >-
+      The Notitia has the same figure. The Curiosum's manuscript A reads IIIIDC (4,600) (Jordan,
+      apparatus on p. 544).
+  domus:
+    prop: domus
+    value: 127
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio II, ed. Jordan 1871, vol. 2 p. 544, Curiosum column"
+      quote: "dom. CXXVII"
+    method: documentary
+    note: The Notitia has the same figure.

@@ -1,0 +1,54 @@
+id: rome/regions/regio-i
+kind: open/region
+summary: >-
+  The district round the Porta Capena, where the Via Appia left the city, listed with the temples
+  of Honos and Virtus and of Mars, the Camenae, the Almo stream, the arch of Drusus and several
+  baths.
+author: machine:claude-code
+same_as: { ohm: node/2109009046 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio I Porta Capena", en: "Region I, Porta Capena" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009046 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009046 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.879866, lon: 12.497699, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009046 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 3250
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio I, ed. Jordan 1871, vol. 2 p. 543, Curiosum column"
+      quote: "insulae III. CCL"
+    method: documentary
+    note: >-
+      Jordan prints the thousands with a bar over the numeral (III with a bar is 3,000). The
+      Notitia has the same figure, though its manuscript B reads IICCL (2,250).
+  domus:
+    prop: domus
+    value: 120
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio I, ed. Jordan 1871, vol. 2 p. 543, Curiosum column"
+      quote: "dom. CXX"
+    method: documentary
+    note: The Notitia has the same figure.

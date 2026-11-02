@@ -1,0 +1,55 @@
+id: rome/regions/regio-x
+kind: open/region
+summary: >-
+  The Palatine, listed with the Domus Augustiana and Tiberiana, the hut of Romulus, the temples of
+  the Magna Mater and of Apollo, the Auguratorium, the Lupercal and the Septizodium of Severus.
+author: machine:claude-code
+same_as: { ohm: node/2109009037 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio X Palatium", en: "Region X, Palatium" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009037 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009037 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.888307, lon: 12.485723, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009037 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 2742
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio X, ed. Jordan 1871, vol. 2 p. 558, Curiosum column"
+      quote: "insulae II. DCCXLII"
+    method: documentary
+    note: >-
+      The Notitia has II.DCXLII (2,642) in Jordan's text and 2,663 in its manuscript A, which
+      Preller and Urlichs print; no variant is reported for the Curiosum's manuscripts.
+  domus:
+    prop: domus
+    value: 89
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio X, ed. Jordan 1871, vol. 2 p. 558, Curiosum column"
+      quote: "dom. LXXXIX"
+    method: documentary
+    note: >-
+      The Notitia has the same figure (LXXXIX) in Jordan's text, though its manuscript A reads
+      LXXXVIII (88), which Preller and Urlichs print for it.

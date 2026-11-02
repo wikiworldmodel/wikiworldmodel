@@ -1,0 +1,53 @@
+# Footprint measured on the map: 287 m by 120 m, long axis on bearing 176° / 356°.
+id: rome/stadium-of-domitian
+kind: building/circus
+summary: >-
+  The stadium Domitian built in the Campus Martius for athletic contests, with seats for about
+  15,000 spectators; after the Colosseum was damaged by fire in 217 it was used for gladiatorial
+  combats, and Alexander Severus restored it. In the fourth century it was among the buildings
+  that impressed Constantius, and its outline survives in the Piazza Navona.
+author: machine:claude-code
+same_as: { wikidata: Q963671, ohm: relation/2753742 }
+claims:
+  name:
+    prop: name
+    value: { en: "Stadium of Domitian", la: "Circus Agonalis" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 81 CE, hi: 96 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Stadium Domitiani, p. 495"
+        quote: "the stadium which Domitian built in the campus Martius for athletic contests"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 596"
+        quote: "Reign of Domitian: he restores Temple of Apollo Palatinus"
+    method: historical-account
+    note: >-
+      Platner and Ashby give no year. The stadium is one of the works they list for Domitian's
+      reign, which the index dates 81 to 96.
+  end:
+    prop: end
+    value: 1477 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753742 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.899654, lon: 12.473055, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753742 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2753742] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753742 }
+    method: map-trace
+    basis: reconstruction

@@ -1,0 +1,62 @@
+# Footprint measured on the map: 38 m by 22 m, long axis on bearing 33° / 213°.
+id: rome/temple-of-antoninus-and-faustina
+kind: building/temple
+summary: >-
+  The temple on the Sacra Via at the entrance to the forum, built by Antoninus Pius for his
+  deified wife Faustina, who died in 141, and dedicated to both after his own death in 161. Its
+  six-column front still stands: the temple became the church of S. Lorenzo in Miranda in the
+  seventh or eighth century.
+author: machine:claude-code
+same_as: { wikidata: Q752555, ohm: relation/2751768 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Antoninus and Faustina", la: "Templum Antonini et Faustinae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 141 CE, hi: 161 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Antoninus et Faustina, Templum, p. 13"
+        quote: "in honour of his deified wife, the empress Faustina, who died in 141"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Antoninus et Faustina, Templum, p. 13"
+        quote: "After the death of Antoninus himself in 161, the temple was dedicated to both together"
+    method: historical-account
+    note: >-
+      Built after Faustina's death in 141 and first dedicated to her, as the inscription on the
+      architrave records; the dedication to both, on the frieze, followed Antoninus's death in
+      161.
+  form:
+    prop: form
+    value: { type: temple, plan: prostyle, order: corinthian, front: 6, side: 3, column_height: 17, shaft: marble, faces: 213 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Antoninus et Faustina, Templum, p. 14"
+        quote: "It was hexastyle prostyle, with two columns on each side, besides those at the corners, and pilasters in antis"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Antoninus et Faustina, Templum, p. 14"
+        quote: "The columns are of cipollino, 17 metres high and 1.45 in diameter at the base, with Corinthian capitals of white marble"
+    note: >-
+      side counts the corner column and the two beside it on each side. Cipollino is a marble.
+      faces is read from the plan: the temple stands on the north-east side of the Sacra Via and
+      its steps lead down to it, so the front looks south-west.
+  location:
+    prop: location
+    value: { lat: 41.892205, lon: 12.486733, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751768 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751768] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751768 }
+    method: map-trace
+    basis: reconstruction

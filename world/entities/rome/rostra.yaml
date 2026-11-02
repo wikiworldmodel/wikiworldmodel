@@ -1,0 +1,75 @@
+# Footprint measured on the map: 69 m by 20 m, long axis on bearing 50° / 230°.
+id: rome/rostra
+kind: monument/other
+summary: >-
+  The orators' platform at the Capitoline end of the forum, decorated with the beaks of captured
+  ships. This is the imperial Rostra, begun by Caesar and finished by Augustus, which Septimius
+  Severus cut back for his arch and which was lengthened again about 470; the republican Rostra
+  stood at the Comitium in front of the Curia.
+author: machine:claude-code
+same_as: { wikidata: Q426372, pleiades: 796942355, ohm: relation/2751543 }
+claims:
+  name:
+    prop: name
+    value: { en: "Rostra", la: "Rostra" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 42 BCE, hi: 14 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Rostra Augusti, p. 452"
+        quote: "or at least the dedication not to have taken place until after 42 B.c."
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Rostra Augusti, p. 452"
+        quote: "Augustus completed them"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Rostra Augusti, p. 452"
+        quote: "A funeral oration in honour of Augustus was delivered from this rostra by Drusus"
+    method: historical-account
+    note: >-
+      Caesar had decided to move the rostra to this end of the forum, and the dedication was not
+      until after 42 BCE; Augustus completed the work, and it served for his funeral oration in
+      14 CE. The skeleton's earlier dates (338 and 52 BCE) belong to the republican Rostra by
+      the Comitium, named for the beaks of the ships of Antium taken in 338 BCE, not to this
+      platform.
+  height:
+    prop: height
+    value: 3
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Rostra Augusti, p. 452"
+      quote: "its front was about 24 metres in length and 3 high"
+    method: survey
+    note: >-
+      The height of the front wall of the Augustan platform, which projected 10 m forward from
+      the brick wall behind it. The Severan hemicycle and the later extension are not counted.
+  ground-level:
+    prop: ground_level
+    value: 14
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum (Romanum s. Magnum), p. 234"
+      quote: "to 14 metres above sea-level in front of the rostra of Augustus"
+    method: survey
+    note: >-
+      The level of the Augustan travertine paving of the forum in front of the Rostra, which
+      rises to it from 12.60 m at the temple of Caesar.
+  location:
+    prop: location
+    value: { lat: 41.892769, lon: 12.485008, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751543 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751543, way/198576346] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751543 }
+    method: map-trace
+    basis: reconstruction

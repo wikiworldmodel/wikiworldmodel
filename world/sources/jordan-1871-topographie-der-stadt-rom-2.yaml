@@ -1,0 +1,31 @@
+id: src:jordan-1871-topographie-der-stadt-rom-2
+type: publication
+kind: review
+citation: >-
+  Jordan, H. (1871). Topographie der Stadt Rom im Alterthum, vol. 2. Berlin: Weidmannsche
+  Buchhandlung.
+authors:
+  - "Jordan, H."
+published: 1871
+title: Topographie der Stadt Rom im Alterthum
+url: https://archive.org/details/topographiederst02jord
+license: public-domain
+via: >-
+  The Internet Archive's scan of the University of Toronto's copy (topographiederst02jord): page
+  images, which are clean, and an OCR text that garbles the Roman numerals.
+reliability: >-
+  A critical edition of both Regionary Catalogues, the Curiosum and the Notitia, in parallel
+  columns with the readings of the manuscripts beneath (pp. 541–572), preceded by Jordan's study
+  of their date and descent (pp. 1–80). He sets the lost original between 312 and 315, the
+  Notitia between 334 and 357 and the Curiosum between 357 and 403 (p. 540), and prints every
+  number as a numeral, as the oldest Curiosum manuscript does (p. 15). On the figures it agrees
+  with Preller's and Urlichs's texts of the Curiosum. Later editions, such as Nordh's of 1949,
+  were not consulted.
+verified:
+  by: machine:claude-code
+  how: >-
+    Pages 5, 10, 15, 17, 18 and 77 (the dating, the numerals, the manuscripts and the repeated
+    figures), p. 540 (the manuscripts and dates), the pages carrying the regional figures and
+    their apparatus (pp. 543–545, 547, 548, 550, 551, 554, 557, 558, 560–562 and 564) and the
+    summary (p. 572) read on the page images of the scan. Pages 540 and 541 carry no printed
+    number and are counted back from p. 542. The OCR text was used only to find the places.

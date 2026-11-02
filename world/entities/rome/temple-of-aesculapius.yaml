@@ -1,0 +1,53 @@
+# Footprint measured on the map: 41 m by 23 m, long axis on bearing 120° / 300°.
+id: rome/temple-of-aesculapius
+kind: building/temple
+summary: >-
+  The temple of Aesculapius on the Tiber island, founded after a sacred snake from Epidaurus came
+  ashore there in 291 BCE, and the centre of a healing cult. It was rebuilt or restored in the
+  late Republic and perhaps again under Antoninus Pius; no certain remains survive, and it
+  probably lay under the church of S. Bartolomeo.
+author: machine:claude-code
+same_as: { wikidata: Q3023765, ohm: way/199850922 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Aesculapius", la: "Aedes Aesculapii" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 291 BCE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Aesculapius, aedes, p. 2"
+        quote: "the temple of Aesculapius erected on the island in the Tiber soon after 291 B.c."
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 588"
+        quote: "Return of embassy from Epidaurus and foundation of Temple of Aesculapius"
+    method: historical-account
+    note: >-
+      Platner and Ashby say the temple was erected 'soon after' 291 BCE, the year the embassy
+      returned from Epidaurus, and their index dates its foundation to 291.
+  end:
+    prop: end
+    value: 800 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199850922 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.890266, lon: 12.478290, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199850922 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199850922] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199850922 }
+    method: map-trace
+    basis: reconstruction

@@ -1,0 +1,54 @@
+id: rome/regions/regio-xiii
+kind: open/region
+summary: >-
+  The Aventine hill, listed with the temples of Diana and Minerva, the Armilustrium, the baths of
+  Sura and Decius, the Horrea Galbae and Aniciana and the bakers' forum, the Forum Pistorum.
+author: machine:claude-code
+same_as: { ohm: node/2109009034 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio XIII Aventinus", en: "Region XIII, Aventinus" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009034 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009034 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.882391, lon: 12.477894, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009034 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 2487
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio XIII, ed. Jordan 1871, vol. 2 p. 562, Curiosum column"
+      quote: "insulae II. CCCCLXXXVII"
+    method: documentary
+    note: >-
+      Jordan judges this figure to be Region XII's, wrongly repeated (p. 562; see p. 18), so the
+      count that belonged here is lost. The Curiosum's manuscript B reads II.CCCCLXXXVI (2,486)
+      and the Notitia's manuscript B IICCCCLXXXVIII (2,488); the Notitia's text has 2,487.
+  domus:
+    prop: domus
+    value: 130
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio XIII, ed. Jordan 1871, vol. 2 p. 562, Curiosum column"
+      quote: "dom. CXXX"
+    method: documentary
+    note: The Notitia has the same figure, though its manuscript B reads CXLII (142).

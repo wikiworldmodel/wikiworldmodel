@@ -1,0 +1,69 @@
+# Footprint measured on the map: 172 m by 56 m, long axis on bearing 50° / 230°.
+id: rome/basilica-ulpia
+kind: building/basilica
+summary: >-
+  Trajan's great basilica across the north-west end of his forum, with an apse at each end, a
+  nave 25 m wide, double colonnades carrying galleries, and a roof of timber covered with
+  bronze. It was probably completed in 112.
+author: machine:claude-code
+same_as: { wikidata: Q1266234, pleiades: 629324739, ohm: way/198576375 }
+claims:
+  name:
+    prop: name
+    value: { en: "Basilica Ulpia", la: "Basilica Ulpia" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 112 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum Traiani, p. 241"
+      quote: "probably completed in 112"
+    method: historical-account
+    confidence: likely
+    note: >-
+      P&A's date for the completion of the basilica, citing an inscription (CIL vi. 959).
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576375 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: basilica, order: corinthian, storeys: 2, aisles: 2, roof: bronze, faces: 140 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 241"
+        quote: "double row of columns, 96 in all, probably of white or yellow marble, with Corinthian capitals"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 241"
+        quote: "which formed two aisles 5 metres wide, and supported a gallery on both sides of the nave and at the ends"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 241"
+        quote: "its roof was of timber covered with bronze"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 241"
+        quote: "The main entrance was in the middle of the east side, from the area of the forum"
+    note: >-
+      The roof, covered with bronze, is mentioned by Pausanias. faces is read from the plan:
+      P&A's east side is the long south-east side facing the forum court, where the columned
+      entrance was.
+  location:
+    prop: location
+    value: { lat: 41.895558, lon: 12.484513, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576375 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576375] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576375 }
+    method: map-trace
+    basis: reconstruction

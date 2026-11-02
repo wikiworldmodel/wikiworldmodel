@@ -1,0 +1,73 @@
+# Footprint measured on the map: 24 m by 24 m, long axis on bearing 24° / 204°.
+id: rome/pyramid-of-cestius
+kind: building/tomb
+summary: >-
+  The tomb of Gaius Cestius, a pyramid of brick-faced concrete clad in white marble beside the Via
+  Ostiensis, built between 18 and 12 BCE; his will gave his heirs 330 days to finish it. About 36 m
+  high on a base about 30 m square, it later stood in the line of Aurelian's wall.
+author: machine:claude-code
+same_as: { wikidata: Q725404, ohm: way/198201806 }
+claims:
+  name:
+    prop: name
+    value: { en: "Pyramid of Cestius", la: "Sepulcrum Cestii" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Sepulcrum C. Cestii, p. 478"
+      quote: "the tomb of a C. Cestius, possibly the praetor who is mentioned once by Cicero"
+  start:
+    prop: start
+    value: { lo: 18 BCE, hi: 12 BCE }
+    source:
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Piramide Cestia (turismoroma.it/it/luoghi/piramide-cestia)"
+        quote: "costruita lungo la via Ostiense, tra il 18 e il 12 a.C."
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Sepulcrum C. Cestii, p. 478"
+        quote: "he died before Agrippa, 12 B.c. (CIL vi. 1375), and the monument dates from that period"
+    method: compilation
+    note: >-
+      The portal gives 18-12 BCE. P&A show from the inscriptions on the statue bases that Cestius
+      died before Agrippa (12 BCE) and that the monument dates from that period. The inscription on
+      the tomb, as the portal reports it, set a limit of 330 days for the building. The OCR prints
+      'B.c.' for 'B.C.' in the P&A quotation.
+  height:
+    prop: height
+    value: 36.4
+    source:
+      ref: src:turismoroma-monumenti
+      loc: "Monumenti: Piramide Cestia (turismoroma.it/it/luoghi/piramide-cestia)"
+      quote: "La struttura è alta 36,40 metri"
+    method: compilation
+    note: >-
+      P&A (1929) give 27 m high and about 22 m square, well below the portal's 36.4 m and about 30
+      m; the portal's figure is used as the later and more detailed source, and the difference
+      should be checked.
+  form:
+    prop: form
+    value: { type: pyramid, base_width: 30 }
+    source:
+      ref: src:turismoroma-monumenti
+      loc: "Monumenti: Piramide Cestia (turismoroma.it/it/luoghi/piramide-cestia)"
+      quote: "ha una base quadrata di circa 30 metri per lato"
+    note: >-
+      The portal says about 30 m on a side; P&A say the pyramid is of brick-faced concrete covered
+      with slabs of white marble, on a travertine foundation.
+  location:
+    prop: location
+    value: { lat: 41.876450, lon: 12.480848, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198201806 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198201806] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198201806 }
+    method: map-trace
+    basis: reconstruction

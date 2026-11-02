@@ -1,0 +1,63 @@
+# Footprint measured on the map: 257 m by 53 m, long axis on bearing 177° / 357°.
+id: rome/saepta-julia
+kind: building/other
+summary: >-
+  The voting precinct of the Campus Martius: a long rectangular porticus of travertine piers along
+  the west side of the Via Lata, planned by Caesar, partly built by Lepidus and dedicated by
+  Agrippa in 26 BCE. It was burned in 80 CE and restored by Domitian and by Hadrian, and Platner
+  and Ashby leave open how far the building of the third century kept Agrippa's plan.
+author: machine:claude-code
+same_as: { wikidata: Q672752, ohm: relation/2751530 }
+claims:
+  name:
+    prop: name
+    value: { en: "Saepta Julia", la: "Saepta Iulia" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 26 BCE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Saepta Iulia, p. 460"
+        quote: "completed and dedicated by Agrippa in 26 B.c."
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 593"
+        quote: "Agrippa dedicates the Saepta, 460"
+    method: historical-account
+    note: >-
+      The porticus standing in the third century, after the rebuildings of Domitian and Hadrian,
+      may or may not follow Agrippa's plan; the date is for Agrippa's building.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751530 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: court }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Saepta Iulia, p. 461"
+      quote: "The building was a rectangular porticus, extending along the west side of the Via Lata"
+    note: >-
+      Platner and Ashby give a length of more than 400 m and a depth of 60 m, longer than the
+      traced footprint. It was built of travertine with eight longitudinal rows of piers.
+  location:
+    prop: location
+    value: { lat: 41.897671, lon: 12.477843, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751530 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751530] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751530 }
+    method: map-trace
+    basis: reconstruction

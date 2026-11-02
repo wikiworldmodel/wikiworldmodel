@@ -1,0 +1,64 @@
+# Footprint measured on the map: 128 m by 100 m, long axis on bearing 95° / 275°.
+id: rome/baths-of-titus
+kind: building/baths
+summary: >-
+  Baths built by Titus in great haste next to the Colosseum and opened with magnificent games when
+  the amphitheatre was dedicated in 80 CE. A modest bath of roughly 105 by 120 m with its facade and
+  main entrance on the north side, they stood within the old Golden House precinct.
+author: machine:claude-code
+same_as: { wikidata: Q1231749, ohm: relation/2753815 }
+claims:
+  name:
+    prop: name
+    value: { en: "Baths of Titus", la: "Thermae Titi" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Thermae Titi, p. 533"
+      quote: "built by Titus in great haste at the time of the dedication of the Colosseum"
+  start:
+    prop: start
+    value: 80 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Thermae Titi, p. 533"
+      quote: "built by Titus in great haste at the time of the dedication of the Colosseum"
+    method: historical-account
+    note: >-
+      Suetonius (Titus 7) and Cassius Dio (66.25), as P&A cite them: Titus dedicated the
+      amphitheatre and the baths beside it, built quickly, with the games of 80.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753815 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: baths, faces: 5 }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Thermae Titi, p. 534"
+      quote: "The facade and principal entrance were on the north side"
+    note: >-
+      Faces 5 is the footprint's long side that faces north (the OCR prints 'facade' for 'façade' in
+      the quotation). P&A put the baths just west of the later baths of Trajan, in a nearly
+      rectangular area of about 105 by 120 m, with the main hall in the middle of the north side
+      flanked by colonnaded courts and a caldarium projecting from the south.
+  location:
+    prop: location
+    value: { lat: 41.891686, lon: 12.493709, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753815 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2753815] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753815 }
+    method: map-trace
+    basis: reconstruction

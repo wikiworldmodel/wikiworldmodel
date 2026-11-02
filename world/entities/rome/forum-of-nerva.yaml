@@ -1,0 +1,49 @@
+# Footprint measured on the map: 140 m by 24 m, long axis on bearing 52° / 232°.
+id: rome/forum-of-nerva
+kind: open/forum
+summary: >-
+  The Forum of Nerva, or Forum Transitorium, a long narrow forum between the Forum of Augustus
+  and the Temple of Peace, built by Domitian over the old Argiletum and dedicated by Nerva. It
+  was also the thoroughfare between the Subura and the Roman Forum.
+author: machine:claude-code
+same_as: { wikidata: Q686911, pleiades: 984830239, ohm: way/199850927 }
+claims:
+  name:
+    prop: name
+    value: { en: "Forum of Nerva", la: "Forum Nervae" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum Nervae, p. 227"
+      quote: "This forum was officially the forum Nervae"
+  start:
+    prop: start
+    value: 97 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum Nervae, p. 227"
+      quote: "built by Domitian, but dedicated by Nerva at the beginning of 97"
+    method: historical-account
+  end:
+    prop: end
+    value: 600 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199850927 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.893551, lon: 12.487145, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199850927 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199850927] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199850927 }
+    method: map-trace
+    basis: reconstruction

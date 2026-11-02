@@ -60,6 +60,57 @@ kinds:
         label: Conquest
         description: The capture of a city or the fall of a state to another, on the day it fell.
         moment: true
+  building:
+    label: Building
+    description: A roofed or walled structure at a place, with its own dates.
+    children:
+      temple: { label: Temple, description: "A temple or shrine." }
+      basilica: { label: Basilica, description: "A large covered hall for law courts and business." }
+      baths: { label: Baths, description: "Public baths." }
+      theatre: { label: Theatre, description: "A theatre or odeon." }
+      amphitheatre: { label: Amphitheatre, description: "An arena ringed by seating." }
+      circus: { label: Circus, description: "A course for chariot races, or a stadium for foot races." }
+      palace: { label: Palace, description: "A palace, or a great house of the court." }
+      civic: { label: Civic building, description: "A senate house, archive, office or other seat of government." }
+      market: { label: Market, description: "A market hall or a group of shops." }
+      warehouse: { label: Warehouse, description: "Storehouses (horrea)." }
+      barracks: { label: Barracks, description: "A military camp or a station of the watch." }
+      house: { label: House, description: "A house or a block of apartments that the sources name." }
+      tomb: { label: Tomb, description: "A tomb or mausoleum." }
+      other: { label: Structure, description: "A structure that the map shows and does not classify." }
+  monument:
+    label: Monument
+    description: A structure raised to be seen, with no interior to speak of.
+    children:
+      arch: { label: Arch, description: "An honorific arch." }
+      column: { label: Column, description: "An honorific column." }
+      obelisk: { label: Obelisk, description: "An obelisk." }
+      statue: { label: Statue, description: "A statue on its base." }
+      fountain: { label: Fountain, description: "A monumental fountain." }
+      other: { label: Monument, description: "A monument that the map shows and does not classify." }
+  works:
+    label: Public works
+    description: A structure that serves a city, stretching along a line.
+    children:
+      wall: { label: City wall, description: "A city wall." }
+      gate: { label: City gate, description: "A gate in a city wall." }
+      road: { label: Street, description: "A road or street." }
+      aqueduct: { label: Aqueduct, description: "An aqueduct, on arches or underground." }
+      sewer: { label: Sewer, description: "A sewer or drain." }
+      bridge: { label: Bridge, description: "A bridge." }
+  open:
+    label: Open space
+    description: A stretch of ground that a city leaves unbuilt, or a named part of it.
+    children:
+      forum: { label: Forum, description: "A public square with its surrounding buildings." }
+      square: { label: Square, description: "A public square." }
+      garden: { label: Garden, description: "A garden or park (horti)." }
+      cemetery: { label: Cemetery, description: "A burial ground." }
+      enclosure: { label: Enclosure, description: "A walled enclosure, such as a yard for animals." }
+      water: { label: Water, description: "A river or a pool." }
+      island: { label: Island, description: "An island in a river." }
+      district: { label: District, description: "A named neighbourhood." }
+      region: { label: Region of the city, description: "One of the fourteen regions into which Augustus divided Rome." }
   development:
     label: Development
     description: >-

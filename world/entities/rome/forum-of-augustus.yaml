@@ -1,0 +1,63 @@
+# Footprint measured on the map: 103 m by 52 m, long axis on bearing 50° / 230°.
+id: rome/forum-of-augustus
+kind: open/forum
+summary: >-
+  The second of the imperial fora, built by Augustus beside the Forum of Caesar around the
+  temple of Mars Ultor. A wall nearly 36 m high shut it off from the crowded quarter behind, and
+  statues of the triumphant generals of Rome stood in its niches; Hadrian restored it.
+author: machine:claude-code
+same_as: { wikidata: Q770797, pleiades: 47606496, ohm: way/198576373 }
+claims:
+  name:
+    prop: name
+    value: { en: "Forum of Augustus", la: "Forum Augusti" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 2 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum Augustum, p. 220"
+      quote: "actual dedication is said to have taken place on Ist August, 2 B.c."
+    method: historical-account
+    note: >-
+      The forum was hurried on and opened before the temple of Mars Ultor was finished; its
+      actual dedication is said to have been on 1 August 2 BCE, with the temple (Cassius Dio,
+      Velleius, as P&A cites them). Ovid seems to give 12 May for the temple. The scan of P&A
+      prints 1st as Ist.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576373 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: court, wall_height: 36, faces: 230 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Augustum, p. 221"
+        quote: "The forum was rectangular in shape, about 125 metres long and 90 wide"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Augustum, p. 222"
+        quote: "It was originally nearly 36 metres high"
+    note: >-
+      faces is read from the plan.
+  location:
+    prop: location
+    value: { lat: 41.894199, lon: 12.486703, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576373 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576373] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576373 }
+    method: map-trace
+    basis: reconstruction

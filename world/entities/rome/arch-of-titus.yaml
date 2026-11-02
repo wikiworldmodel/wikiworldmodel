@@ -1,0 +1,74 @@
+# Footprint measured on the map: 14 m by 7 m, long axis on bearing 22° / 202°.
+id: rome/arch-of-titus
+kind: monument/arch
+summary: >-
+  The single-bay arch on the highest point of the Sacra Via, built to honour Titus and the siege
+  of Jerusalem and finished only after his death. Its inner reliefs show the spoils of the
+  Temple at Jerusalem carried in triumph and Titus in his chariot.
+author: machine:claude-code
+same_as: { wikidata: Q723887, pleiades: 236855821, ohm: relation/2751713 }
+claims:
+  name:
+    prop: name
+    value: { en: "Arch of Titus", la: "Arcus Titi" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 81 CE, hi: 96 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Titi, p. 45"
+        quote: "not finished and dedicated until after his death"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Titi, p. 46"
+        quote: "The theory that it was erected under Nerva and Trajan is improbable"
+    method: historical-account
+    note: >-
+      Titus died in September 81; P&A cites the dedicatory inscription (CIL vi. 945) for the
+      dedication after his death. The upper bound reads its doubt of a date under Nerva or
+      Trajan as leaving the reign of Domitian, to 96.
+  height:
+    prop: height
+    value: 15.4
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Arcus Titi, p. 46"
+      quote: "13.50 metres wide, 15.40 high, and 4.75 deep"
+    method: survey
+  form:
+    prop: form
+    value: { type: arch, bays: 1, order: composite, attic_height: 4.4, faces: 112, width: 13.5, depth: 4.75 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Titi, p. 46"
+        quote: "13.50 metres wide, 15.40 high, and 4.75 deep"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Titi, p. 46"
+        quote: "an attic 4.40 metres in height"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Titi, p. 46"
+        quote: "The capitals of these columns are the earliest examples of the Composite style"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Titi, p. 46"
+        quote: "The frieze and inscription are therefore preserved only on the side towards the Colosseum"
+    note: >-
+      faces is read from the plan: the face that kept its inscription looks toward the
+      Colosseum, east-south-east, along the passage of the arch.
+  location:
+    prop: location
+    value: { lat: 41.890696, lon: 12.488598, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751713 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751713] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751713 }
+    method: map-trace
+    basis: reconstruction

@@ -1,0 +1,43 @@
+# Footprint measured on the map: 3 m by 0 m, long axis on bearing 31° / 211°.
+id: rome/via-appia
+kind: works/road
+summary: >-
+  The great road south from Rome, laid by the censor Appius Claudius Caecus in 312 BCE to Capua
+  and later prolonged to Venusia, Tarentum and Brundisium. In the city it left by the Porta Capena
+  and passed the Aurelian wall at the Porta Appia, flanked by tombs inside and outside the walls.
+author: machine:claude-code
+same_as: { wikidata: Q189417, ohm: way/198283641 }
+claims:
+  name:
+    prop: name
+    value: { en: "Via Appia", la: "Via Appia" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 312 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Via Appia, p. 559"
+      quote: "the road built in 312 by the censor Appius Claudius Caecus"
+    method: historical-account
+    note: >-
+      Platner and Ashby, citing Livy, give 312 as the year of the road, prolonged to Venusia in
+      291 and then to Tarentum (281) and Brundisium (264).
+  location:
+    prop: location
+    value: { lat: 41.873502, lon: 12.501546, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283641 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198283641] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283641 }
+    method: map-trace
+    basis: reconstruction

@@ -1,0 +1,60 @@
+id: rome/regions/regio-iii
+kind: open/region
+summary: >-
+  The quarter of the Colosseum (the Amphitheatrum, seating 87,000 by the catalogue's count),
+  listed with the mint, the Ludus Magnus, the baths of Titus and Trajan, the Porticus Liviae and
+  the camp of the Misene fleet's sailors.
+author: machine:claude-code
+same_as: { ohm: node/2109009044 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio III Isis et Serapis", en: "Region III, Isis and Serapis" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009044 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009044 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.890713, lon: 12.496004, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009044 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 2757
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio III, ed. Jordan 1871, vol. 2 p. 545, Curiosum column"
+      quote: "insulae II. DCCLVII"
+    method: documentary
+    note: >-
+      Region IV is given the same count. Jordan (p. 545, and p. 18 after Bunsen) holds that two
+      regions cannot have had the same number: in each such pair one figure was lost and the other
+      wrongly repeated, already in the original, so this may not be the count that belonged here.
+      The Notitia has the same figure.
+  domus:
+    prop: domus
+    value: 60
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio III, ed. Jordan 1871, vol. 2 p. 545, Curiosum column"
+      quote: "dom. LX"
+    method: documentary
+    note: >-
+      The Notitia has CLX (160), though its manuscript A reads 'sexaginta' with the c added by a
+      later hand (Jordan, p. 545). With 160 the fourteen regional domus figures sum to 1,781,
+      against the catalogues' own 1,790; with 60, to 1,681. Preller's sum (1846, p. 248) takes
+      160.

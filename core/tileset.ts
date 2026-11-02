@@ -185,13 +185,15 @@ export interface Tileset {
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string };
   /** attribution the viewer must show for the data it displays */
   credits: { label: string; license: string }[];
   /** the alternatives this build shows, by group */
   alternatives: AlternativeGroupInfo[];
   /** kind labels, for display */
   kinds: Record<string, string>;
+  /** a place the viewer can fly down into: its local grid, and the times it is drawn for */
+  site?: { id: string; label: string; origin: { lat: number; lon: number }; span: [number, number]; slice: number };
 }
 
 /** The plate index maps the plate ids used in field tiles to dense indices for the GPU. */

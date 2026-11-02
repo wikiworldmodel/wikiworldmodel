@@ -225,3 +225,170 @@ datasets:
         polities:
           path: cliopatria_polities_only_v021.geojson
           sha256: fc6f0d1e4cc42f45da83522b3696db6f2cc85ec0d12259a85c89b31347b8fc0a
+
+  src:ohm-rome-2026-11-01:
+    type: dataset
+    kind: compilation
+    title: OpenHistoricalMap, the elements of antiquity around Rome
+    citation: >-
+      OpenHistoricalMap contributors. Elements dated before 600 CE within 41.82–41.96°N,
+      12.38–12.60°E, and the river Tiber, as of 1 November 2026.
+    version: Overpass export of 2026-11-01, kept in world/snapshots
+    container: OpenHistoricalMap
+    url: https://www.openhistoricalmap.org/
+    credit: Rome's footprints from OpenHistoricalMap
+    license: CC0-1.0
+    license_note: >-
+      The project's copyright page dedicates its data to the public domain under CC0 "except
+      where otherwise noted", in license tags on individual elements. Elements with such a tag
+      are left out of this snapshot (tools/world/src/ohm.ts).
+    reliability: >-
+      A community's tracing of old plans, many of them named in the elements' source tags
+      (Lanciani's Forma Urbis, Platner and Ashby's plans, museum models, Wikimedia images). Most
+      footprints are simplified, the dates are the mappers' and often round, and reconstructed
+      buildings are mapped beside surviving ones with nothing to tell them apart. Records
+      imported from it are proposals, and the record of a monument written by hand adopts its
+      footprint and gives its own sources for the rest.
+    note: >-
+      The river's polygons carry no dates and appear to follow its course today, inside the
+      embankments of the 1870s onwards. No stable URL serves an extract of a changing database,
+      so the snapshot is kept in the repository until there is a blob store.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence read on openhistoricalmap.org/copyright. Exported from
+        overpass-api.openhistoricalmap.org with the query in the snapshot's own `query` field.
+    import: { as: ohm-site, frame: "frame:paleomap/plate-307" }
+    fetch:
+      url: repo:world/snapshots/ohm-rome-2026-11-01.json
+      sha256: 1b9fb1ba677e88a09035aeee16062f8d69c16da23925a56d66cfe5cce9e20131
+      bytes: 379736
+      format: json
+
+  src:tinitaly-1.1-w46075:
+    type: dataset
+    kind: measurement
+    title: TINITALY, a digital elevation model of Italy with a 10 metre cell size, tile w46075
+    citation: >-
+      Tarquini, S., Isola, I., Favalli, M., Battistini, A. & Dotta, G. (2023). TINITALY, a digital
+      elevation model of Italy with a 10 meters cell size (Version 1.1). Istituto Nazionale di
+      Geofisica e Vulcanologia (INGV). https://doi.org/10.13127/tinitaly/1.1
+    authors:
+      - "Tarquini, S."
+      - "Isola, I."
+      - "Favalli, M."
+      - "Battistini, A."
+      - "Dotta, G."
+    published: 2023
+    version: "1.1, tile w46075_s10: UTM 32N, 750–800 km east, 4600–4650 km north"
+    container: INGV
+    doi: 10.13127/tinitaly/1.1
+    url: https://tinitaly.pi.ingv.it/
+    credit: Ground from TINITALY 1.1 (Tarquini et al. 2023, INGV)
+    license: CC-BY-4.0
+    license_note: The download page states CC BY 4.0, with this citation.
+    reliability: >-
+      A triangulated model of today's bare ground, from contour lines and spot heights, so over
+      central Rome it shows large flat facets and the modern street level, metres above the
+      ancient ground in the valleys. The build smooths it and lowers the ground where records
+      give its ancient level.
+    verified:
+      by: machine:claude-code
+      how: Read the download page and the file's GeoTIFF tags; compared its heights with SRTM's at known places in Rome.
+    fetch:
+      url: https://tinitaly.pi.ingv.it/data_1.1/w46075_s10/w46075_s10.zip
+      sha256: ba9eaee11ddaee74fb63f0ddfc47ab597774e114dc15b9616e2207df93037601
+      bytes: 43547785
+      format: zip
+      files:
+        dem:
+          path: w46075_s10/w46075_s10.tif
+          sha256: 81bcdbae404244a44d36c01fd5266b087cecf6d98b1affef2e49358dd0007644
+
+  src:srtm-gl1-n41e012:
+    type: dataset
+    kind: measurement
+    title: Shuttle Radar Topography Mission, 1 arc-second global, tile N41E012
+    citation: >-
+      NASA Shuttle Radar Topography Mission (SRTM) (2013). Shuttle Radar Topography Mission Global
+      1 arc second. Distributed by OpenTopography. https://doi.org/10.5069/G9445JDF
+    published: 2013
+    version: SRTM GL1, tile N41E012
+    container: OpenTopography
+    doi: 10.5069/G9445JDF
+    url: https://portal.opentopography.org/raster?opentopoID=OTSRTM.082015.4326.1
+    credit: Hills from SRTM (NASA)
+    license: public-domain
+    license_note: NASA data, in the public domain.
+    reliability: A radar measurement of the surface in February 2000, so it includes today's buildings and trees.
+    fetch:
+      url: https://opentopography.s3.sdsc.edu/raster/SRTM_GL1/SRTM_GL1_srtm/N41E012.tif
+      sha256: bb50e9115015b1c736ecf9119f2b931bf81e94e3539c0a19967cadb28962a2ef
+      bytes: 4820430
+      format: tif
+
+  src:srtm-gl1-n42e012:
+    type: dataset
+    kind: measurement
+    title: Shuttle Radar Topography Mission, 1 arc-second global, tile N42E012
+    citation: >-
+      NASA Shuttle Radar Topography Mission (SRTM) (2013). Shuttle Radar Topography Mission Global
+      1 arc second. Distributed by OpenTopography. https://doi.org/10.5069/G9445JDF
+    published: 2013
+    version: SRTM GL1, tile N42E012
+    container: OpenTopography
+    doi: 10.5069/G9445JDF
+    url: https://portal.opentopography.org/raster?opentopoID=OTSRTM.082015.4326.1
+    credit: Hills from SRTM (NASA)
+    license: public-domain
+    license_note: NASA data, in the public domain.
+    reliability: A radar measurement of the surface in February 2000, so it includes today's buildings and trees.
+    fetch:
+      url: https://opentopography.s3.sdsc.edu/raster/SRTM_GL1/SRTM_GL1_srtm/N42E012.tif
+      sha256: ae5b51d59f3aa29ac485458aaf100d3419e7e897f41fc3a2fc30c40781501b03
+      bytes: 16156795
+      format: tif
+
+  src:etopo-2022-n45e000:
+    type: dataset
+    kind: compilation
+    title: ETOPO 2022, 15 arc-second global relief, tile N45E000
+    citation: >-
+      NOAA National Centers for Environmental Information (2022). ETOPO 2022 15 Arc-Second Global
+      Relief Model. https://doi.org/10.25921/fd45-gt74
+    published: 2022
+    version: ETOPO 2022 v1, 15 arc-second, ice surface, tile N45E000
+    container: NOAA NCEI
+    doi: 10.25921/fd45-gt74
+    url: https://www.ncei.noaa.gov/products/etopo-global-relief-model
+    credit: Region from ETOPO 2022 (NOAA)
+    license: public-domain
+    license_note: A work of the United States government.
+    reliability: A compilation of land and sea-floor surveys; the coast is today's.
+    fetch:
+      url: https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO2022/data/15s/15s_surface_elev_gtif/ETOPO_2022_v1_15s_N45E000_surface.tif
+      sha256: 86f7ba59e904807fee7e035ada1ad8e761fd89d658574e91efa9e0e727f8d5d0
+      bytes: 25195718
+      format: tif
+
+  src:etopo-2022-n45e015:
+    type: dataset
+    kind: compilation
+    title: ETOPO 2022, 15 arc-second global relief, tile N45E015
+    citation: >-
+      NOAA National Centers for Environmental Information (2022). ETOPO 2022 15 Arc-Second Global
+      Relief Model. https://doi.org/10.25921/fd45-gt74
+    published: 2022
+    version: ETOPO 2022 v1, 15 arc-second, ice surface, tile N45E015
+    container: NOAA NCEI
+    doi: 10.25921/fd45-gt74
+    url: https://www.ncei.noaa.gov/products/etopo-global-relief-model
+    credit: Region from ETOPO 2022 (NOAA)
+    license: public-domain
+    license_note: A work of the United States government.
+    reliability: A compilation of land and sea-floor surveys; the coast is today's.
+    fetch:
+      url: https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO2022/data/15s/15s_surface_elev_gtif/ETOPO_2022_v1_15s_N45E015_surface.tif
+      sha256: b4983c653eeb75a5a88d0dd5887192f3416aefa211e147e17a0298404cf2d5ea
+      bytes: 24525720
+      format: tif

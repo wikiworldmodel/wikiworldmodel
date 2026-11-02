@@ -1,0 +1,47 @@
+# Footprint measured on the map: 41636 m by 13881 m, long axis on bearing 64° / 244°.
+id: rome/aqua-claudia
+kind: works/aqueduct
+summary: >-
+  The aqueduct begun by Caligula in 38 CE and dedicated by Claudius on 1 August 52 CE, bringing
+  water about 45 miles from springs in the Anio valley to Rome, on arches that also carried the
+  Anio Novus in a channel above it. Its supply failed after ten years; Vespasian restored it in 71
+  and Titus repaired it ten years later, with further repairs in the second and third centuries.
+author: machine:claude-code
+same_as: { wikidata: Q622930, ohm: way/199868508 }
+claims:
+  name:
+    prop: name
+    value: { en: "Aqua Claudia", la: "Aqua Claudia" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 1 August 52 CE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Aqua Claudia, p. 22"
+        quote: "was begun by Caligula in 38 a.p. (Suet. Cal. 21), and completed by Claudius in 52"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Aqua Claudia, p. 22"
+        quote: "who dedicated it on Ist August"
+    method: historical-account
+    note: >-
+      Platner and Ashby allow that Tacitus may indicate its completion in 47; the dedication is in
+      52.
+  location:
+    prop: location
+    value: { lat: 41.929994, lon: 12.758893, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199868508 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199868508] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199868508 }
+    method: map-trace
+    basis: reconstruction

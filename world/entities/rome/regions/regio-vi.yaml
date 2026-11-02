@@ -1,0 +1,60 @@
+id: rome/regions/regio-vi
+kind: open/region
+summary: >-
+  The Quirinal and the high road along it, the Alta Semita, listed with the temples of Salus and
+  Serapis, of Flora and of Quirinus, the old Capitolium, the Gardens of Sallust and the baths of
+  Constantine and of Diocletian.
+author: machine:claude-code
+same_as: { ohm: node/2109009041 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio VI Alta Semita", en: "Region VI, Alta Semita" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009041 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009041 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.904944, lon: 12.496182, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009041 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 3403
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:notitia-urbis-romae
+      loc: "Regio VI, ed. Jordan 1871, vol. 2 p. 550, Notitia column (the Curiosum column is blank)"
+      quote: "insulae III. CCCCIII"
+    method: documentary
+    note: >-
+      From the Notitia, since the Curiosum's three manuscripts leave out this region's curators,
+      insulae, domus and horrea (Jordan marks the gap with asterisks, p. 550). Jordan's III.
+      CCCCIII (3,403) is the numeral for the 'tria milia quadringentae tres' of Notitia manuscript
+      A, and is also what he reports for B. Urlichs (1871, p. 9) prints 3,403 too, but gives B and
+      most later manuscripts as IIICCCIII (3,303), the figure in Preller's text and table.
+  domus:
+    prop: domus
+    value: 146
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:notitia-urbis-romae
+      loc: "Regio VI, ed. Jordan 1871, vol. 2 p. 550, Notitia column (the Curiosum column is blank)"
+      quote: "domos CXLVI"
+    method: documentary
+    note: >-
+      From the Notitia, as for the insulae. Jordan's text has CXLVI (146), as does Urlichs's.
+      Notitia manuscript B reads CXLVII (147), which Preller printed, though his own note gives
+      'centum quadraginta sex' for manuscript A.

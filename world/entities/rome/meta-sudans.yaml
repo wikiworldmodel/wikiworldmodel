@@ -1,0 +1,94 @@
+# Footprint measured on the map: 23 m by 23 m, long axis on bearing 48° / 228°.
+id: rome/meta-sudans
+kind: monument/fountain
+summary: >-
+  A large conical fountain just south-west of the Colosseum, shaped like the turning-post (meta) of
+  a circus with water trickling down it (sudans). Built under the Flavian emperors and used until
+  the fifth century, it stood in a great round basin about 21 m across that Platner and Ashby (1929)
+  think dates from Constantine's time.
+author: machine:claude-code
+same_as: { wikidata: Q1924755, ohm: way/199860595 }
+claims:
+  name:
+    prop: name
+    value: { en: "Meta Sudans", la: "Meta Sudans" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Meta Sudans, p. 340"
+      quote: "a large fountain just south-west of the Colosseum"
+  start:
+    prop: start
+    value: { lo: 69 CE, hi: 81 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "Addenda et corrigenda, p. 606, s.v. Meta Sudans (to p. 340)"
+        quote: "It is also shown on coins of Titus"
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Arco di Costantino (turismoroma.it/it/luoghi/arco-di-costantino)"
+        quote: "Riprodotta su monete dell’80-81 d.C."
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Meta sudans (turismoroma.it/it/luoghi/meta-sudans)"
+        quote: "costruita alla fine del I secolo d.C. dagli imperatori Flavi"
+    method: compilation
+    note: >-
+      A Flavian fountain (the Flavian emperors ruled from 69) that coins of Titus, struck in 80-81,
+      already show. P&A's main entry gives 96 CE on the authority of the Chronographer of 354
+      (Domitian), which the coins contradict, as their addendum notes. The map's earlier 80 CE lies
+      inside this range.
+  end:
+    prop: end
+    value: { lo: 1930 CE, hi: 1939 CE }
+    source:
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Meta sudans (turismoroma.it/it/luoghi/meta-sudans)"
+        quote: "L’imponente rudere fu poi demolito negli anni Trenta"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Meta Sudans, p. 340"
+        quote: "The core still stands, conical in shape"
+    method: compilation
+    note: >-
+      The fountain went out of use in the fifth century, but its ruined core, 2 m high and 5 m
+      across in 1929, stood until it was pulled down in the 1930s for the Via dei Trionfi. The map's
+      earlier end of 1500 CE had no source.
+  height:
+    prop: height
+    value: 18
+    source:
+      ref: src:turismoroma-monumenti
+      loc: "Monumenti: Meta sudans (turismoroma.it/it/luoghi/meta-sudans)"
+      quote: "Era una fontana alta 18 metri"
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      A reconstruction: the portal says the original appearance could be worked out from coins,
+      photographs of the late nineteenth century and the drawings made at the demolition, giving a
+      fountain 18 m high with a marble-clad cylindrical base, perhaps with niches, a conical upper
+      part and a flower or sphere on top.
+  form:
+    prop: form
+    value: { type: fountain, diameter: 21 }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Meta Sudans, p. 340"
+      quote: "Around the base is a great basin, 21 metres in diameter, probably of the time of Constantine"
+    note: >-
+      The diameter is that of the basin round the base of the cone, which P&A think probably
+      Constantinian; the whole structure was originally covered with marble.
+  location:
+    prop: location
+    value: { lat: 41.890093, lon: 12.490681, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199860595 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199860595] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199860595 }
+    method: map-trace
+    basis: reconstruction

@@ -1,0 +1,71 @@
+# Footprint measured on the map: 527 m by 119 m, long axis on bearing 89° / 269°.
+id: rome/circus-of-nero
+kind: building/circus
+summary: >-
+  A private chariot course that Caligula built in the gardens of Agrippina on the Vatican side of
+  the Tiber, used by Claudius and Nero; Caligula set up on its spina the obelisk that now stands
+  before St Peter's. Its axis ran east and west with the starting gates at the east end; in the
+  fourth century its north side was destroyed for the first basilica of St Peter.
+author: machine:claude-code
+same_as: { wikidata: Q676074, ohm: way/199856662 }
+claims:
+  name:
+    prop: name
+    value: { en: "Circus of Gaius and Nero", la: "Circus Gai et Neronis" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 37 CE, hi: 41 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Circus Gai et Neronis, p. 113"
+        quote: "built by Caligula as a private course for chariot racing"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 595"
+        quote: "Circus Gai et Neronis, 113"
+    method: historical-account
+    note: >-
+      Built under Caligula, whose reign (37 to 41) the index dates; Claudius and Nero used it. The
+      skeleton's 60 CE has no source here.
+  end:
+    prop: end
+    value: { lo: 301 CE, hi: 400 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Circus Gai et Neronis, p. 113"
+      quote: "In the fourth century the north side of the circus was destroyed to make room for the first basilica of St. Peter"
+    method: historical-account
+    note: >-
+      This replaces the skeleton's end of 250 CE, which the entry does not support. The north side
+      was destroyed in the fourth century and the rest survived longer: in the fifth century two
+      mausolea were built on part of the spina.
+  form:
+    prop: form
+    value: { type: circus, faces: 89, spina: true }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Circus Gai et Neronis, p. 114"
+        quote: "the carceres were at the east end, toward the Tiber"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Circus Gai et Neronis, p. 113"
+        quote: "On the spina Caligula erected an obelisk"
+    note: >-
+      faces is the end with the starting gates, the east: 89.
+  location:
+    prop: location
+    value: { lat: 41.901535, lon: 12.453496, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199856662 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199856662] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199856662 }
+    method: map-trace
+    basis: reconstruction

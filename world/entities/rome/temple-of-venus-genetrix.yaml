@@ -1,0 +1,69 @@
+# Footprint measured on the map: 36 m by 24 m, long axis on bearing 140° / 320°.
+id: rome/temple-of-venus-genetrix
+kind: building/temple
+summary: >-
+  The temple of Venus Genetrix, ancestress of the Julian family, vowed by Caesar at Pharsalus
+  and set in the middle of his forum, which it faced down to the south-east. Built of solid
+  marble with closely spaced columns, it was dedicated with the forum on 26 September 46 BCE.
+author: machine:claude-code
+same_as: { wikidata: Q2459870, pleiades: 898745908, ohm: way/198576365 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Venus Genetrix", la: "Templum Veneris Genetricis" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 26 September 46 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum Iulium, p. 226"
+      quote: "Temple and forum were dedicated on the last day of Caesar’s great triumph, 26th September, 46 B.c."
+    method: historical-account
+    note: >-
+      Dedicated with the forum. P&A knows the temple from foundations dug up in the sixteenth
+      century and from Palladio's and Labacco's drawings of what was then visible; it does not
+      mention a later rebuilding.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576365 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: temple, plan: peripteral, front: 8, faces: 140 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Iulium, p. 227"
+        quote: "representing a peripteral octostyle structure with very narrow intercolumniations"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Iulium, p. 226"
+        quote: "pycnostyle (Vitr. iii. 3. 2) and built of solid marble"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Iulium, p. 227"
+        quote: "On this axis the temple was built, facing south-east."
+    basis: reconstruction
+    note: >-
+      The plan and the eight-column front come from the sixteenth-century drawings P&A reports,
+      made when more was visible; pycnostyle is Vitruvius's word for closely set columns. The
+      order is not given. faces follows P&A's statement that the temple faced south-east along
+      the forum's axis.
+  location:
+    prop: location
+    value: { lat: 41.894180, lon: 12.484825, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576365 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576365] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576365 }
+    method: map-trace
+    basis: reconstruction

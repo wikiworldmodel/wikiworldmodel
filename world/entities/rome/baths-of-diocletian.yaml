@@ -1,0 +1,72 @@
+# Footprint measured on the map: 382 m by 339 m, long axis on bearing 48° / 228°.
+id: rome/baths-of-diocletian
+kind: building/baths
+summary: >-
+  The largest baths in Rome, begun by Maximian after his return to Rome in the autumn of 298 and
+  dedicated in the names of Diocletian and his colleagues between 1 May 305 and 25 July 306. Like
+  the baths of Caracalla they had a central block with a circular tepidarium and rectangular
+  caldarium, inside a garden and an outer precinct with a great exedra on the south-west.
+author: machine:claude-code
+same_as: { wikidata: Q836108, ohm: relation/2751763 }
+claims:
+  name:
+    prop: name
+    value: { en: "Baths of Diocletian", la: "Thermae Diocletiani" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Thermae Diocletiani, p. 527"
+      quote: "the baths erected by Diocletian on the high ground to the north-east of the Viminal"
+  start:
+    prop: start
+    value: { lo: 1 May 305 CE, hi: 25 July 306 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Diocletiani, p. 527"
+        quote: "The inscription therefore belongs to the period between the two latter dates, and the baths took between seven and eight years to complete"
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Terme di Diocleziano (turismoroma.it/it/luoghi/terme-di-diocleziano)"
+        quote: "l’inaugurazione dell’impianto avvenne tra il 305 e il 306 d.C."
+    method: documentary
+    note: >-
+      P&A date the dedicatory inscription (CIL vi. 1130) between the abdication of Diocletian and
+      Maximian on 1 May 305 and the death of Constantius on 25 July 306; they reject Jerome's 302.
+      The map's earlier 298 is the year Maximian began the work.
+  end:
+    prop: end
+    value: 1500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751763 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: baths, rotunda: true, precinct: true }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Diocletiani, p. 528"
+        quote: "to the circular tepidarium (now the vestibule of the church) and the rectangular caldarium"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Diocletiani, p. 529"
+        quote: "This was surrounded by a garden, which was enclosed by an outer peribolus"
+    note: >-
+      P&A: a central block with the frigidarium on the north-east and a circular tepidarium and
+      rectangular caldarium to the south-west, in a garden and an outer enclosure whose south-west
+      side held a very large exedra, probably serving as a theatre; the area is a rectangle of about
+      356 by 316 m.
+  location:
+    prop: location
+    value: { lat: 41.902702, lon: 12.496201, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751763 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751763] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751763 }
+    method: map-trace
+    basis: reconstruction

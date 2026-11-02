@@ -1,0 +1,50 @@
+# Footprint measured on the map: 99 m by 68 m, long axis on bearing 131° / 311°.
+id: rome/domus-severiana
+kind: building/palace
+summary: >-
+  The south-eastern part of the Palatine palace, built by Septimius Severus on huge arcaded
+  substructions that tower over the valley of the Circus Maximus; the name Domus Severiana is
+  modern. Baths stood on top of these terraces, and the Septizonium was built in front of them as a
+  screen.
+author: machine:claude-code
+same_as: { wikidata: Q3713394, ohm: way/199849992 }
+claims:
+  name:
+    prop: name
+    value: { en: "Domus Severiana", la: "Domus Severiana" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Domus: Augustiana, p. 158"
+      quote: "are modern terms for the parts erected by these several Emperors"
+    note: >-
+      P&A, quoting a handbook, say Domus Flavia and Domus Severiana are modern terms for the parts
+      of the palace built by those emperors.
+  start:
+    prop: start
+    value: { lo: 193 CE, hi: 211 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Domus: Augustiana, p. 164"
+      quote: "the superstructure (thermae) was in the main the work of Septimius Severus"
+    method: historical-account
+    note: >-
+      Severus's reign. P&A add that he built the huge arched substructions at a slightly later
+      period, and that the Septizonium, dedicated in 203, was built to screen them.
+  location:
+    prop: location
+    value: { lat: 41.887045, lon: 12.487865, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199849992 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199849992] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199849992 }
+    method: map-trace
+    basis: reconstruction

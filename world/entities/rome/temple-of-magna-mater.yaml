@@ -1,0 +1,66 @@
+# Footprint measured on the map: 31 m by 18 m, long axis on bearing 23° / 203°.
+id: rome/temple-of-magna-mater
+kind: building/temple
+summary: >-
+  The temple of Cybele on the Palatine, built to house the black stone brought from Pessinus in 204
+  BCE and dedicated on 11 April 191 BCE; it burned twice and was restored by Augustus in 3 CE. A
+  Corinthian prostyle hexastyle temple about 33 by 17 m, it was standing unharmed in the fourth
+  century.
+author: machine:claude-code
+same_as: { wikidata: Q383609, ohm: way/198576891 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Magna Mater", la: "Aedes Matris Magnae" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Magna Mater, Aedes, p. 324"
+      quote: "the famous temple on the Palatine"
+  start:
+    prop: start
+    value: 11 April 191 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Magna Mater, Aedes, p. 324"
+      quote: "It was dedicated on 11th April, 191"
+    method: historical-account
+    note: >-
+      Dedicated by the praetor M. Junius Brutus (Livy, as P&A cite it). Burned in 111 BCE, restored
+      by a Metellus, burned again and restored by Augustus in 3 CE, on the same plan, reusing the
+      old stone. The map's earlier 201 BCE precedes the dedication.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576891 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: temple, plan: prostyle, order: corinthian, front: 6 }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Magna Mater, Aedes, p. 325"
+      quote: "It was prostyle hexastyle, of the Corinthian order, and was approached by a flight of steps extending entirely across the front"
+    note: >-
+      From the ruins at the top of the Scalae Caci, identified with this temple by the inscriptions
+      found there and a coin of the elder Faustina. The podium's concrete is of Augustus's time; the
+      architectural fragments are of the original peperino reused. P&A give the length as 33.18 m
+      and the width as 17.10 m.
+  location:
+    prop: location
+    value: { lat: 41.889492, lon: 12.484976, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576891 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576891] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576891 }
+    method: map-trace
+    basis: reconstruction

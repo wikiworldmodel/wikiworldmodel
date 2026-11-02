@@ -1,0 +1,68 @@
+# Footprint measured on the map: 103 m by 94 m, long axis on bearing 28° / 208°.
+id: rome/porticus-of-octavia
+kind: building/other
+summary: >-
+  A rectangular colonnaded enclosure built by Augustus and dedicated in the name of his sister
+  Octavia, in place of the Porticus of Metellus, around the temples of Jupiter Stator and Juno. It
+  held a library and a curia in which the senate met, burned in 80 CE and was restored, probably
+  by Domitian, and again after a fire in 203 by Severus and Caracalla.
+author: machine:claude-code
+same_as: { wikidata: Q1241207, ohm: relation/2751524 }
+claims:
+  name:
+    prop: name
+    value: { en: "Portico of Octavia", la: "Porticus Octaviae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 27 BCE, hi: 23 BCE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Porticus Octaviae, p. 427"
+        quote: "but really by Augustus and dedicated in the name of Octavia"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 593"
+        quote: "Porticus of Octavia built to substitute that of Metellus, 305, 427"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 593"
+        quote: "Library in the Porticus of Octavia, 84"
+    method: historical-account
+    note: >-
+      The entry says the portico was dedicated 'at some time after 27 B.C.'. The index files it
+      under 27 BCE and its library, built in memory of Marcellus, under 23 BCE, the year Marcellus
+      died.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751524 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: court }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Porticus Octaviae, p. 427"
+      quote: "It enclosed a rectangular area, 118 metres in width and somewhat more in length"
+    note: >-
+      The principal entrance, in the middle of the south-west side, was a double pronaos with four
+      Corinthian columns of white marble, 8.60 m high, across each front. The entry gives no
+      height for the colonnade itself.
+  location:
+    prop: location
+    value: { lat: 41.892936, lon: 12.478955, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751524 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751524] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751524 }
+    method: map-trace
+    basis: reconstruction

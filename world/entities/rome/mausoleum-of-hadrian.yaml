@@ -1,0 +1,62 @@
+# Footprint measured on the map: 66 m by 66 m, long axis on bearing 71° / 251°.
+id: rome/mausoleum-of-hadrian
+kind: building/tomb
+summary: >-
+  Hadrian's tomb on the right bank of the Tiber, approached by the Pons Aelius: a square
+  marble-faced podium about 84 m wide and 10 m high carrying a drum 64 m across and 21 m high.
+  Dedicated in 139 CE by Antoninus Pius, it was the burial place of the Antonine emperors and
+  their families; as the Castel Sant'Angelo it still stands.
+author: machine:claude-code
+same_as: { wikidata: Q486382, ohm: way/199851194 }
+claims:
+  name:
+    prop: name
+    value: { en: "Mausoleum of Hadrian", la: "Moles Hadriani" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 117 CE, hi: 139 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Mausoleum Hadriani, p. 336"
+        quote: "the dedicatory inscription to Hadrian and Sabina set up in 139 A.D."
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 597"
+        quote: "Reign of Hadrian : he builds Temple of Trajan, 244"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 597"
+        quote: "Divus Julius, 287; Mausoleum, 336"
+    method: historical-account
+    note: >-
+      Built by Hadrian, who reigned from 117, and finished by Antoninus Pius, who set up the
+      dedicatory inscription in 139. Platner and Ashby date the bridge to it to 134 but give no
+      year for the tomb's beginning.
+  form:
+    prop: form
+    value: { type: mausoleum, drum_height: 21 }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Mausoleum Hadriani, p. 337"
+      quote: "The main drum, 64 metres in diameter and 21 high, is constructed of concrete"
+    note: >-
+      The drum stood on a square base about 84 m wide and 10 m high (the entry: 'The lower part
+      was a base or podium about 84 metres square and 10 high'), which this form does not
+      describe.
+  location:
+    prop: location
+    value: { lat: 41.903038, lon: 12.466350, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851194 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199851194] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851194 }
+    method: map-trace
+    basis: reconstruction

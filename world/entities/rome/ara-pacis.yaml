@@ -1,0 +1,60 @@
+# Footprint measured on the map: 19 m by 11 m, long axis on bearing 161° / 341°.
+id: rome/ara-pacis
+kind: monument/other
+summary: >-
+  The Altar of Augustan Peace, an altar standing inside a rectangular precinct wall of white
+  marble about 6 m high, with an entrance in the middle of its east and west sides, on the west
+  side of the Via Flaminia. The senate voted it on 4 July 13 BCE for Augustus' return from Spain
+  and Gaul, and it was dedicated on 30 January 9 BCE.
+author: machine:claude-code
+same_as: { wikidata: Q623612, ohm: way/199853588 }
+claims:
+  name:
+    prop: name
+    value: { en: "Altar of Augustan Peace", la: "Ara Pacis Augustae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 30 January 9 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Ara Pacis Augustae, p. 31"
+      quote: "and dedicated 30th January, 9 B.c."
+    method: historical-account
+    note: >-
+      The senate decreed the altar on 4 July 13 BCE; the entry gives 30 January 9 BCE for the
+      dedication. The structure was complete by then.
+  end:
+    prop: end
+    value: 1000 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199853588 }
+    method: compilation
+    basis: reconstruction
+  height:
+    prop: height
+    value: 6
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Ara Pacis Augustae, p. 31"
+      quote: "It stood within an enclosing wall of white marble, about 6 metres high"
+    method: survey
+    note: >-
+      The height of the precinct wall, the highest part of the monument.
+  location:
+    prop: location
+    value: { lat: 41.903361, lon: 12.479165, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199853588 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199853588] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199853588 }
+    method: map-trace
+    basis: reconstruction

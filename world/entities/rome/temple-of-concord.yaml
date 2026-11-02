@@ -1,0 +1,71 @@
+# Footprint measured on the map: 38 m by 32 m, long axis on bearing 31° / 211°.
+id: rome/temple-of-concord
+kind: building/temple
+summary: >-
+  The temple of Concord at the foot of the Capitoline, against the Tabularium, with a plan
+  unique among Roman temples: a cella much wider than deep, entered across its long side.
+  Restored by Opimius in 121 BCE and rebuilt by Tiberius, it was dedicated on 16 January 10 CE;
+  the Senate met in it and it held a collection of Greek art.
+author: machine:claude-code
+same_as: { wikidata: Q828143, pleiades: 694134032, ohm: relation/2751666 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Concord", la: "Aedes Concordiae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 121 BCE, hi: 10 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Concordia, Aedes, Templum, p. 140"
+        quote: "the ground plan of the temple of Opimius was similar to that of Tiberius"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Concordia, Aedes, Templum, p. 139"
+        quote: "dedicated as aedes Concordiae Augustae, in the name of Tiberius and his dead brother Drusus, on 16th January, 10 A.D."
+    method: historical-account
+    note: >-
+      Said to have been vowed in 367 BCE, restored by Opimius in 121 BCE and rebuilt by Tiberius
+      and dedicated in 10 CE. The excavations seem to show that the plan of Opimius's temple was
+      like Tiberius's, so the form drawn first stood between 121 BCE and 10 CE; the date of the
+      first temple is not known.
+  end:
+    prop: end
+    value: 1450 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751666 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: temple, faces: 121 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Concordia, Aedes, Templum, p. 139"
+        quote: "Instead of having the usual proportions, the cella of the Augustan temple was 45 metres wide and only 24 deep"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Concordia, Aedes, Templum, p. 140"
+        quote: "back wall of the cella abutted against the front of the Tabularium"
+    note: >-
+      A temple entered on its long side: P&A gives a cella 45 m wide and 24 deep, a pronaos 34 m
+      wide and 14 deep that does not reach across the front, and a very wide flight of steps
+      down to the area. The form has no parameter for that plan, so only the bearing is
+      recorded, read from the plan: the cella's back wall is on the Tabularium and the steps
+      lead south-east to the forum.
+  location:
+    prop: location
+    value: { lat: 41.892981, lon: 12.484174, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751666 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751666, relation/2751769] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751666 }
+    method: map-trace
+    basis: reconstruction

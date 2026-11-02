@@ -11,7 +11,8 @@ import { join, relative } from 'node:path';
 import { parseDocument } from 'yaml';
 import { parseRef, RefError, splitRef, type Ref } from '../../../core/refs.ts';
 import type { LagInput, TimeInput } from '../../../core/time.ts';
-import { WORLD } from './paths.ts';
+import { elementKey, ohmEntities, type OhmSnapshot } from './ohm.ts';
+import { REPO, WORLD } from './paths.ts';
 
 export type Status = 'proposed' | 'accepted' | 'disputed' | 'deprecated';
 export type Rank = 'preferred' | 'normal' | 'deprecated';
@@ -111,11 +112,13 @@ export interface DatasetFile {
 }
 
 export interface Dataset extends Source {
+  /** a snapshot of a database whose elements become records (tools/world/src/ohm.ts) */
+  import?: { as: 'ohm-site'; frame: string };
   fetch: {
     url: string;
     sha256: string;
     bytes: number;
-    format: 'zip' | 'parquet' | 'csv' | 'tsv' | 'xlsx';
+    format: 'zip' | 'parquet' | 'csv' | 'tsv' | 'xlsx' | 'tif' | 'json';
     files?: Record<string, DatasetFile>;
     upstream?: { url: string; sha256: string };
     via?: string;
@@ -211,7 +214,7 @@ export interface Kind {
 }
 
 export interface Property {
-  type: 'time' | 'point' | 'ref' | 'text' | 'string' | 'quantity' | 'color' | 'geometry';
+  type: 'time' | 'point' | 'ref' | 'text' | 'string' | 'quantity' | 'color' | 'geometry' | 'form';
   unit?: string;
   /** for strings: the values allowed, each with what it means */
   values?: Record<string, string>;
@@ -277,6 +280,8 @@ export interface World {
   loadIssues: LoadIssue[];
   /** lookups by id */
   entity: Map<string, Entity>;
+  /** snapshots of databases, by dataset id */
+  snapshots: Map<string, OhmSnapshot>;
   source: Map<string, Source>;
   frame: Map<string, Frame>;
   alternative: Map<string, Alternative>;
@@ -458,6 +463,18 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
   };
 
   const entities = entityFiles.map((f) => normalizeEntity(f.file, f.data, loadIssues));
+  // A snapshot's elements become records, but for those a written record has adopted.
+  const snapshots = new Map<string, OhmSnapshot>();
+  for (const d of Object.values(manifest.datasets)) {
+    if (d.import?.as !== 'ohm-site') continue;
+    const path = d.fetch.url.replace(/^repo:/, '');
+    const snap = JSON.parse(await readFile(join(REPO, path), 'utf8')) as OhmSnapshot;
+    snapshots.set(d.id, snap);
+    const adopted = new Set<string>();
+    for (const e of entities) for (const c of e.claims) if (c.prop === 'footprint') for (const k of (c.value as { elements?: string[] })?.elements ?? []) adopted.add(k);
+    for (const k of [...adopted]) if (!snap.elements.some((x) => elementKey(x) === k)) loadIssues.push({ file: 'manifest.yaml', where: d.id, message: `no element ${k} in the snapshot` });
+    entities.push(...ohmEntities(snap, d.id, path, d.import.frame, adopted));
+  }
   const sources: Source[] = [
     ...sourceFiles.map((f) => ({ ...(f.data as unknown as Source), file: f.file })),
     ...Object.values(manifest.datasets),
@@ -479,6 +496,7 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
     raw,
     loadIssues,
     entity: new Map(entities.map((e) => [e.id, e])),
+    snapshots,
     source: new Map(sources.map((s) => [s.id, s])),
     frame: new Map(frames.map((f) => [f.id, f])),
     alternative: new Map(alternatives.map((a) => [a.id, a])),

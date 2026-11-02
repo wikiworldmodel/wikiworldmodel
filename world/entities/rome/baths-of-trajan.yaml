@@ -1,0 +1,70 @@
+# Footprint measured on the map: 336 m by 291 m, long axis on bearing 125° / 305°.
+id: rome/baths-of-trajan
+kind: building/baths
+summary: >-
+  The great baths of Trajan on the Oppian Hill, designed by Apollodorus of Damascus and dedicated in
+  109 CE, built over the burnt remains of Nero's Golden House. A central bath block entered from the
+  north-east stood in a garden enclosed on three sides by a colonnaded precinct with libraries and a
+  theatre-like exedra; they were the first of Rome's great baths.
+author: machine:claude-code
+same_as: { wikidata: Q599035, ohm: relation/2751455 }
+claims:
+  name:
+    prop: name
+    value: { en: "Baths of Trajan", la: "Thermae Traiani" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Thermae Traiani, p. 534"
+      quote: "built for Trajan by the Greek architect Apollodorus"
+  start:
+    prop: start
+    value: 109 CE
+    source:
+      ref: src:turismoroma-monumenti
+      loc: "Monumenti: Terme di Traiano (turismoroma.it/it/luoghi/terme-di-traiano)"
+      quote: "Dedicate dall’imperatore Traiano nel 109 d.C."
+    method: compilation
+    note: >-
+      P&A do not give the year; they say the fire of 104 hastened Trajan's plan to build his baths
+      over the Golden House. The map's earlier 96 CE predates Trajan's accession in 98.
+  end:
+    prop: end
+    value: 600 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751455 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: baths, faces: 35, precinct: true }
+    source:
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Terme di Traiano (turismoroma.it/it/luoghi/terme-di-traiano)"
+        quote: "Da quello monumentale situato a Nord-Est"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Traiani, p. 535"
+        quote: "on the east, west, and south sides, by a peribolus which contained reading rooms, gymnasia, and exedrae at the four corners"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Traiani, p. 536"
+        quote: "that of the thermae runs north-east and south-west at an angle of 30 degrees from the meridian"
+    note: >-
+      Faces 35 is the footprint's bearing towards the monumental north-east entrance, which had a
+      propylaeum in front. P&A say the central block was partly surrounded on the east, west and
+      south by a peribolus, with no enclosure on the entrance side.
+  location:
+    prop: location
+    value: { lat: 41.892303, lon: 12.495995, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751455 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751455] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751455 }
+    method: map-trace
+    basis: reconstruction

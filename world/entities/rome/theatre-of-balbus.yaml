@@ -1,0 +1,47 @@
+# Footprint measured on the map: 113 m by 79 m, long axis on bearing 179° / 359°.
+id: rome/theatre-of-balbus
+kind: building/theatre
+summary: >-
+  A stone theatre built by L. Cornelius Balbus the younger and dedicated in 13 BCE, near the Tiber
+  north of the Tiber island, with room for about 7,700 spectators. It was damaged in the fire of
+  Titus' reign and restored, probably by Domitian; Ausonius speaks of it as still in use, and the
+  Regionary Catalogue lists it.
+author: machine:claude-code
+same_as: { wikidata: Q2734384, ohm: way/199853034 }
+claims:
+  name:
+    prop: name
+    value: { en: "Theatre of Balbus", la: "Theatrum Balbi" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 13 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Theatrum Balbi, p. 513"
+      quote: "a stone theatre built by L. Cornelius Balbus the younger (RE iv. 1270), and dedicated in 13 B.c."
+    method: historical-account
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199853034 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.894265, lon: 12.478243, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199853034 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199853034] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199853034 }
+    method: map-trace
+    basis: reconstruction

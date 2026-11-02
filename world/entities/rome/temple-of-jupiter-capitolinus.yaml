@@ -1,0 +1,77 @@
+# Footprint measured on the map: 66 m by 54 m, long axis on bearing 137° / 317°.
+id: rome/temple-of-jupiter-capitolinus
+kind: building/temple
+summary: >-
+  The temple of Jupiter Optimus Maximus, Juno and Minerva on the Capitoline, with three cellae
+  side by side: the greatest temple of the Roman state, dedicated in the first year of the
+  Republic. Burned in 83 BCE, 69 CE and 80 CE and each time rebuilt, it stood around 315 as
+  Domitian's Corinthian temple, its roof covered with gilded tiles.
+author: machine:claude-code
+same_as: { wikidata: Q586468, pleiades: 871801169, ohm: way/199851381 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Jupiter Optimus Maximus", la: "Aedes Iovis Optimi Maximi Capitolini" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 509 BCE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Iuppiter Optimus Maximus Capitolinus, Aedes, p. 297"
+        quote: "The dedication of the temple on 13th September was ascribed to the first year of the republic"
+      - ref: src:livy-ab-urbe-condita
+        loc: "2.8.6"
+        quote: "Valerius and Horatius the consuls drew lots to determine which should do it"
+      - ref: src:livy-ab-urbe-condita
+        loc: "2.8.9"
+        quote: "Such were the achievements, at home and in the field, of the first year after the expulsion of the kings"
+    method: tradition
+    note: >-
+      Tarquinius Priscus vowed it and Tarquinius Superbus built most of it; the dedication went
+      to the first year of the Republic, which is 509 BCE in the traditional count. Catulus
+      rebuilt it on the original foundations and plan, higher (dedicated 69 BCE), Vespasian on
+      its original lines, higher still, after the fire of 69 CE, and Domitian after the fire of
+      80 CE (dedicated probably in 82).
+  end:
+    prop: end
+    value: 400 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851381 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: temple, order: corinthian, front: 6, roof: gilded, shaft: marble, faces: 137 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Iuppiter Optimus Maximus Capitolinus, Aedes, p. 300"
+        quote: "It was hexastyle, of the Corinthian order, and its columns were of white Pentelic marble"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Iuppiter Optimus Maximus Capitolinus, Aedes, p. 300"
+        quote: "the roof was covered with gilt tiles"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Iuppiter Optimus Maximus Capitolinus, Aedes, p. 297"
+        quote: "There were three cellae side by side"
+    basis: reconstruction
+    note: >-
+      Domitian's temple, known to P&A from coins, reliefs and the ancient descriptions; nothing
+      of its superstructure stands. P&A gives no bearing: faces is read from the plan, the front
+      looking south-east over the forum.
+  location:
+    prop: location
+    value: { lat: 41.892432, lon: 12.482100, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851381 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199851381] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851381 }
+    method: map-trace
+    basis: reconstruction

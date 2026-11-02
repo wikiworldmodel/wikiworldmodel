@@ -1,0 +1,54 @@
+id: rome/regions/regio-viii
+kind: open/region
+summary: >-
+  The Roman Forum with the Capitol and the imperial fora, listed with the Rostra, the Senate
+  House, the basilicas Argentaria and Julia, the temples of Concord, Saturn, Vespasian, Castor and
+  Vesta, and Trajan's Column.
+author: machine:claude-code
+same_as: { ohm: node/2109009039 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio VIII Forum Romanum", en: "Region VIII, Forum Romanum" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009039 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009039 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.893257, lon: 12.484047, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009039 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 3480
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio VIII, ed. Jordan 1871, vol. 2 p. 554, Curiosum column"
+      quote: "insulae III. CCCCLXXX"
+    method: documentary
+    note: >-
+      The Notitia has the same figure in Jordan's text, though its manuscript A spells out 'tria
+      milia octingentae octoginta' (3,880) (Jordan, p. 554).
+  domus:
+    prop: domus
+    value: 130
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio VIII, ed. Jordan 1871, vol. 2 p. 554, Curiosum column"
+      quote: "dom. CXXX"
+    method: documentary
+    note: The Notitia has the same figure.

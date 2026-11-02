@@ -5,6 +5,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { Ajv2020 } from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
+import { formProblem } from '../../../../core/city.ts';
 import { parseRef, RefError, splitRef } from '../../../../core/refs.ts';
 import type { Constraint, Conflict, Solution } from '../../../../core/stn.ts';
 import { parseLag, parseTime, TimeError, toMa } from '../../../../core/time.ts';
@@ -178,9 +179,17 @@ function checkValue(world: World, refs: RefChecker, c: Claim, issues: Issue[]): 
       if (typeof v !== 'string' || !/^#[0-9A-F]{6}$/.test(v)) bad('a colour is #RRGGBB');
       break;
     case 'geometry': {
-      const g = v as { from?: unknown; names?: unknown };
-      if (!g || typeof g.from !== 'string' || !Array.isArray(g.names) || !g.names.length || !g.names.every((n) => typeof n === 'string' && n)) bad('a geometry names its dataset and rows: { from: src:…, names: [...] }');
+      const g = v as { from?: unknown; names?: unknown; elements?: unknown };
+      const list = g?.names ?? g?.elements;
+      const snap = typeof g?.from === 'string' ? world.snapshots.get(g.from) : undefined;
+      if (snap && g.elements) for (const k of g.elements as string[]) if (!snap.elements.some((x) => `${x.type}/${x.id}` === k)) bad(`no element ${k} in ${g.from}`);
+      if (!g || typeof g.from !== 'string' || !Array.isArray(list) || !list.length || !list.every((n) => typeof n === 'string' && n)) bad('a geometry names its dataset and rows or elements: { from: src:…, names: [...] } or { from: src:…, elements: [...] }');
       else checkDataset(world, refs, g.from, c.file, `${c.where}.value.from`, undefined, issues);
+      break;
+    }
+    case 'form': {
+      const problem = formProblem(v);
+      if (problem) bad(problem);
       break;
     }
   }

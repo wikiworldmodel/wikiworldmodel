@@ -1,0 +1,54 @@
+# Footprint measured on the map: 31 m by 24 m, long axis on bearing 136° / 316°.
+id: rome/temple-of-juno-moneta
+kind: building/temple
+summary: >-
+  The temple of Juno Moneta on the Arx of the Capitoline, vowed by Camillus in 345 BCE and
+  dedicated in 344; the Roman mint was in it in the last centuries of the Republic. Nothing is
+  heard of it after the first century and no trace of it has been found, so whether it stood in
+  315, and where, is not known.
+author: machine:claude-code
+same_as: { wikidata: Q951089, pleiades: 76518529, ohm: way/199854829 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Juno Moneta", la: "Aedes Iunonis Monetae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 344 BCE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Iuno Moneta, Aedes, p. 289"
+        quote: "a temple vowed by M. Furius Camillus during the war with the Aurunci in 345 B.c."
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Iuno Moneta, Aedes, p. 289"
+        quote: "and dedicated in 344 (Liv. vii. 28. 4-6)"
+    method: historical-account
+    note: >-
+      P&A's last words on it are that nothing further is heard of the temple (p. 290), which may
+      have stood where the transepts of S. Maria in Aracoeli are; not a trace of it has been
+      found.
+  end:
+    prop: end
+    value: 400 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854829 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.893968, lon: 12.483152, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854829 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199854829] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854829 }
+    method: map-trace
+    basis: reconstruction

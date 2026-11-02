@@ -1,0 +1,32 @@
+id: src:preller-1846-die-regionen-der-stadt-rom
+type: publication
+kind: review
+citation: >-
+  Preller, L. (1846). Die Regionen der Stadt Rom, nach den besten Handschriften berichtigt und mit
+  einleitenden Abhandlungen und einem Commentare begleitet. Jena: Hochhausen.
+authors:
+  - "Preller, L."
+published: 1846
+title: Die Regionen der Stadt Rom
+url: https://archive.org/details/dieregionenderst00prel
+license: public-domain
+via: >-
+  The Internet Archive's scan of the University of Toronto's copy (dieregionenderst00prel): page
+  images, and an OCR text that is mostly sound but misreads some numerals.
+reliability: >-
+  An edition of both Regionary Catalogues from their manuscripts (the Curiosum's A, B, C and D,
+  the Notitia's A, B, C and the Basel edition of 1552), with the variants beneath each region, a
+  commentary, and on p. 248 a table of every region's figures, the Notitia's alternatives in
+  brackets, summed against the catalogues' own totals. Some of his readings differ from Jordan's
+  later ones: the Notitia's Regions VI, X and XI, and Region XII, where his table prefers the
+  2,458 of one Notitia manuscript to the 2,487 of the Curiosum and the other Notitia manuscripts.
+  The table's row for Region IX is labelled 'Reg. XI Circ. Flaminius', and its Region VI insulae,
+  3,303, is not the 3,403 that his note on the manuscripts gives.
+verified:
+  by: machine:claude-code
+  how: >-
+    The table on p. 248 read on its page image, turned upright, and its insulae and domus columns
+    compared with the figures read from Jordan's page images (the Curiosum's counts agree, except
+    where the claims say otherwise); the Latin text of the Curiosum and Notitia,
+    their summaries on pp. 30 and 31, and the notes on the manuscripts read in the OCR text, and
+    p. 11 (the Notitia's Region VI) on its page image.

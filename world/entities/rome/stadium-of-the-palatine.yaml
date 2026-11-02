@@ -1,0 +1,61 @@
+# Footprint measured on the map: 164 m by 69 m, long axis on bearing 42° / 222°.
+id: rome/stadium-of-the-palatine
+kind: building/circus
+summary: >-
+  A long garden court on the Palatine laid out by Domitian in the shape of a stadium, about 160 by
+  50 m, with a straight north-east end, a curved south-west end and arcades round it; the Romans
+  called it the hippodromus Palatii. Septimius Severus restored its collapsed arcades.
+author: machine:claude-code
+same_as: { wikidata: Q2484732, ohm: relation/2693279 }
+claims:
+  name:
+    prop: name
+    value: { en: "Stadium of the Palatine", la: "Stadium Palatii" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Domus: Augustiana, p. 162"
+      quote: "The third section of the palace is the hippodromus Palatii"
+  start:
+    prop: start
+    value: 92 CE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Augustiana, p. 163"
+        quote: "which date from the original construction of Domitian"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Augustiana, pp. 158-159"
+        quote: "architect Rabirius, which was only completed in 92"
+    method: historical-account
+    note: >-
+      The arcades round the court are Domitian's original work; 92 is the year P&A give for the
+      completion of Rabirius's rebuilding of the palace as a whole.
+  form:
+    prop: form
+    value: { type: circus, spina: false }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Domus: Augustiana, p. 163"
+      quote: "The open space in the centre had a semicircular fountain at each end"
+    note: >-
+      P&A describe a long garden court in the shape of a stadium, 160 by 50 m, with a semicircular
+      fountain at each end of the open centre and arcades round it. No central barrier is described,
+      so no spina is drawn; that is an inference from the description. Septimius Severus rebuilt the
+      arcades after they collapsed (p. 163).
+  location:
+    prop: location
+    value: { lat: 41.887370, lon: 12.487624, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2693279 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2693279] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2693279 }
+    method: map-trace
+    basis: reconstruction

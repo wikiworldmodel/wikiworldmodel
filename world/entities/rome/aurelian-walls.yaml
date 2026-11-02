@@ -1,0 +1,64 @@
+# Footprint measured on the map: 4735 m by 4447 m, long axis on bearing 158° / 338°.
+id: rome/aurelian-walls
+kind: works/wall
+summary: >-
+  The brick-faced concrete wall round Rome, begun by Aurelian after the Marcomannic war and before
+  his campaign against Zenobia in 272, and finished under Probus. About 12 feet thick, with square
+  towers every 100 feet, it enclosed the whole city, and most of its circuit still stands.
+author: machine:claude-code
+same_as: { wikidata: Q625149, ohm: relation/2693274 }
+claims:
+  name:
+    prop: name
+    value: { en: "Aurelian Walls", la: "Murus Aureliani" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 270 CE, hi: 272 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Muri Aureliani, p. 348"
+        quote: "the walls begun by Aurelian after the war against the Marcomanni and before that against Zenobia in 272"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 599"
+        quote: "Reign of Aurelian: he extends Pomerium, 393"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 599"
+        quote: "The Walls of Aurelian, 348"
+    method: historical-account
+    note: >-
+      This dates the beginning: Aurelian reigned 270 to 275, and the index files the walls under
+      272 'before'. Probus finished them, so they were complete some years later; the skeleton's
+      275 was unsourced.
+  form:
+    prop: form
+    value: { type: wall, tower_spacing: 30, width: 3.6 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Muri Aureliani, p. 350"
+        quote: "are built of concrete faced with brick, are about 12 feet thick"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Muri Aureliani, p. 350"
+        quote: "the latter occurring every 100 feet"
+    note: >-
+      The entry gives feet: a thickness of about 12 and towers every 100. At 0.30 m to the foot
+      that is 3.6 m and 30 m. No height is claimed: the entry says the wall was originally not
+      more than 25 feet high and was heightened later, without dating the heightening.
+  location:
+    prop: location
+    value: { lat: 41.887499, lon: 12.491760, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2693274 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2693274] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2693274 }
+    method: map-trace
+    basis: reconstruction

@@ -1,0 +1,53 @@
+id: rome/regions/regio-xi
+kind: open/region
+summary: >-
+  The Circus Maximus and the Velabrum, listed with the temples of the Sun and Moon, of Mercury, of
+  Ceres and of Hercules Olivarius, the Porta Trigemina and an arch of Constantine.
+author: machine:claude-code
+same_as: { ohm: node/2109009036 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio XI Circus Maximus", en: "Region XI, Circus Maximus" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009036 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009036 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.885799, lon: 12.484044, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009036 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 2500
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio XI, ed. Jordan 1871, vol. 2 p. 560, Curiosum column"
+      quote: "insulae II. D"
+    method: documentary
+    note: >-
+      The Notitia has II.DC (2,600) in Jordan's text, and its manuscript B reads IIDCL (2,650),
+      which Preller prints.
+  domus:
+    prop: domus
+    value: 88
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio XI, ed. Jordan 1871, vol. 2 p. 560, Curiosum column"
+      quote: "dom. LXXXVIII"
+    method: documentary
+    note: The Notitia has LXXXIX (89).

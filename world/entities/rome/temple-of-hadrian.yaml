@@ -1,0 +1,59 @@
+# Footprint measured on the map: 168 m by 65 m, long axis on bearing 85° / 265°.
+id: rome/temple-of-hadrian
+kind: building/temple
+summary: >-
+  The temple of the deified Hadrian in the Campus Martius, dedicated by Antoninus Pius in 145 CE
+  and probably octostyle and peripteral with fifteen columns on a side, set in a rectangular
+  enclosure. Eleven of its fluted white marble Corinthian columns, about 15 m high, still stand on
+  the north-east flank in the Piazza di Pietra.
+author: machine:claude-code
+same_as: { wikidata: Q431062, ohm: relation/2751507 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of the Deified Hadrian", la: "Hadrianeum" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 145 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Divus Hadrianus, templum, p. 250"
+      quote: "dedicated by Antoninus Pius in 145 A.D."
+    method: historical-account
+  form:
+    prop: form
+    value: { type: temple, plan: peripteral, order: corinthian, front: 8, side: 15, column_height: 15, shaft: marble }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Divus Hadrianus, templum, p. 250"
+        quote: "eleven fluted columns of white marble with Corinthian capitals"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Divus Hadrianus, templum, p. 250"
+        quote: "The columns are I 5 metres in height and 1.44 in diameter."
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Divus Hadrianus, templum, p. 250"
+        quote: "It is probable that the temple was octostyle, peripteral, with fifteen columns on a side."
+    basis: reconstruction
+    note: >-
+      The plan and the counts are Platner and Ashby's 'probable' restoration from the eleven
+      surviving columns. The text scan prints the column height as 'I 5 metres' and it is read
+      here as 15; check it against the printed page.
+  location:
+    prop: location
+    value: { lat: 41.899542, lon: 12.479394, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751507 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751507] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751507 }
+    method: map-trace
+    basis: reconstruction

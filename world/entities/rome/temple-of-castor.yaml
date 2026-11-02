@@ -1,0 +1,94 @@
+# Footprint measured on the map: 34 m by 19 m, long axis on bearing 23° / 203°.
+id: rome/temple-of-castor
+kind: building/temple
+summary: >-
+  The temple of Castor and Pollux at the south-east end of the forum, beside the Basilica Julia,
+  on a very tall podium whose chambers were used as strongrooms and whose front platform served
+  as a speakers' platform. Dedicated in 484 BCE and restored in 117 BCE, it was completely
+  rebuilt by Tiberius in 6 CE; three columns of that temple stand.
+author: machine:claude-code
+same_as: { wikidata: Q380530, pleiades: 157276290, ohm: relation/2753736 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Castor and Pollux", la: "Aedes Castoris" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Castor, Aedes, Templum, p. 102"
+      quote: "Its official name was aedes Castoris"
+  start:
+    prop: start
+    value: 484 BCE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Castor, Aedes, Templum, p. 102"
+        quote: "dedicated in 484 by the son of the dictator who was appointed duumvir for this purpose"
+      - ref: src:livy-ab-urbe-condita
+        loc: "2.42.5"
+        quote: "Castor's temple was dedicated the same year, on the fifteenth of July"
+    method: tradition
+    note: >-
+      Tradition: vowed in 499 BCE by the dictator Postumius after Lake Regillus. The calendar
+      gives the day as 27 January and Livy 15 July. P&A finds that the successive temples differ
+      in the plan of cella and pronaos; this date is kept as that of the temple of Castor on the
+      site, and the Tiberian rebuilding of 6 CE (p. 103) is the temple of the form drawn.
+  end:
+    prop: end
+    value: 400 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753736 }
+    method: compilation
+    basis: reconstruction
+  height:
+    prop: height
+    value: 23.25
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Castor, Aedes, Templum, p. 104"
+        quote: "The floor was about 7 metres above the Sacra via"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Castor, Aedes, Templum, p. 104"
+        quote: "They are of white marble, fluted, 12.50 metres in height and 1.45 in diameter"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Castor, Aedes, Templum, p. 104"
+        quote: "The entablature, 3.75 metres high, has a plain frieze and an admirable worked cornice"
+    method: survey
+    basis: reconstruction
+    note: >-
+      Added, not stated: about 7 m of podium above the Sacra Via, 12.50 m of column and 3.75 m
+      of entablature. It is the height to the top of the entablature; the pediment and roof
+      above are not counted, so the temple stood higher.
+  form:
+    prop: form
+    value: { type: temple, plan: peripteral, order: corinthian, front: 8, side: 11, column_height: 12.5, podium_height: 7, shaft: marble, faces: 23 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Castor, Aedes, Templum, p. 104"
+        quote: "The Augustan temple was Corinthian, octastyle and peripteral, with eleven columns on each side"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Castor, Aedes, Templum, p. 104"
+        quote: "They are of white marble, fluted, 12.50 metres in height and 1.45 in diameter"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Castor, Aedes, Templum, p. 104"
+        quote: "The floor was about 7 metres above the Sacra via"
+    note: >-
+      podium_height is the temple floor above the Sacra Via, as P&A gives it. faces is read from
+      the plan: the front, with its speakers' platform, looks north-north-east over the forum
+      square.
+  location:
+    prop: location
+    value: { lat: 41.891725, lon: 12.485628, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753736 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2753736] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753736 }
+    method: map-trace
+    basis: reconstruction

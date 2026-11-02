@@ -1,0 +1,62 @@
+# Footprint measured on the map: 107 m by 39 m, long axis on bearing 116° / 296°.
+id: rome/forum-romanum
+kind: open/forum
+summary: >-
+  The civic centre of Rome: a paved open square below the Capitoline, with the Rostra and the
+  senate house near the Capitoline end and temples and basilicas along its sides. Its travertine
+  paving, laid in the Augustan period, was still in use around 315, when the fire of 283 under
+  Carinus had given Diocletian and his successors the occasion for a great deal of rebuilding.
+author: machine:claude-code
+same_as: { wikidata: Q180212, pleiades: 502866838, ohm: way/198576333 }
+claims:
+  name:
+    prop: name
+    value: { en: "Roman Forum", la: "Forum Romanum" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 600 BCE, hi: 550 BCE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum (Romanum s. Magnum), p. 230"
+        quote: "the latest must go down to the end of the seventh or the middle of the sixth century B.c."
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum (Romanum s. Magnum), p. 231"
+        quote: "The forum thus became a market-place"
+    method: expert-estimate
+    note: >-
+      A bracket, not a dated foundation: the valley was a burial ground until the end of the
+      seventh or the middle of the sixth century BCE (read here as about 600 to 550), after
+      which P&A has it drained and used as a market-place. P&A gives no date for the first paved
+      square.
+  ground-level:
+    prop: ground_level
+    value: 13.3
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum (Romanum s. Magnum), p. 234"
+      quote: "rises from 12.60 metres above sea-level in front of the temple of Julius Caesar to 14 metres above sea-level"
+    method: survey
+    note: >-
+      P&A gives the Augustan travertine paving, along the main axis of the central area, as
+      rising from 12.60 m at the temple of Caesar to 14 m in front of the Rostra, and says it
+      stayed in use to the end of the classical period. 13.3 m is the mean of the two ends, not
+      a surveyed point.
+  location:
+    prop: location
+    value: { lat: 41.892448, lon: 12.484987, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576333 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576333] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576333 }
+    method: map-trace
+    basis: reconstruction

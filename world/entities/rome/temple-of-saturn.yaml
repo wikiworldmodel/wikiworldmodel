@@ -1,0 +1,75 @@
+# Footprint measured on the map: 56 m by 24 m, long axis on bearing 36° / 216°.
+id: rome/temple-of-saturn
+kind: building/temple
+summary: >-
+  The temple of Saturn at the foot of the Capitoline, on the edge of the forum, which held the
+  state treasury. Dedicated in the early Republic and rebuilt by L. Munatius Plancus in 42 BCE,
+  it was damaged by fire and restored by decree of the Senate at some time in the fourth
+  century; eight of its columns still stand.
+author: machine:claude-code
+same_as: { wikidata: Q746721, ohm: way/198576336 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Saturn", la: "Aedes Saturni" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 501 BCE, hi: 497 BCE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Saturnus, Aedes, p. 463"
+        quote: "either to Titus Larcius in his dictatorship in 501"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Saturnus, Aedes, p. 463"
+        quote: "or to Aulus Sempronius and M. Mamercus, the consuls of 497"
+      - ref: src:livy-ab-urbe-condita
+        loc: "2.21.2"
+        quote: "In the latter year a temple to Saturn was dedicated and the Saturnalia was established as a festal day"
+    method: tradition
+    note: >-
+      Tradition put the dedication in the first years of the Republic: Macrobius names Titus
+      Larcius, dictator in 501; Livy and Dionysius the consuls of 497 (Livy has Aulus Sempronius
+      and Marcus Minucius, where P&A writes Mamercus); Dionysius also gives Postumus Cominius,
+      consul in 501 and 493. P&A concludes that the dedication may safely be assigned to the
+      beginning of the republic. The temple was rebuilt on the site in 42 BCE and restored after
+      a fire in the fourth century, so this is the date of the temple on the site, not of the
+      standing fabric.
+  form:
+    prop: form
+    value: { type: temple, plan: prostyle, order: ionic, front: 6, side: 3, column_height: 11, faces: 36 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Saturnus, Aedes, p. 464"
+        quote: "The temple was Ionic, hexastyle prostyle, with two columns on each side, not counting those at the angles."
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Saturnus, Aedes, p. 465"
+        quote: "The columns are 11 metres in height and 1.43 in diameter at the base"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Clivus Capitolinus, p. 122"
+        quote: "It then skirts the north front and the west side of the temple of Saturn."
+    note: >-
+      side counts the corner column of the front row and the two columns P&A puts on each side
+      beyond it. The 11 m columns are those standing. faces is read from the plan: P&A's compass
+      points follow the old convention in which the forum runs east and west (it puts the
+      Basilica Aemilia on the north side of the forum), so the north front it gives the temple
+      is the north-east end of the mapped footprint, bearing 36 degrees, where the Clivus
+      Capitolinus passes.
+  location:
+    prop: location
+    value: { lat: 41.892424, lon: 12.484094, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576336 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576336] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576336 }
+    method: map-trace
+    basis: reconstruction

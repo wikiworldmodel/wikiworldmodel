@@ -1,0 +1,59 @@
+# Footprint measured on the map: 29 m by 14 m, long axis on bearing 52° / 232°.
+id: rome/temple-of-minerva
+kind: building/temple
+summary: >-
+  Domitian's temple of Minerva at the head of the Forum of Nerva, a Corinthian temple with a
+  six-column front and an apse that projected beyond the forum, dedicated by Nerva with the
+  forum in 97. Much of it stood until Paul V pulled it down in 1606.
+author: machine:claude-code
+same_as: { ohm: way/199850929 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Minerva", la: "Templum Minervae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 97 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum Nervae, p. 228"
+      quote: "It was dedicated by Nerva at the same time as the forum"
+    method: historical-account
+  end:
+    prop: end
+    value: 600 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199850929 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: temple, plan: prostyle, order: corinthian, front: 6, faces: 232 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Nervae, p. 228"
+        quote: "It was of the Corinthian order, hexastyle prostyle, and its apse projected beyond the limits of the forum"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Nervae, p. 228"
+        quote: "stood in the centre of the north-east end of the forum"
+    note: >-
+      faces is read from the plan: the temple stood at the north-east end of the forum and
+      looked south-west down it.
+  location:
+    prop: location
+    value: { lat: 41.893704, lon: 12.487409, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199850929 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199850929] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199850929 }
+    method: map-trace
+    basis: reconstruction

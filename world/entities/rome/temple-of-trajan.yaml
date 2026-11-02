@@ -1,0 +1,65 @@
+# Footprint measured on the map: 62 m by 29 m, long axis on bearing 139° / 319°.
+id: rome/temple-of-trajan
+kind: building/temple
+summary: >-
+  The temple of the deified Trajan and Plotina, which Hadrian built after Trajan's death to
+  complete the forum, at the north-west end of the library court: an octostyle peripteral temple
+  of Corinthian order on a raised platform, within a colonnade.
+author: machine:claude-code
+same_as: { wikidata: Q3074203, ohm: way/198576652 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of the Deified Trajan", la: "Templum Divi Traiani" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 117 CE, hi: 138 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum Traiani, p. 244"
+      quote: "The forum of Trajan was completed by Hadrian, who erected the great temple of Trajan and his wife Plotina"
+    method: historical-account
+    note: >-
+      Built by Hadrian, so after Trajan's death in 117 and before his own in 138; P&A gives no
+      year.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576652 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: temple, plan: peripteral, order: corinthian, front: 8, shaft: granite, faces: 139 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 244"
+        quote: "The temple was octostyle peripteral, and stood on a raised platform, round which was a porticus"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 244"
+        quote: "Fragments of its granite columns 2 metres in diameter"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 244"
+        quote: "some corresponding capitals of the Corinthian order"
+    note: >-
+      faces is read from the plan: the temple closed the north-west end of the court and looked
+      south-east along the axis of the forum, toward the Column.
+  location:
+    prop: location
+    value: { lat: 41.896372, lon: 12.483714, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576652 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576652] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576652 }
+    method: map-trace
+    basis: reconstruction

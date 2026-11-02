@@ -1,0 +1,46 @@
+id: src:notitia-urbis-romae
+type: text
+kind: compilation
+citation: >-
+  Notitia Urbis Romae (Regiones urbis Romae cum breviariis suis), the earlier of the two
+  fourth-century catalogues of the fourteen regions of Rome, in H. Jordan's edition: Topographie
+  der Stadt Rom im Alterthum, vol. 2 (Berlin: Weidmannsche Buchhandlung, 1871), pp. 541–572, the
+  Latin text in parallel columns with the Curiosum and the readings of the manuscripts beneath.
+published: 1871
+written: { lo: 334 CE, hi: 357 CE }
+title: Notitia Urbis Romae
+url: https://archive.org/details/topographiederst02jord
+license: public-domain
+via: >-
+  Jordan's edition (src:jordan-1871-topographie-der-stadt-rom-2), read in the Internet Archive's
+  scan of the University of Toronto's copy. Jordan edits the text from manuscripts A (Vindob. 162,
+  9th century), S (Vindob. 3416, 15th century, from a 9th-century manuscript) and B (Laur. 89, 67,
+  10th century), with the Basel edition of 1552 (p. 540). Preller's edition of 1846
+  (src:preller-1846-die-regionen-der-stadt-rom) and Urlichs's of 1871
+  (src:urlichs-1871-codex-urbis-romae-topographicus) print it too, with some different readings of
+  the figures.
+reliability: >-
+  The earlier recension of the same inventory, with the same counts of insulae and domus as the
+  Curiosum in ten of the thirteen regions where the Curiosum keeps them and a different figure in
+  Regions III (domus), X (insulae) and XI (insulae and domus). Its manuscripts differ widely from
+  one another, and B is a conflation of the two recensions (Jordan II p. 17); the best of them
+  spell out the larger counts in words, which Jordan prints as numerals (p. 15). It is used here
+  only for Region VI, whose curators, insulae, domus and horrea the Curiosum's manuscripts leave
+  out. What an insula was is disputed.
+verified:
+  by: machine:claude-code
+  how: >-
+    The Notitia column of Region VI (insulae and domus, with the manuscripts' variants) read on
+    the page image of Jordan's volume 2 in the Internet Archive's scan (topographiederst02jord,
+    p. 550), enlarged to read the numerals, with the Notitia column of every other region read
+    on the same pages as the Curiosum's (pp. 543–564) and the summary on p. 572; Preller's text
+    of Region VI on p. 11 of his edition (dieregionenderst00prel) and Urlichs's on p. 9 of his
+    (codexurbisromae00urligoog), and Urlichs's text of Region X on p. 15, read on page images.
+    Jordan prints the thousands with a bar over the numeral (III with a bar is 3,000); the quotes
+    on the claims give his numerals without the bar.
+note: >-
+  Jordan's text of Region VI reads 3,403 insulae and 146 domus, as Urlichs's does; Urlichs's
+  apparatus gives 3,303 for manuscripts B and D and most later ones, and Preller's text prints
+  3,303 insulae and 147 domus, where his own note on the manuscripts gives 3,403 and 146 for A and
+  for the Basel edition. Jordan dates this recension between 334 and 357 (p. 540), from the same
+  lost original as the Curiosum.

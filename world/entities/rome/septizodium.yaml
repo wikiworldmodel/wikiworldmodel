@@ -1,0 +1,73 @@
+# Footprint measured on the map: 61 m by 16 m, long axis on bearing 41° / 221°.
+id: rome/septizodium
+kind: monument/fountain
+summary: >-
+  The Septizonium, a monumental three-storey front of niches and columns built by Septimius Severus
+  at the south-east corner of the Palatine and dedicated in 203 CE. It screened the palace terraces
+  from travellers coming along the Via Appia and was decorated with fountains; Ammianus calls it a
+  nymphaeum.
+author: machine:claude-code
+same_as: { wikidata: Q1234446, ohm: way/199854869 }
+claims:
+  name:
+    prop: name
+    value: { en: "Septizodium", la: "Septizodium" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Septizonium, p. 473"
+      quote: "a building erected by Septimius Severus at the extreme south-east corner of the Palatine hill"
+    note: >-
+      P&A spell it Septizonium and note that the form Septizodium first appears in Pseudo-Dositheus
+      (about 207) and an inscription of about 210 but is probably incorrect.
+  start:
+    prop: start
+    value: 203 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Septizonium, p. 473"
+      quote: "The inscription (CIL vi. 1032, 31229) records the dedication in 203"
+    method: documentary
+  end:
+    prop: end
+    value: 1588 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Septizonium, p. 475"
+      quote: "Its destruction was completed by 14th September, 1588"
+    method: historical-account
+    note: >-
+      Sixtus V ordered it destroyed and its materials reused; P&A say the demolition was complete by
+      14 September 1588.
+  form:
+    prop: form
+    value: { type: generic, storeys: 3, faces: 131 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Septizonium, p. 474"
+        quote: "There is no doubt, however, that the building only had three stories"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Septizonium, p. 473"
+        quote: "a monumental facade at this corner of the hill, visible to all who approached by the via Appia"
+    note: >-
+      P&A describe an ornamental front with three large niches and three orders of composite
+      columns, like the back wall of a theatre stage, with fountains. The generic form is used
+      because the fountain form is a round basin. Faces 131 is the south-east bearing towards the
+      Via Appia, an inference from the passage quoted (the OCR prints 'facade' for 'façade').
+  location:
+    prop: location
+    value: { lat: 41.885833, lon: 12.488947, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854869 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199854869] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854869 }
+    method: map-trace
+    basis: reconstruction

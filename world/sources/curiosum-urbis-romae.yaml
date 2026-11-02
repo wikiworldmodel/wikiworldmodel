@@ -1,0 +1,57 @@
+id: src:curiosum-urbis-romae
+type: text
+kind: compilation
+citation: >-
+  Curiosum Urbis Romae Regionum XIIII cum breviariis suis (the Curiosum), the later of the two
+  fourth-century catalogues of the fourteen regions of Rome, in H. Jordan's edition: Topographie
+  der Stadt Rom im Alterthum, vol. 2 (Berlin: Weidmannsche Buchhandlung, 1871), pp. 541–572, the
+  Latin text in parallel columns with the Notitia and the readings of the manuscripts beneath.
+published: 1871
+written: { lo: 357 CE, hi: 403 CE }
+title: Curiosum Urbis Romae Regionum XIIII cum breviariis suis
+url: https://archive.org/details/topographiederst02jord
+license: public-domain
+via: >-
+  Jordan's edition (src:jordan-1871-topographie-der-stadt-rom-2), read in the Internet Archive's
+  scan of the University of Toronto's copy. Jordan edits the text from three manuscripts, which he
+  calls A (Vat. 3321, 8th century), B (Vat. 1984, 12th) and C (Vat. 3327, 9th) (p. 540). Preller's
+  edition of 1846 (src:preller-1846-die-regionen-der-stadt-rom) and Urlichs's of 1871
+  (src:urlichs-1871-codex-urbis-romae-topographicus) print the same figures in their texts of
+  the Curiosum, for the thirteen regions whose counts it keeps.
+reliability: >-
+  An administrative inventory of the fourteen Augustan regions: vici, insulae, domus, horrea,
+  baths, wells and bakeries. Jordan takes the counts to give the state of the city when the lost
+  original was drawn up (II p. 77), which he dates between 312 and 315 and certainly before 334
+  (pp. 10, 540); the Curiosum, written after 357, gives them in three manuscripts that agree
+  closely with one another (p. 17). Its numerals are unsure in places: Regions III and IV carry
+  the same count of insulae (2,757) and Regions XII and XIII the same (2,487), which Jordan
+  (p. 18, after Bunsen) holds cannot both be right; its manuscripts omit the curators, insulae,
+  domus and horrea of Region VI altogether; and its regional counts of insulae, with the
+  Notitia's for Region VI, fall well short of the total in its own summary. What an insula was is
+  disputed.
+verified:
+  by: machine:claude-code
+  how: >-
+    Every region's insulae and domus read on the page images of Jordan's volume 2 in the Internet
+    Archive's scan (topographiederst02jord), not in its OCR, which garbles the numerals: the
+    Curiosum column on pp. 543, 544, 545, 547, 548, 551, 554, 557, 558, 560, 561, 562 and 564,
+    each figure enlarged to read the numerals, and the gap in Region VI on p. 550; the summary on
+    p. 572; the dating and the remarks on repeated figures on pp. 5, 10, 15, 17, 18, 77 and 540.
+    The OCR text of Preller's edition (dieregionenderst00prel) and of Urlichs's
+    (codexurbisromae00urligoog, with p. 14 checked on its page image), and the table on p. 248 of
+    Preller's (read on its page image, turned upright), give the same figures, apart from the
+    variants noted on the claims. Jordan prints the thousands with a bar over the numeral (III
+    with a bar is 3,000), and prints every number as a numeral (p. 15); the quotes on the claims
+    give his numerals without the bar.
+note: >-
+  The Curiosum's own summary (Jordan, p. 572) gives 46,602 insulae (XLVI.DCII) and 1,790 domus
+  (M.DCCXC) for the whole city; the Notitia's summary has the same 46,602 and, in Jordan's text,
+  the same 1,790. The fourteen regional figures do not add up to these. Taking the Curiosum's
+  figures, and the Notitia's for Region VI, the insulae sum to 44,300 and the domus to 1,681 (1,781
+  with the Notitia's 160 for Region III in place of the Curiosum's 60). Preller (1846, pp.
+  247–248), with the readings he preferred, found 44,171 and 1,782 and thought copyists' errors
+  enough to explain the gaps. Jordan dates the lost original between 312 and 315 and certainly
+  before 334, the Notitia between 334 and 357, and the Curiosum between 357 and 403, with a
+  query on the last date (p. 540). The two recensions largely repeat the same counts, so the
+  claims that rest on them are valid for 312 to 357, from the original to the end of the
+  Notitia's time, not for the later years of the Curiosum.

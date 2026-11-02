@@ -1,0 +1,51 @@
+# Footprint measured on the map: 103 m by 53 m, long axis on bearing 114° / 294°.
+id: rome/atrium-vestae
+kind: building/house
+summary: >-
+  The house of the Vestal Virgins at the foot of the Palatine, beside the temple of Vesta.
+  Rebuilt by Nero after the fire of 64 and extended by Domitian and Hadrian, it was given its
+  great court, 69 m long, by Julia Domna, and was kept up into the fourth century.
+author: machine:claude-code
+same_as: { wikidata: Q285196, pleiades: 795139357, ohm: relation/2751723 }
+claims:
+  name:
+    prop: name
+    value: { en: "House of the Vestals", la: "Atrium Vestae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 64 CE, hi: 68 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Atrium Vestae, p. 59"
+      quote: "was probably destroyed in the fire of Nero, and was certainly rebuilt by him"
+    method: historical-account
+    note: >-
+      Nero rebuilt the house after the fire of 64 to a trapezoidal plan about the size of the
+      later building, and reigned until 68. The house of c. 315 is that building as Domitian,
+      Hadrian and Julia Domna altered it, who lengthened the court to 69 m, 24 m wide, and added
+      the arches over the Nova Via (p. 60).
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751723 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.891396, lon: 12.486645, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751723 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751723] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751723 }
+    method: map-trace
+    basis: reconstruction

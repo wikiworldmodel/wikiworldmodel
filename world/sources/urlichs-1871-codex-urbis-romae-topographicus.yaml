@@ -1,0 +1,28 @@
+id: src:urlichs-1871-codex-urbis-romae-topographicus
+type: publication
+kind: compilation
+citation: >-
+  Urlichs, C.L., ed. (1871). Codex urbis Romae topographicus. Würzburg: ex aedibus Stahelianis.
+authors:
+  - "Urlichs, C.L."
+published: 1871
+title: Codex urbis Romae topographicus
+url: https://archive.org/details/codexurbisromae00urligoog
+license: public-domain
+via: >-
+  The Internet Archive's copy of the Google Books scan of the University of Michigan's copy
+  (codexurbisromae00urligoog): page images, and an OCR text that misreads many numerals.
+reliability: >-
+  A collection of ancient and medieval texts on the topography of Rome, which opens with both
+  Regionary Catalogues, the Curiosum and the Notitia ('De regionibus'), each region followed by
+  the readings of up to ten manuscripts. Its text of the Curiosum has the same counts of insulae
+  and domus as Jordan's, region by region, and its Notitia the same for Region VI (3,403 insulae,
+  146 domus), where its apparatus gives the 3,303 of manuscripts B and D and of most later ones.
+verified:
+  by: machine:claude-code
+  how: >-
+    The Curiosum's insulae and domus for every region read in the OCR text, which garbles some
+    numerals (LXXXVIIII for Region X appears as LXXXVUII), and compared with Jordan's; p. 14 (the
+    Curiosum's Regions IX and X) and, in the Notitia ('De regionibus'), p. 9 (Region VI) and
+    p. 15 (Regions IX and X), each with its apparatus, read on their page images. The Curiosum's
+    omission of Region VI's counts seen in the OCR text.

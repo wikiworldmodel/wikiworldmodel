@@ -1,0 +1,72 @@
+# Footprint measured on the map: 24 m by 8 m, long axis on bearing 70° / 250°.
+id: rome/temple-of-diana-aventine
+kind: building/temple
+summary: >-
+  The temple of Diana on the Aventine, ascribed by tradition to Servius Tullius as the common
+  sanctuary of the Latin cities and the oldest and most important temple on the hill. Rebuilt in the
+  reign of Augustus by L. Cornificius, it is drawn on the Marble Plan as an octostyle dipteral
+  temple with a double colonnade, and it was still standing in the fourth century.
+author: machine:claude-code
+same_as: { ohm: way/199858380 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Diana on the Aventine", la: "Aedes Dianae" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Diana, Aedes, p. 149"
+      quote: "the temple of Diana on the Aventine"
+  start:
+    prop: start
+    value: { lo: 31 BCE, hi: 14 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Diana, Aedes, p. 150"
+      quote: "This temple was rebuilt by L. Cornificius during the reign of Augustus"
+    method: historical-account
+    note: >-
+      Tradition ascribed the original temple to Servius Tullius; the building drawn on the Marble
+      Plan, with a double colonnade, is Cornificius's Augustan rebuilding (Suetonius, Augustus 29),
+      so that is taken as the start. The reign of Augustus is counted from Actium in 31 BCE to his
+      death in 14 CE. The map's earlier 191 BCE had no source.
+  end:
+    prop: end
+    value: unknown
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Diana, Aedes, p. 150"
+      quote: "It was standing in the fourth century (Not. Reg. XIII), but no trace of it has been found"
+    method: historical-account
+    note: >-
+      No end date is known. The map's earlier end of 18 BCE is contradicted: the temple was standing
+      in the fourth century.
+  form:
+    prop: form
+    value: { type: temple, plan: dipteral, front: 8 }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Diana, Aedes, p. 150"
+      quote: "where it is drawn as octostyle and dipteral, surrounded by a double colonnade"
+    confidence: likely
+    note: >-
+      P&A say it is probably represented under the name aedes Dianae Cornificianae on fragment 2 of
+      the Marble Plan (CIL vi. 4305), where it is drawn as octostyle and dipteral. The mapped
+      footprint, 24 by 8 m, is too small for such a temple, so the two should be reconciled.
+  location:
+    prop: location
+    value: { lat: 41.891409, lon: 12.479945, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199858380 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199858380] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199858380 }
+    method: map-trace
+    basis: reconstruction

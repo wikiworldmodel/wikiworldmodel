@@ -1,0 +1,55 @@
+# Footprint measured on the map: 128 m by 0 m, long axis on bearing 176° / 356°.
+id: rome/pons-aelius
+kind: works/bridge
+summary: >-
+  The bridge Hadrian built to approach his mausoleum, finished in 134 CE: three main arches of
+  18.39 m span with three smaller arches on the left bank and two on the right, 10.95 m wide, of
+  travertine and peperino. It is the Ponte Sant'Angelo, whose three central arches survive.
+author: machine:claude-code
+same_as: { wikidata: Q870476, ohm: way/198283994 }
+claims:
+  name:
+    prop: name
+    value: { en: "Pons Aelius", la: "Pons Aelius" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 134 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Pons Aelius, p. 396"
+      quote: "and finished in 134 A.D."
+    method: historical-account
+  form:
+    prop: form
+    value: { type: bridge, arches: 8, width: 10.95 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pons Aelius, p. 397"
+        quote: "It had three main arches 18.39 metres in diameter, with three smaller arches on the left"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pons Aelius, p. 397"
+        quote: "and two on the right, 7.59 and 3.75 in diameter"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pons Aelius, p. 397"
+        quote: "The total width was 10.95 metres"
+    note: >-
+      arches counts all eight: three main, three smaller on the left and two on the right.
+  location:
+    prop: location
+    value: { lat: 41.901888, lon: 12.466504, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283994 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198283994] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283994 }
+    method: map-trace
+    basis: reconstruction

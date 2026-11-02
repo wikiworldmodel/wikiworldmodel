@@ -1,0 +1,38 @@
+# Footprint measured on the map: 123 m by 76 m, long axis on bearing 163° / 343°.
+id: rome/markets-of-trajan
+kind: building/market
+summary: >-
+  The tiers of brick shops and halls cut into the slope of the Quirinal behind the north-east
+  hemicycle of Trajan's forum, whose lowest storey was the hemicycle itself. P&A, writing in
+  1929, found that they seem to have been of a commercial character.
+author: machine:claude-code
+same_as: { wikidata: Q478642, ohm: relation/2751640 }
+claims:
+  name:
+    prop: name
+    value: { en: "Trajan's Markets", la: "Mercatus Traiani" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 107 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751640 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.895558, lon: 12.486120, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751640 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751640] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751640 }
+    method: map-trace
+    basis: reconstruction

@@ -1,0 +1,52 @@
+id: rome/regions/regio-vii
+kind: open/region
+summary: >-
+  The Via Lata, the city stretch of the Flaminian road, listed with the Campus Agrippae, the
+  temple of the Sun, the Arcus Novus, the Porticus of Gypsianus and Constantine, the horses of
+  King Tiridates and the pork market (Forum Suarium).
+author: machine:claude-code
+same_as: { ohm: node/2109009040 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio VII Via Lata", en: "Region VII, Via Lata" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009040 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009040 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.906685, lon: 12.48034, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009040 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 3805
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio VII, ed. Jordan 1871, vol. 2 p. 551, Curiosum column"
+      quote: "insulae III. DCCCV"
+    method: documentary
+    note: The Notitia has the same figure.
+  domus:
+    prop: domus
+    value: 120
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio VII, ed. Jordan 1871, vol. 2 p. 551, Curiosum column"
+      quote: "dom. CXX"
+    method: documentary
+    note: The Notitia has the same figure.

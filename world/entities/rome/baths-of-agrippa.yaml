@@ -1,0 +1,68 @@
+# Footprint measured on the map: 153 m by 116 m, long axis on bearing 177° / 357°.
+id: rome/baths-of-agrippa
+kind: building/baths
+summary: >-
+  The first of Rome's great baths, laid out by Agrippa beside the Pantheon from 25 BCE and left to
+  the Roman people at his death in 12 BCE. Burned in 80 CE and restored under Titus or Domitian
+  and again by Hadrian, who joined it to the Pantheon by a series of halls, it received a recorded
+  restoration in 344 to 345 CE.
+author: machine:claude-code
+same_as: { wikidata: Q518832, ohm: way/199852337 }
+claims:
+  name:
+    prop: name
+    value: { en: "Baths of Agrippa", la: "Thermae Agrippae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 25 BCE, hi: 12 BCE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Agrippae, p. 518"
+        quote: "Agrippa built a hot-air bath"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 593"
+        quote: "Thermae begun, 518"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Agrippae, p. 518"
+        quote: "at his death in 12 he left to the Roman people, for their free use"
+    method: historical-account
+    note: >-
+      Cassius Dio, as Platner and Ashby report him, has Agrippa build a hot-air bath in 25 BCE;
+      the index files the baths under that year. They left the baths to the Roman people at his
+      death in 12 BCE, and the Aqua Virgo that supplied them was finished in 19 BCE. The interval
+      runs from the first bath to the bequest.
+  end:
+    prop: end
+    value: 550 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199852337 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: baths, rotunda: true }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Thermae Agrippae, p. 519"
+      quote: "was a circular hall about 25 metres in diameter, belonging to a later reconstruction in a period not earlier than Alexander Severus"
+    note: >-
+      The circular hall, now the Arco della Ciambella, was a later addition from Alexander Severus
+      (222 to 235) or after, so it stood in 315.
+  location:
+    prop: location
+    value: { lat: 41.897145, lon: 12.476624, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199852337 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199852337] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199852337 }
+    method: map-trace
+    basis: reconstruction

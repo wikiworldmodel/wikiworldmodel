@@ -1,0 +1,62 @@
+# Footprint measured on the map: 18 m by 18 m, long axis on bearing 111° / 291°.
+id: rome/temple-of-hercules-victor
+kind: building/temple
+summary: >-
+  The small round temple in the Forum Boarium beside the Tiber: a marble cella ringed by twenty
+  Corinthian columns, on a podium. It is dated to the later second century BCE and identified as
+  the temple of Hercules Victor (Olivarius); Platner and Ashby (1929) described it as an uncertain
+  candidate for the temple of Portunus.
+author: machine:claude-code
+same_as: { wikidata: Q576929, ohm: way/199854126 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Hercules Victor", la: "Aedes Herculis Victoris" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 143 BCE, hi: 132 BCE }
+    source:
+      ref: src:wikipedia-temple-of-hercules-victor
+      loc: "Description"
+      quote: "is dated back to circa 143-132 BC"
+    method: compilation
+    note: >-
+      Wikipedia dates the dedication to about 143 to 132 BCE and the building to the later second
+      century. Platner and Ashby thought the superstructure early imperial.
+  form:
+    prop: form
+    value: { type: tholos, order: corinthian, columns: 20, column_height: 10.66, podium_height: 2 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Portunium, p. 431"
+        quote: "with a peristyle of twenty Corinthian columns"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Portunium, p. 431"
+        quote: "stands on a podium of tufa, 2 metres high"
+      - ref: src:wikipedia-temple-of-hercules-victor
+        loc: "Description"
+        quote: "a concentric ring of twenty Corinthian columns 10.66 m tall"
+    note: >-
+      Platner and Ashby describe this building under Portunus, 'more probable than any other that
+      has been suggested, but far from certain'; their entry for Hercules Victor describes a round
+      temple near S. Maria in Cosmedin that was destroyed under Sixtus IV. The identification here
+      follows Wikipedia.
+  location:
+    prop: location
+    value: { lat: 41.888744, lon: 12.480765, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854126 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199854126] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854126 }
+    method: map-trace
+    basis: reconstruction

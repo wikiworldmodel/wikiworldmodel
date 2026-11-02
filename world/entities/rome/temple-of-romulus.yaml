@@ -1,0 +1,58 @@
+# Footprint measured on the map: 20 m by 20 m, long axis on bearing 52° / 232°.
+id: rome/temple-of-romulus
+kind: building/temple
+summary: >-
+  A round brick building on the Sacra Via, added by Maxentius at the entrance to the Templum
+  Pacis and long identified as the temple he built for his deified son Romulus. Other
+  identifications have been proposed, among them the temple of the City (Urbis fanum) which the
+  Senate consecrated to Constantine.
+author: machine:claude-code
+same_as: { wikidata: Q338397, pleiades: 766385425, ohm: way/199851324 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Romulus", la: "Templum Divi Romuli" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 306 CE, hi: 312 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Romulus, Divus, Templum, p. 450"
+      quote: "a building erected by Maxentius in honour of his deified son Romulus"
+    method: historical-account
+    note: >-
+      Dated only to the reign of Maxentius, 306 to 312. P&A reports that Constantine seems to
+      have taken the building over after the defeat of Maxentius. The identification of this
+      round building with the temple is not certain.
+  form:
+    prop: form
+    value: { type: rotunda, faces: 232 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Romulus, Divus, Templum, p. 450"
+        quote: "generally identified, until recent years, with the circular brick structure on the east side of the Sacra via"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pax, Templum, p. 388"
+        quote: "Maxentius in any case added the round building"
+    note: >-
+      P&A gives no diameter or height. faces is read from the plan: the sentence last quoted
+      goes on to put its facade on the Sacra Via, which passes the building to the south-west.
+  location:
+    prop: location
+    value: { lat: 41.891876, lon: 12.487223, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851324 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199851324] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851324 }
+    method: map-trace
+    basis: reconstruction

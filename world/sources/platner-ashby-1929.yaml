@@ -1,0 +1,64 @@
+id: src:platner-ashby-1929
+type: publication
+kind: review
+citation: >-
+  Platner, S.B. & Ashby, T. (1929). A Topographical Dictionary of Ancient Rome. London: Oxford
+  University Press.
+authors:
+  - "Platner, S.B."
+  - "Ashby, T."
+published: 1929
+title: A Topographical Dictionary of Ancient Rome
+url: https://penelope.uchicago.edu/Thayer/E/Gazetteer/Places/Europe/Italy/Lazio/Roma/Rome/_Texts/PLATOP*/home.html
+license: public-domain
+via: The Internet Archive's scan and OCR text of the 1929 Oxford edition (identifiers topographicaldic0000unse_v3f4 and topographicaldic0000samu); the LacusCurtius transcription the url names could not be fetched from here.
+reliability: >-
+  The standard reference of its time, gathering the ancient texts and the excavations then known
+  for each monument, entry by entry. Later excavation has corrected some of its identifications
+  and dates, and its dimensions are often given to the metre or the Roman foot.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in the Internet Archive's OCR text of the 1929 edition (topographicaldic0000unse_v3f4,
+    with the second scan, topographicaldic0000samu, compared where the first was garbled).
+    Entries read, with their pages: Pantheon (382-385), Thermae Agrippae (518-520), Thermae
+    Neronianae (531-532), Stadium Domitiani (495-496), Odeum (371), Theatrum Pompei (515-517),
+    Porticus Pompei (428-429), Theatrum Marcelli (513-515), Porticus Octaviae (427), Theatrum
+    Balbi (513), Mausoleum Augusti (332-339), Ara Pacis Augustae (30-31), Mausoleum Hadriani
+    (336-337), Columna Antonini Pii (131), Columna M. Aurelii Antonini (132-133), Divus Hadrianus
+    templum (250), Matidia templum (331), Mater Matuta templum (330-331), Isis aedes (283-285),
+    Saepta Iulia (460-461), Portunium (430-431), Hercules Victor (257-258), Aesculapius aedes
+    (2-3), the pontes Aelius, Aemilius, Cestius, Fabricius, Neronianus and Sublicius (396-402),
+    Murus Servii Tullii (350-355), Muri Aureliani (348-350), Aqua Claudia (22-23), Arcus
+    Neroniani (40-41), Circus Gai et Neronis (113-114), Via Appia (559-560), Sacra Via
+    (456-459), and the chronological index of dateable monuments (587-600). Quotations in the
+    records were checked against that text with line breaks ignored and a hyphen at a line end
+    read as joined. The OCR sometimes misreads a digit or a letter; where a quotation keeps such a
+    misreading, the claim's note says so. A further batch was read the same way for the Roman
+    Forum, the Capitoline and the imperial fora: Saturnus Aedes (463-465), Clivus Capitolinus
+    (122-123), Basilica Aemilia (72-75), Basilica Iulia (78-80), Basilica Constantini (76-78),
+    Curia Iulia (143-145), Rostra (450-454), Forum Romanum (230-236), Castor (102-104), Vesta
+    Aedes (557-559), Atrium Vestae (58-60), Iulius Divus Aedes (286-288), Antoninus et Faustina
+    (13-14), Divus Vespasianus (556), Concordia Aedes (138-140), Arcus Septimii Severi (43-44),
+    Arcus Titi (45-47), Divus Romulus (450), Pax (386-388), Venus et Roma (552-554), Tabularium
+    (506-508), Iuppiter Optimus Maximus Capitolinus (297-301), Iuno Moneta (289-290), Forum
+    Iulium (225-227), Forum Augustum (220-223), Forum Nervae (227-229), Forum Traiani (237-244)
+    and the addenda (605). The scan prints small capitals such as B.C. as B.c., and quotations
+    keep that; a hyphen at a line end was kept where it belongs to a compound (pseudo-dipteral).
+    Some of its running heads are garbled (the head of p. 59 reads 69), so the pages cited
+    follow the sequence of the heads. A third batch covers the Colosseum valley, the Palatine and
+    the baths: Amphitheatrum Castrense (5-6) and Flavium (6-10), Apollo Palatinus (16-19), Arcus
+    Constantini (36-38), Castra Praetoria (106-108), Circus Maximus (114-120), Claudius Divus
+    templum (120-121), Colossus Neronis (130-131), Diana aedes (149-150), the Domus entries
+    Augustiana (158-166), Aurea (166-172) and Tiberiana (191-194), Emporium (the passage on the
+    Porticus Aemilia), Horrea Galbae (261-262), Ludus Magnus (320), Magna Mater aedes (324-325),
+    Meta Sudans (340), Porticus Aemilia (420), Septizonium (473-475), Sepulcrum C. Cestii (478),
+    Sol templum (491-493), Thermae Antoninianae (520-524), Constantinianae (525-526),
+    Diocletiani (527-530), Titi (533-534) and Traiani (534-536), and the addenda (601, 606). Those
+    quotations were checked against all three scans, the item
+    topographical-dictionary-of-ancient-rome-a-samuel-ball-platner-and-thomas-ashby being the
+    third; where a head is lost, as for p. 36 and p. 601, the page follows the sequence of the
+    heads. The scans print the cedilla of facade as a plain letter or a g, and quotations keep the
+    plain letter. The Amphitheatrum Flavium and Arcus Constantini entries were also fetched from
+    LacusCurtius with WebFetch and agree with the scans, apart from a digit the first scan
+    misreads (315-316).

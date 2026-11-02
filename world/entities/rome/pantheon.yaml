@@ -1,0 +1,87 @@
+# Footprint measured on the map: 83 m by 57 m, long axis on bearing 175° / 355°.
+id: rome/pantheon
+kind: building/temple
+summary: >-
+  The domed rotunda temple of the Campus Martius, with a columned porch facing north and a
+  coffered dome open to the sky at its crown. The building seen in 315 CE is Hadrian's rebuilding
+  of the 120s CE, which replaced Agrippa's Pantheon of 27 to 25 BCE (burned in 80 CE and again
+  under Trajan); Septimius Severus and Caracalla restored it in 202 CE.
+author: machine:claude-code
+same_as: { wikidata: Q99309, ohm: relation/2751481 }
+claims:
+  name:
+    prop: name
+    value: { en: "Pantheon", la: "Pantheum" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 120 CE, hi: 128 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pantheon, p. 383"
+        quote: "carried out after 126 (AJA 1912, 421) was in fact an entirely new construction"
+      - ref: src:lanciani-1897-ruins-and-excavations
+        loc: "section XLVII (Pantheon), p. 478"
+        quote: "the reconstruction of the Pantheon began in the year 120, and was finished in 124"
+      - ref: src:uw-honors-rome-2004-pantheon
+        loc: "paragraph on the brick stamps, in the account of the building"
+        quote: "the time range in which the Pantheon was built to be 120-128 AD"
+    method: documentary
+    note: >-
+      Hadrian's rotunda replaced Agrippa's temple of 27 to 25 BCE, which faced south; its date is
+      read from the stamps on the bricks. Lanciani (1897) puts the work in 120 to 124, Platner and
+      Ashby (1929) after 126, and a 2004 university course article in 120 to 128. The interval
+      spans the three.
+  height:
+    prop: height
+    value: 43.2
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Pantheon, p. 384"
+      quote: "The height from it to the pavement is 43.20 metres (144 feet), the same as the inner diameter of the drum."
+    method: survey
+    note: >-
+      Platner and Ashby give the height from the oculus down to the pavement. The oculus is at the
+      crown of the dome, so this is the height of the rotunda.
+  form:
+    prop: form
+    value: { type: rotunda, diameter: 43.2, porch_front: 8, order: corinthian, roof: bronze, oculus: 9, faces: 355 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pantheon, p. 383"
+        quote: "The building faces due north ; it consists of a huge rotunda preceded by a pronaos"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pantheon, p. 384"
+        quote: "The height from it to the pavement is 43.20 metres (144 feet), the same as the inner diameter of the drum."
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pantheon, p. 384"
+        quote: "circular opening surrounded by a cornice in bronze, 9 metres in diameter"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pantheon, p. 384"
+        quote: "has three rows of Corinthian columns, eight of grey granite in the front row"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pantheon, p. 385"
+        quote: "Constantius II removed the bronze tiles in 663"
+    note: >-
+      diameter is the inner diameter of the drum. faces is the long-axis bearing (175 or 355) that
+      points north, as the entry says. roof is read from the bronze tiles stripped in 663 and
+      taken to be the dome's covering in 315. oculus is the entry's figure for the opening with
+      its bronze cornice.
+  location:
+    prop: location
+    value: { lat: 41.898645, lon: 12.476834, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751481 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751481, relation/2751585] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751481 }
+    method: map-trace
+    basis: reconstruction

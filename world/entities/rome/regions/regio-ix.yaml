@@ -1,0 +1,54 @@
+id: rome/regions/regio-ix
+kind: open/region
+summary: >-
+  The Campus Martius round the Circus Flaminius, listed with the theatres of Balbus, Pompey and
+  Marcellus, the Odeum and the Stadium, the Pantheon, the column of Antoninus, the baths of
+  Agrippa and Alexander, the Iseum and Serapeum and the Insula Felicles.
+author: machine:claude-code
+same_as: { ohm: node/2109009038 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio IX Circus Flaminius", en: "Region IX, Circus Flaminius" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009038 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009038 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.899019, lon: 12.471714, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009038 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 2777
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio IX, ed. Jordan 1871, vol. 2 p. 557, Curiosum column"
+      quote: "insulae II. DCCLXXVII"
+    method: documentary
+    note: >-
+      The Notitia has the same figure; its manuscript B reads IIDCCLXXXVIII (2,788) (Jordan, p.
+      557).
+  domus:
+    prop: domus
+    value: 140
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio IX, ed. Jordan 1871, vol. 2 p. 557, Curiosum column"
+      quote: "dom. CXL"
+    method: documentary
+    note: The Notitia has the same figure.

@@ -1,0 +1,68 @@
+# Footprint measured on the map: 187 m by 71 m, long axis on bearing 178° / 358°.
+id: rome/iseum-campense
+kind: building/temple
+summary: >-
+  The great sanctuary of Isis and Serapis in the Campus Martius, just west of the Saepta: a long
+  narrow precinct with the temple of Isis at one end and, to the south, the separate Serapeum with
+  a semicircular apse about 60 m across. Burned in 80 CE, it was restored by Domitian and again by
+  Alexander Severus, and the Regionary Catalogue lists it as the Iseum and Serapeum.
+author: machine:claude-code
+same_as: { wikidata: Q2288275, ohm: relation/2753806 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Isis on the Campus Martius", la: "Iseum Campense" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 37 CE, hi: 65 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Isis, aedes, p. 284"
+        quote: "this temple in the campus Martius, if not built in the previous century, must have been built then, perhaps by Caligula"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 595"
+        quote: "ReignofCaligula: he builds Temple of Isis (?), 284"
+    method: historical-account
+    note: >-
+      The triumvirs voted a temple of Isis and Serapis in 43 BCE, but Platner and Ashby say it is
+      not known that it was built; the cult was officially received between the reign of Tiberius
+      and 65 CE, and the temple was built then, perhaps by Caligula (37 to 41).
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753806 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: court, order: corinthian }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Isis, aedes, p. 284"
+        quote: "it was long and narrow and stood at one end of a long and narrow enclosure"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Isis, aedes, p. 284"
+        quote: "This coin shows the facade of a narrow peribolos with four Corinthian columns"
+    basis: reconstruction
+    note: >-
+      Platner and Ashby's reconstruction from the Marble Plan, sculpture and a coin of Vespasian;
+      they say it is not clear whether the entrance was on the north or the south.
+  location:
+    prop: location
+    value: { lat: 41.897872, lon: 12.479288, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753806 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2753806] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753806 }
+    method: map-trace
+    basis: reconstruction

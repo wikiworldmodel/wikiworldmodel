@@ -1,0 +1,67 @@
+# Footprint measured on the map: 43 m by 27 m, long axis on bearing 88° / 268°.
+id: rome/temple-of-matidia
+kind: building/temple
+summary: >-
+  A temple of the deified Matidia, Hadrian's mother-in-law, north-east of the Pantheon and facing
+  north onto what is now the Piazza Capranica. Five cipollino columns 1.70 m across, found nearby
+  and perhaps from it, point to an octostyle front about 36 m wide; basilicas of Matidia and
+  Marciana may have stood on either side of the open area before it.
+author: machine:claude-code
+same_as: { wikidata: Q2391818, ohm: way/199851203 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Matidia", la: "Templum Matidiae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 117 CE, hi: 138 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Matidia, templum, p. 331"
+        quote: "a temple of the deified Matidia, the mother-in-law of Hadrian"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 597"
+        quote: "Temple of Matidia, 331"
+    method: historical-account
+    note: >-
+      Platner and Ashby list it among Hadrian's works (117 to 138) and give no year.
+  end:
+    prop: end
+    value: 600 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851203 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: temple, front: 8, shaft: marble, faces: 358 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Matidia, templum, p. 331"
+        quote: "the indications point to an octostyle structure, about 36 metres wide, that faced north on what is now the Piazza Capranica"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Matidia, templum, p. 331"
+        quote: "five columns of cipollino have been found"
+    basis: reconstruction
+    note: >-
+      A restoration from five surviving columns: Platner and Ashby say the indications 'point to'
+      it, and note that Lanciani's map shows a different orientation. faces is the bearing across
+      the footprint's long axis (88 or 268) that points north: 358.
+  location:
+    prop: location
+    value: { lat: 41.899339, lon: 12.477728, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851203 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199851203] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851203 }
+    method: map-trace
+    basis: reconstruction

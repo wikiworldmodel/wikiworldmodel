@@ -1,0 +1,79 @@
+# Footprint measured on the map: 25 m by 8 m, long axis on bearing 102° / 282°.
+id: rome/arch-of-constantine
+kind: monument/arch
+summary: >-
+  The triumphal arch of Constantine, put up by the Senate to mark his victory over Maxentius in 312
+  and finished in 315 or 316. A three-bayed arch of white marble about 21 m high, 25.7 m wide and
+  7.4 m deep, it stands beside the Colosseum at the start of the road to the Circus Maximus and
+  reuses reliefs and statues taken from earlier monuments.
+author: machine:claude-code
+same_as: { wikidata: Q5786, ohm: relation/2751673 }
+claims:
+  name:
+    prop: name
+    value: { en: "Arch of Constantine", la: "Arcus Constantini" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Arcus Constantini, p. 36"
+      quote: "erected by the senate in honour of Constantine to commemorate his victory over Maxentius in 312"
+  start:
+    prop: start
+    value: 315 CE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Constantini, p. 36"
+        quote: "The date of its completion is fixed to 315-316"
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Arco di Costantino (turismoroma.it/it/luoghi/arco-di-costantino)"
+        quote: "L’arco fu eretto nel 315"
+    method: documentary
+    note: >-
+      P&A fix the completion to 315 or 316 from the decennalia named in the inscriptions of the side
+      arches (the dedication on the attic is CIL vi. 1139), and report Grossi-Gondi's choice of 316
+      because the inscription omits the consulship that Constantine held for the fourth time in 315.
+      The Roma Capitale tourism portal says 315, which is taken here.
+  height:
+    prop: height
+    value: 21
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Arcus Constantini, p. 36"
+      quote: "The arch is built of white marble; it is 21 metres high, 25.70 wide, and 7.40 deep"
+    method: survey
+    note: >-
+      The Roma Capitale tourism portal says 'about 25 metres', a looser figure; P&A's measured 21 m
+      is used.
+  form:
+    prop: form
+    value: { type: arch, bays: 3, order: corinthian, width: 25.7, depth: 7.4 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Constantini, p. 36"
+        quote: "The arch is built of white marble; it is 21 metres high, 25.70 wide, and 7.40 deep"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Constantini, p. 36"
+        quote: "eight fluted Corinthian columns of giallo antico"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Constantini, p. 36"
+        quote: "the central archway is 11.50 high and 6.50 wide, and the two lateral arches"
+    note: >-
+      A central archway and two lateral arches. P&A give the central arch as 11.50 m high and 6.50 m
+      wide and the side arches as 7.40 m high and 3.36 m wide; the height of the attic is not given.
+  location:
+    prop: location
+    value: { lat: 41.889759, lon: 12.490690, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751673 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751673] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751673 }
+    method: map-trace
+    basis: reconstruction

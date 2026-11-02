@@ -1,0 +1,44 @@
+# Footprint measured on the map: 45 m by 43 m, long axis on bearing 31° / 211°.
+id: rome/tabularium
+kind: building/civic
+summary: >-
+  The state record office built by Q. Lutatius Catulus in 78 BCE on the slope of the Capitoline
+  above the forum, whose arcade of eleven arches was the architectural backdrop of the forum.
+  Michelangelo built the Palazzo del Senatore directly upon it, and it is still there.
+author: machine:claude-code
+same_as: { wikidata: Q568342, ohm: way/199852789 }
+claims:
+  name:
+    prop: name
+    value: { en: "Tabularium", la: "Tabularium" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 78 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Tabularium, p. 506"
+      quote: "that was built by Q. Lutatius Catulus in 78 B.c. on the south-east slope of the Capitoline"
+    method: documentary
+    note: >-
+      P&A identifies the building from two inscriptions naming Catulus, consul in 78, as having
+      had the substructure and the tabularium built and approved (CIL i2. 736 and 737). The
+      second storey was added or rebuilt about the end of the first century.
+  location:
+    prop: location
+    value: { lat: 41.893072, lon: 12.483637, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199852789 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199852789] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199852789 }
+    method: map-trace
+    basis: reconstruction

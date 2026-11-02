@@ -40,14 +40,21 @@
             "properties": { "by": { "type": "string" }, "how": { "type": "string" } },
             "additionalProperties": false
           },
+          "import": {
+            "type": "object",
+            "description": "A snapshot of a database whose elements become records",
+            "required": ["as", "frame"],
+            "properties": { "as": { "const": "ohm-site" }, "frame": { "type": "string" } },
+            "additionalProperties": false
+          },
           "fetch": {
             "type": "object",
             "required": ["url", "sha256", "bytes", "format"],
             "properties": {
-              "url": { "type": "string", "pattern": "^https://" },
+              "url": { "type": "string", "pattern": "^(https://|repo:)" },
               "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
               "bytes": { "type": "integer", "minimum": 1 },
-              "format": { "enum": ["zip", "parquet", "csv", "tsv", "xlsx"] },
+              "format": { "enum": ["zip", "parquet", "csv", "tsv", "xlsx", "tif", "json"] },
               "files": {
                 "type": "object",
                 "additionalProperties": {

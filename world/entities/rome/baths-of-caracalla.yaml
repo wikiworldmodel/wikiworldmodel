@@ -1,0 +1,74 @@
+# Footprint measured on the map: 414 m by 329 m, long axis on bearing 135° / 315°.
+id: rome/baths-of-caracalla
+kind: building/baths
+summary: >-
+  The baths of Caracalla, begun in 211-212 and dedicated in 216 beside the Via Nova near the start
+  of the Via Appia: a huge central block with a great domed circular caldarium about 35 m across,
+  set in a garden inside a rectangular precinct with exedrae, libraries and a stadium. Entered from
+  the north-east, they were restored under Aurelian and later emperors and went out of use when the
+  Goths cut the aqueducts in 537.
+author: machine:claude-code
+same_as: { wikidata: Q502098, ohm: relation/2751482 }
+claims:
+  name:
+    prop: name
+    value: { en: "Baths of Caracalla", la: "Thermae Antoninianae" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Thermae Antoninianae, p. 520"
+      quote: "the thermae built by Caracalla on the Via Nova"
+  start:
+    prop: start
+    value: 216 CE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Antoninianae, p. 520"
+        quote: "fixes the date of their dedication as 216"
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Terme di Caracalla (turismoroma.it/it/luoghi/terme-di-caracalla)"
+        quote: "sul Piccolo Aventino tra il 212 ed il 216 d.C."
+    method: historical-account
+    note: >-
+      The dedication date comes from Jerome's chronicle (Abraham 2231), as P&A cite it; building
+      began between February 211 and February 212, from brick-stamps of Geta. Elagabalus and Severus
+      Alexander are said to have added porticoes, but P&A call that doubtful.
+  end:
+    prop: end
+    value: 600 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751482 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: baths, faces: 45, rotunda: true, precinct: true }
+    source:
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Terme di Caracalla (turismoroma.it/it/luoghi/terme-di-caracalla)"
+        quote: "da quattro porte sulla facciata nord-orientale"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Antoninianae, pp. 523-524"
+        quote: "the great circular caldarium in the centre of the south-west side"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Antoninianae, p. 522"
+        quote: "surrounded by a garden, which in turn is enclosed by a rectangular peribolus"
+    note: >-
+      Faces 45 is the north-east front, on which the central block had its four entrances. P&A give
+      the caldarium's dome as 35 m across, on eight huge piers.
+  location:
+    prop: location
+    value: { lat: 41.878784, lon: 12.492334, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751482 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751482] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751482 }
+    method: map-trace
+    basis: reconstruction

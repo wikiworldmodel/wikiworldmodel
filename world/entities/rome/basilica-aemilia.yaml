@@ -1,0 +1,85 @@
+# Footprint measured on the map: 92 m by 22 m, long axis on bearing 122° / 302°.
+id: rome/basilica-aemilia
+kind: building/basilica
+summary: >-
+  A long basilica on the north side of the forum, between the temple of Antoninus and Faustina
+  and the Argiletum, contracted in 179 BCE, burned in 14 BCE and rebuilt, and restored in 22 CE,
+  with little change to its plan. Its wooden roofs burned at the beginning of the fifth century
+  and it was never restored.
+author: machine:claude-code
+same_as: { wikidata: Q522924, pleiades: 417632343, ohm: relation/2751724 }
+claims:
+  name:
+    prop: name
+    value: { en: "Basilica Aemilia", la: "Basilica Aemilia" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 179 BCE, hi: 34 BCE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Aemilia, p. 72"
+        quote: "In 179 B.c. the censor M. Fulvius Nobilior contracted for the building of a basilica"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Aemilia, p. 72"
+        quote: "in 34 B.c. his son L. Aemilius Lepidus Paullus, when consul, finished and dedicated the building"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Aemilia, p. 73"
+        quote: "it is clear that little change was made in the extent and plan of the basilica"
+    method: historical-account
+    note: >-
+      Contracted in 179 BCE, decorated in 78 BCE, restored from 55 BCE by L. Aemilius Paullus
+      and dedicated by his son in 34 BCE; burned in 14 BCE and rebuilt, and restored in 22 CE,
+      with little change after that. The interval runs from the contract to that dedication; P&A
+      does not say when the plan of c. 315 was first complete.
+  end:
+    prop: end
+    value: { lo: 401 CE, hi: 410 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Basilica Aemilia, p. 75"
+      quote: "the nave of the basilica was abandoned after the fire"
+    method: historical-account
+    note: >-
+      P&A puts the burning of the wooden roofs of nave and aisles at the beginning of the fifth
+      century, perhaps in 410 when Alaric took Rome. The nave was abandoned and the rest stood
+      as a ruin until the earthquake of 847, which P&A thinks the likeliest cause of the final
+      ruin of the whole.
+  form:
+    prop: form
+    value: { type: basilica, order: doric, storeys: 2, aisles: 2, faces: 212 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Aemilia, p. 74"
+        quote: "It consisted of a main hall, divided into a nave and two aisles by two orders of columns of africano marble"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Aemilia, p. 75"
+        quote: "The massive main order was Doric"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Aemilia, p. 72"
+        quote: "represents it as a two-storied porticus on which shields are hung"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Aemilia, p. 74"
+        quote: "Outside the south-west wall of the nave was a row of small chambers (tabernae)"
+    note: >-
+      The Doric order is that of the facade; the two-storied front is shown on a coin of the 60s
+      BCE and P&A gives an upper arcade to the facade. faces is read from the plan: the arcaded
+      front with its tabernae is the south-west long side, toward the forum.
+  location:
+    prop: location
+    value: { lat: 41.892640, lon: 12.486129, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751724 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751724] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751724 }
+    method: map-trace
+    basis: reconstruction

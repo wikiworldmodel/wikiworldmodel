@@ -1,0 +1,66 @@
+# Footprint measured on the map: 172 m by 152 m, long axis on bearing 88° / 268°.
+id: rome/baths-of-nero
+kind: building/baths
+summary: >-
+  Nero's public baths beside the Pantheon, the second great bathing establishment in Rome,
+  covering about 190 by 120 m and fronting north. Rebuilt by Alexander Severus in 227 CE, they
+  were thereafter officially the Baths of Alexander (Thermae Alexandrinae), a name still in use
+  around 1000 CE.
+author: machine:claude-code
+same_as: { wikidata: Q1890176, ohm: way/199851190 }
+claims:
+  name:
+    prop: name
+    value: { en: "Baths of Nero", la: "Thermae Neronis" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 62 CE, hi: 64 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Neronianae, p. 531"
+        quote: "they were erected in 64 a.p., but if they are to be identified with Nero’s Gymnasium (q.v.), which was built in 62"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 595"
+        quote: "62 or 64 Thermae Neronianae, 531"
+    method: historical-account
+    note: >-
+      The Chronica date the baths to 64; if they are Nero's Gymnasium they date to 62. Platner and
+      Ashby leave both open.
+  end:
+    prop: end
+    value: 600 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851190 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: baths, faces: 358 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Neronianae, p. 531"
+        quote: "an area of about 190 by 120 metres, and fronted north"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Neronianae, p. 531"
+        quote: "the foundations of the caldarium were still visible, extending out from the middle of the south side"
+    note: >-
+      faces is the bearing across the footprint's long axis (88 or 268) that points north: 358.
+      The caldarium lay out from the middle of the south side, the back.
+  location:
+    prop: location
+    value: { lat: 41.899832, lon: 12.475244, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851190 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199851190] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851190 }
+    method: map-trace
+    basis: reconstruction

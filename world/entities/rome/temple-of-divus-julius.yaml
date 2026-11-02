@@ -1,0 +1,84 @@
+# Footprint measured on the map: 25 m by 13 m, long axis on bearing 123° / 303°.
+id: rome/temple-of-divus-julius
+kind: building/temple
+summary: >-
+  The temple of the deified Julius Caesar at the east end of the forum, on the spot where his
+  body was burned. It stood on a high platform whose front, decorated with the beaks of ships
+  taken at Actium, served as a second rostra; Hadrian restored it.
+author: machine:claude-code
+same_as: { wikidata: Q1133288, pleiades: 277569430, ohm: relation/2751684 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of the Deified Julius", la: "Aedes Divi Iuli" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 18 August 29 BCE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Iulius, Divus, Aedes, p. 286"
+        quote: "and dedicated 18th August, 29 B.c."
+      - ref: src:cassius-dio-roman-history
+        loc: "51.22.2 (Loeb vol. 6, p. 63)"
+        quote: "The same course was followed in the case of the shrine of Julius which was consecrated at this time"
+    method: historical-account
+    note: >-
+      The day is P&A's, from the calendars; Dio places the dedication, with that of the Curia
+      Iulia, after Octavian's triumph of 29 BCE. Authorised by the triumvirs in 42 BCE (Dio
+      again, as P&A cites him) and built by Augustus alone.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751684 }
+    method: compilation
+    basis: reconstruction
+  ground-level:
+    prop: ground_level
+    value: 12.6
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum (Romanum s. Magnum), p. 234"
+      quote: "rises from 12.60 metres above sea-level in front of the temple of Julius Caesar"
+    method: survey
+    note: >-
+      The level of the Augustan forum paving in front of the temple, the low end of a pavement
+      that rises to 14 m at the Rostra. The temple stood on a platform 3.5 m high.
+  form:
+    prop: form
+    value: { type: temple, order: ionic, front: 6, column_height: 10.6, podium_height: 5.86, faces: 303 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Iulius, Divus, Aedes, p. 288"
+        quote: "The temple was Ionic, hexastyle, probably with antae, and pycnostyle"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Iulius, Divus, Aedes, p. 288"
+        quote: "The columns were 1.18 metres in diameter at the base, and their height was nine times the diameter"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Iulius, Divus, Aedes, p. 287"
+        quote: "a rectangular platform 3.5 metres high, 26 wide, and about 30 long"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Iulius, Divus, Aedes, p. 287"
+        quote: "the stylobate proper which rose 2.36 metres above the platform"
+    note: >-
+      column_height is nine times the base diameter of 1.18 m (10.62 m); podium_height is the
+      platform (3.5 m) and the stylobate above it (2.36 m). faces is read from the plan: the
+      temple stands at the east end of the forum and looks west-north-west across the square.
+  location:
+    prop: location
+    value: { lat: 41.892020, lon: 12.486146, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751684 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751684] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751684 }
+    method: map-trace
+    basis: reconstruction

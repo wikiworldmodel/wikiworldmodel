@@ -1,0 +1,47 @@
+# Rome's ordinary fabric: the streets between the monuments, the blocks and houses that line them,
+# and the trees of its gardens. Nobody mapped them: this generator fills what the map leaves empty,
+# so that the monuments stand in a city, and everything it makes is marked as generated. Its only
+# constraints from the world are the structures it must not stand on, the ground, and how much
+# housing the Regionary Catalogues count in each region.
+id: gen:rome/fabric
+type: generator
+title: Rome's streets, housing and gardens
+version: 1
+code: generators/rome/fabric/v1.ts
+runs_in: [build, client]
+outputs: { basis: procedural }
+inputs: []
+slots:
+  rome:
+    place: Rome, inside the Aurelian walls and along the roads out of it
+    seed: rome/fabric
+params:
+  site:
+    id: rome
+    label: Rome
+    # Near the Forum: the local grid's origin.
+    origin: { lat: 41.8925, lon: 12.4853 }
+    # When a visitor may fly down: from the first settlement to the present.
+    span: [-1000, 1950]
+    # The time the housing describes: the Catalogues' Rome, the year of Constantine's arch. Its
+    # middle, where a date given only as 315 CE is held, so what was built that year is standing.
+    slice: 315.5
+    # The Tiber's surface at low water, today's value, in metres above sea level.
+    water_level: 7
+  # When the generated housing is drawn: the city of the Catalogues, some way either side of them.
+  # Before and after this, what stands is only what the records and the map date to the time.
+  valid: [-300, 600]
+  # A city block, between streets, in metres, before it is cut into lots.
+  block: 78
+  # How much of a block's edge is taken by street.
+  street: 3.2
+  # The size of a lot: an insula and a house, in square metres.
+  insula_area: 620
+  domus_area: 1100
+  # A catalogue's domus counts for this many insulae when weighing regions: it covers more ground.
+  domus_weight: 1.8
+  # How high: storeys of an insula from the least to the most, and the height of a storey.
+  storeys: [3, 6]
+  storey_height: 3.3
+  # Tiles, plaster and brick, chosen per building.
+  tree_spacing: 22

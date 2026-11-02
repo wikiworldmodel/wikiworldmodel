@@ -1,0 +1,57 @@
+# Footprint measured on the map: 44 m by 35 m, long axis on bearing 66° / 246°.
+id: rome/temple-of-sol
+kind: building/temple
+summary: >-
+  The temple of the Sun (Sol Invictus) that Aurelian built in the Campus Agrippae after returning
+  from the east in 273, famous for its magnificence and its treasures, with a porticus beside it
+  where the state's wine was stored. Its exact site is disputed; eight of its porphyry columns were
+  sent to Constantinople for Hagia Sophia in the sixth century.
+author: machine:claude-code
+same_as: { wikidata: Q4536138, ohm: way/199854862 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of the Sun", la: "Templum Solis" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Sol, Templum, p. 491"
+      quote: "a temple built by Aurelian after his return from the east in 273"
+  start:
+    prop: start
+    value: { lo: 273 CE, hi: 275 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Sol, Templum, p. 491"
+      quote: "a temple built by Aurelian after his return from the east in 273"
+    method: historical-account
+    note: >-
+      P&A cite the Chronographer of 354 for its dedication in the Campus Agrippae but give no year;
+      the range runs from Aurelian's return from the east to the end of his reign in 275. The map's
+      earlier 274 CE lies inside it. P&A discuss two sites, the ruin in the Colonna gardens and a
+      place on the east side of the Corso, and say the Colonna ruin has also been taken for the
+      temple of Serapis; no height or form is given here because the figures P&A give belong to the
+      Colonna ruin.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854862 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.902554, lon: 12.481165, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854862 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199854862] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854862 }
+    method: map-trace
+    basis: reconstruction

@@ -20,6 +20,7 @@ import { sha256, stableStringify } from '../util.ts';
 import { formatIssue, validateWorld } from '../validate/index.ts';
 import { loadWorld, type World } from '../world.ts';
 import { fieldFor, fieldLods, loadBlocks, loadSnapshots, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
+import { buildCity } from './city.ts';
 import { features as buildFeatures, periods as buildPeriods, records as buildRecords, search as buildSearch, sourceRecord, type Solved } from './records.ts';
 import { planet as buildPlanet } from './planet.ts';
 import { series as buildSeries } from './series.ts';
@@ -57,7 +58,9 @@ function overlaps(f: Feature, span: [number, number]): boolean {
 
 /** Attribution for what the build shows: its datasets, and the databases its records cite. */
 function credits(world: World): Tileset['credits'] {
-  const out: Tileset['credits'] = Object.values(world.manifest.datasets).map((d) => ({ label: d.credit!, license: d.license! }));
+  const out: Tileset['credits'] = [];
+  // Tiles of one dataset share a credit.
+  for (const d of Object.values(world.manifest.datasets)) if (!out.some((c) => c.label === d.credit)) out.push({ label: d.credit!, license: d.license! });
   const cited = new Set(world.entities.flatMap((e) => [...e.claims, ...e.relations].flatMap((c) => c.sources.map((s) => s.ref))));
   // A database may have changed its licence between the snapshots read: credit each one.
   const databases = new Map<string, Set<string>>();
@@ -314,6 +317,11 @@ export async function runBuild(args: string[]): Promise<number> {
   put('planet.json', stableStringify(buildPlanet(solved)));
   put('territory.json', stableStringify(await buildTerritory(solved, log)));
   put('coverage.json', stableStringify(coverage(world, wanted, allFeatures, tiles)));
+  const city = await buildCity(solved, log);
+  if (city) {
+    for (const [path, bytes] of city.blobs) put(path, bytes);
+    put(`city/${city.file.site.id}.json`, stableStringify(city.file));
+  }
 
   // 9. Index and identity.
   const tileset: Omit<Tileset, 'build'> = {
@@ -322,10 +330,11 @@ export async function runBuild(args: string[]): Promise<number> {
     timeRange: span,
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
-    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json' },
+    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined },
     credits: credits(world),
     alternatives,
     kinds: Object.fromEntries(Object.entries(world.vocab.kinds).map(([k, v]) => [k, v.label])),
+    site: city ? { id: city.file.site.id, label: city.file.site.label, origin: city.file.site.origin, span: city.file.site.span, slice: city.file.site.slice } : undefined,
   };
   const contentHash = sha256([...out.entries()].sort(([a], [b]) => (a < b ? -1 : 1)).map(([p, c]) => `${p} ${sha256(c)}`).join('\n') + stableStringify(tileset));
   const buildId = contentHash.slice(0, 16);

@@ -1,0 +1,74 @@
+# Footprint measured on the map: 9 m by 9 m, long axis on bearing 50° / 230°.
+id: rome/column-of-trajan
+kind: monument/column
+summary: >-
+  The honorific column of Parian marble in the courtyard between the Basilica Ulpia and the
+  libraries of Trajan's forum, with a spiral band of reliefs telling of the Dacian wars and a
+  stair inside. Trajan's ashes were probably placed in its pedestal, and a gilt-bronze statue of
+  him stood on top.
+author: machine:claude-code
+same_as: { wikidata: Q192784, pleiades: 783489695, ohm: way/198576456 }
+claims:
+  name:
+    prop: name
+    value: { en: "Trajan's Column", la: "Columna Traiani" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 113 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum Traiani, p. 242"
+      quote: "In the centre of this court the columna Traiani was erected in I13 A.D."
+    method: historical-account
+    note: >-
+      The dedication on the pedestal is by the senate and people (CIL vi. 960). The scan of P&A
+      prints the year with a capital I for the first digit.
+  height:
+    prop: height
+    value: 38
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Forum Traiani, p. 242"
+      quote: "The height of shaft and pedestal together is 38 metres"
+    method: survey
+    note: >-
+      To the top of the shaft; the gilt-bronze statue of Trajan that stood on it is not counted,
+      and P&A does not give its height. The shaft and base alone measure 100 Roman feet, 29.77
+      m.
+  form:
+    prop: form
+    value: { type: column, statue: true, spiral: true, diameter: 3.7, pedestal_height: 5.4 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 243"
+        quote: "On its top was a statue of Trajan in gilt bronze"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 243"
+        quote: "The pedestal, 5.4 metres high and 5.5 square"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 243"
+        quote: "arranged on a spiral band"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 242"
+        quote: "composed of 18 blocks, 3.70 metres in diameter"
+    note: >-
+      diameter is that of the blocks of the shaft as P&A gives it. The order is not stated.
+  location:
+    prop: location
+    value: { lat: 41.895827, lon: 12.484291, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576456 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576456] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576456 }
+    method: map-trace
+    basis: reconstruction

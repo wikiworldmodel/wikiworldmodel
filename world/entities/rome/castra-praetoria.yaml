@@ -1,0 +1,75 @@
+# Footprint measured on the map: 450 m by 400 m, long axis on bearing 160° / 340°.
+id: rome/castra-praetoria
+kind: building/barracks
+summary: >-
+  The barracks of the Praetorian Guard, built by Tiberius at Sejanus's urging in 21-23 CE on high
+  ground in the north-east of the city: a brick-faced concrete camp about 440 by 380 m with rounded
+  corners and turreted gates. Aurelian made its north and east walls part of his city wall, and in
+  312 Constantine disbanded the guard and dismantled the barracks.
+author: machine:claude-code
+same_as: { wikidata: Q1049836, ohm: way/198201807 }
+claims:
+  name:
+    prop: name
+    value: { en: "Praetorian Camp", la: "Castra Praetoria" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Castra Praetoria, p. 106"
+      quote: "the barracks of the praetorian guard"
+  start:
+    prop: start
+    value: { lo: 21 CE, hi: 23 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Castra Praetoria, p. 106"
+      quote: "the barracks of the praetorian guard, built by Tiberius at the instigation of Sejanus in 21-23"
+    method: historical-account
+    note: >-
+      From Suetonius (Tiberius 37), Tacitus (Annals 4.2) and Cassius Dio (57.19.6), as P&A cite
+      them. The map's earlier 21 BCE falls before Tiberius's reign.
+  end:
+    prop: end
+    value: 312 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Castra Praetoria, p. 107"
+      quote: "In 312 Constantine disbanded the praetorian guard and dismantled their barracks"
+    method: historical-account
+    note: >-
+      P&A add that he presumably did so by destroying the inner walls that Aurelian had not used;
+      the north and east walls stayed standing as part of the Aurelian Wall, and part of the west
+      wall was reported standing in the sixteenth century.
+  form:
+    prop: form
+    value: { type: barracks, wall_height: 4.73 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Castra Praetoria, p. 106"
+        quote: "4.73 metres high where they are still preserved"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Castra Praetoria, p. 106"
+        quote: "forming a rectangle 440 metres long and 380 wide, with rounded corners"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Castra Praetoria, p. 107"
+        quote: "its original height was increased by an addition of 2.5 to 3 metres at the top"
+    note: >-
+      The height is that of Tiberius's brick-faced concrete wall where it survives; Aurelian later
+      raised the north and east sides by 2.5 to 3 m when he made them part of his wall.
+  location:
+    prop: location
+    value: { lat: 41.906464, lon: 12.506670, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198201807 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198201807] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198201807 }
+    method: map-trace
+    basis: reconstruction

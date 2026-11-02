@@ -1,0 +1,60 @@
+# Footprint measured on the map: 4 m by 4 m, long axis on bearing 166° / 346°.
+id: rome/column-of-marcus-aurelius
+kind: monument/column
+summary: >-
+  A column of Luna marble modelled on Trajan's, wound with a spiral band of reliefs of Marcus
+  Aurelius' wars against the Marcomanni and Sarmatians, standing on the west side of the Via Lata.
+  Its shaft, torus and capital measured 100 Roman feet (29.77 m), so it was called the columna
+  centenaria, and a stair of about 200 steps climbed inside it.
+author: machine:claude-code
+same_as: { wikidata: Q265384, ohm: way/199852409 }
+claims:
+  name:
+    prop: name
+    value: { en: "Column of Marcus Aurelius", la: "Columna Centenaria Divorum Marci et Faustinae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 176 CE, hi: 193 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Columna M. Aurelii Antonini, p. 132"
+      quote: "the column erected between 176 and 193 A.D. to commemorate the victories of Marcus Aurelius"
+    method: historical-account
+    note: >-
+      An inscription of 193 records a lodge built for the column's procurator, so it stood by
+      then.
+  form:
+    prop: form
+    value: { type: column, spiral: true, order: doric, diameter: 3.9 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Columna M. Aurelii Antonini, p. 132"
+        quote: "The shaft itself, 26.50 metres in height and 3.90 in diameter, is composed of 26 rings of Luna marble."
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Columna M. Aurelii Antonini, p. 133"
+        quote: "The exterior of the shaft is adorned with reliefs arranged in a spiral band which returns upon itself twenty-one times"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Columna M. Aurelii Antonini, p. 133"
+        quote: "its capital is 1.5 metres in height and of the Doric order"
+    note: >-
+      diameter is the shaft's. No height is given here: the 100 Roman feet (29.77 m) the entry
+      gives cover shaft, torus and capital, without the pedestal or the statue on top.
+  location:
+    prop: location
+    value: { lat: 41.900853, lon: 12.479987, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199852409 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199852409] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199852409 }
+    method: map-trace
+    basis: reconstruction

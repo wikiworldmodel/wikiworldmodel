@@ -1,0 +1,55 @@
+# Footprint measured on the map: 145 m by 1 m, long axis on bearing 76° / 256°.
+id: rome/pons-aemilius
+kind: works/bridge
+summary: >-
+  The first stone bridge across the Tiber, from the Forum Boarium: the censors of 179 BCE
+  contracted for its piers and those of 142 BCE built arches on them. Platner and Ashby think the
+  arch and pier that survive in the Ponte Rotto belong to a second structure, probably Augustus'
+  restoration after 12 BCE, standing a little to one side of the second-century bridge and at a
+  slightly different angle.
+author: machine:claude-code
+same_as: { wikidata: Q640092, ohm: way/198283991 }
+claims:
+  name:
+    prop: name
+    value: { en: "Pons Aemilius", la: "Pons Aemilius" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 179 BCE, hi: 142 BCE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pons Aemilius, p. 397"
+        quote: "M. Fulvius Nobilior when censor in 179 B.c. contracted"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pons Aemilius, p. 397"
+        quote: "the censors of 142 B.c., built arches (fornices) on these piers"
+    method: historical-account
+    note: >-
+      Platner and Ashby read Livy's piers of 179 and arches of 142 as the Pons Aemilius. The upper
+      part of the bridge was of wood until 142 at least. The bridge standing in 315 may be the
+      Augustan structure that replaced it.
+  end:
+    prop: end
+    value: 1500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283991 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.889297, lon: 12.479171, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283991 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198283991] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283991 }
+    method: map-trace
+    basis: reconstruction

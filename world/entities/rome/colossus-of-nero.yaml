@@ -1,0 +1,84 @@
+# Footprint measured on the map: 152 m by 20 m, long axis on bearing 96° / 276°.
+id: rome/colossus-of-nero
+kind: monument/statue
+summary: >-
+  A colossal bronze statue 120 feet high, made by Zenodorus for the vestibule of Nero's Golden House
+  and changed by Vespasian into a statue of the Sun. Hadrian moved it nearer the Colosseum, perhaps
+  early in 128, to make room for the temple of Venus and Roma; it stood there on a
+  brick-and-concrete pedestal 7 m square and remained the Sun after Commodus briefly made it his own
+  portrait as Hercules.
+author: machine:claude-code
+same_as: { wikidata: Q1570519, ohm: way/199851317 }
+claims:
+  name:
+    prop: name
+    value: { en: "Colossus of Nero", la: "Colossus Neronis" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Colossus Neronis, p. 130"
+      quote: "a colossal bronze statue of Nero, 120 feet high, the work of Zenodorus, a Greek"
+  start:
+    prop: start
+    value: 128 CE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Colossus Neronis, p. 130"
+        quote: "Hadrian, perhaps early in 128"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Colossus Neronis, p. 130"
+        quote: "moved it nearer the Colosseum in order to make room for the temple of Venus and Roma"
+    method: historical-account
+    note: >-
+      The date of Hadrian's move (Historia Augusta, Hadrian 10, as P&A cite it, with a study of
+      1918-19 for the year), and so of the statue's standing at the mapped site. The figure itself
+      dates from Nero's time, when it stood in the vestibule of the Golden House. P&A add that
+      Hülsen doubted it was moved at all.
+  end:
+    prop: end
+    value: 410 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851317 }
+    method: compilation
+    basis: reconstruction
+  height:
+    prop: height
+    value: 35.5
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Colossus Neronis, p. 130"
+      quote: "a colossal bronze statue of Nero, 120 feet high, the work of Zenodorus, a Greek"
+    method: historical-account
+    note: >-
+      P&A, following Suetonius and Pliny, say 120 feet; read as Roman feet of 0.296 m that is 35.5 m
+      (our conversion). It is the statue alone: the pedestal Hadrian built is 7 m square and its
+      height is not given.
+  form:
+    prop: form
+    value: { type: statue, material: bronze }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Colossus Neronis, p. 130"
+        quote: "a colossal bronze statue of Nero, 120 feet high, the work of Zenodorus, a Greek"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Colossus Neronis, p. 130"
+        quote: "It is 7 metres square, of brick-faced concrete, and was originally covered with marble"
+    note: >-
+      The 7 m square pedestal, of brick-faced concrete faced with marble, is Hadrian's; its height
+      is not given.
+  location:
+    prop: location
+    value: { lat: 41.890936, lon: 12.490176, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851317 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199851317, way/199868835] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851317 }
+    method: map-trace
+    basis: reconstruction

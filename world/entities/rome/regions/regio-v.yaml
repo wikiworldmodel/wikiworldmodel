@@ -1,0 +1,51 @@
+id: rome/regions/regio-v
+kind: open/region
+summary: >-
+  The Esquiline hill, listed with the Gardens of Pallas, the Macellum Liviani, the nymphaeum of
+  Alexander, the Amphitheatrum Castrense, the Campus Viminalis, Minerva Medica and Isis Patricia.
+author: machine:claude-code
+same_as: { ohm: node/2109009042 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio V Esquiliae", en: "Region V, Esquiliae" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009042 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009042 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.89271, lon: 12.50772, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009042 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 3850
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio V, ed. Jordan 1871, vol. 2 p. 548, Curiosum column"
+      quote: "insulae III. DCCCL"
+    method: documentary
+    note: The Notitia has the same figure.
+  domus:
+    prop: domus
+    value: 180
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio V, ed. Jordan 1871, vol. 2 p. 548, Curiosum column"
+      quote: "dom. CLXXX"
+    method: documentary
+    note: The Notitia has the same figure.

@@ -1,0 +1,57 @@
+# Footprint measured on the map: 218 m by 121 m, long axis on bearing 89° / 269°.
+id: rome/porticus-of-pompey
+kind: building/other
+summary: >-
+  The rectangular colonnaded court Pompey built in 55 BCE behind the stage of his theatre, a
+  shelter for spectators in rain, laid out as a garden with shady walks and works of art. Burned
+  in the reign of Carinus, it was rebuilt by Diocletian as the Porticus Iovia and Porticus
+  Herculea.
+author: machine:claude-code
+same_as: { wikidata: Q7231815, ohm: relation/2751545 }
+claims:
+  name:
+    prop: name
+    value: { en: "Portico of Pompey", la: "Porticus Pompeia" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 55 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Porticus Pompei, p. 428"
+      quote: "built in 55 B.c. by Pompeius at the same time as his THEATRE (q.v.), and adjoining its scaena"
+    method: historical-account
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751545 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: court }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Porticus Pompei, p. 428"
+      quote: "rectangular court, about 180 metres long and 135 wide, in which were four parallel rows of columns"
+    note: >-
+      Platner and Ashby's size, from the Marble Plan, differs from the footprint traced on the
+      map.
+  location:
+    prop: location
+    value: { lat: 41.895475, lon: 12.474956, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751545 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751545] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751545 }
+    method: map-trace
+    basis: reconstruction

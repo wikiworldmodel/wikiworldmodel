@@ -1,0 +1,52 @@
+id: rome/regions/regio-xiv
+kind: open/region
+summary: >-
+  The district across the Tiber, listed with the Janiculum and the Vatican, the Gaianum and
+  Frigianum, five naumachiae, the gardens of Domitia and of Geta, the mills and the camp of the
+  Lecticarii.
+author: machine:claude-code
+same_as: { ohm: node/2109009033 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio XIV Transtiberim", en: "Region XIV, Transtiberim" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009033 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009033 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.888385, lon: 12.465927, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009033 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 4405
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio XIV, ed. Jordan 1871, vol. 2 p. 564, Curiosum column"
+      quote: "insulae IIII. CCCCV"
+    method: documentary
+    note: The largest of the fourteen counts. The Notitia has the same figure.
+  domus:
+    prop: domus
+    value: 150
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio XIV, ed. Jordan 1871, vol. 2 p. 564, Curiosum column"
+      quote: "dom. CL"
+    method: documentary
+    note: The Notitia has the same figure.

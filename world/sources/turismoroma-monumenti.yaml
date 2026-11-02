@@ -1,0 +1,27 @@
+id: src:turismoroma-monumenti
+type: database-record
+kind: review
+citation: >-
+  Roma Capitale, Turismo Roma (turismoroma.it), the city's tourism portal, "Monumenti" pages in
+  Italian: Arco di Costantino, Meta sudans, Terme di Traiano, Terme di Caracalla, Terme di
+  Diocleziano, Anfiteatro Castrense, Domus Tiberiana and Piramide Cestia.
+snapshot: 2026-11-01
+title: Turismo Roma, Monumenti
+container: Turismo Roma (Roma Capitale)
+url: https://www.turismoroma.it/it/luoghi
+license_note: >-
+  The portal states no licence on the pages read and none was looked for; quotations are short and
+  in the original Italian.
+reliability: >-
+  A municipal tourism portal: short unsigned summaries that draw on the city's archaeological
+  superintendency and the Colosseum archaeological park. Dates and sizes are rounded and some are
+  loose (it gives the Arch of Constantine as about 25 metres high, where Platner and Ashby's
+  measured figure is 21). Used here only for dates and sizes that Platner and Ashby (1929) predate
+  or do not give, and always beside that dictionary where both speak.
+verified:
+  by: machine:claude-code
+  how: >-
+    The HTML of each page fetched with curl on 2026-11-01 (user agent lightworld-research/0.1) and
+    its visible text read; the pages read were the eight cited, with those for the Circo Massimo
+    and the Domus Aurea, which are not cited. Every quotation is an exact string of that text, the
+    typographic apostrophe included.

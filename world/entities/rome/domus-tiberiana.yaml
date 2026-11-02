@@ -1,0 +1,83 @@
+# Footprint measured on the map: 175 m by 121 m, long axis on bearing 40° / 220°.
+id: rome/domus-tiberiana
+kind: building/palace
+summary: >-
+  The imperial palace on the north-west half of the Palatine, begun by Tiberius, extended towards
+  the Forum by Caligula, rebuilt by Domitian and given a great ramp by Hadrian. Emperors of the
+  Antonine age lived there, and it is still listed in the fourth-century Regionary Catalogue.
+author: machine:claude-code
+same_as: { wikidata: Q1238767, ohm: relation/2753785 }
+claims:
+  name:
+    prop: name
+    value: { en: "Domus Tiberiana", la: "Domus Tiberiana" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Domus: Tiberiana, p. 191"
+      quote: "the palace erected by Tiberius on the north-west half of the Palatine"
+  start:
+    prop: start
+    value: { lo: 81 CE, hi: 96 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Tiberiana, p. 192"
+        quote: "Domitian appears to have reconstructed the whole palace"
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Domus Tiberiana (turismoroma.it/it/luoghi/domus-tiberiana)"
+        quote: "altre ristrutturazioni importanti furono eseguite sotto gli imperatori Domiziano"
+    method: historical-account
+    confidence: likely
+    note: >-
+      Domitian's reign. P&A think the Tiberian palace, first mentioned in 69, was destroyed in the
+      fire of 80 and rebuilt under Domitian, and say they know practically nothing of Tiberius's own
+      building. The Roma Capitale portal says the first phase archaeologists can document is
+      Neronian, with major rebuilding under Domitian and Hadrian. The map's earlier 69 CE is the
+      year of its first mention.
+  end:
+    prop: end
+    value: unknown
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Tiberiana, p. 193"
+        quote: "as the residence of the emperors at that time"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Tiberiana, p. 194"
+        quote: "It is also mentioned in the Notitia (Reg. X, Domum Augustianam et Tiberianam)"
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Domus Tiberiana (turismoroma.it/it/luoghi/domus-tiberiana)"
+        quote: "L’utilizzo del palazzo imperiale ad ogni modo, continuò fino al VII secolo d.C."
+    method: historical-account
+    note: >-
+      No end date is known. The Historia Augusta has emperors of the Antonine age living there, the
+      fourth-century Regionary Catalogue lists it, and the Roma Capitale portal says it stayed in
+      use until the seventh century, when Pope John VII made it his seat. The map's earlier end of
+      99 CE is contradicted by these.
+  form:
+    prop: form
+    value: { type: palace, court: true }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Domus: Tiberiana, p. 192"
+      quote: "the whole rectangle (about 100 by 150 metres) seems to have had a large courtyard with pillars in the centre"
+    note: >-
+      From Rosa's plan of the excavations of 1860; P&A add that it seems to have been divided into
+      three similar parts and that much of it rests on arched substructions. The mapped footprint,
+      175 by 121 m, is larger than the 100 by 150 m rectangle P&A mention.
+  location:
+    prop: location
+    value: { lat: 41.890351, lon: 12.486058, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753785 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2753785, relation/2753786] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753785 }
+    method: map-trace
+    basis: reconstruction

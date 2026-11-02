@@ -1,0 +1,45 @@
+# Footprint measured on the map: 672 m by 84 m, long axis on bearing 130° / 310°.
+id: rome/sacra-via
+kind: works/road
+summary: >-
+  The oldest and most famous street in Rome, running from the summit of the Velia down to the east
+  end of the Forum and passing through the Arch of Titus. After Hadrian built the Temple of Venus
+  and Roma it was an avenue about 30 m wide, flanked by porticoes and shops, those on the north
+  being finally destroyed by the basilica of Constantine.
+author: machine:claude-code
+same_as: { wikidata: Q655172, ohm: way/198576348 }
+claims:
+  name:
+    prop: name
+    value: { en: "Sacred Way", la: "Sacra Via" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 751 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576348 }
+    method: compilation
+    basis: reconstruction
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576348 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.891949, lon: 12.486703, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576348 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576348, way/198576349, way/198576351, way/198576367, way/198576369, way/199856666] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576348 }
+    method: map-trace
+    basis: reconstruction

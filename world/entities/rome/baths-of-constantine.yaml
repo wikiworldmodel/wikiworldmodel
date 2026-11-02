@@ -1,0 +1,80 @@
+# Footprint measured on the map: 134 m by 100 m, long axis on bearing 90° / 270°.
+id: rome/baths-of-constantine
+kind: building/baths
+summary: >-
+  The last of the great imperial baths of Rome, built by Constantine on the Quirinal, probably
+  before 315. Laid out on an artificial terrace on the hillside, they had their main entrance in the
+  middle of the north side and a circular tepidarium and caldarium; they were restored in 443 and
+  stood into the sixteenth century.
+author: machine:claude-code
+same_as: { wikidata: Q588204, ohm: relation/2751779 }
+claims:
+  name:
+    prop: name
+    value: { en: "Baths of Constantine", la: "Thermae Constantinianae" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Thermae Constantinianae, p. 525"
+      quote: "the last of the great baths of Rome, built by Constantine on the Quirinal"
+  start:
+    prop: start
+    value: { lo: 312 CE, hi: 315 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Constantinianae, p. 525"
+        quote: "built by Constantine on the Quirinal, probably before 315"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Constantini, p. 36"
+        quote: "to commemorate his victory over Maxentius in 312"
+    method: historical-account
+    note: >-
+      Aurelius Victor (Caesares 40) says Constantine built the baths, and P&A say probably before
+      315. The lower bound is Constantine's victory over Maxentius in 312, which gave him Rome. The
+      map's earlier 315 is the upper bound.
+  end:
+    prop: end
+    value: { lo: 1605 CE, hi: 1621 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Constantinianae, p. 525"
+        quote: "The remains were almost entirely destroyed in 1605-1621, when the Palazzo Rospigliosi was built"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Constantinianae, p. 525"
+        quote: "restored in 443 by the city prefect"
+    method: historical-account
+    note: >-
+      The baths were restored in 443 after fire and earthquake, and enough stood in the early
+      sixteenth century for architects to draw them. The map's earlier end of 500 CE is
+      contradicted.
+  form:
+    prop: form
+    value: { type: baths, faces: 0, rotunda: true }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Constantinianae, p. 526"
+        quote: "with one principal entrance in the middle of the north side"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Thermae Constantinianae, p. 526"
+        quote: "behind it were tepidarium and caldarium both circular in shape"
+    note: >-
+      P&A: the baths were oriented north and south on an artificial level cut into the hillside,
+      with a second principal entrance on the west where a flight of steps led down to the Campus
+      Martius. Faces 0 is the north bearing.
+  location:
+    prop: location
+    value: { lat: 41.898184, lon: 12.487844, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751779 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751779] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751779 }
+    method: map-trace
+    basis: reconstruction

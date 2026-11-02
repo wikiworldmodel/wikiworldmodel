@@ -1,0 +1,75 @@
+# Footprint measured on the map: 578 m by 123 m, long axis on bearing 128° / 308°.
+id: rome/circus-maximus
+kind: building/circus
+summary: >-
+  The great chariot-racing circus in the valley between the Palatine and the Aventine, about 600 m
+  long. Rebuilt in masonry by Caesar (or perhaps Augustus), burned and rebuilt more than once,
+  enlarged by Trajan to its greatest size and magnificently restored by Constantine, it had three
+  tiers of seats round an arena of about 568 m, and Constantius added a second obelisk to its spina
+  in 357.
+author: machine:claude-code
+same_as: { wikidata: Q207808, ohm: relation/2686942 }
+claims:
+  name:
+    prop: name
+    value: { en: "Circus Maximus", la: "Circus Maximus" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Circus Maximus, p. 114"
+      quote: "the first and largest circus in Rome"
+  start:
+    prop: start
+    value: { lo: 46 BCE, hi: 7 BCE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Circus Maximus, p. 115"
+        quote: "Pliny, on the other hand, speaks very distinctly of the existing circus as the work of the dictator Caesar"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Circus Maximus, p. 115"
+        quote: "the moat or euripus which Caesar constructed in 46"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Circus Maximus, p. 115"
+        quote: "written in 7 B.c., the circus was then one of the most wonderful monuments in Rome"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Circus Maximus, p. 115"
+        quote: "subsequent changes probably did not affect materially its general plan"
+    method: historical-account
+    note: >-
+      The circus existed from the kings' time, but its definite history in the form drawn here
+      begins with Caesar's masonry circus and euripus (46 BCE) or Augustus's work, and Dionysius
+      describes it in 7 BCE. P&A think later changes (rebuilding after the fires of 36 and 64,
+      Domitian's repairs, Trajan's enlargement, Constantine's restoration) did not much alter the
+      general plan, so the early date is kept. The map's earlier 51 BCE had no source. The OCR
+      prints 'B.c.' for 'B.C.' in the quotation about Dionysius.
+  form:
+    prop: form
+    value: { type: circus, tiers: 3, spina: true }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Circus Maximus, p. 118"
+        quote: "The cavea was divided into three bands or zones of seats"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Circus Maximus, p. 118"
+        quote: "The length of the spina was 344 metres, and the total length of the circus 600"
+    note: >-
+      P&A give the arena as 568 m long, 75 m wide at the starting gates and 87 m at the east end;
+      the upper tier, and perhaps the middle one, were of wood. The starting gates (carceres) were
+      at the west end and the curved end was at the east.
+  location:
+    prop: location
+    value: { lat: 41.884780, lon: 12.487861, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2686942 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2686942] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2686942 }
+    method: map-trace
+    basis: reconstruction

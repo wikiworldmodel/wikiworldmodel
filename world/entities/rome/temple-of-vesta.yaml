@@ -1,0 +1,68 @@
+# Footprint measured on the map: 14 m by 14 m, long axis on bearing 101° / 281°.
+id: rome/temple-of-vesta
+kind: building/temple
+summary: >-
+  The round temple of Vesta at the east end of the forum, where the sacred fire of Rome burned.
+  Tradition ascribed it to Numa; burned and restored several times, it was last rebuilt by Julia
+  Domna after the fire of 191 and was closed by Theodosius in 394.
+author: machine:claude-code
+same_as: { wikidata: Q753791, pleiades: 55302071, ohm: way/198545342 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Vesta", la: "Aedes Vestae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 701 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198545342 }
+    method: compilation
+    basis: reconstruction
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198545342 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: tholos, order: corinthian, columns: 20, column_height: 4.45, faces: 101 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Vesta, Aedes, p. 559"
+        quote: "peripteral, with twenty columns connected by metal gratings"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Vesta, Aedes, p. 559"
+        quote: "The shafts of the columns were fluted, 0.51 metre in diameter and about 4.45 in height"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Vesta, Aedes, p. 559"
+        quote: "The change from Ionic to Corinthian capitals seems to have been made during the first century"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Vesta, Aedes, p. 558"
+        quote: "On the east side and here and there on the other sides of these strata"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Vesta, Aedes, p. 558"
+        quote: "tufa blocks which were the foundation of the marble steps"
+    note: >-
+      This is the temple as restored by Julia Domna, which P&A reconstructs from the fragments,
+      the coins and the reliefs. faces is read from the plan: P&A puts the steps on the east
+      side, which on its old compass points is toward the south-east; the mapped footprint is a
+      square, so the bearing, 101 degrees, is that of its axis.
+  location:
+    prop: location
+    value: { lat: 41.891705, lon: 12.486215, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198545342 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198545342] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198545342 }
+    method: map-trace
+    basis: reconstruction

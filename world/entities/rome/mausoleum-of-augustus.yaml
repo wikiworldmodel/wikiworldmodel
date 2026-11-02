@@ -1,0 +1,59 @@
+# Footprint measured on the map: 99 m by 89 m, long axis on bearing 144° / 324°.
+id: rome/mausoleum-of-augustus
+kind: building/tomb
+summary: >-
+  The circular tomb Augustus built for himself, his family and his successors in the northern
+  Campus Martius from 28 BCE: a drum about 87 m across, faced with travertine or marble, rising in
+  tiers planted with evergreens to a bronze statue of Augustus. The bronze tablets of the Res
+  Gestae stood by its south entrance, and Nerva was the last emperor buried in it.
+author: machine:claude-code
+same_as: { wikidata: Q770847, ohm: relation/2751662 }
+claims:
+  name:
+    prop: name
+    value: { en: "Mausoleum of Augustus", la: "Mausoleum Augusti" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 28 BCE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Mausoleum Augusti, p. 332"
+        quote: "between the via Flaminia and the Tiber, as early as 28 B.c."
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 593"
+        quote: "Mausoleum of Augustus, 332"
+    method: historical-account
+    note: >-
+      Platner and Ashby, citing Suetonius, say it was built in Augustus' sixth consulship, 28 BCE.
+      The skeleton's 28 CE gave the wrong era.
+  form:
+    prop: form
+    value: { type: mausoleum, statue: true, faces: 180 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Mausoleum Augusti, p. 332"
+        quote: "The entrance was on the south"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Mausoleum Augusti, p. 332"
+        quote: "while at the summit was a bronze statue of Augustus"
+    note: >-
+      Platner and Ashby give no height for the drum or the mound.
+  location:
+    prop: location
+    value: { lat: 41.905925, lon: 12.476414, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751662 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751662] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751662 }
+    method: map-trace
+    basis: reconstruction

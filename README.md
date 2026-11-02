@@ -3,7 +3,7 @@
 A detailed, sourced history of Earth, life and civilization in four dimensions, and a viewer
 for flying through it. The design is in [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md).
 
-Four slices are built:
+Five slices are built:
 
 - **Cambrian to today** runs through every layer of the design: plates, terrain and
   coastlines from 540 Ma to the present, with sourced entities, the geologic periods and an
@@ -22,6 +22,11 @@ Four slices are built:
   the fall of Constantinople, its borders year by year from the Cliopatria dataset, dates to
   the day, and ancient texts as sources, with the dates they disagree on
   ([docs/FOURTH-SLICE.md](docs/FOURTH-SLICE.md)).
+- **Rome the city** goes from the globe down to street level: the city as it stood in 315 CE,
+  from a snapshot of OpenHistoricalMap, 96 monuments written by hand with sources, and a
+  generated fabric of houses and streets, marked as generated, whose density follows the
+  Regionary Catalogues. Monuments rise and fall with their dates, in a 3D view with its own
+  sky, shadows and water ([docs/FIFTH-SLICE.md](docs/FIFTH-SLICE.md)).
 
 Each document says what its slice contains, how it follows the design, the decisions behind
 it and its limitations. Hand-written example records for every record type, and the gaps
@@ -57,6 +62,9 @@ In the viewer:
   drawn there.
 - Switch the geologic time scale in the toolbar: records dated by a stage follow it.
 - Press `E` for evidence mode, which marks what is reconstructed or generated.
+- Scroll down over Rome, or press the button at the bottom of the globe, to come down into the
+  city. There, drag to pan, right-drag or Shift-drag to turn and tilt, `W` `A` `S` `D` to walk,
+  and move the Light slider or press `L` to change the hour. Click a monument to open its record.
 
 ## Checks
 
@@ -73,7 +81,7 @@ After an intended change to the renderer or the world, regenerate the golden ren
 
 | Path | Contents |
 |---|---|
-| `world/` | the world, one record per file: entities (periods included), sources, frames, fields, generators, alternatives; schemas and vocabularies in `schema/`; datasets pinned in `manifest.yaml` |
+| `world/` | the world, one record per file: entities (periods included), sources, frames, fields, generators, alternatives, and snapshots of databases; schemas and vocabularies in `schema/`; datasets pinned in `manifest.yaml` |
 | `core/` | runtime code shared by the build and the viewer |
 | `tools/world/` | fetch, import, validate and build |
 | `viewer/` | the viewer |

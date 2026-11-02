@@ -1,0 +1,54 @@
+# Footprint measured on the map: 63 m by 0 m, long axis on bearing 43° / 223°.
+id: rome/pons-fabricius
+kind: works/bridge
+summary: >-
+  The stone bridge between the left bank and the Tiber island, built by L. Fabricius, curator of
+  the roads, in 62 BCE and restored in 21 BCE after the flood of 23 BCE. It is 62 m long with two
+  semicircular arches of about 24.5 m and a smaller arch between them, and is the best preserved
+  bridge in Rome.
+author: machine:claude-code
+same_as: { wikidata: Q944688, ohm: way/198283987 }
+claims:
+  name:
+    prop: name
+    value: { en: "Pons Fabricius", la: "Pons Fabricius" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 62 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Pons Fabricius, p. 400"
+      quote: "named from its builder, L. Fabricius, curator viarum in 62 B.c."
+    method: historical-account
+  form:
+    prop: form
+    value: { type: bridge, arches: 2 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pons Fabricius, p. 400"
+        quote: "has two semi-circular arches with a smaller one between"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pons Fabricius, p. 400"
+        quote: "The bridge is 62 metres long, and the arches are 24.25 and 24.50 metres wide"
+    note: >-
+      arches counts the two main arches; the smaller one between them is the opening in the middle
+      pier. No width is given.
+  location:
+    prop: location
+    value: { lat: 41.891051, lon: 12.478226, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283987 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198283987] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198283987 }
+    method: map-trace
+    basis: reconstruction

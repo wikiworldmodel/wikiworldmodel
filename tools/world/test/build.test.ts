@@ -102,7 +102,19 @@ describe('build', () => {
 
   it('records what it was made from: commit, datasets, generators, alternatives shown, license filter', () => {
     const b = JSON.parse(readFileSync(join(latestBuild(), 'build.json'), 'utf8'));
-    expect(Object.keys(b.datasets)).toEqual(['src:cliopatria-0.2.1', 'src:foster-2017-co2', 'src:paleodem-v2', 'src:paleomap-plate-model', 'src:vandermeer-2022-sea-level']);
+    expect(Object.keys(b.datasets)).toEqual([
+      'src:cliopatria-0.2.1',
+      'src:etopo-2022-n45e000',
+      'src:etopo-2022-n45e015',
+      'src:foster-2017-co2',
+      'src:ohm-rome-2026-11-01',
+      'src:paleodem-v2',
+      'src:paleomap-plate-model',
+      'src:srtm-gl1-n41e012',
+      'src:srtm-gl1-n42e012',
+      'src:tinitaly-1.1-w46075',
+      'src:vandermeer-2022-sea-level',
+    ]);
     expect(b.generators['gen:earth/clouds']).toEqual({ version: 1, seeds: { globe: 'earth/clouds' } });
     expect(b.generators['gen:earth/surface']).toEqual({ version: 1, seeds: { globe: 'earth/surface' } });
     expect(b.alternatives).toEqual({ shown: ['alt:earliest-life/isua-stromatolites', 'alt:time-scale/pbdb-2022'], default: { 'alt:earliest-life': null, 'alt:time-scale': null } });

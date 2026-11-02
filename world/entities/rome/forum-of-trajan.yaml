@@ -1,0 +1,66 @@
+# Footprint measured on the map: 121 m by 96 m, long axis on bearing 139° / 319°.
+id: rome/forum-of-trajan
+kind: open/forum
+summary: >-
+  The last and largest of the imperial fora, built by Trajan with the architect Apollodorus: a
+  colonnaded court with great hemicycles, the Basilica Ulpia, the Column and the libraries, to
+  which Hadrian added the temple of Trajan. The Emperor Constantius admired it on his visit of
+  356.
+author: machine:claude-code
+same_as: { wikidata: Q211295, pleiades: 250091860, ohm: way/198576370 }
+claims:
+  name:
+    prop: name
+    value: { en: "Forum of Trajan", la: "Forum Traiani" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 112 CE, hi: 113 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 237"
+        quote: "and dedicated, at least in part, about 113"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 241"
+        quote: "probably completed in 112"
+    method: historical-account
+    note: >-
+      P&A dates the dedication of the forum, at least in part, to about 113 and the completion
+      of the Basilica Ulpia, on its north-west side, probably to 112; the temple of Trajan was
+      added by Hadrian.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576370 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: court, paving: marble, gate: true, faces: 139 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 240"
+        quote: "The semi-circular space in front of this hemicycle was paved with white marble"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Forum Traiani, p. 239"
+        quote: "The entrance to the area was in the middle of the south-east side"
+    note: >-
+      faces is read from the plan.
+  location:
+    prop: location
+    value: { lat: 41.895121, lon: 12.485124, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576370 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576370] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576370 }
+    method: map-trace
+    basis: reconstruction

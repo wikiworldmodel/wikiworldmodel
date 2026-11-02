@@ -30,6 +30,8 @@ export class Toolbar {
       ${selects}
       <div class="legend" hidden>
         <div><span class="sw evidence"></span>Evidence: sourced records</div>
+        <div><span class="sw reconstruction"></span>In a city, amber: raised from a record or the map's footprint, its architecture part fact and part rule of thumb</div>
+        <div><span class="sw procedural"></span>In a city, magenta: invented housing, streets, trees and people, in the density the sources give</div>
         <div><span class="sw reconstruction"></span>Reconstruction: PaleoDEM terrain, the plate model's blocks; ringed markers are placed by the plate model</div>
         <div><span class="sw procedural"></span>Procedural: generated clouds, and the patterns the planet's states are drawn with (magma, ice, oceans where the map is unknown); projection: values after the present</div>
         <div><span class="sw derived"></span>Dashed: dates derived by the solver</div>

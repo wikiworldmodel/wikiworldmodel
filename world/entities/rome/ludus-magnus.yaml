@@ -1,0 +1,66 @@
+# Footprint measured on the map: 94 m by 75 m, long axis on bearing 104° / 284°.
+id: rome/ludus-magnus
+kind: building/barracks
+summary: >-
+  The Ludus Magnus, the Great School, apparently the principal gladiator training school of Rome,
+  near the Colosseum. The Marble Plan shows a rectangular court some 60 by 90 m ringed with small
+  cells around an elliptical enclosure; Platner and Ashby (1929) think it probably one of four
+  schools Domitian founded near the amphitheatre.
+author: machine:claude-code
+same_as: { wikidata: Q1232473, ohm: relation/2693294 }
+claims:
+  name:
+    prop: name
+    value: { en: "Ludus Magnus", la: "Ludus Magnus" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Ludus Magnus, p. 320"
+      quote: "the principal training school for gladiators in Rome"
+  start:
+    prop: start
+    value: { lo: 81 CE, hi: 96 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Ludus Magnus, p. 320"
+      quote: "it was probably one of the four established by Domitian"
+    method: historical-account
+    confidence: likely
+    note: >-
+      Domitian's reign. P&A cite the Chronographer of 354 for the four schools he founded near the
+      Colosseum, but know this one only from its inscriptions, the Regionary Catalogue and a
+      fragment of the Marble Plan, and place it near the start of the Via Labicana without
+      certainty.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2693294 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: barracks, court: true }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Ludus Magnus, p. 320"
+      quote: "a rectangular court, about 60 by 90 metres in size, surrounded with small chambers"
+    note: >-
+      From the Marble Plan fragment as P&A read it: a rectangular court ringed with small rooms and
+      containing an elliptical enclosure.
+  location:
+    prop: location
+    value: { lat: 41.889929, lon: 12.494918, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2693294 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2693294] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2693294 }
+    method: map-trace
+    basis: reconstruction

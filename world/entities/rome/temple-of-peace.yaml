@@ -1,0 +1,57 @@
+# Footprint measured on the map: 113 m by 101 m, long axis on bearing 142° / 322°.
+id: rome/temple-of-peace
+kind: open/forum
+summary: >-
+  Vespasian's temple of Peace, standing in the middle of a walled precinct, the Forum of Peace,
+  with a library attached. Begun after the capture of Jerusalem and dedicated in 75, it held
+  treasures brought from there; burned in 191 and restored, it was counted among the finest
+  buildings in the city.
+author: machine:claude-code
+same_as: { wikidata: Q1456939, pleiades: 152567558, ohm: relation/2751549 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Peace", la: "Templum Pacis" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Pax, Templum, p. 386"
+      quote: "the temple of Peace which was begun by Vespasian"
+  start:
+    prop: start
+    value: 75 CE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pax, Templum, p. 386"
+        quote: "the temple of Peace which was begun by Vespasian"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Pax, Templum, p. 386"
+        quote: "and dedicated in 75"
+    method: historical-account
+    note: >-
+      Begun in 71 after the capture of Jerusalem; Statius seems to credit its completion to
+      Domitian, a claim P&A thinks may have little foundation. The precinct was 145 m long and
+      about two thirds as wide, with a wall of peperino lined with marble.
+  end:
+    prop: end
+    value: 400 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751549 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.892845, lon: 12.487517, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751549 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751549] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751549 }
+    method: map-trace
+    basis: reconstruction

@@ -1,0 +1,68 @@
+# Footprint measured on the map: 215 m by 173 m, long axis on bearing 44° / 224°.
+id: rome/domus-augustana
+kind: building/palace
+summary: >-
+  The residential half of Domitian's Palatine palace, south-east of the state rooms and finished in
+  92 CE under his architect Rabirius; ancient texts use Augustiana for the whole imperial residence.
+  A colonnaded courtyard opened from a curved terrace on the south-west, with rooms of elaborate
+  plan behind it.
+author: machine:claude-code
+same_as: { wikidata: Q908472, ohm: relation/2693297 }
+claims:
+  name:
+    prop: name
+    value: { en: "Domus Augustana", la: "Domus Augustana" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Domus: Augustiana, p. 158"
+      quote: "denoted the whole imperial residence"
+    note: >-
+      Ancient texts use Augustiana (or Augustana) for the whole imperial residence on the Palatine
+      except the Domus Tiberiana, so the label here for the residential wing is modern.
+  start:
+    prop: start
+    value: 92 CE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Augustiana, pp. 158-159"
+        quote: "architect Rabirius, which was only completed in 92"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Augustiana, p. 162"
+        quote: "The construction, again, belongs to the period of Domitian"
+    method: historical-account
+    note: >-
+      P&A: the residential section on the south-east is Domitianic work, though brick-stamps show
+      later restoration; 92 is the year they give for the completion of Rabirius's rebuilding of the
+      palace.
+  form:
+    prop: form
+    value: { type: palace, court: true, faces: 224 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Augustiana, p. 162"
+        quote: "The second section of the palace lies to the south-east of the first, and appears to have contained the residential apartments"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Augustiana, p. 162"
+        quote: "led into a courtyard, surrounded by a colonnade, behind which were rooms of elaborate plan"
+    note: >-
+      From a curved terrace on the south-west a large arched opening led into the courtyard (P&A,
+      from sixteenth-century drawings and the excavations at the end of the eighteenth century);
+      faces 224 is that south-west bearing. The number of storeys is not given.
+  location:
+    prop: location
+    value: { lat: 41.887792, lon: 12.486511, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2693297 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2693297] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2693297 }
+    method: map-trace
+    basis: reconstruction

@@ -1,0 +1,63 @@
+# Footprint measured on the map: 28 m by 23 m, long axis on bearing 124° / 304°.
+id: rome/temple-of-vespasian
+kind: building/temple
+summary: >-
+  The temple of the deified Vespasian, built against the Tabularium between the temples of
+  Saturn and Concord, begun by Titus and completed by Domitian, and restored by Septimius
+  Severus and Caracalla. Three of its Corinthian columns stand.
+author: machine:claude-code
+same_as: { wikidata: Q731284, pleiades: 193196776, ohm: way/198576353 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Vespasian", la: "Templum Divi Vespasiani" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 81 CE, hi: 96 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Vespasianus, Divus, Templum, p. 556"
+        quote: "a temple begun by Titus"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Vespasianus, Divus, Templum, p. 556"
+        quote: "but completed by Domitian, and called templum Vespasiani et Titi"
+    method: historical-account
+    note: >-
+      Titus reigned from 79 to 81 and Domitian from 81 to 96, so the temple was finished between
+      Titus's death and Domitian's.
+  form:
+    prop: form
+    value: { type: temple, plan: prostyle, order: corinthian, front: 6, column_height: 15.2, shaft: marble, faces: 124 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Vespasianus, Divus, Templum, p. 556"
+        quote: "The temple was prostyle hexastyle, 33 metres long and 22 wide"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Vespasianus, Divus, Templum, p. 556"
+        quote: "three Corinthian columns at the south-east corner of the pronaos"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Vespasianus, Divus, Templum, p. 556"
+        quote: "These columns are of white marble, 15.20 metres high and 1.57 in diameter at the base"
+    note: >-
+      faces is read from the plan: the pronaos, where the surviving columns stand, is at the
+      south-east end of the footprint, toward the forum and the Clivus Capitolinus, and the
+      cella is against the Tabularium.
+  location:
+    prop: location
+    value: { lat: 41.892739, lon: 12.483925, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576353 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576353] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576353 }
+    method: map-trace
+    basis: reconstruction

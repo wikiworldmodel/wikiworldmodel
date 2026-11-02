@@ -2,12 +2,17 @@
 // frame at the current time, so a link to a place 250 Ma looks at where that place was.
 import { unitVector, toLatLon } from '../../core/quat.ts';
 import { invert, lookAt, multiply, norm, perspective, sub, transform, type Mat4, type V3 } from './mat.ts';
+import { fovFor } from './city/view.ts';
 
 export interface CameraState {
   lat: number;
   lon: number;
-  /** distance from the centre, in Earth radii */
+  /** distance from the centre, in Earth radii; near the ground, one plus the distance from the point looked at */
   dist: number;
+  /** the compass bearing the camera faces, in degrees */
+  heading?: number;
+  /** degrees from looking straight down: 90 is level, more looks up */
+  tilt?: number;
 }
 
 export const MIN_DIST = 1.25;
@@ -27,9 +32,27 @@ export class Camera {
     this.width = width;
     this.height = height;
     const lat = Math.max(-89.5, Math.min(89.5, s.lat));
-    this.eye = unitVector(lat, s.lon).map((c) => c * s.dist) as V3;
-    this.view = lookAt(this.eye, [0, 0, 0], [0, 0, 1]);
-    this.proj = perspective(FOV, width / height, 0.02, 50);
+    const near = Math.min(0.02, (s.dist - 1) * 0.4);
+    const fov = s.dist < 1.05 ? fovFor((s.dist - 1) * 6371000) : FOV;
+    if (s.tilt || s.heading) {
+      // Looking at a point on the ground, from `dist − 1` away, at a heading and a tilt.
+      const n = unitVector(lat, s.lon) as V3;
+      const east = norm([-n[1], n[0], 0]);
+      const north: V3 = [-n[2] * east[1], n[2] * east[0], n[0] * east[1] - n[1] * east[0]];
+      const h = ((s.heading ?? 0) * Math.PI) / 180;
+      const t = ((s.tilt ?? 0) * Math.PI) / 180;
+      const f: V3 = [east[0] * Math.sin(h) + north[0] * Math.cos(h), east[1] * Math.sin(h) + north[1] * Math.cos(h), east[2] * Math.sin(h) + north[2] * Math.cos(h)];
+      const r = s.dist - 1;
+      const c = Math.cos(t);
+      const e = Math.sin(t);
+      this.eye = [n[0] + (n[0] * c - f[0] * e) * r, n[1] + (n[1] * c - f[1] * e) * r, n[2] + (n[2] * c - f[2] * e) * r];
+      const up: V3 = [f[0] * c + n[0] * e, f[1] * c + n[1] * e, f[2] * c + n[2] * e];
+      this.view = lookAt(this.eye, n, up);
+    } else {
+      this.eye = unitVector(lat, s.lon).map((c) => c * s.dist) as V3;
+      this.view = lookAt(this.eye, [0, 0, 0], [0, 0, 1]);
+    }
+    this.proj = perspective(fov, width / height, near, 50);
     this.viewProj = multiply(this.proj, this.view);
     this.invViewProj = invert(this.viewProj);
   }

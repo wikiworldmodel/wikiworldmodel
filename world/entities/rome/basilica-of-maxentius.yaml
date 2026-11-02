@@ -1,0 +1,71 @@
+# Footprint measured on the map: 103 m by 73 m, long axis on bearing 114° / 294°.
+id: rome/basilica-of-maxentius
+kind: building/basilica
+summary: >-
+  The last and largest of the Roman basilicas, a vaulted hall modelled on the halls of the great
+  baths, begun by Maxentius and completed by Constantine, who gave it a second entrance and apse
+  on the Sacra Via side. The roof of the nave and the south aisle probably fell in the
+  earthquake of 847; the north aisle still stands.
+author: machine:claude-code
+same_as: { wikidata: Q371921, pleiades: 678676209, ohm: way/198576408 }
+claims:
+  name:
+    prop: name
+    value: { en: "Basilica of Maxentius", la: "Basilica Maxentii" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 312 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576408 }
+    method: compilation
+    basis: reconstruction
+  end:
+    prop: end
+    value: 1349 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576408 }
+    method: compilation
+    basis: reconstruction
+  height:
+    prop: height
+    value: 35
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Basilica Constantini, p. 77"
+      quote: "25 wide and 35 high, with side aisles 16 metres wide and 24.50 high"
+    method: survey
+    note: >-
+      The height of the nave, which P&A gives as 80 m long and 25 m wide (p. 76); its side
+      aisles were 24.50 m high.
+  form:
+    prop: form
+    value: { type: hall, bays: 3, faces: 114 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Constantini, p. 77"
+        quote: "divided into three bays with quadripartite groining"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Constantini, p. 77"
+        quote: "as built by Maxentius was towards the east"
+    note: >-
+      bays are the three groin vaults of the nave. faces is the entrance as Maxentius built it,
+      at the east end of the footprint (P&A: the facade was towards the east, with a vestibule
+      and five entrances); Constantine's second entrance, with a porch and steps, was in the
+      middle of the south side.
+  location:
+    prop: location
+    value: { lat: 41.892007, lon: 12.488150, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576408 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576408] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576408 }
+    method: map-trace
+    basis: reconstruction

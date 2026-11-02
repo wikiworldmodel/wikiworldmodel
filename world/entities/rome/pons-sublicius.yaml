@@ -1,0 +1,53 @@
+# Footprint measured on the map: 145 m by 1 m, long axis on bearing 134° / 314°.
+id: rome/pons-sublicius
+kind: works/bridge
+summary: >-
+  The oldest bridge across the Tiber: a wooden pile bridge built without metal, attributed by
+  tradition to King Ancus Marcius and kept up by the college of pontiffs. Floods often damaged it
+  but it was always repaired, and it was still standing in the fifth century; its exact site is
+  disputed.
+author: machine:claude-code
+same_as: { wikidata: Q1466700, ohm: way/199858616 }
+claims:
+  name:
+    prop: name
+    value: { en: "Pons Sublicius", la: "Pons Sublicius" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 601 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199858616 }
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Tradition, which Platner and Ashby report from Livy, attributes the bridge to Ancus Marcius;
+      the year given here is the mapper's.
+  end:
+    prop: end
+    value: unknown
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Pons Sublicius, p. 402"
+      quote: "the bridge was always repaired and was standing as late as the fifth century"
+    method: historical-account
+    note: >-
+      The skeleton's end of 69 CE was the flood of that year; the bridge was repaired and stood to
+      the fifth century at least. When it ended is not stated.
+  location:
+    prop: location
+    value: { lat: 41.883278, lon: 12.475222, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199858616 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199858616, way/199858693] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199858616 }
+    method: map-trace
+    basis: reconstruction

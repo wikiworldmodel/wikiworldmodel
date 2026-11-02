@@ -1,0 +1,80 @@
+# Footprint measured on the map: 21 m by 20 m, long axis on bearing 46° / 226°.
+id: rome/temple-of-apollo-palatinus
+kind: building/temple
+summary: >-
+  The temple of Apollo on the Palatine, vowed by Augustus in 36 BCE and dedicated on 9 October 28
+  BCE: the most magnificent of his buildings, of white Luna marble, with a portico, Greek and Latin
+  libraries and the Sibylline books beneath the god's statue. Platner and Ashby (1929) prefer a
+  concrete podium with its steps facing south-west as its remains; the temple burned down on 18
+  March 363.
+author: machine:claude-code
+same_as: { wikidata: Q1236860, ohm: way/198576892 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Apollo Palatinus", la: "Aedes Apollinis Palatini" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Apollo Palatinus, Aedes, p. 16"
+      quote: "the second and far the most famous temple of Apollo in Rome"
+  start:
+    prop: start
+    value: 9 October 28 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Apollo Palatinus, Aedes, p. 16"
+      quote: "begun in the same year, and dedicated 9th October"
+    method: historical-account
+    note: >-
+      Vowed in 36 BCE and begun that year, dedicated 9 October 28 BCE (Velleius 2.81, Cassius Dio
+      53.1.3, Suetonius Augustus 29 and the Res Gestae, as P&A cite them). The OCR of this sentence
+      is garbled: one scan reads '9th October' and breaks off at the year, the other two read 'oth
+      October, B.C. 28'. The map's earlier 421 BCE had no source and falls long before the temple
+      was vowed.
+  end:
+    prop: end
+    value: 18 March 363 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Apollo Palatinus, Aedes, p. 18"
+      quote: "but was burned down on 18th March, 363"
+    method: historical-account
+    note: >-
+      From Ammianus Marcellinus (23.3.3), as P&A cite it; the temple is listed in the Regionary
+      Catalogue (Region X) before that.
+  form:
+    prop: form
+    value: { type: temple, shaft: marble, faces: 226 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Apollo Palatinus, Aedes, p. 17"
+        quote: "constructed of solid blocks of white Luna marble"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Apollo Palatinus, Aedes, p. 18"
+        quote: "with a long flight of steps, facing south-west"
+    confidence: likely
+    note: >-
+      P&A say the plan was probably either prostyle hexastyle or peripteral and octastyle, and that
+      the facade was Ionic if Richmond is right and rebuilt in the Corinthian order under Domitian
+      if a relief in the Uffizi is read correctly; those are left out as too uncertain. Faces 226
+      follows the podium with steps facing south-west that P&A prefer as the temple's remains (their
+      third theory of three); the mapped footprint's axis, 46/226 degrees, agrees, but its placement
+      was not checked against P&A's plan.
+  location:
+    prop: location
+    value: { lat: 41.888844, lon: 12.485745, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576892 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576892] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576892 }
+    method: map-trace
+    basis: reconstruction

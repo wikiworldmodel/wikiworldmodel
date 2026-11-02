@@ -1,0 +1,53 @@
+# Footprint measured on the map: 113 m by 79 m, long axis on bearing 176° / 356°.
+id: rome/odeon-of-domitian
+kind: building/theatre
+summary: >-
+  A building for musical performances that Domitian erected in the Campus Martius, probably near
+  his stadium, with places for about 5,000 spectators. It was restored under Trajan by
+  Apollodorus, and in the fourth century Ammianus counted it among the most conspicuous monuments
+  of Rome.
+author: machine:claude-code
+same_as: { wikidata: Q2291009, ohm: way/198576437 }
+claims:
+  name:
+    prop: name
+    value: { en: "Odeon of Domitian", la: "Odeum" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 81 CE, hi: 96 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Odeum, p. 371"
+        quote: "a building for musical performances, erected by Domitian in the campus Martius"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 596"
+        quote: "Reign of Domitian: he restores Temple of Apollo Palatinus"
+    method: historical-account
+    note: >-
+      Platner and Ashby give no year. The odeum is one of the works they list for Domitian's
+      reign, which the index dates 81 to 96.
+  end:
+    prop: end
+    value: 1400 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576437 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.897176, lon: 12.473362, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576437 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576437] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576437 }
+    method: map-trace
+    basis: reconstruction

@@ -1,0 +1,77 @@
+# Footprint measured on the map: 23 m by 8 m, long axis on bearing 37° / 217°.
+id: rome/arch-of-septimius-severus
+kind: monument/arch
+summary: >-
+  The triple arch of Pentelic marble at the north-west corner of the forum, put up in 203 CE for
+  Septimius Severus and his sons Geta and Caracalla. Geta's name was chiselled out of the
+  inscription after his murder; the arch survives almost whole.
+author: machine:claude-code
+same_as: { wikidata: Q162353, pleiades: 370240026, ohm: relation/2751654 }
+claims:
+  name:
+    prop: name
+    value: { en: "Arch of Septimius Severus", la: "Arcus Severi" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 203 CE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Septimii Severi, p. 43"
+        quote: "the arch erected in 203 A.D. in honour of Severus and his sons Geta and Caracalla"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Septimii Severi, p. 43"
+        quote: "This information is contained in the dedicatory inscription"
+    method: documentary
+    note: >-
+      The year comes from the dedicatory inscription on both faces of the attic (CIL vi. 1033),
+      as P&A reads it.
+  height:
+    prop: height
+    value: 23
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Arcus Septimii Severi, p. 43"
+      quote: "The arch is 23 metres high, 25 wide and 11.85 deep"
+    method: survey
+  form:
+    prop: form
+    value: { type: arch, bays: 3, order: composite, attic_height: 5.6, quadriga: true, faces: 127, width: 25, depth: 11.85 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Septimii Severi, p. 43"
+        quote: "The arch is triple and built of Pentelic marble on a foundation of travertine"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Septimii Severi, p. 43"
+        quote: "four fluted columns with Composite capitals, 8.78 metres high"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Septimii Severi, p. 43"
+        quote: "the lofty attic, 5.60 metres in height"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Septimii Severi, p. 43"
+        quote: "a six- or eight-horse chariot"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Septimii Severi, p. 43"
+        quote: "the flight of steps that formed the approach to the arch from the forum side"
+    note: >-
+      quadriga records the chariot group on the top, which the coins show with six or eight
+      horses. width and depth are P&A's measurements, larger than the mapped footprint. faces is
+      read from the plan: the forum side, where the steps were, looks south-east.
+  location:
+    prop: location
+    value: { lat: 41.892836, lon: 12.484733, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751654 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751654] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751654 }
+    method: map-trace
+    basis: reconstruction

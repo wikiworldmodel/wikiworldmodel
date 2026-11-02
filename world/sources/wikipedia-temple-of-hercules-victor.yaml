@@ -1,0 +1,19 @@
+id: src:wikipedia-temple-of-hercules-victor
+type: database-record
+kind: review
+citation: >-
+  "Temple of Hercules Victor." Wikipedia, the free encyclopedia (English edition).
+snapshot: 2026-11-01
+title: Temple of Hercules Victor
+container: Wikipedia
+url: https://en.wikipedia.org/wiki/Temple_of_Hercules_Victor
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article that cites the scholarly literature. It is a last resort here,
+  for the date and column height of the round temple, which Platner and Ashby (1929) describe
+  without a firm identification. Its text can change.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's plain-text extract fetched through the MediaWiki API on 2026-11-01 and read;
+    the quotations were found in it verbatim.

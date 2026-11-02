@@ -1,0 +1,57 @@
+# Footprint measured on the map: 3314 m by 1592 m, long axis on bearing 17° / 197°.
+id: rome/servian-wall
+kind: works/wall
+summary: >-
+  The republican city wall of Rome, ascribed by tradition to King Servius Tullius. The wall of
+  Grotta Oscura tufa blocks that stood later was built after the Gallic sack, with censors'
+  contracts in 377 BCE and repairs in 353. By 315 CE the Aurelian Walls had replaced it as the
+  city's defence, but its great mound along the Esquiline remained a landmark.
+author: machine:claude-code
+same_as: { wikidata: Q281330, ohm: relation/2686954 }
+claims:
+  name:
+    prop: name
+    value: { en: "Servian Wall", la: "Murus Servii Tullii" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 377 BCE, hi: 353 BCE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Murus Servii Tullii, p. 352"
+        quote: "As the result of the Gallic invasion, the whole enceinte was enormously reinforced and strengthened"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Murus Servii Tullii, p. 353"
+        quote: "in murum a censoribus locatum saxo quadrato faciundum (377 B.c.)"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 587"
+        quote: "The ‘ Servian ’ walls rebuilt, 353"
+    method: historical-account
+    note: >-
+      Platner and Ashby attribute the earlier wall of small cappellaccio blocks to the sixth
+      century BCE and date the wall of larger blocks that stood in later centuries to the
+      rebuilding after the Gallic invasion (Livy, contracts of 377 and works of 353).
+  end:
+    prop: end
+    value: 274 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2686954 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.892071, lon: 12.488964, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2686954 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2686954] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2686954 }
+    method: map-trace
+    basis: reconstruction

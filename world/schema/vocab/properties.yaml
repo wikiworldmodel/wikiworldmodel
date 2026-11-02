@@ -3,8 +3,10 @@
 # words that are not declared here.
 #
 #   type        time | point | ref | text (with language) | string | quantity | color | geometry
-#               (a geometry is taken from a dataset in the manifest: { from: src:…, names: […] }
-#               names the rows that belong to the subject)
+#               | form (a geometry is taken from a dataset in the manifest: { from: src:…,
+#               names: […] } names the rows that belong to the subject, { from: src:…,
+#               elements: […] } the elements of a snapshot; a form says how a generator should
+#               raise a structure: { type: temple, order: corinthian, … }, core/city.ts)
 #   unit        for quantities: values are written in this unit
 #   values      for strings: the values allowed, each with what it means
 #   interp      how a state changes between known points: step | linear | log-time | slerp
@@ -118,6 +120,50 @@ properties:
       The land a polity held, as polygons, from a dataset of borders through time. The claim
       names the dataset's rows that are this polity; each row holds for the years it gives,
       within the polity's lifetime.
+  footprint:
+    type: geometry
+    interp: step
+    applies_to: [building, monument, works, open]
+    description: >-
+      Where a structure stands, traced on a map: the elements of a snapshot of a map database
+      that are this structure. A record that names an element adopts it, and the element is no
+      longer imported as a record of its own.
+  height:
+    type: quantity
+    unit: m
+    interp: step
+    applies_to: [building, monument, works]
+    description: The height of a structure, from the ground it stands on to its top.
+  ground_level:
+    type: quantity
+    unit: m
+    interp: step
+    applies_to: [building, monument, works, open]
+    description: >-
+      The level of the ground or paving at a structure, in metres above sea level, in the time
+      the claim is valid. The ground of antiquity lies metres below today's in the valleys.
+  form:
+    type: form
+    interp: step
+    applies_to: [building, monument, works, open/forum]
+    description: >-
+      What is known of a structure's architecture, as the parameters a generator raises it
+      from: its type, order, number of columns and so on. What a form does not say is the
+      generator's guess, and evidence mode shows it as a reconstruction.
+  insulae:
+    type: quantity
+    unit: blocks
+    interp: step
+    applies_to: [open/region]
+    description: >-
+      The number of insulae a region counted, as the Regionary Catalogues of the fourth century
+      list them. What an insula was here is disputed: possibly a unit of tenancy, not a building.
+  domus:
+    type: quantity
+    unit: houses
+    interp: step
+    applies_to: [open/region]
+    description: The number of domus, town houses, a region counted, as the Regionary Catalogues list them.
 
 # Methods: how the value of a claim was established. A method's children are written
 # parent/child (radiometric/ar-ar).
@@ -170,6 +216,9 @@ methods:
   plate-polygon:
     label: Plate polygon
     description: Assigned to the plate whose polygon, in the plate model, contains the present-day location.
+  map-trace:
+    label: Traced from a map
+    description: Taken from a map or plan, its position and shape read off the sheet.
   editorial:
     label: Editorial choice
     description: Chosen by an editor, such as a representative point to place a marker.

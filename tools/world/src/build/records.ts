@@ -1,4 +1,5 @@
 // Entity records for the inspect panel, features for tiles, periods, and the search index.
+import type { FormSpec } from '../../../../core/city.ts';
 import type { CitationRecord, ClaimRecord, EntityRecord, InverseRecord, PeriodRecord, RelationRecord, SearchFile, SourceRecord, VariantRecord } from '../../../../core/records.ts';
 import { conj, rotate, toLatLon, unitVector } from '../../../../core/quat.ts';
 import { parseRef, splitRef } from '../../../../core/refs.ts';
@@ -8,6 +9,12 @@ import { centre, formatDuration, formatTimeValue, parseLag, parseTime, PRESENT_Y
 import type { Basis, Estimate, Feature, FeatureBasis, FeatureName, FeatureTime } from '../../../../core/tileset.ts';
 import { chosen, pointOf, scenarioKey, subjectExists, type ClaimGroup, type Variant } from '../chronology.ts';
 import { BASES, isMoment, type Claim, type Entity, type Source, type World } from '../world.ts';
+
+/** A form in words, for its claim: its type and what is known of it. */
+function formText(f: FormSpec): string {
+  const known = Object.entries(f).filter(([k]) => k !== 'type').map(([k, v]) => `${k.replace(/_/g, ' ')} ${v === true ? 'yes' : v === false ? 'no' : k.endsWith('height') || k === 'width' || k === 'depth' || k === 'diameter' ? `${v} m` : k === 'faces' ? `${v}°` : v}`);
+  return known.length ? `${f.type}: ${known.join(', ')}` : f.type;
+}
 
 const mid = (lo: number, hi: number) => (Number.isFinite(lo) && Number.isFinite(hi) ? (lo + hi) / 2 : Number.isFinite(lo) ? lo : Number.isFinite(hi) ? hi : null);
 
@@ -293,9 +300,12 @@ function valueText(s: Solved, c: Claim, labelOf: (ref: string) => string): strin
       return `${(v as number).toLocaleString('en-US')}${prop.unit === '°' ? '' : ' '}${prop.unit}`;
     case 'string':
       return prop.values?.[String(v)] ?? String(v);
+    case 'form':
+      return formText(v as FormSpec);
     case 'geometry': {
-      const g = v as { from: string; names: string[] };
-      const names = g.names.map((n) => `“${n}”`);
+      const g = v as { from: string; names?: string[]; elements?: string[] };
+      if (g.elements) return `Traced on the map: ${g.elements.join(', ')}`;
+      const names = g.names!.map((n) => `“${n}”`);
       const list = names.length > 1 ? `${names.slice(0, -1).join(', ')} and ${names.at(-1)}` : names[0];
       return `The dataset's rows named ${list}`;
     }

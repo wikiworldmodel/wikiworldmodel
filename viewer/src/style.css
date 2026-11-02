@@ -55,6 +55,19 @@ canvas.globe:active { cursor: grabbing; }
 .territory-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
 .territory-label { position: absolute; left: 0; top: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; white-space: nowrap; opacity: 0.82; text-shadow: 0 1px 3px #000, 0 0 8px rgba(0, 0, 0, 0.7); will-change: transform; }
 .territory-label.selected { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+.city-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.city-label { position: absolute; left: 0; top: 0; padding: 2px 8px; border: 0; border-radius: 4px; background: rgba(10, 12, 18, 0.5); color: #f4efe2; font: inherit; font-size: 12px; white-space: nowrap; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9); cursor: pointer; pointer-events: auto; backdrop-filter: blur(2px); will-change: transform; }
+.city-label.major { font-size: 14px; font-weight: 600; letter-spacing: 0.02em; background: rgba(10, 12, 18, 0.62); }
+.city-label.generated { color: #d9d4c6; }
+.city-label.selected { color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.city-label:hover { background: rgba(10, 12, 18, 0.85); }
+.credits.in-city { max-width: min(58%, calc(100% - 300px)); opacity: 0.75; font-size: 10px; }
+.citybar { position: absolute; right: 16px; bottom: 12px; display: flex; align-items: center; gap: 10px; padding: 6px 10px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 8px; font-size: 12px; color: var(--muted); }
+.citybar input[type='range'] { width: 110px; accent-color: var(--accent); }
+.citybar button { padding: 3px 8px; border-radius: 6px; border: 1px solid var(--panel-border); background: rgba(255, 255, 255, 0.04); cursor: pointer; }
+.city-help { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--panel-border); cursor: help; }
+.city-enter { position: absolute; left: 50%; bottom: 74px; transform: translateX(-50%); padding: 7px 14px; border-radius: 18px; border: 1px solid var(--accent); background: rgba(10, 12, 18, 0.8); color: var(--accent); font: inherit; font-size: 13px; cursor: pointer; }
+canvas.globe.in-city { cursor: grab; }
 .inspect .here p { margin: 0 0 6px; }
 .inspect .written { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
 .credits { position: absolute; left: 16px; bottom: 6px; max-width: calc(100% - 32px); color: var(--muted); font-size: 11px; text-shadow: 0 1px 2px #000; pointer-events: none; }

@@ -1,0 +1,69 @@
+# Footprint measured on the map: 23 m by 12 m, long axis on bearing 162° / 342°.
+id: rome/temple-of-portunus
+kind: building/temple
+summary: >-
+  A small Ionic temple beside the Forum Boarium and the Pons Aemilius, tetrastyle and
+  pseudoperipteral on a podium, rebuilt in its present form between 120 and 80 BCE. The name
+  Portunus is an identification that Platner and Ashby (1929) only cite, from a 1925 article; they
+  take the building for the temple of Mater Matuta, or perhaps Fortuna.
+author: machine:claude-code
+same_as: { wikidata: Q849241, ohm: way/199854124 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Portunus", la: "Aedes Portuni" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 120 BCE, hi: 80 BCE }
+    source:
+      ref: src:wikipedia-temple-of-portunus
+      loc: "Architecture"
+      quote: "was rebuilt between 120 and 80 BC"
+    method: compilation
+    note: >-
+      The temple is said to have been first built in the 3rd or 4th century BCE. Platner and
+      Ashby, who call it Mater Matuta, thought the surviving structure a restoration about the
+      middle of the first century BCE; the date here is the later one.
+  form:
+    prop: form
+    value: { type: temple, plan: pseudoperipteral, order: ionic, front: 4, side: 7, podium_height: 2.5, shaft: stucco }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Mater Matuta, templum, p. 330"
+        quote: "The temple is Ionic (Ill. 31), 20 metres long and 12 wide, with north-south orientation parallel to the Tiber, tetrastyle prostyle"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Mater Matuta, templum, p. 330"
+        quote: "stands on a podium 2.50 metres in height"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Mater Matuta, templum, p. 331"
+        quote: "It was pseudo-peripteral, with five engaged columns in the side walls of the cella and a pronaos"
+      - ref: src:wikipedia-temple-of-portunus
+        loc: "Architecture"
+        quote: "a pronaos portico of four Ionic columns across and two columns deep"
+      - ref: src:wikipedia-temple-of-portunus
+        loc: "Architecture"
+        quote: "It is built of tuff and travertine with a stucco surface"
+    note: >-
+      Platner and Ashby describe this building under the name Mater Matuta, and mention its
+      identification with Portunus only in passing. side counts the two free columns of the porch
+      and the five engaged columns of the cella. shaft is the original stucco coat over travertine
+      and tufa.
+  location:
+    prop: location
+    value: { lat: 41.889288, lon: 12.480887, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854124 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199854124] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199854124 }
+    method: map-trace
+    basis: reconstruction

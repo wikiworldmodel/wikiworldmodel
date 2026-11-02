@@ -1,0 +1,56 @@
+# Footprint measured on the map: 2272 m by 539 m, long axis on bearing 81° / 261°.
+id: rome/arcus-neroniani
+kind: works/aqueduct
+summary: >-
+  Nero's branch of the Aqua Claudia, carried on brick arches (span 7.75 m, up to 16 m high) from
+  Spes Vetus about 2 km to the temple of Claudius on the Caelian, with a branch toward the
+  Aventine. Severus reinforced the arches, and much of the line is preserved.
+author: machine:claude-code
+same_as: { ohm: way/199868507 }
+claims:
+  name:
+    prop: name
+    value: { en: "Neronian arches of the Aqua Claudia", la: "Arcus Neroniani" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 54 CE, hi: 68 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Arcus Neroniani, p. 40"
+        quote: "a branch of the Agua CLAUDIA (q.v.) built by Nero"
+      - ref: src:platner-ashby-1929
+        loc: "Chronological index of dateable monuments, p. 595"
+        quote: "Reign of Nero: before 64 A.D. Nero builds Domus Transitoria, 194 ff."
+    method: historical-account
+    note: >-
+      Built by Nero, who reigned 54 to 68; the index lists the aqueduct to the Caelian among his
+      works after the fire of 64.
+  height:
+    prop: height
+    value: 16
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Arcus Neroniani, p. 40"
+      quote: "the maximum height being 16 metres"
+    method: survey
+    note: >-
+      The maximum height of the arches, where the line crossed low ground.
+  location:
+    prop: location
+    value: { lat: 41.887197, lon: 12.499212, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199868507 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199868507] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199868507 }
+    method: map-trace
+    basis: reconstruction

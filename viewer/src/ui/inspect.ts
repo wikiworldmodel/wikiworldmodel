@@ -321,6 +321,16 @@ export class InspectPanel {
   }
 
   /** A global series: its value at a time, how it is known, and its source. */
+  /** Something generated rather than recorded: what it is, and what it is made to fit. */
+  showGenerated(title: string, kind: string, text: string, why: string): void {
+    this.el.hidden = false;
+    this.el.innerHTML = `<header><h2>${esc(title)}</h2><button class="close" aria-label="Close">×</button></header>
+      <div class="meta"><span class="kind">${esc(kind)}</span> <span class="badge basis-procedural">procedural</span></div>
+      <p class="summary">${esc(text)}</p>
+      <h3>How we know</h3><p class="muted">${esc(why)}</p>`;
+    this.el.querySelector<HTMLButtonElement>('.close')!.onclick = () => this.cb.onClose();
+  }
+
   showSeries(s: SeriesRecord, t: number, v: SeriesValue | null): void {
     const src = s.sourceRecord;
     const projected = s.projectedAfter !== undefined && t > s.projectedAfter;

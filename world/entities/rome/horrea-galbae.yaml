@@ -1,0 +1,67 @@
+# Footprint measured on the map: 188 m by 65 m, long axis on bearing 44° / 224°.
+id: rome/horrea-galbae
+kind: building/warehouse
+summary: >-
+  The Horrea Galbae, the earliest and most important of Rome's warehouse districts, between the
+  south-west side of the Aventine and the Tiber: three courts ringed by travertine colonnades with
+  storerooms opening off them, for grain, wine, oil and other goods. Built in the later Republic,
+  restored by the emperor Galba and under imperial control from the start of the principate, they
+  are still listed in the fourth-century Regionary Catalogue.
+author: machine:claude-code
+same_as: { wikidata: Q3786802, ohm: way/199851318 }
+claims:
+  name:
+    prop: name
+    value: { en: "Horrea Galbae", la: "Horrea Galbae" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Horrea Galbae, p. 261"
+      quote: "warehouses in the district known as PRAEDIA GALBANA"
+  start:
+    prop: start
+    value: { lo: 144 BCE, hi: 27 BCE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Horrea Galbae, p. 261"
+      quote: "and about that time, or before the end of the republic, the horrea were built"
+    method: historical-account
+    note: >-
+      P&A place the building about the time of Ser. Sulpicius Galba, whose tomb was there and who
+      was consul in 144 or 108 BCE, or at any rate before the end of the Republic; the range runs
+      from the earlier consulship to the settlement of 27 BCE. The map's earlier 201 BCE had no
+      source.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851318 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: warehouse, court: true }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Horrea Galbae, p. 261"
+      quote: "These courts, three in number, were surrounded by travertine colonnades"
+    note: >-
+      The part excavated before 1911 was a rectangle about 200 by 155 m, enclosed by a wall and
+      divided into sections by the three courts; later finds showed the horrea were much larger. The
+      number of storeys is not given.
+  location:
+    prop: location
+    value: { lat: 41.883991, lon: 12.479102, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851318 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/199851318] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/199851318 }
+    method: map-trace
+    basis: reconstruction

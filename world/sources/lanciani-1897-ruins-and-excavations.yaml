@@ -1,0 +1,24 @@
+id: src:lanciani-1897-ruins-and-excavations
+type: publication
+kind: review
+citation: >-
+  Lanciani, R. (1897). The Ruins and Excavations of Ancient Rome: A Companion Book for Students
+  and Travellers. Boston and New York: Houghton, Mifflin and Company.
+authors:
+  - "Lanciani, R."
+published: 1897
+title: The Ruins and Excavations of Ancient Rome
+url: https://archive.org/details/ruinsexcavations00lanc
+license: public-domain
+via: The Internet Archive's scan and OCR text of the 1897 Houghton, Mifflin edition (identifier ruinsexcavations00lanc).
+reliability: >-
+  A companion to the monuments by the archaeologist then directing the city's excavations, with
+  the findings of the 1880s and 1890s, among them the brick stamps of the Pantheon. Written
+  before the excavations and brick-stamp studies of the twentieth century, so its dates and
+  identifications are sometimes superseded.
+verified:
+  by: machine:claude-code
+  how: >-
+    The section on the Pantheon (section XLVII, pp. 473-478) read in the OCR text of the Internet
+    Archive copy, with the account of the brick stamps on p. 478. Quotations were checked against
+    that text with line breaks and runs of spaces ignored.

@@ -1,0 +1,91 @@
+# Footprint measured on the map: 111 m by 55 m, long axis on bearing 111° / 291°.
+id: rome/temple-of-venus-and-roma
+kind: building/temple
+summary: >-
+  Hadrian's double temple of Venus and Roma on the Velia, with two cellae back to back inside a
+  vast colonnaded precinct on the axis of the Colosseum, probably the largest temple in the
+  city. Dedicated in 135, it was damaged by fire in 307 and restored by Maxentius, whose work is
+  the superstructure that stood in 315; it was in ruins by the ninth century.
+author: machine:claude-code
+same_as: { wikidata: Q430792, pleiades: 261794683, ohm: way/198576403 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of Venus and Roma", la: "Templum Veneris et Romae" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 135 CE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Venus et Roma, Templum, p. 553"
+        quote: "The temple was dedicated in 135"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Venus et Roma, Templum, p. 553"
+        quote: "but perhaps finished by Antoninus Pius"
+    method: historical-account
+    note: >-
+      Dedicated in 135 according to Jerome, as P&A cites him, but perhaps finished under
+      Antoninus Pius (138 to 161); the skeleton's 141 seems to follow the second. After the fire
+      of 307 Maxentius restored it and P&A dates the whole of the superstructure to his work.
+  end:
+    prop: end
+    value: 847 CE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Venus et Roma, Templum, p. 553"
+        quote: "in 847-853 Leo IV built the church of S. Maria Nova in its ruins"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Venus et Roma, Templum, p. 553"
+        quote: "The history of its destruction is unknown"
+    method: historical-account
+    confidence: about-as-likely-as-not
+    note: >-
+      The skeleton's end of 307 was the fire after which Maxentius restored the temple. P&A says
+      the history of its destruction is unknown and finds no mention of it later than
+      Prudentius; the church built in its ruins is one of the chief arguments that the
+      earthquake of Leo IV, before 30 August 847, ruined it, and by 853 S. Maria Nova stood
+      there.
+  form:
+    prop: form
+    value: { type: temple, plan: peripteral, order: corinthian, front: 10, roof: gilded, shaft: marble, faces: 291 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Venus et Roma, Templum, p. 554"
+        quote: "This temple was decastyle, of the Corinthian order, and pseudo-dipteral"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Venus et Roma, Templum, p. 554"
+        quote: "the columns of the peristyle being of white marble about 1.8 metres in diameter"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Venus et Roma, Templum, p. 554"
+        quote: "which was covered with gilt tiles"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Venus et Roma, Templum, p. 553"
+        quote: "that of Venus facing east, and that of Roma west"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Venus et Roma, Templum, p. 553"
+        quote: "At the west end of the podium a wide flight of steps led down to the paved area in front of the temple"
+    basis: reconstruction
+    note: >-
+      P&A calls the plan pseudo-dipteral, one ring of columns standing wide of the cellae, which
+      is drawn here as peripteral. The two cellae back to back had fronts at both ends. faces
+      gives the west front, with the wide flight of steps and the sculptured pediment, read from
+      the plan.
+  location:
+    prop: location
+    value: { lat: 41.890901, lon: 12.489738, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576403 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198576403] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198576403 }
+    method: map-trace
+    basis: reconstruction

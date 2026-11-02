@@ -12,9 +12,12 @@ function compile(gl: GL, type: number, src: string, name: string): WebGLShader {
   gl.shaderSource(s, src);
   gl.compileShader(s);
   if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
-    const log = gl.getShaderInfoLog(s);
-    const numbered = src.split('\n').map((l, i) => `${String(i + 1).padStart(3)} ${l}`).join('\n');
-    throw new Error(`${name} ${type === gl.VERTEX_SHADER ? 'vertex' : 'fragment'} shader: ${log}\n${numbered}`);
+    const log = gl.getShaderInfoLog(s) ?? '';
+    // The lines the compiler complains of, not the whole source.
+    const lines = src.split('\n');
+    const named = [...log.matchAll(/ERROR: \d+:(\d+)/g)].map((m) => Number(m[1]));
+    const shown = [...new Set(named)].slice(0, 8).map((n) => `${String(n).padStart(4)} ${lines[n - 1]?.trim().slice(0, 140)}`).join('\n');
+    throw new Error(`${name} ${type === gl.VERTEX_SHADER ? 'vertex' : 'fragment'} shader: ${log}\n${shown}`);
   }
   return s;
 }

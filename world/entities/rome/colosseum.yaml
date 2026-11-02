@@ -1,0 +1,87 @@
+# Footprint measured on the map: 193 m by 162 m, long axis on bearing 105° / 285°.
+id: rome/colosseum
+kind: building/amphitheatre
+summary: >-
+  The Flavian Amphitheatre, later called the Colosseum: an elliptical travertine amphitheatre begun
+  by Vespasian on the drained site of Nero's lake and dedicated by Titus in 80 CE with a hundred
+  days of games. About 188 by 156 m, with a four-storey outer wall 48.5 m high, it was repaired
+  after lightning in 217 and again about 250, and gladiatorial combats were held in it until 404.
+author: machine:claude-code
+same_as: { wikidata: Q10285, ohm: relation/2686943 }
+claims:
+  name:
+    prop: name
+    value: { en: "Colosseum", la: "Amphitheatrum Flavium" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Amphitheatrum Flavium, p. 6"
+      quote: "ordinarily known as the Colosseum"
+    note: >-
+      In 315 the building was the Flavian Amphitheatre: P&A add that the name Colosseum, from Nero's
+      colossus, was not transferred to the amphitheatre until after 1000 CE.
+  start:
+    prop: start
+    value: 80 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Amphitheatrum Flavium, p. 6"
+      quote: "celebrated the dedication of the enlarged building in 80 with magnificent games that lasted one hundred days"
+    method: historical-account
+    note: >-
+      P&A, from Suetonius (Titus 7), Cassius Dio (66.25) and the Chronographer of 354: Vespasian
+      carried the structure up to the top of the second arcade and dedicated it before his death in
+      79, Titus added the third and fourth storeys and dedicated the enlarged building in 80, and
+      Domitian is said to have finished it. The map's earlier 75 CE had no source.
+  end:
+    prop: end
+    value: 1349 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2686943 }
+    method: compilation
+    basis: reconstruction
+  height:
+    prop: height
+    value: 48.5
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Amphitheatrum Flavium, p. 7"
+      quote: "is 48.50 metres high, and stands upon a stylobate"
+    method: survey
+    note: >-
+      P&A: the outer wall, the facade, is 48.50 m high, standing on a stylobate raised two steps
+      above a travertine pavement.
+  form:
+    prop: form
+    value: { type: amphitheatre, tiers: 3, bays: 80, attic: true, arena_length: 86, arena_width: 54 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Amphitheatrum Flavium, p. 7"
+        quote: "The outer wall itself is divided into four stories, of which the lower three consist of rows of open arcades"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Amphitheatrum Flavium, p. 8"
+        quote: "There were eighty arches in the lower arcade"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Amphitheatrum Flavium, p. 9"
+        quote: "The arena itself is elliptical, the major axis being 86 metres long and the minor 54"
+    note: >-
+      tiers counts the three arcaded storeys (Doric, Ionic and Corinthian half-columns); the fourth
+      storey is the solid attic with pilasters and windows. bays is the number of arches in the
+      lower arcade: seventy-six numbered ones and four unnumbered main entrances. The arena axes are
+      P&A's.
+  location:
+    prop: location
+    value: { lat: 41.890238, lon: 12.492377, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2686943 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2686943] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2686943 }
+    method: map-trace
+    basis: reconstruction

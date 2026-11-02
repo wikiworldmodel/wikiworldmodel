@@ -1,0 +1,72 @@
+# Footprint measured on the map: 83 m by 73 m, long axis on bearing 0° / 180°.
+id: rome/amphitheatrum-castrense
+kind: building/amphitheatre
+summary: >-
+  A small brick amphitheatre of the imperial court beside the Sessorium palace, built in the early
+  third century, probably under the Severi or Elagabalus; it measured about 88 by 78 m with three
+  storeys of arcades. When the Aurelian Wall was built in the 270s the outer half of it became a
+  bastion of the wall and its arcades were walled up.
+author: machine:claude-code
+same_as: { wikidata: Q475012, ohm: relation/2751561 }
+claims:
+  name:
+    prop: name
+    value: { en: "Amphitheatrum Castrense", la: "Amphitheatrum Castrense" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Amphitheatrum Castrense, p. 5"
+      quote: "This name, found only in the Regionary Catalogue (Region V)"
+  start:
+    prop: start
+    value: { lo: 193 CE, hi: 222 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "Addenda et corrigenda, p. 601, s.v. Amphitheatrum Castrense (to p. 5)"
+        quote: "Dr. Van Deman now assigns it to the period of Septimius Severus"
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Anfiteatro Castrense (turismoroma.it/it/luoghi/anfiteatro-castrense)"
+        quote: "Con tutta probabilità fu costruito dall'imperatore Eliogabalo (218-222)"
+    method: expert-estimate
+    note: >-
+      The sources differ. P&A's addendum gives the Severan period (193-211) on Van Deman's study of
+      the brickwork; the Roma Capitale portal says in all probability Elagabalus (218-222). P&A's
+      main entry had suggested Trajan and noted Rivoira's first half of the third century. The range
+      runs from Septimius Severus to Elagabalus; the map's earlier 220 CE lies inside it.
+  end:
+    prop: end
+    value: 600 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751561 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: amphitheatre, tiers: 3 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Amphitheatrum Castrense, p. 5"
+        quote: "The exterior wall consisted of three stories of open arcades, adorned with pilasters and Corinthian capitals"
+      - ref: src:turismoroma-monumenti
+        loc: "Monumenti: Anfiteatro Castrense (turismoroma.it/it/luoghi/anfiteatro-castrense)"
+        quote: "interamente in laterizio e su tre ordini di arcate"
+    note: >-
+      Elliptical, with axes of 88.5 and 78 m according to P&A, of brick and brick-faced concrete;
+      the upper storey is lost. Under Aurelian the outer half became a bastion of the city wall,
+      with the arcades walled up, and the inner half was pulled down (P&A).
+  location:
+    prop: location
+    value: { lat: 41.887701, lon: 12.515086, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751561 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751561] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751561 }
+    method: map-trace
+    basis: reconstruction

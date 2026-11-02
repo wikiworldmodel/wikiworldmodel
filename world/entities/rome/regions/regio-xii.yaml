@@ -1,0 +1,56 @@
+id: rome/regions/regio-xii
+kind: open/region
+summary: >-
+  The district of the Piscina Publica, listed with the Baths of Caracalla (Thermae Antoninianae),
+  the Via Nova, the temple of Bona Dea Subsaxana, the Seven Houses of the Parthians and the
+  barracks of a cohort of the Vigiles.
+author: machine:claude-code
+same_as: { ohm: node/2109009035 }
+claims:
+  name:
+    prop: name
+    value: { la: "Regio XII Piscina Publica", en: "Region XII, Piscina Publica" }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009035 }
+    note: The English form is an editorial rendering of the Latin name.
+  start:
+    prop: start
+    value: 7 BCE
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009035 }
+    method: compilation
+    basis: reconstruction
+  location:
+    prop: location
+    value: { lat: 41.881376, lon: 12.491691, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: node/2109009035 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  insulae:
+    prop: insulae
+    value: 2487
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio XII, ed. Jordan 1871, vol. 2 p. 561, Curiosum column"
+      quote: "insulae II.CCCCLXXXVII"
+    method: documentary
+    note: >-
+      Region XIII is given the same count; Jordan (p. 18, after Bunsen) holds that one of such a
+      pair was wrongly repeated, and on p. 562 takes XIII's to be the repeat. Preller (1846, p.
+      248) instead prefers 2,458 here, the reading of Notitia manuscript B; the Curiosum's
+      manuscript C has 2,488. The Notitia has the same figure as the Curiosum in Jordan's text.
+  domus:
+    prop: domus
+    value: 113
+    valid: { lo: 312 CE, hi: 357 CE }
+    source:
+      ref: src:curiosum-urbis-romae
+      loc: "Regio XII, ed. Jordan 1871, vol. 2 p. 561, Curiosum column"
+      quote: "dom. CXIII"
+    method: documentary
+    note: The Notitia has the same figure.

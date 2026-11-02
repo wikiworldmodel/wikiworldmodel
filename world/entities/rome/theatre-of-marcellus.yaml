@@ -1,0 +1,61 @@
+# Footprint measured on the map: 126 m by 96 m, long axis on bearing 123° / 303°.
+id: rome/theatre-of-marcellus
+kind: building/theatre
+summary: >-
+  The stone theatre planned by Julius Caesar and built by Augustus in memory of Marcellus, beside
+  the Forum Holitorium near the Tiber. Part of the Secular Games of 17 BCE was held in it and it
+  was dedicated in 13 BCE; Vespasian restored the stage building, and with its three tiers of
+  arcades and diameter of about 150 m it stood in 315. Its outer arcades survive.
+author: machine:claude-code
+same_as: { wikidata: Q659138, ohm: relation/2753741 }
+claims:
+  name:
+    prop: name
+    value: { en: "Theatre of Marcellus", la: "Theatrum Marcelli" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 17 BCE, hi: 13 BCE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Theatrum Marcelli, p. 513"
+        quote: "the work of construction was so far advanced that part of the celebration of the ludi saeculares took place within the theatre"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Theatrum Marcelli, p. 513"
+        quote: "the dedication did not occur until 13"
+    method: historical-account
+    note: >-
+      The theatre was in use in 17 BCE but dedicated only in 13 BCE (or, less probably, 11).
+  form:
+    prop: form
+    value: { type: theatre, tiers: 3, faces: 213 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Theatrum Marcelli, p. 514"
+        quote: "It was built with three series of open arcades, one above the other."
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Theatrum Marcelli, p. 514"
+        quote: "The stage is toward the river, and the main axis runs north-north-east and south-south-west."
+    note: >-
+      faces is the bearing from the seating to the stage. The main axis runs north-north-east to
+      south-south-west and the stage is toward the river, which lies to the south-west (the Pons
+      Fabricius and Pons Cestius are at bearings 228 and 221 from the traced theatre), so the
+      stage is at the south-south-west end: 213.
+  location:
+    prop: location
+    value: { lat: 41.891872, lon: 12.479433, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753741 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2753741] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753741 }
+    method: map-trace
+    basis: reconstruction

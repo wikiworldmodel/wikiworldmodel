@@ -1,0 +1,67 @@
+# Footprint measured on the map: 224 m by 138 m, long axis on bearing 160° / 340°.
+id: rome/temple-of-claudius
+kind: building/temple
+summary: >-
+  The temple of the deified Claudius on the Caelian, begun by Agrippina, almost entirely pulled down
+  by Nero and rebuilt by Vespasian, probably with a nymphaeum worked into its podium. A prostyle
+  hexastyle temple facing north on a lofty, extensive podium, it is last mentioned in the fourth
+  century.
+author: machine:claude-code
+same_as: { wikidata: Q523765, ohm: relation/2751608 }
+claims:
+  name:
+    prop: name
+    value: { en: "Temple of the Deified Claudius", la: "Templum Divi Claudii" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Claudius, Divus, Templum, p. 120"
+      quote: "a temple of the deified Claudius on the Caelian"
+  start:
+    prop: start
+    value: { lo: 69 CE, hi: 79 CE }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Claudius, Divus, Templum, p. 120"
+      quote: "begun by Agrippina, almost entirely destroyed by Nero, and rebuilt by Vespasian"
+    method: historical-account
+    note: >-
+      The temple as it stood in 315 was Vespasian's rebuilding (Suetonius, Vespasian 9, as P&A cite
+      it), so his reign is the range; the map's earlier 54 CE is the year of Claudius's death. P&A
+      find the podium's substructures differ on each side, probably because Vespasian's work
+      combined the temple with a nymphaeum.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751608 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: temple, plan: prostyle, front: 6, faces: 340 }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Claudius, Divus, Templum, p. 121"
+      quote: "prostyle hexastyle, fronting towards the north, and stood on a lofty and extensive podium"
+    confidence: likely
+    note: >-
+      P&A give this on the condition that three fragments of the Marble Plan (45, 77, 96) belong
+      together and show this temple. Faces 340 is the long-axis bearing nearest north. The footprint
+      mapped for this record is the whole platform, 224 by 138 m, not the temple alone.
+  location:
+    prop: location
+    value: { lat: 41.887551, lon: 12.493005, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751608 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2751608] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2751608 }
+    method: map-trace
+    basis: reconstruction

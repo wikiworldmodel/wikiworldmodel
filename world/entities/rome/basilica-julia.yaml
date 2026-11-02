@@ -1,0 +1,68 @@
+# Footprint measured on the map: 105 m by 48 m, long axis on bearing 115° / 295°.
+id: rome/basilica-julia
+kind: building/basilica
+summary: >-
+  The great law-court basilica on the south side of the forum, between the temples of Castor and
+  Saturn, begun for Caesar and rebuilt larger by Augustus, who dedicated it again in 12 CE. It
+  burned under Carinus and was restored by Diocletian, with different materials but the same
+  form.
+author: machine:claude-code
+same_as: { wikidata: Q616271, pleiades: 173078007, ohm: way/198545345 }
+claims:
+  name:
+    prop: name
+    value: { en: "Basilica Julia", la: "Basilica Iulia" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 12 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Basilica Iulia, p. 79"
+      quote: "rebuilt in an enlarged form by Augustus, dedicated again in 12 A.D."
+    method: historical-account
+    note: >-
+      Begun perhaps in 54 BCE and dedicated unfinished in 46 BCE, the first basilica burned and
+      Augustus rebuilt it in an enlarged form, the building drawn here, which he dedicated again
+      in 12 CE in the names of Gaius and Lucius Caesar. P&A adds that it is not certain the
+      building was entirely finished then.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198545345 }
+    method: compilation
+    basis: reconstruction
+  form:
+    prop: form
+    value: { type: basilica, order: doric, storeys: 2, aisles: 2, faces: 25 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Iulia, p. 79"
+        quote: "surrounded on all sides by two aisles, 7.50 metres wide, over which were the galleries of a second story"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Iulia, p. 80"
+        quote: "on the outer faces of its pillars were engaged columns of the Doric order"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Basilica Iulia, p. 79"
+        quote: "In the later restorations the material of construction, but not the form, was changed"
+    note: >-
+      faces is read from the plan: the basilica fronts on the Sacra Via, along its long
+      north-east side, toward the forum square (P&A calls it the north side).
+  location:
+    prop: location
+    value: { lat: 41.891998, lon: 12.484790, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198545345 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [way/198545345] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: way/198545345 }
+    method: map-trace
+    basis: reconstruction

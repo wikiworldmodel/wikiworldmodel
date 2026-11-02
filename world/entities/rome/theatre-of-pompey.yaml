@@ -1,0 +1,68 @@
+# Footprint measured on the map: 119 m by 78 m, long axis on bearing 179° / 359°.
+id: rome/theatre-of-pompey
+kind: building/theatre
+summary: >-
+  The first permanent theatre of Rome, built in stone by Pompey in his second consulship (55 BCE),
+  with a temple of Venus Victrix crowning the cavea and the Porticus of Pompey beside the stage.
+  Burned in 21, 80, 247 and probably again about 283 CE, it was each time restored, last by
+  Diocletian and Maximian, so it stood in 315; Theodoric still had it repaired in 507 to 511.
+author: machine:claude-code
+same_as: { wikidata: Q944814, ohm: relation/2753751 }
+claims:
+  name:
+    prop: name
+    value: { en: "Theatre of Pompey", la: "Theatrum Pompeium" }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 55 BCE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Theatrum Pompei, p. 515"
+      quote: "the first permanent theatre in Rome, built of stone by Pompeius in his second consulship in 55 B.c."
+    method: historical-account
+    note: >-
+      Platner and Ashby give 55 BCE as the common version of the dedication; the temple of Venus
+      Victrix at the top of the cavea was dedicated in 52.
+  end:
+    prop: end
+    value: 500 CE
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753751 }
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Platner and Ashby record a last restoration by Symmachus at the command of Theodoric between
+      507 and 511, so the theatre stood after the year given here.
+  form:
+    prop: form
+    value: { type: theatre, tiers: 3, faces: 89 }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Theatrum Pompei, p. 517"
+        quote: "consisted of three series of arcades, adorned with columns, the lowest arcade being of the Doric order, the second Ionic, and the third Corinthian"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Theatrum Pompei, p. 517"
+        quote: "Immediately outside the south-east side of the scaena was the Porticus Pompeii"
+    note: >-
+      Three tiers of arcades, Doric, Ionic and Corinthian from the bottom. faces is the bearing
+      from the seating to the stage. The Porticus Pompei adjoined the back of the stage; Platner
+      and Ashby put it outside the south-east side of the scaena, and the traced footprint of the
+      portico lies due east of the traced theatre, so the stage is taken at the east end: 89.
+  location:
+    prop: location
+    value: { lat: 41.895438, lon: 12.473199, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753751 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2753751] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753751 }
+    method: map-trace
+    basis: reconstruction

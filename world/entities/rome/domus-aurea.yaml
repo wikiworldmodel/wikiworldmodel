@@ -1,0 +1,72 @@
+# Footprint measured on the map: 787 m by 604 m, long axis on bearing 83° / 263°.
+id: rome/domus-aurea
+kind: building/palace
+summary: >-
+  Nero's Golden House, a vast palace-and-park estate begun after the fire of 64 CE and unfinished at
+  his death in 68, with pavilions, gardens and an artificial lake spread from the Palatine to the
+  Esquiline. His successors gave the land back to the public (the Colosseum rose on the lake), the
+  main palace on the Oppian Hill burned in 104 and Trajan buried it under his baths, and Hadrian
+  destroyed the vestibule in 121; by 315 it was long gone.
+author: machine:claude-code
+same_as: { wikidata: Q622438, ohm: relation/2753832 }
+claims:
+  name:
+    prop: name
+    value: { en: "Golden House of Nero", la: "Domus Aurea" }
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Domus: Aurea, p. 166"
+      quote: "a huge palace built by Nero after the fire of 64"
+  start:
+    prop: start
+    value: { lo: 64 CE, hi: 68 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Aurea, p. 166"
+        quote: "a huge palace built by Nero after the fire of 64"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Aurea, p. 171"
+        quote: "At the time of Nero's death the Golden House was not completed"
+    method: historical-account
+    note: >-
+      Built after the fire of 64 and unfinished at Nero's death in 68; Otho assigned money to finish
+      it (Suetonius, as P&A cite it).
+  end:
+    prop: end
+    value: { lo: 104 CE, hi: 121 CE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Aurea, p. 172"
+        quote: "when a fire in 104 A.D. destroyed the Golden House"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Aurea, p. 170"
+        quote: "were covered over and filled up by Trajan"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Domus: Aurea, p. 172"
+        quote: "The vestibule was finally destroyed by Hadrian in 121"
+    method: historical-account
+    note: >-
+      Vespasian began by draining the lake and building the Colosseum on its site, and Titus built
+      baths there, but the main palace on the Oppian Hill was still in use under Titus. A fire in
+      104 destroyed it and Trajan filled its rooms and built his baths over them (dedicated in 109).
+      Hadrian destroyed the vestibule in 121 for the temple of Venus and Roma, and after that, P&A
+      say, the Golden House has no history. The map's earlier end of 79 CE does not fit, since the
+      main palace was still in use under Titus.
+  location:
+    prop: location
+    value: { lat: 41.890388, lon: 12.492782, frame: frame:earth/present-day }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753833 }
+    method: map-trace
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  footprint:
+    prop: footprint
+    value: { from: src:ohm-rome-2026-11-01, elements: [relation/2753832] }
+    source: { ref: src:ohm-rome-2026-11-01, loc: relation/2753833 }
+    method: map-trace
+    basis: reconstruction
