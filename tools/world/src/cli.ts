@@ -9,8 +9,9 @@ import { REPO } from './paths.ts';
 import { loadWorld } from './world.ts';
 
 const commands: Record<string, (args: string[]) => Promise<number | void>> = {
-  async fetch() {
-    await fetchAll();
+  // Every dataset, or only those named: `npm run fetch -- src:paleomap-plate-model`.
+  async fetch(ids) {
+    await fetchAll(console.log, ids);
   },
   async import() {
     await fetchAll();
@@ -39,6 +40,12 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
   async build(args) {
     const { runBuild } = await import('./build/index.ts');
     return runBuild(args);
+  },
+  // The public site for Cloudflare Pages, from site/, the built viewer and the latest build.
+  async site([out = 'dist/public']) {
+    const { assembleSite } = await import('./site.ts');
+    const r = assembleSite({ landing: join(REPO, 'site'), viewer: join(REPO, 'dist/site'), builds: join(REPO, 'dist/builds'), out: join(REPO, out) });
+    console.log(`site: build ${r.build}, ${r.files} files, ${(r.bytes / 1e6).toFixed(1)} MB → ${out}`);
   },
 };
 

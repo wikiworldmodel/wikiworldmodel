@@ -163,8 +163,15 @@ export class CityRenderer {
 
   /** The cells to draw this frame; the scene sets it. */
   shadowCells: (focus: V3, radius: number) => CellGPU[] = () => [];
+  /**
+   * The lighter way to draw, for slow machines and software rendering: one sample a pixel, no
+   * shadows, no occlusion and no bloom. Their textures are cleared once to "lit", "open" and
+   * "none", so the shaders are the same in both ways.
+   */
+  private fast: boolean;
 
-  constructor(private gl: GL) {
+  constructor(private gl: GL, opts: { fast?: boolean } = {}) {
+    this.fast = !!opts.fast;
     const ext = gl.getExtension('EXT_color_buffer_float');
     if (!ext) throw new Error('This view of the city needs floating-point render targets (EXT_color_buffer_float).');
     gl.getExtension('OES_texture_float_linear');
@@ -444,7 +451,7 @@ void main() {
     this.w = w;
     this.h = h;
     const maxS = (gl.getInternalformatParameter(gl.RENDERBUFFER, gl.RGBA16F, gl.SAMPLES) as Int32Array | null)?.[0] ?? 0;
-    this.samples = Math.min(4, maxS);
+    this.samples = this.fast ? 0 : Math.min(4, maxS);
     if (!this.msFb) {
       this.msFb = gl.createFramebuffer()!;
       this.msColor = gl.createRenderbuffer()!;
@@ -493,6 +500,19 @@ void main() {
     target(aw, ah, gl.R8, gl.RED, gl.UNSIGNED_BYTE, this.aoTex, this.aoFb);
     target(aw, ah, gl.R8, gl.RED, gl.UNSIGNED_BYTE, this.aoTex, this.aoFb);
     for (let k = 0; k < 3; k++) target(Math.max(1, w >> (k + 1)), Math.max(1, h >> (k + 1)), gl.RGBA16F, gl.RGBA, gl.HALF_FLOAT, this.bloomTex, this.bloomFb);
+    if (this.fast) {
+      // Nothing occluded, nothing glowing: the passes that would fill these are skipped.
+      const fill = (fbs: WebGLFramebuffer[], v: number) => {
+        for (const f of fbs) {
+          gl.bindFramebuffer(gl.FRAMEBUFFER, f);
+          gl.clearColor(v, v, v, v);
+          gl.clear(gl.COLOR_BUFFER_BIT);
+        }
+      };
+      fill(this.aoFb, 1);
+      fill(this.bloomFb, 0);
+      gl.clearColor(0, 0, 0, 0);
+    }
     gl.activeTexture(gl.TEXTURE0);
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
   }
@@ -656,6 +676,8 @@ void main() {
       this.shadowKeys[k] = key;
       gl.bindFramebuffer(gl.FRAMEBUFFER, this.shadowFb[k]);
       gl.clear(gl.DEPTH_BUFFER_BIT);
+      // The fast way casts no shadows: a cleared map lights everything.
+      if (this.fast) continue;
       // Everything's position already has the eye taken off for the camera; here it is absolute.
       gl.useProgram(this.depthP.program);
       setUniforms(gl, this.depthP, { uViewProj: m, uEye: [0, 0, 0], uTime: f.time });
@@ -745,33 +767,36 @@ void main() {
     }
     gl.clear(gl.DEPTH_BUFFER_BIT);
 
-    // The near scene's depth, for its occlusion.
-    gl.colorMask(false, false, false, false);
-    gl.useProgram(this.terrainDepthP.program);
-    setUniforms(gl, this.terrainDepthP, { uViewProj: vp, uEye: f.eye });
-    this.setGrids(this.terrainDepthP);
-    this.drawRings(this.terrainDepthP, f.eye, finest, Math.min(split, last), finest);
-    gl.useProgram(this.depthP.program);
-    setUniforms(gl, this.depthP, { uViewProj: vp, uEye: f.eye, uTime: f.time });
-    // Both sides, as the lit pass draws them.
-    gl.disable(gl.CULL_FACE);
-    for (const c of cells) {
-      gl.bindVertexArray(c.vao);
-      gl.drawElements(gl.TRIANGLES, c.count, gl.UNSIGNED_INT, 0);
+    // The near scene's depth, for its occlusion. The fast way has none, and its lit pass writes
+    // the depth itself.
+    if (!this.fast) {
+      gl.colorMask(false, false, false, false);
+      gl.useProgram(this.terrainDepthP.program);
+      setUniforms(gl, this.terrainDepthP, { uViewProj: vp, uEye: f.eye });
+      this.setGrids(this.terrainDepthP);
+      this.drawRings(this.terrainDepthP, f.eye, finest, Math.min(split, last), finest);
+      gl.useProgram(this.depthP.program);
+      setUniforms(gl, this.depthP, { uViewProj: vp, uEye: f.eye, uTime: f.time });
+      // Both sides, as the lit pass draws them.
+      gl.disable(gl.CULL_FACE);
+      for (const c of cells) {
+        gl.bindVertexArray(c.vao);
+        gl.drawElements(gl.TRIANGLES, c.count, gl.UNSIGNED_INT, 0);
+      }
+      gl.bindVertexArray(null);
+      gl.colorMask(true, true, true, true);
+      gl.bindFramebuffer(gl.READ_FRAMEBUFFER, this.msFb);
+      gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER, this.resolveFb);
+      gl.blitFramebuffer(0, 0, this.w, this.h, 0, 0, this.w, this.h, gl.DEPTH_BUFFER_BIT, gl.NEAREST);
+      this.occlusion(f);
     }
-    gl.bindVertexArray(null);
-    gl.colorMask(true, true, true, true);
-    gl.bindFramebuffer(gl.READ_FRAMEBUFFER, this.msFb);
-    gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER, this.resolveFb);
-    gl.blitFramebuffer(0, 0, this.w, this.h, 0, 0, this.w, this.h, gl.DEPTH_BUFFER_BIT, gl.NEAREST);
-    this.occlusion(f);
 
     // The near scene, lit.
     gl.bindFramebuffer(gl.FRAMEBUFFER, this.msFb);
     gl.viewport(0, 0, this.w, this.h);
     gl.enable(gl.DEPTH_TEST);
-    gl.depthFunc(gl.LEQUAL);
-    gl.depthMask(false);
+    gl.depthFunc(this.fast ? gl.LESS : gl.LEQUAL);
+    gl.depthMask(this.fast);
     gl.enable(gl.CULL_FACE);
     gl.activeTexture(gl.TEXTURE0 + UNIT.ao);
     gl.bindTexture(gl.TEXTURE_2D, this.aoTex[1]);
@@ -851,7 +876,8 @@ void main() {
     let src = this.colorTex;
     let sw = this.w;
     let sh = this.h;
-    this.bloomTex.forEach((t, k) => {
+    // The fast way's bloom textures stay cleared.
+    if (!this.fast) this.bloomTex.forEach((t, k) => {
       const tw = Math.max(1, this.w >> (k + 1));
       const th = Math.max(1, this.h >> (k + 1));
       gl.bindTexture(gl.TEXTURE_2D, src);

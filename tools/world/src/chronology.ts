@@ -34,7 +34,25 @@ export interface ClaimGroup {
   claims: Claim[];
 }
 
+const groupsOf = new WeakMap<World, { list: ClaimGroup[]; byKey: Map<string, ClaimGroup> }>();
+
+/**
+ * The world's claims grouped by subject and property, in key order. A loaded world does not
+ * change, so this is worked out once per world: callers ask for it per entity, and redoing it
+ * each time made validation quadratic in the size of the world.
+ */
 export function claimGroups(world: World): ClaimGroup[] {
+  return indexGroups(world).list;
+}
+
+/** The group of one subject's property, if it has claims. */
+export function claimGroup(world: World, subject: string, prop: string): ClaimGroup | undefined {
+  return indexGroups(world).byKey.get(`${subject}|${prop}`);
+}
+
+function indexGroups(world: World): { list: ClaimGroup[]; byKey: Map<string, ClaimGroup> } {
+  const known = groupsOf.get(world);
+  if (known) return known;
   const groups = new Map<string, ClaimGroup>();
   for (const e of world.entities) {
     for (const c of e.claims) {
@@ -45,7 +63,9 @@ export function claimGroups(world: World): ClaimGroup[] {
       groups.set(key, g);
     }
   }
-  return [...groups.values()].sort((a, b) => (a.key < b.key ? -1 : 1));
+  const index = { list: [...groups.values()].sort((a, b) => (a.key < b.key ? -1 : 1)), byKey: groups };
+  groupsOf.set(world, index);
+  return index;
 }
 
 /**

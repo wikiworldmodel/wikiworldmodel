@@ -1,16 +1,24 @@
-# CI for the world and the viewer: fetch pinned datasets, validate (the contradiction fixture
-# must fail), build twice and compare, run unit tests, then drive the viewer in Chromium and
-# compare its renders with the goldens.
-name: CI
+# Checks, on every pull request and every push to master. They need only the code, the records and the plate
+# model (1 MB), so they take about a minute and grow slowly with the world: the typecheck, the
+# validator (schema, references, vocabularies, licenses, chronology, plate frames) and the unit
+# tests. Building the world, and drawing it, happen elsewhere: build.yml when master changes or
+# a pull request changes how the world is built, render.yml nightly.
+name: Checks
 
 on:
   push:
+    branches: [master]
   pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  world-and-viewer:
+  checks:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
 
@@ -33,10 +41,19 @@ jobs:
       - uses: actions/cache@v6
         with:
           path: .cache/datasets
-          key: datasets-${{ hashFiles('world/manifest.yaml') }}
+          key: plate-model-${{ hashFiles('world/manifest.yaml') }}
 
-      - name: Fetch pinned datasets
-        run: npm run fetch
+      # Where each located record falls on the plate model. Each answer is kept on its own, so
+      # a run asks pyGPlates only about locations it has not seen; the newest run's set is
+      # restored and saved again with whatever it added.
+      - uses: actions/cache@v6
+        with:
+          path: .cache/import/points@*.json
+          key: points-${{ hashFiles('world/manifest.yaml', 'tools/world/importers/**') }}-${{ github.run_id }}
+          restore-keys: points-${{ hashFiles('world/manifest.yaml', 'tools/world/importers/**') }}-
+
+      - name: Fetch the plate model
+        run: npm run fetch -- src:paleomap-plate-model
 
       - name: Typecheck
         run: npm run typecheck
@@ -44,30 +61,5 @@ jobs:
       - name: Validate the world
         run: npm run validate
 
-      - name: The contradiction fixture must fail validation
-        run: |
-          if npm run validate -- --world tools/world/test/fixtures/contradiction --no-frames; then
-            echo "the contradictory fixture validated" >&2
-            exit 1
-          fi
-
-      - name: Build the world
-        run: npm run build:world
-
-      - name: Unit tests (includes building twice and comparing)
+      - name: Unit tests
         run: npm test
-
-      - name: Build the viewer
-        run: npm run build:viewer
-
-      - name: Browser tests
-        run: |
-          npx playwright install --with-deps chromium
-          npm run test:e2e
-
-      - uses: actions/upload-artifact@v7
-        if: failure()
-        with:
-          name: test-results
-          path: test-results
-          retention-days: 7

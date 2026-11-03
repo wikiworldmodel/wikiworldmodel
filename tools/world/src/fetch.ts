@@ -61,7 +61,9 @@ async function fetchDataset(id: string, d: Dataset, log: (s: string) => void): P
   log(`${id}: ok (${expected.slice(0, 12)})`);
 }
 
-export async function fetchAll(log: (s: string) => void = console.log): Promise<void> {
+/** Fetch every dataset in the manifest, or only those named. */
+export async function fetchAll(log: (s: string) => void = console.log, only: string[] = []): Promise<void> {
   const manifest = await loadManifest();
-  for (const [id, d] of Object.entries(manifest.datasets)) await fetchDataset(id, d, log);
+  for (const id of only) if (!manifest.datasets[id]) throw new Error(`${id} is not a dataset in the manifest`);
+  for (const [id, d] of Object.entries(manifest.datasets)) if (!only.length || only.includes(id)) await fetchDataset(id, d, log);
 }

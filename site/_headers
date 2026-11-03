@@ -1,0 +1,14 @@
+# Headers for Cloudflare Pages (https://developers.cloudflare.com/pages/configuration/headers/).
+# The site's layout is in tools/world/src/site.ts: builds are named by their content, so a file
+# under one never changes; the index naming the latest build does.
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+/world/builds/:build/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+/world/builds/index.json
+  Cache-Control: no-cache
+  Access-Control-Allow-Origin: *

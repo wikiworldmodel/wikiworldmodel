@@ -20,6 +20,12 @@ export interface ViewState {
   sel: string | null;
   /** the hour of the day, in a city's light */
   hour: number;
+  /**
+   * A lighter way to draw the city, for slow machines and for tests run in software: no
+   * shadows, occlusion, bloom or multisampling, and coarse meshes only. A link keeps it, so a
+   * view and the view reloaded from its link are drawn alike.
+   */
+  quality?: 'fast';
 }
 
 /** The hours a city can be lit by: the sun is low but up at each end. Its sky has no twilight or night yet. */
@@ -63,6 +69,7 @@ export function toSearch(build: string, s: ViewState): string {
   if (s.alt.length) p.set('alt', [...s.alt].sort().join(','));
   if (s.picks.length) p.set('pick', [...s.picks].sort().join(','));
   if (s.sel) p.set('sel', s.sel);
+  if (s.quality) p.set('quality', s.quality);
   return `?${p.toString()}`;
 }
 
@@ -97,6 +104,7 @@ export function fromSearch(search: string, defaults: ViewState): { build?: strin
     picks: list('pick'),
     sel: p.get('sel'),
     hour: num('hour', defaults.hour),
+    quality: p.get('quality') === 'fast' ? 'fast' : undefined,
   });
   return { build: buildOf(search), state };
 }

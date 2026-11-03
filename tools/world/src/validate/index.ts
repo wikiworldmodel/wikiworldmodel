@@ -9,7 +9,7 @@ import { formProblem } from '../../../../core/city.ts';
 import { parseRef, RefError, splitRef } from '../../../../core/refs.ts';
 import type { Constraint, Conflict, Solution } from '../../../../core/stn.ts';
 import { parseLag, parseTime, TimeError, toMa } from '../../../../core/time.ts';
-import { available, chosen, claimGroups, pictures, pointOf, solveScenario, solveVariants, type Scenario } from '../chronology.ts';
+import { available, chosen, claimGroup, claimGroups, pictures, pointOf, solveScenario, solveVariants, type Scenario } from '../chronology.ts';
 import { resolvePoints } from '../importer.ts';
 import { WORLD } from '../paths.ts';
 import { kindIs, loadWorld, schemaDir, type Claim, type Entity, type Relation, type World } from '../world.ts';
@@ -437,7 +437,7 @@ function checkChronology(world: World, issues: Issue[]): void {
 
 /** The chosen claim of an entity's property in a picture. */
 export function claimOf(world: World, subject: string, prop: string, s: Scenario = {}): Claim | undefined {
-  const g = claimGroups(world).find((x) => x.subject === subject && x.prop === prop);
+  const g = claimGroup(world, subject, prop);
   return g ? chosen(g, s) : undefined;
 }
 

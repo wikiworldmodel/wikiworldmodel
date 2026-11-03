@@ -106,17 +106,27 @@ export interface PointResult {
   existsAt?: Record<string, boolean>;
 }
 
-/** Which plate polygon contains each present-day point, and whether it exists at given ages. */
+/**
+ * Which plate polygon contains each present-day point, and whether it exists at given ages.
+ * Answers are kept one per point, keyed by the importer, the plate model and the query, so a
+ * change to the world asks pyGPlates only about the points it adds or moves.
+ */
 export async function resolvePoints(points: PointQuery[]): Promise<PointResult[]> {
   const pm = await plateModel();
-  const request = { rotations: pm.rotations, polygons: pm.polygons, points };
-  const key = await importKey({ checksums: { [PLATE_MODEL]: pm.sha256 }, points });
-  const cached = join(CACHE, 'import', `points@${key}.json`);
-  if (existsSync(cached)) return JSON.parse(await readFile(cached, 'utf8')).points;
-  await mkdir(join(CACHE, 'import'), { recursive: true });
-  const reqPath = join(CACHE, 'import', `points@${key}.request.json`);
-  await writeFile(reqPath, JSON.stringify(request));
-  const stdout = execFileSync(python(), [IMPORTER, 'points', reqPath], { encoding: 'utf8' });
-  await writeFile(cached, stdout);
-  return JSON.parse(stdout).points;
+  const prefix = await importKey({ checksums: { [PLATE_MODEL]: pm.sha256 } });
+  const file = join(CACHE, 'import', `points@${prefix}.json`);
+  const known: Record<string, Omit<PointResult, 'id'>> = existsSync(file) ? JSON.parse(await readFile(file, 'utf8')) : {};
+  const keyOf = (p: PointQuery) => stableStringify([p.lat, p.lon, p.agesMa]);
+  const missing = new Map<string, PointQuery>();
+  for (const p of points) if (!known[keyOf(p)]) missing.set(keyOf(p), { ...p, id: keyOf(p) });
+  if (missing.size) {
+    await mkdir(join(CACHE, 'import'), { recursive: true });
+    const reqPath = join(CACHE, 'import', `points@${prefix}.request.json`);
+    await writeFile(reqPath, JSON.stringify({ rotations: pm.rotations, polygons: pm.polygons, points: [...missing.values()] }));
+    const stdout = execFileSync(python(), [IMPORTER, 'points', reqPath], { encoding: 'utf8' });
+    for (const { id, ...r } of JSON.parse(stdout).points as PointResult[]) known[id] = r;
+    const sorted = Object.fromEntries(Object.entries(known).sort(([a], [b]) => (a < b ? -1 : 1)));
+    await writeFile(file, JSON.stringify(sorted));
+  }
+  return points.map((p) => ({ id: p.id, ...known[keyOf(p)] }));
 }
