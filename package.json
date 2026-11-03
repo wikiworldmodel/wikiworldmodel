@@ -17,7 +17,8 @@
     "build:site": "tsx tools/world/src/cli.ts site",
     "serve": "vite preview --config viewer/vite.config.ts --port 4173 --strictPort",
     "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test": "vitest run",
+    "test": "vitest run --project unit",
+    "test:build": "vitest run --project build",
     "test:e2e": "playwright test",
     "check": "npm run typecheck && npm run validate && npm test"
   },

@@ -325,8 +325,9 @@ GitHub ── merge to main ──► CI: validate, build (content-hashed), test
 - **Hosting.** Cloudflare R2 for builds and the dataset mirror. It has no egress fees,
   which matters for a viewer that streams tiles (section 12). Cloudflare Pages serves the
   landing page, the viewer and the entity pages.
-- **Today.** CI publishes every push to Cloudflare Pages once its tests pass: `master` to
-  worldmodelzero.com, other branches to preview addresses on `worldmodelzero.pages.dev`.
+- **Today.** The Build workflow publishes `master` to Cloudflare Pages at
+  worldmodelzero.com once the build's checks pass, and any branch it is run on by hand to a
+  preview address on `worldmodelzero.pages.dev`.
   Each deployment carries the landing page, the viewer and the latest build, put together by
   `npm run build:site` (`tools/world/src/site.ts`). That is enough while a build is tens of
   megabytes and one is kept; builds move to R2 when pinned links need older builds, or when
@@ -427,16 +428,21 @@ Rough monthly costs at modest traffic, as of late 2026 (check current prices):
 | **Total** | | **roughly $10–50 a month** |
 
 Fixed costs stay small because nothing renders on a server. What can grow is CI time: a
-full build takes several minutes, and the browser tests 10–15 on SwiftShader. Two measures
-keep it in hand:
+full build takes several minutes, and the browser tests 10–15 on SwiftShader, minutes a view
+for the city at full quality. So CI is in tiers, and only the first runs on every pull
+request:
 
-- **Cache the import.** The import (`.cache/import/`) is cached by its input hash; CI
-  should cache it as it caches the datasets.
-- **Shard by what changed.**
-  - A pull request that changes only records runs the validators, the build and the
-    browser tests that touch its area.
-  - Code changes run everything.
-  - `main` always runs everything.
+- **Checks**, about a minute: the typecheck, the validators and the unit tests, from the
+  code, the records and the plate model alone. Their cost grows with the world, so keep it
+  near-linear: the plate-frame lookups are cached per location, and a world-wide pass that
+  turns quadratic (as `claimOf` did, at 13 of validation's 19 seconds) is a bug. When the
+  world is large enough that validating all of it takes minutes, the next step is to check
+  what a change touches and its neighbours.
+- **Build**, when `master` changes or a pull request changes how the world is built: every
+  dataset, the build, checks on it, and the deployment. Records alone don't trigger it; the
+  validators are their check. The import is cached by its input hash.
+- **Render**, nightly: the browser tests against their goldens. A failure means a picture
+  changed, for a person to look at.
 
 ## 9. Security and trust
 
@@ -491,10 +497,8 @@ keep it in hand:
 
 ### Phase 0: ready to open (2–4 weeks)
 
-- [ ] Make CI green on `main`. Give the city renderer a test tier (no AO, MSAA or bloom;
-      small shadow maps) used under SwiftShader, and regenerate the city goldens for it.
-      Shard the browser tests across jobs, and move full-quality city goldens to a nightly
-      GPU run.
+- [x] Make CI green on `main`, and quick: checks on every pull request, the build when
+      the code that makes it changes, the renders nightly (section 10).
 - [ ] Choose and add the licenses (section 4): `LICENSE` (code), `LICENSE-DATA` (records),
       the DCO check, `ATTRIBUTION.md` written by the build.
 - [ ] `README` for newcomers, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`,

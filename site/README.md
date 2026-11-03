@@ -26,9 +26,10 @@ build the world and the viewer, then `npm run build:site` and serve `dist/public
 
 ## Publishing
 
-CI publishes the site to Cloudflare Pages, project `worldmodelzero`, once a push's tests pass
-(the `deploy` job in `.github/workflows/ci.yml`): `master` to production, any other branch of
-this repository to a preview at `<branch>.worldmodelzero.pages.dev`. `_headers` sets the
+The Build workflow (`.github/workflows/build.yml`) publishes the site to Cloudflare Pages,
+project `worldmodelzero`, once the build's checks pass: `master` to production on every push,
+and any other branch to a preview at `<branch>.worldmodelzero.pages.dev` when the workflow is
+run on it by hand (Actions → Build → Run workflow). `_headers` sets the
 caching: a build's files never change, so they are cached for a year; the index naming the
 latest build is not cached.
 
@@ -42,8 +43,8 @@ Setting it up, once, in Cloudflare and GitHub:
 3. **The secrets.** In GitHub, Settings → Secrets and variables → Actions: add
    `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. Without them the deploy job says so and
    publishes nothing.
-4. **The first deployment.** Push to `master` (or re-run CI on it). The job creates the Pages
-   project the first time.
+4. **The first deployment.** Push to `master`, or run the Build workflow by hand. The job
+   creates the Pages project the first time.
 5. **The domain on the project.** Workers & Pages → worldmodelzero → Custom domains: add
    `worldmodelzero.com`, and `www.worldmodelzero.com` if wanted (a redirect rule can send it to
    the bare domain). Cloudflare adds the DNS records and the certificate.

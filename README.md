@@ -75,17 +75,27 @@ In the viewer:
 ## Checks
 
 ```sh
-npm run validate      # what CI runs on every change to the world (--verbose for notes)
-npm test              # unit tests
+npm run validate      # the world: schema, references, licenses, chronology, plate frames
+npm test              # unit tests: no build needed
+npm run test:build    # checks on a build (npm run build:world first), reproducibility included
 npm run build:viewer && npm run test:e2e   # browser tests, golden renders included
 ```
 
-The browser tests come in three groups, which can be run alone with `--project`: `globe` (the
-globe and the viewer), `city` (the city's behaviour, drawn the fast way) and `city-views` (the
-city at full quality, minutes a view in software). CI runs the first two on every change, and
-`city-views` on changes to what the city is drawn from, nightly and on demand. Adding
-`quality=fast` to a link draws the city without shadows, occlusion, bloom or multisampling, from
-coarse meshes, for slow machines.
+CI runs in three tiers, so that the checks on a pull request stay quick as the world grows:
+
+- **Checks** (`ci.yml`), on every push and pull request, in about a minute: the typecheck,
+  `npm run validate` and `npm test`. They need only the plate model, 1 MB from GitHub, and
+  pyGPlates is asked only about locations it has not placed before.
+- **Build** (`build.yml`), when master changes, when a pull request changes how the world is
+  built, and by hand: every dataset, `npm run build:world`, `npm run test:build`, the viewer,
+  and on master the site's deployment.
+- **Render** (`render.yml`), nightly and by hand: the browser tests against their goldens, in
+  three groups that can also be run alone with `--project`: `globe`, `city` (the city's
+  behaviour, drawn the fast way) and `city-views` (the city at full quality, minutes a view in
+  software).
+
+Adding `quality=fast` to a link draws the city without shadows, occlusion, bloom or
+multisampling, from coarse meshes, for slow machines.
 
 After an intended change to the renderer or the world, regenerate the golden renders with
 `npx playwright test --update-snapshots` and review the image diff.

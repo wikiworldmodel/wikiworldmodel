@@ -1,6 +1,6 @@
 // The city as drawn at full quality, against goldens: shadows, occlusion, bloom and fine meshes.
-// In software each view takes minutes, so these run in their own CI job (city-views.yml): on
-// changes to the city's code or records, nightly, and on demand.
+// In software each view takes minutes, so these run with the other browser tests in render.yml,
+// nightly and on demand.
 import { expect, test } from '@playwright/test';
 import { canvasPng, idle, latestBuild } from './helpers.ts';
 

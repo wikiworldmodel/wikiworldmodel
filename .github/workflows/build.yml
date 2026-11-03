@@ -1,0 +1,94 @@
+# Builds the world and the viewer, checks the build (reproducible to the byte, and what it holds),
+# and publishes the site to Cloudflare Pages: master to worldmodelzero.com. It runs when master
+# changes, when a pull request changes how the world is built, and by hand on any branch, which
+# publishes a preview. Pull requests that only change records don't need it: the checks validate
+# them.
+name: Build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    paths:
+      - 'core/**'
+      - 'tools/world/src/**'
+      - 'tools/world/importers/**'
+      - 'world/generators/**'
+      - 'world/manifest.yaml'
+      - 'world/schema/**'
+      - 'viewer/**'
+      - 'site/**'
+      - 'package-lock.json'
+      - '.github/workflows/build.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/master' }}
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      PROJECT: worldmodelzero
+      WRANGLER: wrangler@4.151.2
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: tools/world/importers/requirements.txt
+
+      - name: Install
+        run: |
+          npm ci
+          python -m pip install -r tools/world/importers/requirements.txt
+
+      - uses: actions/cache@v6
+        with:
+          path: .cache/datasets
+          key: datasets-${{ hashFiles('world/manifest.yaml') }}
+
+      # What the importers make of the datasets, keyed by everything that could change it. No
+      # partial restores: a change to the code imports afresh.
+      - uses: actions/cache@v6
+        with:
+          path: .cache/import
+          key: import-${{ hashFiles('world/manifest.yaml', 'world/snapshots/**', 'tools/world/importers/**', 'tools/world/src/**', 'world/generators/**') }}
+
+      - name: Fetch the datasets
+        run: npm run fetch
+
+      - name: Build the world
+        run: npm run build:world
+
+      - name: Check the build (includes building again and comparing)
+        run: npm run test:build
+
+      - name: Build the viewer and put the site together
+        run: |
+          npm run build:viewer
+          npm run build:site -- dist/public
+
+      - name: Publish to Cloudflare Pages
+        if: github.event_name != 'pull_request' && env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != ''
+        run: |
+          # The project is made on the first deployment; after that this fails and is ignored.
+          npx --yes "$WRANGLER" pages project create "$PROJECT" --production-branch=master 2>/dev/null || true
+          npx --yes "$WRANGLER" pages deploy dist/public --project-name="$PROJECT" \
+            --branch="${{ github.ref_name }}" --commit-hash="${{ github.sha }}"
+
+      - name: Say why nothing was published
+        if: github.event_name != 'pull_request' && (env.CLOUDFLARE_API_TOKEN == '' || env.CLOUDFLARE_ACCOUNT_ID == '')
+        run: |
+          echo "::notice::Not published: the repository has no CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID secrets (see site/README.md)."

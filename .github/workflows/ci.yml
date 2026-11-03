@@ -1,24 +1,22 @@
-# CI for the world and the viewer. One job fetches the pinned datasets, validates the world (the
-# contradiction fixture must fail), builds it, runs the unit tests (which build twice and compare)
-# and builds the viewer. Two jobs then drive the viewer in Chromium on that build, in parallel:
-# the globe and the viewer against their goldens, and the city's behaviour drawn the fast way. The
-# city's full-quality views take minutes each in software; city-views.yml runs them. When all pass,
-# a push to this repository is published to Cloudflare Pages: master to worldmodelzero.com, any
-# other branch to a preview address.
-name: CI
+# Checks, on every push and pull request. They need only the code, the records and the plate
+# model (1 MB), so they take about a minute and grow slowly with the world: the typecheck, the
+# validator (schema, references, vocabularies, licenses, chronology, plate frames) and the unit
+# tests. Building the world, and drawing it, happen elsewhere: build.yml when master changes or
+# a pull request changes how the world is built, render.yml nightly.
+name: Checks
 
 on:
   push:
   pull_request:
 
 concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: ${{ github.ref != 'refs/heads/master' && github.ref != 'refs/heads/main' }}
+  group: checks-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  world:
+  checks:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
 
@@ -41,17 +39,19 @@ jobs:
       - uses: actions/cache@v6
         with:
           path: .cache/datasets
-          key: datasets-${{ hashFiles('world/manifest.yaml') }}
+          key: plate-model-${{ hashFiles('world/manifest.yaml') }}
 
-      # What the importers make of the datasets, keyed by everything that could change it. No
-      # partial restores: a change to the code imports afresh.
+      # Where each located record falls on the plate model. Each answer is kept on its own, so
+      # a run asks pyGPlates only about locations it has not seen; the newest run's set is
+      # restored and saved again with whatever it added.
       - uses: actions/cache@v6
         with:
-          path: .cache/import
-          key: import-${{ hashFiles('world/manifest.yaml', 'world/snapshots/**', 'tools/world/importers/**', 'tools/world/src/**', 'world/generators/**') }}
+          path: .cache/import/points@*.json
+          key: points-${{ hashFiles('world/manifest.yaml', 'tools/world/importers/**') }}-${{ github.run_id }}
+          restore-keys: points-${{ hashFiles('world/manifest.yaml', 'tools/world/importers/**') }}-
 
-      - name: Fetch pinned datasets
-        run: npm run fetch
+      - name: Fetch the plate model
+        run: npm run fetch -- src:paleomap-plate-model
 
       - name: Typecheck
         run: npm run typecheck
@@ -59,111 +59,5 @@ jobs:
       - name: Validate the world
         run: npm run validate
 
-      - name: The contradiction fixture must fail validation
-        run: |
-          if npm run validate -- --world tools/world/test/fixtures/contradiction --no-frames; then
-            echo "the contradictory fixture validated" >&2
-            exit 1
-          fi
-
-      - name: Build the world
-        run: npm run build:world
-
-      - name: Unit tests (includes building twice and comparing)
+      - name: Unit tests
         run: npm test
-
-      - name: Build the viewer
-        run: npm run build:viewer
-
-      - name: Keep the build and the viewer for the browser tests
-        run: echo "BUILD=$(node -p "require('./dist/builds/index.json').latest")" >> "$GITHUB_ENV"
-
-      - uses: actions/upload-artifact@v7
-        with:
-          name: site
-          path: |
-            dist/builds/index.json
-            dist/builds/${{ env.BUILD }}
-            dist/site
-          retention-days: 3
-
-  browser:
-    needs: world
-    runs-on: ubuntu-24.04
-    timeout-minutes: 30
-    strategy:
-      fail-fast: false
-      matrix:
-        project: [globe, city]
-    steps:
-      - uses: actions/checkout@v7
-
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install
-        run: npm ci
-
-      - uses: actions/download-artifact@v7
-        with:
-          name: site
-          path: dist
-
-      - name: Browser tests (${{ matrix.project }})
-        run: |
-          npx playwright install --with-deps chromium
-          npx playwright test --project=${{ matrix.project }}
-
-      - uses: actions/upload-artifact@v7
-        if: failure()
-        with:
-          name: test-results-${{ matrix.project }}
-          path: test-results
-          retention-days: 7
-
-  deploy:
-    needs: [world, browser]
-    if: github.event_name == 'push' && github.repository == 'kvh/lightworld'
-    runs-on: ubuntu-24.04
-    timeout-minutes: 15
-    concurrency:
-      group: deploy-${{ github.ref }}
-      cancel-in-progress: false
-    env:
-      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-      PROJECT: worldmodelzero
-      WRANGLER: wrangler@4.151.2
-    steps:
-      - uses: actions/checkout@v7
-
-      - uses: actions/setup-node@v7
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install
-        run: npm ci
-
-      - uses: actions/download-artifact@v7
-        with:
-          name: site
-          path: dist
-
-      - name: Put the site together
-        run: npm run build:site -- dist/public
-
-      - name: Publish to Cloudflare Pages
-        if: env.CLOUDFLARE_API_TOKEN != '' && env.CLOUDFLARE_ACCOUNT_ID != ''
-        run: |
-          # The project is made on the first deployment; after that this fails and is ignored.
-          npx --yes "$WRANGLER" pages project create "$PROJECT" --production-branch=master 2>/dev/null || true
-          npx --yes "$WRANGLER" pages deploy dist/public --project-name="$PROJECT" \
-            --branch="${{ github.ref_name }}" --commit-hash="${{ github.sha }}"
-
-      - name: Say why nothing was published
-        if: env.CLOUDFLARE_API_TOKEN == '' || env.CLOUDFLARE_ACCOUNT_ID == ''
-        run: |
-          echo "::notice::Not published: the repository has no CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID secrets (see site/README.md)."

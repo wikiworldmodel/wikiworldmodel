@@ -9,8 +9,9 @@ import { REPO } from './paths.ts';
 import { loadWorld } from './world.ts';
 
 const commands: Record<string, (args: string[]) => Promise<number | void>> = {
-  async fetch() {
-    await fetchAll();
+  // Every dataset, or only those named: `npm run fetch -- src:paleomap-plate-model`.
+  async fetch(ids) {
+    await fetchAll(console.log, ids);
   },
   async import() {
     await fetchAll();

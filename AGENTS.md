@@ -53,8 +53,9 @@ npm install
 python3 -m venv .venv && .venv/bin/pip install -r tools/world/importers/requirements.txt
 npm run fetch          # the pinned datasets → .cache/datasets (165 MB)
 npm run validate       # schema, references, vocabularies, review, chronology, plate frames
+npm test               # unit tests (they need only the plate model)
 npm run build:world    # → dist/builds/<id>/
-npm test               # unit tests
+npm run test:build     # checks on that build
 npm run build:viewer && npx playwright test --project=globe   # browser tests (also: city, city-views)
 npm run dev            # the viewer, at http://localhost:5173/
 ```
@@ -64,8 +65,9 @@ Node 22.19+ or 24+, Python 3.12+.
 **Sandboxes with limited network access.** Datasets come from several hosts: GitHub, Zenodo,
 publishers' sites, NOAA, OpenTopography, INGV. If some are blocked where you run:
 
-- `npm run validate` needs only the plate model and the PaleoDEMs, both on GitHub. Records can
-  be written and checked with no other dataset.
+- `npm run validate` and `npm test` need only the plate model, on GitHub:
+  `npm run fetch -- src:paleomap-plate-model`. Records can be written and checked with no other
+  dataset, and these are the checks CI runs on every pull request.
 - `npm run build:world` needs them all. Say in your pull request that you could not build, and
   CI will.
 - Never work around a blocked download with a file from somewhere else: datasets are pinned by
@@ -296,8 +298,10 @@ write its document in the same form, and make every criterion a test.
 - **Generators are deterministic.** They are seeded by stable ids and use only + − × ÷, square
   roots and integer operations, so the build and every browser make the same bytes. A change to
   a generator's output is a new version, not an edit.
-- **Tests.** Unit tests with `npm test`. Browser tests in three groups: `globe`, `city` (drawn
-  with `quality=fast`) and `city-views` (full quality). Golden images change only with a change
+- **Tests.** Unit tests with `npm test`; they run on every pull request, so keep them fast and
+  free of builds. Tests of a build go in the `build` group (`vitest.config.ts`). Browser tests
+  in three groups, run nightly: `globe`, `city` (drawn with `quality=fast`) and `city-views`
+  (full quality). Golden images change only with a change
   that should change them: regenerate them with `--update-snapshots`, look at every diff, and
   say in the pull request why each changed.
 - Builds are reproducible: two builds of the same commit are byte-identical. Keep it so.
@@ -316,7 +320,8 @@ Each work cited, and how it was read (publisher's page, archive.org scan, Perseu
 ## Checks
 - [ ] `npm run validate` passes with no warnings
 - [ ] quotes checked by script against the texts retrieved
-- [ ] `npm run build:world` and `npm test` pass (or: could not fetch <dataset>, so not run)
+- [ ] `npm test` passes; for a change to how the world is built, `npm run build:world` and
+      `npm run test:build` too (or: could not fetch <dataset>, so not run)
 - [ ] seen in the viewer at <link>
 
 ## Open questions
