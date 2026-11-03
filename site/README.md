@@ -41,8 +41,9 @@ Setting it up, once, in Cloudflare and GitHub:
 2. **An API token.** My Profile → API Tokens → Create Token → Custom token, with the account
    permission *Cloudflare Pages: Edit*. Note the account ID too (on the account's home page).
 3. **The secrets.** In GitHub, Settings → Secrets and variables → Actions: add
-   `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. Without them the deploy job says so and
-   publishes nothing.
+   `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as *repository* secrets (not environment,
+   Codespaces or Dependabot secrets, which this workflow cannot see). Without them the Build
+   workflow fails on master, saying why.
 4. **The first deployment.** Push to `master`, or run the Build workflow by hand. The job
    creates the Pages project the first time.
 5. **The domain on the project.** Workers & Pages → worldmodelzero → Custom domains: add
