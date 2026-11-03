@@ -1,4 +1,4 @@
-# Lightworld
+# Lightworld (World Model Zero)
 
 A detailed, sourced history of Earth, life and civilization in four dimensions, and a viewer
 for flying through it. The design is in [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md).
