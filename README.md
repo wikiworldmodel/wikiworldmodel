@@ -83,7 +83,7 @@ npm run build:viewer && npm run test:e2e   # browser tests, golden renders inclu
 
 CI runs in three tiers, so that the checks on a pull request stay quick as the world grows:
 
-- **Checks** (`ci.yml`), on every push and pull request, in about a minute: the typecheck,
+- **Checks** (`ci.yml`), on every pull request and push to master, in about a minute: the typecheck,
   `npm run validate` and `npm test`. They need only the plate model, 1 MB from GitHub, and
   pyGPlates is asked only about locations it has not placed before.
 - **Build** (`build.yml`), when master changes, when a pull request changes how the world is

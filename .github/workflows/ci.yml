@@ -1,4 +1,4 @@
-# Checks, on every push and pull request. They need only the code, the records and the plate
+# Checks, on every pull request and every push to master. They need only the code, the records and the plate
 # model (1 MB), so they take about a minute and grow slowly with the world: the typecheck, the
 # validator (schema, references, vocabularies, licenses, chronology, plate frames) and the unit
 # tests. Building the world, and drawing it, happen elsewhere: build.yml when master changes or
@@ -7,7 +7,9 @@ name: Checks
 
 on:
   push:
+    branches: [master]
   pull_request:
+  workflow_dispatch:
 
 concurrency:
   group: checks-${{ github.ref }}
