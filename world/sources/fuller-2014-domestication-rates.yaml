@@ -1,0 +1,25 @@
+id: src:fuller-2014-domestication-rates
+type: publication
+kind: review
+citation: >-
+  Fuller, D.Q., Denham, T., Arroyo-Kalin, M., … & Purugganan, M.D. (2014). Convergent evolution
+  and parallelism in plant domestication revealed by an expanding archaeological record.
+  Proceedings of the National Academy of Sciences 111(17), 6147–6152.
+authors:
+  - "Fuller, D.Q."
+  - "Denham, T."
+  - "Arroyo-Kalin, M."
+  - "Lucas, L."
+  - "Stevens, C.J."
+  - "Qin, L."
+  - "Allaby, R.G."
+  - "Purugganan, M.D."
+published: 2014
+title: "Convergent evolution and parallelism in plant domestication revealed by an expanding archaeological record"
+container: "Proceedings of the National Academy of Sciences 111(17), 6147–6152"
+doi: 10.1073/pnas.1308937110
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC4035951) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

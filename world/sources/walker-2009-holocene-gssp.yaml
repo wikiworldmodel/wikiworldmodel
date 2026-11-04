@@ -1,0 +1,39 @@
+id: src:walker-2009-holocene-gssp
+type: publication
+kind: review
+citation: >-
+  Walker, M., Johnsen, S., Rasmussen, S.O., Popp, T., Steffensen, J.-P., Gibbard, P., Hoek, W.,
+  Lowe, J., Andrews, J., Björck, S., Cwynar, L.C., Hughen, K., Kershaw, P., Kromer, B., Litt, T.,
+  Lowe, D.J., Nakagawa, T., Newnham, R. & Schwander, J. (2009). Formal definition and dating of
+  the GSSP (Global Stratotype Section and Point) for the base of the Holocene using the Greenland
+  NGRIP ice core, and selected auxiliary records. Journal of Quaternary Science 24(1), 3–17.
+authors:
+  - "Walker, M."
+  - "Johnsen, S."
+  - "Rasmussen, S.O."
+  - "Popp, T."
+  - "Steffensen, J.-P."
+  - "Gibbard, P."
+  - "Hoek, W."
+  - "Lowe, J."
+  - "Andrews, J."
+  - "Björck, S."
+  - "Cwynar, L.C."
+  - "Hughen, K."
+  - "Kershaw, P."
+  - "Kromer, B."
+  - "Litt, T."
+  - "Lowe, D.J."
+  - "Nakagawa, T."
+  - "Newnham, R."
+  - "Schwander, J."
+published: 2009
+title: "Formal definition and dating of the GSSP (Global Stratotype Section and Point) for the base of the Holocene using the Greenland NGRIP ice core, and selected auxiliary records"
+container: "Journal of Quaternary Science 24(1), 3–17"
+doi: 10.1002/jqs.1227
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read through OpenAlex's copy of the publisher's record; the publisher's PDF refused
+    the download. The full text was not read. Its depth and coordinates are from Walker et al.
+    (2018). Citation from Crossref. Quotes checked by script against the text retrieved.

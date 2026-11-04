@@ -1,0 +1,25 @@
+id: src:pbdb/collection-22160
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 22160 ("Middle Awash - Aramis mbr.", ET), occurrence
+  656690. Read through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=22160
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+  Commons CC0".
+reliability: >-
+  A database record compiled from the literature; the collection reference, not read here, is: J.
+  E. Kalb, C. J. Jolly, and A. Mebrate, S. Tebedge, C. Smart, EB Oswald, D. Cramer, P. Whitehead,
+  CB Wood, GC Conroy, T. Adefris, L. Sperling, B. Kana. 1982. Fossil Mammals and Artifacts from
+  the Mid
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=22160&show=loc,strat,ref and from the occurrence list:
+    lat 10.5167, lng 40.466702, early_interval "Zanclean", formation "Sagantole", geographic note
+    "Lat/long assigned to head of Aramis stream."; occurrence 656690, accepted name "Ardipithecus
+    ramidus".

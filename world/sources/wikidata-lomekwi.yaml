@@ -1,0 +1,17 @@
+id: src:wikidata-lomekwi
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q19833854 (Lomekwi, an archaeological site in Kenya), property P625 (coordinate
+  location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q19833854
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry for the site.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (3.91083, 35.8503) read from the item through the wbgetentities API on 4 November
+    2026.

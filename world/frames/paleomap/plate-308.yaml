@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-308
+type: frame
+kind: plate
+title: GRK (PALEOMAP plate 308)
+entity: earth/plates/grk
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 308
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 308

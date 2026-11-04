@@ -1,0 +1,26 @@
+id: src:oxrep-shipwrecks-2.1
+type: dataset
+kind: compilation
+citation: >-
+  Strauss, J., Wilson, A.I. & Flohr, M. (2017). OxREP Shipwrecks Database, version 2.1 (March 2017). Oxford Roman
+  Economy Project.
+authors:
+  - "Strauss, J."
+  - "Wilson, A.I."
+  - "Flohr, M."
+published: 2017
+title: OxREP Shipwrecks Database
+url: https://oxrep.web.ox.ac.uk/shipwrecks-database
+license_note: >-
+  No license could be read: the site's copyright page answered 403 ("Access denied"). So it is not imported: single
+  facts are cited with credit, by the wreck's id.
+reliability: >-
+  A compilation from Parker (1992) and the journals to 2009. Its introduction warns that "Latitude and longitudes are
+  NOT to be taken as accurate" and that the date of a wreck "depends almost wholly on the analysis of any goods on
+  board". Manning et al. (2022) fault its single-year date for Mazotos as a false precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    The spreadsheet oxrep-shipwrecks-database-2.1-march-2017.xlsx and the page that introduces it downloaded from the
+    project's site on 4 November 2026; the sheet "Shipwrecks" read row by row. Quotes checked by script against the
+    sheet's cells and the page's text.

@@ -1,0 +1,26 @@
+id: src:breasted-1906-ancient-records-of-egypt
+type: publication
+kind: review
+citation: >-
+  Breasted, J.H. (1906). Ancient Records of Egypt: Historical Documents from the Earliest Times
+  to the Persian Conquest, vols. 1–2. Chicago: University of Chicago Press.
+authors:
+  - "Breasted, J.H."
+published: 1906
+title: Ancient Records of Egypt
+container: Chicago, University of Chicago Press
+url: https://archive.org/details/ancientrecordsof01brea
+via: >-
+  The Internet Archive's scans of vols. 1 and 2 (ancientrecordsof01brea,
+  ancientrecordsof02brea_0).
+reliability: >-
+  The standard English collection of Egyptian historical inscriptions of its day. Its
+  chronology, fixed by Meyer's reading of Sothic and lunar dates, runs about twenty years
+  earlier than the one now conventional for the New Kingdom; the reign lengths it reads from the
+  monuments still stand.
+verified:
+  by: machine:claude-code
+  how: >-
+    Vol. 1 §§ 38–71 (chronology), and vol. 2 §§ 128–130 and §§ 574–592 read in the OCR of the
+    scans; p. 44 of vol. 1 checked against the page image (leaf n93), where the OCR mangles the
+    table. Quotations checked by script against the OCR, and that table by eye.

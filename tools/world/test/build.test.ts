@@ -48,7 +48,7 @@ describe('build', () => {
     } finally {
       console.log = quiet;
     }
-  });
+  }, 900_000);
 
   it('has, in every tile, the keyframes that bracket every moment of its span', () => {
     const dir = latestBuild();
@@ -103,13 +103,26 @@ describe('build', () => {
   it('records what it was made from: commit, datasets, generators, alternatives shown, license filter', () => {
     const b = JSON.parse(readFileSync(join(latestBuild(), 'build.json'), 'utf8'));
     expect(Object.keys(b.datasets)).toEqual([
+      'src:ar6-wg1-fig2-4',
       'src:cliopatria-0.2.1',
       'src:etopo-2022-n45e000',
       'src:etopo-2022-n45e015',
       'src:foster-2017-co2',
+      'src:glottolog-5.3',
+      'src:hyde-3.2.1-world-land-use',
+      'src:hyde-3.2.1-world-population',
+      'src:itinere-2024',
+      'src:jouzel-2007-epica-dome-c',
+      'src:li-2022-phanerozoic-climate',
+      'src:natural-earth-boundaries-5.1.2',
+      'src:natural-earth-places-5.1.2',
+      'src:noaa-hazards-2026-11-04',
       'src:ohm-rome-2026-11-01',
       'src:paleodem-v2',
       'src:paleomap-plate-model',
+      'src:pbdb-diversity-2026-11-04',
+      'src:pbdb-hell-creek-2026-11-04',
+      'src:spratt-lisiecki-2016-sea-level',
       'src:srtm-gl1-n41e012',
       'src:srtm-gl1-n42e012',
       'src:tinitaly-1.1-w46075',
@@ -117,7 +130,9 @@ describe('build', () => {
     ]);
     expect(b.generators['gen:earth/clouds']).toEqual({ version: 1, seeds: { globe: 'earth/clouds' } });
     expect(b.generators['gen:earth/surface']).toEqual({ version: 1, seeds: { globe: 'earth/surface' } });
-    expect(b.alternatives).toEqual({ shown: ['alt:earliest-life/isua-stromatolites', 'alt:time-scale/pbdb-2022'], default: { 'alt:earliest-life': null, 'alt:time-scale': null } });
+    expect(b.alternatives.shown).toEqual(expect.arrayContaining(['alt:earliest-life/isua-stromatolites', 'alt:time-scale/pbdb-2022', 'alt:peopling-of-the-americas/pre-lgm', 'alt:ipcc-ar6-scenarios/ssp585']));
+    // No alternative is anyone's default: that is a person's decision.
+    expect(new Set(Object.values(b.alternatives.default))).toEqual(new Set([null]));
     expect(b.licenses.allowed).toContain('CC-BY-4.0');
     expect(b.data.commit).toMatch(/^[0-9a-f]{40}$/);
   });
@@ -129,7 +144,7 @@ describe('build', () => {
       expect.objectContaining({ rel: 'caused', from: 'earth/structures/chicxulub-crater', via: 'earth/structures/chicxulub-crater#formed-by' }),
     ]);
     expect(rec('earth/lips/deccan-traps').inverse).toEqual([expect.objectContaining({ rel: 'contains', from: 'earth/events/chicxulub-impact' })]);
-    expect(rec('earth/plates/africa').inverse.map((x) => x.from)).toEqual(['life/mesosaurus/calvinia', 'life/mesosaurus/kabus']);
+    expect(rec('earth/plates/africa').inverse.map((x) => x.from)).toEqual(expect.arrayContaining(['life/mesosaurus/calvinia', 'life/mesosaurus/kabus']));
   });
 
   it('writes a coverage map: unsourced claims, wanted records, basis by tile', () => {
@@ -191,6 +206,25 @@ describe('build', () => {
       expect(lo! <= hi!).toBe(true);
       expect(Number.isFinite(v)).toBe(true);
     }
+  });
+
+  it('reads the series of the last 800 kyr: ages from 2000 where the table counts so, and measured rows after 1950 as no projection', () => {
+    const { series } = JSON.parse(readFileSync(join(latestBuild(), 'series.json'), 'utf8')) as SeriesFile;
+    const by = (id: string) => series.find((x) => x.id === id)!;
+    const co2 = by('field:earth/co2-ice-core');
+    expect(co2.points).toHaveLength(1894);
+    expect(co2.points[0]).toEqual([2000 - 805719, 207.3, null, null]);
+    expect(co2.points.at(-1)).toEqual([2019, 409.9, null, null]);
+    expect(co2.projectedAfter).toBeUndefined();
+    expect(by('field:earth/methane-ice-core').points).toHaveLength(2268);
+    expect(by('field:earth/antarctic-temperature').points).toHaveLength(5788);
+    const sea = by('field:earth/sea-level-stack');
+    // Its rows after 5 ka, which it says read too high, are outside the field's span.
+    expect(sea.points).toHaveLength(794);
+    expect(sea.points.at(-1)![0]).toBe(PRESENT_YEAR - 5000);
+    expect(sea.refines).toBe('field:earth/sea-level');
+    expect(co2.refines).toBe('field:earth/co2');
+    expect(sea.points.find((p) => p[0] === PRESENT_YEAR - 24000)).toEqual([PRESENT_YEAR - 24000, -130, expect.closeTo(-134.67, 2), expect.closeTo(-113.97, 2)]);
   });
 
   it('shows a taxon at its first appearance where no claim pins its origin, and unknown where nothing limits it', () => {

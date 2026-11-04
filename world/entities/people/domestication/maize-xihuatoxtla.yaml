@@ -1,0 +1,73 @@
+id: life/occurrences/maize-xihuatoxtla
+kind: occurrence
+summary: >-
+  Maize starch and cob phytoliths from grinding stones in the Xihuatoxtla rock shelter, in the
+  central Balsas valley of Guerrero, the home of maize's wild ancestor. Maize grains make up 90% of
+  the starch on the tools, in layers dated by charcoal to at least 8990–8610 cal BP. This is the oldest
+  evidence of maize.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Maize, Xihuatoxtla" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: Zea mays
+    source:
+      ref: src:piperno-2009-xihuatoxtla
+      loc: Results
+      quote: "Maize was the dominant starch type on every tool, accounting for 90% of all grains recovered"
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      - ref: src:piperno-2009-xihuatoxtla
+        loc: Results
+        quote: "size and morphological criteria can be effectively used to separate the teosintes, including ssp. parviglumis, from maize"
+      - ref: src:fuller-2014-domestication-rates
+        loc: "Comparing Timing and Tempo of Domestication in Seed Crops"
+        quote: "phytoliths indicative of nonshattering and absence of wild teosinte (Zea mays parviglumis) in the Rio Balsas region of Mexico at 8700 B.P."
+    note: >-
+      What shows it is domestic: starch and cob phytoliths that differ from those of teosinte, the wild
+      plant, which is itself absent from these tools.
+  location:
+    prop: location
+    value: { lat: 18.345, lon: -99.538333, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-iguala, loc: "P625 coordinate location" }
+      - ref: src:ranere-2009-xihuatoxtla
+        loc: Introduction
+        quote: "within the Central Balsas watershed of northern Guerrero near the modern town of Iguala"
+    method: gazetteer
+    note: >-
+      The town. The shelter's own coordinates were not given in the text read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-104
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 8990 BP, hi: 8610 BP }
+    source:
+      - ref: src:ranere-2009-xihuatoxtla
+        loc: Results
+        quote: "(4) 7920 ± 40 B.P. (8990–8610 cal B.P.) from layer D, 65 cm below surface"
+      - ref: src:ranere-2009-xihuatoxtla
+        loc: Results
+        quote: "All 8 of the grinding tools and both of the chipped stone tools examined for starch grains in levels contemporary with or below the 14C date of 7920 ± 40 B.P. (8990–8610 cal years B.P.) yielded maize starch."
+    method: radiometric/radiocarbon
+    note: >-
+      Charcoal from layer D, not the maize itself. Layer E, also with maize, lies below and is
+      undated, so the maize may be older.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott605194 and ott99252: Zea mays lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/maize
+    source: { ref: src:piperno-2009-xihuatoxtla, loc: abstract }

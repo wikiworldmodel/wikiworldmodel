@@ -1,0 +1,22 @@
+id: src:roberts-2001-australian-megafauna
+type: publication
+kind: measurement
+citation: >-
+  Roberts, R.G., Flannery, T.F., Ayliffe, L.K., Yoshida, H., Olley, J.M., Prideaux, G.J., Laslett,
+  G.M., Baynes, A., Smith, M.A., Jones, R. & Smith, B.L. (2001). New ages for the last Australian
+  megafauna: continent-wide extinction about 46,000 years ago. Science 292(5523), 1888–1892.
+authors:
+  - "Roberts, R.G."
+  - "Flannery, T.F."
+  - "Ayliffe, L.K."
+  - "Yoshida, H."
+  - "Smith, B.L."
+published: 2001
+title: "New ages for the last Australian megafauna: continent-wide extinction about 46,000 years ago"
+container: "Science 292(5523), 1888–1892"
+doi: 10.1126/science.1060264
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the Europe PMC record (PMID 11397939); the full text could not
+    be read here. Quotes checked by script against the text retrieved, after normalizing whitespace.

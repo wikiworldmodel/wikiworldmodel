@@ -1,0 +1,15 @@
+id: src:papadopoulos-2016-greek-alphabet
+type: publication
+kind: review
+citation: >-
+  Papadopoulos, J.K. (2016). The early history of the Greek alphabet: new evidence from Eretria and Methone. Antiquity 90(353), 1238–1254.
+authors:
+  - "Papadopoulos, J.K."
+published: 2016
+title: "The early history of the Greek alphabet: new evidence from Eretria and Methone"
+container: Antiquity
+doi: 10.15184/aqy.2016.160
+url: https://www.cambridge.org/core/journals/antiquity/article/early-history-of-the-greek-alphabet-new-evidence-from-eretria-and-methone/DBFA7B52DBCDB48AA5B47D05FC4FB03A
+verified:
+  by: machine:claude-code
+  how: Only the abstract read, on the publisher's page. Quote checked by script against it, ignoring whitespace. Citation details from Crossref.

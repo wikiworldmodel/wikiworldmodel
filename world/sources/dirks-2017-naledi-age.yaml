@@ -1,0 +1,30 @@
+id: src:dirks-2017-naledi-age
+type: publication
+kind: measurement
+citation: >-
+  Dirks, P.H., Roberts, E.M., Hilbert-Wolf, H., Kramers, J.D., Hawks, J., Dosseto, A., Duval, M.,
+  Elliott, M., Evans, M., Grün, R. et al. (2017). The age of Homo naledi and associated sediments
+  in the Rising Star Cave, South Africa. eLife 6, e24231.
+authors:
+  - "Dirks, P.H."
+  - "Roberts, E.M."
+  - "Hilbert-Wolf, H."
+  - "Kramers, J.D."
+  - "Hawks, J."
+  - "Dosseto, A."
+  - "Duval, M."
+  - "Elliott, M."
+  - "Evans, M."
+  - "Grün, R."
+published: 2017
+title: "The age of Homo naledi and associated sediments in the Rising Star Cave, South Africa"
+container: "eLife 6, e24231"
+doi: 10.7554/elife.24231
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 20 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC5423772): the depositional age of H. naledi between 236 ka
+    and 335 ka, from US-ESR on teeth, U-Th on flowstone and OSL on sediment. Quoted passages
+    checked by script against the text retrieved.

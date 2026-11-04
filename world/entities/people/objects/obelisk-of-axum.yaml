@@ -1,0 +1,114 @@
+id: people/objects/obelisk-of-axum
+kind: artefact/moved
+summary: >-
+  Stela 2 of Aksum, a carved stone stele about 1,700 years old and 24 m tall, taken to Rome by
+  Mussolini's troops in 1937, flown back to Ethiopia in three pieces in April 2005 and raised again on
+  its site in 2008.
+author: machine:claude-code
+same_as: { wikidata: Q2308606 }
+phases:
+  - id: aksum
+    label: Aksum
+  - id: rome
+    label: Rome
+  - id: aksum-again
+    label: Aksum
+claims:
+  name:
+    prop: name
+    value: { en: Obelisk of Axum }
+    source: { ref: src:bbc-2005-obelisk-arrives-back, loc: paragraph 2, quote: "The Axum obelisk" }
+  aksum-start:
+    prop: start
+    subject: "@aksum"
+    value: { lo: 301 CE, hi: 400 CE }
+    source:
+      - ref: src:bbc-2002-rome-obelisk-lightning
+        loc: "paragraph beginning 'It had stood in the city'"
+        quote: "It had stood in the city since the early fourth century"
+      - ref: src:unesco-2008-aksum-obelisk-reinstalled
+        loc: paragraph 3
+        quote: "The obelisk is around 1,700 years old"
+      - ref: src:wikidata-obelisk-of-axum
+        loc: "Q2308606, description"
+        quote: "4th-century phonolite stele in Axum, Tigray Region, Ethiopia"
+    method: expert-estimate
+    note: >-
+      Written as the whole of the century, from a news report, UNESCO's round figure and Wikidata's
+      description. No study of its date was read; a reviewer should look for one.
+  aksum-location:
+    prop: location
+    subject: "@aksum"
+    value: { lat: 14.132167, lon: 38.719667, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-obelisk-of-axum, loc: "Q2308606, P625 coordinate location" }
+    method: gazetteer
+  aksum-frame:
+    prop: frame
+    subject: "@aksum"
+    value: frame:paleomap/plate-716
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  rome-start:
+    prop: start
+    subject: "@rome"
+    value: 1937 CE
+    source:
+      - ref: src:unesco-2008-aksum-obelisk-inauguration
+        loc: paragraph 3
+        quote: "Taken to Rome by the troops of Mussolini in 1937"
+      - ref: src:bbc-2005-obelisk-arrives-back
+        loc: paragraph 4
+        quote: "Italian troops seized the obelisk in 1937 and took it to Rome"
+    method: historical-account
+  rome-location:
+    prop: location
+    subject: "@rome"
+    value: { lat: 41.882732, lon: 12.488563, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-palazzo-fao, loc: "Q3890078, P625 coordinate location" }
+      - ref: src:bbc-2002-rome-obelisk-lightning
+        loc: "paragraph beginning 'It now stands'"
+        quote: "It now stands next to the headquarters of the United Nations' Food and Agriculture Organisation."
+    method: gazetteer
+    note: Placed at the point of the building it stood beside, which is enough for a marker; the sources read do not place the obelisk itself.
+  rome-frame:
+    prop: frame
+    subject: "@rome"
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  aksum-again-start:
+    prop: start
+    subject: "@aksum-again"
+    value: { lo: 19 April 2005 CE, hi: April 2005 CE }
+    source:
+      - ref: src:bbc-2005-obelisk-arrives-back
+        loc: paragraph 3
+        quote: "An Antonov plane landed on Tuesday with the middle part of the obelisk; the top and bottom should follow within a week."
+      - ref: src:unesco-2008-aksum-obelisk-reinstalled
+        loc: paragraph 2
+        quote: "Transported to Rome by the troops of Mussolini in 1937, it was returned in April 2005 by the Italian government."
+    method: documentary
+    note: >-
+      The first of three flights landed on Tuesday 19 April 2005, the date of the BBC's report, and the
+      other two pieces were due within the week. The pieces lay in store until the stele was raised
+      again: its last block was mounted on 31 July 2008 and it was inaugurated on 4 September 2008.
+  aksum-again-location:
+    prop: location
+    subject: "@aksum-again"
+    value: { lat: 14.132167, lon: 38.719667, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-obelisk-of-axum, loc: "Q2308606, P625 coordinate location" }
+      - ref: src:unesco-2008-aksum-obelisk-reinstalled
+        loc: paragraph 1
+        quote: "The third and last block of the Aksum Obelisk was successfully mounted by the UNESCO teams yesterday 31 July in its original location in Ethiopia."
+    method: gazetteer
+  aksum-again-frame:
+    prop: frame
+    subject: "@aksum-again"
+    value: frame:paleomap/plate-716
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

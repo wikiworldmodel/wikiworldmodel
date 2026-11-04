@@ -1,0 +1,18 @@
+id: src:giles-1898-chinese-biographical-dictionary
+type: publication
+kind: compilation
+citation: >-
+  Giles, H.A. (1898). A Chinese Biographical Dictionary. London: Bernard Quaritch; Shanghai:
+  Kelly & Walsh.
+authors:
+  - "Giles, H.A."
+published: 1898
+title: A Chinese Biographical Dictionary
+url: https://archive.org/details/chinesebiograph00gile
+via: The Internet Archive's scan.
+reliability: >-
+  An old standard reference, used here only for the Western years of Genghis Khan's life.
+verified:
+  by: machine:claude-code
+  how: >-
+    Entry 605 read in the OCR of the scan; the quotation checked by script against it.

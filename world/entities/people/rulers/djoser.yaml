@@ -1,0 +1,74 @@
+id: people/rulers/djoser
+kind: person
+summary: >-
+  Pharaoh of the Third Dynasty of Egypt, in the Old Kingdom, one of the earliest rulers whose
+  accession the radiocarbon chronology of Egypt dates.
+author: machine:claude-code
+same_as: { wikidata: Q174367 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Pharaoh
+claims:
+  name:
+    prop: name
+    value: { en: Djoser }
+    source:
+      ref: src:ramsey-2010-egypt-chronology
+      loc: "abstract"
+      quote: the reign of Djoser in the Old Kingdom started between 2691 and 2625 B.C.E.
+  reign-start-shaw:
+    prop: start
+    subject: "@reign"
+    value: 2667 BCE
+    source:
+      ref: src:ramsey-2010-egypt-chronology
+      loc: "Table 1, row Djoser, column Shaw"
+      quote: Djoser 7 2667 2592 2676 2643 2691 2625
+    method: compilation
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      The consensus chronology of Shaw (2000), as Ramsey et al. tabulate it; the book itself was
+      not read. Their radiocarbon model agrees with it for the Old Kingdom.
+  reign-start-hornung:
+    prop: start
+    subject: "@reign"
+    value: 2592 BCE
+    source:
+      ref: src:ramsey-2010-egypt-chronology
+      loc: "Table 1, row Djoser, column Hornung et al."
+      quote: Djoser 7 2667 2592 2676 2643 2691 2625
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The chronology of Hornung et al. (2006), as Ramsey et al. tabulate it; the book itself was
+      not read.
+  reign-start-radiocarbon:
+    prop: start
+    subject: "@reign"
+    value: { lo: 2691 BCE, hi: 2625 BCE }
+    source:
+      ref: src:ramsey-2010-egypt-chronology
+      loc: "Table 1, row Djoser, modelled 95% hpd range"
+      quote: Djoser 7 2667 2592 2676 2643 2691 2625
+    method: radiometric/radiocarbon
+    basis: reconstruction
+    note: >-
+      The 95% range of the Bayesian model, with seven radiocarbon dates from the reign; the 68%
+      range is 2676–2643.
+  end:
+    prop: end
+    value: unknown
+    unsourced: No source read here gives the length of his reign or the date of his death.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/egypt-old-kingdom
+    source:
+      ref: src:ramsey-2010-egypt-chronology
+      loc: "abstract"
+      quote: the reign of Djoser in the Old Kingdom
+    note: King of Egypt.

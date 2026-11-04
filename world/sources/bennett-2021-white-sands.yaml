@@ -1,0 +1,23 @@
+id: src:bennett-2021-white-sands
+type: publication
+kind: measurement
+citation: >-
+  Bennett, M.R., Bustos, D., Pigati, J.S., … & Odess, D. (2021). Evidence of humans in North America
+  during the Last Glacial Maximum. Science 373(6562), 1528–1531.
+authors:
+  - "Bennett, M.R."
+  - "Bustos, D."
+  - "Pigati, J.S."
+  - "Odess, D."
+published: 2021
+title: "Evidence of humans in North America during the Last Glacial Maximum"
+container: "Science 373(6562), 1528–1531"
+doi: 10.1126/science.abg7586
+reliability: >-
+  Disputed: Madsen et al. (2022) and Rachal et al. (2024) hold that reservoir effects make its seed
+  ages too old; Pigati et al. (2023) and Holliday et al. (2025) support them with independent dates.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

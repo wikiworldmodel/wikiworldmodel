@@ -1,0 +1,76 @@
+id: people/trade/nanhai-one
+kind: event/shipwreck
+summary: >-
+  A Chinese merchant ship of the Southern Song that sank in the South China Sea off Guangdong in 1183 or soon after, fully
+  laden, at the start of a voyage to Southeast and West Asia. Found by accident in 1987 and lifted whole in 2007 to the
+  Guangdong Maritime Silk Road Museum. Some 180,000 objects have come out: about 160,000 pieces of porcelain, 124 tonnes of
+  iron, and gold, silver and copper, much of it metal that Song law forbade to export.
+author: machine:claude-code
+same_as: { wikidata: Q1812739 }
+claims:
+  name:
+    prop: name
+    value: { en: Nanhai One, zh: 南海一号 }
+    source: { ref: src:zhang-2024-nanhai-metal-trade, loc: Introduction, quote: "Nanhai No.1 is a Chinese merchant ship from the Southern Song Dynasty (1127–1279 AD)" }
+  date:
+    prop: date
+    value: 1183 CE
+    source:
+      - ref: src:zhang-2024-nanhai-metal-trade
+        loc: Introduction
+        quote: "the current assessment suggests that Nanhai No.1 likely foundered in 1183 AD or shortly thereafter (Li 2020c)."
+      - ref: src:devb-2024-nanhai-i
+        loc: paragraph beginning 'The year of Guimao'
+        quote: "it can be reasonably concluded that “Nanhai I” sank in 1183 or shortly thereafter."
+    method: documentary
+    rank: preferred
+    note: >-
+      "Or shortly thereafter": it gives a time after which it sank. An ink inscription of a Guimao year on a Dehua jar could be
+      1183 or 1243; the latest coin, of the Chunxi reign (1174–1189), and a jar stamped with the tenth year of Chunxi, 1183, settle
+      it. Zhang et al. add radiocarbon dates, without giving them.
+  date-cui-2024:
+    prop: date
+    value: { lo: 1183 CE, hi: 1212 CE }
+    source:
+      ref: src:cui-2024-nanhai-i-life-history
+      loc: abstract
+      quote: "After combining the correction of the unearthed porcelain with the manufacture data written on its bottom, the sank date can be a certain year from 1183-1212 AD."
+    method: radiometric/radiocarbon
+    note: A conference abstract, read as an abstract only. It also has the ship built in 900–1000 and repaired in 1020–1050.
+  location:
+    prop: location
+    value: { lat: 21.57602778, lon: 111.86880556, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-nanhai-one, loc: "Q1812739, P625 coordinate location" }
+      - ref: src:zhang-2022-nanhai-i-wood
+        loc: Introduction
+        quote: "sank about 19 km southwest to Xiachuan Island and about 23 km off the coast of Guangdong Province."
+    method: gazetteer
+    note: This point lies by the museum on Hailing Island that now holds the hull. The wreck site, described in the quote, was not found placed in anything read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value: { en: "About 160,000 pieces of porcelain, mainly from kilns in Jiangxi, Fujian and Zhejiang; 124 tonnes of iron; gold, silver and copper, and coins." }
+    source:
+      - ref: src:devb-2024-nanhai-i
+        loc: paragraph beginning 'A large collection'
+        quote: "totalling nearly 180 000 pieces (sets), including about 160 000 pieces (sets) of porcelain and 124 tonnes of iron concretions"
+      - ref: src:sun-xin-nanhai-i
+        loc: "paragraph beginning 'As the excavation proceeded'"
+        quote: "The majority of porcelain consists of products of famous kilns in southern China at the time, mainly from Jiangxi, Fujian, and Zhejiang."
+  voyage:
+    prop: voyage
+    value: { en: "Loaded in Zhejiang and Fujian, and last at Guangzhou, then bound for Southeast Asia and West Asia." }
+    source:
+      - ref: src:zhang-2024-nanhai-metal-trade
+        loc: Introduction
+        quote: "It sailed from the southern port of Guangzhou in China and sank in the waters near the junction of Taishan and Yangjiang cities in Guangdong Province, at a depth of approximately 24–26 m (Fig. 1), en route to conducting trade activities in Southeast Asia and West Asia."
+      - ref: src:zhang-2024-nanhai-metal-trade
+        loc: "section on the cargo's route"
+        quote: "which traversed from Zhejiang to Fujian and then to Guangdong provinces (Li 2021; Fig. 1)"
+    note: An inference from where the goods came from. Sun and Xin have it a full load of commodities from Quanzhou.

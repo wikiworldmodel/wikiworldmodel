@@ -1,0 +1,23 @@
+id: src:johnson-2016-sahul-megafauna
+type: publication
+kind: review
+citation: >-
+  Johnson, C.N., Alroy, J., Beeton, N.J., Bird, M.I., Brook, B.W., Cooper, A., Gillespie, R.,
+  Herrando-Pérez, S., Jacobs, Z., Miller, G.H., … & Bradshaw, C.J.A. (2016). What caused extinction
+  of the Pleistocene megafauna of Sahul? Proceedings of the Royal Society B 283(1824), 20152399.
+authors:
+  - "Johnson, C.N."
+  - "Alroy, J."
+  - "Beeton, N.J."
+  - "Bird, M.I."
+  - "Bradshaw, C.J.A."
+published: 2016
+title: "What caused extinction of the Pleistocene megafauna of Sahul?"
+container: "Proceedings of the Royal Society B 283(1824), 20152399"
+doi: 10.1098/rspb.2015.2399
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the PMC record through NCBI efetch (PMC4760161), the publisher
+    not allowing the full text there. Quotes checked by script against the text retrieved, after
+    normalizing whitespace.

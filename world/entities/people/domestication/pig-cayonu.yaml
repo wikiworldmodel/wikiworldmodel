@@ -1,0 +1,60 @@
+id: life/occurrences/pig-cayonu
+kind: occurrence
+summary: >-
+  Pig bones from Çayönü Tepesi in southeast Anatolia. Molars shrink through the Pre-Pottery Neolithic
+  layers until pigs are domestic in form by about 6800 BCE. A specimen from the early Pottery Neolithic
+  layer, 6800–6500 BCE, yielded ancient DNA of the Arm1T haplotype, native to southwest Asia.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Pig, Çayönü Tepesi" }
+    unsourced: An editorial label, from the species and the site.
+  identified:
+    prop: identified_as
+    value: Sus
+    source:
+      ref: src:ottoni-2013-pig
+      loc: "Genetic Signatures of Early Anatolian Domestic Pigs"
+      quote: "Arm1T haplotype that (along with the Y1 haplotype) is the dominant signature in other Neolithic and Bronze Age Anatolian Sus remains"
+  evidence:
+    prop: evidence
+    value: zooarchaeological
+    source:
+      ref: src:ottoni-2013-pig
+      loc: Introduction
+      quote: "identified a disproportionate decrease in molar tooth size over two millennia"
+    note: >-
+      What shows it is domestic: smaller molars, and genetics that tie the specimen to early domestic
+      pigs. Ervynck et al. (2001) were not read; this is Ottoni et al.'s account of them.
+  location:
+    prop: location
+    value: { lat: 38.216, lon: 39.725, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-cayonu, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 6800 BCE, hi: 6500 BCE }
+    source:
+      ref: src:ottoni-2013-pig
+      loc: "Genetic Signatures of Early Anatolian Domestic Pigs"
+      quote: "one specimen excavated from an early Pottery Neolithic layer (∼6,800–6,500 BC) at Çayönü Tepesi"
+    method: stratigraphic
+    note: >-
+      The date of the layer and of the specimen with DNA. The site's Pre-Pottery layers, with the
+      earlier pigs, run from about 10,000 BCE.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott730013 and ott244265: Sus scrofa lies within Mammalia" }
+  domestication:
+    rel: part-of
+    to: people/domestication/pig-near-east
+    source: { ref: src:ottoni-2013-pig, loc: Conclusions }

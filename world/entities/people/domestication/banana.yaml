@@ -1,0 +1,30 @@
+id: people/domestication/banana
+kind: development
+summary: >-
+  The first cultivation of bananas, in New Guinea, from the wild Musa acuminata subsp. banksii
+  of that island. It is known from phytoliths in the mounded plots of Kuk Swamp, in one of the
+  independent beginnings of agriculture. Edible, seedless bananas arose through hybrids as people
+  carried plants across wide regions, a history this record does not date.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Banana cultivation in New Guinea }
+    unsourced: An editorial label.
+  location:
+    prop: location
+    value: { lat: -5.7825, lon: 144.33, frame: frame:earth/present-day }
+    source:
+      - ref: src:perrier-2011-banana
+        loc: "Anchoring Banana Domestication in Time and Place"
+        quote: "cultivation of M. acuminata at 6,950 to 6,440 calibrated y (cal) BP at Kuk Swamp in the highlands of NG"
+      - { ref: src:wikidata-kuk-swamp, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Marked at Kuk, the site with the evidence.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

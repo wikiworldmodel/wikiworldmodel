@@ -1,0 +1,57 @@
+id: life/megafauna/diprotodon-south-walker-creek
+kind: occurrence
+summary: >-
+  Diprotodon optatum in site SW9 at South Walker Creek, near Nebo in tropical Queensland, with giant
+  kangaroos, the marsupial lion, giant monitors and crocodiles, in a deposit about 40,000 years old:
+  the youngest of four sites there and among the youngest reliably dated megafauna in Sahul.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Diprotodon, South Walker Creek" }
+    unsourced: An editorial label, from the taxon and the place name.
+  identified:
+    prop: identified_as
+    value: Diprotodon optatum
+    source:
+      ref: src:hocknull-2020-south-walker-creek
+      loc: "Results, New and diverse tropical megafauna; Table 1, row Diprotodon optatum"
+      quote: "The remaining megafauna are referrable to known taxa, including Diprotodon optatum, Zygomaturus trilobus, Phascolonus gigas and Sedophascolomys sp. cf. S. medius"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary: bones and teeth."
+  location:
+    prop: location
+    value: { lat: -21.7487, lon: 148.432, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-south-walker-creek-mine, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      The coal mine named South Walker Creek, used as a stand-in. The paper gives the locality as
+      South Walker Creek (Queensland Museum Locality 1470), near the township of Nebo, without
+      coordinates in the text read, and does not say that it is at the mine.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { mean: 40.1 ka, sd: 1.7 kyr }
+    source:
+      ref: src:hocknull-2020-south-walker-creek
+      loc: "Results, Reliable megafauna ages for eastern Sahul; Table 2, row OSL + US-ESR (ALL)"
+      quote: "The youngest fossil deposit which occurs at SW9 has a weighted mean age of 40.1 ± 1.7 ka (n = 24)"
+    method: radiometric/luminescence
+    note: >-
+      A weighted mean of 19 optically stimulated luminescence ages on the sediment and 5
+      U-series/ESR ages on teeth, the second a method the vocabulary has no term for. Table 2 gives
+      the ± at 1σ.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/diprotodon
+    source:
+      ref: src:hocknull-2020-south-walker-creek
+      loc: "Table 1, row Diprotodon optatum"

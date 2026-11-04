@@ -1,0 +1,19 @@
+id: src:ganopolski-2016-glacial-inception
+type: publication
+kind: model
+citation: >-
+  Ganopolski, A., Winkelmann, R. & Schellnhuber, H.J. (2016). Critical insolation–CO2 relation for
+  diagnosing past and future glacial inception. Nature 529(7585), 200–203.
+authors:
+  - "Ganopolski, A."
+  - "Winkelmann, R."
+  - "Schellnhuber, H.J."
+published: 2016
+title: Critical insolation–CO2 relation for diagnosing past and future glacial inception
+container: Nature 529(7585), 200–203
+doi: 10.1038/nature16494
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the PubMed record through Europe PMC (PMID 26762457). Citation
+    from Crossref. Quotes checked by script against the text retrieved, after normalizing whitespace.

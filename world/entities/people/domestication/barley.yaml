@@ -1,0 +1,63 @@
+id: people/domestication/barley
+kind: development
+summary: >-
+  The domestication of barley from wild barley, after long cultivation of the wild plant. Chaff
+  from ears that do not shatter makes up a third of the barley at Tell Aswad in southern Syria.
+  Living barley carries a mosaic of ancestry from wild populations across the Fertile Crescent
+  and beyond, which has been read as a second domestication far to the east, or as wild gene flow
+  into barley that came from the west.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Barley domestication }
+    unsourced: An editorial label.
+  start-arranz-otaegui-2016:
+    prop: start
+    value: { hi: 10.2 ka }
+    source:
+      ref: src:arranz-otaegui-2016-cereal-domestication
+      loc: "The Evidence of Cereal Domestication at Tell Qarassa North"
+      quote: "by 10.7–10.2 ka Cal BP there are positive signs that barley, emmer, and einkorn were being cultivated at TQN"
+    method: radiometric/radiocarbon
+    note: >-
+      Open at the earlier end, as "by" allows, since Tell Aswad's barley is dated near the middle of
+      this range. Barley has the highest share of tough-scarred chaff at this date, 41.2% of 17 pieces
+      at Tell Qarassa North. The cultivation of wild barley is older, reaching back to the
+      Pre-Pottery Neolithic A.
+  location-southern-syria:
+    prop: location
+    value: { lat: 33.4, lon: 36.55, frame: frame:earth/present-day }
+    source:
+      - ref: src:arranz-otaegui-2016-cereal-domestication
+        loc: "The Regional Evidence for Cereal Domestication (Early/Middle Pre-Pottery Neolithic B)"
+        quote: "In southern Syria, there are clear signs of cultivation of domesticated-type barley at Tell Aswad"
+      - ref: src:guo-2025-barley
+        loc: abstract
+        quote: "a founding domesticated population emerged in the Fertile Crescent during a prolonged period of pre-domestication cultivation"
+      - { ref: src:wikidata-tell-aswad, loc: "P625 coordinate location" }
+    method: editorial
+    rank: preferred
+    note: >-
+      Marked at Tell Aswad. Preferred because the largest study read explains the eastern
+      affinity of Asian barley by gene flow into barley already domesticated in the west, and the
+      earliest tough chaff is here. Their abstract places the founding population no more closely.
+  location-east:
+    prop: location
+    value: { lat: 38.187848, lon: 58.349136, frame: frame:earth/present-day }
+    source:
+      - ref: src:morrell-clegg-2007-barley
+        loc: abstract
+        quote: "at least two domestications of barley; one within the Fertile Crescent and a second 1,500–3,000 km farther east"
+      - { ref: src:wikidata-jeitun, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      The second domestication, not placed more closely by the paper. Marked at Jeitun in
+      Turkmenistan, one of the eastern Neolithic sites it names. Guo et al. (2025) note the same
+      affinity and explain it instead by gene flow from local wild barley.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

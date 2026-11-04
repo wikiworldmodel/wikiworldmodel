@@ -1,0 +1,54 @@
+id: life/occurrences/eotephradactylus-owl-rock
+kind: occurrence
+summary: >-
+  The pterosaur Eotephradactylus mcintireae from the PFV 393 bone bed, Owl Rock Member of the Chinle Formation,
+  Petrified Forest National Park, Arizona: the first radiometrically dated bone bed of the Triassic with a pterosaur in
+  it. PBDB collection 241485.
+same_as: { pbdb: "occ:1704195" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Eotephradactylus, PFV 393" }
+    unsourced: An editorial label, from the taxon and the bone bed.
+  identified:
+    prop: identified_as
+    value: Eotephradactylus mcintireae n. gen. n. sp.
+    source: { ref: src:pbdb/collection-241485, loc: "occurrence 1704195, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:kligman-2025-pfv-393
+      loc: "Systematic paleontology"
+      quote: "diagnosed by the following unique combination of features found in the heterodont holotype dentary"
+  location:
+    prop: location
+    value: { lat: 35.088055, lon: -109.806389, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-241485, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-133
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Chinle Formation
+    source: { ref: src:pbdb/collection-241485, loc: "formation; member Owl Rock" }
+  date:
+    prop: date
+    value: { mean: 209.187 Ma, sd: 0.0415 Myr }
+    source:
+      ref: src:kligman-2025-pfv-393
+      loc: "Discussion"
+      quote: "PFV 393, with a direct U-Pb zircon age of 209.187 ± 0.083 Ma (2σ internal uncertainty) represents the first radioisotopically dated Triassic pterosaur-bearing bone bed"
+    method: radiometric/u-pb
+    note: >-
+      The stated ± is 2σ, so it is halved for sd.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/sauropsida
+    source: { ref: src:pbdb/collection-241485, loc: "occurrence 1704195, classification: Chordata, Reptilia, Pterosauria" }

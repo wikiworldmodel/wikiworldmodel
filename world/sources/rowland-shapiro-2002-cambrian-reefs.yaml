@@ -1,0 +1,20 @@
+id: src:rowland-shapiro-2002-cambrian-reefs
+type: publication
+kind: review
+citation: >-
+  Rowland, S.M. & Shapiro, R.S. (2002). Reef patterns and environmental influences in the Cambrian
+  and earliest Ordovician. In Kiessling, W., Flügel, E. & Golonka, J. (eds), Phanerozoic Reef
+  Patterns. SEPM Special Publication 72, 95–128.
+authors:
+  - "Rowland, S.M."
+  - "Shapiro, R.S."
+published: 2002
+title: "Reef patterns and environmental influences in the Cambrian and earliest Ordovician"
+container: Phanerozoic Reef Patterns, SEPM Special Publication 72, 95–128
+doi: 10.2110/pec.02.72.0095
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

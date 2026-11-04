@@ -1,0 +1,86 @@
+id: people/prehistory/acheulean
+kind: industry
+summary: >-
+  The Acheulean, the bifacial stone technology of hand-axes and cleavers made from large flakes, the
+  longest cultural tradition known. It appears at sites in Kenya, Ethiopia and Tanzania at almost the
+  same time. It has no location of its own here: it spread across Africa and Eurasia, so its first
+  occurrences are the claims on its start.
+same_as: { wikidata: Q210774 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Acheulean }
+    source:
+      ref: src:lepre-2011-kokiselei
+      loc: abstract
+      quote: "The Acheulian is one of the first defined prehistoric techno-complexes and is characterized by shaped bifacial stone tools."
+    note: Also spelled Acheulian.
+  start-lepre-2011:
+    prop: start
+    value: { hi: 1.76 Ma }
+    source:
+      ref: src:lepre-2011-kokiselei
+      loc: abstract
+      quote: "pushes the first appearance datum for this stone-age technology back to 1.76 Myr ago"
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Kokiselei 4, West Turkana, Kenya. By Diez-Martín et al. (2015), its age is estimated from
+      sedimentation rates, above the Olduvai–Matuyama reversal and the KBS Tuff, with no marker close
+      by. Preferred as the earliest first occurrence read, and because Beyene et al. (2013) find the
+      Konso tools indistinguishable in age. It says the tradition began no later than this.
+  start-beyene-2013:
+    prop: start
+    value: { hi: 1.75 Ma }
+    source:
+      ref: src:beyene-2013-konso
+      loc: abstract
+      quote: "The documentation of the earliest Acheulean at ∼1.75 Ma in both northern Kenya and southern Ethiopia"
+    method: radiometric
+    note: >-
+      KGA6-A1 at Konso, Ethiopia, just above the KYT2 tuff, radioisotopically dated to 1.74 ± 0.03 Ma,
+      some 6 m above the top of the Olduvai Subchron.
+  start-diez-martin-2015:
+    prop: start
+    value: { hi: 1.7 Ma }
+    source:
+      ref: src:diez-martin-2015-flk-west
+      loc: abstract
+      quote: "Here we present the discovery of another early Acheulean site also dating to c. 1.7 Ma from Olduvai Gorge."
+    method: radiometric
+    note: >-
+      FLK West, Olduvai, between dated tuffs. The authors put Kokiselei 4 and Konso at about 1.7 Ma
+      too, so all three would be of an age.
+  start-key-2026:
+    prop: start
+    value: 1.82 Ma
+    source:
+      ref: src:key-2026-hominins-culture
+      loc: "section 2(a)"
+      quote: "Statistical estimates currently place the Acheulean's origin at 1.82 Ma"
+    method: model
+    note: A statistical estimate of the unseen start, not a find.
+  end:
+    prop: end
+    value: { lo: 107 ka, hi: 29 ka }
+    source:
+      ref: src:key-2021-acheulean-end
+      loc: abstract
+      quote: "while global models vary depending on how archaeological sites are selected (107–29 Kya)"
+    method: model
+    note: >-
+      Optimal linear estimation of its end worldwide. The same paper gives 174–166 Kya for Africa and
+      the Near East, 141–130 Kya for Europe and 57–53 Kya for Asia.
+relations:
+  made-by-homo-erectus:
+    rel: made-by
+    to: life/taxa/homo-erectus
+    source:
+      - ref: src:key-2026-hominins-culture
+        loc: "section 3"
+        quote: "are near universally considered its sole manufacturer until later Middle Pleistocene (MP) Homo phenotypes emerge"
+      - ref: src:diez-martin-2015-flk-west
+        loc: abstract
+        quote: "probably by early Homo erectus sensu lato"
+    note: The later Acheulean was made by the Middle Pleistocene hominins after them, under whatever name.

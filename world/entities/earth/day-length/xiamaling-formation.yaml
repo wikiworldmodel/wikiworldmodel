@@ -1,0 +1,82 @@
+id: earth/day-length/xiamaling-formation
+kind: sample
+summary: >-
+  Two metres of rhythmically bedded black shale and chert in the Xiamaling Formation on the North China
+  craton, whose copper-aluminium record gives the rate of the Earth's precession by a Bayesian inversion:
+  a day of about 18.7 hours and the Moon at about 53 Earth radii.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Xiamaling Formation, unit 3" }
+    source:
+      ref: src:meyers-malinverno-2018-milankovitch
+      loc: Results
+      quote: a 2-m-thick section of rhythmically bedded black shale and chert (“unit 3” of ref. 9)
+  formation:
+    prop: formation
+    value: Xiamaling Formation
+    source:
+      ref: src:meyers-malinverno-2018-milankovitch
+      loc: introduction
+      quote: the 1.4-billion-year-old Xiamaling Formation from the North China Craton
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:meyers-malinverno-2018-milankovitch
+      loc: abstract
+      quote: Application of the approach to 1.4-billion-year-old rhythmites
+  date:
+    prop: date
+    value: 1.4 Ga
+    source:
+      - ref: src:meyers-malinverno-2018-milankovitch
+        loc: abstract
+        quote: Application of the approach to 1.4-billion-year-old rhythmites
+      - ref: src:zhang-2015-xiamaling-orbital-forcing
+        loc: Depositional Setting and Sedimentology of the Xiamaling Formation
+        quote: 1,384.4 ± 1.4 Ma for the tuff and 1,392.2 ± 1.0 Ma for the bentonite layer
+    note: >-
+      The round age the study gives. Zhang et al. (2015) date, by U–Pb on single zircons, a tuff at about
+      210 m depth and a bentonite 52 m below it; the unit 3 samples, at depths of 262.42 to 264.51 m, lie
+      near the bentonite.
+  location:
+    prop: location
+    value: { lat: 40.48843, lon: 115.27689, frame: frame:earth/present-day }
+    source:
+      - ref: src:wikidata-xiahuayuan-district
+        loc: "P625 coordinate location"
+      - ref: src:zhang-2015-xiamaling-orbital-forcing
+        loc: Depositional Setting and Sedimentology of the Xiamaling Formation
+        quote: We also measured magnetic susceptibility in the outcrop at Xiahuayuan village
+    method: gazetteer
+    note: >-
+      A representative point, the gazetteer's for Xiahuayuan District: Zhang et al. name the village where
+      they measured the outcrop, and give no coordinates in the text read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  day-length:
+    prop: day_length
+    value: { mean: 18.68, sd: 0.125 }
+    source:
+      ref: src:meyers-malinverno-2018-milankovitch
+      loc: abstract; Table 2, row "h/d"
+      quote: length of day of 18.68 ± 0.25 hours (2σ)
+    note: >-
+      The ± is 2σ, so sd = 0.125 h. The paper's Table 2 marks this as the sidereal day. The solar day
+      follows from 1/ts = 1/t − 1/Y: with a year of 365.24 × 24 h, 18.72 h, a difference inside the band.
+  moon-distance:
+    prop: moon_distance
+    value: { mean: 53.45, sd: 0.20 }
+    source:
+      ref: src:meyers-malinverno-2018-milankovitch
+      loc: abstract
+      quote: an Earth–Moon distance of 340,900 ± 2,600 km (2σ)
+    note: >-
+      The ± is 2σ, so 1,300 km. In Earth radii of 6378.1366 km (Farhat et al. 2022, Table D.3): 340,900 /
+      6378.1366 = 53.45 and 1,300 / 6378.1366 = 0.20.

@@ -1,0 +1,18 @@
+id: src:josephus-against-apion
+type: text
+kind: historian
+citation: >-
+  Flavius Josephus, Against Apion, book 1, quoting Manetho, translated by W. Whiston, Project
+  Gutenberg edition.
+title: Contra Apionem
+url: https://www.gutenberg.org/ebooks/2849
+via: Project Gutenberg.
+reliability: >-
+  Josephus copies a king-list out of Manetho, an Egyptian priest of the third century BCE, in a
+  form garbled by transmission and Greek spelling: its Armesses Miammoun is taken to be Ramesses
+  II.
+verified:
+  by: machine:claude-code
+  how: >-
+    Book 1, section 15 read in Whiston's translation on Project Gutenberg; the quotation checked
+    by script against that text.

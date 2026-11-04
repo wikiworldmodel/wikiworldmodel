@@ -1,0 +1,11 @@
+id: src:bbc-2002-rome-obelisk-lightning
+type: publication
+kind: review
+citation: BBC News (28 May 2002). Rome obelisk struck by lightning.
+published: 2002
+title: Rome obelisk struck by lightning
+url: https://news.bbc.co.uk/2/hi/europe/2012770.stm
+reliability: A news report, cited for where the obelisk stood in Rome.
+verified:
+  by: machine:claude-code
+  how: Read on the BBC's site. Quotations checked by script against the page's text.

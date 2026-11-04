@@ -1,0 +1,20 @@
+id: src:budge-1913-rosetta-stone
+type: publication
+kind: review
+citation: >-
+  Budge, E.A.W. (1913). The Rosetta Stone. London: printed by order of the Trustees of the British
+  Museum.
+authors:
+  - "Budge, E.A.W."
+published: 1913
+title: The Rosetta Stone
+url: https://archive.org/details/rosettastone00budguoft
+license: public-domain
+reliability: >-
+  The museum's pamphlet, by its Keeper. It gives the stone's movements in most detail, but puts the
+  discovery in August and sends the stone to Alexandria before Cairo, which later accounts do not.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read whole in the Internet Archive's OCR text; its title page gives no year, and it ends dated 12
+    July 1913. Quotations checked by script with whitespace normalized.

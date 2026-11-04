@@ -1,0 +1,17 @@
+id: src:tomas-2013-saving-on-clay
+type: publication
+kind: review
+citation: >-
+  Tomas, H. (2013). Saving on Clay: The Linear B practice of cutting tablets. In Piquette, K.E. & Whitehouse, R.D. (eds), Writing as Material
+  Practice: Substance, surface and medium, pp. 175–191. London: Ubiquity Press.
+authors:
+  - "Tomas, H."
+published: 2013
+title: "Saving on Clay: The Linear B practice of cutting tablets"
+container: "Writing as Material Practice: Substance, surface and medium"
+doi: 10.5334/bai.i
+url: https://socialsci.libretexts.org/Bookshelves/Anthropology/Archaeology/Book%3A_Writing_as_Material_Practice_-_Substance_Surface_and_Medium_(Piquette_et_al.)/09%3A_Saving_on_Clay-_The_Linear_B_Practice_of_Cutting_Tablets_(Helena_Tomas)/9.03%3A_A_Brief_Outline_of_Aegean_Clay_Tablets
+via: LibreTexts' copy of the open-access chapter, section 9.3, "A Brief Outline of Aegean Clay Tablets". The book's pages do not show there, and the section is cited instead.
+verified:
+  by: machine:claude-code
+  how: Section read in the LibreTexts copy. Quotes checked by script against its text, after normalizing whitespace. Citation details from Crossref.

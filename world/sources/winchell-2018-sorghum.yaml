@@ -1,0 +1,25 @@
+id: src:winchell-2018-sorghum
+type: publication
+kind: review
+citation: >-
+  Winchell, F., Brass, M., Manzo, A., … & Fuller, D.Q. (2018). On the Origins and Dissemination
+  of Domesticated Sorghum and Pearl Millet across Africa and into India: a View from the Butana
+  Group of the Far Eastern Sahel. African Archaeological Review 35(4), 483–505.
+authors:
+  - "Winchell, F."
+  - "Brass, M."
+  - "Manzo, A."
+  - "Beldados, A."
+  - "Perna, V."
+  - "Murphy, C."
+  - "Stevens, C."
+  - "Fuller, D.Q."
+published: 2018
+title: "On the Origins and Dissemination of Domesticated Sorghum and Pearl Millet across Africa and into India: a View from the Butana Group of the Far Eastern Sahel"
+container: "African Archaeological Review 35(4), 483–505"
+doi: 10.1007/s10437-018-9314-2
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC6394749) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

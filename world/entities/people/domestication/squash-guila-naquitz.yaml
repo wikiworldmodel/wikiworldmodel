@@ -1,0 +1,59 @@
+id: life/occurrences/squash-guila-naquitz
+kind: occurrence
+summary: >-
+  Squash remains from Guilá Naquitz Cave in Oaxaca, directly dated to about 10,000 years ago: the
+  earliest known domesticated squash, Cucurbita pepo. Its seeds grow larger through the sequence.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Squash, Guilá Naquitz" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: Cucurbita pepo
+    source:
+      ref: src:piperno-flannery-2001-guila-naquitz
+      loc: abstract
+      quote: "squash (Cucurbita pepo)"
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      ref: src:fuller-2014-domestication-rates
+      loc: "Comparing Timing and Tempo of Domestication in Seed Crops"
+      quote: "with about 15% increase found with the domestication of Cucurbita pepo and recorded through the squash seeds of Guila Naquitz in southern Mexico 10000–8000 B.P."
+    note: >-
+      What shows it is domestic: larger seeds than earlier ones at the site. The first report, by Smith
+      (1997), was not read; these are later accounts of it.
+  location:
+    prop: location
+    value: { lat: 16.975278, lon: -96.308889, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-guila-naquitz, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-104
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 10035 BP, hi: 9905 BP }
+    source:
+      ref: src:kennett-2023-el-gigante
+      loc: Discussion
+      quote: "are directly radiocarbon dated to 10,035–9,905 cal BP (2σ; Beta-100766)"
+    method: radiometric/radiocarbon
+    note: >-
+      One AMS date, recalibrated by Kennett et al., from a study elsewhere that quotes it. Piperno and
+      Flannery (2001) give the set of the site's squash as 8,990–6,980 radiocarbon years.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott379282 and ott99252: Cucurbita pepo lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/squash
+    source: { ref: src:kennett-2023-el-gigante, loc: Discussion }

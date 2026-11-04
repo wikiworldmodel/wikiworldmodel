@@ -1,0 +1,19 @@
+id: src:brandolini-2016-einkorn
+type: publication
+kind: measurement
+citation: >-
+  Brandolini, A., Volante, A. & Heun, M. (2016). Geographic differentiation of domesticated
+  einkorn wheat and possible Neolithic migration routes. Heredity 117(3), 135–141.
+authors:
+  - "Brandolini, A."
+  - "Volante, A."
+  - "Heun, M."
+published: 2016
+title: "Geographic differentiation of domesticated einkorn wheat and possible Neolithic migration routes"
+container: "Heredity 117(3), 135–141"
+doi: 10.1038/hdy.2016.32
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC4981680) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

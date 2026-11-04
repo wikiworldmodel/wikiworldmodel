@@ -1,0 +1,184 @@
+id: earth/ice-ages/last-glacial-maximum
+kind: event/glaciation
+summary: >-
+  The last time the ice sheets stood at their greatest, over much of North America and north-west
+  Eurasia, with global sea level more than 100 m below today's. Its dates depend on what is measured:
+  the ice's own limits, the lowest sea level, or a span agreed on for comparing climate models.
+author: machine:claude-code
+same_as: { wikidata: Q1979625 }
+claims:
+  name:
+    prop: name
+    value: { en: Last Glacial Maximum }
+    source: { ref: src:clark-2009-last-glacial-maximum, loc: title }
+  start-clark-2009:
+    prop: start
+    value: 26.5 ka
+    source:
+      ref: src:clark-2009-last-glacial-maximum
+      loc: abstract
+      quote: Nearly all ice sheets were at their LGM positions from 26.5 ka to 19 to 20 ka, corresponding to minima in these forcings.
+    method: compilation
+    rank: preferred
+    note: >-
+      From 5704 ¹⁴C, ¹⁰Be and ³He ages, in terms of the extent of ice sheets and mountain glaciers. It
+      dates the ice itself, which is what the name means, and that is why it is preferred over the spans
+      from sea level.
+  start-gowan-2021:
+    prop: start
+    value: 26 ka
+    source:
+      ref: src:gowan-2021-paleomist
+      loc: abstract
+      quote: the Last Glacial Maximum (LGM, 26 000-19 000 years before present)
+    method: expert-estimate
+    note: The span of the lowstand as this reconstruction takes it.
+  start-ar6-2021:
+    prop: start
+    value: 23 ka
+    source:
+      ref: src:gulev-2021-ipcc-ar6-chapter-2
+      loc: "Cross-Chapter Box 2.1, Table 1, p. 295"
+      quote: Last Glacial Maximum (LGM) 23–19 ka
+    method: expert-estimate
+    note: A reference period for comparing climates, narrower than the time the ice stood at its limits.
+  start-yokoyama-2000:
+    prop: start
+    value: { hi: 22 ka }
+    source:
+      ref: src:yokoyama-2000-bonaparte-gulf
+      loc: abstract
+      quote: from at least 22,000 to 19,000 (calendar) years before present, land-based ice volume was at its maximum
+    method: radiometric/radiocarbon
+    note: From radiocarbon-dated sediments of the Bonaparte Gulf, Australia. "At least" means it began no later than this.
+  start-lambeck-2014:
+    prop: start
+    value: 30 ka
+    source:
+      ref: src:lambeck-2014-sea-level-ice-volumes
+      loc: abstract
+      quote: a rapid final fall in global sea level of ∼40 m in <2,000 y at the onset of the glacial maximum ∼30,000 y before present (30 ka BP)
+    method: model
+    note: By sea level, from an inversion of about 1000 observations far from the ice.
+  start-yokoyama-2018:
+    prop: start
+    value: 31 ka
+    source:
+      ref: src:yokoyama-2018-great-barrier-reef
+      loc: abstract
+      quote: The Last Glacial Maximum began when global mean sea level (GMSL) abruptly dropped by about 40 metres around 31,000 years ago
+    method: expert-estimate
+    note: By sea level; this paper takes the drop from earlier work. It is the same drop as Lambeck et al.'s, dated a little earlier.
+  end-clark-2009:
+    prop: end
+    value: { lo: 20 ka, hi: 19 ka }
+    source:
+      ref: src:clark-2009-last-glacial-maximum
+      loc: abstract
+      quote: Nearly all ice sheets were at their LGM positions from 26.5 ka to 19 to 20 ka, corresponding to minima in these forcings.
+    method: compilation
+    rank: preferred
+    note: Goes with the start of the same span. Northern deglaciation began then.
+  end-ar6-2021:
+    prop: end
+    value: 19 ka
+    source:
+      - ref: src:gulev-2021-ipcc-ar6-chapter-2
+        loc: "Cross-Chapter Box 2.1, Table 1, p. 295"
+        quote: Last Glacial Maximum (LGM) 23–19 ka
+      - ref: src:gowan-2021-paleomist
+        loc: abstract
+        quote: the Last Glacial Maximum (LGM, 26 000-19 000 years before present)
+      - ref: src:clark-2012-last-deglaciation
+        loc: abstract
+        quote: from the end of the Last Glacial Maximum approximately 19 ka
+    method: expert-estimate
+  end-yokoyama-2000:
+    prop: end
+    value: { mean: 19 ka, sd: 250 yr }
+    source:
+      ref: src:yokoyama-2000-bonaparte-gulf
+      loc: abstract
+      quote: A rapid decrease in ice volume by about 10% within a few hundred years terminated the Last Glacial Maximum at 19,000 +/- 250 years.
+    method: radiometric/radiocarbon
+    note: The ± is read as 1σ; the abstract does not say.
+  end-yokoyama-2018:
+    prop: end
+    value: 20.5 ka
+    source:
+      ref: src:yokoyama-2018-great-barrier-reef
+      loc: abstract
+      quote: find that the Last Glacial Maximum culminated 20,500 years ago in a GMSL low of about -125 to -130 metres.
+    method: radiometric
+    note: The lowest sea level, from radiometrically dated corals and coralline algae off the Great Barrier Reef.
+  end-lambeck-2014:
+    prop: end
+    value: { lo: 21 ka, hi: 20 ka }
+    source:
+      ref: src:lambeck-2014-sea-level-ice-volumes
+      loc: "Discussion and Conclusions, item (iii)"
+      quote: Onset of deglaciation at ∼21–20 ka BP with a short-lived global sea-level rise of ∼10–15 m before 18 ka.
+    method: model
+    note: The first rise of sea level; the main phase came later, from about 16.5 ka.
+  sea-level-ar6-2021:
+    prop: sea_level
+    value: { lo: -134, hi: -125 }
+    source:
+      ref: src:gulev-2021-ipcc-ar6-chapter-2
+      loc: "Section 2.3.3.3, p. 353"
+      quote: modelling studies confirm that, at the LGM, GMSL was 125–134 m below present (Lambeck et al., 2014; Yokoyama et al., 2018).
+    method: compilation
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      The lowstand, as the IPCC assessed it, which is the widest weighing of the evidence here. The range
+      spans the two studies it cites, not the uncertainty of either.
+  sea-level-lambeck-2014:
+    prop: sea_level
+    value: -134
+    valid: 21 ka
+    source:
+      ref: src:lambeck-2014-sea-level-ice-volumes
+      loc: abstract
+      quote: a slow fall to -134 m from 29 to 21 ka BP with a maximum grounded ice volume of ∼52 × 10(6) km(3) greater than today
+    method: model
+    basis: reconstruction
+    note: The paper's lowest ice-volume-equivalent sea level, from far-field observations and a model of the Earth's response.
+  sea-level-clark-2009:
+    prop: sea_level
+    value: -130
+    valid: 24 ka
+    source:
+      ref: src:spratt-lisiecki-2016-stack
+      loc: "Section 3, p. 1084"
+      quote: We scaled the short and long stacks to eustatic sea level using an LGM value of −130 m at 24 ka based on a GIA-corrected coral compilation (Clark et al., 2009)
+    method: compilation
+    basis: reconstruction
+    note: As Spratt and Lisiecki take it from Clark et al. (2009), whose full text was not read here. It anchors the series field:earth/sea-level-stack.
+  sea-level-yokoyama-2018:
+    prop: sea_level
+    value: { lo: -130, hi: -125 }
+    valid: 20.5 ka
+    source:
+      ref: src:yokoyama-2018-great-barrier-reef
+      loc: abstract
+      quote: we used glacio-isostatic models to derive GMSL, and find that the Last Glacial Maximum culminated 20,500 years ago in a GMSL low of about -125 to -130 metres.
+    method: model
+    basis: reconstruction
+    note: The relative sea level the corals record at the Great Barrier Reef is higher, −118 m; this is the global figure derived from it.
+  sea-level-gowan-2021:
+    prop: sea_level
+    value: -116
+    valid: 20 ka
+    source:
+      - ref: src:gowan-2021-paleomist
+        loc: Discussion
+        quote: Our maximum calculated ice-volume equivalent sea level (ESL) fall (−116 m) and ice volume (42.2 × 106 km3) are both substantially less than reported by Lambeck et al.31 (−130 to −135 m and 53 × 106 km3, respectively).
+      - ref: src:gowan-2021-paleomist
+        loc: "Results, Ice sheet evolution, ice volume, and sea-level change"
+        quote: to ensure that the LGM lowstand was achieved at 20,000 yr BP
+    method: model
+    basis: reconstruction
+    note: >-
+      Built up from ice-margin geology and near-field sea level, not far-field records. It suggests that
+      far-field sites showing less than −120 m may not represent the global mean, and finds no ice missing.

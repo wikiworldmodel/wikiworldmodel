@@ -1,0 +1,20 @@
+id: src:berry-marshall-2015-svalbard
+type: publication
+kind: measurement
+citation: >-
+  Berry, C.M. & Marshall, J.E.A. (2015). Lycopsid forests in the early Late Devonian
+  paleoequatorial zone of Svalbard. Geology 43(12), 1043–1046.
+authors:
+  - "Berry, C.M."
+  - "Marshall, J.E.A."
+published: 2015
+title: "Lycopsid forests in the early Late Devonian paleoequatorial zone of Svalbard"
+container: Geology 43(12), 1043–1046
+doi: 10.1130/G37000.1
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work. The article is open access, but
+    the publisher's site and the Cardiff repository both stopped the download at a bot check.
+    Quotes checked by script against the abstract. Metadata from Crossref.

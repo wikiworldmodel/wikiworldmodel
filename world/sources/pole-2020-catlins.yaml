@@ -1,0 +1,19 @@
+id: src:pole-2020-catlins
+type: publication
+kind: measurement
+citation: >-
+  Pole, M. (2020). Middle-Late Jurassic plant assemblages of the Catlins coast, New Zealand.
+  Palaeontologia Electronica 23(3), a51.
+authors:
+  - "Pole, M."
+published: 2020
+title: "Middle-Late Jurassic plant assemblages of the Catlins coast, New Zealand"
+container: Palaeontologia Electronica 23(3), a51
+doi: 10.26879/1039
+license: CC-BY-NC-SA-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the open-access PDF (palaeo-electronica.org/content/pdfs/1039.pdf);
+    the parts cited were read, and quotes checked by script against its text, with line-end
+    hyphens joined. Metadata from Crossref; the volume and article number from the PDF.

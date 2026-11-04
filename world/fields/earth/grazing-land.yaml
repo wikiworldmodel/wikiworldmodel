@@ -1,0 +1,24 @@
+id: field:earth/grazing-land
+type: field
+title: Grazing land
+quantity: land mown or grazed for livestock in the whole world
+unit: km²
+description: >-
+  How much of the world's land was used for mowing or grazing livestock, in the baseline of HYDE 3.2.1, in km² as its table
+  gives it: pasture and rangeland together, anything from managed irrigated grassland to scrub that is almost desert. From
+  1960 it follows the FAO's "permanent meadows and pastures". Before 1960 it is mostly not measured: the authors modelled
+  grazing land per person back in time from 1960, country by country, with historical statistics for some large countries,
+  and multiplied it by their population, so it leans on that series too. They say these estimates "are much more uncertain". Their range, which they say should be treated with
+  care, is 5.07–8.20 million km² around 6.64 in 1700, 10.7–13.0 around 11.9 in 1850 and 32.1–32.7 around 32.4 in 2015
+  (their million hectares, divided by 100); they print no such numbers for earlier dates. Its steps are 1,000 years long up
+  to 1 CE, 100 years up to 1700, 10 years up to 2000 and then one year, and it stops at 2015. Between steps the line is
+  simply straight, not an estimate.
+grid: { kind: series }
+# HYDE labels its first step -10000, and the axis reads that as it stands: a year out, which these numbers cannot tell.
+time: { lo: -10000, hi: 2015 CE }
+data:
+  from: src:hyde-3.2.1-world-land-use
+  columns: { time: year, value: grazing_km2 }
+  time_unit: CE
+basis: reconstruction
+interp: linear

@@ -1,0 +1,14 @@
+id: src:elgin-marbles-act-1816
+type: publication
+kind: compilation
+citation: >-
+  56 George 3 c. 99: An Act to vest the Elgin Collection of ancient Marbles and Sculpture in the
+  Trustees of the British Museum for the Use of the Public (1816). In The Statutes Project, from
+  Butterworth's Statutes of the United Kingdom, 1816.
+published: 1816
+title: An Act to vest the Elgin Collection of ancient Marbles and Sculpture in the Trustees of the British Museum for the Use of the Public
+url: https://statutes.org.uk/site/the-statutes/nineteenth-century/1816-56-george-3-c-99-the-elgin-marbles-act/
+reliability: A transcription of the statute, in part summarized by its editors.
+verified:
+  by: machine:claude-code
+  how: Read on the Statutes Project's site. Quotations checked by script against the page's text.

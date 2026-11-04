@@ -1,0 +1,27 @@
+id: src:kappelman-2016-lucy
+type: publication
+kind: measurement
+citation: >-
+  Kappelman, J., Ketcham, R.A., Pearce, S., Todd, L., Akins, W., Colbert, M.W., Feseha, M.,
+  Maisano, J.A. & Witzel, A. (2016). Perimortem fractures in Lucy suggest mortality from fall out
+  of tall tree. Nature 537(7621), 503–507.
+authors:
+  - "Kappelman, J."
+  - "Ketcham, R.A."
+  - "Pearce, S."
+  - "Todd, L."
+  - "Akins, W."
+  - "Colbert, M.W."
+  - "Feseha, M."
+  - "Maisano, J.A."
+  - "Witzel, A."
+published: 2016
+title: "Perimortem fractures in Lucy suggest mortality from fall out of tall tree"
+container: "Nature 537(7621), 503–507"
+doi: 10.1038/nature19332
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 27571283): Lucy as an Australopithecus afarensis
+    found in the Afar region of Ethiopia in 1974. Quoted passages checked by script against the
+    text retrieved.

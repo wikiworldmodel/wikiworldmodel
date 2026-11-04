@@ -1,0 +1,25 @@
+id: src:yang-2012-early-millet
+type: publication
+kind: measurement
+citation: >-
+  Yang, X., Wan, Z., Perry, L., … & Ge, Q. (2012). Early millet use in northern China.
+  Proceedings of the National Academy of Sciences 109(10), 3726–3730.
+authors:
+  - "Yang, X."
+  - "Wan, Z."
+  - "Perry, L."
+  - "Lu, H."
+  - "Wang, Q."
+  - "Zhao, C."
+  - "Li, J."
+  - "Xie, F."
+# the first eight of 13 authors
+published: 2012
+title: "Early millet use in northern China"
+container: "Proceedings of the National Academy of Sciences 109(10), 3726–3730"
+doi: 10.1073/pnas.1115430109
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC3309722) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

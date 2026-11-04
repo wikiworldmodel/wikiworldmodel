@@ -1,0 +1,18 @@
+id: src:flugel-2002-triassic-reefs
+type: publication
+kind: review
+citation: >-
+  Flügel, E. (2002). Triassic reef patterns. In Kiessling, W., Flügel, E. & Golonka, J. (eds),
+  Phanerozoic Reef Patterns. SEPM Special Publication 72, 391–463.
+authors:
+  - "Flügel, E."
+published: 2002
+title: "Triassic reef patterns"
+container: Phanerozoic Reef Patterns, SEPM Special Publication 72, 391–463
+doi: 10.2110/pec.02.72.0391
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

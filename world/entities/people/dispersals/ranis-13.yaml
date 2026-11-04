@@ -1,0 +1,78 @@
+id: people/dispersals/ranis-13
+kind: occurrence
+summary: >-
+  The genome of a man from Ilsenhöhle at Ranis, Germany, about 45,000 years old, the one
+  high-coverage genome among six individuals found there: from the deepest known split from the
+  lineage that left Africa, kin at a distance to the woman of Zlatý kůň.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Ranis13 }
+    source:
+      ref: src:sumer-2025-ranis-genomes
+      loc: "main text, on kinship"
+      quote: "the high-coverage-genome-yielding Ranis13"
+  identified:
+    prop: identified_as
+    value: modern human
+    source:
+      ref: src:sumer-2025-ranis-genomes
+      loc: abstract
+      quote: "Here we deepen our understanding of early modern humans by analysing one high-coverage genome and five low-coverage genomes"
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:sumer-2025-ranis-genomes
+      loc: abstract
+      quote: "one high-coverage genome and five low-coverage genomes from approximately 45,000-year-old remains from Ilsenhöhle in Ranis, Germany"
+  location:
+    prop: location
+    value: { lat: 50.6626, lon: 11.5649, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-ilsenhohle, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 49.54 ka, hi: 42.2 ka }
+    source:
+      ref: src:sumer-2025-ranis-genomes
+      loc: "main text, on the specimens"
+      quote: "directly radiocarbon-dated to between 42,200 and 49,540 calibrated years before the present (cal bp) (95.4% probability"
+    method: radiometric/radiocarbon
+    note: The span of all the Ranis bone fragments together, not of this one.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        Part of a small, isolated population, also represented at Zlatý kůň, that is the deepest
+        known split from the lineage that left Africa. Its Neanderthal segments come from the single
+        admixture event shared with all non-Africans.
+    source:
+      - ref: src:sumer-2025-ranis-genomes
+        loc: abstract
+        quote: "they were part of the same small, isolated population that represents the deepest known split from the Out-of-Africa lineage"
+      - ref: src:sumer-2025-ranis-genomes
+        loc: abstract
+        quote: "Ranis genomes harbour Neanderthal segments that originate from a single admixture event shared with all non-Africans"
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:sumer-2025-ranis-genomes
+      loc: abstract
+      quote: "early modern humans"
+  after-the-admixture:
+    rel: after
+    to: people/dispersals/neanderthal-admixture
+    source:
+      ref: src:sumer-2025-ranis-genomes
+      loc: abstract
+      quote: "Ranis genomes harbour Neanderthal segments that originate from a single admixture event"

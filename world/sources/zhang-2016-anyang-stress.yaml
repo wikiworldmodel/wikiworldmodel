@@ -1,0 +1,24 @@
+id: src:zhang-2016-anyang-stress
+type: publication
+kind: measurement
+citation: >-
+  Zhang, H., Merrett, D.C., Jing, Z., Tang, J., He, Y., Yue, H., Yue, Z. & Yang, D.Y. (2016). Osteoarchaeological Studies of Human
+  Systemic Stress of Early Urbanization in Late Shang at Anyang, China. PLoS ONE 11(4), e0151854.
+authors:
+  - "Zhang, H."
+  - "Merrett, D.C."
+  - "Jing, Z."
+  - "Tang, J."
+  - "He, Y."
+  - "Yue, H."
+  - "Yue, Z."
+  - "Yang, D.Y."
+published: 2016
+title: Osteoarchaeological Studies of Human Systemic Stress of Early Urbanization in Late Shang at Anyang, China
+container: PLoS ONE
+doi: 10.1371/journal.pone.0151854
+url: https://europepmc.org/article/PMC/PMC4822842
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC4822842). Quotes checked by script against it, after normalizing whitespace.

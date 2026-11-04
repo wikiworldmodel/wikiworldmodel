@@ -1,0 +1,119 @@
+id: life/megafauna/extinction-south-america
+kind: event/extinction
+summary: >-
+  The loss of more than 40 genera of large mammals from South America around the end of the
+  Pleistocene, the highest proportion of any continent but Australia: ground sloths, glyptodonts,
+  horses, proboscideans and the continent's own ungulates. People had been there for a thousand
+  years or more when it came, and the record is thinner than in the north.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Megafauna extinctions in South America }
+    unsourced: An editorial label.
+  date-prates-perez-2021:
+    prop: date
+    value: { lo: 12900 BP, hi: 11600 BP }
+    source:
+      ref: src:prates-perez-2021-south-america
+      loc: Results
+      quote: "After 12,9 k cal BP, the SCPD curve shows a dramatic decline until 11,6 k cal BP."
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The fall in summed radiocarbon dates on megafauna across the continent. Preferred as the only
+      continent-wide figure read that gives both ends; summed dates are open to the criticism that
+      Stewart et al. (2021) make of them. Stuart (2015) thought the South American dates still too
+      few to show a pattern.
+  date-metcalf-2016:
+    prop: date
+    value: { mean: 12280 BP, sd: 110 yr }
+    source:
+      ref: src:metcalf-2016-patagonia
+      loc: abstract
+      quote: "We identify a narrow megafaunal extinction phase 12,280 ± 110 years ago"
+    method: radiometric/radiocarbon
+    note: >-
+      Southern Patagonia only, from a Bayesian phase model of radiocarbon dates. The abstract does
+      not give the level of the ±, so it is read as 1σ.
+  date-surovell-2016:
+    prop: date
+    value: { lo: 13900 BP, hi: 12600 BP }
+    source:
+      ref: src:surovell-2016-overkill-test
+      loc: abstract
+      quote: "and at ca. 12,600-13,900 BP in South America"
+    method: radiometric/radiocarbon
+    note: >-
+      When extinction began, from the spacing of direct dates on extinct genera; only the abstract
+      was read.
+  location:
+    prop: location
+    value: { lat: -36, lon: -61, frame: frame:earth/present-day }
+    unsourced: A representative point in the Pampas, chosen to place the marker; the event has no single location.
+    method: editorial
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-290
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  evidenced-by-campo-laborde:
+    rel: evidenced-by
+    to: life/megafauna/megatherium-campo-laborde
+    source:
+      ref: src:politis-2019-campo-laborde
+      loc: Introduction
+      quote: "The Campo Laborde site can provide high-quality data for discussing the human impact on the Pleistocene fauna and the timing of the megamammal extinctions in the Pampas and in South America"
+  caused-by-people:
+    rel: caused-by
+    to: people/dispersals/monte-verde
+    alt: alt:megafauna-causes/human-driven
+    source:
+      ref: src:prates-perez-2021-south-america
+      loc: abstract
+      quote: "we propose that the direct effect of human predation was the main factor driving the megafaunal decline, with other secondary, but necessary, co-occurring factors for the collapse of the megafaunal community"
+    note: >-
+      Holds only in the alternative "Driven by people". Prates & Perez put the turn not at first
+      arrival but at the spread of Fishtail points, thousands of years on, and call other factors
+      secondary but necessary. Monte Verde stands here for the people's presence on the continent.
+  caused-by-deglaciation:
+    rel: caused-by
+    to: earth/ice-ages/last-deglaciation
+    alt: alt:megafauna-causes/climate-driven
+    source:
+      ref: src:rozas-davila-2016-andean-megafauna
+      loc: abstract
+      quote: "Our data revealed that Andean megafaunal populations collapsed due to positive feedbacks between habitat quality and climate change rather than human activity."
+    note: >-
+      Holds only in the alternative "Driven by climate". From one lake in the Peruvian Andes, by the
+      dung fungus Sporormiella, where the collapse comes by about 15,800 years ago, some 3,000 years
+      before known human occupation of the high Andes. No source read makes this case for the Pampas
+      or Patagonia.
+  both-people:
+    rel: caused-by
+    to: people/dispersals/monte-verde
+    alt: alt:megafauna-causes/both
+    source:
+      ref: src:metcalf-2016-patagonia
+      loc: abstract
+      quote: "in both cases, megafaunal extinctions did not occur until human presence and climate warming coincided"
+    note: Holds only in the alternative "People and climate together". From Patagonia, compared with North America.
+  both-deglaciation:
+    rel: caused-by
+    to: earth/ice-ages/last-deglaciation
+    alt: alt:megafauna-causes/both
+    source:
+      - ref: src:metcalf-2016-patagonia
+        loc: abstract
+        quote: "megafaunal extinctions did not occur until the stadial finished and the subsequent warming phase commenced some 1 to 3 thousand years later"
+      - ref: src:barnosky-2004-pleistocene-extinctions
+        loc: "p. 71"
+        quote: "The megafauna went extinct in the late Pleistocene, probably after humans arrived and as climate changed"
+    note: >-
+      Holds only in the alternative "People and climate together". Metcalf et al. name the warming
+      that followed the Antarctic Cold Reversal, about 14.4–12.7 ka in Patagonia, when glacial
+      conditions gave way from about 12.6 ka: a late stretch of the deglaciation this record stands
+      for.

@@ -1,0 +1,19 @@
+id: src:wosik-evans-2022-edmontosaurus
+type: publication
+kind: measurement
+citation: >-
+  Wosik, M. & Evans, D.C. (2022). Osteohistological and taphonomic life-history assessment of
+  Edmontosaurus annectens (Ornithischia: Hadrosauridae) from the Late Cretaceous (Maastrichtian)
+  Ruth Mason Dinosaur Quarry, South Dakota, United States, with implication for ontogenetic
+  segregation between juvenile and adult hadrosaurids. Journal of Anatomy 241(2), 272–296.
+authors:
+  - "Wosik, M."
+  - "Evans, D.C."
+published: 2022
+title: "Osteohistological and taphonomic life-history assessment of Edmontosaurus annectens (Ornithischia: Hadrosauridae) from the Late Cretaceous (Maastrichtian) Ruth Mason Dinosaur Quarry, South Dakota, United States, with implication for ontogenetic segregation between juvenile and adult hadrosaurids"
+container: "Journal of Anatomy 241(2), 272–296"
+doi: 10.1111/joa.13679
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from PubMed Central (PMC9296034); quotes checked by script against it.

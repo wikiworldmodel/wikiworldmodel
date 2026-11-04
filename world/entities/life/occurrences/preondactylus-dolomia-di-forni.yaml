@@ -1,0 +1,66 @@
+id: life/occurrences/preondactylus-dolomia-di-forni
+kind: occurrence
+summary: >-
+  The pterosaur Preondactylus buffarinii from the Dolomia di Forni in the Rio Seazza valley, Friuli, Italy: from the oldest
+  pterosaurs found, those of the Norian, and on some analyses the earliest-diverging. PBDB collection 83471.
+same_as: { pbdb: "occ:777702" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Preondactylus, Rio Seazza" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Preondactylus buffarinii
+    source: { ref: src:pbdb/collection-83471, loc: "occurrence 777702, accepted_name" }
+    note: >-
+      The record gives no identified name; this is the accepted name.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:dalla-vecchia-2019-seazzadactylus
+      loc: "Significance of the new taxon"
+      quote: "the pterosaur genera and species from the Dolomia di Forni Formation increase to four (the others are Preondactylus buffarinii, Austriadactylus cristatus and Carniadactylus rosenfeldi)"
+  location:
+    prop: location
+    value: { lat: 46.380554, lon: 12.864722, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-83471, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Dolomia di Forni Formation
+    source:
+      ref: src:dalla-vecchia-2019-seazzadactylus
+      loc: "Systematic palaeontology, locality and stratigraphic horizon"
+      quote: "Dolomia di Forni Formation (Alaunian 3- Sevatian, middle-upper Norian)"
+  date:
+    prop: date
+    value: { lo: 215.38 Ma, hi: 205.7 Ma }
+    source:
+      - { ref: src:pbdb/collection-83471, loc: "early_interval (Alaunian), late_interval (Sevatian), max_ma, min_ma" }
+      - ref: src:dalla-vecchia-2019-seazzadactylus
+        loc: "Systematic palaeontology, locality and stratigraphic horizon"
+        quote: "Dolomia di Forni Formation (Alaunian 3- Sevatian, middle-upper Norian)"
+    method: stratigraphic
+    note: >-
+      The numbers are the PBDB's for those substages, on its own scale; Dalla Vecchia gives the formation's substages, for a
+      nearby find.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/sauropsida
+    source:
+      - { ref: src:pbdb/collection-83471, loc: "occurrence 777702, classification: Chordata, Reptilia, Pterosauria" }
+      - ref: src:ezcurra-2020-lagerpetids
+        loc: abstract
+        quote: "strengthens the evidence that pterosaurs belong to the avian line of archosaurs"
+    note: >-
+      Archosaurs on the avian side, so within the reptile line of amniotes.

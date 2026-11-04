@@ -1,0 +1,46 @@
+id: people/domestication/sorghum
+kind: development
+summary: >-
+  The domestication of sorghum in the eastern Sahel of Africa. People ate wild, shattering sorghum
+  in the eastern Sahara for millennia. Impressions in Butana Group pottery in the southern Atbai of
+  eastern Sudan show a mix of wild and domestic forms in the fourth millennium BCE, and by the early
+  second millennium forms found only in domestic plants appear.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Sorghum domestication }
+    unsourced: An editorial label.
+  start-fuller-2014:
+    prop: start
+    value: { lo: 6 ka, hi: 4 ka }
+    source:
+      ref: src:fuller-2014-domestication-rates
+      loc: "Comparing Timing and Tempo of Domestication in Seed Crops"
+      quote: "This suggests that domestication took place in Africa between 6000 and 4000 B.P., but hard evidence for the process is lacking."
+    method: expert-estimate
+    rank: deprecated
+    note: >-
+      Written before the study of the Butana Group impressions, which supply such evidence. They fall
+      within this range, so the start shown comes from them, not from this estimate.
+  location:
+    prop: location
+    value: { lat: 15.45, lon: 36.4, frame: frame:earth/present-day }
+    source:
+      - ref: src:winchell-2018-sorghum
+        loc: abstract
+        quote: "proposed the eastern Sahelian zone as the most likely center of Sorghum bicolor domestication"
+      - ref: src:winchell-2018-sorghum
+        loc: abstract
+        quote: "seed impressions on Butana Group pottery, from the fourth millennium BC in the southern Atbai region of the far eastern Sahelian Belt in Africa"
+      - { ref: src:wikidata-kassala, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Marked at Kassala, the city at the Gash Delta in the southern Atbai. The paper reviews a
+      proposal from 1976 that the new evidence fits, and no source read fixes a smaller area.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-716
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

@@ -1,0 +1,19 @@
+id: src:riehl-2013-chogha-golan
+type: publication
+kind: measurement
+citation: >-
+  Riehl, S., Zeidi, M. & Conard, N.J. (2013). Emergence of agriculture in the foothills of the
+  Zagros Mountains of Iran. Science 341(6141), 65–67.
+authors:
+  - "Riehl, S."
+  - "Zeidi, M."
+  - "Conard, N.J."
+published: 2013
+title: "Emergence of agriculture in the foothills of the Zagros Mountains of Iran"
+container: "Science 341(6141), 65–67"
+doi: 10.1126/science.1236743
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read from the Europe PMC record (PMID 23828939); the full text was not read.
+    Each quote checked by script against the abstract; citation from the same record.

@@ -1,0 +1,22 @@
+id: src:gretzinger-2019-cave-bear-mitogenomes
+type: publication
+kind: measurement
+citation: >-
+  Gretzinger, J., Molak, M., Reiter, E., Pfrengle, S., Urban, C., Neukamm, J., Blant, M., Conard,
+  N.J., Cupillard, C., Dimitrijević, V., … & Schuenemann, V.J. (2019). Large-scale mitogenomic
+  analysis of the phylogeography of the Late Pleistocene cave bear. Scientific Reports 9, 10700.
+authors:
+  - "Gretzinger, J."
+  - "Molak, M."
+  - "Reiter, E."
+  - "Pfrengle, S."
+  - "Schuenemann, V.J."
+published: 2019
+title: "Large-scale mitogenomic analysis of the phylogeography of the Late Pleistocene cave bear"
+container: "Scientific Reports 9, 10700"
+doi: 10.1038/s41598-019-47073-z
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC6695494). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

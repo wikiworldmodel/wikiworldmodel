@@ -1,0 +1,34 @@
+id: src:foffa-2025-pterosauromorphs
+type: publication
+kind: measurement
+citation: >-
+  Foffa, D., Dunne, E.M., Chiarenza, A.A., Wynd, B.M., Farnsworth, A., Lunt, D.J., Valdes, P.J.,
+  Nesbitt, S.J., Kligman, B.T., Marsh, A.D., Parker, W.G., Butler, R.J., Fraser, N.C., Brusatte,
+  S.L. & Barrett, P.M. (2025). Climate drivers and palaeobiogeography of lagerpetids and early
+  pterosaurs. Nature Ecology & Evolution 9(8), 1359–1372.
+authors:
+  - "Foffa, D."
+  - "Dunne, E.M."
+  - "Chiarenza, A.A."
+  - "Wynd, B.M."
+  - "Farnsworth, A."
+  - "Lunt, D.J."
+  - "Valdes, P.J."
+  - "Nesbitt, S.J."
+  - "Kligman, B.T."
+  - "Marsh, A.D."
+  - "Parker, W.G."
+  - "Butler, R.J."
+  - "Fraser, N.C."
+  - "Brusatte, S.L."
+  - "Barrett, P.M."
+published: 2025
+title: "Climate drivers and palaeobiogeography of lagerpetids and early pterosaurs"
+container: Nature Ecology & Evolution 9(8), 1359–1372
+doi: 10.1038/s41559-025-02767-8
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC12328205) read via Europe PMC (fullTextXML), for the statement that
+    pterosaurs were the first vertebrates to evolve powered flight and for their Norian and
+    Rhaetian record. Quotes checked by script against that text. Metadata from Crossref.

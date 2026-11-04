@@ -1,0 +1,21 @@
+id: people/prehistory/lomekwian
+kind: industry
+summary: >-
+  The Lomekwian, the name proposed for the stone tools of Lomekwi 3, West Turkana, Kenya: the earliest
+  known stone tools, mixing core reduction with battering, some 700,000 years older than the Oldowan as
+  then known. Known from that one site, it has no location of its own here. Its makers are unknown:
+  Kenyanthropus platyops and late Australopithecus afarensis are the names usually offered.
+same_as: { wikidata: Q133545387 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Lomekwian }
+    source:
+      ref: src:harmand-2015-lomekwi
+      loc: abstract
+      quote: "we propose for it the name 'Lomekwian', which predates the Oldowan by 700,000 years"
+  end:
+    prop: end
+    value: unknown
+    unsourced: Known from one site, so nothing read says how long it lasted.

@@ -1,0 +1,24 @@
+id: src:davies-2005-joggins
+type: publication
+kind: measurement
+citation: >-
+  Davies, S.J., Gibling, M.R., Rygel, M.C., Calder, J.H. & Skilliter, D.M. (2005). The
+  Pennsylvanian Joggins Formation of Nova Scotia: sedimentological log and stratigraphic framework
+  of the historic fossil cliffs. Atlantic Geology 41, 115–142.
+authors:
+  - "Davies, S.J."
+  - "Gibling, M.R."
+  - "Rygel, M.C."
+  - "Calder, J.H."
+  - "Skilliter, D.M."
+published: 2005
+title: "The Pennsylvanian Joggins Formation of Nova Scotia: sedimentological log and stratigraphic framework of the historic fossil cliffs"
+container: Atlantic Geology 41, 115–142
+doi: 10.4138/182
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the journal's PDF
+    (journals.lib.unb.ca/index.php/ag/article/download/182/312); the parts cited were read, and
+    quotes checked by script against its text, extracted with Ghostscript. Metadata from Crossref,
+    which gives the year as 2006; the paper itself gives 2005.

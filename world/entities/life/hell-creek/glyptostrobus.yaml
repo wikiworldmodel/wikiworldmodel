@@ -1,0 +1,42 @@
+id: life/taxa/glyptostrobus
+kind: taxon
+summary: >-
+  A swamp conifer with scale leaves, in the Hell Creek rows of the snapshot G. europaeus and a
+  morphotype.
+same_as: { pbdb: "txn:55253" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Glyptostrobus", en: "Chinese swamp cypress" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 55253"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: conifer
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: upright
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 4, p. 57, s.v. Glyptostrobus pensilis"
+      quote: "Trees to 15(-25) m tall"
+    note: >-
+      A tree, as the flora describes the living plant.
+  height-flora-of-china:
+    prop: plant_height
+    value: 15
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 4, p. 57, s.v. Glyptostrobus pensilis"
+      quote: "Trees to 15(-25) m tall"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The living species G. pensilis, which reaches 15 m, and 25 m at most: a modern relative,
+      not a Hell Creek plant.

@@ -1,0 +1,15 @@
+id: src:unesco-whc-86-memphis
+type: publication
+kind: review
+citation: >-
+  UNESCO World Heritage Centre. Memphis and its Necropolis – the Pyramid Fields from Giza to Dahshur. World Heritage List, no. 86: description and
+  statement of outstanding universal value.
+title: Memphis and its Necropolis – the Pyramid Fields from Giza to Dahshur
+container: UNESCO World Heritage List
+url: https://whc.unesco.org/en/list/86/
+via: The Internet Archive's copy of 31 December 2024 (web.archive.org/web/20241231120338/https://whc.unesco.org/en/list/86/), because UNESCO's site refused the script.
+license_note: The description is under CC BY-SA IGO 3.0. Only single facts and short quotes are taken, with credit.
+reliability: An official summary, drawn from the state's nomination; not a research paper. It calls its founding date traditional.
+verified:
+  by: machine:claude-code
+  how: Read in the archived copy. Quotes checked by script against its text, after normalizing whitespace.

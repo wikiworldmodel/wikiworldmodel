@@ -1,0 +1,21 @@
+id: src:brown-1985-turkana-boy
+type: publication
+kind: measurement
+citation: >-
+  Brown, F., Harris, J., Leakey, R. & Walker, A. (1985). Early Homo erectus skeleton from west
+  Lake Turkana, Kenya. Nature 316(6031), 788–792.
+authors:
+  - "Brown, F."
+  - "Harris, J."
+  - "Leakey, R."
+  - "Walker, A."
+published: 1985
+title: "Early Homo erectus skeleton from west Lake Turkana, Kenya"
+container: "Nature 316(6031), 788–792"
+doi: 10.1038/316788a0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 3929141): KNM-WT 15000 at Nariokotome III, in
+    sediments dated close to 1.6 Myr. Quoted passages checked by script against the text
+    retrieved.

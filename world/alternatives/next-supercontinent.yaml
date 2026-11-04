@@ -1,0 +1,14 @@
+# A group of alternatives: its members exclude each other, and groups combine freely. A
+# claim belongs to the default picture unless it names an alternative (section 4.4).
+id: alt:next-supercontinent
+type: group
+title: Next supercontinent
+description: >-
+  How the continents come together again, some 200–300 million years from now. For that, at least one
+  ocean must close: the interior Atlantic, the exterior Pacific, both, or the Arctic. Davies et al.
+  (2018) rebuilt the four scenarios proposed for these in one plate model, from the same start, and
+  treat them as end-members of a spectrum of possibilities. The default picture says only when, on the
+  record "The next supercontinent"; which one forms, and what closes, comes with each alternative.
+# A steward decision: what a build shows. Shown on a machine's proposal, until a person decides.
+show: [alt:next-supercontinent/amasia, alt:next-supercontinent/aurica, alt:next-supercontinent/novopangaea, alt:next-supercontinent/pangaea-proxima]
+default: null

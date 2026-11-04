@@ -1,0 +1,25 @@
+id: src:davies-2018-next-supercontinent
+type: publication
+kind: model
+citation: >-
+  Davies, H.S., Green, J.A.M. & Duarte, J.C. (2018). Back to the future: Testing different scenarios
+  for the next supercontinent gathering. Global and Planetary Change 169, 133–144.
+authors:
+  - "Davies, H.S."
+  - "Green, J.A.M."
+  - "Duarte, J.C."
+published: 2018
+title: "Back to the future: Testing different scenarios for the next supercontinent gathering"
+container: Global and Planetary Change 169, 133–144
+doi: 10.1016/j.gloplacha.2018.07.015
+url: https://research.bangor.ac.uk/portal/files/20825293/Davies_et_al_Accepted.pdf
+via: >-
+  The accepted manuscript in Bangor University's research portal, read in the Internet Archive's copy
+  of 27 September 2024, since the portal refused a direct download from here. Locators are its
+  sections and tables; its page numbers are not those of the journal.
+verified:
+  by: machine:claude-code
+  how: >-
+    The whole accepted manuscript read, not the journal's typeset version. Citation from Crossref.
+    Quotes checked by script against the text extracted from the PDF, with the manuscript's line
+    numbers removed, after normalizing whitespace.

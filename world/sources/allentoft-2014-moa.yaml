@@ -1,0 +1,23 @@
+id: src:allentoft-2014-moa
+type: publication
+kind: measurement
+citation: >-
+  Allentoft, M.E., Heller, R., Oskam, C.L., Lorenzen, E.D., Hale, M.L., Gilbert, M.T.P., Jacomb, C.,
+  Holdaway, R.N. & Bunce, M. (2014). Extinct New Zealand megafauna were not in decline before human
+  colonization. Proceedings of the National Academy of Sciences of the USA 111(13), 4922–4927.
+authors:
+  - "Allentoft, M.E."
+  - "Heller, R."
+  - "Oskam, C.L."
+  - "Lorenzen, E.D."
+  - "Bunce, M."
+published: 2014
+title: "Extinct New Zealand megafauna were not in decline before human colonization"
+container: "Proceedings of the National Academy of Sciences of the USA 111(13), 4922–4927"
+doi: 10.1073/pnas.1314972111
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the PMC record through NCBI efetch (PMC3977255), the publisher
+    not allowing the full text there. Quotes checked by script against the text retrieved, after
+    normalizing whitespace.

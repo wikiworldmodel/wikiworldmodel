@@ -1,0 +1,20 @@
+id: src:osozawa-nel-2024-paleoptera
+type: publication
+kind: model
+citation: >-
+  Osozawa, S. & Nel, A. (2024). Paleopteran molecular clock: Time drift and recent acceleration.
+  Ecology and Evolution 14(9), e70297.
+authors:
+  - "Osozawa, S."
+  - "Nel, A."
+published: 2024
+title: "Paleopteran molecular clock: Time drift and recent acceleration"
+container: Ecology and Evolution 14(9), e70297
+doi: 10.1002/ece3.70297
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC11410561) read via Europe PMC (fullTextXML), for its table of fossil
+    calibrations and the row for Delitzschala bitterfeldensis (Bitterfeld/Delitzsch, Namurian,
+    319.5 ± 6.5, by correlation). Quotes checked by script against that text. Metadata from
+    Crossref.

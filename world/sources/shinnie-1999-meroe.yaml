@@ -1,0 +1,15 @@
+id: src:shinnie-1999-meroe
+type: publication
+kind: measurement
+citation: >-
+  Shinnie, P.L. (1999). Meroe and its Society. MittSAG 9 (Nachrichten der Sudanarchäologischen Gesellschaft zu Berlin e.V.), 13–15.
+authors:
+  - "Shinnie, P.L."
+published: 1999
+title: Meroe and its Society
+container: Nachrichten der Sudanarchäologischen Gesellschaft zu Berlin e.V. (MittSAG)
+url: https://www.sag-online.de/wp-content/uploads/2018/06/Shinnie1999_MeroeAndItsSociety_MittSAG9.pdf
+reliability: A short memorial lecture by the excavator of the town, 1965–1984.
+verified:
+  by: machine:claude-code
+  how: Full text read from the society's PDF. Quotes checked by script against its text layer, after normalizing whitespace.

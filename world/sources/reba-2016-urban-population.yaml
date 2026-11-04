@@ -1,0 +1,29 @@
+id: src:reba-2016-urban-population
+type: dataset
+kind: compilation
+citation: >-
+  Reba, M., Reitsma, F. & Seto, K.C. (2016). Spatializing 6,000 years of global urbanization from 3700 BC to AD 2000.
+  Scientific Data 3, 160034, with the data files Chandler Population Data (figshare, doi:10.6084/m9.figshare.2059494) and
+  Modelski Ancient Period Data (figshare, doi:10.6084/m9.figshare.2059497). They digitize the tables of Chandler (1987,
+  Four Thousand Years of Urban Growth) and Modelski (2003, World Cities: −3000 to 2000).
+authors:
+  - "Reba, M."
+  - "Reitsma, F."
+  - "Seto, K.C."
+published: 2016
+title: Spatializing 6,000 years of global urbanization from 3700 BC to AD 2000
+container: Scientific Data
+doi: 10.1038/sdata.2016.34
+url: https://doi.org/10.6084/m9.figshare.2059497
+license: CC-BY-4.0
+reliability: >-
+  Two older compilers' estimates, digitized. Neither gives its evidence row by row, and they often disagree with each other
+  and with later archaeological estimates, so they stand here as competing claims, seldom preferred. The Modelski file
+  has values for Teotihuacan and Tikal in the columns BC_900 to BC_600, centuries before those cities existed. They look
+  like misplaced AD values, and they are not used.
+verified:
+  by: machine:claude-code
+  how: >-
+    The paper read in full from Europe PMC (PMC4896125). The files chandlerV2.csv and modelskiAncientV2.csv downloaded from
+    figshare on 4 November 2026; each value cited here was compared with its row and column by script. The books behind them
+    were not read.

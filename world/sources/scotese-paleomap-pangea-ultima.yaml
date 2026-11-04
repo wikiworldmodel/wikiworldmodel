@@ -1,0 +1,23 @@
+id: src:scotese-paleomap-pangea-ultima
+type: publication
+kind: model
+citation: >-
+  Scotese, C.R. PALEOMAP Project website: Earth History, the pages "Future World" and "Future +250",
+  with their "More Info" pages. http://www.scotese.com/earth.htm. Cited as Scotese (2003) by Davies et
+  al. (2018).
+authors:
+  - "Scotese, C.R."
+published: 2003
+title: PALEOMAP Project, Future World and Future +250
+container: PALEOMAP Project website
+url: http://www.scotese.com/future2.htm
+note: >-
+  The pages carry no date. The year is the one Davies et al. (2018) give in citing the site, which
+  they accessed on 25 October 2017. Duarte et al. (2018) cite the same page, future2.htm, as Scotese
+  (2007), and for the name Pangaea Proxima, though as read now it says Pangea Ultima.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read on the site itself, fetched over plain HTTP: future2.htm ("Future +250"), its "More Info" page
+    newpage11.htm, and moreinfo.htm, the "More Info" page of the world 50 million years from now.
+    Quotes checked by script against the text of those pages, after normalizing whitespace.

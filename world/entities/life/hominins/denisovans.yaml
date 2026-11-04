@@ -1,0 +1,55 @@
+id: life/taxa/denisovans
+kind: taxon
+summary: >-
+  The Denisovans, a group of archaic hominins named from the genome of a finger bone from Denisova
+  Cave in Siberia, sharing a common origin with the Neanderthals. They are known from very few
+  fossils and have no agreed Latin name here.
+same_as: { wikidata: Q151055 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Denisovans }
+    source:
+      ref: src:reich-2010-denisova
+      loc: abstract
+      quote: "We designate this hominin population 'Denisovans'"
+  start-douka-2019:
+    prop: start
+    value: { hi: 195 ka }
+    source:
+      ref: src:douka-2019-denisova
+      loc: abstract
+      quote: "Our modelled estimate for the age of the oldest Denisovan fossil suggests that this group was present at the site as early as 195,000 years ago (at 95.4% probability)."
+    method: radiometric
+    rank: preferred
+    note: >-
+      The oldest Denisovan fossil, at Denisova Cave, from a Bayesian model of radiocarbon, uranium
+      series, optical and genetic ages. Preferred as the age of a fossil. It limits the group's
+      start; the group's origin may be much earlier, and this is not an estimate of it. A mandible
+      from Baishiya Karst Cave on the Tibetan Plateau is at least 160 thousand years old (Chen et al.
+      2019).
+  start-jacobs-2025:
+    prop: start
+    value: { hi: 250 ka }
+    source:
+      ref: src:jacobs-2025-denisova
+      loc: Discussion
+      quote: "The oldest layers with Denisovan mtDNA accumulated from ~250 ka and the oldest Denisovan fossils (including Denisova 25 from which a high-coverage genome has been reconstructed25) were deposited ~200 ka"
+    method: radiometric/luminescence
+    note: >-
+      Denisovan mitochondrial DNA in the cave's sediments, older than its fossils there, dated by
+      optical dating of the sediments.
+  end:
+    prop: end
+    value: unknown
+    unsourced: No source read gives when the Denisovans died out; the youngest fossil here is Denisova 3.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source:
+      ref: src:reich-2010-denisova
+      loc: abstract
+      quote: "we have sequenced the genome of an archaic hominin"
+    note: The group is known by its genome and not by a formal description, so the PBDB has no record of it.

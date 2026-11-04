@@ -1,0 +1,12 @@
+id: src:british-museum-benin-bronzes
+type: publication
+kind: review
+citation: The British Museum. Benin Bronzes. Contested objects from the collection.
+title: Benin Bronzes
+url: https://web.archive.org/web/20230101003241/https://www.britishmuseum.org/about-us/british-museum-story/contested-objects-collection/benin-bronzes
+reliability: The museum's own statement of the history of a contested collection, with the conquest described plainly.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the copy archived on 1 January 2023 at web.archive.org; the museum's own site answered 403
+    from here. Quotations checked by script against its text.

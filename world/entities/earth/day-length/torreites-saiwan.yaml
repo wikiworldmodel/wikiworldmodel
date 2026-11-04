@@ -1,0 +1,86 @@
+id: earth/day-length/torreites-saiwan
+kind: occurrence
+summary: >-
+  A shell of the rudist bivalve Torreites sanchezi from a biostrome of the Samhan Formation in the Saiwan
+  area, Oman, whose daily growth laminae were counted and traced chemically: 372 days in a late Campanian
+  year, a day of about 23.5 hours.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Torreites sanchezi, Saiwan" }
+    unsourced: An editorial label, from the taxon and the place.
+  identified:
+    prop: identified_as
+    value: Torreites sanchezi
+    source:
+      ref: src:de-winter-2020-torreites-rudist
+      loc: abstract
+      quote: a Campanian Torreites sanchezi rudist bivalve
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:de-winter-2020-torreites-rudist
+      loc: section 2.1
+      quote: The fossilized shell of a complete specimen of T. sanchezi
+  formation:
+    prop: formation
+    value: Samhan Formation
+    source:
+      ref: src:de-winter-2020-torreites-rudist
+      loc: section 2.1
+      quote: rudist biostrome in the Samhan formation in the Saiwan area in the Sultanate of Oman
+  location:
+    prop: location
+    value: { lat: 20.6782, lon: 57.59087, frame: frame:earth/present-day }
+    source:
+      ref: src:de-winter-2020-torreites-rudist
+      loc: section 2.1
+      quote: (20°40′41.52″N, 57°35′27.14″E)
+    method: survey
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 74.25 Ma
+    source:
+      - ref: src:de-winter-2020-torreites-rudist
+        loc: Appendix 1, p. 12
+        quote: (T= - 0.07425 Ga)
+      - ref: src:de-winter-2020-torreites-rudist
+        loc: section 2.1
+        quote: late Campanian in age by Kennedy et al. (2000)
+    method: stratigraphic
+    note: >-
+      The middle of the late Campanian, the age the paper's appendix uses to compare this shell with a model of
+      the day. The formation is dated by its ammonites.
+  day-length:
+    prop: day_length
+    value: { mean: 23.52, sd: 0.53 }
+    source:
+      - ref: src:de-winter-2020-torreites-rudist
+        loc: section 4.2
+        quote: or 23 hr and 31 min
+      - ref: src:de-winter-2020-torreites-rudist
+        loc: section 3.3
+        quote: a composite estimate of 372 laminae deposited per year with a propagated uncertainty of 8.4 days
+    note: >-
+      23 hr and 31 min is 23.52 h. The paper gives no uncertainty in hours; its 8.4 days in 372, propagated from
+      three counts and read as 1σ, is 2.26%, which is 0.53 h. Dividing 365.24 × 24 h by 372 gives 23.56 h, inside
+      the band.
+  moon-distance:
+    prop: moon_distance
+    value: { mean: 60.05, sd: 0.78 }
+    source:
+      ref: src:de-winter-2020-torreites-rudist
+      loc: section 4.2
+      quote: is 3.83 ± 0.05 × 108 m
+    note: >-
+      The paper gives 3.83 ± 0.05 × 10⁸ m, computed from the day length with models after Lowrie (2007); the ± is
+      a standard error in its Data S9. In Earth radii of 6378.1366 km (Farhat et al. 2022, Table D.3): 383,000 /
+      6378.1366 = 60.05 and 5,000 / 6378.1366 = 0.78.

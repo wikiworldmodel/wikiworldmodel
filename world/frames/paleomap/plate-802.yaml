@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-802
+type: frame
+kind: plate
+title: East Antarctic craton (PALEOMAP plate 802)
+entity: earth/plates/east-antarctic-craton
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 802
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 802

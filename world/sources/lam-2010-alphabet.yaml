@@ -1,0 +1,18 @@
+id: src:lam-2010-alphabet
+type: publication
+kind: review
+citation: >-
+  Lam, J. (2010). The Invention and Development of the Alphabet. In Woods, C. (ed.), Visible Language: Inventions of Writing in the Ancient Middle
+  East and Beyond, pp. 189–195 and catalog, pp. 196–200. Oriental Institute Museum Publications 32. Chicago: The Oriental Institute.
+authors:
+  - "Lam, J."
+published: 2010
+title: The Invention and Development of the Alphabet
+container: "Visible Language: Inventions of Writing in the Ancient Middle East and Beyond (OIMP 32)"
+url: https://isac-assets.s3.amazonaws.com/isac-publications/oimp32.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the PDF that ISAC publishes. Page numbers are the book's, two less than the PDF's. Quotes checked by script against
+    its text layer, ignoring whitespace and rejoining words hyphenated at line ends. It reports Darnell et al. (2005), Goldwasser (2006) and
+    Sass (2004–05, 2008) at second hand: those works were not read.

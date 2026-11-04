@@ -1,0 +1,48 @@
+id: earth/futures/east-african-breakup
+kind: event/transition
+summary: >-
+  The East African Rift splits the Somali plate from the rest of Africa, and a new ocean basin opens in
+  its place. No study of the rift read here dates this: the date in the default picture is a passing
+  statement in a paper from another field. In the scenario Novopangaea the ocean goes on to replace the
+  Indian Ocean; Scotese, whose scenario is Pangaea Proxima, expects no wide ocean here.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Breakup of East Africa }
+    source:
+      ref: src:rowan-2026-turkana-necking
+      loc: closing paragraph of the text
+      quote: the EARS is now primed for continental breakup
+  start:
+    prop: start
+    value: { lo: 0 Myr from now, hi: 10 Myr from now }
+    source:
+      ref: src:mairal-2017-afromontane
+      loc: opening text, before the Results
+      quote: complete breakup of the Somalian Plate is predicted to occur within 10 million years, with a new ocean basin originating where shallow lakes can now be found
+    method: expert-estimate
+    basis: projection
+    note: >-
+      A statement in the introduction of a paper on plant genetics, which refers to Fernandes et al.
+      (2004), a study of present plate motions that could not be read. It is an upper limit, so the middle
+      of this range means nothing, and a study of the rift that dates this should replace it. Rowan et al.
+      (2026) find the rift's Turkana segment necking, a stage typically linked to successful breakup, and
+      give no date. Scotese's page on the world 50 million years from now says "present plate trajectories
+      suggest that the East African Rift will not grow into a wide ocean" (moreinfo.htm).
+  start-novopangaea:
+    prop: start
+    value: { lo: 0 Myr from now, hi: 50 Myr from now }
+    alt: alt:next-supercontinent/novopangaea
+    source:
+      - ref: src:davies-2018-next-supercontinent
+        loc: section 4.2, the time slice at 50 Ma
+        quote: The opening of the East African Ocean has already started and is in a similar state to the Red sea at present.
+      - ref: src:davies-2018-next-supercontinent
+        loc: section 4.2
+        quote: The East African rift system will also continue to develop, eventually becoming an ocean basin that replaces the Indian Ocean.
+    method: model
+    basis: projection
+    note: >-
+      Holds only in the alternative "Novopangaea". An upper limit from a time slice: by 50 million years
+      from now this ocean is about as far along as the Red Sea is today.

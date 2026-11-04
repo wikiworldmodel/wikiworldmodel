@@ -1,0 +1,17 @@
+id: src:eutropius-breviarium
+type: text
+kind: historian
+citation: >-
+  Eutropius, Breviarium ab urbe condita. Latin text on The Latin Library.
+title: Breviarium ab urbe condita
+url: https://www.thelatinlibrary.com/eutropius.html
+via: The Latin Library, which does not name its edition.
+reliability: >-
+  A fourth-century official's digest of Roman history. He adds an age and a reign length to many
+  emperors, not always in agreement with fuller sources.
+verified:
+  by: machine:claude-code
+  how: >-
+    Books 7–10 read in the Latin on The Latin Library; the quotations checked by script against
+    that text. An English translation at forumromanum.org could not be read: the site answers
+    with a browser check.

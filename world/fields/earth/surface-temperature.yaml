@@ -7,7 +7,9 @@ description: >-
   The Scotese et al. (2021) curve of global average temperature, as republished by van der
   Meer et al. (2022), with their range around it. It is one reconstruction among several: the
   data assimilation of Judd et al. (2024) is warmer by as much as 13 °C in places, but its
-  data have no open licence, so a published build cannot include them.
+  data have no open licence, so a published build cannot include them. It has one value per million
+  years, so it passes over the ice ages of the last few million years: between its last two values it
+  says nothing of the Last Glacial Maximum.
 grid: { kind: series }
 time: { lo: 540 Ma, hi: 0 Ma }
 data:

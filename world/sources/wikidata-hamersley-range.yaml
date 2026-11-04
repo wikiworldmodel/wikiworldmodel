@@ -1,0 +1,20 @@
+id: src:wikidata-hamersley-range
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q1573394 (Hamersley Range, mountain range in Western Australia), property P625
+  (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q1573394
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry, one point for a whole range; no source is given for the point.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (-21.8833, 116.767; precision 0.0001) read from the item's JSON
+    (Special:EntityData/Q1573394.json, last revision 2562951467, modified 2026-10-31).

@@ -1,0 +1,19 @@
+id: src:pulak-1996-uluburun-dendro
+type: publication
+kind: measurement
+citation: >-
+  Pulak, C. (1996). Dendrochronological dating of the Uluburun ship. INA Quarterly 23(1), 12–13.
+authors: ["Pulak, C."]
+published: 1996
+title: Dendrochronological dating of the Uluburun ship
+container: INA Quarterly
+url: https://nauticalarch.org/wp-content/uploads/2015/09/INAQ-1996-23.1.pdf
+reliability: >-
+  The excavator's report of Kuniholm's tree-ring match of a small log or branch from the cargo, before the Anatolian
+  sequence was recalibrated. It has been superseded, for the ship's date, by the radiocarbon model that INA and Powell
+  et al. now cite.
+verified:
+  by: machine:claude-code
+  how: >-
+    The issue's PDF, from the institute's site, read in its text layer, pp. 12–13. Quotes checked by script after
+    normalizing whitespace and the line-end hyphens of the scan's text.

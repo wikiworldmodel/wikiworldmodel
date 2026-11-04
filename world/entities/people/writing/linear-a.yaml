@@ -1,0 +1,88 @@
+id: people/writing/linear-a
+kind: development/script
+summary: >-
+  The linear script of Minoan Crete, on some 350 clay tablets, clay roundels and other things. It is undeciphered, though Linear B, which came out of it, lets the meaning of some texts be guessed at. Its earliest
+  tablets come from Knossos and Phaistos in the Middle Minoan period, and its latest are of Late Minoan IB.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Linear A }
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: A total of some 350 tablets has been discovered amongst Linear A documents
+  start-phaistos:
+    prop: start
+    value: { ref: people/writing/phaistos-mm-iib-tablets }
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: some 20 tablets from the MM IIB layers of the palace at Phaistos (Pugliese Carratelli 1958)
+    method: stratigraphic
+    rank: preferred
+    note: Preferred because the attribution of the older tablet from Knossos is questioned. The Foundation of the Hellenic World also dates the script's development to the 18th century BC.
+  start-knossos:
+    prop: start
+    value: { ref: people/writing/knossos-mm-iia-tablet }
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: "The earliest Linear A tablets are an MM IIA example from Knossos (del Freo 2007: 204–205; Schoep [2007] suggests that this may in fact be a Cretan Hieroglyphic tablet)"
+    method: stratigraphic
+  end-lm-ib:
+    prop: end
+    value: { lo: 1500 BCE, hi: 1450 BCE }
+    source:
+      - ref: src:tomas-2013-saving-on-clay
+        loc: section 9.3
+        quote: the latest surviving, LM IB documents
+      - { ref: src:carter-kilikoglou-2022-malia-obsidian, loc: 'Table 1, row "LM IB": 1500–1450 BC' }
+    method: stratigraphic
+    rank: preferred
+    note: The phase of its latest documents, in the absolute dates of a conventional chronology. Preferred because it says what it rests on.
+  end-fhw:
+    prop: end
+    value: 1425 BCE
+    source:
+      ref: src:fhw-crete-writing
+      loc: page text
+      quote: its use continued until the final destruction of the Minoan palaces, about 1425 BC
+    method: expert-estimate
+  decipherment:
+    prop: decipherment
+    value: undeciphered
+    source:
+      - ref: src:corazza-2022-cypro-minoan
+        loc: Introduction
+        quote: the Linear A script of Crete [1–4], whose status is undeciphered too
+      - ref: src:tamburini-2025-decipherment
+        loc: section 1.4
+        quote: Minoan Linear A, an undeciphered script prevalent for administrative purposes in Bronze Age Crete
+  location:
+    prop: location
+    value: { lat: 35.05119, lon: 24.814438, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-phaistos, loc: "place 589987, representative point" }
+    method: gazetteer
+    note: Marked at Phaistos, whose tablets are its first secure attestation.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-330
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  first-attestation:
+    rel: evidenced-by
+    to: people/writing/phaistos-mm-iib-tablets
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: some 20 tablets from the MM IIB layers of the palace at Phaistos (Pugliese Carratelli 1958)
+  questioned-attestation:
+    rel: evidenced-by
+    to: people/writing/knossos-mm-iia-tablet
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: "The earliest Linear A tablets are an MM IIA example from Knossos (del Freo 2007: 204–205; Schoep [2007] suggests that this may in fact be a Cretan Hieroglyphic tablet)"

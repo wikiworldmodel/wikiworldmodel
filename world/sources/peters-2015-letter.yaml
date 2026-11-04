@@ -1,0 +1,26 @@
+id: src:peters-2015-letter
+type: publication
+kind: review
+citation: >-
+  Peters, J., Lebrasseur, O., Best, J., … & Larson, G. (2015). Questioning new answers
+  regarding Holocene chicken domestication in China. Proceedings of the National Academy of
+  Sciences 112(19), E2415.
+authors:
+  - "Peters, J."
+  - "Lebrasseur, O."
+  - "Best, J."
+  - "Miller, H."
+  - "Fothergill, T."
+  - "Dobney, K."
+  - "Thomas, R.M."
+  - "Maltby, M."
+# the first eight of 13 authors
+published: 2015
+title: "Questioning new answers regarding Holocene chicken domestication in China"
+container: "Proceedings of the National Academy of Sciences 112(19), E2415"
+doi: 10.1073/pnas.1503579112
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC4434763) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

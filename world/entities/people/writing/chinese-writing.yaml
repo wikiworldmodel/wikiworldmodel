@@ -1,0 +1,51 @@
+id: people/writing/chinese-writing
+kind: development/script
+summary: >-
+  The Chinese script, the only one of the ancient writing systems still in use. Its earliest certain examples are the oracle-bone inscriptions of Anyang, already a fully mature system, so writing in China is probably older
+  than they are, though there is no evidence of by how much. Earlier marks on Neolithic pottery are not found in any linguistic context.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Chinese writing }
+    source:
+      ref: src:shaughnessy-2010-writing-china
+      loc: p. 215
+      quote: the time and place of the earliest-known examples of Chinese writing
+  start:
+    prop: start
+    value: { ref: people/writing/anyang-oracle-bones }
+    source:
+      ref: src:shaughnessy-2010-writing-china
+      loc: p. 216
+      quote: It is not until the oracle-bone inscriptions of the late thirteenth-century bc that we find grammatically connected marks that certainly record language
+    method: expert-estimate
+    note: "A limit: the source says there is no archaeological evidence for how long before that writing developed."
+  decipherment:
+    prop: decipherment
+    value: deciphered
+    source:
+      ref: src:shaughnessy-2010-writing-china
+      loc: p. 215
+      quote: there is no need for a Rosetta Stone for us — at least those of us trained to do so — to read the ancient script
+    note: Never lost, since the script has stayed in use, though the source warns against reading the early script through the modern one.
+  location:
+    prop: location
+    value: { lat: 36.1225, lon: 114.318611, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-yinxu, loc: "Q464904, P625 coordinate location" }
+    method: gazetteer
+    note: Marked at Anyang, where it is first attested.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  first-attestation:
+    rel: evidenced-by
+    to: people/writing/anyang-oracle-bones
+    source:
+      ref: src:shaughnessy-2010-writing-china
+      loc: p. 216
+      quote: It is doubtless an accident of preservation and discovery that these divination records are the earliest-known written records from China

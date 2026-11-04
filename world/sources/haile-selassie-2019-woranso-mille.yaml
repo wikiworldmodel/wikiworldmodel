@@ -1,0 +1,22 @@
+id: src:haile-selassie-2019-woranso-mille
+type: publication
+kind: measurement
+citation: >-
+  Haile-Selassie, Y., Melillo, S.M., Vazzana, A., Benazzi, S. & Ryan, T.M. (2019). A
+  3.8-million-year-old hominin cranium from Woranso-Mille, Ethiopia. Nature 573(7773), 214–219.
+authors:
+  - "Haile-Selassie, Y."
+  - "Melillo, S.M."
+  - "Vazzana, A."
+  - "Benazzi, S."
+  - "Ryan, T.M."
+published: 2019
+title: "A 3.8-million-year-old hominin cranium from Woranso-Mille, Ethiopia"
+container: "Nature 573(7773), 214–219"
+doi: 10.1038/s41586-019-1513-8
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 31462770): a cranium from Woranso-Mille assigned to
+    Australopithecus anamensis, dated to 3.8 million years; the species dated to 4.2–3.9 million
+    years. Quoted passages checked by script against the text retrieved.

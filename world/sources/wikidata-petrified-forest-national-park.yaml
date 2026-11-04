@@ -1,0 +1,17 @@
+id: src:wikidata-petrified-forest-national-park
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q305949 (Petrified Forest National Park, Arizona), property P625 (coordinate
+  location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q305949
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry, for a named place and not for the fossil site itself.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (35.0881, -109.806) read from the item's JSON (Special:EntityData/Q305949.json) on
+    4 November 2026.

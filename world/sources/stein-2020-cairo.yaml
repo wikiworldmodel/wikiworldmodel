@@ -1,0 +1,34 @@
+id: src:stein-2020-cairo
+type: publication
+kind: measurement
+citation: >-
+  Stein, W.E., Berry, C.M., Morris, J.L., Hernick, L.V., Mannolini, F., Ver Straeten, C., Landing,
+  E., Marshall, J.E.A., Wellman, C.H., Beerling, D.J. & Leake, J.R. (2020). Mid-Devonian
+  Archaeopteris roots signal revolutionary change in earliest fossil forests. Current Biology
+  30(3), 421–431.
+authors:
+  - "Stein, W.E."
+  - "Berry, C.M."
+  - "Morris, J.L."
+  - "Hernick, L.V."
+  - "Mannolini, F."
+  - "Ver Straeten, C."
+  - "Landing, E."
+  - "Marshall, J.E.A."
+  - "Wellman, C.H."
+  - "Beerling, D.J."
+  - "Leake, J.R."
+published: 2020
+title: "Mid-Devonian Archaeopteris roots signal revolutionary change in earliest fossil forests"
+container: Current Biology 30(3), 421–431
+doi: 10.1016/j.cub.2019.11.067
+license: CC-BY-NC-ND-4.0
+license_note: >-
+  The licence stated on the repository's accepted manuscript.
+verified:
+  by: machine:claude-code
+  how: >-
+    The accepted manuscript retrieved from White Rose Research Online
+    (eprints.whiterose.ac.uk/id/eprint/157363), and the abstract in Europe PMC (PMID 31866369).
+    Quotes checked by script against the manuscript's text with its line numbers removed; locators
+    are that manuscript's pages. Metadata from Crossref.

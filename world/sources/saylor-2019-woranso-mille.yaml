@@ -1,0 +1,33 @@
+id: src:saylor-2019-woranso-mille
+type: publication
+kind: measurement
+citation: >-
+  Saylor, B.Z., Gibert, L., Deino, A., Alene, M., Levin, N.E., Melillo, S.M., Peaple, M.D.,
+  Feakins, S.J., Bourel, B., Barboni, D., Novello, A., Sylvestre, F., Mertzman, S.A. &
+  Haile-Selassie, Y. (2019). Age and context of mid-Pliocene hominin cranium from Woranso-Mille,
+  Ethiopia. Nature 573(7773), 220–224.
+authors:
+  - "Saylor, B.Z."
+  - "Gibert, L."
+  - "Deino, A."
+  - "Alene, M."
+  - "Levin, N.E."
+  - "Melillo, S.M."
+  - "Peaple, M.D."
+  - "Feakins, S.J."
+  - "Bourel, B."
+  - "Barboni, D."
+  - "Novello, A."
+  - "Sylvestre, F."
+  - "Mertzman, S.A."
+  - "Haile-Selassie, Y."
+published: 2019
+title: "Age and context of mid-Pliocene hominin cranium from Woranso-Mille, Ethiopia"
+container: "Nature 573(7773), 220–224"
+doi: 10.1038/s41586-019-1514-7
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 31462773): the cranium's strata dated to 3.804 ±
+    0.013 to 3.777 ± 0.014 million years (mean ± 1σ). Quoted passages checked by script against
+    the text retrieved.

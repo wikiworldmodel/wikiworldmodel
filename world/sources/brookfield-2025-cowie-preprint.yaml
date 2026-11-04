@@ -1,0 +1,22 @@
+id: src:brookfield-2025-cowie-preprint
+type: publication
+kind: review
+citation: >-
+  Brookfield, M.E., Catlos, E.J. & Garza, H.K. (2025). Reconciling Divergent Ages for the Oldest
+  Recorded Air-Breathing Land Animal, the Millipede, Pneumodesmus Newmani Wilson & Anderson,
+  2004: A Review of the Geology and Ages of the Basal Old Red Sandstone Stonehaven Group
+  (Silurian-Early Devonian), Aberdeenshire, Scotland. Preprints.org.
+authors:
+  - "Brookfield, M.E."
+  - "Catlos, E.J."
+  - "Garza, H.K."
+published: 2025
+title: "Reconciling Divergent Ages for the Oldest Recorded Air-Breathing Land Animal, the Millipede, Pneumodesmus Newmani Wilson & Anderson, 2004: A Review of the Geology and Ages of the Basal Old Red Sandstone Stonehaven Group (Silurian-Early Devonian), Aberdeenshire, Scotland"
+container: Preprints.org
+doi: 10.20944/preprints202502.1525.v1
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC. A preprint, not peer reviewed; the preprint server refused
+    the request for the full text, so it was not read. Quotes checked by script against that
+    text. Metadata from Crossref.

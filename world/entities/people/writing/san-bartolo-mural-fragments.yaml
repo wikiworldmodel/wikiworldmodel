@@ -1,0 +1,47 @@
+id: people/writing/san-bartolo-mural-fragments
+kind: occurrence
+summary: >-
+  Fragments of painted murals with early Maya hieroglyphs, from sealed contexts in an early building phase of the Las Pinturas pyramid at San Bartolo, Guatemala, older than the site's famous mural chamber by about 150 years.
+  One of them bears the date 7 Deer, the earliest securely dated Maya calendar notation.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Painted mural fragments, San Bartolo" }
+    unsourced: An editorial label, from the finds and the place.
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:stuart-2022-san-bartolo
+      loc: Introduction
+      quote: a fragment from which bore important evidence of early Maya hieroglyphic script
+  location:
+    prop: location
+    value: { lat: 17.55167, lon: -89.40889, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-san-bartolo, loc: "Q795599, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-205
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date-stuart:
+    prop: date
+    value: { lo: 300 BCE, hi: 200 BCE }
+    source:
+      ref: src:stuart-2022-san-bartolo
+      loc: abstract
+      quote: On the basis of their sealed contexts in an early architectural phase of the “Las Pinturas” pyramid, we assign these fragments to between 300 and 200 BCE
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: Preferred as the excavators' latest dating. Its basis is the sealed context, with radiocarbon behind it.
+  date-palka:
+    prop: date
+    value: { lo: 400 BCE, hi: 200 BCE }
+    source:
+      ref: src:palka-2010-maya-writing
+      loc: p. 227
+      quote: The earliest-known Maya writing, which dates to 400–200 bc, appears in murals on palace walls at the site of San Bartolo, Guatemala.
+    method: expert-estimate

@@ -1,0 +1,104 @@
+id: people/rulers/tiberius
+kind: person
+summary: >-
+  The second Roman emperor, stepson and adopted son of Augustus, who withdrew to Capri and died
+  at Misenum.
+author: machine:claude-code
+same_as: { wikidata: Q1407 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Tiberius }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Tiberius 5.1"
+      quote: Some have supposed that Tiberius was born at Fundi
+  start:
+    prop: start
+    value: 16 November 42 BCE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Tiberius 5.1"
+      quote: he was born at Rome, on the Palatine, the sixteenth day before the Kalends of December, in the consulship of Marcus Aemilius Lepidus and Lucius Munatius Plancus
+    method: historical-account
+    note: >-
+      The sixteenth day before the Kalends of December is 16 November, and the second consulship
+      of Lepidus with Plancus is 42 BCE. Suetonius says the date stands in the calendar and the
+      gazette, though some wrote the year before or the year after. In the early decades of the
+      Julian calendar the pontiffs misapplied its leap years, so this Roman date may differ by a
+      day or more from the proleptic Julian date of the time axis, by an amount that depends on
+      the reconstruction; the Roman date is kept.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/augustus, edge: end }
+    source:
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Tiberius 24.1"
+        quote: Though Tiberius did not hesitate at once to assume and to exercise the imperial authority
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "58.28.5, vol. 7 p. 257"
+        quote: of which time he had been emperor twenty-two years, seven months, and seven days
+    method: historical-account
+    note: >-
+      He took up the power on Augustus' death, though he put off the title for a while. Dio's
+      count runs from 19 August 14 to his own date for the death, 26 March 37.
+  end-suetonius:
+    prop: end
+    value: 16 March 37 CE
+    source:
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Tiberius 73.1"
+        quote: in the seventy-eighth year of his age and the twenty-third of his reign, on the seventeenth day before the Kalends of April, in the consulship of Gnaeus Acerronius Proculus and Gaius Pontius Nigrinus
+      - ref: src:tacitus-annals
+        loc: "6.50"
+        quote: On the sixteenth of March, owing to a stoppage in his breathing, it was believed that he had paid the debt of nature
+    method: historical-account
+    rank: preferred
+    note: >-
+      The seventeenth day before the Kalends of April is 16 March, and that consulship is 37 CE.
+      Preferred because two authors agree and because Suetonius' length for the next reign,
+      three years, ten months and eight days to 24 January 41, runs from this day. Tacitus has
+      him seem to die that day, revive, and be smothered at once.
+  end-dio:
+    prop: end
+    value: 26 March 37 CE
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "58.28.5, vol. 7 p. 257"
+      quote: passed away in this fashion on the twenty-sixth day of March
+    method: historical-account
+    note: Dio keeps to this day in his counts of the two reigns on either side.
+  location:
+    prop: location
+    value: { lat: 41.889306, lon: 12.487109, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-palatine
+        loc: "representative point"
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Tiberius 5.1"
+        quote: he was born at Rome, on the Palatine
+    method: gazetteer
+    note: >-
+      Marked at the birthplace Suetonius prefers to Fundi, at the hill's representative point.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Tiberius 24.1"
+      quote: to assume and to exercise the imperial authority
+    note: Princeps.

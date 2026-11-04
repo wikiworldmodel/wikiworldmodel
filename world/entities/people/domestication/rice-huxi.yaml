@@ -1,0 +1,72 @@
+id: life/occurrences/rice-huxi
+kind: occurrence
+summary: >-
+  Rice spikelet bases from a probable ditch at Huxi, Zhejiang, a Shangshan culture site of
+  9000–8400 BP, the oldest spikelet bases recovered in China. Of 126, 61.2% are of the wild,
+  shattering type, 30.1% intermediate and 8.7% non-shattering: selection against shattering was under
+  way, far from complete.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Rice, Huxi" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: Oryza sativa
+    source:
+      ref: src:zheng-2016-huxi-rice
+      loc: abstract
+      quote: "the oldest rice (Oryza sativa) spikelet bases and associated plant remains recovered in China"
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      - ref: src:zheng-2016-huxi-rice
+        loc: "Spikelet base morphology"
+        quote: "There are 77, 38, and 11, accounting for 61.2%, 30.1%, and 8.7% of the total, respectively."
+      - ref: src:zheng-2016-huxi-rice
+        loc: Discussion
+        quote: "The intermediate and non-shattering types among the Huxi spikelet bases are evidence of selection that shifted the population to reduced shattering by 9000–8400 BP."
+    note: >-
+      What shows it is domestic: spikelets torn from the plant rather than falling at a clean
+      abscission layer, seen also in the cell structure under the electron microscope.
+  location:
+    prop: location
+    value: { lat: 28.874519, lon: 120.017939, frame: frame:earth/present-day }
+    source:
+      ref: src:zheng-2016-huxi-rice
+      loc: Introduction
+      quote: "The Shangshan culture Huxi site (28°52′28.27“N, 120° 1′4.58“E)"
+    method: survey
+    note: >-
+      Converted to decimal degrees from the paper's degrees, minutes and seconds.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 9000 BP, hi: 8400 BP }
+    source:
+      - ref: src:zheng-2016-huxi-rice
+        loc: abstract
+        quote: "Plant remains dating to between 9000 and 8400 BP from a probable ditch structure at the Huxi site"
+      - ref: src:zuo-2017-shangshan-rice
+        loc: Introduction
+        quote: "an archaeological site dated from 9,000 to 8,300 cal yr B.P."
+    method: radiometric/radiocarbon
+    note: >-
+      Charcoal, seeds and phytoliths; Zuo et al. dated phytoliths and charcoal from the same strata
+      to validate the phytolith method.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott709894 and ott99252: Oryza sativa lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/rice
+    source: { ref: src:zheng-2016-huxi-rice, loc: abstract }

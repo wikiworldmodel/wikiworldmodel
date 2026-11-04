@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-514
+type: frame
+kind: plate
+title: North Caspian Sea (PALEOMAP plate 514)
+note: Named from PALEOMAP_PlateModel.rot, "NCS North Caspian Sea". No plate record has been written for it yet.
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 514
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 514

@@ -1,0 +1,85 @@
+id: people/dispersals/sahul-madjedbebe
+kind: event/dispersal
+summary: >-
+  The first people in Sahul, the land of Pleistocene Australia and New Guinea, and the dispute over
+  Madjedbebe, a rock shelter in northern Australia: occupied from about 65,000 years ago by its
+  excavators' dating, and an age above 50,000 unlikely to be valid by their critics'. The default
+  picture says only what both accept, that people were there by about 48,000 years ago.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First people in Sahul }
+    unsourced: An editorial label.
+  earlier-than:
+    prop: earlier_than
+    value: 48 ka
+    source:
+      ref: src:oconnell-2018-sahul
+      loc: "section Genetics"
+      quote: "the initial colonization of Sahul by AMH occurred around 48–50 ka"
+    method: expert-estimate
+    note: The late end of the later of the two dates in dispute, so it holds whichever side is right.
+  date-clarkson-2017:
+    prop: date
+    value: { mean: 65 ka, sd: 2.85 kyr }
+    alt: alt:leaving-africa/early-successful
+    source:
+      - ref: src:clarkson-2017-madjedbebe
+        loc: abstract
+        quote: "Human occupation began around 65,000 years ago"
+      - ref: src:oconnell-2018-sahul
+        loc: "section Madjedbebe"
+        quote: "suggest an age range of 52.7 ± (2.4, 4.3) to 65.0 ± (3.7, 5.7) ka"
+    method: radiometric/luminescence
+    note: >-
+      Optical dates on sand grains, for the base of the lowest dense band of artefacts. The figures
+      are O'Connell et al.'s account of the 2017 paper, whose full text was not read: ± 3.7 and ± 5.7
+      are the source's two levels, read here as 68% and 95%, and the second is halved for sd. They
+      also report Clarkson et al.'s "conservatively 59.3 ka" and a youngest reading of the band of
+      48.4–55.1 ka.
+  date-oconnell-2018:
+    prop: date
+    value: { lo: 50 ka, hi: 48 ka }
+    alt: alt:leaving-africa/late-only
+    source:
+      - ref: src:oconnell-2018-sahul
+        loc: "section Genetics"
+        quote: "the initial colonization of Sahul by AMH occurred around 48–50 ka"
+      - ref: src:oconnell-2018-sahul
+        loc: abstract
+        quote: "We find that an age estimate of >50 ka for this site is unlikely to be valid."
+    method: expert-estimate
+    note: >-
+      The arrival in Sahul, from molecular clocks and the next oldest sites. O'Connell et al. do not
+      date Madjedbebe itself: they contend that its sand was disturbed, by termites and erosion among
+      other things, so that artefacts moved down into older sand.
+  location:
+    prop: location
+    value: { lat: -12.5, lon: 132.883333, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-madjedbebe, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: Madjedbebe, the site in dispute; in the late picture it stands for Sahul as a whole.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  after-the-early-dispersal:
+    rel: after
+    to: people/dispersals/out-of-africa-early
+    alt: alt:leaving-africa/early-successful
+    source:
+      ref: src:clarkson-2017-madjedbebe
+      loc: abstract
+      quote: "This evidence sets a new minimum age for the arrival of humans in Australia, the dispersal of modern humans out of Africa"
+  after-the-main-dispersal:
+    rel: after
+    to: people/dispersals/out-of-africa-main
+    alt: alt:leaving-africa/late-only
+    source:
+      ref: src:oconnell-2018-sahul
+      loc: "section Genetics"
+      quote: "matching estimates for an out-of-Africa movement 50–55 ka"

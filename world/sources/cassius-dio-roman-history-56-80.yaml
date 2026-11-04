@@ -1,0 +1,28 @@
+id: src:cassius-dio-roman-history-56-80
+type: text
+kind: historian
+citation: >-
+  Cassius Dio, Roman History, vols. 7–9 (books 56–80, much of them surviving in the Byzantine
+  epitomes of Xiphilinus and Zonaras), translated by E. Cary (Loeb Classical Library,
+  1924–1927).
+published: 1927
+written: { lo: 200 CE, hi: 235 CE }
+title: Roman History
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Cassius_Dio/home.html
+via: LacusCurtius, which reproduces Cary's public-domain translation.
+reliability: >-
+  A Roman senator and consul, an eyewitness from Commodus to Severus Alexander, and for earlier
+  reigns writing from earlier histories. He closes most reigns with a count of the years, months
+  and days of the life and the rule, which later reigns chain together. From book 61 on the text
+  is known chiefly from epitomes.
+verified:
+  by: machine:claude-code
+  how: >-
+    Books 56, 58–61, 63, 64, 66–74, 77, 79 and 80 read on LacusCurtius (most
+    marked there as not yet proofread), and the quotations checked by script against that text.
+    Cited by Cary's book and the chapter and section marked on the page; for the epitomes Cary's
+    book numbers differ from Boissevain's. A separate record from src:cassius-dio-roman-history,
+    which verifies only vol. 6.
+note: >-
+  A reviewer may wish to merge this with src:cassius-dio-roman-history, which was out of scope
+  to edit here.

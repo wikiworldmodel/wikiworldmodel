@@ -1,0 +1,23 @@
+id: src:ovodov-2011-razboinichya
+type: publication
+kind: measurement
+citation: >-
+  Ovodov, N.D., Crockford, S.J., Kuzmin, Y.V., Higham, T.F., Hodgins, G.W. & van der Plicht, J.
+  (2011). A 33,000-year-old incipient dog from the Altai Mountains of Siberia: evidence of the
+  earliest domestication disrupted by the Last Glacial Maximum. PLOS ONE 6(7), e22821.
+authors:
+  - "Ovodov, N.D."
+  - "Crockford, S.J."
+  - "Kuzmin, Y.V."
+  - "Higham, T.F."
+  - "Hodgins, G.W."
+  - "van der Plicht, J."
+published: 2011
+title: "A 33,000-year-old incipient dog from the Altai Mountains of Siberia: evidence of the earliest domestication disrupted by the Last Glacial Maximum"
+container: "PLOS ONE 6(7), e22821"
+doi: 10.1371/journal.pone.0022821
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC3145761) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

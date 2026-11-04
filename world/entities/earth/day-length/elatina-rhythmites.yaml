@@ -1,0 +1,116 @@
+id: earth/day-length/elatina-rhythmites
+kind: sample
+summary: >-
+  Tidal rhythmites of the Elatina Formation at Pichi Richi Pass, Flinders Ranges, and the correlative
+  Reynella Siltstone, South Australia: about 60 years of tides laid down layer by layer, which Williams
+  calls an unsurpassed record, with a day of about 21.9 hours and 400 days in the year.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Elatina rhythmites" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Elatina Formation
+    source:
+      ref: src:williams-1990-tidal-rhythmites
+      loc: p. 476
+      quote: are best seen in the Elatina Formation at Pichi Richi Pass in the Flinders Ranges
+  evidence:
+    prop: evidence
+    value: tidal-rhythmite
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: abstract
+      quote: (~620 Ma) tidal rhythmites in South Australia
+  date-mitchell-kirscher-2023:
+    prop: date
+    value: 640 Ma
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Elatina Fm, Australia"
+      quote: 640 Elatina Fm, Australia 21.9 0.4 tidal rhythmites
+    method: compilation
+    rank: preferred
+    note: >-
+      Preferred as the latest of the three ages given for these rocks, in the compilation most of these
+      records follow. It gives no reasoning for the age.
+  date-williams-2000:
+    prop: date
+    value: 620 Ma
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: abstract
+      quote: (~620 Ma) tidal rhythmites in South Australia
+    note: >-
+      Williams's earlier paper (1990, p. 476) put these rocks at about 650 Ma, in the Marinoan glaciation.
+  location:
+    prop: location
+    value: { lat: -32.416667, lon: 137.983333, frame: frame:earth/present-day }
+    source:
+      ref: src:williams-1990-tidal-rhythmites
+      loc: p. 476
+      quote: latitude 32°25′S, longitude 137°59′E
+    method: survey
+    note: >-
+      Pichi Richi Pass, as Williams gives it to the minute. The drill core of the Elatina rhythmite member
+      comes from there; the Reynella Siltstone is at Hallett Cove, some 300 km to the south.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  day-length-williams:
+    prop: day_length
+    value: { mean: 21.9, sd: 0.4 }
+    source:
+      - ref: src:williams-2000-earth-rotation
+        loc: abstract; Table 1, row "Length of solar day", column "~620 Ma"
+        quote: a length of day of 21.9 ± 0.4 h
+      - ref: src:williams-1990-tidal-rhythmites
+        loc: p. 479
+        quote: there were 400 ± 7 solar days per year and 21.9 ± 0.4 h per day
+    rank: preferred
+    note: >-
+      The rhythmites give 13.1 ± 0.1 synodic months a year and 400 ± 7 solar days a year, whose hours follow
+      with the length of the year taken as constant; errors are ±1σ for the primary values. Preferred because
+      these values pass Williams's tests of internal consistency, and he calls them the only validated ones
+      for the Neoproterozoic and the early to middle Paleozoic.
+  day-length-sonett-chan-1998:
+    prop: day_length
+    value: { mean: 20.56, sd: 0.02 }
+    source:
+      ref: src:farhat-2022-earth-moon-distance
+      loc: Table D.2, row "Elatina", Sonett & Chan (1998)
+      quote: Elatina Sonett & Chan (1998) 0.620 14.93 ± 0.01 69.24 ± 0.13 56.04 ± 0.03 20.56 ± 0.02
+    method: model
+    note: >-
+      Sonett and Chan's number for the same rhythmites, 14.93 ± 0.01 sidereal months a year, which Farhat et
+      al. turn into hours with their own model: Williams's 14.10 ± 0.10 goes to 22.27 ± 0.23 h by the same
+      model, so the model is part of the difference from the preferred value. Only the abstract of Sonett
+      and Chan could be read. The table does not say what the ± is: read as 1σ.
+  moon-distance-williams:
+    prop: moon_distance
+    value: { mean: 58.16, sd: 0.30 }
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: p. 55; Table 2
+      quote: The mean Earth-Moon distance of 58.16 ± 0.30 RE
+    rank: preferred
+    note: >-
+      From 14.1 ± 0.1 sidereal months a year by Kepler's third law. Preferred for the reason given for this
+      reading's day length. The nodal period and the days in the year give 58.40 ± 1.02 and 58.34 ± 0.42, and
+      his 1990 paper gave 58.28 ± 0.30.
+  moon-distance-sonett-chan-1998:
+    prop: moon_distance
+    value: { mean: 56.04, sd: 0.03 }
+    source:
+      ref: src:farhat-2022-earth-moon-distance
+      loc: Table D.2, row "Elatina", Sonett & Chan (1998)
+      quote: Elatina Sonett & Chan (1998) 0.620 14.93 ± 0.01 69.24 ± 0.13 56.04 ± 0.03 20.56 ± 0.02
+    method: model
+    note: >-
+      Farhat et al.'s semi-major axis from Sonett and Chan's number, by Kepler's law. The table does not say
+      what the ± is: read as 1σ.

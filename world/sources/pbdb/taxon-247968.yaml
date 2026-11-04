@@ -1,0 +1,21 @@
+id: src:pbdb/taxon-247968
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, taxon 247968 (Doedicurus clavicaudatus (Owen 1847)). Read through the
+  PBDB data service (data1.2) on 4 November 2026.
+container: "The Paleobiology Database"
+url: https://paleobiodb.org/classic/basicTaxonInfo?taxon_no=247968
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  The PBDB's working compilation, with few records of this species.
+verified:
+  by: machine:claude-code
+  how: >-
+    taxa/single.json?name=Doedicurus clavicaudatus&show=app,class,attr: txn:247968, rank species,
+    firstapp_max_ma 0.4, firstapp_min_ma 0.0117. occs/list.json?base_name=Doedicurus clavicaudatus:
+    9 occurrences, the oldest Lujanian (0.4–0.0117 Ma).

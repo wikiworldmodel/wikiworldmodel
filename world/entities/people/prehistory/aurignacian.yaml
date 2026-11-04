@@ -1,0 +1,52 @@
+id: people/prehistory/aurignacian
+kind: industry
+summary: >-
+  The Aurignacian, the Upper Palaeolithic culture of modern humans that spread across Europe, with its
+  figurines and flutes. It has no location of its own here; its first occurrences are the claims
+  on its start.
+same_as: { wikidata: Q221901 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Aurignacian }
+    source:
+      ref: src:nigst-2014-willendorf
+      loc: abstract
+      quote: "Aurignacian assemblages--demonstrably made by modern humans--are commonly used as proxies for the presence of fully behaviorally and anatomically modern humans."
+  start-nigst-2014:
+    prop: start
+    value: { hi: 43500 BP }
+    source:
+      ref: src:nigst-2014-willendorf
+      loc: abstract
+      quote: "AH 3 is ascribed to the onset of Greenland Interstadial 11, around 43,500 cal B.P., and thus is older than any other Aurignacian assemblage"
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Willendorf II, Austria, Early Aurignacian, placed by radiocarbon dates on the deposits above
+      and below it, and by correlation of its soils with the Greenland ice-core record. Preferred
+      as the oldest first occurrence read.
+  start-djakovic-2022:
+    prop: start
+    value: { lo: 42873 BP, hi: 41747 BP }
+    source:
+      ref: src:djakovic-2022-chatelperronian
+      loc: Results
+      quote: "The dataset for the regional Protoaurignacian produces a modelled start date between 42,873 and 41,747 kya cal BP"
+    method: radiometric/radiocarbon
+    note: >-
+      The Protoaurignacian of France and northern Spain, a Bayesian model of 28 radiocarbon dates from
+      ten sites. It is a regional start, and of a related industry, later than at Willendorf.
+  end:
+    prop: end
+    value: unknown
+    unsourced: This record set stops at 40 ka, and no end was looked for.
+relations:
+  made-by-homo-sapiens:
+    rel: made-by
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:nigst-2014-willendorf
+      loc: abstract
+      quote: "Aurignacian assemblages--demonstrably made by modern humans"

@@ -1,0 +1,22 @@
+id: src:immel-2015-giant-deer-mitogenomes
+type: publication
+kind: measurement
+citation: >-
+  Immel, A., Drucker, D.G., Bonazzi, M., Jahnke, T.K., Münzel, S.C., Schuenemann, V.J., Herbig, A.,
+  Kind, C.-J. & Krause, J. (2015). Mitochondrial genomes of giant deers suggest their late survival
+  in Central Europe. Scientific Reports 5, 10853.
+authors:
+  - "Immel, A."
+  - "Drucker, D.G."
+  - "Bonazzi, M."
+  - "Jahnke, T.K."
+  - "Krause, J."
+published: 2015
+title: "Mitochondrial genomes of giant deers suggest their late survival in Central Europe"
+container: "Scientific Reports 5, 10853"
+doi: 10.1038/srep10853
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC4459102). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

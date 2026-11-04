@@ -1,0 +1,28 @@
+id: src:hirayama-2021-adocus-kohaku
+type: publication
+kind: measurement
+citation: >-
+  Hirayama, R., Sonoda, T., Uno, H., Horie, K., Tsutsumi, Y., Sasaki, K., Mitsuzuka, S. &
+  Takisawa, T. (2021). Adocus kohaku, a new species of aquatic turtle (Testudines: Cryptodira:
+  Adocidae) from the Late Cretaceous of Kuji, Iwate Prefecture, northeast Japan, with special
+  references to the geological age of the Tamagawa Formation (Kuji Group). International Journal
+  of Paleobiology & Paleontology 4(1).
+authors:
+  - "Hirayama, R."
+  - "Sonoda, T."
+  - "Uno, H."
+  - "Horie, K."
+  - "Tsutsumi, Y."
+  - "Sasaki, K."
+  - "Mitsuzuka, S."
+  - "Takisawa, T."
+published: 2021
+title: "Adocus kohaku, a new species of aquatic turtle (Testudines: Cryptodira: Adocidae) from the Late Cretaceous of Kuji, Iwate Prefecture, northeast Japan, with special references to the geological age of the Tamagawa Formation (Kuji Group)"
+container: "International Journal of Paleobiology & Paleontology 4(1)"
+url: https://medwinpublishers.com/article-description.php?artId=6609
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the publisher's PDF, whose first page gives volume 4, issue 1, published
+    22 January 2021; quotes checked by script against its text layer. Authors as on that first
+    page.

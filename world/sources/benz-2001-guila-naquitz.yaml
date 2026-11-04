@@ -1,0 +1,17 @@
+id: src:benz-2001-guila-naquitz
+type: publication
+kind: measurement
+citation: >-
+  Benz, B.F. (2001). Archaeological evidence of teosinte domestication from Guilá Naquitz,
+  Oaxaca. Proceedings of the National Academy of Sciences 98(4), 2104–2106.
+authors:
+  - "Benz, B.F."
+published: 2001
+title: "Archaeological evidence of teosinte domestication from Guilá Naquitz, Oaxaca"
+container: "Proceedings of the National Academy of Sciences 98(4), 2104–2106"
+doi: 10.1073/pnas.98.4.2104
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC29389) on 3 November 2026. Each quote checked by script
+    against that text; citation from the Europe PMC record.

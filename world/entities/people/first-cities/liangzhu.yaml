@@ -1,0 +1,72 @@
+id: people/first-cities/liangzhu
+kind: settlement
+summary: >-
+  Liangzhu, in the lower Yangtze region of China, the capital of a Neolithic rice-farming state: a city of about 300 hectares, with an outer city, and dams, levees and ditches that managed its water.
+  It was abandoned about 4,300 years ago, and speleothem records tie that to climate change and floods.
+author: machine:claude-code
+same_as: { wikidata: Q15904183 }
+claims:
+  name:
+    prop: name
+    value: { en: Liangzhu }
+    source: { ref: src:wikidata-liangzhu, loc: "Q15904183, label" }
+  start-liu:
+    prop: start
+    value: 5300 BP
+    source:
+      ref: src:liu-2017-liangzhu-hydraulic
+      loc: abstract
+      quote: the Liangzhu culture of the Yangtze Delta, dated at 5,300-4,300 years cal B.P.
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: The dates of the culture, taken for its capital. Preferred as calibrated radiocarbon in cal B.P.; only the abstract could be read. The dams date from 5.3 to 4.7 ka B.P., says Zhang et al. (2021).
+  start-unesco:
+    prop: start
+    value: 3300 BCE
+    source:
+      ref: src:unesco-whc-1592-liangzhu
+      loc: Outstanding Universal Value, brief synthesis
+      quote: including the City Site built during ca. 3300-2300 BCE
+    method: expert-estimate
+  end-zhang:
+    prop: end
+    value: 4300 BP
+    source:
+      - ref: src:zhang-2021-liangzhu-collapse
+        loc: Introduction
+        quote: was abandoned, and the Liangzhu culture collapsed at ~4.3 ka B.P.
+      - ref: src:liu-2017-liangzhu-hydraulic
+        loc: abstract
+        quote: the Liangzhu culture of the Yangtze Delta, dated at 5,300-4,300 years cal B.P.
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: Preferred as what the paper on the collapse uses, from the archaeology it cites.
+  end-unesco:
+    prop: end
+    value: 2300 BCE
+    source:
+      ref: src:unesco-whc-1592-liangzhu
+      loc: Outstanding Universal Value, brief synthesis
+      quote: including the City Site built during ca. 3300-2300 BCE
+    method: expert-estimate
+  location:
+    prop: location
+    value: { lat: 30.396667, lon: 119.985278, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-liangzhu, loc: "Q15904183, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area:
+    prop: settlement_area
+    value: 300
+    valid: { lo: 5300 BP, hi: 4300 BP }
+    source:
+      ref: src:liu-2017-liangzhu-hydraulic
+      loc: abstract
+      quote: the ancient city of Liangzhu, with an estimated size of about 300 ha
+    method: expert-estimate
+    note: With no moment given within the culture's dates.

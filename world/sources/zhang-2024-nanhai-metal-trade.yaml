@@ -1,0 +1,20 @@
+id: src:zhang-2024-nanhai-metal-trade
+type: publication
+kind: review
+citation: >-
+  Zhang, Y., Xie, M. & Wang, Y. (2024). Metal trade and contraband: archaeological discoveries and insights from the
+  Nanhai No.1 merchant shipwreck. Journal of Maritime Archaeology 19, 265–289.
+authors:
+  - "Zhang, Y."
+  - "Xie, M."
+  - "Wang, Y."
+published: 2024
+title: "Metal trade and contraband: archaeological discoveries and insights from the Nanhai No.1 merchant shipwreck"
+container: Journal of Maritime Archaeology
+doi: 10.1007/s11457-024-09400-y
+url: https://link.springer.com/article/10.1007/s11457-024-09400-y
+license: CC-BY-4.0
+reliability: Its date is cited from Li (2020), which was not read. The excavation reports, in Chinese, were not read either.
+verified:
+  by: machine:claude-code
+  how: Full text read on the publisher's site. Quotes checked by script against it, after normalizing whitespace.

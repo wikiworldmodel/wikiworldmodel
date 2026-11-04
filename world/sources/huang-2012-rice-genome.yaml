@@ -1,0 +1,25 @@
+id: src:huang-2012-rice-genome
+type: publication
+kind: measurement
+citation: >-
+  Huang, X., Kurata, N., Wei, X., … & Han, B. (2012). A map of rice genome variation reveals
+  the origin of cultivated rice. Nature 490(7421), 497–501.
+authors:
+  - "Huang, X."
+  - "Kurata, N."
+  - "Wei, X."
+  - "Wang, Z.X."
+  - "Wang, A."
+  - "Zhao, Q."
+  - "Zhao, Y."
+  - "Liu, K."
+# the first eight of 35 authors
+published: 2012
+title: "A map of rice genome variation reveals the origin of cultivated rice"
+container: "Nature 490(7421), 497–501"
+doi: 10.1038/nature11532
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC7518720) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

@@ -1,0 +1,21 @@
+id: src:wikidata-al-wusta
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q136439221 (Al Wusta, an archaeological site in Saudi Arabia), property P625
+  (coordinate location).
+snapshot: "2026-11-03"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q136439221
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry; no source is given for the point.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (27.418311111111112, 39.39588055555556; precision 2.777777777777778e-06) read from
+    the item's JSON (Special:EntityData/Q136439221.json, last revision 2412974015, modified
+    2025-10-05).

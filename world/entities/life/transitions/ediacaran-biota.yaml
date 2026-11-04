@@ -1,0 +1,86 @@
+id: life/transitions/ediacaran-biota
+kind: event/transition
+summary: >-
+  The Ediacara biota: the oldest communities of large, complex organisms, mostly soft-bodied and hard to place, found at some 40 localities
+  worldwide in three successive assemblages, Avalon, White Sea and Nama. Their diversity falls at about 550 Ma, and at the base of the Cambrian
+  almost all of them are gone.
+same_as: { wikidata: Q723846 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Ediacaran biota }
+    unsourced: An editorial label.
+  start-darroch-2023:
+    prop: start
+    value: { ref: life/occurrences/charnia-drook }
+    source:
+      - ref: src:darroch-2023-ediacaran-extinction
+        loc: "History"
+        quote: "(1) the Avalon Assemblage (~574–558 Ma), characterized by deep-water communities"
+      - ref: src:carlisle-2024-metazoan-timescale
+        loc: "Fossil calibrations, Crown-Metazoa"
+        quote: "The earliest occurrence of Charnia is in the Drook Formation of Mistaken Point, Newfoundland, dated to 574.17 Ma ± 0.66 Myr"
+    rank: preferred
+    note: >-
+      Preferred as a radiometric date, for the oldest of the assemblage, that the latest review read also uses.
+  start-droser-gehling-2015:
+    prop: start
+    value: 575 Ma
+    source:
+      ref: src:droser-gehling-2015-advent
+      loc: "first paragraph after the abstract"
+      quote: "occur globally in strata spanning 575–541 Mya"
+    method: expert-estimate
+    note: >-
+      A round figure. Bobrovskiy et al. (2018) give 571 million years for the same start.
+  start-darroch-2015:
+    prop: start
+    value: 579 Ma
+    source:
+      ref: src:darroch-2015-swartpunt
+      loc: "1. Introduction"
+      quote: "Mistaken Point, Newfoundland (‘Avalon’ assemblage, dating between approx. 579 and approx. 565 Ma"
+    method: expert-estimate
+    note: >-
+      The older reckoning for the Avalon assemblage, written before the date preferred here.
+  end-darroch-2023:
+    prop: end
+    value: { ref: ics/ediacaran, edge: end }
+    source:
+      ref: src:darroch-2023-ediacaran-extinction
+      loc: "Late Ediacaran bioevents and extinction models"
+      quote: "An apparent second extinction pulse occurs at the E–C boundary, demarcated by the disappearance of almost all remaining Ediacara biota"
+    method: stratigraphic
+    note: >-
+      Follows the chart. "Almost all": a few forms may have outlasted the boundary, and Darroch et al. leave open whether this was a mass extinction, a
+      replacement by burrowing animals, or a bias of preservation.
+relations:
+  evidence-charnia:
+    rel: evidenced-by
+    to: life/occurrences/charnia-drook
+    source:
+      ref: src:carlisle-2024-metazoan-timescale
+      loc: "Fossil calibrations, Crown-Metazoa"
+      quote: "The earliest occurrence of Charnia is in the Drook Formation of Mistaken Point, Newfoundland"
+  evidence-dickinsonia:
+    rel: evidenced-by
+    to: life/occurrences/dickinsonia-zimnie-gory
+    source:
+      ref: src:nettersheim-2019-rhizaria
+      loc: abstract
+      quote: "Dickinsonia and Kimberella (Ediacara biota)"
+  evidence-kimberella:
+    rel: evidenced-by
+    to: life/occurrences/kimberella-zimnie-gory
+    source:
+      ref: src:nettersheim-2019-rhizaria
+      loc: abstract
+      quote: "Dickinsonia and Kimberella (Ediacara biota)"
+  evidence-swartpunt:
+    rel: evidenced-by
+    to: life/occurrences/swartpuntia-swartpunt
+    source:
+      ref: src:darroch-2015-swartpunt
+      loc: "Discussion"
+      quote: "palaeoecological analysis of the latest Ediacaran fossil localities at Farm Swartpunt"

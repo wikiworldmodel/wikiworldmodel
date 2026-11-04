@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-315
+type: frame
+kind: plate
+title: East Avalonia (PALEOMAP plate 315)
+entity: earth/plates/east-avalonia
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 315
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 315

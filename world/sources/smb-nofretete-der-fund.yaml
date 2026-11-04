@@ -1,0 +1,12 @@
+id: src:smb-nofretete-der-fund
+type: publication
+kind: review
+citation: >-
+  Staatliche Museen zu Berlin, Ägyptisches Museum und Papyrussammlung. Büste der Nofretete: Der Fund und
+  die Fundteilung.
+title: "Büste der Nofretete: Der Fund und die Fundteilung"
+url: https://www.smb.museum/museen-einrichtungen/aegyptisches-museum-und-papyrussammlung/sammeln-forschen/bueste-der-nofretete/der-fund-und-die-fundteilung/
+reliability: The museum's own account, quoting Borchardt's excavation diary; the museum holds the bust and has an interest in the question of its division.
+verified:
+  by: machine:claude-code
+  how: Read on the museum's site. Quotations checked by script against the page's text.

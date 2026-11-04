@@ -1,0 +1,68 @@
+id: life/occurrences/forest-chemnitz
+kind: occurrence
+summary: >-
+  The Petrified Forest of Chemnitz, Germany: trunks standing where they grew, in a soil buried by
+  the Zeisigwald tuff in the early Permian, with the animals of the forest floor around them.
+same_as: { wikidata: Q2518363 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Chemnitz Petrified Forest" }
+    unsourced: An editorial label, the name the sources use.
+  identified:
+    prop: identified_as
+    value: Psaronius, Arthropitys, Medullosa and Cordaixylon
+    source:
+      ref: src:rossler-2012-chemnitz
+      loc: abstract
+      quote: the root systems of Psaronius tree ferns, Arthropitys calamitaleans, and Medullosa and Cordaixylon gymnosperms in the same horizon
+    note: >-
+      The main trees, not one identification.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:rossler-2012-chemnitz
+      loc: abstract
+      quote: Fifty-three trunks are still standing upright and rooted at their place of growth
+    note: >-
+      The basis is the abstract's standing, rooted trunks.
+  location:
+    prop: location
+    value: { lat: 50.852619, lon: 12.94616, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-153497, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      The PBDB's point for the Chemnitz-Hilbersdorf excavation.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Leukersdorf Formation
+    source:
+      - { ref: src:pbdb/collection-153497, loc: "formation" }
+      - ref: src:rossler-2012-chemnitz
+        loc: abstract
+        quote: occurring within the Leukersdorf Formation of the Chemnitz Basin
+  date:
+    prop: date
+    value: { mean: 291.6 Ma, sd: 1.8 Myr }
+    source:
+      ref: src:dunlop-2016-chemnitz-scorpions
+      loc: "Methods, Geological setting and preservation"
+      quote: because the entombing pyroclastics were isotopically dated at about 291.6 ± 1.8 Ma
+    method: radiometric
+    rank: preferred
+    note: >-
+      The age of the tuff that buried the forest, from an earlier work that was not read. The ± level
+      is not stated here, so it is read as 1σ. Dunlop et al. place it in the Sakmarian.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/tracheophyta
+    source: { ref: src:rossler-2012-chemnitz, loc: "abstract: ferns, sphenophytes and gymnosperms" }

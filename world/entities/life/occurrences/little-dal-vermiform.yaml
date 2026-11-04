@@ -1,0 +1,57 @@
+id: life/occurrences/little-dal-vermiform
+kind: occurrence
+summary: >-
+  Vermiform microstructure in the Little Dal reefs of the Stone Knife Formation, Mackenzie Mountains,
+  northwestern Canada, read by its one author as possible body fossils of keratose sponges, about 890
+  million years old. That would put them about 350 million years before the next undisputed sponge fossils; others doubt
+  it, so no taxon is recorded here. PBDB collection 221485.
+same_as: { pbdb: "occ:1569087" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Vermiform microstructure, Little Dal reefs" }
+    unsourced: An editorial label, from the structure and the reefs.
+  identified:
+    prop: identified_as
+    value: Porifera indet.
+    source: { ref: src:pbdb/collection-221485, loc: "occurrence 1569087, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:turner-2021-little-dal
+      loc: "Background"
+      quote: "This petrographic study presents possible evidence of sponge body fossils in thin sections"
+    note: >-
+      Possible, in the paper's own word. Carlisle et al. (2024) say the veracity of the record has been called
+      into question.
+  location:
+    prop: location
+    value: { lat: 65.221474, lon: -129.040329, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-221485, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      Turner records that GPS was not possible at most of the sites, among cliffs and canyons, so this is a
+      point for the reefs.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Stone Knife Formation
+    source: { ref: src:pbdb/collection-221485, loc: "formation" }
+  date:
+    prop: date
+    value: { mean: 892 Ma, sd: 13 Myr }
+    source:
+      ref: src:turner-2021-little-dal
+      loc: "Fig. 1, caption"
+      quote: "depositional age is known through litho- and chemostratigraphic correlation with the 892 ± 13-Ma (Re–Os black shale)30 Boot Inlet Formation31"
+    method: radiometric/re-os
+    note: >-
+      Dated by correlation, not directly; the paper's text says approximately 890 Ma. The ± level is not
+      stated, so it is read as 1σ.

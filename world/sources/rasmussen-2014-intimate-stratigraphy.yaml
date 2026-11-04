@@ -1,0 +1,45 @@
+id: src:rasmussen-2014-intimate-stratigraphy
+type: publication
+kind: measurement
+citation: >-
+  Rasmussen, S.O., Bigler, M., Blockley, S.P., Blunier, T., Buchardt, S.L., Clausen, H.B.,
+  Cvijanovic, I., Dahl-Jensen, D., Johnsen, S.J., Fischer, H., Gkinis, V., Guillevic, M., Hoek,
+  W.Z., Lowe, J.J., Pedro, J.B., Popp, T., Seierstad, I.K., Steffensen, J.P., Svensson, A.M.,
+  Vallelonga, P., Vinther, B.M., Walker, M.J.C., Wheatley, J.J. & Winstrup, M. (2014). A
+  stratigraphic framework for abrupt climatic changes during the Last Glacial period based on
+  three synchronized Greenland ice-core records: refining and extending the INTIMATE event
+  stratigraphy. Quaternary Science Reviews 106, 14–28.
+authors:
+  - "Rasmussen, S.O."
+  - "Bigler, M."
+  - "Blockley, S.P."
+  - "Blunier, T."
+  - "Buchardt, S.L."
+  - "Clausen, H.B."
+  - "Cvijanovic, I."
+  - "Dahl-Jensen, D."
+  - "Johnsen, S.J."
+  - "Fischer, H."
+  - "Gkinis, V."
+  - "Guillevic, M."
+  - "Hoek, W.Z."
+  - "Lowe, J.J."
+  - "Pedro, J.B."
+  - "Popp, T."
+  - "Seierstad, I.K."
+  - "Steffensen, J.P."
+  - "Svensson, A.M."
+  - "Vallelonga, P."
+  - "Vinther, B.M."
+  - "Walker, M.J.C."
+  - "Wheatley, J.J."
+  - "Winstrup, M."
+published: 2014
+title: "A stratigraphic framework for abrupt climatic changes during the Last Glacial period based on three synchronized Greenland ice-core records: refining and extending the INTIMATE event stratigraphy"
+container: "Quaternary Science Reviews 106, 14–28"
+doi: 10.1016/j.quascirev.2014.09.007
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the PDF in GEOMAR's repository (OceanRep 34059), with the ages and errors
+    from its Table 2. Citation from Crossref. Quotes checked by script against the text retrieved.

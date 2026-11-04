@@ -1,0 +1,136 @@
+id: people/first-cities/great-zimbabwe
+kind: settlement
+summary: >-
+  Great Zimbabwe, near Masvingo in Zimbabwe: drystone walled enclosures on and below a hill, one of the largest archaeological settlements in Africa, and a hub of trade within southern Africa and out
+  to East Africa and beyond. The accepted figure of 18,000 to 20,000 people at its peak was challenged in 2017 by a study arguing that its parts were not all occupied at once, and that its population is unlikely to
+  have passed 10,000.
+author: machine:claude-code
+same_as: { wikidata: Q209217, pleiades: 322739224 }
+claims:
+  name:
+    prop: name
+    value: { en: Great Zimbabwe }
+    source: { ref: src:pleiades-great-zimbabwe, loc: "place 322739224, title" }
+  start-chirikure:
+    prop: start
+    value: 1000 CE
+    source:
+      ref: src:chirikure-2017-great-zimbabwe
+      loc: abstract
+      quote: the site’s nearly 800-year occupational duration (CE1000–1800)
+    method: expert-estimate
+    rank: preferred
+    note: Preferred as the framing of the study that deals with the site's occupation as a whole.
+  start-period-ii:
+    prop: start
+    value: 900 CE
+    source:
+      ref: src:chirikure-2017-great-zimbabwe
+      loc: "section \"Great Zimbabwe: A brief background\""
+      quote: "passed through four different phases: Periods II (CE900–1000), III (CE1000–1200), IV (CE1200–1700), and V (CE1700–1890)"
+    method: expert-estimate
+    note: The first of the four phases of those who built in stone.
+  end-chirikure:
+    prop: end
+    value: 1800 CE
+    source:
+      ref: src:chirikure-2017-great-zimbabwe
+      loc: abstract
+      quote: the site’s nearly 800-year occupational duration (CE1000–1800)
+    method: expert-estimate
+    rank: preferred
+    note: The end of its long occupation. Its last phase in the same paper runs on to CE1890.
+  end-unesco:
+    prop: end
+    value: 1450 CE
+    source:
+      ref: src:unesco-whc-364-great-zimbabwe
+      loc: Outstanding Universal Value, brief synthesis
+      quote: The property, built between 1100 and 1450 AD
+    method: expert-estimate
+    note: The end of the building of the city, rather than of the last occupation.
+  location:
+    prop: location
+    value: { lat: -20.270936, lon: 30.933198, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-great-zimbabwe, loc: "place 322739224, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area-720:
+    prop: settlement_area
+    value: 720
+    source:
+      ref: src:chirikure-2017-great-zimbabwe
+      loc: "section \"Great Zimbabwe: A brief background\""
+      quote: spread over 720 hectares
+    method: survey
+    rank: preferred
+    note: >-
+      The estate as a whole, with no date, of which only about 40 percent has evidence of settlement, and not all at one time. Table 1 of the same paper gives far smaller occupied areas by period, up to 125 ha.
+  area-80:
+    prop: settlement_area
+    value: 80
+    source:
+      - ref: src:unesco-whc-364-great-zimbabwe
+        loc: description
+        quote: The city, which covers an area of nearly 80 ha
+      - ref: src:pleiades-great-zimbabwe
+        loc: "place 322739224, description"
+        quote: The city, covering ca. 80 hectares
+    method: expert-estimate
+    note: UNESCO's longer statement says almost 800 ha for the same property, so this may be a slip for that.
+  population-chirikure:
+    prop: population
+    value: 10000
+    source:
+      ref: src:chirikure-2017-great-zimbabwe
+      loc: abstract
+      quote: is unlikely to have exceeded 10,000 people
+    method: model
+    rank: preferred
+    note: >-
+      An upper limit, not an estimate of a moment. Preferred because it is the only figure here tested against which parts were lived in at the same time. Their own house-count models
+      give much less: 2,756 to 4,823 if all of the site was occupied at once.
+  population-huffman:
+    prop: population
+    value: 18000
+    valid: { lo: 1300 CE, hi: 1450 CE }
+    source:
+      - ref: src:chirikure-2017-great-zimbabwe
+        loc: "section \"Great Zimbabwe: A brief background\""
+        quote: Huffman ([18] p. 323) arrived at a minimum population of 18,000 during the site’s peak
+      - ref: src:chirikure-2017-great-zimbabwe
+        loc: Introduction
+        quote: previously believed to be between CE1300 and 1450
+    method: expert-estimate
+    note: At second hand, through Chirikure et al.; Huffman's work was not read. A lower limit, in his reckoning.
+  population-accepted:
+    prop: population
+    value: 20000
+    valid: { lo: 1300 CE, hi: 1450 CE }
+    source:
+      ref: src:chirikure-2017-great-zimbabwe
+      loc: abstract
+      quote: Archaeologists believe that at its peak, Great Zimbabwe had a fully urban population of 20,000 people
+    method: expert-estimate
+    note: The received figure, as Chirikure et al. report it before arguing against it.
+  population-garlake:
+    prop: population
+    value: { lo: 1000, hi: 2500 }
+    source:
+      ref: src:chirikure-2017-great-zimbabwe
+      loc: "section \"Great Zimbabwe: A brief background\""
+      quote: Garlake suggested that the total population of Great Zimbabwe was somewhere between 1,000 and 2,500 people
+    method: expert-estimate
+    note: The first estimate, at second hand through Chirikure et al.
+  population-chandler:
+    prop: population
+    value: 40000
+    valid: 1450 CE
+    source: { ref: src:reba-2016-urban-population, loc: "chandlerV2.csv, row Zimbabwe, column AD_1450" }
+    method: compilation
+    note: Chandler's figure, as digitized by Reba et al. (2016), twice the highest of the archaeologists'.

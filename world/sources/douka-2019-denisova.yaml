@@ -1,0 +1,20 @@
+id: src:douka-2019-denisova
+type: publication
+kind: model
+citation: >-
+  Douka, K., Slon, V., Jacobs, Z., … & Higham, T. (2019). Age estimates for hominin fossils and the
+  onset of the Upper Palaeolithic at Denisova Cave. Nature 565(7741), 640–644.
+authors:
+  - "Douka, K."
+  - "Slon, V."
+  - "Jacobs, Z."
+  - "Higham, T."
+published: 2019
+title: "Age estimates for hominin fossils and the onset of the Upper Palaeolithic at Denisova Cave"
+container: "Nature 565(7741), 640–644"
+doi: 10.1038/s41586-018-0870-z
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

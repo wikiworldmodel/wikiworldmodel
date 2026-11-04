@@ -1,0 +1,10 @@
+id: alt:ipcc-ar6-scenarios/ssp119
+type: alternative
+kind: scenario
+group: alt:ipcc-ar6-scenarios
+title: SSP1-1.9, very low emissions
+description: >-
+  Very low greenhouse gas emissions: CO2 emissions decline to net zero around or after 2050, then
+  turn net negative. The 1.9 is the approximate radiative forcing in 2100, in watts per square metre,
+  and SSP1 the socio-economic pathway behind it (IPCC 2021, Box SPM.1). Warming over 2081–2100 is
+  very likely 1.0–1.8 °C above 1850–1900, and sea level in 2100 likely 0.28–0.55 m above 1995–2014.

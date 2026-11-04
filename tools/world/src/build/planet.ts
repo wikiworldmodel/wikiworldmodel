@@ -29,7 +29,13 @@ export function planet(s: Solved): PlanetFile {
     .filter((x) => x.claims.some((c) => c.subject === x.id && EPISODE_PROPS.includes(c.prop)))
     .map((x) => ({ subject: x.id, label: labelOf(x.id), ...subjectTime(s, x.id), values: values(x, x.id, EPISODE_PROPS) }))
     .sort((a, b) => (a.subject < b.subject ? -1 : 1));
-  if (!e) return { planet: null, episodes };
+  const covers: PlanetState[] = w.entities
+    .filter((x) => x.claims.some((c) => c.subject === x.id && c.prop === 'cover'))
+    .map((x) => ({ subject: x.id, label: labelOf(x.id), ...subjectTime(s, x.id), values: values(x, x.id, ['cover']) }))
+    .sort((a, b) => (a.subject < b.subject ? -1 : 1));
+  const spreadMyr = (w.fields.find((f) => f.rule === 'biome-from-climate')?.params as { spread_myr?: number } | undefined)?.spread_myr;
+  const coverSpread = spreadMyr === undefined ? undefined : spreadMyr * 1e6;
+  if (!e) return { planet: null, episodes, covers, coverSpread };
   return {
     planet: {
       id: e.id,
@@ -41,5 +47,7 @@ export function planet(s: Solved): PlanetFile {
       }),
     },
     episodes,
+    covers,
+    coverSpread,
   };
 }

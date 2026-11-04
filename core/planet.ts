@@ -33,6 +33,45 @@ export interface PlanetFile {
   planet: { id: string; label: string; time: FeatureTime; variants?: Record<string, FeatureTime>; phases: PlanetState[] } | null;
   /** events that change the planet's look while they last, such as glaciations */
   episodes: PlanetState[];
+  /** transitions that brought a new cover to the land or the shallow seas */
+  covers?: PlanetState[];
+  /** how long, in years, a cover takes to spread where its transition gives no end */
+  coverSpread?: number;
+}
+
+/** How far each cover has spread at a time, 0–1: none before its transition starts. */
+export interface Cover {
+  crust: number;
+  plants: number;
+  forests: number;
+  grasses: number;
+  reefs: number;
+}
+
+const COVER_KEYS: Record<string, keyof Cover> = { 'microbial-crust': 'crust', 'land-plants': 'plants', forests: 'forests', grasslands: 'grasses', reefs: 'reefs' };
+
+/** What the land and the shallow seas can be covered with at a time, in a scenario. */
+export function coverAt(file: PlanetFile, t: number, s: Scenario): Cover {
+  const out: Cover = { crust: 0, plants: 0, forests: 0, grasses: 0, reefs: 0 };
+  const spread = file.coverSpread ?? 3e7;
+  for (const st of file.covers ?? []) {
+    const key = COVER_KEYS[String(valueOf(st, 'cover', s))];
+    if (!key) continue;
+    const [a, b] = spanOf(st, s);
+    if (t < a) continue;
+    // A reef-building episode holds from its start to its end. Any other cover stays once it has
+    // come, and its end is when it had spread.
+    if (key === 'reefs') {
+      if (t <= b) out.reefs = 1;
+      continue;
+    }
+    const span = Number.isFinite(b) && b > a ? b - a : spread;
+    const x = Math.min(1, (t - a) / span);
+    out[key] = Math.max(out[key], x * x * (3 - 2 * x));
+  }
+  // Grasses, trees and low plants are all plants: where a later cover has come the earlier has too.
+  out.plants = Math.max(out.plants, out.forests, out.grasses);
+  return out;
 }
 
 /** The planet at a time, in a scenario: what the renderer and the panels need. */

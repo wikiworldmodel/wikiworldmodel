@@ -1,0 +1,30 @@
+id: src:oconnell-2018-sahul
+type: publication
+kind: review
+citation: >-
+  O'Connell, J.F., Allen, J., Williams, M.A.J., Williams, A.N., Turney, C.S.M., Spooner, N.A.,
+  Kamminga, J., Brown, G. & Cooper, A. (2018). When did Homo sapiens first reach Southeast Asia and
+  Sahul?. Proceedings of the National Academy of Sciences of the USA 115(34), 8482–8490.
+authors:
+  - "O'Connell, J.F."
+  - "Allen, J."
+  - "Williams, M.A.J."
+  - "Williams, A.N."
+  - "Turney, C.S.M."
+  - "Spooner, N.A."
+  - "Kamminga, J."
+  - "Brown, G."
+  - "Cooper, A."
+published: 2018
+title: "When did Homo sapiens first reach Southeast Asia and Sahul?"
+container: "Proceedings of the National Academy of Sciences of the USA 115(34), 8482–8490"
+doi: 10.1073/pnas.1808385115
+reliability: >-
+  A critical review by authors who hold the arrival in Sahul to be about 50 ka, in dispute with the
+  excavators of Madjedbebe (Clarkson et al. 2017).
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the article's page on PubMed Central (PMC6112744); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text and the abstract in Europe PMC.

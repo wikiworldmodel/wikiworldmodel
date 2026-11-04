@@ -1,0 +1,24 @@
+id: src:barnosky-2004-pleistocene-extinctions
+type: publication
+kind: review
+citation: >-
+  Barnosky, A.D., Koch, P.L., Feranec, R.S., Wing, S.L. & Shabel, A.B. (2004). Assessing the causes
+  of Late Pleistocene extinctions on the continents. Science 306(5693), 70–75.
+authors:
+  - "Barnosky, A.D."
+  - "Koch, P.L."
+  - "Feranec, R.S."
+  - "Wing, S.L."
+  - "Shabel, A.B."
+published: 2004
+title: "Assessing the causes of Late Pleistocene extinctions on the continents"
+container: "Science 306(5693), 70–75"
+doi: 10.1126/science.1101476
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the published PDF from a copy on a University of Washington faculty page
+    (faculty.washington.edu/stevehar/BarnoskyEtAl2004.pdf), the text extracted with Ghostscript. Its
+    columns were separated by script, by line and character position, and words broken at line ends
+    rejoined. Quotes checked by script against that text, ignoring whitespace, since the PDF's text
+    layer drops some spaces.

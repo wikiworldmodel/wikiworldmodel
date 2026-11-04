@@ -1,0 +1,66 @@
+id: life/transitions/reefs-scleractinian
+kind: event/transition
+summary: >-
+  Reefs of the modern kind of coral and their sponge and algal partners, from the Middle Triassic to
+  today, through the crises at the end of the Triassic and of the Cretaceous. Sponges did most of the
+  building until the Late Triassic; the great reef provinces of today formed in the Miocene.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Scleractinian coral reefs }
+    unsourced: An editorial label.
+  cover:
+    prop: cover
+    value: reefs
+    unsourced: "How the renderer should treat this transition: an editorial classification."
+  start-flugel-2002:
+    prop: start
+    value: { ref: ics/anisian }
+    source:
+      ref: src:flugel-2002-triassic-reefs
+      loc: abstract
+      quote: followed by Anisian to Carnian and Norian-Rhaetian metazoan-dominated reefs
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The recovery of animal reefs, in the Middle and Late Anisian, in the western Tethys and on the
+      South China plate, after a gap with only microbial reefs. These reefs are sponge-rich, with
+      scleractinian corals among them; the abstract's first of four units for both is Middle Anisian to
+      Early Ladinian. This episode has no end claim, since it still holds, but it is not one unbroken
+      bloom. Lowermost Jurassic reefs are extremely rare, and recovery took at least 10 Myr (Flügel
+      2002). After the Cretaceous–Paleogene boundary reef ecosystems slowly recovered, stayed scarce
+      through the early Tertiary and spread from the late Oligocene, with a peak in the early to
+      middle Miocene (Perrin 2002).
+  start-flugel-2002-coral-dominated:
+    prop: start
+    value: { ref: ics/norian }
+    source:
+      ref: src:flugel-2002-triassic-reefs
+      loc: abstract
+      quote: The significant transition from middle Triassic and Carnian sponge-dominated reefs to late Triassic coral-dominated reefs
+    method: stratigraphic
+    note: >-
+      The start if only coral-dominated reefs are counted: Norian–Rhaetian sponge-coral and
+      coral-dominated reefs. The Carnian to Norian turnover spanned about 13 Myr.
+  start-perrin-2002:
+    prop: start
+    value: { ref: ics/lutetian }
+    source:
+      ref: src:perrin-2002-tertiary-reefs
+      loc: abstract
+      quote: typical framework reefs dominated by coral assemblages became the most common type of bio construction from the middle Eocene
+    method: stratigraphic
+    note: >-
+      The start only if the modern kind of framework reef is counted, with "middle Eocene" read as the
+      Lutetian. The stray space in "bio construction" is the abstract's, as the record read gives it.
+relations:
+  after-end-permian:
+    rel: after
+    to: earth/events/end-permian-extinction
+    source:
+      ref: src:flugel-2002-triassic-reefs
+      loc: abstract
+      quote: in the Early Triassic and Early Anisian, lasting > 8 Myr
+    note: >-
+      A global gap in animal reefs after the extinction, during which only microbial reefs grew.

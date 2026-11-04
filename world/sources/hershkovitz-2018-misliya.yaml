@@ -1,0 +1,20 @@
+id: src:hershkovitz-2018-misliya
+type: publication
+kind: measurement
+citation: >-
+  Hershkovitz, I., Weber, G.W., Quam, R., … & Weinstein-Evron, M. (2018). The earliest modern humans
+  outside Africa. Science 359(6374), 456–459.
+authors:
+  - "Hershkovitz, I."
+  - "Weber, G.W."
+  - "Quam, R."
+  - "Weinstein-Evron, M."
+published: 2018
+title: "The earliest modern humans outside Africa"
+container: "Science 359(6374), 456–459"
+doi: 10.1126/science.aap8369
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

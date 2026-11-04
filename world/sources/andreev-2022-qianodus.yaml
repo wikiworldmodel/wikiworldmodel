@@ -1,0 +1,26 @@
+id: src:andreev-2022-qianodus
+type: publication
+kind: measurement
+citation: >-
+  Andreev, P.S., Sansom, I.J., Li, Q., Zhao, W., Wang, J., Wang, C.-C., Peng, L., Jia, L., Qiao,
+  T. & Zhu, M. (2022). The oldest gnathostome teeth. Nature 609(7929), 964–968.
+authors:
+  - "Andreev, P.S."
+  - "Sansom, I.J."
+  - "Li, Q."
+  - "Zhao, W."
+  - "Wang, J."
+  - "Wang, C.-C."
+  - "Peng, L."
+  - "Jia, L."
+  - "Qiao, T."
+  - "Zhu, M."
+published: 2022
+title: "The oldest gnathostome teeth"
+container: Nature 609(7929), 964–968
+doi: 10.1038/s41586-022-05166-2
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 36171375); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

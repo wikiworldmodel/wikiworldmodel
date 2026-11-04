@@ -1,0 +1,70 @@
+id: life/transitions/animal-skeletons
+kind: event/transition
+summary: >-
+  The first animals with mineral skeletons. Calcified tubes and goblets, Cloudina and Namacalathus, spread at about 550 Ma in the last ten million
+  years of the Ediacaran, and small shelly fossils diversify in the earliest Cambrian. Candidate skeletons reach back further, to 571 Ma in Brazil, and
+  Droser and Gehling (2015) call the spicules of Coronacollina the oldest evidence of skeletonization.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First animal skeletons }
+    unsourced: An editorial label.
+  start-darroch-2023:
+    prop: start
+    value: 550 Ma
+    source:
+      - ref: src:darroch-2023-ediacaran-extinction
+        loc: "History"
+        quote: "(3) the Nama Assemblage (~550–538 Ma), which records a drop in the diversity of Ediacara biota, alongside an expansion in several modes of metazoan ‘ecosystem engineering’ including increased trace fossil diversity, the advent of macroscopic biomineralization"
+      - ref: src:morais-2024-bocaina
+        loc: "Introduction"
+        quote: "is currently recognized as having started in the latest Ediacaran, between 550 and 539 Ma"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      The generally accepted date, stated with "~". Shore et al. (2021) date Namacalathus below an ash of 547.32 ± 0.65 Ma, so the group was there by then.
+  start-morais-2024:
+    prop: start
+    value: { ref: life/occurrences/bocaina-microfossils }
+    source:
+      ref: src:morais-2024-bocaina
+      loc: abstract
+      quote: "demonstrably earlier than the record of the earliest known skeletonized metazoan fossils"
+    note: >-
+      New, and from cross-sections in thin section rather than whole fossils, dated by U–Pb in the carbonate itself. The paper calls them candidate metazoans. Not
+      preferred until it has been tested.
+  end-morais-2024:
+    prop: end
+    value: 530 Ma
+    source:
+      ref: src:morais-2024-bocaina
+      loc: abstract
+      quote: "The global fossil record documents the appearance of cloudinomorphs and other shelled tubular organisms followed by non-biomineralized small carbonaceous fossils and by the highly diversified small shelly fossils between ~ 550 and 530 Ma."
+    method: expert-estimate
+    note: >-
+      Taken as the end because by then shelly fossils were diverse; no source read gives an end to this transition as such.
+relations:
+  evidence-cloudina:
+    rel: evidenced-by
+    to: life/occurrences/cloudina-zaris
+    source:
+      ref: src:morais-2024-bocaina
+      loc: "Introduction"
+      quote: "Well-established and widespread biomineralization in animals, mainly represented by the extinct Nama assemblage of Cloudina"
+  evidence-namacalathus:
+    rel: evidenced-by
+    to: life/occurrences/namacalathus-omkyk
+    source:
+      ref: src:shore-2021-namacalathus
+      loc: abstract
+      quote: "which follows the underlying form of a stalked, cup-shaped, calcitic skeleton"
+  evidence-bocaina:
+    rel: evidenced-by
+    to: life/occurrences/bocaina-microfossils
+    source:
+      ref: src:morais-2024-bocaina
+      loc: abstract
+      quote: "biomineralized specimens reminiscent of sections of cloudinids, protoconodonts, anabaritids, and hyolithids"
+    note: >-
+      Candidate only: see the competing start.

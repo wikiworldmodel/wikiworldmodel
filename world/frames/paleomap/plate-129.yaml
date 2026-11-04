@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-129
+type: frame
+kind: plate
+title: Columbia Embayment (PALEOMAP plate 129)
+entity: earth/plates/columbia-embayment
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 129
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 129

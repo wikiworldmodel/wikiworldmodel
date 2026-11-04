@@ -1,0 +1,51 @@
+id: life/occurrences/homo-ledi-geraru
+kind: occurrence
+summary: >-
+  LD 350-1, a partial mandible with teeth from Ledi-Geraru in the Afar, Ethiopia: the earliest record
+  of the genus Homo, with primitive traits of early Australopithecus and derived traits of later Homo.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Homo (LD 350-1), Ledi-Geraru" }
+    unsourced: An editorial label, from the genus, the specimen and the place.
+  identified:
+    prop: identified_as
+    value: Homo
+    source:
+      - ref: src:villmoare-2015-ledi-geraru
+        loc: abstract
+        quote: "a partial hominin mandible with teeth from the Ledi-Geraru research area, Afar Regional State, Ethiopia, that establishes the presence of Homo at 2.80 to 2.75 Ma"
+      - ref: src:dimaggio-2015-ledi-geraru
+        loc: abstract
+        quote: "have produced the earliest record of the genus Homo"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:villmoare-2015-ledi-geraru, loc: abstract }
+  location:
+    prop: location
+    value: { lat: 11.35, lon: 40.86666667, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-ledi-geraru, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: A point for the research area; the fossil's locality was not located more closely from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-716
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 2.80 Ma, hi: 2.75 Ma }
+    source:
+      ref: src:dimaggio-2015-ledi-geraru
+      loc: abstract
+      quote: "Geological analyses constrain depositional and structural models of Afar and date the LD 350-1 Homo mandible to 2.80 to 2.75 Ma."
+    note: The abstract read says "geological analyses" and does not name the dating methods.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/hominini
+    source: { ref: src:villmoare-2015-ledi-geraru, loc: abstract }
+    note: The genus Homo has no record here and the fossil is not assigned to a species, so it belongs to the tribe.

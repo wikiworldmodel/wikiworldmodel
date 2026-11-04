@@ -1,0 +1,11 @@
+id: earth/plates/marie-byrd-land
+kind: plate
+summary: Plate 804 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Marie Byrdland }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 804", quote: "MBL  Marie Byrdland" }
+    note: >-
+      The name as the file writes it.

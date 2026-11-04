@@ -1,0 +1,21 @@
+id: src:sandom-2014-megafauna-humans
+type: publication
+kind: compilation
+citation: >-
+  Sandom, C., Faurby, S., Sandel, B. & Svenning, J.-C. (2014). Global late Quaternary megafauna
+  extinctions linked to humans, not climate change. Proceedings of the Royal Society B 281(1787),
+  20133254.
+authors:
+  - "Sandom, C."
+  - "Faurby, S."
+  - "Sandel, B."
+  - "Svenning, J.-C."
+published: 2014
+title: "Global late Quaternary megafauna extinctions linked to humans, not climate change"
+container: "Proceedings of the Royal Society B 281(1787), 20133254"
+doi: 10.1098/rspb.2013.3254
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC4071532). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

@@ -1,0 +1,132 @@
+id: people/first-cities/angkor
+kind: settlement
+summary: >-
+  Angkor, in Cambodia, the capital of the Khmer Empire and one of the largest settlement complexes before the modern era: temples at its civic-ceremonial centres, within a vast low-density landscape of
+  embankments, fields and water works. Current modelling gives 700,000 to 900,000 people in the whole 3,000 km² region at its height, of whom about 160,000 lived in the centres. Its decline
+  was slow: land use in the walled city of Angkor Thom was falling from the early fourteenth century, long before the fall of 1431.
+author: machine:claude-code
+same_as: { wikidata: Q163607, pleiades: 531398484 }
+claims:
+  name:
+    prop: name
+    value: { en: Angkor }
+    source: { ref: src:pleiades-angkor, loc: "place 531398484, title" }
+  start-klassen:
+    prop: start
+    value: { lo: 801 CE, hi: 900 CE }
+    source:
+      ref: src:klassen-2021-angkor-population
+      loc: abstract
+      quote: Angkor is one of the world’s largest premodern settlement complexes (9th to 15th centuries CE)
+    method: expert-estimate
+    rank: preferred
+    note: The ninth century. The paper's Table 1 begins its first period, of 248,696 people in all, in 770, so some settlement is older.
+  start-pleiades:
+    prop: start
+    value: 889 CE
+    source:
+      ref: src:pleiades-angkor
+      loc: "place 531398484, description"
+      quote: founded in the late 9th century by Yasovarman I (889-901)
+    method: historical-account
+    note: The start of the reign of the king the gazetteer names as founder.
+  end-penny:
+    prop: end
+    value: { lo: 1401 CE, hi: 1500 CE }
+    source:
+      ref: src:penny-2019-angkor-decline
+      loc: abstract
+      quote: the 15th-century CE abandonment of Angkor, Cambodia
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Preferred because this paper's dated sediments show land use falling from the first decades of the 14th century, with the moat of Angkor Thom unmaintained by that century's end,
+      so that no single year marks the end.
+  end-pleiades:
+    prop: end
+    value: 1431 CE
+    source:
+      ref: src:pleiades-angkor
+      loc: "place 531398484, description"
+      quote: The city was sacked in 1431 by invaders from the Ayutthaya kingdom, and was abandoned except for the temple of Angkor Wat
+    method: historical-account
+    note: The traditional date of the fall.
+  location:
+    prop: location
+    value: { lat: 13.43333, lon: 103.8333, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-angkor, loc: "place 531398484, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-615
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area-region:
+    prop: settlement_area
+    value: 300000
+    valid: { lo: 1181 CE, hi: 1300 CE }
+    source:
+      ref: src:klassen-2021-angkor-population
+      loc: Results
+      quote: between 700,000 and 900,000 people inhabited the 3000-km2 Greater Angkor Region
+    method: survey
+    rank: preferred
+    note: 3,000 km², the mapped region as the population model takes it, and much of it fields and forest. Half of the space was not cultivated, the paper says, and may not have been occupied.
+  area-cores:
+    prop: settlement_area
+    value: 4207
+    valid: { lo: 1181 CE, hi: 1300 CE }
+    source:
+      ref: src:klassen-2021-angkor-population
+      loc: Table 1, period 5 (1181–1300), CCC area
+    method: survey
+    note: The civic-ceremonial centres alone, the dense part of the city, by the table's column for their area in hectares.
+  area-unesco:
+    prop: settlement_area
+    value: 40000
+    source:
+      ref: src:unesco-whc-668-angkor
+      loc: description
+      quote: Stretching over some 400 km2, including forested area, Angkor Archaeological Park
+    method: survey
+    note: The modern park, so with no date. It is not the extent of the medieval city.
+  population-klassen:
+    prop: population
+    value: { lo: 700000, hi: 900000 }
+    valid: { lo: 1101 CE, hi: 1300 CE }
+    source:
+      ref: src:klassen-2021-angkor-population
+      loc: Results
+      quote: At its 12th to13th century CE height, our model predicts that between 700,000 and 900,000 people inhabited the 3000-km2 Greater Angkor Region
+    method: model
+    rank: preferred
+    note: >-
+      The whole region, modelled from mapped features and their dates. Preferred as the first full demographic study. Of these, 159,852 are in the civic-ceremonial centres in the last period of its
+      Table 1 (1181–1300).
+  population-groslier:
+    prop: population
+    value: 1900000
+    valid: { lo: 1151 CE, hi: 1200 CE }
+    source:
+      ref: src:klassen-2021-angkor-population
+      loc: Introduction
+      quote: cautiously suggested a total population of 1.9 million in a region around Angkor in the last half of the 12th century CE
+    method: expert-estimate
+    note: Groslier's estimate, at second hand through Klassen et al.
+  population-rice:
+    prop: population
+    value: 750000
+    source:
+      ref: src:klassen-2021-angkor-population
+      loc: Introduction
+      quote: More recent attempts based on the carrying capacity of the landscape estimate have estimated a population of approximately 750,000 people
+    method: expert-estimate
+    note: At second hand through Klassen et al., from the rice the land could grow without irrigation. No moment is given.
+  population-chandler:
+    prop: population
+    value: 150000
+    valid: 1200 CE
+    source: { ref: src:reba-2016-urban-population, loc: "chandlerV2.csv, row Angkor, column AD_1200" }
+    method: compilation
+    note: Chandler's figure, as digitized by Reba et al. (2016), and closer to the civic-ceremonial centres than to the region.

@@ -1,0 +1,20 @@
+id: src:moreno-mayar-2018-upward-sun-river
+type: publication
+kind: measurement
+citation: >-
+  Moreno-Mayar, J.V., Potter, B.A., Vinner, L., … & Willerslev, E. (2018). Terminal Pleistocene
+  Alaskan genome reveals first founding population of Native Americans. Nature 553(7687), 203–207.
+authors:
+  - "Moreno-Mayar, J.V."
+  - "Potter, B.A."
+  - "Vinner, L."
+  - "Willerslev, E."
+published: 2018
+title: "Terminal Pleistocene Alaskan genome reveals first founding population of Native Americans"
+container: "Nature 553(7687), 203–207"
+doi: 10.1038/nature25173
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC, and the abstract of the accepted manuscript deposited at Liverpool
+    John Moores University. Quotes checked by script against the Europe PMC abstract.

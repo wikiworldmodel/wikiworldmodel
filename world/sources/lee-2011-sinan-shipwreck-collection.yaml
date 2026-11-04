@@ -1,0 +1,18 @@
+id: src:lee-2011-sinan-shipwreck-collection
+type: publication
+kind: review
+citation: >-
+  Lee, T. (2011). Sinan Shipwreck Collection at the National Museum of Korea. Journal of Korean Art and Archaeology 5,
+  105–116.
+authors: ["Lee, T."]
+published: 2011
+title: Sinan Shipwreck Collection at the National Museum of Korea
+container: Journal of Korean Art and Archaeology
+doi: 10.23158/jkaa.2011.v5_09
+url: https://www.ijkaa.org/v.5/0/105/102
+license: CC-BY-NC-ND-4.0
+license_note: Single facts and short quotes, with credit.
+reliability: A curator of the museum that holds the finds. It reports the reading of the tablets at second hand from Kim Wondong (1986).
+verified:
+  by: machine:claude-code
+  how: The article's PDF (ijkaa.org/assets/pdf/102/jkaa-5-105.pdf) read in its text layer. Quotes checked by script after normalizing whitespace and line-end hyphens.

@@ -2,7 +2,7 @@
 # valid time, confidence, status and rank like any claim. It is stored once, in its
 # subject's file, and the build derives the inverse.
 #
-#   family    temporal | spatial | structural | lineage | causal | participation
+#   family    temporal | spatial | structural | lineage | causal | participation | evidential
 #   inverse   the derived relation, as seen from the target
 #   from, to  the kinds the subject and the target may be (with their children); omitted
 #             means any
@@ -51,3 +51,35 @@ relations:
     to: [event, large-igneous-province]
     description: The target caused the subject. A cause precedes its effect.
     time: [{ from: other.start, to: self.start, lag: true }]
+  made-by:
+    family: participation
+    inverse: made
+    from: [artefact, industry]
+    to: [taxon]
+    description: >-
+      The taxon taken to have made a find or an industry, usually from fossils in the same layers.
+      It is an inference, and it adds no constraint on time: a tradition can outlast one of its
+      makers, and an attribution can be wrong.
+  evidenced-by:
+    family: evidential
+    inverse: evidence-for
+    from: [event, development/script]
+    to: [occurrence]
+    description: >-
+      An occurrence that a source takes as evidence of an event, such as a fossil for a transition
+      in the history of life, or of a writing system, such as the inscription that first attests it.
+      It adds no constraint on time, because evidence can be contested: an event's competing start
+      claims say which evidence each of them rests on, and name it as their value where the date is
+      the occurrence's.
+  held-office:
+    family: participation
+    inverse: office-held-by
+    from: [person]
+    to: [polity]
+    description: >-
+      A person's rule or office in a polity, such as a pharaoh's or an emperor's. The subject is the
+      phase of the life in which it was held, usually `subject: "@reign"`, and the target the polity
+      or the phase of it whose office it was; the note names the office. That term lies within the
+      polity's lifetime, so a reign can bound the dates of a state. It is the term and not the life
+      that does: a person is not a polity, and may be born before the state began or outlive it.
+    time: [{ from: other.start, to: self.start }, { from: self.end, to: other.end }]

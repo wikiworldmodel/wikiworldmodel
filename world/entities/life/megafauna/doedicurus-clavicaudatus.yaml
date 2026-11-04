@@ -1,0 +1,59 @@
+id: life/taxa/doedicurus-clavicaudatus
+kind: taxon
+summary: >-
+  A giant glyptodont, a domed armoured relative of the armadillos, of the Pampas and nearby. A
+  butchered animal at La Moderna, Argentina, seemed to show that it survived well into the Holocene;
+  that date is now in doubt, and no calendar date on the last of them has been read here.
+same_as: { ott: 6147432, pbdb: "txn:247968" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Doedicurus, la: "Doedicurus clavicaudatus" }
+    source:
+      ref: src:opentree-taxonomy-3.7
+      loc: "taxon_info ott6147432: Open Tree's name is Glyptodon clavicaudatus, and tnrs/match_names reaches it from Doedicurus clavicaudatus as a synonym"
+    note: >-
+      The name the PBDB accepts (taxon 247968) and the sources read use. Open Tree's taxon_info
+      gives Glyptodon clavicaudatus, with its lineage through the genus Doedicurus.
+  start-pbdb:
+    prop: start
+    value: { lo: 0.4 Ma, hi: 0.0117 Ma }
+    source: { ref: src:pbdb/taxon-247968, loc: "taxa/single: firstapp_max_ma, firstapp_min_ma" }
+    method: compilation
+    note: >-
+      The PBDB's first appearance: its oldest records are from the Lujanian, the interval it dates
+      to 0.4–0.0117 Ma.
+  end-latest-pleistocene:
+    prop: end
+    value: { ref: ics/upper-late-pleistocene }
+    source:
+      ref: src:prates-perez-2021-south-america
+      loc: "Supplementary Data 4, rows Doedicurus clavicaudatus (column Relative_date)"
+      quote: "Doedicurus clavicaudatus Doedicurus -37.0 -61.0 Latest Pleistocene La Moderna"
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Prates & Perez assign all of the species' records they list, La Moderna among them, to the
+      latest Pleistocene, which is read here as the last stage of the Pleistocene. Preferred because
+      Politis et al. (2019) call the Holocene dates in doubt; no direct date in calendar years was
+      read.
+  end-la-moderna:
+    prop: end
+    value: { lo: 7500 BP, hi: 7000 BP }
+    source:
+      ref: src:politis-2019-campo-laborde
+      loc: Introduction
+      quote: "this series of dates suggested that the age of La Moderna was between 7000 and 7500 14C years BP"
+    method: radiometric/radiocarbon
+    rank: deprecated
+    note: >-
+      Radiocarbon years, as the source gives them, not calibrated: on the axis they read too young
+      by an amount no source read states. Doubted: the site's dates run from 6,550 to 12,350 14C
+      years, the two ends set aside as outliers, and Politis et al. ask for new dates at La Moderna,
+      as humates made such dates too young at Campo Laborde.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott6147432, lineage: Doedicurus < Chlamyphoridae < Cingulata < Xenarthra < Atlantogenata < Eutheria < Theria < Mammalia" }

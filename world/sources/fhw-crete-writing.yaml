@@ -1,0 +1,12 @@
+id: src:fhw-crete-writing
+type: publication
+kind: review
+citation: >-
+  Foundation of the Hellenic World. Writing, in Prehistoric Crete: Achievements. Chronos, the history of the Hellenic world.
+title: Writing
+container: Foundation of the Hellenic World
+url: https://fhw.gr/chronos/02/crete/en/achievments/writing.html
+reliability: A short educational page by a cultural foundation; it gives no references.
+verified:
+  by: machine:claude-code
+  how: The page read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

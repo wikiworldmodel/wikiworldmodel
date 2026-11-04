@@ -1,0 +1,23 @@
+id: src:pbdb/collection-22617
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 22617 ("FLKI Main-Bd I", TZ), occurrence 229125. Read
+  through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=22617
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+  Commons CC0".
+reliability: >-
+  A database record compiled from the literature; the collection reference, not read here, is: J.
+  M. Harris and T.D. White. 1979. Evolution of the Plio-Pleistocene African Suidae. Transactions
+  of the American Philosophical Society 69:1-128
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=22617&show=loc,strat,ref and from the occurrence list:
+    lat -2.9861, lng 35.344398, early_interval "Calabrian", formation "Olduvai", geographic note
+    "centr FLK gullies,Oldv homnd5&6"; occurrence 229125, accepted name "Paranthropus boisei".

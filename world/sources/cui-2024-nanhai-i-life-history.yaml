@@ -1,0 +1,19 @@
+id: src:cui-2024-nanhai-i-life-history
+type: publication
+kind: measurement
+citation: >-
+  Cui, J., Pan, Y., Bao, W. & Fu, D. (2024). A study on the life history of "Nanhai (南海) I" shipwreck. Abstract, the 16th
+  International Conference on Accelerator Mass Spectrometry (AMS-16), 20–26 October 2024.
+authors:
+  - "Cui, J."
+  - "Pan, Y."
+  - "Bao, W."
+  - "Fu, D."
+published: 2024
+title: A Study on the Life History of "Nanhai(南海) I" shipwreck
+container: The 16th International Conference on Accelerator Mass Spectrometry
+url: https://indico.ihep.ac.cn/event/20503/contributions/160467/
+reliability: A conference abstract, not refereed, with no table of dates. Read as an abstract only.
+verified:
+  by: machine:claude-code
+  how: The conference programme's page read directly on 4 November 2026. Quote checked by script against its text.

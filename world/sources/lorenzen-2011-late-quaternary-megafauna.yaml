@@ -1,0 +1,22 @@
+id: src:lorenzen-2011-late-quaternary-megafauna
+type: publication
+kind: measurement
+citation: >-
+  Lorenzen, E.D., Nogués-Bravo, D., Orlando, L., Weinstock, J., Binladen, J., Marske, K.A., Ugan,
+  A., Borregaard, M.K., Gilbert, M.T.P., Nielsen, R., … & Willerslev, E. (2011). Species-specific
+  responses of Late Quaternary megafauna to climate and humans. Nature 479(7373), 359–364.
+authors:
+  - "Lorenzen, E.D."
+  - "Nogués-Bravo, D."
+  - "Orlando, L."
+  - "Weinstock, J."
+  - "Willerslev, E."
+published: 2011
+title: "Species-specific responses of Late Quaternary megafauna to climate and humans"
+container: "Nature 479(7373), 359–364"
+doi: 10.1038/nature10574
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the author manuscript, full text XML from PMC through NCBI efetch (PMC4070744). Quotes
+    checked by script against the text retrieved, after normalizing whitespace.

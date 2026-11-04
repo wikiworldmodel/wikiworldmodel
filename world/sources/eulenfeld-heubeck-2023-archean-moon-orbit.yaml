@@ -1,0 +1,20 @@
+id: src:eulenfeld-heubeck-2023-archean-moon-orbit
+type: publication
+kind: measurement
+citation: >-
+  Eulenfeld, T. & Heubeck, C. (2023). Constraints on Moon's orbit 3.2 billion years ago from
+  tidal bundle data. Journal of Geophysical Research: Planets 128(1), e2022JE007466.
+authors:
+  - "Eulenfeld, T."
+  - "Heubeck, C."
+published: 2023
+title: "Constraints on Moon's Orbit 3.2 Billion Years Ago From Tidal Bundle Data"
+container: "Journal of Geophysical Research: Planets 128(1), e2022JE007466"
+doi: 10.1029/2022JE007466
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full in the authors' manuscript on arXiv (2207.05464v3, 20 December 2022), which says
+    that an edited version was published in the journal; the publisher's page and the repository
+    copies were not reachable, so the published text was not compared with it. Quotes and the
+    values of Table 2 checked by script against the text of the arXiv PDF. Metadata from Crossref.

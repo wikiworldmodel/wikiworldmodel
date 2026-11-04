@@ -1,0 +1,274 @@
+id: people/objects/stone-of-scone
+kind: artefact/moved
+summary: >-
+  The block of sandstone on which Scottish kings were made at Scone, taken to Westminster Abbey by
+  Edward I in 1296 and used to crown English and British monarchs. Students took it on Christmas morning
+  1950 and left it at Arbroath Abbey in April 1951. It went back to Scotland in 1996 and to Perth in 2024.
+author: machine:claude-code
+same_as: { wikidata: Q756442 }
+phases:
+  - id: scone
+    label: Scone
+  - id: westminster
+    label: Westminster Abbey, London
+  - id: hidden
+    label: Hidden, after its removal from the Abbey
+    gap: true
+  - id: arbroath
+    label: Arbroath Abbey
+  - id: westminster-again
+    label: Westminster Abbey, London
+  - id: edinburgh
+    label: Edinburgh Castle
+  - id: coronation
+    label: Westminster Abbey, for a coronation
+  - id: edinburgh-again
+    label: Edinburgh Castle
+  - id: perth
+    label: Perth Museum
+claims:
+  name:
+    prop: name
+    value: { en: Stone of Scone }
+    source: { ref: src:westminster-abbey-coronation-chair, loc: "section 'Stone of Scone'", quote: "Legends abound concerning the Stone of Scone." }
+    note: Also the Stone of Destiny, the name the Perth Museum uses.
+  scone-start:
+    prop: start
+    subject: "@scone"
+    value: { hi: 1249 CE }
+    source:
+      ref: src:perth-museum-stone-of-destiny
+      loc: "section 'About the Stone of Destiny', paragraph 1"
+      quote: "Its first documented use was in 1249 for the inauguration of the boy-king, Alexander III."
+    method: documentary
+    note: >-
+      One-sided: no later than its first documented use. The Abbey's page tells the older legends, of Jacob
+      and of Tara, and says of them only that it had been revered for centuries; the Perth Museum says it
+      is sandstone quarried in the Scone area.
+  scone-location:
+    prop: location
+    subject: "@scone"
+    value: { lat: 56.4247, lon: -3.43583, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-scone-abbey, loc: "Q1627594, P625 coordinate location" }
+      - ref: src:perth-museum-stone-of-destiny
+        loc: "section 'About the Stone of Destiny', paragraph 1"
+        quote: "it was used in the inauguration of Scottish monarchs at Scone, 3 miles upriver of Perth on the River Tay"
+    method: gazetteer
+  scone-frame:
+    prop: frame
+    subject: "@scone"
+    value: frame:paleomap/plate-313
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  westminster-start:
+    prop: start
+    subject: "@westminster"
+    value: 1296 CE
+    source:
+      - ref: src:westminster-abbey-coronation-chair
+        loc: "section 'Origins and decoration'"
+        quote: "the famous Stone of Scone, which he brought from Scotland to the Abbey in 1296"
+      - ref: src:perth-museum-stone-of-destiny
+        loc: Frequently Asked Questions
+        quote: "The Stone was taken in 1296 to Westminster where it stayed until 1996"
+    method: historical-account
+  westminster-location:
+    prop: location
+    subject: "@westminster"
+    value: { lat: 51.4994, lon: -0.127367, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-westminster-abbey, loc: "Q5933, P625 coordinate location" }
+    method: gazetteer
+  westminster-frame:
+    prop: frame
+    subject: "@westminster"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  hidden-start:
+    prop: start
+    subject: "@hidden"
+    value: 25 December 1950 CE
+    source:
+      - ref: src:westminster-abbey-coronation-chair
+        loc: "section 'Theft and return to Scotland'"
+        quote: "It was stolen by Scottish Nationalists on 25th December 1950."
+      - ref: src:foster-2026-arbroath-replicas
+        loc: "paragraph beginning 'Arbroath’s association'"
+        quote: "illicitly removed from the Coronation Chair in Westminster Abbey on Christmas morning 1950, hidden in Scotland"
+    method: documentary
+    note: Its hiding places over the next months are not placed in anything read, so this phase has no place, and the marker stays at Westminster.
+  arbroath-start-foster:
+    prop: start
+    subject: "@arbroath"
+    value: 11 April 1951 CE
+    source:
+      ref: src:foster-2026-arbroath-replicas
+      loc: "paragraph beginning 'Arbroath’s association'"
+      quote: "Arbroath’s association with the Stone of Destiny began on 11 April 1951."
+    method: historical-account
+    rank: preferred
+    note: The researcher leading the project on the stone, who is careful about what can be said with confidence.
+  arbroath-start-police-museum:
+    prop: start
+    subject: "@arbroath"
+    value: 10 April 1951 CE
+    source:
+      ref: src:glasgow-police-museum-stone-of-destiny
+      loc: "section 'The Stone is Recovered in Arbroath Abbey'"
+      quote: "the conspirators symbolically left the Stone in Arbroath Abbey on Tuesday 10 April, 1951"
+    method: historical-account
+    note: The account of the force that took it in charge the same evening, a day before Foster's date. Neither was checked against the newspapers of that week.
+  arbroath-location:
+    prop: location
+    subject: "@arbroath"
+    value: { lat: 56.5625, lon: -2.582222, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-arbroath-abbey, loc: "Q630683, P625 coordinate location" }
+    method: gazetteer
+  arbroath-frame:
+    prop: frame
+    subject: "@arbroath"
+    value: frame:paleomap/plate-313
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  westminster-again-start:
+    prop: start
+    subject: "@westminster-again"
+    value: 13 April 1951 CE
+    source:
+      - ref: src:glasgow-police-museum-stone-of-destiny
+        loc: "section 'The Stone Arrives at Glasgow's Central Police Office'"
+        quote: "The new police plan was put into action at 5am on Friday, 13 April, 1951"
+      - ref: src:westminster-abbey-coronation-chair
+        loc: "section 'Theft and return to Scotland'"
+        quote: "After its recovery in April 1951 it was kept in the vault in which it had been stored during the Second World War"
+    method: historical-account
+    note: >-
+      The police say it was taken from Arbroath to their Central Police Office in Glasgow, and left for
+      London in the boot of a Jaguar early on 13 April, by way of Newcastle; they imply it arrived the same
+      day. Two days in Glasgow are too short to mark here. It went back under the Coronation Chair in early
+      1952: February by the Abbey, April by the police.
+  westminster-again-location:
+    prop: location
+    subject: "@westminster-again"
+    value: { lat: 51.4994, lon: -0.127367, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-westminster-abbey, loc: "Q5933, P625 coordinate location" }
+    method: gazetteer
+  westminster-again-frame:
+    prop: frame
+    subject: "@westminster-again"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  edinburgh-start:
+    prop: start
+    subject: "@edinburgh"
+    value: 14 November 1996 CE
+    source:
+      ref: src:westminster-abbey-coronation-chair
+      loc: "section 'Theft and return to Scotland'"
+      quote: "was removed in silence to the waiting police escort early on the morning of 14th November to make the long journey to Scotland by road"
+    method: documentary
+    note: The day it left the Abbey; the journey to Edinburgh took the rest of that day or longer, and its arrival was not in anything read.
+  edinburgh-location:
+    prop: location
+    subject: "@edinburgh"
+    value: { lat: 55.9487, lon: -3.20073, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-edinburgh-castle, loc: "Q212065, P625 coordinate location" }
+      - ref: src:westminster-abbey-coronation-chair
+        loc: "section 'Theft and return to Scotland'"
+        quote: "It was displayed until 2024 in Edinburgh Castle."
+    method: gazetteer
+  edinburgh-frame:
+    prop: frame
+    subject: "@edinburgh"
+    value: frame:paleomap/plate-313
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  coronation-start:
+    prop: start
+    subject: "@coronation"
+    value: 29 April 2023 CE
+    source:
+      - ref: src:westminster-abbey-2023-stone-of-destiny-service
+        loc: front cover
+        quote: "A Service to mark the arrival of The Stone of Destiny"
+      - ref: src:westminster-abbey-2023-stone-of-destiny-service
+        loc: front cover
+        quote: "Saturday 29 April"
+      - ref: src:westminster-abbey-coronation-chair
+        loc: "section 'Theft and return to Scotland'"
+        quote: "The Stone was indeed temporarily returned to be re-united with the Chair for the coronation of King Charles III in 2023."
+    method: documentary
+    note: The day of the service at the Abbey marking its arrival. The cover gives no year; the Abbey's page lists it as the order of service of 2023 and the file's name begins 23-04-29. The stone may have reached the Abbey a little earlier.
+  coronation-location:
+    prop: location
+    subject: "@coronation"
+    value: { lat: 51.4994, lon: -0.127367, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-westminster-abbey, loc: "Q5933, P625 coordinate location" }
+    method: gazetteer
+  coronation-frame:
+    prop: frame
+    subject: "@coronation"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  edinburgh-again-start:
+    prop: start
+    subject: "@edinburgh-again"
+    value: { lo: May 2023 CE, hi: January 2024 CE }
+    source:
+      - ref: src:perth-museum-stone-of-destiny
+        loc: opening paragraph
+        quote: "most recently King Charles III in May 2023"
+      - ref: src:perth-museum-stone-of-destiny
+        loc: Frequently Asked Questions
+        quote: "The Stone was formerly displayed at Edinburgh Castle."
+    method: historical-account
+    note: After the coronation and before the move to Perth; the day it went back to Edinburgh was not in anything read.
+  edinburgh-again-location:
+    prop: location
+    subject: "@edinburgh-again"
+    value: { lat: 55.9487, lon: -3.20073, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-edinburgh-castle, loc: "Q212065, P625 coordinate location" }
+    method: gazetteer
+  edinburgh-again-frame:
+    prop: frame
+    subject: "@edinburgh-again"
+    value: frame:paleomap/plate-313
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  perth-start:
+    prop: start
+    subject: "@perth"
+    value: { lo: January 2024 CE, hi: March 2024 CE }
+    source:
+      - ref: src:perth-museum-stone-of-destiny
+        loc: Frequently Asked Questions
+        quote: "The Stone arrived shortly before the Museum opened in March 2024."
+      - ref: src:westminster-abbey-coronation-chair
+        loc: "section 'Theft and return to Scotland'"
+        quote: "It was displayed until 2024 in Edinburgh Castle. It has now been moved to the new Museum at Perth."
+    method: documentary
+    note: The Abbey's year and the museum's "shortly before" the opening; the day was not in anything read.
+  perth-location:
+    prop: location
+    subject: "@perth"
+    value: { lat: 56.39585, lon: -3.4294, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-perth-museum, loc: "Q122199223, P625 coordinate location" }
+    method: gazetteer
+  perth-frame:
+    prop: frame
+    subject: "@perth"
+    value: frame:paleomap/plate-313
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

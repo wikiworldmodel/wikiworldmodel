@@ -1,0 +1,22 @@
+id: src:moreno-letelier-2020-maize
+type: publication
+kind: measurement
+citation: >-
+  Moreno-Letelier, A., Aguirre-Liguori, J.A., Piñero, D., Vázquez-Lobo, A. & Eguiarte, L.E.
+  (2020). The relevance of gene flow with wild relatives in understanding the domestication
+  process. Royal Society Open Science 7(4), 191545.
+authors:
+  - "Moreno-Letelier, A."
+  - "Aguirre-Liguori, J.A."
+  - "Piñero, D."
+  - "Vázquez-Lobo, A."
+  - "Eguiarte, L.E."
+published: 2020
+title: "The relevance of gene flow with wild relatives in understanding the domestication process"
+container: "Royal Society Open Science 7(4), 191545"
+doi: 10.1098/rsos.191545
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC7211868) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

@@ -1,0 +1,29 @@
+id: src:haug-2005-north-pacific-seasonality
+type: publication
+kind: measurement
+citation: >-
+  Haug, G.H., Ganopolski, A., Sigman, D.M., Rosell-Mele, A., Swann, G.E.A., Tiedemann, R.,
+  Jaccard, S.L., Bollmann, J., Maslin, M.A., Leng, M.J. & Eglinton, G. (2005). North Pacific
+  seasonality and the glaciation of North America 2.7 million years ago. Nature 433(7028),
+  821–825.
+authors:
+  - "Haug, G.H."
+  - "Ganopolski, A."
+  - "Sigman, D.M."
+  - "Rosell-Mele, A."
+  - "Swann, G.E.A."
+  - "Tiedemann, R."
+  - "Jaccard, S.L."
+  - "Bollmann, J."
+  - "Maslin, M.A."
+  - "Leng, M.J."
+  - "Eglinton, G."
+published: 2005
+title: "North Pacific seasonality and the glaciation of North America 2.7 million years ago"
+container: "Nature 433(7028), 821–825"
+doi: 10.1038/nature03332
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read through Europe PMC (PMID 15729332). The full text was not read. Citation from
+    Crossref. Quotes checked by script against the text retrieved.

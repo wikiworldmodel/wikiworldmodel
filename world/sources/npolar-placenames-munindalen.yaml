@@ -1,0 +1,17 @@
+id: src:npolar-placenames-munindalen
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Place Names of Svalbard, Norwegian Polar Institute: entry Munindalen
+  (api.npolar.no/placename, id afaa71f7-b42f-5e61-b180-adab3051b735).
+container: Norwegian Polar Institute place names
+url: https://api.npolar.no/placename/afaa71f7-b42f-5e61-b180-adab3051b735
+reliability: >-
+  The official gazetteer for Svalbard, for a named valley and not for the fossil site itself.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (78.67797, 16.125748) read from the service's JSON
+    (api.npolar.no/placename/?q=Munindalen&format=json) on 4 November 2026. Wikidata's Q31874299
+    gives about the same point.

@@ -1,0 +1,24 @@
+id: src:granger-2022-sterkfontein
+type: publication
+kind: measurement
+citation: >-
+  Granger, D.E., Stratford, D., Bruxelles, L., Gibbon, R.J., Clarke, R.J. & Kuman, K. (2022).
+  Cosmogenic nuclide dating of <i>Australopithecus</i> at Sterkfontein, South Africa. Proceedings
+  of the National Academy of Sciences 119(27), e2123516119.
+authors:
+  - "Granger, D.E."
+  - "Stratford, D."
+  - "Bruxelles, L."
+  - "Gibbon, R.J."
+  - "Clarke, R.J."
+  - "Kuman, K."
+published: 2022
+title: "Cosmogenic nuclide dating of <i>Australopithecus</i> at Sterkfontein, South Africa"
+container: "Proceedings of the National Academy of Sciences 119(27), e2123516119"
+doi: 10.1073/pnas.2123516119
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC9271183): an isochron burial date of 3.41 ± 0.11 My (1σ
+    analytical error) for Member 4, the previous flowstone ages, and A. prometheus as the name for
+    StW 573. Quoted passages checked by script against the text retrieved.

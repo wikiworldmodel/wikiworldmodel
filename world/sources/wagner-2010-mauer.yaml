@@ -1,0 +1,29 @@
+id: src:wagner-2010-mauer
+type: publication
+kind: measurement
+citation: >-
+  Wagner, G.A., Krbetschek, M., Degering, D., Bahain, J.J., Shao, Q., Falguères, C., Voinchet, P.,
+  Dolo, J.M., Garcia, T. & Rightmire, G.P. (2010). Radiometric dating of the type-site for Homo
+  heidelbergensis at Mauer, Germany. Proceedings of the National Academy of Sciences 107(46),
+  19726–19730.
+authors:
+  - "Wagner, G.A."
+  - "Krbetschek, M."
+  - "Degering, D."
+  - "Bahain, J.J."
+  - "Shao, Q."
+  - "Falguères, C."
+  - "Voinchet, P."
+  - "Dolo, J.M."
+  - "Garcia, T."
+  - "Rightmire, G.P."
+published: 2010
+title: "Radiometric dating of the type-site for Homo heidelbergensis at Mauer, Germany"
+container: "Proceedings of the National Academy of Sciences 107(46), 19726–19730"
+doi: 10.1073/pnas.1012722107
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read at PubMed Central (PMC2993404): the type-site at Mauer dated to 609 ± 40 ka by
+    ESR/U-series and infrared radiofluorescence; Fig. 3 plots 1-σ error bars. Quoted passages
+    checked by script against the text retrieved.

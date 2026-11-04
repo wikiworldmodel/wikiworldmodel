@@ -1,0 +1,26 @@
+id: src:perrier-2011-banana
+type: publication
+kind: measurement
+citation: >-
+  Perrier, X., De Langhe, E., Donohue, M., … & Denham, T. (2011). Multidisciplinary
+  perspectives on banana (Musa spp.) domestication. Proceedings of the National Academy of
+  Sciences 108(28), 11311–11318.
+authors:
+  - "Perrier, X."
+  - "De Langhe, E."
+  - "Donohue, M."
+  - "Lentfer, C."
+  - "Vrydaghs, L."
+  - "Bakry, F."
+  - "Carreel, F."
+  - "Hippolyte, I."
+# the first eight of 18 authors
+published: 2011
+title: "Multidisciplinary perspectives on banana (Musa spp.) domestication"
+container: "Proceedings of the National Academy of Sciences 108(28), 11311–11318"
+doi: 10.1073/pnas.1102001108
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC3136277) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

@@ -1,0 +1,30 @@
+id: src:pbdb/collection-11128
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 11128 ("Lower Bone Bed Member, Ludford Corner, Ludlow,
+  Shropshire, England", UK), occurrence 133127. Read through the PBDB data service (data1.2) on
+  4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=11128
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference A. J. Jeram, P. A.
+  Selden, and D. Edwards. 1990. Land animals in the Silurian: arachnids and myriapods from
+  Shropshire, England. Science 250:658-661. Interval ages are the PBDB's own, for the interval
+  the collection is assigned to; the primary reference was not read here unless cited
+  separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=11128&show=loc,strat,ref and
+    occs/list.json?coll_id=11128&show=ident,class on the main data service: collection name
+    "Lower Bone Bed Member, Ludford Corner, Ludlow, Shropshire, England"; lat 51.366669; lng
+    -2.733333; formation "Downton Castle Sandstone"; member "Lower Bone Bed"; early_interval
+    Pridoli; max_ma 422.7, min_ma 419.62; occurrence 133127, identified_name "Palaeotarbus
+    jerami n. gen.", accepted_name "Palaeotarbus jerami" (Arthropoda, Arachnida,
+    Trigonotarbida).

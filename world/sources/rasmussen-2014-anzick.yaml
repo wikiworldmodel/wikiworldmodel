@@ -1,0 +1,21 @@
+id: src:rasmussen-2014-anzick
+type: publication
+kind: measurement
+citation: >-
+  Rasmussen, M., Anzick, S.L., Waters, M.R., … & Willerslev, E. (2014). The genome of a Late
+  Pleistocene human from a Clovis burial site in western Montana. Nature 506(7487), 225–229.
+authors:
+  - "Rasmussen, M."
+  - "Anzick, S.L."
+  - "Waters, M.R."
+  - "Willerslev, E."
+published: 2014
+title: "The genome of a Late Pleistocene human from a Clovis burial site in western Montana"
+container: "Nature 506(7487), 225–229"
+doi: 10.1038/nature13025
+verified:
+  by: machine:claude-code
+  how: >-
+    Author manuscript in PubMed Central (PMC4878442), retrieved as XML through NCBI E-utilities; the
+    abstract and the passages cited were read, without the supplementary information. Quotes checked
+    by script against that text and the abstract in Europe PMC.

@@ -1,0 +1,12 @@
+id: src:berlin-de-nofretete-geschichte-einer-ikone
+type: publication
+kind: review
+citation: Berlin.de, the city's portal. Nofretete, die Geschichte einer Ikone.
+title: Nofretete, die Geschichte einer Ikone
+url: https://www.berlin.de/museum/3110048-2926344-nofretete-die-geschichte-einer-ikone.html
+reliability: >-
+  A short history on the city's portal, without references. It gives days for the moves of 1967 and
+  2009, but its account of the war differs from the others read.
+verified:
+  by: machine:claude-code
+  how: Read on the portal. Quotations checked by script against the page's text.

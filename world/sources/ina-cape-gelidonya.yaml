@@ -1,0 +1,12 @@
+id: src:ina-cape-gelidonya
+type: publication
+kind: review
+citation: >-
+  Institute of Nautical Archaeology. Cape Gelidonya Late Bronze Age Shipwreck Excavation. Project page.
+title: Cape Gelidonya Late Bronze Age Shipwreck Excavation
+container: Institute of Nautical Archaeology, Projects
+url: https://nauticalarch.org/projects/cape-gelidonya-late-bronze-age-shipwreck-excavation/
+reliability: A short summary, in place of Bass (1967), the final report, which was not read.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

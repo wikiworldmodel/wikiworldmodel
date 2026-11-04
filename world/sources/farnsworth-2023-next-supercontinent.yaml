@@ -1,0 +1,27 @@
+id: src:farnsworth-2023-next-supercontinent
+type: publication
+kind: model
+citation: >-
+  Farnsworth, A., Lo, Y.T.E., Valdes, P.J., Buzan, J.R., Mills, B.J.W., Merdith, A.S., Scotese, C.R. &
+  Wakeford, H.R. (2023). Climate extremes likely to drive land mammal extinction during next
+  supercontinent assembly. Nature Geoscience 16(10), 901–908.
+authors:
+  - "Farnsworth, A."
+  - "Lo, Y.T.E."
+  - "Valdes, P.J."
+  - "Buzan, J.R."
+  - "Mills, B.J.W."
+  - "Merdith, A.S."
+  - "Scotese, C.R."
+  - "Wakeford, H.R."
+published: 2023
+title: Climate extremes likely to drive land mammal extinction during next supercontinent assembly
+container: Nature Geoscience 16(10), 901–908
+doi: 10.1038/s41561-023-01259-3
+url: https://www.nature.com/articles/s41561-023-01259-3.pdf
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from the publisher's PDF. Citation from Crossref. Quotes checked by script against
+    the text extracted from that PDF, after normalizing whitespace.

@@ -1,0 +1,70 @@
+id: life/occurrences/maize-guila-naquitz
+kind: occurrence
+summary: >-
+  Three maize cobs from Guilá Naquitz Cave in the Oaxaca highlands, directly dated to about 6,250
+  calendar years ago: for a long time the oldest maize known, and still the oldest cobs. They did not
+  come apart by themselves, as the ears of teosinte do.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Maize, Guilá Naquitz" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: Zea mays
+    source:
+      ref: src:benz-2001-guila-naquitz
+      loc: abstract
+      quote: "Analysis of the three most ancient Zea mays inflorescence fragments from Guilá Naquitz, Oaxaca, Mexico"
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      ref: src:benz-2001-guila-naquitz
+      loc: abstract
+      quote: "shows they did not disarticulate naturally, indicating that agricultural selection of domesticated teosinte was underway"
+    note: >-
+      What shows it is domestic: fragments that did not fall apart naturally, with two or four rows of
+      grain.
+  location:
+    prop: location
+    value: { lat: 16.975278, lon: -96.308889, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-guila-naquitz, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-104
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-piperno-flannery-2001:
+    prop: date
+    value: 6250 BP
+    source:
+      ref: src:piperno-flannery-2001-guila-naquitz
+      loc: abstract
+      quote: "produced dates of 5,400 carbon-14 years before the present (about 6,250 calendar years ago)"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      AMS dates on the cobs themselves.
+  date-benz-2001:
+    prop: date
+    value: 4200 BCE
+    source:
+      ref: src:benz-2001-guila-naquitz
+      loc: abstract
+      quote: "by 5,400 14C years before the present (about 4,200 dendrocalibrated years B.C.)"
+    method: radiometric/radiocarbon
+    note: >-
+      The same radiocarbon age, calibrated a little later in the companion paper.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott605194 and ott99252: Zea mays lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/maize
+    source: { ref: src:benz-2001-guila-naquitz, loc: abstract }

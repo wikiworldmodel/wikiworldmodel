@@ -1,0 +1,16 @@
+id: src:usgs-geolex-hell-creek
+type: database-record
+kind: compilation
+citation: >-
+  U.S. Geological Survey. Geolex: Hell Creek. National Geologic Map Database, unit record
+  HellCreek_8598.
+snapshot: "2026-11-04"
+title: "Geolex: Hell Creek"
+container: "U.S. Geological Survey, National Geologic Map Database"
+url: https://ngmdb.usgs.gov/Geolex/Units/HellCreek_8598.html
+verified:
+  by: machine:claude-code
+  how: >-
+    The unit's page read in full and quotes checked by script against it. It cites Hartman et
+    al. (2014) for the lectostratotype and Brown (1907) for the name; Hartman et al. was not
+    read.

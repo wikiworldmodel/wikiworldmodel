@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-716
+type: frame
+kind: plate
+title: Sudan Block (PALEOMAP plate 716)
+entity: earth/plates/sudan-block
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 716
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 716

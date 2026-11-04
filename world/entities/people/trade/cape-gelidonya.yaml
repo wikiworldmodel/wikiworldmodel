@@ -1,0 +1,81 @@
+id: people/trade/cape-gelidonya
+kind: event/shipwreck
+summary: >-
+  A small merchant ship that tore its bottom on a rock off Cape Gelidonya in southern Turkey about 1200 BCE, carrying
+  scrap bronze tools from Cyprus and ingots of copper and tin, with a tinker's tools on board. Excavated in 1960 under
+  George Bass, then a graduate student: the first shipwreck excavated to completion on the sea bed, and to the
+  standards of a dig on land.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Cape Gelidonya shipwreck }
+    source: { ref: src:bar-shipwreck-footnote, loc: Footnote 1, quote: "The shipwreck at Cape Gelidonya" }
+  date:
+    prop: date
+    value: 1200 BCE
+    source:
+      - ref: src:bar-shipwreck-footnote
+        loc: Footnote 1
+        quote: "has been dated to about 1200 B.C. by radiocarbon tests on brushwood found on the ship."
+      - ref: src:ina-cape-gelidonya
+        loc: paragraph 1
+        quote: "In about 1200 B.C., a merchant vessel apparently ripped its bottom open on a pinnacle of rock"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      "About", in both, and the same page of INA's is headed "late 13th c. B.C.". Neither gives the measurement or its
+      uncertainty, and the final report (Bass 1967) was not read.
+  date-oxrep:
+    prop: date
+    value: { lo: 1200 BCE, hi: 1150 BCE }
+    source: { ref: src:oxrep-shipwrecks-2.1, loc: "Wreck ID 7631, Earliest Date, Latest Date, Dating comment", quote: "first half C12th BC" }
+    method: typological
+    note: The database's range, from the goods on board by its own account of its dates.
+  date-bass-1961:
+    prop: date
+    value: { lo: 1400 BCE, hi: 1201 BCE }
+    source:
+      ref: src:bass-1961-bronze-age-shipwreck
+      loc: paragraph 1
+      quote: "Sometime during the fourteenth or thirteenth century B.C. a small merchant ship tried to pass between two of these islands"
+    method: expert-estimate
+    rank: deprecated
+    note: The excavator's first estimate, from the first season.
+  location:
+    prop: location
+    value: { lat: 36.366666666667, lon: 30.283333333333, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-kumluca, loc: "Q1004471, P625 coordinate location" }
+      - ref: src:ina-cape-gelidonya
+        loc: heading of the page
+        quote: "WHERE: BESADALAR, TÜRKIYE"
+    method: editorial
+    note: >-
+      The town of Kumluca, the nearest place a source read here gives a point for, about 20 km north of the wreck, which lies
+      off the cape at the islands of Beşadalar. The point Strauss et al. give for the wreck (36.18333, 30.4; Wreck ID 7631)
+      falls in a polygon of the plate model that exists only at the present, so it cannot carry the wreck back to its date.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-504
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value:
+      en: >-
+        The makings of bronze: scrap bronze tools from Cyprus, to be recycled, and ingots of copper and tin. A smith's stone
+        hammerheads, polishers, whetstone and perhaps anvil may have been a tinker's.
+    source:
+      ref: src:ina-cape-gelidonya
+      loc: paragraph 3
+      quote: "The bulk of the cargo consisted of the ingredients for making bronze implements, including both scrap bronze tools from Cyprus, intended to be recycled, and ingots of both copper and tin."
+  voyage:
+    prop: voyage
+    value: { en: Embarked from a port in the Levant. }
+    source:
+      ref: src:bar-shipwreck-footnote
+      loc: Footnote 1
+      quote: "Since the merchant’s weights found on the ship were all of Syro-Canaanite or Cypriot origin, scholars believe that the Cape Gelidonya ship, like the Uluburun ship, embarked from a Levantine port."
+    note: An inference from the weights. INA calls the ship probably Canaanite or early Phoenician, possibly Cypriot.

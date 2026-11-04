@@ -1,0 +1,20 @@
+id: src:seguin-orlando-2014-kostenki
+type: publication
+kind: measurement
+citation: >-
+  Seguin-Orlando, A., Korneliussen, T.S., Sikora, M., … & Willerslev, E. (2014). Genomic structure
+  in Europeans dating back at least 36,200 years. Science 346(6213), 1113–1118.
+authors:
+  - "Seguin-Orlando, A."
+  - "Korneliussen, T.S."
+  - "Sikora, M."
+  - "Willerslev, E."
+published: 2014
+title: "Genomic structure in Europeans dating back at least 36,200 years"
+container: "Science 346(6213), 1113–1118"
+doi: 10.1126/science.aaa0114
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

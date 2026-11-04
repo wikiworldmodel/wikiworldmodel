@@ -1,0 +1,9 @@
+id: earth/plates/east-avalonia
+kind: plate
+summary: Plate 315 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: East Avalonia }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 315", quote: "ENG  East Avalonia  100 MY FUTURE" }

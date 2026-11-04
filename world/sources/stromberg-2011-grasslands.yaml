@@ -1,0 +1,18 @@
+id: src:stromberg-2011-grasslands
+type: publication
+kind: review
+citation: >-
+  Strömberg, C.A.E. (2011). Evolution of grasses and grassland ecosystems. Annual Review of Earth
+  and Planetary Sciences 39, 517–544.
+authors:
+  - "Strömberg, C.A.E."
+published: 2011
+title: "Evolution of grasses and grassland ecosystems"
+container: Annual Review of Earth and Planetary Sciences 39, 517–544
+doi: 10.1146/annurev-earth-040809-152402
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

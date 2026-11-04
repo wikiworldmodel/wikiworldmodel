@@ -1,0 +1,59 @@
+id: life/taxa/torosaurus
+kind: taxon
+summary: >-
+  The long-frilled ceratopsid Torosaurus, rare in the Hell Creek Formation. Whether it is a
+  genus of its own or the last growth stage of Triceratops is disputed.
+same_as: { pbdb: "txn:38861" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Torosaurus", en: "Torosaurus" }
+    source:
+      - ref: src:pbdb-hell-creek-2026-11-04
+        loc: "taxon 38861"
+      - ref: src:longrich-field-2012-torosaurus
+        loc: "title"
+        quote: "Torosaurus Is Not Triceratops"
+      - ref: src:horner-2011-hell-creek-census
+        loc: "Discussion, on mortality"
+        quote: "the final ontogenetic stage of frill expansion and fenestration in Triceratops ( = “Torosaurus”)"
+    note: >-
+      The Paleobiology Database gives the scientific name, and keeps the genus; the English name
+      is an editorial gloss. Longrich & Field keep it apart from Triceratops, and Horner et al.
+      take it for mature Triceratops.
+  body-plan:
+    prop: body_plan
+    value: ceratopsian
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: quadruped
+    source:
+      ref: src:maidment-2012-ornithischian-stance
+      loc: "Introduction"
+      quote: "quadrupedality evolved within at least three lineages independently: once in the armored stegosaurs and ankylosaurs, once in the frilled ceratopsids, and once in the duck-billed hadrosaurs"
+  length-holtz-2012:
+    prop: body_length
+    value: 9
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 52, Chasmosaurines"
+      quote: "Torosaurus perforated [frill] reptile [not bull reptile!] Late Cretaceous (66.8-65.5 MYA) 29.5 ft (9 m) Elephant"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it. No skeleton of the genus is measured
+      in the works read; Longrich & Field (2012) give skulls of 1.8 and 2.6 m.
+  mass-paul-christiansen-2000:
+    prop: body_mass
+    value: 6420
+    source:
+      ref: src:paul-christiansen-2000-neoceratopsian-forelimb
+      loc: "Fig. 1, caption"
+      quote: "Triceratops or Torosaurus, based primarily on USNM 4842 (6420 kg)"
+    method: model
+    basis: reconstruction
+    note: >-
+      A restoration the authors give for Triceratops or Torosaurus alike, built mainly on a
+      Triceratops skeleton: not a Torosaurus specimen. Benson et al. (2014) have only a humerus
+      length for it, and so no mass.

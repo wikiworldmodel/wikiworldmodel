@@ -1,0 +1,17 @@
+id: src:macarthur-2010-egyptian-writing
+type: publication
+kind: review
+citation: >-
+  MacArthur, E.V. (2010). The Conception and Development of the Egyptian Writing System. In Woods, C. (ed.), Visible Language: Inventions of
+  Writing in the Ancient Middle East and Beyond, pp. 115–121 and catalog. Oriental Institute Museum Publications 32. Chicago: The Oriental Institute.
+authors:
+  - "MacArthur, E.V."
+published: 2010
+title: The Conception and Development of the Egyptian Writing System
+container: "Visible Language: Inventions of Writing in the Ancient Middle East and Beyond (OIMP 32)"
+url: https://isac-assets.s3.amazonaws.com/isac-publications/oimp32.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the PDF that ISAC (formerly the Oriental Institute) publishes. Page numbers are the book's, two less than the
+    PDF's. Quotes checked by script against its text layer, ignoring whitespace and rejoining words hyphenated at line ends.

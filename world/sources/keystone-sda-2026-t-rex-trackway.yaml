@@ -1,0 +1,21 @@
+id: src:keystone-sda-2026-t-rex-trackway
+type: publication
+kind: review
+citation: >-
+  Keystone-SDA (2026). 66.5-million-year-old T-Rex footprint discovered. blue News, 12 September
+  2026.
+published: 2026
+title: "66.5-million-year-old T-Rex footprint discovered"
+container: "blue News"
+url: https://www.bluewin.ch/en/news/international/66.5-million-year-old-t-rex-footprint-discovered-li.3597020
+reliability: >-
+  A news agency report of a paper, cited only because the paper could not be read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The news report read in full and quotes checked by script against it. The paper it reports,
+    Falkingham, P.L. et al. (2026), A large tridactyl trackway from the Upper Cretaceous Hell
+    Creek Formation of North Dakota, likely attributable to an adult Tyrannosaurus rex, Journal
+    of Vertebrate Paleontology 46(6), doi:10.1080/02724634.2026.2706201, could not be reached:
+    only its Crossref record and a Taylor & Francis press note were read, and neither gives the
+    hip height.

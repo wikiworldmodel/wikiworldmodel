@@ -1,0 +1,111 @@
+id: people/first-cities/cahokia
+kind: settlement
+summary: >-
+  Cahokia, on the Mississippi floodplain in Illinois, some 13 km north-east of St Louis, the largest pre-Columbian settlement north of Mexico, with plazas and earthen mounds, Monks Mound the greatest.
+  It emerged as a regional centre around 1050 CE, peaked within about a century and a half, and was abandoned around 1350 CE, in a time of drought. How far floods played a part is argued.
+author: machine:claude-code
+same_as: { wikidata: Q333661 }
+claims:
+  name:
+    prop: name
+    value: { en: Cahokia }
+    source:
+      ref: src:munoz-2015-cahokia-floods
+      loc: title
+      quote: Cahokia's emergence and decline coincided with shifts of flood frequency on the Mississippi River.
+  start-munoz:
+    prop: start
+    value: 1050 CE
+    source:
+      ref: src:munoz-2015-cahokia-floods
+      loc: abstract
+      quote: the emergence of Cahokia as a regional center around A.D. 1050
+    method: expert-estimate
+    rank: preferred
+    note: Preferred as the start of the city as such; people lived on the floodplain before. Only the abstract could be read.
+  start-unesco:
+    prop: start
+    value: 800 CE
+    source:
+      ref: src:unesco-whc-198-cahokia
+      loc: description
+      quote: It was occupied primarily during the Mississippian period (800–1400)
+    method: expert-estimate
+    note: The earlier part of this range is village occupation, before the city.
+  end-munoz:
+    prop: end
+    value: 1350 CE
+    source:
+      ref: src:munoz-2015-cahokia-floods
+      loc: abstract
+      quote: the abandonment of Cahokia and the surrounding region by A.D. 1350
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      "By" A.D. 1350 in the source, here held at that year. White et al. (2019) read the population's decline from fecal stanols, and Pompeani et al. (2021) a drought in the lead-up from lake
+      sediments.
+  end-baires:
+    prop: end
+    value: { lo: 1350 CE }
+    source:
+      ref: src:baires-2015-cahokia-flood
+      loc: letter, first paragraph
+      quote: Cahokians did not vacate the floodplain until after the mid-14th century
+    method: expert-estimate
+    note: A reply to Munoz et al. that disputes their flood of about A.D. 1200 and puts the leaving later, with no end date.
+  end-unesco:
+    prop: end
+    value: 1400 CE
+    source:
+      ref: src:unesco-whc-198-cahokia
+      loc: description
+      quote: It was occupied primarily during the Mississippian period (800–1400)
+    method: expert-estimate
+  location:
+    prop: location
+    value: { lat: 38.653889, lon: -90.064444, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-cahokia, loc: "Q333661, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area:
+    prop: settlement_area
+    value: 1600
+    valid: { lo: 1050 CE, hi: 1150 CE }
+    source:
+      ref: src:unesco-whc-198-cahokia
+      loc: description
+      quote: when it covered nearly 1,600 ha and included some 120 mounds
+    method: expert-estimate
+    note: A little under, and given for the Mississippian period as a whole. The moment is set to the peak the same text gives.
+  population-pompeani:
+    prop: population
+    value: { lo: 15000, hi: 20000 }
+    valid: { lo: 1100 CE, hi: 1200 CE }
+    source:
+      ref: src:pompeani-2021-cahokia-drought
+      loc: Introduction
+      quote: had an estimated peak population of 15,000–20,000 from 1100 to 1200 CE
+    method: expert-estimate
+    rank: preferred
+    note: Preferred as the recent statement, with references to the archaeology, which were not read.
+  population-unesco:
+    prop: population
+    value: { lo: 10000, hi: 20000 }
+    valid: { lo: 1050 CE, hi: 1150 CE }
+    source:
+      ref: src:unesco-whc-198-cahokia
+      loc: description
+      quote: This agricultural society may have had a population of 10–20,000 at its peak between 1050 and 1150.
+    method: expert-estimate
+  population-chandler:
+    prop: population
+    value: 40000
+    valid: 1100 CE
+    source: { ref: src:reba-2016-urban-population, loc: "chandlerV2.csv, row Cahokia, column AD_1100" }
+    method: compilation
+    note: Chandler's figure, as digitized by Reba et al. (2016), twice the others.

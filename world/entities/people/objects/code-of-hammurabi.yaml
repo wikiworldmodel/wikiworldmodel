@@ -1,0 +1,169 @@
+id: people/objects/code-of-hammurabi
+kind: artefact/moved
+summary: >-
+  The basalt stele of the laws of Hammurabi of Babylon, set up in his last years, probably at Sippar.
+  An Elamite king carried it off to Susa in the twelfth century BCE. French excavators found it there
+  in the winter of 1901-1902, and it has been in the Louvre since.
+author: machine:claude-code
+same_as: { wikidata: Q93304 }
+phases:
+  - id: babylonia
+    label: Set up in Babylonia, probably at Sippar
+  - id: susa
+    label: Susa
+  - id: louvre
+    label: Louvre, Paris
+claims:
+  name:
+    prop: name
+    value: { en: Code of Hammurabi, fr: Code de Hammurabi }
+    source: { ref: src:louvre-collections-code-de-hammurabi, loc: title, quote: "Code de Hammurabi" }
+  babylonia-start:
+    prop: start
+    subject: "@babylonia"
+    value: { lo: 1755 BCE, hi: 1750 BCE }
+    source:
+      - ref: src:muenster-kodex-hammurapi
+        loc: heading
+        quote: "ca. 1755-1750 v. Chr.; aus Susa"
+      - ref: src:louvre-code-of-hammurabi-notice
+        loc: "section 'The content of the Code'"
+        quote: "Executed in the last years of the sovereign's life"
+      - ref: src:louvre-code-of-hammurabi-notice
+        loc: "section 'A legal tradition'"
+        quote: "This basalt stele was erected by King Hammurabi of Babylon (1792–1750 BC) probably at Sippar"
+    method: historical-account
+    note: The last years of the king's reign, on the chronology both the Louvre and Münster use.
+  babylonia-location-sippar:
+    prop: location
+    subject: "@babylonia"
+    value: { lat: 33.059738, lon: 44.254243, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-sippar, loc: "place 894089, representative point" }
+      - ref: src:louvre-code-of-hammurabi-notice
+        loc: "section 'A legal tradition'"
+        quote: "probably at Sippar, city of the sun god Shamash, god of justice"
+      - ref: src:muenster-kodex-hammurapi
+        loc: paragraph 2
+        quote: "Ursprünglich stand sie vermutlich im Heiligtum des Sonnengottes Šamaš in Sippar"
+      - ref: src:johns-1903-oldest-code-of-laws
+        loc: Introduction, p. vii
+        quote: "carried off the stone from a temple at Sippara, in Babylonia."
+    method: gazetteer
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      Both the museum and the university say "probably", because the stele shows the king before Shamash,
+      whose city this was. No inscription read says this stele stood there.
+  babylonia-location-babylon:
+    prop: location
+    subject: "@babylonia"
+    value: { lat: 32.537297, lon: 44.424978, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-babylon, loc: "place 893951, representative point" }
+      - ref: src:harper-1904-code-of-hammurabi
+        loc: "epilogue, p. 99"
+        quote: "in Babylon, the city whose turrets Anu and Bel raised"
+      - ref: src:harper-1904-code-of-hammurabi
+        loc: "epilogue, p. 101"
+        quote: "my weighty words I have written upon my monument"
+      - ref: src:scheil-1902-textes-elamites-semitiques
+        loc: p. 12
+        quote: "le charria comme butin de Babylone en Élam"
+    method: gazetteer
+    basis: reconstruction
+    note: >-
+      The stele's own epilogue speaks of writing the words on a monument in Babylon, in the temple Esagila.
+      That can be another copy: the Louvre says that monuments of this type were placed in the towns of the
+      kingdom. Scheil, who first published it, left it open whether it came as booty from Babylon or was a
+      copy Hammurabi set up at Susa.
+  babylonia-frame:
+    prop: frame
+    subject: "@babylonia"
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  susa-start:
+    prop: start
+    subject: "@susa"
+    value: { lo: 1185 BCE, hi: 1155 BCE }
+    source:
+      - ref: src:muenster-kodex-hammurapi
+        loc: paragraph 2
+        quote: "bevor sie durch einen Raubzug des elamischen Königs Šutruk-naḫḫunte I. (ca. 1185-1155 v. Chr.) nach Susa gebracht wurde"
+      - ref: src:louvre-code-of-hammurabi-notice
+        loc: introduction
+        quote: "Carried there by a prince from the neighboring country of Elam in Iran in the 12th century BC"
+    method: historical-account
+    rank: preferred
+    note: >-
+      Münster gives the king's reign. Nothing on the stele names him: columns of the laws were erased for
+      an inscription that was never cut, and Scheil's attribution rests on his taking other monuments to
+      Susa, as the stele of Naram-Sin says he did.
+  susa-start-scheil-1902:
+    prop: start
+    subject: "@susa"
+    value: 1100 BCE
+    source:
+      - ref: src:scheil-1902-textes-elamites-semitiques
+        loc: p. 12
+        quote: "En fait, il parait probable que c'est encore au roi élamite Sutruk-Nahhunte (vers 1 100 av. J.-C.) que nous devons d'avoir trouvé à Suse ce beau monument."
+      - ref: src:harper-1904-code-of-hammurabi
+        loc: Introduction
+        quote: "plunder by Sutruk-Nahunte (about 1100 B. C. )"
+    method: expert-estimate
+    rank: deprecated
+    note: >-
+      "Vers 1100": about that year. The same king, on the dates of 1902; the Louvre's "12th century" and
+      Münster's reign have replaced it.
+  susa-location:
+    prop: location
+    subject: "@susa"
+    value: { lat: 32.189934, lon: 48.253537, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-susa, loc: "place 912936, representative point" }
+      - ref: src:scheil-1902-textes-elamites-semitiques
+        loc: p. 12
+        quote: "La découverte eut lieu en décembre 1901 et en janvier 1902, sur le grand Tell dit de l'Acropole de Suse."
+    method: gazetteer
+  susa-frame:
+    prop: frame
+    subject: "@susa"
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  louvre-start:
+    prop: start
+    subject: "@louvre"
+    value: { lo: January 1902 CE }
+    source:
+      - ref: src:louvre-collections-code-de-hammurabi
+        loc: "Places and dates; Acquisition details"
+        quote: "partage après fouilles"
+      - ref: src:scheil-1902-textes-elamites-semitiques
+        loc: p. 12
+        quote: "La découverte eut lieu en décembre 1901 et en janvier 1902"
+    method: documentary
+    note: >-
+      A one-sided bound: not before the last of the three pieces was found, in January 1902. The Louvre's
+      catalogue gives the excavation and the sharing of the finds, not when the stele reached Paris, and
+      no date for its arrival was found.
+  louvre-location:
+    prop: location
+    subject: "@louvre"
+    value: { lat: 48.861111, lon: 2.335833, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-louvre, loc: "Q19675, P625 coordinate location" }
+      - ref: src:louvre-collections-code-de-hammurabi
+        loc: Location of object
+        quote: "Richelieu, [AO] Salle 227 - Salle du code d'Hammurabi"
+    method: gazetteer
+  louvre-frame:
+    prop: frame
+    subject: "@louvre"
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

@@ -1,0 +1,26 @@
+id: src:peters-2022-chickens
+type: publication
+kind: review
+citation: >-
+  Peters, J., Lebrasseur, O., Irving-Pease, E.K., … & Larson, G. (2022). The biocultural
+  origins and dispersal of domestic chickens. Proceedings of the National Academy of Sciences
+  119(24), e2121978119.
+authors:
+  - "Peters, J."
+  - "Lebrasseur, O."
+  - "Irving-Pease, E.K."
+  - "Paxinos, P.D."
+  - "Best, J."
+  - "Smallman, R."
+  - "Callou, C."
+  - "Gardeisen, A."
+# the first eight of 13 authors
+published: 2022
+title: "The biocultural origins and dispersal of domestic chickens"
+container: "Proceedings of the National Academy of Sciences 119(24), e2121978119"
+doi: 10.1073/pnas.2121978119
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC9214543) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

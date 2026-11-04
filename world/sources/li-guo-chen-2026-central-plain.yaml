@@ -1,0 +1,20 @@
+id: src:li-guo-chen-2026-central-plain
+type: publication
+kind: review
+citation: >-
+  Li, D., Guo, S. & Chen, X. (2026). How inequality became durable before states: Evidence from 6000 years in the Central Plain of
+  China. Science Advances 12(42).
+authors:
+  - "Li, D."
+  - "Guo, S."
+  - "Chen, X."
+published: 2026
+title: "How inequality became durable before states: Evidence from 6000 years in the Central Plain of China"
+container: Science Advances
+doi: 10.1126/sciadv.ady6737
+url: https://europepmc.org/article/PMC/PMC13666007
+license: CC-BY-NC-4.0
+license_note: Single facts and a short quote, with credit.
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC13666007). Quote checked by script against it, after normalizing whitespace.

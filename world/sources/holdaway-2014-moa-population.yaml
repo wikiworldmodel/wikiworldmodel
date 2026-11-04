@@ -1,0 +1,24 @@
+id: src:holdaway-2014-moa-population
+type: publication
+kind: model
+citation: >-
+  Holdaway, R.N., Allentoft, M.E., Jacomb, C., Oskam, C.L., Beavan, N.R. & Bunce, M. (2014). An
+  extremely low-density human population exterminated New Zealand moa. Nature Communications 5,
+  5436.
+authors:
+  - "Holdaway, R.N."
+  - "Allentoft, M.E."
+  - "Jacomb, C."
+  - "Oskam, C.L."
+  - "Beavan, N.R."
+  - "Bunce, M."
+published: 2014
+title: "An extremely low-density human population exterminated New Zealand moa"
+container: "Nature Communications 5, 5436"
+doi: 10.1038/ncomms6436
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the Europe PMC record (PMID 25378020); the full text could not
+    be read here. The first paragraph on the publisher's page was read too. Quotes checked by script
+    against the text retrieved, after normalizing whitespace.

@@ -1,0 +1,20 @@
+id: src:wilson-2013-kpg-mammals
+type: publication
+kind: measurement
+citation: >-
+  Wilson, G.P. (2013). Mammals across the K/Pg boundary in northeastern Montana, U.S.A.: dental
+  morphology and body-size patterns reveal extinction selectivity and immigrant-fueled ecospace
+  filling. Paleobiology 39(3), 429–469.
+authors:
+  - "Wilson, G.P."
+published: 2013
+title: "Mammals across the K/Pg boundary in northeastern Montana, U.S.A.: dental morphology and body-size patterns reveal extinction selectivity and immigrant-fueled ecospace filling"
+container: "Paleobiology 39(3), 429–469"
+doi: 10.1666/12041
+url: https://faculty.washington.edu/gpwilson/Reprints/2013%20Wilson%20Paleobio.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the author's reprint. Its Supplementary Table 2, with a body mass for
+    every Hell Creek species, is on Dryad (doi:10.5061/dryad.gv06d) and could not be fetched.
+    The quote checked by script against the reprint's text layer, with line breaks removed.

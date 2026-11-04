@@ -1,0 +1,10 @@
+id: src:wiesbaden-stadtlexikon-central-collecting-point
+type: publication
+kind: review
+citation: Landeshauptstadt Wiesbaden, Stadtlexikon. Central Collecting Point Wiesbaden.
+title: Central Collecting Point Wiesbaden
+url: https://www.wiesbaden.de/stadtlexikon/stadtlexikon-a-z/Central_Collecting_Point_Wiesbaden
+reliability: The city's encyclopedia entry, with a short bibliography.
+verified:
+  by: machine:claude-code
+  how: Read in German on the city's site. Quotations checked by script against the page's text.

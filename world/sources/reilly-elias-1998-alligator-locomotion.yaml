@@ -1,0 +1,18 @@
+id: src:reilly-elias-1998-alligator-locomotion
+type: publication
+kind: measurement
+citation: >-
+  Reilly, S.M. & Elias, J.A. (1998). Locomotion in Alligator mississippiensis: kinematic effects
+  of speed and posture and their relevance to the sprawling-to-erect paradigm. Journal of
+  Experimental Biology 201(18), 2559–2574.
+authors:
+  - "Reilly, S.M."
+  - "Elias, J.A."
+published: 1998
+title: "Locomotion in Alligator mississippiensis: kinematic effects of speed and posture and their relevance to the sprawling-to-erect paradigm"
+container: "Journal of Experimental Biology 201(18), 2559–2574"
+doi: 10.1242/jeb.201.18.2559
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC; the quote checked by script against it.

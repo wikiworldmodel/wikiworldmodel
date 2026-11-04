@@ -1,0 +1,25 @@
+id: src:librado-2024-horses
+type: publication
+kind: measurement
+citation: >-
+  Librado, P., Tressières, G., Chauvey, L., … & Orlando, L. (2024). Widespread horse-based
+  mobility arose around 2200 BCE in Eurasia. Nature 631(8022), 819–825.
+authors:
+  - "Librado, P."
+  - "Tressières, G."
+  - "Chauvey, L."
+  - "Fages, A."
+  - "Khan, N."
+  - "Schiavinato, S."
+  - "Calvière-Tonasso, L."
+  - "Kusliy, M.A."
+# the first eight of 141 authors
+published: 2024
+title: "Widespread horse-based mobility arose around 2200 BCE in Eurasia"
+container: "Nature 631(8022), 819–825"
+doi: 10.1038/s41586-024-07597-5
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC11269178) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

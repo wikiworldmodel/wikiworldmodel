@@ -1,0 +1,19 @@
+id: src:wikipedia-charlemagne
+type: database-record
+kind: review
+citation: >-
+  "Charlemagne." Wikipedia, the free encyclopedia (English edition).
+snapshot: 2026-11-04
+title: Charlemagne
+container: Wikipedia
+url: https://en.wikipedia.org/wiki/Charlemagne
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article. It is a last resort here, for the argument that Charlemagne
+  was born in 748, because Becher's article (Francia 19/1, 1992), which makes it, sits behind a
+  browser check that was not to be passed. Its text can change.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-04; the quotations checked by script against
+    its text.

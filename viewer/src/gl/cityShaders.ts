@@ -211,7 +211,7 @@ uniform float uEvidence;
 out vec4 o;
 ${LIGHTING}
 
-const int MARBLE=1, TRAVERTINE=2, BRICK=3, PLASTER=4, TILE=5, GILT=6, BRONZE=7, GRANITE=8, WOOD=9, DARK=10, PAVING=11, BASALT=12, SAND=13, CONCRETE=14, LEAD=15, LEAF=16, TRUNK=17, GRASS=18, SHAFT=19, FACADE=20, STATUE=21, EARTH=22, SEATS=23, AWNING=24, SPIRAL=25, CLOTH=26, SKIN=27, DENTIL=28, FRIEZE=29, POOL=30;
+const int MARBLE=1, TRAVERTINE=2, BRICK=3, PLASTER=4, TILE=5, GILT=6, BRONZE=7, GRANITE=8, WOOD=9, DARK=10, PAVING=11, BASALT=12, SAND=13, CONCRETE=14, LEAD=15, LEAF=16, TRUNK=17, GRASS=18, SHAFT=19, FACADE=20, STATUE=21, EARTH=22, SEATS=23, AWNING=24, SPIRAL=25, CLOTH=26, SKIN=27, DENTIL=28, FRIEZE=29, POOL=30, HIDE=31, HORN=32, SHELL=33, FUR=34, NEEDLE=35, FROND=36, BARK=37, BROAD=38;
 
 float hash(vec2 p) {
   vec3 q = fract(vec3(p.xyx) * 0.1031);
@@ -440,6 +440,77 @@ Surface surface(int m, vec3 p, vec2 uv, float tint, vec3 n, float fw, out vec3 b
     base *= 0.7 + 0.56 * noiseS(p, vec3(0.03, 0.03, 0.5));
     s.albedo = base;
     s.rough = 0.86;
+  } else if (m == HIDE) {
+    // Pebbled skin, darker along the back, paler beneath, its colours nobody's record: the generator's.
+    float k = tint * 4.0;
+    vec3 a = vec3(0.145, 0.125, 0.082);
+    vec3 b = vec3(0.17, 0.165, 0.085);
+    vec3 c = vec3(0.215, 0.14, 0.075);
+    vec3 d = vec3(0.105, 0.115, 0.10);
+    vec3 base = k < 1.0 ? mix(a, b, k) : k < 2.0 ? mix(b, c, k - 1.0) : k < 3.0 ? mix(c, d, k - 2.0) : mix(d, a, k - 3.0);
+    float mott = fbmM(p, 0.32);
+    float band = smoothstep(0.44, 0.62, fbmM(p * vec3(1.0, 0.45, 0.8), 0.5) + (mott - 0.5) * 0.35);
+    vec3 skin = base * mix(1.25, 0.55, band);
+    float back = smoothstep(0.2, 0.95, n.z);
+    float belly = smoothstep(-0.15, -0.8, n.z);
+    skin = mix(skin, skin * 0.58, back);
+    skin = mix(skin, mix(skin, vec3(0.42, 0.37, 0.27), 0.68), belly);
+    s.albedo = skin * (0.66 + 0.68 * noiseM(p, 0.06));
+    s.rough = 0.66;
+    vec3 q = p / (64.0 * 0.045);
+    vec3 wob = vec3(texture(uNoise, q).r, texture(uNoise, q).g, texture(uNoise, q).b) - 0.5;
+    bumpN = normalize(n + wob * 1.5);
+  } else if (m == HORN) {
+    s.albedo = mix(vec3(0.58, 0.52, 0.40), vec3(0.20, 0.17, 0.13), tint) * (0.84 + 0.3 * noiseM(p, 0.05));
+    s.rough = 0.48;
+  } else if (m == SHELL) {
+    // Scutes: cells on the shell's own plan, with dark seams between them.
+    vec2 g = uv / 0.11;
+    vec2 cell = floor(g);
+    vec2 f = fract(g);
+    float seam = smoothstep(0.0, 0.08, min(min(f.x, 1.0 - f.x), min(f.y, 1.0 - f.y)));
+    vec3 base = mix(vec3(0.17, 0.15, 0.09), vec3(0.30, 0.25, 0.13), hash(cell + floor(tint * 8.0)));
+    s.albedo = base * mix(0.5, 1.0, seam * visible(0.06, fw) + 1.0 - visible(0.06, fw)) * (0.8 + 0.4 * noiseM(p, 0.04));
+    s.rough = 0.42;
+  } else if (m == FUR) {
+    float k = fract(tint * 3.0);
+    vec3 base = tint < 0.34 ? mix(vec3(0.20, 0.145, 0.09), vec3(0.34, 0.25, 0.14), k) : tint < 0.67 ? mix(vec3(0.27, 0.20, 0.11), vec3(0.16, 0.14, 0.11), k) : mix(vec3(0.42, 0.34, 0.20), vec3(0.22, 0.17, 0.12), k);
+    float back = smoothstep(0.2, 0.9, n.z);
+    float belly = smoothstep(-0.1, -0.8, n.z);
+    s.albedo = mix(mix(base, base * 0.6, back), vec3(0.56, 0.50, 0.40), belly * 0.7) * (0.74 + 0.5 * noiseS(p, vec3(0.03, 0.03, 0.14)));
+    s.rough = 0.95;
+  } else if (m == NEEDLE) {
+    // Soft sprays of needles, in streaks falling away from the trunk.
+    vec3 dark = mix(vec3(0.03, 0.064, 0.032), vec3(0.05, 0.085, 0.036), tint);
+    vec3 lite = mix(vec3(0.075, 0.135, 0.05), vec3(0.135, 0.185, 0.06), tint);
+    float spray = noiseS(p, vec3(0.2, 0.2, 0.06)) * 0.6 + noiseM(p, 0.12) * 0.4;
+    s.albedo = mix(dark, lite, smoothstep(0.3, 0.7, spray)) * (0.85 + 0.35 * fbmM(p, 3.0));
+    s.rough = 0.86;
+    vec3 q = p / (64.0 * 0.26);
+    vec3 wob = vec3(texture(uNoise, q).r, texture(uNoise, q).g, texture(uNoise, q).b) - 0.5;
+    bumpN = normalize(n + wob * 1.5);
+  } else if (m == FROND) {
+    // Veined blades: fans and fronds, with a glossy side.
+    vec3 dark = mix(vec3(0.05, 0.11, 0.035), vec3(0.075, 0.13, 0.04), tint);
+    vec3 lite = mix(vec3(0.16, 0.25, 0.07), vec3(0.25, 0.30, 0.085), tint);
+    float vein = abs(fract(uv.x + 0.5) - 0.5) * 2.0;
+    s.albedo = mix(dark, lite, 0.42 + 0.5 * vein * visible(0.1, fw)) * (0.8 + 0.4 * noiseM(p, 0.22));
+    s.rough = 0.56;
+  } else if (m == BROAD) {
+    // A mass of broad leaves: the light on them, in small flecks.
+    vec3 dark = mix(vec3(0.028, 0.06, 0.024), vec3(0.052, 0.078, 0.022), tint);
+    vec3 lite = mix(vec3(0.085, 0.14, 0.04), vec3(0.16, 0.185, 0.05), tint);
+    float fleck = noiseM(p, 0.09) * 0.55 + noiseM(p + 5.0, 0.28) * 0.45;
+    s.albedo = mix(dark, lite, smoothstep(0.32, 0.72, fleck)) * (0.82 + 0.4 * fbmM(p, 3.5));
+    s.rough = 0.8;
+    vec3 q = p / (64.0 * 0.14);
+    vec3 wob = vec3(texture(uNoise, q).r, texture(uNoise, q).g, texture(uNoise, q).b) - 0.5;
+    bumpN = normalize(n + wob * 2.2);
+  } else if (m == BARK) {
+    vec3 base = mix(vec3(0.17, 0.13, 0.095), vec3(0.31, 0.22, 0.14), tint);
+    float ridges = noiseS(p, vec3(0.05, 0.05, 0.7));
+    s.albedo = base * (0.58 + 0.84 * ridges);
+    s.rough = 0.9;
   } else if (m == DARK) {
     s.albedo = vec3(0.012, 0.011, 0.01);
     s.rough = 0.9;
@@ -550,6 +621,13 @@ void main() {
   else s = surface(vMaterial, vPos, vUv, vTint, n, fw, bumped);
   // The eye's side of a face.
   vec3 toEye = uEye - vPos;
+  // Foliage has holes in it, up close, where the leaves stop: fewer with distance, none once they would shimmer.
+  if (vMaterial == BROAD || vMaterial == NEEDLE) {
+    float span = vMaterial == BROAD ? 0.34 : 0.26;
+    float gap = texture(uNoise, vPos / (64.0 * span)).r * 0.7 + texture(uNoise, vPos / (64.0 * span * 0.45)).g * 0.3;
+    float reach = 1.0 - smoothstep(14.0, 70.0, length(toEye));
+    if (gap < 0.46 * reach) discard;
+  }
   vec3 w = gl_FrontFacing ? bumped : -bumped;
   float pixel = length(toEye) * 0.002;
   float sh = shadowAt(vPos, gl_FrontFacing ? n : -n, pixel) * cloudShade(vPos);
@@ -651,6 +729,7 @@ uniform vec2 uAOSize;
 uniform float uUseAO;
 uniform float uEvidence;
 uniform float uWater;
+uniform float uWild;
 uniform vec4 uGrid[3];
 uniform vec2 uGridSize[3];
 out vec4 o;
@@ -712,6 +791,52 @@ vec3 countryside(vec3 p, vec3 n, float dist) {
   c = mix(c, vec3(0.38, 0.35, 0.30), smoothstep(0.3, 0.55, slope));
   return c * (0.82 + 0.36 * fbmM(p, 60.0));
 }
+// Land nobody has farmed. The mask says what covers it: R canopy, G low plants, B bare sediment, A water.
+vec3 wilderness(vec3 p, vec3 n, float dist, out float water) {
+  vec2 muv = (p.xy - uMaskBox.xy) / uMaskBox.zw;
+  float inside = step(0.0, muv.x) * step(0.0, muv.y) * step(muv.x, 1.0) * step(muv.y, 1.0);
+  // Beyond the plan's map, forest and glade by noise of about the same size, growing with distance so
+  // that it never shows as a repeating grain from high up.
+  float away = smoothstep(30000.0, 400000.0, dist);
+  float patchy = smoothstep(0.42, 0.54, mix(fbmM(p, 110.0), fbmM(p, 5000.0), away));
+  // And from high up it melts into one tone.
+  float melt = smoothstep(60000.0, 500000.0, dist);
+  vec4 beyond = mix(vec4(patchy, 1.0 - patchy, 0.0, 0.0), vec4(0.6, 0.4, 0.0, 0.0), melt);
+  vec4 mask = beyond;
+  if (inside > 0.5) {
+    vec2 e = min(muv, 1.0 - muv);
+    mask = mix(beyond, texture(uMask, muv), smoothstep(0.0, 0.1, min(e.x, e.y)));
+  }
+  water = mask.a * smoothstep(450.0, 1000.0, dist);
+  float slope = 1.0 - n.z;
+  float nearby = 1.0 - smoothstep(40.0, 600.0, dist);
+  // Leaf litter under the trees, and earth.
+  vec3 soil = mix(vec3(0.085, 0.066, 0.045), vec3(0.17, 0.13, 0.08), fbmM(p, 2.4));
+  soil = mix(soil, soil * (0.68 + 0.64 * noiseM(p, 0.16)), nearby);
+  // Ferns and low broad-leaved plants, in patches with bare earth between: no grass, which has not spread yet.
+  vec3 herb = mix(vec3(0.05, 0.09, 0.03), vec3(0.125, 0.165, 0.052), fbmM(p, 1.1));
+  herb = mix(herb, herb * (0.5 + 1.0 * noiseM(p, 0.09)), nearby);
+  float thin = smoothstep(0.42, 0.62, fbmM(p, 2.6) * 0.6 + noiseM(p, 0.6) * 0.4);
+  herb = mix(herb, soil, thin * 0.8);
+  vec3 bare = mix(vec3(0.40, 0.355, 0.26), vec3(0.27, 0.23, 0.165), fbmM(p, 3.0));
+  bare = mix(bare, bare * (0.8 + 0.4 * noiseM(p, 0.06)), nearby);
+  vec3 under = mix(soil, herb, 0.35 + 0.65 * smoothstep(0.34, 0.6, fbmM(p, 9.0)));
+  vec3 c = mix(under, herb, mask.g);
+  c = mix(c, bare, mask.b);
+  // From afar the canopy hides all that, and at the plain's edge no trees are drawn at all.
+  float grain = 1.0 - smoothstep(3000.0, 40000.0, dist);
+  vec3 canopy = mix(vec3(0.03, 0.062, 0.026), vec3(0.07, 0.11, 0.04), mix(0.5, fbmM(p, 55.0), grain)) * mix(1.0, 0.8 + 0.4 * noiseM(p, 7.0), grain);
+  // In the trees' reach the ground shows between them close by, and the canopy further off; beyond it there is only canopy.
+  float far = max(smoothstep(500.0, 2400.0, dist), 1.0 - inside);
+  c = mix(c, canopy, mask.r * far);
+  vec3 distantHerb = mix(vec3(0.085, 0.125, 0.05), vec3(0.135, 0.165, 0.065), mix(0.5, fbmM(p, 90.0), grain));
+  c = mix(c, distantHerb, mask.g * smoothstep(900.0, 5000.0, dist));
+  // The high ground: rock, and then what stays on top.
+  c = mix(c, vec3(0.25, 0.24, 0.18), smoothstep(900.0, 1700.0, p.z + (fbmM(p, 400.0) - 0.5) * 500.0));
+  c = mix(c, vec3(0.36, 0.33, 0.28), smoothstep(0.28, 0.5, slope));
+  c = mix(c, vec3(0.86, 0.88, 0.9), smoothstep(3000.0, 3400.0, p.z));
+  return c;
+}
 void main() {
   if (vPos.x > uInner.x && vPos.y > uInner.y && vPos.x < uInner.z && vPos.y < uInner.w) discard;
   vec3 p = vPos;
@@ -731,11 +856,11 @@ void main() {
     o = vec4(aerial(c, vec3(p.xy, 0.0), uEye), 1.0);
     return;
   }
-  vec3 c = countryside(p, n, dist);
   float river = 0.0;
+  vec3 c = uWild > 0.5 ? wilderness(p, n, dist, river) : countryside(p, n, dist);
   // Inside the city's map: what the plan says this ground is.
   vec2 muv = (p.xy - uMaskBox.xy) / uMaskBox.zw;
-  if (muv.x > 0.0 && muv.y > 0.0 && muv.x < 1.0 && muv.y < 1.0) {
+  if (uWild < 0.5 && muv.x > 0.0 && muv.y > 0.0 && muv.x < 1.0 && muv.y < 1.0) {
     vec4 mask = texture(uMask, muv);
     // From far off the river's bed is narrower than the terrain's cells, so its water is painted on.
     river = mask.a * smoothstep(450.0, 1000.0, dist);
@@ -779,7 +904,8 @@ void main() {
     c = mix(c, garden, mask.g);
   }
   // Wet, darker ground at the river's edge.
-  c = mix(c, vec3(0.28, 0.25, 0.18), smoothstep(uWater + 4.0, uWater + 1.0, p.z) * 0.8);
+  if (uWild > 0.5) c = mix(c, vec3(0.15, 0.125, 0.085), smoothstep(uWater + 0.7, uWater + 0.05, p.z) * smoothstep(uWater - 9.0, uWater - 5.0, p.z) * (1.0 - smoothstep(16000.0, 18000.0, length(p.xy))) * 0.9);
+  else c = mix(c, vec3(0.28, 0.25, 0.18), smoothstep(uWater + 4.0, uWater + 1.0, p.z) * 0.8);
   vec3 lit = shade(c, 0.92, 0.0, n, p, uEye, ao, sh);
   if (river > 0.0) lit = mix(lit, shade(vec3(0.145, 0.15, 0.085), 0.14, 0.0, vec3(0.0, 0.0, 1.0), p, uEye, 1.0, sh), river);
   lit = aerial(lit, p, uEye);

@@ -1,0 +1,62 @@
+id: life/occurrences/forest-svalbard
+kind: occurrence
+summary: >-
+  Dense stands of the small tree lycopsid Protolepidodendropsis in the Plantekløfta Formation,
+  Munindalen, Svalbard: a forest of the early Late Devonian that grew near the equator.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Svalbard lycopsid forest" }
+    unsourced: An editorial label, from the place and the trees.
+  identified:
+    prop: identified_as
+    value: Protolepidodendropsis pulchra
+    source:
+      ref: src:berry-marshall-2015-svalbard
+      loc: abstract
+      quote: here identified as Protolepidodendropsis pulchra Høeg
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:berry-marshall-2015-svalbard
+      loc: abstract
+      quote: In-situ trees are represented by internal casts of arborescent lycopsids with cormose bases and small ribbon-like roots occurring in dense stands spaced ~15-20 cm apart
+    note: >-
+      The basis is the abstract's in-situ casts with their bases and roots.
+  location:
+    prop: location
+    value: { lat: 78.67797, lon: 16.125748, frame: frame:earth/present-day }
+    source: { ref: src:npolar-placenames-munindalen, loc: "entry Munindalen: latitude, longitude" }
+    method: gazetteer
+    note: >-
+      A point for the valley named in the abstract; the outcrop itself was not located from a source
+      read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-309
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Plantekløfta Formation
+    source: { ref: src:berry-marshall-2015-svalbard, loc: abstract, quote: "lycopsid fossils from the Plantekløfta Formation, Munindalen, Svalbard" }
+  date:
+    prop: date
+    value: { ref: ics/frasnian }
+    source:
+      ref: src:berry-marshall-2015-svalbard
+      loc: abstract
+      quote: based on palynology, is early Frasnian (ca.380 Ma)
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Previously regarded as latest Famennian, 360 Ma. Dated by the stage, so that it follows the chart
+      in use; the paper's own number is ca. 380 Ma.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/tracheophyta
+    source: { ref: src:berry-marshall-2015-svalbard, loc: "abstract: arborescent lycopsids" }

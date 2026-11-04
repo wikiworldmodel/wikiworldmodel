@@ -9,7 +9,7 @@ import { formProblem } from '../../../../core/city.ts';
 import { parseRef, RefError, splitRef } from '../../../../core/refs.ts';
 import type { Constraint, Conflict, Solution } from '../../../../core/stn.ts';
 import { parseLag, parseTime, TimeError, toMa } from '../../../../core/time.ts';
-import { available, chosen, claimGroup, claimGroups, pictures, pointOf, solveScenario, solveVariants, type Scenario } from '../chronology.ts';
+import { available, chosen, claimGroup, claimGroups, conflictInScenario, pictures, pointOf, scenariosOf, solveScenario, type Scenario } from '../chronology.ts';
 import { resolvePoints } from '../importer.ts';
 import { WORLD } from '../paths.ts';
 import { kindIs, loadWorld, schemaDir, type Claim, type Entity, type Relation, type World } from '../world.ts';
@@ -172,9 +172,14 @@ function checkValue(world: World, refs: RefChecker, c: Claim, issues: Issue[]): 
       if (typeof v !== 'string' || !v) bad(`not a string`);
       else if (prop.values && !Object.hasOwn(prop.values, v)) bad(`not one of the values of ${c.prop}: ${Object.keys(prop.values).join(', ')}`);
       break;
-    case 'quantity':
-      if (typeof v !== 'number' || !Number.isFinite(v)) bad(`a quantity is a number, in ${prop.unit}`);
+    case 'quantity': {
+      // A number, or a number with its uncertainty as the source gives it.
+      const q = v as { mean?: unknown; sd?: unknown; lo?: unknown; hi?: unknown } | null;
+      const num = (x: unknown) => typeof x === 'number' && Number.isFinite(x);
+      const band = !!q && typeof q === 'object' && ((num(q.mean) && num(q.sd) && Object.keys(q).length === 2) || (num(q.lo) && num(q.hi) && Object.keys(q).length === 2 && (q.lo as number) <= (q.hi as number)));
+      if (!num(v) && !band) bad(`a quantity is a number, in ${prop.unit}, or { mean, sd } or { lo, hi } of numbers`);
       break;
+    }
     case 'color':
       if (typeof v !== 'string' || !/^#[0-9A-F]{6}$/.test(v)) bad('a colour is #RRGGBB');
       break;
@@ -295,7 +300,10 @@ function checkRecords(world: World, issues: Issue[]): Wanted[] {
   }
   for (const f of world.fields) {
     if (f.frame) refs.check(f.frame, f.file, 'frame', { types: ['frame'] });
-    if (f.data) checkDataset(world, refs, f.data.from, f.file, 'data.from', f.data.file, issues);
+    if (f.refines) refs.check(f.refines, f.file, 'refines', { types: ['field'] });
+    // A series of the world's own measurements names the work that frames them, not a dataset to fetch.
+    if (f.data?.prop) refs.check(f.data.from, f.file, 'data.from', { types: ['src'] });
+    else if (f.data) checkDataset(world, refs, f.data.from, f.file, 'data.from', f.data.file, issues);
     if (f.moves_with) checkDataset(world, refs, f.moves_with, f.file, 'moves_with', undefined, issues);
     if (f.source) refs.check(f.source.ref, f.file, 'source.ref', { types: ['src'] });
     for (const [i, x] of (f.from ?? []).entries()) refs.check(x, f.file, `from[${i}]`, { types: ['field'] });
@@ -416,8 +424,15 @@ function pictureName(s: Scenario): string {
 }
 
 function checkChronology(world: World, issues: Issue[]): void {
-  for (const v of solveVariants(world)) {
-    if (v.solution.ok) continue;
+  // Best dates come from pinning each dated claim to its centre: if that does not hold, every best
+  // date in the build falls back to the middle of its bounds, so it must hold, in the default picture.
+  const centred = conflictInScenario(world, {}) ? undefined : conflictInScenario(world, {}, true);
+  if (centred) issues.push({ level: 'error', check: 'chronology', message: `with each dated claim at the middle of its range, ${describeConflict(world, centred)}` });
+  // One at a time, with nothing kept but what is wrong: there are thousands of them.
+  for (const scenario of scenariosOf(world)) {
+    const conflict = conflictInScenario(world, scenario);
+    if (!conflict) continue;
+    const v = { scenario, solution: { conflict } };
     const pick = v.scenario.picks?.[0];
     if (!pick) {
       issues.push({ level: 'error', check: 'chronology', message: `${pictureName(v.scenario)}, ${describeConflict(world, v.solution.conflict)}` });
@@ -451,9 +466,11 @@ async function checkFrames(world: World, issues: Issue[]): Promise<void> {
   if (!sols.length) return;
   const queries = [];
   const expect = new Map<string, number>();
-  for (const e of world.entities) {
-    const loc = claimOf(world, e.id, 'location');
-    const fr = claimOf(world, e.id, 'frame');
+  const subjects = world.entities.flatMap((e) => [{ e, subject: e.id }, ...e.phases.map((p) => ({ e, subject: `${e.id}@${p.id}` }))]);
+  const frameClaim = (e: World['entities'][number], subject: string) => claimOf(world, subject, 'frame') ?? claimOf(world, e.id, 'frame');
+  for (const { e, subject } of subjects) {
+    const loc = claimOf(world, subject, 'location');
+    const fr = frameClaim(e, subject);
     if (!loc) continue;
     if (!fr) {
       issues.push({ level: 'error', check: 'frames', file: e.file, where: loc.where, message: 'a location needs a frame claim: the frame it moves with' });
@@ -466,15 +483,15 @@ async function checkFrames(world: World, issues: Issue[]): Promise<void> {
       if (p.frame !== frame.id) issues.push({ level: 'error', check: 'frames', file: e.file, where: loc.where, message: `the build cannot yet carry coordinates from ${p.frame} into ${frame.id}` });
       continue;
     }
-    const earliest = Math.min(...sols.map((s) => s.bounds.get(pointOf(world, e.id, 'start'))!.lo));
+    const earliest = Math.min(...sols.map((s) => s.bounds.get(pointOf(world, subject, 'start'))!.lo));
     const ages = Number.isFinite(earliest) ? [0, Math.round(toMa(earliest) * 1000) / 1000] : [0];
-    queries.push({ id: e.id, lat: p.lat, lon: p.lon, agesMa: ages });
-    expect.set(e.id, frame.extent.plate);
+    queries.push({ id: subject, lat: p.lat, lon: p.lon, agesMa: ages });
+    expect.set(subject, frame.extent.plate);
   }
   if (!queries.length) return;
   for (const r of await resolvePoints(queries)) {
-    const e = world.entity.get(r.id)!;
-    const where = claimOf(world, e.id, 'frame')!.where;
+    const e = world.entity.get(r.id.split('@')[0])!;
+    const where = frameClaim(e, r.id)!.where;
     if (r.plate !== expect.get(r.id)) {
       issues.push({ level: 'error', check: 'frames', file: e.file, where, message: r.plate === null ? 'the location is outside every plate polygon of the plate model' : `the location is in plate ${r.plate}'s polygon, not plate ${expect.get(r.id)}'s` });
       continue;

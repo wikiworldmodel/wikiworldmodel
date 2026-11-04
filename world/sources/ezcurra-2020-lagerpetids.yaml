@@ -1,0 +1,37 @@
+id: src:ezcurra-2020-lagerpetids
+type: publication
+kind: measurement
+citation: >-
+  Ezcurra, M.D., Nesbitt, S.J., Bronzati, M., Dalla Vecchia, F.M., Agnolin, F.L., Benson,
+  R.B.J., Brissón Egli, F., Cabreira, S.F., Evers, S.W., Gentil, A.R., Irmis, R.B., Martinelli,
+  A.G., Novas, F.E., Roberto da Silva, L., Smith, N.D., Stocker, M.R., Turner, A.H. & Langer,
+  M.C. (2020). Enigmatic dinosaur precursors bridge the gap to the origin of Pterosauria. Nature
+  588(7838), 445–449.
+authors:
+  - "Ezcurra, M.D."
+  - "Nesbitt, S.J."
+  - "Bronzati, M."
+  - "Dalla Vecchia, F.M."
+  - "Agnolin, F.L."
+  - "Benson, R.B.J."
+  - "Brissón Egli, F."
+  - "Cabreira, S.F."
+  - "Evers, S.W."
+  - "Gentil, A.R."
+  - "Irmis, R.B."
+  - "Martinelli, A.G."
+  - "Novas, F.E."
+  - "Roberto da Silva, L."
+  - "Smith, N.D."
+  - "Stocker, M.R."
+  - "Turner, A.H."
+  - "Langer, M.C."
+published: 2020
+title: "Enigmatic dinosaur precursors bridge the gap to the origin of Pterosauria"
+container: Nature 588(7838), 445–449
+doi: 10.1038/s41586-020-3011-4
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 33299179); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

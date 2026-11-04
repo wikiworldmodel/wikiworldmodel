@@ -1,0 +1,53 @@
+id: people/trade/mahdia
+kind: event/shipwreck
+summary: >-
+  A ship lost off Mahdia in Tunisia in the first half of the first century BCE, with over sixty marble columns and a cargo
+  of Greek works of art in bronze and marble. Found by Greek sponge divers in 1907, it was one of the first wrecks to be
+  worked by archaeologists, and most of its finds are in the Bardo Museum. Probably driven south by a storm on its way from
+  Athens to Italy.
+author: machine:claude-code
+same_as: { wikidata: Q3589083 }
+claims:
+  name:
+    prop: name
+    value: { en: Mahdia shipwreck }
+    source: { ref: src:mass-mahdia, loc: title, quote: "Mahdia wreck" }
+  date:
+    prop: date
+    value: { lo: 90 BCE, hi: 60 BCE }
+    source: { ref: src:oxrep-shipwrecks-2.1, loc: "Wreck ID 132, Earliest Date, Latest Date, Dating comment", quote: "first half of C1st BC" }
+    method: typological
+    note: >-
+      The only date read: from the goods on board, by the database's own account of its dates, and not from Das Wrack
+      (1994), the standard work, which was not read. The Sullan sack of Athens of 86 BCE, which MaSS and the database
+      raise as the cargo's possible origin, is a guess about the cargo and not a date for the ship.
+  location:
+    prop: location
+    value: { lat: 35.531944, lon: 11.124444, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-mahdia-shipwreck, loc: "Q3589083, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-714
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value: { en: "Greek works of art, sculptures of bronze and marble; furniture fittings; and more than 60 marble columns weighing some 200 tons." }
+    source:
+      - ref: src:mass-mahdia
+        loc: "section 'Cargo'"
+        quote: "High-quality furniture fittings and over than 60 marble columns weighing 200 tons were also found on board."
+      - ref: src:oxrep-shipwrecks-2.1
+        loc: "Wreck ID 132, Stone cargo notes"
+        quote: "Seventy Attic marble columns, weighing about 205 tonnes"
+    note: The two count the columns differently.
+  voyage:
+    prop: voyage
+    value: { en: "Presumably from Piraeus, the port of Athens, to Italy." }
+    source:
+      ref: src:mass-mahdia
+      loc: "section 'Cargo'"
+      quote: "The ship was presumably driven towards the North African coast by a storm while en route from Piraeus, the port of Athens, to Italy"
+    note: An inference from the cargo. Whether it was loot or stock for sale is debated.

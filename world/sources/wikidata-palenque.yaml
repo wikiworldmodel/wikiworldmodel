@@ -1,0 +1,17 @@
+id: src:wikidata-palenque
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q181427 (Palenque, former Maya city state in southern Mexico), property P625
+  (coordinate location).
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q181427
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry, adequate for placing the archaeological site to a few
+  kilometres.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (17.48417, -92.04639) read from the item through the Wikidata API.

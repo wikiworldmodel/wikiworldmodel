@@ -1,0 +1,21 @@
+id: src:davies-2020-future-tides
+type: publication
+kind: model
+citation: >-
+  Davies, H.S., Green, J.A.M. & Duarte, J.C. (2020). Back to the future II: tidal evolution of four
+  supercontinent scenarios. Earth System Dynamics 11(1), 291–299.
+authors:
+  - "Davies, H.S."
+  - "Green, J.A.M."
+  - "Duarte, J.C."
+published: 2020
+title: "Back to the future II: tidal evolution of four supercontinent scenarios"
+container: Earth System Dynamics 11(1), 291–299
+doi: 10.5194/esd-11-291-2020
+url: https://esd.copernicus.org/articles/11/291/2020/esd-11-291-2020.pdf
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the publisher's PDF. Citation from Crossref. Quotes checked by script
+    against the text extracted from that PDF, after normalizing whitespace.

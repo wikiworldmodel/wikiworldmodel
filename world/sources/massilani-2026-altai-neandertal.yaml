@@ -1,0 +1,31 @@
+id: src:massilani-2026-altai-neandertal
+type: publication
+kind: measurement
+citation: >-
+  Massilani, D., Peyrégne, S., Iasi, L.N.M., de Filippo, C., Mafessoni, F., Bossoms Mesa, A.,
+  Sümer, A.P., Swiel, Y., Popli, D., Silverman, S. et al. (2026). A high-coverage Neandertal
+  genome from the Altai Mountains reveals population structure among Neandertals. Proceedings of
+  the National Academy of Sciences 123(13), e2534576123.
+authors:
+  - "Massilani, D."
+  - "Peyrégne, S."
+  - "Iasi, L.N.M."
+  - "de Filippo, C."
+  - "Mafessoni, F."
+  - "Bossoms Mesa, A."
+  - "Sümer, A.P."
+  - "Swiel, Y."
+  - "Popli, D."
+  - "Silverman, S."
+published: 2026
+title: "A high-coverage Neandertal genome from the Altai Mountains reveals population structure among Neandertals"
+container: "Proceedings of the National Academy of Sciences 123(13), e2534576123"
+doi: 10.1073/pnas.2534576123
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 20 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC13037865): Table 1, which lists ages for ancient genomes,
+    Denisova 3 at 65 ka ± 10 ka (2 SD). Quoted passages checked by script against the text
+    retrieved.

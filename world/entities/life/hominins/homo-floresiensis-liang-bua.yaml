@@ -1,0 +1,67 @@
+id: life/occurrences/homo-floresiensis-liang-bua
+kind: occurrence
+summary: >-
+  LB1 and the other remains of Homo floresiensis from Liang Bua, a limestone cave on Flores, Indonesia,
+  whose age was revised from about 18 kyr to between 100 and 60 kyr ago.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Homo floresiensis, Liang Bua" }
+    unsourced: An editorial label, from the taxon and the place.
+  identified:
+    prop: identified_as
+    value: Homo floresiensis
+    source:
+      ref: src:brown-2004-floresiensis
+      loc: abstract
+      quote: "The combination of primitive and derived features assigns this hominin to a new species, Homo floresiensis."
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:morwood-2004-liang-bua, loc: abstract }
+  location:
+    prop: location
+    value: { lat: -8.530556, lon: 120.443611, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-68055, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: The PBDB's eight Liang Bua collections share this point.
+  frame:
+    prop: frame
+    value: frame:earth/present-day
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml, plate 679; PALEOMAP_PlateModel.rot, plate 679" }
+    method: editorial
+    basis: reconstruction
+    note: >-
+      Flores lies in the polygon of plate 679, which the plate model makes valid only at 0 Ma, so no
+      plate frame can hold this place at the time of the fossils. It stays at its present-day
+      coordinates. The plate model fixes plate 679 to plate 620 with no rotation.
+  date-sutikna-2016:
+    prop: date
+    value: { lo: 100 ka, hi: 60 ka }
+    source:
+      ref: src:sutikna-2016-liang-bua
+      loc: abstract
+      quote: "the skeletal remains of H. floresiensis and the deposits containing them are dated to between about 100 and 60 kyr ago"
+    rank: preferred
+    note: >-
+      From a revised stratigraphy of the cave, which found that the deposits are not what the first
+      excavators took them for. The abstract read does not name the dating methods.
+  date-morwood-2004:
+    prop: date
+    value: 18 ka
+    source:
+      - ref: src:morwood-2004-liang-bua
+        loc: abstract
+        quote: "Dating by radiocarbon (14C), luminescence, uranium-series and electron spin resonance (ESR) methods indicates that H. floresiensis existed from before 38,000 years ago (kyr) until at least 18 kyr."
+      - ref: src:sutikna-2016-liang-bua
+        loc: abstract
+        quote: "the ages inferred previously for the H. floresiensis holotype (LB1), ~18 thousand calibrated radiocarbon years before present (kyr cal. BP)"
+    method: radiometric
+    rank: deprecated
+    note: The first age for LB1. Sutikna et al. (2016) report new evidence that does not support it.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-floresiensis
+    source: { ref: src:brown-2004-floresiensis, loc: abstract }

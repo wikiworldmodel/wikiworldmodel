@@ -1,0 +1,12 @@
+id: src:muenster-kodex-hammurapi
+type: publication
+kind: review
+citation: >-
+  Universität Münster, Institut für Altorientalische Philologie und Vorderasiatische Altertumskunde,
+  Sammlung. Kodex Ḫammurāpi (the institute's cast of the stele, with a commentary).
+title: Kodex Hammurapi
+url: https://www.uni-muenster.de/Altoriental/institut/sammlung/foyer/Kodex_Hammurapi.html
+reliability: A university institute's short commentary on its cast of the stele, by Assyriologists.
+verified:
+  by: machine:claude-code
+  how: Read on the university's site. Quotations checked by script against the page's text.

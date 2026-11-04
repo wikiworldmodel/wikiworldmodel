@@ -1,0 +1,28 @@
+id: src:pbdb/collection-172777
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 172777 ("Rhynie cherts (BMNH collection)", UK),
+  occurrence 1293394. Read through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=172777
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference S. Hirst. 1923. On some
+  arachnid remains from the Old Red Sandstone (Rhynie Chert Bed, Aberdeenshire). The Annals and
+  Magazine of Natural History, Ninth Series 12:455-474. Interval ages are the PBDB's own, for
+  the interval the collection is assigned to; the primary reference was not read here unless
+  cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=172777&show=loc,strat,ref and
+    occs/list.json?coll_id=172777&show=ident,class on the main data service: collection name
+    "Rhynie cherts (BMNH collection)"; lat 57.337002; lng -2.85; formation "Dryden Flags";
+    early_interval Pragian; max_ma 413.02, min_ma 410.62; occurrence 1293394, identified_name
+    "Rhyniognatha hirsti n. gen. n. sp.", accepted_name "Rhyniognatha hirsti" (Arthropoda,
+    Chilopoda).

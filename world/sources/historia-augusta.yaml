@@ -1,0 +1,24 @@
+id: src:historia-augusta
+type: text
+kind: historian
+citation: >-
+  Historia Augusta (Scriptores Historiae Augustae), the Lives of the emperors from Hadrian to
+  Carinus, translated by D. Magie, 3 vols. (Loeb Classical Library, 1921–1932).
+published: 1932
+title: Historia Augusta
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Historia_Augusta/home.html
+via: >-
+  LacusCurtius, which reproduces Magie's public-domain text, translation and notes.
+reliability: >-
+  A collection of imperial biographies by six named authors who claim to write under Diocletian
+  and Constantine; Magie's introduction shows that its letters and documents are largely
+  invented. Its plain notices of birthdays and consuls in the earlier Lives are the most
+  reliable part, its later Lives (Severus Alexander, Aurelian) far less so. Each date is
+  cross-checked here where a second source can be read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The Lives of Hadrian, Antoninus Pius, Marcus Aurelius, Commodus, Pertinax, Didius Julianus,
+    Septimius Severus, Caracalla, Macrinus, Severus Alexander and Aurelian read in Magie's translation on
+    LacusCurtius (marked there as proofread), with his notes and introduction; the quotations
+    checked by script against that text.

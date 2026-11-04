@@ -1,0 +1,25 @@
+id: src:dyer-2021-bahamas-sea-level
+type: publication
+kind: measurement
+citation: >-
+  Dyer, B., Austermann, J., D’Andrea, W.J., Creel, R.C., Sandstrom, M.R., Cashman, M., Rovere, A.
+  & Raymo, M.E. (2021). Sea-level trends across The Bahamas constrain peak last interglacial ice
+  melt. Proceedings of the National Academy of Sciences 118(33), e2026839118.
+authors:
+  - "Dyer, B."
+  - "Austermann, J."
+  - "D’Andrea, W.J."
+  - "Creel, R.C."
+  - "Sandstrom, M.R."
+  - "Cashman, M."
+  - "Rovere, A."
+  - "Raymo, M.E."
+published: 2021
+title: "Sea-level trends across The Bahamas constrain peak last interglacial ice melt"
+container: "Proceedings of the National Academy of Sciences 118(33), e2026839118"
+doi: 10.1073/pnas.2026839118
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on PubMed Central (PMC8379915). Citation from Crossref. Quotes checked by
+    script against the text retrieved.

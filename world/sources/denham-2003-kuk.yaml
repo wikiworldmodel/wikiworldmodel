@@ -1,0 +1,24 @@
+id: src:denham-2003-kuk
+type: publication
+kind: measurement
+citation: >-
+  Denham, T.P., Haberle, S.G., Lentfer, C., … & Winsborough, B. (2003). Origins of agriculture
+  at Kuk Swamp in the highlands of New Guinea. Science 301(5630), 189–193.
+authors:
+  - "Denham, T.P."
+  - "Haberle, S.G."
+  - "Lentfer, C."
+  - "Fullagar, R."
+  - "Field, J."
+  - "Therin, M."
+  - "Porch, N."
+  - "Winsborough, B."
+published: 2003
+title: "Origins of agriculture at Kuk Swamp in the highlands of New Guinea"
+container: "Science 301(5630), 189–193"
+doi: 10.1126/science.1085255
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read from the Europe PMC record (PMID 12817084); the full text was not read.
+    Each quote checked by script against the abstract; citation from the same record.

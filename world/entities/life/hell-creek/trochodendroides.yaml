@@ -1,0 +1,39 @@
+id: life/taxa/trochodendroides
+kind: taxon
+summary: >-
+  An extinct leaf form, T. nebrascensis in the Hell Creek rows of the snapshot, which the
+  Paleobiology Database places in the katsura family, Cercidiphyllaceae.
+same_as: { pbdb: "txn:55340" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Trochodendroides" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 55340"
+  body-plan:
+    prop: body_plan
+    value: broadleaf
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: upright
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 6, p. 126, s.v. Cercidiphyllum japonicum"
+      quote: "Trees, 10--20 m tall."
+    note: >-
+      The living relative named below.
+  height-flora-of-china:
+    prop: plant_height
+    value: 20
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 6, p. 126, s.v. Cercidiphyllum japonicum"
+      quote: "Trees, 10--20 m tall."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The upper figure for the living katsura, Cercidiphyllum japonicum, the family in which the
+      database places this extinct form: a modern relative, not a Hell Creek plant.

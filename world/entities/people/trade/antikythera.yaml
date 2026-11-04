@@ -1,0 +1,66 @@
+id: people/trade/antikythera
+kind: event/shipwreck
+summary: >-
+  A freighter that foundered off the north-east coast of Antikythera about 70–50 BCE or a little later, with more than
+  four dozen bronze and marble statues, amphorae and luxury goods, and the Antikythera Mechanism. Found by sponge divers in
+  1900. Recent study sees a carefully loaded shipment, perhaps plunder from a gymnasion, on its way west to a public
+  building in Italy, but where it came from and where it was going are not known.
+author: machine:claude-code
+same_as: { wikidata: Q2616711, pleiades: 333218450 }
+claims:
+  name:
+    prop: name
+    value: { en: Antikythera shipwreck }
+    source: { ref: src:martens-2025-antikythera, loc: Abstract, quote: "The Antikythera shipwreck provides a rare chronological anchor in the history of Greek sculpture." }
+  date:
+    prop: date
+    value: { lo: 70 BCE, hi: 50 BCE }
+    source:
+      ref: src:martens-2025-antikythera
+      loc: Abstract
+      quote: "was lost at sea c. 70–50 BCE, possibly later, along the north-east coast of the island of Antikythera."
+    method: typological
+    rank: preferred
+    note: >-
+      Eastern Sigillata A pottery of about 60–50 BCE, and coins that give a time after which it sank, in the 60s BCE (his note
+      1). "Possibly later", so the end of the range is soft.
+  date-oxrep:
+    prop: date
+    value: { lo: 80 BCE, hi: 70 BCE }
+    source: { ref: src:oxrep-shipwrecks-2.1, loc: "Wreck ID 69, Earliest Date, Latest Date, Dating comment", quote: "80 BC or a little later" }
+    method: typological
+    note: An older date, which Martens's coins and pottery make too early.
+  date-pleiades:
+    prop: date
+    value: { lo: 75 BCE, hi: 50 BCE }
+    source: { ref: src:pleiades-antikythera-shipwreck, loc: "place 333218450, description", quote: "dates to the second quarter of the first century BCE" }
+    method: compilation
+  location:
+    prop: location
+    value: { lat: 35.88045, lon: 23.317379, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-antikythera-shipwreck, loc: "place 333218450, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-330
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value: { en: "More than four dozen bronze and marble statues, perhaps 55–75 tons of marble, with amphorae and portable luxury goods, among them the Antikythera Mechanism." }
+    source:
+      ref: src:martens-2025-antikythera
+      loc: Introduction
+      quote: "The ship was transporting a main cargo of bronze and marble statues, in addition to amphorae and a range of portable luxury goods."
+  voyage:
+    prop: voyage
+    value: { en: "Leaving the Aegean on a westward course, presumably for Italy, and perhaps a public building in Rome." }
+    source:
+      - ref: src:martens-2025-antikythera
+        loc: "section 'Destination'"
+        quote: "The location of the wreck, on the east side of Antikythera, suggests that the ship was leaving the Aegean region on a westward course."
+      - ref: src:martens-2025-antikythera
+        loc: Introduction
+        quote: "At present, we do not know the origin(s) and intended destination(s) of the assemblage"
+    note: An inference from where it lies and what it carried.

@@ -1,0 +1,90 @@
+id: people/domestication/maize
+kind: development
+summary: >-
+  The domestication of maize from the wild teosinte Zea mays subsp. parviglumis in Mexico. The
+  oldest evidence is starch and phytoliths from Xihuatoxtla in the Balsas valley, and the oldest
+  cobs are from Guilá Naquitz in Oaxaca, 2,500 years younger. The place is argued: the Balsas,
+  where the wild ancestor grows; Jalisco or the Pacific coast, on newer genetics; and the highlands,
+  where a later mixing with a second teosinte made modern maize.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Maize domestication }
+    unsourced: An editorial label.
+  start-matsuoka-2002:
+    prop: start
+    value: 9000 BP
+    source:
+      - ref: src:matsuoka-2002-maize
+        loc: abstract
+        quote: "all maize arose from a single domestication in southern Mexico about 9,000 years ago"
+      - ref: src:kistler-2018-maize-south-america
+        loc: abstract
+        quote: "Domesticated maize evolved from wild teosinte under human influences in Mexico beginning around 9000 years before the present"
+    method: molecular-clock
+    rank: preferred
+    note: >-
+      A molecular-clock date from microsatellites. It fits Xihuatoxtla, where maize is dated to
+      8990–8610 cal BP.
+  start-benz-2001:
+    prop: start
+    value: { hi: 4000 BCE }
+    source:
+      ref: src:benz-2001-guila-naquitz
+      loc: abstract
+      quote: "Domestication of the wild ancestor of maize occurred before the end of the 5th millennium B.C."
+    method: radiometric/radiocarbon
+    note: >-
+      Read from the oldest cobs, and open at the earlier end. Written before the Balsas finds.
+  location-balsas:
+    prop: location
+    value: { lat: 18.345, lon: -99.538333, frame: frame:earth/present-day }
+    source:
+      - ref: src:matsuoka-2002-maize
+        loc: "Results and Discussion"
+        quote: "identifying the central Balsas River drainage (Fig. 1 Inset) as a candidate for the cradle of maize domestication"
+      - ref: src:piperno-2009-xihuatoxtla
+        loc: abstract
+        quote: "reshift the focus back to an origin in the seasonal tropical forest rather than in the semiarid highlands"
+      - ref: src:van-heerwaarden-2011-maize
+        loc: Introduction
+        quote: "suggesting that the apparent ancestral position of highland Mexican maize results from introgression from mexicana"
+      - { ref: src:wikidata-iguala, loc: "P625 coordinate location" }
+    method: editorial
+    rank: preferred
+    note: >-
+      Marked at Iguala, the town near Xihuatoxtla. Matsuoka et al. call the region only a candidate,
+      since the range of teosinte may have changed; preferred because the wild ancestor, the oldest
+      dated maize and a reanalysis of the highland paradox agree on it.
+  location-jalisco:
+    prop: location
+    value: { lat: 20.676389, lon: -103.345833, frame: frame:earth/present-day }
+    source:
+      - ref: src:moreno-letelier-2020-maize
+        loc: abstract
+        quote: "Our results suggest that the likely ancestor of maize may have been domesticated in Jalisco or in the southern Pacific Coast and not in the Balsas Basin as previously thought."
+      - { ref: src:wikidata-jalisco, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Genetics of living populations with more teosinte sampled, no sample of early maize. Marked at
+      the gazetteer's point for Jalisco.
+  location-highlands:
+    prop: location
+    value: { lat: 24, lon: -103, frame: frame:earth/present-day }
+    source:
+      - ref: src:yang-2023-two-teosintes
+        loc: abstract
+        quote: "the origin of modern maize can be traced to an admixture between ancient maize and Zea mays ssp. mexicana in the highlands of Mexico some 4000 years after domestication began"
+      - { ref: src:wikidata-mexican-plateau, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      A rival for where modern maize arose rather than where domestication began. The point is
+      coarse, the gazetteer's first for the Mexican Plateau; Matsuoka et al. also put early
+      diversification in these highlands.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-104
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

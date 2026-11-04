@@ -1,0 +1,60 @@
+id: people/writing/linear-b
+kind: development/script
+summary: >-
+  The script of the Mycenaean palaces, which came out of Linear A and writes Greek, deciphered in 1952. Its earliest tablets come from the Room of the Chariot Tablets at Knossos, and later archives from the rest of
+  Knossos, Chania and the mainland palaces. It disappears in the decline that follows their destruction, around 1200 BCE.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Linear B }
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: At least 5000 tablets with Linear B are known.
+  start:
+    prop: start
+    value: { ref: people/writing/knossos-room-of-chariot-tablets }
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: "The earliest are c.650 tablets from the Room of the Chariot Tablets at Knossos (hereafter RCT), dated to LM II or early LM IIIA1 (Driessen 1990: 117)."
+    method: stratigraphic
+  end:
+    prop: end
+    value: 3150 BP
+    source:
+      ref: src:finne-2017-pylos-climate
+      loc: Introduction
+      quote: It was followed by a period of abrupt decline, during which the use of writing (Linear B) and complex forms of political, economic and social organization disappeared
+    method: expert-estimate
+    note: >-
+      The end of Late Helladic IIIB, ~3150 yrs BP, at which the same paragraph sets the destruction of the palaces. The writing disappears in the decline that followed, so this is the point it stops being
+      attested on the mainland, not a dated last tablet.
+  decipherment:
+    prop: decipherment
+    value: deciphered
+    source:
+      ref: src:fhw-crete-writing
+      loc: page text
+      quote: The interpretation of Linear B by M. Ventris and J. Chadwick in 1952 proved that the language of Mycenaean Greece was the Greek language
+  location:
+    prop: location
+    value: { lat: 35.297847, lon: 25.163106, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-knossos, loc: "place 589872, representative point" }
+    method: gazetteer
+    note: Marked at Knossos, where it is first attested.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-330
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  first-attestation:
+    rel: evidenced-by
+    to: people/writing/knossos-room-of-chariot-tablets
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: "The earliest are c.650 tablets from the Room of the Chariot Tablets at Knossos (hereafter RCT), dated to LM II or early LM IIIA1 (Driessen 1990: 117)."

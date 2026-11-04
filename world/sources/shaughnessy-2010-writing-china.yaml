@@ -1,0 +1,17 @@
+id: src:shaughnessy-2010-writing-china
+type: publication
+kind: review
+citation: >-
+  Shaughnessy, E.L. (2010). The Beginnings of Writing in China. In Woods, C. (ed.), Visible Language: Inventions of Writing in the Ancient Middle
+  East and Beyond, pp. 215–221. Oriental Institute Museum Publications 32. Chicago: The Oriental Institute.
+authors:
+  - "Shaughnessy, E.L."
+published: 2010
+title: The Beginnings of Writing in China
+container: "Visible Language: Inventions of Writing in the Ancient Middle East and Beyond (OIMP 32)"
+url: https://isac-assets.s3.amazonaws.com/isac-publications/oimp32.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the PDF that ISAC publishes. Page numbers are the book's, two less than the PDF's. Quotes checked by script against
+    its text layer, ignoring whitespace and rejoining words hyphenated at line ends.

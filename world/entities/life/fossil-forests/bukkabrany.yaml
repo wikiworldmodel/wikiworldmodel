@@ -1,0 +1,61 @@
+id: life/occurrences/forest-bukkabrany
+kind: occurrence
+summary: >-
+  Sixteen standing trees uncovered in 2007 in the lignite mine at Bükkábrány, Hungary: a swamp forest
+  of taxodiaceous conifers drowned by the rising waters of Lake Pannon, its wood still wood.
+same_as: { wikidata: Q741487 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Bükkábrány fossil forest" }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: Taxodioxylon germanicum and Glyptostroboxylon sp.
+    source:
+      ref: src:kazmer-2008-bukkabrany
+      loc: "p. 230"
+      quote: affiliation of six trunks. Taxodioxylon germanicum
+    note: >-
+      From initial anatomical studies of six of the trunks.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:kazmer-2008-bukkabrany
+      loc: "p. 229, abstract"
+      quote: revealed sixteen stumps, 1.8 to 3.6 m diameter at base, preserved up to 6 m height, standing on top of the coal bed
+    note: >-
+      The basis is the abstract's standing stumps.
+  location:
+    prop: location
+    value: { lat: 47.8884, lon: 20.679269, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-bukkabrany, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A point for the village that gives the mine its name; the pit, 2.5 km long, was not located more
+      closely from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-308
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 7 Ma
+    source:
+      ref: src:kazmer-2008-bukkabrany
+      loc: "p. 229, abstract"
+      quote: Pannon drowned the forest 7 Ma ago
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      Stated without an uncertainty, within the Upper Miocene (Pannonian). The paper names no formation
+      for the lignite, so this record has no formation claim.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/spermatophyta
+    source: { ref: src:kazmer-2008-bukkabrany, loc: "p. 230: Taxodiaceae, related to Sequoia" }

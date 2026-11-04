@@ -1,0 +1,19 @@
+id: src:wikidata-joffre-falls
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q21888282 (Joffre Falls, Western Australia), property P625 (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q21888282
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry; no source is given for the point.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (-22.39167, 118.2686; precision 1e-05) read from the item's JSON
+    (Special:EntityData/Q21888282.json, last revision 2371939402, modified 2025-07-02).

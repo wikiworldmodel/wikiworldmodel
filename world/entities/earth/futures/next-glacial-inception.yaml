@@ -1,0 +1,100 @@
+id: earth/futures/next-glacial-inception
+kind: event/transition
+summary: >-
+  The end of the present interglacial, when the ice sheets of the Northern Hemisphere start to grow
+  again. Its date depends above all on how much CO2 people have emitted and will emit. Without any,
+  models put it about 50,000 years from now, and a reading of past glacial cycles far sooner; with what
+  has already been emitted, it is highly unlikely within the next 120,000 years.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Next glacial inception }
+    source:
+      ref: src:ganopolski-2016-glacial-inception
+      loc: abstract
+      quote: will postpone the next glacial inception
+  start-talento-ganopolski-2021-emitted:
+    prop: start
+    value: { lo: 120 kyr from now }
+    source:
+      ref: src:talento-ganopolski-2021-future-glacial-cycles
+      loc: abstract, p. 1275
+      quote: indicating that the beginning of the next glaciation is highly unlikely in the next 120 kyr
+    method: model
+    basis: projection
+    rank: preferred
+    note: >-
+      For cumulative emissions of 500 Pg C of CO2, which the paper calls already achieved, and elsewhere
+      "lower than already emitted" (section 4.3), so the date may well be later still. Preferred because
+      it is the only one of these claims for the emissions already made, rather than for a world without
+      them or for emissions still to come.
+  start-without-emissions:
+    prop: start
+    value: 50 kyr from now
+    source:
+      - ref: src:ganopolski-2016-glacial-inception
+        loc: abstract
+        quote: the current interglacial would probably last for another 50,000 years
+      - ref: src:talento-ganopolski-2021-future-glacial-cycles
+        loc: abstract, p. 1275
+        quote: The next glacial inception is most likely to occur ∼50 kyr after present
+    method: model
+    basis: projection
+    note: >-
+      What would have happened with no emissions at all, from an Earth system model of intermediate
+      complexity and from a simpler model calibrated on past climates and on such models. In the second,
+      some of the solutions put it nearer 110 kyr from now (section 4.2).
+  start-barker-2025-without-emissions:
+    prop: start
+    value: { mean: 7.7 kyr from now, sd: 1.7 kyr }
+    source:
+      - ref: src:barker-2025-glacial-cycles
+        loc: section 7, manuscript p. 11
+        quote: -7.7±3.4kyr
+      - ref: src:barker-2025-glacial-cycles
+        loc: section 7, manuscript p. 11
+        quote: if not for the effects of increasing CO2, glacial inception would reach a maximum rate within the next 11kyr
+    method: model
+    basis: projection
+    note: >-
+      Also with no emissions, from an empirical relation between the orbit and past glacial cycles in
+      sediment records, not from a climate model. The paper writes it as an age, so the minus sign means
+      the future. The ± is stated as 2σ, halved here for sd. It dates the maximum rate of inception, so ice
+      would begin to grow before it. It fits models that weigh obliquity over precession, some of which
+      have inception as early as 10 kyr from now, and not the models above.
+  start-tzedakis-2012-low-co2:
+    prop: start
+    value: { lo: 0 kyr from now, hi: 1.5 kyr from now }
+    source:
+      ref: src:tzedakis-2012-interglacial-length
+      loc: abstract
+      quote: this analogy suggests that the end of the current interglacial would occur within the next 1500 years, if atmospheric CO2 concentrations did not exceed 240±5 ppmv
+    method: expert-estimate
+    basis: projection
+    note: >-
+      By analogy with an earlier interglacial, Marine Isotope sub-Stage 19c, and only for a level of CO2
+      below the pre-industrial one, so a world that does not exist. The same abstract says no inception is
+      projected at the 390 ppmv of its day. An upper limit; the middle of this range means nothing.
+  start-ganopolski-2016-emissions:
+    prop: start
+    value: { lo: 100 kyr from now }
+    source:
+      ref: src:ganopolski-2016-glacial-inception
+      loc: abstract
+      quote: moderate anthropogenic cumulative CO2 emissions of 1,000 to 1,500 gigatonnes of carbon will postpone the next glacial inception by at least 100,000 years
+    method: model
+    basis: projection
+    note: >-
+      For cumulative emissions of 1,000–1,500 Gt C. The abstract gives the delay and not the date, so this
+      is the least that delay can mean from now.
+  start-talento-ganopolski-2021-high:
+    prop: start
+    value: { lo: 600 kyr from now }
+    source:
+      ref: src:talento-ganopolski-2021-future-glacial-cycles
+      loc: abstract, p. 1275
+      quote: postponing the natural occurrence of the next glacial inception to 600 kyr after present or later
+    method: model
+    basis: projection
+    note: For cumulative emissions of 3000 Pg C or more, which the paper says could be reached in 2 to 3 centuries.

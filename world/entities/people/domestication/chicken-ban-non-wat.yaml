@@ -1,0 +1,61 @@
+id: life/occurrences/chicken-ban-non-wat
+kind: occurrence
+summary: >-
+  Chicken bones from the Neolithic layers of Ban Non Wat in Thailand, about 1650–1250 BCE, the first
+  unambiguous domestic chicken in a critical survey of 600 sites. Over 95% of the bird bones are
+  Gallus and many are juvenile, and by the Bronze Age they lie in graves with pigs, dogs and cattle.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Chicken, Ban Non Wat" }
+    unsourced: An editorial label, from the species and the site.
+  identified:
+    prop: identified_as
+    value: Gallus
+    source:
+      ref: src:peters-2022-chickens
+      loc: Results
+      quote: "where >95% of the avifauna has been ascribed to Gallus"
+  evidence:
+    prop: evidence
+    value: zooarchaeological
+    source:
+      - ref: src:peters-2022-chickens
+        loc: Results
+        quote: "Although their domestic status remains unresolved (20), two other factors lend weight to the initial assessment. First, an exceedingly high proportion of juvenile bones are present in the assemblage."
+      - ref: src:peters-2022-chickens
+        loc: Discussion
+        quote: "The first unambiguous chicken bones in the archaeological record are present within the faunal assemblage at Neolithic Ban Non Wat in central Thailand"
+    note: >-
+      What shows it is domestic: abundance, young birds, and later burial as grave goods. The same
+      paper calls them both unresolved and unambiguous: no trait of the bone separates chicken from
+      junglefowl.
+  location:
+    prop: location
+    value: { lat: 15.274415, lon: 102.268896, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-ban-non-wat, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-615
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 1650 BCE, hi: 1250 BCE }
+    source:
+      ref: src:peters-2022-chickens
+      loc: Results
+      quote: "the Neolithic moated site of Ban Non Wat (∼1650 to 1250 BCE)"
+    method: radiometric/radiocarbon
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/aves
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott153563 and ott81461: Gallus gallus lies within Aves" }
+  domestication:
+    rel: part-of
+    to: people/domestication/chicken
+    source: { ref: src:peters-2022-chickens, loc: Discussion }

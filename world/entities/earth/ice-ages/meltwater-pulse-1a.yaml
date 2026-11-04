@@ -1,0 +1,100 @@
+id: earth/ice-ages/meltwater-pulse-1a
+kind: event
+summary: >-
+  The fastest rise of sea level in the last deglaciation: roughly ten to twenty metres in a few centuries,
+  at the time of the Bølling warming. How much it was, and which ice sheets it came from, are still argued over.
+author: machine:claude-code
+same_as: { wikidata: Q2246047 }
+claims:
+  name:
+    prop: name
+    value: { en: Meltwater Pulse 1A }
+    source: { ref: src:gulev-2021-ipcc-ar6-chapter-2, loc: "Section 2.3.3.3, p. 353" }
+  start-deschamps-2012:
+    prop: start
+    value: 14.65 ka
+    source:
+      ref: src:deschamps-2012-meltwater-pulse-1a
+      loc: abstract
+      quote: Here we show that MWP-1A started no earlier than 14,650 years ago and ended before 14,310 years ago, making it coeval with the Bølling warming.
+    rank: preferred
+    note: >-
+      From corals drilled off Tahiti, the most direct dating of the pulse here; the IPCC's rounder span
+      cites it. These are outer limits for its start and end, so the pulse could be somewhat shorter.
+  start-ar6-2021:
+    prop: start
+    value: 14.6 ka
+    source:
+      ref: src:gulev-2021-ipcc-ar6-chapter-2
+      loc: "Section 2.3.3.3, p. 353"
+      quote: The fastest rise occurred during Meltwater Pulse 1A, at about 14.6–14.3 ka
+    method: compilation
+  start-lambeck-2014:
+    prop: start
+    value: 14.5 ka
+    source:
+      ref: src:lambeck-2014-sea-level-ice-volumes
+      loc: abstract
+      quote: particularly at 14.5-14.0 ka BP at ≥40 mm⋅y(-1) (MWP-1A)
+    method: model
+  end-deschamps-2012:
+    prop: end
+    value: 14.31 ka
+    source:
+      ref: src:deschamps-2012-meltwater-pulse-1a
+      loc: abstract
+      quote: Here we show that MWP-1A started no earlier than 14,650 years ago and ended before 14,310 years ago, making it coeval with the Bølling warming.
+    rank: preferred
+    note: Goes with the start of the same span.
+  end-ar6-2021:
+    prop: end
+    value: 14.3 ka
+    source:
+      ref: src:gulev-2021-ipcc-ar6-chapter-2
+      loc: "Section 2.3.3.3, p. 353"
+      quote: The fastest rise occurred during Meltwater Pulse 1A, at about 14.6–14.3 ka
+    method: compilation
+  end-lambeck-2014:
+    prop: end
+    value: 14 ka
+    source:
+      ref: src:lambeck-2014-sea-level-ice-volumes
+      loc: abstract
+      quote: particularly at 14.5-14.0 ka BP at ≥40 mm⋅y(-1) (MWP-1A)
+    method: model
+  sea-level-change-ar6-2021:
+    prop: sea_level_change
+    value: { lo: 8, hi: 15 }
+    source:
+      ref: src:gulev-2021-ipcc-ar6-chapter-2
+      loc: "Section 2.3.3.3, p. 353"
+      quote: when GMSL rose by between 8 m and 15 m (medium confidence) (J. Liu et al., 2016) at an average rate of 24–44 mm yr –1.
+    basis: reconstruction
+    rank: preferred
+    note: The range the IPCC assessed, as a global mean. The other claims are the rise at Tahiti and a higher global estimate.
+  sea-level-change-deschamps-2012:
+    prop: sea_level_change
+    value: { lo: 14, hi: 18 }
+    source:
+      ref: src:deschamps-2012-meltwater-pulse-1a
+      loc: abstract
+      quote: reveal that the increase in sea level at Tahiti was between 12 and 22 metres, with a most probable value between 14 and 18 metres
+    basis: reconstruction
+    note: The most probable range, at Tahiti, within a full range of 12–22 m. It is relative sea level at one place, not the global mean.
+  sea-level-change-lambeck-2014:
+    prop: sea_level_change
+    value: 20
+    source:
+      ref: src:lambeck-2014-sea-level-ice-volumes
+      loc: "Discussion and Conclusions, item (vii)"
+      quote: the globally averaged rise in sea level of ∼20 m occurs at a rate of ∼40 mm⋅y−1 or greater
+    method: model
+    basis: reconstruction
+relations:
+  part-of-the-deglaciation:
+    rel: part-of
+    to: earth/ice-ages/last-deglaciation
+    source:
+      ref: src:gulev-2021-ipcc-ar6-chapter-2
+      loc: "Section 2.3.3.3, p. 353"
+      quote: The fastest rise occurred during Meltwater Pulse 1A

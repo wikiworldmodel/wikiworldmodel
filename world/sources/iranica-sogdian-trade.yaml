@@ -1,0 +1,14 @@
+id: src:iranica-sogdian-trade
+type: publication
+kind: review
+citation: >-
+  de la Vaissière, E. (2004). Sogdian trade. Encyclopædia Iranica, online edition.
+authors: ["de la Vaissière, E."]
+published: 2004
+title: Sogdian trade
+container: Encyclopædia Iranica
+url: https://www.iranicaonline.org/articles/sogdian-trade
+via: The Internet Archive's copy of 18 November 2023, because the encyclopaedia's site refused the script.
+verified:
+  by: machine:claude-code
+  how: Read in the archived copy. Quotes checked by script against its text, after normalizing whitespace.

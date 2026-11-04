@@ -1,0 +1,68 @@
+id: life/occurrences/forest-joggins
+kind: occurrence
+summary: >-
+  Standing lycopsid trees entombed in the Joggins Formation, Nova Scotia, where Lyell and Dawson saw
+  them in the mid-1800s: coastal rainforests of the Pennsylvanian, in the same cliffs as the earliest
+  known reptiles. Some of the trees hold tetrapods.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Joggins fossil forests" }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: lycopsids
+    source:
+      ref: src:davies-2005-joggins
+      loc: abstract
+      quote: The main levels of standing trees, dominated by lycopsids
+    note: >-
+      Not a single taxon: the trees of many levels.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:davies-2005-joggins
+      loc: abstract
+      quote: The main levels of standing trees, dominated by lycopsids, were entombed where distributary channels brought sand into coastal wetlands
+    note: >-
+      The basis is the standing, entombed trees. Falcon-Lang et al. (2006, abstract) add that fossils
+      here occur in (par)autochthonous assemblages.
+  location:
+    prop: location
+    value: { lat: 45.698612, lon: -64.451385, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-28069, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      The PBDB's point for the Hylonomus locality at Coal Mine Point, within these cliffs. The 915.5 m
+      of strata run along Chignecto Bay, and the forest levels occur through them.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-108
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Joggins Formation
+    source: { ref: src:davies-2005-joggins, loc: abstract, quote: The Joggins Formation (of probable Langsettian age) }
+  date:
+    prop: date
+    value: { ref: ics/bashkirian }
+    source:
+      - { ref: src:davies-2005-joggins, loc: abstract, quote: The Joggins Formation (of probable Langsettian age) }
+      - { ref: src:falcon-lang-2006-joggins, loc: abstract, quote: The Pennsylvanian (Langsettian) Joggins Formation }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The Langsettian is a regional stage; the Hylonomus record here, after Benton et al. (2015), sets
+      it in the later part of the Bashkirian. Falcon-Lang et al. confine the fossils to a narrow
+      interval, under 1 Myr.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/tracheophyta
+    source: { ref: src:davies-2005-joggins, loc: "abstract: lycopsids" }
+    note: >-
+      Cordaitalean gymnosperm forests grew on the alluvial plains of the same formation.

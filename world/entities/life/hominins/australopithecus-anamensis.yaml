@@ -1,0 +1,41 @@
+id: life/taxa/australopithecus-anamensis
+kind: taxon
+summary: >-
+  Australopithecus anamensis, the oldest species of its genus, described from Kanapoi and Allia Bay
+  in Kenya and known by a nearly complete cranium from Woranso-Mille in Ethiopia.
+same_as: { pbdb: "txn:384433", wikidata: Q310520 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Australopithecus anamensis, la: "Australopithecus anamensis" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:384433: Australopithecus anamensis" }
+    note: The PBDB attributes the name to Ward et al. 1999; the species was described by Leakey et al. 1995.
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:384433: rank 3 (species)" }
+  start:
+    prop: start
+    value: { hi: 4.2 Ma }
+    source:
+      - ref: src:haile-selassie-2019-woranso-mille
+        loc: abstract
+        quote: "Australopithecus anamensis, specimens of which have been dated to 4.2-3.9 million years ago"
+      - ref: src:leakey-1995-anamensis
+        loc: abstract
+        quote: "described here as a new species of Australopithecus dating from between about 3.9 million and 4.2 million years ago"
+    method: compilation
+    note: >-
+      The oldest of its fossils, from Kanapoi, is not a record here, so its age is written on the
+      species; the species began no later than that.
+  end:
+    prop: end
+    value: unknown
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:384433: is_extant 0" }
+    note: The species is extinct; when it died out is not recorded here.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:384433 < Australopithecus (txn:40900) < Hominini (txn:91486)" }

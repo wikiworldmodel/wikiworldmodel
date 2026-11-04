@@ -7,7 +7,7 @@ description: >-
   A fit through published proxy estimates of CO₂ over the last 420 million years (Foster,
   Royer & Lunt 2017): its most likely value, with its 68% interval.
 grid: { kind: series }
-time: { lo: 419.5 Ma, hi: 0 Ma }
+time: { lo: 419.5039 Ma, hi: 0 Ma }
 data:
   from: src:foster-2017-co2
   sheet: LOESS Fit

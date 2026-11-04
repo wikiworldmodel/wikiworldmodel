@@ -1,0 +1,20 @@
+id: src:gili-gotz-2018-rudist-paleoecology
+type: publication
+kind: review
+citation: >-
+  Gili, E. & Götz, S. (2018). Part N, Volume 1, Chapter 26B: Paleoecology of rudists. Treatise
+  Online 103, 1–29.
+authors:
+  - "Gili, E."
+  - "Götz, S."
+published: 2018
+title: "Part N, Volume 1, Chapter 26B: Paleoecology of rudists"
+container: Treatise Online 103
+doi: 10.17161/to.v0i0.7183
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the open-access PDF
+    (journals.ku.edu/treatiseonline/article/view/7183); the parts cited were read, and quotes
+    checked by script against its text, with line-end hyphens joined.

@@ -1,0 +1,18 @@
+id: src:skelton-gili-2012-aptian-rudists
+type: publication
+kind: review
+citation: >-
+  Skelton, P.W. & Gili, E. (2012). Rudists and carbonate platforms in the Aptian: a case study on
+  biotic interactions with ocean chemistry and climate. Sedimentology 59(1), 81–117.
+authors:
+  - "Skelton, P.W."
+  - "Gili, E."
+published: 2012
+title: "Rudists and carbonate platforms in the Aptian: a case study on biotic interactions with ocean chemistry and climate"
+container: Sedimentology 59(1), 81–117
+doi: 10.1111/j.1365-3091.2011.01292.x
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work; the full text could not be
+    reached. Quotes checked by script against it. Metadata from Crossref.

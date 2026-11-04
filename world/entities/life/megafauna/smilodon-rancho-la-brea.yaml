@@ -1,0 +1,57 @@
+id: life/megafauna/smilodon-rancho-la-brea
+kind: occurrence
+summary: >-
+  A sabre-toothed cat from Pit 67 at Rancho La Brea, Los Angeles, the youngest AMS date on the
+  species in Broughton & Weitzel's compilation of direct radiocarbon dates.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Sabre-toothed cat, Rancho La Brea" }
+    unsourced: An editorial label, from the taxon and the place name.
+  identified:
+    prop: identified_as
+    value: Smilodon
+    source:
+      ref: src:broughton-weitzel-2018-mixed-causes
+      loc: "Supplementary Data 1, row Rancho La Brea, Pit 67 (UCIAMS 91680)"
+      quote: "Smilodon California Rancho La Brea, Pit 67 UCIAMS 91680"
+    note: >-
+      The table gives the genus; the paper's text calls the taxon the saber-toothed cat, Smilodon
+      fatalis.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary: bone collagen."
+  location:
+    prop: location
+    value: { lat: 34.063056, lon: -118.355833, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-la-brea-tar-pits, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A representative point for the La Brea Tar Pits as a whole, not Pit 67.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-105
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 13272 BP, hi: 13093 BP }
+    source:
+      ref: src:broughton-weitzel-2018-mixed-causes
+      loc: "Supplementary Data 1, row Rancho La Brea, Pit 67 (UCIAMS 91680)"
+      quote: "UCIAMS 91680 11335 35 13272 13093 13179 CO MS 12 9"
+    method: radiometric/radiocarbon
+    note: >-
+      11,335 ± 35 14C years on bone collagen, first published by Fuller et al. (2014), as the
+      table's references say, which was not read. The range is the columns "OxCal Old" and "OxCal
+      Young", without a stated confidence level; the median is 13,179.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/smilodon-fatalis
+    source:
+      ref: src:broughton-weitzel-2018-mixed-causes
+      loc: "Supplementary Data 1, row Rancho La Brea, Pit 67 (UCIAMS 91680)"

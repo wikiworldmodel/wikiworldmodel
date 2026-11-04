@@ -1,0 +1,17 @@
+id: src:british-museum-rosetta-stone-blog
+type: publication
+kind: review
+citation: >-
+  The British Museum (2017). Everything you ever wanted to know about the Rosetta Stone. Museum blog,
+  14 July 2017.
+published: 2017
+title: Everything you ever wanted to know about the Rosetta Stone
+url: https://web.archive.org/web/20221231204059/https://www.britishmuseum.org/blog/everything-you-ever-wanted-know-about-rosetta-stone
+reliability: >-
+  The museum that holds the stone, writing for the public. It says itself that accounts of the
+  discovery are rather vague, and gives no references for the day.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the copy archived on 31 December 2022 at web.archive.org; the museum's own site answered
+    403 from here. Quotations checked by script against its text.

@@ -1,0 +1,68 @@
+id: people/rulers/mansa-musa
+kind: person
+summary: >-
+  King of Mali, whose pilgrimage to Mecca in the 1320s, by way of Cairo, many authors describe.
+author: machine:claude-code
+same_as: { wikidata: Q309333 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Mansa of Mali
+claims:
+  name:
+    prop: name
+    value: { en: Mansa Musa }
+    source:
+      ref: src:ibn-khaldun-histoire-des-berberes-2
+      loc: "p. 112"
+      quote: Mença-Mouça, fils et successeur
+  reign-start-1312:
+    prop: start
+    subject: "@reign"
+    value: 1312 CE
+    source:
+      ref: src:unesco-1984-general-history-of-africa-4
+      loc: "ch. 9 (Izard), p. 212"
+      quote: at the time of Mansa Mūsā (1312–37)
+    method: expert-estimate
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      The reckoning with the death in 1337, which Izard uses; Ibn Khaldun has him send an envoy
+      to Abu al-Hasan, the Marinid sultan.
+  reign-start-1307:
+    prop: start
+    subject: "@reign"
+    value: 1307 CE
+    source:
+      ref: src:unesco-1984-general-history-of-africa-4
+      loc: "ch. 6 (Niane), p. 147 and Fig. 6.9"
+      quote: in about 1307 Kanku Mūsā, a nephew of Sundiata, came to the throne
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Niane's text, whose figure gives 1307–32 from Ibn Khaldun's lengths of reign, though the
+      same text says he reigned until about 1337.
+  end:
+    prop: end
+    value: { ref: people/rulers/mansa-musa@reign, edge: start, lag: 25 yr }
+    source:
+      ref: src:ibn-khaldun-histoire-des-berberes-2
+      loc: "p. 114"
+      quote: Mença-Mouça régna vingt-cinq ans
+    method: historical-account
+    note: >-
+      In English: Mansa Musa reigned twenty-five years, and at his death the rule of Mali passed
+      to his son. The pilgrimage falls within the reign on any of the dates: 724 AH by Ibn
+      Khaldun (p. 112), 1324 CE by the editor of the Tarikh es-Soudan, 1325 by Niane.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/mali-empire
+    source:
+      ref: src:ibn-khaldun-histoire-des-berberes-2
+      loc: "p. 112"
+      quote: Mença-Mouça, fils et successeur
+    note: Mansa, king of Mali.

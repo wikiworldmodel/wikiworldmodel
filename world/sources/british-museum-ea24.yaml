@@ -1,0 +1,13 @@
+id: src:british-museum-ea24
+type: database-record
+kind: compilation
+citation: The British Museum, Collection online. The Rosetta Stone, museum number EA24.
+snapshot: 2023-12-20
+container: British Museum Collection online
+url: https://web.archive.org/web/20231220021740/https://www.britishmuseum.org/collection/object/Y_EA24
+reliability: The museum's catalogue entry, with the curator's comments.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the copy archived on 20 December 2023 at web.archive.org; the museum's own site answered
+    403 from here. Quotations checked by script against its text.

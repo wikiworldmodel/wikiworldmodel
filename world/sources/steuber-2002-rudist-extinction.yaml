@@ -1,0 +1,21 @@
+id: src:steuber-2002-rudist-extinction
+type: publication
+kind: measurement
+citation: >-
+  Steuber, T., Mitchell, S.F., Buhl, D., Gunter, G. & Kasper, H.U. (2002). Catastrophic extinction
+  of Caribbean rudist bivalves at the Cretaceous-Tertiary boundary. Geology 30(11), 999–1002.
+authors:
+  - "Steuber, T."
+  - "Mitchell, S.F."
+  - "Buhl, D."
+  - "Gunter, G."
+  - "Kasper, H.U."
+published: 2002
+title: "Catastrophic extinction of Caribbean rudist bivalves at the Cretaceous-Tertiary boundary"
+container: Geology 30(11), 999–1002
+doi: 10.1130/0091-7613(2002)030<0999:CEOCRB>2.0.CO;2
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, as OpenAlex's record of the publisher's page gives it; the full text is
+    paywalled. Quotes checked by script against it. Metadata from Crossref.

@@ -1,0 +1,21 @@
+id: src:hanegraef-2026-afarensis-mandibles
+type: publication
+kind: measurement
+citation: >-
+  Hanegraef, H., David, R. & Spoor, F. (2026). Integrating mandibular evidence to assess
+  morphological variation of the Australopithecus afarensis maxilla. The Anatomical Record 309(6),
+  1483–1505.
+authors:
+  - "Hanegraef, H."
+  - "David, R."
+  - "Spoor, F."
+published: 2026
+title: "Integrating mandibular evidence to assess morphological variation of the Australopithecus afarensis maxilla"
+container: "The Anatomical Record 309(6), 1483–1505"
+doi: 10.1002/ar.70027
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC13138283): the Hadar specimens of A. afarensis dated between
+    ca. 3.42 and 2.96 Ma, after Campisano (2007), and A.L. 288-1 closer to 3.20 Ma by personal
+    communication. Quoted passages checked by script against the text retrieved.

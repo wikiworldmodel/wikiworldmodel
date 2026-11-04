@@ -1,0 +1,120 @@
+id: people/rulers/qin-shi-huang
+kind: person
+summary: >-
+  King of Qin from boyhood, who conquered the other Warring States by 221 BCE and took the new
+  title of emperor.
+author: machine:claude-code
+same_as: { wikidata: Q7192 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: king
+    label: King of Qin
+  - id: emperor
+    label: First emperor
+claims:
+  name:
+    prop: name
+    value: { en: Qin Shi Huang, zh: 秦始皇 }
+    source:
+      ref: src:shiji-wikisource
+      loc: "ch. 6, opening"
+      quote: "秦始皇帝者，秦莊襄王子也"
+  start:
+    prop: start
+    value: 259 BCE
+    source:
+      - ref: src:chavannes-1897-memoires-historiques-2
+        loc: "ch. 6, p. 100"
+        quote: La quarante-huitième année (259 av. J.-C.) du roi Tchao, de Ts'in, le premier mois, (Che-hoang) naquit à Han-tan
+      - ref: src:shiji-wikisource
+        loc: "ch. 6, opening"
+        quote: "以秦昭王四十八年正月生於邯鄲"
+    method: historical-account
+    note: >-
+      In English: he was born at Handan in the first month of the forty-eighth year of King Zhao
+      of Qin. The Western year is Chavannes'.
+  king-start:
+    prop: start
+    subject: "@king"
+    value: 247 BCE
+    source:
+      - ref: src:chavannes-1897-memoires-historiques-2
+        loc: "ch. 6, p. 100"
+        quote: Quand il fut âgé de treize ans (247 av. J.-C.)
+      - ref: src:shiji-wikisource
+        loc: "ch. 6, opening"
+        quote: "年十三歲，莊襄王死，政代立為秦王"
+    method: historical-account
+    note: >-
+      In English: at thirteen, when King Zhuangxiang died, Zheng took his place as king of Qin.
+  emperor-start:
+    prop: start
+    subject: "@emperor"
+    value: 221 BCE
+    source:
+      - ref: src:chavannes-1897-memoires-historiques-2
+        loc: "ch. 6, p. 121"
+        quote: La vingt-sixième année (221 av.
+      - ref: src:shiji-wikisource
+        loc: "ch. 6"
+        quote: "秦王初并天下"
+      - ref: src:shiji-wikisource
+        loc: "ch. 6"
+        quote: "號曰『皇帝』"
+    method: historical-account
+    note: >-
+      In English: the king of Qin first united all under heaven, and took the title huangdi,
+      emperor. The twenty-sixth year of his reign.
+  end:
+    prop: end
+    value: { lo: 22 July 210 BCE, hi: 20 August 210 BCE }
+    source:
+      - ref: src:shiji-wikisource
+        loc: "ch. 6"
+        quote: "七月丙寅，始皇崩於沙丘平臺"
+      - ref: src:chavannes-1897-memoires-historiques-2
+        loc: "ch. 6, p. 191, n. 5"
+        quote: qui correspond au 22 juillet 210
+    method: historical-account
+    note: >-
+      In English: in the seventh month, on the day bingyin, the First Emperor died at the
+      Pingtai of Shaqiu. Chavannes shows that the cycle day cannot fall in that month, which by
+      his table began on 22 July 210, and takes the day for an error (n. 5); so the record gives
+      the month, a lunar month of up to thirty days.
+  location:
+    prop: location
+    value: { lat: 36.61161, lon: 114.48937, frame: frame:earth/present-day }
+    source:
+      - ref: src:wikidata-handan
+        loc: "P625 coordinate location"
+      - ref: src:shiji-wikisource
+        loc: "ch. 6, opening"
+        quote: "生於邯鄲"
+    method: gazetteer
+    note: Marked at his birthplace, Handan, then the capital of Zhao, at the modern city.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office-king:
+    rel: held-office
+    subject: "@king"
+    to: people/polities/qin
+    source:
+      ref: src:shiji-wikisource
+      loc: "ch. 6, opening"
+      quote: "政代立為秦王"
+    note: King of Qin.
+  held-office-emperor:
+    rel: held-office
+    subject: "@emperor"
+    to: people/polities/qin
+    source:
+      ref: src:shiji-wikisource
+      loc: "ch. 6"
+      quote: "號曰『皇帝』"
+    note: Emperor of the Qin, the first to bear the title.

@@ -1,0 +1,21 @@
+id: src:dillehay-2015-monte-verde
+type: publication
+kind: measurement
+citation: >-
+  Dillehay, T.D., Ocampo, C., Saavedra, J., … & Dix, G. (2015). New Archaeological Evidence for an
+  Early Human Presence at Monte Verde, Chile. PLoS ONE 10(11), e0141923.
+authors:
+  - "Dillehay, T.D."
+  - "Ocampo, C."
+  - "Saavedra, J."
+  - "Dix, G."
+published: 2015
+title: "New Archaeological Evidence for an Early Human Presence at Monte Verde, Chile"
+container: "PLoS ONE 10(11), e0141923"
+doi: 10.1371/journal.pone.0141923
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC4651426); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

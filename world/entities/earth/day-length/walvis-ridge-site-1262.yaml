@@ -1,0 +1,52 @@
+id: earth/day-length/walvis-ridge-site-1262
+kind: sample
+summary: >-
+  The colour of the sediment in the Eocene section of Ocean Drilling Program Site 1262, Walvis Ridge, South
+  Atlantic, whose cycles give the rate of the Earth's precession by a Bayesian inversion: a day of about
+  23.8 hours.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Walvis Ridge, ODP Site 1262" }
+    source:
+      ref: src:odp-208-leg-summary
+      loc: site summaries, Site 1262
+      quote: located at the northwestern end of the Walvis Ridge drilling transect
+    note: >-
+      No location is claimed. The site's point, 27°11.15′S 1°34.62′E in the same summary, lies in plate 701's
+      polygon, which the plate model holds only at the present here, not at 55 Ma.
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:meyers-malinverno-2018-milankovitch
+      loc: Results
+      quote: Eocene reflectivity data (a*, red/green) from the Walvis Ridge
+  date:
+    prop: date
+    value: 55 Ma
+    source:
+      ref: src:meyers-malinverno-2018-milankovitch
+      loc: introduction
+      quote: the well-studied ∼55-million-year-old record from Walvis Ridge
+  day-length:
+    prop: day_length
+    value: { mean: 23.80485, sd: 0.123398 }
+    source:
+      ref: src:meyers-malinverno-2018-milankovitch
+      loc: Table 2, row "h/d", column "Walvis Ridge"
+      quote: h/d¶ 23.93447 18.684750 0.126679 23.804850 0.123398
+    note: >-
+      The posterior mean and its σ. The table marks this as the sidereal day, which today is 23.93447 h. The
+      solar day follows from 1/ts = 1/t − 1/Y: with a year of 365.24 × 24 h, 23.87 h, a difference inside the band.
+  moon-distance:
+    prop: moon_distance
+    value: { mean: 60.07, sd: 0.13 }
+    source:
+      ref: src:meyers-malinverno-2018-milankovitch
+      loc: Table 2, row "Earth–Moon distance", column "Walvis Ridge"
+      quote: Earth–Moon distance, km × 103 384.4§ 340.855800 1.293260 383.110800 0.822051
+    note: >-
+      The posterior mean and its σ, 383,110.8 ± 822.051 km. In Earth radii of 6378.1366 km (Farhat et al. 2022,
+      Table D.3): 383,110.8 / 6378.1366 = 60.07 and 822.051 / 6378.1366 = 0.13.

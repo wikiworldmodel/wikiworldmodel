@@ -1,0 +1,52 @@
+id: people/writing/anyang-oracle-bones
+kind: occurrence
+summary: >-
+  Divination records cut into turtle shell and ox bone at the Shang royal court at Anyang, under the last nine kings of the dynasty. The earliest of them, from the reign of Wu Ding, are the earliest certain
+  Chinese writing.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Oracle-bone inscriptions, Anyang" }
+    source:
+      ref: src:shaughnessy-2010-writing-china
+      loc: p. 216
+      quote: the oracle-bone inscriptions of the late thirteenth-century bc
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:shaughnessy-2010-writing-china
+      loc: p. 216
+      quote: derive from divinations performed at the royal court of the last nine kings of the Shang dynasty (ca. 1220–1050 bc)
+  location:
+    prop: location
+    value: { lat: 36.1225, lon: 114.318611, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-yinxu, loc: "Q464904, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 1250 BCE, hi: 1201 BCE }
+    source:
+      - ref: src:shaughnessy-2010-writing-china
+        loc: p. 216
+        quote: It is not until the oracle-bone inscriptions of the late thirteenth-century bc
+      - ref: src:shaughnessy-2010-writing-china
+        loc: p. 217
+        quote: King Wu Ding (reigned ca. 1220–1190 bc)
+    method: historical-account
+    note: The late 13th century, taken as its second half, for the earliest of them. The inscriptions run on with the dynasty, to about 1050 BCE by this source's dates. The book's time line says 1200.
+relations:
+  at-anyang:
+    rel: during
+    to: people/first-cities/anyang
+    source:
+      ref: src:shaughnessy-2010-writing-china
+      loc: p. 215
+      quote: the time and place of the earliest-known examples of Chinese writing

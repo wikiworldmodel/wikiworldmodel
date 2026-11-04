@@ -1,0 +1,14 @@
+id: src:british-museum-parthenon-sculptures
+type: publication
+kind: review
+citation: The British Museum. The Parthenon Sculptures. Contested objects from the collection.
+title: The Parthenon Sculptures
+url: https://web.archive.org/web/20221230192558/https://www.britishmuseum.org/about-us/british-museum-story/contested-objects-collection/parthenon-sculptures
+reliability: >-
+  The museum's own statement of its case in a dispute with Greece: reliable for its dates, and
+  partial in how it describes them.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the copy archived on 30 December 2022 at web.archive.org; the museum's own site answered
+    403 from here. Quotations checked by script against its text.

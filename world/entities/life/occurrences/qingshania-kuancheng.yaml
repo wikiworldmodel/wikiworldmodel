@@ -14,6 +14,10 @@ claims:
     prop: identified_as
     value: Qingshania magnifica
     source: { ref: src:miao-2024-qingshania, loc: "abstract" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 40.5875, lon: 118.5375, frame: frame:earth/present-day }

@@ -1,0 +1,40 @@
+id: life/taxa/borealosuchus
+kind: taxon
+summary: >-
+  A crocodyliform, B. sternbergii, called Leidyosuchus in most Hell Creek rows of the snapshot.
+same_as: { pbdb: "txn:110899" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Borealosuchus" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 110899"
+  body-plan:
+    prop: body_plan
+    value: crocodilian
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: sprawling
+    source:
+      ref: src:reilly-elias-1998-alligator-locomotion
+      loc: "abstract"
+      quote: "crocodilians occasionally use a sprawling posture"
+    note: >-
+      Of living crocodilians, as a guide to their extinct relatives. They also walk in a
+      semi-erect "high walk"; the vocabulary has no such value, and this is the nearest.
+  length-walter-2025:
+    prop: body_length
+    value: 2.29
+    source:
+      ref: src:walter-2025-crocodylian-body-size
+      loc: "Supplementary Data 2, Table S1, sheet \"Results\", row Borealosuchus_sternbergii"
+      quote: "Borealosuchus_sternbergii 18.87 120.0922741 170.5965029 170.5965029 228.436506 228.8130346 254.4119966 311.4755219 413.8128298 USNM 6533"
+    method: model
+    note: >-
+      The mean of a phylogenetic prediction from the head width of USNM 6533 (18.87 cm), 228.81
+      cm with a 95% interval of 170.60–311.48 cm. The table does not say where that specimen is
+      from; the species was named from the Ceratops beds of Wyoming (Gilmore 1910), so it may
+      not be a Hell Creek skull.

@@ -1,0 +1,21 @@
+id: people/polities/qin
+kind: polity
+summary: >-
+  The state of Qin in China, and from its conquest of the other states the Qin dynasty. Written for the rulers that hold office in it: its dates are the span of the borders dataset's rows, and its
+  land is drawn from those rows as they are, not as a territory of this record.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Qin }
+    unsourced: An editorial label, in English.
+  start:
+    prop: start
+    value: 750 BCE
+    source: { ref: src:cliopatria-0.2.1, loc: 'rows named "Qin" and "Qin Dynasty": the earliest FromYear' }
+    method: compilation
+  end:
+    prop: end
+    value: 209 BCE
+    source: { ref: src:cliopatria-0.2.1, loc: 'rows named "Qin" and "Qin Dynasty": the latest ToYear' }
+    method: compilation

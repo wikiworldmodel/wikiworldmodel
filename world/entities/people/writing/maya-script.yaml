@@ -1,0 +1,60 @@
+id: people/writing/maya-script
+kind: development/script
+summary: >-
+  The logosyllabic script of the Maya, with over three hundred signs in its Late Classic form, which can now largely be read. Its earliest examples are older and harder: on painted fragments from San Bartolo in Guatemala, where several
+  scribal hands already show an established tradition, though the language behind them is not certain. Maya writing came after Olmec and Zapotec writing.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Maya script }
+    source:
+      ref: src:palka-2010-maya-writing
+      loc: p. 225
+      quote: Late Classic Period Maya writing (ca. ad 600–800) is one of the best-understood scripts in ancient Mesoamerica.
+  start:
+    prop: start
+    value: { ref: people/writing/san-bartolo-mural-fragments }
+    source:
+      - ref: src:stuart-2022-san-bartolo
+        loc: Introduction
+        quote: this remains one of the earliest examples of Mesoamerican writing from a well-dated context
+      - ref: src:palka-2010-maya-writing
+        loc: p. 227
+        quote: The earliest-known Maya writing, which dates to 400–200 bc, appears in murals on palace walls at the site of San Bartolo, Guatemala.
+    method: radiometric/radiocarbon
+  end:
+    prop: end
+    value: unknown
+    unsourced: No source read says when the last text in the script was written. Books in the script survive from after the Spanish conquest, as Palka notes for Mesoamerica in general.
+  decipherment:
+    prop: decipherment
+    value: partly-deciphered
+    source:
+      - ref: src:palka-2010-maya-writing
+        loc: p. 225
+        quote: resulting in a great diversity in the script and its incomplete decipherment
+      - ref: src:palka-2010-maya-writing
+        loc: p. 227
+        quote: Scholars assume these texts are in a Maya language since some signs resemble later ones
+    note: Largely read in its Late Classic form, by Palka's account; its earliest texts are harder, and their language is assumed.
+  location:
+    prop: location
+    value: { lat: 17.55167, lon: -89.40889, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-san-bartolo, loc: "Q795599, P625 coordinate location" }
+    method: gazetteer
+    note: Marked at San Bartolo, where it is first attested.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-205
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  first-attestation:
+    rel: evidenced-by
+    to: people/writing/san-bartolo-mural-fragments
+    source:
+      ref: src:stuart-2022-san-bartolo
+      loc: abstract
+      quote: found among fragments of painted murals excavated at San Bartolo, Guatemala

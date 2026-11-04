@@ -1,0 +1,116 @@
+id: life/taxa/tyrannosaurus
+kind: taxon
+summary: >-
+  The giant tyrannosaurid Tyrannosaurus. A census of the Montana outcrops finds its skeletons as
+  abundant as those of Edmontosaurus in the upper Hell Creek Formation and nearly twice as
+  common in the lower third. Its sizes here are those of Sue, FMNH PR 2081, from the Hell Creek
+  of South Dakota.
+same_as: { pbdb: "txn:38613" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Tyrannosaurus", en: "Tyrannosaurus" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 38613"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: tyrannosaur
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: biped
+    source:
+      ref: src:sellers-2017-tyrannosaurus-running
+      loc: "Introduction"
+      quote: "Tyrannosaurus rex is one of the largest bipedal animals to have ever evolved"
+  length-hutchinson-2011:
+    prop: body_length
+    value: 12.29
+    source:
+      ref: src:hutchinson-2011-tyrannosaurus-dimensions
+      loc: "Table 3, row \"Sue\""
+      quote: "Sue 1.312 12.29 0.225 3.300 0.512"
+    method: survey
+    rank: preferred
+    note: >-
+      Head to tail tip on the laser scan of the mounted skeleton, the largest of the four adults
+      measured (the others 11.60–11.88 m). The paper warns that its tail, restored beyond the
+      27th caudal, may be too short. Preferred as a measurement, and of the same animal as the
+      mass preferred here.
+  length-field-museum:
+    prop: body_length
+    value: 12.8
+    source:
+      ref: src:field-museum-sue-fact-sheet
+      loc: "p. 1"
+      quote: "At 42 feet long (12.8 m.) and 12 feet high at the hips (3.66 m.)"
+    method: expert-estimate
+    note: >-
+      The museum's figure for the mounted cast of Sue.
+  length-holtz-2012:
+    prop: body_length
+    value: 12.4
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 11, Tyrannosaurines"
+      quote: "Tyrannosaurus tyrant reptile Late Cretaceous (66.8-65.5 MYA) 40.7ft (12.4 m) Elephant"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.
+  hip-field-museum:
+    prop: hip_height
+    value: 3.66
+    source:
+      ref: src:field-museum-sue-fact-sheet
+      loc: "p. 1"
+      quote: "At 42 feet long (12.8 m.) and 12 feet high at the hips (3.66 m.)"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      The mounted cast of Sue. Her leg, straightened, measures 3.30 m (Hutchinson et al. 2011,
+      Table 3), so this must run to the top of the hips rather than the hip joint. Preferred as
+      the only figure read that rests on a skeleton.
+  hip-keystone-sda-2026:
+    prop: hip_height
+    value: 4
+    source:
+      ref: src:keystone-sda-2026-t-rex-trackway
+      loc: "summary"
+      quote: "the team calculated a hip height of about four meters"
+    method: expert-estimate
+    note: >-
+      From four footprints in the Hell Creek Formation near Marmarth, North Dakota, about 66.5
+      Ma, the very place and time of the scene, but as a news report gives it. The paper
+      (Falkingham et al. 2026) could not be read: check it and replace this citation.
+  mass-hutchinson-2011:
+    prop: body_mass
+    value: 9500
+    source:
+      - ref: src:hutchinson-2011-tyrannosaurus-dimensions
+        loc: "abstract"
+        quote: "adult T. rex had body masses around 6000–8000 kg, with the largest known specimen (“Sue”) perhaps ∼9500 kg"
+      - ref: src:hutchinson-2011-tyrannosaurus-dimensions
+        loc: "Table 6, row \"Sue\""
+        quote: "Sue 9502 0.801 −0.355 18489"
+    method: model
+    rank: preferred
+    note: >-
+      From a 3D body model on the scanned skeleton: 9502 kg is the minimal model, which the
+      authors find much more plausible than the maximal one, 18489 kg. Sue's value, to match the
+      length; other adults came to 6000–8000 kg. Preferred for being built on the same skeleton.
+  mass-benson-2014:
+    prop: body_mass
+    value: 7693.65
+    source:
+      ref: src:benson-2014-dinosaur-body-mass
+      loc: "Dataset S1, sheet \"Mass estimates\", row Tyrannosaurus_rex (RSMP 2523.8)"
+      quote: "Tyrannosaurus_rex 7693.65089948708 7693.65089948708 measured circumferences"
+    method: model
+    note: >-
+      Scaled from the limb-bone circumferences of the specimen called Scotty, from Saskatchewan
+      rather than the Hell Creek Formation proper.

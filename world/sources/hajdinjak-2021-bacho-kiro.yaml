@@ -1,0 +1,21 @@
+id: src:hajdinjak-2021-bacho-kiro
+type: publication
+kind: measurement
+citation: >-
+  Hajdinjak, M., Mafessoni, F., Skov, L., … & Pääbo, S. (2021). Initial Upper Palaeolithic humans in
+  Europe had recent Neanderthal ancestry. Nature 592(7853), 253–257.
+authors:
+  - "Hajdinjak, M."
+  - "Mafessoni, F."
+  - "Skov, L."
+  - "Pääbo, S."
+published: 2021
+title: "Initial Upper Palaeolithic humans in Europe had recent Neanderthal ancestry"
+container: "Nature 592(7853), 253–257"
+doi: 10.1038/s41586-021-03335-3
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC8026394); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

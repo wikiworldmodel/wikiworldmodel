@@ -1,0 +1,26 @@
+id: src:frantz-2016-dogs
+type: publication
+kind: measurement
+citation: >-
+  Frantz, L.A., Mullin, V.E., Pionnier-Capitan, M., … & Larson, G. (2016). Genomic and
+  archaeological evidence suggest a dual origin of domestic dogs. Science 352(6290), 1228–1231.
+authors:
+  - "Frantz, L.A."
+  - "Mullin, V.E."
+  - "Pionnier-Capitan, M."
+  - "Lebrasseur, O."
+  - "Ollivier, M."
+  - "Perri, A."
+  - "Linderholm, A."
+  - "Mattiangeli, V."
+# the first eight of 29 authors
+published: 2016
+title: "Genomic and archaeological evidence suggest a dual origin of domestic dogs"
+container: "Science 352(6290), 1228–1231"
+doi: 10.1126/science.aaf3161
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from the Europe PMC record (PMID 27257259), and the author manuscript at HAL
+    (hal-01326370) read on 3 November 2026, which may differ in detail from the published text.
+    Each quote checked by script against these; citation from the Europe PMC record.

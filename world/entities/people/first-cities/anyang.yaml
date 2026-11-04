@@ -1,0 +1,99 @@
+id: people/first-cities/anyang
+kind: settlement
+summary: >-
+  The last capital of the Shang dynasty, known as Yin, whose ruins (Yinxu) lie in the modern city of Anyang in Henan, China. It grew quickly from a small residential area into a large urban
+  centre scattered over about 35 square kilometres, with a palace-temple complex and a royal cemetery, and it is where the earliest Chinese writing has been found
+  (people/writing/anyang-oracle-bones). Estimates of its population run from 30,000 to 450,000.
+author: machine:claude-code
+same_as: { wikidata: Q464904 }
+claims:
+  name:
+    prop: name
+    value: { en: Anyang }
+    source:
+      ref: src:zhang-2016-anyang-stress
+      loc: Introduction
+      quote: Its last capital, “Yin”, was unveiled in 1920s in the modern city of Anyang, Henan Province.
+    note: Labelled by the modern city, as most of the literature read does. The Shang city was Yin, and its ruins are Yinxu.
+  start-zhang:
+    prop: start
+    value: 1250 BCE
+    source:
+      - ref: src:zhang-2016-anyang-stress
+        loc: Introduction
+        quote: Yin rapidly expanded from a small residential area to a flourishing large urban centre (occupied ca. 1250–1046 B.C.)
+      - ref: src:liu-2020-anyang-metal
+        loc: Introduction
+        quote: Anyang, the last capital of dynastic Shang China (ca. 1250–1045 BCE
+    method: expert-estimate
+    rank: preferred
+    note: Preferred as the archaeologists' date for the city, against the king-list date below. Both papers give it as approximate.
+  start-unesco:
+    prop: start
+    value: 1300 BCE
+    source:
+      ref: src:unesco-whc-1114-yin-xu
+      loc: Outstanding Universal Value, brief synthesis
+      quote: moved his capital from Yan to Yin (the area around Xiaotun Village of present Anyang) around 1,300 BC
+    method: historical-account
+    note: The move of the capital by King Pan Geng.
+  end:
+    prop: end
+    value: 1046 BCE
+    source:
+      - ref: src:zhang-2016-anyang-stress
+        loc: Introduction
+        quote: Yin rapidly expanded from a small residential area to a flourishing large urban centre (occupied ca. 1250–1046 B.C.)
+      - ref: src:unesco-whc-1114-yin-xu
+        loc: description
+        quote: an ancient capital city of the late Shang Dynasty (1300 - 1046 BC)
+    method: expert-estimate
+    note: The end of the dynasty, taken for the end of the capital. Liu et al. (2020) give 1045 BCE.
+  location:
+    prop: location
+    value: { lat: 36.1225, lon: 114.318611, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-yinxu, loc: "Q464904, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area:
+    prop: settlement_area
+    value: 3500
+    valid: { lo: 1250 BCE, hi: 1046 BCE }
+    source:
+      ref: src:zhang-2016-anyang-stress
+      loc: Introduction
+      quote: this ancient capital city had scattered over 35 sq. km across the Huan River valley
+    method: expert-estimate
+    note: 35 sq. km, scattered, not a built-up area, and with no moment given. UNESCO's inscribed zones are smaller, 414 ha with a buffer of 720 ha.
+  population-modelski:
+    prop: population
+    value: 120000
+    valid: 1200 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Yin, column BC_1200" }
+    method: compilation
+    rank: preferred
+    note: >-
+      Modelski's figure, as digitized by Reba et al. (2016), also for 1300 BCE. Preferred only as the middle of a wide range, none of which could be read at first hand: Zhang
+      et al. call the number still under debate.
+  population-chandler:
+    prop: population
+    value: 30000
+    valid: 1200 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "chandlerV2.csv, row Anyang, column BC_1200" }
+    method: compilation
+    note: Chandler's figure, as digitized by Reba et al. (2016).
+  population-song:
+    prop: population
+    value: 450000
+    valid: 1046 BCE
+    source:
+      ref: src:zhang-2016-anyang-stress
+      loc: section "Archaeological Context"
+      quote: "Song [34] once estimated that urban population size could have reached 450,000 by the end of Late Shang dynasty. Although the actual number of people is still under debate"
+    method: expert-estimate
+    note: "At second hand: Zhang et al. report Song's estimate, based on oracle bone inscriptions and archaeological records, and do not adopt it."

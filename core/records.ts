@@ -129,6 +129,8 @@ export interface SearchEntry {
   summary?: string;
   time: FeatureTime;
   located: boolean;
+  /** imported in bulk: found by search, but too many to mark along the time control */
+  bulk?: boolean;
 }
 
 export interface SearchFile {
@@ -165,6 +167,8 @@ export interface SeriesRecord {
   basis: Basis;
   projectedAfter?: number;
   interpolation: string;
+  /** the series of the same quantity that this one is finer than, over part of its span */
+  refines?: string;
   /** what the lo–hi band is */
   band?: string;
   /** [year, value, lo, hi], oldest first; lo and hi are null where there is no band */
@@ -190,6 +194,8 @@ export interface CoverageFile {
     withoutLocator: number;
   };
   wanted: { ref: string; from: string[] }[];
+  /** fossil forests against the climate reconstructed for their place and time; none should be in a desert */
+  forests?: { id: string; ageMa: number; keyframeMa: number; lat: number; lon: number; climate: string | null; label: string }[];
   /** how much of each area and era rests on each basis: features per tile, by basis */
   tiles: { tile: string; bbox: [number, number, number, number]; time: [number, number]; features: Partial<Record<Basis, number>> }[];
 }

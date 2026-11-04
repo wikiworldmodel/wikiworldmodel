@@ -14,6 +14,10 @@ claims:
     prop: identified_as
     value: Sahelanthropus tchadensis n. gen. n. sp.
     source: { ref: src:pbdb/collection-59839, loc: "occurrence 570375, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 16.241667, lon: 17.475, frame: frame:earth/present-day }
@@ -46,7 +50,7 @@ claims:
 relations:
   taxon:
     rel: member-of
-    to: life/taxa/hominini
+    to: life/taxa/sahelanthropus-tchadensis
     source:
       - { ref: src:pbdb/collection-59839, loc: "occurrence 570375, accepted_name; the PBDB classification places Sahelanthropus in Hominini" }
       - { ref: src:brunet-2002-sahelanthropus, loc: "abstract" }

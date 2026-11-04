@@ -1,0 +1,17 @@
+id: src:wikidata-zachelmie
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q8064026 (Zachełmie, village in Świętokrzyskie Voivodeship, Poland), property
+  P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q8064026
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry, for a named place and not for the quarry itself.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (50.973888888889, 20.697777777778) read from the item's JSON
+    (Special:EntityData/Q8064026.json) on 4 November 2026.

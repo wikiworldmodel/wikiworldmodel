@@ -1,0 +1,21 @@
+id: src:maidment-2012-ornithischian-stance
+type: publication
+kind: measurement
+citation: >-
+  Maidment, S.C.R., Linton, D.H., Upchurch, P. & Barrett, P.M. (2012). Limb-bone scaling
+  indicates diverse stance and gait in quadrupedal ornithischian dinosaurs. PLoS ONE 7(5),
+  e36904.
+authors:
+  - "Maidment, S.C.R."
+  - "Linton, D.H."
+  - "Upchurch, P."
+  - "Barrett, P.M."
+published: 2012
+title: "Limb-bone scaling indicates diverse stance and gait in quadrupedal ornithischian dinosaurs"
+container: "PLoS ONE 7(5), e36904"
+doi: 10.1371/journal.pone.0036904
+license: CC-BY
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC3358279); quotes checked by script against it.

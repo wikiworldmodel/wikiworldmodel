@@ -1,0 +1,37 @@
+id: life/taxa/helopanoplia
+kind: taxon
+summary: >-
+  A soft-shelled turtle of the plastomenid group, H. distincta, from the latest Cretaceous of
+  Montana and North Dakota.
+same_as: { pbdb: "txn:67666" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Helopanoplia" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 67666"
+  body-plan:
+    prop: body_plan
+    value: turtle
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: sprawling
+    source:
+      ref: src:butcher-blob-2008-cooter-turtles
+      loc: "abstract"
+      quote: "their highly sprawled posture"
+    note: >-
+      Of living turtles, as a guide to their extinct relatives.
+  length-joyce-lyson-2017:
+    prop: body_length
+    value: 0.39
+    source:
+      ref: src:joyce-lyson-2017-helopanoplia
+      loc: "Description, carapace"
+      quote: "NDGS 353, the only articulated specimen, is approximately 39 cm long along the midline"
+    method: survey
+    note: >-
+      A Hell Creek specimen.

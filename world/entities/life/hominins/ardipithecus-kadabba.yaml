@@ -1,0 +1,26 @@
+id: life/taxa/ardipithecus-kadabba
+kind: taxon
+summary: >-
+  Ardipithecus kadabba, from the Late Miocene of the Middle Awash in Ethiopia: teeth and bones from
+  close to the common ancestor of chimpanzees and humans.
+same_as: { pbdb: "txn:430484", wikidata: Q134987 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Ardipithecus kadabba, la: "Ardipithecus kadabba" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:430484: Ardipithecus kadabba, Haile-Selassie et al. 2004" }
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:430484: rank 3 (species)" }
+  end:
+    prop: end
+    value: unknown
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:430484: is_extant 0" }
+    note: The species is extinct; when it died out is not recorded here.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:430484 < Ardipithecus (txn:83059) < Hominini (txn:91486)" }

@@ -1,0 +1,19 @@
+id: life/taxa/equus-caballus
+kind: taxon
+summary: >-
+  Domestic horses, as this record uses the name: the DOM2 lineage of today's horses. The same Latin
+  name is also used for wild horses of the ice ages, which are not its members here, so its start is
+  that of the oldest domestic find in the records and not the age of the species.
+same_as: { ott: 1068218 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: domestic horses, la: "Equus caballus" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "tnrs/match_names: Equus caballus, ott1068218" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott1068218 and ott244265: Equus caballus lies within Mammalia" }

@@ -1,0 +1,21 @@
+id: src:hublin-2020-bacho-kiro
+type: publication
+kind: measurement
+citation: >-
+  Hublin, J.J., Sirakov, N., Aldeias, V., … & Tsanova, T. (2020). Initial Upper Palaeolithic Homo
+  sapiens from Bacho Kiro Cave, Bulgaria. Nature 581(7808), 299–302.
+authors:
+  - "Hublin, J.J."
+  - "Sirakov, N."
+  - "Aldeias, V."
+  - "Tsanova, T."
+published: 2020
+title: "Initial Upper Palaeolithic Homo sapiens from Bacho Kiro Cave, Bulgaria"
+container: "Nature 581(7808), 299–302"
+doi: 10.1038/s41586-020-2259-z
+verified:
+  by: machine:claude-code
+  how: >-
+    Author's accepted manuscript from the Kent Academic Repository (kar.kent.ac.uk/81524) retrieved
+    as a PDF and turned into text; the abstract and the passages cited were read. Quotes checked by
+    script against that text and the abstract in Europe PMC.

@@ -1,0 +1,130 @@
+id: life/megafauna/extinction-north-america
+kind: event/extinction
+summary: >-
+  The loss of about 37 genera of large mammals from North America at the end of the Pleistocene,
+  among them mammoths, mastodons, ground sloths, camels, horses, the sabre-toothed cat and the giant
+  short-faced bear. The arrival of people, the cold of the Younger Dryas and the ecological upheaval
+  of deglaciation all fall close together, which is why the cause is so hard to settle.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Megafauna extinctions in North America }
+    unsourced: An editorial label.
+  date-faith-surovell-2009:
+    prop: date
+    value: { lo: 13800 BP, hi: 11400 BP }
+    source:
+      ref: src:faith-surovell-2009-synchronous-extinction
+      loc: abstract
+      quote: "The last appearance dates of 16 of these genera securely fall between 12,000 and 10,000 radiocarbon years ago (≈13,800–11,400 calendar years B.P.)"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      Preferred because it is the span of the last appearances themselves, as a calendar range.
+      Faith & Surovell argue that sampling error can explain why the other 19 genera lack dates this
+      young, so that all 35 went in one event; others see a drawn-out restructuring of animal and
+      plant communities, as Stewart et al. (2021) report.
+  date-surovell-2016:
+    prop: date
+    value: { lo: 13200 BP, hi: 12900 BP }
+    source:
+      ref: src:surovell-2016-overkill-test
+      loc: abstract
+      quote: "For the contiguous United States, extinction began at ca. 12,900-13,200 BP"
+    method: radiometric/radiocarbon
+    note: >-
+      When extinction began, from the spacing of direct dates on extinct genera, and only the
+      abstract was read. They find that it began roughly 13,300–15,000 BP in Beringia.
+  date-broughton-weitzel-2018:
+    prop: date
+    value: { lo: 13 ka, hi: 11.9 ka }
+    source:
+      ref: src:broughton-weitzel-2018-mixed-causes
+      loc: Results, contiguous US
+      quote: "until busts initiate between 13.0 and 11.9 ka"
+    method: radiometric/radiocarbon
+    note: >-
+      The last population busts, from summed radiocarbon dates on five taxa, a method that Stewart
+      et al. (2021) criticize.
+  location:
+    prop: location
+    value: { lat: 39, lon: -98, frame: frame:earth/present-day }
+    unsourced: A representative point on the Great Plains, chosen to place the marker; the event has no single location.
+    method: editorial
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  evidenced-by-rancho-la-brea:
+    rel: evidenced-by
+    to: life/megafauna/smilodon-rancho-la-brea
+    source:
+      ref: src:stewart-2021-north-american-megafauna
+      loc: Introduction
+      quote: "the LAD of Smilodon fatalis is, with near certainty, not derived from remains of the last living saber-tooth cat"
+    note: One last occurrence of the many behind this event, and a caution with it.
+  caused-by-people:
+    rel: caused-by
+    to: people/dispersals/americas-arrival
+    alt: alt:megafauna-causes/human-driven
+    source:
+      - ref: src:surovell-2016-overkill-test
+        loc: abstract
+        quote: "these estimates correspond well with the first significant evidence for human presence and are consistent with the predictions of the overkill hypothesis"
+      - ref: src:sandom-2014-megafauna-humans
+        loc: abstract
+        quote: "provides strong support for modern humans as the primary driver of the worldwide megafauna losses during the late Quaternary"
+    note: >-
+      Holds only in the alternative "Driven by people". The sources argue from the first significant
+      evidence of people and from global patterns, not from arrival as such: what Surovell et al.
+      compare with may be later than the first arrival this record stands for.
+  caused-by-younger-dryas:
+    rel: caused-by
+    to: life/megafauna/younger-dryas-cooling
+    alt: alt:megafauna-causes/climate-driven
+    source:
+      - ref: src:stewart-2021-north-american-megafauna
+        loc: abstract
+        quote: "there is currently no evidence for a persistent through-time relationship between human and megafauna population levels in North America. There is, however, evidence that decreases in global temperature correlated with megafauna population declines."
+      - ref: src:stewart-2021-north-american-megafauna
+        loc: Discussion
+        quote: "Final megafauna population declines leading to extinction roughly coincided with the onset of the YD"
+    note: >-
+      Holds only in the alternative "Driven by climate". In this picture the extinction falls after
+      the onset of the Younger Dryas, about 12.9 ka. O'Keefe et al. (2023, abstract) date seven
+      species' disappearance at Rancho La Brea, California, just before it, and tie that to fire in
+      a drying, warming land, with mounting human impacts as a possible catalyst, which does not fit
+      this reading. Cooper et al. (2015, Science 349, 602–606) and others blame the warming before
+      it instead.
+  both-people:
+    rel: caused-by
+    to: people/dispersals/americas-arrival
+    alt: alt:megafauna-causes/both
+    source:
+      - ref: src:broughton-weitzel-2018-mixed-causes
+        loc: abstract
+        quote: "In three cases, extinctions appear linked to hunting, while in five others they are consistent with the ecological effects of climate change and in a final case, both hunting and climate change appear responsible."
+      - ref: src:barnosky-2004-pleistocene-extinctions
+        loc: "p. 71"
+        quote: "Thus, in mid-latitudes of the Northern Hemisphere, extinction was most pronounced where climatic change and new (North America) or potentially increased (Eurasia) human impacts hit simultaneously."
+    note: >-
+      Holds only in the alternative "People and climate together". Broughton & Weitzel read it case
+      by case: hunting for mammoth, horse and sabre-toothed cat across the contiguous United States,
+      climate for mastodon and Shasta ground sloth.
+  both-younger-dryas:
+    rel: caused-by
+    to: life/megafauna/younger-dryas-cooling
+    alt: alt:megafauna-causes/both
+    source:
+      - ref: src:broughton-weitzel-2018-mixed-causes
+        loc: abstract
+        quote: "they are consistent with the ecological effects of climate change"
+      - ref: src:barnosky-2004-pleistocene-extinctions
+        loc: "p. 71"
+        quote: "Published accounts suggest that at least 15 species became extinct near the start of or during the Younger Dryas climate event"
+    note: Holds only in the alternative "People and climate together".

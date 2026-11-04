@@ -1,0 +1,31 @@
+id: src:prufer-2021-zlaty-kun
+type: publication
+kind: measurement
+citation: >-
+  Prüfer, K., Posth, C., Yu, H., Stoessel, A., Spyrou, M.A., Deviese, T., Mattonai, M., Ribechini,
+  E., Higham, T., Velemínský, P., Brůžek, J. & Krause, J. (2021). A genome sequence from a modern
+  human skull over 45,000 years old from Zlatý kůň in Czechia. Nature Ecology & Evolution 5(6),
+  820–825.
+authors:
+  - "Prüfer, K."
+  - "Posth, C."
+  - "Yu, H."
+  - "Stoessel, A."
+  - "Spyrou, M.A."
+  - "Deviese, T."
+  - "Mattonai, M."
+  - "Ribechini, E."
+  - "Higham, T."
+  - "Velemínský, P."
+  - "Brůžek, J."
+  - "Krause, J."
+published: 2021
+title: "A genome sequence from a modern human skull over 45,000 years old from Zlatý kůň in Czechia"
+container: "Nature Ecology & Evolution 5(6), 820–825"
+doi: 10.1038/s41559-021-01443-x
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC8175239); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

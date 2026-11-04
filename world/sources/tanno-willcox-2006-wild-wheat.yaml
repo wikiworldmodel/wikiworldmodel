@@ -1,0 +1,18 @@
+id: src:tanno-willcox-2006-wild-wheat
+type: publication
+kind: measurement
+citation: >-
+  Tanno, K. & Willcox, G. (2006). How fast was wild wheat domesticated? Science 311(5769),
+  1886.
+authors:
+  - "Tanno, K."
+  - "Willcox, G."
+published: 2006
+title: "How fast was wild wheat domesticated?"
+container: "Science 311(5769), 1886"
+doi: 10.1126/science.1124635
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read from the Europe PMC record (PMID 16574859); the full text was not read.
+    Each quote checked by script against the abstract; citation from the same record.

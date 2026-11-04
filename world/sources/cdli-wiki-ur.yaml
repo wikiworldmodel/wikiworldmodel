@@ -1,0 +1,13 @@
+id: src:cdli-wiki-ur
+type: database-record
+kind: review
+snapshot: "2026-11-04"
+citation: >-
+  Cuneiform Digital Library Initiative, CDLI Wiki: "Ur (modern Tell Muqayyar)".
+title: Ur (modern Tell Muqayyar)
+container: CDLI Wiki
+url: https://cdli.ox.ac.uk/wiki/ur_mod._tell_muqayyar
+reliability: A short reference article in a scholarly project's wiki, without notes.
+verified:
+  by: machine:claude-code
+  how: Page read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

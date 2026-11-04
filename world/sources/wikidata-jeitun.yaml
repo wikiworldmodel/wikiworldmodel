@@ -1,0 +1,17 @@
+id: src:wikidata-jeitun
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q420194 (Jeitun), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q420194
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "archaeological site of the Neolithic period in
+  Turkmenistan". A point for the named place, of uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (38.187848, 58.349136) read from the item's JSON
+    (Special:EntityData/Q420194.json) on 3 November 2026.

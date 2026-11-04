@@ -1,0 +1,26 @@
+id: life/taxa/australopithecus-africanus
+kind: taxon
+summary: >-
+  Australopithecus africanus Dart 1925, the australopith of South Africa's caves, to which most of
+  the fossils from Sterkfontein and Makapansgat have been assigned.
+same_as: { pbdb: "txn:83066", wikidata: Q239272 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Australopithecus africanus, la: "Australopithecus africanus" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83066: Australopithecus africanus, Dart 1925" }
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83066: rank 3 (species)" }
+  end:
+    prop: end
+    value: unknown
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83066: is_extant 0" }
+    note: The species is extinct; when it died out is not recorded here.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83066 < Australopithecus (txn:40900) < Hominini (txn:91486)" }

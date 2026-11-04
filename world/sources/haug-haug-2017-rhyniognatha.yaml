@@ -1,0 +1,19 @@
+id: src:haug-haug-2017-rhyniognatha
+type: publication
+kind: measurement
+citation: >-
+  Haug, C. & Haug, J.T. (2017). The presumed oldest flying insect: more likely a myriapod?.
+  PeerJ 5, e3402.
+authors:
+  - "Haug, C."
+  - "Haug, J.T."
+published: 2017
+title: "The presumed oldest flying insect: more likely a myriapod?"
+container: PeerJ 5, e3402
+doi: 10.7717/peerj.3402
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC5452959) read via Europe PMC (fullTextXML): a restudy of the one specimen of
+    Rhyniognatha hirsti, read as more likely a myriapod than an insect. Quotes checked by
+    script against that text. Metadata from Crossref.

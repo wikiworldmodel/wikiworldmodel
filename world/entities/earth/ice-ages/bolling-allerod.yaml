@@ -1,0 +1,59 @@
+id: earth/ice-ages/bolling-allerod
+kind: period
+summary: >-
+  The warm interval in the middle of the last deglaciation: an abrupt warming in Greenland and Europe
+  and a jump in sea level, ended by the cold of the Younger Dryas.
+author: machine:claude-code
+same_as: { wikidata: Q3648041 }
+claims:
+  name:
+    prop: name
+    value: { en: Bølling–Allerød }
+    source: { ref: src:clark-2012-last-deglaciation, loc: "Fig. 2 caption" }
+  start-rasmussen-2006:
+    prop: start
+    value: { mean: 14642 BP, sd: 93 yr }
+    source:
+      - ref: src:rasmussen-2006-gicc05
+        loc: "Table 4"
+        quote: Onset Bølling 1604.64 14,692 186
+      - ref: src:rasmussen-2006-gicc05
+        loc: abstract
+        quote: The transition from the glacial into the Bølling interstadial is dated to 14,692 b2k.
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Annual layers counted in the NGRIP ice core, on the GICC05 chronology, in Greenland. The source
+      counts from 2000: 14,692 b2k is 14,642 BP. Its maximum counting error of 186 yr is read as 2σ, as
+      Cheng et al. (2020) read GICC05's, so the sd is 93 yr.
+  start-deschamps-2012:
+    prop: start
+    value: 14.6 ka
+    source:
+      ref: src:deschamps-2012-meltwater-pulse-1a
+      loc: title
+      quote: Ice-sheet collapse and sea-level rise at the Bølling warming 14,600 years ago
+    method: expert-estimate
+    note: A round figure in a title, for a warming the paper finds coeval with the jump in sea level.
+relations:
+  before-the-younger-dryas:
+    rel: before
+    to: earth/ice-ages/younger-dryas
+    lag: 0 yr
+    source:
+      - ref: src:clark-2012-last-deglaciation
+        loc: "Results, Deep-Ocean Changes"
+        quote: renewed production of NADW at the start of the Bølling–Allerød, followed by a subsequent decrease during the Younger Dryas
+      - ref: src:rasmussen-2014-intimate-stratigraphy
+        loc: "Section 4.4"
+        quote: to the Younger Dryas stadial) which was designated GS-1 while the preceding interstadial (corresponding roughly to
+    note: >-
+      The Bølling–Allerød ends where the Younger Dryas starts, so its end is not written here but follows
+      from that record. Rasmussen et al. call them the interstadial GI-1 and the stadial GS-1 that follows.
+  part-of-the-deglaciation:
+    rel: part-of
+    to: earth/ice-ages/last-deglaciation
+    source:
+      ref: src:clark-2012-last-deglaciation
+      loc: "Fig. 2 caption, on the records of the last deglaciation"
+      quote: LGM, Last Glacial Maximum; OD, Oldest Dryas; BA, Bølling–Allerød; ACR, Antarctic Cold Reversal; YD, Younger Dryas.

@@ -1,0 +1,21 @@
+id: src:prokop-2026-eubleptus
+type: publication
+kind: measurement
+citation: >-
+  Prokop, J., Daňková, K., Sampson, L. & Sroka, P. (2026). The thorax of Eubleptus illuminates
+  evolutionary history of winged insects. iScience 29(8), 116838.
+authors:
+  - "Prokop, J."
+  - "Daňková, K."
+  - "Sampson, L."
+  - "Sroka, P."
+published: 2026
+title: "The thorax of Eubleptus illuminates evolutionary history of winged insects"
+container: iScience 29(8), 116838
+doi: 10.1016/j.isci.2026.116838
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC13451799) read via Europe PMC (fullTextXML), for the statement that
+    Palaeodictyopterida, among the earliest winged insects, have their earliest record about
+    325 million years ago. Quotes checked by script against that text. Metadata from Crossref.

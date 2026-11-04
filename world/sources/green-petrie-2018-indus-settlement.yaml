@@ -1,0 +1,18 @@
+id: src:green-petrie-2018-indus-settlement
+type: publication
+kind: measurement
+citation: >-
+  Green, A.S. & Petrie, C.A. (2018). Landscapes of Urbanization and De-Urbanization: A Large-Scale Approach to Investigating
+  the Indus Civilization's Settlement Distributions in Northwest India. Journal of Field Archaeology 43(4), 284–299.
+authors:
+  - "Green, A.S."
+  - "Petrie, C.A."
+published: 2018
+title: "Landscapes of Urbanization and De-Urbanization: A Large-Scale Approach to Investigating the Indus Civilization's Settlement Distributions in Northwest India"
+container: Journal of Field Archaeology
+doi: 10.1080/00934690.2018.1464332
+url: https://europepmc.org/article/PMC/PMC7665814
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC7665814). Quotes checked by script against it, after normalizing whitespace.

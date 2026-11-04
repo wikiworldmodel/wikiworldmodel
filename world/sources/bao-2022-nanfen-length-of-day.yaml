@@ -1,0 +1,26 @@
+id: src:bao-2022-nanfen-length-of-day
+type: publication
+kind: measurement
+citation: >-
+  Bao, X., Zhao, H., Zhang, S., Li, X., Tan, W., Li, C., Wu, H., Li, H. & Yang, T. (2022). Length of
+  day at c. 1.1 Ga based on cyclostratigraphic analyses of the Nanfen Formation in the North China
+  craton, and its geodynamic implications. Journal of the Geological Society 180(1), jgs2022-022.
+authors:
+  - "Bao, X."
+  - "Zhao, H."
+  - "Zhang, S."
+  - "Li, X."
+  - "Tan, W."
+  - "Li, C."
+  - "Wu, H."
+  - "Li, H."
+  - "Yang, T."
+published: 2022
+title: Length of day at c. 1.1 Ga based on cyclostratigraphic analyses of the Nanfen Formation in the North China craton, and its geodynamic implications
+container: Journal of the Geological Society 180(1), jgs2022-022
+doi: 10.1144/jgs2022-022
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, from OpenAlex's record of this DOI; the publisher's page was not reachable.
+    Quotes checked by script against that abstract. Metadata from Crossref.

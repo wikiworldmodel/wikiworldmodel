@@ -1,0 +1,52 @@
+id: people/writing/abydos-tomb-u-j
+kind: occurrence
+summary: >-
+  The inscribed finds from Tomb U-j at Umm el-Qa'ab, Abydos, a large "proto-royal" tomb of the Naqada III period: small incised bone tags, once tied to goods, and large signs painted in ink on pots.
+  They are the earliest evidence of writing in Egypt.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Tomb U-j tags and dipinti, Abydos" }
+    unsourced: An editorial label, from the finds and the place.
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:stauder-2010-earliest-egyptian-writing
+      loc: p. 138
+      quote: "Possible writing is found both in large painted forms on vessels"
+    note: Stauder goes on to the small incised bone tags, and he calls the material an incipient form of writing.
+  location:
+    prop: location
+    value: { lat: 26.174912, lon: 31.907992, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-umm-el-qaab, loc: "place 438681814, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date-radiocarbon:
+    prop: date
+    value: 3320 BCE
+    source:
+      - ref: src:macarthur-2010-egyptian-writing
+        loc: p. 119
+        quote: Tomb U-j, which dates to ca. 3320 bc
+      - ref: src:macarthur-2010-egyptian-writing
+        loc: p. 121, n. 4
+        quote: The dating of Tomb U-j is determined using calibrated radiocarbon dating; see Boehmer, Dreyer, and Kromer 1993, pp. 63–68. These dates, however, have been called into question (Hendrickx 2006, p. 91).
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: The usual date, from radiocarbon, given without uncertainty. MacArthur uses it while noting that it is questioned. The radiocarbon papers themselves were not read.
+  date-lower:
+    prop: date
+    value: 3200 BCE
+    source:
+      ref: src:stauder-2010-earliest-egyptian-writing
+      loc: p. 147, n. 12
+      quote: For a lower date (ca. 3200 bc), see, for example, Joffe 2000, pp. 113–14, n. 4.
+    method: expert-estimate
+    note: "A lower date, at second hand: Joffe (2000) was not read."

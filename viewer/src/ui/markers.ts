@@ -4,7 +4,7 @@
 import { rotate, unitVector, type Quat } from '../../../core/quat.ts';
 import { lookup, type Scenario } from '../../../core/scenario.ts';
 import { PRESENT_YEAR } from '../../../core/time.ts';
-import type { Basis, Feature, FeatureTime } from '../../../core/tileset.ts';
+import { placeAt, type Basis, type Feature, type FeatureTime } from '../../../core/tileset.ts';
 import type { Camera } from '../camera.ts';
 import type { V3 } from '../mat.ts';
 
@@ -18,12 +18,19 @@ export interface MarkerContext {
   plateRotation: (plate: number) => Quat;
   /** whether the frames say where a plate is at time t; where they don't, its markers are hidden */
   placed: (plate: number) => boolean;
+  /** records lit up by the group chosen in the tree of life: shown at any time, and marked */
+  lit?: ReadonlySet<string> | null;
 }
 
 const KIND_CLASS_PREFIX: [string, string][] = [
   ['event/', 'event'],
   ['occurrence', 'fossil'],
   ['sample', 'structure'],
+  ['artefact', 'artefact'],
+  ['industry', 'artefact'],
+  ['script', 'artefact'],
+  ['development', 'development'],
+  ['person', 'person'],
   ['large-igneous-province', 'lip'],
 ];
 
@@ -93,26 +100,43 @@ export class Markers {
 
   update(features: Feature[], camera: Camera, ctx: MarkerContext): void {
     const seen = new Set<string>();
-    const boxes: { x0: number; y0: number; x1: number; y1: number }[] = [];
     const placed: { f: Feature; x: number; y: number; vis: number; t: FeatureTime }[] = [];
     for (const f of features) {
       const time = timeFor(f, ctx.scenario);
-      const vis = visibility(time, ctx.t, ctx.halo, ctx.evidence);
+      const lit = !!ctx.lit?.has(f.id);
+      const vis = Math.max(visibility(time, ctx.t, ctx.halo, ctx.evidence), lit ? 0.45 : 0);
       if (vis <= 0.01) continue;
-      if (f.plate && !ctx.placed(f.plate)) continue;
-      const q = f.plate ? ctx.plateRotation(f.plate) : ([1, 0, 0, 0] as Quat);
-      const p = rotate(q, unitVector(f.location.lat, f.location.lon)) as V3;
+      // A thing that moved is where it was at the time shown.
+      const here = placeAt(f, ctx.t, (m) => lookup(m.variants, ctx.scenario, m.time));
+      if (here.plate && !ctx.placed(here.plate)) continue;
+      const q = here.plate ? ctx.plateRotation(here.plate) : ([1, 0, 0, 0] as Quat);
+      const p = rotate(q, unitVector(here.location.lat, here.location.lon)) as V3;
       const s = camera.project(p);
       if (!s.visible) continue;
       placed.push({ f, x: s.x, y: s.y, vis, t: time });
     }
-    // Dots that land on top of each other (an event and the structure it made) fan out
-    // downwards; labels go right of the dot, nudged down until they don't overlap.
+    // Dots that land on top of each other (an event and the structure it made) fan out downwards,
+    // a little: past that they stay where they are, and coming closer separates them.
     placed.sort((a, b) => a.y - b.y || a.x - b.x || (a.f.id < b.f.id ? -1 : 1));
     const dots: { x: number; y: number }[] = [];
     for (const m of placed) {
-      while (dots.some((d) => Math.abs(d.x - m.x) < 13 && Math.abs(d.y - m.y) < 13)) m.y += 17;
+      for (let i = 0; i < 3 && dots.some((d) => Math.abs(d.x - m.x) < 13 && Math.abs(d.y - m.y) < 13); i++) m.y += 17;
       dots.push({ x: m.x, y: m.y });
+    }
+    // Labels go right of the dot, a line down or up to keep clear of other labels and dots. What is
+    // chosen goes first, then what began nearest the time shown; what finds no room is a dot alone,
+    // which names itself when the pointer is on it.
+    const boxes = dots.map((d) => ({ x0: d.x - 7, y0: d.y - 7, x1: d.x + 7, y1: d.y + 7 }));
+    const rank = (m: (typeof placed)[number]) => (ctx.selected === m.f.id ? -2 : ctx.lit?.has(m.f.id) ? -1 : Math.abs(ctx.t - (m.t.start.best ?? -Infinity)));
+    const nudge = new Map<string, number | null>();
+    for (const [m] of placed.map((m) => [m, rank(m)] as const).sort((a, b) => (a[1] < b[1] ? -1 : a[1] > b[1] ? 1 : a[0].f.id < b[0].f.id ? -1 : 1))) {
+      const w = 8 + labelAt(m.f, ctx.t).length * 6.6;
+      const free = [0, 16, -16].find((dy) => {
+        const box = { x0: m.x + 8, y0: m.y - 9 + dy, x1: m.x + 14 + w, y1: m.y + 9 + dy };
+        return !boxes.some((b) => b.x0 < box.x1 && box.x0 < b.x1 && b.y0 < box.y1 && box.y0 < b.y1);
+      });
+      nudge.set(m.f.id, free ?? (ctx.selected === m.f.id ? 0 : null));
+      if (free !== undefined) boxes.push({ x0: m.x + 8, y0: m.y - 9 + free, x1: m.x + 14 + w, y1: m.y + 9 + free });
     }
     for (const m of placed) {
       seen.add(m.f.id);
@@ -134,20 +158,13 @@ export class Markers {
       const text = labelAt(m.f, ctx.t);
       if (label.textContent !== text) label.textContent = text;
       node.setAttribute('aria-label', `${text} (${m.f.kind})`);
-      const w = 8 + text.length * 6.6;
-      let dy = 0;
-      for (let i = 0; i < 6; i++) {
-        const box = { x0: m.x, y0: m.y - 9 + dy, x1: m.x + 14 + w, y1: m.y + 9 + dy };
-        if (!boxes.some((b) => b.x0 < box.x1 && box.x0 < b.x1 && b.y0 < box.y1 && box.y0 < b.y1)) {
-          boxes.push(box);
-          break;
-        }
-        dy += 16;
-      }
+      const dy = nudge.get(m.f.id) ?? null;
+      node.classList.toggle('quiet', dy === null);
       label.style.transform = dy ? `translateY(${dy}px)` : '';
       node.style.transform = `translate(${m.x.toFixed(1)}px, ${m.y.toFixed(1)}px)`;
       node.style.opacity = String(Math.max(0.15, m.vis));
       node.classList.toggle('selected', ctx.selected === m.f.id);
+      node.classList.toggle('lit', !!ctx.lit?.has(m.f.id));
       node.classList.toggle('derived', ctx.evidence && (m.t.start.derived || m.t.end.derived));
       node.classList.toggle('proposed', ctx.evidence && m.f.status === 'proposed');
       const basis = basisAt(m.f, ctx.t);

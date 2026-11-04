@@ -1,0 +1,21 @@
+id: src:niedzwiedzki-2010-zachelmie
+type: publication
+kind: measurement
+citation: >-
+  Niedźwiedzki, G., Szrek, P., Narkiewicz, K., Narkiewicz, M. & Ahlberg, P.E. (2010). Tetrapod
+  trackways from the early Middle Devonian period of Poland. Nature 463(7277), 43–48.
+authors:
+  - "Niedźwiedzki, G."
+  - "Szrek, P."
+  - "Narkiewicz, K."
+  - "Narkiewicz, M."
+  - "Ahlberg, P.E."
+published: 2010
+title: "Tetrapod trackways from the early Middle Devonian period of Poland"
+container: Nature 463(7277), 43–48
+doi: 10.1038/nature08623
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 20054388); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

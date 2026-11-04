@@ -1,0 +1,17 @@
+id: src:wikidata-botai
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q279792 (Botai culture), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q279792
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "archaeological culture 3700 BC - 3100 BC". A point for the
+  named place, of uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (53.303, 67.645) read from the item's JSON (Special:EntityData/Q279792.json) on
+    3 November 2026.

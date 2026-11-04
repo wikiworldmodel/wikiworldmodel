@@ -1,0 +1,90 @@
+id: gen:life/scene
+type: generator
+title: A living scene on a river's floodplain
+version: 1
+code: generators/life/scene/v1.ts
+runs_in: [build, client]
+outputs: { basis: procedural }
+inputs: []
+slots:
+  hell-creek:
+    place: The floodplain of the Hell Creek, at the slice its scene describes
+    seed: life/hell-creek
+# Nothing below is a claim about the Hell Creek. The numbers say how this generator lays out a
+# floodplain and what lives on it: how wide its river is drawn, how many animals a row of the
+# snapshot stands for. Which taxa, and how big they grew, come from the records.
+params:
+  site:
+    id: hell-creek
+    label: the Hell Creek
+    ecosystem: life/hell-creek/ecosystem
+    snapshot: src:pbdb-hell-creek-2026-11-04
+    # About the middle of the formation's time.
+    slice: 66.5 Ma
+    window: [68 Ma, 65 Ma]
+  ground:
+    # Towards the seaway, on the globe's reconstruction, in degrees of bearing as radians.
+    flow: 1.75
+    width: 86
+    depth: 5.5
+    wavelength: 1500
+    swing: 1.25
+    bank: [10, 70]
+    rise: 2.6
+    roughness: 0.8
+    size: 420
+    levee: [0.9, 70]
+    oxbows: 18
+    oxbow_radius: [170, 420]
+    oxbow_width: 54
+    ponds: 26
+    pond_radius: [30, 120]
+    blend: [20000, 34000]
+    lowest_water: 12
+  cover:
+    patch: 640
+    glade: 0.41
+    forest_by_climate:
+      rainforest: 1
+      savanna: 0.45
+      temperate: 0.95
+      cold: 0.8
+      steppe: 0.15
+      desert: 0
+      tundra: 0
+      ice: 0
+    clearing: 150
+    bare: 0.62
+  plants:
+    trees: [84, 16]
+    falloff: [900, 4200]
+    ferns: 420
+    ferns_reach: 720
+    mat_radius: 2.4
+    mats: 42
+    plans:
+      conifer: { weight: 0.7, wet: 2.4 }
+      broadleaf: { weight: 1.5, wet: -0.9 }
+      palm: { weight: 1.2, wet: 0.1 }
+      fern: { weight: 1, wet: 0.4 }
+  animals:
+    near_share: 0.5
+    near_radius: 340
+    front_length: 1.2
+    # The small-mammal kit's body, head and all, at the density of water, for its length with a long tail.
+    mass_length: { small-mammal: 14 }
+    plans:
+      ceratopsian: { per_row: 0.34, group: [1, 5], habitat: open, poses: [graze, graze, stand, walk, alert] }
+      tyrannosaur: { per_row: 0.1, group: [1, 2], habitat: any, poses: [walk, stand, alert] }
+      hadrosaur: { per_row: 0.8, group: [4, 14], habitat: open, poses: [graze, graze, walk, stand, alert] }
+      ankylosaur: { per_row: 0.5, group: [1, 1], habitat: open, poses: [graze, walk, stand] }
+      pachycephalosaur: { per_row: 0.24, group: [1, 3], habitat: any, poses: [stand, walk, graze, alert] }
+      ornithopod: { per_row: 0.5, group: [1, 4], habitat: any, poses: [stand, walk, graze, alert] }
+      small-theropod: { per_row: 0.6, group: [1, 3], habitat: any, poses: [stand, walk, alert] }
+      crocodilian: { per_row: 0.2, group: [1, 3], habitat: edge, poses: [rest, rest, stand] }
+      turtle: { per_row: 0.34, group: [1, 3], habitat: edge, poses: [rest, walk] }
+      small-mammal: { per_row: 0.5, group: [1, 2], habitat: forest, poses: [stand, walk] }
+  view:
+    range: 74
+    turn: 0.3
+    tilt: 81

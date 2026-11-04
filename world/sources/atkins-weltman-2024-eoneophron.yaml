@@ -1,0 +1,22 @@
+id: src:atkins-weltman-2024-eoneophron
+type: publication
+kind: measurement
+citation: >-
+  Atkins-Weltman, K.L., Simon, D.J., Woodward, H.N., Funston, G.F. & Snively, E. (2024). A new
+  oviraptorosaur (Dinosauria: Theropoda) from the end-Maastrichtian Hell Creek Formation of
+  North America. PLoS ONE 19(1), e0294901.
+authors:
+  - "Atkins-Weltman, K.L."
+  - "Simon, D.J."
+  - "Woodward, H.N."
+  - "Funston, G.F."
+  - "Snively, E."
+published: 2024
+title: "A new oviraptorosaur (Dinosauria: Theropoda) from the end-Maastrichtian Hell Creek Formation of North America"
+container: "PLoS ONE 19(1), e0294901"
+doi: 10.1371/journal.pone.0294901
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC10807829); quotes checked by script against it.

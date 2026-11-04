@@ -1,0 +1,77 @@
+id: people/rulers/didius-julianus
+kind: person
+summary: >-
+  A rich senator who outbid his rival at the praetorian camp for the throne after the murder of
+  Pertinax, and was killed when Severus neared Rome.
+author: machine:claude-code
+same_as: { wikidata: Q1440 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Didius Julianus }
+    source:
+      ref: src:historia-augusta
+      loc: "Didius Julianus 1.1"
+      quote: Didius Julianus, who gained possession of the empire after Pertinax
+  start-dio:
+    prop: start
+    value: 133 CE
+    source:
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 74, 17.5, vol. 9 p. 159"
+        quote: He had lived sixty years, four months, and the same number of days
+      - ref: src:historia-augusta
+        loc: "Magie's note to Didius Julianus 9.3"
+        quote: accordingly, he was born in 133
+    method: historical-account
+    rank: preferred
+    note: Dio knew him; Magie takes Dio's age as the more correct.
+  start-ha:
+    prop: start
+    value: 137 CE
+    source:
+      ref: src:historia-augusta
+      loc: "Didius Julianus 9.3"
+      quote: He lived fifty-six years and four months
+    method: historical-account
+    note: Fifty-six years and four months before June 193 is early 137.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/pertinax, edge: end }
+    source:
+      ref: src:historia-augusta
+      loc: "Didius Julianus 1.1"
+      quote: who gained possession of the empire after Pertinax
+    method: historical-account
+    note: The auction at the camp followed Pertinax's death on the same day (Dio 74.11).
+  end:
+    prop: end
+    value: { ref: people/rulers/didius-julianus@reign, edge: start, lag: { lo: 65 days, hi: 66 days } }
+    source:
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 74, 17.5, vol. 9 p. 159"
+        quote: out of which he had reigned sixty-six days
+      - ref: src:historia-augusta
+        loc: "Magie's note to Didius Julianus 9.3"
+        quote: Accordingly, he was killed on 1st June, 193
+      - ref: src:historia-augusta
+        loc: "Didius Julianus 9.3"
+        quote: He ruled two months and five days
+    method: historical-account
+    note: Sixty-six days counted from the day of his accession end on 1 or 2 June 193.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 74, 17.5, vol. 9 p. 159"
+      quote: out of which he had reigned sixty-six days
+    note: Emperor.

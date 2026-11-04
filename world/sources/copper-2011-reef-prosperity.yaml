@@ -1,0 +1,18 @@
+id: src:copper-2011-reef-prosperity
+type: publication
+kind: review
+citation: >-
+  Copper, P. (2011). 100 million years of reef prosperity and collapse: Ordovician to Devonian
+  interval. The Paleontological Society Papers 17, 15–32.
+authors:
+  - "Copper, P."
+published: 2011
+title: "100 million years of reef prosperity and collapse: Ordovician to Devonian interval"
+container: The Paleontological Society Papers 17, 15–32
+doi: 10.1017/S1089332600002424
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

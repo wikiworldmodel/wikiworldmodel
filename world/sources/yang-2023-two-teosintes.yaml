@@ -1,0 +1,25 @@
+id: src:yang-2023-two-teosintes
+type: publication
+kind: measurement
+citation: >-
+  Yang, N., Wang, Y., Liu, X., … & Ross-Ibarra, J. (2023). Two teosintes made modern maize.
+  Science 382(6674), eadg8940.
+authors:
+  - "Yang, N."
+  - "Wang, Y."
+  - "Liu, X."
+  - "Jin, M."
+  - "Vallebueno-Estrada, M."
+  - "Calfee, E."
+  - "Chen, L."
+  - "Dilkes, B.P."
+# the first eight of 30 authors
+published: 2023
+title: "Two teosintes made modern maize"
+container: "Science 382(6674), eadg8940"
+doi: 10.1126/science.adg8940
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read from the Europe PMC record (PMID 38033071); the full text was not read.
+    Each quote checked by script against the abstract; citation from the same record.

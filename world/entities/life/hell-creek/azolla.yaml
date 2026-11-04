@@ -1,0 +1,39 @@
+id: life/taxa/azolla
+kind: taxon
+summary: >-
+  A tiny floating water fern. The Hell Creek rows of the snapshot name several species.
+same_as: { pbdb: "txn:55880" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Azolla", en: "mosquito fern" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 55880"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: fern
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: floating
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 2-3, s.v. Azolla"
+      quote: "Plants usually very small, floating."
+  height-flora-of-north-america:
+    prop: plant_height
+    value: 0.05
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 2, s.v. Azolla"
+      quote: "Stems prostrate, 1--3 cm, or nearly erect, 3--5 cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living Azolla, its stems at their tallest, nearly erect at 5 cm: a modern relative. It
+      lies on the water rather than stands.

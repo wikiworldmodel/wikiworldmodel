@@ -1,0 +1,146 @@
+id: people/objects/cleopatras-needle-new-york
+kind: artefact/moved
+summary: >-
+  One of a pair of obelisks that Thutmose III set up at Heliopolis. The Romans moved the pair to
+  Alexandria under Augustus and set them before the Caesareum; this one went to New York under
+  Henry Gorringe in 1880 and has stood in Central Park since January 1881.
+author: machine:claude-code
+same_as: { wikidata: Q23889503 }
+phases:
+  - id: heliopolis
+    label: Heliopolis
+  - id: alexandria
+    label: Caesareum, Alexandria
+  - id: voyage
+    label: On the voyage to New York
+    gap: true
+  - id: central-park
+    label: Central Park, New York
+claims:
+  name:
+    prop: name
+    value: { en: "Cleopatra's Needle (New York)" }
+    source: { ref: src:nyc-parks-egyptian-obelisk, loc: paragraph 1, quote: "Nicknamed Cleopatra’s Needle soon after its installation" }
+    note: >-
+      Gorringe says the name was already used of it in Alexandria. It is told apart here from its pair
+      in London, which has the same name.
+  heliopolis-start:
+    prop: start
+    subject: "@heliopolis"
+    value: { lo: 1479 BCE, hi: 1425 BCE }
+    source:
+      - ref: src:nyc-parks-egyptian-obelisk
+        loc: paragraph 1
+        quote: "Thutmosis III, an Egyptian pharaoh who ruled from 1479-1425 B.C., had a pair of obelisks made to celebrate his third jubilee (30th year of reign)."
+      - ref: src:met-crab-from-cleopatras-needle
+        loc: description
+        quote: "Thutmose III erected the obelisk about 1443 B.C. in Heliopolis, now part of modern Cairo."
+    method: historical-account
+    note: >-
+      The reign of Thutmose III. The Metropolitan Museum's "about 1443 B.C." lies within it. Gorringe's
+      plaque text, "the sixteenth century B.C.", follows the chronology of his day.
+  heliopolis-location:
+    prop: location
+    subject: "@heliopolis"
+    value: { lat: 30.129404, lon: 31.307481, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-heliopolis, loc: "place 727117, representative point" }
+    method: gazetteer
+  heliopolis-frame:
+    prop: frame
+    subject: "@heliopolis"
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  alexandria-start-budge-1926:
+    prop: start
+    subject: "@alexandria"
+    value: { lo: 13 BCE, hi: 12 BCE }
+    source:
+      - ref: src:budge-1926-cleopatras-needles
+        loc: p. 166
+        quote: "where they were set up before the great temple in the 18th year of Augustus Caesar's reign, t.e. 13-12 B.C."
+      - ref: src:budge-1926-cleopatras-needles
+        loc: p. 166
+        quote: "Anno XVIII Caesaris Barbarus praefectus | Aegypti posuit architectante Pontio"
+      - ref: src:met-crab-from-cleopatras-needle
+        loc: description
+        quote: "Both state that the Roman prefect Barbarus and the architect Pontius re-erected the obelisk in Alexandria during the eighteenth year of an emperor, probably Augustus"
+      - ref: src:nyc-parks-egyptian-obelisk
+        loc: paragraph 2
+        quote: "floated them down the Nile to Alexandria around 12 B.C."
+    method: documentary
+    rank: preferred
+    note: >-
+      From the Latin and Greek inscription on a bronze crab under the obelisk: Budge gives the 18th year
+      of Augustus, 13-12 BCE, citing Merriam's edition of 1883, and the Metropolitan Museum's catalogue
+      dates the crab to 13 B.C. It dates the re-erection in Alexandria, which is all that is known of
+      the move. The OCR prints "i.e." as "t.e.".
+  alexandria-start-gorringe-1882:
+    prop: start
+    subject: "@alexandria"
+    value: 22 BCE
+    source:
+      ref: src:gorringe-1882-egyptian-obelisks
+      loc: "Chapter II, p. 72"
+      quote: "it was erected at Alexandria in the eighth year of Augustus Caesar, corresponding to 22 B. C,"
+    method: documentary
+    rank: deprecated
+    note: Gorringe read the year on the crab as the eighth. Merriam's reading of the eighteenth, in the year after Gorringe's book, is what later writers use.
+  alexandria-location:
+    prop: location
+    subject: "@alexandria"
+    value: { lat: 31.199982, lon: 29.900728, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-caesareum-of-alexandria, loc: "place 464391493, representative point" }
+      - ref: src:gorringe-1882-egyptian-obelisks
+        loc: "Chapter II, p. 72"
+        quote: "were placed in front of the Caesareum or Temple of the Caesars."
+    method: gazetteer
+    note: Pleiades calls this the approximate original site of the Caesareum.
+  alexandria-frame:
+    prop: frame
+    subject: "@alexandria"
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  voyage-start:
+    prop: start
+    subject: "@voyage"
+    value: 12 June 1880 CE
+    source:
+      ref: src:gorringe-1882-egyptian-obelisks
+      loc: p. 28
+      quote: "at 2 p.m., of Saturday, June 12th, the moorings were cast off"
+    method: documentary
+    note: >-
+      Gorringe's own account of the steamer Dessoug, which left Alexandria that day. It anchored off
+      Staten Island on 20 July 1880, and the obelisk then went up the Hudson and across Manhattan by land.
+      This phase has no one place, so the marker stays at Alexandria until the obelisk is raised.
+  central-park-start:
+    prop: start
+    subject: "@central-park"
+    value: 22 January 1881 CE
+    source:
+      - ref: src:gorringe-1882-egyptian-obelisks
+        loc: "p. 55, the legends on the new bronze crabs"
+        quote: "Removed to the United States of America A. D. 1880, and erected in New York City January 22, 1881."
+      - ref: src:nyc-parks-egyptian-obelisk
+        loc: Egyptian Obelisk Details
+        quote: "Dedicated: January 22, 1881"
+    method: documentary
+    note: The day it was swung onto its pedestal on Greywacke Knoll. It had reached the knoll on 5 January, after 112 days on land, by Gorringe's account (p. 45).
+  central-park-location:
+    prop: location
+    subject: "@central-park"
+    value: { lat: 40.779631, lon: -73.9654, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-central-park-obelisk, loc: "Q23889503, P625 coordinate location" }
+    method: gazetteer
+  central-park-frame:
+    prop: frame
+    subject: "@central-park"
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

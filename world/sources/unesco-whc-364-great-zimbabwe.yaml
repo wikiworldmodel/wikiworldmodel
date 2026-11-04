@@ -1,0 +1,16 @@
+id: src:unesco-whc-364-great-zimbabwe
+type: publication
+kind: review
+citation: >-
+  UNESCO World Heritage Centre. Great Zimbabwe National Monument. World Heritage List, no. 364: description and statement of outstanding universal value.
+title: Great Zimbabwe National Monument
+container: UNESCO World Heritage List
+url: https://whc.unesco.org/en/list/364/
+via: The Internet Archive's copy of 26 December 2024 (web.archive.org/web/20241226012517/https://whc.unesco.org/en/list/364), because UNESCO's site refused the script.
+license_note: The description is under CC BY-SA IGO 3.0. Only single facts and short quotes are taken, with credit.
+reliability: >-
+  An official summary, drawn from the state's nomination; not a research paper. Its short description gives nearly 80 ha, and its
+  longer statement almost 800 ha.
+verified:
+  by: machine:claude-code
+  how: Read in the archived copy. Quotes checked by script against its text, after normalizing whitespace.

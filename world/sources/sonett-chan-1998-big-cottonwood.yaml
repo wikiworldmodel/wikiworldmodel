@@ -1,0 +1,18 @@
+id: src:sonett-chan-1998-big-cottonwood
+type: publication
+kind: measurement
+citation: >-
+  Sonett, C.P. & Chan, M.A. (1998). Neoproterozoic Earth-Moon dynamics: Rework of the 900 Ma Big
+  Cottonwood Canyon tidal laminae. Geophysical Research Letters 25(4), 539–542.
+authors:
+  - "Sonett, C.P."
+  - "Chan, M.A."
+published: 1998
+title: "Neoproterozoic Earth-Moon dynamics: Rework of the 900 Ma Big Cottonwood Canyon tidal laminae"
+container: Geophysical Research Letters 25(4), 539–542
+doi: 10.1029/98GL00048
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, from OpenAlex's record of this DOI; the publisher's page was not reachable.
+    Quotes checked by script against that abstract. Metadata from Crossref.

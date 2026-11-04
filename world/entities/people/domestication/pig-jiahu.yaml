@@ -1,0 +1,57 @@
+id: life/occurrences/pig-jiahu
+kind: occurrence
+summary: >-
+  Pig bones from Jiahu in Henan, of the Peiligang culture period, about 9000–7800 BP: the oldest
+  evidence of pig-keeping in China. Their teeth are rotated or marked by stress in youth, the deaths
+  lean to young animals, and the shape of three molars suggests domestic pigs. Isotopes support it.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Pig, Jiahu" }
+    unsourced: An editorial label, from the species and the site.
+  identified:
+    prop: identified_as
+    value: Sus
+    source:
+      ref: src:hongo-2021-pig-management
+      loc: "Morphological Evidence of Pig Domestication in China"
+      quote: "Metric data of Sus excavated from Neolithic sites in both northern and southern China"
+  evidence:
+    prop: evidence
+    value: zooarchaeological
+    source:
+      ref: src:hongo-2021-pig-management
+      loc: "Yellow River Valley"
+      quote: "Archeologists argued for pig-keeping being practiced at Jiahu based on the pathological characteristics found on their teeth (e.g., rotation of teeth and frequent occurrences of linear enamel hypoplasia [LEH]), as well as the age profile biased toward younger animals"
+    note: >-
+      What shows it is domestic: teeth, age at death and molar shape, as this review reports them; the
+      original studies (Luo et al. 2008; Cucchi et al. 2011) were not read.
+  location:
+    prop: location
+    value: { lat: 33.614398, lon: 113.661403, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-jiahu, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 9000 BP, hi: 7800 BP }
+    source:
+      ref: src:hongo-2021-pig-management
+      loc: "Yellow River Valley"
+      quote: "Geometric morphometric analyses of three mandibular second molars (9000 to 7800 BP) from Jiahu"
+    method: stratigraphic
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott730013 and ott244265: Sus scrofa lies within Mammalia" }
+  domestication:
+    rel: part-of
+    to: people/domestication/pig-east-asia
+    source: { ref: src:hongo-2021-pig-management, loc: "Yellow River Valley" }

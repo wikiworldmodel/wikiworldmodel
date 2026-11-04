@@ -1,0 +1,21 @@
+id: src:chavannes-1897-memoires-historiques-2
+type: text
+kind: historian
+citation: >-
+  Se-ma Ts'ien (Sima Qian), Les Mémoires historiques, vol. 2, translated and annotated by É.
+  Chavannes (Paris: Ernest Leroux, 1897).
+published: 1897
+title: Shiji (Les Mémoires historiques)
+url: https://archive.org/details/lesmmoireshisto01chgoog
+via: The Internet Archive's scan of a Google Books copy.
+reliability: >-
+  The Han court astrologer's history, the first of China's standard histories. Chavannes gives
+  Western years in his text and, from his own table of the cycle of days, works out Julian days
+  in his notes.
+verified:
+  by: machine:claude-code
+  how: >-
+    Pp. 100, 191, 381 and 401 read in the page images of the scan (leaves n115, n206, n396,
+    n416); the OCR garbles them, so those quotations were compared with a transcription made
+    from the images. Pp. 121, 440 and 487 read in the OCR, and quoted only where it reads
+    cleanly.

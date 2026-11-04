@@ -1,0 +1,15 @@
+id: src:wikidata-caral
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q219279 (Caral), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q219279
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "archaeological site in Peru". A point for the named place, of uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (-10.893611, -77.520278) read from the item's JSON (Special:EntityData/Q219279.json) on 4 November 2026.

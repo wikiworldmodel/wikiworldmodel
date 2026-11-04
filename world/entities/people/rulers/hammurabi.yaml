@@ -1,0 +1,137 @@
+id: people/rulers/hammurabi
+kind: person
+summary: >-
+  King of Babylon, who conquered Mesopotamia and set up his laws on stone. His dates turn on
+  which reading of the Venus tablets is right, and the chronologies differ by a century and a
+  half.
+author: machine:claude-code
+same_as: { wikidata: Q36359 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: King of Babylon
+claims:
+  name:
+    prop: name
+    value: { en: Hammurabi }
+    source:
+      ref: src:louvre-code-of-hammurabi-notice
+      loc: "section 'A legal tradition'"
+      quote: King Hammurabi of Babylon (1792–1750 BC)
+  reign-start-middle:
+    prop: start
+    subject: "@reign"
+    value: 1792 BCE
+    source:
+      - ref: src:louvre-code-of-hammurabi-notice
+        loc: "section 'A legal tradition'"
+        quote: King Hammurabi of Babylon (1792–1750 BC)
+      - ref: src:gasche-1998-fall-of-babylon
+        loc: "p. 52, n. 231"
+        quote: occurred in Hammurabi year 17 = Ibal-pI-El 4 (= 1776 BC, Middle Chronology)
+      - ref: src:manning-2016-mesopotamian-chronology
+        loc: "Discussion, on Fig 8"
+        quote: REL197 = 1776 BCE on the Middle Chronology
+    method: expert-estimate
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      The Middle Chronology, in general use. Hammurabi's year 17 in 1776 makes his year 1 1792.
+      Manning et al. (2016), with tree rings tied to radiocarbon, find only this chronology or
+      the Low-Middle one compatible.
+  reign-start-low-middle:
+    prop: start
+    subject: "@reign"
+    value: 1784 BCE
+    source:
+      - ref: src:manning-2016-mesopotamian-chronology
+        loc: "Table 1, Middle Chronology"
+        quote: An alternative ‘Low’-MC (L-MC) is 8 years later
+      - ref: src:manning-2016-mesopotamian-chronology
+        loc: "Discussion"
+        quote: the Low-Middle Chronology offers perhaps the best overall accommodation and compromise among all the evidence
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Eight years later than the Middle Chronology, which Manning et al. slightly favour without
+      deciding.
+  reign-start-high:
+    prop: start
+    subject: "@reign"
+    value: 1848 BCE
+    source:
+      - ref: src:gasche-1998-fall-of-babylon
+        loc: "p. 6"
+        quote: According to the High Chronology, the final year of Samsuditana's reign was 1651 BC
+      - ref: src:gasche-1998-fall-of-babylon
+        loc: "p. 64"
+        quote: the interval separating Hammurabi year 1 and Samsuditana year 31 was 197 years
+      - ref: src:wikipedia-hammurabi
+        loc: "section on chronology, table"
+        quote: "1848-1806 BC 1792-1750 BC 1728-1686 BC 1696-1654 BC"
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      1651 BC plus the 197 years from his first year to the fall of Babylon. Manning et al. rule
+      this chronology out.
+  reign-start-low:
+    prop: start
+    subject: "@reign"
+    value: 1728 BCE
+    source:
+      - ref: src:gasche-1998-fall-of-babylon
+        loc: "p. 6"
+        quote: according to the Middle, 1595 ; and according to the Low, 1531
+      - ref: src:gasche-1998-fall-of-babylon
+        loc: "p. 64"
+        quote: the interval separating Hammurabi year 1 and Samsuditana year 31 was 197 years
+      - ref: src:wikipedia-hammurabi
+        loc: "section on chronology, table"
+        quote: "1848-1806 BC 1792-1750 BC 1728-1686 BC 1696-1654 BC"
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      1531 BC plus 197 years. Manning et al. rule this chronology out.
+  reign-start-ultra-low:
+    prop: start
+    subject: "@reign"
+    value: 1696 BCE
+    source:
+      - ref: src:gasche-1998-fall-of-babylon
+        loc: "p. 83"
+        quote: the fall of Babylon occurred in 1499 BC
+      - ref: src:gasche-1998-fall-of-babylon
+        loc: "p. 64"
+        quote: the interval separating Hammurabi year 1 and Samsuditana year 31 was 197 years
+      - ref: src:wikipedia-hammurabi
+        loc: "section on chronology, table"
+        quote: "1848-1806 BC 1792-1750 BC 1728-1686 BC 1696-1654 BC"
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      The ultra-low chronology of Gasche et al.: 1499 BC plus 197 years. Manning et al. rule it
+      out with the Low ones.
+  end:
+    prop: end
+    value: { ref: people/rulers/hammurabi@reign, edge: start, lag: { lo: 42 yr, hi: 43 yr } }
+    source:
+      ref: src:wikipedia-hammurabi
+      loc: "section on chronology"
+      quote: Babylonian sources indicate that Hammurabi reigned for 43 years
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Written as a lag so that it holds on every chronology, and the reign is taken to end with
+      his life. Cited from Wikipedia as a last resort: Charpin, whom it follows, could not be
+      read.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/babylon-first-dynasty
+    source:
+      ref: src:louvre-code-of-hammurabi-notice
+      loc: "section 'A legal tradition'"
+      quote: King Hammurabi of Babylon
+    note: King of Babylon, sixth of the First Dynasty.

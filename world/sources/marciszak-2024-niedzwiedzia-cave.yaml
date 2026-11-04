@@ -1,0 +1,22 @@
+id: src:marciszak-2024-niedzwiedzia-cave
+type: publication
+kind: measurement
+citation: >-
+  Marciszak, A., Mackiewicz, P., Borówka, R.K., Capalbo, C., Chibowski, P., … & Mazza, P.P.A.
+  (2024). Fate and preservation of the late Pleistocene cave bears from Niedźwiedzia Cave in Poland,
+  through taphonomy, pathology, and geochemistry. Scientific Reports 14, 9775.
+authors:
+  - "Marciszak, A."
+  - "Mackiewicz, P."
+  - "Borówka, R.K."
+  - "Capalbo, C."
+  - "Mazza, P.P.A."
+published: 2024
+title: "Fate and preservation of the late Pleistocene cave bears from Niedźwiedzia Cave in Poland, through taphonomy, pathology, and geochemistry"
+container: "Scientific Reports 14, 9775"
+doi: 10.1038/s41598-024-60222-3
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC11059340). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

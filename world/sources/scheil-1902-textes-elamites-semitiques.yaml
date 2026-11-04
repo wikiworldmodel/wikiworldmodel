@@ -1,0 +1,22 @@
+id: src:scheil-1902-textes-elamites-semitiques
+type: publication
+kind: measurement
+citation: >-
+  Scheil, V. (1902). Textes élamites-sémitiques, deuxième série. Mémoires de la Délégation en Perse,
+  tome IV. Paris: Ernest Leroux.
+authors:
+  - "Scheil, V."
+published: 1902
+title: Textes élamites-sémitiques, deuxième série
+container: Mémoires de la Délégation en Perse
+url: https://archive.org/details/mmoires04franuoft
+license: public-domain
+reliability: >-
+  The first edition of the Code, by the epigraphist of the excavation, written within the year of the
+  find. Its date for the Elamite king is the reckoning of its time.
+verified:
+  by: machine:claude-code
+  how: >-
+    The introduction to the Code (pp. 11-13) read in the Internet Archive's OCR text; the Louvre's
+    catalogue entry gives pp. 11-62 for the edition. Quotations checked by script with whitespace
+    normalized and a hyphen at a line end read as joined.

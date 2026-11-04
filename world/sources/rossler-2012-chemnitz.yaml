@@ -1,0 +1,25 @@
+id: src:rossler-2012-chemnitz
+type: publication
+kind: measurement
+citation: >-
+  Rößler, R., Zierold, T., Feng, Z., Kretzschmar, R., Merbitz, M., Annacker, V. & Schneider, J.W.
+  (2012). A snapshot of an early Permian ecosystem preserved by explosive volcanism: new results
+  from the Chemnitz Petrified Forest, Germany. Palaios 27(11), 814–834.
+authors:
+  - "Rößler, R."
+  - "Zierold, T."
+  - "Feng, Z."
+  - "Kretzschmar, R."
+  - "Merbitz, M."
+  - "Annacker, V."
+  - "Schneider, J.W."
+published: 2012
+title: "A snapshot of an early Permian ecosystem preserved by explosive volcanism: new results from the Chemnitz Petrified Forest, Germany"
+container: Palaios 27(11), 814–834
+doi: 10.2110/palo.2011.p11-112r
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

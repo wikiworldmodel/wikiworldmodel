@@ -1,0 +1,89 @@
+id: people/rulers/antoninus-pius
+kind: person
+summary: >-
+  Adopted by Hadrian, emperor for over twenty-two years of a peace that Rome's writers looked
+  back on.
+author: machine:claude-code
+same_as: { wikidata: Q1429 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Antoninus Pius }
+    source:
+      ref: src:historia-augusta
+      loc: "Antoninus Pius 1.8"
+      quote: Antoninus himself was born
+  start:
+    prop: start
+    value: 19 September 86 CE
+    source:
+      - ref: src:historia-augusta
+        loc: "Antoninus Pius 1.8"
+        quote: Antoninus himself was born at an estate at Lanuvium on the thirteenth day before the Kalends of October in the twelfth consulship of Domitian and first of Cornelius Dolabella
+      - ref: src:clinton-1845-fasti-romani
+        loc: "a. 161, p. 148"
+        quote: Antoninus was born Sept. 19 A. D. 86
+    method: historical-account
+    note: The thirteenth day before the Kalends of October is 19 September.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/hadrian, edge: end }
+    source:
+      ref: src:historia-augusta
+      loc: "Antoninus Pius 5.1"
+      quote: when Hadrian passed away at Baiae he bore his remains to Rome
+    method: historical-account
+    note: Hadrian had adopted him as his successor that February.
+  end:
+    prop: end
+    value: 7 March 161 CE
+    source:
+      - ref: src:clinton-1845-fasti-romani
+        loc: "a. 161, p. 148"
+        quote: the actual date of his death, which was March 7 A. D. 161
+      - ref: src:historia-augusta
+        loc: "Antoninus Pius 12.4"
+        quote: He died in the seventieth year of his age
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "LXXI.1.1, end of Epitome of Book 70, vol. 8 p. 473"
+        quote: He reigned twenty-four years
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      No ancient text read here states the day: Clinton reckons it from Dio's nineteen years and
+      eleven days of Marcus ending on 17 March 180. The ancient reign lengths vary between
+      twenty-two and twenty-four years and the ages between seventy and seventy-three (Eutropius
+      8.8).
+  location:
+    prop: location
+    value: { lat: 41.674703, lon: 12.697593, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-lanuvium
+        loc: "representative point"
+      - ref: src:historia-augusta
+        loc: "Antoninus Pius 1.8"
+        quote: at an estate at Lanuvium
+    method: gazetteer
+    note: Marked at Lanuvium, at Pleiades' point; the estate is not located.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "LXXI.1.1, end of Epitome of Book 70, vol. 8 p. 473"
+      quote: He reigned twenty-four years
+    note: Emperor.

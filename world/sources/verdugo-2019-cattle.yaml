@@ -1,0 +1,27 @@
+id: src:verdugo-2019-cattle
+type: publication
+kind: measurement
+citation: >-
+  Verdugo, M.P., Mullin, V.E., Scheu, A., … & Bradley, D.G. (2019). Ancient cattle genomics,
+  origins, and rapid turnover in the Fertile Crescent. Science 365(6449), 173–176.
+authors:
+  - "Verdugo, M.P."
+  - "Mullin, V.E."
+  - "Scheu, A."
+  - "Mattiangeli, V."
+  - "Daly, K.G."
+  - "Maisano Delser, P."
+  - "Hare, A.J."
+  - "Burger, J."
+# the first eight of 41 authors
+published: 2019
+title: "Ancient cattle genomics, origins, and rapid turnover in the Fertile Crescent"
+container: "Science 365(6449), 173–176"
+doi: 10.1126/science.aav1002
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from the Europe PMC record (PMID 31296769), and the accepted manuscript at
+    White Rose Research Online (eprint 149232) read on 3 November 2026, which may differ in
+    detail from the published text. Each quote checked by script against these; citation from
+    the Europe PMC record.

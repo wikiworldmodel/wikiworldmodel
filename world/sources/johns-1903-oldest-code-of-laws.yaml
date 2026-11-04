@@ -1,0 +1,17 @@
+id: src:johns-1903-oldest-code-of-laws
+type: publication
+kind: review
+citation: >-
+  Johns, C.H.W. (1903). The Oldest Code of Laws in the World. Edinburgh: T. & T. Clark.
+authors:
+  - "Johns, C.H.W."
+published: 1903
+title: The Oldest Code of Laws in the World
+url: https://archive.org/details/oldestcodeoflaws00hammuoft
+license: public-domain
+reliability: An early English translation, with a short introduction; cited for the first suggestion of Sippar read here.
+verified:
+  by: machine:claude-code
+  how: >-
+    The introduction read in the Internet Archive's OCR text. Its imprint follows the catalogue entry.
+    Quotations checked by script with whitespace normalized and a hyphen at a line end read as joined.

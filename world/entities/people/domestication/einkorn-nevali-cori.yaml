@@ -1,0 +1,52 @@
+id: life/occurrences/einkorn-nevali-cori
+kind: occurrence
+summary: >-
+  One-grained einkorn chaff from Nevalı Çori in southeast Turkey, about 10,600–9,900 years ago, not
+  far from the Karacadağ Mountains that genetics name as einkorn's home. Of 282 pieces 13.8% have
+  the tough scar of an ear that does not shatter, just above what wild stands give.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Einkorn, Nevalı Çori" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: 1-grained einkorn
+    source: { ref: src:arranz-otaegui-2016-cereal-domestication, loc: 'Table S6, row "Nevali Çory"' }
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      - { ref: src:arranz-otaegui-2016-cereal-domestication, loc: 'Table S6, row "Nevali Çory": 86.2% wild-type, 13.8% domestic-type, of 282 pieces' }
+      - ref: src:arranz-otaegui-2016-cereal-domestication
+        loc: Legend to Fig. 2
+        quote: "Sites where domesticated-type rachis scars comprise >10% of the assemblage are considered to represent evidence of incipient cereal domestication"
+    note: >-
+      What shows it is domestic: a non-brittle rachis, in a share only a little above the 10% found in
+      wild stands. By the time of Çatalhöyük, 9.1–8.4 ka, the share in the same table is 94.6%.
+  location:
+    prop: location
+    value: { lat: 37.518333, lon: 38.605556, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-nevali-cori, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 10.6 ka, hi: 9.9 ka }
+    source: { ref: src:arranz-otaegui-2016-cereal-domestication, loc: 'Table S6, row "Nevali Çory", date in ka Cal BP' }
+    method: compilation
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott31940 and ott99252: Triticum monococcum lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/einkorn
+    source: { ref: src:arranz-otaegui-2016-cereal-domestication, loc: 'Table S6, row "Nevali Çory"' }

@@ -1,0 +1,18 @@
+id: src:conard-2009-hohle-fels
+type: publication
+kind: measurement
+citation: >-
+  Conard, N.J. (2009). A female figurine from the basal Aurignacian of Hohle Fels Cave in
+  southwestern Germany. Nature 459(7244), 248–252.
+authors:
+  - "Conard, N.J."
+published: 2009
+title: "A female figurine from the basal Aurignacian of Hohle Fels Cave in southwestern Germany"
+container: "Nature 459(7244), 248–252"
+doi: 10.1038/nature07995
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 19444215): the figurine from the basal Aurignacian of
+    Hohle Fels, produced at least 35,000 calendar years ago. It does not name the method. Quoted
+    passages checked by script against the text retrieved.

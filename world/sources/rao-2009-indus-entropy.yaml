@@ -1,0 +1,20 @@
+id: src:rao-2009-indus-entropy
+type: publication
+kind: model
+citation: >-
+  Rao, R.P.N., Yadav, N., Vahia, M.N., Joglekar, H., Adhikari, R. & Mahadevan, I. (2009). Entropic evidence for linguistic structure in the Indus script. Science 324(5931), 1165.
+authors:
+  - "Rao, R.P.N."
+  - "Yadav, N."
+  - "Vahia, M.N."
+  - "Joglekar, H."
+  - "Adhikari, R."
+  - "Mahadevan, I."
+published: 2009
+title: Entropic evidence for linguistic structure in the Indus script
+container: Science
+doi: 10.1126/science.1170391
+url: https://europepmc.org/article/MED/19389998
+verified:
+  by: machine:claude-code
+  how: Only the abstract read, from Europe PMC. Quote checked by script against it.

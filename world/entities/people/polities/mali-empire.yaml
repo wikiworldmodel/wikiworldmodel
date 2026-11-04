@@ -1,0 +1,22 @@
+id: people/polities/mali-empire
+kind: polity
+summary: >-
+  The Mali Empire of West Africa. Written for the rulers that hold office in it: its dates are the span of the borders dataset's rows, and its
+  land is drawn from those rows as they are, not as a territory of this record.
+author: machine:claude-code
+same_as: { wikidata: Q184536 }
+claims:
+  name:
+    prop: name
+    value: { en: Mali Empire }
+    unsourced: An editorial label, in English.
+  start:
+    prop: start
+    value: 1236 CE
+    source: { ref: src:cliopatria-0.2.1, loc: 'rows named "Mali Empire": the earliest FromYear' }
+    method: compilation
+  end:
+    prop: end
+    value: 1611 CE
+    source: { ref: src:cliopatria-0.2.1, loc: 'rows named "Mali Empire": the latest ToYear' }
+    method: compilation

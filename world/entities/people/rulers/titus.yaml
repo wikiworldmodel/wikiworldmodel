@@ -1,0 +1,96 @@
+id: people/rulers/titus
+kind: person
+summary: >-
+  The elder son of Vespasian, who took Jerusalem in 70 and reigned for a little over two years.
+author: machine:claude-code
+same_as: { wikidata: Q1421 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Titus }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Titus 1.1"
+      quote: Titus, of the same surname as his father
+  start-dio:
+    prop: start
+    value: 30 December 39 CE
+    source:
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 66, 18.4, vol. 8 p. 299"
+        quote: in addition to the thirty-nine years, five months and twenty-five days he had already lived at that time
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Titus 1.1"
+        quote: He was born on the third day before the Kalends of January
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Titus 11"
+        quote: in the forty-second year of his age
+    method: historical-account
+    rank: preferred
+    note: >-
+      The third day before the Kalends of January is 30 December. The year is worked out from
+      Dio, thirty-nine years, five months and twenty-five days before his accession in June 79,
+      and fits Suetonius' forty-second year at his death in September 81.
+  start-suetonius:
+    prop: start
+    value: 30 December 41 CE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Titus 1.1"
+      quote: in the year memorable for the death of Gaius
+    method: historical-account
+    note: Suetonius' statement of the year, 41 CE, does not fit his own age at death.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/vespasian, edge: end }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Titus 11"
+      quote: after succeeding Vespasian
+    method: historical-account
+  end:
+    prop: end
+    value: 13 September 81 CE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Titus 11"
+      quote: He died in the same farmhouse as his father, on the Ides of September, two years two months and twenty days after succeeding Vespasian
+    method: historical-account
+    note: >-
+      The Ides of September are the 13th; the year follows from the two years, two months and
+      twenty days. Dio gives the same length (66.18.4, 66.26.4).
+  location:
+    prop: location
+    value: { lat: 41.889977, lon: 12.491258, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-rome
+        loc: "representative point"
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Titus 1.1"
+        quote: in a mean house near the Septizonium
+    method: gazetteer
+    note: >-
+      Marked at his birthplace, in Rome, at the city's representative point: the house is not
+      located.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 66, 26.4"
+      quote: Titus had ruled two years, two months and twenty days
+    note: Emperor, with the Flavian house.

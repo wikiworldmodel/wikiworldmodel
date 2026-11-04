@@ -1,0 +1,63 @@
+id: life/occurrences/charnia-drook
+kind: occurrence
+summary: >-
+  The frond Charnia masoni at Portugal Cove in the Drook Formation, Avalon Peninsula, Newfoundland: the
+  earliest occurrence of Charnia, among the oldest of the Ediacara biota. PBDB collection 51741.
+same_as: { pbdb: "occ:510827" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Charnia, Drook Formation" }
+    unsourced: An editorial label, from the taxon and the formation.
+  identified:
+    prop: identified_as
+    value: Charnia masoni
+    source: { ref: src:pbdb/collection-51741, loc: "occurrence 510827, accepted_name" }
+    note: >-
+      The record gives no identified name; this is the accepted name.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:carlisle-2024-metazoan-timescale
+      loc: "Fossil calibrations, Crown-Metazoa"
+      quote: "Rangeomorphs such as Charnia masoni are the first definitive evidence of crown-group metazoans."
+  location:
+    prop: location
+    value: { lat: 46.688, lon: -53.259499, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-51741, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-108
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Drook Formation
+    source: { ref: src:pbdb/collection-51741, loc: "formation" }
+  date:
+    prop: date
+    value: { mean: 574.17 Ma, sd: 0.66 Myr }
+    source:
+      ref: src:carlisle-2024-metazoan-timescale
+      loc: "Fossil calibrations, Crown-Metazoa"
+      quote: "The earliest occurrence of Charnia is in the Drook Formation of Mistaken Point, Newfoundland, dated to 574.17 Ma ± 0.66 Myr"
+    method: radiometric
+    note: >-
+      Read from a calibration paper, which gives the date for the formation and not for this collection. The
+      ± level is not stated, so it is read as 1σ. The PBDB assigns the collection only to the Ediacaran.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/metazoa
+    source:
+      ref: src:carlisle-2024-metazoan-timescale
+      loc: "Fossil calibrations, Crown-Metazoa"
+      quote: "These have recently been reinterpreted as stem-group eumetazoans with possible sensory and contractile capabilities"
+    note: >-
+      Crown-group animals on this reading, as stem eumetazoans. Zhuravlev and Wood (2018) call rangeomorphs
+      complex, macroscopic eukaryotes, probably stem group metazoan taxa, which would put them outside the crown
+      this record means.

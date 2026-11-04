@@ -1,0 +1,12 @@
+id: src:nyc-parks-egyptian-obelisk
+type: publication
+kind: review
+citation: NYC Parks. Central Park Monuments - Egyptian Obelisk.
+title: Central Park Monuments - Egyptian Obelisk
+url: https://web.archive.org/web/20190922060436/https://www.nycgovparks.org/parks/central-park/monuments/1129
+reliability: The city parks department's description of the monument, without references.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the copy archived on 22 September 2019 at web.archive.org; the department's own page
+    answered 403 from here. Quotations checked by script against its text.

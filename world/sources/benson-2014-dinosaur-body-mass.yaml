@@ -1,0 +1,28 @@
+id: src:benson-2014-dinosaur-body-mass
+type: publication
+kind: measurement
+citation: >-
+  Benson, R.B.J., Campione, N.E., Carrano, M.T., Mannion, P.D., Sullivan, C., Upchurch, P. &
+  Evans, D.C. (2014). Rates of dinosaur body mass evolution indicate 170 million years of
+  sustained ecological innovation on the avian stem lineage. PLoS Biology 12(5), e1001853.
+authors:
+  - "Benson, R.B.J."
+  - "Campione, N.E."
+  - "Carrano, M.T."
+  - "Mannion, P.D."
+  - "Sullivan, C."
+  - "Upchurch, P."
+  - "Evans, D.C."
+published: 2014
+title: "Rates of dinosaur body mass evolution indicate 170 million years of sustained ecological innovation on the avian stem lineage"
+container: "PLoS Biology 12(5), e1001853"
+doi: 10.1371/journal.pbio.1001853
+license: CC0-1.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC4011683). Dataset S1 (journal.pbio.1001853.s011.xls) read
+    from the publisher: sheet "Mass estimates" for the masses, sheet "Full data" for the
+    specimens and formations behind them. Quotes are rows of that sheet, its cells joined by
+    spaces, checked by script. Masses scale limb-bone shaft circumferences with the equation of
+    Campione & Evans (2012), and bipeds use the conversion the paper describes.

@@ -1,0 +1,13 @@
+id: src:wikidata-madrague-de-giens
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q6728460 (Madrague de Giens, Roman wreck), property P625 (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q6728460
+license: CC0-1.0
+reliability: Crowd-edited, to about a kilometre, and matches the database of Strauss et al. (43.0333, 6.1).
+verified:
+  by: machine:claude-code
+  how: Coordinates (43.0333, 6.1; precision 0.0123) read from the item's JSON (Special:EntityData/Q6728460.json, revision 1391127003, modified 2021-03-27).

@@ -1,0 +1,21 @@
+id: src:edwards-2010-c4-grasslands
+type: publication
+kind: review
+citation: >-
+  Edwards, E.J., Osborne, C.P., Strömberg, C.A.E., Smith, S.A. & C4 Grasses Consortium (2010). The
+  origins of C4 grasslands: integrating evolutionary and ecosystem science. Science 328(5978),
+  587–591.
+authors:
+  - "Edwards, E.J."
+  - "Osborne, C.P."
+  - "Strömberg, C.A.E."
+  - "Smith, S.A."
+published: 2010
+title: "The origins of C4 grasslands: integrating evolutionary and ecosystem science"
+container: Science 328(5978), 587–591
+doi: 10.1126/science.1177216
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read in Europe PMC (PMID 20431008); the full text is paywalled. Quotes
+    checked by script against it. Metadata from Crossref.

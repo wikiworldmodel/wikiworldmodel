@@ -1,0 +1,36 @@
+id: src:yokoyama-2018-great-barrier-reef
+type: publication
+kind: measurement
+citation: >-
+  Yokoyama, Y., Esat, T.M., Thompson, W.G., Thomas, A.L., Webster, J.M., Miyairi, Y., Sawada, C.,
+  Aze, T., Matsuzaki, H., Okuno, J., Fallon, S., Braga, J.-C., Humblet, M., Iryu, Y., Potts, D.C.,
+  Fujita, K., Suzuki, A. & Kan, H. (2018). Rapid glaciation and a two-step sea level plunge into
+  the Last Glacial Maximum. Nature 559(7715), 603–607.
+authors:
+  - "Yokoyama, Y."
+  - "Esat, T.M."
+  - "Thompson, W.G."
+  - "Thomas, A.L."
+  - "Webster, J.M."
+  - "Miyairi, Y."
+  - "Sawada, C."
+  - "Aze, T."
+  - "Matsuzaki, H."
+  - "Okuno, J."
+  - "Fallon, S."
+  - "Braga, J.-C."
+  - "Humblet, M."
+  - "Iryu, Y."
+  - "Potts, D.C."
+  - "Fujita, K."
+  - "Suzuki, A."
+  - "Kan, H."
+published: 2018
+title: "Rapid glaciation and a two-step sea level plunge into the Last Glacial Maximum"
+container: "Nature 559(7715), 603–607"
+doi: 10.1038/s41586-018-0335-4
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read through Europe PMC. The full text was not read. Citation from Crossref. Quotes
+    checked by script against the text retrieved.

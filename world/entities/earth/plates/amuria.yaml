@@ -1,0 +1,9 @@
+id: earth/plates/amuria
+kind: plate
+summary: Plate 628 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Amuria }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 628", quote: "AMU Amuria" }

@@ -1,0 +1,51 @@
+id: life/transitions/reefs-permian-algal-sponge
+kind: event/transition
+summary: >-
+  The algal–sponge reefs of the Permian: calcareous sponges, phylloid and encrusting algae, bryozoans
+  and marine cement around the circum-equatorial belt, at their height in the Middle and Late Permian
+  reefs such as the Capitan. They ended with the end-Permian extinction.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Permian algal–sponge reefs }
+    unsourced: An editorial label.
+  cover:
+    prop: cover
+    value: reefs
+    unsourced: "How the renderer should treat this transition: an editorial classification."
+  start:
+    prop: start
+    value: { ref: ics/asselian, edge: start }
+    source:
+      ref: src:wahlman-2002-late-paleozoic-reefs
+      loc: abstract
+      quote: radiated and persisted through the rest of Permian time, reaching its acme of development in Middle and Upper Permian tropical reefs, such as the Capitan Reef of the Permian Basin
+    method: stratigraphic
+    note: >-
+      The community formed in the Asselian–Sakmarian; the start of the stage is taken as its start.
+      Reef growth was uneven after that: Flügel & Kiessling (2002) count a first-order crisis at the
+      Artinskian–Kungurian boundary and a second-order one at the Middle–Late Permian boundary, and
+      Weidlich (2002) has the Middle and Late Permian reefs flourishing for about 20 Myr.
+  end:
+    prop: end
+    value: { ref: earth/events/end-permian-extinction, edge: start }
+    source:
+      - ref: src:flugel-2002-triassic-reefs
+        loc: abstract
+        quote: resulted in the sudden disappearance of high-diversity Late Permian reefs in southern China
+      - ref: src:weidlich-2002-permian-reefs
+        loc: abstract
+        quote: the severe gap without true metazoan reefs during the Scythian
+      - ref: src:kiessling-2008-reef-expansion-collapse
+        loc: "p. 15"
+        quote: until recently no metazoan reefs were reported from the entire Early Triassic
+      - ref: src:flugel-kiessling-2002-reef-crises
+        loc: abstract
+        quote: We determined eight first-order reef crises (carbonate production loss > 90%)
+    method: stratigraphic
+    note: >-
+      The gap that follows is a gap in animal reefs, more than 8 Myr long by Flügel (2002), not in
+      reefs: he has the Early Triassic characterized by the exclusive dominance of microbial reefs. No
+      record here covers those. Kiessling (2008) finds that after sampling is controlled the drop in
+      reef abundance across this boundary is only very minor, while not denying the ecological crisis.

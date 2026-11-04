@@ -1,0 +1,23 @@
+id: src:matsuoka-2002-maize
+type: publication
+kind: measurement
+citation: >-
+  Matsuoka, Y., Vigouroux, Y., Goodman, M.M., Sanchez G, J., Buckler, E. & Doebley, J. (2002).
+  A single domestication for maize shown by multilocus microsatellite genotyping. Proceedings
+  of the National Academy of Sciences 99(9), 6080–6084.
+authors:
+  - "Matsuoka, Y."
+  - "Vigouroux, Y."
+  - "Goodman, M.M."
+  - "Sanchez G, J."
+  - "Buckler, E."
+  - "Doebley, J."
+published: 2002
+title: "A single domestication for maize shown by multilocus microsatellite genotyping"
+container: "Proceedings of the National Academy of Sciences 99(9), 6080–6084"
+doi: 10.1073/pnas.052125199
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC122905) on 3 November 2026. Each quote checked by script
+    against that text; citation from the Europe PMC record.

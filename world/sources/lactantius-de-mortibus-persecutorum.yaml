@@ -1,0 +1,20 @@
+id: src:lactantius-de-mortibus-persecutorum
+type: text
+kind: eyewitness
+citation: >-
+  Lactantius, Of the Manner in Which the Persecutors Died (De mortibus persecutorum), translated
+  by W. Fletcher, in Ante-Nicene Fathers, vol. 7, ed. A. Roberts, J. Donaldson and A. C. Coxe
+  (Buffalo, 1886).
+published: 1886
+title: De mortibus persecutorum
+url: https://www.newadvent.org/fathers/0705.htm
+via: New Advent's revised text of the Ante-Nicene Fathers translation.
+reliability: >-
+  A Latin rhetor at Diocletian's court in Nicomedia, writing within a few years of the events to
+  show that the persecutors met bad ends. Polemical, but close to the court; he gives days for
+  the vicennalia and the abdication.
+verified:
+  by: machine:claude-code
+  how: >-
+    Chapters 17–19, 24, 42 and 46 read on New Advent; the quotations checked by script against
+    that text.

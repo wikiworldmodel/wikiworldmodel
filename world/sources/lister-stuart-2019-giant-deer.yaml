@@ -1,0 +1,19 @@
+id: src:lister-stuart-2019-giant-deer
+type: publication
+kind: measurement
+citation: >-
+  Lister, A.M. & Stuart, A.J. (2019). The extinction of the giant deer Megaloceros giganteus
+  (Blumenbach): New radiocarbon evidence. Quaternary International 500, 185–203.
+authors:
+  - "Lister, A.M."
+  - "Stuart, A.J."
+published: 2019
+title: "The extinction of the giant deer Megaloceros giganteus (Blumenbach): New radiocarbon evidence"
+container: "Quaternary International 500, 185–203"
+doi: 10.1016/j.quaint.2019.03.025
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the OpenAlex record for the DOI; the full text could not be read
+    here (the open copies refused the script). Quotes checked by script against the text retrieved,
+    after normalizing whitespace.

@@ -1,0 +1,20 @@
+id: src:mitchell-2012-orthoversion
+type: publication
+kind: model
+citation: >-
+  Mitchell, R.N., Kilian, T.M. & Evans, D.A.D. (2012). Supercontinent cycles and the calculation of
+  absolute palaeolongitude in deep time. Nature 482(7384), 208–211.
+authors:
+  - "Mitchell, R.N."
+  - "Kilian, T.M."
+  - "Evans, D.A.D."
+published: 2012
+title: Supercontinent cycles and the calculation of absolute palaeolongitude in deep time
+container: Nature 482(7384), 208–211
+doi: 10.1038/nature10800
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the PubMed record through Europe PMC (PMID 22318605). It gives no
+    date for Amasia. Citation from Crossref. Quotes checked by script against the text retrieved,
+    after normalizing whitespace.

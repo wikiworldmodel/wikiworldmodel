@@ -1,0 +1,17 @@
+id: src:wikidata-tell-aswad
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q826532 (Tell Aswad), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q826532
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "Archaeological site in Syria". A point for the named place,
+  of uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (33.4, 36.55) read from the item's JSON (Special:EntityData/Q826532.json) on 3
+    November 2026.

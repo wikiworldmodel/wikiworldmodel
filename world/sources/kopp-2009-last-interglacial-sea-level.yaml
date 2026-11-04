@@ -1,0 +1,21 @@
+id: src:kopp-2009-last-interglacial-sea-level
+type: publication
+kind: compilation
+citation: >-
+  Kopp, R.E., Simons, F.J., Mitrovica, J.X., Maloof, A.C. & Oppenheimer, M. (2009). Probabilistic
+  assessment of sea level during the last interglacial stage. Nature 462(7275), 863–867.
+authors:
+  - "Kopp, R.E."
+  - "Simons, F.J."
+  - "Mitrovica, J.X."
+  - "Maloof, A.C."
+  - "Oppenheimer, M."
+published: 2009
+title: "Probabilistic assessment of sea level during the last interglacial stage"
+container: "Nature 462(7275), 863–867"
+doi: 10.1038/nature08686
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read through Europe PMC. The full text was not read. Citation from Crossref. Quotes
+    checked by script against the text retrieved.

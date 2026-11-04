@@ -1,0 +1,72 @@
+id: life/occurrences/omo-i-kibish
+kind: occurrence
+summary: >-
+  Omo I, from Member I of the Kibish Formation, Ethiopia, found in 1967: the oldest known Homo sapiens
+  from eastern Africa. Its age rests on tuffs above and below it, and has moved as they were identified.
+same_as: { wikidata: Q1627142 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Omo I, Kibish" }
+    unsourced: An editorial label, from the specimen and the formation.
+  identified:
+    prop: identified_as
+    value: Homo sapiens
+    source:
+      ref: src:mcdougall-2005-kibish
+      loc: abstract
+      quote: "In 1967 the Kibish Formation in southern Ethiopia yielded hominid cranial remains identified as early anatomically modern humans, assigned to Homo sapiens."
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:mcdougall-2005-kibish, loc: abstract }
+  location:
+    prop: location
+    value: { lat: 4.80035278, lon: 35.96706944, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-omo-remains, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: A crowd-edited point for the remains, not checked against the papers, which give no coordinates.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-712
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Kibish Formation, Member I
+    source:
+      ref: src:mcdougall-2005-kibish
+      loc: abstract
+      quote: "Omo I and Omo II hominid fossils are from similar stratigraphic levels in Member I of the Kibish Formation"
+  earlier-than-vidal-2022:
+    prop: earlier_than
+    value: { mean: 233 ka, sd: 11 kyr }
+    source:
+      ref: src:vidal-2022-omo-kibish
+      loc: abstract
+      quote: "By dating the proximal deposits of this eruption, we obtain a new minimum age for the Omo fossils of 233 ± 22 kyr."
+    method: radiometric/ar-ar
+    note: >-
+      A minimum age: the KHS Tuff, tied by its chemistry to an eruption of Shala volcano, lies above
+      the member that holds Omo I, so the fossil is older. The paper gives the ± at 2σ, halved here.
+  date-mcdougall-2005:
+    prop: date
+    value: { mean: 195 ka, sd: 5 kyr }
+    source:
+      ref: src:mcdougall-2005-kibish
+      loc: abstract
+      quote: "Our preferred estimate of the age of the Kibish hominids is 195 +/- 5 kyr"
+    method: radiometric/ar-ar
+    rank: deprecated
+    note: >-
+      From feldspars in a tuff below the fossils, and correlation with Mediterranean sapropels. The ±
+      level is not stated, so it is read as 1σ. Vidal et al. (2022) show the fossils are older than this.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      - { ref: src:mcdougall-2005-kibish, loc: abstract }
+      - { ref: src:vidal-2022-omo-kibish, loc: title, quote: "Age of the oldest known Homo sapiens from eastern Africa" }

@@ -1,0 +1,31 @@
+id: src:braun-2019-bokol-dora
+type: publication
+kind: measurement
+citation: >-
+  Braun, D.R., Aldeias, V., Archer, W., Arrowsmith, J.R., Baraki, N., Campisano, C.J., Deino,
+  A.L., DiMaggio, E.N., Dupont-Nivet, G., Engda, B. et al. (2019). Earliest known Oldowan
+  artifacts at >2.58 Ma from Ledi-Geraru, Ethiopia, highlight early technological diversity.
+  Proceedings of the National Academy of Sciences 116(24), 11712–11717.
+authors:
+  - "Braun, D.R."
+  - "Aldeias, V."
+  - "Archer, W."
+  - "Arrowsmith, J.R."
+  - "Baraki, N."
+  - "Campisano, C.J."
+  - "Deino, A.L."
+  - "DiMaggio, E.N."
+  - "Dupont-Nivet, G."
+  - "Engda, B."
+published: 2019
+title: "Earliest known Oldowan artifacts at >2.58 Ma from Ledi-Geraru, Ethiopia, highlight early technological diversity"
+container: "Proceedings of the National Academy of Sciences 116(24), 11712–11717"
+doi: 10.1073/pnas.1820177116
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 18 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read at PubMed Central (PMC6575601): the BD 1 assemblage and its dating: the Ali
+    Toyta Tuff at 2.584 ± 0.034 Ma (95%), normal polarity above it, older than the reversal at
+    2.581 Ma. Quoted passages checked by script against the text retrieved.

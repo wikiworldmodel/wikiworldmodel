@@ -1,0 +1,79 @@
+id: people/rulers/nero
+kind: person
+summary: >-
+  The fifth Roman emperor and the last of the family of Augustus, who killed himself as the
+  senate turned to Galba.
+author: machine:claude-code
+same_as: { wikidata: Q1413 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Nero }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Nero 6.1"
+      quote: Nero was born at Antium
+  start:
+    prop: start
+    value: 15 December 37 CE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Nero 6.1"
+      quote: Nero was born at Antium nine months after the death of Tiberius, on the eighteenth day before the Kalends of January
+    method: historical-account
+    note: >-
+      The eighteenth day before the Kalends of January is 15 December; nine months after
+      Tiberius' death in March 37 is that December.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/claudius, edge: end }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Nero 8.1"
+      quote: When the death of Claudius was made public, Nero, who was seventeen years old, went forth to the watch
+    method: historical-account
+    note: He was hailed emperor on the day that the death of Claudius was announced.
+  end:
+    prop: end
+    value: 9 June 68 CE
+    source:
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 66, 17.4, vol. 8 pp. 295–297"
+        quote: From this it results that from the death of Nero to the beginning of Vespasian's rule a year and twenty-two days elapsed
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Nero 57.1"
+        quote: He met his death in the thirty-second year of his age, on the anniversary of the murder of Octavia
+    method: historical-account
+    note: >-
+      Worked out from Dio's count: a year and twenty-two days before 1 July 69, the day of
+      Vespasian's accession, is 9 June 68. Suetonius gives no calendar date, only the
+      anniversary of Octavia's murder. Dio's own length of the reign, thirteen years and eight
+      months, is rounded.
+  location:
+    prop: location
+    value: { lat: 41.44795, lon: 12.628995, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-antium, loc: "representative point" }
+    method: gazetteer
+    note: Marked at his birthplace, Antium, at Pleiades' point.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Nero 8.1"
+      quote: Hailed emperor on the steps of the Palace
+    note: Princeps.

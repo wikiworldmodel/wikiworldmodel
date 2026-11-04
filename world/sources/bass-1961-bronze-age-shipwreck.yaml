@@ -1,0 +1,14 @@
+id: src:bass-1961-bronze-age-shipwreck
+type: publication
+kind: measurement
+citation: >-
+  Bass, G.F. (1961). A Bronze Age shipwreck. Expedition 3(2).
+authors: ["Bass, G.F."]
+published: 1961
+title: A Bronze Age shipwreck
+container: Expedition
+url: https://www.penn.museum/sites/expedition/a-bronze-age-shipwreck/
+reliability: The excavator's report from the first season, before the finds had been studied.
+verified:
+  by: machine:claude-code
+  how: Read directly on the Penn Museum's site. Quotes checked by script against its text, after normalizing whitespace.

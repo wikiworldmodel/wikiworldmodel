@@ -1,0 +1,41 @@
+id: people/prehistory/hohle-fels-figurine
+kind: artefact
+summary: >-
+  A female figurine of mammoth ivory from the basal Aurignacian deposit of Hohle Fels Cave in the Swabian
+  Jura, Germany, found in 2008: one of the oldest known examples of figurative art.
+same_as: { wikidata: Q312522 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Hohle Fels figurine" }
+    unsourced: An editorial label, from the find and the cave.
+  location:
+    prop: location
+    value: { lat: 48.379166666667, lon: 9.7555555555556, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-hohle-fels, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  earlier-than:
+    prop: earlier_than
+    value: 35 ka
+    source:
+      ref: src:conard-2009-hohle-fels
+      loc: abstract
+      quote: "This figurine was produced at least 35,000 calendar years ago"
+    note: >-
+      A minimum age, for the layer it lay in; it is no younger than this and no older than the
+      Aurignacian. The abstract read does not name the method.
+relations:
+  industry:
+    rel: member-of
+    to: people/prehistory/aurignacian
+    source:
+      ref: src:conard-2009-hohle-fels
+      loc: abstract
+      quote: "in the basal Aurignacian deposit at Hohle Fels Cave in the Swabian Jura of southwestern Germany"

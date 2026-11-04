@@ -1,0 +1,142 @@
+id: people/rulers/diocletian
+kind: person
+summary: >-
+  A Dalmatian soldier who shared the empire with colleagues and, the first emperor to do so,
+  gave up the throne of his own will. The sources disagree over the dates of his accession, his
+  abdication and his death.
+author: machine:claude-code
+same_as: { wikidata: Q43107 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+  - id: after
+    label: After his reign
+claims:
+  name:
+    prop: name
+    value: { en: Diocletian }
+    source:
+      ref: src:lactantius-de-mortibus-persecutorum
+      loc: "ch. 17"
+      quote: Diocletian, whom prosperity had now abandoned
+  reign-start-lactantius:
+    prop: start
+    subject: "@reign"
+    value: 20 November 284 CE
+    source:
+      ref: src:lactantius-de-mortibus-persecutorum
+      loc: "ch. 17"
+      quote: there to celebrate the commencement of the twentieth year of his reign. That solemnity was performed on the twelfth of the kalends of December
+    method: historical-account
+    rank: preferred
+    note: >-
+      The twelfth day before the Kalends of December is 20 November, kept as the anniversary by
+      a writer at his court. The solemnity is that of the autumn before his ninth consulship
+      (304, Consularia p. 231), so the twentieth year began in 303 and the reign in 284.
+  reign-start-chronicon:
+    prop: start
+    subject: "@reign"
+    value: 17 September 284 CE
+    source:
+      - ref: src:chronicon-paschale
+        loc: "a. 284 (MGH AA 9, p. 229)"
+      - ref: src:clinton-1845-fasti-romani
+        loc: "a. 284, p. 326"
+        quote: although Carinus lived for some months after Sept. 17 A. D. 284, yet this is the epoch from which the reign of Diocletian was always computed
+    method: historical-account
+    note: >-
+      The Chronicon Paschale has him proclaimed at Chalcedon on the fifteenth day before the
+      Kalends of October, 17 September (cited without a quote because its Greek accents could
+      not be read with certainty in the scan), and Clinton takes that as the epoch of the reign.
+      Lactantius' day is preferred here as the nearer witness.
+  reign-end-lactantius:
+    prop: end
+    subject: "@reign"
+    value: 1 May 305 CE
+    source:
+      - ref: src:lactantius-de-mortibus-persecutorum
+        loc: "ch. 46"
+        quote: Licinius resolved to give battle on the kalends of May; for precisely eight years before Daia had received the dignity of
+      - ref: src:lactantius-de-mortibus-persecutorum
+        loc: "ch. 19"
+        quote: Diocletian took off his purple robe, put it on Daia, and resumed his own original name of Diocles
+      - ref: src:clinton-1845-fasti-romani
+        loc: "a. 313, p. 366"
+        quote: The ninth year from his abdication began May 1 A. D. 313
+    method: historical-account
+    rank: preferred
+    note: >-
+      He handed the purple to Daia at the same ceremony, on the Kalends of May, eight years
+      before Licinius' battle of 313.
+  reign-end-consularia:
+    prop: end
+    subject: "@reign"
+    value: 1 April 304 CE
+    source:
+      ref: src:consularia-constantinopolitana
+      loc: "a. 304 (MGH AA 9, p. 231)"
+      quote: His conss. deposuerunt purpuram privati effecti Dioclitianus et Maximianus
+    method: historical-account
+    note: >-
+      In English: in this consulship Diocletian and Maximian laid down the purple and became
+      private citizens. The entry, against 304, closes with the new Augusti named 'die kal.
+      April.', the Kalends of April, a month and a year from Lactantius' date.
+  end-modern:
+    prop: end
+    value: { lo: 3 December 311 CE, hi: 3 December 312 CE }
+    source:
+      - ref: src:wikipedia-diocletian
+        loc: "section on his retirement, and its note 12"
+        quote: After an illness, Diocletian died on 3 December 311 (or 312)
+      - ref: src:wikipedia-diocletian
+        loc: "note 12"
+        quote: it has been argued that the correct date of death was 3 December 312
+    method: expert-estimate
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      The present state of the question as Wikipedia reports it, cited as a last resort because
+      the studies it rests on could not be read. The day, 3 December, comes from the Consularia,
+      whose year is rejected.
+  end-clinton:
+    prop: end
+    value: 313 CE
+    source:
+      - ref: src:clinton-1845-fasti-romani
+        loc: "a. 313, p. 366"
+        quote: Death of Diocletian, after the marriage of Constantia
+      - ref: src:epitome-de-caesaribus
+        loc: "39.7"
+        quote: Quippe cum a Constantino atque Licinio vocatus ad festa nuptiarum
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Clinton's year, from the Epitome's story that he was invited to the wedding of Licinius
+      and Constantia and took poison after a threatening reply, and from Lactantius (ch. 42),
+      who has him die before the end of Daia in 313.
+  end-consularia:
+    prop: end
+    value: 3 December 316 CE
+    source:
+      ref: src:consularia-constantinopolitana
+      loc: "a. 316 (MGH AA 9, p. 231)"
+      quote: His conss. diem functus Dioclitianus Salona III n. Dec.
+    method: historical-account
+    note: >-
+      In English: in this consulship Diocletian died at Salona on the third day before the Nones
+      of December. The Chronicon Paschale has the same date under another name (so Clinton, p.
+      370, who calls it erroneous against the testimony at 313).
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:lactantius-de-mortibus-persecutorum
+      loc: "ch. 17"
+      quote: the twentieth year of his reign
+    note: >-
+      Augustus, with Maximian as a second from 286 (Consularia, p. 229) and later two Caesars
+      (Lactantius, ch. 7).

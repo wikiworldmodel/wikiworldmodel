@@ -1,0 +1,103 @@
+id: people/rulers/constantine
+kind: person
+summary: >-
+  Son of Constantius, hailed by his father's army in 306, who won the whole empire, favoured the
+  Christians and made Byzantium his capital as Constantinople.
+author: machine:claude-code
+same_as: { wikidata: Q8413 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Constantine }
+    source:
+      ref: src:anonymus-valesianus
+      loc: "2.2"
+      quote: This Constantine, then, born of Helena
+  start:
+    prop: start
+    value: { lo: 271 CE, hi: 273 CE }
+    source:
+      - ref: src:socrates-ecclesiastical-history
+        loc: "1.39"
+        quote: having just entered the sixty-fifth year of his age
+      - ref: src:socrates-ecclesiastical-history
+        loc: "1.40"
+        quote: The Emperor Constantine lived sixty-five years, and reigned thirty-one
+      - ref: src:eutropius-breviarium
+        loc: "10.8"
+        quote: uno et tricesimo anno imperii, aetatis sexto et sexagesimo
+      - ref: src:eusebius-life-of-constantine
+        loc: "4.53"
+        quote: He completed the time of his reign in two and thirty years, wanting a few months and days, and his whole life extended to about twice that period
+    method: historical-account
+    note: >-
+      Worked out from the ages these writers give at his death in 337: sixty-five (Socrates),
+      the sixty-sixth year (Eutropius), about sixty-four (Eusebius). They do not agree closely,
+      and nothing read here gives the year outright.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: 25 July 306 CE
+    source:
+      - ref: src:consularia-constantinopolitana
+        loc: "a. 306 (MGH AA 9, p. 231)"
+        quote: His conss. diem functus Constantius, et postea levatus est Constantinus VIII k. Aug.
+      - ref: src:consularia-constantinopolitana
+        loc: "a. 335 (MGH AA 9, p. 235)"
+        quote: His conss. tricennalia edidit Constantinus Aug. die VIII k. Aug.
+      - ref: src:lactantius-de-mortibus-persecutorum
+        loc: "ch. 24"
+        quote: Constantius recommended his son to the soldiers, delivered the sovereign authority into his hands
+    method: historical-account
+    note: >-
+      The eighth day before the Kalends of August is 25 July. He kept the same day for his
+      thirtieth-year festival.
+  end:
+    prop: end
+    value: 22 May 337 CE
+    source:
+      - ref: src:socrates-ecclesiastical-history
+        loc: "1.40"
+        quote: He died in the consulate of Felician and Tatian, on the twenty-second of May
+      - ref: src:consularia-constantinopolitana
+        loc: "a. 337 (MGH AA 9, p. 235)"
+        quote: His conss. Constantinus Aug. ad caelestia regna ablatus est die XI kal. Iun.
+    method: historical-account
+    note: >-
+      The eleventh day before the Kalends of June is 22 May, and that consulship is 337 CE, as
+      the Consularia has it. He died near Nicomedia (Socrates 1.39) on the last day of Pentecost
+      (Eusebius 4.64).
+  location:
+    prop: location
+    value: { lat: 43.316295, lon: 21.893884, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-naissus
+        loc: "representative point"
+      - ref: src:anonymus-valesianus
+        loc: "2.2"
+        quote: brought up in the town of Naissus
+    method: gazetteer
+    note: >-
+      Marked at Naissus, where the Origo says he was brought up; that he was born there is
+      usually assumed. At Pleiades' point.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-308
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:socrates-ecclesiastical-history
+      loc: "1.40"
+      quote: lived sixty-five years, and reigned thirty-one
+    note: Augustus, at first as one of several, sole emperor from his defeat of Licinius.

@@ -1,0 +1,110 @@
+id: earth/day-length/big-cottonwood-formation
+kind: sample
+summary: >-
+  Tidal rhythmites of siltstone and silicified sandstone in the Big Cottonwood Formation, Big Cottonwood
+  Canyon, Utah. Their neap-spring cycles have given conflicting values, because the raw data are
+  abbreviated: a first count was withdrawn, and two later ones still disagree.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Big Cottonwood Formation rhythmites" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Big Cottonwood Formation
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: p. 50
+      quote: silicified sandstone of the Big Cottonwood Formation in Big Cottonwood Canyon, central Utah
+  evidence:
+    prop: evidence
+    value: tidal-rhythmite
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: p. 50
+      quote: Rhythmites interpreted as tidal in origin
+  date:
+    prop: date
+    value: { mean: 900 Ma, sd: 100 Myr }
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: p. 50
+      quote: early Neoproterozoic (900 ± 100 Ma)
+    note: >-
+      The source does not say what the ± is: read as 1σ.
+  location:
+    prop: location
+    value: { lat: 40.641, lon: -111.689, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-big-cottonwood-canyon, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A representative point, the gazetteer's for the canyon that Williams (2000) names.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-132
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  day-length-sonett-chan-1998:
+    prop: day_length
+    value: { mean: 18.9, sd: 0.5 }
+    source:
+      - ref: src:williams-2000-earth-rotation
+        loc: Table 1, row "Length of solar day", column "~900 Ma‡"
+        quote: Length of solar day (hours) (17.1 ± 1.1) (18.8 ± 0.6) 18.9 ± 0.5 (20.8) 21.9 ± 0.4 24.00
+      - ref: src:sonett-chan-1998-big-cottonwood
+        loc: abstract
+        quote: should be modified to ∼ 18.9 hrs
+    rank: preferred
+    note: >-
+      Further neap-spring cycles from a new core, regarded as unabbreviated; the error is ±1σ. Preferred as
+      the latest count, and the one that Meyers and Malinverno (2018) plot as the formation's estimate, with
+      the other as an alternative. Williams (2000) doubts it: it lies close to the withdrawn value, and its
+      rate of lunar recession is at odds with other Precambrian data. Mitchell and Kirscher (2023) keep both.
+  day-length-sonett-1996-corrected:
+    prop: day_length
+    value: 20.8
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: p. 50; Table 1, row "Length of solar day", column "~900 Ma§"
+      quote: That corrected primary value implies 20.8 h/d and 422 solar days/yr
+    note: >-
+      Sonett et al.'s correction of 1996, 13.5 synodic months a year from other rhythmites they regarded as
+      unabbreviated; Williams derives the hours from it, with no error available. The correction itself
+      (Science 274, 1068) was not read.
+  day-length-sonett-1996-withdrawn:
+    prop: day_length
+    value: 18.2
+    source:
+      - ref: src:williams-2000-earth-rotation
+        loc: p. 50
+        quote: 18.2 h/d and 481 solar days/yr
+      - ref: src:sonett-1996-tides-lunar-retreat
+        loc: abstract
+        quote: the length of the terrestrial day 900 million years ago was approximately18 hours
+    rank: deprecated
+    note: >-
+      The first count, from neap-spring cycles that hold as few as 4 or 5 sandstone laminae. Its authors
+      withdrew it, agreeing that those rhythmites are strongly abbreviated.
+  moon-distance-sonett-chan-1998:
+    prop: moon_distance
+    value: { mean: 54.7, sd: 0.7 }
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: Table 1, row "Lunar semimajor axis", column "~900 Ma‡"
+      quote: Lunar semimajor axis (RE) (51.9 ± 3.3) (54.6 ± 1.8) 54.7 ± 0.7 (57.1) 58.16 ± 0.30 60.27
+    rank: preferred
+    note: >-
+      Preferred for the reason given for this count's day length. Meyers and Malinverno (2018, Fig. 3) give
+      it as 348,884 km.
+  moon-distance-sonett-1996-corrected:
+    prop: moon_distance
+    value: 57.1
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: Table 1, row "Lunar semimajor axis", column "~900 Ma§"
+      quote: Lunar semimajor axis (RE) (51.9 ± 3.3) (54.6 ± 1.8) 54.7 ± 0.7 (57.1) 58.16 ± 0.30 60.27
+    note: >-
+      Williams's derivation from the corrected count of 1996. Meyers and Malinverno (2018, Fig. 3) give it as
+      364,192 km.

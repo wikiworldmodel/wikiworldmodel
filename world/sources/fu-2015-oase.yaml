@@ -1,0 +1,21 @@
+id: src:fu-2015-oase
+type: publication
+kind: measurement
+citation: >-
+  Fu, Q., Hajdinjak, M., Moldovan, O.T., … & Pääbo, S. (2015). An early modern human from Romania
+  with a recent Neanderthal ancestor. Nature 524(7564), 216–219.
+authors:
+  - "Fu, Q."
+  - "Hajdinjak, M."
+  - "Moldovan, O.T."
+  - "Pääbo, S."
+published: 2015
+title: "An early modern human from Romania with a recent Neanderthal ancestor"
+container: "Nature 524(7564), 216–219"
+doi: 10.1038/nature14558
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC4537386); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

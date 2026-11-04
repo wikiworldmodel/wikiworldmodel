@@ -1,0 +1,16 @@
+id: src:culturcooperation-nefertiti-chronology
+type: publication
+kind: compilation
+citation: >-
+  CulturCooperation. The Bust of Nefertiti: A Chronology. "Nefertiti travels" campaign website.
+title: "The Bust of Nefertiti: A Chronology"
+url: https://web.archive.org/web/20150318133459/http://www.nofretete-geht-auf-reisen.de/echronol.htm
+reliability: >-
+  The website of a campaign to lend the bust to Egypt, so not disinterested, and it has slips (it dates
+  the division of the finds to 20 January 1914). It is the only source read for several wartime moves;
+  where it can be compared with the museum's account and the National Archives', it mostly agrees.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the copy archived on 18 March 2015 at web.archive.org. Quotations checked by script against
+    its text.

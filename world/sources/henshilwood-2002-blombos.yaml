@@ -1,0 +1,29 @@
+id: src:henshilwood-2002-blombos
+type: publication
+kind: measurement
+citation: >-
+  Henshilwood, C.S., d'Errico, F., Yates, R., Jacobs, Z., Tribolo, C., Duller, G.A., Mercier, N.,
+  Sealy, J.C., Valladas, H., Watts, I. & Wintle, A.G. (2002). Emergence of modern human behavior:
+  Middle Stone Age engravings from South Africa. Science 295(5558), 1278–1280.
+authors:
+  - "Henshilwood, C.S."
+  - "d'Errico, F."
+  - "Yates, R."
+  - "Jacobs, Z."
+  - "Tribolo, C."
+  - "Duller, G.A."
+  - "Mercier, N."
+  - "Sealy, J.C."
+  - "Valladas, H."
+  - "Watts, I."
+  - "Wintle, A.G."
+published: 2002
+title: "Emergence of modern human behavior: Middle Stone Age engravings from South Africa"
+container: "Science 295(5558), 1278–1280"
+doi: 10.1126/science.1067575
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 11786608): two engraved pieces of ochre, a mean date
+    of 77,000 years by thermoluminescence, and an optical age of 70,000 years on the dune above.
+    Quoted passages checked by script against the text retrieved.

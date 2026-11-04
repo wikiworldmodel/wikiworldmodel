@@ -15,6 +15,10 @@ claims:
     prop: identified_as
     value: Bangiomorpha pubescens n. gen. n. sp.
     source: { ref: src:pbdb/collection-227556, loc: "occurrence 1608344, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 73.591667, lon: -94.76667, frame: frame:earth/present-day }

@@ -1,0 +1,33 @@
+id: src:morwood-2004-liang-bua
+type: publication
+kind: measurement
+citation: >-
+  Morwood, M.J., Soejono, R.P., Roberts, R.G., Sutikna, T., Turney, C.S., Westaway, K.E., Rink,
+  W.J., Zhao, J.X., van den Bergh, G.D., Due, R.A., Hobbs, D.R., Moore, M.W., Bird, M.I. &
+  Fifield, L.K. (2004). Archaeology and age of a new hominin from Flores in eastern Indonesia.
+  Nature 431(7012), 1087–1091.
+authors:
+  - "Morwood, M.J."
+  - "Soejono, R.P."
+  - "Roberts, R.G."
+  - "Sutikna, T."
+  - "Turney, C.S."
+  - "Westaway, K.E."
+  - "Rink, W.J."
+  - "Zhao, J.X."
+  - "van den Bergh, G.D."
+  - "Due, R.A."
+  - "Hobbs, D.R."
+  - "Moore, M.W."
+  - "Bird, M.I."
+  - "Fifield, L.K."
+published: 2004
+title: "Archaeology and age of a new hominin from Flores in eastern Indonesia"
+container: "Nature 431(7012), 1087–1091"
+doi: 10.1038/nature02956
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 15510146): H. floresiensis from before 38 kyr until
+    at least 18 kyr, by radiocarbon, luminescence, uranium-series and ESR. Quoted passages checked
+    by script against the text retrieved.

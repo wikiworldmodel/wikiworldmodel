@@ -1,0 +1,55 @@
+id: life/occurrences/archaeopteryx-schamhaupten
+kind: occurrence
+summary: >-
+  The twelfth skeletal specimen of Archaeopteryx, from the Gerstner Quarry at Schamhaupten, Bavaria, in the Painten Formation:
+  the oldest of its genus, at the Kimmeridgian/Tithonian boundary. PBDB collection 49875.
+same_as: { pbdb: "occ:1391297" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Archaeopteryx, Schamhaupten" }
+    unsourced: An editorial label, from the taxon and the village.
+  identified:
+    prop: identified_as
+    value: Archaeopteryx sp.
+    source: { ref: src:pbdb/collection-49875, loc: "occurrence 1391297, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:rauhut-2018-oldest-archaeopteryx
+      loc: abstract
+      quote: "A new specimen (the 12th skeletal specimen) from the earliest Tithonian Painten Formation of Schamhaupten (Bavaria) represents the so far oldest representative of the genus."
+  location:
+    prop: location
+    value: { lat: 48.924442, lon: 11.589705, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-49875, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Painten Formation
+    source: { ref: src:pbdb/collection-49875, loc: "formation; member Öchselberg" }
+  date:
+    prop: date
+    value: { ref: ics/tithonian, edge: start }
+    source:
+      ref: src:rauhut-2018-oldest-archaeopteryx
+      loc: "History of Find and Geological Context"
+      quote: "The quarry represents strata of the Öchselberg member within the Painten Formation, which correspond to the Kimmeridgian/Tithonian boundary"
+    method: stratigraphic
+    note: >-
+      At the boundary, so the date follows the chart; the PBDB assigns the collection to the Tithonian.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/dinosauria
+    source: { ref: src:rauhut-2018-oldest-archaeopteryx, loc: "title: (Theropoda: Avialiae)" }
+    note: >-
+      A stem bird, so a theropod dinosaur, and outside life/taxa/aves, which is the crown group.

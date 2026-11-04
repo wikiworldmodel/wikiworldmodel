@@ -1,0 +1,12 @@
+id: src:smb-nofretete-die-praesentation
+type: publication
+kind: review
+citation: >-
+  Staatliche Museen zu Berlin, Ägyptisches Museum und Papyrussammlung. Büste der Nofretete: Die
+  Präsentation.
+title: "Büste der Nofretete: Die Präsentation"
+url: https://www.smb.museum/museen-einrichtungen/aegyptisches-museum-und-papyrussammlung/sammeln-forschen/bueste-der-nofretete/die-praesentation/
+reliability: The museum's account of where it has shown the bust, from its own archive. It passes quickly over the war.
+verified:
+  by: machine:claude-code
+  how: Read on the museum's site. Quotations checked by script against the page's text.

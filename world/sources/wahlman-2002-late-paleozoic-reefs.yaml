@@ -1,0 +1,19 @@
+id: src:wahlman-2002-late-paleozoic-reefs
+type: publication
+kind: review
+citation: >-
+  Wahlman, G.P. (2002). Upper Carboniferous–Lower Permian (Bashkirian–Kungurian) mounds and reefs.
+  In Kiessling, W., Flügel, E. & Golonka, J. (eds), Phanerozoic Reef Patterns. SEPM Special
+  Publication 72, 271–338.
+authors:
+  - "Wahlman, G.P."
+published: 2002
+title: "Upper Carboniferous–Lower Permian (Bashkirian–Kungurian) mounds and reefs"
+container: Phanerozoic Reef Patterns, SEPM Special Publication 72, 271–338
+doi: 10.2110/pec.02.72.0271
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

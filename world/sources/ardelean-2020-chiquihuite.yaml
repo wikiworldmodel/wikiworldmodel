@@ -1,0 +1,22 @@
+id: src:ardelean-2020-chiquihuite
+type: publication
+kind: measurement
+citation: >-
+  Ardelean, C.F., Becerra-Valdivia, L., Pedersen, M.W., … & Willerslev, E. (2020). Evidence of human
+  occupation in Mexico around the Last Glacial Maximum. Nature 584(7819), 87–92.
+authors:
+  - "Ardelean, C.F."
+  - "Becerra-Valdivia, L."
+  - "Pedersen, M.W."
+  - "Willerslev, E."
+published: 2020
+title: "Evidence of human occupation in Mexico around the Last Glacial Maximum"
+container: "Nature 584(7819), 87–92"
+doi: 10.1038/s41586-020-2509-0
+reliability: >-
+  Contested: Chatters et al. (2022) hold that its stone artefacts are natural geofacts.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

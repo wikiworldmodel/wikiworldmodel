@@ -1,0 +1,20 @@
+id: src:wilf-2003-kpg-climate
+type: publication
+kind: measurement
+citation: >-
+  Wilf, P., Johnson, K.R. & Huber, B.T. (2003). Correlated terrestrial and marine evidence for
+  global climate changes before mass extinction at the Cretaceous-Paleogene boundary.
+  Proceedings of the National Academy of Sciences 100(2), 599–604.
+authors:
+  - "Wilf, P."
+  - "Johnson, K.R."
+  - "Huber, B.T."
+published: 2003
+title: "Correlated terrestrial and marine evidence for global climate changes before mass extinction at the Cretaceous-Paleogene boundary"
+container: "Proceedings of the National Academy of Sciences 100(2), 599–604"
+doi: 10.1073/pnas.0234701100
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from PubMed Central (PMC141042); quotes checked by script against it. Its
+    ages put the boundary near 65.5 Ma, about half a million years younger than today's figure.

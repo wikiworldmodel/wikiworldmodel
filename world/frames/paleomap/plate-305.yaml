@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-305
+type: frame
+kind: plate
+title: Variscan Europe (PALEOMAP plate 305)
+entity: earth/plates/variscan-europe
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 305
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 305

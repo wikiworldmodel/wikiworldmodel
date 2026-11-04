@@ -1,0 +1,21 @@
+id: src:wikidata-white-sands
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q1200164 (White Sands National Park, New Mexico, USA), property P625 (coordinate
+  location).
+snapshot: "2026-11-03"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q1200164
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry for the whole park, at about its visitor centre: the footprint
+  locality within the park was not located from a source read.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (32.779722, -106.171667; precision 0.0001) read from the item's JSON
+    (Special:EntityData/Q1200164.json, last revision 2549098963, modified 2026-09-24).

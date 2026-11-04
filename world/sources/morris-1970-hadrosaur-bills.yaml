@@ -1,0 +1,17 @@
+id: src:morris-1970-hadrosaur-bills
+type: publication
+kind: measurement
+citation: >-
+  Morris, W.J. (1970). Hadrosaurian dinosaur bills: morphology and function. Contributions in
+  Science, Los Angeles County Museum of Natural History 193, 1–14.
+authors:
+  - "Morris, W.J."
+published: 1970
+title: "Hadrosaurian dinosaur bills: morphology and function"
+container: "Contributions in Science, Los Angeles County Museum of Natural History 193, 1–14"
+url: https://archive.org/details/biostor-232370
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the OCR text of the archive.org scan (BioStor); quotes checked by script against
+    that text, which spells one name "Anatosaurs".

@@ -1,0 +1,14 @@
+id: src:unesco-whc-1405-catalhoyuk
+type: publication
+kind: review
+citation: >-
+  UNESCO World Heritage Centre. Neolithic Site of Çatalhöyük. World Heritage List, no. 1405: description and statement of outstanding universal value.
+title: Neolithic Site of Çatalhöyük
+container: UNESCO World Heritage List
+url: https://whc.unesco.org/en/list/1405/
+via: The Internet Archive's copy of 23 December 2024 (web.archive.org/web/20241223025919/https://whc.unesco.org/en/list/1405), because UNESCO's site refused the script.
+license_note: The description is under CC BY-SA IGO 3.0. Only single facts and short quotes are taken, with credit.
+reliability: An official summary, drawn from the state's nomination; not a research paper. Its dates run earlier and later than those of Larsen et al. (2019).
+verified:
+  by: machine:claude-code
+  how: Read in the archived copy. Quotes checked by script against its text, after normalizing whitespace.

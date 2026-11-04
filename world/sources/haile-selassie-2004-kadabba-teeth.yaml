@@ -1,0 +1,20 @@
+id: src:haile-selassie-2004-kadabba-teeth
+type: publication
+kind: measurement
+citation: >-
+  Haile-Selassie, Y., Suwa, G. & White, T.D. (2004). Late Miocene teeth from Middle Awash,
+  Ethiopia, and early hominid dental evolution. Science 303(5663), 1503–1505.
+authors:
+  - "Haile-Selassie, Y."
+  - "Suwa, G."
+  - "White, T.D."
+published: 2004
+title: "Late Miocene teeth from Middle Awash, Ethiopia, and early hominid dental evolution"
+container: "Science 303(5663), 1503–1505"
+doi: 10.1126/science.1092978
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 15001775): Late Miocene teeth from the Middle Awash
+    assigned to Ardipithecus kadabba. Quoted passages checked by script against the text
+    retrieved.

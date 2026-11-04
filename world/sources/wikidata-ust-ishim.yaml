@@ -1,0 +1,22 @@
+id: src:wikidata-ust-ishim
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q4478405 (Ust-Ishim, a settlement in Omsk Oblast, Russia), property P625
+  (coordinate location).
+snapshot: "2026-11-03"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q4478405
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry for the settlement, not for the find spot: Fu et al. (2014) say the
+  femur was found on the bank of the Irtysh north of the settlement and that the exact locality is
+  unclear.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (57.694444444444, 71.170833333333; precision 0.00027777777777778) read from the
+    item's JSON (Special:EntityData/Q4478405.json, last revision 2539755969, modified 2026-09-03).

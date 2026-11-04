@@ -1,0 +1,66 @@
+id: life/occurrences/foxtail-millet-donghulin
+kind: occurrence
+summary: >-
+  Millet starch grains from grinding stones, a cooking pot and sediment at Donghulin, west of
+  Beijing, 11,000–9,500 years ago. Over time fewer grains have the wrinkled surface of wild foxtail
+  grass and more reach the size known only in domestic foxtail millet: the basis for an argument
+  that the crop was then being domesticated.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Foxtail millet, Donghulin" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: Setaria italica
+    source:
+      ref: src:yang-2012-early-millet
+      loc: Results
+      quote: "All millet starch grains >14 μm bear morphological features consistent with those of domesticated foxtail millet."
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      ref: src:yang-2012-early-millet
+      loc: Discussion
+      quote: "the starch grains measuring >14 μm, a size class only recorded in domesticated foxtail millet, increased from 46.2% (the Nanzhuangtou site) and 36.2% (the Donghulin site) to 52.6%"
+    note: >-
+      What shows it is domestic: size and surface of starch grains in an assemblage, read against
+      modern plants. There are no ears or chaff from this site, and no direct dates on the starch.
+  location:
+    prop: location
+    value: { lat: 39.98, lon: 115.726667, frame: frame:earth/present-day }
+    source:
+      ref: src:yang-2012-early-millet
+      loc: Site descriptions
+      quote: "The Donghulin site (N39°58′48′′, E115°43′36′′)"
+    method: survey
+    note: >-
+      Converted to decimal degrees from the paper's degrees, minutes and seconds.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 11 ka, hi: 9.5 ka }
+    source:
+      ref: src:yang-2012-early-millet
+      loc: abstract
+      quote: "Donghulin (11.0–9.5 cal kyBP)"
+    method: radiometric/radiocarbon
+    note: >-
+      The site's occupation, from AMS dates on charcoal, seeds and bone. Its early and late phases
+      are given as 11.15–10.5 and 10.5–9.45 kyBP.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott553005 and ott99252: Setaria italica lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/foxtail-millet
+    source: { ref: src:yang-2012-early-millet, loc: abstract }

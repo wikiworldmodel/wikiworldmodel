@@ -1,0 +1,26 @@
+id: src:tomlinson-2023-moa-preprint
+type: publication
+kind: model
+citation: >-
+  Tomlinson, S., Lomolino, M.V., Wood, J.R., Anderson, A., Brown, S.C., Haythorne, S., Perry,
+  G.L.W., Wilmshurst, J.M., Austin, J.J. & Fordham, D.A. (2023). Ecological dynamics of moa
+  extinctions reveal convergent refugia that today harbor flightless birds. Research Square
+  preprint, version 1. Published in Nature Ecology & Evolution 8(8), 1472–1481 (2024).
+authors:
+  - "Tomlinson, S."
+  - "Lomolino, M.V."
+  - "Wood, J.R."
+  - "Anderson, A."
+  - "Fordham, D.A."
+published: 2023
+title: "Ecological dynamics of moa extinctions reveal convergent refugia that today harbor flightless birds"
+container: "Research Square preprint"
+doi: 10.21203/rs.3.rs-3273867/v1
+reliability: >-
+  A preprint, read in place of the peer-reviewed version.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the preprint page on Research Square; of the published version in Nature Ecology &
+    Evolution only the abstract (Europe PMC, PMID 39048729) was read, and it does not repeat the
+    quoted words. Quotes checked by script against the text retrieved, after normalizing whitespace.

@@ -1,0 +1,57 @@
+id: life/transitions/bird-flight
+kind: event/transition
+summary: >-
+  Flight in birds and their nearest relatives. Archaeopteryx in the latest Jurassic has wing bones built like those of flying birds; older feathered relatives such as Anchiornis had wings too, and
+  whether they could fly under power is not settled. Powered flight may have arisen three times or more among theropods. Birds of the crown group are life/taxa/aves.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First flying birds }
+    unsourced: An editorial label.
+  start-voeten-2018:
+    prop: start
+    value: { ref: life/occurrences/archaeopteryx-schamhaupten }
+    source:
+      - ref: src:voeten-2018-archaeopteryx-flight
+        loc: "editor's summary"
+        quote: "supporting that Archaeopteryx had powered flight but with a different stroke than that of modern birds"
+      - ref: src:rauhut-2018-oldest-archaeopteryx
+        loc: abstract
+        quote: "represents the so far oldest representative of the genus"
+    rank: preferred
+    note: >-
+      Preferred as the oldest animal for which a direct test of the bones supports active flight. The paper records that earlier claims of flight "have not received universal support". The test is on other
+      specimens; the date is that of the oldest specimen.
+  start-pei-2020:
+    prop: start
+    value: { ref: life/occurrences/anchiornis-daxishan }
+    source:
+      - ref: src:pei-2020-powered-flight
+        loc: abstract
+        quote: "These results confirm powered flight potential in early birds but its rarity among the ancestors of the closest avialan relatives"
+      - ref: src:dececchi-2016-wings-before-bird
+        loc: abstract
+        quote: "We find no support for widespread prevalence of WAIR in non-avian theropods, but can’t reject its presence in large winged, small-bodied taxa like Microraptor and Archaeopteryx."
+    note: >-
+      Pei et al. recover the anchiornithines as the earliest birds, and find powered flight potential in early birds; the abstract read does not say which ones pass its thresholds, so this is the earliest it could
+      mean, not a finding about Anchiornis. Dececchi et al. (2016) find that no flap-based behaviour reached its threshold before Paraves.
+relations:
+  evidence-archaeopteryx:
+    rel: evidenced-by
+    to: life/occurrences/archaeopteryx-schamhaupten
+    source:
+      ref: src:voeten-2018-archaeopteryx-flight
+      loc: "editor's summary"
+      quote: "supporting that Archaeopteryx had powered flight but with a different stroke than that of modern birds"
+    note: >-
+      The study's specimens are others of the genus, from the Altmühltal Formation. This occurrence is the oldest of the genus.
+  evidence-anchiornis:
+    rel: evidenced-by
+    to: life/occurrences/anchiornis-daxishan
+    source:
+      ref: src:pei-2020-powered-flight
+      loc: abstract
+      quote: "the recovery of Anchiornithinae as the earliest diverging birds"
+    note: >-
+      Wings, not proven flight: see the competing start.

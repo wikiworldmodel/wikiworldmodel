@@ -1,0 +1,98 @@
+id: earth/day-length/lucaogou-formation
+kind: sample
+summary: >-
+  Lake mudstones of the Middle Permian Lucaogou Formation, Junggar Basin, northwestern China, whose natural
+  gamma-ray logs in five wells show Milankovitch cycles: a day of about 22.6 or 22.9 hours, depending on how
+  the cycles are analysed.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Lucaogou Formation cycles" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Lucaogou Formation
+    source:
+      ref: src:huang-2020-lucaogou
+      loc: abstract
+      quote: the lacustrine muddy-dominated Lucaogou Formation from five exploitation wells
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:huang-2020-lucaogou
+      loc: abstract
+      quote: These cycle wavelength ratios match well with those of the Milankovitch cycles
+  date:
+    prop: date
+    value: { lo: 270 Ma, hi: 268 Ma }
+    source:
+      ref: src:farhat-2022-earth-moon-distance
+      loc: Table D.1, rows "Lucaogou(a)" and "Lucaogou(b)"
+      quote: Lucaogou(a) Huang et al. (2020) 0.268 57.01 ± 1.37 58.57 ± 0.31 373538 ± 2000 22.56 ± 0.27
+    method: compilation
+    note: >-
+      The two ages the table gives for its two analyses of the same data, 0.268 and 0.270 Ga.
+  location:
+    prop: location
+    value: { lat: 46, lon: 87, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-junggar-basin, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A representative point, the gazetteer's for the whole basin, given to the degree: the abstract, all that
+      could be read of the study, gives no coordinates for the wells.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-402
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  day-length-timeoptmcmc:
+    prop: day_length
+    value: { mean: 22.56, sd: 0.135 }
+    source:
+      ref: src:farhat-2022-earth-moon-distance
+      loc: Table D.1, row "Lucaogou(a)"
+      quote: Lucaogou(a) Huang et al. (2020) 0.268 57.01 ± 1.37 58.57 ± 0.31 373538 ± 2000 22.56 ± 0.27
+    method: model
+    rank: preferred
+    note: >-
+      Analysis (a), by the Bayesian inversion of Meyers and Malinverno (2018). Preferred as the method behind
+      the Xiamaling and Walvis Ridge records, which keeps the series comparable. The hours are Farhat et al.'s,
+      from the study's precession frequency with their own model, and may differ from what the study published.
+      Their table sets the ± of that frequency at 2σ where the original specifies one and propagates it: read
+      as 2σ and halved.
+  day-length-cycle-counting:
+    prop: day_length
+    value: { mean: 22.90, sd: 0.055 }
+    source:
+      ref: src:farhat-2022-earth-moon-distance
+      loc: Table D.1, row "Lucaogou(b)"
+      quote: Lucaogou(b) Huang et al. (2020) 0.270 55.36 ± 0.51 58.95 ± 0.12 375967 ± 750 22.90 ± 0.11
+    method: model
+    note: >-
+      Analysis (b), by counting obliquity and precession cycles. The hours and the reading of the ± are as for
+      analysis (a).
+  moon-distance-timeoptmcmc:
+    prop: moon_distance
+    value: { mean: 58.57, sd: 0.155 }
+    source:
+      ref: src:farhat-2022-earth-moon-distance
+      loc: Table D.1, row "Lucaogou(a)"
+      quote: Lucaogou(a) Huang et al. (2020) 0.268 57.01 ± 1.37 58.57 ± 0.31 373538 ± 2000 22.56 ± 0.27
+    method: model
+    rank: preferred
+    note: >-
+      Preferred for the reason given for this analysis's day length. The ± is read as 2σ and halved, as for the
+      day length.
+  moon-distance-cycle-counting:
+    prop: moon_distance
+    value: { mean: 58.95, sd: 0.06 }
+    source:
+      ref: src:farhat-2022-earth-moon-distance
+      loc: Table D.1, row "Lucaogou(b)"
+      quote: Lucaogou(b) Huang et al. (2020) 0.270 55.36 ± 0.51 58.95 ± 0.12 375967 ± 750 22.90 ± 0.11
+    method: model
+    note: >-
+      The ± is read as 2σ and halved, as for the day length.

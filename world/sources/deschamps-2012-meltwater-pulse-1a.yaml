@@ -1,0 +1,26 @@
+id: src:deschamps-2012-meltwater-pulse-1a
+type: publication
+kind: measurement
+citation: >-
+  Deschamps, P., Durand, N., Bard, E., Hamelin, B., Camoin, G., Thomas, A.L., Henderson, G.M.,
+  Okuno, J. & Yokoyama, Y. (2012). Ice-sheet collapse and sea-level rise at the Bølling warming
+  14,600 years ago. Nature 483(7391), 559–564.
+authors:
+  - "Deschamps, P."
+  - "Durand, N."
+  - "Bard, E."
+  - "Hamelin, B."
+  - "Camoin, G."
+  - "Thomas, A.L."
+  - "Henderson, G.M."
+  - "Okuno, J."
+  - "Yokoyama, Y."
+published: 2012
+title: "Ice-sheet collapse and sea-level rise at the Bølling warming 14,600 years ago"
+container: "Nature 483(7391), 559–564"
+doi: 10.1038/nature10902
+verified:
+  by: machine:claude-code
+  how: >-
+    Title and abstract read through Europe PMC. The full text was not read. Citation from
+    Crossref. Quotes checked by script against the text retrieved.

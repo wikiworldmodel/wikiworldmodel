@@ -1,0 +1,18 @@
+id: src:wikipedia-upward-sun-river-site
+type: database-record
+kind: review
+citation: >-
+  "Upward Sun River site." Wikipedia, the free encyclopedia (English edition).
+snapshot: "2026-11-03"
+title: Upward Sun River site
+container: Wikipedia
+url: https://en.wikipedia.org/wiki/Upward_Sun_River_site
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, a last resort here: Wikidata's item for the site (Q22058534) has
+  no coordinates, and the papers read do not print any. Its text can change.
+verified:
+  by: machine:claude-code
+  how: >-
+    The coordinates (64.2008 N, 149.4937 W) read from the infobox in the article's wikitext, fetched
+    through the MediaWiki API; only the coordinates are used, and no text is copied.

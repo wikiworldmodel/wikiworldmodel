@@ -1,0 +1,25 @@
+id: src:guo-2025-barley
+type: publication
+kind: measurement
+citation: >-
+  Guo, Y., Jayakodi, M., Himmelbach, A., … & Mascher, M. (2025). A haplotype-based evolutionary
+  history of barley domestication. Nature 647(8090), 680–688.
+authors:
+  - "Guo, Y."
+  - "Jayakodi, M."
+  - "Himmelbach, A."
+  - "Ben-Yosef, E."
+  - "Davidovich, U."
+  - "David, M."
+  - "Hartmann-Shenkman, A."
+  - "Kislev, M."
+# the first eight of 16 authors
+published: 2025
+title: "A haplotype-based evolutionary history of barley domestication"
+container: "Nature 647(8090), 680–688"
+doi: 10.1038/s41586-025-09533-7
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC12629985) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

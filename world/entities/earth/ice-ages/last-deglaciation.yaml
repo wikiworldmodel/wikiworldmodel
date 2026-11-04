@@ -1,0 +1,97 @@
+id: earth/ice-ages/last-deglaciation
+kind: event/transition
+summary: >-
+  The melting of the great northern ice sheets and the warming of the planet from the Last Glacial
+  Maximum to the early Holocene, when global sea level rose by tens of metres.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Last deglaciation }
+    source: { ref: src:clark-2012-last-deglaciation, loc: title }
+  start-clark-2012:
+    prop: start
+    value: 19 ka
+    source:
+      ref: src:clark-2012-last-deglaciation
+      loc: abstract
+      quote: Deciphering the evolution of global climate from the end of the Last Glacial Maximum approximately 19 ka to the early Holocene 11 ka
+    method: expert-estimate
+    rank: preferred
+    note: A synthesis of the climate of the whole interval, from the end of the Last Glacial Maximum's preferred span.
+  start-ar6-2021:
+    prop: start
+    value: 18 ka
+    source:
+      ref: src:gulev-2021-ipcc-ar6-chapter-2
+      loc: "Cross-Chapter Box 2.1, Table 1, p. 295"
+      quote: Last Deglacial Transition (LDT) 18–11 ka
+    method: expert-estimate
+    note: A reference period for comparing climates.
+  start-lambeck-2014:
+    prop: start
+    value: 16.5 ka
+    source:
+      ref: src:lambeck-2014-sea-level-ice-volumes
+      loc: abstract
+      quote: the main phase of deglaciation occurred from ∼16.5 ka BP to ∼8.2 ka BP at an average rate of rise of 12 m⋅ka(-1)
+    method: model
+    note: The main phase by sea level, after a first rise of about 10–15 m and a pause.
+  end-clark-2012:
+    prop: end
+    value: 11 ka
+    source:
+      - ref: src:clark-2012-last-deglaciation
+        loc: abstract
+        quote: Deciphering the evolution of global climate from the end of the Last Glacial Maximum approximately 19 ka to the early Holocene 11 ka
+      - ref: src:gulev-2021-ipcc-ar6-chapter-2
+        loc: "Cross-Chapter Box 2.1, Table 1, p. 295"
+        quote: Last Deglacial Transition (LDT) 18–11 ka
+    method: expert-estimate
+    rank: preferred
+    note: Goes with the start of the same span.
+  end-lambeck-2014:
+    prop: end
+    value: 8.2 ka
+    source:
+      ref: src:lambeck-2014-sea-level-ice-volumes
+      loc: abstract
+      quote: the main phase of deglaciation occurred from ∼16.5 ka BP to ∼8.2 ka BP at an average rate of rise of 12 m⋅ka(-1)
+    method: model
+    note: The end of the main phase, by sea level.
+  sea-level-change-clark-2012:
+    prop: sea_level_change
+    value: 80
+    source:
+      ref: src:clark-2012-last-deglaciation
+      loc: abstract
+      quote: the decay of ice sheets caused global mean sea level to rise by approximately 80 m
+    basis: reconstruction
+    rank: preferred
+    note: Over the 19–11 ka the paper covers, which is this record's preferred span.
+  sea-level-change-ar6-2021:
+    prop: sea_level_change
+    value: 70
+    source:
+      ref: src:gulev-2021-ipcc-ar6-chapter-2
+      loc: "Section 2.3.3.3, p. 353"
+      quote: During the LDT, GMSL rose from approximately –120 m to –50 m
+    basis: reconstruction
+    note: Over 18–11 ka, the IPCC's span; the difference of the two values given.
+  sea-level-change-lambeck-2014:
+    prop: sea_level_change
+    value: 120
+    source:
+      ref: src:lambeck-2014-sea-level-ice-volumes
+      loc: "Discussion and Conclusions, item (v)"
+      quote: A major phase of deglaciation from ∼16.5–7 ka BP. The total esl change in this interval is ∼120 m
+    basis: reconstruction
+    note: Over 16.5–7 ka, a later window than the others.
+relations:
+  after-the-maximum:
+    rel: after
+    to: earth/ice-ages/last-glacial-maximum
+    source:
+      ref: src:clark-2012-last-deglaciation
+      loc: opening paragraph
+      quote: During the interval of global warming from the end of the Last Glacial Maximum (LGM) approximately 19 ka to the early Holocene 11 ka

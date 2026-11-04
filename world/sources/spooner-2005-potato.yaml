@@ -1,0 +1,22 @@
+id: src:spooner-2005-potato
+type: publication
+kind: measurement
+citation: >-
+  Spooner, D.M., McLean, K., Ramsay, G., Waugh, R. & Bryan, G.J. (2005). A single domestication
+  for potato based on multilocus amplified fragment length polymorphism genotyping. Proceedings
+  of the National Academy of Sciences 102(41), 14694–14699.
+authors:
+  - "Spooner, D.M."
+  - "McLean, K."
+  - "Ramsay, G."
+  - "Waugh, R."
+  - "Bryan, G.J."
+published: 2005
+title: "A single domestication for potato based on multilocus amplified fragment length polymorphism genotyping"
+container: "Proceedings of the National Academy of Sciences 102(41), 14694–14699"
+doi: 10.1073/pnas.0507400102
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC1253605) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

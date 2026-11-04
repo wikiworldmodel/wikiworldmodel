@@ -1,0 +1,20 @@
+id: src:walker-zahnle-1986-lunar-nodal-tide
+type: publication
+kind: measurement
+citation: >-
+  Walker, J.C.G. & Zahnle, K.J. (1986). Lunar nodal tide and distance to the Moon during the
+  Precambrian. Nature 320, 600–602.
+authors:
+  - "Walker, J.C.G."
+  - "Zahnle, K.J."
+published: 1986
+title: Lunar nodal tide and distance to the Moon during the Precambrian
+container: Nature 320(6063), 600–602
+doi: 10.1038/320600a0
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, from the PubMed record (PMID 11540876) through Europe PMC, and the same on
+    the publisher's page (nature.com); the full text is paywalled, and the University of Michigan's
+    copy (hdl.handle.net/2027.42/62576) was not reachable. Quotes checked by script against the
+    PubMed abstract. Metadata from Crossref.

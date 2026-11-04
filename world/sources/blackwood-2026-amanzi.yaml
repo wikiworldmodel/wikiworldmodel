@@ -1,0 +1,33 @@
+id: src:blackwood-2026-amanzi
+type: publication
+kind: measurement
+citation: >-
+  Blackwood, A.F., Wilkins, J., Arnold, L.J., Demuro, M., Boschian, G., Caruana, M.V., Lalunio,
+  E.F., Spate, M., Hatton, A., Muir, R.A., Wilson, C.G., Quick, L.J., Meredith-Williams, M. &
+  Herries, A.I.R. (2026). Regional variability in the Acheulian to Middle Stone Age transition in
+  southern Africa. Scientific Reports 16(1), 9529.
+authors:
+  - "Blackwood, A.F."
+  - "Wilkins, J."
+  - "Arnold, L.J."
+  - "Demuro, M."
+  - "Boschian, G."
+  - "Caruana, M.V."
+  - "Lalunio, E.F."
+  - "Spate, M."
+  - "Hatton, A."
+  - "Muir, R.A."
+  - "Wilson, C.G."
+  - "Quick, L.J."
+  - "Meredith-Williams, M."
+  - "Herries, A.I.R."
+published: 2026
+title: "Regional variability in the Acheulian to Middle Stone Age transition in southern Africa"
+container: "Scientific Reports 16(1), 9529"
+doi: 10.1038/s41598-026-40075-8
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC13004965): diagnostic MSA elements with the Acheulian by
+    ~500−400 ka, and the MSA at Amanzi Springs at 230 ± 18 ka. Quoted passages checked by script
+    against the text retrieved.

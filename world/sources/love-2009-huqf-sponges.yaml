@@ -1,0 +1,32 @@
+id: src:love-2009-huqf-sponges
+type: publication
+kind: measurement
+citation: >-
+  Love, G.D., Grosjean, E., Stalvies, C., Fike, D.A., Grotzinger, J.P., Bradley, A.S., Kelly,
+  A.E., Bhatia, M., Meredith, W., Snape, C.E., Bowring, S.A., Condon, D.J. & Summons, R.E.
+  (2009). Fossil steroids record the appearance of Demospongiae during the Cryogenian period.
+  Nature 457(7230), 718–721.
+authors:
+  - "Love, G.D."
+  - "Grosjean, E."
+  - "Stalvies, C."
+  - "Fike, D.A."
+  - "Grotzinger, J.P."
+  - "Bradley, A.S."
+  - "Kelly, A.E."
+  - "Bhatia, M."
+  - "Meredith, W."
+  - "Snape, C.E."
+  - "Bowring, S.A."
+  - "Condon, D.J."
+  - "Summons, R.E."
+published: 2009
+title: "Fossil steroids record the appearance of Demospongiae during the Cryogenian period"
+container: Nature 457(7230), 718–721
+doi: 10.1038/nature07673
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 19194449); the full text was not read, so the wells and
+    sections sampled are not known here. Quotes checked by script against that text. Metadata
+    from Crossref.

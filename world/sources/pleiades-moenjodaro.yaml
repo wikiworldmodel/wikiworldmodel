@@ -1,0 +1,15 @@
+id: src:pleiades-moenjodaro
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 902113570, "Moenjodaro" (Sindh, Pakistan).
+snapshot: "2026-11-04"
+container: Pleiades
+url: https://pleiades.stoa.org/places/902113570
+license: CC-BY-3.0
+reliability: A scholarly gazetteer of ancient places; its representative point lies between its two located points.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/902113570/json) read directly on 4 November 2026:
+    representative point 27.325412°N, 68.137741°E; names include Mohenjo-daro.

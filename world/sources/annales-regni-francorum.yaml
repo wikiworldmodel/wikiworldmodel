@@ -1,0 +1,21 @@
+id: src:annales-regni-francorum
+type: text
+kind: historian
+citation: >-
+  Annales regni Francorum inde ab a. 741 usque ad a. 829, qui dicuntur Annales Laurissenses
+  maiores et Einhardi, ed. F. Kurze (Monumenta Germaniae Historica, Scriptores rerum
+  Germanicarum 6; Hanover: Hahn, 1895).
+published: 1895
+title: Annales regni Francorum
+url: https://archive.org/details/annalesregnifran00unse
+via: The Internet Archive's scan of the MGH volume.
+reliability: >-
+  The court annals of the Carolingians, kept year by year near the time, with a revised version
+  (the 'Einhard' annals, printed beneath). They begin the year at Christmas, so the coronation
+  of Christmas 800 falls under 801.
+verified:
+  by: machine:claude-code
+  how: >-
+    Pp. 28, 29 and 113 read in the page images of the scan (leaves n53, n54, n138), and p. 140
+    in the OCR; the quotations were compared with a transcription from the images and with the
+    OCR, leaving out the editor's apparatus letters.

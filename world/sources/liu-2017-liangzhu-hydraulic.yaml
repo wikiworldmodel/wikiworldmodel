@@ -1,0 +1,23 @@
+id: src:liu-2017-liangzhu-hydraulic
+type: publication
+kind: measurement
+citation: >-
+  Liu, B., Wang, N., Chen, M., Wu, X., Mo, D., Liu, J., Xu, S. & Zhuang, Y. (2017). Earliest hydraulic enterprise in China, 5,100 years ago.
+  Proceedings of the National Academy of Sciences 114(52), 13637–13642.
+authors:
+  - "Liu, B."
+  - "Wang, N."
+  - "Chen, M."
+  - "Wu, X."
+  - "Mo, D."
+  - "Liu, J."
+  - "Xu, S."
+  - "Zhuang, Y."
+published: 2017
+title: Earliest hydraulic enterprise in China, 5,100 years ago
+container: Proceedings of the National Academy of Sciences
+doi: 10.1073/pnas.1710516114
+url: https://europepmc.org/article/MED/29203672
+verified:
+  by: machine:claude-code
+  how: Only the abstract read, from Europe PMC. Quotes checked by script against it.

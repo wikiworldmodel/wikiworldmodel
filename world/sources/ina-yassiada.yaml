@@ -1,0 +1,12 @@
+id: src:ina-yassiada
+type: publication
+kind: review
+citation: >-
+  Institute of Nautical Archaeology. Yassıada Byzantine Shipwreck Excavation. Project page.
+title: Yassıada Byzantine Shipwreck Excavation
+container: Institute of Nautical Archaeology, Projects
+url: https://nauticalarch.org/projects/yassiada-byzantine-shipwreck-excavation/
+reliability: A short summary, in place of Bass & van Doorninck (1982), the final report, which was not read.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

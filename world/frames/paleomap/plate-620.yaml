@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-620
+type: frame
+kind: plate
+title: Borneo and Java (PALEOMAP plate 620)
+entity: earth/plates/borneo-java
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 620
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 620

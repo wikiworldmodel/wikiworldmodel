@@ -1,0 +1,72 @@
+id: people/rulers/ashoka
+kind: person
+summary: >-
+  Third Maurya emperor, who conquered Kalinga, turned to Buddhism and had his edicts cut on
+  rocks and pillars across India; the Greek kings they name date him.
+author: machine:claude-code
+same_as: { wikidata: Q8589 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Maurya emperor
+claims:
+  name:
+    prop: name
+    value: { en: Ashoka, sa: Aśoka }
+    unsourced: An editorial label, the usual forms of the name.
+  reign-start-hultzsch:
+    prop: start
+    subject: "@reign"
+    value: 268 BCE
+    source:
+      - ref: src:hultzsch-1925-inscriptions-of-asoka
+        loc: "p. xxxv"
+        quote: and Bindusara 296-268
+      - ref: src:hultzsch-1925-inscriptions-of-asoka
+        loc: "p. xxxv"
+        quote: would have been crowned (four years after his father's death)
+    method: expert-estimate
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      Accession on his father's death, on Hultzsch's working dates. He was crowned four years
+      after, in 264; the years in his edicts count from that coronation. Hultzsch checks it
+      against the Greek kings of the thirteenth rock-edict, which cannot be later than 250.
+  reign-start-cambridge:
+    prop: start
+    subject: "@reign"
+    value: 274 BCE
+    source:
+      ref: src:cambridge-history-of-india-1922
+      loc: "p. 698"
+      quote: Accession 274 B.C. at latest
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Thomas' date in the Cambridge History, with coronation in 270 at the latest, reckoned from
+      the same Greek kings with Alexander identified differently.
+  end:
+    prop: end
+    value: { ref: people/rulers/ashoka@reign, edge: start, lag: { lo: 36 yr, hi: 37 yr } }
+    source:
+      ref: src:cambridge-history-of-india-1922
+      loc: "p. 499"
+      quote: "36-37 years, reckoned, no doubt, from his accession"
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      The length of the reign by the concurrent testimony of the Brahman and Buddhist histories,
+      as the Cambridge History reports it. It gives 238–237 BCE from its own start and 232–231
+      from the preferred one. His last dated edict is of the twenty-seventh year after the
+      coronation (Hultzsch, p. xxxvi).
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/maurya-empire
+    source:
+      ref: src:cambridge-history-of-india-1922
+      loc: "p. 499"
+      quote: "36-37 years, reckoned, no doubt, from his accession"
+    note: Maurya emperor; in his edicts Devanampriya Priyadarsin, king of Magadha.

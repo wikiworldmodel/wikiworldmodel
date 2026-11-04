@@ -1,0 +1,18 @@
+id: src:waal-2018-phoenician-letters
+type: publication
+kind: review
+citation: >-
+  Waal, W. (2018). On the "Phoenician Letters": The Case for an Early Transmission of the Greek Alphabet from an Archaeological, Epigraphic and
+  Linguistic Perspective. Aegean Studies 1, 83–125.
+authors:
+  - "Waal, W."
+published: 2018
+title: 'On the "Phoenician Letters": The Case for an Early Transmission of the Greek Alphabet from an Archaeological, Epigraphic and Linguistic Perspective'
+container: Aegean Studies
+url: https://www.aegeussociety.org/wp-content/uploads/2018/12/Aegean-Studies-vol1-4-Waal.pdf
+reliability: Argues against the prevailing view, and says so. It follows Coldstream's conventional Greek chronology, which it notes has been challenged.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the Aegeus Society's PDF. Quotes checked by script against its text layer, ignoring whitespace and rejoining words hyphenated
+    at line ends. Page numbers are the journal's.

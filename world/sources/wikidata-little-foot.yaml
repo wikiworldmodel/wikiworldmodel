@@ -1,0 +1,17 @@
+id: src:wikidata-little-foot
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q278863 (Little Foot, the fossil skeleton from Sterkfontein, South Africa),
+  property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q278863
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry for the fossil, close to the entry for the Sterkfontein site.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (-26.01583333, 27.73444444) read from the item through the wbgetentities API on 4
+    November 2026.

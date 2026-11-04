@@ -1,0 +1,31 @@
+id: src:dimaggio-2015-ledi-geraru
+type: publication
+kind: measurement
+citation: >-
+  DiMaggio, E.N., Campisano, C.J., Rowan, J., Dupont-Nivet, G., Deino, A.L., Bibi, F., Lewis,
+  M.E., Souron, A., Garello, D., Werdelin, L., Reed, K.E. & Arrowsmith, J.R. (2015). Late Pliocene
+  fossiliferous sedimentary record and the environmental context of early Homo from Afar,
+  Ethiopia. Science 347(6228), 1355–1359.
+authors:
+  - "DiMaggio, E.N."
+  - "Campisano, C.J."
+  - "Rowan, J."
+  - "Dupont-Nivet, G."
+  - "Deino, A.L."
+  - "Bibi, F."
+  - "Lewis, M.E."
+  - "Souron, A."
+  - "Garello, D."
+  - "Werdelin, L."
+  - "Reed, K.E."
+  - "Arrowsmith, J.R."
+published: 2015
+title: "Late Pliocene fossiliferous sedimentary record and the environmental context of early Homo from Afar, Ethiopia"
+container: "Science 347(6228), 1355–1359"
+doi: 10.1126/science.aaa1415
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 25739409): the LD 350-1 mandible dated to 2.80 to
+    2.75 Ma by geological analyses, in sediments of 2.84 to 2.58 Ma. It does not name the dating
+    methods. Quoted passages checked by script against the text retrieved.

@@ -1,0 +1,76 @@
+id: people/dispersals/oase-1
+kind: occurrence
+summary: >-
+  The genome of a man from Peștera cu Oase, Romania, from a mandible about 40,000 years old. He had
+  a Neanderthal ancestor as few as four to six generations back, and his population left no clear
+  mark on later Europeans.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Oase 1 }
+    source:
+      ref: src:fu-2015-oase
+      loc: "main text, para. 2"
+      quote: "a modern human mandible, Oase 1"
+  identified:
+    prop: identified_as
+    value: modern human
+    source:
+      ref: src:fu-2015-oase
+      loc: "main text, para. 2"
+      quote: "a modern human mandible, Oase 1"
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:fu-2015-oase
+      loc: "main text, para. 2"
+      quote: "We report genome-wide data from a modern human mandible"
+  location:
+    prop: location
+    value: { lat: 45.016731, lon: 21.833347, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-pestera-cu-oase, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-308
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 42 ka, hi: 37 ka }
+    source:
+      ref: src:fu-2015-oase
+      loc: "main text, para. 2"
+      quote: "estimated to ~37,000–42,000 years by direct radiocarbon dating"
+    method: radiometric/radiocarbon
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        About 6–9% of the genome comes from Neanderthals, with a Neanderthal ancestor as recently
+        as four to six generations back, so that this mixing happened less than 200 years before
+        he lived. The Oase population did not contribute substantially to later people in Europe.
+    source:
+      - ref: src:fu-2015-oase
+        loc: abstract
+        quote: "on the order of 6-9% of the genome of the Oase individual is derived from Neanderthals"
+      - ref: src:fu-2015-oase
+        loc: abstract
+        quote: "had a Neanderthal ancestor as recently as four to six generations back"
+      - ref: src:fu-2015-oase
+        loc: "main text, discussion"
+        quote: "allows this Neanderthal admixture to be dated to less than 200 years before the time he lived"
+      - ref: src:fu-2015-oase
+        loc: abstract
+        quote: "suggesting that the Oase population did not contribute substantially to later humans in Europe"
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:fu-2015-oase
+      loc: "main text, para. 2"
+      quote: "a modern human mandible, Oase 1"

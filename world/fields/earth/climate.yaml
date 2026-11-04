@@ -1,0 +1,19 @@
+id: field:earth/climate
+type: field
+title: Climate of the land
+quantity: warmest and coldest month, aridity, and the rains of the driest month
+unit: as the Köppen–Geiger classes read them (core/climate.ts)
+description: >-
+  A climate model's reconstruction of each time, run on the same reconstructions of the Earth as the
+  globe's elevation and plates, so its land lies where the globe's does. It is a model's answer, not
+  a measurement, and it says nothing of what lived there: the land starts as "warm grassland" in
+  every run. It has no ice sheets before the pre-industrial run.
+# The months' reduction follows Peel et al. (2007); the model's grid is 0.9° × 1.25°, kept here at 2°.
+frame: frame:earth/geographic
+grid: { kind: lonlat, res_deg: 2 }
+time: { lo: 540 Ma, hi: 0 Ma, step: 10 Myr }
+data: { from: src:li-2022-phanerozoic-climate, as: climate }
+basis: reconstruction
+# Between runs, each is moved with the plate under each node, as the elevation is, and the two blended.
+interp: plate-warp
+moves_with: src:paleomap-plate-model

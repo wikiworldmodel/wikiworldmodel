@@ -1,0 +1,22 @@
+id: src:berger-2017-naledi
+type: publication
+kind: measurement
+citation: >-
+  Berger, L.R., Hawks, J., Dirks, P.H., Elliott, M. & Roberts, E.M. (2017). Homo naledi and
+  Pleistocene hominin evolution in subequatorial Africa. eLife 6, e24234.
+authors:
+  - "Berger, L.R."
+  - "Hawks, J."
+  - "Dirks, P.H."
+  - "Elliott, M."
+  - "Roberts, E.M."
+published: 2017
+title: "Homo naledi and Pleistocene hominin evolution in subequatorial Africa"
+container: "eLife 6, e24234"
+doi: 10.7554/elife.24234
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC5423770): the statement that H. naledi cannot be excluded as
+    a maker of Acheulean or Middle Stone Age tools. Quoted passages checked by script against the
+    text retrieved.

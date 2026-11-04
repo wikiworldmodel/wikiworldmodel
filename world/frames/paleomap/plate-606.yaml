@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-606
+type: frame
+kind: plate
+title: Baishan block (PALEOMAP plate 606)
+note: Named from PALEOMAP_PlateModel.rot, "BSH Baishan block". No plate record has been written for it yet.
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 606
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 606

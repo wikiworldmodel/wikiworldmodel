@@ -1,0 +1,10 @@
+id: src:perth-museum-stone-of-destiny
+type: publication
+kind: review
+citation: Perth Museum. The Stone of Destiny.
+title: The Stone of Destiny
+url: https://perthmuseum.co.uk/the-stone-of-destiny/
+reliability: The museum that now shows the stone, for its visitors.
+verified:
+  by: machine:claude-code
+  how: Read on the museum's site. Quotations checked by script against the page's text.

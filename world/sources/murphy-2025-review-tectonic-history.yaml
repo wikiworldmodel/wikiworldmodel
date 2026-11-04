@@ -1,0 +1,19 @@
+id: src:murphy-2025-review-tectonic-history
+type: publication
+kind: review
+citation: >-
+  Murphy, J.B. (2025). A Tectonic History of the Earth, by Graham Park (book review). Geoscience Canada
+  52(3–4), 309–314.
+authors:
+  - "Murphy, J.B."
+published: 2025
+title: A Tectonic History of the Earth (book review)
+container: Geoscience Canada 52(3–4), 309–314
+doi: 10.12789/geocanj.2025.52.226
+url: https://journals.lib.unb.ca/index.php/GC/article/download/35764/1882531419
+verified:
+  by: machine:claude-code
+  how: >-
+    The review read in full from the journal's PDF; neither Park's book nor the animation it cites,
+    Scotese (2020), "How the next supercontinent will form", was read. Citation from Crossref. Quotes
+    checked by script against the text extracted from that PDF, after normalizing whitespace.

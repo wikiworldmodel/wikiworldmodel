@@ -1,0 +1,10 @@
+id: alt:ipcc-ar6-scenarios/ssp245
+type: alternative
+kind: scenario
+group: alt:ipcc-ar6-scenarios
+title: SSP2-4.5, intermediate emissions
+description: >-
+  Intermediate greenhouse gas emissions: CO2 emissions stay around current levels until the middle of
+  the century. The 4.5 is the approximate radiative forcing in 2100, in watts per square metre, and
+  SSP2 the socio-economic pathway behind it (IPCC 2021, Box SPM.1). Warming over 2081–2100 is very
+  likely 2.1–3.5 °C above 1850–1900, and sea level in 2100 likely 0.44–0.76 m above 1995–2014.

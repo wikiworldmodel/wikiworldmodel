@@ -1,0 +1,30 @@
+id: src:hammond-2021-er-2598
+type: publication
+kind: measurement
+citation: >-
+  Hammond, A.S., Mavuso, S.S., Biernat, M., Braun, D.R., Jinnah, Z., Kuo, S., Melaku, S., Wemanya,
+  S.N., Ndiema, E.K., Patterson, D.B., Uno, K.T. & Palcu, D.V. (2021). New hominin remains and
+  revised context from the earliest Homo erectus locality in East Turkana, Kenya. Nature
+  Communications 12(1), 1939.
+authors:
+  - "Hammond, A.S."
+  - "Mavuso, S.S."
+  - "Biernat, M."
+  - "Braun, D.R."
+  - "Jinnah, Z."
+  - "Kuo, S."
+  - "Melaku, S."
+  - "Wemanya, S.N."
+  - "Ndiema, E.K."
+  - "Patterson, D.B."
+  - "Uno, K.T."
+  - "Palcu, D.V."
+published: 2021
+title: "New hominin remains and revised context from the earliest Homo erectus locality in East Turkana, Kenya"
+container: "Nature Communications 12(1), 1939"
+doi: 10.1038/s41467-021-22208-x
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC8044126): the KNM-ER 2598 occipital below the KBS Tuff,
+    older than 1.855 Ma. Quoted passages checked by script against the text retrieved.

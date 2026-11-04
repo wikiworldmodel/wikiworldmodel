@@ -1,0 +1,67 @@
+id: life/occurrences/anisian-pollen-weiach
+kind: occurrence
+summary: >-
+  Very rare monosulcate pollen grains with all the essential features of angiosperm pollen, in the Sulfatschichten of the Weiach
+  core hole, northern Switzerland: Anisian, more than 100 million years older than the first accepted pollen of flowering plants.
+  What plant shed them is not known, so they are placed here only among seed plants.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Angiosperm-like pollen, Weiach" }
+    unsourced: An editorial label, from the pollen and the core hole.
+  identified:
+    prop: identified_as
+    value: Angiosperm-like pollen, types I–VI
+    source:
+      ref: src:hochuli-feist-burkhardt-2013-anisian-pollen
+      loc: abstract
+      quote: "Six different pollen types (I–VI) are differentiated based on size, reticulation pattern, and exine structure."
+  evidence:
+    prop: evidence
+    value: palynomorph
+    source:
+      ref: src:hochuli-feist-burkhardt-2013-anisian-pollen
+      loc: abstract
+      quote: "Here we report on angiosperm-like pollen and Afropollis from the Anisian (Middle Triassic, 247.2–242.0 Ma) of a mid-latitudinal site in Northern Switzerland."
+  location:
+    prop: location
+    value: { lat: 47.558056, lon: 8.4375, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-weiach, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A point for the municipality; the core hole was not located more closely from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Sulfatschichten
+    source:
+      ref: src:hochuli-feist-burkhardt-2013-anisian-pollen
+      loc: "Materials and methods"
+      quote: "The angiosperm-like pollen grains have been found in a short interval (901.91–905.99 m) of the Sulfatschichten of the Weiach core hole."
+  date:
+    prop: date
+    value: { ref: ics/anisian }
+    source:
+      - ref: src:hochuli-feist-burkhardt-2013-anisian-pollen
+        loc: abstract
+        quote: "from the Anisian (Middle Triassic, 247.2–242.0 Ma)"
+      - ref: src:hochuli-feist-burkhardt-2013-anisian-pollen
+        loc: "Introduction"
+        quote: "the so far oldest angiosperm-like pollen from the Middle Triassic (ca. 243 Ma)"
+    method: stratigraphic
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/spermatophyta
+    source:
+      ref: src:hochuli-feist-burkhardt-2013-anisian-pollen
+      loc: abstract
+      quote: "The described pollen grains show all the essential features of angiosperm pollen."
+    note: >-
+      Pollen, so from a seed plant, whether or not an angiosperm. The authors suggest an affinity to an angiosperm stem group.

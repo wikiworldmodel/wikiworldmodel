@@ -1,0 +1,11 @@
+id: src:jesus-college-2021-returns-benin-bronze
+type: publication
+kind: eyewitness
+citation: Jesus College, Cambridge (2021). Jesus College returns Benin Bronze in world first. News item, 27 October 2021.
+published: 2021
+title: Jesus College returns Benin Bronze in world first
+url: https://www.jesus.cam.ac.uk/articles/jesus-college-returns-benin-bronze-world-first
+reliability: The college's own announcement on the day, reporting what its working party found in its archives.
+verified:
+  by: machine:claude-code
+  how: Read on the college's site. Quotations checked by script against the page's text.

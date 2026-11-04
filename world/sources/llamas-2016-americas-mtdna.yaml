@@ -1,0 +1,22 @@
+id: src:llamas-2016-americas-mtdna
+type: publication
+kind: measurement
+citation: >-
+  Llamas, B., Fehren-Schmitz, L., Valverde, G., … & Haak, W. (2016). Ancient mitochondrial DNA
+  provides high-resolution time scale of the peopling of the Americas. Science Advances 2(4),
+  e1501385.
+authors:
+  - "Llamas, B."
+  - "Fehren-Schmitz, L."
+  - "Valverde, G."
+  - "Haak, W."
+published: 2016
+title: "Ancient mitochondrial DNA provides high-resolution time scale of the peopling of the Americas"
+container: "Science Advances 2(4), e1501385"
+doi: 10.1126/sciadv.1501385
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC4820370); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

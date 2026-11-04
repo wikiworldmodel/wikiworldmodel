@@ -1,0 +1,78 @@
+id: people/rulers/hatshepsut
+kind: person
+summary: >-
+  Queen and then pharaoh of the Eighteenth Dynasty, ruling with the young Thutmose III. Her
+  dates follow his, on whichever chronology.
+author: machine:claude-code
+same_as: { wikidata: Q129234 }
+phases:
+  - id: before
+    label: Before her reign
+  - id: reign
+    label: Pharaoh
+claims:
+  name:
+    prop: name
+    value: { en: Hatshepsut }
+    source:
+      ref: src:breasted-1906-ancient-records-of-egypt
+      loc: "vol. 2, § 129, footnote on p. 55"
+      quote: For year 20 of Hatshepsut
+  reign-start-shaw:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/thutmose-iii@reign, edge: start, lag: 6 yr }
+    source:
+      ref: src:ramsey-2010-egypt-chronology
+      loc: "Table 1, rows Thutmose III and Hatshepsut, column Shaw"
+      quote: Hatshepsut 25 1473 1479 1488 1477 1492 1468
+    method: compilation
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      Shaw's accession dates, as Ramsey et al. tabulate them, put her six years after Thutmose
+      III (1473 against 1479), and their model keeps the interval. Written as a lag so that it
+      holds on any chronology.
+  reign-start-hornung:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/thutmose-iii@reign, edge: start }
+    source:
+      ref: src:ramsey-2010-egypt-chronology
+      loc: "Table 1, rows Thutmose III and Hatshepsut, column Hornung et al."
+      quote: Hatshepsut 25 1473 1479 1488 1477 1492 1468
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Hornung et al., as Ramsey et al. tabulate them, give both the same year, 1479, counting
+      her from his accession.
+  end:
+    prop: end
+    value: { ref: people/rulers/thutmose-iii@reign, edge: start, lag: { lo: 19 yr, hi: 22 yr } }
+    source:
+      - ref: src:breasted-1906-ancient-records-of-egypt
+        loc: "vol. 2, § 129"
+        quote: they rule together at least twelve years more, till the death of the queen
+      - ref: src:breasted-1906-ancient-records-of-egypt
+        loc: "vol. 2, § 129, footnote on p. 55"
+        quote: For year 20 of Hatshepsut
+      - ref: src:breasted-1906-ancient-records-of-egypt
+        loc: "vol. 2, § 137"
+        quote: it was to suppress a widespread and persistent revolt that he began his campaigns in Syria at the close of the year 22
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Regnal years are counted from Thutmose III's accession. She is attested in year 20 and is
+      gone when he marches alone at the close of year 22; so she died or disappeared after
+      nineteen and before twenty-two years had passed. How she ended is not known from these
+      sources.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/egypt-new-kingdom
+    source:
+      ref: src:breasted-1906-ancient-records-of-egypt
+      loc: "vol. 2, § 129"
+      quote: they rule together
+    note: Pharaoh, in the joint reign with Thutmose III.

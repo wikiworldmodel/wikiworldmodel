@@ -1,0 +1,69 @@
+id: life/occurrences/forest-petrified-forest-arizona
+kind: occurrence
+summary: >-
+  The great trunks of Araucarioxylon arizonicum eroding from the Chinle Formation in Petrified Forest
+  National Park, Arizona. Not a forest in place: most of the logs were felled and moved by rivers,
+  though many keep their roots, so the trees grew on the same alluvial plain.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Petrified Forest logs, Arizona" }
+    unsourced: An editorial label, from the park's name.
+  identified:
+    prop: identified_as
+    value: Araucarioxylon arizonicum
+    source:
+      ref: src:ash-creber-2000-araucarioxylon
+      loc: abstract
+      quote: many of the trunks attributed to Araucarioxylon arizonicum Knowlton eroded from the Late Triassic Chinle Formation
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:ash-creber-2000-araucarioxylon
+      loc: abstract
+      quote: Many of the trunks still have their root systems attached, a circumstance that indicates their felling by the cut‐bank operations of the local river system
+    note: >-
+      Not in-situ-forest: nothing read says that these trees stand where they grew. Only their felling
+      by the river's bank gives them a nearby origin, with growth in soft, deep alluvial soil.
+  location:
+    prop: location
+    value: { lat: 35.0881, lon: -109.806, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-petrified-forest-national-park, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A point for the park, which runs for tens of kilometres; the logs are scattered across it.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-133
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Chinle Formation
+    source:
+      ref: src:ash-creber-2000-araucarioxylon
+      loc: abstract
+      quote: eroded from the Late Triassic Chinle Formation in the Petrified Forest National Park, Arizona
+  date:
+    prop: date
+    value: { lo: 225 Ma, hi: 208 Ma }
+    source:
+      ref: src:ramezani-2011-chinle
+      loc: abstract
+      quote: The base of the Blue Mesa Member of the Chinle Formation is placed at ca. 225 Ma, and the top of the Petrified Forest Member is placed at 208 Ma or younger
+    method: radiometric/u-pb
+    rank: preferred
+    note: >-
+      U–Pb zircon ages for the members exposed in the park, a range for the whole section: no source
+      read gives the bed of these logs. The top is a maximum age, "or younger".
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/spermatophyta
+    source: { ref: src:ash-creber-2000-araucarioxylon, loc: "abstract: compared with Araucaria" }
+    note: >-
+      A wood genus named for the conifer Araucaria, which the paper finds the tree did not closely
+      resemble. Taken as a seed plant.

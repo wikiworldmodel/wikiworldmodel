@@ -1,0 +1,18 @@
+id: src:wellman-strother-2015-terrestrial-biota
+type: publication
+kind: review
+citation: >-
+  Wellman, C.H. & Strother, P.K. (2015). The terrestrial biota prior to the origin of land plants
+  (embryophytes): a review of the evidence. Palaeontology 58(4), 601–627.
+authors:
+  - "Wellman, C.H."
+  - "Strother, P.K."
+published: 2015
+title: "The terrestrial biota prior to the origin of land plants (embryophytes): a review of the evidence"
+container: Palaeontology 58(4), 601–627
+doi: 10.1111/pala.12172
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work; the full text could not be
+    reached. Quotes checked by script against it. Metadata from Crossref.

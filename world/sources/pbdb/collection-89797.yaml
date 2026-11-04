@@ -1,0 +1,27 @@
+id: src:pbdb/collection-89797
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 89797 ("Farm Swartpunt, Witput Subbasin", NA),
+  occurrence 814515. Read through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=89797
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference G. M. Narbonne, B. Z.
+  Saylor, and J. P. Grotzinger. 1997. The youngest Ediacaran fossils from southern Africa.
+  Journal of Paleontology 71(6):953-967. Interval ages are the PBDB's own, for the interval the
+  collection is assigned to; the primary reference was not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=89797&show=loc,strat,ref and
+    occs/list.json?coll_id=89797&show=ident,class on the main data service: collection name
+    "Farm Swartpunt, Witput Subbasin"; lat -27.476517; lng 16.696508; formation "Urusis";
+    member "Spitzkopf"; group "Nama"; early_interval Ediacaran; max_ma 635, min_ma 538.8;
+    occurrence 814515, no identified_name, accepted_name "Swartpuntia germsi"
+    (Erniettomorpha).

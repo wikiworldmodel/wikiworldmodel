@@ -1,0 +1,60 @@
+id: people/trade/zhang-qian-second-mission
+kind: event
+summary: >-
+  Zhang Qian's embassy to the Wusun, with 300 men, oxen and sheep in myriads and gifts of gold and silk. He failed to bring
+  them back east as allies, but sent his deputies on to Ferghana, Sogdiana, the Yuezhi, Bactria, Parthia, India and Khotan,
+  and they came home with envoys of those countries. "After this the countries of the Northwest began to have intercourse with
+  China", the Shiji says. The Xuanquan slips go on to record traffic with the Wusun for a hundred years.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Zhang Qian's mission to the Wusun }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 119 BCE
+    source:
+      ref: src:zhang-2026-han-court-silk-road
+      loc: p. 83
+      quote: "From Zhang Qian’s mission to Wusun in 119 BCE to 115 BCE"
+    method: historical-account
+  end:
+    prop: end
+    value: 115 BCE
+    source:
+      ref: src:zhang-2026-han-court-silk-road
+      loc: p. 83
+      quote: "From Zhang Qian’s mission to Wusun in 119 BCE to 115 BCE"
+    method: historical-account
+  location:
+    prop: location
+    value: { lat: 42.416666666667, lon: 77.25, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-issyk-kul, loc: "Q42191, P625 coordinate location" }
+      - ref: src:zhang-2026-han-court-silk-road
+        loc: p. 83
+        quote: "Chigu City 赤穀城 was in the region southeast of Lake Issyk-Kul in present-day Kyrgyzstan"
+    method: editorial
+    note: A marker's placement, at the lake. The Wusun capital is not located.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-402
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  after-the-first:
+    rel: after
+    to: people/trade/zhang-qian-first-mission
+    source:
+      ref: src:zhang-2026-han-court-silk-road
+      loc: p. 83
+      quote: "Wusun was an important country in the Western Regions and the destination of Zhang Qian’s second western mission."
+  under-the-han:
+    rel: during
+    to: people/polities/han
+    source:
+      ref: src:shiji-123-hirth-1917
+      loc: "ch. 123, Waugh's section III"
+      quote: "The Son of Heaven approved of Chang K'ien's proposal and appointed him a commander in his bodyguard as well as leader of an expedition consisting of 300 men, each with two horses, and oxen and sheep in myriads."

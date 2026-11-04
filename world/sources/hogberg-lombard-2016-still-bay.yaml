@@ -1,0 +1,19 @@
+id: src:hogberg-lombard-2016-still-bay
+type: publication
+kind: measurement
+citation: >-
+  Högberg, A. & Lombard, M. (2016). Still Bay Point-Production Strategies at Hollow Rock Shelter
+  and Umhlatuzana Rock Shelter and Knowledge-Transfer Systems in Southern Africa at about 80-70
+  Thousand Years Ago. PLOS ONE 11(12), e0168012.
+authors:
+  - "Högberg, A."
+  - "Lombard, M."
+published: 2016
+title: "Still Bay Point-Production Strategies at Hollow Rock Shelter and Umhlatuzana Rock Shelter and Knowledge-Transfer Systems in Southern Africa at about 80-70 Thousand Years Ago"
+container: "PLOS ONE 11(12), e0168012"
+doi: 10.1371/journal.pone.0168012
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC5152908): the Still Bay at roughly 80–70 ka, in all
+    published ages but one. Quoted passages checked by script against the text retrieved.

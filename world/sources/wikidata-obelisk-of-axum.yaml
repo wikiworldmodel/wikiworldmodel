@@ -1,0 +1,12 @@
+id: src:wikidata-obelisk-of-axum
+type: database-record
+kind: compilation
+citation: "Wikidata, item Q2308606 (Obelisk of Axum, stele in Axum, Tigray Region, Ethiopia), property P625 (coordinate location)."
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q2308606
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a marker to within a few hundred metres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (14.132167, 38.719667) and the description "4th-century phonolite stele in Axum, Tigray Region, Ethiopia" read from the item's JSON (Special:EntityData/Q2308606.json).

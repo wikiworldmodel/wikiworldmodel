@@ -1,0 +1,20 @@
+id: src:wikidata-south-walker-creek-mine
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q16509700 (South Walker Creek Mine, Queensland, Australia), property P625
+  (coordinate location).
+container: "Wikidata"
+url: https://www.wikidata.org/wiki/Q16509700
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry for the coal mine of that name, not a fossil site.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (-21.7487, 148.432; precision 0.00096715968306151) read from the item's JSON
+    (Special:EntityData/Q16509700.json, last revision 2515011813, modified 2026-07-08).

@@ -1,0 +1,21 @@
+id: src:stewart-2020-alathar
+type: publication
+kind: measurement
+citation: >-
+  Stewart, M., Clark-Wilson, R., Breeze, P.S., … & Petraglia, M.D. (2020). Human footprints provide
+  snapshot of last interglacial ecology in the Arabian interior. Science Advances 6(38), eaba8940.
+authors:
+  - "Stewart, M."
+  - "Clark-Wilson, R."
+  - "Breeze, P.S."
+  - "Petraglia, M.D."
+published: 2020
+title: "Human footprints provide snapshot of last interglacial ecology in the Arabian interior"
+container: "Science Advances 6(38), eaba8940"
+doi: 10.1126/sciadv.aba8940
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC7500939); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

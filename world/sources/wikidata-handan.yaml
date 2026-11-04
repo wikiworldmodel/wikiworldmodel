@@ -1,0 +1,17 @@
+id: src:wikidata-handan
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q58570 (Handan, prefecture-level city in Hebei, China), property P625
+  (coordinate location).
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q58570
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry, adequate for placing the modern city on the site of the
+  capital of Zhao to a few kilometres.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (36.61161, 114.48937) read from the item through the Wikidata API.

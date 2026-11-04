@@ -1,0 +1,54 @@
+id: people/domestication/goat
+kind: development
+summary: >-
+  The domestication of the goat from the wild bezoar in the Zagros Mountains and the wider Fertile
+  Crescent. Hunters here took big males; by about 8200 BCE people at Ganj Dareh were culling young
+  males and keeping females, and their goats were already genetically distinct from wild ones,
+  though their bones still looked wild. Change in the skeleton came a thousand years later.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Goat domestication }
+    unsourced: An editorial label.
+  start-daly-2021:
+    prop: start
+    value: { lo: 9300 BCE, hi: 8200 BCE }
+    source:
+      ref: src:daly-2021-ganj-dareh
+      loc: Conclusion
+      quote: "placing its onset within 9300 to 8200 cal BC"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      Bracketed by wild goats at Asiab and managed ones at Ganj Dareh.
+  start-zeder-hesse-2000:
+    prop: start
+    value: 10 ka
+    source:
+      ref: src:zeder-hesse-2000-goats
+      loc: abstract
+      quote: "Initial goat domestication is documented in the highlands of western Iran at 10,000 calibrated calendar years ago."
+    method: radiometric/radiocarbon
+    note: >-
+      The site's own date, from directly dated bones. Daly et al. later argue that management must
+      already have been established when the site began.
+  location:
+    prop: location
+    value: { lat: 34.2721, lon: 47.4758, frame: frame:earth/present-day }
+    source:
+      - ref: src:zeder-hesse-2000-goats
+        loc: abstract
+        quote: "in the highlands of western Iran"
+      - { ref: src:wikidata-ganj-dareh, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Marked at Ganj Dareh. Zeder (2008) spreads the process from the northern Zagros to southeast
+      Anatolia, and Daly et al. (2021) call the eastern Fertile Crescent one of three regions that
+      shaped Neolithic goats; the study of three regions itself was not read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

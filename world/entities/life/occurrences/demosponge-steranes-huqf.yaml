@@ -1,0 +1,48 @@
+id: life/occurrences/demosponge-steranes-huqf
+kind: occurrence
+summary: >-
+  24-isopropylcholestanes in the Huqf Supergroup of the South Oman Salt Basin: fossil steroids read as the
+  remains of demosponges, and so as the oldest sign of animals. Unicellular Rhizaria or algae may have made
+  them instead, and the question stands open, so no taxon is recorded here. The abstract read names only the basin, not its wells
+  or sections, so no location is recorded either, and the record does not appear on the globe.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Demosponge steranes, Huqf Supergroup" }
+    unsourced: An editorial label, from the biomarker and the rocks.
+  identified:
+    prop: identified_as
+    value: Demospongiae, from C30 steranes
+    source:
+      ref: src:love-2009-huqf-sponges
+      loc: abstract
+      quote: "abundant sedimentary 24-isopropylcholestanes, the hydrocarbon remains of C(30) sterols produced by marine demosponges"
+  evidence:
+    prop: evidence
+    value: biosignature
+    source:
+      ref: src:love-2009-huqf-sponges
+      loc: abstract
+      quote: "These sterane biomarkers are abundant in all formations of the Huqf Supergroup, South Oman Salt Basin"
+  formation:
+    prop: formation
+    value: Huqf Supergroup
+    source:
+      ref: src:love-2009-huqf-sponges
+      loc: abstract
+      quote: "These sterane biomarkers are abundant in all formations of the Huqf Supergroup"
+  date:
+    prop: date
+    value: { lo: 713 Ma, hi: 635 Ma }
+    source:
+      - ref: src:carlisle-2024-metazoan-timescale
+        loc: "Introduction, first paragraph"
+        quote: "sponge biomarkers at 713 to 635 Ma"
+      - ref: src:love-2009-huqf-sponges
+        loc: abstract
+        quote: "The demosponge steranes occur in strata that underlie the Marinoan cap carbonate (>635 Myr ago)"
+    method: stratigraphic
+    note: >-
+      The oldest of a record that goes on for 100 Myr into the Cambrian. Love et al. put the Sturtian at
+      approximately 713 Myr ago in Oman, and find no convincing steranes before it.

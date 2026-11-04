@@ -1,0 +1,50 @@
+id: people/domestication/pig-east-asia
+kind: development
+summary: >-
+  The domestication of the pig from wild boar in China, independently of the Near East. The oldest
+  evidence is at Jiahu in Henan from about 9,000 years ago: teeth rotated and marked by stress in
+  youth, an age profile biased to young animals, and molar shape. Pigs were at first a small part of
+  the bones at these sites, and management may have begun in several places in China.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Pig domestication in East Asia }
+    unsourced: An editorial label.
+  start-hongo-2021:
+    prop: start
+    value: 9 ka
+    source:
+      ref: src:hongo-2021-pig-management
+      loc: abstract
+      quote: "management of pigs had begun around 9000 BP, possibly in multiple places in China"
+    method: compilation
+    rank: preferred
+  start-larson-2010:
+    prop: start
+    value: { hi: 8 ka }
+    source:
+      ref: src:larson-2010-east-asian-pigs
+      loc: Introduction
+      quote: "domestic pigs were prevalent in both northern and southern China by at least 8,000 B.P."
+    method: expert-estimate
+    note: >-
+      Open at the earlier end. The same paper adds that genetic signs may show further, separate
+      domestications in Southeast Asia and India, with no archaeological support so far.
+  location:
+    prop: location
+    value: { lat: 33.614398, lon: 113.661403, frame: frame:earth/present-day }
+    source:
+      - ref: src:hongo-2021-pig-management
+        loc: "Yellow River Valley"
+        quote: "The oldest evidence of management of pigs was reported from Jiahu"
+      - { ref: src:wikidata-jiahu, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Marked at Jiahu.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

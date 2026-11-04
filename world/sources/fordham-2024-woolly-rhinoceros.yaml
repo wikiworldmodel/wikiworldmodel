@@ -1,0 +1,23 @@
+id: src:fordham-2024-woolly-rhinoceros
+type: publication
+kind: model
+citation: >-
+  Fordham, D.A., Brown, S.C., Canteri, E., Austin, J.J., Lomolino, M.V., Haythorne, S., Armstrong,
+  E., Bocherens, H., Manica, A., Rey-Iglesia, A., Rahbek, C., Nogués-Bravo, D. & Lorenzen, E.D.
+  (2024). 52,000 years of woolly rhinoceros population dynamics reveal extinction mechanisms.
+  Proceedings of the National Academy of Sciences of the USA 121(24), e2316419121.
+authors:
+  - "Fordham, D.A."
+  - "Brown, S.C."
+  - "Canteri, E."
+  - "Austin, J.J."
+  - "Lorenzen, E.D."
+published: 2024
+title: "52,000 years of woolly rhinoceros population dynamics reveal extinction mechanisms"
+container: "Proceedings of the National Academy of Sciences of the USA 121(24), e2316419121"
+doi: 10.1073/pnas.2316419121
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC11181021). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

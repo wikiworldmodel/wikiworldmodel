@@ -1,0 +1,26 @@
+id: src:pbdb/collection-91487
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 91487 ("Daxishan", CN), occurrence 829458. Read through
+  the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=91487
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference D. Hu, L. Hou, and L.
+  Zhang, X. Xu. 2009. A pre-Archaeopteryx troodontid theropod from China with long feathers on
+  the metatarsus. Nature 461:640-643. Interval ages are the PBDB's own, for the interval the
+  collection is assigned to; the primary reference was not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=91487&show=loc,strat,ref and
+    occs/list.json?coll_id=91487&show=ident,class on the main data service: collection name
+    "Daxishan"; lat 40.916668; lng 119.650002; formation "Tiaojishan"; early_interval
+    Oxfordian; max_ma 161.5, min_ma 154.8; occurrence 829458, no identified_name,
+    accepted_name "Anchiornis huxleyi" (Chordata, Reptilia).

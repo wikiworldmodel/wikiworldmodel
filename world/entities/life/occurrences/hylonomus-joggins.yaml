@@ -15,6 +15,10 @@ claims:
     prop: identified_as
     value: Hylonomus lyelli n. gen. n. sp.
     source: { ref: src:pbdb/collection-28069, loc: "occurrence 297342, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 45.698612, lon: -64.451385, frame: frame:earth/present-day }

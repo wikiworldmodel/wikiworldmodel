@@ -1,0 +1,25 @@
+id: src:milks-2023-schoningen
+type: publication
+kind: measurement
+citation: >-
+  Milks, A., Lehmann, J., Leder, D., Sietz, M., Koddenberg, T., Böhner, U., Wachtendorf, V. &
+  Terberger, T. (2023). A double-pointed wooden throwing stick from Schöningen, Germany: Results
+  and new insights from a multianalytical study. PLOS ONE 18(7), e0287719.
+authors:
+  - "Milks, A."
+  - "Lehmann, J."
+  - "Leder, D."
+  - "Sietz, M."
+  - "Koddenberg, T."
+  - "Böhner, U."
+  - "Wachtendorf, V."
+  - "Terberger, T."
+published: 2023
+title: "A double-pointed wooden throwing stick from Schöningen, Germany: Results and new insights from a multianalytical study"
+container: "PLOS ONE 18(7), e0287719"
+doi: 10.1371/journal.pone.0287719
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC10355447): the site dated to ca. 300,000 years ago. Quoted
+    passages checked by script against the text retrieved.

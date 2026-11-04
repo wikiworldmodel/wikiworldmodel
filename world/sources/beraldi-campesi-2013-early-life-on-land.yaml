@@ -1,0 +1,19 @@
+id: src:beraldi-campesi-2013-early-life-on-land
+type: publication
+kind: review
+citation: >-
+  Beraldi-Campesi, H. (2013). Early life on land and the first terrestrial ecosystems. Ecological
+  Processes 2, 1.
+authors:
+  - "Beraldi-Campesi, H."
+published: 2013
+title: "Early life on land and the first terrestrial ecosystems"
+container: Ecological Processes 2, 1
+doi: 10.1186/2192-1709-2-1
+license: CC-BY-2.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the publisher's open-access PDF and page
+    (ecologicalprocesses.springeropen.com); the parts cited were read, and quotes checked by
+    script against the PDF's text. Metadata from Crossref.

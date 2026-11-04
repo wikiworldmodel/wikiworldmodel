@@ -1,0 +1,25 @@
+id: src:lordkipanidze-2013-dmanisi
+type: publication
+kind: measurement
+citation: >-
+  Lordkipanidze, D., Ponce de León, M.S., Margvelashvili, A., Rak, Y., Rightmire, G.P., Vekua, A.
+  & Zollikofer, C.P. (2013). A complete skull from Dmanisi, Georgia, and the evolutionary biology
+  of early Homo. Science 342(6156), 326–331.
+authors:
+  - "Lordkipanidze, D."
+  - "Ponce de León, M.S."
+  - "Margvelashvili, A."
+  - "Rak, Y."
+  - "Rightmire, G.P."
+  - "Vekua, A."
+  - "Zollikofer, C.P."
+published: 2013
+title: "A complete skull from Dmanisi, Georgia, and the evolutionary biology of early Homo"
+container: "Science 342(6156), 326–331"
+doi: 10.1126/science.1238484
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 24136960): the skull D4500/D2600, five crania in the
+    sample, Homo outside Africa around 1.8 million years ago. Quoted passages checked by script
+    against the text retrieved.

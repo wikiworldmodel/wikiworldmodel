@@ -1,0 +1,22 @@
+id: src:zollikofer-2024-dmanisi-growth
+type: publication
+kind: measurement
+citation: >-
+  Zollikofer, C.P.E., Beyrand, V., Lordkipanidze, D., Tafforeau, P. & Ponce de León, M.S. (2024).
+  Dental evidence for extended growth in early Homo from Dmanisi. Nature 635(8040), 906–911.
+authors:
+  - "Zollikofer, C.P.E."
+  - "Beyrand, V."
+  - "Lordkipanidze, D."
+  - "Tafforeau, P."
+  - "Ponce de León, M.S."
+published: 2024
+title: "Dental evidence for extended growth in early Homo from Dmanisi"
+container: "Nature 635(8040), 906–911"
+doi: 10.1038/s41586-024-08205-2
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC11602720): the Nariokotome individual at approximately
+    1.6–1.5 Ma, in a comparison with Dmanisi. Quoted passages checked by script against the text
+    retrieved.

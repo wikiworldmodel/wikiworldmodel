@@ -1,0 +1,26 @@
+id: src:wilson-2012-multituberculates
+type: publication
+kind: measurement
+citation: >-
+  Wilson, G.P., Evans, A.R., Corfe, I.J., Smits, P.D., Fortelius, M. & Jernvall, J. (2012).
+  Adaptive radiation of multituberculate mammals before the extinction of dinosaurs. Nature 483,
+  457–460.
+authors:
+  - "Wilson, G.P."
+  - "Evans, A.R."
+  - "Corfe, I.J."
+  - "Smits, P.D."
+  - "Fortelius, M."
+  - "Jernvall, J."
+published: 2012
+title: "Adaptive radiation of multituberculate mammals before the extinction of dinosaurs"
+container: "Nature 483, 457–460"
+doi: 10.1038/nature10880
+url: https://faculty.washington.edu/gpwilson/Reprints/2012%20Wilson%20et%20al%20Nature+SuppInfo.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    The paper and its Supplementary Information read from the author's reprint, including
+    Supplementary Table 5, whose columns are species, first and last appearance (Myr), m1 area
+    (mm²), skull length (mm), mass (kg), method and references. The column heading for mass was
+    read in the table, and the rows checked by script against the text layer.

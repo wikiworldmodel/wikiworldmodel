@@ -1,0 +1,72 @@
+id: life/occurrences/tiktaalik-nv2k17
+kind: occurrence
+summary: >-
+  Tiktaalik roseae from locality NV2K17 in the Fram Formation, near Bird Fiord, Ellesmere Island, Nunavut: a fish with
+  fins, a mobile neck and a functional wrist joint, an intermediate between fish and limbed vertebrates. Before the Zachełmie
+  tracks it stood just below the first tetrapods; it is now younger than their oldest tracks. PBDB collection 238424.
+same_as: { pbdb: "occ:1687105" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Tiktaalik, Ellesmere Island" }
+    unsourced: An editorial label, from the taxon and the island.
+  identified:
+    prop: identified_as
+    value: Tiktaalik roseae
+    source:
+      - { ref: src:pbdb/collection-238424, loc: "occurrence 1687105, accepted_name" }
+      - ref: src:stewart-2024-tiktaalik
+        loc: "Materials and methods"
+        quote: "Tiktaalik specimens were recovered during paleontological excavations near Bird Fiord on southern Ellesmere Island"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:daeschler-2006-tiktaalik
+      loc: abstract
+      quote: "a well-preserved species of fossil sarcopterygian fish from the Late Devonian of Arctic Canada"
+  location:
+    prop: location
+    value: { lat: 77.164917, lon: -86.269283, frame: frame:earth/present-day }
+    source:
+      ref: src:stewart-2024-tiktaalik
+      loc: "Materials and methods"
+      quote: "All specimens were recovered from a single locality (NV2K17; N77°09.895′ W86°16.157′) within the Fram Formation (Frasnian Stage, Late Devonian)"
+    method: survey
+    note: >-
+      Converted to decimal degrees.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-106
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Fram Formation
+    source:
+      ref: src:stewart-2024-tiktaalik
+      loc: "Materials and methods"
+      quote: "within the Fram Formation (Frasnian Stage, Late Devonian)"
+  date:
+    prop: date
+    value: { ref: ics/frasnian }
+    source:
+      - ref: src:stewart-2024-tiktaalik
+        loc: "Materials and methods"
+        quote: "within the Fram Formation (Frasnian Stage, Late Devonian)"
+      - { ref: src:pbdb/collection-238424, loc: "early_interval (Early Frasnian), max_ma, min_ma" }
+    method: stratigraphic
+    note: >-
+      The PBDB narrows it to the early Frasnian, 382.31–379 Ma on its own scale.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/gnathostomata
+    source:
+      ref: src:daeschler-2006-tiktaalik
+      loc: abstract
+      quote: "represents an intermediate between fish with fins and tetrapods with limbs"
+    note: >-
+      On the stem of tetrapods, so outside the crown group life/taxa/tetrapoda.

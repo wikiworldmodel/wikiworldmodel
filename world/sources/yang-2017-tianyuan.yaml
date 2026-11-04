@@ -1,0 +1,29 @@
+id: src:yang-2017-tianyuan
+type: publication
+kind: measurement
+citation: >-
+  Yang, M.A., Gao, X., Theunert, C., Tong, H., Aximu-Petri, A., Nickel, B., Slatkin, M., Meyer, M.,
+  Pääbo, S., Kelso, J. & Fu, Q. (2017). 40,000-Year-Old Individual from Asia Provides Insight into
+  Early Population Structure in Eurasia. Current Biology 27(20), 3202–3208.e9.
+authors:
+  - "Yang, M.A."
+  - "Gao, X."
+  - "Theunert, C."
+  - "Tong, H."
+  - "Aximu-Petri, A."
+  - "Nickel, B."
+  - "Slatkin, M."
+  - "Meyer, M."
+  - "Pääbo, S."
+  - "Kelso, J."
+  - "Fu, Q."
+published: 2017
+title: "40,000-Year-Old Individual from Asia Provides Insight into Early Population Structure in Eurasia"
+container: "Current Biology 27(20), 3202–3208.e9"
+doi: 10.1016/j.cub.2017.09.030
+verified:
+  by: machine:claude-code
+  how: >-
+    Author manuscript in PubMed Central (PMC6592271), retrieved as XML through NCBI E-utilities; the
+    abstract and the passages cited were read, without the supplementary information. Quotes checked
+    by script against that text and the abstract in Europe PMC.

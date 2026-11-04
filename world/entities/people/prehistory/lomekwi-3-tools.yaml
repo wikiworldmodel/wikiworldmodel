@@ -1,0 +1,46 @@
+id: people/prehistory/lomekwi-3-tools
+kind: artefact
+summary: >-
+  The stone tools of Lomekwi 3, West Turkana, Kenya: in situ artefacts of cores, anvils and hammerstones
+  with Pliocene hominin fossils nearby, in a wooded setting. The earliest archaeological site known,
+  older than any fossil attributed to Homo.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Lomekwi 3 stone tools" }
+    unsourced: An editorial label, from the site.
+  location:
+    prop: location
+    value: { lat: 3.91083, lon: 35.8503, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-lomekwi, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-712
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 3.3 Ma
+    source:
+      - ref: src:harmand-2015-lomekwi
+        loc: abstract
+        quote: "a 3.3-million-year-old archaeological site where in situ stone artefacts occur in spatiotemporal association with Pliocene hominin fossils"
+      - ref: src:key-2026-hominins-culture
+        loc: "section 2(a)"
+        quote: "is first observed ca 3.30 Ma at the stone tool site of Lomekwi 3 (Kenya)"
+    method: stratigraphic
+    note: >-
+      Dated by the site's place among marker tuffs, the Toroto Tuff among them, and by palaeomagnetism,
+      as the paper's extended-data legends show. The paper's text could not be read, and no uncertainty
+      is given in what was.
+relations:
+  industry:
+    rel: member-of
+    to: people/prehistory/lomekwian
+    source: { ref: src:harmand-2015-lomekwi, loc: abstract }
+    note: >-
+      The name is the finders'. Key (2026) notes that statistical estimates of the Oldowan's start could
+      take in this site, so it may not be a separate industry.

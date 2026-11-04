@@ -1,0 +1,66 @@
+id: life/occurrences/ardipithecus-kadabba-middle-awash
+kind: occurrence
+summary: >-
+  Late Miocene hominid teeth and bones from the western margin of the Middle Awash, Ethiopia, assigned
+  to Ardipithecus kadabba. PBDB collection 22139.
+same_as: { pbdb: "occ:656691" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Ardipithecus kadabba, Middle Awash" }
+    unsourced: An editorial label, from the taxon and the study area.
+  identified:
+    prop: identified_as
+    value: Ardipithecus kadabba
+    source:
+      ref: src:haile-selassie-2004-kadabba-teeth
+      loc: abstract
+      quote: "Late Miocene fossil hominid teeth recovered from Ethiopia's Middle Awash are assigned to Ardipithecus kadabba."
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:haile-selassie-2001-ardipithecus
+      loc: abstract
+      quote: "new hominid specimens from the Middle Awash area of Ethiopia"
+  location:
+    prop: location
+    value: { lat: 10.3167, lon: 40.25, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-22139, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: The PBDB assigns the point from Asa Koma, for the Adu-Asa Formation as a whole.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-716
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Adu-Asa Formation
+    source: { ref: src:pbdb/collection-22139, loc: "collection name and formation" }
+  date-woldegabriel-2001:
+    prop: date
+    value: { lo: 5.77 Ma, hi: 5.54 Ma }
+    source:
+      ref: src:woldegabriel-2001-middle-awash
+      loc: abstract
+      quote: "dated here to between 5.54 and 5.77 Myr"
+    rank: preferred
+    note: >-
+      Preferred because this is the paper that dates them, published with the description. The abstract
+      read does not say by what method.
+  date-haile-selassie-2001:
+    prop: date
+    value: { lo: 5.8 Ma, hi: 5.2 Ma }
+    source:
+      ref: src:haile-selassie-2001-ardipithecus
+      loc: abstract
+      quote: "date to 5.2-5.8 Myr"
+    note: The wider range given in the description of the fossils. The abstract read does not say by what method.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/ardipithecus-kadabba
+    source: { ref: src:haile-selassie-2004-kadabba-teeth, loc: abstract }

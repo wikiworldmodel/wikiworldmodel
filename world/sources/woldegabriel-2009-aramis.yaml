@@ -1,0 +1,32 @@
+id: src:woldegabriel-2009-aramis
+type: publication
+kind: measurement
+citation: >-
+  WoldeGabriel, G., Ambrose, S.H., Barboni, D., Bonnefille, R., Bremond, L., Currie, B., DeGusta,
+  D., Hart, W.K., Murray, A.M., Renne, P.R., Jolly-Saad, M.C., Stewart, K.M. & White, T.D. (2009).
+  The geological, isotopic, botanical, invertebrate, and lower vertebrate surroundings of
+  Ardipithecus ramidus. Science 326(5949), 65e1–5.
+authors:
+  - "WoldeGabriel, G."
+  - "Ambrose, S.H."
+  - "Barboni, D."
+  - "Bonnefille, R."
+  - "Bremond, L."
+  - "Currie, B."
+  - "DeGusta, D."
+  - "Hart, W.K."
+  - "Murray, A.M."
+  - "Renne, P.R."
+  - "Jolly-Saad, M.C."
+  - "Stewart, K.M."
+  - "White, T.D."
+published: 2009
+title: "The geological, isotopic, botanical, invertebrate, and lower vertebrate surroundings of Ardipithecus ramidus"
+container: "Science 326(5949), 65e1–5"
+doi: 10.1126/science.1175817
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 19810191): the Lower Aramis Member unit at 4.4
+    million years, between two tuffs with nearly identical 40Ar/39Ar ages. It does not give those
+    ages. Quoted passages checked by script against the text retrieved.

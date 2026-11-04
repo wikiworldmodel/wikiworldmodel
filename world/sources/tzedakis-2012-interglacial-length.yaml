@@ -1,0 +1,21 @@
+id: src:tzedakis-2012-interglacial-length
+type: publication
+kind: measurement
+citation: >-
+  Tzedakis, P.C., Channell, J.E.T., Hodell, D.A., Kleiven, H.F. & Skinner, L.C. (2012). Determining the
+  natural length of the current interglacial. Nature Geoscience 5(2), 138–141.
+authors:
+  - "Tzedakis, P.C."
+  - "Channell, J.E.T."
+  - "Hodell, D.A."
+  - "Kleiven, H.F."
+  - "Skinner, L.C."
+published: 2012
+title: Determining the natural length of the current interglacial
+container: Nature Geoscience 5(2), 138–141
+doi: 10.1038/ngeo1358
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, on the publisher's page (nature.com). Citation from Crossref. Quotes
+    checked by script against the text retrieved, after normalizing whitespace.

@@ -1,0 +1,92 @@
+id: people/trade/protectorate-of-the-western-regions
+kind: polity
+summary: >-
+  The Han office that oversaw the oasis states of the Tarim Basin and kept their two roads, the southern and the northern,
+  from Zheng Ji's appointment about 60 BCE. Eighteen men held it in eighty years, the last, Li Chong, under Wang Mang; the
+  states then broke away. The Eastern Han restored it in 74 CE, lost it again, gave it to Ban Chao in 91 and abolished it
+  in 107. It has no location here: its seat moved, from Wulei to Kucha.
+author: machine:claude-code
+same_as: { wikidata: Q911440 }
+phases:
+  - id: western-han
+    label: Under the Western Han and Wang Mang
+  - id: lapse
+    label: Relations cut
+    gap: true
+  - id: eastern-han
+    label: Under the Eastern Han
+claims:
+  name:
+    prop: name
+    value: { en: Protectorate of the Western Regions, zh: 西域都護府 }
+    source: { ref: src:zhang-2026-han-court-silk-road, loc: p. 77, quote: "the Protectorate of the Western Regions (Xiyu duhu fu 西域都護府)" }
+  start:
+    prop: start
+    value: 60 BCE
+    source:
+      ref: src:zhang-2026-han-court-silk-road
+      loc: p. 77
+      quote: "after the establishment of the Protectorate of the Western Regions (Xiyu duhu fu 西域都護府) in 60 BCE"
+    method: historical-account
+    rank: preferred
+    note: The newest reading, by an editor of the slips, who sets it with the Xiongnu king's surrender of the second year of Shenjue. Hulsewé and Loewe's 1979 study was not read.
+  start-59:
+    prop: start
+    value: 59 BCE
+    source:
+      - ref: src:hanshu-96-wylie-1881
+        loc: "ch. 96, Waugh's edition, 'Notes on the Western Regions'"
+        quote: "This took place in the year BCE 59."
+      - ref: src:hou-hanshu-88-hill-2003
+        loc: "section 1"
+        quote: "Emperor Xuan [73-49 BCE] changed this title [in 59 BCE] to Protector General."
+    method: historical-account
+    note: The years are the translators' reckonings. Ching Keih in Wylie is Zheng Ji.
+  western-han-end:
+    prop: end
+    subject: "@western-han"
+    value: 16 CE
+    source:
+      ref: src:zhang-2026-han-court-silk-road
+      loc: p. 80
+      quote: "to Li Chong 李崇 (fl. 16), the last Protector-General of the Western Regions during Wang Mang’s 王莽 (r. 9–23) reign, a total of 18 people held this position over a period of 80 years."
+    method: historical-account
+    rank: preferred
+    note: The last year Li Chong is attested, so the office may have gone on a little.
+  western-han-end-hill:
+    prop: end
+    subject: "@western-han"
+    value: 9 CE
+    source:
+      ref: src:hou-hanshu-88-hill-2003
+      loc: "section 1"
+      quote: "Regions had been cut for sixty-five years [9-73 CE] before they were restored."
+    method: historical-account
+    note: The Hou Hanshu counts from Wang Mang's usurpation, and the years are the translator's. It says relations were cut, not that the office ended.
+  eastern-han-start:
+    prop: start
+    subject: "@eastern-han"
+    value: 74 CE
+    source:
+      ref: src:hou-hanshu-88-hill-2003
+      loc: "section 1"
+      quote: "A Protector General and Mao and Ji Commandants were established in the following year [74 CE]."
+    method: historical-account
+    note: This phase has a break of its own. The Protector General Chen Mu was killed in 75, none was appointed for years, and Ban Chao was given the title in 91, at Kucha.
+  end:
+    prop: end
+    value: 107 CE
+    source:
+      ref: src:hou-hanshu-88-hill-2003
+      loc: "section 1"
+      quote: "The Imperial Government proclaimed that the post of Protector General should be abolished because these regions were remote, difficult, and dangerous to reach."
+    method: historical-account
+    note: In the first yongchu year, which the translator reckons as 107 CE.
+relations:
+  part-of-han:
+    rel: part-of
+    to: people/polities/han
+    source:
+      ref: src:zhang-2026-han-court-silk-road
+      loc: p. 80
+      quote: "Representing the central government of the Western Han, the Protector-General exercised authority in the Western Regions"

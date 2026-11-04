@@ -1,0 +1,26 @@
+id: src:gasche-1998-fall-of-babylon
+type: publication
+kind: review
+citation: >-
+  Gasche, H., Armstrong, J.A., Cole, S.W. & Gurzadyan, V.G. (1998). Dating the Fall of Babylon:
+  A Reappraisal of Second-Millennium Chronology. Mesopotamian History and Environment, Series
+  II, Memoirs 4. Ghent: University of Ghent; Chicago: The Oriental Institute.
+authors:
+  - "Gasche, H."
+  - "Armstrong, J.A."
+  - "Cole, S.W."
+  - "Gurzadyan, V.G."
+published: 1998
+title: Dating the Fall of Babylon
+container: Mesopotamian History and Environment, Series II, Memoirs 4
+url: https://isac.uchicago.edu/publications/dating-fall-babylon-reappraisal-second-millennium-chronology
+via: The Oriental Institute's (ISAC) free PDF of the book.
+reliability: >-
+  The source of the ultra-low chronology, argued from Babylonian pottery, Assyrian king-list
+  reckoning and a reading of eclipses. A minority view since, as Manning et al. (2016) argue
+  against it; it also sets out the High, Middle and Low dates it argues with.
+verified:
+  by: machine:claude-code
+  how: >-
+    Chapters 1, 3 and 5 read in the PDF; the quotations checked by script against its text
+    layer. Printed page numbers run 8 less than the PDF's.

@@ -1,0 +1,64 @@
+id: life/occurrences/sheep-asikli-hoyuk
+kind: occurrence
+summary: >-
+  Caprine bones, mainly sheep, and dung from upper Level 4 of Aşıklı Höyük in Cappadocia, about
+  8400–8100 BCE. 58% of the males but only 11% of the females died before 6–7 months, a sex-biased
+  cull unlike hunting, and dung lies trampled in place between the buildings: animals held inside a
+  settlement, though their bones look wild.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Sheep, Aşıklı Höyük" }
+    unsourced: An editorial label, from the species and the site.
+  identified:
+    prop: identified_as
+    value: caprines (mainly sheep)
+    source:
+      ref: src:stiner-2014-asikli
+      loc: abstract
+      quote: "an exceptional emphasis on caprines (mainly sheep)"
+  evidence:
+    prop: evidence
+    value: zooarchaeological
+    source:
+      - ref: src:stiner-2014-asikli
+        loc: Results
+        quote: "Fusion and sex determinations for 52 caprine innominates indicate that only 11% of females died before the age of 6–7 mo, whereas 58% of males died before this age"
+      - ref: src:stiner-2014-asikli
+        loc: abstract
+        quote: "Primary dung accumulations between the structures demonstrate that ruminants were held captive inside the settlement at this time."
+      - ref: src:abell-2019-asikli
+        loc: Introduction
+        quote: "zooarchaeological evidence of selective culling of young male caprines before the age of 6 to 7 months"
+    note: >-
+      What shows it is domestic: a kill-off pattern and penning. It marks the first steps of management,
+      which is not yet a domestic animal; the authors call it highly experimental.
+  location:
+    prop: location
+    value: { lat: 38.349, lon: 34.23, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-asikli-hoyuk, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-504
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 8400 BCE, hi: 8100 BCE }
+    source:
+      ref: src:stiner-2014-asikli
+      loc: Background
+      quote: "Radiocarbon assays of short-lived burnt plant remains in combustion features indicate that the upper part of Level 4 spans approximately 8400–8100 cal B.C."
+    method: radiometric/radiocarbon
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott70819 and ott244265: Ovis aries lies within Mammalia" }
+  domestication:
+    rel: part-of
+    to: people/domestication/sheep
+    source: { ref: src:stiner-2014-asikli, loc: abstract }

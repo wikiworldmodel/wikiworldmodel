@@ -1,0 +1,71 @@
+id: life/occurrences/lucy-hadar
+kind: occurrence
+summary: >-
+  Lucy, A.L. 288-1, a partial skeleton of a female Australopithecus afarensis found in 1974 at Hadar
+  in the Afar region of Ethiopia. PBDB collection 21784.
+same_as: { pbdb: "occ:224438", wikidata: Q245388 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Lucy (A.L. 288-1), Hadar" }
+    unsourced: An editorial label, from the skeleton's names and the place.
+  identified:
+    prop: identified_as
+    value: Australopithecus afarensis
+    source:
+      - { ref: src:pbdb/collection-21784, loc: "occurrence 224438, accepted name" }
+      - ref: src:kappelman-2016-lucy
+        loc: abstract
+        quote: "The Pliocene fossil 'Lucy' (Australopithecus afarensis) was discovered in the Afar region of Ethiopia in 1974"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:kappelman-2016-lucy, loc: abstract }
+  location:
+    prop: location
+    value: { lat: 11.1403, lon: 40.602798, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-21784, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: The PBDB read the point from a grid laid over a map, and names the locality as Lucy's.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-716
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Hadar Formation
+    source: { ref: src:pbdb/collection-21784, loc: "formation" }
+  date-desilva-2010:
+    prop: date
+    value: 3.18 Ma
+    source:
+      - ref: src:desilva-throckmorton-2010-lucy
+        loc: abstract
+        quote: "a 3.18 Myr-old female Australopithecus"
+      - ref: src:carlson-2026-limb-strength
+        loc: Table 2
+        quote: "A.L. 288-1 A. afarensis 3.18"
+    method: compilation
+    rank: preferred
+    note: >-
+      Preferred as the figure the literature read gives for the skeleton. No uncertainty is given.
+      A paper on the dating itself, Walter (1994), "Age of Lucy and the First Family", could not be read.
+  date-hanegraef-2026:
+    prop: date
+    value: 3.20 Ma
+    source:
+      ref: src:hanegraef-2026-afarensis-mandibles
+      loc: Materials and methods
+      quote: "with the exception of A.L. 288‐1i and A.L. 822‐1 from the KH‐1 submember, which are closer in age to 3.20 and 3.12 Ma, respectively (C. Campisano, personal communication)"
+    method: stratigraphic
+    note: From the skeleton's place in the KH-1 submember of the Hadar Formation, by personal communication.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/australopithecus-afarensis
+    source:
+      - { ref: src:pbdb/collection-21784, loc: "occurrence 224438, accepted name" }
+      - { ref: src:kappelman-2016-lucy, loc: abstract }

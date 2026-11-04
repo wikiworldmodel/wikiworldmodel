@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-510
+type: frame
+kind: plate
+title: Pontides (PALEOMAP plate 510)
+entity: earth/plates/pontides
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 510
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 510

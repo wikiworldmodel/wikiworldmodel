@@ -1,0 +1,11 @@
+id: earth/plates/east-antarctic-craton
+kind: plate
+summary: Plate 802 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: East Antarctic craton }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 802", quote: "ANT East antarctic craton" }
+    note: >-
+      The file writes it "East antarctic craton".

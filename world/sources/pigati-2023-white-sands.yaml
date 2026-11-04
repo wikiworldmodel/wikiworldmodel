@@ -1,0 +1,29 @@
+id: src:pigati-2023-white-sands
+type: publication
+kind: measurement
+citation: >-
+  Pigati, J.S., Springer, K.B., Honke, J.S., Wahl, D., Champagne, M.R., Zimmerman, S.R.H., Gray,
+  H.J., Santucci, V.L., Odess, D., Bustos, D. & Bennett, M.R. (2023). Independent age estimates
+  resolve the controversy of ancient human footprints at White Sands. Science 382(6666), 73–75.
+authors:
+  - "Pigati, J.S."
+  - "Springer, K.B."
+  - "Honke, J.S."
+  - "Wahl, D."
+  - "Champagne, M.R."
+  - "Zimmerman, S.R.H."
+  - "Gray, H.J."
+  - "Santucci, V.L."
+  - "Odess, D."
+  - "Bustos, D."
+  - "Bennett, M.R."
+published: 2023
+title: "Independent age estimates resolve the controversy of ancient human footprints at White Sands"
+container: "Science 382(6666), 73–75"
+doi: 10.1126/science.adh5007
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the published PDF, posted on the University of California,
+    Berkeley's geography site, was retrieved and the passages cited read. Quotes checked by script
+    against the abstract.

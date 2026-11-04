@@ -1,0 +1,80 @@
+id: people/rulers/gaozu-of-han
+kind: person
+summary: >-
+  Liu Bang, a village officer who rose against the Qin, beat Xiang Yu and founded the Han
+  dynasty.
+author: machine:claude-code
+same_as: { wikidata: Q7210 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Han
+claims:
+  name:
+    prop: name
+    value: { en: Emperor Gaozu of Han, zh: 漢高祖 }
+    source:
+      ref: src:shiji-wikisource
+      loc: "ch. 8"
+      quote: "四月甲辰，高祖崩長樂宮"
+  start-huangfu-mi:
+    prop: start
+    value: { lo: 258 BCE, hi: 256 BCE }
+    source:
+      ref: src:chavannes-1897-memoires-historiques-2
+      loc: "ch. 8, p. 401, n. 5"
+      quote: Hoang-fou Mi dit que Kao-tsou était âgé de soixante-trois ans quand il mourut
+    method: tradition
+    rank: preferred
+    note: >-
+      Sixty-three by Chinese reckoning, in 195 BCE; Huangfu Mi wrote centuries later. Preferred
+      with no great confidence: nothing read here decides between this and the commentator's
+      figure.
+  start-tsan:
+    prop: start
+    value: { lo: 248 BCE, hi: 246 BCE }
+    source:
+      ref: src:chavannes-1897-memoires-historiques-2
+      loc: "ch. 8, p. 401, n. 5"
+      quote: D'après le commentateur Tsan, il n'avait que cinquante-trois ans
+    method: tradition
+    note: Fifty-three by the same reckoning, on the commentator Zan's figure.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: 28 February 202 BCE
+    source:
+      - ref: src:chavannes-1897-memoires-historiques-2
+        loc: "ch. 8, p. 381 and n. 1"
+        quote: il est le troisième jour du second mois, soit le 28 février 202
+      - ref: src:shiji-wikisource
+        loc: "ch. 8"
+        quote: "甲午，乃即皇帝位汜水之陽"
+    method: historical-account
+    note: >-
+      In English: on the day jiawu he took the imperial dignity north of the Si river. Chavannes
+      finds the day from the cycle, in the second month as the History of the Former Han has it.
+      He had been king of Han since 206; only the imperial reign is taken here.
+  end:
+    prop: end
+    value: 1 June 195 BCE
+    source:
+      - ref: src:chavannes-1897-memoires-historiques-2
+        loc: "ch. 8, p. 401"
+        quote: Le quatrième mois, au jour kia-tch'en (1er juin 195), Kao-tsou mourut dans le palais Tch'ang-lo
+      - ref: src:shiji-wikisource
+        loc: "ch. 8"
+        quote: "四月甲辰，高祖崩長樂宮"
+    method: historical-account
+    note: The Julian day is Chavannes', from his table of the cycle of days.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/han
+    source:
+      ref: src:chavannes-1897-memoires-historiques-2
+      loc: "ch. 8, p. 381"
+      quote: il prit donc la dignité d'empereur
+    note: Emperor; founder of the Han.

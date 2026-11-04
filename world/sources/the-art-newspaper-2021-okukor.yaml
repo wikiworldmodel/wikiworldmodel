@@ -1,0 +1,13 @@
+id: src:the-art-newspaper-2021-okukor
+type: publication
+kind: review
+citation: >-
+  The Art Newspaper (28 October 2021). Cambridge University college becomes first UK institution to
+  return looted Benin bronze to Nigeria.
+published: 2021
+title: Cambridge University college becomes first UK institution to return looted Benin bronze to Nigeria
+url: https://www.theartnewspaper.com/2021/10/28/cambridge-university-college-becomes-first-uk-institution-to-return-looted-benin-bronze-to-nigeria
+reliability: A news report written the day after the handover.
+verified:
+  by: machine:claude-code
+  how: Read on the newspaper's site. Quotations checked by script against the page's text.

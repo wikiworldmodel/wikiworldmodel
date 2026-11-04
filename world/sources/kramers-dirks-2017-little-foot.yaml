@@ -1,0 +1,22 @@
+id: src:kramers-dirks-2017-little-foot
+type: publication
+kind: measurement
+citation: >-
+  Kramers, J.D. & Dirks, P.H.G.M. (2017). The age of fossil StW573 ('Little Foot'): An alternative
+  interpretation of 26Al/10Be burial data. South African Journal of Science 113(3/4).
+authors:
+  - "Kramers, J.D."
+  - "Dirks, P.H.G.M."
+published: 2017
+title: "The age of fossil StW573 ('Little Foot'): An alternative interpretation of 26Al/10Be burial data"
+container: South African Journal of Science 113(3/4)
+doi: 10.17159/sajs.2017/20160085
+note: >-
+  The same journal printed comments on this paper by Granger's group and a reply (doi
+  10.17159/sajs.2017/a0213, a0222). They were not read.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read at the journal's page: a chert fragment points to a maximum age of 2.8 Ma for the
+    sediment and so for the fossil, and re-deposited sediment could yield an isochron much older
+    than its deposition. Quoted passage checked by script against the text retrieved.

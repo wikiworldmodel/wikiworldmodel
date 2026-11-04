@@ -1,0 +1,414 @@
+id: people/objects/bust-of-nefertiti
+kind: artefact/moved
+summary: >-
+  The painted limestone and stucco bust of Queen Nefertiti, made about 1351-1334 BCE and found on 6
+  December 1912 in the workshop of the sculptor Thutmose at Amarna. It reached Berlin in 1913, spent the
+  war in shelters and then a mine, was kept by the Americans at Wiesbaden, was shown in West Berlin, and
+  has been in the Neues Museum again since 2009.
+author: machine:claude-code
+same_as: { wikidata: Q582172 }
+phases:
+  - id: amarna
+    label: Amarna
+  - id: simon-villa
+    label: James Simon's villa, Tiergartenstraße, Berlin
+  - id: neues-museum
+    label: Neues Museum, Berlin
+  - id: wartime-berlin
+    label: In shelters in Berlin
+  - id: merkers
+    label: Mine at Merkers, Thuringia
+  - id: frankfurt
+    label: Reichsbank, Frankfurt
+  - id: wiesbaden
+    label: Central Collecting Point, Wiesbaden
+  - id: dahlem
+    label: Museum centre, Dahlem, Berlin
+  - id: charlottenburg
+    label: Egyptian Museum, Charlottenburg, Berlin
+  - id: kulturforum
+    label: Kulturforum, Berlin
+  - id: altes-museum
+    label: Altes Museum, Berlin
+  - id: neues-museum-again
+    label: Neues Museum, Berlin
+claims:
+  name:
+    prop: name
+    value: { en: Bust of Nefertiti, de: Büste der Nofretete }
+    source: { ref: src:smb-nofretete-die-bueste, loc: caption, quote: "Büste der Nofretete, Ägypten, Tell el-Amarna, Neues Reich, 18. Dynastie, um 1351–1334 v. Chr." }
+  amarna-start:
+    prop: start
+    subject: "@amarna"
+    value: { lo: 1351 BCE, hi: 1334 BCE }
+    source:
+      ref: src:smb-nofretete-die-bueste
+      loc: caption
+      quote: "Büste der Nofretete, Ägypten, Tell el-Amarna, Neues Reich, 18. Dynastie, um 1351–1334 v. Chr."
+    method: historical-account
+    note: The reign of Akhenaten, which the museum gives for the bust.
+  amarna-location:
+    prop: location
+    subject: "@amarna"
+    value: { lat: 27.6441, lon: 30.898182, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-amarna, loc: "place 149576487, representative point" }
+      - ref: src:smb-nofretete-der-fund
+        loc: opening paragraph
+        quote: "Die Nofretete-Büste wurde am 6. Dezember 1912 bei einer Grabung im mitteläygptischen Tell el Amarna gefunden."
+    method: gazetteer
+    note: The city; the find was in house P 47.2, room 19, which is not placed here. The bust stayed at the dig until the finds were divided in January 1913.
+  amarna-frame:
+    prop: frame
+    subject: "@amarna"
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  simon-villa-start:
+    prop: start
+    subject: "@simon-villa"
+    value: 1913 CE
+    source:
+      - ref: src:smb-nofretete-die-praesentation
+        loc: paragraph 2
+        quote: "Nach Berlin gelangte die Büste bereits im Jahr 1913."
+      - ref: src:spk-2024-nefertiti-first-exhibition
+        loc: paragraph 1
+        quote: "transported to Berlin in 1913"
+    method: historical-account
+  simon-villa-location:
+    prop: location
+    subject: "@simon-villa"
+    value: { lat: 52.509819, lon: 13.361157, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-tiergartenstrasse, loc: "Q823089, P625 coordinate location" }
+      - ref: src:smb-nofretete-die-praesentation
+        loc: paragraph 2
+        quote: "Simon stellte sie zunächst in seiner Villa in der Tiergartenstraße auf, wo sie Kaiser Wilhem II. erstmals präsentiert wurde."
+    method: gazetteer
+    note: The street; the villa is not placed here.
+  simon-villa-frame:
+    prop: frame
+    subject: "@simon-villa"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  neues-museum-start:
+    prop: start
+    subject: "@neues-museum"
+    value: October 1913 CE
+    source:
+      - ref: src:culturcooperation-nefertiti-chronology
+        loc: "1913, 'Nefertiti's journey to Berlin'"
+        quote: "In October 1913 he handed the bust and other finds from the dig to the Berlin Museum on permanent loan."
+      - ref: src:smb-nofretete-die-praesentation
+        loc: paragraph 2
+        quote: "Danach übergab er sie zusammen mit den anderen Objekten als Dauerleihgabe dem Ägyptischen Museum."
+    method: historical-account
+    rank: preferred
+    note: >-
+      The museum puts the loan straight after the showing to the Kaiser, without a month; the chronology
+      gives October. It was then kept from view: the Amarna finds were shown in November 1913 without it,
+      and it was first shown on 1 April 1924.
+  neues-museum-start-spk-2024:
+    prop: start
+    subject: "@neues-museum"
+    value: 1920 CE
+    source:
+      ref: src:spk-2024-nefertiti-first-exhibition
+      loc: "paragraph beginning 'As the sole financier'"
+      quote: "He initially kept the bust of Nefertiti in his villa in Tiergartenstraße. In 1920, Simon donated the bust and all the finds from the excavation to the Berlin museums."
+    method: historical-account
+    note: The Stiftung's sentence can be read as the bust staying at the villa until Simon's gift of 1920, on 11 July by the museum's page. It does not say so outright.
+  neues-museum-location:
+    prop: location
+    subject: "@neues-museum"
+    value: { lat: 52.5202, lon: 13.3976, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-neues-museum, loc: "Q157316, P625 coordinate location" }
+    method: gazetteer
+  neues-museum-frame:
+    prop: frame
+    subject: "@neues-museum"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  wartime-berlin-start:
+    prop: start
+    subject: "@wartime-berlin"
+    value: 1939 CE
+    source:
+      - ref: src:smb-nofretete-die-praesentation
+        loc: "section 'Erste Präsentation im Neuen Museum'"
+        quote: "Bis zu ihrer kriegsbedingten Auslagerung 1939 blieb die Büste an diesem Ort."
+      - ref: src:culturcooperation-nefertiti-chronology
+        loc: "1939, 'Evacuation of Nefertiti'"
+        quote: "Nefertiti was put in storage 1939 at first into the cellar of the Prussian Governmental Bank and in autumn 1941 in the tower of a flak bunker in Berlin."
+    method: historical-account
+    note: Two shelters, a bank's cellar and from the autumn of 1941 a flak tower, which the chronology does not name. Neither is placed here, so the phase has one point, for the city.
+  wartime-berlin-location:
+    prop: location
+    subject: "@wartime-berlin"
+    value: { lat: 52.516667, lon: 13.383333, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-berlin, loc: "Q64, P625 coordinate location" }
+    method: gazetteer
+  wartime-berlin-frame:
+    prop: frame
+    subject: "@wartime-berlin"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  merkers-start:
+    prop: start
+    subject: "@merkers"
+    value: 6 March 1945 CE
+    source:
+      ref: src:culturcooperation-nefertiti-chronology
+      loc: "1945, 'Nefertiti's journey to the West'"
+      quote: "On 6th March 1945, directly before the Red Army conquered Berlin, Nefertiti and other cultural treasures were moved"
+    method: historical-account
+    rank: preferred
+    note: The only day read, from a campaign's website, which is not disinterested.
+  merkers-start-berlin-de:
+    prop: start
+    subject: "@merkers"
+    value: 1943 CE
+    source:
+      ref: src:berlin-de-nofretete-geschichte-einer-ikone
+      loc: history, the paragraph on 1943
+      quote: "1943 wurden die Objekte des Ägyptischen Museums ausgelagert, die Nofretete-Büste kam in die Saline Kaiseroda im Harz."
+    method: historical-account
+    note: This account goes straight from the museum to the mine, without the Berlin shelters, and puts Kaiseroda in the Harz where the chronology has Thuringia. The museum's own page has the bust removed in 1939.
+  merkers-location:
+    prop: location
+    subject: "@merkers"
+    value: { lat: 50.816667, lon: 10.116667, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-merkers-kieselbach, loc: "Q635010, P625 coordinate location" }
+      - ref: src:culturcooperation-nefertiti-chronology
+        loc: "1945, 'Nefertiti's journey to the West'"
+        quote: "to the mine in Merkers/Kaiseroda in Thuringia"
+    method: gazetteer
+    note: The municipality; the shaft is not placed here.
+  merkers-frame:
+    prop: frame
+    subject: "@merkers"
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  frankfurt-start:
+    prop: start
+    subject: "@frankfurt"
+    value: April 1945 CE
+    source:
+      - ref: src:bradsher-2013-wiesbaden-collecting-point
+        loc: "paragraph beginning 'Realizing the importance'"
+        quote: "in April 1945, with the recovery of German-owned art from the Berlin museums, gold, and SS loot in the mine at Merkers, the Reichsbank in Frankfurt was put into use as a storage facility"
+      - ref: src:berlin-de-nofretete-geschichte-einer-ikone
+        loc: history, the paragraph on 1943
+        quote: "Alle Kunstgüter kamen zunächst nach Frankfurt am Main, dann in ein Zentrallager im Wiesbadener Landesmuseum."
+    method: documentary
+    rank: preferred
+    note: The U.S. Army's use of the bank for what came from Merkers, from the National Archives' reading of its records, which do not name the bust here.
+  frankfurt-start-chronology:
+    prop: start
+    subject: "@frankfurt"
+    value: March 1945 CE
+    source:
+      ref: src:culturcooperation-nefertiti-chronology
+      loc: "1945, 'Nefertiti's journey to the West'"
+      quote: "In the same month American troops brought her to Frankfurt together with Prussia's gold and silver reserves."
+    method: historical-account
+    note: The month is the chronology's. The National Archives' account puts the recovery from the mine in April.
+  frankfurt-location:
+    prop: location
+    subject: "@frankfurt"
+    value: { lat: 50.110556, lon: 8.682222, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-frankfurt, loc: "Q1794, P625 coordinate location" }
+    method: gazetteer
+    note: The city; the bank is not placed here.
+  frankfurt-frame:
+    prop: frame
+    subject: "@frankfurt"
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  wiesbaden-start:
+    prop: start
+    subject: "@wiesbaden"
+    value: 20 August 1945 CE
+    source:
+      - ref: src:culturcooperation-nefertiti-chronology
+        loc: "1945, 'Nefertiti's journey to the West'"
+        quote: "On 20th August the bust was moved from there to the general store of art treasures in Wiesbaden."
+      - ref: src:bradsher-2013-wiesbaden-collecting-point
+        loc: "paragraph beginning 'By mid-July'"
+        quote: "the bulk of the artwork stored at Frankfurt would be coming to Wiesbaden starting August 20"
+      - ref: src:wiesbaden-stadtlexikon-central-collecting-point
+        loc: paragraph on the exhibitions
+        quote: "In der ersten Ausstellung im Februar 1946 wurde die Büste der Nofretete präsentiert"
+    method: documentary
+  wiesbaden-location:
+    prop: location
+    subject: "@wiesbaden"
+    value: { lat: 50.0775, lon: 8.245833, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-museum-wiesbaden, loc: "Q316514, P625 coordinate location" }
+    method: gazetteer
+  wiesbaden-frame:
+    prop: frame
+    subject: "@wiesbaden"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  dahlem-start:
+    prop: start
+    subject: "@dahlem"
+    value: 1956 CE
+    source:
+      - ref: src:smb-nofretete-die-praesentation
+        loc: "section 'Von Dahlem nach Charlottenburg'"
+        quote: "1956 wurde sie offiziell nach Westberlin zurückgegeben. Hier wurde sie zunächst im Museumszentrum Dahlem präsentiert."
+      - ref: src:wiesbaden-stadtlexikon-central-collecting-point
+        loc: paragraph on 1949-1956
+        quote: "Bis 1956 blieben die Berliner Kunstwerke in ihrem „Wiesbadener Asyl“"
+      - ref: src:berlin-de-nofretete-geschichte-einer-ikone
+        loc: history, the paragraph on 1956
+        quote: "1956 kehrte die Nofretete-Büste mit anderen Amarna-Fundstücken nach Berlin zurück"
+    method: historical-account
+    rank: preferred
+    note: The museum, the city of Wiesbaden and the Berlin portal all say 1956.
+  dahlem-start-chronology:
+    prop: start
+    subject: "@dahlem"
+    value: 1955 CE
+    source:
+      ref: src:culturcooperation-nefertiti-chronology
+      loc: "1955, 'The bust returned to Berlin'"
+      quote: "The bust travelled from Wiesbaden back to Berlin, where it was exhibited in Dahlem."
+    method: historical-account
+    note: The chronology has this under 1955, a year before the others.
+  dahlem-location:
+    prop: location
+    subject: "@dahlem"
+    value: { lat: 52.456111, lon: 13.292222, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-berlin-dahlem-museum-centre, loc: "Q469234, P625 coordinate location" }
+    method: gazetteer
+  dahlem-frame:
+    prop: frame
+    subject: "@dahlem"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  charlottenburg-start:
+    prop: start
+    subject: "@charlottenburg"
+    value: 17 October 1967 CE
+    source:
+      - ref: src:berlin-de-nofretete-geschichte-einer-ikone
+        loc: history, the paragraph on 1956
+        quote: "Seit dem 17. Oktober 1967 residierte Nofretete mehrere Jahrzehnte im Ägyptischen Museum im Östlichen Stülerbau gegenüber dem Charlottenburger Schloss."
+      - ref: src:smb-nofretete-die-praesentation
+        loc: "section 'Von Dahlem nach Charlottenburg'"
+        quote: "1967 zog sie in die neue Dauerausstellung des Ägyptischen Museums im östlichen Stülerbau gegenüber dem Charlottenburger Schloss."
+    method: historical-account
+  charlottenburg-location:
+    prop: location
+    subject: "@charlottenburg"
+    value: { lat: 52.5191, lon: 13.2967, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-scharf-gerstenberg-collection, loc: "Q322010, P625 coordinate location" }
+      - ref: src:smb-sammlung-scharf-gerstenberg-profile
+        loc: "paragraph beginning 'After being converted'"
+        quote: "the Egyptian Museum moved into the premises in 1967"
+    method: gazetteer
+    note: The eastern Stüler building now holds the Scharf-Gerstenberg Collection, and is placed by that collection's point. A museum news item of 2015 says "westlichen", the twin building across the street; its main page and the portal say eastern.
+  charlottenburg-frame:
+    prop: frame
+    subject: "@charlottenburg"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  kulturforum-start:
+    prop: start
+    subject: "@kulturforum"
+    value: 28 February 2005 CE
+    source:
+      - ref: src:culturcooperation-nefertiti-chronology
+        loc: "2005, 'Nefertiti on the road again'"
+        quote: "The Nefertiti bust left Charlottenburg on 28th February 2005"
+      - ref: src:berlin-de-nofretete-geschichte-einer-ikone
+        loc: history, the paragraph on 2005
+        quote: "Von Februar bis August 2005 wurde die Büste in der Sonderausstellung „Hieroglyphen um Nofretete“ am Berliner Kulturforum Potsdamer Platz präsentiert."
+    method: historical-account
+  kulturforum-location:
+    prop: location
+    subject: "@kulturforum"
+    value: { lat: 52.5083, lon: 13.3678, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-kulturforum, loc: "Q386482, P625 coordinate location" }
+    method: gazetteer
+  kulturforum-frame:
+    prop: frame
+    subject: "@kulturforum"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  altes-museum-start:
+    prop: start
+    subject: "@altes-museum"
+    value: 12 August 2005 CE
+    source:
+      - ref: src:spk-2015-nefertiti-ten-years
+        loc: paragraph 1
+        quote: "Exactly ten years ago, on 12 August 2005, the bust of Nefertiti returned to the Museumsinsel (Museum Island)"
+      - ref: src:smb-nofretete-die-praesentation
+        loc: "section 'Rückkehr auf die Museumsinsel'"
+        quote: "zog die Sammlung 2005 von Charlottenburg in das Obergeschoss des Alten Museums"
+    method: historical-account
+  altes-museum-location:
+    prop: location
+    subject: "@altes-museum"
+    value: { lat: 52.519444, lon: 13.398889, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-altes-museum, loc: "Q156722, P625 coordinate location" }
+    method: gazetteer
+  altes-museum-frame:
+    prop: frame
+    subject: "@altes-museum"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  neues-museum-again-start:
+    prop: start
+    subject: "@neues-museum-again"
+    value: 4 October 2009 CE
+    source:
+      - ref: src:berlin-de-nofretete-geschichte-einer-ikone
+        loc: introduction
+        quote: "Die Büste der Nofretete ist am 04. Oktober 2009 vom Alten Museum in das Neue Museum umgezogen."
+      - ref: src:smb-nofretete-die-praesentation
+        loc: opening paragraph
+        quote: "Mit der Wiedereröffnung des Neuen Museums 2009 kehrte die bunte Büste der Nofretete wieder in das Haus zurück"
+    method: historical-account
+    note: It moved on 4 October, before the museum reopened on 16 or 17 October, the two dates the portal gives.
+  neues-museum-again-location:
+    prop: location
+    subject: "@neues-museum-again"
+    value: { lat: 52.5202, lon: 13.3976, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-neues-museum, loc: "Q157316, P625 coordinate location" }
+    method: gazetteer
+  neues-museum-again-frame:
+    prop: frame
+    subject: "@neues-museum-again"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

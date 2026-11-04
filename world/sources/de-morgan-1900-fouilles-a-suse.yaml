@@ -1,0 +1,22 @@
+id: src:de-morgan-1900-fouilles-a-suse
+type: publication
+kind: eyewitness
+citation: >-
+  de Morgan, J., Jéquier, G. & Lampre, G. (1900). Recherches archéologiques, première série: Fouilles à
+  Suse en 1897-1898 et 1898-1899. Mémoires de la Délégation en Perse, tome I. Paris: Ernest Leroux.
+authors:
+  - "de Morgan, J."
+  - "Jéquier, G."
+  - "Lampre, G."
+published: 1900
+title: "Recherches archéologiques, première série: Fouilles à Suse"
+container: Mémoires de la Délégation en Perse
+url: https://archive.org/details/mmoires01franuoft
+license: public-domain
+reliability: The excavators' own report, written within two years of the find.
+verified:
+  by: machine:claude-code
+  how: >-
+    The account of the trench that found the stele and the description of the stele read in the
+    Internet Archive's OCR text; the Louvre's notice gives pp. 106 and 144 for them. Quotations checked
+    by script with whitespace normalized and a hyphen at a line end read as joined.

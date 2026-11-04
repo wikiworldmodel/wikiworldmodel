@@ -1,0 +1,22 @@
+id: src:freidline-2023-tam-pa-ling
+type: publication
+kind: measurement
+citation: >-
+  Freidline, S.E., Westaway, K.E., Joannes-Boyau, R., … & Demeter, F. (2023). Early presence of Homo
+  sapiens in Southeast Asia by 86-68 kyr at Tam Pà Ling, Northern Laos. Nature Communications 14(1),
+  3193.
+authors:
+  - "Freidline, S.E."
+  - "Westaway, K.E."
+  - "Joannes-Boyau, R."
+  - "Demeter, F."
+published: 2023
+title: "Early presence of Homo sapiens in Southeast Asia by 86-68 kyr at Tam Pà Ling, Northern Laos"
+container: "Nature Communications 14(1), 3193"
+doi: 10.1038/s41467-023-38715-y
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC10264382); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

@@ -1,0 +1,10 @@
+id: earth/plates/iberia
+kind: plate
+summary: Plate 304 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Iberia }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 304", quote: "SPN-EUR Iberia-Europe 100 MY Future" }
+    note: The label names this plate against Europe (EUR).

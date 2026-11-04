@@ -1,0 +1,28 @@
+id: src:sun-2021-southern-china
+type: publication
+kind: measurement
+citation: >-
+  Sun, X.F., Wen, S.Q., Lu, C.Q., … & Li, H. (2021). Ancient DNA and multimethod dating confirm the
+  late arrival of anatomically modern humans in southern China. Proceedings of the National Academy
+  of Sciences of the USA 118(8), e2019158118.
+authors:
+  - "Sun, X.F."
+  - "Wen, S.Q."
+  - "Lu, C.Q."
+  - "Li, H."
+published: 2021
+title: "Ancient DNA and multimethod dating confirm the late arrival of anatomically modern humans in southern China"
+container: "Proceedings of the National Academy of Sciences of the USA 118(8), e2019158118"
+doi: 10.1073/pnas.2019158118
+reliability: >-
+  Disputed: Martinón-Torres et al. (2021) say that one of the two Fuyan teeth it dates is not human
+  and that their context is uncertain; Higham and Douka (2021, PNAS 118, e2103798118) doubt the
+  radiocarbon pretreatment. The authors reply in e2104818118.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the article's page on PubMed Central (PMC7923607); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text and the abstract in Europe PMC. The authors' reply in the same exchange
+    (Curnoe et al. 2021, e2104818118) and the letter of Higham and Douka (2021, e2103798118) were
+    read on PubMed Central too.

@@ -1,0 +1,23 @@
+id: src:zhuravlev-2022-cambrian-reefs
+type: publication
+kind: measurement
+citation: >-
+  Zhuravlev, A.Y., Mitchell, E.G., Bowyer, F., Wood, R. & Penny, A. (2022). Increases in reef
+  size, habitat and metacommunity complexity associated with Cambrian radiation oxygenation
+  pulses. Nature Communications 13, 7523.
+authors:
+  - "Zhuravlev, A.Y."
+  - "Mitchell, E.G."
+  - "Bowyer, F."
+  - "Wood, R."
+  - "Penny, A."
+published: 2022
+title: "Increases in reef size, habitat and metacommunity complexity associated with Cambrian radiation oxygenation pulses"
+container: Nature Communications 13, 7523
+doi: 10.1038/s41467-022-35283-5
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved through Europe PMC (PMC9727068, fullTextXML); the parts cited were read,
+    and quotes checked by script against it. Metadata from Crossref.

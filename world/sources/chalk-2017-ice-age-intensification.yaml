@@ -1,0 +1,32 @@
+id: src:chalk-2017-ice-age-intensification
+type: publication
+kind: measurement
+citation: >-
+  Chalk, T.B., Hain, M.P., Foster, G.L., Rohling, E.J., Sexton, P.F., Badger, M.P.S., Cherry,
+  S.G., Hasenfratz, A.P., Haug, G.H., Jaccard, S.L., Martínez-García, A., Pälike, H., Pancost,
+  R.D. & Wilson, P.A. (2017). Causes of ice age intensification across the Mid-Pleistocene
+  Transition. Proceedings of the National Academy of Sciences 114(50), 13114–13119.
+authors:
+  - "Chalk, T.B."
+  - "Hain, M.P."
+  - "Foster, G.L."
+  - "Rohling, E.J."
+  - "Sexton, P.F."
+  - "Badger, M.P.S."
+  - "Cherry, S.G."
+  - "Hasenfratz, A.P."
+  - "Haug, G.H."
+  - "Jaccard, S.L."
+  - "Martínez-García, A."
+  - "Pälike, H."
+  - "Pancost, R.D."
+  - "Wilson, P.A."
+published: 2017
+title: "Causes of ice age intensification across the Mid-Pleistocene Transition"
+container: "Proceedings of the National Academy of Sciences 114(50), 13114–13119"
+doi: 10.1073/pnas.1702143114
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read through Europe PMC (PMC5740680). Citation from Crossref. Quotes checked by
+    script against the text retrieved.

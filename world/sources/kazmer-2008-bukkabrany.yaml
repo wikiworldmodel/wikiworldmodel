@@ -1,0 +1,17 @@
+id: src:kazmer-2008-bukkabrany
+type: publication
+kind: measurement
+citation: >-
+  Kázmér, M. (2008). The Miocene Bükkábrány Fossil Forest in Hungary – field observations and
+  project outline. Hantkeniana 6, 229–244.
+authors:
+  - "Kázmér, M."
+published: 2008
+title: "The Miocene Bükkábrány Fossil Forest in Hungary – field observations and project outline"
+container: Hantkeniana 6, 229–244
+url: http://real.mtak.hu/2801/1/Kazmer_2008_Bukkabrany_Hantkeniana.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the repository of the Library of the Hungarian Academy of Sciences
+    (real.mtak.hu/2801); the parts cited were read, and quotes checked by script against its text.

@@ -1,0 +1,23 @@
+id: src:falaschi-2011-la-matilde
+type: publication
+kind: measurement
+citation: >-
+  Falaschi, P., Grosfeld, J., Zamuner, A.B., Foix, N. & Rivera, S.M. (2011). Growth architecture
+  and silhouette of Jurassic conifers from La Matilde Formation, Patagonia, Argentina.
+  Palaeogeography, Palaeoclimatology, Palaeoecology 302(3–4), 122–141.
+authors:
+  - "Falaschi, P."
+  - "Grosfeld, J."
+  - "Zamuner, A.B."
+  - "Foix, N."
+  - "Rivera, S.M."
+published: 2011
+title: "Growth architecture and silhouette of Jurassic conifers from La Matilde Formation, Patagonia, Argentina"
+container: Palaeogeography, Palaeoclimatology, Palaeoecology 302(3–4), 122–141
+doi: 10.1016/j.palaeo.2010.12.005
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from SEDICI, the National University of La Plata's repository
+    (sedici.unlp.edu.ar/handle/10915/194732); the parts cited were read, and quotes checked by
+    script against its text. Metadata from Crossref.

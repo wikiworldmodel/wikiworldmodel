@@ -1,0 +1,18 @@
+id: src:willerslev-2021-peopling
+type: publication
+kind: review
+citation: >-
+  Willerslev, E. & Meltzer, D.J. (2021). Peopling of the Americas as inferred from ancient genomics.
+  Nature 594(7863), 356–364.
+authors:
+  - "Willerslev, E."
+  - "Meltzer, D.J."
+published: 2021
+title: "Peopling of the Americas as inferred from ancient genomics"
+container: "Nature 594(7863), 356–364"
+doi: 10.1038/s41586-021-03499-y
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

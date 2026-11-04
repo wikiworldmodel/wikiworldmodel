@@ -1,0 +1,40 @@
+id: src:el-albani-2010-francevillian
+type: publication
+kind: measurement
+citation: >-
+  Albani, A.E., Bengtson, S., Canfield, D.E., Bekker, A., Macchiarelli, R., Mazurier, A.,
+  Hammarlund, E.U., Boulvais, P., Dupuy, J.-J., Fontaine, C., Fürsich, F.T., Gauthier-Lafaye,
+  F., Janvier, P., Javaux, E., Ossa, F.O., Pierson-Wickmann, A.-C., Riboulleau, A., Sardini, P.,
+  Vachard, D., Whitehouse, M. & Meunier, A. (2010). Large colonial organisms with coordinated
+  growth in oxygenated environments 2.1 Gyr ago. Nature 466(7302), 100–104.
+authors:
+  - "Albani, A.E."
+  - "Bengtson, S."
+  - "Canfield, D.E."
+  - "Bekker, A."
+  - "Macchiarelli, R."
+  - "Mazurier, A."
+  - "Hammarlund, E.U."
+  - "Boulvais, P."
+  - "Dupuy, J.-J."
+  - "Fontaine, C."
+  - "Fürsich, F.T."
+  - "Gauthier-Lafaye, F."
+  - "Janvier, P."
+  - "Javaux, E."
+  - "Ossa, F.O."
+  - "Pierson-Wickmann, A.-C."
+  - "Riboulleau, A."
+  - "Sardini, P."
+  - "Vachard, D."
+  - "Whitehouse, M."
+  - "Meunier, A."
+published: 2010
+title: "Large colonial organisms with coordinated growth in oxygenated environments 2.1 Gyr ago"
+container: Nature 466(7302), 100–104
+doi: 10.1038/nature09166
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 20596019); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

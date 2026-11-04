@@ -1,0 +1,73 @@
+id: people/prehistory/schoningen-spears
+kind: artefact
+summary: >-
+  The wooden throwing spears of Schöningen 13 II-4, Germany, found from 1995 with stone tools and the
+  butchered remains of horses: the most complete Palaeolithic hunting spears known. Their age has moved
+  from about 400,000 to about 200,000 years, and their makers with it.
+same_as: { wikidata: Q320796 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Schöningen spears" }
+    unsourced: An editorial label, the name the spears go by.
+  location:
+    prop: location
+    value: { lat: 52.1335, lon: 10.9893, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-schoningen-spears, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-hutson-2025:
+    prop: date
+    value: 200 ka
+    source:
+      ref: src:hutson-2025-schoningen
+      loc: abstract
+      quote: "Together with a reassessment of regional Middle Pleistocene chronostratigraphy, these data place the Schöningen spears at ~200,000 years."
+    method: amino-acid
+    rank: preferred
+    note: >-
+      Amino acid geochronology of fossils from the spear-bearing deposits, which falls with sites of
+      MIS 7, below a till of the MIS 6 ice advance. Preferred because it is the only date from the
+      find-bearing deposits themselves: the authors say the horizon had never been directly dated.
+  date-richter-krbetschek-2015:
+    prop: date
+    value: { lo: 337 ka, hi: 300 ka }
+    source:
+      - ref: src:richter-krbetschek-2015-schoningen
+        loc: abstract
+        quote: "provides an age estimate of 337-300 ka for the oldest spears in human history"
+      - ref: src:milks-2023-schoningen
+        loc: abstract
+        quote: "The site of Schöningen (Germany), dated to ca. 300,000 years ago"
+    method: radiometric/luminescence
+    note: >-
+      By inference: thermoluminescence of heated flint gives 321 ± 16 ka for another level, 13/I-1,
+      taken as a maximum for the spear level, and the two sites are then placed in the same climatic
+      cycle.
+  date-thieme-1997:
+    prop: date
+    value: 400 ka
+    source:
+      ref: src:thieme-1997-schoningen
+      loc: abstract
+      quote: "wooden throwing spears about 400,000 years old"
+    method: stratigraphic
+    rank: deprecated
+    note: The first estimate, from a correlation of the sequence with the climate record; revised twice since.
+relations:
+  made-by-neanderthals:
+    rel: made-by
+    to: life/taxa/homo-neanderthalensis
+    source:
+      ref: src:hutson-2025-schoningen
+      loc: abstract
+      quote: "the increasingly complex social environments of Middle Paleolithic Neanderthals"
+    note: >-
+      Follows the preferred date. On the older dates, the papers speak only of pre-modern hominids
+      (Thieme 1997) or Middle Pleistocene humans (Milks et al. 2023).

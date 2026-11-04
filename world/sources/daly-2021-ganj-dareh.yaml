@@ -1,0 +1,26 @@
+id: src:daly-2021-ganj-dareh
+type: publication
+kind: measurement
+citation: >-
+  Daly, K.G., Mattiangeli, V., Hare, A.J., … & Bradley, D.G. (2021). Herded and hunted goat
+  genomes from the dawn of domestication in the Zagros Mountains. Proceedings of the National
+  Academy of Sciences 118(25), e2100901118.
+authors:
+  - "Daly, K.G."
+  - "Mattiangeli, V."
+  - "Hare, A.J."
+  - "Davoudi, H."
+  - "Fathi, H."
+  - "Doost, S.B."
+  - "Amiri, S."
+  - "Khazaeli, R."
+# the first eight of 19 authors
+published: 2021
+title: "Herded and hunted goat genomes from the dawn of domestication in the Zagros Mountains"
+container: "Proceedings of the National Academy of Sciences 118(25), e2100901118"
+doi: 10.1073/pnas.2100901118
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC8237664) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

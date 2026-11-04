@@ -1,0 +1,18 @@
+id: src:stromberg-2005-grasses
+type: publication
+kind: measurement
+citation: >-
+  Strömberg, C.A.E. (2005). Decoupled taxonomic radiation and ecological expansion of open-habitat
+  grasses in the Cenozoic of North America. Proceedings of the National Academy of Sciences
+  102(34), 11980–11984.
+authors:
+  - "Strömberg, C.A.E."
+published: 2005
+title: "Decoupled taxonomic radiation and ecological expansion of open-habitat grasses in the Cenozoic of North America"
+container: Proceedings of the National Academy of Sciences 102(34), 11980–11984
+doi: 10.1073/pnas.0505700102
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from PubMed Central (PMC1189350); the parts cited were read, and quotes
+    checked by script against that page's text. Metadata from Crossref.

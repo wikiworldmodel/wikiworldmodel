@@ -1,0 +1,20 @@
+id: src:smith-1917-akbar
+type: publication
+kind: review
+citation: >-
+  Smith, V.A. (1917). Akbar the Great Mogul, 1542–1605. Oxford: Clarendon Press.
+authors:
+  - "Smith, V.A."
+published: 1917
+title: Akbar the Great Mogul, 1542–1605
+container: Oxford, Clarendon Press
+url: https://archive.org/details/cu31924024056503
+via: The Internet Archive's scan (Cornell University copy).
+reliability: >-
+  A standard biography that goes back to the Persian chronicles and the Jesuit letters and
+  argues out the dates; it shows that the official birthday was moved.
+verified:
+  by: machine:claude-code
+  how: >-
+    Pp. 14–15, 19, 30 and 324–325 read in the OCR of the scan; quotations checked by script
+    against that text.

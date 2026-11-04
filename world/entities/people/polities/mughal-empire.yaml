@@ -1,0 +1,22 @@
+id: people/polities/mughal-empire
+kind: polity
+summary: >-
+  The Mughal Empire of South Asia. Written for the rulers that hold office in it: its dates are the span of the borders dataset's rows, and its
+  land is drawn from those rows as they are, not as a territory of this record.
+author: machine:claude-code
+same_as: { wikidata: Q33296 }
+claims:
+  name:
+    prop: name
+    value: { en: Mughal Empire }
+    unsourced: An editorial label, in English.
+  start:
+    prop: start
+    value: 1529 CE
+    source: { ref: src:cliopatria-0.2.1, loc: 'rows named "Mughal Empire": the earliest FromYear' }
+    method: compilation
+  end:
+    prop: end
+    value: 1858 CE
+    source: { ref: src:cliopatria-0.2.1, loc: 'rows named "Mughal Empire": the latest ToYear' }
+    method: compilation

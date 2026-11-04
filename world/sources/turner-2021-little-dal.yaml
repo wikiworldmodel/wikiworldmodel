@@ -1,0 +1,19 @@
+id: src:turner-2021-little-dal
+type: publication
+kind: measurement
+citation: >-
+  Turner, E.C. (2021). Possible poriferan body fossils in early Neoproterozoic microbial reefs.
+  Nature 596(7870), 87–91.
+authors:
+  - "Turner, E.C."
+published: 2021
+title: "Possible poriferan body fossils in early Neoproterozoic microbial reefs"
+container: Nature 596(7870), 87–91
+doi: 10.1038/s41586-021-03773-z
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC8338550) read via Europe PMC (fullTextXML): the vermiform microstructure in
+    the Little Dal reefs, the Stone Knife Formation, and the age by correlation with the Boot
+    Inlet Formation (892 ± 13 Ma, Re–Os). Quotes checked by script against that text. Metadata
+    from Crossref.

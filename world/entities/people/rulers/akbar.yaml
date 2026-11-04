@@ -1,0 +1,97 @@
+id: people/rulers/akbar
+kind: person
+summary: >-
+  Third Mughal emperor, who came to the throne as a boy and ruled most of northern India for
+  nearly half a century.
+author: machine:claude-code
+same_as: { wikidata: Q8597 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Mughal emperor
+claims:
+  name:
+    prop: name
+    value: { en: Akbar }
+    source:
+      ref: src:smith-1917-akbar
+      loc: "p. 19"
+      quote: History knows Akbar only as Jalalu-d din Muhammad Akbar
+  start-jauhar:
+    prop: start
+    value: 23 November 1542 CE
+    source:
+      ref: src:smith-1917-akbar
+      loc: "p. 14"
+      quote: equivalent to Thursday, November 23, 1542
+    method: historical-account
+    rank: preferred
+    note: >-
+      The real birthday as Smith argues it, 14 Shaban 949, from the night of full moon in the
+      memoir of Humayun's personal servant. Smith's Julian, old-style date.
+  start-official:
+    prop: start
+    value: 15 October 1542 CE
+    source:
+      ref: src:smith-1917-akbar
+      loc: "p. 19"
+      quote: So Akbar's birthday was moved back from November 23 to October 15
+    method: historical-account
+    note: >-
+      The official birthday, Sunday 5 Rajab 949, kept by the court to foil sorcery and to suit
+      the astrologers, and recorded by the official chroniclers.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: 14 February 1556 CE
+    source:
+      ref: src:smith-1917-akbar
+      loc: "p. 30"
+      quote: The correct date of Akbar's enthronement seems to be Friday, Rabi ii, 2, a. h. 963, equivalent to February 14, 1556
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Enthroned on a brick platform in a garden at Kalanaur in the Punjab. His father Humayun
+      had died in January; the authorities differ on the exact dates.
+  end:
+    prop: end
+    value: 27 October 1605 CE
+    source:
+      ref: src:smith-1917-akbar
+      loc: "p. 324"
+      quote: Thursday, October 27, new style (October 17, old style)
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      He died soon after midnight. The new-style date is taken from the Jesuit Du Jarric, as
+      Smith argues; the time axis is Gregorian from 1582.
+  location:
+    prop: location
+    value: { lat: 25.36139, lon: 69.73611, frame: frame:earth/present-day }
+    source:
+      - ref: src:wikidata-umerkot
+        loc: "P625 coordinate location"
+      - ref: src:smith-1917-akbar
+        loc: "p. 14, footnote"
+        quote: Akbar apparently was born in the fort
+    method: gazetteer
+    note: >-
+      Marked at Umerkot (Umarkot) in Sindh, the town of the fort where Smith takes him to have
+      been born.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-501
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/mughal-empire
+    source:
+      ref: src:smith-1917-akbar
+      loc: "p. 30"
+      quote: The correct date of Akbar's enthronement
+    note: Padshah, Mughal emperor.

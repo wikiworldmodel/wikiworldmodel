@@ -1,0 +1,52 @@
+id: src:clark-2012-last-deglaciation
+type: publication
+kind: review
+citation: >-
+  Clark, P.U., Shakun, J.D., Baker, P.A., Bartlein, P.J., Brewer, S., Brook, E., Carlson, A.E.,
+  Cheng, H., Kaufman, D.S., Liu, Z., Marchitto, T.M., Mix, A.C., Morrill, C., Otto-Bliesner, B.L.,
+  Pahnke, K., Russell, J.M., Whitlock, C., Adkins, J.F., Blois, J.L., Clark, J., Colman, S.M.,
+  Curry, W.B., Flower, B.P., He, F., Johnson, T.C., Lynch-Stieglitz, J., Markgraf, V., McManus,
+  J., Mitrovica, J.X., Moreno, P.I. & Williams, J.W. (2012). Global climate evolution during the
+  last deglaciation. Proceedings of the National Academy of Sciences 109(19), E1134–E1142.
+authors:
+  - "Clark, P.U."
+  - "Shakun, J.D."
+  - "Baker, P.A."
+  - "Bartlein, P.J."
+  - "Brewer, S."
+  - "Brook, E."
+  - "Carlson, A.E."
+  - "Cheng, H."
+  - "Kaufman, D.S."
+  - "Liu, Z."
+  - "Marchitto, T.M."
+  - "Mix, A.C."
+  - "Morrill, C."
+  - "Otto-Bliesner, B.L."
+  - "Pahnke, K."
+  - "Russell, J.M."
+  - "Whitlock, C."
+  - "Adkins, J.F."
+  - "Blois, J.L."
+  - "Clark, J."
+  - "Colman, S.M."
+  - "Curry, W.B."
+  - "Flower, B.P."
+  - "He, F."
+  - "Johnson, T.C."
+  - "Lynch-Stieglitz, J."
+  - "Markgraf, V."
+  - "McManus, J."
+  - "Mitrovica, J.X."
+  - "Moreno, P.I."
+  - "Williams, J.W."
+published: 2012
+title: "Global climate evolution during the last deglaciation"
+container: "Proceedings of the National Academy of Sciences 109(19), E1134–E1142"
+doi: 10.1073/pnas.1116619109
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read through Europe PMC, and the full text on PubMed Central (PMC3358890). Citation
+    from Crossref, with the pages from Europe PMC. Quotes checked by script against the text
+    retrieved.

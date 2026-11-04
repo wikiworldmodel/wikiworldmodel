@@ -1,0 +1,19 @@
+id: src:rumold-aldenderfer-2016-jiskairumoko
+type: publication
+kind: measurement
+citation: >-
+  Rumold, C.U. & Aldenderfer, M.S. (2016). Late Archaic-Early Formative period microbotanical
+  evidence for potato at Jiskairumoko in the Titicaca Basin of southern Peru. Proceedings of
+  the National Academy of Sciences 113(48), 13672–13677.
+authors:
+  - "Rumold, C.U."
+  - "Aldenderfer, M.S."
+published: 2016
+title: "Late Archaic-Early Formative period microbotanical evidence for potato at Jiskairumoko in the Titicaca Basin of southern Peru"
+container: "Proceedings of the National Academy of Sciences 113(48), 13672–13677"
+doi: 10.1073/pnas.1604265113
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC5137686) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

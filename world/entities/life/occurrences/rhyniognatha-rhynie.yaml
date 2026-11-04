@@ -1,0 +1,53 @@
+id: life/occurrences/rhyniognatha-rhynie
+kind: occurrence
+summary: >-
+  Rhyniognatha hirsti, one fragmentary head in the Rhynie chert, Aberdeenshire, Scotland, its mandibles read as those
+  of a winged insect, which would make it the oldest; a restudy finds a centipede more likely. PBDB collection 172777.
+same_as: { pbdb: "occ:1293394" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Rhyniognatha, Rhynie chert" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Rhyniognatha hirsti n. gen. n. sp.
+    source: { ref: src:pbdb/collection-172777, loc: "occurrence 1293394, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:haug-haug-2017-rhyniognatha
+      loc: abstract
+      quote: "The specimen mainly preserves the remains of the head."
+  location:
+    prop: location
+    value: { lat: 57.337002, lon: -2.85, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-172777, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-313
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Dryden Flags Formation
+    source: { ref: src:pbdb/collection-172777, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/pragian }
+    source: { ref: src:pbdb/collection-172777, loc: "early_interval (Pragian), max_ma, min_ma" }
+    method: stratigraphic
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/arthropoda
+    source:
+      ref: src:haug-haug-2017-rhyniognatha
+      loc: abstract
+      quote: "Instead they make the interpretation as a myriapod more likely, possibly as a centipede."
+    note: >-
+      An arthropod on either reading, insect or centipede.

@@ -1,0 +1,22 @@
+id: src:lisiecki-raymo-2005-lr04
+type: publication
+kind: compilation
+citation: >-
+  Lisiecki, L.E. & Raymo, M.E. (2005). A Pliocene-Pleistocene stack of 57 globally distributed benthic
+  δ18O records. Paleoceanography 20(1), PA1003. Its stage boundaries as listed on the first author's site.
+authors:
+  - "Lisiecki, L.E."
+  - "Raymo, M.E."
+published: 2005
+title: A Pliocene-Pleistocene stack of 57 globally distributed benthic δ18O records
+container: Paleoceanography 20(1), PA1003
+doi: 10.1029/2004PA001071
+url: https://lorraine-lisiecki.com/LR04_MISboundaries.txt
+reliability: >-
+  Ages of marine isotope stage boundaries on the LR04 age model, to the nearest thousand years, with no
+  uncertainty in the table.
+verified:
+  by: machine:claude-code
+  how: >-
+    The table of boundaries read on the first author's site (LR04_MISboundaries.txt). The article
+    was not read. Citation from Crossref. Quotes checked by script against the text retrieved.

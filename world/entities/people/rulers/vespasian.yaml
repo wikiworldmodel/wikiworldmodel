@@ -1,0 +1,71 @@
+id: people/rulers/vespasian
+kind: person
+summary: >-
+  Commander in the Jewish war, hailed in the east in July 69, who ended the civil wars and
+  founded the Flavian dynasty.
+author: machine:claude-code
+same_as: { wikidata: Q1419 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Vespasian }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Vespasian 2.1"
+      quote: Vespasian was born in the Sabine country
+  start:
+    prop: start
+    value: 17 November 9 CE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Vespasian 2.1"
+      quote: Vespasian was born in the Sabine country, in a small village beyond Reate, called Falacrina, on the evening of the fifteenth day before the Kalends of December, in the consulate of Quintus Sulpicius Camerinus and Gaius Poppaeus Sabinus
+    method: historical-account
+    note: >-
+      The fifteenth day before the Kalends of December is 17 November, and that consulship is 9
+      CE. Falacrina has not been looked up in a gazetteer, and so the record gives no location.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: 1 July 69 CE
+    source:
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Vespasian 6.3"
+        quote: was the first to compel his legions to take the oath for Vespasian on the Kalends of July, the day which was afterwards celebrated as that of his accession
+      - ref: src:tacitus-histories
+        loc: "2.79.1"
+        quote: administering to his troops the oath of allegiance on the first of July. This day has been celebrated in later times as the first of Vespasian's reign
+    method: historical-account
+    note: He was still in Judaea when the legions at Alexandria swore to him.
+  end:
+    prop: end
+    value: 23 June 79 CE
+    source:
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Vespasian 24"
+        quote: on the ninth day before the Kalends of July
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Titus 11"
+        quote: two years two months and twenty days after succeeding Vespasian
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 66, 17.3, vol. 8 p. 295"
+        quote: and had reigned ten years lacking six days
+    method: historical-account
+    note: >-
+      The ninth day before the Kalends of July is 23 June. The year follows from Dio's ten years
+      less six days from 1 July 69, and from Suetonius' count back from the death of Titus.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Vespasian 6.3"
+      quote: the day which was afterwards celebrated as that of his accession
+    note: Emperor, the first of the Flavians.

@@ -1,0 +1,69 @@
+id: people/dispersals/malta-1
+kind: occurrence
+summary: >-
+  The genome of a child from the Upper Palaeolithic site of Mal'ta near Lake Baikal, about 24,000
+  years old: basal to western Eurasians, closely related to Native Americans, and with no close
+  affinity to east Asians.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Mal'ta 1" }
+    unsourced: An editorial label, from the place name and the specimen code MA-1.
+  identified:
+    prop: identified_as
+    value: anatomically modern human
+    source:
+      ref: src:raghavan-2014-malta
+      loc: abstract
+      quote: "To our knowledge this is the oldest anatomically modern human genome reported to date."
+    note: That was so in 2014; older genomes have been sequenced since.
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:raghavan-2014-malta
+      loc: abstract
+      quote: "Here we sequence the draft genome of an approximately 24,000-year-old individual (MA-1)"
+  location:
+    prop: location
+    value: { lat: 52.827821, lon: 103.542208, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-malta-site, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-401
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 24.423 ka, hi: 23.891 ka }
+    source:
+      ref: src:raghavan-2014-malta
+      loc: "main text, para. 1"
+      quote: "24,423–23,891"
+    method: radiometric/radiocarbon
+    note: A direct date on the bone, 20,240 ± 60 14C years before present, as calibrated in the paper.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        Basal to present-day western Eurasians and closely related to Native Americans, with no
+        close affinity to east Asians. An estimated 14–38% of Native American ancestry may come
+        through gene flow from this population.
+    source:
+      - ref: src:raghavan-2014-malta
+        loc: abstract
+        quote: "MA-1 is basal to modern-day western Eurasians and genetically closely related to modern-day Native Americans, with no close affinity to east Asians."
+      - ref: src:raghavan-2014-malta
+        loc: abstract
+        quote: "we estimate that 14 to 38% of Native American ancestry may originate through gene flow from this ancient population"
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:raghavan-2014-malta
+      loc: abstract
+      quote: "the oldest anatomically modern human genome reported to date"

@@ -1,0 +1,27 @@
+id: src:stancampiano-2022-ags
+type: publication
+kind: measurement
+citation: >-
+  Stancampiano, L.M., Sistiaga, A., Del Val, D.U., Aramendi, J., Baquedano, E., Mabulla, A.,
+  Domínguez-Rodrigo, M. & Magill, C.R. (2022). New site at Olduvai Gorge (AGS, Bed I, 1.84 Mya)
+  widens the range of locations where hominins engaged in butchery. Scientific Reports 12(1),
+  9794.
+authors:
+  - "Stancampiano, L.M."
+  - "Sistiaga, A."
+  - "Del Val, D.U."
+  - "Aramendi, J."
+  - "Baquedano, E."
+  - "Mabulla, A."
+  - "Domínguez-Rodrigo, M."
+  - "Magill, C.R."
+published: 2022
+title: "New site at Olduvai Gorge (AGS, Bed I, 1.84 Mya) widens the range of locations where hominins engaged in butchery"
+container: "Scientific Reports 12(1), 9794"
+doi: 10.1038/s41598-022-14031-1
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC9192694): the Olduvai site AGS below Tuff IC, dated 1.832 ±
+    0.003 Ma, on the clay stratum level 22A of the Zinj Paleolandscape. Quoted passages checked by
+    script against the text retrieved.

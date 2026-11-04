@@ -1,0 +1,86 @@
+id: life/occurrences/francevillian-fb2
+kind: occurrence
+summary: >-
+  Centimetre-sized pyritized structures from black shales of the FB2 subunit of the Francevillian
+  Series, near Franceville, Gabon. The discoverers read them as colonial organisms, ancient
+  representatives of multicellular life; others leave their nature open, bacterial or not biological at
+  all. No taxon is recorded here for that reason. PBDB collection 224218.
+same_as: { pbdb: "occ:1586777" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Francevillian structures, Gabon" }
+    unsourced: An editorial label, from the formation.
+  identified:
+    prop: identified_as
+    value: Life indet.
+    source: { ref: src:pbdb/collection-224218, loc: "occurrence 1586777, identified_name" }
+    note: >-
+      No taxon has been named for them.
+  evidence-el-albani-2010:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:el-albani-2010-francevillian
+      loc: abstract
+      quote: "which we interpret as highly organized and spatially discrete populations of colonial organisms"
+    note: >-
+      The discoverers' reading, kept up in El Albani et al. (2014), who add new forms and argue for their
+      biogenicity from their pyrite textures and sulphur isotopes.
+  evidence-anderson-2024:
+    prop: evidence
+    value: biosignature
+    source:
+      ref: src:anderson-2024-proterozoic-microfossils
+      loc: "Recognizing early fossil eukaryotes and their diversity"
+      quote: "have also all been allied to eukaryotes but without conclusive evidence; other origins either as bacteria or as non-biogenic structures exist"
+    rank: preferred
+    note: >-
+      Preferred as the description both sides can accept: a structure that may be biological, as the term
+      defines it. It does not refute the discoverers.
+  location:
+    prop: location
+    value: { lat: -1.58, lon: 13.55, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-224218, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      "Near Franceville". El Albani et al. (2014) mark the quarry on a map and give no coordinates.
+  frame:
+    prop: frame
+    value: frame:earth/present-day
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml, plates 701 and 779" }
+    method: plate-polygon
+    basis: reconstruction
+    note: >-
+      Franceville lies in the polygon of plate 701, which the plate model makes valid only from 600 Ma, and before that in
+      the polygon of plate 779, which does not reach the present. No plate frame can hold this place at the time of the
+      fossils, so it stays at its present-day coordinates.
+  formation:
+    prop: formation
+    value: Francevillian B Formation
+    source:
+      ref: src:el-albani-2010-francevillian
+      loc: abstract
+      quote: "2.1-Gyr-old black shales of the Palaeoproterozoic Francevillian B Formation in Gabon"
+  date:
+    prop: date
+    value: 2.1 Ga
+    source:
+      ref: src:el-albani-2014-francevillian
+      loc: "Introduction, first paragraph"
+      quote: "centimeter-sized pyritized fossils in the ca. 2.1 Ga Francevillian black shales of Gabon"
+    method: stratigraphic
+    note: >-
+      Stated as "ca.". The PBDB assigns the collection to the Orosirian, 2050–1800 Ma, younger than the
+      papers; that is not followed here.
+  earlier-than:
+    prop: earlier_than
+    value: { mean: 2083 Ma, sd: 6 Myr }
+    source:
+      ref: src:el-albani-2014-francevillian
+      loc: "Geological, geochronological and sedimentary setting"
+      quote: "a more precise U-Pb zircon age of 2083±6 Ma was reported from a welded tuff near the top of the FD unit"
+    method: radiometric/u-pb
+    note: >-
+      The FD unit lies above the FB, so the fossils are older. The ± level is not stated, so it is read as 1σ.

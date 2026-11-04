@@ -1,0 +1,26 @@
+id: src:martinon-torres-2021-fuyan
+type: publication
+kind: review
+citation: >-
+  Martinón-Torres, M., Cai, Y., Tong, H., Pei, S., Xing, S., Bermúdez de Castro, J.M., Wu, X. & Liu,
+  W. (2021). On the misidentification and unreliable context of the new "human teeth" from Fuyan
+  Cave (China). Proceedings of the National Academy of Sciences of the USA 118(22), e2102961118.
+authors:
+  - "Martinón-Torres, M."
+  - "Cai, Y."
+  - "Tong, H."
+  - "Pei, S."
+  - "Xing, S."
+  - "Bermúdez de Castro, J.M."
+  - "Wu, X."
+  - "Liu, W."
+published: 2021
+title: "On the misidentification and unreliable context of the new \"human teeth\" from Fuyan Cave (China)"
+container: "Proceedings of the National Academy of Sciences of the USA 118(22), e2102961118"
+doi: 10.1073/pnas.2102961118
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the article's page on PubMed Central (PMC8179210); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text and the abstract in Europe PMC.

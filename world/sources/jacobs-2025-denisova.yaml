@@ -1,0 +1,30 @@
+id: src:jacobs-2025-denisova
+type: publication
+kind: measurement
+citation: >-
+  Jacobs, Z., Zavala, E.I., Li, B., O'Gorman, K., Shunkov, M.V., Kozlikin, M.B., Derevianko, A.P.,
+  Uliyanov, V.A., Goldberg, P., Agadjanian, A.K. et al. (2025). Pleistocene chronology and history
+  of hominins and fauna at Denisova Cave. Nature Communications 16(1), 4738.
+authors:
+  - "Jacobs, Z."
+  - "Zavala, E.I."
+  - "Li, B."
+  - "O'Gorman, K."
+  - "Shunkov, M.V."
+  - "Kozlikin, M.B."
+  - "Derevianko, A.P."
+  - "Uliyanov, V.A."
+  - "Goldberg, P."
+  - "Agadjanian, A.K."
+published: 2025
+title: "Pleistocene chronology and history of hominins and fauna at Denisova Cave"
+container: "Nature Communications 16(1), 4738"
+doi: 10.1038/s41467-025-60140-6
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 18 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC12095498): optical dating of the cave's sediments, with
+    Denisovan mtDNA from ~250 ka and the oldest fossils at ~200 ka. Quoted passages checked by
+    script against the text retrieved.

@@ -1,0 +1,21 @@
+id: src:qvarnstrom-2018-zachelmie
+type: publication
+kind: measurement
+citation: >-
+  Qvarnström, M., Szrek, P., Ahlberg, P.E. & Niedźwiedzki, G. (2018). Non-marine
+  palaeoenvironment associated to the earliest tetrapod tracks. Scientific Reports 8(1), 1074.
+authors:
+  - "Qvarnström, M."
+  - "Szrek, P."
+  - "Ahlberg, P.E."
+  - "Niedźwiedzki, G."
+published: 2018
+title: "Non-marine palaeoenvironment associated to the earliest tetrapod tracks"
+container: Scientific Reports 8(1), 1074
+doi: 10.1038/s41598-018-19220-5
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC5773519) read via Europe PMC (fullTextXML): the Zachełmie Quarry tracks, the
+    Wojciechowice Formation, and the argument that the track maker was an early tetrapod.
+    Quotes checked by script against that text. Metadata from Crossref.

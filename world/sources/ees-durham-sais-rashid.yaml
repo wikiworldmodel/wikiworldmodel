@@ -1,0 +1,14 @@
+id: src:ees-durham-sais-rashid
+type: publication
+kind: review
+citation: >-
+  EES/Durham University Expedition to Saïs, The Western Nile Delta Survey. Survey Areas - Rashid.
+title: Survey Areas - Rashid
+container: EES/Durham University Expedition to Saïs
+url: https://sais.webspace.durham.ac.uk/Delta/Rashid/
+reliability: >-
+  The page of the excavators of Sais on the town where the stone was found. It reports Habachi's
+  suggestion that the stone came from Sais, as a suggestion.
+verified:
+  by: machine:claude-code
+  how: Read on the site. Quotations checked by script against the page's text.

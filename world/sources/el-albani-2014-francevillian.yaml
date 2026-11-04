@@ -1,0 +1,50 @@
+id: src:el-albani-2014-francevillian
+type: publication
+kind: measurement
+citation: >-
+  El Albani, A., Bengtson, S., Canfield, D.E., Riboulleau, A., Rollion Bard, C., Macchiarelli,
+  R., Ngombi Pemba, L., Hammarlund, E., Meunier, A., Moubiya Mouele, I., Benzerara, K., Bernard,
+  S., Boulvais, P., Chaussidon, M., Cesari, C., Fontaine, C., Chi-Fru, E., Garcia Ruiz, J.M.,
+  Gauthier-Lafaye, F., Mazurier, A., Pierson-Wickmann, A.C., Rouxel, O., Trentesaux, A., Vecoli,
+  M., Versteegh, G.J.M., White, L., Whitehouse, M. & Bekker, A. (2014). The 2.1 Ga Old
+  Francevillian Biota: Biogenicity, Taphonomy and Biodiversity. PLoS ONE 9(6), e99438.
+authors:
+  - "El Albani, A."
+  - "Bengtson, S."
+  - "Canfield, D.E."
+  - "Riboulleau, A."
+  - "Rollion Bard, C."
+  - "Macchiarelli, R."
+  - "Ngombi Pemba, L."
+  - "Hammarlund, E."
+  - "Meunier, A."
+  - "Moubiya Mouele, I."
+  - "Benzerara, K."
+  - "Bernard, S."
+  - "Boulvais, P."
+  - "Chaussidon, M."
+  - "Cesari, C."
+  - "Fontaine, C."
+  - "Chi-Fru, E."
+  - "Garcia Ruiz, J.M."
+  - "Gauthier-Lafaye, F."
+  - "Mazurier, A."
+  - "Pierson-Wickmann, A.C."
+  - "Rouxel, O."
+  - "Trentesaux, A."
+  - "Vecoli, M."
+  - "Versteegh, G.J.M."
+  - "White, L."
+  - "Whitehouse, M."
+  - "Bekker, A."
+published: 2014
+title: "The 2.1 Ga Old Francevillian Biota: Biogenicity, Taphonomy and Biodiversity"
+container: PLoS ONE 9(6), e99438
+doi: 10.1371/journal.pone.0099438
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC4070892) read via Europe PMC (fullTextXML): the FB2 subunit near
+    Franceville, its forty-five fossiliferous levels, the age constraints and the case for
+    biogenicity. The quarry's coordinates are not given in the text. Quotes checked by script
+    against that text. Metadata from Crossref.

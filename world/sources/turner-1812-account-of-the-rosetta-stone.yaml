@@ -1,0 +1,23 @@
+id: src:turner-1812-account-of-the-rosetta-stone
+type: publication
+kind: eyewitness
+citation: >-
+  An Account of the Rosetta Stone, in three languages, which was brought to England in the year 1802,
+  with a letter of Major General H. Turner dated 30 May 1810. Archaeologia, or Miscellaneous Tracts
+  Relating to Antiquity 16 (1812), pp. 208-214. London: Society of Antiquaries of London.
+authors:
+  - "Turner, H."
+published: 1812
+title: An Account of the Rosetta Stone, in three languages, which was brought to England in the year 1802
+container: Archaeologia, or Miscellaneous Tracts Relating to Antiquity
+url: https://archive.org/details/sim_archaeologia-tracts-relating-to-antiquity_1812_16
+license: public-domain
+reliability: >-
+  The officer who took the stone from Menou in Alexandria and brought it to England, writing nine
+  years later, with the Society's record of the day it reached them.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in the Internet Archive's OCR text of the volume, pp. 208-214. Quotations checked by script
+    with whitespace normalized and a hyphen at a line end read as joined. The first line of the OCR
+    reads "Ow" for "On", and quotations begin after it.

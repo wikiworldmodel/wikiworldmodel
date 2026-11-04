@@ -1,0 +1,66 @@
+id: people/rulers/pertinax
+kind: person
+summary: >-
+  Son of a freedman, made emperor on the night Commodus was killed and murdered by the soldiers
+  three months later.
+author: machine:claude-code
+same_as: { wikidata: Q1436 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Pertinax }
+    source:
+      ref: src:historia-augusta
+      loc: "Pertinax 1.1"
+      quote: Publius Helvius Pertinax was the son of a freedman
+  start:
+    prop: start
+    value: 1 August 126 CE
+    source:
+      ref: src:historia-augusta
+      loc: "Pertinax 15.6"
+      quote: He was born on the Kalends of August in the consulship of Verus and Ambibulus
+    method: historical-account
+    note: >-
+      The Kalends of August is the 1st, and the consulship of Verus and Ambibulus is 126 CE.
+      Dio's age at death, sixty-seven years less four months and three days, comes to the same
+      day; the Historia Augusta's own figure beside it, sixty years and seven months, does not.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: 31 December 192 CE
+    source:
+      ref: src:historia-augusta
+      loc: "Pertinax 4.8"
+      quote: He was made emperor on the day before the Kalends of January
+    method: historical-account
+    note: The day before the Kalends of January is 31 December; the night Commodus died.
+  end:
+    prop: end
+    value: 28 March 193 CE
+    source:
+      - ref: src:historia-augusta
+        loc: "Pertinax 15.6"
+        quote: and was killed on the fifth day before the Kalends of April in the consulship of Falco and Clarus
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 74, 10.3, vol. 9 p. 141"
+        quote: and had reigned eighty-seven days
+    method: historical-account
+    note: >-
+      The fifth day before the Kalends of April is 28 March, and that consulship is 193 CE;
+      eighty-seven days from the New Year comes to the same day.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:historia-augusta
+      loc: "Pertinax 4.8"
+      quote: He was made emperor
+    note: Emperor.

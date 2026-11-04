@@ -1,0 +1,26 @@
+id: src:dutton-2015-polar-ice-loss
+type: publication
+kind: review
+citation: >-
+  Dutton, A., Carlson, A.E., Long, A.J., Milne, G.A., Clark, P.U., DeConto, R., Horton, B.P.,
+  Rahmstorf, S. & Raymo, M.E. (2015). Sea-level rise due to polar ice-sheet mass loss during past
+  warm periods. Science 349(6244), aaa4019.
+authors:
+  - "Dutton, A."
+  - "Carlson, A.E."
+  - "Long, A.J."
+  - "Milne, G.A."
+  - "Clark, P.U."
+  - "DeConto, R."
+  - "Horton, B.P."
+  - "Rahmstorf, S."
+  - "Raymo, M.E."
+published: 2015
+title: "Sea-level rise due to polar ice-sheet mass loss during past warm periods"
+container: "Science 349(6244), aaa4019"
+doi: 10.1126/science.aaa4019
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read through Europe PMC. The full text was not read. Citation from Crossref. Quotes
+    checked by script against the text retrieved.

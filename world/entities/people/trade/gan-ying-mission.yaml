@@ -1,0 +1,59 @@
+id: people/trade/gan-ying-mission
+kind: event
+summary: >-
+  The Han officer Gan Ying, sent by the Protector General Ban Chao to reach Da Qin, the Roman Empire. He got as far as
+  Tiaozhi on the head of the Persian Gulf, where Parthian sailors told him the sea took months or years to cross, and he turned
+  back. The Hou Hanshu says that no earlier generation had reached those regions, and that Parthia blocked the way to keep its
+  hold on the trade in Chinese silk.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Gan Ying's mission towards Rome }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 97 CE
+    source:
+      - ref: src:hou-hanshu-88-hill-2003
+        loc: "section on Anxi (Parthia)"
+        quote: "the Protector General Ban Chao sent Gan Ying to Da Qin (the Roman Empire)."
+      - ref: src:iranica-chinese-iranian-relations-i
+        loc: "section 'Trade relations'"
+        quote: "When Kan Ying (Gan Ying) was sent by Pan Ch’ao (Ban Chao), protector-general of the Western Regions, as envoy to Ta Ch’in (Da-qin, i.e., the Roman empire) in 97 c.e., he went only as far as the Persian Gulf"
+    method: historical-account
+    note: The ninth yongyuan year, which the translator reckons as 97 CE.
+  end:
+    prop: end
+    value: unknown
+    source:
+      ref: src:hou-hanshu-88-hill-2003
+      loc: "section 1"
+      quote: "Gan Ying, who probed as far as the Western Sea, and then returned."
+    note: It says that he came back, not when.
+  location:
+    prop: location
+    value: { lat: 30.8093425, lon: 47.562804, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-charax
+        loc: "place 912872, description"
+        quote: "this site was an important mercantile center of southern Mesopotamia and capital of Characene."
+      - ref: src:hou-hanshu-88-hill-2003
+        loc: "section on Anxi (Parthia)"
+        quote: "He reached Tiaozhi (Characene and Susiana) next to a large sea."
+    method: editorial
+    note: A marker's placement, at the capital of Characene. The translator's identification of Tiaozhi with Characene and Susiana is his own, and the text names no town.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  under-ban-chao:
+    rel: during
+    to: people/trade/protectorate-of-the-western-regions@eastern-han
+    source:
+      ref: src:hou-hanshu-88-hill-2003
+      loc: "section on Anxi (Parthia)"
+      quote: "the Protector General Ban Chao sent Gan Ying to Da Qin (the Roman Empire)."

@@ -1,0 +1,77 @@
+id: people/domestication/horse
+kind: development
+summary: >-
+  The domestication of the horse. Today's horses descend from a lineage called DOM2, from the steppe
+  of the lower Volga and Don, which people bred under tight control from about 2200 BCE and which
+  then replaced nearly every other horse in Eurasia. The older candidate is Botai in Kazakhstan about
+  3500 BCE, with signs of bridles, milk and corrals; but its horses are not the ancestors of today's,
+  and whether they were domestic at all is disputed.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Horse domestication }
+    unsourced: An editorial label.
+  start-librado-2024:
+    prop: start
+    value: { lo: 2700 BCE, hi: 2200 BCE }
+    source:
+      - ref: src:librado-2024-horses
+        loc: abstract
+        quote: "We find that reproductive control of the modern domestic lineage emerged around 2200 bce, through close-kin mating and shortened generation times."
+      - ref: src:librado-2024-horses
+        loc: abstract
+        quote: "Reproductive control emerged following a severe domestication bottleneck starting no earlier than approximately 2700 bce"
+      - ref: src:librado-2021-dom2
+        loc: "Expansion of steppe-related pastoralism"
+        quote: "past breeders produced large stocks of DOM2 horses to supply increasing demands for horse-based mobility from around 2200 bc"
+    method: molecular-clock
+    rank: preferred
+    note: >-
+      The lineage of today's horses, from ancient genomes rather than living groups. Preferred because it is the one that led
+      to the domestic horse, leaving aside whether people had earlier kept other horses.
+  start-outram-2009:
+    prop: start
+    value: 3500 BCE
+    source:
+      - ref: src:outram-2009-botai
+        loc: abstract
+        quote: "three independent lines of evidence demonstrating domestication in the Eneolithic Botai Culture of Kazakhstan, dating to about 3500 B.C.E."
+      - ref: src:librado-2024-horses
+        loc: abstract
+        quote: "we detect significantly shortened generation times at Botai around 3500 bce"
+    method: radiometric/radiocarbon
+    note: >-
+      Herding at Botai, which later genetics support in part. Taylor and Barrón-Ortiz (2021) argue
+      the evidence is better explained by mass hunting of wild horses.
+  location-volga-don:
+    prop: location
+    value: { lat: 48.708611, lon: 44.514722, frame: frame:earth/present-day }
+    source:
+      - ref: src:librado-2021-dom2
+        loc: abstract
+        quote: "Here we pinpoint the Western Eurasian steppes, especially the lower Volga-Don region, as the homeland of modern domestic horses."
+      - { ref: src:wikidata-volgograd, loc: "P625 coordinate location" }
+    method: editorial
+    rank: preferred
+    note: >-
+      Marked at Volgograd, as a point in that region.
+  location-botai:
+    prop: location
+    value: { lat: 53.303, lon: 67.645, frame: frame:earth/present-day }
+    source:
+      - ref: src:outram-2009-botai
+        loc: abstract
+        quote: "demonstrating domestication in the Eneolithic Botai Culture of Kazakhstan"
+      - { ref: src:wikidata-botai, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      The gazetteer's point for the culture. Librado et al. (2021) say modern breeds do not descend
+      from this lineage; the Botai horses are the ancestors of Przewalski's horses (Gaunitz et al.
+      2018).
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-301
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

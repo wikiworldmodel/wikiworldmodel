@@ -1,0 +1,20 @@
+id: src:wikidata-rocknest-lake
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q22454642 (Rocknest Lake, lake in the Northwest Territories, Canada), property P625
+  (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q22454642
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry; no source is given for the point.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (65.6503, -114.38473; precision 0.218) read from the item's JSON
+    (Special:EntityData/Q22454642.json, last revision 1821833453, modified 2023-01-29).

@@ -1,0 +1,24 @@
+id: src:djokic-2017-dresser
+type: publication
+kind: measurement
+citation: >-
+  Djokic, T., Van Kranendonk, M.J., Campbell, K.A., Walter, M.R. & Ward, C.R. (2017). Earliest
+  signs of life on land preserved in ca. 3.5 Ga hot spring deposits. Nature Communications 8,
+  15263.
+authors:
+  - "Djokic, T."
+  - "Van Kranendonk, M.J."
+  - "Campbell, K.A."
+  - "Walter, M.R."
+  - "Ward, C.R."
+published: 2017
+title: "Earliest signs of life on land preserved in ca. 3.5 Ga hot spring deposits"
+container: Nature Communications 8, 15263
+doi: 10.1038/ncomms15263
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract, read through OpenAlex's record; the parts cited were read, and quotes checked by
+    script against it. The article is open access (CC BY 4.0) but its full text was not needed.
+    Metadata from Crossref.

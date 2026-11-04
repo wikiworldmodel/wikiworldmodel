@@ -1,0 +1,24 @@
+id: src:stewart-2024-tiktaalik
+type: publication
+kind: measurement
+citation: >-
+  Stewart, T.A., Lemberg, J.B., Hillan, E.J., Magallanes, I., Daeschler, E.B. & Shubin, N.H.
+  (2024). The axial skeleton of Tiktaalik roseae. Proceedings of the National Academy of
+  Sciences 121(15), e2316106121.
+authors:
+  - "Stewart, T.A."
+  - "Lemberg, J.B."
+  - "Hillan, E.J."
+  - "Magallanes, I."
+  - "Daeschler, E.B."
+  - "Shubin, N.H."
+published: 2024
+title: "The axial skeleton of Tiktaalik roseae"
+container: Proceedings of the National Academy of Sciences 121(15), e2316106121
+doi: 10.1073/pnas.2316106121
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC11009633) read via Europe PMC (fullTextXML): the locality NV2K17 with its
+    coordinates, and the Fram Formation and its stage. Quotes checked by script against that
+    text. Metadata from Crossref.

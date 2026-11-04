@@ -1,0 +1,19 @@
+id: src:williams-2000-earth-rotation
+type: publication
+kind: review
+citation: >-
+  Williams, G.E. (2000). Geological constraints on the Precambrian history of Earth's rotation and
+  the Moon's orbit. Reviews of Geophysics 38(1), 37–59.
+authors:
+  - "Williams, G.E."
+published: 2000
+title: Geological constraints on the Precambrian history of Earth's rotation and the Moon's orbit
+container: Reviews of Geophysics 38(1), 37–59
+doi: 10.1029/1999RG900016
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full in the PDF that CiteSeerX held for this DOI's record (10.1.1.597.6421), as archived
+    by the Internet Archive on 13 January 2022; the publisher's page was not reachable. The PDF's
+    text encodes ± as 6 and ~ as a semicolon: quotes were checked by script against its text with
+    those two signs mapped back, and the mapping and Table 1 against the page as rendered.

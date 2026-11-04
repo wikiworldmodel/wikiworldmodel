@@ -1,0 +1,19 @@
+id: src:pacher-stuart-2009-cave-bear
+type: publication
+kind: measurement
+citation: >-
+  Pacher, M. & Stuart, A.J. (2009). Extinction chronology and palaeobiology of the cave bear (Ursus
+  spelaeus). Boreas 38(2), 189–206.
+authors:
+  - "Pacher, M."
+  - "Stuart, A.J."
+published: 2009
+title: "Extinction chronology and palaeobiology of the cave bear (Ursus spelaeus)"
+container: "Boreas 38(2), 189–206"
+doi: 10.1111/j.1502-3885.2008.00071.x
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the OpenAlex record for the DOI; the full text could not be read
+    here whose spaced abbreviations ("c . 24 000") the quote keeps. Quotes checked by script against
+    the text retrieved, after normalizing whitespace.

@@ -1,0 +1,23 @@
+id: src:gou-2026-yiwu
+type: publication
+kind: measurement
+citation: >-
+  Gou, X.-D., Guo, Y., Zhao, T., McLoughlin, S. & Feng, Z. (2026). Quantitative reconstruction of
+  the Yiwu Jurassic Forest in Northwest China and high forest productivity in the Middle Jurassic.
+  Science Advances 12(32), eaeh1682.
+authors:
+  - "Gou, X.-D."
+  - "Guo, Y."
+  - "Zhao, T."
+  - "McLoughlin, S."
+  - "Feng, Z."
+published: 2026
+title: "Quantitative reconstruction of the Yiwu Jurassic Forest in Northwest China and high forest productivity in the Middle Jurassic"
+container: Science Advances 12(32), eaeh1682
+doi: 10.1126/sciadv.aeh1682
+license: CC-BY-NC-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved through Europe PMC (PMC13440388, fullTextXML); the parts cited were read,
+    and quotes checked by script against it. Metadata from Crossref.

@@ -15,6 +15,10 @@ claims:
     prop: identified_as
     value: Clavatipollenites <sp. B>
     source: { ref: src:pbdb/collection-140287, loc: "occurrence 1108817, identified_name" }
+  evidence:
+    prop: evidence
+    value: palynomorph
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 31.561943, lon: 34.69611, frame: frame:earth/present-day }

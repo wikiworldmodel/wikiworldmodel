@@ -1,0 +1,26 @@
+id: src:zuo-2017-shangshan-rice
+type: publication
+kind: measurement
+citation: >-
+  Zuo, X., Lu, H., Jiang, L., … & Wu, N. (2017). Dating rice remains through phytolith
+  carbon-14 study reveals domestication at the beginning of the Holocene. Proceedings of the
+  National Academy of Sciences 114(25), 6486–6491.
+authors:
+  - "Zuo, X."
+  - "Lu, H."
+  - "Jiang, L."
+  - "Zhang, J."
+  - "Yang, X."
+  - "Huan, X."
+  - "He, K."
+  - "Wang, C."
+# the first eight of 9 authors
+published: 2017
+title: "Dating rice remains through phytolith carbon-14 study reveals domestication at the beginning of the Holocene"
+container: "Proceedings of the National Academy of Sciences 114(25), 6486–6491"
+doi: 10.1073/pnas.1704304114
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC5488950) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

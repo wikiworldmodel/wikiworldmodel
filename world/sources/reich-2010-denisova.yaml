@@ -1,0 +1,21 @@
+id: src:reich-2010-denisova
+type: publication
+kind: measurement
+citation: >-
+  Reich, D., Green, R.E., Kircher, M., … & Pääbo, S. (2010). Genetic history of an archaic hominin
+  group from Denisova Cave in Siberia. Nature 468(7327), 1053–1060.
+authors:
+  - "Reich, D."
+  - "Green, R.E."
+  - "Kircher, M."
+  - "Pääbo, S."
+published: 2010
+title: "Genetic history of an archaic hominin group from Denisova Cave in Siberia"
+container: "Nature 468(7327), 1053–1060"
+doi: 10.1038/nature09710
+verified:
+  by: machine:claude-code
+  how: >-
+    Author manuscript in PubMed Central (PMC4306417), retrieved as XML through NCBI E-utilities; the
+    abstract and the passages cited were read, without the supplementary information. Quotes checked
+    by script against that text and the abstract in Europe PMC.

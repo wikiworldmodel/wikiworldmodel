@@ -1,0 +1,79 @@
+id: life/occurrences/broomcorn-millet-cishan
+kind: occurrence
+summary: >-
+  Grain ash from storage pits at Cishan in Hebei, north China, once estimated at over 50,000 kg. Husk
+  phytoliths and biomolecules from newly dug pits identify it as broomcorn (common) millet alone
+  until about 8,700 years ago. It shows people relying on this crop, and the paper grants that it
+  does not show the change from wild to domestic.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Broomcorn millet, Cishan" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: Panicum miliaceum
+    source:
+      ref: src:lu-2009-cishan-millet
+      loc: abstract
+      quote: "husk phytoliths and biomolecular components identifiable solely as common millet"
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      - ref: src:lu-2009-cishan-millet
+        loc: Discussion
+        quote: "the earliest cereal remains stored in the Cishan Neolithic sites, during ca. 10,300–8,700 cal yr BP, are not foxtail millet, but only common millet"
+      - ref: src:lu-2009-cishan-millet
+        loc: Discussion
+        quote: "no clear evidence has been documented in this region for the transitions from gathering to cultivation and/or from a wild ancestor to domesticated common millet"
+    note: >-
+      What shows it is domestic is weak: the great stores of one grain imply a crop, but no trait of
+      the plant itself is measured.
+  location:
+    prop: location
+    value: { lat: 36.575183, lon: 114.112, frame: frame:earth/present-day }
+    source:
+      ref: src:lu-2009-cishan-millet
+      loc: Introduction
+      quote: "The Cishan site (36°34.511′ N, 114°06.720′ E)"
+    method: survey
+    note: >-
+      Converted to decimal degrees from the paper's degrees and minutes.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-lu-2009:
+    prop: date
+    value: { lo: 10300 BP, hi: 8700 BP }
+    source:
+      ref: src:lu-2009-cishan-millet
+      loc: abstract
+      quote: "dated to between ca. 10,300 and ca. 8,700 calibrated years before present (cal yr BP)"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      New radiocarbon dates from the pits, on the part of the sequence with this millet alone.
+  date-early-excavation:
+    prop: date
+    value: 8200 BP
+    source:
+      ref: src:lu-2009-cishan-millet
+      loc: Introduction
+      quote: "the world's oldest millet remains, dating to ca. 8,200 calibrated years before present (cal yr BP)"
+    method: radiometric/radiocarbon
+    note: >-
+      The age from the 1970s excavation, from two dates on charcoal.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott1079445 and ott99252: Panicum miliaceum lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/broomcorn-millet
+    source: { ref: src:lu-2009-cishan-millet, loc: abstract }

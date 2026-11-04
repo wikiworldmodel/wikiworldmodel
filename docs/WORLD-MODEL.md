@@ -1,12 +1,13 @@
 # Lightworld world model — design overview
 
-Status: draft proposal. Five slices are built: Cambrian to today, the whole
+Status: draft proposal. Six slices are built: Cambrian to today, the whole
 span from the Hadean to the far future, Earth's states (a magma ocean, oceans,
-Snowball ice), Rome (a polity's borders, dates to the day, written evidence), and
-Rome the city (buildings as records, generated fabric, street level).
+Snowball ice), Rome (a polity's borders, dates to the day, written evidence),
+Rome the city (buildings as records, generated fabric, street level), and life at
+a place and a time (biomes through time, a tree of life, a generated living scene).
 [FIRST-SLICE.md](FIRST-SLICE.md), [SECOND-SLICE.md](SECOND-SLICE.md),
-[THIRD-SLICE.md](THIRD-SLICE.md), [FOURTH-SLICE.md](FOURTH-SLICE.md) and
-[FIFTH-SLICE.md](FIFTH-SLICE.md) say what they
+[THIRD-SLICE.md](THIRD-SLICE.md), [FOURTH-SLICE.md](FOURTH-SLICE.md),
+[FIFTH-SLICE.md](FIFTH-SLICE.md) and [SIXTH-SLICE.md](SIXTH-SLICE.md) say what they
 test and where they depart from this document. It covers the world model and its main consumer, an
 interactive viewer for flying through space and time. The film is a second
 consumer: a scripted flight through the same world, rendered offline.
@@ -270,7 +271,8 @@ replacement follows what it replaces.
 | structural | part-of, member-of (a specimen in its species, a city in its province, one centre of early farming in farming as a whole) |
 | lineage | replaces, splits-into, merges-into, descends-from, sister-of, reused-in (spolia) |
 | causal | caused-by, destroyed-by, damaged-by, commissioned-by, built-for |
-| participation | participant, with a role (attacker, impactor, founder) |
+| participation | participant, with a role (attacker, impactor, founder); made-by; held-office |
+| evidential | evidenced-by: what a development rests on, with no meaning in time, so contested evidence does not bind the dates |
 
 Lineage is a graph, not a tree. Lineages merge as well as split, as when a
 eukaryote absorbed the bacterium that became its mitochondria, or villages

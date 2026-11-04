@@ -1,0 +1,17 @@
+id: field:earth/antarctic-temperature
+type: field
+title: Antarctic temperature change
+quantity: temperature at Dome C, East Antarctica, as a difference from the average of the last 1000 years
+unit: °C
+description: >-
+  The temperature at one place on the East Antarctic plateau, reconstructed from the deuterium in the
+  EPICA Dome C ice core (Jouzel et al. 2007). It swings far more than the global mean does between
+  glacials and interglacials, and it is not a global temperature.
+grid: { kind: series }
+time: { lo: 801.662 ka, hi: 0.038 ka }
+data:
+  from: src:jouzel-2007-epica-dome-c
+  columns: { time: "Age model [ka]", value: "delta T [°C]" }
+  time_unit: ka
+basis: reconstruction
+interp: linear

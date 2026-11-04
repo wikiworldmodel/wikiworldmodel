@@ -1,0 +1,48 @@
+id: people/dispersals/arabia-al-wusta
+kind: event/dispersal
+summary: >-
+  The first modern humans known in the interior of Arabia, in the Nefud Desert of Saudi Arabia, when
+  it was a land of lakes and grassland: a finger bone from Al Wusta, the oldest directly dated
+  fossil of the species outside Africa and the Levant, and footprints at Alathar, about 11 km away.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First modern humans in Arabia }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: { lo: 95 ka, hi: 86 ka }
+    source:
+      ref: src:groucutt-2018-al-wusta
+      loc: abstract
+      quote: "A Bayesian model incorporating independent chronometric age estimates indicates a chronology for Al Wusta of ~95-86 ka"
+    method: radiometric
+    rank: preferred
+    note: >-
+      Preferred because it rests on a fossil of the species, dated by uranium-series, ESR and
+      luminescence. Uranium-series on the bone alone gives 87.6 ± 2.5 ka, which the authors read as
+      a minimum.
+  date-stewart-2020:
+    prop: date
+    value: { lo: 121 ka, hi: 112 ka }
+    source:
+      ref: src:stewart-2020-alathar
+      loc: "Results, Geology and geochronology"
+      quote: "yielded ages of 121 ± 11 and 112 ± 10 ka, respectively, effectively bracketing the age of the prints"
+    method: radiometric/luminescence
+    note: >-
+      Hominin footprints at Alathar, between two sediment samples; each sample's ± is left out of
+      the range. That the makers were Homo sapiens is the authors' argument, from the time and place
+      and the size of the prints.
+  location:
+    prop: location
+    value: { lat: 27.418311, lon: 39.395881, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-al-wusta, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

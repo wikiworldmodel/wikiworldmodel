@@ -1,0 +1,17 @@
+id: src:giosan-goodman-2025-sumer
+type: publication
+kind: review
+citation: >-
+  Giosan, L. & Goodman, R. (2025). Morphodynamic Foundations of Sumer. PLoS ONE 20(8), e0329084.
+authors:
+  - "Giosan, L."
+  - "Goodman, R."
+published: 2025
+title: Morphodynamic Foundations of Sumer
+container: PLoS ONE
+doi: 10.1371/journal.pone.0329084
+url: https://europepmc.org/article/PMC/PMC12367111
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC12367111). Quote checked by script against it, after normalizing whitespace.

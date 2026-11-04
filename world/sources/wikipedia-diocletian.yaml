@@ -1,0 +1,19 @@
+id: src:wikipedia-diocletian
+type: database-record
+kind: review
+citation: >-
+  "Diocletian." Wikipedia, the free encyclopedia (English edition).
+snapshot: 2026-11-04
+title: Diocletian
+container: Wikipedia
+url: https://en.wikipedia.org/wiki/Diocletian
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article. It is a last resort here, for the modern discussion of the
+  date of Diocletian's death, because the studies it rests on (Barnes; Nakamura 2003) could not
+  be read. Its text can change.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-04; the quotations checked by script against
+    its text.

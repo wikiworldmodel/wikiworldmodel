@@ -1,0 +1,69 @@
+id: people/trade/mazotos
+kind: event/shipwreck
+summary: >-
+  A Greek merchant ship that sank off the south coast of Cyprus in the first half of the fourth century BCE, with more
+  than 500 visible amphorae, nearly all of Chian type and most probably holding wine. Its date is a lesson in method:
+  radiocarbon on its timber and on short-lived twigs and olive pits puts it earlier than the amphorae had, by up to decades.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Mazotos shipwreck }
+    source: { ref: src:manning-2022-mazotos, loc: "section 'The Mazotos shipwreck'", quote: "Investigation of the Mazotos shipwreck began in 2007 with surface survey" }
+  date-manning-2024:
+    prop: date
+    value: { lo: 383 BCE, hi: 355 BCE }
+    source:
+      ref: src:manning-2024-kyrenia
+      loc: "section 'Applying the new calibration curve data to the Mazotos ship'"
+      quote: "383–355 BCE (95.4% hpd) and 377–364 BCE (68.3% hpd) for the ship’s Last Voyage"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The same model as in 2022, re-run on a calibration curve that the same team revised with new measurements on tree
+      rings of known age. The range is the 95.4% one.
+  date-manning-2022:
+    prop: date
+    value: { lo: 393 BCE, hi: 374 BCE }
+    source:
+      ref: src:manning-2022-mazotos
+      loc: "section 'Dating the Mazotos ship'"
+      quote: "The LV is dated to 390–382 BC at 68.3% highest posterior density (hpd) (393–374 BC at 95.4% hpd)."
+    method: radiometric/radiocarbon
+    note: >-
+      Wiggle-matching on a pine plank of 47 rings, with dates on twigs of dunnage and olive pits, on the IntCal20 curve. The
+      range is the 95.4% one.
+  date-ceramics:
+    prop: date
+    value: { lo: 350 BCE, hi: 325 BCE }
+    source:
+      ref: src:manning-2022-mazotos
+      loc: Introduction
+      quote: "Published accounts date the shipwreck to 350–325 BC (see below)."
+    method: typological
+    rank: deprecated
+    note: From the Chian amphorae, at second hand. Manning et al. show it too late, and note that Strauss et al. list a single year, 350 BC.
+  location:
+    prop: location
+    value: { lat: 34.80363596, lon: 33.48947019, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-mazotos, loc: "Q6798641, P625 coordinate location" }
+      - ref: src:manning-2022-mazotos
+        loc: Introduction
+        quote: "the Mazotos ship, discovered off the southern coast of Cyprus"
+    method: gazetteer
+    note: The village of Mazotos, on the coast, not the wreck, which lies at 44 m and is not placed in anything read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-331
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value: { en: "More than 500 visible transport amphorae, nearly all of Chian type, the majority probably of wine." }
+    source:
+      ref: src:manning-2022-mazotos
+      loc: "section 'The Mazotos shipwreck'"
+      quote: "Nearly all the amphorae are of Chian type"
+    note: Six of the amphorae held olive pits, taken as the crew's provisions.

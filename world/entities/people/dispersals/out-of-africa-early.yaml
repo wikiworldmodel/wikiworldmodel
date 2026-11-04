@@ -1,0 +1,72 @@
+id: people/dispersals/out-of-africa-early
+kind: event/dispersal
+summary: >-
+  Modern humans out of Africa before the main dispersal, known from fossils in the Levant and Arabia
+  and perhaps further east. That some went is not in dispute. Whether they went far and left
+  descendants in living people is the question of the alternatives "Leaving Africa".
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Early dispersals out of Africa }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: { lo: 130 ka, hi: 90 ka }
+    source:
+      ref: src:groucutt-2018-al-wusta
+      loc: abstract
+      quote: "dispersal out of Africa had an early phase, particularly ~130-90 thousand years ago (ka), that reached only the East Mediterranean Levant"
+    method: expert-estimate
+    note: >-
+      The model as Groucutt et al. describe it, before arguing that the early phase went further.
+      The fossil from Misliya, older than this, is a record of its own.
+  date-pagani-2016:
+    prop: date
+    value: { lo: 120 ka, hi: 70 ka }
+    alt: alt:leaving-africa/early-successful
+    source:
+      ref: src:pagani-2016-egdp
+      loc: "main text, on the paths out of Africa"
+      quote: "demonstrate that Homo sapiens was present outside of Africa ca. 120-70 kya"
+    method: expert-estimate
+  ancestry-early-successful:
+    prop: ancestry
+    value:
+      en: >-
+        At least 2% of the genomes of present-day Papuans come from this early and largely extinct
+        expansion, whose lineage may have split from most Africans around 120 ka.
+    alt: alt:leaving-africa/early-successful
+    source:
+      - ref: src:pagani-2016-egdp
+        loc: abstract
+        quote: "at least 2% of their genome originates from an early and largely extinct expansion"
+      - ref: src:pagani-2016-egdp
+        loc: "main text, on MSMC split times"
+        quote: "the hypothesised lineage may have split from most Africans around 120 kya"
+      - ref: src:bae-2017-asian-perspectives
+        loc: abstract
+        quote: "These early human dispersals, which left at least some genetic traces in modern populations, indicate that later replacements were not wholesale."
+  ancestry-late-only:
+    prop: ancestry
+    value:
+      en: >-
+        It left no substantial ancestry in living people: indigenous Australians, New Guineans and
+        Andamanese get their modern human ancestry from the same source as other non-Africans, one
+        single dispersal out of Africa.
+    alt: alt:leaving-africa/late-only
+    source:
+      - ref: src:mallick-2016-sgdp
+        loc: abstract
+        quote: "do not derive substantial ancestry from an early dispersal of modern humans; instead, their modern human ancestry is consistent with coming from the same source as that in other non-Africans"
+      - ref: src:malaspinas-2016-australia
+        loc: abstract
+        quote: "following a single out of Africa dispersal"
+relations:
+  before-the-main-dispersal:
+    rel: before
+    to: people/dispersals/out-of-africa-main
+    source:
+      ref: src:pagani-2016-egdp
+      loc: "main text, on the two hypotheses for the Papuan signal"
+      quote: "left Africa after the split between modern humans and Neanderthals, but before the main expansion of modern humans in Eurasia (main OoA)"

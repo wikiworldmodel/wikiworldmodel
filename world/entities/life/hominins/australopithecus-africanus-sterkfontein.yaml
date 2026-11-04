@@ -1,0 +1,69 @@
+id: life/occurrences/australopithecus-africanus-sterkfontein
+kind: occurrence
+summary: >-
+  Australopithecus fossils from Member 4 of the Sterkfontein Formation, South Africa, the most
+  prolific single source of them, generally classed as Australopithecus africanus. PBDB collection 21791.
+same_as: { pbdb: "occ:224513" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Australopithecus africanus, Sterkfontein Member 4" }
+    unsourced: An editorial label, from the taxon and the deposit.
+  identified:
+    prop: identified_as
+    value: Australopithecus africanus
+    source: { ref: src:pbdb/collection-21791, loc: "occurrence 224513, accepted name" }
+    note: Granger et al. (2022) add that both Sterkfontein and Makapansgat include a second species.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:granger-2022-sterkfontein, loc: abstract }
+  location:
+    prop: location
+    value: { lat: -26.016701, lon: 27.733299, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-21791, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Sterkfontein Formation, Member 4
+    source: { ref: src:granger-2022-sterkfontein, loc: abstract }
+  date-granger-2022:
+    prop: date
+    value: { mean: 3.41 Ma, sd: 0.11 Myr }
+    source:
+      ref: src:granger-2022-sterkfontein
+      loc: Results
+      quote: "The isochron samples (ST M4 ISO; SI Appendix, Table S1) yield an age of 3.41 ± 0.11 My (1σ analytical error; Fig. 3)"
+    method: radiometric/cosmogenic
+    rank: preferred
+    note: >-
+      An isochron burial date in the lower middle part of Member 4; simple burial dates give 3.49 ± 0.19
+      My higher up. Preferred because it dates the fossil-bearing breccia itself.
+  date-flowstones:
+    prop: date
+    value: { lo: 2.6 Ma, hi: 2.1 Ma }
+    source:
+      ref: src:granger-2022-sterkfontein
+      loc: abstract
+      quote: "Our ages for the fossil-bearing breccia in Member 4 are considerably older than the previous ages of ca. 2.1 to 2.6 My interpreted from flowstones associated with the same deposit."
+    method: radiometric/u-pb
+    rank: deprecated
+    note: >-
+      Uranium-lead dates on flowstone, as Granger et al. report them. They show that these flowstones
+      are stratigraphically intrusive within Member 4, so they underestimate the age of the fossils.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/australopithecus-africanus
+    source:
+      - { ref: src:pbdb/collection-21791, loc: "occurrence 224513, accepted name" }
+      - ref: src:granger-2022-sterkfontein
+        loc: Introduction
+        quote: "Fossils at the sites of Sterkfontein and Makapansgat in the Cradle of Humankind have been generally classed as Australopithecus africanus"

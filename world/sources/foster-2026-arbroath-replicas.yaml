@@ -1,0 +1,16 @@
+id: src:foster-2026-arbroath-replicas
+type: publication
+kind: review
+citation: >-
+  Foster, S. (2026). Arbroath's pageant of Stone of Destiny replicas. Authenticity's Child: Current
+  meanings and future destinies for the Stone of Scone, University of Stirling, 27 February 2026.
+authors:
+  - "Foster, S."
+published: 2026
+title: Arbroath's pageant of Stone of Destiny replicas
+container: "Authenticity's Child: Current meanings and future destinies for the Stone of Scone"
+url: https://thestone.stir.ac.uk/2026/02/27/arbroaths-pageant-of-stone-of-destiny-replicas/
+reliability: A blog post by the researcher leading a university project on the stone, careful about what can be said with confidence.
+verified:
+  by: machine:claude-code
+  how: Read on the project's site. Quotations checked by script against the page's text.

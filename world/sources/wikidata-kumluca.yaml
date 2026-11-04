@@ -1,0 +1,13 @@
+id: src:wikidata-kumluca
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q1004471 (Kumluca, a town and district of Antalya, Turkey), property P625 (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q1004471
+license: CC0-1.0
+reliability: Crowd-edited; a point for the town.
+verified:
+  by: machine:claude-code
+  how: Coordinates (36.366666666667, 30.283333333333) read from the item's JSON (Special:EntityData/Q1004471.json, revision 2530440888, modified 2026-08-12).

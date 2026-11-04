@@ -1,0 +1,21 @@
+id: src:key-2021-acheulean-end
+type: publication
+kind: model
+citation: >-
+  Key, A.J.M., Jarić, I. & Roberts, D.L. (2021). Modelling the end of the Acheulean at global and
+  continental levels suggests widespread persistence into the Middle Palaeolithic. Humanities and
+  Social Sciences Communications 8, 55.
+authors:
+  - "Key, A.J.M."
+  - "Jarić, I."
+  - "Roberts, D.L."
+published: 2021
+title: "Modelling the end of the Acheulean at global and continental levels suggests widespread persistence into the Middle Palaeolithic"
+container: Humanities and Social Sciences Communications 8, 55
+doi: 10.1057/s41599-021-00735-8
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access article read at the publisher's page: optimal linear estimates of the end of the
+    Acheulean: 174–166 Kya in Africa and the Near East, 141–130 Kya in Europe, 57–53 Kya in Asia,
+    107–29 Kya worldwide. Quoted passages checked by script against the text retrieved.

@@ -1,0 +1,71 @@
+id: people/dispersals/yana-1
+kind: occurrence
+summary: >-
+  The genome of a male from the Yana Rhinoceros Horn Site in Arctic Siberia, from a milk tooth about
+  31,600 years old: with Yana 2, the earliest direct evidence of people in northeastern Siberia, a
+  population named the Ancient North Siberians.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Yana 1 }
+    source:
+      ref: src:sikora-2019-siberia
+      loc: "main text, on the samples"
+      quote: "recovered from the Yana RHS site (Yana1 and Yana2, respectively)"
+  identified:
+    prop: identified_as
+    value: human
+    source:
+      ref: src:sikora-2019-siberia
+      loc: "main text, on the samples"
+      quote: "the oldest, northernmost Pleistocene human remains found to date"
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:sikora-2019-siberia
+      loc: "main text, on the samples"
+      quote: "two high-quality genomes (25X and ~7X coverage) sequenced from fragmented milk teeth"
+  location:
+    prop: location
+    value: { lat: 70.723611, lon: 135.429722, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-yana-rhs, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-405
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 31.6 ka
+    source:
+      ref: src:sikora-2019-siberia
+      loc: "main text, introduction"
+      quote: "Yana RHS site dated to 31,600 years cal BP"
+    method: radiometric/radiocarbon
+    note: The age of the site as the paper gives it, with no range.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        Ancient North Siberian: can be modelled as early West Eurasian with about 25% from early East
+        Asians, and closer to West Eurasians despite the place. The lineage of Mal'ta can be counted
+        a descendant of it.
+    source:
+      - ref: src:sikora-2019-siberia
+        loc: "main text, Upper Palaeolithic peoples at Yana RHS"
+        quote: "we find that Yana can be modelled as early West Eurasian with ~25% contribution from early East Asians"
+      - ref: src:sikora-2019-siberia
+        loc: "main text, Upper Palaeolithic peoples at Yana RHS"
+        quote: "The ANE lineage of Mal’ta can thus be considered a descendant of the ANS lineage"
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:sikora-2019-siberia
+      loc: "main text, Upper Palaeolithic peoples at Yana RHS"
+      quote: "The Yana RHS human remains represent the earliest direct evidence of human presence in northeastern Siberia"

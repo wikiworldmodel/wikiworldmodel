@@ -1,0 +1,26 @@
+id: src:hardigan-2017-solanum
+type: publication
+kind: measurement
+citation: >-
+  Hardigan, M.A., Laimbeer, F.P.E., Newton, L., … & Buell, C.R. (2017). Genome diversity of
+  tuber-bearing Solanum uncovers complex evolutionary history and targets of domestication in
+  the cultivated potato. Proceedings of the National Academy of Sciences 114(46), E9999–E10008.
+authors:
+  - "Hardigan, M.A."
+  - "Laimbeer, F.P.E."
+  - "Newton, L."
+  - "Crisovan, E."
+  - "Hamilton, J.P."
+  - "Vaillancourt, B."
+  - "Wiegert-Rininger, K."
+  - "Wood, J.C."
+# the first eight of 12 authors
+published: 2017
+title: "Genome diversity of tuber-bearing Solanum uncovers complex evolutionary history and targets of domestication in the cultivated potato"
+container: "Proceedings of the National Academy of Sciences 114(46), E9999–E10008"
+doi: 10.1073/pnas.1714380114
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC5699086) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

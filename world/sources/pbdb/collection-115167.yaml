@@ -1,0 +1,24 @@
+id: src:pbdb/collection-115167
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 115167 ("Blombos Cave", ZA), occurrence 970820. Read
+  through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=115167
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+  Commons CC0".
+reliability: >-
+  A database record compiled from the literature; the collection reference, not read here, is: C.
+  S. Henshilwood, J. C. Sealy, and R. Yates, K. Cruz-Uribe, P. Goldberg, F. E. Grine, R. G. Klein,
+  C. Poggenpoel, K. van Niekerk, I. Watts. 2001. Blombos Cave, Southern Cape, South Africa:
+  Preliminar
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=115167&show=loc,strat,ref and from the occurrence list:
+    lat -34.408665, lng 21.195189, early_interval "Late Pleistocene", formation "none given",
+    geographic note "none"; occurrence 970820, accepted name "Homo sapiens".

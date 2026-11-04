@@ -1,0 +1,67 @@
+id: life/occurrences/treptichnus-fortune-head
+kind: occurrence
+summary: >-
+  The branching burrow Treptichnus pedum at Fortune Head, Burin Peninsula, Newfoundland: the trace fossil whose
+  first occurrence marks the base of the Cambrian, at the point chosen in these rocks.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Treptichnus pedum, Fortune Head" }
+    unsourced: An editorial label, from the trace fossil and the place.
+  identified:
+    prop: identified_as
+    value: Treptichnus pedum
+    source:
+      ref: src:mcilroy-2022-first-burrows
+      loc: "Fig. 3, caption"
+      quote: "Tubular open “burrows” from the Fortunian of Fortune Head NL"
+  evidence:
+    prop: evidence
+    value: trace-fossil
+    source:
+      ref: src:mcilroy-2022-first-burrows
+      loc: "Introduction, first paragraph"
+      quote: "defined by the first occurrence of trace fossils belonging to the Treptichnus pedum Assemblage Zone"
+  location:
+    prop: location
+    value: { lat: 47.079167, lon: -55.84, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-fortune-head, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A point for the cape, not for the section.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-108
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Chapel Island Formation
+    source:
+      ref: src:gougeon-2018-mixed-layer
+      loc: "Stratigraphic setting"
+      quote: "The approximately 1000 m thick Chapel Island Formation (CIF) ranges in age from latest Ediacaran to Cambrian Age 2"
+  date:
+    prop: date
+    value: { ref: ics/fortunian, edge: start }
+    source:
+      ref: src:mcilroy-2022-first-burrows
+      loc: "Introduction, first paragraph"
+      quote: "The base of the Cambrian period (and end of the Ediacaran) is defined by the first occurrence of trace fossils belonging to the Treptichnus pedum Assemblage Zone [5,6] at a point in rock in Fortune Head in Newfoundland, Canada approx. 540 Ma."
+    method: stratigraphic
+    note: >-
+      The date follows the chart, since the boundary is defined here. The chart used gives 541 Ma, and McIlroy says
+      approximately 540 Ma.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/metazoa
+    source:
+      ref: src:mcilroy-2022-first-burrows
+      loc: "Introduction, first paragraph"
+      quote: "the recognition that burrowing is an easily preservable—fundamentally animalian—trait"
+    note: >-
+      The maker is not known beyond being an animal. The title of McIlroy's paper asks whether the first traces were
+      burrows at all, or the work of chemosymbiotic organisms that displaced sediment.

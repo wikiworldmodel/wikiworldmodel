@@ -1,0 +1,89 @@
+id: people/rulers/hadrian
+kind: person
+summary: >-
+  Cousin and adopted successor of Trajan, who gave up the eastern conquests and spent much of
+  his reign touring the provinces.
+author: machine:claude-code
+same_as: { wikidata: Q1427 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Hadrian }
+    source:
+      ref: src:historia-augusta
+      loc: "Hadrian 1.3"
+      quote: Hadrian was born in Rome
+  start:
+    prop: start
+    value: 24 January 76 CE
+    source:
+      ref: src:historia-augusta
+      loc: "Hadrian 1.3"
+      quote: Hadrian was born in Rome on the ninth day before the Kalends of February in the seventh consulship of Vespasian and the fifth of Titus
+    method: historical-account
+    note: >-
+      The ninth day before the Kalends of February is 24 January, and that consulship is 76 CE.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: 11 August 117 CE
+    source:
+      ref: src:historia-augusta
+      loc: "Hadrian 4.7"
+      quote: On the third day before the Ides of August he received the news of Trajan's death, and this day he appointed as the anniversary of his accession
+    method: historical-account
+    note: >-
+      The third day before the Ides of August is the 11th, which Hadrian himself kept as the day
+      of his accession; Trajan had died a few days earlier. The year is Trajan's last: Dio's
+      nineteen and a half years from January 98.
+  end:
+    prop: end
+    value: 10 July 138 CE
+    source:
+      - ref: src:historia-augusta
+        loc: "Hadrian 25.6"
+        quote: he died there at Baiae on the sixth day before the Ides of July
+      - ref: src:historia-augusta
+        loc: "Hadrian 25.11"
+        quote: He lived 62 years, 5 months, 17 days. He ruled 20 years, 11 months
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 69, 23.1, vol. 8 p. 465"
+        quote: He had lived sixty-two years, five months and nineteen days, and had been emperor twenty years and eleven months
+    method: historical-account
+    note: >-
+      The sixth day before the Ides of July is the 10th, and the year follows from the length of
+      the reign.
+  location:
+    prop: location
+    value: { lat: 41.889977, lon: 12.491258, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-rome
+        loc: "representative point"
+      - ref: src:historia-augusta
+        loc: "Hadrian 1.3"
+        quote: Hadrian was born in Rome
+    method: gazetteer
+    note: >-
+      Marked at his birthplace, in Rome, at the city's representative point. Dio, as Cary notes,
+      follows a tradition that he was born at Italica in Spain.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 69, 23.1, vol. 8 p. 465"
+      quote: had been emperor twenty years and eleven months
+    note: Emperor.

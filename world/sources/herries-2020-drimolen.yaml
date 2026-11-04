@@ -1,0 +1,31 @@
+id: src:herries-2020-drimolen
+type: publication
+kind: measurement
+citation: >-
+  Herries, A.I.R., Martin, J.M., Leece, A.B., Adams, J.W., Boschian, G., Joannes-Boyau, R.,
+  Edwards, T.R., Mallett, T., Massey, J., Murszewski, A. et al. (2020). Contemporaneity of
+  Australopithecus, Paranthropus, and early Homo erectus in South Africa. Science 368(6486),
+  eaaw7293.
+authors:
+  - "Herries, A.I.R."
+  - "Martin, J.M."
+  - "Leece, A.B."
+  - "Adams, J.W."
+  - "Boschian, G."
+  - "Joannes-Boyau, R."
+  - "Edwards, T.R."
+  - "Mallett, T."
+  - "Massey, J."
+  - "Murszewski, A."
+published: 2020
+title: "Contemporaneity of Australopithecus, Paranthropus, and early Homo erectus in South Africa"
+container: "Science 368(6486), eaaw7293"
+doi: 10.1126/science.aaw7293
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 27 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 32241925): the cranium DNH 134 at ~2.04 to 1.95
+    million years, the earliest with clear affinities to Homo erectus. It does not name the dating
+    methods. Quoted passages checked by script against the text retrieved.

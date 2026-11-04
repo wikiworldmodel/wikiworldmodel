@@ -1,0 +1,23 @@
+id: src:mathews-schele-1974-lords-of-palenque
+type: publication
+kind: review
+citation: >-
+  Mathews, P. & Schele, L. Lords of Palenque. In the First Palenque Round Table (Primera Mesa
+  Redonda de Palenque), online text of the Pre-Columbian Art Research Institute.
+authors:
+  - "Mathews, P."
+  - "Schele, L."
+title: Lords of Palenque
+container: First Palenque Round Table
+url: https://mesoweb.org/pari/publications/RT01/lords/text.html
+via: The Pre-Columbian Art Research Institute's online text.
+reliability: >-
+  The paper that first read the dynastic history of Palenque from its inscriptions; it reads the
+  birth, accession and death of Lord Shield Pacal in Long Count dates from the monuments. Later
+  work changed the reading of his name, not these dates.
+verified:
+  by: machine:claude-code
+  how: >-
+    The text read on the PARI site; the quotations checked by script against it. Authors and
+    title are from the page's heading; it does not give the year or imprint of the printed
+    volume, so they are not stated here.

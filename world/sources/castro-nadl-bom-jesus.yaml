@@ -1,0 +1,13 @@
+id: src:castro-nadl-bom-jesus
+type: publication
+kind: review
+citation: >-
+  Castro, F. Bom Jesus (1533). Nautical Archaeology Digital Library (NADL).
+authors: ["Castro, F."]
+title: Bom Jesus (1533)
+container: Nautical Archaeology Digital Library
+url: https://www.shiplib.org/index.php/bom-jesus
+reliability: A short entry by a nautical archaeologist. It says the excavation is not entirely published.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

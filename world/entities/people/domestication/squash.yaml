@@ -1,0 +1,51 @@
+id: people/domestication/squash
+kind: development
+summary: >-
+  The domestication of squashes and pumpkins in Mesoamerica, beginning with Cucurbita pepo at
+  Guilá Naquitz in Oaxaca some 10,000 years ago, the earliest known domesticated squash. The genus
+  was domesticated several times over: phytoliths suggest another species in the Balsas valley, and
+  C. pepo had a separate domestication in eastern North America, not recorded here.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Squash domestication in Mesoamerica }
+    unsourced: An editorial label.
+  start-kistler-2015:
+    prop: start
+    value: 10 ka
+    source:
+      ref: src:kistler-2015-cucurbita
+      loc: Introduction
+      quote: "has been used extensively throughout the Holocene (11), beginning around 10,000 B.P. in Mexico"
+    method: expert-estimate
+  location-oaxaca:
+    prop: location
+    value: { lat: 16.975278, lon: -96.308889, frame: frame:earth/present-day }
+    source:
+      - ref: src:kennett-2023-el-gigante
+        loc: Discussion
+        quote: "The earliest known domesticated squash (C. pepo) remains, which come from Guilá Naquitz"
+      - { ref: src:wikidata-guila-naquitz, loc: "P625 coordinate location" }
+    method: editorial
+    rank: preferred
+    note: >-
+      Marked at the site, where the macrofossils are.
+  location-balsas:
+    prop: location
+    value: { lat: 18.345, lon: -99.538333, frame: frame:earth/present-day }
+    source:
+      - ref: src:piperno-2009-xihuatoxtla
+        loc: abstract
+        quote: "Phytolith data also indicate an early preceramic presence of a domesticated species of squash, possibly Cucurbita argyrosperma."
+      - { ref: src:wikidata-iguala, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Another species, by phytolith size, from Xihuatoxtla: a separate line rather than a rival.
+      Marked at Iguala, near the site.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-104
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

@@ -1,0 +1,71 @@
+id: life/occurrences/forest-cairo
+kind: occurrence
+summary: >-
+  The fossil soil in an abandoned quarry near Cairo, New York, with the root systems of Eospermatopteris
+  and of the Archaeopteris group where they grew: a forest about 35 km east of Gilboa and a little
+  older, on ground that was periodically drier.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Cairo fossil forest" }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: Eospermatopteris; root systems of the group containing Archaeopteris
+    source:
+      ref: src:stein-2020-cairo
+      loc: Summary
+      quote: we see spectacularly extensive root systems here assigned to the lignophyte group containing the genus Archaeopteris
+    note: >-
+      A single root system, perhaps of an early rhizomorphic lycopsid, was found with them.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:stein-2020-cairo
+      loc: Summary
+      quote: From a fossil soil (palaeosol) in the Catskill region near Cairo NY, USA we report evidence of the oldest forest (mid Givetian) yet identified worldwide
+    note: >-
+      The basis is a forest floor: a palaeosol with root systems in place, and bowl-shaped depressions
+      made by the expanded bases of upright trunks. "Oldest" is as of 2020; see the forests transition.
+  location:
+    prop: location
+    value: { lat: 42.319231, lon: -74.044489, frame: frame:earth/present-day }
+    source:
+      ref: src:stein-2020-cairo
+      loc: "Results, first paragraph (manuscript p. 3)"
+      quote: Cairo, NY (42°19’09.23”N,74°02’40.16”W)
+    method: survey
+    note: >-
+      Converted to decimal degrees.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Plattekill Formation
+    source:
+      ref: src:stein-2020-cairo
+      loc: "Results, first paragraph (manuscript p. 3)"
+      quote: From a paleosol in an abandoned quarry in the Plattekill Formation of the Hamilton Group
+  date:
+    prop: date
+    value: { ref: ics/givetian }
+    source:
+      ref: src:stein-2020-cairo
+      loc: "Results, first paragraph (manuscript p. 4)"
+      quote: early mid Givetian (ca. 385 Ma)
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      By correlation with the marine Ludlowville Formation. Dated by the stage, so that it follows the
+      chart in use; the paper's own number is ca. 385 Ma.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/tracheophyta
+    source: { ref: src:stein-2020-cairo, loc: "Summary: cladoxylopsids, a possible lycopsid, and lignophytes" }

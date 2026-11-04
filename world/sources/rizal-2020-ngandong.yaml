@@ -1,0 +1,30 @@
+id: src:rizal-2020-ngandong
+type: publication
+kind: measurement
+citation: >-
+  Rizal, Y., Westaway, K.E., Zaim, Y., van den Bergh, G.D., Bettis, E.A., Morwood, M.J., Huffman,
+  O.F., Grün, R., Joannes-Boyau, R., Bailey, R.M. et al. (2020). Last appearance of Homo erectus
+  at Ngandong, Java, 117,000-108,000 years ago. Nature 577(7790), 381–385.
+authors:
+  - "Rizal, Y."
+  - "Westaway, K.E."
+  - "Zaim, Y."
+  - "van den Bergh, G.D."
+  - "Bettis, E.A."
+  - "Morwood, M.J."
+  - "Huffman, O.F."
+  - "Grün, R."
+  - "Joannes-Boyau, R."
+  - "Bailey, R.M."
+published: 2020
+title: "Last appearance of Homo erectus at Ngandong, Java, 117,000-108,000 years ago"
+container: "Nature 577(7790), 381–385"
+doi: 10.1038/s41586-019-1863-2
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 25 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 31853068): the Ngandong bone bed modelled to 117 to
+    108 kyr, the last known occurrence of H. erectus. Quoted passages checked by script against
+    the text retrieved.

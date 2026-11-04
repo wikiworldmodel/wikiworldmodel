@@ -1,0 +1,37 @@
+id: src:gulev-2021-ipcc-ar6-chapter-2
+type: publication
+kind: review
+citation: >-
+  Gulev, S.K., Thorne, P.W., Ahn, J., Dentener, F.J., Domingues, C.M., Gerland, S., Gong, D.,
+  Kaufman, D.S., Nnamchi, H.C., Quaas, J., Rivera, J.A., Sathyendranath, S., Smith, S.L., Trewin,
+  B., von Schuckmann, K. & Vose, R.S. (2021). Changing State of the Climate System. In Climate
+  Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth Assessment
+  Report of the Intergovernmental Panel on Climate Change, pp. 287–422. Cambridge University Press.
+authors:
+  - "Gulev, S.K."
+  - "Thorne, P.W."
+  - "Ahn, J."
+  - "Dentener, F.J."
+  - "Domingues, C.M."
+  - "Gerland, S."
+  - "Gong, D."
+  - "Kaufman, D.S."
+  - "Nnamchi, H.C."
+  - "Quaas, J."
+  - "Rivera, J.A."
+  - "Sathyendranath, S."
+  - "Smith, S.L."
+  - "Trewin, B."
+  - "von Schuckmann, K."
+  - "Vose, R.S."
+published: 2021
+title: Changing State of the Climate System
+container: Climate Change 2021, The Physical Science Basis (IPCC AR6 WGI), Chapter 2, pp. 287–422
+doi: 10.1017/9781009157896.004
+url: https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter02.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the IPCC's PDF, with its Cross-Chapter Box 2.1, Table 1 (p. 295) and
+    Section 2.3.3.3 (p. 353). Citation as CEDA's record of the chapter's figure data gives it.
+    Quotes checked by script against the text retrieved.

@@ -1,0 +1,48 @@
+id: people/writing/harappa-kot-diji-inscriptions
+kind: occurrence
+summary: >-
+  Inscribed sherds and a sealing of a square seal from the Kot Diji levels of Harappa, Period 2, with the first signs called Early Indus script.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Early Indus script, Kot Diji levels, Harappa" }
+    unsourced: An editorial label, from the finds and the place.
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:meadow-kenoyer-2001-harappa
+      loc: section "Kot Diji Phase Developments"
+      quote: the first appearance of the Early Indus script that has been found on pottery, a sealing of a square seal with possible Early Indus script
+  location:
+    prop: location
+    value: { lat: 30.629618, lon: 72.865257, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-harappa, loc: "place 93441396, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-501
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 2800 BCE, hi: 2600 BCE }
+    source:
+      - ref: src:meadow-kenoyer-2001-harappa
+        loc: section "Ravi Phase and Kot Diji Phase Occupations"
+        quote: "the Kot Diji Phase (Period 2: 2800-2600 BCE)"
+      - ref: src:harappa-com-oldest-indus-writing
+        loc: answer by Asko Parpola
+        quote: there are some real inscriptions probably dating from the late phase of this period
+    method: stratigraphic
+    note: Dated by the phase, whose limits come from artefacts and radiocarbon at the site. Parpola's "late phase" would bring the real inscriptions toward 2600 BCE.
+relations:
+  at-harappa:
+    rel: during
+    to: people/first-cities/harappa
+    source:
+      ref: src:meadow-kenoyer-2001-harappa
+      loc: section "Kot Diji Phase Developments"
+      quote: The total area of the Kot Diji settlement at Harappa is more than 25 hectares

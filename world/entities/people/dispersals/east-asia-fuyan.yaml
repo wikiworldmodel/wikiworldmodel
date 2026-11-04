@@ -1,0 +1,79 @@
+id: people/dispersals/east-asia-fuyan
+kind: event/dispersal
+summary: >-
+  The first modern humans in East Asia, and the dispute over Fuyan Cave in Daoxian, southern China:
+  47 teeth dated by flowstone to more than 80,000 years, or teeth from the same cave that radiocarbon
+  and ancient DNA place in the Holocene. The default picture says only that it was before Tianyuan.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First modern humans in East Asia }
+    unsourced: An editorial label.
+  earlier-than-tianyuan:
+    prop: earlier_than
+    value: { ref: people/dispersals/tianyuan }
+    source:
+      ref: src:fu-2013-tianyuan
+      loc: "introduction"
+      quote: "one of a small number of early modern humans more than 30,000 y old discovered across Eurasia (2) and an even smaller number known from East Asia"
+    note: Nobody in this dispute places the first arrival after Tianyuan, the oldest modern human genome from East Asia here.
+  date-liu-2015:
+    prop: date
+    value: { lo: 120 ka, hi: 80 ka }
+    alt: alt:leaving-africa/early-successful
+    source:
+      - ref: src:liu-2015-fuyan
+        loc: abstract
+        quote: "This site has provided 47 human teeth dated to more than 80,000 years old, and with an inferred maximum age of 120,000 years."
+      - ref: src:sun-2021-southern-china
+        loc: "Introduction, on the sites"
+        quote: "They have been dated indirectly using U–Th dating of flowstone within the range ca. 120 to 80 ka"
+      - ref: src:martinon-torres-2021-fuyan
+        loc: "letter, point 1"
+        quote: "we confirm that FY-HT-2 is not human but belongs to an herbivore"
+      - ref: src:bae-2017-asian-perspectives
+        loc: abstract
+        quote: "growing evidence for multiple dispersals predating 60,000 years ago in regions such as southern and eastern Asia"
+    method: radiometric/u-series
+    note: >-
+      The flowstone, not the teeth, gives the age. Martinón-Torres et al., among them authors of the
+      2015 paper, answer the later radiocarbon dates by rejecting one of the two teeth they rest on,
+      and hold the other's association with the 47 to be unproven.
+  date-sun-2021:
+    prop: date
+    value: { lo: 50 ka, hi: 45 ka }
+    alt: alt:leaving-africa/late-only
+    source:
+      - ref: src:sun-2021-southern-china
+        loc: abstract
+        quote: "the first appearance datum for AMHs in southern China should probably lie within the timeframe set by molecular data of ca. 50 to 45 ka"
+      - ref: src:sun-2021-southern-china
+        loc: abstract
+        quote: "analyses of aDNA and direct AMS 14C dating on human teeth from Fuyan and Yangjiapo caves showed they derive from the Holocene"
+    method: molecular-clock
+    note: >-
+      A date taken from genetics, for southern China. The teeth Sun et al. date to the Holocene are two
+      they collected at the site in 2019, not the 47 of the 2015 paper, which they hold to be of the
+      same sample. Higham and Douka (2021) doubt the radiocarbon dates themselves.
+  location:
+    prop: location
+    value: { lat: 25.65075, lon: 111.480333, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-fuyan-cave, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: Fuyan Cave, the site in dispute, marks the arrival; in the late picture it stands for southern China.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  after-the-main-dispersal:
+    rel: after
+    to: people/dispersals/out-of-africa-main
+    alt: alt:leaving-africa/late-only
+    source:
+      ref: src:sun-2021-southern-china
+      loc: abstract
+      quote: "The expansion of anatomically modern humans (AMHs) from Africa around 65,000 to 45,000 y ago (ca. 65 to 45 ka) led to the establishment of present-day non-African populations."

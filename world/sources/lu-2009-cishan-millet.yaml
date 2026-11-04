@@ -1,0 +1,26 @@
+id: src:lu-2009-cishan-millet
+type: publication
+kind: measurement
+citation: >-
+  Lu, H., Zhang, J., Liu, K.B., … & Li, Q. (2009). Earliest domestication of common millet
+  (Panicum miliaceum) in East Asia extended to 10,000 years ago. Proceedings of the National
+  Academy of Sciences 106(18), 7367–7372.
+authors:
+  - "Lu, H."
+  - "Zhang, J."
+  - "Liu, K.B."
+  - "Wu, N."
+  - "Li, Y."
+  - "Zhou, K."
+  - "Ye, M."
+  - "Zhang, T."
+# the first eight of 13 authors
+published: 2009
+title: "Earliest domestication of common millet (Panicum miliaceum) in East Asia extended to 10,000 years ago"
+container: "Proceedings of the National Academy of Sciences 106(18), 7367–7372"
+doi: 10.1073/pnas.0900158106
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC2678631) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

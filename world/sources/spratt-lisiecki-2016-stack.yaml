@@ -1,0 +1,19 @@
+id: src:spratt-lisiecki-2016-stack
+type: publication
+kind: compilation
+citation: >-
+  Spratt, R.M. & Lisiecki, L.E. (2016). A Late Pleistocene sea level stack. Climate of the Past
+  12(4), 1079–1092.
+authors:
+  - "Spratt, R.M."
+  - "Lisiecki, L.E."
+published: 2016
+title: "A Late Pleistocene sea level stack"
+container: "Climate of the Past 12(4), 1079–1092"
+doi: 10.5194/cp-12-1079-2016
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the publisher's PDF (Copernicus). Citation from Crossref. Its data are the
+    dataset src:spratt-lisiecki-2016-sea-level. Quotes checked by script against the text
+    retrieved.

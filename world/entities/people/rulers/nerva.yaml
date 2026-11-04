@@ -1,0 +1,79 @@
+id: people/rulers/nerva
+kind: person
+summary: >-
+  An elderly senator made emperor on the day Domitian was killed, who adopted Trajan and died
+  sixteen months later.
+author: machine:claude-code
+same_as: { wikidata: Q1424 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Nerva }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 68, 1.1, vol. 8 p. 361"
+      quote: After Domitian, the Romans appointed Nerva Cocceius emperor
+  start:
+    prop: start
+    value: 8 November 30 CE
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 68, 4.2, vol. 8 p. 367"
+      quote: his life prior to that time had comprised sixty-five years, ten months and ten days
+    method: historical-account
+    note: >-
+      Worked out from Dio: sixty-five years, ten months and ten days before his accession on 18
+      September 96 is 8 November 30. Other lists give other ages at death: the seventy-second
+      year in Eutropius (8.1), the sixty-third in the Epitome de Caesaribus (ch. 12), both as
+      Clinton quotes them.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/domitian, edge: end }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 68, 1.1, vol. 8 p. 361"
+      quote: After Domitian, the Romans appointed Nerva Cocceius emperor
+    method: historical-account
+  end-dio:
+    prop: end
+    value: { lo: 26 January 98 CE, hi: 27 January 98 CE }
+    source:
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 68, 4.2, vol. 8 p. 367"
+        quote: Soon after this act he passed away, having ruled one year, four months and nine days
+      - ref: src:clinton-1845-fasti-romani
+        loc: "a. 98, p. 84"
+        quote: Reimar ad Dion. 68. 3 places his death two days later, or at Jan. 27
+    method: historical-account
+    rank: preferred
+    note: >-
+      Dio's count from 18 September 96: Clinton reckons it to 26 January and Reimar to 27
+      January. Preferred because it is the contemporary senator's own count; the chronicle's day
+      is a day short of it, as Clinton notes (a. 99, p. 84).
+  end-chronicon:
+    prop: end
+    value: 25 January 98 CE
+    source:
+      ref: src:clinton-1845-fasti-romani
+      loc: "a. 98, p. 84"
+      quote: "Death of Nerva Jan. 25: Chron. Pasch."
+    method: historical-account
+    note: >-
+      The Chronicon Paschale's date, the eighth before the Kalends of February, as Clinton
+      quotes it and accepts it (a. 99). The chronicle's own page was not read for this year.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 68, 1.1, vol. 8 p. 361"
+      quote: appointed Nerva Cocceius emperor
+    note: Emperor.

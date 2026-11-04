@@ -1,0 +1,17 @@
+id: src:eusebius-life-of-constantine
+type: text
+kind: eyewitness
+citation: >-
+  Eusebius of Caesarea, Life of Constantine, translated by E. C. Richardson, in Nicene and
+  Post-Nicene Fathers, Second Series, vol. 1, ed. P. Schaff and H. Wace (New York, 1890).
+published: 1890
+title: Vita Constantini
+url: https://www.newadvent.org/fathers/25024.htm
+via: New Advent's revised text of the Nicene and Post-Nicene Fathers translation.
+reliability: >-
+  A bishop who knew the emperor, writing a panegyric just after his death.
+verified:
+  by: machine:claude-code
+  how: >-
+    Book 4 read on New Advent, chapters 53 and 64 closely; the quotation checked by script
+    against that text.

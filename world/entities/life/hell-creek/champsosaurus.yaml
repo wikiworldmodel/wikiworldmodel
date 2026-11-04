@@ -1,0 +1,40 @@
+id: life/taxa/champsosaurus
+kind: taxon
+summary: >-
+  A long-snouted semiaquatic choristodere, not a crocodilian though the same kit draws it,
+  common in the Hell Creek Formation.
+same_as: { pbdb: "txn:37786" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Champsosaurus" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 37786"
+  body-plan:
+    prop: body_plan
+    value: crocodilian
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: sprawling
+    unsourced: "No work read states its stance; an editorial choice, as for the crocodilians it resembles in shape."
+  length-brown-1905:
+    prop: body_length
+    value: 1.5
+    source:
+      - ref: src:brown-1905-champsosaurus
+        loc: "Measurements, C. laramiensis, cotype"
+        quote: "Length of skeleton............... . . . . . . . . . . . I500."
+      - ref: src:brown-1905-champsosaurus
+        loc: "Measurements"
+        quote: "C. laramiensis,- Cotype (mounted skeleton, Amer. Mus. No. 98I)."
+      - ref: src:brown-1905-champsosaurus
+        loc: "p. 1"
+        quote: "from the Laramie Cretaceous exposures on Hell Creek"
+    method: survey
+    note: >-
+      The skeleton AMNH 981, measured as mounted, 1500 mm (the text layer reads the 1 as I),
+      collected on Hell Creek itself. Brown calls it an immature animal, so a grown one was
+      longer: the adult type has an extreme skull length of 404.5 mm against 344.4 mm.

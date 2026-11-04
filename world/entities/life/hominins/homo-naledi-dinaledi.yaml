@@ -1,0 +1,52 @@
+id: life/occurrences/homo-naledi-dinaledi
+kind: occurrence
+summary: >-
+  About 1550 hominin specimens from at least 15 individuals in the Dinaledi Chamber of the Rising Star
+  cave system, South Africa, the largest assemblage of a single hominin species yet found in Africa.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Homo naledi, Dinaledi Chamber" }
+    unsourced: An editorial label, from the taxon and the chamber.
+  identified:
+    prop: identified_as
+    value: Homo naledi
+    source:
+      ref: src:berger-2015-naledi
+      loc: abstract
+      quote: "Homo naledi is a previously-unknown species of extinct hominin discovered within the Dinaledi Chamber of the Rising Star cave system, Cradle of Humankind, South Africa."
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:berger-2015-naledi, loc: abstract }
+  location:
+    prop: location
+    value: { lat: -26.0203557, lon: 27.7092316, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-rising-star, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: A point for the cave system.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 335 ka, hi: 236 ka }
+    source:
+      ref: src:dirks-2017-naledi-age
+      loc: abstract
+      quote: "By combining the US-ESR maximum age estimate obtained from the teeth, with the U-Th age for the oldest flowstone overlying Homo naledi fossils, we have constrained the depositional age of Homo naledi to a period between 236 ka and 335 ka."
+    method: radiometric
+    note: >-
+      The older limit is from uranium series with electron spin resonance on three teeth, in the
+      authors' maximum age scenario; the younger is from uranium-thorium on the oldest flowstone above
+      the fossils. Optical dating of the sediments agrees. Before this, the first papers left the date
+      unknown.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-naledi
+    source: { ref: src:berger-2015-naledi, loc: abstract }

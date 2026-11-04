@@ -44,7 +44,7 @@
             "type": "object",
             "description": "A snapshot of a database whose elements become records",
             "required": ["as", "frame"],
-            "properties": { "as": { "const": "ohm-site" }, "frame": { "type": "string" } },
+            "properties": { "as": { "enum": ["ohm-site", "pbdb-formation"] }, "frame": { "type": "string" } },
             "additionalProperties": false
           },
           "fetch": {
@@ -54,7 +54,7 @@
               "url": { "type": "string", "pattern": "^(https://|repo:)" },
               "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
               "bytes": { "type": "integer", "minimum": 1 },
-              "format": { "enum": ["zip", "parquet", "csv", "tsv", "xlsx", "tif", "json"] },
+              "format": { "enum": ["zip", "parquet", "csv", "tsv", "xlsx", "tif", "json", "netcdf"] },
               "files": {
                 "type": "object",
                 "additionalProperties": {

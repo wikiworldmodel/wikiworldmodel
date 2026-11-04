@@ -1,0 +1,57 @@
+id: people/dispersals/bacho-kiro-cave
+kind: event/dispersal
+summary: >-
+  Modern humans with Initial Upper Palaeolithic tools at Bacho Kiro Cave, Bulgaria: among the earliest
+  fossils of the species in Europe that are both directly dated and identified by their DNA, from a
+  wave that came into contact with declining Neanderthals.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Bacho Kiro Cave }
+    unsourced: An editorial label, from the place name.
+  date:
+    prop: date
+    value: { lo: 46.94 ka, hi: 43.65 ka }
+    source:
+      - ref: src:fewlass-2020-bacho-kiro
+        loc: abstract
+        quote: "securely dates to 45,820-43,650 cal BP (95.4% probability), probably beginning from 46,940 cal BP (95.4% probability)"
+      - ref: src:hublin-2020-bacho-kiro
+        loc: "main text, on the dates"
+        quote: "the modelled boundaries of layer I (45,820–43,650 cal. yr BP at 95.4%)"
+    method: radiometric/radiocarbon
+    note: >-
+      From a Bayesian model of direct dates on bones. The range runs from the probable beginning of
+      the Initial Upper Palaeolithic, in the same assemblage at the top of layer J, to the end of layer
+      I, which alone dates securely to 45,820–43,650 cal BP.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        A migration into Europe not known before from genomes, with some continuity to later people
+        in Eurasia: closer to later populations in East Asia and the Americas than to later west
+        Eurasians.
+    source:
+      - ref: src:hajdinjak-2021-bacho-kiro
+        loc: abstract
+        quote: "they belonged to a modern human migration into Europe that was not previously known from the genetic record, and provides evidence that there was at least some continuity between the earliest modern humans in Europe and later people in Eurasia"
+  location:
+    prop: location
+    value: { lat: 42.946667, lon: 25.430278, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-bacho-kiro-cave, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-308
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  after-the-dispersal:
+    rel: after
+    to: people/dispersals/out-of-africa-main
+    source:
+      ref: src:hublin-2020-bacho-kiro
+      loc: abstract
+      quote: "link the expansion of Initial Upper Palaeolithic technologies with the spread of H. sapiens into the mid-latitudes of Eurasia before 45 thousand years ago"

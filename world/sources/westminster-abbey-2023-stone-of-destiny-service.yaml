@@ -1,0 +1,11 @@
+id: src:westminster-abbey-2023-stone-of-destiny-service
+type: publication
+kind: eyewitness
+citation: Westminster Abbey (2023). A Service to mark the arrival of The Stone of Destiny. Order of service, Saturday 29 April 2023.
+published: 2023
+title: A Service to mark the arrival of The Stone of Destiny
+url: https://www.westminster-abbey.org/media/bg5h1d4d/23-04-29-stone-of-destiny-oos.pdf
+reliability: The Abbey's order of service for the day.
+verified:
+  by: machine:claude-code
+  how: Read as the PDF on the Abbey's site, its text extracted with Ghostscript. Quotations checked by script against that text with whitespace normalized.

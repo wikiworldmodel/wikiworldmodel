@@ -1,0 +1,87 @@
+id: people/first-cities/caral
+kind: settlement
+summary: >-
+  Caral, in the Supe Valley of Peru, 23 kilometres inland from the Pacific: platform mounds and sunken circular courts of the Late Archaic period, built before pottery came to the region, at one of 18
+  large preceramic sites in the valley. UNESCO calls it the oldest centre of civilization in the Americas. Its radiocarbon dates come here from an abstract only, and no population figure could be read.
+author: machine:claude-code
+same_as: { wikidata: Q219279 }
+claims:
+  name:
+    prop: name
+    value: { en: Caral }
+    source:
+      ref: src:solis-2001-caral
+      loc: title
+      quote: Dating Caral, a preceramic site in the Supe Valley on the central coast of Peru.
+  start-solis:
+    prop: start
+    value: 2627 BCE
+    source:
+      ref: src:solis-2001-caral
+      loc: abstract
+      quote: "monumental corporate architecture, urban settlement, and irrigation agriculture began in the Americas by 4090 years before the present (2627 calibrated years B.C.)"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: "Preferred as a measured date for the site. Only the abstract could be read, so the samples behind it were not seen. \"By\" means this is a limit: the site may be older."
+  start-unesco:
+    prop: start
+    value: 3000 BCE
+    source:
+      - ref: src:unesco-whc-1269-caral
+        loc: description
+        quote: The 5000-year-old 626-hectare archaeological site
+      - ref: src:haas-2013-late-archaic-maize
+        loc: abstract
+        quote: the Late Archaic period (3000-1800 B.C.)
+    method: expert-estimate
+    note: UNESCO's round figure, taken as the start of the Late Archaic period to which it assigns the site.
+  end-solis:
+    prop: end
+    value: 1977 BCE
+    source:
+      ref: src:solis-2001-caral
+      loc: abstract
+      quote: to 3640 years before the present (1977 calibrated years B.C.)
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: The youngest of the dates in the abstract, not a study of how the site ended.
+  end-haas:
+    prop: end
+    value: 1800 BCE
+    source:
+      ref: src:haas-2013-late-archaic-maize
+      loc: abstract
+      quote: the Late Archaic period (3000-1800 B.C.)
+    method: expert-estimate
+    note: The end of the period. UNESCO says the site was abandoned early, and later occupied only twice, about 1000 B.C. and between 900 and 1440 A.D.
+  location:
+    prop: location
+    value: { lat: -10.893611, lon: -77.520278, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-caral, loc: "Q219279, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-201
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area-solis:
+    prop: settlement_area
+    value: 65
+    valid: { lo: 2627 BCE, hi: 1977 BCE }
+    source:
+      ref: src:solis-2001-caral
+      loc: abstract
+      quote: a central zone of monumental, residential, and nonresidential architecture covering an area of 65 hectares
+    method: survey
+    rank: preferred
+    note: The central zone. Preferred because it says what it measures.
+  area-unesco:
+    prop: settlement_area
+    value: 626
+    source:
+      ref: src:unesco-whc-1269-caral
+      loc: description
+      quote: The 5000-year-old 626-hectare archaeological site
+    method: survey
+    note: The protected archaeological site, so with no date; much of it is not the city.

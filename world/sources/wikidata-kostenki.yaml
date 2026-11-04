@@ -1,0 +1,21 @@
+id: src:wikidata-kostenki
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q4235785 (the Kostyonki–Borshchyovo archaeological complex, Russia), property P625
+  (coordinate location).
+snapshot: "2026-11-03"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q4235785
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry for the whole complex, not for the Kostenki 14 site within it.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (51.38583333333333, 39.05166666666667; precision 0.0002777777777777778) read from
+    the item's JSON (Special:EntityData/Q4235785.json, last revision 2485777729, modified
+    2026-04-30).

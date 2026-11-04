@@ -1,0 +1,62 @@
+id: life/taxa/mammut-americanum
+kind: taxon
+summary: >-
+  The American mastodon, an elephant relative of North American woods and swamps from Alaska to
+  Mexico. It left the far north long before people arrived, about 75,000 years ago, as forests gave
+  way there; south of the ice sheets it lasted until the end of the Pleistocene.
+same_as: { ott: 192377, pbdb: "txn:46016" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: American mastodon, la: "Mammut americanum" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott192377: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-karpinski-2020:
+    prop: start
+    value: { lo: 1881 ka, hi: 335 ka }
+    source:
+      ref: src:karpinski-2020-mastodon-mitogenomes
+      loc: "Results, Mastodon phylogeography"
+      quote: "diverged from Clade A between 1.37 million years ago (95% HPD interval: 857–1881 kya, when the ages of all undated ancient samples are estimated simultaneously in a “Joint” analysis) and 609 kya (95% HPD interval: 335–998 kya"
+    method: molecular-clock
+    note: >-
+      A crown age: the split of the mitochondrial clades sampled, from the extremes of the two
+      analyses' 95% intervals, taken here as the species' origin. The species may be older than this
+      split. The PBDB's first appearance, 23.04–5.333 Ma, was not used: it is far older than this.
+  end-feranec-kozlowski:
+    prop: end
+    value: { lo: 12520 BP, hi: 12080 BP }
+    source:
+      - ref: src:broughton-weitzel-2018-mixed-causes
+        loc: "Supplementary Data 1, row Colgan-King Ferry Mastodon (OS-95596)"
+        quote: "New York Colgan-King Ferry Mastodon OS-95596 10400 50 12520 12080 DE AMS 12 52"
+      - ref: src:zazula-2014-mastodon-beringia
+        loc: Significance
+        quote: "where they ultimately died out ∼10,000 14C years B.P."
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      An AMS date on dentin collagen, 10,400 ± 50 14C years, from Feranec & Kozlowski (2016,
+      Quaternary Research 85, 262–270) as Broughton & Weitzel compile it, not read in the original;
+      the range is the table's calibrated one, without a stated confidence level. Preferred as the
+      youngest AMS date in the compilation, which agrees with Zazula et al. The compilers'
+      population bust for the species in the contiguous United States is at 12,639 cal BP (Table 1).
+  end-urbana:
+    prop: end
+    value: { lo: 9122 BP, hi: 8420 BP }
+    source:
+      ref: src:broughton-weitzel-2018-mixed-causes
+      loc: "Supplementary Data 1, row Urbana (ISGS-17a, ISGS-17b)"
+      quote: "Illinois Urbana ISGS-17a, ISGS-17b 7910 141 9122 8420 8772 CO ST 11 1,6"
+    method: radiometric/radiocarbon
+    note: >-
+      A conventional date, 7,910 ± 141 14C years, the youngest in the compilation and younger by
+      thousands of years than any AMS date in it, so it is probably too young, as dates on
+      contaminated mastodon bones have proved to be in the north (Zazula et al. 2014). No source
+      read assesses this one.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott192377, lineage: Mammut < Mammutidae < Proboscidea < Afrotheria < Atlantogenata < Eutheria < Theria < Mammalia" }

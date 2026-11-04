@@ -1,0 +1,48 @@
+id: people/writing/wadi-el-hol-inscriptions
+kind: occurrence
+summary: >-
+  Two single-line rock inscriptions at Wadi el-Hol, on a desert road near Thebes in Upper Egypt, found in 1994–95 by John Darnell's survey, in a script much like the Proto-Sinaitic texts. Dated by Egyptian inscriptions nearby, they may be the oldest
+  alphabetic writing known.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Wadi el-Hol inscriptions" }
+    unsourced: An editorial label, from the finds and the place.
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:lam-2010-alphabet
+      loc: p. 189
+      quote: two single-line rock inscriptions were discovered at the desert site of Wadi el-Hol, near Thebes in Upper Egypt
+  location:
+    prop: location
+    value: { lat: 25.93, lon: 32.444, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-wadi-el-hol, loc: "place 313840750, representative point" }
+    method: gazetteer
+    note: A point for the wadi, to three decimals; Wikidata's is some 14 km away.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date-darnell:
+    prop: date
+    value: { lo: 1850 BCE, hi: 1700 BCE }
+    source:
+      ref: src:lam-2010-alphabet
+      loc: p. 193, n. 4
+      quote: Darnell and colleagues (2005, p. 90) attribute the Wadi el-Hol inscriptions to “ca. 1850–1700 bce” based on associated inscriptions in Egyptian.
+    method: expert-estimate
+    rank: preferred
+    note: Preferred as the finders' date with its reason; at second hand through Lam, since Darnell et al. were not read.
+  date-waal:
+    prop: date
+    value: { lo: 1900 BCE, hi: 1800 BCE }
+    source:
+      ref: src:waal-2018-phoenician-letters
+      loc: p. 85
+      quote: the oldest now known alphabetic inscriptions stem from Wadi el-Hol in Egypt, dating to between 1900 and 1800 bc
+    method: expert-estimate

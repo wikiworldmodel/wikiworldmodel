@@ -1,0 +1,14 @@
+id: src:met-crab-from-cleopatras-needle
+type: publication
+kind: review
+citation: >-
+  The Metropolitan Museum of Art. Crab from "Cleopatra's Needle", Roman Period, 13 B.C., accession
+  81.2.1 (object page).
+title: Crab from "Cleopatra's Needle"
+url: https://web.archive.org/web/20221101191814/https://www.metmuseum.org/art/collection/search/551893
+reliability: The catalogue entry of the museum that holds the two surviving bronze crabs.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the copy archived on 1 November 2022 at web.archive.org; the museum's own page answered
+    429 from here. Quotations checked by script against its text.

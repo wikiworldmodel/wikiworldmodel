@@ -1,0 +1,19 @@
+id: src:zhang-2022-nanhai-i-wood
+type: publication
+kind: measurement
+citation: >-
+  Zhang, H., Shen, D., Zhang, Z. et al. (2022). Characterization of degradation and iron deposits of the wood of Nanhai I
+  shipwreck. Heritage Science 10, 202.
+authors:
+  - "Zhang, H."
+  - "Shen, D."
+  - "Zhang, Z."
+published: 2022
+title: Characterization of degradation and iron deposits of the wood of Nanhai I shipwreck
+container: Heritage Science
+doi: 10.1186/s40494-022-00845-9
+url: https://heritagesciencejournal.springeropen.com/articles/10.1186/s40494-022-00845-9
+reliability: A conservation paper, cited here only for where the ship lay.
+verified:
+  by: machine:claude-code
+  how: Full text read on the publisher's site. Quote checked by script against it, after normalizing whitespace.

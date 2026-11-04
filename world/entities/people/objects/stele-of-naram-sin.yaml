@@ -1,0 +1,124 @@
+id: people/objects/stele-of-naram-sin
+kind: artefact/moved
+summary: >-
+  The victory stele of Naram-Sin, king of Akkad, about 2250 BCE. The Elamite king Shutruk-Nahhunte
+  took it to Susa in the twelfth century BCE and added his own inscription saying so. French
+  excavators found it there on 6 April 1898, and it is in the Louvre.
+author: machine:claude-code
+same_as: { wikidata: Q897474 }
+phases:
+  - id: mesopotamia
+    label: Sippar
+  - id: susa
+    label: Susa
+  - id: louvre
+    label: Louvre, Paris
+claims:
+  name:
+    prop: name
+    value: { en: Victory Stele of Naram-Sin }
+    source: { ref: src:louvre-victory-stele-of-naram-sin-notice, loc: title, quote: "Victory Stele of Naram-Sin" }
+  mesopotamia-start:
+    prop: start
+    subject: "@mesopotamia"
+    value: { lo: 2254 BCE, hi: 2218 BCE }
+    source:
+      ref: src:louvre-victory-stele-of-naram-sin-notice
+      loc: "section 'Naram-Sin and the height of the Akkadian empire'"
+      quote: "The Sumerian king list states that he reigned for thirty-six years, between 2254 and 2218 BC."
+    method: historical-account
+    note: >-
+      The king's reign, as the Louvre gives it from the Sumerian king list, adding that no contemporary
+      document confirms so long a reign. The technical description in the same notice has "c. 2250 BC".
+  mesopotamia-location:
+    prop: location
+    subject: "@mesopotamia"
+    value: { lat: 33.059738, lon: 44.254243, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-sippar, loc: "place 894089, representative point" }
+      - ref: src:louvre-victory-stele-of-naram-sin-notice
+        loc: "section 'The booty of the Elamite kings'"
+        quote: "he declares that the stele was carried off after the pillage of the city of Sippar"
+      - ref: src:de-morgan-1900-fouilles-a-suse
+        loc: p. 144
+        quote: "nous apprend que ce souverain enleva de Sippara le monument de Naram-Sin pour le porter dans sa capitale."
+      - ref: src:scheil-1900-textes-elamites-semitiques
+        loc: p. 5
+        quote: "A première vue, il semble donc que le lieu d'origine en fût Sippara, au royaume d'Aganê, au pays même de Naram-Sin. Je n'en crois rien."
+      - ref: src:scheil-1900-textes-elamites-semitiques
+        loc: p. 5
+        quote: "En résumé, je n'ose me prononcer catégoriquement sur cette question de provenance."
+    method: gazetteer
+    basis: reconstruction
+    note: >-
+      From the Elamite inscription on the stele itself, which names the place it was taken from. Scheil,
+      its first editor, read the name as Si-ip-pir or Sippara but doubted it was the Babylonian city: he
+      suggested an Elamite Sippar, which has no place to mark, and asked whether Naram-Sin set the stele up
+      in Elam, and in the end would not decide. De Morgan in the same year and the Louvre now take it as
+      Sippar in Babylonia.
+  mesopotamia-frame:
+    prop: frame
+    subject: "@mesopotamia"
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  susa-start:
+    prop: start
+    subject: "@susa"
+    value: { lo: 1185 BCE, hi: 1155 BCE }
+    source:
+      - ref: src:louvre-victory-stele-of-naram-sin-notice
+        loc: "section 'The booty of the Elamite kings'"
+        quote: "It had been taken there in the 12th century BC by the Elamite king Shutruk-Nahhunte"
+      - ref: src:muenster-kodex-hammurapi
+        loc: paragraph 2
+        quote: "elamischen Königs Šutruk-naḫḫunte I. (ca. 1185-1155 v. Chr.)"
+    method: historical-account
+    note: The Louvre names the king and the century; the reign is from Münster, in its note on the Code of Hammurabi.
+  susa-location:
+    prop: location
+    subject: "@susa"
+    value: { lat: 32.189934, lon: 48.253537, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-susa, loc: "place 912936, representative point" }
+      - ref: src:de-morgan-1900-fouilles-a-suse
+        loc: p. 144
+        quote: "La stcle de Naram-Sin, découverte à Suse le 6 avril 1898"
+    method: gazetteer
+    note: The OCR reads "stèle" as "stcle". It lay where it had fallen at the edge of the tell, 3 m down, by the excavators' report (p. 106).
+  susa-frame:
+    prop: frame
+    subject: "@susa"
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  louvre-start:
+    prop: start
+    subject: "@louvre"
+    value: { lo: 6 April 1898 CE }
+    source:
+      - ref: src:de-morgan-1900-fouilles-a-suse
+        loc: p. 106
+        quote: "Quelques jours plus tard, le 6 avril, la tranchée 7 a donnait"
+      - ref: src:louvre-victory-stele-of-naram-sin-notice
+        loc: technical description
+        quote: "J. de Morgan excavations, 1898"
+    method: documentary
+    note: >-
+      A one-sided bound: not before it was found. The Louvre's notice gives the excavation, not the day
+      the stele reached Paris, and no date for its arrival was found.
+  louvre-location:
+    prop: location
+    subject: "@louvre"
+    value: { lat: 48.861111, lon: 2.335833, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-louvre, loc: "Q19675, P625 coordinate location" }
+    method: gazetteer
+  louvre-frame:
+    prop: frame
+    subject: "@louvre"
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

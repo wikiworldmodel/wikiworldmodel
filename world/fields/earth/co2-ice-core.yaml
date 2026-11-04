@@ -1,0 +1,18 @@
+id: field:earth/co2-ice-core
+type: field
+title: Atmospheric CO₂, ice cores
+quantity: concentration of CO₂ in the atmosphere
+unit: ppm
+description: >-
+  CO₂ measured in the air trapped in Antarctic ice: the composite of Bereiter et al. (2015), as the
+  IPCC's Sixth Assessment Report tabulates it, which goes on from it with yearly values for 1850–2019.
+  It is measured, and far finer than the long series from proxies, which covers the same span too.
+grid: { kind: series }
+refines: field:earth/co2
+time: { lo: 805.669 ka, hi: 2019 CE }
+data:
+  from: src:ar6-wg1-fig2-4
+  columns: { time: "1", value: "2" }
+  time_unit: ka-b2k
+basis: evidence
+interp: linear

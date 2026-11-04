@@ -1,0 +1,21 @@
+id: src:lantink-2022-joffre-milankovitch
+type: publication
+kind: measurement
+citation: >-
+  Lantink, M.L., Davies, J.H.F.L., Ovtcharova, M. & Hilgen, F.J. (2022). Milankovitch cycles in
+  banded iron formations constrain the Earth–Moon system 2.46 billion years ago. Proceedings of
+  the National Academy of Sciences 119(40), e2117146119.
+authors:
+  - "Lantink, M.L."
+  - "Davies, J.H.F.L."
+  - "Ovtcharova, M."
+  - "Hilgen, F.J."
+published: 2022
+title: Milankovitch cycles in banded iron formations constrain the Earth–Moon system 2.46 billion years ago
+container: Proceedings of the National Academy of Sciences 119(40), e2117146119
+doi: 10.1073/pnas.2117146119
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full in the XML from Europe PMC (PMC9546617), without the SI Appendix. Quotes checked by
+    script against that text. Metadata from Crossref.

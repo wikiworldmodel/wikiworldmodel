@@ -1,0 +1,24 @@
+id: src:sorensen-2020-alum-shale
+type: publication
+kind: measurement
+citation: >-
+  Sørensen, A.L., Nielsen, A.T., Thibault, N., Zhao, Z., Schovsbo, N.H. & Dahl, T.W. (2020).
+  Astronomically forced climate change in the late Cambrian. Earth and Planetary Science Letters
+  548, 116475.
+authors:
+  - "Sørensen, A.L."
+  - "Nielsen, A.T."
+  - "Thibault, N."
+  - "Zhao, Z."
+  - "Schovsbo, N.H."
+  - "Dahl, T.W."
+published: 2020
+title: Astronomically forced climate change in the late Cambrian
+container: Earth and Planetary Science Letters 548, 116475
+doi: 10.1016/j.epsl.2020.116475
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, on the GEUS research portal (pub.geus.dk), and the same abstract at
+    geoloogia.info; the full text is paywalled. Quotes checked by script against the portal's text.
+    Metadata from Crossref.

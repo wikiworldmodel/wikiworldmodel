@@ -1,0 +1,31 @@
+id: people/dispersals/coopers-ferry
+kind: event/dispersal
+summary: >-
+  Stemmed points and other tools from the earliest occupation of Cooper's Ferry in western Idaho,
+  older than Clovis and older than the opening of the corridor between the ice sheets: taken by its
+  excavators to show that the first people came by the Pacific coast.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Cooper's Ferry" }
+    unsourced: An editorial label, from the place name.
+  date:
+    prop: date
+    value: { lo: 16.56 ka, hi: 15.28 ka }
+    source:
+      ref: src:davis-2019-coopers-ferry
+      loc: abstract
+      quote: "starting between 16,560 and 15,280 calibrated years before the present (cal yr B.P.)"
+    method: radiometric/radiocarbon
+  location:
+    prop: location
+    value: { lat: 45.906, lon: -116.396, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-coopers-ferry, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-129
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

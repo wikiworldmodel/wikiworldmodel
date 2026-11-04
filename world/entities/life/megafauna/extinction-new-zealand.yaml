@@ -1,0 +1,52 @@
+id: life/megafauna/extinction-new-zealand
+kind: event/extinction
+summary: >-
+  The loss of New Zealand's moa within about two centuries of the first people's arrival, the last
+  of the prehistoric megafauna extinctions, recent enough to date closely, and the one that Holdaway
+  et al. (2014) call clearly caused by people. Moa were still numerous and genetically stable when
+  the settlers came.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Extinction of the moa }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: { ref: life/taxa/dinornithiformes, edge: end }
+    source:
+      ref: src:allentoft-2014-moa
+      loc: abstract
+      quote: "The extinction of New Zealand's moa (Aves: Dinornithiformes) followed the arrival of humans in the late 13th century and was the final event of the prehistoric Late Quaternary megafauna extinctions."
+    note: >-
+      The date of the moa's end, so it follows whichever claim is chosen there. The other birds lost
+      in New Zealand at about this time, among them enormous raptors, are not dated here.
+  location:
+    prop: location
+    value: { lat: -44, lon: 170.5, frame: frame:earth/present-day }
+    unsourced: A representative point on the eastern South Island, chosen to place the marker; the event has no single location.
+    method: editorial
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-807
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  caused-by-people:
+    rel: caused-by
+    to: life/megafauna/new-zealand-settlement
+    source:
+      - ref: src:holdaway-2014-moa-population
+        loc: abstract
+        quote: "New Zealand moa (Aves: Dinornithiformes) are the only late Quaternary megafauna whose extinction was clearly caused by humans."
+      - ref: src:allentoft-2014-moa
+        loc: Significance
+        quote: "their demise therefore represents a striking example of human overexploitation of megafauna"
+      - ref: src:tomlinson-2023-moa-preprint
+        loc: Results, Extinction dynamics
+        quote: "anthropogenic hunting of birds and harvesting of eggs caused rapid population declines and range contractions of moa"
+    note: >-
+      In the default picture, and so in every picture: no source read disputes it, and Tomlinson et
+      al. find that climate was relatively constant here at the time.

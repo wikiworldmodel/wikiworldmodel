@@ -1,0 +1,73 @@
+id: life/transitions/reefs-coral-stromatoporoid
+kind: event/transition
+summary: >-
+  The coral–stromatoporoid reefs of the middle Paleozoic, the greatest reef system of the
+  Phanerozoic: tabulate and rugose corals with stromatoporoid sponges, from the Late Ordovician to
+  the Frasnian–Famennian extinction, with reef tracts far larger than any today.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Coral–stromatoporoid reefs }
+    unsourced: An editorial label.
+  cover:
+    prop: cover
+    value: reefs
+    unsourced: "How the renderer should treat this transition: an editorial classification."
+  start-copper-2011:
+    prop: start
+    value: { ref: ics/sandbian, edge: start }
+    source:
+      - ref: src:copper-2011-reef-prosperity
+        loc: abstract
+        quote: "From the beginning of the Late Ordovician (Sandbian: 460.9myr) through end Devonian (Famennian: 359.2myr), coral-stromatoporoid sponge reefs formed a remarkable, evolving ecosystem"
+      - ref: src:copper-2002-silurian-devonian-reefs
+        loc: abstract
+        quote: taking over from the Cambro-Ordovician mud mound-dominated reef spectrum
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Dated by the stage, so that it follows the chart in use; Copper's own 460.9 Ma is from another
+      time scale.
+  start-webby-2002:
+    prop: start
+    value: { ref: ics/darriwilian }
+    source:
+      ref: src:webby-2002-ordovician-reefs
+      loc: abstract
+      quote: an array of bryozoan-, stromatoporoid-, coral-, and sponge-dominated reefs
+    method: stratigraphic
+    note: >-
+      The latest Middle Ordovician expansion in eastern North America, just before the global one:
+      an earlier first appearance of the same builders.
+  end-copper-2011:
+    prop: end
+    value: { ref: earth/events/late-devonian-extinction, edge: start }
+    source:
+      - ref: src:copper-2011-reef-prosperity
+        loc: abstract
+        quote: The global absence of coral-sponge reefs persisted for nearly all of the 16 myr long Famennian
+      - ref: src:copper-2002-silurian-devonian-reefs
+        loc: abstract
+        quote: reef community was eliminated worldwide
+      - ref: src:flugel-kiessling-2002-reef-crises
+        loc: abstract
+        quote: We determined eight first-order reef crises (carbonate production loss > 90%)
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The gap that follows is not an absence of all reefs. Famennian buildups were built mainly by
+      calcimicrobes and stromatolites (Webb 2002), with lithistid sponges, algae and foraminifera, and
+      shallow-water reefs of that kind were widely distributed. No record here covers them: this cover
+      returns with the Viséan reefs. Reef building had also nearly stopped after the end-Ordovician
+      extinction, returning in full only by the late Aeronian (Copper 2011).
+  end-copper-2011-strunian:
+    prop: end
+    value: { ref: ics/famennian, edge: end }
+    source:
+      ref: src:copper-2011-reef-prosperity
+      loc: abstract
+      quote: Only small and scattered Famennian coral-stromatoporoid patch reefs are known, with the last of these in the late Famennian (Strunian)
+    method: stratigraphic
+    note: >-
+      The last of the builders rather than the end of the reef system.

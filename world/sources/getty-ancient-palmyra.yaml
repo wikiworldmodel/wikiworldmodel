@@ -1,0 +1,12 @@
+id: src:getty-ancient-palmyra
+type: publication
+kind: review
+citation: >-
+  Getty Research Institute. The Legacy of Ancient Palmyra: Ancient Palmyra. Online exhibition.
+title: "The Legacy of Ancient Palmyra: Ancient Palmyra"
+container: Getty Research Institute, exhibitions
+url: https://www.getty.edu/research/exhibitions_events/exhibitions/palmyra/ancient_palmyra.html
+reliability: A museum's summary, with no references on this page.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

@@ -1,0 +1,23 @@
+id: src:pbdb/taxon-83805
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, taxon 83805 (Megatherium americanum Cuvier 1796). Read through the PBDB
+  data service (data1.2) on 4 November 2026.
+container: "The Paleobiology Database"
+url: https://paleobiodb.org/classic/basicTaxonInfo?taxon_no=83805
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  The PBDB's working compilation. The one Huayquerian record is out of line with all the others
+  listed; it was not checked further.
+verified:
+  by: machine:claude-code
+  how: >-
+    taxa/single.json?name=Megatherium americanum&show=app,class,attr: txn:83805, rank species,
+    firstapp_max_ma 8, firstapp_min_ma 5. occs/list.json?base_name=Megatherium americanum: 37
+    occurrences; the oldest is occurrence 1429305, Cantera Vialidad, Huayquerian, 8–5 Ma; the next,
+    such as 600012 and 661691, are Pleistocene (2.58–0.0117 Ma).

@@ -1,0 +1,9 @@
+id: earth/plates/crete
+kind: plate
+summary: Plate 330 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Crete }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 330", quote: "CRT  Crete" }

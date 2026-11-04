@@ -1,6 +1,6 @@
 // The planet at the time shown: its state (the phase of its record, and any ice), then each
-// global series' value there, or a dash where the series has no value. Clicking a row opens
-// how it is known.
+// global series' value there. A series with no value then has no row then, and neither has one
+// with a finer series of the same quantity that has a value. Clicking a row opens how it is known.
 import type { Look } from '../../../core/planet.ts';
 import type { SeriesRecord } from '../../../core/records.ts';
 import { fmtValue, type SeriesValue } from './inspect.ts';
@@ -80,13 +80,16 @@ export class PlanetPanel {
         if (this.ice.title.textContent !== ice.label) this.ice.title.textContent = ice.label;
       }
     }
-    for (const s of this.series) {
+    const at = this.series.map((s) => valueAt(s, t));
+    const refined = new Set(this.series.flatMap((s, i) => (s.refines && at[i] ? [s.refines] : [])));
+    this.series.forEach((s, i) => {
       const r = this.rows.get(s.id)!;
-      const v = valueAt(s, t);
-      const text = v ? `${fmtValue(v.value)}${s.unit ? ` ${s.unit}` : ''}` : '—';
+      const v = at[i];
+      r.row.hidden = !v || refined.has(s.id);
+      if (!v) return;
+      const text = `${fmtValue(v.value)}${s.unit ? ` ${s.unit}` : ''}`;
       if (r.value.textContent !== text) r.value.textContent = text;
-      r.row.classList.toggle('projection', !!v && s.projectedAfter !== undefined && t > s.projectedAfter);
-      r.row.classList.toggle('empty', !v);
-    }
+      r.row.classList.toggle('projection', s.projectedAfter !== undefined && t > s.projectedAfter);
+    });
   }
 }

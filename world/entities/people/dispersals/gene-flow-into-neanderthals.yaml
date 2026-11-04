@@ -1,0 +1,60 @@
+id: people/dispersals/gene-flow-into-neanderthals
+kind: event/admixture
+summary: >-
+  Gene flow the other way: early modern humans, out of Africa long before the main dispersal, left
+  ancestry in Neanderthals. Li et al. (2024) find two waves; this record dates the later of them,
+  close to the date Kuhlwilm et al. (2016) gave. They set the earlier at about 200,000–250,000 years
+  ago.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Gene flow from early modern humans into Neanderthals }
+    unsourced: An editorial label.
+  date-li-2024:
+    prop: date
+    value: { lo: 120 ka, hi: 100 ka }
+    source:
+      - ref: src:li-2024-recurrent-gene-flow
+        loc: "graphical abstract, legend"
+        quote: "a second wave of modern human–to-Neanderthal gene flow occurred ~100 to 120 thousand years ago (ka)"
+      - ref: src:li-2024-recurrent-gene-flow
+        loc: "Results, Evidence for two distinct pulses"
+        quote: "the time of admixture was 200 ka or where the admixture fraction was 10% and the time of admixture was 250 ka"
+    method: molecular-clock
+    rank: preferred
+    note: >-
+      Preferred because it compares three Neanderthal genomes of different ages, with a model that
+      allows more than one pulse. The second citation is for the earlier wave, which is not dated by
+      this claim.
+  date-kuhlwilm-2016:
+    prop: date
+    value: 100 ka
+    source:
+      ref: src:kuhlwilm-2016-gene-flow
+      loc: abstract
+      quote: "contributed genetically to the ancestors of Neanderthals from the Altai Mountains roughly 100,000 years ago"
+    method: molecular-clock
+    note: In the Altai Neanderthal's ancestors; not detected in the two European Neanderthals, whose chromosome 21 alone was analysed.
+  ancestry:
+    prop: ancestry
+    value: { en: "An estimated 2.5–3.7% of the genomes of the Neanderthals sequenced comes from modern humans." }
+    source:
+      ref: src:li-2024-recurrent-gene-flow
+      loc: abstract
+      quote: "We estimate that Neanderthals have 2.5 to 3.7% human ancestry"
+relations:
+  before-the-main-dispersal:
+    rel: before
+    to: people/dispersals/out-of-africa-main
+    source:
+      ref: src:li-2024-recurrent-gene-flow
+      loc: Introduction
+      quote: "as a result of admixture that predates the out-of-Africa dispersal of ~60 thousand years ago (ka)"
+  during-the-neanderthals:
+    rel: during
+    to: life/taxa/homo-neanderthalensis
+    source:
+      ref: src:kuhlwilm-2016-gene-flow
+      loc: abstract
+      quote: "the ancestors of Neanderthals from the Altai Mountains and early modern humans met and interbred, possibly in the Near East"

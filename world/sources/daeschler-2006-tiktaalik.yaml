@@ -1,0 +1,19 @@
+id: src:daeschler-2006-tiktaalik
+type: publication
+kind: measurement
+citation: >-
+  Daeschler, E.B., Shubin, N.H. & Jenkins, F.A. (2006). A Devonian tetrapod-like fish and the
+  evolution of the tetrapod body plan. Nature 440(7085), 757–763.
+authors:
+  - "Daeschler, E.B."
+  - "Shubin, N.H."
+  - "Jenkins, F.A."
+published: 2006
+title: "A Devonian tetrapod-like fish and the evolution of the tetrapod body plan"
+container: Nature 440(7085), 757–763
+doi: 10.1038/nature04639
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 16598249); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

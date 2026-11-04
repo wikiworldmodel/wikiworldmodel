@@ -1,0 +1,43 @@
+id: life/taxa/brachychampsa
+kind: taxon
+summary: >-
+  An early alligatoroid of freshwater habitat, with a short blunt snout and crushing back teeth,
+  common among the crocodilians of the Hell Creek Formation.
+same_as: { pbdb: "txn:53185" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Brachychampsa" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 53185"
+  body-plan:
+    prop: body_plan
+    value: crocodilian
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: sprawling
+    source:
+      ref: src:reilly-elias-1998-alligator-locomotion
+      loc: "abstract"
+      quote: "crocodilians occasionally use a sprawling posture"
+    note: >-
+      Of living crocodilians, as a guide to their extinct relatives. They also walk in a
+      semi-erect "high walk"; the vocabulary has no such value, and this is the nearest.
+  length-walter-2025:
+    prop: body_length
+    value: 2.47
+    source:
+      - ref: src:walter-2025-crocodylian-body-size
+        loc: "Supplementary Data 2, Table S1, sheet \"Results\", row Brachychampsa_montana"
+        quote: "Brachychampsa_montana 21.93 161.2640011 196.7822894 196.7822894 247.7339681 247.4683794 266.5837708 315.1816979 366.0222456 UCMP 133901"
+      - ref: src:norell-1994-brachychampsa
+        loc: "Locality and horizon of UCMP 133901"
+        quote: "R. 106 W., Slope County, North Dakota. Specimen found in lag pocket in the basal part of a sandstone and mudstone filled chan- nel complex of the upper Hell Creek For- mation"
+    method: model
+    note: >-
+      The mean of a phylogenetic prediction from the head width of UCMP 133901 (21.93 cm),
+      247.47 cm with a 95% interval of 196.78–315.18 cm. That skull comes from the Hell Creek
+      Formation of North Dakota.

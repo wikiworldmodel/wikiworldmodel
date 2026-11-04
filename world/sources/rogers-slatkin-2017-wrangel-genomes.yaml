@@ -1,0 +1,18 @@
+id: src:rogers-slatkin-2017-wrangel-genomes
+type: publication
+kind: measurement
+citation: >-
+  Rogers, R.L. & Slatkin, M. (2017). Excess of genomic defects in a woolly mammoth on Wrangel
+  island. PLoS Genetics 13(3), e1006601.
+authors:
+  - "Rogers, R.L."
+  - "Slatkin, M."
+published: 2017
+title: "Excess of genomic defects in a woolly mammoth on Wrangel island"
+container: "PLoS Genetics 13(3), e1006601"
+doi: 10.1371/journal.pgen.1006601
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC5333797). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

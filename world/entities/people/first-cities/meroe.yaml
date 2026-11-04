@@ -1,0 +1,54 @@
+id: people/first-cities/meroe
+kind: settlement
+summary: >-
+  Meroë, on the east bank of the Nile in Sudan, royal residence and capital of the kingdom of Kush for about a thousand years, a town of mud-brick houses, temples, a palace and great mounds
+  of iron slag. Its end is tied to that of the Meroitic state in the fourth century CE, and an Aksumite force may have come there. No figure for its size or population could be read.
+author: machine:claude-code
+same_as: { wikidata: Q5780, pleiades: 805630 }
+claims:
+  name:
+    prop: name
+    value: { en: Meroë }
+    source:
+      ref: src:pleiades-meroe
+      loc: "place 805630, description"
+      quote: Meroë is an ancient city located on the east bank of the Nile river near Shendi, Sudan.
+  start:
+    prop: start
+    value: { lo: 900 BCE, hi: 701 BCE }
+    source:
+      - ref: src:shinnie-1999-meroe
+        loc: p. 13
+        quote: before the town of Meroe was first established, in perhaps the 8th or 9th centuries B.C.
+      - ref: src:brass-2015-meroitic-state
+        loc: section "The Socio-political Nature of the Meroitic State"
+        quote: when the elite capital relocated to Meroe
+    method: stratigraphic
+    note: >-
+      The excavator's "perhaps". Brass dates the move of the elite capital here to the mid fourth century BC, after a long earlier occupation: the site is older than its time as
+      the state's main capital.
+  end:
+    prop: end
+    value: 350 CE
+    source:
+      - ref: src:shinnie-1999-meroe
+        loc: p. 15
+        quote: In addition one Axumite coin dated to about A.D. 350 was found.
+      - ref: src:brass-2015-meroitic-state
+        loc: abstract
+        quote: existed from the late fourth century BC until the mid fourth century AD
+    method: expert-estimate
+    note: >-
+      The end of the state, taken for that of the capital; Shinnie says that end "has not been well understood", and that squatters had been living in the temples before they
+      were destroyed. When the last people left is not dated by what was read.
+  location:
+    prop: location
+    value: { lat: 16.936858, lon: 33.71192, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-meroe, loc: "place 805630, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-716
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

@@ -1,0 +1,27 @@
+id: src:masao-2016-laetoli
+type: publication
+kind: measurement
+citation: >-
+  Masao, F.T., Ichumbaki, E.B., Cherin, M., Barili, A., Boschian, G., Iurino, D.A., Menconero, S.,
+  Moggi-Cecchi, J. & Manzi, G. (2016). New footprints from Laetoli (Tanzania) provide evidence for
+  marked body size variation in early hominins. eLife 5, e19568.
+authors:
+  - "Masao, F.T."
+  - "Ichumbaki, E.B."
+  - "Cherin, M."
+  - "Barili, A."
+  - "Boschian, G."
+  - "Iurino, D.A."
+  - "Menconero, S."
+  - "Moggi-Cecchi, J."
+  - "Manzi, G."
+published: 2016
+title: "New footprints from Laetoli (Tanzania) provide evidence for marked body size variation in early hominins"
+container: "eLife 5, e19568"
+doi: 10.7554/elife.19568
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC5156529): the trackways of Sites G and S, the Footprint Tuff
+    within the Upper Laetolil Beds, and the age of 3.66 Ma, which it takes from Deino (2011).
+    Deino (2011) was not read. Quoted passages checked by script against the text retrieved.

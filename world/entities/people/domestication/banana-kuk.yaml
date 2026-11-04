@@ -1,0 +1,61 @@
+id: life/occurrences/banana-kuk
+kind: occurrence
+summary: >-
+  Banana phytoliths from the fills of cultivation features at Kuk Swamp in the New Guinea highlands,
+  6950–6440 cal BP, when mounding began there. Some match the local wild banana Musa acuminata subsp.
+  banksii, and stand as a minimum date for growing its descendants.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Banana, Kuk Swamp" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: M. acuminata subsp. banksii
+    source:
+      ref: src:perrier-2011-banana
+      loc: "Anchoring Banana Domestication in Time and Place"
+      quote: "Identifiable morphotypes with attributes matching the comparative reference samples of M. acuminata subsp. banksii from NG"
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      - ref: src:perrier-2011-banana
+        loc: "Anchoring Banana Domestication in Time and Place"
+        quote: "Abundant Musaceae phytoliths in feature fills associated with agricultural practices and dated to 6,950 to 6,440 cal BP at Kuk are indicative of banana cultivation"
+      - ref: src:denham-2003-kuk
+        loc: abstract
+        quote: "bananas (Musa spp.) were intensively cultivated by at least 6950 to 6440 cal yr B.P."
+    note: >-
+      What shows it is cultivated: abundance in worked ground, in a landscape being turned to
+      grassland. This is cultivation of a wild-type plant, not yet a seedless banana. Denham et al.
+      were read in abstract only.
+  location:
+    prop: location
+    value: { lat: -5.7825, lon: 144.33, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-kuk-swamp, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 6950 BP, hi: 6440 BP }
+    source:
+      ref: src:denham-2003-kuk
+      loc: abstract
+      quote: "mounding cultivation began by 6950 to 6440 cal yr B.P. (phase 2)"
+    method: radiometric/radiocarbon
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott207474 and ott99252: Musa acuminata lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/banana
+    source: { ref: src:perrier-2011-banana, loc: "Anchoring Banana Domestication in Time and Place" }

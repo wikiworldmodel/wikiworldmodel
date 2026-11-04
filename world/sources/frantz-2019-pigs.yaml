@@ -1,0 +1,26 @@
+id: src:frantz-2019-pigs
+type: publication
+kind: measurement
+citation: >-
+  Frantz, L.A.F., Haile, J., Lin, A.T., … & Larson, G. (2019). Ancient pigs reveal a
+  near-complete genomic turnover following their introduction to Europe. Proceedings of the
+  National Academy of Sciences 116(35), 17231–17238.
+authors:
+  - "Frantz, L.A.F."
+  - "Haile, J."
+  - "Lin, A.T."
+  - "Scheu, A."
+  - "Geörg, C."
+  - "Benecke, N."
+  - "Alexander, M."
+  - "Linderholm, A."
+# the first eight of 100 authors
+published: 2019
+title: "Ancient pigs reveal a near-complete genomic turnover following their introduction to Europe"
+container: "Proceedings of the National Academy of Sciences 116(35), 17231–17238"
+doi: 10.1073/pnas.1901169116
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC6717267) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

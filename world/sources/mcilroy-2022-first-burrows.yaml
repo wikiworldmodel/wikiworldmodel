@@ -1,0 +1,18 @@
+id: src:mcilroy-2022-first-burrows
+type: publication
+kind: review
+citation: >-
+  McIlroy, D. (2022). Were the First Trace Fossils Really Burrows or Could They Have Been Made
+  by Sediment-Displacive Chemosymbiotic Organisms?. Life 12(2), 136.
+authors:
+  - "McIlroy, D."
+published: 2022
+title: "Were the First Trace Fossils Really Burrows or Could They Have Been Made by Sediment-Displacive Chemosymbiotic Organisms?"
+container: Life 12(2), 136
+doi: 10.3390/life12020136
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC8880172) read via Europe PMC (fullTextXML): the definition of the base of
+    the Cambrian by the Treptichnus pedum Assemblage Zone at Fortune Head, and the figure of
+    T. pedum from there. Quotes checked by script against that text. Metadata from Crossref.

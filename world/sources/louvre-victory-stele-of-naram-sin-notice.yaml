@@ -1,0 +1,15 @@
+id: src:louvre-victory-stele-of-naram-sin-notice
+type: publication
+kind: review
+citation: >-
+  Pouysségur, P. Victory Stele of Naram-Sin. Musée du Louvre, work notice.
+authors:
+  - "Pouysségur, P."
+title: Victory Stele of Naram-Sin
+url: https://web.archive.org/web/20191012152342/https://www.louvre.fr/en/oeuvre-notices/victory-stele-naram-sin
+reliability: The notice of the department that holds the stele.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the copy archived on 12 October 2019 at web.archive.org. Quotations checked by script
+    against its text.

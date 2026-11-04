@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-106
+type: frame
+kind: plate
+title: Arctic Islands (PALEOMAP plate 106)
+entity: earth/plates/arctic-islands
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 106
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 106

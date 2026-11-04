@@ -1,0 +1,58 @@
+id: life/occurrences/ardipithecus-ramidus-aramis
+kind: occurrence
+summary: >-
+  More than 110 specimens of Ardipithecus ramidus from the Aramis area of the Middle Awash, Ethiopia,
+  including the partial skeleton known as Ardi. PBDB collection 22160.
+same_as: { pbdb: "occ:656690", wikidata: Q433259 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Ardipithecus ramidus (Ardi), Aramis" }
+    unsourced: An editorial label, from the taxon, the skeleton's popular name and the place.
+  identified:
+    prop: identified_as
+    value: Ardipithecus ramidus
+    source:
+      ref: src:white-2009-ardipithecus
+      loc: abstract
+      quote: "More than 110 specimens recovered from 4.4-million-year-old sediments include a partial skeleton with much of the skull, hands, feet, limbs, and pelvis."
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:white-2009-ardipithecus, loc: abstract }
+  location:
+    prop: location
+    value: { lat: 10.5167, lon: 40.466702, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-22160, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: The PBDB assigns the point to the head of the Aramis stream.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-716
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Lower Aramis Member
+    source:
+      ref: src:woldegabriel-2009-aramis
+      loc: abstract
+      quote: "The Lower Aramis Member hominid-bearing unit"
+  date:
+    prop: date
+    value: 4.4 Ma
+    source:
+      ref: src:woldegabriel-2009-aramis
+      loc: abstract
+      quote: "is sandwiched between two volcanic tuffs that have nearly identical 40Ar/39Ar ages"
+    method: radiometric/ar-ar
+    note: >-
+      Dated by the two tuffs above and below the hominid-bearing unit. The same abstract gives the
+      age of the sediments as 4.4 million years; it does not give the tuffs' ages or uncertainties.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/ardipithecus-ramidus
+    source: { ref: src:white-2009-ardipithecus, loc: abstract }

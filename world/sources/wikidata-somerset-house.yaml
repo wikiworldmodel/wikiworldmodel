@@ -1,0 +1,12 @@
+id: src:wikidata-somerset-house
+type: database-record
+kind: compilation
+citation: "Wikidata, item Q1344889 (Somerset House, building on the Strand, London), property P625 (coordinate location)."
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q1344889
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a marker to within a few hundred metres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (51.511111, -0.117778) read from the item's JSON (Special:EntityData/Q1344889.json).

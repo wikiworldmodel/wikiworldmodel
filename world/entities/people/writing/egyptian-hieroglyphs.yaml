@@ -1,0 +1,60 @@
+id: people/writing/egyptian-hieroglyphs
+kind: development/script
+summary: >-
+  The Egyptian writing system in its hieroglyphic form, whose first forms are the signs from Tomb U-j at Abydos, late in the fourth millennium BCE. How far those signs write language is
+  open: their readings rest on later values, and Stauder calls them an incipient form of writing. The last dated hieroglyphic inscription is of 394 CE.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Egyptian hieroglyphs }
+    source:
+      ref: src:lam-2010-alphabet
+      loc: p. 189
+      quote: Mesopotamian cuneiform and Egyptian hieroglyphs
+  start:
+    prop: start
+    value: { ref: people/writing/abydos-tomb-u-j }
+    source:
+      ref: src:stauder-2010-earliest-egyptian-writing
+      loc: p. 137
+      quote: “proto-royal” Tomb U-j which produced the as yet earliest evidence of writing in Egypt
+    method: radiometric/radiocarbon
+    note: The date is the tomb's. Earlier pot marks and images are not counted as writing, in Stauder's account, for they do not record language.
+  end:
+    prop: end
+    value: 394 CE
+    source:
+      ref: src:woods-2010-visible-language
+      loc: p. 13 (Time Line of Writing)
+      quote: 394 Last dated hieroglyphic inscription
+    method: documentary
+    note: The last dated inscription; the page's dates are headed approximate.
+  decipherment:
+    prop: decipherment
+    value: deciphered
+    source:
+      ref: src:lam-2010-alphabet
+      loc: p. 189
+      quote: (thus requiring them to be deciphered by modern scholars)
+    note: For the developed script. Stauder warns that readings of the Tomb U-j signs may project later values back on them.
+  location:
+    prop: location
+    value: { lat: 26.174912, lon: 31.907992, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-umm-el-qaab, loc: "place 438681814, representative point" }
+    method: gazetteer
+    note: Marked at Umm el-Qa'ab, where it is first attested.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  first-attestation:
+    rel: evidenced-by
+    to: people/writing/abydos-tomb-u-j
+    source:
+      ref: src:stauder-2010-earliest-egyptian-writing
+      loc: p. 138
+      quote: The first forms of emerging writing were found in the “proto-royal” Tomb U-j in the Umm el-Qaʾab cemetery, in the vicinity of This/Abydos in Upper Egypt

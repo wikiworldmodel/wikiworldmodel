@@ -1,0 +1,54 @@
+id: life/taxa/pachycephalosaurus
+kind: taxon
+summary: >-
+  The largest dome-headed dinosaur. The flat-headed and spiked skulls named Dracorex and
+  Stygimoloch, which the snapshot counts here, are read as its younger growth stages.
+same_as: { pbdb: "txn:38786" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Pachycephalosaurus", en: "Pachycephalosaurus" }
+    source:
+      - ref: src:pbdb-hell-creek-2026-11-04
+        loc: "taxon 38786"
+      - ref: src:horner-goodwin-2009-pachycephalosaurus
+        loc: "abstract"
+        quote: "the purported diagnostic characters for the pachycephalosaurids Dracorex hogwartsia and Stygimoloch spinifer are ontogenetically derived features"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: pachycephalosaur
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: biped
+    source:
+      ref: src:peterson-vittore-2012-pachycephalosaurus
+      loc: "Introduction"
+      quote: "are a group of bipedal ornithischian dinosaurs"
+  length-holtz-2012:
+    prop: body_length
+    value: 7
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 49, Pachycephalosaurids"
+      quote: "Pachycephalosaurus thickheaded reptile Late Cretaceous (66.8-65.5.MYA) 23 ft (7 m) Grizzly bear"
+    method: compilation
+    note: >-
+      The only length read: a whole-genus figure with no measurement behind it. It looks long
+      for the mass below, and no skeleton of the genus is known well enough to test it. A
+      reviewer should look at this first.
+  mass-benson-2014:
+    prop: body_mass
+    value: 369.9
+    source:
+      ref: src:benson-2014-dinosaur-body-mass
+      loc: "Dataset S1, sheet \"Mass estimates\", row Pachycephalosaurus_wyomingensis (Triebold specimen cast)"
+      quote: "Pachycephalosaurus_wyomingensis 369.900325554555 369.900325554555 measured circumferences"
+    method: model
+    note: >-
+      Scaled from the femoral circumference of a cast of a skeleton from the Hell Creek or Lance
+      Formation.

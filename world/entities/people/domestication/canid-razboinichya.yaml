@@ -1,0 +1,74 @@
+id: life/occurrences/canid-razboinichya
+kind: occurrence
+summary: >-
+  The skull and jaws of a dog-like canid from Razboinichya Cave in the Altai, directly dated to about
+  33,000 years ago in three laboratories. Its shape is most like that of domestic dogs from Greenland,
+  and its describers read it as an incipient dog from a domestication that the last ice age cut off.
+  Others count such finds among disputed early claims, and nothing links it to living dogs.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Dog-like canid, Razboinichya Cave" }
+    unsourced: An editorial label, from the description and the site.
+  identified:
+    prop: identified_as
+    value: dog-like canid
+    source:
+      ref: src:ovodov-2011-razboinichya
+      loc: abstract
+      quote: "the well-preserved remains of a dog-like canid from the Razboinichya Cave"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:ovodov-2011-razboinichya
+      loc: abstract
+      quote: "the Razboinichya Cave individual is most similar to fully domesticated dogs from Greenland (about 1000 years old), and unlike ancient and modern wolves"
+    note: >-
+      What suggests it is domestic: the skull's shape alone. No tie to people is claimed in the abstract,
+      and wolves and early dogs can be hard to tell apart.
+  location:
+    prop: location
+    value: { lat: 51.3, lon: 84.466667, frame: frame:earth/present-day }
+    source:
+      ref: src:ovodov-2011-razboinichya
+      loc: Introduction
+      quote: "Razboinichya [Bandit's] Cave in Altai Mountains of southern Siberia (51°18′N, 84°28′E)"
+    method: survey
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-401
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 33 ka
+    source:
+      ref: src:ovodov-2011-razboinichya
+      loc: abstract
+      quote: "Direct AMS radiocarbon dating of the skull and mandible of the Razboinichya canid conducted in three independent laboratories resulted in highly compatible ages, with average value of ca. 33,000 cal BP."
+    method: radiometric/radiocarbon
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott247333 and ott244265: Canis lupus familiaris lies within Mammalia" }
+    note: >-
+      Placed at the mammals, not with dogs, because whether it is one is the dispute.
+  domestication:
+    rel: part-of
+    to: people/domestication/dog
+    source:
+      - ref: src:ovodov-2011-razboinichya
+        loc: abstract
+        quote: "appears to be an incipient dog that did not give rise to late Glacial – early Holocene lineages"
+      - ref: src:bergstrom-2020-dogs
+        loc: "Assessing the relationship between dog and human population histories"
+        quote: "though older (3, 31), disputed specimens (49, 50), have been claimed"
+    rank: deprecated
+    note: >-
+      Kept, but it does not bind the date of the dog's domestication: Ovodov et al. (ref. 31 there) are
+      among the claims Bergström et al. call disputed, and in their own reading this was a
+      dead end.

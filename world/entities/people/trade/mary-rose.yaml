@@ -1,0 +1,33 @@
+id: people/trade/mary-rose
+kind: event/shipwreck
+summary: >-
+  Henry VIII's warship, built from 1509 and lost in the Solent on 19 July 1545, in the Battle of the Solent, with most of her
+  crew. Silt filled half of her hull within months, and that half was recovered over 400 years later with her contents and
+  her dead. She was no trader, and is here as the last and the best dated of these wrecks.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Mary Rose }
+    source: { ref: src:scorrer-2021-mary-rose, loc: Abstract, quote: "The great Tudor warship, the Mary Rose" }
+  date:
+    prop: date
+    value: 19 July 1545 CE
+    source:
+      ref: src:scorrer-2021-mary-rose
+      loc: Introduction
+      quote: "On 19 July 1545, during the Battle of the Solent, off the south coast of England, the Mary Rose sank resulting in the deaths of the vast majority of her crew"
+    method: historical-account
+    note: In the Julian calendar, as England then used.
+  location:
+    prop: location
+    value: { lat: 50.763904, lon: -1.104232, frame: frame:earth/present-day }
+    source: { ref: src:planning-data-mary-rose, loc: "entity 12800031, point" }
+    method: gazetteer
+    note: The centre of the protected area around the site. The raised hull is now at Portsmouth Historic Dockyard.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

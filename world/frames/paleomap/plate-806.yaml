@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-806
+type: frame
+kind: plate
+title: North New Zealand (PALEOMAP plate 806)
+entity: earth/plates/north-new-zealand
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 806
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 806

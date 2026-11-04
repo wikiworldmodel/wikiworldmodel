@@ -1,0 +1,53 @@
+id: life/taxa/homo-erectus
+kind: taxon
+summary: >-
+  Homo erectus (Dubois 1892), the long-lived species of Africa and Asia. Taken here in the broad
+  sense, with the fossils some assign to Homo ergaster or Homo georgicus.
+same_as: { ott: 3607671, pbdb: "txn:83084", wikidata: Q101362 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Homo erectus, la: "Homo erectus" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83084: Homo erectus (Dubois 1892)" }
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83084: rank 3 (species)" }
+  start-herries-2020:
+    prop: start
+    value: { lo: 2.04 Ma, hi: 1.95 Ma }
+    source:
+      ref: src:herries-2020-drimolen
+      loc: abstract
+      quote: "At ~2.04 million to 1.95 million years old, DNH 152 represents the earliest definitive occurrence of Paranthropus robustus, and DNH 134 represents the earliest occurrence of a cranium with clear affinities to Homo erectus"
+    rank: preferred
+    note: >-
+      The Drimolen cranium DNH 134, the oldest assigned to this species in what was read; it is not
+      a record here, so its age is written on the species. The abstract read does not say how it was
+      dated. Preferred because it is the oldest, and rests on a cranium.
+  start-hammond-2021:
+    prop: start
+    value: { hi: 1.855 Ma }
+    source:
+      ref: src:hammond-2021-er-2598
+      loc: abstract
+      quote: "the locality is stratigraphically positioned below the KBS Tuff and the outcrops show no evidence of deflation of a younger unit, supporting an age of >1.855 Ma"
+    method: stratigraphic
+    note: >-
+      The occipital KNM-ER 2598 from East Turkana, dated by its place below the KBS Tuff; this paper
+      calls it among the oldest fossils attributed to the species.
+  end:
+    prop: end
+    value: { ref: life/occurrences/homo-erectus-ngandong, edge: end }
+    source:
+      ref: src:rizal-2020-ngandong
+      loc: abstract
+      quote: "solidify Ngandong as the last known occurrence of this long-lived species"
+    note: The species' end is taken to be its last known occurrence; it may have survived later.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83084 < Homo (txn:40901) < Hominini (txn:91486)" }
+    note: The tree here has no record for the genus Homo, so each species hangs directly on the tribe.

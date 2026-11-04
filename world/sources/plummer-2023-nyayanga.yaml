@@ -1,0 +1,31 @@
+id: src:plummer-2023-nyayanga
+type: publication
+kind: measurement
+citation: >-
+  Plummer, T.W., Oliver, J.S., Finestone, E.M., Ditchfield, P.W., Bishop, L.C., Blumenthal, S.A.,
+  Lemorini, C., Caricola, I., Bailey, S.E., Herries, A.I.R. et al. (2023). Expanded geographic
+  distribution and dietary strategies of the earliest Oldowan hominins and Paranthropus. Science
+  379(6632), 561–566.
+authors:
+  - "Plummer, T.W."
+  - "Oliver, J.S."
+  - "Finestone, E.M."
+  - "Ditchfield, P.W."
+  - "Bishop, L.C."
+  - "Blumenthal, S.A."
+  - "Lemorini, C."
+  - "Caricola, I."
+  - "Bailey, S.E."
+  - "Herries, A.I.R."
+published: 2023
+title: "Expanded geographic distribution and dietary strategies of the earliest Oldowan hominins and Paranthropus"
+container: "Science 379(6632), 561–566"
+doi: 10.1126/science.abo7452
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 32 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 36758076): Oldowan sites at Nyayanga dated to 3.032
+    to 2.581 million years, with Paranthropus teeth. It does not name the dating methods. Quoted
+    passages checked by script against the text retrieved.

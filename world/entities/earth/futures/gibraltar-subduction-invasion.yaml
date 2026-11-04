@@ -1,0 +1,29 @@
+id: earth/futures/gibraltar-subduction-invasion
+kind: event/transition
+summary: >-
+  The subduction zone under the Strait of Gibraltar spreads out into the Atlantic, in one geodynamic
+  model: after slowing almost to a stop for some 20 million years more, its trench speeds up, widens and
+  moves oceanward. It would be a third such zone in the Atlantic, after the Lesser Antilles and Scotia,
+  and a way for the ocean to begin to close. Few authors consider this subduction zone still active.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Gibraltar subduction zone advances into the Atlantic }
+    unsourced: An editorial label, close to the title of the paper.
+  start:
+    prop: start
+    value: 20 Myr from now
+    source:
+      - ref: src:duarte-2024-gibraltar-subduction
+        loc: section "Geodynamic model of the Western Mediterranean and the Gibraltar Arc", preprint PDF p. 6
+        quote: From present-day, the trench retreat velocity continues to decelerate for another 20 m.y., when it almost stops
+      - ref: src:duarte-2024-gibraltar-subduction
+        loc: section "Geodynamic model of the Western Mediterranean and the Gibraltar Arc", preprint PDF p. 6
+        quote: after this point, the trench retreat velocity slowly speeds up, and the subduction zone widens and propagates oceanward
+    method: model
+    basis: projection
+    note: >-
+      From the paper's reference model, run about 40 m.y. into the future, without an uncertainty. A wider
+      oceanic corridor in other runs makes the advance faster, and a narrower one slower. The paper argues
+      against those who hold that the subduction zone has stopped, because it has slowed so much.

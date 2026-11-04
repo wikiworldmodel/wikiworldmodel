@@ -1,0 +1,18 @@
+id: src:williams-1990-tidal-rhythmites
+type: publication
+kind: review
+citation: >-
+  Williams, G.E. (1990). Tidal rhythmites: Key to the history of the Earth's rotation and the lunar
+  orbit. Journal of Physics of the Earth 38(6), 475–491.
+authors:
+  - "Williams, G.E."
+published: 1990
+title: "Tidal rhythmites: Key to the history of the Earth's rotation and the lunar orbit"
+container: Journal of Physics of the Earth 38(6), 475–491
+doi: 10.4294/jpe1952.38.475
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full in the scanned PDF on J-STAGE. Its text layer garbles some signs (±, ~, °, ′):
+    quotes were checked by script against that text with those signs mapped back, and the mapping
+    and Tables 1 to 3 against the pages as rendered.

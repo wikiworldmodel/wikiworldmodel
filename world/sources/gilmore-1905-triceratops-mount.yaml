@@ -1,0 +1,17 @@
+id: src:gilmore-1905-triceratops-mount
+type: publication
+kind: measurement
+citation: >-
+  Gilmore, C.W. (1905). The mounted skeleton of Triceratops prorsus. Proceedings of the United
+  States National Museum 29(1426), 433–435.
+authors:
+  - "Gilmore, C.W."
+published: 1905
+title: "The mounted skeleton of Triceratops prorsus"
+container: "Proceedings of the United States National Museum 29(1426), 433–435"
+url: https://archive.org/details/biostor-79027
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the OCR text of the archive.org scan (BioStor); quotes checked by script against
+    that text, which reads "inches" as "indies" once.

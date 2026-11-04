@@ -1,0 +1,128 @@
+id: life/megafauna/extinction-northern-eurasia
+kind: event/extinction
+summary: >-
+  The staggered loss of the large animals of northern Eurasia, among them the cave bear, the woolly
+  rhinoceros, the giant deer and the woolly mammoth, each in its own time and place from the cold
+  stadials of the last glaciation into the Holocene. Its record is among the best of any region, and
+  it is still not agreed how much was people and how much climate. It has no one date: the range
+  here is the whole of it, not the uncertainty of one moment.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Megafauna extinctions in northern Eurasia }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: { lo: 60 ka, hi: 5 ka }
+    source:
+      - ref: src:svenning-2024-late-quaternary-extinctions
+        loc: Extinction patterns, Temporal patterns
+        quote: "Extinctions in Eurasia occurred in different regions at different times during this 60–5 ky span"
+      - ref: src:stuart-2015-megafaunal-extinctions
+        loc: abstract
+        quote: "For northern Eurasia, detailed chronologies show a staggered extinction pattern, in which each megafaunal species exhibits unique and complex distributional shifts, culminating in extinction for some species and survival in others."
+    method: expert-estimate
+    note: >-
+      All of Eurasia in Svenning et al., who cite Stuart (2015). The kind records one date, so a
+      range stands in for several pulses. Barnosky et al. (2004) see two: warm-adapted animals from
+      45 to 20, and cold-adapted ones from 12 to 9 thousand radiocarbon years ago. The last
+      mammoths, on Wrangel Island, outlast this range by about a thousand years.
+  location:
+    prop: location
+    value: { lat: 60, lon: 90, frame: frame:earth/present-day }
+    unsourced: A representative point in central Siberia, chosen to place the marker; the event has no single location.
+    method: editorial
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-401
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  evidenced-by-tumat:
+    rel: evidenced-by
+    to: life/megafauna/rhinoceros-tumat
+    source:
+      ref: src:gudjonsdottir-2026-woolly-rhinoceros
+      loc: Introduction
+      quote: "very few remains exist from around the estimated time of extinction"
+  evidenced-by-wrangel-island:
+    rel: evidenced-by
+    to: life/megafauna/mammoth-wrangel-island
+    source:
+      ref: src:arppe-2019-wrangel-mammoth-isotopes
+      loc: abstract
+      quote: "The world's last population of woolly mammoths"
+    note: >-
+      Wrangel Island lies at the far northeast of Eurasia, and this date falls after the range the
+      event is given, which is for the mainland.
+  caused-by-people:
+    rel: caused-by
+    to: people/dispersals/bacho-kiro-cave
+    alt: alt:megafauna-causes/human-driven
+    source:
+      - ref: src:svenning-2024-late-quaternary-extinctions
+        loc: Extinction drivers, Human causation
+        quote: "the global analyses strongly support human causation, and even indicate little or no interaction with climate change"
+      - ref: src:gretzinger-2019-cave-bear-mitogenomes
+        loc: abstract
+        quote: "our study supports a potential significant human role in the general extinction and local extirpation of the European cave bear"
+    note: >-
+      Holds only in the alternative "Driven by people". This is the weakest region for it: Sandom et
+      al. (2014) find their one link to climate here, and pre-sapiens hominins had lived with these
+      animals for hundreds of thousands of years. Bacho Kiro, the earliest modern humans in Europe
+      directly dated, stands for the coming of people who hunted more widely and grew more numerous.
+  caused-by-warming:
+    rel: caused-by
+    to: life/megafauna/interstadial-warming-events
+    alt: alt:megafauna-causes/climate-driven
+    source:
+      - ref: src:cooper-2015-abrupt-warming
+        loc: abstract
+        quote: "rapid climate changes associated with interstadial warming events are strongly associated with the regional replacement or extinction of major genetic clades or species of megafauna"
+      - ref: src:stuart-2004-giant-deer-mammoth
+        loc: abstract
+        quote: "both giant deer and woolly mammoth underwent dramatic shifts in distribution, driven largely by climatic/vegetational changes"
+      - ref: src:lord-2020-woolly-rhinoceros
+        loc: abstract
+        quote: "may have thus been sudden and mostly driven by rapid warming in the Bølling-Allerød interstadial"
+      - ref: src:lorenzen-2011-late-quaternary-megafauna
+        loc: abstract
+        quote: "climate change alone can explain the extinction of some species, such as Eurasian musk ox and woolly rhinoceros"
+      - ref: src:wang-2021-arctic-edna
+        loc: abstract
+        quote: "humans appear to have been a minor factor in driving animal distributions"
+    note: >-
+      Holds only in the alternative "Driven by climate". The record names the warmings of the last
+      glaciation together because climate cut at different times for different animals: the last of
+      them, the Bølling–Allerød, for the woolly rhinoceros (Lord et al.), and other changes for
+      others. Baca et al. (2016) blame the cold of Greenland Stadial 3 for the cave bear, and Lister
+      & Stuart (2019, Quaternary International 500, 185–203; abstract) find the giant deer of the
+      east going with the spread of closed forest, though also with the arrival of probably sparse
+      people.
+  both-people:
+    rel: caused-by
+    to: people/dispersals/bacho-kiro-cave
+    alt: alt:megafauna-causes/both
+    source:
+      - ref: src:fordham-2024-woolly-rhinoceros
+        loc: Significance
+        quote: "a combination of climate-driven habitat fragmentation and low but persistent levels of hunting by humans weakened metapopulation processes and caused their extinction"
+      - ref: src:nogues-bravo-2008-woolly-mammoth
+        loc: abstract
+        quote: "The coincidence of the disappearance of climatically suitable areas for woolly mammoths and the increase in anthropogenic impacts in the Holocene, the coup de grâce, likely set the place and time for the extinction of the woolly mammoth."
+    note: >-
+      Holds only in the alternative "People and climate together". Each for one species; Stiller et
+      al. (2010, Molecular Biology and Evolution 27, 975–978; abstract) reach a like conclusion for
+      the cave bear, with people competing for its caves.
+  both-warming:
+    rel: caused-by
+    to: life/megafauna/interstadial-warming-events
+    alt: alt:megafauna-causes/both
+    source:
+      ref: src:barnosky-2004-pleistocene-extinctions
+      loc: "p. 74"
+      quote: "The recent information now points toward humans precipitating the extinction, but also to an instrumental role for late Pleistocene climatic change in controlling its timing, geographic details, and perhaps magnitude."
+    note: Holds only in the alternative "People and climate together".

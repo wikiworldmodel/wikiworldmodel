@@ -1,0 +1,25 @@
+id: src:clinton-1845-fasti-romani
+type: publication
+kind: compilation
+citation: >-
+  Clinton, H.F. (1845). Fasti Romani: The Civil and Literary Chronology of Rome and
+  Constantinople from the Death of Augustus to the Death of Justin II, vol. 1, Tables. Oxford:
+  University Press.
+authors:
+  - "Clinton, H.F."
+published: 1845
+title: Fasti Romani, vol. 1
+container: Oxford, University Press
+url: https://archive.org/details/in.ernet.dli.2015.228223
+via: The Internet Archive's scan (Digital Library of India).
+reliability: >-
+  An old but thorough year-by-year table of consuls and events that prints the ancient testimony
+  for each date and argues between them. It predates the papyri and inscriptions that later
+  settled some days.
+verified:
+  by: machine:claude-code
+  how: >-
+    Pp. 84 (a. 98), 148 (a. 161), 326 (a. 284) and 366 (a. 313) read in the page images of the
+    scan (leaves n104, n166, n344 and n384); the OCR garbles them, so the quotations were
+    compared with a transcription made from the images. Other entries consulted in the OCR only,
+    and not cited.

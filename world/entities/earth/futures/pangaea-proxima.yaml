@@ -1,0 +1,83 @@
+id: earth/futures/pangaea-proxima
+kind: event/formation
+summary: >-
+  The assembly of Pangaea Proxima, a future supercontinent formed by the closing of the Atlantic, with
+  a remnant of the Indian Ocean trapped inside it. It happens only in the alternative of that name, so
+  it has no date in the default picture.
+author: machine:claude-code
+same_as: { wikidata: Q646762 }
+claims:
+  name:
+    prop: name
+    value: { en: Pangaea Proxima }
+    source:
+      - ref: src:duarte-2018-aurica
+        loc: section 5, p. 51
+        quote: is formed by introversion and was named Pangaea Proxima (Scotese, 2007)
+      - ref: src:murphy-2025-review-tectonic-history
+        loc: on the concluding chapter of the book, p. 313
+        quote: dubbed “Pangaea Proxima” by Scotese (2020)
+    rank: preferred
+    note: >-
+      Scotese's later name for what he first called Pangea Ultima, as others report it: Duarte et al. cite
+      for it the page that as read now says Ultima, and Murphy an animation of 2020 that was not read.
+      Preferred because it is his later name, though Ultima is still in use.
+  name-pangea-ultima:
+    prop: name
+    value: { en: Pangea Ultima }
+    source:
+      - ref: src:scotese-paleomap-pangea-ultima
+        loc: future2.htm, heading
+        quote: '"Pangea Ultima" will form 250 million years in the Future'
+      - ref: src:scotese-paleomap-pangea-ultima
+        loc: newpage11.htm
+        quote: 'We call this future Pangea, "Pangea Ultima", because it is the final Pangea.'
+    note: Scotese's first name for it, still used by Davies et al. (2018) and Farnsworth et al. (2023).
+  date:
+    prop: date
+    value: 250 Myr from now
+    alt: alt:next-supercontinent/pangaea-proxima
+    source:
+      - ref: src:scotese-paleomap-pangea-ultima
+        loc: future2.htm, heading
+        quote: '"Pangea Ultima" will form 250 million years in the Future'
+      - ref: src:davies-2018-next-supercontinent
+        loc: section 4.1
+        quote: In 250 Ma, Pangea Ultima has formed, with a remnant of ancient Indian and Atlantic Ocean forming an inland sea of the supercontinent.
+      - ref: src:davies-2020-future-tides
+        loc: section 3.1, p. 294
+        quote: When Pangaea Ultima forms at 250 Ma
+      - ref: src:farnsworth-2023-next-supercontinent
+        loc: abstract, p. 901
+        quote: In ~250 Myr, all continents will converge to form Earth’s next supercontinent, Pangea Ultima.
+    method: model
+    basis: projection
+    rank: preferred
+    note: >-
+      Holds only in the alternative "Pangaea Proxima". No uncertainty is given. Davies et al. rebuilt the
+      scenario in a plate model and kept its date; Scotese himself is an author of Farnsworth et al.
+      Preferred because it is the date on Scotese's own page and in the comparison of the four scenarios.
+  date-park-2025:
+    prop: date
+    value: 225 Myr from now
+    alt: alt:next-supercontinent/pangaea-proxima
+    source:
+      ref: src:murphy-2025-review-tectonic-history
+      loc: on the concluding chapter of the book, p. 313
+      quote: dubbed “Pangaea Proxima” by Scotese (2020), in about 225 million years
+    method: model
+    basis: projection
+    note: >-
+      Holds only in the alternative "Pangaea Proxima". Park's textbook, using Scotese's reconstructions,
+      as its reviewer reports it; the book itself was not read.
+relations:
+  caused-by-atlantic-closing:
+    rel: caused-by
+    to: earth/futures/atlantic-closing
+    alt: alt:next-supercontinent/pangaea-proxima
+    source:
+      ref: src:scotese-paleomap-pangea-ultima
+      loc: future2.htm
+      quote: will form as a result of the subduction of the ocean floor of the North and South Atlantic beneath eastern North America and South America
+    basis: projection
+    note: Holds only in the alternative "Pangaea Proxima".

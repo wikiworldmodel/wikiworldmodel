@@ -3,7 +3,7 @@
 A detailed, sourced history of Earth, life and civilization in four dimensions, and a viewer
 for flying through it. The design is in [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md).
 
-Five slices are built:
+Six slices are built:
 
 - **Cambrian to today** runs through every layer of the design: plates, terrain and
   coastlines from 540 Ma to the present, with sourced entities, the geologic periods and an
@@ -27,6 +27,11 @@ Five slices are built:
   generated fabric of houses and streets, marked as generated, whose density follows the
   Regionary Catalogues. Monuments rise and fall with their dates, in a 3D view with its own
   sky, shadows and water ([docs/FIFTH-SLICE.md](docs/FIFTH-SLICE.md)).
+- **Life at a place and a time** paints the land from a climate for every time since the
+  Cambrian and from what had come to exist by then; adds a tree of life beside the globe, whose
+  groups light up their fossils; and lets you fly down into the Hell Creek at 66.5 Ma, a generated
+  floodplain where every animal and plant is a taxon with a fossil in the formation, sized from
+  the literature, and marked as placed by a generator ([docs/SIXTH-SLICE.md](docs/SIXTH-SLICE.md)).
 
 Each document says what its slice contains, how it follows the design, the decisions behind
 it and its limitations. Hand-written example records for every record type, and the gaps
@@ -36,8 +41,9 @@ The plan for opening the project to contributors and putting it on a public site
 [docs/PUBLIC-PROJECT.md](docs/PUBLIC-PROJECT.md), and the site's landing page is in
 [site/](site/README.md). To contribute, people and agents alike, start with
 [CONTRIBUTING.md](CONTRIBUTING.md) and [AGENTS.md](AGENTS.md); what the world still lacks is
-outlined in [docs/DATA-OUTLINE.md](docs/DATA-OUTLINE.md), and what comes next in
-[docs/ROADMAP.md](docs/ROADMAP.md).
+outlined in [docs/DATA-OUTLINE.md](docs/DATA-OUTLINE.md), what comes next in
+[docs/ROADMAP.md](docs/ROADMAP.md), and where each of its record sets stands, with what a reviewer
+should look at first, in [docs/RECORD-SETS.md](docs/RECORD-SETS.md).
 
 ## Quick start
 

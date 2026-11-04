@@ -1,0 +1,31 @@
+id: src:carlson-2026-limb-strength
+type: publication
+kind: measurement
+citation: >-
+  Carlson, K.J., Ruff, C.B., Burgess, M.L., Sylvester, A.D., Jashashvili, T., Heaton, J.L.,
+  Pickering, T.R., Sarringhaus, L., Ryan, T.M., Beaudet, A. et al. (2026). Proportional limb
+  strengths signal an adaptive shift in arboreality in early human evolution. Science Advances
+  12(38), eaeh1752.
+authors:
+  - "Carlson, K.J."
+  - "Ruff, C.B."
+  - "Burgess, M.L."
+  - "Sylvester, A.D."
+  - "Jashashvili, T."
+  - "Heaton, J.L."
+  - "Pickering, T.R."
+  - "Sarringhaus, L."
+  - "Ryan, T.M."
+  - "Beaudet, A."
+published: 2026
+title: "Proportional limb strengths signal an adaptive shift in arboreality in early human evolution"
+container: "Science Advances 12(38), eaeh1752"
+doi: 10.1126/sciadv.aeh1752
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 16 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC13580597): Table 2, which lists fossil specimens with a date
+    for each: A.L. 288-1 at 3.18 Ma, StW 573 as A. prometheus at 3.67 Ma. Quoted passages checked
+    by script against the text retrieved.

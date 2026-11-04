@@ -1,0 +1,15 @@
+id: src:odp-208-leg-summary
+type: publication
+kind: measurement
+citation: >-
+  Shipboard Scientific Party (2004). Leg 208 summary. In Zachos, J.C., Kroon, D., Blum, P., et al.,
+  Proceedings of the Ocean Drilling Program, Initial Reports 208.
+published: 2004
+title: Leg 208 summary
+container: Proceedings of the Ocean Drilling Program, Initial Reports 208
+doi: 10.2973/odp.proc.ir.208.101.2004
+verified:
+  by: machine:claude-code
+  how: >-
+    The site summaries of the chapter's PDF, from the Ocean Drilling Program's site
+    (www-odp.tamu.edu/publications/208_IR). Quote checked by script against the PDF's text.

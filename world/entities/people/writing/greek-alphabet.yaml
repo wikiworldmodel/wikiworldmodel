@@ -1,0 +1,65 @@
+id: people/writing/greek-alphabet
+kind: development/script
+summary: >-
+  The Greek alphabet, adapted from a West Semitic alphabet with signs for the vowels. Its oldest surviving inscriptions are of the eighth century BCE, such as the Dipylon jug at Athens, the Nestor cup at Pithekoussai and a cup from Methone, and
+  they are already spread across the Greek world. Whether it was taken over shortly before them, or centuries earlier, is argued; the record here starts from what survives.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Greek alphabet }
+    source:
+      ref: src:lam-2010-alphabet
+      loc: p. 193
+      quote: According to classical tradition, the Greek alphabet was borrowed from the Phoenicians
+  start-dipylon:
+    prop: start
+    value: { ref: people/writing/dipylon-oinochoe }
+    source:
+      - ref: src:waal-2018-phoenician-letters
+        loc: p. 86
+        quote: the oldest extant Greek inscriptions can be dated to the 8th century bc
+      - ref: src:lam-2010-alphabet
+        loc: p. 193
+        quote: a scenario that would fit well with the appearance of the oldest Greek inscriptions in the eighth century bc
+      - ref: src:papadopoulos-2016-greek-alphabet
+        loc: abstract
+        quote: from an absence of writing in the ninth century BC to casual usage, including jokes, by 725 BC
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      What survives, and in Waal's word the prevalent opinion. One find is named to stand for the eighth-century group. A flask from Osteria dell'Osa near Gabii, in a context of 830–770 BC, may be older, but its language cannot be
+      established (Waal 2018, p. 100, n. 37).
+  start-early-transmission:
+    prop: start
+    value: { hi: 1001 BCE }
+    source:
+      - ref: src:waal-2018-phoenician-letters
+        loc: abstract
+        quote: to argue the case for an introduction in the 11th century bc at the latest
+      - ref: src:lam-2010-alphabet
+        loc: p. 193
+        quote: some scholars have argued for an earlier divergence from Proto-Canaanite (in the eleventh century)
+    method: expert-estimate
+    note: >-
+      The minority view: early writing on perishable materials, now lost. It rests on letter forms and writing direction, not on any find. Lam says it cannot be embraced unreservedly until further inscriptions emerge.
+  location:
+    prop: location
+    value: { lat: 37.978416, lon: 23.718301, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-kerameikos, loc: "place 97294452, representative point" }
+    method: gazetteer
+    note: Marked at the Kerameikos in Athens, for the Dipylon jug. The first inscriptions are spread too widely for one place to stand for the origin.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  first-attestation:
+    rel: evidenced-by
+    to: people/writing/dipylon-oinochoe
+    source:
+      ref: src:waal-2018-phoenician-letters
+      loc: p. 102
+      quote: some of the oldest known inscriptions, such as the Nestor cup of Pithekoussai, the Dipylon inscription from Athens

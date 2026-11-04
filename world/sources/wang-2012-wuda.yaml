@@ -1,0 +1,21 @@
+id: src:wang-2012-wuda
+type: publication
+kind: measurement
+citation: >-
+  Wang, J., Pfefferkorn, H.W., Zhang, Y. & Feng, Z. (2012). Permian vegetational Pompeii from
+  Inner Mongolia and its implications for landscape paleoecology and paleobiogeography of
+  Cathaysia. Proceedings of the National Academy of Sciences 109(13), 4927–4932.
+authors:
+  - "Wang, J."
+  - "Pfefferkorn, H.W."
+  - "Zhang, Y."
+  - "Feng, Z."
+published: 2012
+title: "Permian vegetational Pompeii from Inner Mongolia and its implications for landscape paleoecology and paleobiogeography of Cathaysia"
+container: Proceedings of the National Academy of Sciences 109(13), 4927–4932
+doi: 10.1073/pnas.1115076109
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from PubMed Central (PMC3323960); the parts cited were read, and quotes
+    checked by script against that page's text. Metadata from Crossref.

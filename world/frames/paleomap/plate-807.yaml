@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-807
+type: frame
+kind: plate
+title: South New Zealand (PALEOMAP plate 807)
+entity: earth/plates/south-new-zealand
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 807
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 807

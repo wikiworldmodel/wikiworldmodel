@@ -1,0 +1,89 @@
+id: people/rulers/caracalla
+kind: person
+summary: >-
+  Son of Severus, who had his brother and colleague Geta killed, and was himself killed on the
+  road to Carrhae.
+author: machine:claude-code
+same_as: { wikidata: Q1446 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Caracalla }
+    source:
+      ref: src:historia-augusta
+      loc: "Magie's note 17 to Septimius Severus"
+      quote: His elder son Bassianus (Caracalla)
+  start-dio:
+    prop: start
+    value: 4 April 188 CE
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Book 79, vol. 9 p. 353"
+      quote: after living twenty-nine years and four days (for he had been born on the fourth of April)
+    method: historical-account
+    rank: preferred
+    note: >-
+      The year follows from the twenty-nine years before April 217. Dio lived through the reign.
+  start-magie:
+    prop: start
+    value: 4 April 186 CE
+    source:
+      ref: src:historia-augusta
+      loc: "Magie's note 17 to Septimius Severus"
+      quote: His elder son Bassianus (Caracalla) was born at Lyons on the 4th April, 186
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Magie's year, which does not fit Dio's count. The Historia Augusta's own figure,
+      forty-three years at his death, fits neither.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/septimius-severus, edge: end }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Book 79, vol. 9 p. 353"
+      quote: and after ruling six years, two months, and two days
+    method: historical-account
+    note: His rule after his father's death, at first with Geta; Dio's count runs from then.
+  end:
+    prop: end
+    value: 8 April 217 CE
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Book 79, vol. 9 p. 349"
+      quote: On the eighth of April, when the emperor had set out from Edessa for Carrhae
+    method: historical-account
+    note: The year follows from Dio's length of the reign from February 211.
+  location:
+    prop: location
+    value: { lat: 45.758866, lon: 4.819482, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-lugdunum
+        loc: "representative point"
+      - ref: src:historia-augusta
+        loc: "Magie's note 17 to Septimius Severus"
+        quote: was born at Lyons
+    method: gazetteer
+    note: Marked at his birthplace as Magie's note gives it, at Pleiades' point for Lugdunum.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:historia-augusta
+      loc: "Caracalla 9.1"
+      quote: ruled for six
+    note: Emperor.

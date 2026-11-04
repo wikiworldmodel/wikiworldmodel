@@ -1,0 +1,16 @@
+id: field:earth/roman-roads
+type: field
+title: The roads of the Roman Empire
+description: >-
+  The roads of the Roman Empire, as Itiner-e maps them: rows of that dataset, thinned for the globe.
+  Most of their courses are conjectured, and they are drawn faintly for it; hardly any have dates of
+  their own, so most are drawn for the whole of the span the dataset describes.
+grid: { kind: rows }
+time: { lo: 300 BCE, hi: 300 CE }
+data:
+  from: src:itinere-2024
+  as: routes
+basis: reconstruction
+params:
+  # How far a road may stray from the dataset's line, in degrees: about two kilometres.
+  tolerance_deg: 0.02

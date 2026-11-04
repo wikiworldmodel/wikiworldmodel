@@ -1,0 +1,38 @@
+id: earth/futures/novopangaea
+kind: event/formation
+summary: >-
+  The assembly of Novopangaea, a future supercontinent formed by the closing of the Pacific, on the
+  far side of the globe from where Pangaea stood. It happens only in the alternative of that name, so
+  it has no date in the default picture.
+author: machine:claude-code
+same_as: { wikidata: Q3237086 }
+claims:
+  name:
+    prop: name
+    value: { en: Novopangaea }
+    source:
+      - ref: src:duarte-2018-aurica
+        loc: section 5, p. 51
+        quote: This supercontinent was named Novopangaea by Roy Livermore in a BBC documentary
+      - ref: src:davies-2020-future-tides
+        loc: section 1, p. 292
+        quote: Novopangaea (Nield, 2007)
+    note: Davies et al. credit the scenario to Nield's book, which was not read, and in 2018 spell it Novopangea.
+  date:
+    prop: date
+    value: 200 Myr from now
+    alt: alt:next-supercontinent/novopangaea
+    source:
+      - ref: src:davies-2018-next-supercontinent
+        loc: section 4.2
+        quote: In 200 Ma, Novopangea is fully formed
+      - ref: src:davies-2020-future-tides
+        loc: section 3.2, p. 294
+        quote: at the antipodes of Pangaea in 200 Ma
+    method: model
+    basis: projection
+    note: >-
+      Holds only in the alternative "Novopangaea". The date of the plate model Davies et al. built from
+      Nield's scenario, without an uncertainty. Elsewhere (section 5.2) they write that it "will start
+      forming in roughly 200 Ma", and they think their slow plates may overestimate all these dates. Duarte
+      et al. (2018, section 5) reckon instead that at present rates the Pacific may close in about 300 Ma.

@@ -1,0 +1,19 @@
+id: src:norell-1994-brachychampsa
+type: publication
+kind: measurement
+citation: >-
+  Norell, M.A., Clark, J.M. & Hutchison, J.H. (1994). The Late Cretaceous alligatoroid
+  Brachychampsa montana (Crocodylia): new material and putative relationships. American Museum
+  Novitates 3116.
+authors:
+  - "Norell, M.A."
+  - "Clark, J.M."
+  - "Hutchison, J.H."
+published: 1994
+title: "The Late Cretaceous alligatoroid Brachychampsa montana (Crocodylia): new material and putative relationships"
+container: "American Museum Novitates 3116"
+url: https://archive.org/details/latecretaceousa3116nore
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the OCR text of the archive.org scan; quotes checked by script against that text.

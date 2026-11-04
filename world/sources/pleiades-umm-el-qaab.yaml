@@ -1,0 +1,15 @@
+id: src:pleiades-umm-el-qaab
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 438681814, "Umm el-Qa'ab" (Abydos, Egypt).
+snapshot: "2026-11-04"
+container: Pleiades
+url: https://pleiades.stoa.org/places/438681814
+license: CC-BY-3.0
+reliability: A scholarly gazetteer of ancient places.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/438681814/json) read directly on 4 November 2026:
+    representative point 26.174912°N, 31.907992°E.

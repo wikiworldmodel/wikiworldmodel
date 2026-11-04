@@ -1,0 +1,58 @@
+id: life/taxa/megaloceros-giganteus
+kind: taxon
+summary: >-
+  The giant deer or Irish elk, with antlers up to 4 m across. It disappeared from western Europe
+  around the start of the Younger Dryas, and lasted some thousands of years longer in the east, into
+  the Holocene of the Urals, Siberia and European Russia.
+same_as: { ott: 789247, pbdb: "txn:149393" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: giant deer, la: "Megaloceros giganteus" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott789247: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-immel-2015:
+    prop: start
+    value: 400 ka
+    source:
+      ref: src:immel-2015-giant-deer-mitogenomes
+      loc: Introduction
+      quote: "Appearing in the fossil record around 400,000 years ago (ya)"
+    method: expert-estimate
+  end-rey-iglesia-2021:
+    prop: end
+    value: 7660 BP
+    source:
+      - ref: src:rey-iglesia-2021-giant-deer
+        loc: abstract
+        quote: "became extinct in the Holocene, around 7660 calendar years before present"
+      - ref: src:stuart-2004-giant-deer-mammoth
+        loc: abstract
+        quote: "survived to around 6,900 radiocarbon yr bp (about 7,700 yr ago) in western Siberia"
+      - ref: src:lister-stuart-2019-giant-deer
+        loc: abstract
+        quote: "Newly-rediscovered skeletal material of giant deer from the Maloarchangelsk region of European Russia has provided the latest date for the species known so far"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      Preferred as the most recent figure read for the species as a whole. Stuart et al. (2004)
+      moved the end by more than three millennia. Lister & Stuart (2019) do not give their latest
+      date in the abstract, the only part read, so it may or may not be the one behind this figure.
+  end-van-der-plicht-2015:
+    prop: end
+    value: { lo: 7900 BP, hi: 7600 BP }
+    source:
+      ref: src:van-der-plicht-2015-giant-deer-siberia
+      loc: "abstract, p. 182"
+      quote: "which was reduced to the Trans-Urals region at 7000–6800 BP (ca 7900–7600 cal BP)"
+    method: radiometric/radiocarbon
+    note: >-
+      The last refuge as a span rather than a point, in the Trans-Urals, after a larger one in
+      Western Siberia at about 8800–7900 cal BP. The figures are the abstract's own rounded
+      calibration.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott789247, lineage: Megaloceros < Cervinae < Cervidae < Pecora < Ruminantia < Artiodactyla < Laurasiatheria < Boreoeutheria < Eutheria < Theria < Mammalia" }

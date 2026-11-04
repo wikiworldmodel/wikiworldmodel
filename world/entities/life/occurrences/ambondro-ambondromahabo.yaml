@@ -14,6 +14,10 @@ claims:
     prop: identified_as
     value: Ambondro mahabo n. gen. n. sp.
     source: { ref: src:pbdb/collection-92151, loc: "occurrence 832285, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: -16.549999, lon: 46.983334, frame: frame:earth/present-day }

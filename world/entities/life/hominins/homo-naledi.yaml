@@ -1,0 +1,29 @@
+id: life/taxa/homo-naledi
+kind: taxon
+summary: >-
+  Homo naledi Berger et al. 2015, from the Rising Star cave system in South Africa: a small-brained
+  hominin with human-like hands and feet that lived late, alongside early Homo sapiens in Africa.
+same_as: { ott: 6145143, pbdb: "txn:384458", wikidata: Q20962857 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Homo naledi, la: "Homo naledi" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:384458: Homo naledi, Berger et al. 2015" }
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:384458: rank 3 (species)" }
+  end:
+    prop: end
+    value: unknown
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:384458: is_extant 0" }
+    note: The species is extinct; when it died out is not recorded here.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source:
+      - { ref: src:pbdb/hominin-taxa, loc: "taxon txn:384458 < Homo (txn:40901) < Hominini (txn:91486)" }
+      - { ref: src:berger-2015-naledi, loc: title, quote: "Homo naledi, a new species of the genus Homo from the Dinaledi Chamber, South Africa" }
+    note: The tree here has no record for the genus Homo, so each species hangs directly on the tribe.

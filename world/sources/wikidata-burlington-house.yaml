@@ -1,0 +1,12 @@
+id: src:wikidata-burlington-house
+type: database-record
+kind: compilation
+citation: "Wikidata, item Q225471 (Burlington House, building on Piccadilly, London), property P625 (coordinate location)."
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q225471
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a marker to within a few hundred metres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (51.508889, -0.139444) read from the item's JSON (Special:EntityData/Q225471.json).

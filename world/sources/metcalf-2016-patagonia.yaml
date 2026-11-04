@@ -1,0 +1,23 @@
+id: src:metcalf-2016-patagonia
+type: publication
+kind: measurement
+citation: >-
+  Metcalf, J.L., Turney, C., Barnett, R., Martin, F., Bray, S.C., Vilstrup, J.T., Orlando, L.,
+  Salas-Gismondi, R., Loponte, D., Medina, M., … & Cooper, A. (2016). Synergistic roles of climate
+  warming and human occupation in Patagonian megafaunal extinctions during the Last Deglaciation.
+  Science Advances 2(6), e1501682.
+authors:
+  - "Metcalf, J.L."
+  - "Turney, C."
+  - "Barnett, R."
+  - "Martin, F."
+  - "Cooper, A."
+published: 2016
+title: "Synergistic roles of climate warming and human occupation in Patagonian megafaunal extinctions during the Last Deglaciation"
+container: "Science Advances 2(6), e1501682"
+doi: 10.1126/sciadv.1501682
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC4928889). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

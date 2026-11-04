@@ -1,0 +1,20 @@
+id: src:bunbury-2022-maori-settlement
+type: publication
+kind: measurement
+citation: >-
+  Bunbury, M.M.E., Petchey, F. & Bickler, S.H. (2022). A new chronology for the Māori settlement of
+  Aotearoa (NZ) and the potential role of climate change in demographic developments. Proceedings of
+  the National Academy of Sciences of the USA 119(46), e2207609119.
+authors:
+  - "Bunbury, M.M.E."
+  - "Petchey, F."
+  - "Bickler, S.H."
+published: 2022
+title: "A new chronology for the Māori settlement of Aotearoa (NZ) and the potential role of climate change in demographic developments"
+container: "Proceedings of the National Academy of Sciences of the USA 119(46), e2207609119"
+doi: 10.1073/pnas.2207609119
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC9674228). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

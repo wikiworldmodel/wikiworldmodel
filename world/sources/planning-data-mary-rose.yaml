@@ -1,0 +1,12 @@
+id: src:planning-data-mary-rose
+type: database-record
+kind: compilation
+citation: >-
+  Planning Data (UK government), dataset protected-wreck-site: entity 12800031, "Mary Rose", reference 1000075.
+snapshot: "2026-11-04"
+container: planning.data.gov.uk
+url: https://www.planning.data.gov.uk/entity/12800031
+reliability: The record's quality is given as authoritative, and it comes from Historic England, whose own list entry 1000075 answered 403 from here. The point is the centre of the designated area.
+verified:
+  by: machine:claude-code
+  how: The entity's JSON read directly on 4 November 2026 (entry date 2026-02-07); point -1.104232, 50.763904.

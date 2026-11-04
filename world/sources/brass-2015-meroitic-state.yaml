@@ -1,0 +1,17 @@
+id: src:brass-2015-meroitic-state
+type: publication
+kind: review
+citation: >-
+  Brass, M. (2015). Interactions and Pastoralism Along the Southern and Southeastern Frontiers of the Meroitic State, Sudan. Journal of
+  World Prehistory 28(4), 255–288.
+authors:
+  - "Brass, M."
+published: 2015
+title: Interactions and Pastoralism Along the Southern and Southeastern Frontiers of the Meroitic State, Sudan
+container: Journal of World Prehistory
+doi: 10.1007/s10963-015-9089-1
+url: https://europepmc.org/article/PMC/PMC4856204
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC4856204). Quotes checked by script against it, after normalizing whitespace.

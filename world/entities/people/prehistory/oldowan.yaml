@@ -1,0 +1,92 @@
+id: people/prehistory/oldowan
+kind: industry
+summary: >-
+  The Oldowan, the free-hand knapping of flakes from cores, named for tools at Olduvai Gorge and found
+  across Africa, its first known sites between about 2.9 and 2.6 million years old. It has no location
+  of its own here: its first occurrences are the claims on its start, and its finds are its members.
+same_as: { wikidata: Q746287 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Oldowan }
+    source:
+      ref: src:semaw-1997-gona
+      loc: abstract
+      quote: "The Oldowan Stone tool industry was named for 1.8-million-year-old (Myr) artefacts found near the bottom of Olduvai Gorge, Tanzania."
+  start-plummer-2023:
+    prop: start
+    value: { lo: 3.032 Ma, hi: 2.581 Ma }
+    source:
+      - ref: src:plummer-2023-nyayanga
+        loc: abstract
+        quote: "We describe sites at Nyayanga, Kenya, dated to 3.032 to 2.581 million years ago"
+      - ref: src:key-2026-hominins-culture
+        loc: "section 2(a)"
+        quote: "are observed from ca 2.90 Ma at Nyayanga, Kenya"
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Nyayanga, the oldest first occurrence in what was read. The range is that of the upper Gauss
+      Chron, in which Braun et al. (2025) say the assemblage lies; the abstract read does not name
+      the methods. Key (2026) reads it as about 2.90 Ma. Preferred because the other first occurrences
+      all fall within or after this range.
+  start-braun-2025:
+    prop: start
+    value: { hi: 2.75 Ma }
+    source:
+      ref: src:braun-2025-namorotukunan
+      loc: abstract
+      quote: "The site comprises three distinct archaeological horizons spanning approximately 300,000 years (2.75 - 2.44 Ma)."
+    method: stratigraphic
+    note: >-
+      Namorotukunan, in the Koobi Fora Formation, Kenya, from an age model of tephra markers and
+      palaeomagnetic reversals. Key and Williams (2026) list a wider range for its lowest horizon.
+  start-semaw-1997:
+    prop: start
+    value: { lo: 2.6 Ma, hi: 2.5 Ma }
+    source:
+      ref: src:semaw-1997-gona
+      loc: abstract
+      quote: "These occurrences are now securely dated between 2.6-2.5 Myr."
+    method: radiometric
+    note: Gona, Ethiopia, the first to be dated this old, by radioisotopic ages and a magnetic polarity stratigraphy.
+  start-key-2026:
+    prop: start
+    value: { lo: 3.44 Ma, hi: 3.15 Ma }
+    source:
+      ref: src:key-2026-hominins-culture
+      loc: "section 2(b)"
+      quote: "places the technology's emergence between 3 147 690 and 3 435 008 years ago (3.15–3.44 Ma)"
+    method: model
+    note: >-
+      Not a find but a statistical estimate of the unseen start, from optimal linear estimation on
+      the Oldowan sites known, which the author calls over-precise. It could take in Lomekwi 3.
+  end:
+    prop: end
+    value: unknown
+    unsourced: No source read dates the last Oldowan; the survey read stops at 1.5 million years ago by its own design.
+relations:
+  made-by-homo-habilis:
+    rel: made-by
+    to: life/taxa/homo-habilis
+    source:
+      - ref: src:key-2026-hominins-culture
+        loc: "section 3"
+        quote: "In East Africa, the early-to-mid Oldowan is strongly associated with early Homo (H. habilis and H. rudolfensis)"
+      - ref: src:shea-2026-stone-tools-extinctions
+        loc: "text before Table 2"
+        quote: "we cannot and should not assume those hominins made those stone tools"
+    confidence: about-as-likely-as-not
+    note: >-
+      An association, not a demonstration, as Shea (2026) warns. Up to 15 hominin taxa overlap with
+      the Oldowan in time, by Key's count.
+  made-by-paranthropus-boisei:
+    rel: made-by
+    to: life/taxa/paranthropus-boisei
+    source:
+      ref: src:key-2026-hominins-culture
+      loc: "section 3"
+      quote: "Similar contextual associations exist with early Homo and P. boisei at Olduvai Gorge, Tanzania"
+    confidence: about-as-likely-as-not
+    note: Also an association; Plummer et al. (2023) find Paranthropus teeth with the tools at Nyayanga.

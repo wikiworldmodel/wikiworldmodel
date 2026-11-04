@@ -1,0 +1,14 @@
+id: src:wikipedia-zhang-qian
+type: publication
+kind: review
+citation: >-
+  Wikipedia contributors. Zhang Qian. Wikipedia, revision 1383369246.
+title: Zhang Qian
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Zhang_Qian&oldid=1383369246
+reliability: >-
+  Cited only for the years usually given for the first mission, because nothing better that names them could be read. The
+  article gives 126 BC in a caption and 125 BC in its text.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

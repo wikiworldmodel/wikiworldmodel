@@ -1,0 +1,21 @@
+id: src:chatters-2022-chiquihuite
+type: publication
+kind: review
+citation: >-
+  Chatters, J.C., Potter, B.A., Prentiss, A.M., … & Haynes, C.V. (2022). Evaluating Claims of Early
+  Human Occupation at Chiquihuite Cave, Mexico. PaleoAmerica 8(1), 1–16.
+authors:
+  - "Chatters, J.C."
+  - "Potter, B.A."
+  - "Prentiss, A.M."
+  - "Haynes, C.V."
+published: 2022
+title: "Evaluating Claims of Early Human Occupation at Chiquihuite Cave, Mexico"
+container: "PaleoAmerica 8(1), 1–16"
+doi: 10.1080/20555563.2021.1940441
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract and bibliographic record read on the University of Arizona's research portal
+    (experts.arizona.edu); the full text was not available here. Quotes checked by script against
+    the abstract.

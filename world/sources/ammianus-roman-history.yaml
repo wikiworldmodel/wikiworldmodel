@@ -1,0 +1,21 @@
+id: src:ammianus-roman-history
+type: text
+kind: historian
+citation: >-
+  Ammianus Marcellinus, The Roman History (Res Gestae). Translated by J. C. Rolfe, Loeb Classical
+  Library, vol. 1, 1935.
+published: 1935
+title: The Roman History of Ammianus Marcellinus
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Ammian/17*.html
+license: public-domain
+via: LacusCurtius, which reproduces Rolfe's public-domain Loeb translation.
+reliability: >-
+  A soldier and historian of the fourth century, who says he saw the obelisks at Thebes himself. He
+  tells at length how Constantine and Constantius moved the obelisk now at the Lateran, but the
+  details of the hieroglyphic text he adds are unreliable, as the editor's notes say.
+verified:
+  by: machine:claude-code
+  how: >-
+    Books 16 and 17 read in Rolfe's translation on LacusCurtius (16.10.17; 17.4.1-23, with the
+    Loeb editor's notes). Quotations checked by script against the page text with whitespace
+    normalized.

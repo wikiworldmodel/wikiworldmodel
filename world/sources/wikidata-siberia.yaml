@@ -1,0 +1,17 @@
+id: src:wikidata-siberia
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q5428 (Siberia), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q5428
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "geographical region of Russia comprising North Asia". A
+  point for the named place, of uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (60, 105) read from the item's JSON (Special:EntityData/Q5428.json) on 3
+    November 2026.

@@ -1,0 +1,50 @@
+id: life/transitions/pterosaur-flight
+kind: event/transition
+summary: >-
+  The first vertebrates to fly under power, the pterosaurs, known first from the Norian, more than 60 million years before the earliest birds. Their nearest relatives, the lagerpetids,
+  did not fly, and a gap of form and of time still separates the two. They lasted to the end of the Cretaceous.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First flying vertebrates }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { ref: ics/norian }
+    source:
+      - ref: src:dalla-vecchia-2019-seazzadactylus
+        loc: "Introduction, first paragraph"
+        quote: "Late Triassic (Norian) pterosaurs are the oldest ones found to date"
+      - ref: src:foffa-2025-pterosauromorphs
+        loc: "Main, first paragraph"
+        quote: "Pterosaurs were the first vertebrates to evolve powered flight, more than 60 million years before the earliest birds."
+    method: stratigraphic
+    note: >-
+      Within the stage, since no oldest specimen is singled out in what was read. Foffa et al. stress the gap between pterosaurs and their closest relatives, so flight may be older than the
+      first fossils, by an unknown margin.
+  end:
+    prop: end
+    value: { ref: ics/cretaceous, edge: end }
+    source:
+      ref: src:britt-2018-caelestiventus
+      loc: abstract
+      quote: "Originating in the Late Triassic, they thrived to the end of the Cretaceous."
+    method: stratigraphic
+relations:
+  evidence-preondactylus:
+    rel: evidenced-by
+    to: life/occurrences/preondactylus-dolomia-di-forni
+    source:
+      ref: src:dalla-vecchia-2019-seazzadactylus
+      loc: "Significance of the new taxon"
+      quote: "the pterosaur genera and species from the Dolomia di Forni Formation increase to four (the others are Preondactylus buffarinii, Austriadactylus cristatus and Carniadactylus rosenfeldi)"
+  evidence-eotephradactylus:
+    rel: evidenced-by
+    to: life/occurrences/eotephradactylus-owl-rock
+    source:
+      ref: src:kligman-2025-pfv-393
+      loc: "Discussion"
+      quote: "represents the first radioisotopically dated Triassic pterosaur-bearing bone bed"
+    note: >-
+      Not the oldest, but the oldest with a date from the bed itself.

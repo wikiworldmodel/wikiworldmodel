@@ -1,0 +1,75 @@
+id: people/trade/madrague-de-giens
+kind: event/shipwreck
+summary: >-
+  A great Roman freighter, about 40 m long, that sank off the peninsula of Giens in Provence in the second quarter of the
+  first century BCE with some 6,000 amphorae of wine from the plain of Fondi in Latium and crates of Campanian tableware,
+  probably bound for the Gulf of Fos and the Rhône. Excavated from 1972 to 1982, it was France's demonstration that a
+  wreck could be dug as rigorously as a site on land.
+author: machine:claude-code
+same_as: { wikidata: Q6728460 }
+claims:
+  name:
+    prop: name
+    value: { en: Madrague de Giens shipwreck, fr: Épave de la Madrague de Giens }
+    source: { ref: src:carre-2018-madrague-de-giens, loc: "p. 57", quote: "L ’épave de la Madrague de Giens a été fouillée entre 1972 et" }
+  date:
+    prop: date
+    value: { lo: 70 BCE, hi: 45 BCE }
+    source:
+      ref: src:carre-2018-madrague-de-giens
+      loc: "p. 57, title"
+      quote: "(HYÈRES, VAR, 70-45 AV. J.-C.)"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      The latest word read from the excavation's team. The same paper's text says "deuxième quart du ier s. av. J.-C."; Pomey
+      (1982) has "vers le milieu du ier siècle av. J.-C.". The final report of 1978 was not read, so what the date rests
+      on is not said here.
+  date-culture:
+    prop: date
+    value: { lo: 75 BCE, hi: 60 BCE }
+    source:
+      ref: src:culture-gouv-madrague-de-giens
+      loc: "section '1972-1982'"
+      quote: "Sunk some time between 75 and 60 BC"
+    method: expert-estimate
+  date-oxrep:
+    prop: date
+    value: { lo: 70 BCE, hi: 50 BCE }
+    source: { ref: src:oxrep-shipwrecks-2.1, loc: "Wreck ID 8023, Earliest Date, Latest Date" }
+    method: typological
+    note: The database's range, from the goods on board by its own account of its dates.
+  location:
+    prop: location
+    value: { lat: 43.0333, lon: 6.1, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-madrague-de-giens, loc: "Q6728460, P625 coordinate location" }
+      - { ref: src:oxrep-shipwrecks-2.1, loc: "Wreck ID 8023, Latitude, Longitude" }
+    method: gazetteer
+    note: To about a kilometre, and not to be taken as exact, as the database warns of its points.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value: { en: "About 6,000 amphorae of wine from the plain of Fondi in Latium, and some crates of tableware and cookware from Campania." }
+    source:
+      - ref: src:carre-2018-madrague-de-giens
+        loc: "p. 57, 'Le navire et sa cargaison'"
+        quote: "était chargé d’environ 6 000 amphores contenant du vin de la plaine de Fondi"
+      - ref: src:carre-2018-madrague-de-giens
+        loc: "p. 57, 'Le navire et sa cargaison'"
+        quote: "dans le Latium et de quelques caisses de vaisselle de table et de cuisine de Campanie."
+      - ref: src:culture-gouv-madrague-de-giens
+        loc: "section 'An impressive cargo'"
+        quote: "Excavations brought to light 6,000 Roman wine amphorae of type Dressel 1B loaded in staggered rows."
+  voyage:
+    prop: voyage
+    value: { en: "From Latium, probably bound for the Gulf of Fos, for the goods to go on up the Rhône valley." }
+    source:
+      ref: src:carre-2018-madrague-de-giens
+      loc: "p. 57, 'Le navire et sa cargaison'"
+      quote: "sans atteindre sa destination, probablement le golfe de Fos, où les marchandises qu’il transportait auraient été réacheminées vers la vallée du Rhône."

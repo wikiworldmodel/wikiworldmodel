@@ -1,0 +1,88 @@
+id: life/transitions/flowering-plants
+kind: event/transition
+summary: >-
+  The first flowering plants, and their rise. Their pollen appears in the Valanginian, and whole plants a little later; Jurassic flowers and Triassic pollen have been claimed, and are rejected by many;
+  molecular dates in life/taxa/angiospermae are far older still. They came to rule the land only between about 100 and 50 million years ago.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First flowering plants }
+    unsourced: An editorial label.
+  start-coiro-2019:
+    prop: start
+    value: { ref: life/occurrences/clavatipollenites-kokhav-2 }
+    source:
+      - ref: src:coiro-2019-angiosperm-age
+        loc: abstract
+        quote: "Pollen floras document a Northern Gondwanan appearance of monosulcate angiosperms in the Valanginian"
+      - ref: src:hochuli-feist-burkhardt-2013-anisian-pollen
+        loc: "Introduction"
+        quote: "The first broadly accepted records of angiospermous pollen grains are known from the earlier part of the Early Cretaceous (Valanginian—early Hauterivian)"
+    rank: preferred
+    note: >-
+      Preferred as the first record that is broadly accepted, by those who argue for an older origin as well.
+  start-fu-2018:
+    prop: start
+    value: { ref: life/occurrences/nanjinganthus-wugui-hill }
+    source:
+      - ref: src:fu-2018-nanjinganthus
+        loc: "eLife digest"
+        quote: "the plant dates back to more than 174 million years ago, making it the oldest known record of a ‘true’ flower by almost 50 million years"
+      - ref: src:bateman-2020-snark
+        loc: abstract
+        quote: "Given current evidence, all supposed pre-Cretaceous angiosperms are assignable to other major clades among the gymnosperms sensu lato."
+    note: >-
+      Bateman's rejection covers this and all the others like it. It is a dispute about what makes a flower.
+  start-hochuli-2013:
+    prop: start
+    value: { ref: life/occurrences/anisian-pollen-weiach }
+    source:
+      ref: src:hochuli-feist-burkhardt-2013-anisian-pollen
+      loc: "Introduction"
+      quote: "a record that predates the generally accepted first occurrence of angiosperm pollen by more than 100 Ma"
+    note: >-
+      Pollen with the features of an angiosperm's, from an unknown plant. The authors suggest an affinity to an angiosperm stem group, so even on their reading this may not be a flowering plant.
+  end-benton-2022:
+    prop: end
+    value: { lo: 100 Ma, hi: 50 Ma }
+    source:
+      ref: src:benton-2022-angiosperm-revolution
+      loc: abstract
+      quote: "An explosive boost to terrestrial diversity occurred from c. 100-50 million years ago, the Late Cretaceous and early Palaeogene."
+    method: expert-estimate
+    note: >-
+      The Angiosperm Terrestrial Revolution, taken as the end of this transition: by then they had changed the land. Not a date for when they became the commonest plants everywhere.
+relations:
+  evidence-clavatipollenites:
+    rel: evidenced-by
+    to: life/occurrences/clavatipollenites-kokhav-2
+    source:
+      ref: src:coiro-2019-angiosperm-age
+      loc: abstract
+      quote: "Pollen floras document a Northern Gondwanan appearance of monosulcate angiosperms in the Valanginian"
+  evidence-archaefructus:
+    rel: evidenced-by
+    to: life/occurrences/archaefructus-huangbanjigou
+    source:
+      ref: src:gomez-2015-montsechia
+      loc: abstract
+      quote: "Lower Cretaceous aquatic angiosperms, such as Archaefructus and Montsechia"
+  evidence-nanjinganthus:
+    rel: evidenced-by
+    to: life/occurrences/nanjinganthus-wugui-hill
+    source:
+      ref: src:fu-2018-nanjinganthus
+      loc: abstract
+      quote: "we describe a fossil flower"
+    note: >-
+      Contested: see the competing start.
+  evidence-weiach:
+    rel: evidenced-by
+    to: life/occurrences/anisian-pollen-weiach
+    source:
+      ref: src:hochuli-feist-burkhardt-2013-anisian-pollen
+      loc: abstract
+      quote: "The described pollen grains show all the essential features of angiosperm pollen."
+    note: >-
+      Contested: see the competing start.

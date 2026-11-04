@@ -1,0 +1,19 @@
+id: src:key-2026-hominins-culture
+type: publication
+kind: review
+citation: >-
+  Key, A. (2026). The co-evolution of hominins and Stone Age culture. Proceedings of the Royal
+  Society B 293(2080), 20260772.
+authors:
+  - "Key, A."
+published: 2026
+title: "The co-evolution of hominins and Stone Age culture"
+container: "Proceedings of the Royal Society B 293(2080), 20260772"
+doi: 10.1098/rspb.2026.0772
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC13678621): the record from Lomekwi 3 on, first occurrences
+    of the Oldowan and Acheulean, Levallois flaking, the Still Bay, statistical estimates of
+    origins, and which species made which tools. Quoted passages checked by script against the
+    text retrieved.

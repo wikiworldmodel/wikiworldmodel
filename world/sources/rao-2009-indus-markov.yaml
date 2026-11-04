@@ -1,0 +1,21 @@
+id: src:rao-2009-indus-markov
+type: publication
+kind: model
+citation: >-
+  Rao, R.P.N., Yadav, N., Vahia, M.N., Joglekar, H., Adhikari, R. & Mahadevan, I. (2009). A Markov model of the Indus script. Proceedings of the
+  National Academy of Sciences 106(33), 13685–13690.
+authors:
+  - "Rao, R.P.N."
+  - "Yadav, N."
+  - "Vahia, M.N."
+  - "Joglekar, H."
+  - "Adhikari, R."
+  - "Mahadevan, I."
+published: 2009
+title: A Markov model of the Indus script
+container: Proceedings of the National Academy of Sciences
+doi: 10.1073/pnas.0906237106
+url: https://pmc.ncbi.nlm.nih.gov/articles/PMC2721819/
+verified:
+  by: machine:claude-code
+  how: Abstract read from Europe PMC; the full text is on PubMed Central. Quotes checked by script against the abstract.

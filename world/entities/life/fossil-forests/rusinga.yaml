@@ -1,0 +1,68 @@
+id: life/occurrences/forest-rusinga
+kind: occurrence
+summary: >-
+  Tree stump casts and root casts in a fossil soil at locality R3 on Rusinga Island, Lake Victoria,
+  Kenya: a dense closed-canopy forest of the Early Miocene, with the fossil apes that lived in it.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Rusinga R3 fossil forest" }
+    unsourced: An editorial label, from the island and the locality.
+  identified:
+    prop: identified_as
+    value: tree stump casts
+    source:
+      ref: src:michel-2014-rusinga
+      loc: "Results, Palaeopedology"
+      quote: 29 tree stump casts, composed of red coarse sand to granule-size tephra and ash
+    note: >-
+      Not a taxon: the leaves found above the soil cannot be directly tied to these trees.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:michel-2014-rusinga
+      loc: "Results, Palaeopedology"
+      quote: 29 tree stump casts, composed of red coarse sand to granule-size tephra and ash, were discovered at Rusinga’s R3 locality and mapped across the landscape
+    note: >-
+      The basis is stump casts in place in a palaeosol, with calcified root casts that trace back to
+      them. They are casts rather than wood.
+  location:
+    prop: location
+    value: { lat: -0.4, lon: 34.166667, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-rusinga-island, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A point for the island; locality R3 was not located more closely from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-712
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Hiwegi Formation
+    source:
+      ref: src:michel-2014-rusinga
+      loc: "Results, Palaeopedology"
+      quote: Within the Kibanga Member of the Hiwegi Formation
+  date:
+    prop: date
+    value: { ref: ics/burdigalian }
+    source:
+      - { ref: src:pbdb/collection-21725, loc: "early_interval (Burdigalian)" }
+      - { ref: src:michel-2014-rusinga, loc: title, quote: Remnants of an ancient forest provide ecological context for Early Miocene fossil apes }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The PBDB's stage for Rusinga as a whole; the paper's title has only Early Miocene. The paper's
+      own numeric age was not found in the text read.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/tracheophyta
+    source: { ref: src:michel-2014-rusinga, loc: "Results: tree stump casts" }
+    note: >-
+      Trees, so vascular plants, whatever else they were.

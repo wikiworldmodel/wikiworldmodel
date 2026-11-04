@@ -1,0 +1,13 @@
+id: field:earth/languages
+type: field
+title: The world's languages
+description: >-
+  The world's languages at the places Glottolog puts them today, a point each, tinted by family: rows of
+  that catalogue, not records of ours. A point is not an area, and it says nothing of where a language was
+  spoken before now.
+grid: { kind: rows }
+time: { lo: 1950 CE, hi: 2100 CE }
+data:
+  from: src:glottolog-5.3
+  as: languages
+basis: evidence

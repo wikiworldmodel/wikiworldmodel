@@ -1,0 +1,17 @@
+id: src:stringer-2012-heidelbergensis
+type: publication
+kind: review
+citation: >-
+  Stringer, C. (2012). The status of Homo heidelbergensis (Schoetensack 1908). Evolutionary
+  Anthropology 21(3), 101–107.
+authors:
+  - "Stringer, C."
+published: 2012
+title: "The status of Homo heidelbergensis (Schoetensack 1908)"
+container: "Evolutionary Anthropology 21(3), 101–107"
+doi: 10.1002/evan.21311
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 22718477): the disputed status of Homo
+    heidelbergensis. Quoted passages checked by script against the text retrieved.

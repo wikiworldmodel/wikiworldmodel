@@ -1,0 +1,28 @@
+id: src:cooper-2015-abrupt-warming
+type: publication
+kind: compilation
+citation: >-
+  Cooper, A., Turney, C., Hughen, K.A., Brook, B.W., McDonald, H.G. & Bradshaw, C.J.A. (2015).
+  Abrupt warming events drove Late Pleistocene Holarctic megafaunal turnover. Science 349(6248),
+  602–606.
+authors:
+  - "Cooper, A."
+  - "Turney, C."
+  - "Hughen, K.A."
+  - "Brook, B.W."
+  - "McDonald, H.G."
+  - "Bradshaw, C.J.A."
+published: 2015
+title: "Abrupt warming events drove Late Pleistocene Holarctic megafaunal turnover"
+container: "Science 349(6248), 602–606"
+doi: 10.1126/science.aac4315
+reliability: >-
+  Its merged Greenland time scale is disputed by Rasmussen & Svensson (2016); Cooper et al. reply
+  that the link holds on the standard time scale as well.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the Europe PMC record (PMID 26250679); the full text could not
+    be read here. The comment by Rasmussen & Svensson and the response by Cooper et al. (Science
+    351, 927, 2016) were read as abstracts too. Quotes checked by script against the text retrieved,
+    after normalizing whitespace.

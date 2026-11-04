@@ -1,0 +1,53 @@
+id: life/occurrences/mauer-mandible
+kind: occurrence
+summary: >-
+  The Mauer mandible, found in 1907 in sands of the Neckar 10 km southeast of Heidelberg, Germany: the
+  holotype of Homo heidelbergensis, and the oldest hominin reported from central and northern Europe
+  when it was dated. PBDB collection 50199.
+same_as: { pbdb: "occ:497113" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Mauer mandible" }
+    unsourced: An editorial label, the name the fossil goes by.
+  identified:
+    prop: identified_as
+    value: Homo heidelbergensis
+    source:
+      ref: src:wagner-2010-mauer
+      loc: abstract
+      quote: "The Mauer mandible, holotype of Homo heidelbergensis, was found in 1907 in fluvial sands deposited by the Neckar River 10 km southeast of Heidelberg, Germany."
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:wagner-2010-mauer, loc: abstract }
+  location:
+    prop: location
+    value: { lat: 49.333332, lon: 8.816667, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-50199, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: The PBDB notes that the locality is about 150 m north of this point.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { mean: 609 ka, sd: 40 kyr }
+    source:
+      ref: src:wagner-2010-mauer
+      loc: abstract
+      quote: "date the type-site of Homo heidelbergensis at Mauer to 609 ± 40 ka"
+    method: radiometric/esr
+    note: >-
+      The weighted mean of electron spin resonance with uranium series on mammal teeth and of infrared
+      radiofluorescence on sand grains, assigning the layer to MIS 15. The paper plots its ages with
+      1σ error bars, so the ± is read as 1σ.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-heidelbergensis
+    source: { ref: src:wagner-2010-mauer, loc: abstract }

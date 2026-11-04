@@ -12,6 +12,10 @@ claims:
     prop: identified_as
     value: Mesosaurus brasiliensis
     source: { ref: src:pbdb/collection-90863, loc: "occurrence 824823, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: -31.933332, lon: -54.016666, frame: frame:earth/present-day }

@@ -1,0 +1,26 @@
+id: src:scorrer-2021-mary-rose
+type: publication
+kind: measurement
+citation: >-
+  Scorrer, J., Faillace, K.E., Hildred, A., Nederbragt, A.J., Andersen, M.B., Millet, M.-A., Lamb, A.L. & Madgwick, R.
+  (2021). Diversity aboard a Tudor warship: investigating the origins of the Mary Rose crew using multi-isotope analysis.
+  Royal Society Open Science 8, 202106.
+authors:
+  - "Scorrer, J."
+  - "Faillace, K.E."
+  - "Hildred, A."
+  - "Nederbragt, A.J."
+  - "Andersen, M.B."
+  - "Millet, M.-A."
+  - "Lamb, A.L."
+  - "Madgwick, R."
+published: 2021
+title: "Diversity aboard a Tudor warship: investigating the origins of the Mary Rose crew using multi-isotope analysis"
+container: Royal Society Open Science
+doi: 10.1098/rsos.202106
+url: https://nora.nerc.ac.uk/id/eprint/530261/
+license: CC-BY-4.0
+reliability: Its measurements are of the crew; the ship's history it summarizes from the Mary Rose Trust's reports.
+verified:
+  by: machine:claude-code
+  how: The PDF in the NERC Open Research Archive read in its text layer. Quotes checked by script after normalizing whitespace.

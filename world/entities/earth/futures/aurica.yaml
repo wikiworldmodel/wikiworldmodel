@@ -1,0 +1,62 @@
+id: earth/futures/aurica
+kind: event/formation
+summary: >-
+  The assembly of Aurica, a future supercontinent formed by the closing of both the Atlantic and the
+  Pacific, while a new ocean opens across Asia. It happens only in the alternative of that name, so it
+  has no date in the default picture.
+author: machine:claude-code
+same_as: { wikidata: Q96372776 }
+claims:
+  name:
+    prop: name
+    value: { en: Aurica }
+    source:
+      ref: src:duarte-2018-aurica
+      loc: abstract
+      quote: the formation of a new supercontinent, which we name Aurica
+  date-davies-2018:
+    prop: date
+    value: 250 Myr from now
+    alt: alt:next-supercontinent/aurica
+    source:
+      - ref: src:davies-2018-next-supercontinent
+        loc: section 4.3
+        quote: By 250 Ma, the Atlantic has completely closed forming Aurica surrounded by the Pan-Asian Ocean
+      - ref: src:davies-2020-future-tides
+        loc: section 3.3, p. 295
+        quote: By the time Aurica forms, at 250 Ma
+      - ref: src:way-2021-next-supercontinent-climates
+        loc: section 2.1, manuscript p. 3
+        quote: Aurica (forming around 250 million years from now; Duarte et al., 2018)
+    method: model
+    basis: projection
+    rank: preferred
+    note: >-
+      Holds only in the alternative "Aurica". The date of the plate model Davies et al. built from the
+      scenario, without an uncertainty. Preferred as the later and standardized reconstruction, by a group
+      that includes Duarte. Way et al., with Duarte too, give this date and cite the paper of 2018, which
+      itself says about 300 Ma.
+  date-duarte-2018:
+    prop: date
+    value: 300 Myr from now
+    alt: alt:next-supercontinent/aurica
+    source:
+      ref: src:duarte-2018-aurica
+      loc: section 5, p. 52
+      quote: Having taken into account the present-day average plate velocities a new supercontinent may be fully formed in approximately 300 Ma.
+    method: expert-estimate
+    basis: projection
+    note: >-
+      Holds only in the alternative "Aurica". The first statement of the scenario, from present plate
+      velocities, which its authors call "a rough estimation" (section 7, p. 54).
+relations:
+  caused-by-atlantic-closing:
+    rel: caused-by
+    to: earth/futures/atlantic-closing
+    alt: alt:next-supercontinent/aurica
+    source:
+      ref: src:duarte-2018-aurica
+      loc: abstract
+      quote: both the Pacific and the Atlantic oceans close simultaneously, leading to the termination of the present Earth's supercycle and to the formation of a new supercontinent
+    basis: projection
+    note: Holds only in the alternative "Aurica". The closing of the Pacific, also part of it, has no record here.

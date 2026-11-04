@@ -1,0 +1,15 @@
+id: field:earth/present-day
+type: field
+title: Today's borders and cities
+description: >-
+  The map of the present: countries' land borders and the larger cities, as Natural Earth draws them.
+  One map of about 2020, drawn for the time axis's present and after; it says nothing of when each line was settled.
+grid: { kind: rows }
+# The viewer's "today" is the time axis's present, 1950, by the datum geology dates from. Natural
+# Earth's lines are of about 2020: they are drawn from that present on, and say nothing of 1950 itself.
+time: { lo: 1950 CE, hi: 2100 CE }
+data:
+  from: src:natural-earth-boundaries-5.1.2
+  as: borders
+  places: src:natural-earth-places-5.1.2
+basis: evidence

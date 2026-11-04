@@ -1,0 +1,100 @@
+id: people/first-cities/mohenjo-daro
+kind: settlement
+summary: >-
+  Mohenjo-daro, on the right bank of the Indus in Sindh, Pakistan, one of the largest cities of the Indus civilization. The dates here are those the sources give
+  for Indus cities in general, not a dated sequence from the city itself.
+author: machine:claude-code
+same_as: { wikidata: Q5725, pleiades: 902113570 }
+claims:
+  name:
+    prop: name
+    value: { en: Mohenjo-daro }
+    source: { ref: src:pleiades-moenjodaro, loc: "place 902113570, names" }
+    note: Pleiades lists the city under Moenjodaro, as UNESCO does; Mohenjo-daro is among its names.
+  start-green-petrie:
+    prop: start
+    value: 2600 BCE
+    source:
+      ref: src:green-petrie-2018-indus-settlement
+      loc: Introduction
+      quote: Indus cities arose around 2600 b.c.
+    method: expert-estimate
+    rank: preferred
+    note: The date for Indus cities as a group. Preferred as the recent, referenced statement of the urban phase.
+  start-unesco:
+    prop: start
+    value: 3000 BCE
+    source:
+      ref: src:unesco-whc-138-moenjodaro
+      loc: Outstanding Universal Value, brief synthesis
+      quote: the best preserved urban settlement in South Asia dating back to the beginning of the 3rd millennium BC
+    method: expert-estimate
+    note: '"The beginning of the 3rd millennium" taken as about 3000 BCE. An official summary, giving no evidence.'
+  end-petrie:
+    prop: end
+    value: 1900 BCE
+    source:
+      ref: src:petrie-2024-indus-animal-movement
+      loc: Introduction
+      quote: the settlements of its urban phase (2600–1900 BC)
+    method: expert-estimate
+    rank: preferred
+    note: The end of the urban phase of the civilization, used as the decline of the city; how long people stayed on at the site is not said.
+  end-unesco:
+    prop: end
+    value: 1500 BCE
+    source:
+      ref: src:unesco-whc-138-moenjodaro
+      loc: Outstanding Universal Value, brief synthesis
+      quote: the metropolis of Indus civilization, which flourished between 2,500-1,500 BC
+    method: expert-estimate
+    note: An official summary, for the civilization. A Buddhist stupa was built on the ruins much later, in the 2nd century AD, the same text says.
+  location:
+    prop: location
+    value: { lat: 27.325412, lon: 68.137741, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-moenjodaro, loc: "place 902113570, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-501
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area-unesco:
+    prop: settlement_area
+    value: 240
+    valid: { lo: 2600 BCE, hi: 1900 BCE }
+    source:
+      ref: src:unesco-whc-138-moenjodaro
+      loc: Integrity
+      quote: burnt brick structures covering 240 ha, of which only about one third has been excavated
+    method: survey
+    rank: preferred
+    note: The extent of the remains as they lie, here held over the urban phase; not a size at one moment.
+  area-jansen:
+    prop: settlement_area
+    value: 200
+    valid: { lo: 2600 BCE, hi: 1900 BCE }
+    source:
+      ref: src:green-petrie-2018-indus-settlement
+      loc: Results
+      quote: Mohenjo-daro’s largest reported area exceeds 200 hectares [Jansen 1993]
+    method: expert-estimate
+    note: A lower limit, from Jansen (1993), which was not read.
+  population-modelski-2400:
+    prop: population
+    value: 40000
+    valid: 2400 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Mohenjodaro, column BC_2400" }
+    method: compilation
+    rank: preferred
+    note: >-
+      Modelski's figure, as digitized by Reba et al. (2016), for the city at its height; he holds it to 2200 BCE. Preferred only as the later compilation:
+      no excavator's estimate could be read.
+  population-chandler-1800:
+    prop: population
+    value: 20000
+    valid: 1800 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "chandlerV2.csv, row Mohenjodaro, column BC_1800" }
+    method: compilation
+    note: Chandler's figure, as digitized by Reba et al. (2016), and later than the urban phase as now dated.

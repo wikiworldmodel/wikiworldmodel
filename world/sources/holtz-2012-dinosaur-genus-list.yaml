@@ -1,0 +1,21 @@
+id: src:holtz-2012-dinosaur-genus-list
+type: publication
+kind: compilation
+citation: >-
+  Holtz, T.R. Jr. (2012). Genus List for Holtz (2007) Dinosaurs, last updated 13 January 2012.
+  Online appendix to Holtz, T.R. Jr. (2007), Dinosaurs: The Most Complete, Up-to-Date
+  Encyclopedia for Dinosaur Lovers of All Ages. Random House.
+authors:
+  - "Holtz, T.R. Jr."
+published: 2012
+title: "Genus List for Holtz (2007) Dinosaurs"
+url: http://www.geol.umd.edu/~tholtz/dinoappendix/HoltzappendixWinter2011.pdf
+reliability: >-
+  A paleontologist's list of every genus, written for a general book. It gives one length for a
+  whole genus, with no measurement behind it; a question mark is the author's own doubt.
+verified:
+  by: machine:claude-code
+  how: >-
+    The whole PDF (52 pages) read from the author's university page; page numbers cited are
+    those of the PDF. The rows cited checked by script against its text layer, in which cells
+    are separated by spaces.

@@ -1,0 +1,28 @@
+id: src:kligman-2025-pfv-393
+type: publication
+kind: measurement
+citation: >-
+  Kligman, B.T., Whatley, R.L., Ramezani, J., Marsh, A.D., Lyson, T.R., Fitch, A.J., Parker,
+  W.G. & Behrensmeyer, A.K. (2025). Unusual bone bed reveals a vertebrate community with
+  pterosaurs and turtles in equatorial Pangaea before the end-Triassic extinction. Proceedings
+  of the National Academy of Sciences 122(29), e2505513122.
+authors:
+  - "Kligman, B.T."
+  - "Whatley, R.L."
+  - "Ramezani, J."
+  - "Marsh, A.D."
+  - "Lyson, T.R."
+  - "Fitch, A.J."
+  - "Parker, W.G."
+  - "Behrensmeyer, A.K."
+published: 2025
+title: "Unusual bone bed reveals a vertebrate community with pterosaurs and turtles in equatorial Pangaea before the end-Triassic extinction"
+container: Proceedings of the National Academy of Sciences 122(29), e2505513122
+doi: 10.1073/pnas.2505513122
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC12304912) read via Europe PMC (fullTextXML): the PFV 393 bone bed in the Owl
+    Rock Member of the Chinle Formation, its age of 209.187 ± 0.083 Ma, and the pterosaur
+    Eotephradactylus mcintireae. Quotes checked by script against that text. Metadata from
+    Crossref.

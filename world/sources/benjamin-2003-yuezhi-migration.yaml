@@ -1,0 +1,13 @@
+id: src:benjamin-2003-yuezhi-migration
+type: publication
+kind: review
+citation: >-
+  Benjamin, C. (2003). The Yuezhi migration and Sogdia. In Ērān ud Anērān: Webfestschrift Marshak 2003. Transoxiana.
+authors: ["Benjamin, C."]
+published: 2003
+title: The Yuezhi Migration and Sogdia
+container: "Ērān ud Anērān: Webfestschrift Marshak 2003"
+url: http://www.transoxiana.org/Eran/Articles/benjamin.html
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quote checked by script against its text, after normalizing whitespace.

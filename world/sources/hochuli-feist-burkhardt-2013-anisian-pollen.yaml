@@ -1,0 +1,21 @@
+id: src:hochuli-feist-burkhardt-2013-anisian-pollen
+type: publication
+kind: measurement
+citation: >-
+  Hochuli, P.A. & Feist-Burkhardt, S. (2013). Angiosperm-like pollen and Afropollis from the
+  Middle Triassic (Anisian) of the Germanic Basin (Northern Switzerland). Frontiers in Plant
+  Science 4.
+authors:
+  - "Hochuli, P.A."
+  - "Feist-Burkhardt, S."
+published: 2013
+title: "Angiosperm-like pollen and Afropollis from the Middle Triassic (Anisian) of the Germanic Basin (Northern Switzerland)"
+container: Frontiers in Plant Science 4
+doi: 10.3389/fpls.2013.00344
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC3788615) read via Europe PMC (fullTextXML): angiosperm-like pollen in the
+    Weiach and Leuggern core holes, the Anisian age, and the first broadly accepted records of
+    angiosperm pollen as the authors give them. Quotes checked by script against that text.
+    Metadata from Crossref.

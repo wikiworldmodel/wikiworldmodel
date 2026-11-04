@@ -1,0 +1,57 @@
+id: people/domestication/einkorn
+kind: development
+summary: >-
+  The domestication of einkorn wheat from its wild form in the Fertile Crescent. Tough-scarred
+  chaff appears first at low levels, at Nevalı Çori and in southern Syria, and is nearly all of
+  it by Çatalhöyük, a thousand years or more later. Genetics of living einkorn point to the Karacadağ
+  Mountains of southeast Turkey; the archaeobotany of the whole region argues against any single
+  centre.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Einkorn wheat domestication }
+    unsourced: An editorial label.
+  start-arranz-otaegui-2016:
+    prop: start
+    value: { lo: 10.7 ka, hi: 10.2 ka }
+    source:
+      ref: src:arranz-otaegui-2016-cereal-domestication
+      loc: "The Evidence of Cereal Domestication at Tell Qarassa North"
+      quote: "by 10.7–10.2 ka Cal BP there are positive signs that barley, emmer, and einkorn were being cultivated at TQN"
+    method: radiometric/radiocarbon
+    note: >-
+      The earliest tough-scarred einkorn chaff in the paper's table, 28.6% of 14 pieces at Tell
+      Qarassa North, which the paper reads as probably a two-grained einkorn.
+  location-karacadag:
+    prop: location
+    value: { lat: 37.71142, lon: 39.82904, frame: frame:earth/present-day }
+    source:
+      - ref: src:brandolini-2016-einkorn
+        loc: abstract
+        quote: "the pinpointing of the domesticated forms to the Karacadağ Mountains (Turkey)"
+      - { ref: src:wikidata-karaca-dag, loc: "P625 coordinate location" }
+    method: editorial
+    rank: preferred
+    note: >-
+      Preferred for being the one specific place a study of einkorn itself gives, with Nevalı Çori
+      not far off. Read from living wild and domestic plants; the abstract says it confirms earlier
+      results. The point is the gazetteer's for the volcano.
+  location-southern-syria:
+    prop: location
+    value: { lat: 32.835556, lon: 36.413722, frame: frame:earth/present-day }
+    source:
+      - ref: src:arranz-otaegui-2016-cereal-domestication
+        loc: Conclusions
+        quote: "plant domestication (in the broadest sense of the term) is a process that occurred in multiple regions across southwest Asia and cannot be linked with a single core area"
+      - { ref: src:wikidata-tell-qarassa, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      The same paper lists einkorn among crops whose domesticated types appeared in the
+      southern-central Levant. Marked at Tell Qarassa.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

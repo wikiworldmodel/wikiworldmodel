@@ -1,0 +1,143 @@
+id: life/hell-creek/ecosystem
+kind: ecosystem
+summary: >-
+  The plants and animals of the Hell Creek Formation of Montana and the Dakotas, in the last
+  million years or so before the Chicxulub impact: Triceratops, Edmontosaurus and Tyrannosaurus
+  among the dinosaurs; crocodilians, champsosaurs and many kinds of turtle in the rivers and
+  backwaters; small mammals, the largest about the size of a raccoon; and conifers, ferns, palms
+  and broad-leaved trees on a wide floodplain. It is known from dinosaur skeletons, sites rich
+  in small bones and teeth, quarries of fossil leaves, and pollen and spores, collected for more
+  than a century.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Hell Creek ecosystem }
+    unsourced: An editorial label, after the formation.
+  formation:
+    prop: formation
+    value: Hell Creek
+    source:
+      - ref: src:usgs-geolex-hell-creek
+        loc: "Type section, locality, area and/or origin of name"
+        quote: "Named from exposures on Hell Creek and nearby tributaries of Missouri River, [Garfield Co.], MT (Brown, 1907)."
+      - ref: src:brown-1907-hell-creek-beds
+        loc: "p. 823, title"
+        quote: "THE HELL CREEK BEDS OF THE UPPER CRETACEOUS OF MONTANA"
+      - ref: src:roberts-2026-dueling-dinosaurs
+        loc: Geologic background
+        quote: "the Hell Creek Formation depositional environment has been interpreted as an extensive floodplain with meandering river systems and ephemeral backwater deposits"
+      - ref: src:wilf-2003-kpg-climate
+        loc: "Study Areas, Specimens, and Methods; Fossil Plants"
+        quote: "Both represent floodplain environments; channel deposits dominate the Hell Creek locally"
+      - ref: src:wilf-2003-kpg-climate
+        loc: "Results, on the fossil plants"
+        quote: "Temperatures increase to 16–17°C at ≈66.0 Ma. The peak of warming occurs between ≈65.8 and 65.6 Ma"
+      - ref: src:wilf-2003-kpg-climate
+        loc: "Results, on the fossil plants"
+        quote: "The oldest floras with 20 or more dicot species occur from ≈66.5 to 66.4 Ma and produce temperatures of 12–13°C"
+      - ref: src:wilf-2003-kpg-climate
+        loc: "Results, on the fossil plants"
+        quote: "The warmest estimate of the floral sequence, ≈20°C, occurs at ≈65.7 Ma"
+      - ref: src:wilf-2003-kpg-climate
+        loc: "Study Areas, Specimens, and Methods; Fossil Plants"
+        quote: "in the Williston Basin at ≈49°N paleolatitude"
+    note: >-
+      The ground: a wide floodplain of sandstone and mudstone, crossed by meandering rivers,
+      with backwaters and ponds, and marine tongues locally in North Dakota. The climate: mean
+      annual temperatures from fossil leaves in southwestern North Dakota, at about 49° north,
+      run from 12–13°C in the oldest floras, through a cooler interval, to 16–17°C about half a
+      million years before the boundary and about 20°C at the warmest. That paper sets the
+      boundary near 65.5 Ma, so add about half a million years to its ages for today's scale:
+      66.5 Ma today is about its 66.0 Ma.
+  location:
+    prop: location
+    value: { lat: 47.55122, lon: -106.86217, frame: frame:earth/present-day }
+    source:
+      ref: src:usgs-geolex-hell-creek
+      loc: "Type section, locality, area and/or origin of name"
+      quote: "from about Lat. 47.55122 deg. N., Long. 106.86217 deg. W."
+    method: gazetteer
+    note: >-
+      The southeastern end of the formation's lectostratotype, in Ried Coulee and East Ried
+      Coulee, Garfield County, Montana, as a point to place a marker: the formation itself
+      reaches across Montana and the Dakotas.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  start-roberts-2026:
+    prop: start
+    value: { lo: 67.812 Ma, hi: 66.929 Ma }
+    source:
+      ref: src:roberts-2026-dueling-dinosaurs
+      loc: "Age of base of Hell Creek Formation and its duration"
+      quote: "predicts an approximate age of 67.102 + 0.710/-0.173 Ma for the base of the DD/MB composite section"
+    method: radiometric/u-pb
+    rank: preferred
+    note: >-
+      A Bayesian age model from the first dated ash beds low in the formation, in central
+      Montana, 67.102 +0.710/−0.173 Ma, written here as a range. The authors take it as a
+      minimum for the base regionally, and the base is probably of different ages from place to
+      place. Preferred as the only base tied to dated ash beds.
+  start-lerbekmo-2009:
+    prop: start
+    value: { lo: 68.369 Ma, hi: 68.196 Ma }
+    source:
+      ref: src:roberts-2026-dueling-dinosaurs
+      loc: Geologic background
+      quote: "age estimates for the base of the Hell Creek Formation, primarily based on magnetostratigraphy, are inconsistent and range from 68.369 to 68.196 Ma [59], 67.47 to 67.5 Ma [37], 66.87 to 66.71 Ma [22]"
+    method: stratigraphic
+    note: >-
+      An earlier estimate, from magnetostratigraphy, as Roberts et al. report it (their
+      reference 59, Lerbekmo 2009, not read).
+  start-kaskes-2016:
+    prop: start
+    value: { lo: 67.5 Ma, hi: 67.47 Ma }
+    source:
+      ref: src:roberts-2026-dueling-dinosaurs
+      loc: Geologic background
+      quote: "age estimates for the base of the Hell Creek Formation, primarily based on magnetostratigraphy, are inconsistent and range from 68.369 to 68.196 Ma [59], 67.47 to 67.5 Ma [37], 66.87 to 66.71 Ma [22]"
+    method: stratigraphic
+    note: >-
+      An earlier estimate, from magnetostratigraphy, as Roberts et al. report it (their
+      reference 37, Kaskes et al. 2016, an abstract, not read).
+  start-hicks-2002:
+    prop: start
+    value: { lo: 66.87 Ma, hi: 66.71 Ma }
+    source:
+      ref: src:roberts-2026-dueling-dinosaurs
+      loc: Geologic background
+      quote: "age estimates for the base of the Hell Creek Formation, primarily based on magnetostratigraphy, are inconsistent and range from 68.369 to 68.196 Ma [59], 67.47 to 67.5 Ma [37], 66.87 to 66.71 Ma [22]"
+    method: stratigraphic
+    note: >-
+      An earlier estimate, for western North Dakota, from magnetostratigraphy, as Roberts et al.
+      report it (their reference 22, Hicks et al. 2002, not read). They suggest a possible
+      eastward thinning and a base of different ages from place to place.
+  end-kpg-extinction:
+    prop: end
+    value: { ref: earth/events/kpg-extinction, edge: start }
+    source:
+      ref: src:roberts-2026-dueling-dinosaurs
+      loc: Geologic background
+      quote: "The contact with the overlying Fort Union Formation forms the Cretaceous/Paleogene (K-Pg) Boundary"
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The formation ends at the boundary, so the world's own date of the extinction is used, and
+      follows whatever is chosen for it. Preferred so that the ecosystem and the extinction
+      cannot disagree.
+  end-roberts-2026:
+    prop: end
+    value: { mean: 66.052 Ma, sd: 0.043 Myr }
+    source:
+      ref: src:roberts-2026-dueling-dinosaurs
+      loc: Geologic background
+      quote: "constrains the upper age of the formation to ~66.052 ± 0.008/0.043 Ma"
+    method: radiometric/ar-ar
+    note: >-
+      From ash beds in lignites above and below the contact near Fort Peck Reservoir, as Roberts
+      et al. report it from Sprain et al. (2015, 2018), which were not read. The larger ± is
+      read as 1σ, the wider reading, since its confidence level is not stated here.

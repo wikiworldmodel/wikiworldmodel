@@ -1,0 +1,21 @@
+id: src:wellman-2024-stonehaven
+type: publication
+kind: measurement
+citation: >-
+  Wellman, C.H., Lopes, G., McKellar, Z. & Hartley, A. (2024). Age of the basal ‘Lower Old Red
+  Sandstone’ Stonehaven Group of Scotland: the oldest reported air-breathing land animal is
+  Silurian (late Wenlock) in age. Journal of the Geological Society 181(1), jgs2023-138.
+authors:
+  - "Wellman, C.H."
+  - "Lopes, G."
+  - "McKellar, Z."
+  - "Hartley, A."
+published: 2024
+title: "Age of the basal ‘Lower Old Red Sandstone’ Stonehaven Group of Scotland: the oldest reported air-breathing land animal is Silurian (late Wenlock) in age"
+container: Journal of the Geological Society 181(1), jgs2023-138
+doi: 10.1144/jgs2023-138
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from Crossref (DOI 10.1144/jgs2023-138); the full text was not read. Quotes
+    checked by script against that text. Metadata from Crossref.

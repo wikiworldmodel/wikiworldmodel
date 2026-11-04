@@ -1,0 +1,40 @@
+id: people/prehistory/trinil-engraved-shell
+kind: artefact
+summary: >-
+  A freshwater shell with a geometric engraving, and a shell tool, from the main bone layer at
+  Trinil, Java, the type locality of Homo erectus, found in the Dubois collection in Leiden: much the
+  oldest geometric engraving known. PBDB collection 93521 gives the place.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Trinil engraved shell" }
+    unsourced: An editorial label, from the find and the place.
+  location:
+    prop: location
+    value: { lat: -7.366667, lon: 111.349998, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-93521, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-620
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 0.54 Ma, hi: 0.43 Ma }
+    source:
+      ref: src:joordens-2015-trinil
+      loc: abstract
+      quote: "We dated sediment contained in the shells with (40)Ar/(39)Ar and luminescence dating methods, obtaining a maximum age of 0.54 ± 0.10 million years and a minimum age of 0.43 ± 0.05 million years."
+    method: radiometric
+    note: Dated by the sediment inside the shells. The interval runs between the central values; the uncertainties are in the quote.
+relations:
+  made-by-homo-erectus:
+    rel: made-by
+    to: life/taxa/homo-erectus
+    source:
+      ref: src:joordens-2015-trinil
+      loc: abstract
+      quote: "our data indicate that the engraving was made by Homo erectus"

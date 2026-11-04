@@ -9,6 +9,8 @@
 #                  at the latest time the evidence allows rather than midway between bounds:
 #                  a taxon at its oldest member found (its first appearance), or unknown if
 #                  nothing limits it.
+#   end: latest    an end given as a range is shown at the latest time the range allows: a taxon
+#                  lasts to the end of the last interval it is found in.
 kinds:
   event:
     label: Event
@@ -38,6 +40,12 @@ kinds:
       transition:
         label: Earth-system transition
         description: A lasting change of the Earth system, such as the oxygenation of the atmosphere.
+      boundary:
+        label: Time-scale boundary
+        description: >-
+          The start of a unit of the geologic time scale, as it is defined at a stratotype (a GSSP): a level
+          in a rock section or an ice core that fixes the moment.
+        moment: true
       spaceflight:
         label: Spaceflight
         description: An event in spaceflight, such as a launch, a landing or a spacecraft crossing a boundary.
@@ -59,6 +67,25 @@ kinds:
       conquest:
         label: Conquest
         description: The capture of a city or the fall of a state to another, on the day it fell.
+        moment: true
+      dispersal:
+        label: Dispersal
+        description: >-
+          People leaving a region or reaching one, dated by the earliest evidence of them there:
+          when that evidence was left, which may be long after the first of them came.
+        moment: true
+      admixture:
+        label: Admixture
+        description: >-
+          Interbreeding between two populations long apart, dated from what it left in genomes.
+          Its date is often a range, for a pulse or for a longer stretch of gene flow.
+        moment: true
+      shipwreck:
+        label: Shipwreck
+        description: >-
+          A ship lost, dated to its sinking and placed where it lies. Cargo, coins and timber date the sinking only
+          loosely, and often from one side: a coin or a tree ring gives a time after which it went down. What it
+          carried and where it was bound are claims of their own.
         moment: true
   building:
     label: Building
@@ -111,11 +138,45 @@ kinds:
       island: { label: Island, description: "An island in a river." }
       district: { label: District, description: "A named neighbourhood." }
       region: { label: Region of the city, description: "One of the fourteen regions into which Augustus divided Rome." }
+  ecosystem:
+    label: Ecosystem
+    description: >-
+      A community of organisms at a place over a span of time, as a formation's fossils record
+      it. Its members are taxa with occurrences in that formation.
   development:
     label: Development
     description: >-
       A practice or technology people developed, such as farming or writing, from its earliest
       known evidence on.
+    children:
+      script:
+        label: Writing system
+        description: >-
+          A script, from the earliest find that attests it on. It may be older than that find, on
+          materials that have not lasted. Its start names the find, and competing starts name
+          competing finds.
+  industry:
+    label: Archaeological industry
+    description: >-
+      A way of making tools that archaeologists recognize across sites, such as the Oldowan, from
+      its first known occurrence to its last. It names a pattern in the artefacts, not a people:
+      who made it is a claim of its own. Its origin is no later than its oldest member found.
+    start: latest
+    end: latest
+  artefact:
+    label: Artefact
+    description: >-
+      Something hominins made or used, or a group of such things from one layer of one site, at
+      the time it was made or left.
+    moment: true
+    children:
+      moved:
+        label: Object that moved
+        description: >-
+          A made thing, or a group of them, that has stood or been kept in more than one place, such
+          as an obelisk, an inscribed stone or a museum piece. Unlike a find at the moment it was left,
+          it lasts: its phases say where it was and when it moved.
+        moment: false
   landform:
     label: Landform
     description: A shape of the land surface or the rock below it.
@@ -130,10 +191,11 @@ kinds:
     label: Large igneous province
     description: A very large accumulation of igneous rock, erupted over a geologically short time.
   occurrence:
-    label: Fossil occurrence
+    label: Dated find
     description: >-
-      A taxon recorded at a locality, by body fossils, traces or other signs of life, at the
-      time they formed.
+      Something found at a locality and dated: a taxon recorded by body fossils, traces or other signs
+      of life at the time they formed, or an ancient genome, an archaeobotanical sample or an
+      inscription. Its `evidence` claim says which.
     moment: true
   sample:
     label: Dated sample
@@ -145,6 +207,7 @@ kinds:
       A group of organisms, a species or a clade, from its origin to its extinction if it has
       died out. Its origin is no later than its oldest member found.
     start: latest
+    end: latest
   body:
     label: Body
     description: A natural body in space, such as a planet or a moon.
@@ -159,6 +222,15 @@ kinds:
     description: >-
       A state or other political unit, from its founding to its end. Its phases are its forms
       of government, such as a kingdom that became a republic; its territory is a claim.
+  person:
+    label: Person
+    description: >-
+      A named human being, from birth (start) to death (end). What they held is a phase of the
+      life: a ruler's phases might be before, reign and after, tiling the lifetime, and the reign
+      is joined to its polity by held-office. A person whose birth no claim pins is shown from the
+      latest time the evidence allows, usually the first date of the reign; one whose death is
+      not known says so, end: unknown, or the life would seem to go on.
+    start: latest
   settlement:
     label: Settlement
     description: A town or a city, from its founding or first settlement on; its names may change.

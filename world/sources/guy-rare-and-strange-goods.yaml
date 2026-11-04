@@ -1,0 +1,17 @@
+id: src:guy-rare-and-strange-goods
+type: publication
+kind: review
+citation: >-
+  Guy, J. Rare and strange goods: international trade in ninth-century Asia. In R. Krahl, J. Guy, J.K. Wilson & J. Raby
+  (eds), Shipwrecked: Tang Treasures and Monsoon Winds, pp. 18–27. Arthur M. Sackler Gallery, Smithsonian Institution;
+  National Heritage Board, Singapore; Singapore Tourism Board.
+authors: ["Guy, J."]
+title: "Rare and strange goods: international trade in ninth-century Asia"
+container: "Shipwrecked: Tang Treasures and Monsoon Winds"
+url: https://asia-archive.si.edu/wp-content/uploads/2017/10/02Guy.pdf
+reliability: >-
+  The catalogue's opening essay, from the Smithsonian's archive of it, which shows no year. The catalogue's own chapter on
+  the dating, by Wilson and Flecker, was not read.
+verified:
+  by: machine:claude-code
+  how: The essay's PDF read in its text layer. Quotes checked by script against it, after normalizing whitespace.

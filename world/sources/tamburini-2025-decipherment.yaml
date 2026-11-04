@@ -1,0 +1,18 @@
+id: src:tamburini-2025-decipherment
+type: publication
+kind: model
+citation: >-
+  Tamburini, F. (2025). On automatic decipherment of lost ancient scripts relying on combinatorial optimisation and coupled simulated annealing.
+  Frontiers in Artificial Intelligence 8, 1581129.
+authors:
+  - "Tamburini, F."
+published: 2025
+title: On automatic decipherment of lost ancient scripts relying on combinatorial optimisation and coupled simulated annealing
+container: Frontiers in Artificial Intelligence
+doi: 10.3389/frai.2025.1581129
+url: https://europepmc.org/article/PMC/PMC12162589
+license: CC-BY-4.0
+reliability: A computing paper, cited for a passing statement of the date of Linear B, not for a study of it.
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC12162589). Quotes checked by script against it, after normalizing whitespace.

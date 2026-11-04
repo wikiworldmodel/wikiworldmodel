@@ -1,4 +1,8 @@
 {
+ "life/occurrences/forest-chemnitz": [
+  933,
+  73
+ ],
  "life/mesosaurus/sao-mateus-do-sul": [
   602,
   365
@@ -14,5 +18,9 @@
  "life/mesosaurus/calvinia": [
   546,
   483
+ ],
+ "life/occurrences/forest-collinson-ridge": [
+  622,
+  653
  ]
 }

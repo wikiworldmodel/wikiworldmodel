@@ -1,0 +1,21 @@
+id: src:slon-2018-denisova-11
+type: publication
+kind: measurement
+citation: >-
+  Slon, V., Mafessoni, F., Vernot, B., … & Pääbo, S. (2018). The genome of the offspring of a
+  Neanderthal mother and a Denisovan father. Nature 561(7721), 113–116.
+authors:
+  - "Slon, V."
+  - "Mafessoni, F."
+  - "Vernot, B."
+  - "Pääbo, S."
+published: 2018
+title: "The genome of the offspring of a Neanderthal mother and a Denisovan father"
+container: "Nature 561(7721), 113–116"
+doi: 10.1038/s41586-018-0455-x
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC6130845); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

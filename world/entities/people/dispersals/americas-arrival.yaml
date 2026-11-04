@@ -1,0 +1,96 @@
+id: people/dispersals/americas-arrival
+kind: event/dispersal
+summary: >-
+  The first people to reach the Americas south of the great ice sheets. When they came is the
+  question of the alternatives "Peopling of the Americas": before the Last Glacial Maximum, or after
+  it. The default picture says only what both sides accept, that it was before the people of Cooper's
+  Ferry. It has no location here: nobody knows where they first came.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First people south of the ice sheets }
+    unsourced: An editorial label.
+  earlier-than-coopers-ferry:
+    prop: earlier_than
+    value: { ref: people/dispersals/coopers-ferry }
+    source:
+      ref: src:davis-2019-coopers-ferry
+      loc: abstract
+      quote: "The Cooper's Ferry site was initially occupied during a time that predates the opening of an ice-free corridor"
+    note: The oldest site here that both pictures count as human.
+  earlier-than-white-sands:
+    prop: earlier_than
+    value: { ref: people/dispersals/white-sands }
+    alt: alt:peopling-of-the-americas/pre-lgm
+    rank: preferred
+    source:
+      - ref: src:bennett-2021-white-sands
+        loc: abstract
+        quote: "These findings confirm the presence of humans in North America during the Last Glacial Maximum"
+      - ref: src:holliday-2025-white-sands
+        loc: "Introduction"
+        quote: "This suggests that people arrived on the continent sometime before the LGM, before the ice blockage."
+    note: Preferred in this picture because three independent sets of dates support the footprints' age.
+  earlier-than-becerra-valdivia-2020:
+    prop: earlier_than
+    value: 26.5 ka
+    alt: alt:peopling-of-the-americas/pre-lgm
+    source:
+      ref: src:becerra-valdivia-2020-north-america
+      loc: abstract
+      quote: "humans were probably present before, during and immediately after the Last Glacial Maximum (about 26.5-19 thousand years ago)"
+    method: radiometric
+    note: From a Bayesian model of dates from 42 North American and Beringian sites.
+  earlier-than-ardelean-2020:
+    prop: earlier_than
+    value: 31 ka
+    alt: alt:peopling-of-the-americas/pre-lgm
+    source:
+      - ref: src:ardelean-2020-chiquihuite
+        loc: abstract
+        quote: "push back dates for human dispersal to the region possibly as early as 33,000-31,000 years ago"
+      - ref: src:chatters-2022-chiquihuite
+        loc: abstract
+        quote: "We conclude that hypothesis 2 is more strongly supported and that Chiquihuite Cave does not represent evidence for the earliest Americans."
+    method: radiometric
+    note: >-
+      The stone artefacts from Chiquihuite Cave, Mexico, at the late end of the range given. Chatters
+      et al. hold that the stones are geofacts, broken by natural processes, which would leave the
+      dates with nothing human to date.
+  date-moreno-mayar-2018:
+    prop: date
+    value: { lo: 17.5 ka, hi: 14.6 ka }
+    alt: alt:peopling-of-the-americas/post-lgm
+    rank: preferred
+    source:
+      ref: src:moreno-mayar-2018-upward-sun-river
+      loc: abstract
+      quote: "We show that the basal northern and southern Native American branches, to which all other Native Americans belong, diverged around 17.5-14.6 ka, and that this probably occurred south of the North American ice sheets."
+    method: molecular-clock
+    note: >-
+      Strictly, when the first branches of Native Americans parted, which the authors place south of
+      the ice. Preferred in this picture because it comes with a range and from a whole genome.
+  date-llamas-2016:
+    prop: date
+    value: 16 ka
+    alt: alt:peopling-of-the-americas/post-lgm
+    source:
+      - ref: src:llamas-2016-americas-mtdna
+        loc: abstract
+        quote: "a small population entered the Americas via a coastal route around 16.0 ka"
+      - ref: src:potter-2018-peopling-models
+        loc: abstract
+        quote: "ancestral Native American population expansion occurred after 16,000 years ago"
+    method: molecular-clock
+    note: From mitochondrial genomes. Potter et al. read the expansion as after 16 ka, and the earliest securely dated sites as after about 15 ka.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        All ancient individuals sequenced in the Americas, save later-arriving Arctic peoples, are
+        more closely related to Indigenous Americans today than to any population elsewhere.
+    source:
+      ref: src:willerslev-2021-peopling
+      loc: abstract
+      quote: "all ancient individuals in the Americas, save for later-arriving Arctic peoples, are more closely related to contemporary Indigenous American individuals than to any other population elsewhere"

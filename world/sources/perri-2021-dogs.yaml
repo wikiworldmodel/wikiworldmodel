@@ -1,0 +1,24 @@
+id: src:perri-2021-dogs
+type: publication
+kind: review
+citation: >-
+  Perri, A.R., Feuerborn, T.R., Frantz, L.A.F., … & Witt, K.E. (2021). Dog domestication and
+  the dual dispersal of people and dogs into the Americas. Proceedings of the National Academy
+  of Sciences 118(6), e2010083118.
+authors:
+  - "Perri, A.R."
+  - "Feuerborn, T.R."
+  - "Frantz, L.A.F."
+  - "Larson, G."
+  - "Malhi, R.S."
+  - "Meltzer, D.J."
+  - "Witt, K.E."
+published: 2021
+title: "Dog domestication and the dual dispersal of people and dogs into the Americas"
+container: "Proceedings of the National Academy of Sciences 118(6), e2010083118"
+doi: 10.1073/pnas.2010083118
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC8017920) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

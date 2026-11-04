@@ -1,0 +1,104 @@
+id: earth/futures/next-supercontinent
+kind: event/formation
+summary: >-
+  The gathering of the continents into a new supercontinent, some 200 to 300 million years from now,
+  if the supercontinent cycle goes on. The range is what the four scenarios for it share. Which supercontinent
+  it is, and so its date, and which oceans close, are the alternatives "Next supercontinent".
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: The next supercontinent }
+    source:
+      ref: src:davies-2018-next-supercontinent
+      loc: abstract
+      quote: the formation of the next supercontinent, which is believed to occur around 200 – 300 Ma into the future
+  date-davies-2018:
+    prop: date
+    value: { lo: 200 Myr from now, hi: 300 Myr from now }
+    source:
+      - ref: src:davies-2018-next-supercontinent
+        loc: section 1
+        quote: it is expected that a new supercontinent will form sometime in the future - within the next 200 – 300 Ma
+      - ref: src:davies-2020-future-tides
+        loc: section 1, p. 291
+        quote: Another supercontinent should therefore form within the next 200–300 Myr
+    method: expert-estimate
+    basis: projection
+    rank: preferred
+    note: >-
+      Reckoned from the length of past cycles, assuming there is a cycle even if not a regular one (Davies
+      et al. 2018, section 6). Preferred because each of the four scenarios forms within it, and it is
+      the widest of the ranges here, for a time no model fixes. The same authors write that faster plates
+      would bring it sooner. They write Ma for millions of years ahead.
+  date-way-2021:
+    prop: date
+    value: { lo: 200 Myr from now, hi: 250 Myr from now }
+    source:
+      - ref: src:way-2021-next-supercontinent-climates
+        loc: section 1, manuscript p. 2
+        quote: The next supercontinent will most likely form in 200–250 million years
+      - ref: src:davies-2020-future-tides
+        loc: abstract, p. 291
+        quote: which will end around 200–250 Myr (million years) in the future, as the next supercontinent forms
+    method: expert-estimate
+    basis: projection
+    note: The narrower range the same group gives elsewhere, which spans its dates for the four scenarios, 200 and 250 million years.
+  date-broussolle-2022:
+    prop: date
+    value: 160 Myr from now
+    source:
+      ref: src:broussolle-2022-supercontinent-cycle
+      loc: abstract, p. 1
+      quote: Pangea Proxima (X(3)) might form at + 160 Myr
+    method: model
+    basis: projection
+    note: >-
+      From a mathematical sequence in which the cycle speeds up, starting from assumed ages for Columbia and
+      Rodinia, with two regressions in the same paper giving 175–199 Myr. The paper says the name Pangea
+      Proxima does not refer here to how the next supercontinent gathers. It rests in part on a recent
+      assembly, Eurasia, that the paper itself says lacks strong geological evidence.
+  date-pangaea-proxima:
+    prop: date
+    value: { ref: earth/futures/pangaea-proxima, edge: start }
+    alt: alt:next-supercontinent/pangaea-proxima
+    source:
+      ref: src:davies-2018-next-supercontinent
+      loc: section 1
+      quote: closure of the Atlantic, leading to a new supercontinent called Pangea Ultima
+    method: model
+    basis: projection
+    note: Holds only in the alternative "Pangaea Proxima", where this is the next supercontinent.
+  date-novopangaea:
+    prop: date
+    value: { ref: earth/futures/novopangaea, edge: start }
+    alt: alt:next-supercontinent/novopangaea
+    source:
+      ref: src:davies-2018-next-supercontinent
+      loc: section 1
+      quote: closure of the Pacific forming Novopangea
+    method: model
+    basis: projection
+    note: Holds only in the alternative "Novopangaea", where this is the next supercontinent.
+  date-amasia:
+    prop: date
+    value: { ref: earth/futures/amasia, edge: start }
+    alt: alt:next-supercontinent/amasia
+    source:
+      ref: src:davies-2018-next-supercontinent
+      loc: section 1
+      quote: the closure the Arctic leading to the formation of Amasia
+    method: model
+    basis: projection
+    note: Holds only in the alternative "Amasia", where this is the next supercontinent.
+  date-aurica:
+    prop: date
+    value: { ref: earth/futures/aurica, edge: start }
+    alt: alt:next-supercontinent/aurica
+    source:
+      ref: src:davies-2018-next-supercontinent
+      loc: section 1
+      quote: closure of both the Atlantic and the Pacific oceans, forming Aurica
+    method: model
+    basis: projection
+    note: Holds only in the alternative "Aurica", where this is the next supercontinent.

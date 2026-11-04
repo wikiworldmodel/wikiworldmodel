@@ -1,0 +1,26 @@
+id: src:wang-2021-arctic-edna
+type: publication
+kind: measurement
+citation: >-
+  Wang, Y., Pedersen, M.W., Alsos, I.G., De Sanctis, B., Racimo, F., Prohaska, A., Coissac, E.,
+  Owens, H.L., Merkel, M.K.F., Fernandez-Guerra, A., … & Willerslev, E. (2021). Late Quaternary
+  dynamics of Arctic biota from ancient environmental genomics. Nature 600(7887), 86–92.
+authors:
+  - "Wang, Y."
+  - "Pedersen, M.W."
+  - "Alsos, I.G."
+  - "De Sanctis, B."
+  - "Willerslev, E."
+published: 2021
+title: "Late Quaternary dynamics of Arctic biota from ancient environmental genomics"
+container: "Nature 600(7887), 86–92"
+doi: 10.1038/s41586-021-04016-x
+reliability: >-
+  Its late dates for mammoth and woolly rhinoceros rest on DNA in sediment, which critics hold can
+  be older than the sediment; the exchange in Nature 612 (2022) leaves this open.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC8636272). The exchange it drew was read too: Miller &
+    Simpson (2022, PMC9712083) and Wang et al.'s reply (2022, PMC9712097). Quotes checked by script
+    against the text retrieved, after normalizing whitespace.

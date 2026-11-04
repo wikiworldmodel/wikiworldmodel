@@ -1,0 +1,29 @@
+id: src:valladas-2013-misliya
+type: publication
+kind: measurement
+citation: >-
+  Valladas, H., Mercier, N., Hershkovitz, I., Zaidner, Y., Tsatskin, A., Yeshurun, R., Vialettes,
+  L., Joron, J.L., Reyss, J.L. & Weinstein-Evron, M. (2013). Dating the Lower to Middle
+  Paleolithic transition in the Levant: a view from Misliya Cave, Mount Carmel, Israel. Journal of
+  Human Evolution 65(5), 585–593.
+authors:
+  - "Valladas, H."
+  - "Mercier, N."
+  - "Hershkovitz, I."
+  - "Zaidner, Y."
+  - "Tsatskin, A."
+  - "Yeshurun, R."
+  - "Vialettes, L."
+  - "Joron, J.L."
+  - "Reyss, J.L."
+  - "Weinstein-Evron, M."
+published: 2013
+title: "Dating the Lower to Middle Paleolithic transition in the Levant: a view from Misliya Cave, Mount Carmel, Israel"
+container: "Journal of Human Evolution 65(5), 585–593"
+doi: 10.1016/j.jhevol.2013.07.005
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 24034982): thermoluminescence of burnt flints from
+    Misliya Cave: Early Middle Paleolithic (Mousterian) layers with mean ages from ~250 to ~160
+    ka. Quoted passages checked by script against the text retrieved.

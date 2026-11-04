@@ -1,0 +1,30 @@
+id: src:joordens-2015-trinil
+type: publication
+kind: measurement
+citation: >-
+  Joordens, J.C., d'Errico, F., Wesselingh, F.P., Munro, S., de Vos, J., Wallinga, J.,
+  Ankjærgaard, C., Reimann, T., Wijbrans, J.R., Kuiper, K.F. et al. (2015). Homo erectus at Trinil
+  on Java used shells for tool production and engraving. Nature 518(7538), 228–231.
+authors:
+  - "Joordens, J.C."
+  - "d'Errico, F."
+  - "Wesselingh, F.P."
+  - "Munro, S."
+  - "de Vos, J."
+  - "Wallinga, J."
+  - "Ankjærgaard, C."
+  - "Reimann, T."
+  - "Wijbrans, J.R."
+  - "Kuiper, K.F."
+published: 2015
+title: "Homo erectus at Trinil on Java used shells for tool production and engraving"
+container: "Nature 518(7538), 228–231"
+doi: 10.1038/nature13962
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 21 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 25470048): the engraved shell from Trinil, with
+    sediment in the shells dated to between 0.54 ± 0.10 and 0.43 ± 0.05 million years. Quoted
+    passages checked by script against the text retrieved.

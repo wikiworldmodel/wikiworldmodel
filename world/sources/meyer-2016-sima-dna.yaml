@@ -1,0 +1,33 @@
+id: src:meyer-2016-sima-dna
+type: publication
+kind: measurement
+citation: >-
+  Meyer, M., Arsuaga, J.L., de Filippo, C., Nagel, S., Aximu-Petri, A., Nickel, B., Martínez, I.,
+  Gracia, A., Bermúdez de Castro, J.M., Carbonell, E., Viola, B., Kelso, J., Prüfer, K. & Pääbo,
+  S. (2016). Nuclear DNA sequences from the Middle Pleistocene Sima de los Huesos hominins. Nature
+  531(7595), 504–507.
+authors:
+  - "Meyer, M."
+  - "Arsuaga, J.L."
+  - "de Filippo, C."
+  - "Nagel, S."
+  - "Aximu-Petri, A."
+  - "Nickel, B."
+  - "Martínez, I."
+  - "Gracia, A."
+  - "Bermúdez de Castro, J.M."
+  - "Carbonell, E."
+  - "Viola, B."
+  - "Kelso, J."
+  - "Prüfer, K."
+  - "Pääbo, S."
+published: 2016
+title: "Nuclear DNA sequences from the Middle Pleistocene Sima de los Huesos hominins"
+container: "Nature 531(7595), 504–507"
+doi: 10.1038/nature17405
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 26976447): nuclear DNA showing the Sima de los Huesos
+    hominins related to Neanderthals, and 28 individuals. Quoted passages checked by script
+    against the text retrieved.

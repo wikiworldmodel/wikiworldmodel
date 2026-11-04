@@ -1,0 +1,23 @@
+id: src:terlato-2019-cave-bear-extinction
+type: publication
+kind: measurement
+citation: >-
+  Terlato, G., Bocherens, H., Romandini, M., Nannini, N., Hobson, K.A. & Peresani, M. (2019).
+  Chronological and isotopic data support a revision for the timing of cave bear extinction in
+  Mediterranean Europe. Historical Biology 31(4), 474–484.
+authors:
+  - "Terlato, G."
+  - "Bocherens, H."
+  - "Romandini, M."
+  - "Nannini, N."
+  - "Hobson, K.A."
+  - "Peresani, M."
+published: 2019
+title: "Chronological and isotopic data support a revision for the timing of cave bear extinction in Mediterranean Europe"
+container: "Historical Biology 31(4), 474–484"
+doi: 10.1080/08912963.2018.1448395
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the OpenAlex record for the DOI; the full text could not be read
+    here. Quotes checked by script against the text retrieved, after normalizing whitespace.

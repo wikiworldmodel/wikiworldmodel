@@ -1,0 +1,20 @@
+id: src:eberle-2020-strathcona
+type: publication
+kind: measurement
+citation: >-
+  Eberle, J.J., von Koenigswald, W. & Eberth, D.A. (2020). Using tooth enamel microstructure to
+  identify mammalian fossils at an Eocene Arctic forest. PLOS ONE 15(9), e0239073.
+authors:
+  - "Eberle, J.J."
+  - "von Koenigswald, W."
+  - "Eberth, D.A."
+published: 2020
+title: "Using tooth enamel microstructure to identify mammalian fossils at an Eocene Arctic forest"
+container: PLOS ONE 15(9), e0239073
+doi: 10.1371/journal.pone.0239073
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the publisher's PDF (journals.plos.org); the parts cited were read,
+    and quotes checked by script against its text. Metadata from Crossref.

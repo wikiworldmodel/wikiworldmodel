@@ -1,0 +1,26 @@
+id: src:spoor-2015-oh-7
+type: publication
+kind: measurement
+citation: >-
+  Spoor, F., Gunz, P., Neubauer, S., Stelzer, S., Stelzer, S., Scott, N., Kwekason, A. & Dean,
+  M.C. (2015). Reconstructed Homo habilis type OH 7 suggests deep-rooted species diversity in
+  early Homo. Nature 519(7541), 83–86.
+authors:
+  - "Spoor, F."
+  - "Gunz, P."
+  - "Neubauer, S."
+  - "Stelzer, S."
+  - "Stelzer, S."
+  - "Scott, N."
+  - "Kwekason, A."
+  - "Dean, M.C."
+published: 2015
+title: "Reconstructed Homo habilis type OH 7 suggests deep-rooted species diversity in early Homo"
+container: "Nature 519(7541), 83–86"
+doi: 10.1038/nature14224
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 25739632): OH 7 as the 1.8-million-year-old holotype
+    of H. habilis, and the lineage as older than 2.3 million years. Quoted passages checked by
+    script against the text retrieved.

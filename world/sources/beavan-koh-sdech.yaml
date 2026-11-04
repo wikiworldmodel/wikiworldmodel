@@ -1,0 +1,22 @@
+id: src:beavan-koh-sdech
+type: publication
+kind: measurement
+citation: >-
+  Beavan, N., Tep, S., Zoppi, U., McCarthy, B., Schilling, M., Cort, L. & Fraser Lu, S. Field note: A radiocarbon date for
+  the Koh S'dech shipwreck, Koh Kong Province, Kingdom of Cambodia. Southeast Asian Ceramics essays, Freer and Sackler
+  Galleries, Smithsonian Institution.
+authors:
+  - "Beavan, N."
+  - "Tep, S."
+  - "Zoppi, U."
+  - "McCarthy, B."
+  - "Schilling, M."
+  - "Cort, L."
+  - "Fraser Lu, S."
+title: "Field note: A radiocarbon date for the Koh S'dech shipwreck, Koh Kong Province, Kingdom of Cambodia"
+container: Southeast Asian Ceramics, Smithsonian Institution
+url: https://publications.asia.si.edu/seaceramics/essays/resource_items_url_218.pdf
+reliability: Cited here only for its passing date of the Belitung wreck, which it takes from Flecker (2011).
+verified:
+  by: machine:claude-code
+  how: The PDF read in its text layer. Quote checked by script against it, after normalizing whitespace.

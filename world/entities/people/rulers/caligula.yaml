@@ -1,0 +1,72 @@
+id: people/rulers/caligula
+kind: person
+summary: >-
+  The third Roman emperor, Gaius Caesar, son of Germanicus, killed by officers of his guard in
+  the fourth year of his reign.
+author: machine:claude-code
+same_as: { wikidata: Q1409 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Caligula, la: Gaius Caesar }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Caligula 9"
+      quote: His surname Caligula he derived from a joke of the troops
+  start:
+    prop: start
+    value: 31 August 12 CE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Caligula 8.1"
+      quote: Gaius Caesar was born the day before the Kalends of September in the consulship of his father and Gaius Fonteius Capito
+    method: historical-account
+    note: >-
+      The day before the Kalends of September is 31 August, and the consulship of Germanicus and
+      Capito is 12 CE. Suetonius finds his birthplace uncertain, and so the record gives no
+      location.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/tiberius, edge: end }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Caligula 13.1"
+      quote: By thus gaining the throne he fulfilled the highest hopes of the Roman people
+    method: historical-account
+    note: >-
+      He succeeded on the death of Tiberius, whichever day of the competing ones is chosen for
+      it.
+  end:
+    prop: end
+    value: 24 January 41 CE
+    source:
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Caligula 58.1"
+        quote: On the ninth day before the Kalends of February at about the seventh hour
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Caligula 59.1"
+        quote: He lived twenty-nine years and ruled three years, ten months and eight days
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "59.30.1, vol. 7 p. 361"
+        quote: Thus Gaius, after doing in three years, nine months, and twenty-eight days all that has been related
+    method: historical-account
+    note: >-
+      The ninth day before the Kalends of February is 24 January. The year follows from the
+      length of the reign counted from Tiberius' death in March 37, by either author's date for
+      it.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Caligula 13.1"
+      quote: By thus gaining the throne
+    note: Princeps.

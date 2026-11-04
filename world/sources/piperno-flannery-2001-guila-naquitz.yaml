@@ -1,0 +1,19 @@
+id: src:piperno-flannery-2001-guila-naquitz
+type: publication
+kind: measurement
+citation: >-
+  Piperno, D.R. & Flannery, K.V. (2001). The earliest archaeological maize (Zea mays L.) from
+  highland Mexico: new accelerator mass spectrometry dates and their implications. Proceedings
+  of the National Academy of Sciences 98(4), 2101–2103.
+authors:
+  - "Piperno, D.R."
+  - "Flannery, K.V."
+published: 2001
+title: "The earliest archaeological maize (Zea mays L.) from highland Mexico: new accelerator mass spectrometry dates and their implications"
+container: "Proceedings of the National Academy of Sciences 98(4), 2101–2103"
+doi: 10.1073/pnas.98.4.2101
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC29388) on 3 November 2026. Each quote checked by script
+    against that text; citation from the Europe PMC record.

@@ -1,0 +1,22 @@
+id: src:palkopoulou-2015-mammoth-genomes
+type: publication
+kind: measurement
+citation: >-
+  Palkopoulou, E., Mallick, S., Skoglund, P., Enk, J., Rohland, N., Li, H., Omrak, A., Vartanyan,
+  S., Poinar, H., Götherström, A., Reich, D. & Dalén, L. (2015). Complete genomes reveal signatures
+  of demographic and genetic declines in the woolly mammoth. Current Biology 25(10), 1395–1400.
+authors:
+  - "Palkopoulou, E."
+  - "Mallick, S."
+  - "Skoglund, P."
+  - "Enk, J."
+  - "Dalén, L."
+published: 2015
+title: "Complete genomes reveal signatures of demographic and genetic declines in the woolly mammoth"
+container: "Current Biology 25(10), 1395–1400"
+doi: 10.1016/j.cub.2015.04.007
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from PMC through NCBI efetch (PMC4439331); Table S1 was not read. Quotes
+    checked by script against the text retrieved, after normalizing whitespace.

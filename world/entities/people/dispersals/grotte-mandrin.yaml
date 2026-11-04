@@ -1,0 +1,52 @@
+id: people/dispersals/grotte-mandrin
+kind: event/dispersal
+summary: >-
+  A child's molar and small, finely made stone points from layer E of Grotte Mandrin, in the Rhône
+  valley of France, between layers left by Neanderthals: on its excavators' reading the earliest known
+  modern humans in Europe, about 54,000 years ago, who were then replaced by Neanderthals.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Grotte Mandrin }
+    unsourced: An editorial label, from the place name.
+  date:
+    prop: date
+    value: { lo: 56.8 ka, hi: 51.7 ka }
+    source:
+      - ref: src:slimak-2022-mandrin
+        loc: "Results, Dating"
+        quote: "layer E, which contains the modern human fossil, dates to 56.8 ka to 51.7 ka cal. B.P. (95.4% prob."
+      - ref: src:mylopotamitaki-2024-ranis
+        loc: "main text, discussion"
+        quote: "also suggests an H. sapiens incursion into southeastern France as early as about 54,000 cal bp"
+    method: radiometric
+    note: >-
+      A Bayesian model of radiocarbon and luminescence dates for the layer, not a date on the tooth.
+      That the tooth is modern human rests on its shape alone: no DNA was tried on the hominin
+      remains. Mylopotamitaki et al. call the tooth "non-directly dated and non-genetically
+      identified", and go on, "If confirmed".
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        Replaced at the site by Neanderthals. Remains this old outside Africa come, on Sümer et al.'s
+        reading, from a population other than the one that all sequenced non-Africans descend from.
+    source:
+      - ref: src:slimak-2022-mandrin
+        loc: abstract
+        quote: "Modern humans first arrived into Europe in Mediterranean France 54,000 years ago but were subsequently replaced by Neanderthals."
+      - ref: src:sumer-2025-ranis-genomes
+        loc: abstract
+        quote: "further suggests that modern human remains older than 50,000 years from outside Africa represent different non-African populations"
+  location:
+    prop: location
+    value: { lat: 44.46955, lon: 4.77136, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-mandrin-cave, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

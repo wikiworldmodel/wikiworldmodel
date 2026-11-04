@@ -1,0 +1,114 @@
+id: people/first-cities/catalhoyuk
+kind: settlement
+summary: >-
+  Çatalhöyük, on the Konya Plain of south-central Turkey, a very large Neolithic settlement of back-to-back mud-brick houses entered from the roof, far older than any city here. It is
+  not counted as a city: with some thousands of people and no sign of central administration or hierarchy, it is called a megasite or proto-urban, and whether such a place is
+  urban at all is what scholars debate. It is here as the scale people reached before cities.
+author: machine:claude-code
+same_as: { wikidata: Q192522, pleiades: 483473194 }
+claims:
+  name:
+    prop: name
+    value: { en: Çatalhöyük }
+    source: { ref: src:pleiades-catalhoyuk, loc: "place 483473194, title" }
+  start-larsen:
+    prop: start
+    value: 7100 BCE
+    source:
+      ref: src:larsen-2019-catalhoyuk
+      loc: introduction
+      quote: spanning 1,150 y of continuous occupation (ca. 7100–5950 cal BCE)
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: The East Mound. Preferred as calibrated dates from the latest excavation team, where UNESCO's page gives older round figures.
+  start-unesco:
+    prop: start
+    value: 7400 BCE
+    source:
+      ref: src:unesco-whc-1405-catalhoyuk
+      loc: Outstanding Universal Value, brief synthesis
+      quote: 18 levels of Neolithic occupation dating from 7,400-6,200 BC
+    method: expert-estimate
+  end-larsen:
+    prop: end
+    value: 5950 BCE
+    source:
+      ref: src:larsen-2019-catalhoyuk
+      loc: introduction
+      quote: spanning 1,150 y of continuous occupation (ca. 7100–5950 cal BCE)
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: The end of the Neolithic settlement on the East Mound, which is the large settlement this record is about.
+  end-unesco:
+    prop: end
+    value: 5200 BCE
+    source:
+      ref: src:unesco-whc-1405-catalhoyuk
+      loc: Outstanding Universal Value, brief synthesis
+      quote: Chalcolithic occupation levels from 6,200-5,200 BC
+    method: expert-estimate
+    note: The West Mound, a Chalcolithic settlement beside the old one, which UNESCO counts with it.
+  location:
+    prop: location
+    value: { lat: 37.667102, lon: 32.826886, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-catalhoyuk, loc: "place 483473194, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-504
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area:
+    prop: settlement_area
+    value: 13
+    valid: { lo: 6700 BCE, hi: 6500 BCE }
+    source:
+      - ref: src:larsen-2019-catalhoyuk
+        loc: introduction
+        quote: a large tell measuring 13 ha with nearly 21 m of stratified deposits
+      - ref: src:der-issavi-2017-catalhoyuk
+        loc: abstract
+        quote: "At 13 hectares, with 18 levels of Neolithic occupation spanning 1100 years, and peaking at around 8000 inhabitants"
+      - ref: src:mazzucato-2019-catalhoyuk-networks
+        loc: p. 2 (Introduction)
+        quote: lack any clear sign of centralized systems of administration or hierarchical arrangements of power
+      - ref: src:mazzucato-2019-catalhoyuk-networks
+        loc: p. 2 (Introduction)
+        quote: they have been viewed as proto-urban sites or “proto-cities”
+    method: survey
+    rank: preferred
+    note: >-
+      The tell as it stands, set here at the peak of the settlement. Why this is not counted a city: Mazzucato notes that Neolithic megasites are dense and long-lived but lack
+      central administration, and that they have been called anomalies or dead ends on the way to urbanity, or else proto-urban. Der and Issavi take the question up, and
+      UNESCO's statement speaks of villages developing into urban centres.
+  area-two-mounds:
+    prop: settlement_area
+    value: 37
+    source:
+      ref: src:unesco-whc-1405-catalhoyuk
+      loc: description
+      quote: Two hills form the 37 ha site on the Southern Anatolian Plateau.
+    method: survey
+    note: Both mounds, East and West, which were not one settlement at one time, and so with no date.
+  population-larsen:
+    prop: population
+    value: { lo: 3500, hi: 8000 }
+    valid: { lo: 6700 BCE, hi: 6500 BCE }
+    source:
+      ref: src:larsen-2019-catalhoyuk
+      loc: section "The Rise, Peak, and Decline of the Çatalhöyük Community"
+      quote: "reaching a peak population size of ∼3,500 to 8,000 individuals in the Middle Period"
+    method: expert-estimate
+    rank: preferred
+    note: The dates of the Middle Period are given in the same section.
+  population-der-issavi:
+    prop: population
+    value: 8000
+    valid: { lo: 6700 BCE, hi: 6500 BCE }
+    source:
+      ref: src:der-issavi-2017-catalhoyuk
+      loc: abstract
+      quote: peaking at around 8000 inhabitants
+    method: expert-estimate
+    note: The top of Larsen et al.'s range, stated as the peak. The moment is taken from them.

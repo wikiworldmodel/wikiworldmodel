@@ -1,9 +1,9 @@
 // Turn the world's dated claims and relations into a simple temporal network, solve it, and
 // derive every entity's and phase's interval from the evidence (section 5), for each
 // scenario (core/scenario.ts): the default picture, plus alternatives and picked claims.
-import { parseRef } from '../../../core/refs.ts';
+import { parseRef, splitRef } from '../../../core/refs.ts';
 import { scenarioKey, type Scenario } from '../../../core/scenario.ts';
-import { ORIGIN, solve, type Constraint, type Solution } from '../../../core/stn.ts';
+import { conflictIn, ORIGIN, solve, type Bounds, type Conflict, type Constraint, type Solution } from '../../../core/stn.ts';
 import { bounds, centre, parseLag, parseTime, type TimeValue } from '../../../core/time.ts';
 import { isMoment, type Claim, type Relation, type World } from './world.ts';
 
@@ -96,15 +96,39 @@ export function chosen(g: ClaimGroup, s: Scenario = {}): Claim | undefined {
 /** Relations that hold in a scenario's picture. */
 export function relationsIn(world: World, s: Scenario): Relation[] {
   const alts = new Set(s.alts ?? []);
-  return world.entities.flatMap((e) => e.relations).filter((r) => r.status !== 'deprecated' && r.rank !== 'deprecated' && (!r.alt || alts.has(r.alt)));
+  let all = allRelations.get(world);
+  if (!all) {
+    all = world.entities.flatMap((e) => e.relations).filter((r) => r.status !== 'deprecated' && r.rank !== 'deprecated');
+    allRelations.set(world, all);
+  }
+  return all.filter((r) => !r.alt || alts.has(r.alt));
 }
 
+const allRelations = new WeakMap<World, Relation[]>();
+
+/** Times already read: the network is made once for every competing claim, from the same few thousand values. */
+const readStrings = new Map<string, TimeValue | undefined>();
+const readObjects = new WeakMap<object, { v: TimeValue | undefined }>();
+
 function timeOrUndefined(v: unknown): TimeValue | undefined {
-  try {
-    return parseTime(v as never);
-  } catch {
-    return undefined; // the validator reports it
+  const read = () => {
+    try {
+      return parseTime(v as never);
+    } catch {
+      return undefined; // the validator reports it
+    }
+  };
+  if (typeof v === 'string') {
+    if (!readStrings.has(v)) readStrings.set(v, read());
+    return readStrings.get(v);
   }
+  if (typeof v !== 'object' || v === null) return read();
+  let known = readObjects.get(v);
+  if (!known) {
+    known = { v: read() };
+    readObjects.set(v, known);
+  }
+  return known.v;
 }
 
 /**
@@ -112,6 +136,81 @@ function timeOrUndefined(v: unknown): TimeValue | undefined {
  * instead of its bounds: solving that gives best estimates for derived dates.
  */
 export function buildNetwork(world: World, s: Scenario = {}, centres = false): { points: string[]; constraints: Constraint[] } {
+  // A pick changes one group's claim, in a network otherwise its picture's: there are thousands of picks.
+  if (s.picks?.length === 1) {
+    const quick = pickedNetwork(world, s, centres);
+    if (quick) return quick;
+  }
+  return wholeNetwork(world, s, centres);
+}
+
+const pictureNetworks = new WeakMap<World, Map<string, { points: string[]; constraints: Constraint[] }>>();
+
+/** A picture's network, with one group's constraints changed for the claim picked; undefined if that cannot be done in place. */
+function pickedNetwork(world: World, s: Scenario, centres: boolean): { points: string[]; constraints: Constraint[] } | undefined {
+  const pick = s.picks![0];
+  const { record, part } = splitRef(pick);
+  const claim = world.entity.get(record)?.claims.find((c) => c.key === part);
+  const g = claim && claimGroup(world, claim.subject, claim.prop);
+  if (!claim || !g || !world.vocab.properties[g.prop]?.moment) return undefined;
+  const picture: Scenario = s.alts?.length ? { alts: s.alts } : {};
+  const before = chosen(g, picture);
+  if (!before) return undefined;
+  let known = pictureNetworks.get(world);
+  if (!known) {
+    known = new Map();
+    pictureNetworks.set(world, known);
+  }
+  const key = `${scenarioKey(picture)}|${centres}`;
+  let base = known.get(key);
+  if (!base) {
+    base = wholeNetwork(world, picture, centres);
+    known.set(key, base);
+  }
+  const at = base.constraints.findIndex((c) => c.source === before.ref);
+  if (at < 0) return undefined;
+  // In place, so that the order of the constraints, on which ties in the solver turn, is the same as if made whole.
+  const count = base.constraints.filter((c) => c.source === before.ref).length;
+  const mine = claimConstraints(world, g.prop, claim, centres);
+  return { points: base.points, constraints: [...base.constraints.slice(0, at), ...mine, ...base.constraints.slice(at + count)] };
+}
+
+/** What one dated claim says, as constraints. */
+function claimConstraints(world: World, prop: string, c: Claim, centres: boolean): Constraint[] {
+  const out: Constraint[] = [];
+  const add = (x: Constraint) => out.push(x);
+  if (!subjectExists(world, c.subject)) return out;
+  const v = timeOrUndefined(c.value);
+  if (!v) return out;
+  const point = prop === 'end' ? pointOf(world, c.subject, 'end') : pointOf(world, c.subject, 'start');
+  const source = c.ref;
+  if (v.kind === 'ref') {
+    if (!subjectExists(world, v.ref)) return out; // a wanted record: nothing to constrain by yet
+    const [lo, hi] = v.lag;
+    if (v.edge) {
+      const tp = pointOf(world, v.ref, v.edge);
+      if (prop === 'earlier_than') add({ source, from: point, to: tp, lo, hi: Infinity, note: 'earlier than' });
+      else if (prop === 'later_than') add({ source, from: tp, to: point, lo, hi: Infinity, note: 'later than' });
+      else add({ source, from: tp, to: point, lo, hi });
+    } else if (prop === 'earlier_than') {
+      add({ source, from: point, to: pointOf(world, v.ref, 'start'), lo: 0, hi: Infinity, note: 'earlier than' });
+    } else if (prop === 'later_than') {
+      add({ source, from: pointOf(world, v.ref, 'end'), to: point, lo: 0, hi: Infinity, note: 'later than' });
+    } else {
+      add({ source, from: pointOf(world, v.ref, 'start'), to: point, lo: 0, hi: Infinity, note: 'within' });
+      add({ source, from: point, to: pointOf(world, v.ref, 'end'), lo: 0, hi: Infinity, note: 'within' });
+    }
+    return out;
+  }
+  if (v.kind === 'unknown') return out;
+  const [lo, hi] = centres && prop !== 'earlier_than' && prop !== 'later_than' ? centre(v) : bounds(v);
+  if (prop === 'earlier_than') add({ source, from: ORIGIN, to: point, lo: -Infinity, hi, note: 'earlier than' });
+  else if (prop === 'later_than') add({ source, from: ORIGIN, to: point, lo, hi: Infinity, note: 'later than' });
+  else if (Number.isFinite(lo) || Number.isFinite(hi)) add({ source, from: ORIGIN, to: point, lo, hi });
+  return out;
+}
+
+function wholeNetwork(world: World, s: Scenario, centres: boolean): { points: string[]; constraints: Constraint[] } {
   const points = new Set<string>();
   const constraints: Constraint[] = [];
   const add = (c: Constraint) => constraints.push(c);
@@ -137,34 +236,7 @@ export function buildNetwork(world: World, s: Scenario = {}, centres = false): {
     const prop = world.vocab.properties[g.prop];
     if (!prop?.moment) continue;
     const c = chosen(g, s);
-    if (!c || !subjectExists(world, c.subject)) continue;
-    const v = timeOrUndefined(c.value);
-    if (!v) continue;
-    const point = g.prop === 'end' ? pointOf(world, c.subject, 'end') : pointOf(world, c.subject, 'start');
-    const source = c.ref;
-    if (v.kind === 'ref') {
-      if (!subjectExists(world, v.ref)) continue; // a wanted record: nothing to constrain by yet
-      const [lo, hi] = v.lag;
-      if (v.edge) {
-        const tp = pointOf(world, v.ref, v.edge);
-        if (g.prop === 'earlier_than') add({ source, from: point, to: tp, lo, hi: Infinity, note: 'earlier than' });
-        else if (g.prop === 'later_than') add({ source, from: tp, to: point, lo, hi: Infinity, note: 'later than' });
-        else add({ source, from: tp, to: point, lo, hi });
-      } else if (g.prop === 'earlier_than') {
-        add({ source, from: point, to: pointOf(world, v.ref, 'start'), lo: 0, hi: Infinity, note: 'earlier than' });
-      } else if (g.prop === 'later_than') {
-        add({ source, from: pointOf(world, v.ref, 'end'), to: point, lo: 0, hi: Infinity, note: 'later than' });
-      } else {
-        add({ source, from: pointOf(world, v.ref, 'start'), to: point, lo: 0, hi: Infinity, note: 'within' });
-        add({ source, from: point, to: pointOf(world, v.ref, 'end'), lo: 0, hi: Infinity, note: 'within' });
-      }
-      continue;
-    }
-    if (v.kind === 'unknown') continue;
-    const [lo, hi] = centres && g.prop !== 'earlier_than' && g.prop !== 'later_than' ? centre(v) : bounds(v);
-    if (g.prop === 'earlier_than') add({ source, from: ORIGIN, to: point, lo: -Infinity, hi, note: 'earlier than' });
-    else if (g.prop === 'later_than') add({ source, from: ORIGIN, to: point, lo, hi: Infinity, note: 'later than' });
-    else if (Number.isFinite(lo) || Number.isFinite(hi)) add({ source, from: ORIGIN, to: point, lo, hi });
+    if (c) constraints.push(...claimConstraints(world, g.prop, c, centres));
   }
   for (const r of relationsIn(world, s)) {
     const type = world.vocab.relations[r.rel];
@@ -187,6 +259,12 @@ export function buildNetwork(world: World, s: Scenario = {}, centres = false): {
   return { points: [...points], constraints };
 }
 
+/** Whether a scenario holds, and if not why, without working out its dates. */
+export function conflictInScenario(world: World, s: Scenario = {}, centres = false): Conflict | undefined {
+  const { points, constraints } = buildNetwork(world, s, centres);
+  return conflictIn(points, constraints);
+}
+
 export function solveScenario(world: World, s: Scenario = {}, centres = false): Solution {
   const { points, constraints } = buildNetwork(world, s, centres);
   return solve(points, constraints);
@@ -206,20 +284,71 @@ export function pictures(world: World, alternatives: string[] = world.alternativ
 }
 
 /**
- * Solve each picture, and each picture with one competing dated claim picked over the
- * default. Combinations of picks are not precomputed.
+ * Each picture, and each picture with one competing dated claim picked over the default.
+ * Combinations of picks are not worked out. The first of a picture's is the picture itself.
  */
-export function solveVariants(world: World, alternatives?: string[]): Variant[] {
-  const out: Variant[] = [];
-  const run = (scenario: Scenario) => out.push({ key: scenarioKey(scenario), scenario, solution: solveScenario(world, scenario), centres: solveScenario(world, scenario, true) });
+export function* scenariosOf(world: World, alternatives?: string[]): Generator<Scenario> {
   for (const p of pictures(world, alternatives)) {
-    run(p);
+    yield p;
     for (const g of claimGroups(world)) {
       if (!world.vocab.properties[g.prop]?.moment) continue;
       const avail = available(g, p);
       if (avail.length < 2) continue;
       const def = chosen(g, p);
-      for (const c of avail) if (c !== def) run({ ...p, picks: [c.ref] });
+      for (const c of avail) if (c !== def) yield { ...p, picks: [c.ref] };
+    }
+  }
+}
+
+type Bound = NonNullable<ReturnType<Bounds['get']>>;
+
+/** Bounds kept as what differs from another solution's: reading one falls through to the other. */
+class BoundsOver extends Map<string, Bound> {
+  /** what it is kept over: its own entries are only what differs from this */
+  readonly keptOver: Bounds;
+  constructor(private base: Bounds) {
+    super();
+    this.keptOver = base;
+  }
+  override get(point: string): Bound | undefined {
+    return super.get(point) ?? this.base.get(point);
+  }
+}
+
+const sameBound = (a: Bound, b: Bound) => a.lo === b.lo && a.hi === b.hi && a.loBy.length === b.loBy.length && a.hiBy.length === b.hiBy.length && a.loBy.every((x, i) => x === b.loBy[i]) && a.hiBy.every((x, i) => x === b.hiBy[i]);
+
+/** A solution with only what differs from a base kept: a pick moves a few dates, and there are thousands of picks. */
+function overBase(sol: Solution, base: Bounds | undefined): Solution {
+  if (!sol.ok || !base) return sol;
+  const out = new BoundsOver(base);
+  for (const [point, b] of sol.bounds) {
+    const was = base.get(point);
+    if (!was || !sameBound(b, was)) out.set(point, b);
+  }
+  return { ok: true, bounds: out };
+}
+
+/**
+ * Solve each picture, and each picture with one competing dated claim picked over the default.
+ * Each is kept only as it differs from its picture, and each picture as it differs from the default.
+ */
+export function solveVariants(world: World, alternatives?: string[]): Variant[] {
+  const out: Variant[] = [];
+  const boundsOf = (s: Solution) => (s.ok ? s.bounds : undefined);
+  let rootSol: Bounds | undefined;
+  let rootCentres: Bounds | undefined;
+  let picture: Variant | undefined;
+  for (const scenario of scenariosOf(world, alternatives)) {
+    const isPicture = !scenario.picks?.length;
+    const under = isPicture ? { sol: rootSol, centres: rootCentres } : { sol: boundsOf(picture!.solution), centres: boundsOf(picture!.centres) };
+    const v: Variant = { key: scenarioKey(scenario), scenario, solution: overBase(solveScenario(world, scenario), under.sol), centres: overBase(solveScenario(world, scenario, true), under.centres) };
+    out.push(v);
+    if (isPicture) {
+      picture = v;
+      if (!rootSol) {
+        rootSol = boundsOf(v.solution);
+        rootCentres = boundsOf(v.centres);
+      }
     }
   }
   return out;

@@ -1,0 +1,37 @@
+id: life/taxa/compsemys
+kind: taxon
+summary: >-
+  A turtle whose shell is covered in densely packed flat bumps, so that even fragments can be
+  named, common in the Hell Creek Formation.
+same_as: { pbdb: "txn:37641" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Compsemys" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 37641"
+  body-plan:
+    prop: body_plan
+    value: turtle
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: sprawling
+    source:
+      ref: src:butcher-blob-2008-cooter-turtles
+      loc: "abstract"
+      quote: "their highly sprawled posture"
+    note: >-
+      Of living turtles, as a guide to their extinct relatives.
+  length-hay-1908:
+    prop: body_length
+    value: 0.365
+    source:
+      ref: src:hay-1908-fossil-turtles
+      loc: "p. 234, s.v. Compsemys victa"
+      quote: "a turtle whose carapace had a length of about 365 mm"
+    method: expert-estimate
+    note: >-
+      Hay's estimate of the shell of Leidy's type, known from fragments.

@@ -1,0 +1,19 @@
+id: src:richter-krbetschek-2015-schoningen
+type: publication
+kind: measurement
+citation: >-
+  Richter, D. & Krbetschek, M. (2015). The age of the Lower Paleolithic occupation at Schöningen.
+  Journal of Human Evolution 89, 46–56.
+authors:
+  - "Richter, D."
+  - "Krbetschek, M."
+published: 2015
+title: "The age of the Lower Paleolithic occupation at Schöningen"
+container: "Journal of Human Evolution 89, 46–56"
+doi: 10.1016/j.jhevol.2015.06.003
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 26212768): thermoluminescence of heated flint at 321
+    ± 16 ka, and by inference 337–300 ka for the spears. Quoted passages checked by script against
+    the text retrieved.

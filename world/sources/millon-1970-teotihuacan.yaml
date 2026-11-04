@@ -1,0 +1,15 @@
+id: src:millon-1970-teotihuacan
+type: publication
+kind: measurement
+citation: >-
+  Millon, R. (1970). Teotihuacán: completion of map of giant ancient city in the Valley of Mexico. Science 170(3962), 1077–1082.
+authors:
+  - "Millon, R."
+published: 1970
+title: "Teotihuacán: completion of map of giant ancient city in the Valley of Mexico"
+container: Science
+doi: 10.1126/science.170.3962.1077
+url: https://europepmc.org/article/MED/17777825
+verified:
+  by: machine:claude-code
+  how: Only the abstract read, from Europe PMC. Quote checked by script against it.

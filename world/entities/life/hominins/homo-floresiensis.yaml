@@ -1,0 +1,53 @@
+id: life/taxa/homo-floresiensis
+kind: taxon
+summary: >-
+  Homo floresiensis Brown et al. 2004, the tiny hominin of Liang Bua on Flores, about 1 m tall with a
+  brain the size of the smallest australopiths'.
+same_as: { pbdb: "txn:91487", wikidata: Q186266 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Homo floresiensis, la: "Homo floresiensis" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:91487: Homo floresiensis, Brown et al. 2004" }
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:91487: rank 3 (species)" }
+  start:
+    prop: start
+    value: { hi: 190 ka }
+    source:
+      ref: src:sutikna-2016-liang-bua
+      loc: abstract
+      quote: "whereas stone artefacts attributable to this species range from about 190 to 50 kyr in age"
+    note: Dated by stone tools attributed to the species, not by its skeletons, which are younger.
+  end-sutikna-2016:
+    prop: end
+    value: { lo: 60 ka, hi: 50 ka }
+    source:
+      ref: src:sutikna-2016-liang-bua
+      loc: abstract
+      quote: "the skeletal remains of H. floresiensis and the deposits containing them are dated to between about 100 and 60 kyr ago, whereas stone artefacts attributable to this species range from about 190 to 50 kyr in age"
+    rank: preferred
+    note: >-
+      From the youngest age of the skeletons to the youngest of the tools attributed to the species.
+      The paper leaves open whether it survived after 50 kyr ago.
+  end-morwood-2004:
+    prop: end
+    value: 18 ka
+    source:
+      ref: src:morwood-2004-liang-bua
+      loc: abstract
+      quote: "indicates that H. floresiensis existed from before 38,000 years ago (kyr) until at least 18 kyr"
+    method: radiometric
+    rank: deprecated
+    note: >-
+      Sutikna et al. (2016) revised the stratigraphy and the chronology of the site, and their new
+      evidence does not support this survival to about 18 kyr or later.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:91487 < Homo (txn:40901) < Hominini (txn:91486)" }
+    note: The tree here has no record for the genus Homo, so each species hangs directly on the tribe.

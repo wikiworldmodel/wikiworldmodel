@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-291
+type: frame
+kind: plate
+title: Colorado Subplate (PALEOMAP plate 291)
+entity: earth/plates/colorado-subplate
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 291
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 291

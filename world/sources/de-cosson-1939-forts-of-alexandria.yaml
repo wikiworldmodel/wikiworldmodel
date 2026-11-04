@@ -1,0 +1,21 @@
+id: src:de-cosson-1939-forts-of-alexandria
+type: publication
+kind: review
+citation: >-
+  de Cosson, A. (1939). Notes on the Forts of Alexandria and Environs. Bulletin de la Société Royale
+  d'Archéologie d'Alexandrie 33 (N.S. vol. X.2).
+authors:
+  - "de Cosson, A."
+published: 1939
+title: Notes on the Forts of Alexandria and Environs
+container: Bulletin de la Société Royale d'Archéologie d'Alexandrie
+url: https://mjas.journals.ekb.eg/article_301350_ea7f8d76f50bf8e813c3eb38950af675.pdf
+reliability: >-
+  An account of the fort from a survey of 1938-1939, with the medieval and travellers' sources it rests
+  on. It dates the fort, not the stone.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the PDF archived on 3 May 2025 at web.archive.org, its text extracted with Ghostscript; the
+    journal's own site reset the connection from here. Quotations checked by script against that text
+    with whitespace normalized and a hyphen at a line end read as joined.

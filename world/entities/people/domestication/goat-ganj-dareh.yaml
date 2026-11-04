@@ -1,0 +1,63 @@
+id: life/occurrences/goat-ganj-dareh
+kind: occurrence
+summary: >-
+  Goat bones from Ganj Dareh, a village in the highlands of western Iran occupied from about 8200
+  BCE. They look wild, but young males were culled and older females kept, and their genomes already
+  stand apart from those of wild goats, with long runs of homozygosity: managed herds before any
+  change in the skeleton. They are among the oldest livestock genomes reported.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Goat, Ganj Dareh" }
+    unsourced: An editorial label, from the species and the site.
+  identified:
+    prop: identified_as
+    value: Capra hircus
+    source:
+      ref: src:daly-2021-ganj-dareh
+      loc: abstract
+      quote: "evidence of goat (Capra hircus) management and husbandry by circa 8200 cal BC"
+  evidence:
+    prop: evidence
+    value: zooarchaeological
+    source:
+      - ref: src:daly-2021-ganj-dareh
+        loc: "Archaeozoological Evidence of Goat Domestication in the Central Zagros"
+        quote: "The demographic profile of these goats, however, strongly suggests that they were managed animals"
+      - ref: src:daly-2021-ganj-dareh
+        loc: abstract
+        quote: "This genetic duality, the presence of long runs of homozygosity, shared ancestry with later Neolithic populations, a sex bias in archaeozoological remains, and demographic profiles from across all layers of Ganj Dareh support management of genetically domestic goat by circa 8200 cal BC"
+    note: >-
+      What shows it is domestic: a kill-off pattern of young males and old females, and genetics. There
+      are no smaller twisted horns or reduced body size yet.
+  location:
+    prop: location
+    value: { lat: 34.2721, lon: 47.4758, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-ganj-dareh, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 8200 BCE, hi: 7600 BCE }
+    source:
+      ref: src:daly-2021-ganj-dareh
+      loc: "Ganj Dareh and Tepe Abdul Hosein"
+      quote: "point to an occupation of Ganj Dareh lasting several hundred years in the late ninth/early eighth millennium BC (8200 to 7600 cal BC, 1-σ range)"
+    method: radiometric/radiocarbon
+    note: >-
+      AMS dates, some directly on goat bones. A 1σ range.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott19017 and ott244265: Capra hircus lies within Mammalia" }
+  domestication:
+    rel: part-of
+    to: people/domestication/goat
+    source: { ref: src:daly-2021-ganj-dareh, loc: abstract }

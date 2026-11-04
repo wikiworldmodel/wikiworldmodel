@@ -1,0 +1,15 @@
+id: src:wikidata-teotihuacan
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q172613 (Teotihuacan), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q172613
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "ancient Mesoamerican city". A point for the named place, given to the second of arc.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (19.6925, -98.843889) read from the item's JSON (Special:EntityData/Q172613.json) on 4 November 2026.

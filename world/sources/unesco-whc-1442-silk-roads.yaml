@@ -1,0 +1,15 @@
+id: src:unesco-whc-1442-silk-roads
+type: publication
+kind: review
+citation: >-
+  UNESCO World Heritage Centre. Silk Roads: the Routes Network of Chang'an-Tianshan Corridor. World Heritage List, no. 1442:
+  description and statement of outstanding universal value.
+title: "Silk Roads: the Routes Network of Chang'an-Tianshan Corridor"
+container: UNESCO World Heritage List
+url: https://whc.unesco.org/en/list/1442/
+via: The Internet Archive's copy of 27 December 2024 (web.archive.org/web/20241227161758/https://whc.unesco.org/en/list/1442), because UNESCO's site refused the script.
+license_note: Only single facts and short quotes are taken, with credit.
+reliability: An official summary, drawn from the states' nomination; not a research paper. It gives centuries, not years. The nomination's own dossier was not read.
+verified:
+  by: machine:claude-code
+  how: Read in the archived copy. Quotes checked by script against its text, after normalizing whitespace.

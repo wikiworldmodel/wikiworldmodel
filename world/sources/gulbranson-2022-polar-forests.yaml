@@ -1,0 +1,26 @@
+id: src:gulbranson-2022-polar-forests
+type: publication
+kind: measurement
+citation: >-
+  Gulbranson, E.L., Mellum, M.M., Corti, V., Dahlseid, A., Atkinson, B.A., Ryberg, P.E. &
+  Cornamusini, G. (2022). Paleoclimate-induced stress on polar forested ecosystems prior to the
+  Permian–Triassic mass extinction. Scientific Reports 12, 8702.
+authors:
+  - "Gulbranson, E.L."
+  - "Mellum, M.M."
+  - "Corti, V."
+  - "Dahlseid, A."
+  - "Atkinson, B.A."
+  - "Ryberg, P.E."
+  - "Cornamusini, G."
+published: 2022
+title: "Paleoclimate-induced stress on polar forested ecosystems prior to the Permian–Triassic mass extinction"
+container: Scientific Reports 12, 8702
+doi: 10.1038/s41598-022-12842-w
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the publisher's page and PDF
+    (nature.com/articles/s41598-022-12842-w); the parts cited were read, and quotes checked by
+    script against the page's text. Metadata from Crossref.

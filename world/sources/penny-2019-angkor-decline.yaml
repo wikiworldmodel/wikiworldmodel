@@ -1,0 +1,20 @@
+id: src:penny-2019-angkor-decline
+type: publication
+kind: measurement
+citation: >-
+  Penny, D., Hall, T., Evans, D. & Polkinghorne, M. (2019). Geoarchaeological evidence from Angkor, Cambodia, reveals a gradual decline
+  rather than a catastrophic 15th-century collapse. Proceedings of the National Academy of Sciences 116(11), 4871–4876.
+authors:
+  - "Penny, D."
+  - "Hall, T."
+  - "Evans, D."
+  - "Polkinghorne, M."
+published: 2019
+title: Geoarchaeological evidence from Angkor, Cambodia, reveals a gradual decline rather than a catastrophic 15th-century collapse
+container: Proceedings of the National Academy of Sciences
+doi: 10.1073/pnas.1821460116
+url: https://europepmc.org/article/PMC/PMC6421400
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC6421400). Quotes checked by script against it, after normalizing whitespace.

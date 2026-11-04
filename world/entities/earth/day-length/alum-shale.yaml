@@ -1,0 +1,54 @@
+id: earth/day-length/alum-shale
+kind: sample
+summary: >-
+  Elemental abundances in two drill cores of the Cambro-Ordovician Alum Shale Formation of Scandinavia,
+  in which obliquity cycles give a day of about 21.8 hours at the end of the Cambrian.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Alum Shale cores" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Alum Shale Formation
+    source:
+      ref: src:sorensen-2020-alum-shale
+      loc: abstract
+      quote: two drill cores from the Cambro–Ordovician Alum Shale Formation of Scandinavia
+    note: >-
+      No location is claimed: the abstract, all that could be read, names only Scandinavia.
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:sorensen-2020-alum-shale
+      loc: abstract
+      quote: We report evidence for Milankovitch cycles
+  date:
+    prop: date
+    value: 493 Ma
+    source:
+      ref: src:sorensen-2020-alum-shale
+      loc: abstract
+      quote: at ∼493 Ma to 368.9 ± 2.3 ⋅ 10 6 m and 21.78 ± 0.29 hr
+  day-length:
+    prop: day_length
+    value: { mean: 21.78, sd: 0.29 }
+    source:
+      ref: src:sorensen-2020-alum-shale
+      loc: abstract
+      quote: at ∼493 Ma to 368.9 ± 2.3 ⋅ 10 6 m and 21.78 ± 0.29 hr
+    note: >-
+      The abstract does not say what the ± is: read as 1σ. Farhat et al. (2022, Table D.1) recompute the
+      study's observation with their own model and get 21.99 ± 0.28 h.
+  moon-distance:
+    prop: moon_distance
+    value: { mean: 57.84, sd: 0.36 }
+    source:
+      ref: src:sorensen-2020-alum-shale
+      loc: abstract
+      quote: at ∼493 Ma to 368.9 ± 2.3 ⋅ 10 6 m and 21.78 ± 0.29 hr
+    note: >-
+      The abstract gives 368.9 ± 2.3 × 10⁶ m, read as 1σ: 368,900 ± 2,300 km. In Earth radii of 6378.1366 km
+      (Farhat et al. 2022, Table D.3): 368,900 / 6378.1366 = 57.84 and 2,300 / 6378.1366 = 0.36.

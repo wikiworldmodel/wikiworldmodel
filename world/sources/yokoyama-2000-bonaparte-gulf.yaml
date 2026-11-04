@@ -1,0 +1,21 @@
+id: src:yokoyama-2000-bonaparte-gulf
+type: publication
+kind: measurement
+citation: >-
+  Yokoyama, Y., Lambeck, K., De Deckker, P., Johnston, P. & Fifield, L.K. (2000). Timing of the
+  Last Glacial Maximum from observed sea-level minima. Nature 406(6797), 713–716.
+authors:
+  - "Yokoyama, Y."
+  - "Lambeck, K."
+  - "De Deckker, P."
+  - "Johnston, P."
+  - "Fifield, L.K."
+published: 2000
+title: "Timing of the Last Glacial Maximum from observed sea-level minima"
+container: "Nature 406(6797), 713–716"
+doi: 10.1038/35021035
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read through Europe PMC. The full text was not read. Citation from Crossref. Quotes
+    checked by script against the text retrieved.

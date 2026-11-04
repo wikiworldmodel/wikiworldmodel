@@ -1,0 +1,22 @@
+id: src:finne-2017-pylos-climate
+type: publication
+kind: measurement
+citation: >-
+  Finné, M., Holmgren, K., Shen, C.C., Hu, H.M., Boyd, M. & Stocker, S. (2017). Late Bronze Age climate change and the destruction of the Mycenaean
+  Palace of Nestor at Pylos. PLoS ONE 12(12), e0189447.
+authors:
+  - "Finné, M."
+  - "Holmgren, K."
+  - "Shen, C.C."
+  - "Hu, H.M."
+  - "Boyd, M."
+  - "Stocker, S."
+published: 2017
+title: Late Bronze Age climate change and the destruction of the Mycenaean Palace of Nestor at Pylos
+container: PLoS ONE
+doi: 10.1371/journal.pone.0189447
+url: https://europepmc.org/article/PMC/PMC5744937
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC5744937). Quotes checked by script against it, after normalizing whitespace.

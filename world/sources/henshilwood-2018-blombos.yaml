@@ -1,0 +1,24 @@
+id: src:henshilwood-2018-blombos
+type: publication
+kind: measurement
+citation: >-
+  Henshilwood, C.S., d'Errico, F., van Niekerk, K.L., Dayet, L., Queffelec, A. & Pollarolo, L.
+  (2018). An abstract drawing from the 73,000-year-old levels at Blombos Cave, South Africa.
+  Nature 562(7725), 115–118.
+authors:
+  - "Henshilwood, C.S."
+  - "d'Errico, F."
+  - "van Niekerk, K.L."
+  - "Dayet, L."
+  - "Queffelec, A."
+  - "Pollarolo, L."
+published: 2018
+title: "An abstract drawing from the 73,000-year-old levels at Blombos Cave, South Africa"
+container: "Nature 562(7725), 115–118"
+doi: 10.1038/s41586-018-0514-3
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 30209394): a pattern drawn in ochre on a flake from
+    approximately 73,000-year-old levels, associated with the Still Bay. It does not name the
+    dating method. Quoted passages checked by script against the text retrieved.

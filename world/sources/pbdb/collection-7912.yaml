@@ -1,0 +1,27 @@
+id: src:pbdb/collection-7912
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 7912 ("south of Osis", NA), occurrence 101798. Read
+  through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=7912
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference G. J. B. Germs. 1995. The
+  Neoproterozoic of southwestern Africa, with emphasis on platform stratigraphy and
+  paleontology. Precambrian Research 73:137-151. Interval ages are the PBDB's own, for the
+  interval the collection is assigned to; the primary reference was not read here unless cited
+  separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=7912&show=loc,strat,ref and
+    occs/list.json?coll_id=7912&show=ident,class on the main data service: collection name
+    "south of Osis"; lat -25.6; lng 16.966667; formation "Zaris"; group "Kubis";
+    early_interval Ediacaran; max_ma 635, min_ma 538.8; occurrence 101798, identified_name
+    "Cloudina sp.", accepted_name "Cloudina" (Cnidaria).

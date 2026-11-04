@@ -1,0 +1,27 @@
+id: src:hublin-2012-chatelperronian
+type: publication
+kind: measurement
+citation: >-
+  Hublin, J.-J., Talamo, S., Julien, M., David, F., Connet, N., Bodu, P., Vandermeersch, B. &
+  Richards, M.P. (2012). Radiocarbon dates from the Grotte du Renne and Saint-Césaire support a
+  Neandertal origin for the Châtelperronian. Proceedings of the National Academy of Sciences
+  109(46), 18743–18748.
+authors:
+  - "Hublin, J.-J."
+  - "Talamo, S."
+  - "Julien, M."
+  - "David, F."
+  - "Connet, N."
+  - "Bodu, P."
+  - "Vandermeersch, B."
+  - "Richards, M.P."
+published: 2012
+title: "Radiocarbon dates from the Grotte du Renne and Saint-Césaire support a Neandertal origin for the Châtelperronian"
+container: "Proceedings of the National Academy of Sciences 109(46), 18743–18748"
+doi: 10.1073/pnas.1212924109
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read at PubMed Central (PMC3503158): radiocarbon dates from Grotte du Renne and
+    Saint-Césaire, and the assignment of the Châtelperronian to late Neandertals. Quoted passages
+    checked by script against the text retrieved.

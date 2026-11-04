@@ -1,0 +1,14 @@
+# A group of alternatives: its members exclude each other, and groups combine freely. A
+# claim belongs to the default picture unless it names an alternative (section 4.4).
+id: alt:ipcc-ar6-scenarios
+type: group
+title: IPCC emissions scenarios
+description: >-
+  The five illustrative scenarios of the IPCC's Sixth Assessment, Working Group I (2021), from very
+  low emissions to very high, all starting in 2015. The report assesses the climate's response to each
+  and does not say how likely any of them is, so the default picture gives no amount of warming or of
+  sea-level rise. The amounts are claims on the record "Climate to 2100 under the IPCC scenarios",
+  each under its scenario.
+# A steward decision: what a build shows. Shown on a machine's proposal, until a person decides.
+show: [alt:ipcc-ar6-scenarios/ssp119, alt:ipcc-ar6-scenarios/ssp126, alt:ipcc-ar6-scenarios/ssp245, alt:ipcc-ar6-scenarios/ssp370, alt:ipcc-ar6-scenarios/ssp585]
+default: null

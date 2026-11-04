@@ -1,0 +1,30 @@
+id: src:slon-2017-denisova-2
+type: publication
+kind: measurement
+citation: >-
+  Slon, V., Viola, B., Renaud, G., Gansauge, M.T., Benazzi, S., Sawyer, S., Hublin, J.-J., Shunkov,
+  M.V., Derevianko, A.P., Kelso, J., Prüfer, K., Meyer, M. & Pääbo, S. (2017). A fourth Denisovan
+  individual. Science Advances 3(7), e1700186.
+authors:
+  - "Slon, V."
+  - "Viola, B."
+  - "Renaud, G."
+  - "Gansauge, M.T."
+  - "Benazzi, S."
+  - "Sawyer, S."
+  - "Hublin, J.-J."
+  - "Shunkov, M.V."
+  - "Derevianko, A.P."
+  - "Kelso, J."
+  - "Prüfer, K."
+  - "Meyer, M."
+  - "Pääbo, S."
+published: 2017
+title: "A fourth Denisovan individual"
+container: "Science Advances 3(7), e1700186"
+doi: 10.1126/sciadv.1700186
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC5501502): the Denisovan fossil record, with the distal
+    manual phalanx Denisova 3. Quoted passages checked by script against the text retrieved.

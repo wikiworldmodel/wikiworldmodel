@@ -1,0 +1,27 @@
+id: src:zhang-2022-qiongzhusi-cyclostratigraphy
+type: publication
+kind: measurement
+citation: >-
+  Zhang, T., Li, Y., Fan, T., Da Silva, A.-C., Shi, J., Gao, Q., Kuang, M., Liu, W., Gao, Z. & Li, M.
+  (2022). Orbitally-paced climate change in the early Cambrian and its implications for the history
+  of the Solar System. Earth and Planetary Science Letters 583, 117420.
+authors:
+  - "Zhang, T."
+  - "Li, Y."
+  - "Fan, T."
+  - "Da Silva, A.-C."
+  - "Shi, J."
+  - "Gao, Q."
+  - "Kuang, M."
+  - "Liu, W."
+  - "Gao, Z."
+  - "Li, M."
+published: 2022
+title: Orbitally-paced climate change in the early Cambrian and its implications for the history of the Solar System
+container: Earth and Planetary Science Letters 583, 117420
+doi: 10.1016/j.epsl.2022.117420
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full in the PDF in the University of Liège's repository (ORBi, handle 2268/267994),
+    without the supplement. Quotes checked by script against its text. Metadata from Crossref.

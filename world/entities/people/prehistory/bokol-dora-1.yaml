@@ -1,0 +1,42 @@
+id: people/prehistory/bokol-dora-1
+kind: artefact
+summary: >-
+  The flaked stone tools of Bokol Dora 1, excavated in situ at Ledi-Geraru in the Afar, Ethiopia, among
+  the earliest Oldowan assemblages known, from near the origin of the genus Homo.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Bokol Dora 1 stone tools" }
+    unsourced: An editorial label, from the site.
+  location:
+    prop: location
+    value: { lat: 11.35, lon: 40.86666667, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-ledi-geraru, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: A point for the Ledi-Geraru research area; the site was not located more closely from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-716
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 2.61 Ma, hi: 2.58 Ma }
+    source:
+      ref: src:braun-2019-bokol-dora
+      loc: abstract
+      quote: "excavated in situ from a stratigraphically constrained context [Bokol Dora 1, (BD 1) hereafter] at LG bracketed between 2.61 and 2.58 Ma"
+    method: radiometric/ar-ar
+    note: >-
+      Dated by the Ali Toyta Tuff 8.8 m below, 40Ar/39Ar on feldspar giving 2.584 ± 0.034 Ma at 95%, and
+      by normal polarity above it, so older than the Gauss–Matuyama reversal at 2.581 Ma.
+relations:
+  industry:
+    rel: member-of
+    to: people/prehistory/oldowan
+    source:
+      ref: src:braun-2019-bokol-dora
+      loc: abstract
+      quote: "quantitative analysis suggests the BD 1 assemblage fits more closely with the variability previously described for the Oldowan than with the earlier Lomekwian"

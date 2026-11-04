@@ -1,0 +1,24 @@
+id: src:deino-2018-olorgesailie
+type: publication
+kind: measurement
+citation: >-
+  Deino, A.L., Behrensmeyer, A.K., Brooks, A.S., Yellen, J.E., Sharp, W.D. & Potts, R. (2018).
+  Chronology of the Acheulean to Middle Stone Age transition in eastern Africa. Science 360(6384),
+  95–98.
+authors:
+  - "Deino, A.L."
+  - "Behrensmeyer, A.K."
+  - "Brooks, A.S."
+  - "Yellen, J.E."
+  - "Sharp, W.D."
+  - "Potts, R."
+published: 2018
+title: "Chronology of the Acheulean to Middle Stone Age transition in eastern Africa"
+container: "Science 360(6384), 95–98"
+doi: 10.1126/science.aao2216
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 29545510): a definitive Middle Stone Age at
+    Olorgesailie most likely by ~320,000 and at least by 305,000 years ago, by 40Ar/39Ar and
+    uranium series. Quoted passages checked by script against the text retrieved.

@@ -1,0 +1,71 @@
+id: life/transitions/forests
+kind: event/transition
+summary: >-
+  The first forests: stands of trees in the Middle Devonian, first of tree-fern-like
+  cladoxylopsids, soon with Archaeopteris and tree lycopsids, then widespread as Archaeopteris
+  spread in the Late Devonian. True fossil forests of this age, with trees in place, are very rare,
+  and each new one has moved the date.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First forests }
+    unsourced: An editorial label.
+  cover:
+    prop: cover
+    value: forests
+    unsourced: "How the renderer should treat this transition: an editorial classification."
+  start-davies-2024:
+    prop: start
+    value: { lo: 393.3 Ma, hi: 387.7 Ma }
+    source:
+      - ref: src:davies-2024-hangman-sandstone
+        loc: abstract
+        quote: the Eifelian Stage (393.3–387.7 Ma) marks the onset of tree-driven changes to physical environments
+      - ref: src:berry-2019-first-forests
+        loc: "p. 21, Earliest forests"
+        quote: The earliest assemblage of tree-formed plant fossils is from Lindlar in Germany, and dates from the mid Eifelian
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Cladoxylopsid forests of the Hangman Sandstone Formation, Somerset and Devon, which the paper
+      calls the oldest known evidence globally for the relative position of standing trees. The
+      range is the stage's, as the paper gives it. Berry's Lindlar fossils are of the same age, but
+      were transported to a shallow marine deposit.
+  start-stein-2020:
+    prop: start
+    value: 385 Ma
+    source:
+      ref: src:stein-2020-cairo
+      loc: "Summary; Results, first paragraph (manuscript p. 3–4)"
+      quote: early mid Givetian (ca. 385 Ma)
+    method: stratigraphic
+    note: >-
+      The forest at Cairo, New York, which the paper calls the oldest yet identified worldwide,
+      before the Hangman Sandstone forest was reported; the date is by correlation to the marine
+      Ludlowville Formation, stated as "ca.". The same summary dates the origin of trees and forests
+      to the Mid Devonian, 393–383 Ma.
+  end-stein-2007:
+    prop: end
+    value: { lo: 380 Ma, hi: 360 Ma }
+    source:
+      ref: src:stein-2007-gilboa
+      loc: abstract
+      quote: latest Devonian age (about 380-360 Myr old) as indicated by the widespread occurrence of Archaeopteris
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      The time of widespread Archaeopteris, which Stein et al. give while arguing that trees
+      themselves are older. Taken here as when forests had spread; no source read states that
+      directly.
+  end-stein-2020:
+    prop: end
+    value: { lo: 388 Ma, hi: 383 Ma }
+    source:
+      ref: src:stein-2020-cairo
+      loc: "Introduction (manuscript p. 3)"
+      quote: appearance of Archaeopteris worldwide by the early Givetian (388-383 Ma)
+    method: expert-estimate
+    note: >-
+      A worldwide appearance of the genus is not yet a worldwide cover of forest: the same sentence
+      has its rise to dominance in the Catskill region only by the Famennian (372–359 Ma).

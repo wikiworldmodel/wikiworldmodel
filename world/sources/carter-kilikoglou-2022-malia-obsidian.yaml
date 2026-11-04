@@ -1,0 +1,19 @@
+id: src:carter-kilikoglou-2022-malia-obsidian
+type: publication
+kind: measurement
+citation: >-
+  Carter, T. & Kilikoglou, V. (2022). Raw material choices and technical practices as indices of cultural change: Characterizing obsidian consumption
+  at 'Mycenaean' Quartier Nu, Malia (Crete). PLoS ONE 17(8), e0273093.
+authors:
+  - "Carter, T."
+  - "Kilikoglou, V."
+published: 2022
+title: "Raw material choices and technical practices as indices of cultural change: Characterizing obsidian consumption at 'Mycenaean' Quartier Nu, Malia (Crete)"
+container: PLoS ONE
+doi: 10.1371/journal.pone.0273093
+url: https://europepmc.org/article/PMC/PMC9397941
+license: CC-BY-4.0
+reliability: Cited only for its Table 1, a conventional Minoan chronology that it takes from others, as a framework for dating the phases.
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC9397941). Table 1 and its dates compared with the claims by script.

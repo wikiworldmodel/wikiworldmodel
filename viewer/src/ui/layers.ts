@@ -1,0 +1,394 @@
+// Today's borders and cities, and the hazards of the time shown, over the globe. They are rows of a
+// dataset, thousands of them, so they are drawn on a canvas and need no element each; a click finds
+// the nearest one drawn. At these times the plates have not moved enough to matter.
+import { hazardsNear, insideRow, politiesAt, type HazardFile, type HazardRow, type LanguageRow, type LanguagesFile, type PolitiesFile, type PolityRow, type PresentFile, type PresentPlace, type RoutesFile } from '../../../core/layers.ts';
+import { unitVector } from '../../../core/quat.ts';
+import { PRESENT_YEAR } from '../../../core/time.ts';
+import type { Camera } from '../camera.ts';
+import type { V3 } from '../mat.ts';
+
+const PICK = 9;
+
+function fit(c: HTMLCanvasElement, width: number, height: number): CanvasRenderingContext2D {
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  if (c.width !== Math.round(width * dpr) || c.height !== Math.round(height * dpr)) {
+    c.width = Math.round(width * dpr);
+    c.height = Math.round(height * dpr);
+  }
+  const g = c.getContext('2d')!;
+  g.setTransform(dpr, 0, 0, dpr, 0, 0);
+  g.clearRect(0, 0, width, height);
+  return g;
+}
+
+export class PresentLayer {
+  readonly el: HTMLCanvasElement;
+  file: PresentFile | null = null;
+  private shown: { p: PresentPlace; x: number; y: number }[] = [];
+  /** how many lines and names were drawn in the last frame */
+  stats = { lines: 0, names: 0 };
+
+  constructor() {
+    this.el = document.createElement('canvas');
+    this.el.className = 'row-layer';
+    this.el.hidden = true;
+  }
+
+  holds(t: number): boolean {
+    return !!this.file && t >= this.file.since && t <= this.file.until;
+  }
+
+  update(camera: Camera, t: number, dist: number, width: number, height: number): void {
+    this.shown = [];
+    this.stats = { lines: 0, names: 0 };
+    const on = this.holds(t);
+    this.el.hidden = !on;
+    if (!on) return;
+    const f = this.file!;
+    const g = fit(this.el, width, height);
+    const disputed = new Set(f.disputed);
+    const trace = (line: number[]) => {
+      let open = false;
+      g.beginPath();
+      for (let k = 0; k + 1 < line.length; k += 2) {
+        const s = camera.project(unitVector(line[k + 1] / 100, line[k] / 100) as V3);
+        if (!s.visible) {
+          open = false;
+          continue;
+        }
+        if (open) g.lineTo(s.x, s.y);
+        else g.moveTo(s.x, s.y);
+        open = true;
+      }
+      g.stroke();
+    };
+    g.lineWidth = 0.8;
+    f.borders.forEach((line, i) => {
+      const dis = disputed.has(i);
+      g.strokeStyle = dis ? 'rgba(255, 244, 214, 0.34)' : 'rgba(255, 244, 214, 0.5)';
+      g.setLineDash(dis ? [3, 3] : []);
+      trace(line);
+      this.stats.lines++;
+    });
+    g.setLineDash([]);
+    // The larger the view, the fewer names: the biggest cities first, and none on top of another.
+    const room = dist < 1.25 ? 140 : dist < 1.6 ? 70 : dist < 2.4 ? 34 : 14;
+    const boxes: [number, number, number, number][] = [];
+    g.font = '11px system-ui, sans-serif';
+    g.textBaseline = 'middle';
+    let named = 0;
+    for (const p of f.places) {
+      if (named >= room) break;
+      const s = camera.project(unitVector(p.lat, p.lon) as V3);
+      if (!s.visible) continue;
+      const w = g.measureText(p.name).width;
+      const box: [number, number, number, number] = [s.x - 4, s.y - 7, s.x + 8 + w, s.y + 7];
+      if (boxes.some((b) => b[0] < box[2] && box[0] < b[2] && b[1] < box[3] && box[1] < b[3])) continue;
+      boxes.push(box);
+      named++;
+      this.shown.push({ p, x: s.x, y: s.y });
+      g.fillStyle = p.capital ? 'rgba(255, 236, 190, 1)' : 'rgba(255, 244, 224, 0.9)';
+      g.beginPath();
+      g.arc(s.x, s.y, p.capital ? 2.6 : 1.9, 0, 2 * Math.PI);
+      g.fill();
+      g.lineWidth = 3;
+      g.strokeStyle = 'rgba(8, 12, 20, 0.72)';
+      g.strokeText(p.name, s.x + 6, s.y);
+      g.fillStyle = 'rgba(255, 248, 232, 0.94)';
+      g.fillText(p.name, s.x + 6, s.y);
+    }
+    this.stats.names = named;
+  }
+
+  pick(x: number, y: number): PresentPlace | undefined {
+    let best: PresentPlace | undefined;
+    let d = PICK * PICK;
+    for (const s of this.shown) {
+      const v = (s.x - x) * (s.x - x) + (s.y - y) * (s.y - y);
+      if (v < d) {
+        d = v;
+        best = s.p;
+      }
+    }
+    return best;
+  }
+
+  /** Where a place's dot is on the screen, for tests. */
+  placeAt(name: string): { x: number; y: number } | undefined {
+    const s = this.shown.find((q) => q.p.name === name);
+    return s && { x: s.x, y: s.y };
+  }
+}
+
+const COLOURS: Record<HazardRow['kind'], string> = { eruption: '255, 112, 64', earthquake: '255, 214, 92', tsunami: '96, 196, 255' };
+
+export class HazardLayer {
+  readonly el: HTMLCanvasElement;
+  file: HazardFile | null = null;
+  private shown: { r: HazardRow; x: number; y: number }[] = [];
+
+  constructor() {
+    this.el = document.createElement('canvas');
+    this.el.className = 'row-layer';
+    this.el.hidden = true;
+  }
+
+  /** How many rows are drawn now. */
+  get count(): number {
+    return this.shown.length;
+  }
+
+  /** Draw what happened within `halo` years of the time shown, fading with how far from it. */
+  update(camera: Camera, t: number, halo: number, width: number, height: number): void {
+    this.shown = [];
+    const near = this.file ? hazardsNear(this.file, t, halo) : [];
+    this.el.hidden = !near.length;
+    if (!near.length) return;
+    const g = fit(this.el, width, height);
+    for (const r of near) {
+      const s = camera.project(unitVector(r.lat, r.lon) as V3);
+      if (!s.visible) continue;
+      this.shown.push({ r, x: s.x, y: s.y });
+      const fade = 1 - (0.75 * Math.abs(r.t - t)) / Math.max(halo, 1e-6);
+      const size = r.kind === 'earthquake' ? Math.max(0, (r.size ?? 6) - 5) * 1.5 : r.kind === 'eruption' ? (r.size ?? 2) * 0.9 : (r.size ?? 1) * 0.5;
+      const radius = 2.2 + Math.min(6, size) + (r.deaths ? Math.min(3, Math.log10(r.deaths) * 0.6) : 0);
+      g.fillStyle = `rgba(${COLOURS[r.kind]}, ${0.3 * fade})`;
+      g.strokeStyle = `rgba(${COLOURS[r.kind]}, ${0.95 * fade})`;
+      g.lineWidth = 1.2;
+      g.beginPath();
+      g.arc(s.x, s.y, radius, 0, 2 * Math.PI);
+      g.fill();
+      g.stroke();
+    }
+  }
+
+  pick(x: number, y: number): HazardRow | undefined {
+    let best: HazardRow | undefined;
+    let d = PICK * PICK;
+    for (const s of this.shown) {
+      const v = (s.x - x) * (s.x - x) + (s.y - y) * (s.y - y);
+      if (v < d) {
+        d = v;
+        best = s.r;
+      }
+    }
+    return best;
+  }
+
+  /** The screen position of each row drawn, for tests. */
+  positions(): { name: string; x: number; y: number }[] {
+    return this.shown.map((s) => ({ name: s.r.name, x: s.x, y: s.y }));
+  }
+}
+
+/** A colour for a state: chosen from its name, and so a choice of the viewer's, not a fact. */
+function hueOf(name: string): number {
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (Math.imul(h, 31) + name.charCodeAt(i)) | 0;
+  return ((h % 360) + 360) % 360;
+}
+
+/** The states of the world at the time shown, from a borders dataset, tinted and outlined, the largest named. */
+export class PolityLayer {
+  readonly el: HTMLCanvasElement;
+  file: PolitiesFile | null = null;
+  private key = '';
+  private now: PolityRow[] = [];
+  stats = { rows: 0, names: 0 };
+
+  constructor() {
+    this.el = document.createElement('canvas');
+    this.el.className = 'row-layer polity-layer';
+    this.el.hidden = true;
+  }
+
+  update(camera: Camera, t: number, dist: number, width: number, height: number): void {
+    this.stats = { rows: 0, names: 0 };
+    if (this.file && this.key !== String(t)) {
+      // At the present and after, today's map takes over.
+      this.now = t < PRESENT_YEAR ? politiesAt(this.file, t).sort((a, b) => b.area - a.area) : [];
+      this.key = String(t);
+    }
+    const on = !!this.file && this.now.length > 0;
+    this.el.hidden = !on;
+    if (!on) return;
+    const g = fit(this.el, width, height);
+    const labels: { r: PolityRow; x: number; y: number }[] = [];
+    for (const r of this.now) {
+      const hue = hueOf(r.name);
+      g.beginPath();
+      let whole = true;
+      let any = false;
+      for (const ring of r.rings) {
+        let open = false;
+        for (let k = 0; k + 1 < ring.length; k += 2) {
+          const s = camera.project(unitVector(ring[k + 1] / 100, ring[k] / 100) as V3);
+          if (!s.visible) {
+            whole = false;
+            open = false;
+            continue;
+          }
+          any = true;
+          if (open) g.lineTo(s.x, s.y);
+          else g.moveTo(s.x, s.y);
+          open = true;
+        }
+        if (open && whole) g.closePath();
+      }
+      if (!any) continue;
+      this.stats.rows++;
+      // A ring cut by the edge of the globe has no inside to fill.
+      if (whole) {
+        g.fillStyle = `hsla(${hue}, 62%, 58%, 0.15)`;
+        g.fill('evenodd');
+      }
+      g.strokeStyle = `hsla(${hue}, 72%, 78%, 0.55)`;
+      g.lineWidth = 0.8;
+      g.stroke();
+      const c = camera.project(unitVector(r.at[1], r.at[0]) as V3);
+      if (c.visible) labels.push({ r, x: c.x, y: c.y });
+    }
+    // The largest named, none on top of another, and fewer the further off.
+    const room = dist < 1.25 ? 60 : dist < 1.6 ? 36 : dist < 2.4 ? 20 : 12;
+    const boxes: [number, number, number, number][] = [];
+    g.font = 'italic 11.5px system-ui, sans-serif';
+    g.textAlign = 'center';
+    g.textBaseline = 'middle';
+    for (const l of labels) {
+      if (this.stats.names >= room) break;
+      const w = g.measureText(l.r.name).width;
+      const box: [number, number, number, number] = [l.x - w / 2 - 2, l.y - 8, l.x + w / 2 + 2, l.y + 8];
+      if (boxes.some((b) => b[0] < box[2] && box[0] < b[2] && b[1] < box[3] && box[1] < b[3])) continue;
+      boxes.push(box);
+      this.stats.names++;
+      g.lineWidth = 3;
+      g.strokeStyle = 'rgba(8, 12, 20, 0.7)';
+      g.strokeText(l.r.name, l.x, l.y);
+      g.fillStyle = 'rgba(255, 246, 228, 0.92)';
+      g.fillText(l.r.name, l.x, l.y);
+    }
+    g.textAlign = 'start';
+  }
+
+  /** The smallest row that holds at a point, at the time last drawn: what ruled there most narrowly. */
+  at(lon: number, lat: number): PolityRow | undefined {
+    let best: PolityRow | undefined;
+    for (const r of this.now) if ((!best || r.area < best.area) && insideRow(r, lon, lat)) best = r;
+    return best;
+  }
+}
+
+/** Roads and routes at the time shown: the surer they are, the firmer they are drawn. */
+export class RouteLayer {
+  readonly el: HTMLCanvasElement;
+  file: RoutesFile | null = null;
+  /** how many stretches were drawn in the last frame */
+  count = 0;
+
+  constructor() {
+    this.el = document.createElement('canvas');
+    this.el.className = 'row-layer';
+    this.el.hidden = true;
+  }
+
+  update(camera: Camera, t: number, width: number, height: number): void {
+    this.count = 0;
+    const now = this.file ? this.file.routes.filter((r) => r.from <= t && t <= r.to) : [];
+    this.el.hidden = !now.length;
+    if (!now.length) return;
+    const g = fit(this.el, width, height);
+    for (const r of now) {
+      g.beginPath();
+      let open = false;
+      let any = false;
+      for (let k = 0; k + 1 < r.line.length; k += 2) {
+        const s = camera.project(unitVector(r.line[k + 1] / 100, r.line[k] / 100) as V3);
+        if (!s.visible) {
+          open = false;
+          continue;
+        }
+        any = true;
+        if (open) g.lineTo(s.x, s.y);
+        else g.moveTo(s.x, s.y);
+        open = true;
+      }
+      if (!any) continue;
+      this.count++;
+      const firm = r.certainty === 'certain' ? 1 : r.certainty === 'conjectured' ? 0.72 : 0.42;
+      g.strokeStyle = `rgba(255, 226, 170, ${(r.main ? 0.78 : 0.46) * firm})`;
+      g.lineWidth = r.main ? 0.9 : 0.55;
+      g.setLineDash(r.certainty === 'hypothetical' ? [2, 2] : []);
+      g.stroke();
+    }
+    g.setLineDash([]);
+  }
+}
+
+/** The world's languages, each at the place the catalogue puts it today, tinted by family. */
+export class LanguageLayer {
+  readonly el: HTMLCanvasElement;
+  file: LanguagesFile | null = null;
+  private shown: { r: LanguageRow; x: number; y: number }[] = [];
+
+  constructor() {
+    this.el = document.createElement('canvas');
+    this.el.className = 'row-layer';
+    this.el.hidden = true;
+  }
+
+  get count(): number {
+    return this.shown.length;
+  }
+
+  update(camera: Camera, on: boolean, dist: number, width: number, height: number): void {
+    this.shown = [];
+    this.el.hidden = !on || !this.file;
+    if (this.el.hidden) return;
+    const g = fit(this.el, width, height);
+    for (const r of this.file!.rows) {
+      const s = camera.project(unitVector(r.lat, r.lon) as V3);
+      if (!s.visible) continue;
+      this.shown.push({ r, x: s.x, y: s.y });
+      g.fillStyle = `hsla(${hueOf(r.family)}, 78%, 68%, 0.85)`;
+      g.beginPath();
+      g.arc(s.x, s.y, dist < 1.3 ? 2.6 : 1.5, 0, 2 * Math.PI);
+      g.fill();
+    }
+    // Close by there is room to name them, without one on another.
+    if (dist >= 1.25) return;
+    const boxes: [number, number, number, number][] = [];
+    g.font = '10.5px system-ui, sans-serif';
+    g.textBaseline = 'middle';
+    for (const { r, x, y } of this.shown) {
+      if (boxes.length > 120) break;
+      const w = g.measureText(r.name).width;
+      const box: [number, number, number, number] = [x - 3, y - 7, x + 7 + w, y + 7];
+      if (x < 0 || y < 0 || x > width || y > height || boxes.some((b) => b[0] < box[2] && box[0] < b[2] && b[1] < box[3] && box[1] < b[3])) continue;
+      boxes.push(box);
+      g.lineWidth = 3;
+      g.strokeStyle = 'rgba(8, 12, 20, 0.7)';
+      g.strokeText(r.name, x + 5, y);
+      g.fillStyle = 'rgba(255, 248, 232, 0.92)';
+      g.fillText(r.name, x + 5, y);
+    }
+  }
+
+  pick(x: number, y: number): LanguageRow | undefined {
+    let best: LanguageRow | undefined;
+    let d = PICK * PICK;
+    for (const s of this.shown) {
+      const v = (s.x - x) * (s.x - x) + (s.y - y) * (s.y - y);
+      if (v < d) {
+        d = v;
+        best = s.r;
+      }
+    }
+    return best;
+  }
+
+  /** The screen position of a language, for tests. */
+  positionOf(name: string): { x: number; y: number } | undefined {
+    const s = this.shown.find((q) => q.r.name === name);
+    return s && { x: s.x, y: s.y };
+  }
+}

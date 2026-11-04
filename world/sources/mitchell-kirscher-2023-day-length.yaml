@@ -1,0 +1,26 @@
+id: src:mitchell-kirscher-2023-day-length
+type: publication
+kind: compilation
+citation: >-
+  Mitchell, R.N. & Kirscher, U. (2023). Mid-Proterozoic day length stalled by tidal resonance.
+  Nature Geoscience 16, 567–569.
+authors:
+  - "Mitchell, R.N."
+  - "Kirscher, U."
+published: 2023
+title: Mid-Proterozoic day length stalled by tidal resonance
+container: Nature Geoscience 16(7), 567–569
+doi: 10.1038/s41561-023-01202-6
+license: CC-BY-4.0
+reliability: >-
+  A statistical analysis of a compilation of 22 Precambrian estimates, nearly all from other
+  studies. The uncertainty column is not a measured standard deviation throughout: the authors
+  follow Bao et al. (2022) in taking the difference between the mean of a unit's estimates and the
+  one furthest from it, and some rows have none.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full in the publisher's PDF (nature.com). Extended Data Table 1 is an image in that PDF:
+    it was rendered at 220 dpi, read with Tesseract and corrected by eye, and its rows quoted here
+    were checked by script against that transcription. Other quotes checked by script against the
+    text of the PDF. The studies behind each row were not read unless a record cites them too.

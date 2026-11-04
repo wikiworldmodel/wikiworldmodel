@@ -1,0 +1,27 @@
+id: src:pbdb/collection-238424
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 238424 ("NV2K17", CA), occurrence 1687105. Read through
+  the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=238424
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference J. Downs, E. Daeschler,
+  and F. Jenkins, N. Shubin. 2011. A new species of Laccognathus (Sarcopterygii, Porolepiformes)
+  from the Late Devonian of Ellesmere Island, Nunavut, Canada. Journal of Vertebrate
+  Paleontology 31:981-996. Interval ages are the PBDB's own, for the interval the collection is
+  assigned to; the primary reference was not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=238424&show=loc,strat,ref and
+    occs/list.json?coll_id=238424&show=ident,class on the main data service: collection name
+    "NV2K17"; lat 77.174721; lng -86.270836; formation "Fram"; early_interval Early Frasnian;
+    max_ma 382.31, min_ma 379; occurrence 1687105, no identified_name, accepted_name
+    "Tiktaalik roseae" (Chordata, Osteichthyes, Osteolepidiformes).

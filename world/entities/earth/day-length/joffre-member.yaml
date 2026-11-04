@@ -1,0 +1,69 @@
+id: earth/day-length/joffre-member
+kind: sample
+summary: >-
+  Regular alternations in the banded iron formation of the Joffre Member at Joffre Falls, Karijini
+  National Park, Western Australia, read as climatic precession and eccentricity cycles and dated by
+  U–Pb: a day of about 16.9 hours, the oldest datum its authors consider reliable.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Joffre Member, Joffre Falls" }
+    unsourced: An editorial label, from the rock unit and the place.
+  formation:
+    prop: formation
+    value: Joffre Member, Brockman Iron Formation
+    source:
+      ref: src:lantink-2022-joffre-milankovitch
+      loc: abstract
+      quote: the lower Paleoproterozoic Joffre Member of the Brockman Iron Formation, NW Australia
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:lantink-2022-joffre-milankovitch
+      loc: abstract
+      quote: providing evidence for Milankovitch forcing of regular lithological alternations
+  date:
+    prop: date
+    value: { mean: 2459.2 Ma, sd: 0.65 Myr }
+    source:
+      ref: src:lantink-2022-joffre-milankovitch
+      loc: Uranium–Lead Dating and Milankovitch Interpretation
+      quote: yielded a concordant age of 2,459.2 ± 1.3 Ma
+    method: radiometric/u-pb
+    note: >-
+      Zircon from shale S39 at Joffre Falls. The paper does not say what this ± is; its other U–Pb ages
+      are at 2σ, and this one is read the same, so sd = 0.65 Myr.
+  location:
+    prop: location
+    value: { lat: -22.39167, lon: 118.2686, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-joffre-falls, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  day-length:
+    prop: day_length
+    value: { mean: 16.9, sd: 0.1 }
+    source:
+      ref: src:lantink-2022-joffre-milankovitch
+      loc: Reconstructing the Precession Period, Earth–Moon Distance, and LOD
+      quote: an Earth–Moon distance of 321,800 ± 6,500 km and LOD of 16.9 ± 0.2 h
+    note: >-
+      Computed from an astronomical precession frequency of 108.6 ± 8.5 arcsec/y, itself from counts of
+      about 9 small cycles per short eccentricity cycle. The sentence does not say what the ± is; the
+      paper's Fig. 5 draws its error bars at ±2σ, so it is read as 2σ and halved.
+  moon-distance:
+    prop: moon_distance
+    value: { mean: 50.45, sd: 0.51 }
+    source:
+      ref: src:lantink-2022-joffre-milankovitch
+      loc: Reconstructing the Precession Period, Earth–Moon Distance, and LOD
+      quote: an Earth–Moon distance of 321,800 ± 6,500 km and LOD of 16.9 ± 0.2 h
+    note: >-
+      The ± is read as 2σ, as for the day length, so 3,250 km. In Earth radii of 6378.1366 km (Farhat et
+      al. 2022, Table D.3): 321,800 / 6378.1366 = 50.45 and 3,250 / 6378.1366 = 0.51.

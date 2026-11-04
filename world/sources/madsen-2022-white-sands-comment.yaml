@@ -1,0 +1,20 @@
+id: src:madsen-2022-white-sands-comment
+type: publication
+kind: review
+citation: >-
+  Madsen, D.B., Davis, L.G., Rhode, D. & Oviatt, C.G. (2022). Comment on "Evidence of humans in
+  North America during the Last Glacial Maximum". Science 375(6577), eabm4678.
+authors:
+  - "Madsen, D.B."
+  - "Davis, L.G."
+  - "Rhode, D."
+  - "Oviatt, C.G."
+published: 2022
+title: "Comment on \"Evidence of humans in North America during the Last Glacial Maximum\""
+container: "Science 375(6577), eabm4678"
+doi: 10.1126/science.abm4678
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

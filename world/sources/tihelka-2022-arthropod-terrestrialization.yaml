@@ -1,0 +1,22 @@
+id: src:tihelka-2022-arthropod-terrestrialization
+type: publication
+kind: review
+citation: >-
+  Tihelka, E., Howard, R.J., Cai, C. & Lozano-Fernandez, J. (2022). Was There a Cambrian
+  Explosion on Land? The Case of Arthropod Terrestrialization. Biology 11(10), 1516.
+authors:
+  - "Tihelka, E."
+  - "Howard, R.J."
+  - "Cai, C."
+  - "Lozano-Fernandez, J."
+published: 2022
+title: "Was There a Cambrian Explosion on Land? The Case of Arthropod Terrestrialization"
+container: Biology 11(10), 1516
+doi: 10.3390/biology11101516
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC9598930) read via Europe PMC (fullTextXML): the oldest arthropod traces on
+    land, Blackberry Hill, Ludford Lane and Pneumodesmus newmani, and the molecular dates for
+    the colonization of land. Quotes checked by script against that text. Metadata from
+    Crossref.

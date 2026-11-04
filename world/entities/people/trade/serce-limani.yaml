@@ -1,0 +1,55 @@
+id: people/trade/serce-limani
+kind: event/shipwreck
+summary: >-
+  A small Byzantine merchant ship, the "Glass Wreck", driven onto the rocks in the natural harbour of Serçe Limanı in
+  southern Turkey about 1025, with three tons of raw and broken glass from the Fatimid Syrian coast, carried as ballast.
+  Excavated in 1977–79. It is a key to Islamic glass, and to how ships were built in its time.
+author: machine:claude-code
+same_as: { wikidata: Q114364370 }
+claims:
+  name:
+    prop: name
+    value: { en: Serçe Limanı shipwreck }
+    source: { ref: src:ina-serce-limani, loc: paragraph 2, quote: "excavated the Serçe Limanı wreck during the summers of 1977–79" }
+  date:
+    prop: date
+    value: { lo: 1025 CE, hi: 1030 CE }
+    source:
+      - ref: src:oxrep-shipwrecks-2.1
+        loc: "Wreck ID 8449, Earliest Date, Latest Date"
+      - ref: src:ina-serce-limani
+        loc: paragraph 1
+        quote: "During the latter part of the 3rd decade of the 11th century, a Byzantine merchant ship made her way westward"
+      - ref: src:aramco-1984-shards-of-history
+        loc: paragraph beginning 'Two finds'
+        quote: "Two finds — a dozen copper coins and the 16 glass weights — helped date the wreck to about 1025."
+    method: numismatic
+    note: >-
+      INA's page is headed "A.D. 1025". Coins and glass weights give a time after which it sank. The final report (Bass et al.
+      2004) was not read.
+  location:
+    prop: location
+    value: { lat: 36.56666666666667, lon: 28.083333333333332, frame: frame:earth/present-day }
+    source: { ref: src:oxrep-shipwrecks-2.1, loc: "Wreck ID 8449, Latitude, Longitude" }
+    method: gazetteer
+    note: Not to be taken as exact, as the database warns of its points. Wikidata's item, Q114364370, was not used, because its latitude of 30.57 is in Egypt.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-504
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value: { en: "Two tons of raw glass and one of broken glassware and glass-making waste, from a factory on the Fatimid Syrian coast, in place of stone ballast." }
+    source:
+      ref: src:ina-serce-limani
+      loc: paragraph 3
+      quote: "The glass cullet consisted of two tons of raw glass broken up into manageable pieces and one ton of broken glassware and glass-making waste from some Islamic glass factory on the Fatimid Syrian coast."
+  voyage:
+    prop: voyage
+    value: { en: "Westward along the south coast of Anatolia, from somewhere on the coast of southern Lebanon or northern Israel, then under the Fatimids." }
+    source:
+      ref: src:ina-serce-limani
+      loc: paragraph 1
+      quote: "made her way westward along the southern coast of Anatolia with cargoes she had taken on board somewhere along the coast of present-day southern Lebanon or northern Israel"

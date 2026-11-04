@@ -1,0 +1,17 @@
+id: src:wikidata-guila-naquitz
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q3120596 (Guilá Naquitz Cave), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q3120596
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "site of early domestication of several food crops in Oaxaca,
+  Mexico". A point for the named place, of uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (16.975278, -96.308889) read from the item's JSON
+    (Special:EntityData/Q3120596.json) on 3 November 2026.

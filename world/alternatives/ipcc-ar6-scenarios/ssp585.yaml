@@ -1,0 +1,11 @@
+id: alt:ipcc-ar6-scenarios/ssp585
+type: alternative
+kind: scenario
+group: alt:ipcc-ar6-scenarios
+title: SSP5-8.5, very high emissions
+description: >-
+  Very high greenhouse gas emissions: CO2 emissions roughly double from current levels by 2050. The
+  8.5 is the approximate radiative forcing in 2100, in watts per square metre, and SSP5 the
+  socio-economic pathway behind it (IPCC 2021, Box SPM.1). Warming over 2081–2100 is very likely
+  3.3–5.7 °C above 1850–1900, and sea level in 2100 likely 0.63–1.01 m above 1995–2014, with higher
+  values not ruled out because of deep uncertainty in how ice sheets behave.

@@ -1,0 +1,22 @@
+id: src:evans-2013-acheroraptor-note
+type: publication
+kind: review
+citation: >-
+  Evans, D.C. (2013). New Hell Creek Dromaeosaurid Described. David Evans Lab (web log), 16
+  December 2013.
+authors:
+  - "Evans, D.C."
+published: 2013
+title: "New Hell Creek Dromaeosaurid Described"
+container: "David Evans Lab"
+url: https://evanslab.wordpress.com/2013/12/16/hell-creek-dromaeosaurid-acheroraptor-described/
+reliability: >-
+  The first author's own note on his paper, cited because the paper could not be read in full
+  and its abstract gives no size.
+verified:
+  by: machine:claude-code
+  how: >-
+    The note read in full and quotes checked by script against it. Of the paper, Evans, D.C.,
+    Larson, D.W. & Currie, P.J. (2013), A new dromaeosaurid (Dinosauria: Theropoda) with Asian
+    affinities from the latest Cretaceous of North America, Naturwissenschaften 100, 1041–1049,
+    doi:10.1007/s00114-013-1107-5, only the abstract was read, via Europe PMC.

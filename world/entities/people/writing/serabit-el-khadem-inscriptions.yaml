@@ -1,0 +1,53 @@
+id: people/writing/serabit-el-khadem-inscriptions
+kind: occurrence
+summary: >-
+  The Proto-Sinaitic inscriptions from Serabit el-Khadem, an Egyptian mining site in Sinai, on statuettes, stone panels and rock faces, first excavated by Flinders Petrie in 1905. For lack of stratified contexts, their date is
+  argued from associated Egyptian material and history.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Proto-Sinaitic inscriptions, Serabit el-Khadem" }
+    unsourced: An editorial label, from the finds and the place.
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:lam-2010-alphabet
+      loc: p. 189
+      quote: consist of linear pictographic symbols inscribed on statuettes, stone panels, and rock faces at Serabit el-Khadem
+  location:
+    prop: location
+    value: { lat: 29.036709, lon: 33.459411, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-serabit-el-khadim, loc: "place 816186710, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-508
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date-middle-kingdom:
+    prop: date
+    value: 1850 BCE
+    source:
+      - ref: src:woods-2010-visible-language
+        loc: p. 13 (Time Line of Writing)
+        quote: 1850 Proto-Sinaitic alphabetic texts
+      - ref: src:lam-2010-alphabet
+        loc: p. 193, n. 4
+        quote: Orly Goldwasser (2006, pp. 131–34) posit a Middle Kingdom context for both the Serabit el-Khadem and Wadi el-Hol texts
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      The book's round figure, in a time line headed approximate, and in line with Goldwasser's Middle Kingdom, as Lam reports it. Preferred as what Lam calls the consensus. Waal (2018, p. 85) says proposals
+      for the oldest Sinai inscriptions range from the 19th to the 15th century BC.
+  date-sass:
+    prop: date
+    value: { lo: 1400 BCE, hi: 1301 BCE }
+    source:
+      ref: src:lam-2010-alphabet
+      loc: p. 193, n. 4
+      quote: The strongest challenge to this consensus in recent years has been Benjamin Sass (2004–05, 2008), who has put forward the possibility of a fourteenth-century date for the beginnings of the alphabet.
+    method: expert-estimate
+    note: At second hand, through Lam; Sass was not read.

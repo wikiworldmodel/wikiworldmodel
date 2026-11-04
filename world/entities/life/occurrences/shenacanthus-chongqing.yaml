@@ -15,6 +15,10 @@ claims:
     prop: identified_as
     value: Shenacanthus vermiformis n. gen. n. sp.
     source: { ref: src:pbdb/collection-236761, loc: "occurrence 1667737, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 28.611084, lon: 109.122192, frame: frame:earth/present-day }

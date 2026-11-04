@@ -1,0 +1,15 @@
+id: src:wikidata-san-bartolo
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q795599 (San Bartolo), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q795599
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "Mayan arqueological site in Guatemala". A point for the named place.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (17.55167, -89.40889) read from the item's JSON (Special:EntityData/Q795599.json) on 4 November 2026.

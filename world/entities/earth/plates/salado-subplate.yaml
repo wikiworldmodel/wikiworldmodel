@@ -1,0 +1,10 @@
+id: earth/plates/salado-subplate
+kind: plate
+summary: Plate 290 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Salado subplate }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 290", quote: "SSS-PRB SALADO SUBPLATE" }
+    note: The label gives the plate moving against the plate coded PRB (plate 202).

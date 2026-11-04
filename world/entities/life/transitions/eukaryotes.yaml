@@ -1,0 +1,121 @@
+id: life/transitions/eukaryotes
+kind: event/transition
+summary: >-
+  The first cells with a nucleus in the fossil record, and their slow rise. The oldest fossils accepted as eukaryotes are
+  organic-walled microfossils of the late Palaeoproterozoic; older claims, from coiled ribbons to steroids in Archean
+  shales, are contested or refuted. For about a billion years bacteria stayed the main producers in the sea, and the
+  transition ends when eukaryotic algae took over from them. The record of the group itself, with its molecular dates, is
+  life/taxa/eukaryota.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First eukaryotes }
+    unsourced: An editorial label.
+  start-javaux-2025:
+    prop: start
+    value: { ref: life/occurrences/mcdermott-assemblage }
+    source:
+      ref: src:javaux-2025-mcdermott
+      loc: abstract
+      quote: "pushing back the minimum age of uncontested eukaryotic fossils by more than 100 million years (Ma)"
+    rank: preferred
+    note: >-
+      The oldest fossils read as eukaryotes by features that bacteria lack, in rocks bracketed by radiometric dates; its
+      Tappania plana is a form that the older reviews below already accept as eukaryotic. Preferred on that ground, though it
+      rests on one recent paper by one author.
+  start-porter-2020:
+    prop: start
+    value: 1650 Ma
+    source:
+      ref: src:porter-2020-eukaryogenesis
+      loc: "3. The early eukaryote fossil record"
+      quote: "The oldest widely accepted evidence of eukaryotes is large (greater than 100 µm), spiny, ornamented, organic-walled microfossils found in latest Paleoproterozoic rocks (ca 1650 Ma [4–7])."
+    method: expert-estimate
+    note: >-
+      The consensus as of 2020, before the McDermott assemblage was described. Javaux (2025) lists several successions of about
+      this age, among them the Chuanlinggou Formation in which Qingshania was found.
+  start-grypania:
+    prop: start
+    value: { ref: life/occurrences/grypania-empire-mine }
+    source:
+      - ref: src:knoll-2006-proterozoic-eukaryotes
+        loc: "3. Palaeontological estimates of eukaryotic antiquity, paragraph on macroscopic compressions"
+        quote: "These fossils are very likely of eukaryotic origin, although phylogenetic relationships are not well constrained."
+      - ref: src:anderson-2024-proterozoic-microfossils
+        loc: "Recognizing early fossil eukaryotes and their diversity"
+        quote: "have also all been allied to eukaryotes but without conclusive evidence; other origins either as bacteria or as non-biogenic structures exist"
+    note: >-
+      Knoll et al. defend Grypania as a eukaryote; Anderson et al., eighteen years later, count it among forms with no conclusive
+      evidence. Not preferred for that reason.
+  start-brocks-1999:
+    prop: start
+    value: 2700 Ma
+    source:
+      - ref: src:brocks-1999-archean-biomarkers
+        loc: abstract
+        quote: "provides persuasive evidence for the existence of eukaryotes 500 million to 1 billion years before the extant fossil record indicates that the lineage arose"
+      - ref: src:french-2015-archean-biomarkers
+        loc: abstract
+        quote: "existing lipid biomarker evidence cannot be invoked to support the emergence of oxygenic photosynthesis and eukaryotes by ∼ 2.7 billion years ago"
+    method: stratigraphic
+    rank: deprecated
+    note: >-
+      Steranes in 2700-million-year-old shales of the Pilbara Craton. French et al. (2015) drilled new cores with hydrocarbon-clean
+      methods, found steranes no more abundant than in their blanks, and conclude that the earlier samples were contaminated.
+  end-brocks-2017:
+    prop: end
+    value: { lo: 659 Ma, hi: 645 Ma }
+    source:
+      ref: src:brocks-2017-rise-of-algae
+      loc: abstract
+      quote: "marks the rapid rise of marine planktonic algae (Archaeplastida) in the narrow time interval between the Sturtian and Marinoan 'snowball Earth' glaciations, 659-645 million years ago"
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      When bacteria stopped being the only notable producers in the sea, by this paper's reading of fossil steroids, taken as the
+      end of the transition. Preferred as the later of the two statements read, and the one that names eukaryotes taking over
+      production. Javaux (2025) reports a reassessment that calls such patterns of early diversity an artifact of sampling.
+  end-brocks-2023:
+    prop: end
+    value: 800 Ma
+    source:
+      ref: src:brocks-2023-protosterol-biota
+      loc: abstract
+      quote: "Modern eukaryotes started to appear in the Tonian period (1,000 to 720 million years ago), fuelled by the proliferation of red algae (rhodophytes) by around 800 million years ago."
+    method: stratigraphic
+    note: >-
+      An earlier turning point, the same group's "Tonian transformation", read from steroids of modern type.
+relations:
+  evidence-mcdermott:
+    rel: evidenced-by
+    to: life/occurrences/mcdermott-assemblage
+    source:
+      ref: src:javaux-2025-mcdermott
+      loc: "The oldest eukaryotes to date"
+      quote: "Some of the McDermott microfossils move back the oldest record of eukaryotes, complex excystment structures and simple multicellularity in eukaryotes by at least 100 Ma"
+  evidence-qingshania:
+    rel: evidenced-by
+    to: life/occurrences/qingshania-kuancheng
+    source:
+      ref: src:miao-2024-qingshania
+      loc: abstract
+      quote: "the large size and morphological complexity of these fossils support their interpretation as eukaryotes, likely photosynthetic"
+  evidence-bangiomorpha:
+    rel: evidenced-by
+    to: life/occurrences/bangiomorpha-somerset-island
+    source:
+      ref: src:javaux-2025-mcdermott
+      loc: "The Palaeoproterozoic context"
+      quote: "The oldest commonly accepted fossils of crown-group eukaryotes include the 1.05 Ga red alga Bangiomorpha pubescens"
+    note: >-
+      For the crown group, so a later step than the first eukaryotes.
+  evidence-grypania:
+    rel: evidenced-by
+    to: life/occurrences/grypania-empire-mine
+    source:
+      ref: src:knoll-2006-proterozoic-eukaryotes
+      loc: "3. Palaeontological estimates of eukaryotic antiquity, paragraph on macroscopic compressions"
+      quote: "convinces that the Canadian Grypania was an organism, not a colony or composite"
+    note: >-
+      Contested: see the competing start.

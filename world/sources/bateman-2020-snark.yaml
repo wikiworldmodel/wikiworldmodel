@@ -1,0 +1,17 @@
+id: src:bateman-2020-snark
+type: publication
+kind: review
+citation: >-
+  Bateman, R.M. (2020). Hunting the Snark: the flawed search for mythical Jurassic angiosperms.
+  Journal of Experimental Botany 71(1), 22–35.
+authors:
+  - "Bateman, R.M."
+published: 2020
+title: "Hunting the Snark: the flawed search for mythical Jurassic angiosperms"
+container: Journal of Experimental Botany 71(1), 22–35
+doi: 10.1093/jxb/erz411
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 31538196); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

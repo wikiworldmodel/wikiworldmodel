@@ -1,0 +1,22 @@
+id: people/polities/frankish-kingdom
+kind: polity
+summary: >-
+  The kingdom of the Franks. Written for the rulers that hold office in it: its dates are the span of the borders dataset's rows, and its
+  land is drawn from those rows as they are, not as a territory of this record.
+author: machine:claude-code
+same_as: { wikidata: Q146246 }
+claims:
+  name:
+    prop: name
+    value: { en: Kingdom of the Franks }
+    unsourced: An editorial label, in English.
+  start:
+    prop: start
+    value: 462 CE
+    source: { ref: src:cliopatria-0.2.1, loc: 'rows named "Kingdom of the Franks": the earliest FromYear' }
+    method: compilation
+  end:
+    prop: end
+    value: 849 CE
+    source: { ref: src:cliopatria-0.2.1, loc: 'rows named "Kingdom of the Franks": the latest ToYear' }
+    method: compilation

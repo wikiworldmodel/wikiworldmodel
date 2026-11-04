@@ -1,0 +1,22 @@
+id: src:falcon-lang-2006-joggins
+type: publication
+kind: measurement
+citation: >-
+  Falcon-Lang, H., Benton, M., Braddy, S. & Davies, S. (2006). The Pennsylvanian tropical biome
+  reconstructed from the Joggins Formation of Nova Scotia, Canada. Journal of the Geological
+  Society 163(3), 561–576.
+authors:
+  - "Falcon-Lang, H."
+  - "Benton, M."
+  - "Braddy, S."
+  - "Davies, S."
+published: 2006
+title: "The Pennsylvanian tropical biome reconstructed from the Joggins Formation of Nova Scotia, Canada"
+container: Journal of the Geological Society 163(3), 561–576
+doi: 10.1144/0016-764905-063
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

@@ -1,0 +1,19 @@
+id: src:morrell-clegg-2007-barley
+type: publication
+kind: measurement
+citation: >-
+  Morrell, P.L. & Clegg, M.T. (2007). Genetic evidence for a second domestication of barley
+  (Hordeum vulgare) east of the Fertile Crescent. Proceedings of the National Academy of
+  Sciences 104(9), 3289–3294.
+authors:
+  - "Morrell, P.L."
+  - "Clegg, M.T."
+published: 2007
+title: "Genetic evidence for a second domestication of barley (Hordeum vulgare) east of the Fertile Crescent"
+container: "Proceedings of the National Academy of Sciences 104(9), 3289–3294"
+doi: 10.1073/pnas.0611377104
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC1805597) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

@@ -1,0 +1,42 @@
+id: people/writing/ahiram-sarcophagus
+kind: occurrence
+summary: >-
+  The inscribed sarcophagus of Ahiram, king of Byblos, in Lebanon. Its inscription is Early Phoenician, about 1000 BCE in the date this record takes from Lam (2010). Other authors date it differently, but none of them could be read for this record.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Ahiram sarcophagus }
+    source:
+      ref: src:lam-2010-alphabet
+      loc: p. 192, fig. 12.3, caption
+      quote: Ahiram Sarcophagus (Early Phoenician, ca. 1000 bc)
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:lam-2010-alphabet
+      loc: p. 192, fig. 12.3, caption
+      quote: Ahiram Sarcophagus (Early Phoenician, ca. 1000 bc)
+  location:
+    prop: location
+    value: { lat: 34.119249, lon: 35.646125, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-byblos, loc: "place 668216, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-508
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 1000 BCE
+    source:
+      ref: src:lam-2010-alphabet
+      loc: p. 192, fig. 12.3, caption
+      quote: Ahiram Sarcophagus (Early Phoenician, ca. 1000 bc)
+    method: expert-estimate
+    note: >-
+      Stated in a figure caption, without argument, and supported by the book's time line for the Phoenician alphabet. The date of this inscription is disputed, but the works arguing other dates could not be read, so they are not recorded
+      here. A reviewer should add them.

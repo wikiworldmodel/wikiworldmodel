@@ -1,0 +1,113 @@
+id: people/rulers/galba
+kind: person
+summary: >-
+  Governor of Hispania Tarraconensis, who rebelled against Nero, succeeded him and was killed in
+  the Forum seven months later.
+author: machine:claude-code
+same_as: { wikidata: Q1414 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Galba }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Galba 4.1"
+      quote: The emperor Servius Galba was born
+  start-suetonius:
+    prop: start
+    value: 24 December 3 BCE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Galba 4.1"
+      quote: The emperor Servius Galba was born in the consulship of Marcus Valerius Messala and Gnaeus Lentulus, on the ninth day before the Kalends of January
+    method: historical-account
+    rank: preferred
+    note: >-
+      The ninth day before the Kalends of January is 24 December, and that consulship is 3 BCE.
+      Preferred as the only date stated by the consuls, though it does not fit Suetonius' own
+      'seventy-third year' at his death. In the early decades of the Julian calendar the
+      pontiffs misapplied its leap years, so this Roman date may differ by a day or more from
+      the proleptic Julian date of the time axis, by an amount that depends on the
+      reconstruction; the Roman date is kept.
+  start-dio:
+    prop: start
+    value: December 5 BCE
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 63 (64.6.5), vol. 8 p. 207"
+      quote: Galba had lived seventy-two years and twenty-three days
+    method: historical-account
+    note: >-
+      Seventy-two years and twenty-three days back from 15 January 69 is December 5 BCE, which
+      fits the seventy-third year that Suetonius gives at his death (Galba 23).
+  reign-start-nero:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/nero, edge: end }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Galba 11.1"
+      quote: reporting that Nero was dead and that all the people had sworn allegiance to him, he laid aside the title of governor and assumed that of Caesar
+    method: historical-account
+    rank: preferred
+    note: >-
+      Suetonius' 'seventh month of his reign' (Galba 23) counts from Nero's death. He was at
+      first still in Spain.
+  reign-start-dio:
+    prop: start
+    subject: "@reign"
+    value: April 68 CE
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 63 (64.6.5), vol. 8 p. 207"
+      quote: out of which he ruled nine months and thirteen days
+    method: historical-account
+    note: >-
+      Dio's count runs back from 15 January 69 to early April 68, about when he was hailed in
+      Spain (Suetonius, Galba 10), and so earlier than Nero's death.
+  end:
+    prop: end
+    value: 15 January 69 CE
+    source:
+      - ref: src:tacitus-histories
+        loc: "1.27.1"
+        quote: On the fifteenth of January, when Galba was sacrificing in front of the temple of Apollo
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Galba 23"
+        quote: He met his end in the seventy-third year of his age and the seventh month of his reign
+    method: historical-account
+    note: >-
+      The year is that of his second consulship with Vinius (Tacitus, Histories 1.11), 69 CE. He
+      was killed in the Forum later on the same day.
+  location:
+    prop: location
+    value: { lat: 41.291169, lon: 13.24885, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-tarracina
+        loc: "representative point"
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Galba 4.1"
+        quote: in a country house situated on a hill near Tarracina
+    method: gazetteer
+    note: Marked at Tarracina, near which Suetonius puts the house, at Pleiades' point.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Galba 11.1"
+      quote: assumed that of Caesar
+    note: Emperor, in the first of the four reigns of 68–69.

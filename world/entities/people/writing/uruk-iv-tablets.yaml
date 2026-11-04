@@ -1,0 +1,62 @@
+id: people/writing/uruk-iv-tablets
+kind: occurrence
+summary: >-
+  The earliest proto-cuneiform tablets and tags, of the Uruk IV phase, from the area of the Eana precinct at Uruk. Virtually all the archaic tablets were found in rubbish reused as fill, so their date comes
+  from the style of their script, not from the layer where they lay.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Uruk IV tablets }
+    unsourced: An editorial label, from the phase and the place.
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:woods-2010-visible-language
+      loc: p. 34 (ch. 2)
+      quote: virtually all the tablets were discovered in secondary archaeological contexts, specifically, in rubbish heaps
+  location:
+    prop: location
+    value: { lat: 31.323375, lon: 45.639052, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-uruk, loc: "place 912986, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 3200 BCE
+    source:
+      - ref: src:woods-2010-visible-language
+        loc: p. 35 (ch. 2)
+        quote: the script and tablets of the earlier phase are labeled Uruk IV (ca. 3200 bc )
+      - ref: src:woods-2010-visible-language
+        loc: p. 34 (ch. 2)
+        quote: The date traditionally given for the invention of writing in Mesopotamia is 3200 bc, but this is more or less conventional.
+    method: expert-estimate
+    rank: preferred
+    note: Conventional, and the source gives no uncertainty. Preferred over the radiocarbon date below for the source's own reasons.
+  date-charcoal:
+    prop: date
+    value: { lo: 3500 BCE, hi: 3390 BCE }
+    source:
+      ref: src:woods-2010-visible-language
+      loc: p. 34 (ch. 2)
+      quote: The charcoal remains of pine beams found in the context of some of the Uruk texts suggest a date of around 3500–3390 bc.
+    method: radiometric/radiocarbon
+    rank: deprecated
+    note: >-
+      Not used. Woods says it must be taken with caution, as a lone sample, in a stretch of the fourth millennium where radiocarbon dates are hard to read, and the beams need not date the
+      tablets. It would also put these tablets before the start given for writing in Mesopotamia.
+relations:
+  at-uruk:
+    rel: during
+    to: people/first-cities/uruk
+    source:
+      ref: src:woods-2010-visible-language
+      loc: p. 34 (ch. 2)
+      quote: Writing was invented in this context.

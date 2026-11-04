@@ -1,0 +1,22 @@
+id: src:johnson-2002-upper-cretaceous-reefs
+type: publication
+kind: review
+citation: >-
+  Johnson, C.C., Sanders, D., Kauffman, E.G. & Hay, W.W. (2002). Patterns and processes
+  influencing Upper Cretaceous reefs. In Kiessling, W., Flügel, E. & Golonka, J. (eds),
+  Phanerozoic Reef Patterns. SEPM Special Publication 72, 549–585.
+authors:
+  - "Johnson, C.C."
+  - "Sanders, D."
+  - "Kauffman, E.G."
+  - "Hay, W.W."
+published: 2002
+title: "Patterns and processes influencing Upper Cretaceous reefs"
+container: Phanerozoic Reef Patterns, SEPM Special Publication 72, 549–585
+doi: 10.2110/pec.02.72.0549
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

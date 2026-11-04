@@ -1,0 +1,16 @@
+id: src:carre-2018-madrague-de-giens
+type: publication
+kind: measurement
+citation: >-
+  Carre, M.-B. (2018). Quelques pièces pour la manœuvre des voiles découvertes sur l'épave de la Madrague de Giens. In G.
+  Boetto & E. Rieth (eds), De re navali. Pérégrinations nautiques entre Méditerranée et océan Indien. Mélanges en
+  l'honneur de Patrice Pomey. Archaeonautica 20, 57–65. CNRS éditions.
+authors: ["Carre, M.-B."]
+published: 2018
+title: Quelques pièces pour la manœuvre des voiles découvertes sur l'épave de la Madrague de Giens
+container: Archaeonautica
+url: https://shs.hal.science/halshs-02087637v1
+reliability: One of the excavators, writing on the rigging; its date and voyage are the team's summary, not argued here. The final report of 1978 was not read.
+verified:
+  by: machine:claude-code
+  how: The PDF in HAL (halshs-02087637) read in its text layer. Quotes checked by script after normalizing whitespace.

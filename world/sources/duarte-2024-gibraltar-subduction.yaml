@@ -1,0 +1,27 @@
+id: src:duarte-2024-gibraltar-subduction
+type: publication
+kind: model
+citation: >-
+  Duarte, J.C., Riel, N., Rosas, F.M., Popov, A., Schuler, C. & Kaus, B.J.P. (2024). Gibraltar
+  subduction zone is invading the Atlantic. Geology 52(5), 331–335.
+authors:
+  - "Duarte, J.C."
+  - "Riel, N."
+  - "Rosas, F.M."
+  - "Popov, A."
+  - "Schuler, C."
+  - "Kaus, B.J.P."
+published: 2024
+title: Gibraltar subduction zone is invading the Atlantic
+container: Geology 52(5), 331–335
+doi: 10.1130/G51654.1
+url: https://eartharxiv.org/repository/object/6807/download/13084/
+via: >-
+  The final peer-reviewed preprint on EarthArXiv (10.31223/X5TM4K); the publisher refused a direct
+  download from here.
+verified:
+  by: machine:claude-code
+  how: >-
+    The whole preprint read, not the journal's typeset version, whose abstract differs from it in
+    small wording. Citation from Crossref. Quotes checked by script against the text extracted from
+    the preprint's PDF, after normalizing whitespace.

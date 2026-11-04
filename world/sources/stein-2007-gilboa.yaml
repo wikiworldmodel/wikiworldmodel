@@ -1,0 +1,22 @@
+id: src:stein-2007-gilboa
+type: publication
+kind: measurement
+citation: >-
+  Stein, W.E., Mannolini, F., Hernick, L.V., Landing, E. & Berry, C.M. (2007). Giant cladoxylopsid
+  trees resolve the enigma of the Earth's earliest forest stumps at Gilboa. Nature 446(7138),
+  904–907.
+authors:
+  - "Stein, W.E."
+  - "Mannolini, F."
+  - "Hernick, L.V."
+  - "Landing, E."
+  - "Berry, C.M."
+published: 2007
+title: "Giant cladoxylopsid trees resolve the enigma of the Earth's earliest forest stumps at Gilboa"
+container: Nature 446(7138), 904–907
+doi: 10.1038/nature05705
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read in Europe PMC (PMID 17443185); the full text is paywalled. Quotes
+    checked by script against it. Metadata from Crossref.

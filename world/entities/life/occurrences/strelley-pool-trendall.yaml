@@ -17,6 +17,10 @@ claims:
     note: >-
       Not a taxon: a sign of life, a silicified microbial mat facies that Duda et al. interpret
       as biogenic.
+  evidence:
+    prop: evidence
+    value: biosignature
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: -21.206878, lon: 119.307694, frame: frame:earth/present-day }

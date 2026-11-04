@@ -16,6 +16,10 @@ claims:
     source: { ref: src:pbdb/collection-196693, loc: "occurrence 1419170, accepted_name" }
     note: >-
       The record gives no identified name; this is the accepted name.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 31.869167, lon: -8.874444, frame: frame:earth/present-day }

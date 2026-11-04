@@ -1,0 +1,23 @@
+id: src:gomez-2015-montsechia
+type: publication
+kind: measurement
+citation: >-
+  Gomez, B., Daviero-Gomez, V., Coiffard, C., Martín-Closas, C. & Dilcher, D.L. (2015).
+  Montsechia , an ancient aquatic angiosperm. Proceedings of the National Academy of Sciences
+  112(35), 10985–10988.
+authors:
+  - "Gomez, B."
+  - "Daviero-Gomez, V."
+  - "Coiffard, C."
+  - "Martín-Closas, C."
+  - "Dilcher, D.L."
+published: 2015
+title: "Montsechia , an ancient aquatic angiosperm"
+container: Proceedings of the National Academy of Sciences 112(35), 10985–10988
+doi: 10.1073/pnas.1509241112
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 26283347). The full text at PubMed Central answered a
+    request with a browser check, so it was not read. Quotes checked by script against that
+    text. Metadata from Crossref.

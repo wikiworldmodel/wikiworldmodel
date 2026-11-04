@@ -25,6 +25,10 @@ A living scene is made the way the city is:
 
 ## Now: three steps
 
+Built: see [SIXTH-SLICE.md](SIXTH-SLICE.md), which says what each criterion's test is and what fell
+short. The lithologic indicators were not imported, and the scene follows the climate field's reading
+of the place, which fossil leaves disagree with.
+
 ### 1. Biomes through time
 
 What the land and shallow seas were covered with, as a gridded field by stage, from the
@@ -75,37 +79,29 @@ Creek Formation of Montana and the Dakotas, among the best-sampled dinosaur faun
 In roughly this order, for breadth across time, life and civilization. Each is one or a few
 bounded pull requests. The three steps above come out of sets 1–3.
 
-| # | Set | When | Adds |
-|---|---|---|---|
-| 1 | Biomes through time | Phanerozoic | a field derived from evidence |
-| 2 | Life's great transitions (eukaryotes to grasslands) | 2 Ga–10 Ma | events tied to occurrences; an evidence-type property |
-| 3 | Dinosaurs from a PBDB snapshot | Mesozoic | a curated database as a snapshot, with an importer |
-| 4 | The ice ages: LGM ice, ice-core series, sea level | last 800 kyr | Quaternary fields and series |
-| 5 | Hominins and their tools | 7 Ma–40 ka | `artefact` and `industry` kinds |
-| 6 | Dispersals and first arrivals, with ancient DNA | 300–15 ka | alternatives of whole pictures; aDNA samples |
-| 7 | Megafauna extinctions, with competing causes | 50–4 ka | alternatives about causation |
-| 8 | Domestication worldwide | 12–4 ka | developments with archaeobotanical samples |
-| 9 | Population and land use (HYDE) | 10,000 BCE–now | a gridded human field |
-| 10 | States worldwide from Cliopatria | 3400 BCE–now | borders beyond Rome |
-| 11 | People and offices: rulers and dynasties | 3000 BCE–now | `person` kind, `held-office` relation |
-| 12 | First cities, writing systems, Glottolog's languages | 4000 BCE–now | settlement sizes, scripts, a language layer |
-| 13 | Routes and trade: Roman roads, the Silk Road, shipwrecks | 500 BCE–1500 CE | dated lines and networks |
-| 14 | Objects that move: inscriptions and museum pieces | any | locations that change over time |
-| 15 | Disasters: eruptions, earthquakes, tsunamis (NOAA) | Holocene | a hazards dataset |
-| 16 | Day length and the Moon's distance through time | 3.2 Ga–now | a measured deep-time series |
-| 17 | Biodiversity through time, from the PBDB | Phanerozoic | a series derived by the build |
-| 18 | The present: Natural Earth borders and coasts, cities | now | a present-day layer |
-| 19 | Futures: IPCC scenarios, the next supercontinent | now–250 Myr | alternatives in the future |
-| 20 | The first human reviews | — | review records, and `accepted` |
+Where each stands, what it added and what a reviewer should look at first is in
+[RECORD-SETS.md](RECORD-SETS.md). All of it is proposed: nothing has been reviewed by a person.
 
-## For the run with network access
+| # | Set | When | Adds | Stands |
+|---|---|---|---|---|
+| 1 | Biomes through time | Phanerozoic | a field derived from evidence | built |
+| 2 | Life's great transitions (eukaryotes to grasslands) | 2 Ga–10 Ma | events tied to occurrences; an evidence-type property | built |
+| 3 | Dinosaurs from a PBDB snapshot | Mesozoic | a curated database as a snapshot, with an importer | built, for the Hell Creek |
+| 4 | The ice ages: LGM ice, ice-core series, sea level | last 800 kyr | Quaternary fields and series | series and records; no ice grids |
+| 5 | Hominins and their tools | 7 Ma–40 ka | `artefact` and `industry` kinds | built |
+| 6 | Dispersals and first arrivals, with ancient DNA | 300–15 ka | alternatives of whole pictures; aDNA samples | built |
+| 7 | Megafauna extinctions, with competing causes | 50–4 ka | alternatives about causation | built |
+| 8 | Domestication worldwide | 12–4 ka | developments with archaeobotanical samples | built |
+| 9 | Population and land use (HYDE) | 10,000 BCE–now | a gridded human field | **part**: the world's population, cropland and grazing land as series; no grid |
+| 10 | States worldwide from Cliopatria | 3400 BCE–now | borders beyond Rome | built, as rows |
+| 11 | People and offices: rulers and dynasties | 3000 BCE–now | `person` kind, `held-office` relation | 42 rulers |
+| 12 | First cities, writing systems, Glottolog's languages | 4000 BCE–now | settlement sizes, scripts, a language layer | built; languages as rows |
+| 13 | Routes and trade: Roman roads, the Silk Road, shipwrecks | 500 BCE–1500 CE | dated lines and networks | Roman roads as lines; 14 wrecks and the Silk Road as records, without its lines |
+| 14 | Objects that move: inscriptions and museum pieces | any | locations that change over time | 13 objects |
+| 15 | Disasters: eruptions, earthquakes, tsunamis (NOAA) | Holocene | a hazards dataset | built, as rows |
+| 16 | Day length and the Moon's distance through time | 3.2 Ga–now | a measured deep-time series | built |
+| 17 | Biodiversity through time, from the PBDB | Phanerozoic | a series derived by the build | animals, uncorrected |
+| 18 | The present: Natural Earth borders and coasts, cities | now | a present-day layer | land borders and cities |
+| 19 | Futures: IPCC scenarios, the next supercontinent | now–250 Myr | alternatives in the future | built |
+| 20 | The first human reviews | — | review records, and `accepted` | **not done**: a person's to do |
 
-Before writing records for each step, the run should:
-
-1. Find each candidate dataset's current home, read its license, and record the result in the
-   step's issue: importable (CC0, CC BY, public domain), cite only, or unreachable.
-2. Pin what will be imported in [world/manifest.yaml](../world/manifest.yaml) with its URL,
-   sha256 and size, and confirm `npm run fetch` gets it.
-3. Run `npm run build:world` and `npm run build:site`, and look at the result in the viewer at
-   the place and time the step is about.
-4. Say in each pull request which hosts it could and could not reach.

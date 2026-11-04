@@ -1,0 +1,18 @@
+id: people/polities/maurya-empire
+kind: polity
+summary: >-
+  The Maurya Empire of northern India. Written for the rulers that hold office in it: its end is the borders dataset's last year, and it starts with its
+  first ruler's reign, because the dataset's first row, at 318 BCE, falls after Chandragupta's accession as his record has it.
+  Its land is drawn from those rows as they are, not as a territory of this record.
+author: machine:claude-code
+same_as: { wikidata: Q62943 }
+claims:
+  name:
+    prop: name
+    value: { en: Maurya Empire }
+    unsourced: An editorial label, in English.
+  end:
+    prop: end
+    value: 171 BCE
+    source: { ref: src:cliopatria-0.2.1, loc: 'rows named "Maurya Empire": the latest ToYear' }
+    method: compilation

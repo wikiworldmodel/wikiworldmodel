@@ -1,0 +1,31 @@
+id: src:higham-2024-italy
+type: publication
+kind: measurement
+citation: >-
+  Higham, T., Frouin, M., Douka, K., Ronchitelli, A., Boscato, P., Benazzi, S., Crezzini, J.,
+  Spagnolo, V., McCarty, M., Marciani, G. et al. (2024). Chronometric data and stratigraphic
+  evidence support discontinuity between Neanderthals and early Homo sapiens in the Italian
+  Peninsula. Nature Communications 15(1), 8016.
+authors:
+  - "Higham, T."
+  - "Frouin, M."
+  - "Douka, K."
+  - "Ronchitelli, A."
+  - "Boscato, P."
+  - "Benazzi, S."
+  - "Crezzini, J."
+  - "Spagnolo, V."
+  - "McCarty, M."
+  - "Marciani, G."
+published: 2024
+title: "Chronometric data and stratigraphic evidence support discontinuity between Neanderthals and early Homo sapiens in the Italian Peninsula"
+container: "Nature Communications 15(1), 8016"
+doi: 10.1038/s41467-024-51546-9
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 19 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC11399134): the Mousterian technocomplexes described as
+    generally attributed to Neanderthals. Quoted passages checked by script against the text
+    retrieved.

@@ -1,0 +1,26 @@
+id: src:bailey-2013-pliocene-onset
+type: publication
+kind: measurement
+citation: >-
+  Bailey, I., Hole, G.M., Foster, G.L., Wilson, P.A., Storey, C.D., Trueman, C.N. & Raymo, M.E.
+  (2013). An alternative suggestion for the Pliocene onset of major northern hemisphere glaciation
+  based on the geochemical provenance of North Atlantic Ocean ice-rafted debris. Quaternary
+  Science Reviews 75, 181–194.
+authors:
+  - "Bailey, I."
+  - "Hole, G.M."
+  - "Foster, G.L."
+  - "Wilson, P.A."
+  - "Storey, C.D."
+  - "Trueman, C.N."
+  - "Raymo, M.E."
+published: 2013
+title: "An alternative suggestion for the Pliocene onset of major northern hemisphere glaciation based on the geochemical provenance of North Atlantic Ocean ice-rafted debris"
+container: "Quaternary Science Reviews 75, 181–194"
+doi: 10.1016/j.quascirev.2013.06.004
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read in the University of Southampton's repository (ePrints Soton 353545). The full
+    text was not read. Citation from Crossref. Quotes checked by script against the text
+    retrieved.

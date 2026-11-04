@@ -1,0 +1,29 @@
+id: src:homann-2018-moodies
+type: publication
+kind: measurement
+citation: >-
+  Homann, M., Sansjofre, P., Van Zuilen, M., Heubeck, C., Gong, J., Killingsworth, B., Foster,
+  I.S., Airo, A., Van Kranendonk, M.J., Ader, M. & Lalonde, S.V. (2018). Microbial life and
+  biogeochemical cycling on land 3,220 million years ago. Nature Geoscience 11(9), 665–671.
+authors:
+  - "Homann, M."
+  - "Sansjofre, P."
+  - "Van Zuilen, M."
+  - "Heubeck, C."
+  - "Gong, J."
+  - "Killingsworth, B."
+  - "Foster, I.S."
+  - "Airo, A."
+  - "Van Kranendonk, M.J."
+  - "Ader, M."
+  - "Lalonde, S.V."
+published: 2018
+title: "Microbial life and biogeochemical cycling on land 3,220 million years ago"
+container: Nature Geoscience 11(9), 665–671
+doi: 10.1038/s41561-018-0190-9
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read on the publisher's page (nature.com/articles/s41561-018-0190-9); the
+    full text is paywalled. Quotes checked by script against that page's text. Metadata from
+    Crossref.

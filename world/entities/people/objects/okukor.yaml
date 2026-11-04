@@ -1,0 +1,136 @@
+id: people/objects/okukor
+kind: artefact/moved
+summary: >-
+  A bronze cockerel of the royal court of Benin, one of the Benin Bronzes, looted in the British
+  expedition of 1897 and given to Jesus College, Cambridge, in 1905. The college handed it to Nigeria's
+  museums commission on 27 October 2021, and it was returned to the Oba's palace in Benin City on 19
+  February 2022.
+author: machine:claude-code
+same_as: { wikidata: Q55099230 }
+phases:
+  - id: benin-city
+    label: Royal court of Benin, Benin City
+  - id: after-the-looting
+    label: Unrecorded, after the looting
+    gap: true
+  - id: jesus-college
+    label: Jesus College, Cambridge
+  - id: after-the-handover
+    label: In Nigerian hands, before the ceremony
+    gap: true
+  - id: benin-city-again
+    label: Oba's palace, Benin City
+claims:
+  name:
+    prop: name
+    value: { en: Okukor }
+    source: { ref: src:the-art-newspaper-2021-okukor, loc: paragraph 1, quote: "a bronze cockerel, known as Okukor" }
+  benin-city-start:
+    prop: start
+    subject: "@benin-city"
+    value: { lo: 1501 CE, hi: February 1897 CE }
+    source:
+      ref: src:british-museum-benin-bronzes
+      loc: "section 'What are they?'"
+      quote: "They were created from at least the 16th century onwards in the West African Kingdom of Benin, by specialist guilds working for the royal court of the Oba (king) in Benin City."
+    method: historical-account
+    note: The dates of the Benin Bronzes as a group, from the 16th century to the capture of the city. This cockerel's own casting date was not found.
+  benin-city-location:
+    prop: location
+    subject: "@benin-city"
+    value: { lat: 6.3176, lon: 5.6145, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-benin-city, loc: "Q320704, P625 coordinate location" }
+      - ref: src:british-museum-benin-bronzes
+        loc: "section 'Where are they from?'"
+        quote: "The Benin Bronzes come from Benin City, the historic capital of the Kingdom of Benin"
+    method: gazetteer
+    note: The city; the palace is not placed here.
+  benin-city-frame:
+    prop: frame
+    subject: "@benin-city"
+    value: frame:paleomap/plate-714
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  after-the-looting-start:
+    prop: start
+    subject: "@after-the-looting"
+    value: February 1897 CE
+    source:
+      - ref: src:jesus-college-2021-returns-benin-bronze
+        loc: "paragraph beginning 'In May 2019'"
+        quote: "the statue was looted directly from the Court of Benin, as part of the punitive British expedition of 1897, and was given to the College in 1905 by the father of a student"
+      - ref: src:british-museum-benin-bronzes
+        loc: "section 'How did the objects come to the British Museum?'"
+        quote: "In February 1897 Benin City was captured by British forces."
+    method: historical-account
+    note: >-
+      The month of the capture, which the college's working party takes as when it left the court. Where it
+      was from then until 1905 is not in anything read, so this phase has no place, and the marker stays at
+      Benin City.
+  jesus-college-start:
+    prop: start
+    subject: "@jesus-college"
+    value: 1905 CE
+    source:
+      - ref: src:jesus-college-2021-returns-benin-bronze
+        loc: "paragraph beginning 'In May 2019'"
+        quote: "was given to the College in 1905 by the father of a student"
+      - ref: src:the-art-newspaper-2021-okukor
+        loc: paragraph 1
+        quote: "known as Okukor, that had been donated to the college by the father of a student in 1905"
+    method: documentary
+    note: As the college's working party reports it.
+  jesus-college-location:
+    prop: location
+    subject: "@jesus-college"
+    value: { lat: 52.209111, lon: 0.123389, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-jesus-college-cambridge, loc: "Q1146700, P625 coordinate location" }
+    method: gazetteer
+  jesus-college-frame:
+    prop: frame
+    subject: "@jesus-college"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  after-the-handover-start:
+    prop: start
+    subject: "@after-the-handover"
+    value: 27 October 2021 CE
+    source:
+      - ref: src:jesus-college-2021-returns-benin-bronze
+        loc: opening paragraph
+        quote: "Jesus College today became the first institution in the world to return a Benin Bronze, presenting it to Nigeria’s National Commission for Museums and Monuments (NCMM)."
+      - ref: src:the-national-2022-benin-bronzes-returned
+        loc: paragraph on the handovers
+        quote: "The two artefacts were handed over to the Nigerian High Commission in October by the University of Aberdeen and Cambridge University's Jesus College."
+    method: documentary
+    note: The handover at the college, dated by its own notice of the day. Where the cockerel was until the ceremony in Benin City is not in anything read, so this phase has no place, and the marker stays at Cambridge.
+  benin-city-again-start:
+    prop: start
+    subject: "@benin-city-again"
+    value: 19 February 2022 CE
+    source:
+      - ref: src:the-national-2022-benin-bronzes-returned
+        loc: paragraph 1
+        quote: "Two Benin bronzes were returned on Saturday to a traditional palace in Nigeria, more than a century after they were pillaged by British troops"
+      - ref: src:the-national-2022-benin-bronzes-returned
+        loc: paragraph on the ceremony
+        quote: "At a colourful ceremony to mark the return of a cockerel sculpture and head of an Oba or king"
+    method: documentary
+    note: The report is dated Sunday 20 February 2022, so its Saturday is the 19th.
+  benin-city-again-location:
+    prop: location
+    subject: "@benin-city-again"
+    value: { lat: 6.3176, lon: 5.6145, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-benin-city, loc: "Q320704, P625 coordinate location" }
+    method: gazetteer
+  benin-city-again-frame:
+    prop: frame
+    subject: "@benin-city-again"
+    value: frame:paleomap/plate-714
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

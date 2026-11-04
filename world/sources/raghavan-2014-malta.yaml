@@ -1,0 +1,21 @@
+id: src:raghavan-2014-malta
+type: publication
+kind: measurement
+citation: >-
+  Raghavan, M., Skoglund, P., Graf, K.E., … & Willerslev, E. (2014). Upper Palaeolithic Siberian
+  genome reveals dual ancestry of Native Americans. Nature 505(7481), 87–91.
+authors:
+  - "Raghavan, M."
+  - "Skoglund, P."
+  - "Graf, K.E."
+  - "Willerslev, E."
+published: 2014
+title: "Upper Palaeolithic Siberian genome reveals dual ancestry of Native Americans"
+container: "Nature 505(7481), 87–91"
+doi: 10.1038/nature12736
+verified:
+  by: machine:claude-code
+  how: >-
+    Author manuscript in PubMed Central (PMC4105016), retrieved as XML through NCBI E-utilities; the
+    abstract and the passages cited were read, without the supplementary information. Quotes checked
+    by script against that text and the abstract in Europe PMC.

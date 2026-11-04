@@ -1,0 +1,13 @@
+id: src:smb-return-of-the-gods
+type: publication
+kind: review
+citation: >-
+  Staatliche Museen zu Berlin, Antikensammlung. The Return of the Gods: Berlin's Hidden Olympus.
+  Exhibition page, 27 November 2008 to 11 April 2010.
+published: 2008
+title: "The Return of the Gods: Berlin's Hidden Olympus"
+url: https://www.smb.museum/en/museums-institutions/antikensammlung/exhibitions/detail/the-return-of-the-gods/
+reliability: The museum's page for its exhibition marking fifty years since the return from the Soviet Union.
+verified:
+  by: machine:claude-code
+  how: Read on the museum's site. Quotations checked by script against the page's text.

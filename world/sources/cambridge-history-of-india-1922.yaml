@@ -1,0 +1,21 @@
+id: src:cambridge-history-of-india-1922
+type: publication
+kind: review
+citation: >-
+  Rapson, E.J. (ed.) (1922). The Cambridge History of India, vol. 1, Ancient India. Cambridge:
+  Cambridge University Press.
+authors:
+  - "Rapson, E.J."
+published: 1922
+title: The Cambridge History of India, vol. 1
+container: Cambridge, Cambridge University Press
+url: https://archive.org/details/cambridgehistory01rapsuoft
+via: The Internet Archive's scan (University of Toronto copy).
+reliability: >-
+  The standard history of its day; F. W. Thomas wrote the chapters on the Mauryas. Its Mauryan
+  dates are reckoned from the Greek kings named in Ashoka's edicts, and differ by a few years
+  from later ones.
+verified:
+  by: machine:claude-code
+  how: >-
+    Pp. 164, 313 and 499 read in the OCR of the scan, and the chronological table (p. 698) also in the page image (leaf n747); quotations checked by script against the OCR, keeping to stretches it reads cleanly.

@@ -1,0 +1,18 @@
+id: src:tacitus-histories
+type: text
+kind: historian
+citation: >-
+  Tacitus, Histories, books 1–3, translated by C. H. Moore, in Tacitus, vol. 2 (Loeb Classical
+  Library, 1925).
+published: 1925
+title: Historiae
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Tacitus/Histories/home.html
+via: LacusCurtius, which reproduces Moore's public-domain translation.
+reliability: >-
+  A senator who lived through 69 as a boy and wrote of it about forty years later; for that year
+  he gives days, some of which can be checked against the Acts of the Arval Brethren.
+verified:
+  by: machine:claude-code
+  how: >-
+    Books 1–3 read in part in Moore's translation on LacusCurtius (marked there as proofread);
+    the quotations checked by script against that text.

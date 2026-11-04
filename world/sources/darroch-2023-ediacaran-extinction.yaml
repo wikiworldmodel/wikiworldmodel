@@ -1,0 +1,23 @@
+id: src:darroch-2023-ediacaran-extinction
+type: publication
+kind: review
+citation: >-
+  Darroch, S., Smith, E., Nelson, L., Craffey, M., Schiffbauer, J. & Laflamme, M. (2023). Causes
+  and consequences of end-Ediacaran extinction – an update. Cambridge Prisms: Extinction, 1–30.
+authors:
+  - "Darroch, S."
+  - "Smith, E."
+  - "Nelson, L."
+  - "Craffey, M."
+  - "Schiffbauer, J."
+  - "Laflamme, M."
+published: 2023
+title: "Causes and consequences of end-Ediacaran extinction – an update"
+container: "Cambridge Prisms: Extinction, 1–30"
+doi: 10.1017/ext.2023.12
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC11895755) read via Europe PMC (fullTextXML): the three assemblages of the
+    Ediacara biota and their ages, and the two extinction pulses. Quotes checked by script
+    against that text. Metadata from Crossref.

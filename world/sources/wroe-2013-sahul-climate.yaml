@@ -1,0 +1,24 @@
+id: src:wroe-2013-sahul-climate
+type: publication
+kind: review
+citation: >-
+  Wroe, S., Field, J.H., Archer, M., Grayson, D.K., Price, G.J., Louys, J., Faith, J.T., Webb, G.E.,
+  Davidson, I. & Mooney, S.D. (2013). Climate change frames debate over the extinction of megafauna
+  in Sahul (Pleistocene Australia-New Guinea). Proceedings of the National Academy of Sciences of
+  the USA 110(22), 8777–8781.
+authors:
+  - "Wroe, S."
+  - "Field, J.H."
+  - "Archer, M."
+  - "Grayson, D.K."
+  - "Mooney, S.D."
+published: 2013
+title: "Climate change frames debate over the extinction of megafauna in Sahul (Pleistocene Australia-New Guinea)"
+container: "Proceedings of the National Academy of Sciences of the USA 110(22), 8777–8781"
+doi: 10.1073/pnas.1302698110
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the PMC record through NCBI efetch (PMC3670326), the publisher
+    not allowing the full text there. Quotes checked by script against the text retrieved, after
+    normalizing whitespace.

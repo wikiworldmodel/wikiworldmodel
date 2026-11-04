@@ -1,0 +1,76 @@
+id: earth/ice-ages/northern-hemisphere-glaciation
+kind: event/transition
+summary: >-
+  The growth of large ice sheets on the northern continents in the late Pliocene, which led into the
+  glacial cycles of the Quaternary. Its usual marker is the first abundant debris rafted by icebergs
+  into the North Atlantic; some read it instead as a slow build-up over more than a million years.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Onset of Northern Hemisphere glaciation }
+    source: { ref: src:haug-2005-north-pacific-seasonality, loc: abstract }
+  start-ice-rafted-debris:
+    prop: start
+    value: 2.72 Ma
+    source:
+      - ref: src:bailey-2013-pliocene-onset
+        loc: abstract
+        quote: The onset of abundant ice-rafted debris (IRD) deposition in the Nordic Seas and subpolar North Atlantic Ocean 2.72 millions of years ago (Ma) is thought to record the Pliocene onset of major northern hemisphere glaciation (NHG)
+      - ref: src:haug-2005-north-pacific-seasonality
+        loc: abstract
+        quote: the timing of the onset of significant Northern Hemisphere glaciation 2.7 million years ago
+      - ref: src:willeit-2019-mid-pleistocene-transition
+        loc: opening paragraph
+        quote: Before the initiation of NH glaciation at ~2.7 million years (Ma) ago, as indicated by the appearance of ice-rafted debris in the North Atlantic
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The usual reading, and the one the sources agree on most: Bailey et al. set it out before
+      questioning it for North America, and Haug et al. and Willeit et al. round it to 2.7 Ma.
+  start-bailey-2013:
+    prop: start
+    value: 2.64 Ma
+    source:
+      ref: src:bailey-2013-pliocene-onset
+      loc: abstract
+      quote: we find that the Pb-isotope composition of IRD at our study site is not consistent with major NHG until MIS G2 (2.64 Ma)
+    method: stratigraphic
+    note: >-
+      From the lead isotopes of single ice-rafted feldspar grains at DSDP Site 611. Bailey et al.
+      suggest that earlier debris came from Greenland and Scandinavia, so this dates the ice on
+      northeast America reaching the sea and calving icebergs, not the first large northern ice.
+  start-mudelsee-raymo-2005:
+    prop: start
+    value: 3.6 Ma
+    source:
+      ref: src:mudelsee-raymo-2005-slow-dynamics
+      loc: abstract
+      quote: We find the NHG started significantly earlier than previously assumed, as early as 3.6 Ma, and ended at 2.4 Ma.
+    method: stratigraphic
+    note: >-
+      A slow, long-term increase in 45 oxygen-isotope records from benthic and planktonic foraminifera.
+      It dates the whole growth of the ice, not its first large advance.
+  end-mudelsee-raymo-2005:
+    prop: end
+    value: 2.4 Ma
+    source:
+      - ref: src:mudelsee-raymo-2005-slow-dynamics
+        loc: abstract
+        quote: We find the NHG started significantly earlier than previously assumed, as early as 3.6 Ma, and ended at 2.4 Ma.
+      - ref: src:bailey-2013-pliocene-onset
+        loc: abstract
+        quote: until 2.4 ± 0.14 Ma, at least 180 kyr after the onset of major IRD deposition at 2.72 Ma
+    method: stratigraphic
+    note: >-
+      Bailey et al. cite cosmogenic dating of tills for the date at which the Laurentide Ice Sheet
+      first reached about 39°N, which falls at the same time.
+  sea-level-change-mudelsee-raymo-2005:
+    prop: sea_level_change
+    value: -43
+    source:
+      ref: src:mudelsee-raymo-2005-slow-dynamics
+      loc: abstract
+      quote: estimate a global ice volume–related increase of 0.4‰, equivalent to an overall sea level lowering of 43 m
+    basis: reconstruction
+    note: Over the whole increase, from 3.6 to 2.4 Ma.

@@ -1,0 +1,110 @@
+id: people/first-cities/hattusa
+kind: settlement
+summary: >-
+  Hattusa, by modern Boğazkale in central Turkey, the capital of the Hittite kingdom and empire. Excavation finds occupation much older than the capital. Around 1200 BCE the royal
+  administration emptied and abandoned the city, which burned only later. Compilers' figures for its population are several times the modern estimate.
+author: machine:claude-code
+same_as: { wikidata: Q181007, pleiades: 283602441 }
+phases:
+  - id: before-capital
+    label: Before the capital
+  - id: capital
+    label: Hittite capital
+claims:
+  name:
+    prop: name
+    value: { en: Hattusa }
+    source: { ref: src:pleiades-hattusa, loc: "place 283602441, names" }
+  start:
+    prop: start
+    value: { lo: 6000 BCE, hi: 5001 BCE }
+    source:
+      ref: src:pleiades-hattusa
+      loc: "place 283602441, details"
+      quote: Occupied as early as the sixth millennium BC, the site was eventually abandoned ca. 1200 BC.
+    method: expert-estimate
+    note: A gazetteer's summary, with no source named, of the earliest occupation on the site.
+  capital-start:
+    prop: start
+    subject: "@capital"
+    value: 1650 BCE
+    source:
+      ref: src:manning-2023-hittite-drought
+      loc: Main
+      quote: with its capital at Hattusa, is recognized from both rich archaeological remains and textual sources as one of the major Old World powers of the Eastern Mediterranean and Near East between 1650 and 1200 bc
+    method: expert-estimate
+    note: The source dates the kingdom, not the move of its capital, and the year is a round one.
+  end:
+    prop: end
+    value: 1200 BCE
+    source:
+      - ref: src:manning-2023-hittite-drought
+        loc: Main
+        quote: archaeological investigations now indicate that the city was abandoned and emptied by the royal administration and only later burnt
+      - ref: src:pleiades-hattusa
+        loc: "place 283602441, details"
+        quote: Occupied as early as the sixth millennium BC, the site was eventually abandoned ca. 1200 BC.
+    method: expert-estimate
+    note: >-
+      Manning et al. tie the collapse to a severe drought around 1198–1196 BC, read from tree rings, and leave the reasons for leaving open. A later, much smaller settlement on the
+      site is not covered here.
+  location:
+    prop: location
+    value: { lat: 40.014913, lon: 34.617158, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-hattusa, loc: "place 283602441, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-510
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area:
+    prop: settlement_area
+    value: 180
+    valid: { lo: 1344 BCE, hi: 1200 BCE }
+    source:
+      ref: src:wikipedia-hattusa
+      loc: section "History"
+      quote: "At its peak, the city covered {{cvt|1.8|km2|acre}} and comprised an inner and outer portion"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      1.8 km², from an encyclopedia, which cites no work for this sentence; no better statement could be read. "Its peak" is not dated there: the moment is taken from the same
+      passage's walls of Suppiluliuma I (c. 1344–1322 BC) to the abandonment. Preferred because it speaks of the city itself.
+  area-unesco:
+    prop: settlement_area
+    value: 268.46
+    source:
+      ref: src:unesco-whc-377-hattusha
+      loc: "Property"
+      quote: 268.46 ha
+    method: survey
+    note: The protected property, so with no date. It takes in the city area, the rock sanctuary of Yazılıkaya, the ruins of Kayalı Boğaz and the İbikçam Forest.
+  population-modern:
+    prop: population
+    value: 10000
+    valid: { lo: 1650 BCE, hi: 1200 BCE }
+    source:
+      ref: src:wikipedia-hattusa
+      loc: section "History", citing Strupler 2022, p. 134
+      quote: Modern estimates put the population of the city around 10,000
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      Preferred over the compilers' figures because it is the recent estimate, though it could be read only through Wikipedia: Strupler's book itself was not read. The moment within
+      the capital's life is not given.
+  population-modelski-1300:
+    prop: population
+    value: 60000
+    valid: 1300 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Hattusa, column BC_1300" }
+    method: compilation
+    note: Modelski's figure, as digitized by Reba et al. (2016).
+  population-chandler-1200:
+    prop: population
+    value: 48000
+    valid: 1200 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "chandlerV2.csv, row Hattusa, column BC_1200" }
+    method: compilation
+    note: Chandler's figure, as digitized by Reba et al. (2016).

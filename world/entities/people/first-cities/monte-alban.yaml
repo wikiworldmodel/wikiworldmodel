@@ -1,0 +1,64 @@
+id: people/first-cities/monte-alban
+kind: settlement
+summary: >-
+  Monte Albán, a city built around 500 BCE on a steep hilltop where the three arms of the Valley of Oaxaca meet, in Mexico: one of the earliest cities of Mesoamerica and the Zapotec capital. People
+  moved there from elsewhere, though farming on the hill was riskier than in the valley. Its abandonment began about 850 CE.
+author: machine:claude-code
+same_as: { wikidata: Q464899 }
+claims:
+  name:
+    prop: name
+    value: { en: Monte Albán }
+    source:
+      ref: src:nicholas-feinman-2022-monte-alban
+      loc: title
+      quote: "The Foundation of Monte Albán, Intensification, and Growth: Coactive Processes and Joint Production"
+  start:
+    prop: start
+    value: 500 BCE
+    source:
+      - ref: src:nicholas-feinman-2022-monte-alban
+        loc: p. 2 (Background to Oaxaca and Monte Alban)
+        quote: Monte Albán was founded c. 500 BCE at the nexus of the three arms of the mountain-ringed Valley of Oaxaca
+      - ref: src:unesco-whc-415-oaxaca-monte-alban
+        loc: Outstanding Universal Value, brief synthesis
+        quote: The grand Zapotec capital flourished for thirteen centuries, from the year 500 B.C to 850 A.D.
+    method: expert-estimate
+  end:
+    prop: end
+    value: 850 CE
+    source:
+      ref: src:unesco-whc-415-oaxaca-monte-alban
+      loc: Outstanding Universal Value, brief synthesis
+      quote: from the year 500 B.C to 850 A.D. when, for reasons that have not been established, its eventual abandonment began
+    method: expert-estimate
+    note: When abandonment began, not when it was complete. An official summary; the same text says the site was inhabited for 1,500 years in all.
+  location:
+    prop: location
+    value: { lat: 17.043889, lon: -96.767778, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-monte-alban, loc: "Q464899, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-104
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  population-nicholas:
+    prop: population
+    value: 5000
+    valid: { lo: 500 BCE, hi: 100 BCE }
+    source:
+      ref: src:nicholas-feinman-2022-monte-alban
+      loc: p. 6
+      quote: Monte Albán was settled by a sizable group (1,000 people?) and rapidly grew to ∼5,000 people within a few hundred years.
+    method: expert-estimate
+    rank: preferred
+    note: Early in the city's life, and approximate. Preferred as the figure from the current survey work in the valley, though it says nothing of the later city. The moment is the city's first four centuries, as the paper gives them.
+  population-chandler:
+    prop: population
+    value: 30000
+    valid: 800 CE
+    source: { ref: src:reba-2016-urban-population, loc: "chandlerV2.csv, row Monte Alban, column AD_800" }
+    method: compilation
+    note: Chandler's figure, as digitized by Reba et al. (2016), late in the city's life.

@@ -62,10 +62,21 @@ export interface Feature {
   plate?: number;
   /** in the feature's own frame (plate-local), carried there from where it was measured */
   location: { lat: number; lon: number };
+  /** a thing that moved: where it was in each of its phases, oldest first */
+  moves?: FeatureMove[];
   time: FeatureTime;
   /** interval under other scenarios (keyed by scenario key), where it differs */
   variants?: Record<string, FeatureTime>;
   status: 'proposed' | 'accepted' | 'disputed' | 'deprecated';
+}
+
+/** Where a thing was for one phase of its life. */
+export interface FeatureMove {
+  label: string;
+  plate?: number;
+  location: { lat: number; lon: number };
+  time: FeatureTime;
+  variants?: Record<string, FeatureTime>;
 }
 
 export interface FieldKeyframe {
@@ -185,15 +196,38 @@ export interface Tileset {
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string };
+  /** the climate field the land is painted from, and the derived field that paints it */
+  climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown> };
   /** attribution the viewer must show for the data it displays */
   credits: { label: string; license: string }[];
   /** the alternatives this build shows, by group */
   alternatives: AlternativeGroupInfo[];
   /** kind labels, for display */
   kinds: Record<string, string>;
-  /** a place the viewer can fly down into: its local grid, and the times it is drawn for */
-  site?: { id: string; label: string; origin: { lat: number; lon: number }; span: [number, number]; slice: number };
+  /** the places the viewer can fly down into */
+  sites?: SiteInfo[];
+}
+
+/** A place the viewer can fly down into: a city's streets, or a living scene. */
+export interface SiteInfo {
+  kind: 'city' | 'life';
+  id: string;
+  label: string;
+  /** the file that describes it, under the build */
+  file: string;
+  /** the record that opening flies down into it */
+  place?: string;
+  /** its local grid's origin, in the globe's coordinates at the time it is drawn for */
+  origin: { lat: number; lon: number };
+  /** the times it is drawn for, and the moment it is written for */
+  span: [number, number];
+  slice: number;
+  /** a visit during these years keeps the time shown; otherwise it moves to the slice, and the window to this */
+  near: [number, number];
+  window: [number, number];
+  /** where a visitor arrives */
+  view: { x: number; y: number; range: number; heading: number; tilt: number };
 }
 
 /** The plate index maps the plate ids used in field tiles to dense indices for the GPU. */
@@ -202,4 +236,15 @@ export interface FramesFile {
   plateIndex: number[];
   /** the frames records use: plate frames name their plate and the entity that defines them */
   frames: { id: string; title: string; kind: string; plate?: number; entity?: string }[];
+}
+
+/**
+ * Where a feature is at a time: for a thing that moved, the phase that holds, or else the last one
+ * begun (or, before any began, the first); for anything else, where it always is.
+ */
+export function placeAt(f: Feature, t: number, pick: (m: FeatureMove) => FeatureTime = (m) => m.time): { location: { lat: number; lon: number }; plate?: number } {
+  if (!f.moves?.length) return f;
+  let at = f.moves[0];
+  for (const m of f.moves) if ((pick(m).start.best ?? -Infinity) <= t) at = m;
+  return at;
 }

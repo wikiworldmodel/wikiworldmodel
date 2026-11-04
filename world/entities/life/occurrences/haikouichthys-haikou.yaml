@@ -14,6 +14,10 @@ claims:
     prop: identified_as
     value: Haikouichthys ercaicunensis n. gen. n. sp.
     source: { ref: src:pbdb/collection-68083, loc: "occurrence 632612, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 24.806944, lon: 102.584999, frame: frame:earth/present-day }

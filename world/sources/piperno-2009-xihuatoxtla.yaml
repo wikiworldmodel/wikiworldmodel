@@ -1,0 +1,22 @@
+id: src:piperno-2009-xihuatoxtla
+type: publication
+kind: measurement
+citation: >-
+  Piperno, D.R., Ranere, A.J., Holst, I., Iriarte, J. & Dickau, R. (2009). Starch grain and
+  phytolith evidence for early ninth millennium B.P. maize from the Central Balsas River
+  Valley, Mexico. Proceedings of the National Academy of Sciences 106(13), 5019–5024.
+authors:
+  - "Piperno, D.R."
+  - "Ranere, A.J."
+  - "Holst, I."
+  - "Iriarte, J."
+  - "Dickau, R."
+published: 2009
+title: "Starch grain and phytolith evidence for early ninth millennium B.P. maize from the Central Balsas River Valley, Mexico"
+container: "Proceedings of the National Academy of Sciences 106(13), 5019–5024"
+doi: 10.1073/pnas.0812525106
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC2664021) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

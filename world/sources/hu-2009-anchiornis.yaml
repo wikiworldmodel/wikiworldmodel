@@ -1,0 +1,20 @@
+id: src:hu-2009-anchiornis
+type: publication
+kind: measurement
+citation: >-
+  Hu, D., Hou, L., Zhang, L. & Xu, X. (2009). A pre-Archaeopteryx troodontid theropod from China
+  with long feathers on the metatarsus. Nature 461(7264), 640–643.
+authors:
+  - "Hu, D."
+  - "Hou, L."
+  - "Zhang, L."
+  - "Xu, X."
+published: 2009
+title: "A pre-Archaeopteryx troodontid theropod from China with long feathers on the metatarsus"
+container: Nature 461(7264), 640–643
+doi: 10.1038/nature08322
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 19794491); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

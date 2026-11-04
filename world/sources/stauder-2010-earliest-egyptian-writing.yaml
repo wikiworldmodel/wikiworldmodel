@@ -1,0 +1,17 @@
+id: src:stauder-2010-earliest-egyptian-writing
+type: publication
+kind: review
+citation: >-
+  Stauder, A. (2010). The Earliest Egyptian Writing. In Woods, C. (ed.), Visible Language: Inventions of Writing in the Ancient Middle East and
+  Beyond, pp. 137–147. Oriental Institute Museum Publications 32. Chicago: The Oriental Institute.
+authors:
+  - "Stauder, A."
+published: 2010
+title: The Earliest Egyptian Writing
+container: "Visible Language: Inventions of Writing in the Ancient Middle East and Beyond (OIMP 32)"
+url: https://isac-assets.s3.amazonaws.com/isac-publications/oimp32.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the PDF that ISAC publishes. Page numbers are the book's, two less than the PDF's. Quotes checked by script against
+    its text layer, ignoring whitespace and rejoining words hyphenated at line ends.

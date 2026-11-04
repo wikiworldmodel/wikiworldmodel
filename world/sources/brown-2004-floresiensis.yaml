@@ -1,0 +1,26 @@
+id: src:brown-2004-floresiensis
+type: publication
+kind: measurement
+citation: >-
+  Brown, P., Sutikna, T., Morwood, M.J., Soejono, R.P., Jatmiko, Saptomo, E.W. & Due, R.A. (2004).
+  A new small-bodied hominin from the Late Pleistocene of Flores, Indonesia. Nature 431(7012),
+  1055–1061.
+authors:
+  - "Brown, P."
+  - "Sutikna, T."
+  - "Morwood, M.J."
+  - "Soejono, R.P."
+  - "Saptomo, E.W."
+  - "Due, R.A."
+published: 2004
+title: "A new small-bodied hominin from the Late Pleistocene of Flores, Indonesia"
+container: "Nature 431(7012), 1055–1061"
+doi: 10.1038/nature02999
+note: >-
+  The authors field leaves out Jatmiko, who publishes under one name; the citation has it.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 15514638): the naming of Homo floresiensis, about 1 m
+    tall with an endocranial volume of about 380 cm3. Quoted passages checked by script against
+    the text retrieved.

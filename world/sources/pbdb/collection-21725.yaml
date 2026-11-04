@@ -1,0 +1,23 @@
+id: src:pbdb/collection-21725
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 21725 ("Rusinga Island", KE). Read through the PBDB data
+  service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=21725
+license: CC0-1.0
+license_note: >-
+  The earlier PBDB records here report that the data service's datainfo header states "Data
+  License: Creative Commons CC0"; this run did not re-read the header.
+reliability: >-
+  A database record compiled from the literature: collection reference Bishop & Clark 1965,
+  Background to Evolution in Africa. Interval ages are the PBDB's own; the primary reference was
+  not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=21725&show=loc,strat,ref,time: lat -0.4, lng 34.116699,
+    interval Burdigalian (20.45–15.98 Ma). A collection for the island as a whole; its occurrences
+    are vertebrates and only the interval is used here.

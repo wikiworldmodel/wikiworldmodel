@@ -1,0 +1,23 @@
+id: src:pbdb/collection-231987
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 231987 ("Woranso- Mille (Central Afar)", ET), occurrence
+  1635955. Read through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=231987
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+  Commons CC0".
+reliability: >-
+  A database record compiled from the literature; the collection reference, not read here, is: Y.
+  Haile-Selassie, B. Saylor, and A. Deino, M. Alene, B. Latimer. 2010. An early Australopithecus
+  afarensis postcranium from Woranso-Mille, Ethiopia. . 141:406-417
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=231987&show=loc,strat,ref and from the occurrence list:
+    lat 11.5, lng 40.5, early_interval "Late Pliocene", formation "none given", geographic note
+    "none"; occurrence 1635955, accepted name "Australopithecus afarensis".

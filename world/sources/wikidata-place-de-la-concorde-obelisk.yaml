@@ -1,0 +1,12 @@
+id: src:wikidata-place-de-la-concorde-obelisk
+type: database-record
+kind: compilation
+citation: "Wikidata, item Q1503331 (Luxor Obelisk, ancient Egyptian obelisk in Paris), property P625 (coordinate location)."
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q1503331
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a marker to within a few hundred metres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (48.865475, 2.321133) read from the item's JSON (Special:EntityData/Q1503331.json).
