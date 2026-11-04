@@ -196,9 +196,11 @@ export interface Tileset {
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string };
   /** the climate field the land is painted from, and the derived field that paints it */
   climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown> };
+  /** the ice sheets drawn over the land, where a field has them, instead of a claimed latitude */
+  ice?: IceInfo;
   /** attribution the viewer must show for the data it displays */
   credits: { label: string; license: string }[];
   /** the alternatives this build shows, by group */
@@ -207,6 +209,25 @@ export interface Tileset {
   kinds: Record<string, string>;
   /** the places the viewer can fly down into */
   sites?: SiteInfo[];
+}
+
+/** What the viewer needs to know of the ice-sheet field: what it is, when it covers, and how far to trust it. */
+export interface IceInfo {
+  field: string;
+  title: string;
+  description?: string;
+  uncertainty?: string;
+  basis: Basis;
+  source: string;
+  sourceRecord?: import('./records.ts').SourceRecord;
+  /** [older, younger] astronomical years, its projection included */
+  coverage: [number, number];
+  keyframesMa: number[];
+  /** after its youngest keyframe, the field holds it as a projection until `until` */
+  projection?: { method: 'hold'; until: number; note?: string };
+  /** the thickness whose contour its margin is, in metres */
+  marginM: number;
+  scenarios: { id: string; title: string; alt?: string }[];
 }
 
 /** A place the viewer can fly down into: a city's streets, or a living scene. */

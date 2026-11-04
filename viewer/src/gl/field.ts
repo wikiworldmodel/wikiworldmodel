@@ -108,6 +108,44 @@ export interface ClimateKeyGPU {
   plate: WebGLTexture;
 }
 
+// The ice pass: the same warp again, of two bytes per node, into the channels of one cube, the two
+// keyframes side by side as with the elevation. Every keyframe of the ice is on today's coordinates, so
+// one rotation moves them both. Plates carry ice no more than a few km in the field's span, but it goes
+// where they go. Outside the ice is left as it was cleared: as far from any margin as a byte can say.
+const ICE_VS = `#version 300 es
+precision highp float;
+precision highp int;
+uniform highp sampler2D uVal;
+uniform highp usampler2D uPlate;
+uniform highp sampler2D uRot;
+uniform int uNx;
+uniform vec3 uGrid;
+uniform vec3 uFx;
+uniform vec3 uFy;
+uniform vec3 uFw;
+out vec2 vV;
+void main() {
+  int i = gl_VertexID % uNx;
+  int j = gl_VertexID / uNx;
+  uint pl = texelFetch(uPlate, ivec2(i, j), 0).r;
+  vV = texelFetch(uVal, ivec2(i, j), 0).rg;
+  float lon = radians(uGrid.x + float(i) * uGrid.z);
+  float lat = radians(uGrid.y - float(j) * uGrid.z);
+  vec3 p = vec3(cos(lat) * cos(lon), cos(lat) * sin(lon), sin(lat));
+  vec4 q = texelFetch(uRot, ivec2(int(pl), 0), 0);
+  vec3 u = q.yzw;
+  vec3 c = cross(u, p);
+  p = p + 2.0 * (q.x * c + cross(u, c));
+  float w = dot(uFw, p);
+  gl_Position = vec4(dot(uFx, p), dot(uFy, p), 0.0, w);
+}`;
+
+const ICE_FS = `#version 300 es
+precision highp float;
+in vec2 vV;
+out vec4 o;
+void main() { o = vec4(vV.r, vV.r, vV.g, vV.g); }`;
+
 export class FieldRenderer {
   readonly cube: CubeTarget;
   private prog: Program;
@@ -120,6 +158,13 @@ export class FieldRenderer {
   climateCubes: [CubeTarget, CubeTarget] | null = null;
   private climateKeys = new Map<number, ClimateKeyGPU>();
   private climateGrid: FieldGrid | null = null;
+  private iceProg: Program | null = null;
+  private iceRot: WebGLTexture | null = null;
+  private iceGrid: FieldGrid | null = null;
+  private icePlate: WebGLTexture | null = null;
+  private iceKeys = new Map<number, WebGLTexture>();
+  /** R and G how far the two keyframes around the time shown are from their margin; B and A the root of their thickness */
+  iceCube: CubeTarget | null = null;
 
   constructor(private gl: GL, private plateCount: number, size = 512) {
     if (!gl.getExtension('EXT_color_buffer_float')) throw new Error('This viewer needs WebGL2 with EXT_color_buffer_float.');
@@ -314,6 +359,85 @@ export class FieldRenderer {
     gl.bindVertexArray(null);
     gl.activeTexture(gl.TEXTURE0);
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  }
+
+  /** Take the ice-sheet field's keyframes to the GPU: two bytes per node, by a key of the caller's. */
+  setIce(grid: FieldGrid, plate: Uint16Array, keyframes: { key: number; margin: Uint8Array; thickness: Uint8Array }[], size = 256): void {
+    const gl = this.gl;
+    this.iceProg = program(gl, 'ice', ICE_VS, ICE_FS);
+    this.iceGrid = grid;
+    this.iceCube = cubeTarget(gl, size, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE);
+    this.iceRot = gl.createTexture()!;
+    gl.bindTexture(gl.TEXTURE_2D, this.iceRot);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, this.plateCount, 1, 0, gl.RGBA, gl.FLOAT, null);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+    this.icePlate = gl.createTexture()!;
+    gl.bindTexture(gl.TEXTURE_2D, this.icePlate);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.R16UI, grid.nx, grid.ny, 0, gl.RED_INTEGER, gl.UNSIGNED_SHORT, plate);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    const n = grid.nx * grid.ny;
+    const both = new Uint8Array(n * 2);
+    for (const k of keyframes) {
+      for (let i = 0; i < n; i++) {
+        both[i * 2] = k.margin[i];
+        both[i * 2 + 1] = k.thickness[i];
+      }
+      const t = gl.createTexture()!;
+      gl.bindTexture(gl.TEXTURE_2D, t);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RG8, grid.nx, grid.ny, 0, gl.RG, gl.UNSIGNED_BYTE, both);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+      this.iceKeys.set(k.key, t);
+    }
+  }
+
+  /** Warp two of the ice's keyframes to the current time, by each plate's rotation from today (`rot`: w,x,y,z per plate index). */
+  renderIce(younger: number, older: number, rot: Float32Array): void {
+    const gl = this.gl;
+    if (!this.iceProg || !this.iceCube || !this.iceGrid) return;
+    const grid = this.iceGrid;
+    gl.bindTexture(gl.TEXTURE_2D, this.iceRot);
+    gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, this.plateCount, 1, gl.RGBA, gl.FLOAT, rot);
+    gl.useProgram(this.iceProg.program);
+    gl.bindVertexArray(this.vao);
+    gl.viewport(0, 0, this.iceCube.size, this.iceCube.size);
+    gl.disable(gl.DEPTH_TEST);
+    gl.disable(gl.CULL_FACE);
+    gl.disable(gl.BLEND);
+    gl.activeTexture(gl.TEXTURE1);
+    gl.bindTexture(gl.TEXTURE_2D, this.icePlate);
+    gl.activeTexture(gl.TEXTURE2);
+    gl.bindTexture(gl.TEXTURE_2D, this.iceRot);
+    setUniforms(gl, this.iceProg, { uVal: 0, uPlate: 1, uRot: 2, uNx: grid.nx }, ['uVal', 'uPlate', 'uRot', 'uNx']);
+    setUniforms(gl, this.iceProg, { uGrid: [grid.lon0, grid.lat0, grid.step] });
+    const m = this.mesh(grid);
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, m.index);
+    gl.activeTexture(gl.TEXTURE0);
+    for (let f = 0; f < 6; f++) {
+      gl.bindFramebuffer(gl.FRAMEBUFFER, this.iceCube.framebuffers[f]);
+      gl.colorMask(true, true, true, true);
+      gl.clearColor(0, 0, 0, 0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      const F = CUBE_FACES[f];
+      setUniforms(gl, this.iceProg, { uFx: F.slice(0, 3), uFy: F.slice(3, 6), uFw: F.slice(6, 9) });
+      for (const [row, key] of [[0, younger], [1, older]] as const) {
+        gl.colorMask(row === 0, row === 1, row === 0, row === 1);
+        gl.bindTexture(gl.TEXTURE_2D, this.iceKeys.get(key)!);
+        gl.drawElements(gl.TRIANGLES, m.count, gl.UNSIGNED_INT, 0);
+      }
+    }
+    gl.colorMask(true, true, true, true);
+    gl.enable(gl.DEPTH_TEST);
+    gl.bindVertexArray(null);
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+  }
+
+  /** The cube of the ice in the direction `d`, as bytes: the two margins, and the two thicknesses. */
+  sampleIce(d: [number, number, number]): [number, number, number, number] | null {
+    return this.iceCube ? (this.readFace(this.iceCube, d, true) as [number, number, number, number]) : null;
   }
 
   /** The climate in the direction `d`, blended between its keyframes: four values in 0–1. */

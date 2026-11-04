@@ -87,7 +87,7 @@ Where each stands, what it added and what a reviewer should look at first is in
 | 1 | Biomes through time | Phanerozoic | a field derived from evidence | built |
 | 2 | Life's great transitions (eukaryotes to grasslands) | 2 Ga–10 Ma | events tied to occurrences; an evidence-type property | built |
 | 3 | Dinosaurs from a PBDB snapshot | Mesozoic | a curated database as a snapshot, with an importer | built, for the Hell Creek |
-| 4 | The ice ages: LGM ice, ice-core series, sea level | last 800 kyr | Quaternary fields and series | series and records; no ice grids |
+| 4 | The ice ages: LGM ice, ice-core series, sea level | last 800 kyr | Quaternary fields and series | built: series and records, and the ice sheets of the last 80 kyr on the globe, not the 36 kyr before them |
 | 5 | Hominins and their tools | 7 Ma–40 ka | `artefact` and `industry` kinds | built |
 | 6 | Dispersals and first arrivals, with ancient DNA | 300–15 ka | alternatives of whole pictures; aDNA samples | built |
 | 7 | Megafauna extinctions, with competing causes | 50–4 ka | alternatives about causation | built |

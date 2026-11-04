@@ -173,6 +173,8 @@ export interface SeriesRecord {
   band?: string;
   /** [year, value, lo, hi], oldest first; lo and hi are null where there is no band */
   points: [number, number, number | null, number | null][];
+  /** by alternative: the points that picture reads instead, for a series that follows one */
+  variants?: Record<string, [number, number, number | null, number | null][]>;
   /** where it comes from: a dataset, or the source of the rule it is computed with */
   source: CitationRecord;
   sourceRecord?: SourceRecord;

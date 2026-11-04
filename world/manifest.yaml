@@ -915,3 +915,78 @@ datasets:
         and baseline/txt/grazing_r.txt (21179 bytes, sha256 f7e19b02a5cc495b1106d1a966b34e022a52972de5aa4832dd4ee39fa88a6913) in
         HYDE3_2_1-baseline.zip (5339653974 bytes, SHA-1 0d0e4ff97deb59664ce6c34dfdeeafa08e487d20 as DANS states it),
         https://archaeology.datastations.nl/api/access/datafile/5490328. The archive is far too big to fetch for two rows.
+
+  src:paleomist-1.0:
+    type: dataset
+    kind: model
+    title: "PaleoMIST 1.0: a global ice sheet reconstruction for the past 80,000 years"
+    citation: >-
+      Gowan, E.J. (2019). Global ice sheet reconstruction for the past 80000 years [dataset]. PANGAEA,
+      https://doi.org/10.1594/PANGAEA.905800. Supplement to: Gowan, E.J., Zhang, X., Khosravi, S., Rovere, A., Stocchi, P.,
+      Hughes, A.L.C., Gyllencreutz, R., Mangerud, J., Svendsen, J.I. & Lohmann, G. (2021). A new global ice sheet
+      reconstruction for the past 80 000 years. Nature Communications 12, 1199.
+    authors:
+      - "Gowan, E.J."
+    published: 2019
+    version: >-
+      The archive as PANGAEA has held it since its update of 19 April 2021, which corrected the grids in Alaska; the
+      ice_thickness of its two 1° grids, read on 4 November 2026 and kept in world/snapshots
+    container: PANGAEA
+    doi: 10.1594/PANGAEA.905800
+    url: https://doi.org/10.1594/PANGAEA.905800
+    credit: Ice sheets from PaleoMIST 1.0 (Gowan et al. 2021), the two scenarios' thickness rounded to the metre
+    license: CC-BY-4.0
+    license_note: >-
+      PANGAEA's page for the dataset says "License: Creative Commons Attribution 4.0 International (CC-BY-4.0)", and its
+      terms of use (section 6.2) publish data under CC BY unless negotiated otherwise. What is kept here is changed: one
+      variable of two files, rounded to the metre, in another file format. The archive's calc_sl/ folder is under the GPL, on
+      its readme's word, and is not used; nor are its RTopo-2 and ICEBRIDGE inputs, except as they are already part of the
+      thickness computed from them.
+    reliability: >-
+      A model's reading of geological evidence, not a measurement. Each sheet's thickness follows from three things set by
+      hand: its margin, the stress at its bed and the bed itself, under "an assumption of perfectly plastic, equilibrium
+      conditions". It was tuned to local sea-level and ice-flow evidence, and on purpose not to far-field sea level or δ18O.
+      It gives no error bars. Its margins are the best known part, but they are coarse in time and thin on evidence before the
+      LGM: the Heinrich events set the timing of many advances, and between time slices with published margins the author
+      sets the margin "to be intermediate of them". Before 20 ka the margins of North America and Antarctica were drawn for
+      this study. Greenland and Antarctica follow today's ice at the present by construction, and the Alps and other mountain
+      ice are not in it. Its own range is its two scenarios, which differ in North America in MIS 3.
+    note: >-
+      The snapshot is the variable ice_thickness of global_grid/reconstruction_1_degree.nc (the minimal scenario) and
+      global_grid/reconstruction_a1_1_degree.nc (the maximal one), rounded to the metre: every 2500 years from 80,000 yr BP to
+      the present, on nodes every 1°, as grounded ice only. The grids were filtered over about 100 km and projected from the
+      archive's 5 km grids, so they do not hold small ice caps, fjords or a sharp edge; the author's script does this, and the
+      readme warns that the geographic grids were not what the reconstruction was evaluated on. Thickness on the grids sums to
+      an ice volume 45.9 million km³ above today's at 20 ka. With the readme's 361 million km² of ocean and ice density of
+      910 kg/m³ that is −115.8 m, close to the −116.0 m of the "Calculated ESL" column of the paper's Supplementary Table 1. Over
+      the 33 keyframes that sum differs from the column by 0.7 m (rms) and at most 1.9 m. The volumes and the "SLE" column of the
+      same table, and the archive's volume_sorted.txt, come to 42.2 million km³ and 106.3 m at 20 ka instead; the 8% between the
+      two columns is not explained in what was read.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Citation, DOI, size and license read from PANGAEA's page for the dataset, and its terms of use. The readme, the grids,
+        the volume tables, and the margin files of 12,500, 20,000, 40,000, 42,500 and 60,000 yr BP read out of the 3.7 GB archive
+        by HTTP range requests, each against the CRC-32 in the archive's directory; the archive as a whole was not downloaded,
+        so nothing checks it as one file. The paper and its Supplementary Tables 1 and 2 read from Nature's site and PubMed
+        Central. Against the margin files, the 100 m contour of the grid has an intersection over union of 0.97 to 0.99 north of
+        60°S; Antarctica's margin was not compared, as the rasterizing used does not handle a ring around the pole. Against NADI-1
+        (Dalton et al. 2023, doi:10.5281/zenodo.8161764, CC BY 4.0) and DATED-1 (Hughes et al. 2016, doi:10.1594/PANGAEA.848117, CC
+        BY 3.0), downloaded for the purpose and not imported, by tools/world/importers/paleomist_check.py; the figures are in
+        docs/RECORD-SETS.md. Quotes checked by script against the texts retrieved.
+    fetch:
+      url: repo:world/snapshots/paleomist-1.0-ice-thickness.zip
+      sha256: 97dd37124512457ca8c6472067095219c74091a4480c7804b8b2808b967dc4a4
+      bytes: 1121070
+      format: zip
+      files:
+        grid:
+          path: paleomist-1.0-ice-thickness-1deg.nc
+          sha256: e1ca5d4048ccbe4054c9df386bd175552b0dda46ad2a32a569ccb53ff2f8f6cf
+      via: >-
+        tools/world/importers/paleomist_snapshot.py, from ice_reconstruction/global_grid/reconstruction_1_degree.nc (34538868
+        bytes, CRC-32 166d676f, sha256 ab6f74541339f5be44dd630dfb9c41189a6c1dfaf58fce6fc3c356430b539037) and
+        ice_reconstruction/global_grid/reconstruction_a1_1_degree.nc (34538871 bytes, CRC-32 3236f859, sha256
+        1d2304c6c7124734b5381b353e12937833013b59e8caede452db2d2b0f5299d2) in
+        https://hs.pangaea.de/Maps/Global_Ice_Sheets/Gowan_ice_reconstruction.zip (3706381549 bytes). The archive is far too
+        big to fetch for two variables, and the build's NetCDF reader does not read NetCDF-4.

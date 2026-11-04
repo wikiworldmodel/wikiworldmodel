@@ -6,6 +6,7 @@ import { describe, expect, it } from 'vitest';
 import { decodeTile } from '../../../core/container.ts';
 import { fromMa, PRESENT_YEAR, toMa } from '../../../core/time.ts';
 import type { TileHeader, Tileset } from '../../../core/tileset.ts';
+import type { IceHeader } from '../../../core/ice.ts';
 import { chosenClaim, type PlanetFile } from '../../../core/planet.ts';
 import { territoriesAt, type TerritoryFile } from '../../../core/territory.ts';
 import type { CoverageFile, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../core/records.ts';
@@ -120,6 +121,7 @@ describe('build', () => {
       'src:ohm-rome-2026-11-01',
       'src:paleodem-v2',
       'src:paleomap-plate-model',
+      'src:paleomist-1.0',
       'src:pbdb-diversity-2026-11-04',
       'src:pbdb-hell-creek-2026-11-04',
       'src:spratt-lisiecki-2016-sea-level',
@@ -238,6 +240,103 @@ describe('build', () => {
     expect(toMa(start('life/taxa/archaea').lo)).toBe(3400);
     // A molecular date that pins an origin is shown at its centre.
     expect(toMa(start('life/taxa/cellular-organisms').best!)).toBeCloseTo(4210, 6);
+  });
+
+  describe('the ice sheets', () => {
+    const series = () => (JSON.parse(readFileSync(join(latestBuild(), 'series.json'), 'utf8')) as SeriesFile).series;
+    const ice = () => series().find((s) => s.id === 'field:earth/ice-sheet-sea-level')!;
+    const valueAt = (s: SeriesFile['series'][number], ka: number) => {
+      const t = 1950 - ka * 1e3;
+      const i = s.points.findIndex((p) => p[0] >= t);
+      const [a, b] = [s.points[i - 1] ?? s.points[i], s.points[i]];
+      return a[0] === b[0] ? a[1] : a[1] + ((b[1] - a[1]) * (t - a[0])) / (b[0] - a[0]);
+    };
+
+    it('has a keyframe every 2.5 kyr and two scenarios, the second only where they differ in kind', () => {
+      const dir = latestBuild();
+      const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
+      expect(ts.files.ice).toBe('ice.lwt');
+      const { header, arrays } = decodeTile<IceHeader>(bytes(join(dir, 'ice.lwt')));
+      expect(header.scenarios.map((s) => s.id)).toEqual(['maximal', 'minimal']);
+      const ages = header.scenarios[0].keyframes.map((k) => k.ageMa);
+      expect(ages).toHaveLength(33);
+      expect(ages[0]).toBe(0);
+      expect(ages.at(-1)).toBe(0.08);
+      for (let i = 1; i < ages.length; i++) expect(ages[i] - ages[i - 1]).toBeCloseTo(0.0025, 9);
+      expect(header.scenarios[1].keyframes.map((k) => k.ageMa)).toEqual(ages.filter((a) => a >= 0.0375 && a <= 0.055));
+      const n = header.grid.nx * header.grid.ny;
+      expect(arrays[header.plate].length).toBe(n);
+      for (const k of header.scenarios.flatMap((s) => s.keyframes)) {
+        expect(arrays[k.margin].length).toBe(n);
+        expect(arrays[k.thickness].length).toBe(n);
+      }
+      // The whole of it stays small: no bigger than the climate field, near enough.
+      expect(readFileSync(join(dir, 'ice.lwt')).length).toBeLessThan(6e6);
+    });
+
+    it('reads as the dataset\'s own sea-level column: the "Calculated ESL" of Gowan et al.\'s Supplementary Tables 1 and 2', () => {
+      // Copied from those tables, in metres, for the keyframes where the shape of the curve turns.
+      const minimal: Record<number, number> = { 80: -9.5, 60: -78.9, 42.5: -25.3, 20: -116.0, 12.5: -54.1, 5: -4.6 };
+      const maximal: Record<number, number> = { 80: -9.4, 60: -78.9, 42.5: -36.3, 20: -116.4, 12.5: -54.2, 5: -4.6 };
+      const s = ice();
+      for (const [ka, m] of Object.entries(maximal)) expect(Math.abs(valueAt(s, Number(ka)) - m), `maximal at ${ka} ka`).toBeLessThan(1.5);
+      const other = s.variants!['alt:laurentide-mis3/hudson-bay-ice-free'];
+      for (const [ka, m] of Object.entries(minimal)) expect(Math.abs(other.find((x) => x[0] === 1950 - Number(ka) * 1e3)![1] - m), `minimal at ${ka} ka`).toBeLessThan(1.5);
+      // At every keyframe the band runs between the two.
+      s.points.forEach((p, i) => {
+        expect(p[2]).toBe(Math.min(p[1], other[i][1]));
+        expect(p[3]).toBe(Math.max(p[1], other[i][1]));
+      });
+      expect(s.points).toHaveLength(33);
+      expect(s.rule?.params).toEqual({ ocean_area_km2: 361000000, ice_density: 910, water_density: 1000 });
+      expect(s.band).toContain('two scenarios');
+    });
+
+    it('agrees with the sea-level stack in sign and rough size, and the disagreement is what the field says it is', () => {
+      const stack = series().find((x) => x.id === 'field:earth/sea-level-stack')!;
+      const s = ice();
+      const other = s.variants!['alt:laurentide-mis3/hudson-bay-ice-free'];
+      // Where both have a value: from the stack's youngest row, at 5 ka, to the dataset's oldest.
+      const pairs = s.points.map((p, i) => ({ ka: (1950 - p[0]) / 1e3, ice: p[1], other: other[i][1] })).filter((p) => p.ka >= 5 && p.ka <= 80).map((p) => ({ ...p, stack: valueAt(stack, p.ka) }));
+      expect(pairs).toHaveLength(31);
+      // Below today's at every keyframe, both of them, but for the 5 ka the stack is scaled to: 0 m there.
+      for (const p of pairs) {
+        expect(p.ice, `ice at ${p.ka} ka`).toBeLessThan(0);
+        if (p.ka === 5) expect(p.stack).toBe(0);
+        else expect(p.stack, `stack at ${p.ka} ka`).toBeLessThan(0);
+      }
+      // They rise and fall together, on the whole.
+      const mean = (x: number[]) => x.reduce((a, b) => a + b, 0) / x.length;
+      const [a, b] = [pairs.map((p) => p.ice), pairs.map((p) => p.stack)];
+      const [ma, mb] = [mean(a), mean(b)];
+      const r = a.reduce((sum, x, i) => sum + (x - ma) * (b[i] - mb), 0) / Math.sqrt(a.reduce((sum, x) => sum + (x - ma) ** 2, 0) * b.reduce((sum, x) => sum + (x - mb) ** 2, 0));
+      expect(r).toBeGreaterThan(0.8);
+      // From 20 ka to 5 ka, to within about 6 m.
+      for (const p of pairs.filter((x) => x.ka <= 20)) expect(Math.abs(p.ice - p.stack), `at ${p.ka} ka`).toBeLessThan(6.5);
+      // Their lowest: about −116 m at 20 ka here, and −130 m at 24 ka in the stack: the 14 m the field says.
+      const lowest = s.points.reduce((x, y) => (y[1] < x[1] ? y : x));
+      expect(lowest[0]).toBe(1950 - 20000);
+      expect(lowest[1]).toBeCloseTo(-116.2, 1);
+      const inSpan = stack.points.filter((p) => p[0] >= 1950 - 80000);
+      const low = inSpan.reduce((x, y) => (y[1] < x[1] ? y : x));
+      expect(low[0]).toBe(1950 - 24000);
+      expect(low[1]).toBe(-130);
+      // In MIS 3 (57 to 29 ka) this reads higher, in either scenario, by tens of metres and up to about 54 m.
+      const mis3 = pairs.filter((p) => p.ka <= 57 && p.ka >= 29);
+      for (const p of mis3) {
+        expect(p.ice - p.stack, `at ${p.ka} ka`).toBeGreaterThan(15);
+        expect(p.other - p.stack, `at ${p.ka} ka`).toBeLessThan(55);
+      }
+    });
+
+    it('draws Canada and northern Europe at the LGM from the field, and nothing of it on the Sahara', () => {
+      const dir = latestBuild();
+      const { header, arrays } = decodeTile<IceHeader>(bytes(join(dir, 'ice.lwt')));
+      const k = header.scenarios[0].keyframes.find((x) => x.ageMa === 0.02)!;
+      const inside = (lat: number, lon: number) => arrays[k.margin][(90 - lat) * header.grid.nx + (lon + 180)] > 127.5;
+      for (const [lat, lon] of [[60, -85], [52, -73], [59, 18], [64, 21]]) expect(inside(lat, lon), `${lat}, ${lon}`).toBe(true);
+      for (const [lat, lon] of [[65, 110], [38, -98], [40, -4], [23, 10]]) expect(inside(lat, lon), `${lat}, ${lon}`).toBe(false);
+    });
   });
 
   it('writes the planet\'s states: its phases in order, tied to the dates they follow, and the ice of its glaciations', () => {

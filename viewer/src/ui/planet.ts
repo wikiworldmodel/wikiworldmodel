@@ -5,9 +5,9 @@ import type { Look } from '../../../core/planet.ts';
 import type { SeriesRecord } from '../../../core/records.ts';
 import { fmtValue, type SeriesValue } from './inspect.ts';
 
-/** A series' value at time t, interpolated between its points; null outside its span. */
-export function valueAt(s: SeriesRecord, t: number): SeriesValue | null {
-  const p = s.points;
+/** A series' value at time t, in a picture, interpolated between its points; null outside its span. */
+export function valueAt(s: SeriesRecord, t: number, alts: readonly string[] = []): SeriesValue | null {
+  const p = alts.map((a) => s.variants?.[a]).find(Boolean) ?? s.points;
   if (!p.length || t < p[0][0] || t > p[p.length - 1][0]) return null;
   let lo = 0;
   let hi = p.length - 1;
@@ -65,7 +65,7 @@ export class PlanetPanel {
     }
   }
 
-  update(t: number, look?: Look): void {
+  update(t: number, look?: Look, alts: readonly string[] = []): void {
     if (this.phase && this.ice) {
       const phase = look && !look.formed ? 'not formed yet' : (look?.phase?.label ?? '—');
       if (this.phase.value.textContent !== phase) this.phase.value.textContent = phase;
@@ -80,7 +80,7 @@ export class PlanetPanel {
         if (this.ice.title.textContent !== ice.label) this.ice.title.textContent = ice.label;
       }
     }
-    const at = this.series.map((s) => valueAt(s, t));
+    const at = this.series.map((s) => valueAt(s, t, alts));
     const refined = new Set(this.series.flatMap((s, i) => (s.refines && at[i] ? [s.refines] : [])));
     this.series.forEach((s, i) => {
       const r = this.rows.get(s.id)!;

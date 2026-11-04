@@ -51,7 +51,7 @@
       "properties": {
         "from": { "$ref": "defs.json#/$defs/ref" },
         "file": { "type": "string", "description": "The dataset's file, where it has several" },
-        "as": { "enum": ["climate", "borders", "hazards", "polities", "routes", "languages"], "description": "What the data is read as, where it is not elevation" },
+        "as": { "enum": ["climate", "ice-sheets", "borders", "hazards", "polities", "routes", "languages"], "description": "What the data is read as, where it is not elevation" },
         "places": { "$ref": "defs.json#/$defs/ref", "description": "For borders: the dataset of places that goes with them" },
         "prop": { "type": "string", "description": "A series of the world's own measurements: the property whose claims give its values, each at its record's date. `from` then names the work that frames them" },
         "sheet": { "type": "string", "description": "For a workbook: the sheet the series is on" },
@@ -64,7 +64,30 @@
           "additionalProperties": false
         },
         "time_unit": { "enum": ["Ma", "ka", "ka-b2k", "BP", "CE"], "description": "What the time column counts: Ma, ka or years before 1950, ka before 2000, or calendar years" },
-        "band": { "type": "string", "description": "What the lo–hi band is, e.g. the 5th–95th percentiles of an ensemble" }
+        "band": { "type": "string", "description": "What the lo–hi band is, e.g. the 5th–95th percentiles of an ensemble" },
+        "scenarios": {
+          "description": "For grids with several readings of the same thing: the first is the default picture's, and an alternative may draw another",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["id", "title", "variable"],
+            "properties": {
+              "id": { "type": "string" },
+              "title": { "type": "string" },
+              "variable": { "type": "string", "description": "The variable of the dataset's file that holds it" },
+              "alt": { "$ref": "defs.json#/$defs/ref", "description": "The alternative that draws it" },
+              "span": {
+                "type": "object",
+                "description": "Where it differs in kind from the first: elsewhere the first is drawn",
+                "required": ["lo", "hi"],
+                "properties": { "lo": { "$ref": "defs.json#/$defs/time_point" }, "hi": { "$ref": "defs.json#/$defs/time_point" } },
+                "additionalProperties": false
+              }
+            },
+            "additionalProperties": false
+          }
+        }
       },
       "additionalProperties": false
     },
@@ -80,10 +103,11 @@
     },
     "derived": { "const": true },
     "from": { "type": "array", "minItems": 1, "items": { "$ref": "defs.json#/$defs/ref" } },
-    "rule": { "enum": ["isoline", "gough-1981", "biome-from-climate"] },
+    "rule": { "enum": ["isoline", "gough-1981", "biome-from-climate", "ice-equivalent-sea-level"] },
     "isoline_m": { "type": "number" },
     "params": { "type": "object", "description": "The rule's parameters" },
-    "source": { "$ref": "defs.json#/$defs/citation", "description": "Where the rule comes from" }
+    "source": { "$ref": "defs.json#/$defs/citation", "description": "Where the rule comes from" },
+    "uncertainty": { "type": "string", "description": "What a click says of how far to trust a value of it, where a grid has no error bars" }
   },
   "additionalProperties": false,
   "allOf": [
@@ -93,7 +117,7 @@
       "else": { "required": ["data", "basis", "grid", "time"] }
     },
     { "if": { "required": ["rule"], "properties": { "rule": { "const": "isoline" } } }, "then": { "required": ["from"] } },
-    { "if": { "required": ["rule"], "properties": { "rule": { "const": "gough-1981" } } }, "then": { "required": ["grid", "time", "params", "source"] } },
+    { "if": { "required": ["rule"], "properties": { "rule": { "enum": ["gough-1981", "ice-equivalent-sea-level"] } } }, "then": { "required": ["grid", "time", "params", "source"] } },
     { "if": { "required": ["grid"], "properties": { "grid": { "type": "object", "properties": { "kind": { "const": "lonlat" } } } } }, "then": { "required": ["frame"] } }
   ]
 }
