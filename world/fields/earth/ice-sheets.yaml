@@ -1,0 +1,63 @@
+id: field:earth/ice-sheets
+type: field
+title: Ice sheets of the last glacial cycle
+quantity: grounded ice thickness
+unit: m
+description: >-
+  Where the ice sheets stood and how thick they were, every 2,500 years for the last 80,000 years, on a 1° grid, from a
+  reconstruction built on their margins, the beds under them and how the land rebounded. It is a model's reading of
+  geological evidence, not a measurement. It begins 80,000 years ago with the ice sheets already growing, so the cycle's
+  first part is not in it, and it holds grounded ice only: no sea ice, no ice shelves, and no ice of the Alps, the Himalaya
+  or other mountains.
+# The grids are in today's coordinates at every keyframe, so each moves from there with its plates.
+frame: frame:earth/present-day
+grid: { kind: lonlat, res_deg: 1 }
+time: { lo: 80 ka, hi: 0 ka, step: 2500 yr }
+data:
+  from: src:paleomist-1.0
+  file: grid
+  as: ice-sheets
+  scenarios:
+    # The first is what the globe draws unless an alternative says otherwise. A judgement, for a person to check: the paper
+    # says the dates behind an ice-free Hudson Bay are "near the limit of their reliability during mid-MIS 3" and that their
+    # validity "has been strongly criticized"; and this one is the nearer of the two to the sea-level stack in MIS 3.
+    - id: maximal
+      title: ice over Hudson Bay throughout MIS 3
+      variable: ice_thickness_maximal
+    # In this span they differ in kind: from 14 to 322 nodes of North America fall on the other side of the margin. At the
+    # other keyframes none to four do, anywhere, and thickness differs by at most about 530 m, so the viewer draws the first
+    # there. The sea-level series reads them both, at every keyframe.
+    - id: minimal
+      title: Hudson Bay ice-free for a short time in MIS 3
+      variable: ice_thickness_minimal
+      alt: alt:laurentide-mis3/hudson-bay-ice-free
+      span: { lo: 55 ka, hi: 37.5 ka }
+basis: reconstruction
+# Each keyframe moves with its plates, as the elevation does. Over this span they carry it about 1 km, and at most about 5 km.
+interp: plate-warp
+moves_with: src:paleomap-plate-model
+projection:
+  method: hold
+  until: 10 kyr from now
+  note: >-
+    Today's ice, held as the elevation holds today's land, so that its look does not change at the present. No scenario for
+    it is modelled yet, and it will not stay as it is.
+params:
+  # Where the edge is drawn: the thickness on these grids that best follows the reconstruction's own margins (its
+  # margins/ folder), with an intersection over union of 0.97 to 0.99 at five keyframes checked, north of 60°S. Thinner
+  # contours spread beyond them, as the grids were filtered over about 100 km.
+  margin_m: 100
+source:
+  ref: src:gowan-2021-paleomist
+  loc: "Methods, Development of ice-sheet reconstruction"
+  quote: which uses an assumption of perfectly plastic, equilibrium conditions
+uncertainty: >-
+  The dataset gives one thickness at each place, and no error bar. Its authors offer only a range of two scenarios, which
+  differ in North America in Marine Isotope Stage 3 (57,000 to 29,000 years ago) by "about 14 m" of sea level in their words,
+  and at most 11 m on these grids. They call
+  the margin the "best-constrained part of paleo-ice sheet configuration", yet note "no direct indicators of the size of
+  the ice sheets during the peak MIS 4 glaciation except in northern Europe and in the North American Cordillera"; constraints
+  on Antarctica before the LGM "are sparse"; and thickness follows from a bed stress tuned by hand, not from a measurement.
+  They conclude that "there is no consensus on Late Pleistocene ice volume". Against margins with bounds from elsewhere, at
+  20,000 years ago: in North America south of 72°N this field has 14.0 million km² of ice, where NADI-1 has 13.7, between 10.3
+  and 15.0; in Eurasia it has 5.7, where DATED-1, which it follows, has the same, between 5.0 and 6.1.

@@ -15,7 +15,7 @@ import { GENERATOR as BIOME_TEXTURE, VERSION as BIOME_TEXTURE_VERSION, generateB
 import { GENERATOR as CLOUDS, VERSION as CLOUDS_VERSION, generateClouds, type CloudParams } from '../../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, VERSION as SURFACE_VERSION, generateSurface, type SurfaceParams } from '../../../../world/generators/earth/surface/v1.ts';
 import { claimGroups, solveScenario, solveVariants } from '../chronology.ts';
-import { fieldAgesMa, fieldSource, importBlocks, importElevation, PLATE_MODEL } from '../importer.ts';
+import { fieldAgesMa, fieldSource, importBlocks, importElevation, PLATE_MODEL, tiledField } from '../importer.ts';
 import { datasetFile } from '../manifest.ts';
 import { BUILDS, REPO } from '../paths.ts';
 import { sha256, stableStringify } from '../util.ts';
@@ -24,6 +24,7 @@ import { loadWorld, type World } from '../world.ts';
 import { fieldFor, fieldLods, loadBlocks, loadSnapshots, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
 import { buildCity } from './city.ts';
 import { climateGrid, climateKeyframes, encodeClimate, forestChecks, type ClimateKeyframe } from './climate.ts';
+import { buildIce, type IceBuilt } from './ice.ts';
 import { hazardLayer, languagesLayer, polityLayer, presentLayer, routesLayer } from './layers.ts';
 import { buildScene } from './scene.ts';
 import type { SceneParams } from '../../../../world/generators/life/scene/v1.ts';
@@ -190,7 +191,8 @@ export async function runBuild(args: string[]): Promise<number> {
     world,
     sol,
     centres: solveScenario(world, {}, true),
-    variants: solveVariants(world, alternatives.flatMap((g) => g.members.map((m) => m.id))),
+    // An alternative that no claim names, such as one that changes only a field, moves no record.
+    variants: solveVariants(world, alternatives.flatMap((g) => g.members.map((m) => m.id)).filter((id) => world.entities.some((e) => [...e.claims, ...e.relations].some((c) => c.alt === id)))),
     groups: claimGroups(world),
     model,
   };
@@ -199,7 +201,7 @@ export async function runBuild(args: string[]): Promise<number> {
   const grids: GridField[] = [];
   const imports: Record<string, string> = {};
   let pygplates = '';
-  for (const f of world.fields.filter((x) => !x.derived && x.grid?.kind === 'lonlat' && fieldSource(x) !== 'climate')) {
+  for (const f of world.fields.filter(tiledField)) {
     const mode = fieldSource(f) as 'elevation' | 'blocks';
     const dir = mode === 'elevation' ? await importElevation(f, log) : await importBlocks(f, log);
     imports[f.id] = dir.split('/').pop()!;
@@ -335,6 +337,14 @@ export async function runBuild(args: string[]): Promise<number> {
     climateKeys = await climateKeyframes(world, climateField, elevation.snapshots, plateIndex, log);
     put('climate.lwt', encodeClimate(climateGrid((climateField.grid as { res_deg: number }).res_deg), climateKeys, biomeField.params as unknown as ClimateRule));
   }
+  // The ice sheets, on the plates of the present.
+  const iceField = world.fields.find((f) => fieldSource(f) === 'ice');
+  let ice: IceBuilt | undefined;
+  if (iceField) {
+    const present = grids.find((g) => g.mode === 'elevation')!.snapshots.find((s) => s.ageMa === 0)!;
+    ice = await buildIce(world, iceField, present, plateIndex, log);
+    put('ice.lwt', ice.bytes);
+  }
   const city = await buildCity(solved, log);
   if (city) {
     for (const [path, bytes] of city.blobs) put(path, bytes);
@@ -387,8 +397,9 @@ export async function runBuild(args: string[]): Promise<number> {
     timeRange: span,
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
-    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(routes ? { routes: 'routes.json' } : {}), ...(languages ? { languages: 'languages.json' } : {}) },
+    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(routes ? { routes: 'routes.json' } : {}), ...(languages ? { languages: 'languages.json' } : {}) },
     climate: climateField && biomeField && climateKeys.length ? { field: climateField.id, title: climateField.title, description: climateField.description, biomeTitle: biomeField.title, biomeDescription: biomeField.description, source: climateField.data!.from, sourceRecord: sourceRecord(world.source.get(climateField.data!.from)!), params: biomeField.params ?? {} } : undefined,
+    ice: iceField && ice ? { field: iceField.id, title: iceField.title, description: iceField.description, uncertainty: iceField.uncertainty, basis: iceField.basis!, source: iceField.data!.from, sourceRecord: sourceRecord(world.source.get(iceField.data!.from)!), coverage: ice.coverage, keyframesMa: ice.keyframesMa, projection: iceField.projection ? { method: iceField.projection.method, until: parsePoint(iceField.projection.until as TimePointInput).t, note: iceField.projection.note } : undefined, marginM: ice.marginM, scenarios: ice.scenarios } : undefined,
     credits: credits(world),
     alternatives,
     kinds: Object.fromEntries(Object.entries(world.vocab.kinds).map(([k, v]) => [k, v.label])),

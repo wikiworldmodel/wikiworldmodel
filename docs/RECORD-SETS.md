@@ -10,7 +10,7 @@ been checked by a person, which is set 20. The three steps that come out of sets
 | 1 | Biomes through time | done, derived from a climate model rather than from lithologic indicators | `world/fields/earth/{climate,biome}.yaml`, `world/entities/life/transitions/`, `world/entities/life/fossil-forests/` |
 | 2 | Life's great transitions | done, bar what is noted | `world/entities/life/transitions/`, `world/entities/life/occurrences/` |
 | 3 | Dinosaurs from a PBDB snapshot | the Hell Creek's, not all of them | `world/snapshots/pbdb-hell-creek-2026-11-04.json`, `world/entities/life/hell-creek/` |
-| 4 | The ice ages | series and records; no ice-sheet grids | `world/fields/earth/{co2-ice-core,methane-ice-core,antarctic-temperature,sea-level-stack}.yaml`, `world/entities/earth/ice-ages/` |
+| 4 | The ice ages | done, with the ice sheets of the last 80 kyr on the globe | `world/fields/earth/{co2-ice-core,methane-ice-core,antarctic-temperature,sea-level-stack,ice-sheets,ice-sheet-sea-level}.yaml`, `world/entities/earth/ice-ages/`, `world/snapshots/paleomist-1.0-ice-thickness.zip`, `world/alternatives/laurentide-mis3*` |
 | 5 | Hominins and their tools | done | `world/entities/life/hominins/`, `world/entities/people/prehistory/` |
 | 6 | Dispersals, with ancient DNA | done | `world/entities/people/dispersals/`, `world/alternatives/leaving-africa*`, `world/alternatives/peopling-of-the-americas*` |
 | 7 | Megafauna extinctions | done | `world/entities/life/megafauna/`, `world/alternatives/megafauna-causes*` |
@@ -57,11 +57,14 @@ so that they are not lost with the sessions that raised them.
 - **NOAA's hazards** (`src:noaa-hazards-2026-11-04`). Taken as public domain, as the work of a US government agency. Its metadata
   pages could not be reached to confirm it.
 - **`CC-BY-3.0`** was added to `publish.licenses` by set 4: see below.
+- **PaleoMIST 1.0** (`src:paleomist-1.0`). PANGAEA's page says CC BY 4.0, which is clear, but the archive was read by range requests and
+  not whole. Its `calc_sl/` folder is GPL by its readme, and is not used. Its thickness was computed with RTopo-2 and ICEBRIDGE data under
+  the ice, whose own licences were not read.
 
 ### The alternatives a build shows
 
 What a build shows is a steward's decision (section 4.4 of the design), and no steward has made one. The five groups of sets 6, 7 and
-19 are shown on a machine's proposal, behind the toolbar's **Alternatives** button: their `show:` lists are what to change. None is
+19 and the one of set 4 are shown on a machine's proposal, behind the toolbar's **Alternatives** button: their `show:` lists are what to change. None is
 anyone's default. They cost a build about two minutes and 18 MB. No build works out combinations: where two groups are chosen, a
 record takes its time from the first of them that moves it.
 
@@ -119,8 +122,65 @@ record takes its time from the first of them that moves it.
   scales that differ by a median of 0.8 kyr and up to 6 kyr.
 - LGM dates prefer Clark 2009; LGM and Last Interglacial sea levels prefer the AR6 ranges; b2k ages are
   converted by subtracting 50; maximum counting errors are read as 2σ.
-- No `ice_reach` on the LGM: the planet's look uses a single latitude for ice, which would misdraw its sheets.
+- No `ice_reach` on the LGM: a single latitude would misdraw its sheets, and in the field's span below the field takes its place anyway.
 - PANGAEA generates its text files, so a change of metadata there would break their checksums.
+
+**The ice sheets.** `field:earth/ice-sheets` draws PaleoMIST 1.0 (Gowan et al. 2021) on the globe from 80 ka on, and holds today's ice as the
+elevation holds today's land. A click on the ice says what the dataset gives there and how far to trust it. `field:earth/ice-sheet-sea-level`
+adds it up, beside the sea-level stack in the planet's panel. The tests are `tools/world/test/ice.test.ts`, the group `the ice sheets` in
+`tools/world/test/build.test.ts` and `viewer/test/e2e/ice.spec.ts`. What each candidate's license says, as read on 4 November 2026:
+
+| Dataset | Reach | What it says | Here |
+|---|---|---|---|
+| PaleoMIST 1.0 ([PANGAEA.905800](https://doi.org/10.1594/PANGAEA.905800)) | the world, 80 ka–now, every 2.5 kyr | "Creative Commons Attribution 4.0 International (CC-BY-4.0)" | imported, as a 1.1 MB snapshot |
+| NADI-1 (Dalton et al. 2023, [Zenodo 8161764](https://doi.org/10.5281/zenodo.8161764)) | North America, 25–1 ka, every 500 yr, with minimum and maximum | Zenodo's field: CC BY 4.0 | checked against, below |
+| DATED-1 (Hughes et al. 2016, [PANGAEA.848117](https://doi.org/10.1594/PANGAEA.848117)) | Eurasia, 40–10 ka, with minimum and maximum | "Creative Commons Attribution 3.0 Unported (CC-BY-3.0)" | checked against, below; PaleoMIST follows it after 40 ka |
+| ICE-6G_C, ICE-7G_NA ([Peltier's data page](https://www.atmosp.physics.utoronto.ca/~peltier/data.php)) | the world, to 26 ka on PMIP4's grids, and ICE-6G_C's thickness to 122 ka | No license. Users "are requested to reference" the papers. PMIP4's copy says only "Please cite". | not imported. Its server sends no certificate chain, so it was read through the intermediate its certificate names |
+| GLAC-1D (Tarasov et al.) | North America, Greenland and Antarctica, 120 ka–now; the world, to 26 ka, on PMIP4's page | No license. Tarasov's page: "Please cite appropriate references below when using these datasets". PMIP4's: "Please cite all the following papers". | not imported. Tarasov's page refused the connection and was read in the Wayback Machine, as of 22 May 2024 |
+| Dalton et al. 2020 ([Ghub 4878](https://theghub.org/resources/4878)) | North America, 18–1 ka | "Licensed under", and then nothing. The page answers 404 now, and was read in the Wayback Machine, as of 14 November 2024 | not imported, and not needed: NADI-1 is its successor, from the same first author |
+| Batchelor et al. 2019 ([OSF 7jen3](https://osf.io/7jen3/)) | the Northern Hemisphere, from the Quaternary's start | The article is CC BY 4.0. OSF's API gives its data `node_license: null` | not imported |
+
+A reviewer should look at these first:
+
+- **It starts at 80 ka.** The record of the Last Interglacial ends at 116 ka, so the last glacial cycle's first 36 kyr have no ice on the globe.
+  ICE-6G_C, GLAC-1D and Batchelor et al. reach further, and none of them states a license.
+- **The default picture draws the maximal scenario.** A judgement. The archive's plain files are the minimal one, and the paper prefers neither.
+  The maximal one has ice on Hudson Bay throughout MIS 3, which suits a paper that calls the dates against it "near the limit of their
+  reliability", and it is nearer the stack. The other is `alt:laurentide-mis3/hudson-bay-ice-free`, a sixth group behind **Alternatives**. It
+  names no claims, so the build solves nothing for it and it costs no time. Its keyframes are kept only from 55 to 37.5 ka: elsewhere the two differ by none to four
+  nodes of the margin and at most about 530 m of thickness, so choosing it draws the default there.
+- **It disagrees with the stack, and says so.** The signs agree at every keyframe older than 5 ka, where the stack is scaled to 0 m (r over 0.8 for 5–80 ka). From 20 to 5 ka they are within about
+  6 m. But the field's lowest is −116 m at 20 ka and the stack's −130 m at 24 ka; 22.5 and 25 ka differ by 16 and 27 m; and from 57 to 29 ka the
+  field reads 17 to 54 m higher. At 60 ka they meet. The authors argue the proxies, not the ice, are wrong in MIS 3, and a stack of them is what
+  this is being compared with: who is right is not settled here. `build.test.ts` holds both the agreement and the size of the gap.
+- **Two sea levels in one table.** The grid's sum gives −115.8 m at 20 ka, within 0.7 m (rms) and at most 1.9 m of the "Calculated ESL" column of
+  the paper's Supplementary Tables, and that is the −116 m in its text. The same tables' "SLE" column and the archive's `volume_sorted.txt` say
+  106.3 m. The readme's formula on the grid's own volume gives the former. Why the tabulated volumes run 8% lower was not found out, though dividing
+  by 0.91 closes most of it, so ice density may have been applied twice.
+- **Two scenarios, how far apart.** The paper says their sea levels differ by at most "about 14 m". Its own Supplementary Tables and these grids reach 11 m,
+  at 42.5 ka. The click gives the paper's figure and the grids'.
+- **No error bars.** The click says so. Set against margins with bounds at 20 ka, south of 72°N and west of 55°W: PaleoMIST has 14.0 million km² of
+  ice where NADI-1 has 13.7, between 10.3 and 15.0, with an intersection over union of 0.94, and 92% of the margin's nodes inside NADI-1's band.
+  From 25 to 10 ka the intersection over union is 0.83 to 0.94, and that share 87% to 96%. In Eurasia north of 45°N: 5.7 where DATED-1 has 5.7, between
+  5.0 and 6.1, with 0.99, but that is little test, as PaleoMIST took its margins from DATED-1. NADI-1 and DATED-1 could give each place bounds of its
+  own; they are not drawn. `tools/world/importers/paleomist_check.py` makes these numbers.
+- **The edge.** It is the 100 m contour of the 1° grids, chosen by checking against the archive's own margin files at five keyframes (intersection
+  over union 0.97–0.99, north of 60°S; Antarctica's margin was not compared). Small ice caps and fjords do not survive. Between keyframes the edge
+  moves evenly and the thickness goes in a straight line: 2,500 years is coarse for the deglaciation, and no one reconstructed those years. The
+  Younger Dryas and Meltwater Pulse 1A cannot show.
+- **What it leaves out.** Grounded ice only, by the name of its variable. No ice in the Alps, the Pyrenees, the Caucasus, the Himalaya, Tibet, the Altai,
+  the southern Rockies, the tropical Andes, Tasmania or New Zealand, as checked at 20 ka: a peak stays white by its height alone, which is the
+  renderer's, not a record. The paper says it leaves out smaller glaciers and ice caps, which it puts at 3–4 m of sea level.
+- **Plates.** Each node moves with its plate, as the land does, from today's coordinates. In 80 kyr that is about 1 km on the big plates, and at most
+  about 5 km under any ice, a twentieth of a node: the drawing would look no different without it.
+- **Today's look changed.** Inside the field's span white comes from the field alone, and ground the climate holds frozen all year is left bare,
+  because that reading would paint up to 3.5 million km² of land beyond the dataset's ice today (0.3 at 20 ka), 2.4 of it on the rim of Antarctica and
+  most of the rest in the high Arctic. Some of that ground is icy today, in ice caps too small for the grid and on the land of the Antarctic
+  rim, so those look barer than they are. Outside the span the climate's reading is back. No golden image was regenerated: five are the same to the
+  pixel, and `today.png` differs in 79 pixels (0.008%, inside its tolerance), at the southern tip of Greenland and in Patagonia, where the ice is now the field's.
+- **The rest of the globe does not know about the ice.** The climate field has no ice sheets before its pre-industrial run, so forest runs up to the
+  Laurentide's edge. The coast stays at the elevation field's isoline, so Beringia and the shelves are not dry at the LGM even as the ice crosses
+  them. PaleoMIST's paleotopography (not imported) would give both a start.
 
 ### Set 5: hominins and tools
 
@@ -266,6 +326,8 @@ record takes its time from the first of them that moves it.
 
 ## Not done
 
+- **Ice sheets before 80 ka.** Of the datasets read that reach further, none states a license (see set 4), and a search found no open one. The cycle's
+  first 36 kyr have no ice on the globe, and neither have the cycles before it, which the sea-level stack and the ice cores do reach.
 - **Set 9's grids.** HYDE 3.3's hosts (`public.yoda.uu.nl`, `geo.public.data.uu.nl`) answer a script with a bot
   check, and getting past it was not tried. HYDE 3.2.1's archive on DANS can be fetched, but it is 5.3 GB of Deflate64 zips, which
   the build's zip reader refuses, and the globe has no gridded overlay for it yet.

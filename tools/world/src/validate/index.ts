@@ -307,6 +307,7 @@ function checkRecords(world: World, issues: Issue[]): Wanted[] {
     if (f.moves_with) checkDataset(world, refs, f.moves_with, f.file, 'moves_with', undefined, issues);
     if (f.source) refs.check(f.source.ref, f.file, 'source.ref', { types: ['src'] });
     for (const [i, x] of (f.from ?? []).entries()) refs.check(x, f.file, `from[${i}]`, { types: ['field'] });
+    for (const [i, s] of (f.data?.scenarios ?? []).entries()) if (s.alt) refs.check(s.alt, f.file, `data.scenarios[${i}].alt`, { types: ['alt'] });
   }
   for (const g of world.generators) {
     for (const [i, x] of (g.inputs ?? []).entries()) refs.check(x, g.file, `inputs[${i}]`);

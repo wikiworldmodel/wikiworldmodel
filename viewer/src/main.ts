@@ -2,10 +2,11 @@
 // it is and how we know. Everything shown comes from one build of the world.
 import './style.css';
 import { CLIMATE_LABEL, climateClass, decodeNode, type ClimateClass, type ClimateHeader, type ClimateNode, type ClimateRule } from '../../core/climate.ts';
-import { decodeTile } from '../../core/container.ts';
+import { decodeTile, type TypedArray } from '../../core/container.ts';
+import { decodeMargin, decodeThickness, iceFrame, iceKeysAt, iceScenario, sampleGrid, type IceHeader, type IceKeyframe, type IceScenario } from '../../core/ice.ts';
 import type { HazardFile, HazardRow, LanguagesFile, PolitiesFile, PresentFile, RoutesFile } from '../../core/layers.ts';
 import { coverAt, lookAt, spanOf, valueOf, type Cover, type Look } from '../../core/planet.ts';
-import { conj, mul, type Quat } from '../../core/quat.ts';
+import { conj, mul, rotate, toLatLon, unitVector, type Quat } from '../../core/quat.ts';
 import type { EntityRecord } from '../../core/records.ts';
 import { splitRef } from '../../core/refs.ts';
 import { lookup, type Scenario } from '../../core/scenario.ts';
@@ -28,7 +29,7 @@ import { globeLook, GlobeRenderer } from './gl/globe.ts';
 import { add, cross, norm, scale, type V3 } from './mat.ts';
 import { buildOf, DEFAULT_HOUR, fromSearch, HOURS, quantize, toSearch, type ViewState } from './state.ts';
 import { TileManager, type LoadedTile } from './tiles.ts';
-import { InspectPanel, type BiomeHere, type OrganismHere, type PlanetStateInfo, type TerrainInfo, type TerritoryHere } from './ui/inspect.ts';
+import { InspectPanel, type BiomeHere, type IceHere, type OrganismHere, type PlanetStateInfo, type TerrainInfo, type TerritoryHere } from './ui/inspect.ts';
 import { Markers, timeFor, visibility } from './ui/markers.ts';
 import { PlanetPanel, valueAt } from './ui/planet.ts';
 import { Search } from './ui/search.ts';
@@ -59,6 +60,8 @@ export interface LightworldHandle {
   biomeAt(lat: number, lon: number): { climate: ClimateClass; cover: Cover } | null;
   /** the numbers the climate field holds there, as the globe reads them */
   climateAt(lat: number, lon: number): ClimateNode | null;
+  /** what the globe has of the ice sheets at a place, at the time shown: null where the field does not reach the time */
+  iceAt(lat: number, lon: number): { drawn: boolean; marginKm: number; thickness: number } | null;
   /** the tree of life as the panel has it: its rows, and how many fossil rows the group chosen lights up */
   tree(): { rows: ReturnType<TreePanel['shownRows']>; litRows: number; litMarkers: string[] } | null;
   /** what is drawn over the globe as rows of a dataset */
@@ -180,6 +183,23 @@ async function start(root: HTMLElement): Promise<void> {
       climateRule = header.rule as ClimateRule & { reef_depth: number; reef_latitude: number };
       climateReady = true;
       cubeKey = '';
+      dirty = true;
+    });
+  }
+
+  // The ice sheets, behind the first globe too: where the field covers the time, they take the place of
+  // a claimed latitude of ice. A byte per node is what the panel reads as well.
+  let iceFile: { header: IceHeader; arrays: TypedArray[]; ages: number[] } | null = null;
+  let iceReady = !ts.files.ice;
+  let iceKey = '';
+  if (ts.files.ice) {
+    void getBytes(build.base + ts.files.ice).then((data) => {
+      const { header, arrays } = decodeTile<IceHeader>(data);
+      field.setIce(header.grid, arrays[header.plate] as Uint16Array, header.scenarios.flatMap((s) => s.keyframes.map((k) => ({ key: k.margin, margin: arrays[k.margin] as Uint8Array, thickness: arrays[k.thickness] as Uint8Array }))));
+      globe.iceCube = field.iceCube!.texture;
+      iceFile = { header, arrays, ages: header.scenarios[0].keyframes.map((k) => k.ageMa).sort((a, b) => a - b) };
+      iceReady = true;
+      iceKey = '';
       dirty = true;
     });
   }
@@ -344,7 +364,7 @@ async function start(root: HTMLElement): Promise<void> {
       setState({ sel: b.id, t });
     },
   });
-  timebar.setKeyframes([...new Set(ts.fields.flatMap((f) => f.keyframesMa))].map(fromMa));
+  timebar.setKeyframes([...new Set([...ts.fields.flatMap((f) => f.keyframesMa), ...(ts.ice?.keyframesMa ?? [])])].map(fromMa));
   timebar.setRecords(build.search.entities.filter((e) => e.kind !== 'plate' && !cityKind(e.kind) && !e.bulk));
   timebar.setScenario(scenario());
   timebar.setStates(stateBands(scenario()));
@@ -554,6 +574,8 @@ async function start(root: HTMLElement): Promise<void> {
   let frameField: FieldInfo | undefined;
   /** the climate's mix between the keyframes drawn, while the land is painted from it */
   let frameClimateMix: number | null = null;
+  /** the keyframes of the ice sheets drawn and the mix between them, and the age they are moved to, where a field has them */
+  let frameIce: { younger: number; older: number; mix: number; ageMa: number } | null = null;
 
   /** The keyframes of the climate around an age, and how far between them it is. */
   function climateKeysAt(age: number): { k0: number; k1: number; mix: number } | null {
@@ -607,6 +629,26 @@ async function start(root: HTMLElement): Promise<void> {
     frameMix = mix;
     frameField = fi;
     const look = lookAt(build.planet, state.t, scenario());
+    // Where a field has the ice sheets, they replace any claimed latitude of ice.
+    const iceCovers = !!ts.ice && fi?.mode === 'elevation' && state.t >= ts.ice.coverage[0] && state.t <= ts.ice.coverage[1];
+    if (iceCovers) {
+      look.iceReach = 90;
+      look.ice = null;
+    }
+    const iceNow = iceCovers && iceFile ? iceKeysAt(iceFile.ages, age) : null;
+    frameIce = iceNow ? { ...iceNow, ageMa: age } : null;
+    if (iceNow) {
+      const { header } = iceFile!;
+      const drawn = iceScenario(header, state.alt);
+      const a = iceFrame(header, drawn, iceNow.younger);
+      const b = iceFrame(header, drawn, iceNow.older);
+      // The plates move about 50 m in 500 years, so it is not worth moving the ice for every time shown.
+      const key = `${a.margin}|${b.margin}|${Math.round(age * 2e3)}`;
+      if (key !== iceKey) {
+        field.renderIce(a.margin, b.margin, deltas(totalsAt(age), totalsAt(0)));
+        iceKey = key;
+      }
+    }
     frameLook = look;
     const why = !look.formed ? beforeWhy() : fi ? '' : unknownWhy(state.t);
     if (notice.textContent !== why) notice.textContent = why;
@@ -634,6 +676,7 @@ async function start(root: HTMLElement): Promise<void> {
         showClouds: state.clouds && cloudsReady,
         territory: { on: showTerritory, colors: TERRITORY_COLORS, selected: territory.channelOf(state.sel) },
         climate: climateNow && climateRule ? { mix: climateNow.mix, rule: climateRule } : undefined,
+        ice: iceNow ? { mix: iceNow.mix } : undefined,
       },
       w,
       h,
@@ -711,7 +754,7 @@ async function start(root: HTMLElement): Promise<void> {
     territory.el.hidden = !showTerritory;
     if (showTerritory) territory.place(camera, state.t, scenario(), state.sel);
     timebar.set(state.t, state.window, playing);
-    planet.update(state.t, look);
+    planet.update(state.t, look, state.alt);
     toolbar.set({ evidence: state.evidence, clouds: state.clouds, alt: state.alt, tree: !!state.tree, langs: !!state.langs });
     document.body.classList.toggle('evidence', state.evidence);
   }
@@ -1022,7 +1065,43 @@ async function start(root: HTMLElement): Promise<void> {
       state: stateOf(frameLook),
       biome: biomeHere(hit.point),
       polity: polityHere(hit.lon, hit.lat),
+      ice: iceHere(hit.point, plate),
     });
+  }
+
+  /** What the ice-sheet field gives at a point of the globe at the time shown, if it has any ice near. */
+  function iceHere(point: V3, plate: number | null): IceHere | undefined {
+    if (!frameIce || !iceFile || !ts.ice) return undefined;
+    const { header, arrays } = iceFile;
+    const { younger, older, mix, ageMa } = frameIce;
+    // Back to today's coordinates, the ones the keyframes are on.
+    const q = plate ? mul(build.model.total(plate, ageMa), conj(build.model.total(plate, 0))) : ([1, 0, 0, 0] as Quat);
+    const [lat, lon] = toLatLon(rotate(conj(q), point));
+    const thick = (k: IceKeyframe) => decodeThickness(sampleGrid(header.grid, arrays[k.thickness], lat, lon));
+    const read = (scenario: IceScenario) => {
+      const a = iceFrame(header, scenario, younger);
+      const b = iceFrame(header, scenario, older);
+      const marginKm = decodeMargin(sampleGrid(header.grid, arrays[a.margin], lat, lon)) * (1 - mix) + decodeMargin(sampleGrid(header.grid, arrays[b.margin], lat, lon)) * mix;
+      return { a: thick(a), b: thick(b), thickness: thick(a) * (1 - mix) + thick(b) * mix, drawn: marginKm > 0 };
+    };
+    const shown = iceScenario(header, state.alt);
+    const here = read(shown);
+    // The scenarios are told apart only where the field keeps them apart.
+    const differ = header.scenarios.slice(1).some((s) => s.keyframes.some((k) => k.ageMa === younger || k.ageMa === older));
+    const others = differ ? header.scenarios.filter((s) => s !== shown).map((s) => ({ id: s.id, title: s.title, ...read(s) })) : [];
+    if (!here.drawn && here.a < header.marginM && here.b < header.marginM && !others.some((x) => x.drawn)) return undefined;
+    return {
+      title: ts.ice.title,
+      drawn: here.drawn,
+      thickness: here.thickness,
+      marginM: header.marginM,
+      at: younger === older ? [{ ageMa: younger, thickness: here.a }] : [{ ageMa: younger, thickness: here.a }, { ageMa: older, thickness: here.b }],
+      scenario: differ ? { id: shown.id, title: shown.title } : undefined,
+      others: others.map((x) => ({ id: x.id, title: x.title, thickness: x.thickness, drawn: x.drawn })),
+      uncertainty: ts.ice.uncertainty,
+      held: state.t > PRESENT_YEAR ? ts.ice.projection?.note : undefined,
+      source: ts.ice.sourceRecord,
+    };
   }
 
   /** Which state held a point of the globe at the time shown, as the borders dataset draws it. */
@@ -1049,6 +1128,7 @@ async function start(root: HTMLElement): Promise<void> {
       climate,
       label: CLIMATE_LABEL[climate],
       cover: coverAt(build.planet, state.t, scenario()),
+      sheets: !!frameIce,
       title: info.title,
       transitions: land.filter((c) => c.a <= state.t),
       next: land.find((c) => c.a > state.t),
@@ -1087,7 +1167,7 @@ async function start(root: HTMLElement): Promise<void> {
     if (!s) return;
     setState({ sel: null });
     shownRecord = null;
-    inspect.showSeries(s, state.t, valueAt(s, state.t));
+    inspect.showSeries(s, state.t, valueAt(s, state.t, state.alt));
   }
 
   /** How long an instant stays visible around its time: a dozen pixels of the time control. */
@@ -1204,7 +1284,7 @@ async function start(root: HTMLElement): Promise<void> {
   history.replaceState(null, '', toSearch(build.id, state));
   window.__lightworld = {
     build: build.id,
-    idle: () => !tiles.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && (!state.langs || !!languages.file || !ts.files.languages) && cloudsReady && surfaceReady && biomeTexReady && climateReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
+    idle: () => !tiles.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && (!state.langs || !!languages.file || !ts.files.languages) && cloudsReady && surfaceReady && biomeTexReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
     state: () => state,
     url: () => toSearch(build.id, state),
     requests: fetchLog,
@@ -1225,6 +1305,13 @@ async function start(root: HTMLElement): Promise<void> {
       const lo = lon * RAD;
       const v = field.sampleClimate([Math.cos(la) * Math.cos(lo), Math.cos(la) * Math.sin(lo), Math.sin(la)], frameClimateMix);
       return v ? decodeNode(v) : null;
+    },
+    iceAt: (lat, lon) => {
+      if (!frameIce) return null;
+      const v = field.sampleIce(unitVector(lat, lon));
+      if (!v) return null;
+      const marginKm = decodeMargin(v[0] + (v[1] - v[0]) * frameIce.mix);
+      return { drawn: marginKm > 0, marginKm, thickness: decodeThickness(v[2]) * (1 - frameIce.mix) + decodeThickness(v[3]) * frameIce.mix };
     },
     layers: () => ({ present: present.stats, holds: present.holds(state.t), hazards: hazards.count, hazardPlaces: hazards.positions(), placeAt: (name: string) => present.placeAt(name), polities: polities.stats, polityAt: (lon: number, lat: number) => polities.at(lon, lat)?.name, routes: routes.count, languages: languages.count, languageAt: (name: string) => languages.positionOf(name) }),
     fabric: () => (city ? city.plan : null),

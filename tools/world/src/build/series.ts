@@ -7,6 +7,7 @@ import type { SeriesRecord } from '../../../../core/records.ts';
 import { centre, fromKa, fromMa, parseDuration, parsePoint, parseTime, PRESENT_YEAR, type TimePointInput } from '../../../../core/time.ts';
 import { chosen, claimGroup } from '../chronology.ts';
 import { datasetFile } from '../manifest.ts';
+import { iceSeaLevel } from './ice.ts';
 import type { Field, World } from '../world.ts';
 import { sourceRecord } from './records.ts';
 
@@ -164,7 +165,8 @@ export async function series(world: World): Promise<SeriesRecord[]> {
   const out: SeriesRecord[] = [];
   for (const f of world.fields) {
     if (f.grid?.kind !== 'series') continue;
-    const points = f.derived ? computed(f) : f.data?.prop ? claimedPoints(world, f.data.prop) : await tabled(world, f);
+    const ice = f.rule === 'ice-equivalent-sea-level' ? await iceSeaLevel(world, f) : null;
+    const points = ice ? ice.points : f.derived ? computed(f) : f.data?.prop ? claimedPoints(world, f.data.prop) : await tabled(world, f);
     const source = f.derived ? f.source! : { ref: f.data!.from };
     const src = world.source.get(source.ref);
     out.push({
@@ -178,11 +180,12 @@ export async function series(world: World): Promise<SeriesRecord[]> {
       projectedAfter: f.derived && points.some((p) => p[0] > PRESENT_YEAR) ? PRESENT_YEAR : undefined,
       interpolation: f.interp ?? 'linear',
       refines: f.refines,
-      band: f.data?.band,
+      band: f.data?.band ?? (f.params?.band as string | undefined),
       points,
+      variants: ice?.variants,
       source,
       sourceRecord: src ? sourceRecord(src) : undefined,
-      rule: f.derived ? { name: f.rule!, params: f.params ?? {} } : undefined,
+      rule: f.derived ? { name: f.rule!, params: Object.fromEntries(Object.entries(f.params ?? {}).filter(([k]) => k !== 'band')) } : undefined,
     });
   }
   return out.sort((a, b) => a.title.localeCompare(b.title, 'en'));

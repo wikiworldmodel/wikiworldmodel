@@ -11,8 +11,12 @@
 // where the map is unknown, the oceans or bare rock of the time. The states are claims; how
 // they look here, and the surface generator's pattern they are drawn with, is procedural.
 //
+// Where a field has the ice sheets of the time, they take the place of a claimed latitude of ice: their
+// edge is the field's, and it moves between its keyframes.
+//
 // Over the land, polities' territory (ui/territory.ts): one polity per channel of a map
 // texture, its land tinted and its frontiers outlined. Its coasts are the field's.
+import { THICKNESS_TOP } from '../../../core/ice.ts';
 import type { Cover, Look } from '../../../core/planet.ts';
 import type { SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
 import { program, setUniforms, texture2D, type GL, type Program } from './context.ts';
@@ -64,6 +68,12 @@ uniform float uReefs;
 uniform vec4 uRule;
 uniform vec4 uRule2;
 uniform highp sampler2D uBiomeTex;
+// The ice sheets, moved with their plates: R and G how far the keyframes on either side of the time
+// shown are from their margin, with 0.5 at the margin; B and A the root of their thickness.
+uniform highp samplerCube uIce;
+uniform float uIceOn;
+uniform float uIceMix;
+uniform float uIceTop;
 in vec3 vN;
 out vec4 o;
 
@@ -183,10 +193,13 @@ vec3 biome(vec3 n, float e, float reach) {
   vec3 open = mix(scrub, grass, uCover.w);
   float seasonal = tropical * (1.0 - rainy) * (1.0 - dry) * (1.0 - polar);
   c = mix(c, open, uCover.y * max(seasonal, dry * (1.0 - desert)) * 0.95);
-  // Above the trees, bare rock; and ice where no month thaws.
+  // Above the trees, bare rock; and ice where no month thaws, unless a field says where the ice sheets
+  // are: then that is theirs to say, and ground that never thaws is left bare.
   float h = e / 1000.0;
-  c = mix(c, vec3(0.50, 0.44, 0.37) * (0.85 + 0.3 * fine), smoothstep(2.6, 3.6, h));
-  c = mix(c, vec3(0.90, 0.92, 0.95) * (0.92 + 0.14 * fine), max(frost, smoothstep(4.2, 5.4, h)));
+  vec3 bare = vec3(0.50, 0.44, 0.37) * (0.85 + 0.3 * fine);
+  c = mix(c, bare, smoothstep(2.6, 3.6, h));
+  if (uIceOn > 0.5) c = mix(c, bare, frost);
+  c = mix(c, vec3(0.90, 0.92, 0.95) * (0.92 + 0.14 * fine), max(uIceOn > 0.5 ? 0.0 : frost, smoothstep(4.2, 5.4, h)));
   return c;
 }
 
@@ -232,6 +245,14 @@ float iceCover(vec3 n, vec4 p) {
   float edge = uIceReach + clamp((p.b - 0.5) * 4.0, -1.0, 1.0) * uIceEdge;
   float w = max(fwidth(lat), 0.08);
   return smoothstep(edge - w, edge + w, lat);
+}
+
+// The height of the ice sheets' surface, in metres: the thickness over the ground the globe has here.
+// It leaves out how far the ground sank under the ice, which is broad and smooth.
+float iceSurface(vec3 n) {
+  vec4 s = textureLod(uIce, n, 0.0);
+  vec4 f = textureLod(uField, n, 0.0);
+  return mix(f.r, f.g, uMix) + mix(s.b * s.b, s.a * s.a, uIceMix) * uIceTop;
 }
 
 void main() {
@@ -311,11 +332,31 @@ void main() {
     vec3 sheet = mix(vec3(0.80, 0.87, 0.93) * (0.86 + 0.24 * p.a), vec3(0.93, 0.95, 0.97), smoothstep(-0.5, 0.5, e / de));
     c = mix(c, sheet * (0.35 + 0.75 * diffuse), ice);
   }
+  // The ice sheets of a field: their edge between the keyframes is where the distance to it, moved
+  // evenly from one to the next, comes to nothing. Grounded ice, whether the sea or the land is under it.
+  float sheets = 0.0;
+  if (uIceOn > 0.5) {
+    vec4 s = texture(uIce, n);
+    float d = mix(s.r, s.g, uIceMix) - 0.5;
+    float w = max(fwidth(d), 0.0008);
+    sheets = smoothstep(-w, w, d);
+    if (sheets > 0.0) {
+      // Over about a node of the grid, so that its domes are shaded and not its nodes.
+      float ih = 0.012;
+      float ix = iceSurface(normalize(n + t1 * ih)) - iceSurface(normalize(n - t1 * ih));
+      float iy = iceSurface(normalize(n + t2 * ih)) - iceSurface(normalize(n - t2 * ih));
+      vec3 domes = normalize(n - (t1 * ix + t2 * iy) / (2.0 * ih * 6371000.0) * 22.0);
+      float thin = smoothstep(0.0, 0.14, mix(s.b * s.b, s.a * s.a, uIceMix));
+      vec3 sheet = mix(vec3(0.76, 0.84, 0.92), vec3(0.95, 0.97, 0.98), thin) * (0.95 + 0.1 * p.a);
+      c = mix(c, sheet * (0.3 + 0.8 * max(dot(domes, uSun), 0.0)), sheets);
+    }
+  }
   // Coastline: the sea-level isoline, about one pixel wide; fainter under ice.
   float line = 1.0 - smoothstep(0.5, 1.5, abs(e) / de);
   if (uTerritoryOn > 0.5) c = territory(c, n, smoothstep(0.5, 1.5, e / de), diffuse);
-  c = mix(c, vec3(0.93, 0.96, 0.95), line * 0.85 * (1.0 - 0.5 * ice));
-  // Evidence mode: the whole field is a reconstruction — amber hatching; the ice is procedural.
+  c = mix(c, vec3(0.93, 0.96, 0.95), line * 0.85 * (1.0 - 0.5 * max(ice, sheets)));
+  // Evidence mode: the whole field is a reconstruction — amber hatching, the ice sheets of a field too;
+  // ice from a claimed latitude is procedural.
   c = mix(c, mix(vec3(0.95, 0.65, 0.18), magenta, ice), uEvidence * (0.14 + 0.26 * hatch));
   c += uRim * rim * 0.45;
   o = vec4(c, 1.0);
@@ -497,6 +538,8 @@ export interface GlobeFrame {
   territory?: GlobeTerritory;
   /** the climate's mix between its two keyframes, if the land is painted from it */
   climate?: { mix: number; rule: { polar: number; frost: number; tropical: number; cold: number; arid: number; desert: number; reef_depth: number; reef_latitude: number } };
+  /** the ice sheets' mix between the keyframes drawn, where a field has them at this time */
+  ice?: { mix: number };
 }
 
 export class GlobeRenderer {
@@ -512,6 +555,8 @@ export class GlobeRenderer {
   private emptyVao: WebGLVertexArrayObject;
   /** the climate's two cube maps, once the field has them */
   climateCubes: [WebGLTexture, WebGLTexture] | null = null;
+  /** the ice sheets' cube, once the field has it */
+  iceCube: WebGLTexture | null = null;
 
   constructor(private gl: GL, private fieldCube: WebGLTexture, private cubeSize: number) {
     this.surface = program(gl, 'surface', SPHERE_VS, SURFACE_FS);
@@ -611,7 +656,11 @@ export class GlobeRenderer {
     gl.bindTexture(gl.TEXTURE_CUBE_MAP, cl ? cl[0] : this.fieldCube);
     gl.activeTexture(gl.TEXTURE5);
     gl.bindTexture(gl.TEXTURE_CUBE_MAP, cl ? cl[1] : this.fieldCube);
-    setUniforms(gl, this.surface, { uField: 0, uPattern: 1, uTerritory: 2, uBiomeTex: 3, uClimate0: 4, uClimate1: 5 }, ['uField', 'uPattern', 'uTerritory', 'uBiomeTex', 'uClimate0', 'uClimate1']);
+    const iceCube = f.ice ? this.iceCube : null;
+    gl.activeTexture(gl.TEXTURE6);
+    gl.bindTexture(gl.TEXTURE_CUBE_MAP, iceCube ?? this.fieldCube);
+    setUniforms(gl, this.surface, { uField: 0, uPattern: 1, uTerritory: 2, uBiomeTex: 3, uClimate0: 4, uClimate1: 5, uIce: 6 }, ['uField', 'uPattern', 'uTerritory', 'uBiomeTex', 'uClimate0', 'uClimate1', 'uIce']);
+    setUniforms(gl, this.surface, { uIceOn: iceCube ? 1 : 0, uIceMix: f.ice?.mix ?? 0, uIceTop: THICKNESS_TOP });
     const r = f.climate?.rule;
     const cv = look.cover;
     setUniforms(gl, this.surface, {

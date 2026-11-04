@@ -8,7 +8,7 @@ import type { CitationRecord, ClaimRecord, EntityRecord, SeriesRecord, SourceRec
 import { splitRef } from '../../../core/refs.ts';
 import { lookup, scenarioKey, type Scenario } from '../../../core/scenario.ts';
 import type { Estimate, FeatureTime } from '../../../core/tileset.ts';
-import { formatTime, historical, PRESENT_YEAR } from '../../../core/time.ts';
+import { formatTime, fromMa, historical, PRESENT_YEAR } from '../../../core/time.ts';
 
 const esc = (s: unknown) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
@@ -116,6 +116,27 @@ export interface TerrainInfo {
   biome?: BiomeHere;
   /** the state a borders dataset draws here, at this time */
   polity?: { name: string; from: number; to: number; area: number; wikipedia?: string; source?: SourceRecord };
+  /** what the ice-sheet field gives here, where it has any ice near */
+  ice?: IceHere;
+}
+
+/** The ice-sheet field at a place and time: what it gives, and how far to trust it. */
+export interface IceHere {
+  title: string;
+  /** the globe draws ice here at this time */
+  drawn: boolean;
+  /** between its keyframes, in metres */
+  thickness: number;
+  marginM: number;
+  /** the keyframes read, and their thickness here */
+  at: { ageMa: number; thickness: number }[];
+  /** where the dataset gives several for this time: the scenario drawn, and the others */
+  scenario?: { id: string; title: string };
+  others: { id: string; title: string; thickness: number; drawn: boolean }[];
+  uncertainty?: string;
+  /** after the present: why the youngest keyframe is held */
+  held?: string;
+  source?: SourceRecord;
 }
 
 /** The land's cover at a place and time, and what it rests on. */
@@ -123,6 +144,8 @@ export interface BiomeHere {
   climate: ClimateClass;
   label: string;
   cover: Cover;
+  /** a field says where the ice sheets are at this time, and the climate's own reading of ice gives way to it */
+  sheets?: boolean;
   title: string;
   /** the transitions that have happened by this time, and the next that has not */
   transitions: { id: string; label: string }[];
@@ -132,9 +155,9 @@ export interface BiomeHere {
 }
 
 /** In words, what the globe paints: the climate's class, as far as the transitions have gone. */
-export function coverWords(b: Pick<BiomeHere, 'climate' | 'cover'>): string {
+export function coverWords(b: Pick<BiomeHere, 'climate' | 'cover' | 'sheets'>): string {
   const { climate, cover } = b;
-  if (climate === 'ice') return 'Ice';
+  if (climate === 'ice') return b.sheets ? 'Bare ground that never thaws' : 'Ice';
   if (cover.plants <= 0) return cover.crust > 0 ? 'Bare ground, under microbial crusts' : 'Bare rock and sand';
   if (climate === 'desert') return 'Desert';
   if (climate === 'tundra') return cover.plants < 0.5 ? 'Bare ground and the first low plants' : 'Tundra';
@@ -362,16 +385,38 @@ export class InspectPanel {
       );
       return;
     }
+    const underIce = !!info.ice?.drawn;
     this.frame(
-      info.elevation >= 0 ? 'Land surface' : 'Sea floor',
-      `<div class="meta"><span class="kind">${esc(info.fieldTitle)}</span><span class="badge basis-reconstruction">reconstruction</span></div>
+      underIce ? 'Ice sheet' : info.elevation >= 0 ? 'Land surface' : 'Sea floor',
+      `<div class="meta"><span class="kind">${esc(underIce ? info.ice!.title : info.fieldTitle)}</span><span class="badge basis-reconstruction">reconstruction</span></div>
       <section><h3>Here, at ${esc(formatTime(info.t, 1e4))}</h3>
-      <p class="big">${info.elevation >= 0 ? '' : '−'}${Math.abs(Math.round(info.elevation)).toLocaleString('en-US')} m <span class="muted">${info.elevation >= 0 ? 'above' : 'below'} the sea level of the time</span></p>
+      ${underIce ? this.iceSection(info.ice!) : ''}
+      ${underIce
+        ? `<p>The ground beneath it is ${Math.abs(Math.round(info.elevation)).toLocaleString('en-US')} m ${info.elevation >= 0 ? 'above' : 'below'} the sea level of the time, as ${esc(info.fieldTitle.toLowerCase())} has it.</p>`
+        : `<p class="big">${info.elevation >= 0 ? '' : '−'}${Math.abs(Math.round(info.elevation)).toLocaleString('en-US')} m <span class="muted">${info.elevation >= 0 ? 'above' : 'below'} the sea level of the time</span></p>`}
       <p>${lat}, ${lon} in the geographic frame of this time${info.plate ? `, on plate ${info.plate}${info.plateLabel ? ` (${esc(info.plateLabel)})` : ''}` : ', on no plate polygon (ocean floor the model does not track)'}.</p>
+      ${info.ice && !underIce ? this.iceSection(info.ice) : ''}
       ${info.polity && info.elevation >= 0 ? this.politySection(info.polity) : ''}
-      ${info.biome && info.elevation >= 0 ? this.biomeSection(info.biome) : ''}
+      ${info.biome && info.elevation >= 0 && !underIce ? this.biomeSection(info.biome) : ''}
       <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time. The ${esc((info.coastline ?? 'coastline').toLowerCase())} is derived, not stored: the ${esc(info.datum === 'contemporaneous-sea-level' ? '0 m' : 'sea-level')} isoline of this field.</p></section>${this.stateSection(info.state)}${source}`,
     );
+  }
+
+  /** What the ice-sheet field gives here, in the dataset's own terms, and how far to trust it. */
+  private iceSection(i: IceHere): string {
+    // Each is known to a few metres at best on these grids, and the panel reads them from a byte.
+    const metres = (m: number) => `${(Math.round(m / 10) * 10).toLocaleString('en-US')} m`;
+    const when = (ageMa: number) => (ageMa === 0 ? 'the present' : formatTime(fromMa(ageMa)));
+    const given = i.at.map((k) => `${k.thickness < 1 ? 'none' : metres(k.thickness)} at ${when(k.ageMa)}`).join(' and ');
+    const s = i.source;
+    return `<div class="ice"><h3>${i.drawn ? 'Ice here' : 'Beyond the ice sheets, at this time'}</h3>
+      ${i.drawn ? `<p class="big">About ${metres(i.thickness)} <span class="muted">of ice</span></p>` : ''}
+      <p>${esc(short(s, s?.id ?? 'The dataset'))} gives ${esc(given)}.${i.scenario ? ` Drawn here: ${esc(i.scenario.title)}.` : ''}</p>
+      ${i.others.map((o) => `<p>In its other scenario here, ${esc(o.title)}: ${o.drawn ? `about ${metres(o.thickness)}` : 'none'}.</p>`).join('')}
+      ${i.held ? `<p class="note">${esc(i.held)}</p>` : ''}
+      ${i.uncertainty ? `<p class="note">${esc(i.uncertainty)}</p>` : ''}
+      <p class="method">The edge drawn is the ${esc(i.marginM)} m contour of the dataset's grid, and between keyframes it moves evenly from one to the next, as the thickness does: no one reconstructed those years. <span class="badge basis-reconstruction">reconstruction</span></p>
+      <p class="method">${esc(s?.citation ?? '')}${s?.doi ? ` <a href="https://doi.org/${encodeURI(s.doi)}" target="_blank" rel="noopener">doi:${esc(s.doi)}</a>` : ''}</p></div>`;
   }
 
   /** Which state a borders dataset draws here. */

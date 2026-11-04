@@ -161,7 +161,7 @@ export interface Field {
     from: string;
     file?: string;
     /** what the data is read as, where it is not elevation */
-    as?: 'climate' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages';
+    as?: 'climate' | 'ice-sheets' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages';
     places?: string;
     /** a series of the world's own measurements: the property whose claims give its values */
     prop?: string;
@@ -172,6 +172,8 @@ export interface Field {
     first_row?: number;
     time_unit?: 'Ma' | 'ka' | 'ka-b2k' | 'BP' | 'CE';
     band?: string;
+    /** for grids with several readings of the same thing: the first is the default picture's */
+    scenarios?: { id: string; title: string; variable: string; alt?: string; span?: { lo: TimeInput; hi: TimeInput } }[];
   };
   basis?: Basis;
   interp?: string;
@@ -185,6 +187,8 @@ export interface Field {
   params?: Record<string, unknown>;
   /** where a derived field's rule comes from */
   source?: Citation;
+  /** what a click says of how far to trust a value of it, where a grid has no error bars */
+  uncertainty?: string;
   file: string;
 }
 

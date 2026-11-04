@@ -1,0 +1,12 @@
+# A group of alternatives: its members exclude each other, and groups combine freely. A
+# claim belongs to the default picture unless it names an alternative (section 4.4).
+id: alt:laurentide-mis3
+type: group
+title: The Laurentide Ice Sheet in Marine Isotope Stage 3
+description: >-
+  Whether ice left Hudson Bay for a short time around 42,500 years ago. The default picture draws the reconstruction's
+  maximal scenario, with ice over the bay throughout. The evidence for the other is finite radiocarbon dates in the bay's
+  sediments, near the limit of the method, which may be minimum ages from an older ice-free time.
+# A steward decision: what a build shows. Shown on a machine's proposal, until a person decides.
+show: [alt:laurentide-mis3/hudson-bay-ice-free]
+default: null

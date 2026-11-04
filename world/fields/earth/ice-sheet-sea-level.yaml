@@ -1,0 +1,28 @@
+# Computed, not stored: the build sums the ice-sheet field's grids (section 9.1).
+id: field:earth/ice-sheet-sea-level
+type: field
+title: Ice sheets, as sea level
+quantity: how far sea level would have fallen to make the ice sheets, relative to today's
+unit: m
+description: >-
+  The ice on the globe, added up: its volume above today's, as water spread over today's ocean. It sets what the ice sheets
+  field draws against the sea-level stack, which was reached in another way. They agree in sign at every keyframe up to 5 ka,
+  where the stack is scaled to 0 m, and from 20 ka to 5 ka to within about 6 m. Before that this reads higher. Its lowest is about −116 m at 20 ka and the stack's −130 m
+  at 24 ka. In Marine Isotope Stage 3 it reads tens of metres higher, up to about 54 m, and the reconstruction's authors raise
+  that themselves against δ18O stacks like this one; they think it unlikely that sea level stood so low then. It takes no
+  account of the moving shoreline, of groundwater, or of the mountain glaciers the field leaves out.
+grid: { kind: series }
+time: { lo: 80 ka, hi: 0 ka }
+derived: true
+from: [field:earth/ice-sheets]
+rule: ice-equivalent-sea-level
+params:
+  ocean_area_km2: 361000000
+  ice_density: 910
+  water_density: 1000
+  band: between the dataset's two scenarios, which differ in North America in Marine Isotope Stage 3
+source:
+  ref: src:paleomist-1.0
+  loc: "readme.txt, under ice_reconstruction_files/"
+  quote: equivalent sea level (assuming the modern ocean area of 361x10^6 km^2 and an ice density of 910 kg/m^3)
+interp: linear

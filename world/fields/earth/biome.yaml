@@ -7,8 +7,9 @@ title: What covered the land
 description: >-
   What the land was covered with, derived at each spot from its climate and from what had evolved by
   then. Which climate gets which cover is the renderer's reading of the Köppen–Geiger classes: a
-  rain forest in a wet tropical climate, a desert in a desert climate. Nobody mapped it, and the
-  texture within each cover is generated.
+  rain forest in a wet tropical climate, a desert in a desert climate. Where a field has the ice
+  sheets of the time, ice is drawn from that field alone, and ground frozen all year is left bare.
+  Nobody mapped it, and the texture within each cover is generated.
 derived: true
 from: [field:earth/climate]
 rule: biome-from-climate

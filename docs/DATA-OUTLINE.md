@@ -133,7 +133,7 @@ What every other domain leans on.
 | Temperature, last 2,000 years | ○ | PAGES 2k | ✓ CC BY | F |
 | Temperature, instrumental | ○ | HadCRUT5; Berkeley Earth | ? HadCRUT (Open Government Licence); ✓ Berkeley (CC BY, check) | F |
 | Climate fields for past times (precipitation, seasons) | ◐ one model, Cambrian to the pre-industrial, every 10 Myr: Li et al. 2022 | Li et al. 2022 (CESM); Pohl et al. 2022; HadCM3 "BRIDGE" runs (Valdes et al.); PMIP4 and CMIP6 | ✓ Li, Pohl; ? BRIDGE; ✓ CMIP6 (mostly CC BY 4.0) | F |
-| Ice sheets, last glacial cycle | ○ | ICE-6G_C, ICE-7G_NA; GLAC-1D | ? | F |
+| Ice sheets, last glacial cycle | ◐ the last 80 kyr, on the globe: PaleoMIST 1.0, with its two scenarios; not the 36 kyr before | PaleoMIST 1.0; NADI-1; DATED-1; ICE-6G_C, ICE-7G_NA; GLAC-1D; Batchelor et al. 2019 | ✓ PaleoMIST, NADI-1, DATED-1; ✗ ICE-6G_C, ICE-7G_NA, GLAC-1D, Batchelor et al. 2019: no license stated, as read (see [RECORD-SETS](RECORD-SETS.md)) | F + C |
 | Ice sheets, deep time (Snowball, Karoo, Antarctic onset) | ◐ Snowball glaciations | literature | — | R + F |
 | Sea ice | ○ | modern: NSIDC; past: model output | ? | F |
 | Biomes and vegetation, past | ◐ derived from the climate field and the transitions, Phanerozoic; no pollen-based maps | BIOME 6000; LandCover6k pollen-based reconstructions | ? | F + C |
@@ -312,7 +312,8 @@ design):
 - **Biomes against fossils.** A forest fossil should not fall in a reconstructed desert.
 - **Shorelines against sea level.** Ostia was on the shore; ancient harbours were at the
   water's edge.
-- **Ice volume against sea level.** Their budgets must agree.
+- **Ice volume against sea level.** Their budgets must agree. Written for the last 80 kyr, in `build.test.ts`: they agree in sign and from 20 to 5 ka,
+  and differ by tens of metres in MIS 3, which [RECORD-SETS](RECORD-SETS.md) states.
 - **City populations against regional population.** A city should not hold more people than
   its region.
 - **Day length against fossil growth bands.** Corals record the days in a year.
