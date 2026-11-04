@@ -1,11 +1,12 @@
 // Today's borders and cities, and the hazards of the time shown, over the globe. They are rows of a
 // dataset, thousands of them, so they are drawn on a canvas and need no element each; a click finds
 // the nearest one drawn. At these times the plates have not moved enough to matter.
-import { hazardsNear, insideRow, politiesAt, type HazardFile, type HazardRow, type LanguageRow, type LanguagesFile, type PolitiesFile, type PolityRow, type PresentFile, type PresentPlace, type RoutesFile } from '../../../core/layers.ts';
+import { cellAt, gridSize, hazardsNear, insideRow, levelOf, peopleAt, politiesAt, rangeAt, stepsAround, type HazardFile, type HazardRow, type LanguageRow, type LanguagesFile, type PeopleFile, type PolitiesFile, type PolityRow, type PresentFile, type PresentPlace, type RoutesFile } from '../../../core/layers.ts';
 import { unitVector } from '../../../core/quat.ts';
 import { PRESENT_YEAR } from '../../../core/time.ts';
 import type { Camera } from '../camera.ts';
 import type { V3 } from '../mat.ts';
+import { short, stepName, type PeopleHere } from './inspect.ts';
 
 const PICK = 9;
 
@@ -202,7 +203,8 @@ export class PolityLayer {
     this.el.hidden = true;
   }
 
-  update(camera: Camera, t: number, dist: number, width: number, height: number): void {
+  /** `tint`: fill each state as well as outlining it, which hides what else is drawn on the land. */
+  update(camera: Camera, t: number, dist: number, width: number, height: number, tint = true): void {
     this.stats = { rows: 0, names: 0 };
     if (this.file && this.key !== String(t)) {
       // At the present and after, today's map takes over.
@@ -238,7 +240,7 @@ export class PolityLayer {
       if (!any) continue;
       this.stats.rows++;
       // A ring cut by the edge of the globe has no inside to fill.
-      if (whole) {
+      if (whole && tint) {
         g.fillStyle = `hsla(${hue}, 62%, 58%, 0.15)`;
         g.fill('evenodd');
       }
@@ -390,5 +392,102 @@ export class LanguageLayer {
   positionOf(name: string): { x: number; y: number } | undefined {
     const s = this.shown.find((q) => q.r.name === name);
     return s && { x: s.x, y: s.y };
+  }
+}
+
+/**
+ * Where people lived at the time shown. A grid is a picture of the surface rather than rows at places, so
+ * this one goes through the globe's shader, as a polity's territory does: its coasts are the field's, and it
+ * costs nothing while the globe turns. What is here are the numbers, the map the shader reads, and the legend.
+ */
+export class PeopleLayer {
+  /** the legend */
+  readonly el: HTMLElement;
+  file: PeopleFile | null = null;
+  nx = 1;
+  ny = 1;
+  /** where each cell of the grid falls on the viewer's scale, 0 to 255, row 0 at the north: the shader's map */
+  levels = new Uint8Array(1);
+  /** how many people the cells hold at the time last worked out, and how many cells show on the scale */
+  stats = { total: 0, lit: 0 };
+  private now = new Float64Array(0);
+  private drawnAt: number | null = null;
+  private note: HTMLElement;
+
+  constructor() {
+    this.el = document.createElement('div');
+    this.el.className = 'people-legend';
+    this.el.hidden = true;
+    this.el.innerHTML = '<div class="pl-title"><span></span> <span class="badge basis-reconstruction">reconstruction</span></div><div class="pl-bar"></div><div class="pl-ticks"></div><div class="pl-note"></div>';
+    this.note = this.el.querySelector('.pl-note')!;
+  }
+
+  setFile(f: PeopleFile): void {
+    this.file = f;
+    ({ nx: this.nx, ny: this.ny } = gridSize(f.res));
+    this.levels = new Uint8Array(this.nx * this.ny);
+    this.now = new Float64Array(f.cell.length);
+    this.drawnAt = null;
+    this.el.querySelector('.pl-title span')!.textContent = f.title;
+    const ticks: string[] = [];
+    for (let v = f.scale.lo; v <= f.scale.hi * 1.001; v *= 10) ticks.push(Number(v.toPrecision(3)).toLocaleString('en-US'));
+    this.el.querySelector('.pl-ticks')!.innerHTML = ticks.map((t) => `<span>${t}</span>`).join('');
+  }
+
+  /** Is a time one of the grid's? */
+  holds(t: number): boolean {
+    return !!this.file && !!stepsAround(this.file.steps, t);
+  }
+
+  /** Work the cells out for a time, if it is a new one of the grid's: says whether the shader's map has changed. */
+  update(t: number): boolean {
+    const f = this.file;
+    if (!f || t === this.drawnAt || !peopleAt(f, t, this.now)) return false;
+    this.drawnAt = t;
+    let total = 0;
+    let lit = 0;
+    for (let i = 0; i < this.now.length; i++) {
+      const p = this.now[i];
+      total += p;
+      const level = f.land[i] > 0 ? levelOf(p / f.land[i], f.scale) : 0;
+      if (level > 0) lit++;
+      this.levels[f.cell[i]] = Math.round(level * 255);
+    }
+    this.stats = { total, lit };
+    return true;
+  }
+
+  /** The legend, saying what it shows, or why nothing is drawn at this time. */
+  legend(t: number): void {
+    const f = this.file;
+    if (!f) return;
+    const text = this.holds(t)
+      ? `People per km² of land, on today's land, from ${short(f.sourceRecord, f.source)}. Not a count: click a place for what it gives there.`
+      : `Its grids run from ${stepName(f.steps[0])} to ${stepName(f.steps[f.steps.length - 1])}, so nothing is drawn at this time.`;
+    if (this.note.textContent !== text) this.note.textContent = text;
+  }
+
+  /** What the grid gives for the cell at a point, at a time of the grid's. */
+  here(lon: number, lat: number, t: number): PeopleHere | undefined {
+    const f = this.file;
+    const s = f && stepsAround(f.steps, t);
+    if (!f || !s) return undefined;
+    const c = cellAt(f, lon, lat);
+    const n = f.cell.length;
+    const at = (step: number) => (c.index < 0 ? 0 : f.people[step * n + c.index]);
+    const [a, b] = [at(s.a), at(s.b)];
+    return {
+      t,
+      south: 90 - (c.row + 1) * f.res,
+      west: -180 + c.col * f.res,
+      res: f.res,
+      people: a + (b - a) * s.mix,
+      land: c.index < 0 ? 0 : f.land[c.index],
+      from: { step: f.steps[s.a], people: a },
+      to: { step: f.steps[s.b], people: b },
+      range: rangeAt(f.range, t),
+      description: f.description,
+      source: f.sourceRecord,
+    };
   }
 }

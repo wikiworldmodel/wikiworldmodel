@@ -16,6 +16,9 @@
 //
 // Over the land, polities' territory (ui/territory.ts): one polity per channel of a map
 // texture, its land tinted and its frontiers outlined. Its coasts are the field's.
+//
+// Over the land too, when asked for, where people lived (ui/layers.ts): a map texture of how
+// dense they are, on the viewer's scale. Its coasts are the field's as well.
 import { THICKNESS_TOP } from '../../../core/ice.ts';
 import type { Cover, Look } from '../../../core/planet.ts';
 import type { SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
@@ -74,6 +77,9 @@ uniform highp samplerCube uIce;
 uniform float uIceOn;
 uniform float uIceMix;
 uniform float uIceTop;
+// Where people lived: how dense they are, from 0 to 1 on the viewer's scale.
+uniform highp sampler2D uPeople;
+uniform float uPeopleOn;
 in vec3 vN;
 out vec4 o;
 
@@ -225,6 +231,14 @@ vec3 heat(float x) {
   return mix(c, vec3(1.0, 0.93, 0.68), smoothstep(0.7, 1.0, x));
 }
 
+// Where people lived: the land dimmed, so that they show against desert and ice alike, and a glow
+// that starts from nothing and stays dark until there are many. Nothing is drawn over the sea, so the
+// coasts stay the field's. The legend's bar (style.css) runs the same way.
+vec3 people(vec3 c, vec3 n, float land) {
+  float v = textureGrad(uPeople, mapUv(n), vec2(0.0), vec2(0.0)).r;
+  return mix(c, mix(c * 0.4, heat(v * v), smoothstep(0.02, 0.35, v)), land);
+}
+
 // Molten rock where the crust has not formed yet, dark crust where it has; the crust glows
 // a little where it is youngest, next to the melt.
 vec3 magma(vec4 p, float crust, float light) {
@@ -353,6 +367,7 @@ void main() {
   }
   // Coastline: the sea-level isoline, about one pixel wide; fainter under ice.
   float line = 1.0 - smoothstep(0.5, 1.5, abs(e) / de);
+  if (uPeopleOn > 0.5) c = people(c, n, smoothstep(0.5, 1.5, e / de));
   if (uTerritoryOn > 0.5) c = territory(c, n, smoothstep(0.5, 1.5, e / de), diffuse);
   c = mix(c, vec3(0.93, 0.96, 0.95), line * 0.85 * (1.0 - 0.5 * max(ice, sheets)));
   // Evidence mode: the whole field is a reconstruction — amber hatching, the ice sheets of a field too;
@@ -540,6 +555,8 @@ export interface GlobeFrame {
   climate?: { mix: number; rule: { polar: number; frost: number; tropical: number; cold: number; arid: number; desert: number; reef_depth: number; reef_latitude: number } };
   /** the ice sheets' mix between the keyframes drawn, where a field has them at this time */
   ice?: { mix: number };
+  /** where people lived is drawn: the clouds, which are made up, thin out so as not to hide it */
+  people?: boolean;
 }
 
 export class GlobeRenderer {
@@ -552,6 +569,8 @@ export class GlobeRenderer {
   private patternTex: WebGLTexture;
   private territoryTex: WebGLTexture;
   private biomeTex: WebGLTexture;
+  private peopleTex: WebGLTexture;
+  private peopleSize: [number, number] = [1, 1];
   private emptyVao: WebGLVertexArrayObject;
   /** the climate's two cube maps, once the field has them */
   climateCubes: [WebGLTexture, WebGLTexture] | null = null;
@@ -583,6 +602,7 @@ export class GlobeRenderer {
     this.patternTex = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([128, 128, 128, 128]), filter: gl.LINEAR, wrapS: gl.REPEAT });
     this.territoryTex = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0, 0, 0, 255]), filter: gl.LINEAR, wrapS: gl.REPEAT });
     this.biomeTex = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([128, 128, 128, 128]), filter: gl.LINEAR, wrapS: gl.REPEAT });
+    this.peopleTex = texture2D(gl, { width: 1, height: 1, internal: gl.R8, format: gl.RED, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0]), filter: gl.LINEAR, wrapS: gl.REPEAT });
   }
 
   /** The generator's texture of the land's cover: a tile that repeats both ways. */
@@ -602,6 +622,20 @@ export class GlobeRenderer {
     gl.bindTexture(gl.TEXTURE_2D, this.territoryTex);
     gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE, map);
+  }
+
+  /** Where people lived: an equirectangular map, row 0 at the north, of how dense they are on the viewer's scale. It changes with the time shown. */
+  setPeople(width: number, height: number, levels: Uint8Array): void {
+    const gl = this.gl;
+    if (width !== this.peopleSize[0] || height !== this.peopleSize[1]) {
+      gl.deleteTexture(this.peopleTex);
+      this.peopleTex = texture2D(gl, { width, height, internal: gl.R8, format: gl.RED, type: gl.UNSIGNED_BYTE, data: levels, filter: gl.LINEAR, wrapS: gl.REPEAT });
+      this.peopleSize = [width, height];
+      return;
+    }
+    gl.bindTexture(gl.TEXTURE_2D, this.peopleTex);
+    gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+    gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, width, height, gl.RED, gl.UNSIGNED_BYTE, levels);
   }
 
   setClouds(width: number, height: number, density: Uint8Array): void {
@@ -659,7 +693,9 @@ export class GlobeRenderer {
     const iceCube = f.ice ? this.iceCube : null;
     gl.activeTexture(gl.TEXTURE6);
     gl.bindTexture(gl.TEXTURE_CUBE_MAP, iceCube ?? this.fieldCube);
-    setUniforms(gl, this.surface, { uField: 0, uPattern: 1, uTerritory: 2, uBiomeTex: 3, uClimate0: 4, uClimate1: 5, uIce: 6 }, ['uField', 'uPattern', 'uTerritory', 'uBiomeTex', 'uClimate0', 'uClimate1', 'uIce']);
+    gl.activeTexture(gl.TEXTURE7);
+    gl.bindTexture(gl.TEXTURE_2D, this.peopleTex);
+    setUniforms(gl, this.surface, { uField: 0, uPattern: 1, uTerritory: 2, uBiomeTex: 3, uClimate0: 4, uClimate1: 5, uIce: 6, uPeople: 7 }, ['uField', 'uPattern', 'uTerritory', 'uBiomeTex', 'uClimate0', 'uClimate1', 'uIce', 'uPeople']);
     setUniforms(gl, this.surface, { uIceOn: iceCube ? 1 : 0, uIceMix: f.ice?.mix ?? 0, uIceTop: THICKNESS_TOP });
     const r = f.climate?.rule;
     const cv = look.cover;
@@ -687,6 +723,7 @@ export class GlobeRenderer {
       uIceEdge: look.iceEdge,
       uRim: look.rim,
     });
+    setUniforms(gl, this.surface, { uPeopleOn: f.people ? 1 : 0 });
     setUniforms(gl, this.surface, { uMode: f.mode, uSurface: look.surface, uAir: look.air }, ['uMode', 'uSurface', 'uAir']);
     gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_INT, 0);
     gl.activeTexture(gl.TEXTURE0);
@@ -699,7 +736,8 @@ export class GlobeRenderer {
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, this.cloudTex);
       setUniforms(gl, this.clouds, { uClouds: 0 }, ['uClouds']);
-      setUniforms(gl, this.clouds, { uViewProj: f.viewProj, uRadius: 1.008, uSun: f.sun, uEye: f.eye, uEvidence: f.evidence, uOpacity: look.clouds.opacity, uBase: look.clouds.base, uTint: look.clouds.tint, uGlow: look.clouds.glow });
+      const thin = f.people ? 0.3 : 1;
+      setUniforms(gl, this.clouds, { uViewProj: f.viewProj, uRadius: 1.008, uSun: f.sun, uEye: f.eye, uEvidence: f.evidence, uOpacity: look.clouds.opacity * thin, uBase: look.clouds.base * thin, uTint: look.clouds.tint, uGlow: look.clouds.glow });
       gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_INT, 0);
       gl.depthMask(true);
       gl.disable(gl.BLEND);

@@ -4,7 +4,7 @@ import './style.css';
 import { CLIMATE_LABEL, climateClass, decodeNode, type ClimateClass, type ClimateHeader, type ClimateNode, type ClimateRule } from '../../core/climate.ts';
 import { decodeTile, type TypedArray } from '../../core/container.ts';
 import { decodeMargin, decodeThickness, iceFrame, iceKeysAt, iceScenario, sampleGrid, type IceHeader, type IceKeyframe, type IceScenario } from '../../core/ice.ts';
-import type { HazardFile, HazardRow, LanguagesFile, PolitiesFile, PresentFile, RoutesFile } from '../../core/layers.ts';
+import { levelOf, type HazardFile, type HazardRow, type LanguagesFile, type PeopleFile, type PeopleHeader, type PolitiesFile, type PresentFile, type RoutesFile } from '../../core/layers.ts';
 import { coverAt, lookAt, spanOf, valueOf, type Cover, type Look } from '../../core/planet.ts';
 import { conj, mul, rotate, toLatLon, unitVector, type Quat } from '../../core/quat.ts';
 import type { EntityRecord } from '../../core/records.ts';
@@ -35,7 +35,7 @@ import { PlanetPanel, valueAt } from './ui/planet.ts';
 import { Search } from './ui/search.ts';
 import { TERRITORY_COLORS, TerritoryLayer } from './ui/territory.ts';
 import { FossilLayer } from './ui/fossils.ts';
-import { HazardLayer, LanguageLayer, PolityLayer, PresentLayer, RouteLayer } from './ui/layers.ts';
+import { HazardLayer, LanguageLayer, PeopleLayer, PolityLayer, PresentLayer, RouteLayer } from './ui/layers.ts';
 import { TreePanel } from './ui/tree.ts';
 import { clampWindow, fitWindow, Timebar, xOf, type StateBand } from './ui/timebar.ts';
 import { Toolbar } from './ui/toolbar.ts';
@@ -65,7 +65,7 @@ export interface LightworldHandle {
   /** the tree of life as the panel has it: its rows, and how many fossil rows the group chosen lights up */
   tree(): { rows: ReturnType<TreePanel['shownRows']>; litRows: number; litMarkers: string[] } | null;
   /** what is drawn over the globe as rows of a dataset */
-  layers(): { present: { lines: number; names: number }; holds: boolean; hazards: number; hazardPlaces: { name: string; x: number; y: number }[]; placeAt(name: string): { x: number; y: number } | undefined; polities: { rows: number; names: number }; polityAt(lon: number, lat: number): string | undefined; routes: number; languages: number; languageAt(name: string): { x: number; y: number } | undefined };
+  layers(): { present: { lines: number; names: number }; holds: boolean; hazards: number; hazardPlaces: { name: string; x: number; y: number }[]; placeAt(name: string): { x: number; y: number } | undefined; polities: { rows: number; names: number }; polityAt(lon: number, lat: number): string | undefined; routes: number; languages: number; languageAt(name: string): { x: number; y: number } | undefined; people: { drawn: boolean; holds: boolean; total: number; lit: number }; peopleAt(lon: number, lat: number): { people: number; land: number; level: number; x: number; y: number; visible: boolean } | undefined };
   /** the plan of the city's generated fabric, here and in the build */
   fabric(): { expected: string; actual: string | null } | null;
   /** how much of the city is on the GPU */
@@ -137,6 +137,7 @@ async function start(root: HTMLElement): Promise<void> {
     hour: DEFAULT_HOUR,
     tree: undefined,
     langs: undefined,
+    people: undefined,
   };
   const parsed = fromSearch(location.search, defaults);
   let state: ViewState = quantize({ ...parsed.state, t: Math.max(dataRange[0], Math.min(dataRange[1], parsed.state.t)) });
@@ -234,6 +235,18 @@ async function start(root: HTMLElement): Promise<void> {
     languagesLoading = true;
     void getJSON<LanguagesFile>(build.base + ts.files.languages).then((f) => {
       languages.file = f;
+      dirty = true;
+    });
+  };
+  // Where people lived goes to the globe's shader, and loads when it is first asked for.
+  const people = new PeopleLayer();
+  let peopleLoading = false;
+  const wantPeople = () => {
+    if (peopleLoading || !ts.files.people) return;
+    peopleLoading = true;
+    void getBytes(build.base + ts.files.people).then((data) => {
+      const { header, arrays } = decodeTile<PeopleHeader>(data);
+      people.setFile({ ...header, cell: arrays[0] as Uint32Array, land: arrays[1] as Uint32Array, people: arrays[2] as Uint32Array } as PeopleFile);
       dirty = true;
     });
   };
@@ -374,6 +387,8 @@ async function start(root: HTMLElement): Promise<void> {
   planet.onOpen = (id) => showSeries(id);
   planet.onRecord = (id) => setState({ sel: id });
   stage.appendChild(planet.el);
+  // The legend is over the markers, as the planet's panel is.
+  stage.appendChild(people.el);
   const notice = document.createElement('div');
   notice.className = 'notice';
   notice.hidden = true;
@@ -576,6 +591,8 @@ async function start(root: HTMLElement): Promise<void> {
   let frameClimateMix: number | null = null;
   /** the keyframes of the ice sheets drawn and the mix between them, and the age they are moved to, where a field has them */
   let frameIce: { younger: number; older: number; mix: number; ageMa: number } | null = null;
+  /** where people lived was drawn in the frame */
+  let peopleDrawn = false;
 
   /** The keyframes of the climate around an age, and how far between them it is. */
   function climateKeysAt(age: number): { k0: number; k1: number; mix: number } | null {
@@ -662,6 +679,11 @@ async function start(root: HTMLElement): Promise<void> {
     const sun = norm(add(add(scale(norm(eye), 0.75), scale(right, -0.45)), scale(up, 0.5))) as V3;
     if (territory.update(state.t, scenario())) globe.setTerritory(territory.canvas);
     const showTerritory = territory.shown && !!fi && look.formed;
+    if (state.people) {
+      wantPeople();
+      if (people.update(state.t)) globe.setPeople(people.nx, people.ny, people.levels);
+    }
+    peopleDrawn = !!state.people && people.holds(state.t) && fi?.mode === 'elevation' && look.formed;
     if (!globeHidden) globe.render(
       {
         viewProj: camera.viewProj,
@@ -677,6 +699,7 @@ async function start(root: HTMLElement): Promise<void> {
         territory: { on: showTerritory, colors: TERRITORY_COLORS, selected: territory.channelOf(state.sel) },
         climate: climateNow && climateRule ? { mix: climateNow.mix, rule: climateRule } : undefined,
         ice: iceNow ? { mix: iceNow.mix } : undefined,
+        people: peopleDrawn,
       },
       w,
       h,
@@ -702,6 +725,8 @@ async function start(root: HTMLElement): Promise<void> {
     planet.el.hidden = inCity && range < 6e4;
     credits.classList.toggle('in-city', inCity && range < 6e4);
     cityBar.hidden = !inCity || range > CITY_SOLID;
+    people.el.hidden = !state.people || !people.file || !cityBar.hidden;
+    if (state.people) people.legend(state.t);
     canvas.classList.toggle('in-city', inCity);
     if (inCity) cityBar.querySelector<HTMLInputElement>('input')!.value = String(state.hour);
     const enter = !!site && !inCity && state.cam.dist < 2.2 && siteDistance(state.cam.lat, state.cam.lon) < 1.5e6;
@@ -731,7 +756,8 @@ async function start(root: HTMLElement): Promise<void> {
     if (hide) present.el.hidden = hazards.el.hidden = polities.el.hidden = routes.el.hidden = languages.el.hidden = true;
     else {
       if (state.t < PRESENT_YEAR) wantPolities();
-      polities.update(camera, state.t, state.cam.dist, stage.clientWidth, stage.clientHeight);
+      // Over the people drawn, states are their outlines only.
+      polities.update(camera, state.t, state.cam.dist, stage.clientWidth, stage.clientHeight, !peopleDrawn);
       routes.update(camera, state.t, stage.clientWidth, stage.clientHeight);
       if (state.langs) wantLanguages();
       languages.update(camera, !!state.langs && present.holds(state.t), state.cam.dist, stage.clientWidth, stage.clientHeight);
@@ -755,7 +781,7 @@ async function start(root: HTMLElement): Promise<void> {
     if (showTerritory) territory.place(camera, state.t, scenario(), state.sel);
     timebar.set(state.t, state.window, playing);
     planet.update(state.t, look, state.alt);
-    toolbar.set({ evidence: state.evidence, clouds: state.clouds, alt: state.alt, tree: !!state.tree, langs: !!state.langs });
+    toolbar.set({ evidence: state.evidence, clouds: state.clouds, alt: state.alt, tree: !!state.tree, langs: !!state.langs, people: !!state.people });
     document.body.classList.toggle('evidence', state.evidence);
   }
 
@@ -1066,6 +1092,7 @@ async function start(root: HTMLElement): Promise<void> {
       biome: biomeHere(hit.point),
       polity: polityHere(hit.lon, hit.lat),
       ice: iceHere(hit.point, plate),
+      people: peopleDrawn ? people.here(hit.lon, hit.lat, state.t) : undefined,
     });
   }
 
@@ -1264,6 +1291,7 @@ async function start(root: HTMLElement): Promise<void> {
     if (e.key === 'e' || e.key === 'E') setState({ evidence: !state.evidence });
     else if (e.key === 'c' || e.key === 'C') setState({ clouds: !state.clouds });
     else if (e.key === 't' || e.key === 'T') setState({ tree: !state.tree });
+    else if (e.key === 'p' || e.key === 'P') setState({ people: !state.people });
     else if (e.key === ' ') togglePlay();
     else if (e.key === 'ArrowLeft') setState({ t: timebar.stepFrom(state.t, -1 / 200) });
     else if (e.key === 'ArrowRight') setState({ t: timebar.stepFrom(state.t, 1 / 200) });
@@ -1284,7 +1312,7 @@ async function start(root: HTMLElement): Promise<void> {
   history.replaceState(null, '', toSearch(build.id, state));
   window.__lightworld = {
     build: build.id,
-    idle: () => !tiles.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && (!state.langs || !!languages.file || !ts.files.languages) && cloudsReady && surfaceReady && biomeTexReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
+    idle: () => !tiles.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && (!state.langs || !!languages.file || !ts.files.languages) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
     state: () => state,
     url: () => toSearch(build.id, state),
     requests: fetchLog,
@@ -1313,7 +1341,13 @@ async function start(root: HTMLElement): Promise<void> {
       const marginKm = decodeMargin(v[0] + (v[1] - v[0]) * frameIce.mix);
       return { drawn: marginKm > 0, marginKm, thickness: decodeThickness(v[2]) * (1 - frameIce.mix) + decodeThickness(v[3]) * frameIce.mix };
     },
-    layers: () => ({ present: present.stats, holds: present.holds(state.t), hazards: hazards.count, hazardPlaces: hazards.positions(), placeAt: (name: string) => present.placeAt(name), polities: polities.stats, polityAt: (lon: number, lat: number) => polities.at(lon, lat)?.name, routes: routes.count, languages: languages.count, languageAt: (name: string) => languages.positionOf(name) }),
+    layers: () => ({ present: present.stats, holds: present.holds(state.t), hazards: hazards.count, hazardPlaces: hazards.positions(), placeAt: (name: string) => present.placeAt(name), polities: polities.stats, polityAt: (lon: number, lat: number) => polities.at(lon, lat)?.name, routes: routes.count, languages: languages.count, languageAt: (name: string) => languages.positionOf(name), people: { drawn: peopleDrawn, holds: people.holds(state.t), ...people.stats }, peopleAt: (lon: number, lat: number) => {
+      const c = people.here(lon, lat, state.t);
+      const f = people.file;
+      if (!c || !f) return undefined;
+      const at = camera.project([Math.cos(lat * RAD) * Math.cos(lon * RAD), Math.cos(lat * RAD) * Math.sin(lon * RAD), Math.sin(lat * RAD)]);
+      return { people: c.people, land: c.land, level: c.land > 0 ? levelOf(c.people / c.land, f.scale) : 0, x: at.x, y: at.y, visible: at.visible };
+    } }),
     fabric: () => (city ? city.plan : null),
     cityStats: () => (city ? city.stats() : null),
     structureAt: (id) => {

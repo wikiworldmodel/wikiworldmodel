@@ -13,7 +13,7 @@ import { formatTime, fromMa, historical, PRESENT_YEAR } from '../../../core/time
 const esc = (s: unknown) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 
-function short(s: SourceRecord | undefined, ref: string): string {
+export function short(s: SourceRecord | undefined, ref: string): string {
   if (!s) return ref;
   const names = (s.authors ?? []).map((a) => a.split(',')[0]);
   const who = names.length === 0 ? s.container ?? s.title ?? s.id : names.length === 1 ? names[0] : names.length === 2 ? `${names[0]} & ${names[1]}` : `${names[0]} et al.`;
@@ -116,6 +116,8 @@ export interface TerrainInfo {
   biome?: BiomeHere;
   /** the state a borders dataset draws here, at this time */
   polity?: { name: string; from: number; to: number; area: number; wikipedia?: string; source?: SourceRecord };
+  /** what a grid of people gives for the cell here, at this time, if it is drawn */
+  people?: PeopleHere;
   /** what the ice-sheet field gives here, where it has any ice near */
   ice?: IceHere;
 }
@@ -138,6 +140,29 @@ export interface IceHere {
   held?: string;
   source?: SourceRecord;
 }
+
+/** What a grid of people gives for the cell a click fell in, at the time shown. */
+export interface PeopleHere {
+  t: number;
+  /** the cell's south-west corner, and how wide it is, in degrees */
+  south: number;
+  west: number;
+  res: number;
+  /** how many people it holds at this time */
+  people: number;
+  /** its land in km², which may be none */
+  land: number;
+  /** the two time steps it lies between, the same one if it is on a step, and what the dataset gives at each */
+  from: { step: number; people: number };
+  to: { step: number; people: number };
+  /** the range the authors give for their numbers at this time, in percent either way */
+  range?: number;
+  description?: string;
+  source?: SourceRecord;
+}
+
+/** A time step of the grid, as the dataset labels it. The axis reads the labels as they stand, so it would call 0 AD 1 BCE. */
+export const stepName = (step: number) => (step < 0 ? `${(-step).toLocaleString('en-US')} BC` : `${step} AD`);
 
 /** The land's cover at a place and time, and what it rests on. */
 export interface BiomeHere {
@@ -385,10 +410,13 @@ export class InspectPanel {
       );
       return;
     }
+    // A cell can hold people where the click fell on its sea, and there it should still say so.
+    const people = info.people && (info.people.people >= 0.5 || info.elevation >= 0) ? this.peopleSection(info.people) : '';
     const underIce = !!info.ice?.drawn;
     this.frame(
       underIce ? 'Ice sheet' : info.elevation >= 0 ? 'Land surface' : 'Sea floor',
       `<div class="meta"><span class="kind">${esc(underIce ? info.ice!.title : info.fieldTitle)}</span><span class="badge basis-reconstruction">reconstruction</span></div>
+      ${people}
       <section><h3>Here, at ${esc(formatTime(info.t, 1e4))}</h3>
       ${underIce ? this.iceSection(info.ice!) : ''}
       ${underIce
@@ -417,6 +445,26 @@ export class InspectPanel {
       ${i.uncertainty ? `<p class="note">${esc(i.uncertainty)}</p>` : ''}
       <p class="method">The edge drawn is the ${esc(i.marginM)} m contour of the dataset's grid, and between keyframes it moves evenly from one to the next, as the thickness does: no one reconstructed those years. <span class="badge basis-reconstruction">reconstruction</span></p>
       <p class="method">${esc(s?.citation ?? '')}${s?.doi ? ` <a href="https://doi.org/${encodeURI(s.doi)}" target="_blank" rel="noopener">doi:${esc(s.doi)}</a>` : ''}</p></div>`;
+  }
+
+  /** What a grid of people gives for this cell, and how far to trust it. */
+  private peopleSection(p: PeopleHere): string {
+    const ns = (x: number) => `${Math.abs(x)}°${x >= 0 ? 'N' : 'S'}`;
+    const ew = (x: number) => `${Math.abs(x)}°${x >= 0 ? 'E' : 'W'}`;
+    const someone = p.people >= 0.5;
+    const count = someone ? `About ${fmtValue(p.people)} ${p.people < 1.5 ? 'person' : 'people'}` : 'Nobody';
+    const cell = `the ${p.res}° cell from ${ns(p.south)} to ${ns(p.south + p.res)} and ${ew(p.west)} to ${ew(p.west + p.res)}`;
+    const dense = someone && p.land > 0 ? `: about ${fmtValue(p.people / p.land)} per km² of its ${p.land.toLocaleString('en-US')} km² of land` : '';
+    const given = (s: PeopleHere['from']) => `${Math.round(s.people).toLocaleString('en-US')} at its step ${esc(stepName(s.step))}`;
+    const steps = p.from.step === p.to.step ? `The dataset gives ${given(p.from)}.` : `The dataset gives ${given(p.from)} and ${given(p.to)}. Between its steps the line is simply straight, not an estimate.`;
+    const range = p.range === undefined ? '' : `<p><strong>How sure:</strong> a reconstruction, not a count. Its authors put the range of their numbers at about ±${Math.round(p.range)}% at this time, partly on their own judgement, and give no range for a single place.</p>`;
+    return `<section class="people"><h3>People here, at ${esc(formatTime(p.t, 1e4))} <span class="badge basis-reconstruction">reconstruction</span></h3>
+      <p class="big">${count}</p>
+      <p>In ${cell}${dense}.</p>
+      <p>${steps}</p>
+      ${range}
+      ${p.description ? `<p class="note">${esc(p.description)}</p>` : ''}
+      <p class="method">${esc(p.source?.citation ?? '')}${p.source?.doi ? ` <a href="https://doi.org/${encodeURI(p.source.doi)}" target="_blank" rel="noopener">doi:${esc(p.source.doi)}</a>` : ''}</p></section>`;
   }
 
   /** Which state a borders dataset draws here. */

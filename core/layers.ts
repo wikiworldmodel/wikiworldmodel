@@ -158,3 +158,98 @@ export interface LanguagesFile {
   sourceRecord?: import('./records.ts').SourceRecord;
   rows: LanguageRow[];
 }
+
+/**
+ * People on a grid: how many in each cell, at each time step a reconstruction gives. It is drawn as a
+ * picture of the surface, not as rows at places. The numbers are the file's typed arrays: a million of them.
+ */
+export interface PeopleHeader {
+  format: 'lightworld-people@1';
+  title: string;
+  description?: string;
+  source: string;
+  sourceRecord?: SourceRecord;
+  /** how wide a cell is, in degrees; column 0 starts at 180°W and row 0 at the north pole */
+  res: number;
+  /** the time steps, on the world's axis, oldest first */
+  steps: number[];
+  /** where the viewer's colours start and end, in people per km² of land: a choice of how to show it, not a fact */
+  scale: { lo: number; hi: number };
+  /** the range the authors give for their numbers, in percent either way: [time, percent], oldest first, straight between */
+  range: [number, number][];
+}
+
+export interface PeopleFile extends PeopleHeader {
+  /** the cells that ever hold anyone, by their place in the grid (row × columns + column), in order */
+  cell: Uint32Array;
+  /** each one's land, in km² */
+  land: Uint32Array;
+  /** how many people, a whole row of cells for each step */
+  people: Uint32Array;
+}
+
+/** The two steps around a time, and how far it is from the first to the second; nothing outside them. */
+export function stepsAround(steps: number[], t: number): { a: number; b: number; mix: number } | undefined {
+  if (!steps.length || t < steps[0] || t > steps[steps.length - 1]) return undefined;
+  let a = 0;
+  let b = steps.length - 1;
+  while (b - a > 1) {
+    const m = (a + b) >> 1;
+    if (steps[m] <= t) a = m;
+    else b = m;
+  }
+  if (steps[a] === t) b = a;
+  else if (steps[b] === t) a = b;
+  return { a, b, mix: a === b ? 0 : (t - steps[a]) / (steps[b] - steps[a]) };
+}
+
+/** How many people each cell holds at a time, straight between steps; false, and nothing written, outside them. */
+export function peopleAt(f: PeopleFile, t: number, out: Float64Array): boolean {
+  const s = stepsAround(f.steps, t);
+  if (!s) return false;
+  const n = f.cell.length;
+  const a = f.people.subarray(s.a * n, (s.a + 1) * n);
+  const b = f.people.subarray(s.b * n, (s.b + 1) * n);
+  for (let i = 0; i < n; i++) out[i] = a[i] + (b[i] - a[i]) * s.mix;
+  return true;
+}
+
+/** The size of a grid of cells `res` degrees wide. */
+export const gridSize = (res: number) => ({ nx: Math.round(360 / res), ny: Math.round(180 / res) });
+
+/** Where a point falls in the grid: its row, its column, and which of the file's cells that is, or −1. */
+export function cellAt(f: Pick<PeopleFile, 'res' | 'cell'>, lon: number, lat: number): { row: number; col: number; index: number } {
+  const { nx, ny } = gridSize(f.res);
+  const col = Math.max(0, Math.min(nx - 1, Math.floor((lon + 180) / f.res)));
+  const row = Math.max(0, Math.min(ny - 1, Math.floor((90 - lat) / f.res)));
+  const place = row * nx + col;
+  let lo = 0;
+  let hi = f.cell.length - 1;
+  while (lo <= hi) {
+    const m = (lo + hi) >> 1;
+    if (f.cell[m] === place) return { row, col, index: m };
+    if (f.cell[m] < place) lo = m + 1;
+    else hi = m - 1;
+  }
+  return { row, col, index: -1 };
+}
+
+/** The range the authors give at a time: straight between the years they name, and held beyond them. */
+export function rangeAt(points: [number, number][], t: number): number | undefined {
+  if (!points.length) return undefined;
+  if (t <= points[0][0]) return points[0][1];
+  for (let i = 1; i < points.length; i++) {
+    const [t1, p1] = points[i];
+    if (t <= t1) {
+      const [t0, p0] = points[i - 1];
+      return p0 + ((p1 - p0) * (t - t0)) / (t1 - t0);
+    }
+  }
+  return points[points.length - 1][1];
+}
+
+/** Where a density falls on the viewer's scale, from 0 to 1, in its logarithm: nothing below the scale. */
+export function levelOf(density: number, scale: PeopleHeader['scale']): number {
+  if (!(density > scale.lo)) return 0;
+  return Math.min(1, Math.log(density / scale.lo) / Math.log(scale.hi / scale.lo));
+}

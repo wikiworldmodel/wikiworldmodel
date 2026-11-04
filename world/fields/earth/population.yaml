@@ -1,0 +1,40 @@
+id: field:earth/population
+type: field
+title: Where people lived
+quantity: people in each 1° cell
+unit: people
+description: >-
+  How many people lived in each 1° cell of today's land, in the baseline of HYDE 3.2.1, its 5′ cells added up. It is a
+  reconstruction, not a count. Its authors built a series for each of today's provinces and states, and shared each one out
+  over its land by weighting maps: LandScan's pattern for the present, gradually replaced going back by proxies such as soil
+  suitability, slope and distance to water. So a country's numbers rest on historical estimates, and where the people were
+  within it rests on those rules. "All allocation in the distant past is performed following general, globally applicable
+  HYDE allocation rules", they say, and those rules are often made from a Eurocentric point of view. Its steps are 1,000 years
+  long up to 1 CE, 100 years up to 1700, 10 years up to 2000 and then one year, and it stops at 2015. Between steps each cell's
+  line is simply straight, not an estimate, and the picture is drawn smooth across cells, which the numbers are not.
+frame: frame:earth/present-day
+grid: { kind: lonlat, res_deg: 1 }
+# HYDE labels its first step -10000, and the axis reads that as it stands, as the series of the world's total does.
+time: { lo: -10000, hi: 2015 CE }
+data:
+  from: src:hyde-3.2.1-population-grid
+  as: people
+basis: reconstruction
+interp: linear
+params:
+  # Where the viewer's colours start and end, in people per km² of land: a choice of how to show it, not a fact.
+  scale: { lo: 0.01, hi: 1000 }
+  # The authors' uncertainty range A, in percent either way, as the citation below gives it; they interpolate
+  # linearly between these years, and the viewer holds the ends beyond them.
+  range:
+    - { at: 10000 BCE, percent: 95 }
+    - { at: 1 CE, percent: 75 }
+    - { at: 850 CE, percent: 50 }
+    - { at: 1700 CE, percent: 25 }
+    - { at: 1800 CE, percent: 10 }
+    - { at: 1900 CE, percent: 5 }
+    - { at: 2000 CE, percent: 1 }
+source:
+  ref: src:hyde-3.2.1-population-grid
+  loc: Klein Goldewijk et al. 2017, section 5
+  quote: "The uncertainty range A is cautiously estimated at 1 % in 2000 CE, 5 % in 1900 CE, 10 % in 1800 CE, 25 % in 1700 CE, 50 % in 850 CE, 75 % in 1 CE and 95 % in 10 000 BCE."

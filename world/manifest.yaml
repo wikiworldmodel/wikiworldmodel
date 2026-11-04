@@ -843,6 +843,80 @@ datasets:
         in HYDE3_2_1-baseline.zip (5339653974 bytes, SHA-1 0d0e4ff97deb59664ce6c34dfdeeafa08e487d20 as DANS states it),
         https://archaeology.datastations.nl/api/access/datafile/5490328. The archive is far too big to fetch for one row.
 
+  src:hyde-3.2.1-population-grid:
+    type: dataset
+    kind: compilation
+    title: "HYDE 3.2.1, baseline scenario: how many people in each 1° cell"
+    citation: >-
+      Klein Goldewijk, K., Beusen, A., Doelman, J. & Stehfest, E. (2017). Anthropogenic land use estimates for the Holocene
+      – HYDE 3.2. Earth System Science Data 9, 927–953, doi:10.5194/essd-9-927-2017. The data: Klein Goldewijk, C.G.M.
+      (2017). Anthropogenic land-use estimates for the Holocene; HYDE 3.2, version 2.0. DANS Data Station Archaeology.
+    authors:
+      - "Klein Goldewijk, K."
+      - "Beusen, A."
+      - "Doelman, J."
+      - "Stehfest, E."
+    published: 2017
+    version: >-
+      HYDE 3.2.1 (its readme is dated 12 September 2017), baseline scenario, in version 2.0 of the DANS record; its 73 grids
+      of people from 10000BC to 2015AD and its grid of land, read on 4 November 2026, added up from 5′ to 1° and kept in
+      world/snapshots
+    container: DANS Data Station Archaeology
+    doi: 10.17026/dans-25g-gez3
+    url: https://doi.org/10.17026/dans-25g-gez3
+    credit: Population grid from HYDE 3.2.1 (Klein Goldewijk et al. 2017), its cells added up to 1°
+    license: CC-BY-3.0
+    license_note: >-
+      The release's own readme says: "The Creative Commons License (CC BY 3.0) applies to all of the HYDE data." The article
+      is CC BY 3.0 too. The DANS record, through its API, says CC0-1.0 for the same files. The authors' statement, the stricter
+      of the two, is the one recorded here. This file adapts theirs, and CC BY asks for that to be said: the credit says what
+      was changed.
+    reliability: >-
+      A reconstruction on today's land, not a count. Series were built for each province or state of every country, and the
+      authors "kept them constant over time for simplicity reasons". After 1950 they follow the UN's World Population
+      Prospects (2008 revision), and before that largely McEvedy & Jones (1978), Livi-Bacci (2007) and Maddison (2001), "for
+      some regions and time periods not undisputed and probably on the low side of estimates". Where the people were within
+      a province is a further step: weighting maps share each total out, from LandScan's pattern for the present, "gradually
+      replaced with combined weighting maps based on various proxies such as soil suitability, slope, distance to water and
+      case studies from several disciplines" going back. The authors say "All allocation in the distant past is performed
+      following general, globally applicable HYDE allocation rules", that "these rules are often made with a Eurocentric
+      point of view", and that those maps use today's climate and biomes throughout. So a cell's number is less a finding
+      about that place than the share of a province's estimate that the rules give it. Their uncertainty range A is ±1% in
+      2000 CE, 5% in 1900, 10% in 1800, 25% in 1700, 50% in 850, 75% in 1 CE and 95% in 10,000 BCE, straight between,
+      partly on their own judgement; they give none for a single place.
+    note: >-
+      It is not a file of HYDE's. Each 1° cell adds up 144 cells of 5′ from baseline/asc/<step>_pop/popc_<step>.asc, whose
+      readme calls them "population counts, in inhabitants/gridcell", and is rounded to a whole person; a cell that never
+      comes to one is left out. So there are 15,097 rows, against 1,334,454 populated cells of HYDE's own in 2015. land_km2 adds up
+      general_files/maxln_cr.asc, the "maximum landarea available per gridcell": HYDE's grids of density divide by it, as
+      popc_2015AD.asc over popd_2015AD.asc shows in all but 118 of those cells, which have people and no land in it. One 1° cell
+      is like them, with 12 people at most. HYDE has grids for 2016 and 2017, past the 2015 where the readme, the DANS record and
+      the article end the period, and they are left out, as they are from the world's series. Steps are named as HYDE labels
+      them, -10000 for 10000BC and 0 for 0AD, and the axis reads the labels as they stand, one year out before 1 CE, as the
+      series does. Each step's cells come to within 0.003% of that series, the row "Total" of HYDE's table popc_r.txt, so adding
+      them up loses nothing that matters to a total. The lower and upper scenarios are not in the DANS record. HYDE 3.3 goes on to 2023 under CC BY 4.0, and
+      its hosts answer a script with a bot check. The grids of cropland and grazing land, baseline/asc/<step>_lu/, are not
+      read here.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Each of the 74 members read by HTTP range requests, its CRC-32 matching its archive's directory, and its sha256 kept in
+        the snapshot's header. The two archives were not downloaded whole, so DANS's SHA-1s were not checked. Each step's cells
+        summed against the table popc_r.txt by a test (tools/world/test/people.test.ts). The readme read in full; the article's
+        sections 2.1, 2.2, 3.1, 4.1 and 5 read in Copernicus's XML, and the quotes here checked by script against those two texts.
+        The snapshot was made twice, to the same bytes.
+    fetch:
+      url: repo:world/snapshots/hyde-3.2.1-population-1deg.csv
+      sha256: a23df5e6a9cb7513e1e10d6192c830bcfe2fbff617f8353efabfbbe91e5b2560
+      bytes: 5514091
+      format: csv
+      via: >-
+        `npm run world -- hyde-snapshot` (tools/world/src/hyde.ts) makes it from HYDE3_2_1-baseline.zip (5339653974 bytes, SHA-1
+        0d0e4ff97deb59664ce6c34dfdeeafa08e487d20 as DANS states it), https://archaeology.datastations.nl/api/access/datafile/5490328,
+        and HYDE3_2_1-general_supplementary.zip (23585889 bytes, SHA-1 3cfe98d21e70c9ce478460c7265962f1bb2b6aab as DANS states it),
+        https://archaeology.datastations.nl/api/access/datafile/5490327. The snapshot's header lists each member with its bytes,
+        CRC-32 and sha256. The archive is 5.3 GB, four times all the other datasets together, and the grids used are an eighth of it.
+
   src:hyde-3.2.1-world-land-use:
     type: dataset
     kind: compilation

@@ -58,6 +58,15 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
     console.log(`${snap.rows.length} rows → ${file}`);
     console.log(`In world/manifest.yaml point the dataset at repo:${file}, sha256 ${createHash('sha256').update(text).digest('hex')}, ${Buffer.byteLength(text)} bytes.`);
   },
+  // HYDE 3.2.1's population grids, added up to a grid small enough to keep in world/snapshots. They are a
+  // fixed release, so this makes the same bytes every time, and has no date in its name.
+  async 'hyde-snapshot'() {
+    const { exportPopulationGrid, SNAPSHOT } = await import('./hyde.ts');
+    const text = await exportPopulationGrid();
+    writeFileSync(join(REPO, SNAPSHOT), text);
+    console.log(`${text.split('\n').filter((l) => l && !l.startsWith('#')).length - 1} cells → ${SNAPSHOT}`);
+    console.log(`In world/manifest.yaml the dataset is repo:${SNAPSHOT}, sha256 ${createHash('sha256').update(text).digest('hex')}, ${Buffer.byteLength(text)} bytes.`);
+  },
   async validate(args) {
     const { runValidate } = await import('./validate/index.ts');
     return runValidate(args);

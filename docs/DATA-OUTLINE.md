@@ -175,8 +175,8 @@ What every other domain leans on.
 | Dispersal of Homo sapiens; contact with Neanderthals and Denisovans | ◐ 14 dispersals and 3 admixtures, with whole pictures among the alternatives | literature; aDNA | — | R + alternatives |
 | Radiocarbon-dated sites | ○ | p3k14c; XRONOS; regional databases (CARD, etc.) | ? | D |
 | The first farming in each centre, and its spread | ◐ | literature; radiocarbon databases | — | R + F |
-| Population, 10,000 BCE to now (grid) | ◐ the world's total as a series; no grid | HYDE 3.2.1 (on DANS: reachable, 5.3 GB, CC BY 3.0 by its readme); HYDE 3.3 (behind a bot check) | ✓ 3.2.1 | F |
-| Land use: cropland, pasture, irrigation | ◐ the world's cropland and grazing land as series; no grid, no irrigation | HYDE 3.2.1; LandCover6k | ✓ 3.2.1 | F |
+| Population, 10,000 BCE to now (grid) | ✓ a 1° grid of people to 2015, over the globe, and the world's total as a series | HYDE 3.2.1 (on DANS: its grids read one by one, CC BY 3.0 by its readme); HYDE 3.3 (to 2023, behind a bot check) | ✓ 3.2.1 | F |
+| Land use: cropland, pasture, irrigation | ◐ the world's cropland and grazing land as series; no grid, no irrigation | HYDE 3.2.1 (its grids of land use, read as its grids of people are); LandCover6k | ✓ 3.2.1 | F |
 | Rock art and early symbolic artefacts | ◐ six artefacts | literature | — | R |
 
 ---
@@ -335,7 +335,7 @@ Twenty tasks that are bounded, sourced and checkable, roughly in order of value:
 9. A PBDB snapshot for one famous group (dinosaurs, or the Cambrian fauna), with an importer.
 10. Hominin species and their key fossil sites.
 11. The first farming centres, with radiocarbon dates.
-12. HYDE population as a field, 10,000 BCE to now.
+12. HYDE's cropland and grazing land as grids, as its people already are.
 13. Cliopatria's other polities, beyond Rome.
 14. Emperors and kings of a few states, from standard regnal lists.
 15. Glottolog's language families as a layer.

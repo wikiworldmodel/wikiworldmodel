@@ -31,11 +31,12 @@ export function fieldAgesMa(f: Field): { maxAgeMa: number; minAgeMa: number; ste
 /**
  * What a gridded field is made from: elevation grids (a dataset of snapshots, partitioned by
  * the plate model's polygons), or the plate model's polygons alone (where its continental
- * blocks are). Those two are carried by the tiles; the climate and the ice sheets have files of their own.
+ * blocks are). Those two are carried by the tiles; the climate, the ice sheets and the people have files of their own.
  */
-export function fieldSource(f: Field): 'elevation' | 'blocks' | 'climate' | 'ice' {
+export function fieldSource(f: Field): 'elevation' | 'blocks' | 'climate' | 'ice' | 'people' {
   if (f.data?.as === 'climate') return 'climate';
   if (f.data?.as === 'ice-sheets') return 'ice';
+  if (f.data?.as === 'people') return 'people';
   return f.data?.from === f.moves_with && f.data?.file === 'polygons' ? 'blocks' : 'elevation';
 }
 

@@ -160,6 +160,14 @@ body.evidence .planet-row.projection .planet-value { color: var(--procedural); }
 .marker.lit .dot { background: #ffc45c; box-shadow: 0 0 8px 2px rgba(255, 196, 92, 0.7); }
 .fossil-layer, .row-layer { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .row-layer[hidden] { display: none; }
+/* The bar runs as people() in gl/globe.ts does, from the dimmed land up. */
+.people-legend { position: absolute; left: 16px; bottom: 30px; width: min(300px, calc(100% - 32px)); display: grid; gap: 3px; padding: 6px 10px 7px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 8px; font-size: 11px; pointer-events: none; }
+.people-legend[hidden] { display: none; }
+.pl-title { font-weight: 600; }
+.pl-bar { height: 8px; border-radius: 4px; background: linear-gradient(to right, #1f1a16 0%, #3a0a02 20%, #701704 40%, #d43605 60%, #f78c1e 80%, #ffedad 100%); }
+.pl-ticks { display: flex; justify-content: space-between; color: var(--muted); font-variant-numeric: tabular-nums; }
+.pl-note { color: var(--muted); }
+@media (min-width: 900px) { .stage:has(.tree-panel:not([hidden])) .people-legend { left: 468px; } }
 .tree-panel { position: absolute; left: 16px; bottom: 16px; width: min(440px, calc(100% - 32px)); height: min(52%, 460px); display: flex; flex-direction: column; border: 1px solid var(--panel-border); border-radius: 10px; background: var(--panel); backdrop-filter: blur(6px); z-index: 3; }
 .tree-panel[hidden] { display: none; }
 .tree-panel header { display: flex; align-items: baseline; gap: 8px; padding: 6px 10px 2px; }
@@ -178,6 +186,7 @@ body.evidence .planet-row.projection .planet-value { color: var(--procedural); }
   .toolbar { max-width: none; }
   .inspect { top: auto; height: 55vh; left: 16px; right: 16px; width: auto; }
   .planet { top: auto; bottom: 28px; left: 16px; min-width: 0; }
+  .people-legend { top: 162px; bottom: auto; }
 }
 
 /* A short window keeps what it needs to move about, and leaves the rest of the globe clear. */
