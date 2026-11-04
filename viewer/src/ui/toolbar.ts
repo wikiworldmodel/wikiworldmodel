@@ -10,6 +10,8 @@ export interface ToolbarState {
   tree: boolean;
   /** the world's languages are drawn */
   langs: boolean;
+  /** where people lived is drawn */
+  people: boolean;
 }
 
 const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
@@ -33,6 +35,7 @@ export class Toolbar {
       <button class="tg-clouds" aria-pressed="true" title="Clouds (C)">Clouds</button>
       <button class="tg-tree" aria-pressed="false" title="Tree of life (T): the lineages alive at the time shown">Tree</button>
       <button class="tg-langs" aria-pressed="false" title="Languages: the world's languages today, from Glottolog, at the present on the time control">Languages</button>
+      <button class="tg-people" aria-pressed="false" title="People (P): where people lived, for the times HYDE reconstructs it; a reconstruction on today's land, not a count">People</button>
       ${groups.length ? '<button class="tg-alts" aria-pressed="false" aria-expanded="false" title="Other whole pictures of the world: hypotheses, readings and scenarios, each its own consistent world">Alternatives</button>' : ''}
       <div class="build" title="Data version: the build this view shows">build ${buildId}</div>
       <div class="alts" hidden>
@@ -46,6 +49,7 @@ export class Toolbar {
         <div><span class="sw procedural"></span>In a living scene, magenta: every animal and plant; its taxon and size are recorded, where it stands is invented</div>
         <div><span class="sw evidence"></span>Rings on the globe: eruptions, earthquakes and tsunamis of about the time shown, from NOAA's databases</div>
         <div><span class="sw reconstruction"></span>Reconstruction: PaleoDEM terrain, the plate model's blocks; ringed markers are placed by the plate model</div>
+        <div><span class="sw reconstruction"></span>The glow of the People button: how many lived where, as HYDE reconstructs it, drawn smooth across its cells</div>
         <div><span class="sw procedural"></span>Procedural: generated clouds, and the patterns the planet's states are drawn with (magma, ice, oceans where the map is unknown); projection: values after the present</div>
         <div><span class="sw derived"></span>Dashed: dates derived by the solver</div>
         <div><span class="sw unknown"></span>Plain globe: no geography and no state of the planet known at this time</div>
@@ -54,6 +58,7 @@ export class Toolbar {
     this.el.querySelector<HTMLButtonElement>('.tg-clouds')!.onclick = () => this.onChange({ clouds: !this.is('.tg-clouds') });
     this.el.querySelector<HTMLButtonElement>('.tg-tree')!.onclick = () => this.onChange({ tree: !this.is('.tg-tree') });
     this.el.querySelector<HTMLButtonElement>('.tg-langs')!.onclick = () => this.onChange({ langs: !this.is('.tg-langs') });
+    this.el.querySelector<HTMLButtonElement>('.tg-people')!.onclick = () => this.onChange({ people: !this.is('.tg-people') });
     const alts = this.el.querySelector<HTMLButtonElement>('.tg-alts');
     if (alts) alts.onclick = () => {
       const panel = this.el.querySelector<HTMLElement>('.alts')!;
@@ -89,6 +94,7 @@ export class Toolbar {
     this.el.querySelector('.tg-clouds')!.setAttribute('aria-pressed', String(s.clouds));
     this.el.querySelector('.tg-tree')!.setAttribute('aria-pressed', String(s.tree));
     this.el.querySelector('.tg-langs')!.setAttribute('aria-pressed', String(s.langs));
+    this.el.querySelector('.tg-people')!.setAttribute('aria-pressed', String(s.people));
     this.el.querySelector<HTMLElement>('.legend')!.hidden = !s.evidence;
     for (const sel of this.el.querySelectorAll<HTMLSelectElement>('select[data-group]')) {
       const g = this.groups.find((x) => x.id === sel.dataset.group)!;

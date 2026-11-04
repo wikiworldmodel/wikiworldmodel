@@ -161,7 +161,7 @@ export interface Field {
     from: string;
     file?: string;
     /** what the data is read as, where it is not elevation */
-    as?: 'climate' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages';
+    as?: 'climate' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages' | 'people';
     places?: string;
     /** a series of the world's own measurements: the property whose claims give its values */
     prop?: string;

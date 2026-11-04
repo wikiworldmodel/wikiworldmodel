@@ -4,7 +4,7 @@
 import { expect, test } from '@playwright/test';
 import type { HazardFile, PresentFile } from '../../../core/layers.ts';
 import type { SeriesFile } from '../../../core/records.ts';
-import { buildFile, idle, latestBuild, markerPositions, settledUrl } from './helpers.ts';
+import { buildFile, canvasPatch, idle, latestBuild, markerPositions, settledUrl } from './helpers.ts';
 
 const layers = (page: import('@playwright/test').Page) =>
   page.evaluate(() => {
@@ -228,6 +228,146 @@ test('the world’s languages are drawn when asked for, at the present, and a cl
   await page.evaluate(() => window.__lightworld!.set({ t: 1200 }));
   await idle(page);
   expect(await page.evaluate(() => window.__lightworld!.layers().languages)).toBe(0);
+});
+
+test('where people lived is drawn when asked for: the Nile reads as populated at 1 CE, the Sahara does not, and neither does the sea change', async ({ page }) => {
+  const NILE = [31.5, 30.5];
+  const SAHARA = [12, 20];
+  const SEA = [34, 34];
+  await page.goto(`/?b=${latestBuild()}&t=1&lat=27&lon=25&d=1.7&cl=0`);
+  await idle(page);
+  const spot = (at: number[]) => page.evaluate(([lon, lat]) => window.__lightworld!.layers().peopleAt(lon, lat), at);
+  const patch = async (at: number[]) => {
+    const c = (await spot(at))!;
+    const box = (await page.locator('canvas.globe').boundingBox())!;
+    return canvasPatch(page, c.x / box.width, c.y / box.height, 5);
+  };
+  // Until it is asked for it is not drawn or loaded, and the globe is as it always was.
+  expect((await page.evaluate(() => window.__lightworld!.layers().people)).drawn).toBe(false);
+  expect(await page.evaluate(() => window.__lightworld!.requests.some((r) => r.endsWith('people.lwt')))).toBe(false);
+  await expect(page.locator('.people-legend')).toBeHidden();
+  await page.locator('.tg-people').click();
+  await idle(page);
+  await page.waitForFunction(() => window.__lightworld!.url().includes('people=1'));
+  const on = await page.evaluate(() => window.__lightworld!.layers().people);
+  expect(on.drawn).toBe(true);
+  expect(on.lit).toBeGreaterThan(5000);
+  // The numbers tell them apart…
+  const nile = (await spot(NILE))!;
+  const sahara = (await spot(SAHARA))!;
+  expect(nile.people).toBeGreaterThan(500_000);
+  expect(nile.level).toBeGreaterThan(0.7);
+  expect(sahara.people).toBeLessThan(100);
+  expect(sahara.level).toBe(0);
+  const onNile = await patch(NILE);
+  const onSahara = await patch(SAHARA);
+  const onSea = await patch(SEA);
+  // …and so does the drawing: a bright warm glow on the one, the dimmed land on the other.
+  expect(onNile[0]).toBeGreaterThan(180);
+  expect(onNile[0]).toBeGreaterThan(onNile[2] + 60);
+  expect(onSahara[0]).toBeLessThan(110);
+  expect(onNile[0]).toBeGreaterThan(onSahara[0] + 80);
+  // With it off again the Sahara is brighter than it was under the layer, and the sea has not changed.
+  await page.locator('.tg-people').click();
+  await idle(page);
+  expect((await page.evaluate(() => window.__lightworld!.layers().people)).drawn).toBe(false);
+  await expect(page.locator('.people-legend')).toBeHidden();
+  const offSahara = await patch(SAHARA);
+  const offSea = await patch(SEA);
+  expect(offSahara[0]).toBeGreaterThan(onSahara[0] + 30);
+  for (let i = 0; i < 3; i++) expect(Math.abs(offSea[i] - onSea[i])).toBeLessThan(2);
+});
+
+test('the cells of the people drawn come to the world’s series, and it says it is a reconstruction', async ({ page }) => {
+  const points = buildFile<SeriesFile>('series.json').series.find((x) => x.id === 'field:earth/world-population')!.points;
+  const value = (t: number) => {
+    const i = points.findIndex((p) => p[0] >= t);
+    if (points[i][0] === t) return points[i][1];
+    const [a, b] = [points[i - 1], points[i]];
+    return a[1] + ((b[1] - a[1]) * (t - a[0])) / (b[0] - a[0]);
+  };
+  await page.goto(`/?b=${latestBuild()}&t=1&lat=20&lon=80&d=2.4&people=1&cl=0`);
+  await idle(page);
+  const legend = page.locator('.people-legend');
+  await expect(legend).toBeVisible();
+  await expect(legend).toContainText('Where people lived');
+  await expect(legend).toContainText('reconstruction');
+  await expect(legend).toContainText('Not a count');
+  await expect(legend).toContainText('Klein Goldewijk');
+  await expect(legend.locator('.pl-ticks')).toContainText('1,000');
+  for (const t of [-5000, 1, 1450, 1955, 2012, 2015]) {
+    await page.evaluate((x) => window.__lightworld!.set({ t: x }), t);
+    await idle(page);
+    const p = await page.evaluate(() => window.__lightworld!.layers().people);
+    expect(p.drawn, `at ${t}`).toBe(true);
+    expect(Math.abs(p.total - value(t)) / value(t), `at ${t}: ${p.total} against ${value(t)}`).toBeLessThan(5e-5);
+  }
+  // More of the world shows as time goes on, on a scale that does not move.
+  await page.evaluate(() => window.__lightworld!.set({ t: -5000 }));
+  await idle(page);
+  const early = await page.evaluate(() => window.__lightworld!.layers().people.lit);
+  await page.evaluate(() => window.__lightworld!.set({ t: 2015 }));
+  await idle(page);
+  expect(await page.evaluate(() => window.__lightworld!.layers().people.lit)).toBeGreaterThan(early);
+  // Past its last step, and before its first, nothing is drawn, and the legend says why.
+  await page.evaluate(() => window.__lightworld!.set({ t: 2020 }));
+  await idle(page);
+  expect(await page.evaluate(() => window.__lightworld!.layers().people.drawn)).toBe(false);
+  await expect(legend).toContainText('nothing is drawn at this time');
+  await page.evaluate(() => window.__lightworld!.set({ t: -20000 }));
+  await idle(page);
+  expect(await page.evaluate(() => window.__lightworld!.layers().people.drawn)).toBe(false);
+  await expect(legend).toContainText('10,000 BC to 2015 AD');
+});
+
+test('a click says what the dataset gives for that cell, and how far to trust it', async ({ page }) => {
+  // The plain of the Ganges, or wherever else near it no marker takes the click.
+  const places = [[25.5, 83.5], [24.5, 86.5], [27.5, 79.5], [22.5, 78.5], [18.5, 75.5]];
+  await page.goto(`/?b=${latestBuild()}&t=1&lat=${places[0][0]}&lon=${places[0][1]}&d=1.6&people=1&cl=0`);
+  await idle(page);
+  let place = places[0];
+  for (const p of places) {
+    await page.evaluate(([lat, lon]) => window.__lightworld!.set({ cam: { lat, lon, dist: 1.6 } }), p);
+    await idle(page);
+    place = p;
+    const at = (await page.evaluate(([lat, lon]) => window.__lightworld!.layers().peopleAt(lon, lat), p))!;
+    if (await page.evaluate(({ x, y }) => document.elementFromPoint(x, y)?.tagName === 'CANVAS', at)) break;
+  }
+  const cell = (await page.evaluate(([lat, lon]) => window.__lightworld!.layers().peopleAt(lon, lat), place))!;
+  const middle = { x: cell.x, y: cell.y };
+  await page.mouse.click(middle.x, middle.y);
+  await idle(page);
+  const panel = page.locator('.inspect .people');
+  await expect(panel).toBeVisible();
+  await expect(panel).toContainText('People here');
+  await expect(panel).toContainText('reconstruction');
+  // What the dataset gives: this cell, its steps on either side, and straight between them.
+  const [south, west] = [Math.floor(place[0]), Math.floor(place[1])];
+  await expect(panel).toContainText(`1° cell from ${south}°N to ${south + 1}°N and ${west}°E to ${west + 1}°E`);
+  await expect(panel).toContainText('at its step 0 AD');
+  await expect(panel).toContainText('at its step 100 AD');
+  await expect(panel).toContainText('not an estimate');
+  await expect(panel).toContainText(`${cell.land.toLocaleString('en-US')} km² of land`);
+  // How uncertain: the authors' own range at 1 CE, read from the field's record.
+  await expect(panel).toContainText('±75%');
+  await expect(panel).toContainText('give no range for a single place');
+  await expect(panel).toContainText('general, globally applicable HYDE allocation rules');
+  await expect(panel).toContainText('Klein Goldewijk');
+  // At a later time the range narrows, as they say it does.
+  await page.evaluate(() => window.__lightworld!.set({ t: 1900 }));
+  await idle(page);
+  await page.mouse.click(middle.x, middle.y);
+  await idle(page);
+  await expect(panel).toContainText('±5%');
+  await expect(panel).toContainText('at its step 1900 AD');
+  await expect(panel).not.toContainText('Between its steps');
+  // With the layer off a click on the land says nothing of people.
+  await page.locator('.tg-people').click();
+  await idle(page);
+  await page.mouse.click(middle.x, middle.y);
+  await idle(page);
+  await expect(panel).toBeHidden();
+  await expect(page.locator('.inspect h2')).toHaveText('Land surface');
 });
 
 test('a thing that moved is where it was at the time shown: the obelisk leaves Heliopolis for Rome', async ({ page }) => {

@@ -15,7 +15,7 @@ been checked by a person, which is set 20. The three steps that come out of sets
 | 6 | Dispersals, with ancient DNA | done | `world/entities/people/dispersals/`, `world/alternatives/leaving-africa*`, `world/alternatives/peopling-of-the-americas*` |
 | 7 | Megafauna extinctions | done | `world/entities/life/megafauna/`, `world/alternatives/megafauna-causes*` |
 | 8 | Domestication worldwide | done | `world/entities/people/domestication/` |
-| 9 | Population and land use (HYDE) | **part**: the world's population, cropland and grazing land as series; no grid | `world/fields/earth/{world-population,cropland,grazing-land}.yaml`, `world/snapshots/hyde-3.2.1-*.csv` |
+| 9 | Population and land use (HYDE) | where people lived as a 1° grid over the globe, 10,000 BCE to 2015; the world's population, cropland and grazing land as series; no grid of land use | `world/fields/earth/{population,world-population,cropland,grazing-land}.yaml`, `world/snapshots/hyde-3.2.1-*.csv` |
 | 10 | States worldwide from Cliopatria | done as rows, not records | `world/fields/earth/polities.yaml` |
 | 11 | People and offices | done, for 42 rulers | `world/entities/people/rulers/`, `world/entities/people/polities/` |
 | 12 | First cities, writing, languages | done; languages as rows | `world/fields/earth/languages.yaml`, `world/entities/people/first-cities/`, `world/entities/people/writing/` |
@@ -44,6 +44,36 @@ Their tests are `tools/world/test/layers.test.ts` and `viewer/test/e2e/layers.sp
   of about 2020. Its disputed lines are dashed.
 - **Hazards.** 9,123 of NOAA's eruptions, earthquakes and tsunamis as rings around their years.
 - **Languages.** Glottolog's points, by family, for the present only, behind a toolbar button.
+
+## A grid over the globe
+
+Set 9's people are the one layer that is not rows: a field with `grid: { kind: lonlat }` and `data.as: people`, which the build reads itself
+into one binary file, `people.lwt` (`peopleLayer` in `tools/world/src/build/layers.ts`), and the toolbar's **People** button draws
+(`PeopleLayer` in `viewer/src/ui/layers.ts`). Its tests are `tools/world/test/people.test.ts`, the people test in
+`tools/world/test/build.test.ts` and three in `viewer/test/e2e/layers.spec.ts`.
+
+- **Through the globe's shader, not on a canvas.** The other layers are drawn on canvases over the globe, and a better fit appeared for this one.
+  A density is a picture of the surface, not rows at places. On a canvas it would be up to 15,000 quads a frame, each hanging over the
+  sea along a coast. As a map texture, the way a polity's territory is drawn, its coasts are the field's and it costs nothing while the
+  globe turns. The shader only reads it when the button is on, so the golden images do not move.
+- **What goes with it.** It dims the land, so that people show against desert and ice alike. The clouds, which are made up, thin to
+  30%, and the states of the world are drawn as outlines only, so that neither hides it.
+- **What it says.** The legend says *reconstruction* and *not a count*, and gives the scale. A click on the land gives the cell's people, its density,
+  what HYDE gives at the steps on either side, the authors' range at that time, and how the people were placed. Numbers come from the
+  snapshot and the field's `params`: the scale and the range are in `world/fields/earth/population.yaml`, not in code.
+- **A snapshot, not the archive.** [AGENTS.md](../AGENTS.md) says a different file is a different dataset, so this is one:
+  `src:hyde-3.2.1-population-grid` has its own id, file and sha256, its title and credit say the cells were added up, and its header lists each
+  of the 74 members it came from with its CRC-32 and sha256. It stands in for nothing pinned, and it is what that rule asks for: the rule forbids
+  swapping a file under a pinned id, not deriving a new one. Pinning the archive instead was weighed and refused. It is 5.3 GB, four times every other dataset
+  together, for grids that are an eighth of it, and `fetch` holds a download in memory and its zip reader refuses Deflate64. What is given up is the
+  archive's SHA-1: neither archive was downloaded whole, so only each member's CRC-32 was checked, against the directory at the archive's end. What
+  keeps it honest is that `npm run world -- hyde-snapshot` makes the file again from the archive, reading 690 MB by range requests, with its own small
+  reader for Deflate64 (`tools/world/src/hyde.ts`, tested against a file 7-Zip made); it was run twice, to the same bytes. A test adds up each step against
+  HYDE's own table: within 0.003%.
+- **Why 1° and all 73 steps.** The globe's land is a 1° grid, so anything finer would be sharper than the coast it is clipped to, and 0.5° would be 17 MB.
+  At 2° it would be 1.8 MB. The yearly steps from 2001 could go, for 1 MB, but keeping them needs no explaining.
+- **What it costs.** 5.5 MB in the repository, the largest snapshot by far (2.4 MB gzipped); 4.5 MB in a build of 157 MB (2.8 MB gzipped), loaded only
+  when the button is pressed.
 
 ## What to look at first
 
@@ -180,6 +210,18 @@ record takes its time from the first of them that moves it.
 - Grazing land is pasture, rangeland and converted rangeland: HYDE's own table of rangeland leaves out the converted part. The article's
   Table 2 prints 20 for 1850 and 51 for 1920 in its world row, apparently misprints, where its other 15 match; Table 5's FAO row is about 3% above HYDE,
   though the article says it is followed exactly; its abstract has 667 Mha for 1700, where its tables have 664.
+- **The grid says less about a place than it seems to.** A cell's number is the share of a province's estimate that HYDE's rules give it: the authors say
+  "All allocation in the distant past is performed following general, globally applicable HYDE allocation rules", often from a Eurocentric point of view,
+  with today's climate and biomes throughout. The panel says so. Iceland's cell shows how far that goes: 305 people at 1 CE, which looks like the rule
+  rather than a finding (no source on Iceland's settlement was read for this).
+- **Its range is the authors' and it is for their numbers as a whole.** ±95% at 10,000 BCE to ±1% in 2000, straight between as they do it; it is held at ±1% after 2000,
+  which is this viewer's choice. They give none for a single place, and the panel says that too. Their wider range B is not shown.
+- **Today's land.** HYDE has nobody on land the sea has since taken, and next to nobody under the ice of 10,000 BCE: 1,949 of 4.43 million in a rough box over northern
+  Canada, 50–70°N and 110–60°W, chosen by eye and not from an ice map.
+- **The scale is a choice.** A cell under 0.01 people per km² shows as empty, as the Ténéré's does at 1 CE with 59 people, though a click still says 59.
+  Density is per km² of HYDE's `maxln_cr` land, as its own grids of density are, so a sliver of coast reads hot: the densest cell in 2015 is Lima's, on 264 km².
+  The picture is smooth across cells and the numbers are not, so a click near a bright spot gets the whole cell's.
+- **Step names.** The panel names steps as HYDE does, 0 AD and 10,000 BC, because the axis reads them as they stand, a year out before 1 CE, and would call them 1 BCE and 10,001 BCE.
 
 ### Set 11: people and offices
 
@@ -266,9 +308,9 @@ record takes its time from the first of them that moves it.
 
 ## Not done
 
-- **Set 9's grids.** HYDE 3.3's hosts (`public.yoda.uu.nl`, `geo.public.data.uu.nl`) answer a script with a bot
-  check, and getting past it was not tried. HYDE 3.2.1's archive on DANS can be fetched, but it is 5.3 GB of Deflate64 zips, which
-  the build's zip reader refuses, and the globe has no gridded overlay for it yet.
+- **Set 9's land use on a grid.** Cropland and grazing land are series only. Their grids are in the same archive (`baseline/asc/<step>_lu/`), and the tool
+  and the layer for people would read them the same way. HYDE 3.3 would reach 2023: its hosts (`public.yoda.uu.nl`, `geo.public.data.uu.nl`) answer a script with
+  a bot check, and getting past it was not tried.
 - **The Silk Road's lines.** It has records and no lines: no dataset of them could be used. Ortelius AT-046 states CC BY 4.0, but it is
   14 legs for about 800–1200, and calls itself illustrative. No license for OWTRAD could be found. Lines on the globe work for
   whatever comes.

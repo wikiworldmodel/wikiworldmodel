@@ -92,7 +92,7 @@ Where each stands, what it added and what a reviewer should look at first is in
 | 6 | Dispersals and first arrivals, with ancient DNA | 300–15 ka | alternatives of whole pictures; aDNA samples | built |
 | 7 | Megafauna extinctions, with competing causes | 50–4 ka | alternatives about causation | built |
 | 8 | Domestication worldwide | 12–4 ka | developments with archaeobotanical samples | built |
-| 9 | Population and land use (HYDE) | 10,000 BCE–now | a gridded human field | **part**: the world's population, cropland and grazing land as series; no grid |
+| 9 | Population and land use (HYDE) | 10,000 BCE–now | a gridded human field | built for people: a 1° grid over the globe, to 2015; cropland and grazing land as series, with no grid |
 | 10 | States worldwide from Cliopatria | 3400 BCE–now | borders beyond Rome | built, as rows |
 | 11 | People and offices: rulers and dynasties | 3000 BCE–now | `person` kind, `held-office` relation | 42 rulers |
 | 12 | First cities, writing systems, Glottolog's languages | 4000 BCE–now | settlement sizes, scripts, a language layer | built; languages as rows |

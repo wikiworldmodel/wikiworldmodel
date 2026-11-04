@@ -31,12 +31,16 @@ export function fieldAgesMa(f: Field): { maxAgeMa: number; minAgeMa: number; ste
 /**
  * What a gridded field is made from: elevation grids (a dataset of snapshots, partitioned by
  * the plate model's polygons), or the plate model's polygons alone (where its continental
- * blocks are).
+ * blocks are). Those two are carried by the tiles; the climate and the people have files of their own.
  */
-export function fieldSource(f: Field): 'elevation' | 'blocks' | 'climate' {
+export function fieldSource(f: Field): 'elevation' | 'blocks' | 'climate' | 'people' {
   if (f.data?.as === 'climate') return 'climate';
+  if (f.data?.as === 'people') return 'people';
   return f.data?.from === f.moves_with && f.data?.file === 'polygons' ? 'blocks' : 'elevation';
 }
+
+/** A gridded field the tiles carry, which the importer makes. */
+export const tiledField = (f: Field): boolean => !f.derived && f.grid?.kind === 'lonlat' && (fieldSource(f) === 'elevation' || fieldSource(f) === 'blocks');
 
 async function importKey(parts: unknown): Promise<string> {
   const code = await readFile(IMPORTER, 'utf8');

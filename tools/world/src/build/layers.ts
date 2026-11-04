@@ -4,7 +4,7 @@ import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import type { HazardFile, HazardRow, LanguageRow, LanguagesFile, PolitiesFile, PolityRow, PresentFile, PresentPlace, RouteRow, RoutesFile } from '../../../../core/layers.ts';
+import { gridSize, type HazardFile, type HazardRow, type LanguageRow, type LanguagesFile, type PeopleHeader, type PolitiesFile, type PolityRow, type PresentFile, type PresentPlace, type RouteRow, type RoutesFile } from '../../../../core/layers.ts';
 import { formatTime, parsePoint, type TimePointInput } from '../../../../core/time.ts';
 import { datasetFile } from '../manifest.ts';
 import { CACHE } from '../paths.ts';
@@ -309,5 +309,59 @@ export async function languagesLayer(w: World): Promise<LanguagesFile | undefine
     source: id,
     sourceRecord: s ? sourceRecord(s) : undefined,
     rows: languageRows(parseTable(await readFile(datasetFile(id, w.manifest.datasets[id]), 'utf8'))),
+  };
+}
+
+/** A snapshot's table of people on a grid: its steps, and for each cell that ever holds anyone, where it is, its land, and how many at each step. */
+export function peopleTable(text: string, res: number): { steps: number[]; cell: Uint32Array; land: Uint32Array; people: Uint32Array } {
+  const lines = text.split('\n').filter((l) => l && !l.startsWith('#'));
+  const head = lines[0].split(',');
+  if (head.slice(0, 3).join(',') !== 'lat,lon,land_km2') throw new Error(`a population table starts "lat,lon,land_km2", not "${head.slice(0, 3).join(',')}"`);
+  const steps = head.slice(3).map(Number);
+  const { nx, ny } = gridSize(res);
+  const n = lines.length - 1;
+  const cell = new Uint32Array(n);
+  const land = new Uint32Array(n);
+  const people = new Uint32Array(n * steps.length);
+  for (let i = 0; i < n; i++) {
+    const f = lines[i + 1].split(',');
+    if (f.length !== head.length) throw new Error(`row ${i + 1} of a population table has ${f.length} columns, not ${head.length}`);
+    // A row's latitude and longitude are its south-west corner.
+    const row = (90 - Number(f[0])) / res - 1;
+    const col = (Number(f[1]) + 180) / res;
+    if (!Number.isInteger(row) || !Number.isInteger(col) || row < 0 || row >= ny || col < 0 || col >= nx) throw new Error(`row ${i + 1} of a population table is at ${f[0]}, ${f[1]}: not a corner of the grid`);
+    cell[i] = row * nx + col;
+    if (i > 0 && cell[i] <= cell[i - 1]) throw new Error(`row ${i + 1} of a population table is out of order`);
+    land[i] = Number(f[2]);
+    for (let j = 0; j < steps.length; j++) people[j * n + i] = Number(f[3 + j]);
+  }
+  return { steps, cell, land, people };
+}
+
+/** Where people lived, from the snapshot its field names; the viewer's colours and the authors' range are the field's. */
+export async function peopleLayer(w: World): Promise<{ header: PeopleHeader; arrays: Uint32Array[] } | undefined> {
+  const f = w.fields.find((x) => x.data?.as === 'people');
+  if (!f) return undefined;
+  const id = f.data!.from;
+  const grid = f.grid as { kind: 'lonlat'; res_deg: number };
+  const t = peopleTable(await readFile(datasetFile(id, w.manifest.datasets[id]), 'utf8'), grid.res_deg);
+  const lo = parsePoint(f.time!.lo as TimePointInput).t;
+  const hi = parsePoint(f.time!.hi as TimePointInput).t;
+  if (t.steps[0] !== lo || t.steps.at(-1) !== hi) throw new Error(`${f.id}: its table runs from ${t.steps[0]} to ${t.steps.at(-1)}, and the field says ${lo} to ${hi}`);
+  const p = f.params as unknown as { scale: PeopleHeader['scale']; range: { at: TimePointInput; percent: number }[] };
+  const s = w.source.get(id);
+  return {
+    header: {
+      format: 'lightworld-people@1',
+      title: f.title,
+      description: f.description,
+      source: id,
+      sourceRecord: s ? sourceRecord(s) : undefined,
+      res: grid.res_deg,
+      steps: t.steps,
+      scale: p.scale,
+      range: p.range.map((r) => [parsePoint(r.at).t, r.percent] as [number, number]).sort((a, b) => a[0] - b[0]),
+    },
+    arrays: [t.cell, t.land, t.people],
   };
 }

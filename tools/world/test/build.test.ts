@@ -7,6 +7,7 @@ import { decodeTile } from '../../../core/container.ts';
 import { fromMa, PRESENT_YEAR, toMa } from '../../../core/time.ts';
 import type { TileHeader, Tileset } from '../../../core/tileset.ts';
 import { chosenClaim, type PlanetFile } from '../../../core/planet.ts';
+import { peopleAt, type PeopleFile, type PeopleHeader } from '../../../core/layers.ts';
 import { territoriesAt, type TerritoryFile } from '../../../core/territory.ts';
 import type { CoverageFile, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../core/records.ts';
 import { GENERATOR, generateClouds, type CloudParams } from '../../../world/generators/earth/clouds/v1.ts';
@@ -109,6 +110,7 @@ describe('build', () => {
       'src:etopo-2022-n45e015',
       'src:foster-2017-co2',
       'src:glottolog-5.3',
+      'src:hyde-3.2.1-population-grid',
       'src:hyde-3.2.1-world-land-use',
       'src:hyde-3.2.1-world-population',
       'src:itinere-2024',
@@ -286,6 +288,41 @@ describe('build', () => {
     expect(territoriesAt(file, 1460, {})).toEqual([]);
     const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
     expect(ts.credits.map((c) => c.label)).toContain('Borders from Cliopatria (Bennett et al. 2025, Seshat)');
+  });
+
+  it('draws where people lived from its grid, whose cells come to the world\'s series at its steps and between them', () => {
+    const dir = latestBuild();
+    const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
+    expect(ts.files.people).toBe('people.lwt');
+    const { header, arrays } = decodeTile<PeopleHeader>(bytes(join(dir, 'people.lwt')));
+    const f = { ...header, cell: arrays[0], land: arrays[1], people: arrays[2] } as PeopleFile;
+    expect(f.steps).toHaveLength(73);
+    expect([f.steps[0], f.steps.at(-1)]).toEqual([-10000, 2015]);
+    expect(f.res).toBe(1);
+    expect(f.people.length).toBe(f.cell.length * f.steps.length);
+    expect(f.sourceRecord?.citation).toContain('Klein Goldewijk');
+    expect(f.description).toContain('reconstruction');
+    // The field's, so that no number about the world is in code.
+    expect(f.range.map((r) => r[1])).toEqual([95, 75, 50, 25, 10, 5, 1]);
+    const { series } = JSON.parse(readFileSync(join(dir, 'series.json'), 'utf8')) as SeriesFile;
+    const points = series.find((x) => x.id === 'field:earth/world-population')!.points;
+    const total = (t: number) => {
+      const i = points.findIndex((p) => p[0] >= t);
+      if (points[i][0] === t) return points[i][1];
+      const [a, b] = [points[i - 1], points[i]];
+      return a[1] + ((b[1] - a[1]) * (t - a[0])) / (b[0] - a[0]);
+    };
+    const now = new Float64Array(f.cell.length);
+    for (const t of [-10000, -9500, -5000, 0, 1, 50, 1000, 1450, 1705, 1955, 2000, 2012.5, 2015]) {
+      expect(peopleAt(f, t, now)).toBe(true);
+      const sum = now.reduce((a, b) => a + b, 0);
+      expect(Math.abs(sum - total(t)) / total(t), `at ${t}: ${sum} against ${total(t)}`).toBeLessThan(5e-5);
+    }
+    expect(peopleAt(f, -10001, now)).toBe(false);
+    expect(peopleAt(f, 2016, now)).toBe(false);
+    expect(ts.credits.map((c) => c.label)).toContain('Population grid from HYDE 3.2.1 (Klein Goldewijk et al. 2017), its cells added up to 1°');
+    // Loaded only when it is asked for, and no heavier than the states of the world.
+    expect(statSync(join(dir, 'people.lwt')).size).toBeLessThan(6e6);
   });
 
   it('shows a moment at the one-sided evidence that bounds it, where that is tighter than its date', () => {

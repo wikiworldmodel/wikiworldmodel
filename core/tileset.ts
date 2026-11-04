@@ -196,7 +196,7 @@ export interface Tileset {
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string; people?: string };
   /** the climate field the land is painted from, and the derived field that paints it */
   climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown> };
   /** attribution the viewer must show for the data it displays */
