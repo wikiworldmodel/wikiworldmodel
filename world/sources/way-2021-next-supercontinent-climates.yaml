@@ -1,0 +1,27 @@
+id: src:way-2021-next-supercontinent-climates
+type: publication
+kind: model
+citation: >-
+  Way, M.J., Davies, H.S., Duarte, J.C. & Green, J.A.M. (2021). The Climates of Earth's Next
+  Supercontinent: Effects of Tectonics, Rotation Rate, and Insolation. Geochemistry, Geophysics,
+  Geosystems 22(8), e2021GC009983.
+authors:
+  - "Way, M.J."
+  - "Davies, H.S."
+  - "Duarte, J.C."
+  - "Green, J.A.M."
+published: 2021
+title: "The Climates of Earth's Next Supercontinent: Effects of Tectonics, Rotation Rate, and Insolation"
+container: Geochemistry, Geophysics, Geosystems 22(8), e2021GC009983
+doi: 10.1029/2021GC009983
+url: https://ntrs.nasa.gov/api/citations/20210018702/downloads/MWayGGGTheClimatesAccepted.pdf
+via: >-
+  The manuscript NASA's Technical Reports Server holds as the accepted version (document 20210018702),
+  which carries the header of its ESSOAr posting (10.1002/essoar.10507331.1); the publisher refused a
+  direct download from here.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in that manuscript, its Introduction and section 2.1, not the journal's typeset version.
+    Citation from Crossref. Quotes checked by script against the text extracted from the PDF, after
+    normalizing whitespace.

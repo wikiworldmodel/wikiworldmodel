@@ -1,0 +1,10 @@
+id: src:smb-sammlung-scharf-gerstenberg-profile
+type: publication
+kind: review
+citation: Staatliche Museen zu Berlin. Sammlung Scharf-Gerstenberg, About us, Profile.
+title: Sammlung Scharf-Gerstenberg, Profile
+url: https://www.smb.museum/en/museums-institutions/sammlung-scharf-gerstenberg/about-us/profile/
+reliability: The museums' account of their own building, cited to tie the Egyptian Museum of 1967 to the building the collection now has.
+verified:
+  by: machine:claude-code
+  how: Read on the museums' site. Quotations checked by script against the page's text.

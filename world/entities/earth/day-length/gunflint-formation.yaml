@@ -1,0 +1,62 @@
+id: earth/day-length/gunflint-formation
+kind: sample
+summary: >-
+  Growth layers of stromatolites in the Gunflint Formation on the Superior craton, read by Pannella
+  as days and years: a day of about 19.5 hours. Layers in stromatolites may be broken by gaps, so this
+  may be a maximum.
+same_as: { wikidata: Q11973265 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Gunflint Formation stromatolites" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Gunflint Formation
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Gunflint Fm, Superior"
+      quote: 1880 Gunflint Fm, Superior 19.5 0.1 stromatolites
+  evidence:
+    prop: evidence
+    value: biosignature
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Gunflint Fm, Superior"
+      quote: 1880 Gunflint Fm, Superior 19.5 0.1 stromatolites
+  date:
+    prop: date
+    value: 1880 Ma
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Gunflint Fm, Superior"
+      quote: 1880 Gunflint Fm, Superior 19.5 0.1 stromatolites
+    method: compilation
+  location:
+    prop: location
+    value: { lat: 48.184, lon: -89.835, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-gunflint-range, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A representative point, the gazetteer's for the Gunflint iron range: the compilation names only the
+      Superior craton, and Pannella (1972), the study behind the row, was not read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  day-length:
+    prop: day_length
+    value: { mean: 19.5, sd: 0.1 }
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Gunflint Fm, Superior"
+      quote: 1880 Gunflint Fm, Superior 19.5 0.1 stromatolites
+    method: compilation
+    note: >-
+      As the compilation gives it; its uncertainty is read as a standard deviation, as the compilation's
+      resampling does. Both Mitchell and Kirscher and Lantink et al. (2022) warn that hidden gaps in the
+      layering make estimates from stromatolites possible maximum values, and Williams (2000) reports
+      that their reliability has been challenged.

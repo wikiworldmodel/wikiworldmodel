@@ -1,0 +1,25 @@
+id: src:iasi-2024-neanderthal-ancestry
+type: publication
+kind: measurement
+citation: >-
+  Iasi, L.N.M., Chintalapati, M., Skov, L., Mesa, A.B., Hajdinjak, M., Peter, B.M. & Moorjani, P.
+  (2024). Neanderthal ancestry through time: Insights from genomes of ancient and present-day
+  humans. Science 386(6727), eadq3010.
+authors:
+  - "Iasi, L.N.M."
+  - "Chintalapati, M."
+  - "Skov, L."
+  - "Mesa, A.B."
+  - "Hajdinjak, M."
+  - "Peter, B.M."
+  - "Moorjani, P."
+published: 2024
+title: "Neanderthal ancestry through time: Insights from genomes of ancient and present-day humans"
+container: "Science 386(6727), eadq3010"
+doi: 10.1126/science.adq3010
+verified:
+  by: machine:claude-code
+  how: >-
+    Author manuscript in PubMed Central (PMC12184710), retrieved as XML through NCBI E-utilities;
+    the abstract and the passages cited were read, without the supplementary information. Quotes
+    checked by script against that text and the abstract in Europe PMC.

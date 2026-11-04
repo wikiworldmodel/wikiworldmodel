@@ -1,0 +1,12 @@
+id: src:wikidata-kulturforum
+type: database-record
+kind: compilation
+citation: "Wikidata, item Q386482 (Kulturforum, collection of cultural buildings in Berlin), property P625 (coordinate location)."
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q386482
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a marker to within a few hundred metres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (52.5083, 13.3678) read from the item's JSON (Special:EntityData/Q386482.json).

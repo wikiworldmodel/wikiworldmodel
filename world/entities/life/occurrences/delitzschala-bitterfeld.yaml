@@ -1,0 +1,68 @@
+id: life/occurrences/delitzschala-bitterfeld
+kind: occurrence
+summary: >-
+  Delitzschala bitterfeldensis, a palaeodictyopteran from a borehole at Bitterfeld, Germany, in the Sandersdorf Formation:
+  among the oldest fossils of a winged insect. PBDB collection 132797.
+same_as: { pbdb: "occ:1070809" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Delitzschala, Bitterfeld" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Delitzschala bitterfeldensis n. gen. n. sp.
+    source: { ref: src:pbdb/collection-132797, loc: "occurrence 1070809, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:wang-2016-insect-stem-groups
+      loc: "Fig. 3, caption"
+      quote: "Numbers from one to eight are stand for species Delitzschala bitterfeldensis"
+    note: >-
+      The figure uses it among stem-group first appearances of winged insects.
+  location:
+    prop: location
+    value: { lat: 51.599998, lon: 12.24, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-132797, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      "Bore WISBAW 1315", at 517.6–517.78 m depth.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Sandersdorf Formation
+    source: { ref: src:pbdb/collection-132797, loc: "formation" }
+  date-pbdb:
+    prop: date
+    value: { lo: 326.9 Ma, hi: 323.6 Ma }
+    source: { ref: src:pbdb/collection-132797, loc: "early_interval (Arnsbergian), max_ma, min_ma" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The PBDB's ages for the Arnsbergian, on its own scale; the reference is Brauckmann and Schneider (1996), who were not
+      read. Preferred as the narrower, and because it agrees with Prokop et al. (2026), who put the earliest palaeodictyopterid
+      record about 325 million years ago.
+  date-osozawa-nel-2024:
+    prop: date
+    value: { mean: 319.5 Ma, sd: 6.5 Myr }
+    source:
+      ref: src:osozawa-nel-2024-paleoptera
+      loc: "Table 3, row Delitzschala bitterfeldensis"
+      quote: "Delitzschala bitterfeldensis a Spilapteridae a Palaeodictyoptera a Palaeoptera Bitterfeld/Delitzsch Carboniferous Namurian 319.5 ± 6.5 Correlation"
+    method: stratigraphic
+    note: >-
+      By correlation, as the table gives it. The ± level is not stated, so it is read as 1σ, though it looks like half the
+      span of the Namurian.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/arthropoda
+    source: { ref: src:pbdb/collection-132797, loc: "occurrence 1070809, accepted_name; the PBDB classification" }

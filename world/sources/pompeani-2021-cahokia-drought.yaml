@@ -1,0 +1,23 @@
+id: src:pompeani-2021-cahokia-drought
+type: publication
+kind: measurement
+citation: >-
+  Pompeani, D.P., Bird, B.W., Wilson, J.J., Gilhooly, W.P., Hillman, A.L., Finkenbinder, M.S. & Abbott, M.B. (2021). Severe Little Ice Age
+  drought in the midcontinental United States during the Mississippian abandonment of Cahokia. Scientific Reports 11, 13829.
+authors:
+  - "Pompeani, D.P."
+  - "Bird, B.W."
+  - "Wilson, J.J."
+  - "Gilhooly, W.P."
+  - "Hillman, A.L."
+  - "Finkenbinder, M.S."
+  - "Abbott, M.B."
+published: 2021
+title: Severe Little Ice Age drought in the midcontinental United States during the Mississippian abandonment of Cahokia
+container: Scientific Reports
+doi: 10.1038/s41598-021-92900-x
+url: https://europepmc.org/article/PMC/PMC8257696
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC8257696). Quotes checked by script against it, after normalizing whitespace.

@@ -1,0 +1,20 @@
+id: src:dececchi-2016-wings-before-bird
+type: publication
+kind: model
+citation: >-
+  Dececchi, T.A., Larsson, H.C. & Habib, M.B. (2016). The wings before the bird: an evaluation
+  of flapping-based locomotory hypotheses in bird antecedents. PeerJ 4, e2159.
+authors:
+  - "Dececchi, T.A."
+  - "Larsson, H.C."
+  - "Habib, M.B."
+published: 2016
+title: "The wings before the bird: an evaluation of flapping-based locomotory hypotheses in bird antecedents"
+container: PeerJ 4, e2159
+doi: 10.7717/peerj.2159
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC4941780) read via Europe PMC (fullTextXML), for its tests of flap-based
+    locomotion before Paraves. Quotes checked by script against that text. Metadata from
+    Crossref.

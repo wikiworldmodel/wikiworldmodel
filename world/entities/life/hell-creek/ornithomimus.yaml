@@ -1,0 +1,52 @@
+id: life/taxa/ornithomimus
+kind: taxon
+summary: >-
+  An ostrich-like theropod, rare in the Hell Creek Formation, where the snapshot names it only
+  to genus. Its sizes here are those of the genus, from Canadian material.
+same_as: { pbdb: "txn:38544" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Ornithomimus", en: "Ornithomimus" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 38544"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: small-theropod
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: biped
+    source:
+      ref: src:osborn-1917-skeletal-adaptations
+      loc: "Resemblances to the Ornithomimidae"
+      quote: "a close analogy in adaptation to bipedal locomotion, cursorial and saltatory"
+    note: >-
+      Said of Tyrannosaurus, Struthiomimus and Ornithomimus together.
+  length-holtz-2012:
+    prop: body_length
+    value: 3.5
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 12, Ornithomimids"
+      quote: "Ornithomimus bird mimic Late Cretaceous (80-65.5 MYA) 11.5 ft (3.5 m) Lion"
+    method: compilation
+    note: >-
+      A whole-genus figure, not a Hell Creek specimen.
+  mass-benson-2014:
+    prop: body_mass
+    value: 178.51
+    source:
+      ref: src:benson-2014-dinosaur-body-mass
+      loc: "Dataset S1, sheet \"Mass estimates\", row Ornithomimus_edmontonicus (AMNH 5884)"
+      quote: "Ornithomimus_edmontonicus 178.508102518136 178.508102518136 measured circumferences"
+    method: model
+    basis: reconstruction
+    note: >-
+      O. edmontonicus, an older species than the Hell Creek rows, not a Hell Creek specimen; the
+      larger of two rows, the other (ROM 851) 83.52 kg.

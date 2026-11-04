@@ -61,4 +61,6 @@ verified:
     heads. The scans print the cedilla of facade as a plain letter or a g, and quotations keep the
     plain letter. The Amphitheatrum Flavium and Arcus Constantini entries were also fetched from
     LacusCurtius with WebFetch and agree with the scans, apart from a digit the first scan
-    misreads (315-316).
+    misreads (315-316). The obelisk entries for the objects that moved, Obeliscus Augusti and
+    Obeliscus Augusti in Circo Maximo (366-367) and Obeliscus Constantii (367-368), were read at
+    LacusCurtius, with their quotations checked by script against that text.

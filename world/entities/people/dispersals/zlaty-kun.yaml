@@ -1,0 +1,86 @@
+id: people/dispersals/zlaty-kun
+kind: occurrence
+summary: >-
+  The genome of a woman from Zlatý kůň, Czechia, from a skull whose radiocarbon dates failed: her
+  age comes from her genome, at about 45,000 years or more. Her population appears to have left no
+  descendants among later Europeans or Asians.
+same_as: { wikidata: Q117722985 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Zlatý kůň }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: modern human
+    source:
+      ref: src:prufer-2021-zlaty-kun
+      loc: title
+      quote: "A genome sequence from a modern human skull over 45,000 years old from Zlatý kůň in Czechia"
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:prufer-2021-zlaty-kun
+      loc: abstract
+      quote: "Here, we analyse a genome generated from the skull of a female individual from Zlatý kůň, Czechia."
+  location:
+    prop: location
+    value: { lat: 49.915833, lon: 14.069167, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-zlaty-kun, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: The hill and protected area of Zlatý kůň, not the cave.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  earlier-than:
+    prop: earlier_than
+    value: 45 ka
+    source:
+      - ref: src:prufer-2021-zlaty-kun
+        loc: "main text, closing paragraph"
+        quote: "Our estimated age of ~45,000 years or even older"
+      - ref: src:prufer-2021-zlaty-kun
+        loc: "main text, on the Neanderthal segments"
+        quote: "Zlatý kůň is of approximately the same age as the ~45,000-year-old Ust’-Ishim individual or up to a few hundred years older"
+    method: ancestry-segments
+    note: >-
+      From her Neanderthal segments, which are longer than Ust'-Ishim's. Direct radiocarbon dates on
+      the skull scatter between about 15 and 27 ka, and the authors take them, and a date on
+      hydroxyproline, to be too young because the bone is contaminated.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        From a population that appears to have contributed neither to later Europeans nor to Asians,
+        with about 3% Neanderthal ancestry. Distant family links tie her to the Ranis individuals,
+        in the same small, isolated population.
+    source:
+      - ref: src:prufer-2021-zlaty-kun
+        loc: abstract
+        quote: "she belonged to a population that appears to have contributed genetically neither to later Europeans nor to Asians"
+      - ref: src:prufer-2021-zlaty-kun
+        loc: abstract
+        quote: "Her genome carries ~3% Neanderthal ancestry"
+      - ref: src:sumer-2025-ranis-genomes
+        loc: abstract
+        quote: "distant familial relationships link the Ranis and Zlatý kůň individuals"
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:prufer-2021-zlaty-kun
+      loc: title
+      quote: "a modern human skull"
+  after-the-admixture:
+    rel: after
+    to: people/dispersals/neanderthal-admixture
+    source:
+      ref: src:sumer-2025-ranis-genomes
+      loc: abstract
+      quote: "Neanderthal segments that originate from a single admixture event shared with all non-Africans"

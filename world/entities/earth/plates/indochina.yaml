@@ -1,0 +1,9 @@
+id: earth/plates/indochina
+kind: plate
+summary: Plate 615 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Indochina }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 615", quote: "INC  Indochina" }

@@ -1,0 +1,44 @@
+id: earth/futures/amasia
+kind: event/formation
+summary: >-
+  The assembly of Amasia, a future supercontinent gathered around the North Pole by the closing of the
+  Arctic, with every continent but Antarctica. It happens only in the alternative of that name, so it
+  has no date in the default picture.
+author: machine:claude-code
+same_as: { wikidata: Q455417 }
+claims:
+  name:
+    prop: name
+    value: { en: Amasia }
+    source:
+      - ref: src:mitchell-2012-orthoversion
+        loc: abstract
+        quote: the next supercontinent--'Amasia'--will form
+      - ref: src:duarte-2018-aurica
+        loc: section 5, p. 51
+        quote: The resulting continent was named Amasia (following a previous proposal by Hoffman, 1997).
+    note: >-
+      Mitchell et al. use the name for the next supercontinent however it forms, and offer orthoversion
+      as a way for it to form. Huang et al. (2022, National Science Review 9, nwac205) use it for one
+      assembled by closing the Pacific instead.
+  date:
+    prop: date
+    value: 200 Myr from now
+    alt: alt:next-supercontinent/amasia
+    source:
+      - ref: src:davies-2018-next-supercontinent
+        loc: section 4.4
+        quote: In 200 Ma, Amasia has formed by aggregating all continental masses except Antarctica
+      - ref: src:davies-2020-future-tides
+        loc: section 3.4, p. 295
+        quote: around the North Pole in 200 Ma
+      - ref: src:way-2021-next-supercontinent-climates
+        loc: section 2.1, manuscript p. 3
+        quote: Amasia (forming around 200 million years from now; Mitchell et al., 2012)
+    method: model
+    basis: projection
+    note: >-
+      Holds only in the alternative "Amasia". The date is the modellers' choice, not a result: Davies et
+      al. write that "the timing of supercontinent formation was set to 200 Ma" (section 5.5), and that
+      with faster plates it could form in 100 Ma or sooner (section 6). Only the abstract of Mitchell et
+      al. could be read, and it gives no date.

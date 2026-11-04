@@ -1,0 +1,13 @@
+id: src:wikidata-xuanquanzhi
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q2598504 (Xuanquanzhi, an archaeological site in Gansu), property P625 (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q2598504
+license: CC0-1.0
+reliability: Crowd-edited. UNESCO's list of the corridor's sites, which gives the site's own point, was not reached.
+verified:
+  by: machine:claude-code
+  how: Coordinates (40.264906, 95.329734) read from the item's JSON (Special:EntityData/Q2598504.json, revision 2372656316, modified 2025-07-03).

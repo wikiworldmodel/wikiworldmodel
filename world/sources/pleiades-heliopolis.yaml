@@ -1,0 +1,15 @@
+id: src:pleiades-heliopolis
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 727117, "Heliopolis" (al-Matarīya, Cairo, Egypt).
+snapshot: 2026-11-04
+container: Pleiades
+url: https://pleiades.stoa.org/places/727117
+license: CC-BY-3.0
+reliability: A scholarly gazetteer of ancient places; its representative point is computed from the locations it lists.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/727117/json) read directly: representative point
+    30.1294036°N, 31.3074812°E; the location "OSM location of مسلة المطرية" (the obelisk standing at al-Matariya), marked certain; its own Wikidata reference is Q191687.

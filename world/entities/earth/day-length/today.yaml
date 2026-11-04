@@ -1,0 +1,39 @@
+id: earth/day-length/today
+kind: event/astronomical
+summary: >-
+  The length of the day and the Moon's distance as they are measured today, the end that every older
+  estimate is compared with.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "The day and the Moon's distance today" }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: 0 Ma
+    unsourced: >-
+      The source's table says only "Modern" and names no year; placed at the present of the time axis.
+  day-length:
+    prop: day_length
+    value: 24
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: Table 1, row "Length of solar day", column "Modern"
+      quote: Length of solar day (hours) (17.1 ± 1.1) (18.8 ± 0.6) 18.9 ± 0.5 (20.8) 21.9 ± 0.4 24.00
+    note: >-
+      The table's 24.00 h. The solar day today is on average about 2.5 ms longer than 24 h (de Winter et al.
+      2020, section 4.1), far below what the older estimates can resolve.
+  moon-distance:
+    prop: moon_distance
+    value: 60.27
+    source:
+      - ref: src:williams-2000-earth-rotation
+        loc: Table 1, row "Lunar semimajor axis", column "Modern"
+        quote: Lunar semimajor axis (RE) (51.9 ± 3.3) (54.6 ± 1.8) 54.7 ± 0.7 (57.1) 58.16 ± 0.30 60.27
+      - ref: src:williams-2000-earth-rotation
+        loc: Table 2, footnote
+        quote: Lunar semimajor axis of 384,400 km [Yoder, 1995]
+    note: >-
+      Farhat et al. (2022, Table D.3) give a long-term mean of 60.142611 Earth radii, which they say differs from
+      some published values because it is averaged.

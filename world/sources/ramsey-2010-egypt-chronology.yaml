@@ -1,0 +1,34 @@
+id: src:ramsey-2010-egypt-chronology
+type: publication
+kind: measurement
+citation: >-
+  Bronk Ramsey, C., Dee, M.W., Rowland, J.M., Higham, T.F.G., Harris, S.A., Brock, F., Quiles,
+  A., Wild, E.M., Marcus, E.S. & Shortland, A.J. (2010). Radiocarbon-based chronology for
+  dynastic Egypt. Science 328(5985), 1554–1557.
+authors:
+  - "Bronk Ramsey, C."
+  - "Dee, M.W."
+  - "Rowland, J.M."
+  - "Higham, T.F.G."
+  - "Harris, S.A."
+  - "Brock, F."
+  - "Quiles, A."
+  - "Wild, E.M."
+  - "Marcus, E.S."
+  - "Shortland, A.J."
+published: 2010
+title: Radiocarbon-based chronology for dynastic Egypt
+container: Science 328(5985), 1554–1557
+doi: 10.1126/science.1189395
+url: https://www.ltrr.arizona.edu/~tswetnam/CMATE/Ramsey%20et%20al%20Science%202010%20Egypt%20radiocarbon.pdf
+via: A copy of the publisher's PDF on a University of Arizona course page.
+reliability: >-
+  A Bayesian model of 211 radiocarbon dates on short-lived plants, with the historical order and
+  lengths of reigns as priors. Its Table 1 sets the modelled accession dates beside those of the
+  conventional chronologies of Shaw (2000) and Hornung et al. (2006), neither of which could be
+  read directly here.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full; Table 1 and the discussion of it checked by script against the text extracted
+    from the PDF.

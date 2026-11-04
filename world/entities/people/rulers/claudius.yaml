@@ -1,0 +1,83 @@
+id: people/rulers/claudius
+kind: person
+summary: >-
+  The fourth Roman emperor, brother of Germanicus, raised by the guard after the murder of
+  Gaius.
+author: machine:claude-code
+same_as: { wikidata: Q1411 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Claudius }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Claudius 2.1"
+      quote: Claudius was born at Lugdunum
+  start:
+    prop: start
+    value: 1 August 10 BCE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Claudius 2.1"
+      quote: Claudius was born at Lugdunum on the Kalends of Augustus in the consulship of Iullus Antonius and Fabius Africanus
+    method: historical-account
+    note: >-
+      The Kalends of August is the 1st, and the consulship of Antonius and Africanus is 10 BCE.
+      In the early decades of the Julian calendar the pontiffs misapplied its leap years, so
+      this Roman date may differ by a day or more from the proleptic Julian date of the time
+      axis, by an amount that depends on the reconstruction; the Roman date is kept.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/caligula, edge: end }
+    source:
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Claudius 10.1"
+        quote: he became emperor in his fiftieth year by a remarkable freak of fortune
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 61 (60.34.3), vol. 8 p. 31"
+        quote: having been emperor thirteen years, eight months and twenty days
+    method: historical-account
+    note: >-
+      He was found and taken to the camp on the day of the murder and accepted by the senate the
+      next day (Suetonius 10; Dio 60.1); Dio's count of his reign starts from the day of the
+      murder.
+  end:
+    prop: end
+    value: 13 October 54 CE
+    source:
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Claudius 45"
+        quote: He died on the third day before the Ides of October in the consulship of Asinius Marcellus and Acilius Aviola
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 61 (60.34.3), vol. 8 p. 31"
+        quote: It was the thirteenth of October
+    method: historical-account
+    note: The third day before the Ides of October is the 13th, and that consulship is 54 CE.
+  location:
+    prop: location
+    value: { lat: 45.758866, lon: 4.819482, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-lugdunum, loc: "representative point" }
+    method: gazetteer
+    note: Marked at his birthplace, Lugdunum (Lyon), at Pleiades' point.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Claudius 10.1"
+      quote: he became emperor in his fiftieth year
+    note: Princeps.

@@ -1,0 +1,20 @@
+id: src:manning-2023-hittite-drought
+type: publication
+kind: measurement
+citation: >-
+  Manning, S.W., Kocik, C., Lorentzen, B. & Sparks, J.P. (2023). Severe multi-year drought coincident with Hittite collapse around
+  1198–1196 BC. Nature 614, 719–724.
+authors:
+  - "Manning, S.W."
+  - "Kocik, C."
+  - "Lorentzen, B."
+  - "Sparks, J.P."
+published: 2023
+title: Severe multi-year drought coincident with Hittite collapse around 1198–1196 BC
+container: Nature
+doi: 10.1038/s41586-022-05693-y
+url: https://europepmc.org/article/PMC/PMC9946833
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC9946833). Quotes checked by script against it, after normalizing whitespace.

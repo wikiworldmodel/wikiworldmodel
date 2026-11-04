@@ -1,0 +1,13 @@
+id: src:cdli-wiki-uruk
+type: database-record
+kind: review
+snapshot: "2026-11-04"
+citation: >-
+  Cuneiform Digital Library Initiative, CDLI Wiki: "Uruk (modern Warka)". Last modified 13 December 2011 by user "englund".
+title: Uruk (modern Warka)
+container: CDLI Wiki
+url: https://cdli.ox.ac.uk/wiki/uruk_mod._warka
+reliability: A short reference article in a scholarly project's wiki, without notes; its dates are period dates, and its sizes rounded.
+verified:
+  by: machine:claude-code
+  how: Page read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

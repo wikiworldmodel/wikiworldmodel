@@ -1,0 +1,21 @@
+id: src:djakovic-2022-chatelperronian
+type: publication
+kind: model
+citation: >-
+  Djakovic, I., Key, A. & Soressi, M. (2022). Optimal linear estimation models predict 1400-2900
+  years of overlap between Homo sapiens and Neandertals prior to their disappearance from France
+  and northern Spain. Scientific Reports 12(1), 15000.
+authors:
+  - "Djakovic, I."
+  - "Key, A."
+  - "Soressi, M."
+published: 2022
+title: "Optimal linear estimation models predict 1400-2900 years of overlap between Homo sapiens and Neandertals prior to their disappearance from France and northern Spain"
+container: "Scientific Reports 12(1), 15000"
+doi: 10.1038/s41598-022-19162-z
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC9561710): Bayesian and optimal linear estimation models of
+    the Châtelperronian, the Protoaurignacian and the last Neandertals of France and northern
+    Spain. Quoted passages checked by script against the text retrieved.

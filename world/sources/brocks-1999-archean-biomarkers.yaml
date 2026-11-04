@@ -1,0 +1,20 @@
+id: src:brocks-1999-archean-biomarkers
+type: publication
+kind: measurement
+citation: >-
+  Brocks, J.J., Logan, G.A., Buick, R. & Summons, R.E. (1999). Archean Molecular Fossils and the
+  Early Rise of Eukaryotes. Science 285(5430), 1033–1036.
+authors:
+  - "Brocks, J.J."
+  - "Logan, G.A."
+  - "Buick, R."
+  - "Summons, R.E."
+published: 1999
+title: "Archean Molecular Fossils and the Early Rise of Eukaryotes"
+container: Science 285(5430), 1033–1036
+doi: 10.1126/science.285.5430.1033
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 10446042); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

@@ -1,0 +1,64 @@
+id: earth/day-length/rocknest-formation
+kind: sample
+summary: >-
+  Carbonate parasequences and grand cycles of the Rocknest Formation in the Coronation Basin of the
+  Wopmay Orogen, Canada, read by Mitchell and Kirscher as precession and short eccentricity cycles: a
+  day of about 18 hours.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Rocknest Formation cycles" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Rocknest Formation
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Methods
+      quote: the ~1,890 Ma Rocknest Formation
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Rocknest Fm, Slave"
+      quote: 1890 Rocknest Fm, Slave 17.9 – cyclostratigraphy*
+    note: >-
+      The table's mark says that modern cyclostratigraphic methods were not used for this row.
+  date:
+    prop: date
+    value: 1890 Ma
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Rocknest Fm, Slave"
+      quote: 1890 Rocknest Fm, Slave 17.9 – cyclostratigraphy*
+    method: compilation
+  location:
+    prop: location
+    value: { lat: 65.6503, lon: -114.38473, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-rocknest-lake, loc: "P625 coordinate location" }
+    method: gazetteer
+    confidence: likely
+    note: >-
+      Placed at Rocknest Lake, whose name the formation shares. The compilation names only the Coronation
+      Basin of the Wopmay Orogen, and no source read gives the sections' coordinates or ties them to the
+      lake, hence the confidence.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  day-length:
+    prop: day_length
+    value: { lo: 17.30, hi: 18.41 }
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Methods
+      quote: "(LOD = 17.30 and 18.41 h, respectively)"
+    method: compilation
+    note: >-
+      Mitchell and Kirscher's own reading of sections measured by Grotzinger (1986), which were not read:
+      about 8.75 precession cycles per short eccentricity cycle give a precession of 12.5 kyr. The two
+      numbers are the shortest and the longest precession components; the table gives their average, 17.9 h.

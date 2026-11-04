@@ -1,0 +1,10 @@
+id: src:turismo-roma-flaminio-obelisk
+type: publication
+kind: review
+citation: Turismo Roma (City of Rome). The Flaminio Obelisk.
+title: The Flaminio Obelisk
+url: https://www.turismoroma.it/en/places/flaminio-obelisk
+reliability: The city's tourist office; a short description without references.
+verified:
+  by: machine:claude-code
+  how: Read on the site. Quotations checked by script against the page's text.

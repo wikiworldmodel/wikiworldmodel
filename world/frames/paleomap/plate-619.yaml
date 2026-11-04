@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-619
+type: frame
+kind: plate
+title: SE Gulf of Thailand, E. Malaysia and E. Sumatra (PALEOMAP plate 619)
+note: Named from PALEOMAP_PlateModel.rot, "GOT SE Gulf of Thailand, E. Malaysia, E. Sumatra". No plate record has been written for it yet.
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 619
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 619

@@ -1,0 +1,23 @@
+id: src:lord-2020-woolly-rhinoceros
+type: publication
+kind: measurement
+citation: >-
+  Lord, E., Dussex, N., Kierczak, M., Díez-del-Molino, D., Ryder, O.A., Stanton, D.W.G., Gilbert,
+  M.T.P., Sánchez-Barreiro, F., Zhang, G., Sinding, M.-H.S., … & Dalén, L. (2020). Pre-extinction
+  demographic stability and genomic signatures of adaptation in the woolly rhinoceros. Current
+  Biology 30(19), 3871–3879.
+authors:
+  - "Lord, E."
+  - "Dussex, N."
+  - "Kierczak, M."
+  - "Díez-del-Molino, D."
+  - "Dalén, L."
+published: 2020
+title: "Pre-extinction demographic stability and genomic signatures of adaptation in the woolly rhinoceros"
+container: "Current Biology 30(19), 3871–3879"
+doi: 10.1016/j.cub.2020.07.046
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the Europe PMC record (PMID 32795436); the full text could not
+    be read here. Quotes checked by script against the text retrieved, after normalizing whitespace.

@@ -1,0 +1,17 @@
+id: src:wikidata-ilave
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q3348236 (Ilave), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q3348236
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "capital city of El Collao, Puno, Peru". A point for the
+  named place, of uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (-16.0866, -69.6354) read from the item's JSON
+    (Special:EntityData/Q3348236.json) on 3 November 2026.

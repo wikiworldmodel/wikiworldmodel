@@ -1,0 +1,65 @@
+id: earth/ice-ages/mid-pleistocene-transition
+kind: event/transition
+summary: >-
+  The change in the rhythm of the ice ages: glacial cycles of about 40,000 years gave way to larger,
+  lopsided cycles of about 100,000 years, with no matching change in the Earth's orbit.
+author: machine:claude-code
+same_as: { wikidata: Q64707157 }
+claims:
+  name:
+    prop: name
+    value: { en: Mid-Pleistocene Transition }
+    source: { ref: src:chalk-2017-ice-age-intensification, loc: title }
+  start-elderfield-2012:
+    prop: start
+    value: 1250 ka
+    source:
+      ref: src:elderfield-2012-mid-pleistocene
+      loc: abstract
+      quote: Earth's climate underwent a fundamental change between 1250 and 700 thousand years ago, the mid-Pleistocene transition (MPT), when the dominant periodicity of climate cycles changed from 41 thousand to 100 thousand years in the absence of substantial change in orbital forcing.
+    method: expert-estimate
+    rank: preferred
+    note: The whole span of the change in periodicity, which holds the narrower span of the other claim.
+  start-chalk-2017:
+    prop: start
+    value: 1200 ka
+    source:
+      - ref: src:chalk-2017-ice-age-intensification
+        loc: abstract
+        quote: During the Mid-Pleistocene Transition (MPT; 1,200–800 kya)
+      - ref: src:legrain-2023-gradual-transition
+        loc: abstract
+        quote: The Mid-Pleistocene Transition (~1.2–0.8 million years) corresponds to a time interval when high-amplitude ~100,000 years glacial–interglacial cycles replaced the more subdued ~40,000 years glacial–interglacial cycles.
+    method: expert-estimate
+  start-elderfield-2012-antarctic-ice:
+    prop: start
+    value: 900 ka
+    source:
+      ref: src:elderfield-2012-mid-pleistocene
+      loc: abstract
+      quote: Our results suggest that the MPT was initiated by an abrupt increase in Antarctic ice volume 900 thousand years ago.
+    method: stratigraphic
+    note: >-
+      An abrupt start, found by separating deep-ocean temperature from ice volume in foraminiferal oxygen
+      isotopes. Legrain et al. (2023), with conceptual models, find a gradual change more likely.
+  end-elderfield-2012:
+    prop: end
+    value: 700 ka
+    source:
+      ref: src:elderfield-2012-mid-pleistocene
+      loc: abstract
+      quote: Earth's climate underwent a fundamental change between 1250 and 700 thousand years ago
+    method: expert-estimate
+    rank: preferred
+    note: Goes with the start of the same span.
+  end-chalk-2017:
+    prop: end
+    value: 800 ka
+    source:
+      - ref: src:chalk-2017-ice-age-intensification
+        loc: abstract
+        quote: During the Mid-Pleistocene Transition (MPT; 1,200–800 kya)
+      - ref: src:legrain-2023-gradual-transition
+        loc: abstract
+        quote: The Mid-Pleistocene Transition (~1.2–0.8 million years)
+    method: expert-estimate

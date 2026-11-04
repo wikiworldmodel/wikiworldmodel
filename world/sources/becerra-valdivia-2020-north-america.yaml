@@ -1,0 +1,18 @@
+id: src:becerra-valdivia-2020-north-america
+type: publication
+kind: model
+citation: >-
+  Becerra-Valdivia, L. & Higham, T. (2020). The timing and effect of the earliest human arrivals in
+  North America. Nature 584(7819), 93–97.
+authors:
+  - "Becerra-Valdivia, L."
+  - "Higham, T."
+published: 2020
+title: "The timing and effect of the earliest human arrivals in North America"
+container: "Nature 584(7819), 93–97"
+doi: 10.1038/s41586-020-2491-6
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

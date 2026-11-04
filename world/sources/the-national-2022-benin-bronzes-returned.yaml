@@ -1,0 +1,11 @@
+id: src:the-national-2022-benin-bronzes-returned
+type: publication
+kind: review
+citation: The National, with AFP (20 February 2022). Nigeria's looted Benin bronzes returned more than a century later.
+published: 2022
+title: Nigeria's looted Benin bronzes returned more than a century later
+url: https://www.thenationalnews.com/world/africa/2022/02/20/nigerias-looted-benin-bronzes-returned-more-than-a-century-later
+reliability: A news report published the day after the ceremony; it dates the ceremony only as Saturday.
+verified:
+  by: machine:claude-code
+  how: Read on the newspaper's site. Quotations checked by script against the page's text.

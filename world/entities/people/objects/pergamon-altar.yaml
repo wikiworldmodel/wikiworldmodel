@@ -1,0 +1,224 @@
+id: people/objects/pergamon-altar
+kind: artefact/moved
+summary: >-
+  The great altar of Pergamon, as far as it moved: chiefly its frieze, 113 m of gods fighting giants,
+  carved in the second quarter of the second century BCE. Dug out of a Byzantine wall from 1878 and shipped
+  to Berlin, it was shown in three museums there, taken to the Soviet Union in 1945 and returned to East
+  Berlin in 1958.
+author: machine:claude-code
+same_as: { wikidata: Q158058, pleiades: 2604669 }
+phases:
+  - id: pergamon
+    label: Pergamon
+  - id: altes-museum
+    label: Altes Museum, Berlin
+  - id: first-pergamonmuseum
+    label: First Pergamonmuseum, Berlin
+  - id: storage
+    label: In storage in Berlin
+    gap: true
+  - id: pergamonmuseum
+    label: Pergamonmuseum, Berlin
+  - id: zoo-tower
+    label: Flak tower at the Zoo, Berlin
+  - id: hermitage
+    label: Hermitage, Leningrad
+  - id: pergamonmuseum-again
+    label: Pergamonmuseum, Berlin
+claims:
+  name:
+    prop: name
+    value: { en: Pergamon Altar }
+    source: { ref: src:smb-eighth-wonder-of-the-world, loc: subtitle, quote: "The recent story of the Pergamon Altar" }
+  pergamon-start:
+    prop: start
+    subject: "@pergamon"
+    value: { lo: 175 BCE, hi: 151 BCE }
+    source:
+      ref: src:smb-eighth-wonder-of-the-world
+      loc: caption, the north frieze of the altar
+      quote: "The north frieze of the Altar (2nd Quarter 2nd century BCE)"
+    method: historical-account
+    note: The museum's date, written out as the years of that quarter. It lay broken and built into a Byzantine wall on the acropolis before it left, so the marker has the same place throughout.
+  pergamon-location:
+    prop: location
+    subject: "@pergamon"
+    value: { lat: 39.130889, lon: 27.183858, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-great-altar-at-pergamon, loc: "place 2604669, representative point" }
+    method: gazetteer
+  pergamon-frame:
+    prop: frame
+    subject: "@pergamon"
+    value: frame:paleomap/plate-510
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  altes-museum-start:
+    prop: start
+    subject: "@altes-museum"
+    value: { lo: February 1879 CE, hi: 1880 CE }
+    source:
+      - ref: src:conze-1880-ergebnisse-pergamon
+        loc: "p. 22, Humann's narrative, on the loads of January 1879"
+        quote: "Die Reliefs gelangten im Februar glücklich nach Berlin"
+      - ref: src:smb-eighth-wonder-of-the-world
+        loc: "section before 'The Pergamon Altar arrives in Berlin'"
+        quote: "The excavation of the largest known altar of the ancient world lasted two years, with the initial campaign coming to an end in 1880."
+      - ref: src:smb-eighth-wonder-of-the-world
+        loc: "section 'The Pergamon Altar arrives in Berlin'"
+        quote: "they were exhibited in the heart of Berlin, in the Rotunda of the Altes Museum"
+    method: documentary
+    note: >-
+      A group that moved over months, so a range, from the first shipment reaching Berlin to the end of the
+      first campaign. A few pieces had gone earlier: Humann sent the first reliefs from the wall to Berlin
+      in the early 1870s and more in 1878. Later campaigns added more.
+  altes-museum-location:
+    prop: location
+    subject: "@altes-museum"
+    value: { lat: 52.519444, lon: 13.398889, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-altes-museum, loc: "Q156722, P625 coordinate location" }
+    method: gazetteer
+  altes-museum-frame:
+    prop: frame
+    subject: "@altes-museum"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  first-pergamonmuseum-start:
+    prop: start
+    subject: "@first-pergamonmuseum"
+    value: 1901 CE
+    source:
+      ref: src:smb-eighth-wonder-of-the-world
+      loc: "section 'A museum for the Pergamon Altar'"
+      quote: "temporary housing of the Pergamon finds in the Altes Museum came to an end in 1901 when the first Pergamonmuseum was built."
+    method: historical-account
+  first-pergamonmuseum-location:
+    prop: location
+    subject: "@first-pergamonmuseum"
+    value: { lat: 52.521, lon: 13.396, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-pergamon-museum, loc: "Q157298, P625 coordinate location" }
+    method: gazetteer
+    note: Placed at the present museum's point; the account read does not place the first building.
+  first-pergamonmuseum-frame:
+    prop: frame
+    subject: "@first-pergamonmuseum"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  storage-start:
+    prop: start
+    subject: "@storage"
+    value: 1908 CE
+    source:
+      - ref: src:smb-eighth-wonder-of-the-world
+        loc: "section 'A museum for the Pergamon Altar'"
+        quote: "his exhibition was closed as soon as 1908 and the first Pergamonmuseum pulled down in January 1909."
+      - ref: src:smb-eighth-wonder-of-the-world
+        loc: "section 'A museum for the Pergamon Altar'"
+        quote: "The excavation finds were put in storage"
+    method: historical-account
+    note: The account does not say where they were stored, so this phase has no place, and the marker stays where it was.
+  pergamonmuseum-start:
+    prop: start
+    subject: "@pergamonmuseum"
+    value: 1930 CE
+    source:
+      ref: src:smb-eighth-wonder-of-the-world
+      loc: "section 'The move to the new Pergamon Museum'"
+      quote: "the Pergamonmuseum was finally opened in 1930"
+    method: historical-account
+    note: Opened in 1930; the reconstruction of the west side could already be inspected at the congress of 1929.
+  pergamonmuseum-location:
+    prop: location
+    subject: "@pergamonmuseum"
+    value: { lat: 52.521, lon: 13.396, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-pergamon-museum, loc: "Q157298, P625 coordinate location" }
+    method: gazetteer
+  pergamonmuseum-frame:
+    prop: frame
+    subject: "@pergamonmuseum"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  zoo-tower-start:
+    prop: start
+    subject: "@zoo-tower"
+    value: 1941 CE
+    source:
+      ref: src:smb-eighth-wonder-of-the-world
+      loc: "section 'Destruction and reconstruction'"
+      quote: "In 1941, for fear of air raids, the Pergamon Altar was at first protected with sandbags and boarding. A short while later the reliefs, some weighing up to 2.2 tonnes, were then taken down and placed for safe storage in the flak tower at the Berlin Zoo"
+    method: historical-account
+    note: The year of the sandbags; the taking down came "a short while later", and the day was not found.
+  zoo-tower-location:
+    prop: location
+    subject: "@zoo-tower"
+    value: { lat: 52.51, lon: 13.3358, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-zoo-tower, loc: "Q8074078, P625 coordinate location" }
+    method: gazetteer
+  zoo-tower-frame:
+    prop: frame
+    subject: "@zoo-tower"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  hermitage-start:
+    prop: start
+    subject: "@hermitage"
+    value: 1945 CE
+    source:
+      - ref: src:smb-eighth-wonder-of-the-world
+        loc: "section 'Destruction and reconstruction'"
+        quote: "The friezes were taken off as war booty to the Hermitage museum in St. Petersburg, where plaster casts were made of the altar reliefs."
+      - ref: src:smb-eighth-wonder-of-the-world
+        loc: "section 'Destruction and reconstruction'"
+        quote: "In 1945 the Soviet Army captured Berlin and took most of the inventory of the Berlin Collection of Classical Antiquities."
+      - ref: src:smb-return-of-the-gods
+        loc: paragraph 1
+        quote: "after a period of exile in Moscow and St. Petersburg lasting thirteen years, the most important of which was the frieze of the world famous Pergamon Altar"
+    method: historical-account
+    note: The city was then called Leningrad. The Berlin museums say the Hermitage for the frieze; the year it reached there, as against leaving Berlin, was not found, and the thirteen years count from 1945.
+  hermitage-location:
+    prop: location
+    subject: "@hermitage"
+    value: { lat: 59.940556, lon: 30.313611, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-hermitage-museum, loc: "Q132783, P625 coordinate location" }
+    method: gazetteer
+  hermitage-frame:
+    prop: frame
+    subject: "@hermitage"
+    value: frame:paleomap/plate-301
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  pergamonmuseum-again-start:
+    prop: start
+    subject: "@pergamonmuseum-again"
+    value: 1958 CE
+    source:
+      - ref: src:smb-eighth-wonder-of-the-world
+        loc: "section 'Cleaning up for the comeback'"
+        quote: "In 1958 the inventory of the Collection of Classical Antiquities was brought back to Berlin"
+      - ref: src:smb-return-of-the-gods
+        loc: paragraph 1
+        quote: "the return of museum pieces from the Soviet Union to Berlin that took place in 1958"
+    method: historical-account
+    note: The museum with the rebuilt altar room reopened in October 1959.
+  pergamonmuseum-again-location:
+    prop: location
+    subject: "@pergamonmuseum-again"
+    value: { lat: 52.521, lon: 13.396, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-pergamon-museum, loc: "Q157298, P625 coordinate location" }
+    method: gazetteer
+  pergamonmuseum-again-frame:
+    prop: frame
+    subject: "@pergamonmuseum-again"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

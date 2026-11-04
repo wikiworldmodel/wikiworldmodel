@@ -1,0 +1,20 @@
+id: src:hoffman-2017-last-interglaciation-temperatures
+type: publication
+kind: compilation
+citation: >-
+  Hoffman, J.S., Clark, P.U., Parnell, A.C. & He, F. (2017). Regional and global sea-surface
+  temperatures during the last interglaciation. Science 355(6322), 276–279.
+authors:
+  - "Hoffman, J.S."
+  - "Clark, P.U."
+  - "Parnell, A.C."
+  - "He, F."
+published: 2017
+title: "Regional and global sea-surface temperatures during the last interglaciation"
+container: "Science 355(6322), 276–279"
+doi: 10.1126/science.aai8464
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read through Europe PMC. The full text was not read. Citation from Crossref. Quotes
+    checked by script against the text retrieved.

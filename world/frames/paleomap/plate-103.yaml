@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-103
+type: frame
+kind: plate
+title: North Slope Alaska (PALEOMAP plate 103)
+entity: earth/plates/north-slope-alaska
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 103
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 103

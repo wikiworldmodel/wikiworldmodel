@@ -1,0 +1,64 @@
+id: life/occurrences/forest-pine-island-bay
+kind: occurrence
+summary: >-
+  A network of fossil roots in place in a mudstone drilled on the West Antarctic shelf, with the
+  pollen and spores of a temperate rainforest: the southernmost Cretaceous record, from about 82°S
+  when it grew. It is a forest floor in a core, without stumps.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Pine Island Bay rainforest roots" }
+    unsourced: An editorial label, from the area and the fossils.
+  identified:
+    prop: identified_as
+    value: fossil plant roots
+    source:
+      ref: src:klages-2020-pine-island
+      loc: abstract
+      quote: an intact ~3 m-long network of in-situ fossil roots
+    note: >-
+      Not a taxon: roots in a mudstone whose pollen and spores include the podocarp Phyllocladites
+      mawsonii.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:klages-2020-pine-island
+      loc: abstract
+      quote: an intact ~3 m-long network of in-situ fossil roots
+    note: >-
+      The basis is the abstract's in-situ roots, with pollen and spores indicating a temperate lowland
+      rainforest: a forest floor, but no stumps or trunks, in a single drill core. The vocabulary's
+      wording asks for standing stumps or rooted trunks, so this is the most doubtful use of it here.
+  location:
+    prop: location
+    value: { lat: -73.57, lon: -107.09, frame: frame:earth/present-day }
+    source:
+      ref: src:klages-2020-pine-island
+      loc: "Main text, site description (manuscript line 62)"
+      quote: Site PS104_20-2 (73.57°S, 107.09°W; 946 m water depth)
+    method: survey
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-804
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 92 Ma, hi: 83 Ma }
+    source:
+      ref: src:klages-2020-pine-island
+      loc: abstract
+      quote: during the Turonian–Santonian (92–83 Myr)
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Dated by pollen, on New Zealand's biostratigraphic ranges. The unit has no formation name in the
+      paper read, so this record has no formation claim.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/tracheophyta
+    source: { ref: src:klages-2020-pine-island, loc: "abstract: fossil roots, with pollen and spores" }

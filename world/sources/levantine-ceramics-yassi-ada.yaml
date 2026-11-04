@@ -1,0 +1,11 @@
+id: src:levantine-ceramics-yassi-ada
+type: database-record
+kind: compilation
+citation: >-
+  The Levantine Ceramics Project. Site 2470, Yassi Ada.
+snapshot: "2026-11-04"
+container: The Levantine Ceramics Project
+url: https://www.levantineceramics.org/sites/2470-yassi-ada
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quote checked by script against its text.

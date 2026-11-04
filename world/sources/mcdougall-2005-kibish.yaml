@@ -1,0 +1,20 @@
+id: src:mcdougall-2005-kibish
+type: publication
+kind: measurement
+citation: >-
+  McDougall, I., Brown, F.H. & Fleagle, J.G. (2005). Stratigraphic placement and age of modern
+  humans from Kibish, Ethiopia. Nature 433(7027), 733–736.
+authors:
+  - "McDougall, I."
+  - "Brown, F.H."
+  - "Fleagle, J.G."
+published: 2005
+title: "Stratigraphic placement and age of modern humans from Kibish, Ethiopia"
+container: "Nature 433(7027), 733–736"
+doi: 10.1038/nature03258
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 15716951): 40Ar/39Ar ages and a preferred age of 195
+    ± 5 kyr for the Kibish hominids. It does not state the ± level. Quoted passages checked by
+    script against the text retrieved.

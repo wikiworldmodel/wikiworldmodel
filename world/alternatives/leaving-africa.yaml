@@ -1,0 +1,14 @@
+# A group of alternatives: its members exclude each other, and groups combine freely. A
+# claim belongs to the default picture unless it names an alternative (section 4.4).
+id: alt:leaving-africa
+type: group
+title: Leaving Africa
+description: >-
+  Whether any dispersal of modern humans out of Africa before the main one lasted and left
+  descendants, or only the main one did. Both sides accept fossils in the Levant and Arabia before
+  it; they part over how far those people went, how old the first evidence is in East Asia and Sahul,
+  and whether any of their ancestry lives on. The default picture says only what both accept.
+# A steward decision: what a build shows, and which member it shows by default (none: the
+# default picture). Shown on a machine's proposal, until a person decides.
+show: [alt:leaving-africa/early-successful, alt:leaving-africa/late-only]
+default: null

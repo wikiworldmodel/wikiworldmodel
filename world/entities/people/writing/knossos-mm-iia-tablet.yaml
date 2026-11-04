@@ -1,0 +1,34 @@
+id: people/writing/knossos-mm-iia-tablet
+kind: occurrence
+summary: >-
+  A tablet of Middle Minoan IIA from Knossos, cited as the earliest Linear A tablet, though it has been suggested to be Cretan Hieroglyphic instead.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "MM IIA tablet, Knossos" }
+    unsourced: An editorial label, from the find and the place.
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: "The earliest Linear A tablets are an MM IIA example from Knossos (del Freo 2007: 204–205; Schoep [2007] suggests that this may in fact be a Cretan Hieroglyphic tablet)"
+  location:
+    prop: location
+    value: { lat: 35.297847, lon: 25.163106, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-knossos, loc: "place 589872, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-330
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 1925 BCE, hi: 1750 BCE }
+    source: { ref: src:carter-kilikoglou-2022-malia-obsidian, loc: 'Table 1, row "MM IB–MM IIA": 1925–1750 BC' }
+    method: stratigraphic
+    note: The phase is Tomas's. The table used for its dates in years groups MM IIA with MM IB, so the range is wider than the phase.

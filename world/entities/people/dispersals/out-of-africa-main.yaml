@@ -1,0 +1,51 @@
+id: people/dispersals/out-of-africa-main
+kind: event/dispersal
+summary: >-
+  The large wave of modern humans out of Africa from which all present-day non-Africans descend.
+  It has no location here: it is known from genomes and from sites across Eurasia. Whether any
+  earlier wave also left descendants is the question of the alternatives "Leaving Africa".
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Main dispersal out of Africa }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: { lo: 60 ka, hi: 40 ka }
+    source:
+      ref: src:bergstrom-2021-origins
+      loc: abstract
+      quote: "the worldwide expansion of modern humans between 40 and 60 thousand years ago (ka)"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      Preferred as the widest recent review, and its range holds both the genetic dates and most of
+      the sites. It dates the spread across the world: leaving Africa is at its earlier end.
+  date-vallini-2024:
+    prop: date
+    value: { lo: 70 ka, hi: 60 ka }
+    source:
+      ref: src:vallini-2024-persian-plateau
+      loc: abstract
+      quote: "Homo sapiens spread out of Africa between ~70-60 thousand years ago (kya)"
+    method: expert-estimate
+    note: >-
+      The leaving itself, with a long stay outside Africa, on the authors' reading on the Persian
+      Plateau, before people spread across Eurasia about 45 ka.
+  date-oconnell-2018:
+    prop: date
+    value: { lo: 55 ka, hi: 50 ka }
+    alt: alt:leaving-africa/late-only
+    source:
+      ref: src:oconnell-2018-sahul
+      loc: abstract
+      quote: "began spreading across Eurasia from Africa and adjacent Southwest Asia about 50,000–55,000 years ago (ca. 50–55 ka)"
+    method: expert-estimate
+  ancestry:
+    prop: ancestry
+    value: { en: "All present-day non-Africans descend from this wave." }
+    source:
+      ref: src:vallini-2024-persian-plateau
+      loc: "Introduction"
+      quote: "from which all modern-day non-Africans descend"

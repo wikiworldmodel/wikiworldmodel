@@ -1,0 +1,66 @@
+id: life/occurrences/cattle-djade
+kind: occurrence
+summary: >-
+  Cattle bones from Dja'de al-Mughara on the upper Euphrates in northern Syria, of the early
+  Pre-Pottery Neolithic B, 8500–8000 BCE: the classic case for the first domestic cattle, based on a
+  small drop in the size of the males, which disturbs the usual difference between the sexes. Others
+  find the change too small to see and put a domestic body in the eighth millennium BCE.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Cattle, Dja'de al-Mughara" }
+    unsourced: An editorial label, from the species and the site.
+  identified:
+    prop: identified_as
+    value: cattle
+    source:
+      ref: src:arbuckle-kassebaum-2021-cattle
+      loc: "The Traditional Narrative"
+      quote: "Helmer argues morphologically domestic cattle are evident for the first time"
+  evidence:
+    prop: evidence
+    value: zooarchaeological
+    source:
+      - ref: src:arbuckle-kassebaum-2021-cattle
+        loc: "The Traditional Narrative"
+        quote: "This is based primarily on a small reduction in the size of “male” cattle as evidenced through mixture analysis of a limited set of measurements."
+      - ref: src:arbuckle-kassebaum-2021-cattle
+        loc: "Origins of Bos Management"
+        quote: "the size change argued to represent early domestication in the EPPNB is subtle to the point of being unobservable using LSI transformed measurements"
+    note: >-
+      What shows it is domestic is the point in dispute: a change in the proportions of the sexes in
+      bone size. Helmer et al. (2005) were not read; this is a critic's account of them.
+  location:
+    prop: location
+    value: { lat: 36.383306, lon: 38.183278, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-djade, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 8500 BCE, hi: 8000 BCE }
+    source:
+      ref: src:arbuckle-kassebaum-2021-cattle
+      loc: 'Table 1, row "EPPNB"; "The Traditional Narrative"'
+      quote: "the site of Dja’de al-Mughara dating to the early PPNB (EPPNB)"
+    method: stratigraphic
+    note: >-
+      The period's approximate range in the paper's Table 1.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott490099 and ott244265: Bos taurus lies within Mammalia" }
+  domestication:
+    rel: part-of
+    to: people/domestication/cattle
+    source: { ref: src:arbuckle-kassebaum-2021-cattle, loc: "The Traditional Narrative" }
+    note: >-
+      Under the critics' reading this is management of cattle with a wild body, still part of the
+      same process.

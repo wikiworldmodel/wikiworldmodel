@@ -1,0 +1,23 @@
+id: src:mychajliw-2020-short-faced-bear
+type: publication
+kind: measurement
+citation: >-
+  Mychajliw, A.M., Rick, T.C., Dagtas, N.D., Erlandson, J.M., Culleton, B.J., Kennett, D.J.,
+  Buckley, M. & Hofman, C.A. (2020). Biogeographic problem-solving reveals the Late Pleistocene
+  translocation of a short-faced bear to the California Channel Islands. Scientific Reports 10,
+  15172.
+authors:
+  - "Mychajliw, A.M."
+  - "Rick, T.C."
+  - "Dagtas, N.D."
+  - "Erlandson, J.M."
+  - "Hofman, C.A."
+published: 2020
+title: "Biogeographic problem-solving reveals the Late Pleistocene translocation of a short-faced bear to the California Channel Islands"
+container: "Scientific Reports 10, 15172"
+doi: 10.1038/s41598-020-71572-z
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC7494929). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

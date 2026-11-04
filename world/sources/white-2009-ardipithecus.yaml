@@ -1,0 +1,25 @@
+id: src:white-2009-ardipithecus
+type: publication
+kind: measurement
+citation: >-
+  White, T.D., Asfaw, B., Beyene, Y., Haile-Selassie, Y., Lovejoy, C.O., Suwa, G. & WoldeGabriel,
+  G. (2009). Ardipithecus ramidus and the paleobiology of early hominids. Science 326(5949),
+  75–86.
+authors:
+  - "White, T.D."
+  - "Asfaw, B."
+  - "Beyene, Y."
+  - "Haile-Selassie, Y."
+  - "Lovejoy, C.O."
+  - "Suwa, G."
+  - "WoldeGabriel, G."
+published: 2009
+title: "Ardipithecus ramidus and the paleobiology of early hominids"
+container: "Science 326(5949), 75–86"
+doi: 10.1126/science.1175802
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 19810190): more than 110 specimens of Ardipithecus
+    ramidus from 4.4-million-year-old sediments, with a partial skeleton. Quoted passages checked
+    by script against the text retrieved.

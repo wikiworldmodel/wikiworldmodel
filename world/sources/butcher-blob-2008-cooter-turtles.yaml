@@ -1,0 +1,18 @@
+id: src:butcher-blob-2008-cooter-turtles
+type: publication
+kind: measurement
+citation: >-
+  Butcher, M.T. & Blob, R.W. (2008). Mechanics of limb bone loading during terrestrial
+  locomotion in river cooter turtles (Pseudemys concinna). Journal of Experimental Biology
+  211(8), 1187–1202.
+authors:
+  - "Butcher, M.T."
+  - "Blob, R.W."
+published: 2008
+title: "Mechanics of limb bone loading during terrestrial locomotion in river cooter turtles (Pseudemys concinna)"
+container: "Journal of Experimental Biology 211(8), 1187–1202"
+doi: 10.1242/jeb.012989
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC; the quote checked by script against it.

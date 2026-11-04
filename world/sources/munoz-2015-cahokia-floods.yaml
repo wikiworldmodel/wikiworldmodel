@@ -1,0 +1,21 @@
+id: src:munoz-2015-cahokia-floods
+type: publication
+kind: measurement
+citation: >-
+  Munoz, S.E., Gruley, K.E., Massie, A., Fike, D.A., Schroeder, S. & Williams, J.W. (2015). Cahokia's emergence and decline coincided
+  with shifts of flood frequency on the Mississippi River. Proceedings of the National Academy of Sciences 112(20), 6319–6324.
+authors:
+  - "Munoz, S.E."
+  - "Gruley, K.E."
+  - "Massie, A."
+  - "Fike, D.A."
+  - "Schroeder, S."
+  - "Williams, J.W."
+published: 2015
+title: Cahokia's emergence and decline coincided with shifts of flood frequency on the Mississippi River
+container: Proceedings of the National Academy of Sciences
+doi: 10.1073/pnas.1501904112
+url: https://europepmc.org/article/MED/25941363
+verified:
+  by: machine:claude-code
+  how: Only the abstract read, from Europe PMC. Quotes checked by script against it.

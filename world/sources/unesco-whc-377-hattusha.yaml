@@ -1,0 +1,14 @@
+id: src:unesco-whc-377-hattusha
+type: publication
+kind: review
+citation: >-
+  UNESCO World Heritage Centre. Hattusha: the Hittite Capital. World Heritage List, no. 377: description and statement of outstanding universal value.
+title: "Hattusha: the Hittite Capital"
+container: UNESCO World Heritage List
+url: https://whc.unesco.org/en/list/377/
+via: The Internet Archive's copy of 5 January 2025 (web.archive.org/web/20250105150340/https://whc.unesco.org/en/list/377), because UNESCO's site refused the script.
+license_note: The description is under CC BY-SA IGO 3.0. Only single facts and short quotes are taken, with credit.
+reliability: An official summary, drawn from the state's nomination; not a research paper.
+verified:
+  by: machine:claude-code
+  how: Read in the archived copy. Quote checked by script against its text, after normalizing whitespace.

@@ -1,0 +1,16 @@
+id: src:thieme-1997-schoningen
+type: publication
+kind: measurement
+citation: >-
+  Thieme, H. (1997). Lower Palaeolithic hunting spears from Germany. Nature 385(6619), 807–810.
+authors:
+  - "Thieme, H."
+published: 1997
+title: "Lower Palaeolithic hunting spears from Germany"
+container: "Nature 385(6619), 807–810"
+doi: 10.1038/385807a0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 9039910): wooden throwing spears about 400,000 years
+    old, discovered in 1995. Quoted passages checked by script against the text retrieved.

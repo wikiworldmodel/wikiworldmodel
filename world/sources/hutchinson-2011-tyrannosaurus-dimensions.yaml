@@ -1,0 +1,24 @@
+id: src:hutchinson-2011-tyrannosaurus-dimensions
+type: publication
+kind: measurement
+citation: >-
+  Hutchinson, J.R., Bates, K.T., Molnar, J., Allen, V. & Makovicky, P.J. (2011). A computational
+  analysis of limb and body dimensions in Tyrannosaurus rex with implications for locomotion,
+  ontogeny, and growth. PLoS ONE 6(10), e26037.
+authors:
+  - "Hutchinson, J.R."
+  - "Bates, K.T."
+  - "Molnar, J."
+  - "Allen, V."
+  - "Makovicky, P.J."
+published: 2011
+title: "A computational analysis of limb and body dimensions in Tyrannosaurus rex with implications for locomotion, ontogeny, and growth"
+container: "PLoS ONE 6(10), e26037"
+doi: 10.1371/journal.pone.0026037
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC3192160), including Tables 3 and 6; quotes checked by
+    script against it. The 2014 correction (PLoS ONE 9(5), e97055, PMC4010492) was read too: it
+    withdraws statements on growth models, not the dimensions cited here.

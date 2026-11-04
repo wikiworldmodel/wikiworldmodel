@@ -1,0 +1,20 @@
+id: src:legrain-2023-gradual-transition
+type: publication
+kind: model
+citation: >-
+  Legrain, E., Parrenin, F. & Capron, E. (2023). A gradual change is more likely to have caused
+  the Mid-Pleistocene Transition than an abrupt event. Communications Earth & Environment 4(1),
+  90.
+authors:
+  - "Legrain, E."
+  - "Parrenin, F."
+  - "Capron, E."
+published: 2023
+title: "A gradual change is more likely to have caused the Mid-Pleistocene Transition than an abrupt event"
+container: "Communications Earth & Environment 4(1), 90"
+doi: 10.1038/s43247-023-00754-0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the publisher's PDF. Citation from Crossref. Quotes checked by script
+    against the text retrieved.

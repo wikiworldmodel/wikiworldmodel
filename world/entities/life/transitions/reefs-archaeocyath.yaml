@@ -1,0 +1,66 @@
+id: life/transitions/reefs-archaeocyath
+kind: event/transition
+summary: >-
+  The first episode of reef building by animals, and the oldest Phanerozoic reefs: small reefs of
+  archaeocyath sponges and calcimicrobes in the Early Cambrian, on low-latitude shelves around the
+  world. The calcimicrobes did much of the building.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Archaeocyath–calcimicrobe reefs }
+    unsourced: An editorial label.
+  cover:
+    prop: cover
+    value: reefs
+    unsourced: "How the renderer should treat this transition: an editorial classification."
+  start-zhuravlev-2022:
+    prop: start
+    value: { lo: 525 Ma, hi: 523 Ma }
+    source:
+      - ref: src:zhuravlev-2022-cambrian-reefs
+        loc: abstract
+        quote: Cambrian archaeocyath sponge reef communities on the Siberian Platform (525–514 Ma)
+      - ref: src:zhuravlev-2022-cambrian-reefs
+        loc: Discussion
+        quote: Tommotian and early Atdabanian reefs (~523–519 Ma)
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The first reefs lie at the base of the Pestrotsvet Formation, in the basal Tommotian, on the
+      Siberian Platform. The paper gives no one age for them; the range joins the start of its
+      record to the start it gives for Tommotian and early Atdabanian reefs.
+  start-rowland-shapiro-2002:
+    prop: start
+    value: { ref: ics/stage-2 }
+    source:
+      ref: src:rowland-shapiro-2002-cambrian-reefs
+      loc: abstract
+      quote: reefs first occur at the base of the Tommotian Stage on the Siberian Platform
+    method: stratigraphic
+    note: >-
+      The same reefs, dated by stage. Zhuravlev et al. (2022) put the mid-Tommotian within Cambrian
+      Stage 2, which is the stage used here.
+  end-rowland-shapiro-2002:
+    prop: end
+    value: { ref: ics/series-2, edge: end }
+    source:
+      ref: src:rowland-shapiro-2002-cambrian-reefs
+      loc: abstract
+      quote: became virtually extinct at the end of the Early Cambrian, thus ending the first episode of reef-building by metazoans
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The paper's Early Cambrian runs through the Toyonian Stage; its end is read here as the end
+      of Cambrian Series 2. Reefs of microbes went on: see the next episode.
+  end-zhuravlev-2022:
+    prop: end
+    value: 513 Ma
+    source:
+      ref: src:zhuravlev-2022-cambrian-reefs
+      loc: Reef evolution and habitat occupation
+      quote: The Sinsk Event, ~513 Ma, represented by the Sinsk Formation, is an inferred anoxic event, and led to a complete disappearance of reef communities
+    method: stratigraphic
+    note: >-
+      On the Siberian Platform only, where a brief middle Toyonian reef-building episode followed
+      before archaeocyaths finally disappeared.

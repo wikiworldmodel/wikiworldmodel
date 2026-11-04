@@ -1,0 +1,24 @@
+id: src:granger-2015-sterkfontein
+type: publication
+kind: measurement
+citation: >-
+  Granger, D.E., Gibbon, R.J., Kuman, K., Clarke, R.J., Bruxelles, L. & Caffee, M.W. (2015). New
+  cosmogenic burial ages for Sterkfontein Member 2 Australopithecus and Member 5 Oldowan. Nature
+  522(7554), 85–88.
+authors:
+  - "Granger, D.E."
+  - "Gibbon, R.J."
+  - "Kuman, K."
+  - "Clarke, R.J."
+  - "Bruxelles, L."
+  - "Caffee, M.W."
+published: 2015
+title: "New cosmogenic burial ages for Sterkfontein Member 2 Australopithecus and Member 5 Oldowan"
+container: "Nature 522(7554), 85–88"
+doi: 10.1038/nature14268
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 25830884): an isochron burial date of 3.67 ± 0.16
+    million years for the breccia holding StW 573. It does not state the ± level. Quoted passages
+    checked by script against the text retrieved.

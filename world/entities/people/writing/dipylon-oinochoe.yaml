@@ -1,0 +1,44 @@
+id: people/writing/dipylon-oinochoe
+kind: occurrence
+summary: >-
+  A wine jug scratched after firing with a line of Greek verse announcing itself as the prize in a dance contest, found in illicit digging of graves near the Dipylon gate of Athens in 1871: the oldest Greek alphabetic text from Attica.
+author: machine:claude-code
+same_as: { wikidata: Q1227362 }
+claims:
+  name:
+    prop: name
+    value: { en: Dipylon oinochoe }
+    source:
+      ref: src:cardin-2017-dipylon-oinochoe
+      loc: title
+      quote: Oinochoe del Dipylon
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:cardin-2017-dipylon-oinochoe
+      loc: p. 19, summary
+      quote: L’iscrizione graffita sull’oinochoe del Dipylon rappresenta la più antica attestazione di alfabeto greco rinvenuta in Attica
+    note: In English, the inscription scratched on the oinochoe of the Dipylon is the oldest attestation of the Greek alphabet found in Attica.
+  location:
+    prop: location
+    value: { lat: 37.978416, lon: 23.718301, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-kerameikos, loc: "place 97294452, representative point" }
+    method: gazetteer
+    note: A point for the Kerameikos district, where the Dipylon gate stood. The jug came from illicit digging, so its exact grave is not known.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 750 BCE, hi: 726 BCE }
+    source:
+      ref: src:cardin-2017-dipylon-oinochoe
+      loc: p. 19, Cronologia
+      quote: Cronologia VIII secolo a.C. (3° quarto) [Si preferiva in passato una datazione più bassa, tra la fine dell’VIII e l’inizio del VII secolo].
+    method: expert-estimate
+    note: >-
+      In English, eighth century BC (third quarter); a lower date, between the end of the eighth century and the start of the seventh, was once preferred. Greek absolute chronology has itself been challenged as too low (Waal 2018, p. 86, n. 8).

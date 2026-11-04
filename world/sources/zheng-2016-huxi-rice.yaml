@@ -1,0 +1,21 @@
+id: src:zheng-2016-huxi-rice
+type: publication
+kind: measurement
+citation: >-
+  Zheng, Y., Crawford, G.W., Jiang, L. & Chen, X. (2016). Rice Domestication Revealed by
+  Reduced Shattering of Archaeological rice from the Lower Yangtze valley. Scientific Reports
+  6, 28136.
+authors:
+  - "Zheng, Y."
+  - "Crawford, G.W."
+  - "Jiang, L."
+  - "Chen, X."
+published: 2016
+title: "Rice Domestication Revealed by Reduced Shattering of Archaeological rice from the Lower Yangtze valley"
+container: "Scientific Reports 6, 28136"
+doi: 10.1038/srep28136
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC4914946) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

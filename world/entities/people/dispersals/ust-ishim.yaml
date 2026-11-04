@@ -1,0 +1,85 @@
+id: people/dispersals/ust-ishim
+kind: occurrence
+summary: >-
+  The genome of a man who lived in western Siberia about 45,000 years ago, from a femur found in
+  2008 eroding out of the bank of the Irtysh. His population lived before, or as, the ancestors of
+  western and eastern Eurasians parted.
+same_as: { wikidata: Q18357554 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Ust'-Ishim" }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: modern human
+    source:
+      ref: src:fu-2014-ust-ishim
+      loc: "main text, para. 2"
+      quote: "this suggests that the Ust’-Ishim femur derives from a modern human"
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:fu-2014-ust-ishim
+      loc: abstract
+      quote: "We present a high-quality genome sequence"
+  location:
+    prop: location
+    value: { lat: 57.694444, lon: 71.170833, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-ust-ishim, loc: "P625 coordinate location" }
+      - ref: src:fu-2014-ust-ishim
+        loc: "main text, para. 1"
+        quote: "Although the exact locality is unclear, the femur was eroding out of alluvial deposits on the left bank of the river, north of Ust’-Ishim."
+    method: gazetteer
+    note: The settlement of Ust'-Ishim, near which the femur was found, not the find spot.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-402
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 46.88 ka, hi: 43.21 ka }
+    source:
+      ref: src:fu-2014-ust-ishim
+      loc: "main text, para. 3"
+      quote: "46,880–43,210 cal BP at 95.4% probability"
+    method: radiometric/radiocarbon
+    note: Two direct dates on the femur, combined. Calibrated BP counts back from 1950, as ka does here.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        From a population that lived before, or as, the populations of western and eastern Eurasia
+        separated, with about as much Neanderthal ancestry as present-day Eurasians, in longer
+        segments.
+    source:
+      - ref: src:fu-2014-ust-ishim
+        loc: abstract
+        quote: "This individual derives from a population that lived prior to – or simultaneously with – the separation of the populations in western and eastern Eurasia and carries a similar amount of Neandertal ancestry as present-day Eurasians."
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:fu-2014-ust-ishim
+      loc: abstract
+      quote: "modern human male from Siberia"
+  after-the-dispersal:
+    rel: after
+    to: people/dispersals/out-of-africa-main
+    source:
+      ref: src:fu-2014-ust-ishim
+      loc: "main text, para. 6"
+      quote: "the Ust’-Ishim individual represents a population derived from, or related to, the population involved in the dispersal of modern humans out of Africa"
+  after-the-admixture:
+    rel: after
+    to: people/dispersals/neanderthal-admixture
+    source:
+      ref: src:fu-2014-ust-ishim
+      loc: abstract
+      quote: "Neandertal gene flow into the ancestors of this individual occurred 7,000–13,000 years before he lived"

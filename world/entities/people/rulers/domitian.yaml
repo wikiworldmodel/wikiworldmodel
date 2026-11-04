@@ -1,0 +1,82 @@
+id: people/rulers/domitian
+kind: person
+summary: The younger son of Vespasian, emperor for fifteen years, killed in a palace plot.
+author: machine:claude-code
+same_as: { wikidata: Q1423 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Domitian }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Domitian 1.1"
+      quote: Domitian was born
+  start:
+    prop: start
+    value: 24 October 51 CE
+    source:
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Domitian 1.1"
+        quote: Domitian was born on the ninth day before the Kalends of November of the year when his father was consul elect and was about to enter on the office in the following month
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 67, 18.2, vol. 8 p. 359"
+        quote: Domitian had lived forty-four years, ten months and twenty-six days
+    method: historical-account
+    note: >-
+      The ninth day before the Kalends of November is 24 October. The year follows from Dio's
+      age counted back from 18 September 96, which comes to about 23 October 51.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/titus, edge: end }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 67, 18.2, vol. 8 p. 359"
+      quote: and had reigned fifteen years and five days
+    method: historical-account
+    note: Dio's fifteen years and five days run from the death of Titus on 13 September 81.
+  end:
+    prop: end
+    value: 18 September 96 CE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Domitian 17.3"
+      quote: He was slain on the fourteenth day before the Kalends of October in the forty-fifth year of his age and the fifteenth of his reign
+    method: historical-account
+    note: >-
+      The fourteenth day before the Kalends of October is 18 September, and the year follows
+      from the length of the reign.
+  location:
+    prop: location
+    value: { lat: 41.889977, lon: 12.491258, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-rome
+        loc: "representative point"
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Domitian 1.1"
+        quote: in a street of the sixth region
+    method: gazetteer
+    note: >-
+      Marked at his birthplace, in Rome, at the city's representative point: the street, called
+      the Pomegranate, is not located here.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Domitian 13.1"
+      quote: When he became emperor
+    note: Emperor, the last of the Flavians.

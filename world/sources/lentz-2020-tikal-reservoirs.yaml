@@ -1,0 +1,30 @@
+id: src:lentz-2020-tikal-reservoirs
+type: publication
+kind: measurement
+citation: >-
+  Lentz, D.L., Hamilton, T.L., Dunning, N.P., Scarborough, V.L., Luxton, T.P., Vonderheide, A., Tepe, E.J., Perfetta, C.J., Brunemann, J.,
+  Grazioso, L., Valdez, F., Tankersley, K.B. & Weiss, A.A. (2020). Molecular genetic and geochemical assays reveal severe contamination of
+  drinking water reservoirs at the ancient Maya city of Tikal. Scientific Reports 10, 10316.
+authors:
+  - "Lentz, D.L."
+  - "Hamilton, T.L."
+  - "Dunning, N.P."
+  - "Scarborough, V.L."
+  - "Luxton, T.P."
+  - "Vonderheide, A."
+  - "Tepe, E.J."
+  - "Perfetta, C.J."
+  - "Brunemann, J."
+  - "Grazioso, L."
+  - "Valdez, F."
+  - "Tankersley, K.B."
+  - "Weiss, A.A."
+published: 2020
+title: Molecular genetic and geochemical assays reveal severe contamination of drinking water reservoirs at the ancient Maya city of Tikal
+container: Scientific Reports
+doi: 10.1038/s41598-020-67044-z
+url: https://europepmc.org/article/PMC/PMC7316703
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC7316703). Quotes checked by script against it, after normalizing whitespace.

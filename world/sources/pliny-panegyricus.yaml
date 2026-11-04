@@ -1,0 +1,17 @@
+id: src:pliny-panegyricus
+type: text
+kind: eyewitness
+citation: >-
+  Pliny the Younger, Panegyricus (the speech of thanks to Trajan for his consulship). Latin text
+  on The Latin Library.
+title: Panegyricus
+url: https://www.thelatinlibrary.com/pliny.panegyricus.html
+via: The Latin Library, which does not name its edition.
+reliability: >-
+  A speech delivered to the emperor's face in the senate; flattery, but it can hardly have
+  mistaken his birthday.
+verified:
+  by: machine:claude-code
+  how: >-
+    Chapter 92 read in the Latin on The Latin Library; the quotation checked by script against
+    that text.

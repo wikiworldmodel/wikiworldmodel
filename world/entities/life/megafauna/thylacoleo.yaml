@@ -1,0 +1,57 @@
+id: life/taxa/thylacoleo
+kind: taxon
+summary: >-
+  The marsupial lion of Sahul, here the genus; its last species, Thylacoleo carnifex, weighed about
+  100–130 kg and was among the most specialized mammalian carnivores known. New dates at South
+  Walker Creek bring its last appearance down to about 40,000 years ago.
+same_as: { ott: 3607104, pbdb: "txn:40139" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: marsupial lion, la: "Thylacoleo" }
+    source:
+      - { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott3607104: name" }
+      - ref: src:wroe-2013-sahul-climate
+        loc: abstract
+        quote: "the ∼100- to 130-kg marsupial lion, Thylacoleo carnifex, the world’s most specialized mammalian carnivore"
+  start-saltre-2016:
+    prop: start
+    value: { mean: 535 ka, sd: 49 kyr }
+    source:
+      ref: src:saltre-2016-sahul-climate
+      loc: "Table 1, row Thylacoleo"
+      quote: "Thylacoleo T. carnifex (37) 37 44.9±1.3 – 535±49"
+    method: compilation
+    note: >-
+      The oldest high-quality age for T. carnifex in the FosSahul database, at 1σ: an oldest record
+      of the species, not the genus's origin.
+  end-hocknull-2020:
+    prop: end
+    value: { mean: 40.1 ka, sd: 1.7 kyr }
+    source:
+      - ref: src:hocknull-2020-south-walker-creek
+        loc: "Table 1, row Thylacoleo sp. (present at SW9)"
+      - ref: src:hocknull-2020-south-walker-creek
+        loc: Discussion
+        quote: "the modelled extinction timing for Palorchestes, Thylacoleo, and megafauna representatives of Macropus"
+    method: radiometric/luminescence
+    rank: preferred
+    note: >-
+      Thylacoleo sp. in the youngest deposit at South Walker Creek, not identified to species.
+      Preferred as the later of two high-quality records; the paper says it overturns the modelled
+      date. The age of the deposit is as for Diprotodon there.
+  end-saltre-2016:
+    prop: end
+    value: { mean: 44.9 ka, sd: 1.3 kyr }
+    source:
+      ref: src:saltre-2016-sahul-climate
+      loc: "Table 1, row Thylacoleo"
+      quote: "Thylacoleo T. carnifex (37) 37 44.9±1.3 – 535±49"
+    method: compilation
+    note: The youngest high-quality age for T. carnifex in the database in 2016, at 1σ.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott3607104, lineage: Thylacoleonidae < Diprotodontia < Metatheria < Theria < Mammalia" }

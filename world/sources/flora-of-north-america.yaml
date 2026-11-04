@@ -1,0 +1,13 @@
+id: src:flora-of-north-america
+type: publication
+kind: compilation
+citation: >-
+  Flora of North America Editorial Committee (eds.) (1993–). Flora of North America North of
+  Mexico. Oxford University Press, New York and Oxford. Online at efloras.org.
+title: "Flora of North America North of Mexico"
+url: http://www.efloras.org/flora_page.aspx?flora_id=1
+verified:
+  by: machine:claude-code
+  how: >-
+    The treatments cited read at efloras.org, each located by volume and taxon; quotes checked
+    by script against those pages. These describe living plants.

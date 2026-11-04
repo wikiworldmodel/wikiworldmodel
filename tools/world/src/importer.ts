@@ -33,7 +33,8 @@ export function fieldAgesMa(f: Field): { maxAgeMa: number; minAgeMa: number; ste
  * the plate model's polygons), or the plate model's polygons alone (where its continental
  * blocks are).
  */
-export function fieldSource(f: Field): 'elevation' | 'blocks' {
+export function fieldSource(f: Field): 'elevation' | 'blocks' | 'climate' {
+  if (f.data?.as === 'climate') return 'climate';
   return f.data?.from === f.moves_with && f.data?.file === 'polygons' ? 'blocks' : 'elevation';
 }
 

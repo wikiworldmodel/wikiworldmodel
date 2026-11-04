@@ -1,0 +1,18 @@
+id: src:haile-selassie-2001-ardipithecus
+type: publication
+kind: measurement
+citation: >-
+  Haile-Selassie, Y. (2001). Late Miocene hominids from the Middle Awash, Ethiopia. Nature
+  412(6843), 178–181.
+authors:
+  - "Haile-Selassie, Y."
+published: 2001
+title: "Late Miocene hominids from the Middle Awash, Ethiopia"
+container: "Nature 412(6843), 178–181"
+doi: 10.1038/35084063
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 11449272): hominid specimens from the Middle Awash
+    dated to 5.2–5.8 Myr, assigned to Ardipithecus. Quoted passages checked by script against the
+    text retrieved.

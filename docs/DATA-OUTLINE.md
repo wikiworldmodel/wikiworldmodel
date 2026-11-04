@@ -13,7 +13,7 @@ Each domain lists its needs in a table:
 | Column | Meaning |
 |---|---|
 | **Need** | what the world should hold |
-| **Here** | ✓ have it · ◐ partly · ○ missing (as of master `db3dbf9`) |
+| **Here** | ✓ have it · ◐ partly · ○ missing (as of the sixth slice and its [record sets](RECORD-SETS.md)) |
 | **Sources** | candidate datasets and works. Datasets named here exist; check their current version. |
 | **License** | ✓ CC0, CC BY or public domain, so a build may use it · ✗ share-alike, non-commercial or closed: may be cited, quoted briefly and linked, but not imported · ? not confirmed here, check before importing |
 | **As** | **D** a dataset in the manifest with an importer · **R** researched records · **F** a field (gridded or a series) · **G** a generator · **C** a check (evidence a derived value is tested against) |
@@ -63,7 +63,7 @@ What every other domain leans on.
 | Historical places worldwide | ○ | World Historical Gazetteer | ? | D |
 | Islamic world places | ○ | al-Ṯurayyā | ? | D |
 | China | ○ | CHGIS | ? | — |
-| Present-day borders, coastlines, rivers, lakes | ○ | Natural Earth | ✓ PD | D |
+| Present-day borders, coastlines, rivers, lakes | ◐ land borders and cities, as a layer | Natural Earth | ✓ PD | D |
 | Plate assignment of every located record | ✓ | PALEOMAP polygons | ✓ | check |
 | More plate models as alternatives | ○ | Merdith et al. 2021 (1 Ga to now); Müller et al. 2019 and 2022 | ✓ CC BY (check each) | D |
 
@@ -72,7 +72,7 @@ What every other domain leans on.
 | Need | Here | Sources | License | As |
 |---|---|---|---|---|
 | Wikidata ids on every record that has one | ◐ | Wikidata | ✓ CC0 | R |
-| People of the past as entities, with life dates | ○ | Wikidata; standard biographies | ✓ CC0 | R |
+| People of the past as entities, with life dates | ◐ 42 rulers | Wikidata; standard biographies | ✓ CC0 | R |
 | A contributor registry (accounts, machine tools) | ○ | — | — | R |
 
 ---
@@ -85,7 +85,7 @@ What every other domain leans on.
 | The Moon-forming impact, and hypotheses as alternatives | ✓ | literature | — | R |
 | Early bombardment, and the Late Heavy Bombardment debate | ○ | literature; lunar sample ages | — | R + alternative |
 | The Sun's luminosity, radius and activity through time | ✓ series | stellar evolution models (literature) | — | F |
-| The Earth's orbit and spin: day length, obliquity, precession | ○ | Laskar solutions; tidal rhythmites and fossil growth bands for day length | ? | F + C |
+| The Earth's orbit and spin: day length, obliquity, precession | ◐ day length and the Moon's distance, from 21 measurements; no orbital solutions | Laskar solutions; tidal rhythmites and fossil growth bands for day length | ? | F + C |
 | Meteorites and falls | ○ | Meteoritical Bulletin Database | ? | D |
 | Impact structures on Earth, with ages and sizes | ◐ Chicxulub | Earth Impact Database; Impact Earth (Osinski et al. 2022) | ? | D/R |
 | The Solar System's journey around the galaxy, passing stars | ○ | literature (Gaia-based encounter studies) | — | R |
@@ -108,9 +108,9 @@ What every other domain leans on.
 | Ocean-floor age and spreading | ○ | Seton et al. 2020 age grids | ? | F |
 | Geologic map units with ages and lithology | ○ | Macrostrat | ✓ CC BY (check) | D |
 | Large igneous provinces with dated phases | ◐ Deccan, Siberia, CAMP | LIP Commission records; literature | — | R |
-| Volcanoes and eruptions, Holocene | ○ | Smithsonian Global Volcanism Program | ? | D |
+| Volcanoes and eruptions, Holocene | ◐ NOAA's significant eruptions, as a layer | Smithsonian Global Volcanism Program; NOAA NCEI | ? GVP; ✓ PD NOAA | D |
 | Big eruptions in the ice cores (VEI 6+) | ○ | eVolv2k (Toohey & Sigl 2017) | ? | D |
-| Earthquakes and tsunamis, historical | ○ | NOAA NCEI significant earthquake and tsunami databases (from 2150 BCE) | ✓ PD | D |
+| Earthquakes and tsunamis, historical | ✓ as a layer | NOAA NCEI significant earthquake and tsunami databases (from 2150 BCE) | ✓ PD | D |
 | Earthquakes, instrumental | ○ | USGS ComCat | ✓ PD | D |
 | Mountain ranges as entities, with their growth | ◐ Himalaya | literature | — | R |
 | Ore deposits and their mining | ○ | USGS MRDS; literature | ✓ PD (MRDS) | D/R |
@@ -123,20 +123,20 @@ What every other domain leans on.
 |---|---|---|---|---|
 | Sea level, Phanerozoic | ✓ | van der Meer et al. 2022 | ✓ | F |
 | Sea level, Cenozoic | ○ | Miller et al. 2020 | ? | F |
-| Sea level, last glacial cycle and Holocene | ○ | Lambeck et al. 2014; regional relative sea-level databases | ? | F + C |
+| Sea level, last glacial cycle and Holocene | ◐ the last 800 kyr to 5 ka: Spratt & Lisiecki's stack, and the Last Glacial Maximum's and Last Interglacial's levels as claims | Lambeck et al. 2014; regional relative sea-level databases | ? | F + C |
 | CO₂, Phanerozoic | ✓ | Foster et al. 2017 | ✓ | F |
 | CO₂, Cenozoic | ○ | CenCO2PIP (2023); Rae et al. 2021 | ? | F |
-| CO₂ and methane, ice cores (800 kyr) | ○ | Bereiter et al. 2015 composite (NOAA) | ✓ PD | F |
+| CO₂ and methane, ice cores (800 kyr) | ✓ series | the IPCC AR6 table of Figure 2.4 (Bereiter et al. 2015; Loulergue et al. 2008) | ✓ CC BY; ? NOAA's own copies state no license | F |
 | Global temperature, Phanerozoic | ◐ series | Judd et al. 2024 (PhanDA); Scotese et al. 2021 | ? | F |
 | Temperature, last 24 kyr (fields) | ○ | Osman et al. 2021 (LGMR) | ? | F |
 | Temperature, Holocene | ○ | Kaufman et al. 2020 (Temp12k) | ? | F |
 | Temperature, last 2,000 years | ○ | PAGES 2k | ✓ CC BY | F |
 | Temperature, instrumental | ○ | HadCRUT5; Berkeley Earth | ? HadCRUT (Open Government Licence); ✓ Berkeley (CC BY, check) | F |
-| Climate fields for past times (precipitation, seasons) | ○ | HadCM3 "BRIDGE" runs (Valdes et al.) across the Phanerozoic; PMIP4 and CMIP6 | ? BRIDGE; ✓ CMIP6 (mostly CC BY 4.0) | F |
+| Climate fields for past times (precipitation, seasons) | ◐ one model, Cambrian to the pre-industrial, every 10 Myr: Li et al. 2022 | Li et al. 2022 (CESM); Pohl et al. 2022; HadCM3 "BRIDGE" runs (Valdes et al.); PMIP4 and CMIP6 | ✓ Li, Pohl; ? BRIDGE; ✓ CMIP6 (mostly CC BY 4.0) | F |
 | Ice sheets, last glacial cycle | ○ | ICE-6G_C, ICE-7G_NA; GLAC-1D | ? | F |
 | Ice sheets, deep time (Snowball, Karoo, Antarctic onset) | ◐ Snowball glaciations | literature | — | R + F |
 | Sea ice | ○ | modern: NSIDC; past: model output | ? | F |
-| Biomes and vegetation, past | ○ | BIOME 6000; LandCover6k pollen-based reconstructions | ? | F + C |
+| Biomes and vegetation, past | ◐ derived from the climate field and the transitions, Phanerozoic; no pollen-based maps | BIOME 6000; LandCover6k pollen-based reconstructions | ? | F + C |
 | Oxygen in the atmosphere and oceans | ◐ GOE, deoxygenation events | literature (O₂ curves) | — | R + F |
 | Climate indicators: coals, evaporites, tillites, reefs, bauxites | ○ | Boucot et al. 2013 compilation; Macrostrat lithologies | ? | C |
 | Monsoons and ocean circulation as entities (AMOC, Tethys seaway) | ○ | literature | — | R |
@@ -148,20 +148,20 @@ What every other domain leans on.
 
 | Need | Here | Sources | License | As |
 |---|---|---|---|---|
-| Tree of life: topology | ◐ 26 clades, from cellular organisms to Homo sapiens | Open Tree of Life synthetic tree | ✓ (check) | D |
+| Tree of life: topology | ◐ 26 clades from cellular organisms to Homo sapiens, and the Hell Creek's taxa with their parents from the PBDB, with a panel | Open Tree of Life synthetic tree; PBDB | ✓ (check) | D |
 | Tree of life: divergence times | ◐ | TimeTree; fossil calibrations (Benton et al. 2015) | ? TimeTree | D/R |
-| Fossil occurrences with paleo-coordinates | ◐ 26: the Mesosaurus localities, and 22 early fossils that date the tree's clades | Paleobiology Database | ✓ CC BY | D (snapshot) |
+| Fossil occurrences with paleo-coordinates | ◐ 26 written, 16 fossil forests, and a snapshot of the Hell Creek's 5,277 rows | Paleobiology Database | ✓ CC0 by the service's notice of November 2026 (earlier CC BY) | D (snapshot) |
 | Quaternary fossils and pollen | ○ | Neotoma | ✓ CC BY | D |
 | Present-day species occurrences | ○ | GBIF (licensed per dataset: keep CC0 and CC BY) | ◐ | D |
 | Species ranges through time | ○ | derived from occurrences (alpha hulls), as the design proposes | — | F (derived) |
 | The origin of life and early microbial evidence | ◐ | literature (stromatolites, isotopic evidence); alternatives for contested claims | — | R + alternative |
-| Major transitions: eukaryotes, multicellularity, Ediacara, the Cambrian explosion, land plants, flight, amniotes, flowers, grasses | ◐ some | literature | — | R |
+| Major transitions: eukaryotes, multicellularity, Ediacara, the Cambrian explosion, land plants, flight, amniotes, flowers, grasses | ✓ as records with their evidence: 14 of life's, and the land's covers; reef builders in seven episodes | literature | — | R |
 | The five mass extinctions and the smaller ones | ✓ five | literature; PBDB-derived diversity curves | ✓ | R + F |
-| Biodiversity through time | ○ | PBDB-derived curves; Sepkoski's compendium | ✓ PBDB | F |
-| Dinosaurs, mammals and other famous groups, as taxa with ranges and specimens | ○ | PBDB; museum records | ✓ | D + R |
+| Biodiversity through time | ◐ animal genera by stage, uncorrected | PBDB-derived curves; Sepkoski's compendium | ✓ PBDB | F |
+| Dinosaurs, mammals and other famous groups, as taxa with ranges and specimens | ◐ the Hell Creek's, with sizes and postures | PBDB; museum records; literature | ✓ | D + R |
 | Museum specimens (the T. rex you can click in Chicago) | ○ | GBIF and iDigBio specimen records; museum open data (Smithsonian, CC0) | ✓ | D + R |
-| Megafauna extinctions | ○ | literature; dated last occurrences | — | R |
-| Domestication of plants and animals | ◐ one source | literature; archaeobotanical and zooarchaeological databases | ? | R |
+| Megafauna extinctions | ◐ five regions, 13 genera and species, three pictures of the cause among the alternatives | literature; dated last occurrences | — | R |
+| Domestication of plants and animals | ◐ worldwide, from the sources of each, as 47 records | literature; archaeobotanical and zooarchaeological databases | ? | R |
 
 ---
 
@@ -169,15 +169,15 @@ What every other domain leans on.
 
 | Need | Here | Sources | License | As |
 |---|---|---|---|---|
-| Hominin species and their fossils, sites and dates | ◐ Sahelanthropus, Jebel Irhoud | ROCEEH Out of Africa Database (ROAD); literature | ? | D/R |
-| Stone tool industries and their spread | ○ | ROAD; literature | ? | R |
-| Ancient DNA: individuals, ages, locations, ancestries | ○ | Allen Ancient DNA Resource (AADR) | ? | D |
-| Dispersal of Homo sapiens; contact with Neanderthals and Denisovans | ○ | literature; aDNA | — | R + alternatives |
+| Hominin species and their fossils, sites and dates | ◐ 14 taxa and 20 dated finds, by hand | ROCEEH Out of Africa Database (ROAD); literature | ? | D/R |
+| Stone tool industries and their spread | ◐ eight industries, not their spread | ROAD; literature | ? | R |
+| Ancient DNA: individuals, ages, locations, ancestries | ◐ individuals named by the dispersal records; no database | Allen Ancient DNA Resource (AADR) | ? | D |
+| Dispersal of Homo sapiens; contact with Neanderthals and Denisovans | ◐ 14 dispersals and 3 admixtures, with whole pictures among the alternatives | literature; aDNA | — | R + alternatives |
 | Radiocarbon-dated sites | ○ | p3k14c; XRONOS; regional databases (CARD, etc.) | ? | D |
 | The first farming in each centre, and its spread | ◐ | literature; radiocarbon databases | — | R + F |
-| Population, 10,000 BCE to now (grid) | ○ | HYDE 3.3 | ? | F |
-| Land use: cropland, pasture, irrigation | ○ | HYDE; LandCover6k | ? | F |
-| Rock art and early symbolic artefacts | ○ | literature | — | R |
+| Population, 10,000 BCE to now (grid) | ◐ the world's total as a series; no grid | HYDE 3.2.1 (on DANS: reachable, 5.3 GB, CC BY 3.0 by its readme); HYDE 3.3 (behind a bot check) | ✓ 3.2.1 | F |
+| Land use: cropland, pasture, irrigation | ◐ the world's cropland and grazing land as series; no grid, no irrigation | HYDE 3.2.1; LandCover6k | ✓ 3.2.1 | F |
+| Rock art and early symbolic artefacts | ◐ six artefacts | literature | — | R |
 
 ---
 
@@ -188,17 +188,18 @@ region's sources.
 
 | Layer | Here | Sources (worldwide) | License | As |
 |---|---|---|---|---|
-| Polities and their borders, year by year | ◐ Rome | Cliopatria; OpenHistoricalMap | ✓ | D |
+| Polities and their borders, year by year | ◐ all of Cliopatria's as a layer of rows, and Rome as records | Cliopatria; OpenHistoricalMap | ✓ | D |
 | Polities, other compilations | ○ | Seshat (CC BY-NC-SA); CShapes 2.0 (1886–2019); GeaCron and Euratlas (closed) | ✗ / ? | cite only |
-| Rulers, offices and reigns | ◐ Rome | Wikidata; regnal lists in standard references | ✓ | R |
-| Cities: founding, size, population through time | ◐ Rome, Constantinople | Reba, Reitsma & Seto 2016 (6,000 years of urbanization); Chandler, Modelski | ? | D + R |
+| Rulers, offices and reigns | ◐ 42 rulers, 27 of them Roman | Wikidata; regnal lists in standard references | ✓ | R |
+| Cities: founding, size, population through time | ◐ Rome, Constantinople, 18 first cities with area and population | Reba, Reitsma & Seto 2016 (6,000 years of urbanization); Chandler, Modelski | ? | D + R |
 | Events: battles, treaties, foundations, disasters | ◐ Rome | Wikidata; primary and secondary literature | ✓ | R |
-| People | ○ | Wikidata | ✓ | R |
-| Roads and routes | ○ | Itiner-e (Roman roads); ORBIS; OpenHistoricalMap | ? | D |
-| Trade and shipwrecks | ○ | Strauss (2013) shipwreck database; literature | ? | D |
-| Languages and their families | ○ | Glottolog (locations, families); WALS | ✓ CC BY | D |
+| People | ◐ rulers | Wikidata | ✓ | R |
+| Roads and routes | ◐ Roman roads, as a layer | Itiner-e (Roman roads); ORBIS; OpenHistoricalMap | ✓ Itiner-e; ? others | D |
+| Objects that moved, and where they were | ◐ 13, from obelisks to the Bust of Nefertiti | museums; literature | — | R |
+| Trade and shipwrecks | ◐ 14 wrecks and the Silk Road's dated evidence, as records | Strauss (2013) shipwreck database; OxREP (cited: its terms could not be read); literature | ? | D |
+| Languages and their families | ◐ Glottolog's points and families, as a layer for today | Glottolog (locations, families); WALS | ✓ CC BY | D |
 | Religions and their spread | ○ | literature | — | R |
-| Writing systems, technologies, inventions | ○ | literature | — | R |
+| Writing systems, technologies, inventions | ◐ 10 scripts, with their first finds | literature | — | R |
 | Economy: GDP, prices, wages | ○ | Maddison Project Database | ✓ CC BY | F |
 | Epidemics, famines, climate shocks | ○ | literature | — | R |
 | Texts as sources | ◐ Latin and Greek historians | LacusCurtius and Perseus (cite and quote); Open Greek and Latin; papyri.info; national digital libraries | ✓ to quote | sources |
@@ -267,7 +268,7 @@ region's sources.
 | Today's built-up areas and population | ○ | GHSL; WorldPop | ✓ CC BY | F |
 | Night lights | ○ | VIIRS (Earth Observation Group) | ? | F |
 | Satellite imagery for the globe's surface | ○ | Sentinel-2 cloudless (2016 release is CC BY; later releases are not) | ◐ | F |
-| Countries, cities, infrastructure | ○ | Natural Earth (PD); Overture Maps (mixed); OpenStreetMap (ODbL: not importable) | ◐ | D |
+| Countries, cities, infrastructure | ◐ land borders and the larger cities | Natural Earth (PD); Overture Maps (mixed); OpenStreetMap (ODbL: not importable) | ◐ | D |
 | Development indicators | ○ | World Bank (CC BY); UN World Population Prospects (CC BY 3.0 IGO); Our World in Data (CC BY) | ✓ | F |
 | Climate, reanalysis | ○ | ERA5 (Copernicus licence) | ? | F |
 
@@ -277,10 +278,10 @@ region's sources.
 
 | Need | Here | Sources | License | As |
 |---|---|---|---|---|
-| Emissions scenarios as alternatives (SSP1-2.6 … SSP5-8.5) | ○ | IPCC AR6 WGI data; IIASA SSP database | ✓ AR6 (CC BY); ? SSP | alternatives + F |
-| Sea level and temperature projections to 2100 and 2300 | ○ | IPCC AR6 projections | ✓ CC BY | F (projection) |
+| Emissions scenarios as alternatives (SSP1-2.6 … SSP5-8.5) | ◐ among the alternatives | IPCC AR6 WGI data; IIASA SSP database | ✓ AR6 (CC BY); ? SSP | alternatives + F |
+| Sea level and temperature projections to 2100 and 2300 | ◐ AR6's ranges for 2100, as claims | IPCC AR6 projections | ✓ CC BY | F (projection) |
 | Population projections | ○ | UN World Population Prospects | ✓ | F (projection) |
-| Plate motions forward (Pangaea Proxima, Amasia, Aurica) | ○ | literature, as alternatives | — | alternatives + F |
+| Plate motions forward (Pangaea Proxima, Amasia, Aurica) | ◐ as alternatives, with no plates moved | literature, as alternatives | — | alternatives + F |
 | The far future of the Earth and the Sun | ◐ | literature | — | R (projection) |
 | Spacecraft beyond tracking (Voyager, Pioneer) | ○ | JPL Horizons; literature | ✓ | D (projection) |
 

@@ -1,0 +1,26 @@
+id: src:stiner-2014-asikli
+type: publication
+kind: measurement
+citation: >-
+  Stiner, M.C., Buitenhuis, H., Duru, G., … & Özbaşaran, M. (2014). A forager-herder trade-off,
+  from broad-spectrum hunting to sheep management at Aşıklı Höyük, Turkey. Proceedings of the
+  National Academy of Sciences 111(23), 8404–8409.
+authors:
+  - "Stiner, M.C."
+  - "Buitenhuis, H."
+  - "Duru, G."
+  - "Kuhn, S.L."
+  - "Mentzer, S.M."
+  - "Munro, N.D."
+  - "Pöllath, N."
+  - "Quade, J."
+# the first eight of 10 authors
+published: 2014
+title: "A forager-herder trade-off, from broad-spectrum hunting to sheep management at Aşıklı Höyük, Turkey"
+container: "Proceedings of the National Academy of Sciences 111(23), 8404–8409"
+doi: 10.1073/pnas.1322723111
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC4060719) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

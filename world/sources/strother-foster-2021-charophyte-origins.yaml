@@ -1,0 +1,18 @@
+id: src:strother-foster-2021-charophyte-origins
+type: publication
+kind: measurement
+citation: >-
+  Strother, P.K. & Foster, C. (2021). A fossil record of land plant origins from charophyte algae.
+  Science 373(6556), 792–796.
+authors:
+  - "Strother, P.K."
+  - "Foster, C."
+published: 2021
+title: "A fossil record of land plant origins from charophyte algae"
+container: Science 373(6556), 792–796
+doi: 10.1126/science.abj2927
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work; the full text could not be
+    reached. Quotes checked by script against it. Metadata from Crossref.

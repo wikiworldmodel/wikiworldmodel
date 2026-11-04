@@ -1,0 +1,67 @@
+id: life/taxa/megatherium-americanum
+kind: taxon
+summary: >-
+  The giant ground sloth of the Pampas. A kill and butchering site at Campo Laborde once seemed to
+  show that it lived into the Holocene; better radiocarbon chemistry moved the site back into the
+  Late Pleistocene, to about 12,600 years ago.
+same_as: { ott: 4943445, pbdb: "txn:83805" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: giant ground sloth, la: "Megatherium americanum" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott4943445: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-pbdb-pleistocene:
+    prop: start
+    value: { ref: ics/pleistocene }
+    source: { ref: src:pbdb/taxon-83805, loc: "occs/list: occurrences 600012, 661691 (Pleistocene, 2.58–0.0117 Ma)" }
+    method: compilation
+    rank: preferred
+    note: >-
+      The PBDB's oldest records but one. Preferred, as an editorial judgement a reviewer should
+      check, over the single much older record below, with no source read on either.
+  start-pbdb-huayquerian:
+    prop: start
+    value: { lo: 8 Ma, hi: 5 Ma }
+    source: { ref: src:pbdb/taxon-83805, loc: "taxa/single: firstapp_max_ma, firstapp_min_ma; occurrence 1429305, Cantera Vialidad (Huayquerian)" }
+    method: compilation
+    note: >-
+      The PBDB's first appearance, from one Huayquerian record at Cantera Vialidad, Argentina,
+      millions of years older than its next oldest.
+  end-politis-2019:
+    prop: end
+    value: { lo: 12677 BP, hi: 12547 BP }
+    source:
+      - ref: src:politis-2019-campo-laborde
+        loc: abstract
+        quote: "hunting and butchering of Megatherium americanum (giant ground sloth) at 12,600 cal years BP"
+      - ref: src:politis-2019-campo-laborde
+        loc: "Table 1, caption and row CAMS-171852"
+        quote: "Accepted age is 10,655 ± 35 14C years BP (CAMS-171852)"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      Campo Laborde, a kill dated with care. It need not be the last: Prates & Perez (2021,
+      Supplementary Data 2) list 10,440 ± 100 14C years from Paso Otero 5, uncalibrated, which
+      Politis et al. do not discuss. They do question Holocene survival of megafauna at most, if not
+      all, Pampas localities.
+  end-holocene-survival:
+    prop: end
+    value: { lo: 11982 BP, hi: 10250 BP }
+    source:
+      ref: src:politis-2019-campo-laborde
+      loc: "Results, on the chronology; Table 1, row AA-71665"
+      quote: "M. americanum fossils containing collagen yielded ages ranging from 6740 ± 480 14C years BP (AA-71667) to 9730 ± 290 14C years BP (AA-71665)"
+    method: radiometric/radiocarbon
+    rank: deprecated
+    note: >-
+      The earlier result from the bone that was later redated, 9,730 ± 290 14C years, calibrated in
+      Table 1 to 10,250–11,982 cal BP. The site's other early dates ran younger still, to 6,740 ±
+      480 14C years, not calibrated in the text read. Superseded: Politis et al. show that humates
+      in the collagen made these dates too young.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott4943445, lineage: Megatherium < Megatheriidae < Folivora < Pilosa < Xenarthra < Atlantogenata < Eutheria < Theria < Mammalia" }

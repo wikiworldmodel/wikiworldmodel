@@ -1,0 +1,20 @@
+id: src:wikidata-monte-verde
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q975775 (Monte Verde, an archaeological site in Llanquihue Province, Chile),
+  property P625 (coordinate location).
+snapshot: "2026-11-03"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q975775
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry; no source is given for the point.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (-41.504722222222, -73.204444444444; precision None) read from the item's JSON
+    (Special:EntityData/Q975775.json, last revision 2539657991, modified 2026-09-03).

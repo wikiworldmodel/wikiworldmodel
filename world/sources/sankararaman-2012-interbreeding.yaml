@@ -1,0 +1,22 @@
+id: src:sankararaman-2012-interbreeding
+type: publication
+kind: measurement
+citation: >-
+  Sankararaman, S., Patterson, N., Li, H., Pääbo, S. & Reich, D. (2012). The date of interbreeding
+  between Neandertals and modern humans. PLoS Genetics 8(10), e1002947.
+authors:
+  - "Sankararaman, S."
+  - "Patterson, N."
+  - "Li, H."
+  - "Pääbo, S."
+  - "Reich, D."
+published: 2012
+title: "The date of interbreeding between Neandertals and modern humans"
+container: "PLoS Genetics 8(10), e1002947"
+doi: 10.1371/journal.pgen.1002947
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC3464203); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

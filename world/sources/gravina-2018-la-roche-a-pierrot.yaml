@@ -1,0 +1,27 @@
+id: src:gravina-2018-la-roche-a-pierrot
+type: publication
+kind: measurement
+citation: >-
+  Gravina, B., Bachellerie, F., Caux, S., Discamps, E., Faivre, J.P., Galland, A., Michel, A.,
+  Teyssandier, N. & Bordes, J.G. (2018). No Reliable Evidence for a Neanderthal-Châtelperronian
+  Association at La Roche-à-Pierrot, Saint-Césaire. Scientific Reports 8(1), 15134.
+authors:
+  - "Gravina, B."
+  - "Bachellerie, F."
+  - "Caux, S."
+  - "Discamps, E."
+  - "Faivre, J.P."
+  - "Galland, A."
+  - "Michel, A."
+  - "Teyssandier, N."
+  - "Bordes, J.G."
+published: 2018
+title: "No Reliable Evidence for a Neanderthal-Châtelperronian Association at La Roche-à-Pierrot, Saint-Césaire"
+container: "Scientific Reports 8(1), 15134"
+doi: 10.1038/s41598-018-33084-9
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC6181958): a reassessment of the level at Saint-Césaire, with
+    no reliable evidence for the association of its Neanderthal bones with the Châtelperronian.
+    Quoted passages checked by script against the text retrieved.

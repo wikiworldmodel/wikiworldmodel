@@ -1,0 +1,17 @@
+id: src:wikidata-oberkassel
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q178317 (Oberkassel), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q178317
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "quarter of Bonn, Germany". A point for the named place, of
+  uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (50.713889, 7.166667) read from the item's JSON
+    (Special:EntityData/Q178317.json) on 3 November 2026.

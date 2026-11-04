@@ -1,0 +1,9 @@
+id: earth/plates/south-new-zealand
+kind: plate
+summary: Plate 807 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: South New Zealand }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 807", quote: "SNZ  South New Zealand" }

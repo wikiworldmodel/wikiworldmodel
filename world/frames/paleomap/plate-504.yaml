@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-504
+type: frame
+kind: plate
+title: Turkey (PALEOMAP plate 504)
+entity: earth/plates/turkey
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 504
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 504

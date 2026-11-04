@@ -1,0 +1,29 @@
+id: src:powell-2022-uluburun-tin
+type: publication
+kind: measurement
+citation: >-
+  Powell, W., Frachetti, M., Pulak, C., Bankoff, H.A., Barjamovic, G., Johnson, M., Mathur, R., Pigott, V.C., Price, M. &
+  Yener, K.A. (2022). Tin from Uluburun shipwreck shows small-scale commodity exchange fueled continental tin supply
+  across Late Bronze Age Eurasia. Science Advances 8(48), eabq3766.
+authors:
+  - "Powell, W."
+  - "Frachetti, M."
+  - "Pulak, C."
+  - "Bankoff, H.A."
+  - "Barjamovic, G."
+  - "Johnson, M."
+  - "Mathur, R."
+  - "Pigott, V.C."
+  - "Price, M."
+  - "Yener, K.A."
+published: 2022
+title: Tin from Uluburun shipwreck shows small-scale commodity exchange fueled continental tin supply across Late Bronze Age Eurasia
+container: Science Advances
+doi: 10.1126/sciadv.abq3766
+url: https://europepmc.org/article/PMC/PMC9710885
+license: CC-BY-NC-4.0
+license_note: Single facts and short quotes, with credit.
+reliability: Its measurements are of the tin; the ship's date it takes from its reference 3. A later rebuttal of its Central Asian source was seen only in press summaries and not read.
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC9710885). Quotes checked by script against it, after normalizing whitespace.

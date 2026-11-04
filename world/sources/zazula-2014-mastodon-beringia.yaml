@@ -1,0 +1,25 @@
+id: src:zazula-2014-mastodon-beringia
+type: publication
+kind: measurement
+citation: >-
+  Zazula, G.D., MacPhee, R.D.E., Metcalfe, J.Z., Reyes, A.V., Brock, F., Druckenmiller, P.S.,
+  Groves, P., Harington, C.R., Hodgins, G.W.L., Kunz, M.L., … & Southon, J.R. (2014). American
+  mastodon extirpation in the Arctic and Subarctic predates human colonization and terminal
+  Pleistocene climate change. Proceedings of the National Academy of Sciences of the USA 111(52),
+  18460–18465.
+authors:
+  - "Zazula, G.D."
+  - "MacPhee, R.D.E."
+  - "Metcalfe, J.Z."
+  - "Reyes, A.V."
+  - "Southon, J.R."
+published: 2014
+title: "American mastodon extirpation in the Arctic and Subarctic predates human colonization and terminal Pleistocene climate change"
+container: "Proceedings of the National Academy of Sciences of the USA 111(52), 18460–18465"
+doi: 10.1073/pnas.1416072111
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the PMC record through NCBI efetch (PMC4284604), the publisher
+    not allowing the full text there. Quotes checked by script against the text retrieved, after
+    normalizing whitespace.

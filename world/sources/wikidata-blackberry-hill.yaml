@@ -1,0 +1,17 @@
+id: src:wikidata-blackberry-hill
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q4922563 (Blackberry Hill, Lagerstätte located in Wisconsin), property P625
+  (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q4922563
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry, for the site as a whole.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (44.7109, -89.512055555556) read from the item's JSON
+    (Special:EntityData/Q4922563.json) on 4 November 2026.

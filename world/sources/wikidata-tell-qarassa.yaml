@@ -1,0 +1,17 @@
+id: src:wikidata-tell-qarassa
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q112575726 (Tell Qarassa), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q112575726
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "archaeological site in Syria". A point for the named place,
+  of uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (32.835556, 36.413722) read from the item's JSON
+    (Special:EntityData/Q112575726.json) on 3 November 2026.

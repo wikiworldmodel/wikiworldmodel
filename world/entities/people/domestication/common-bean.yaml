@@ -1,0 +1,58 @@
+id: people/domestication/common-bean
+kind: development
+summary: >-
+  The domestication of the common bean, Phaseolus vulgaris, in Mesoamerica, independently of its
+  domestication in the Andes (not recorded here). The genetics put it near 8,000 years ago, while
+  the oldest beans found in Mesoamerica are little more than 2,000 years old: a gap of millennia in
+  which the crop has left no remains yet found. West-central Mexico and the Oaxaca Valley compete
+  as its place.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Common bean domestication in Mesoamerica }
+    unsourced: An editorial label.
+  start-schmutz-2014:
+    prop: start
+    value: 8 ka
+    source:
+      ref: src:schmutz-2014-common-bean
+      loc: Introduction
+      quote: "nearly 8,000 years ago, common bean was independently domesticated in what is now Mexico and in South America"
+    method: expert-estimate
+    note: >-
+      Stated from earlier studies. The oldest bean of this record is more than 5,000 years younger.
+  location-west-central-mexico:
+    prop: location
+    value: { lat: 20.676389, lon: -103.345833, frame: frame:earth/present-day }
+    source:
+      - ref: src:kennett-2023-el-gigante
+        loc: Discussion
+        quote: "Genetic data point to a single domestication event for common beans in west-central Mexico"
+      - ref: src:bitocchi-2017-phaseolus
+        loc: "Domestication of the common bean"
+        quote: "Kwak et al. (2009) suggested the Rio Lerma–Rio Grande de Santiago basin in western-central Mexico as the putative geographic area where the common bean P. vulgaris was domesticated"
+      - { ref: src:wikidata-jalisco, loc: "P625 coordinate location" }
+    method: editorial
+    rank: preferred
+    note: >-
+      The reading of the newest source read. Kwak et al. themselves were not read. Marked at the
+      gazetteer's point for Jalisco, in that basin.
+  location-oaxaca-valley:
+    prop: location
+    value: { lat: 17.045, lon: -96.7669, frame: frame:earth/present-day }
+    source:
+      - ref: src:bitocchi-2017-phaseolus
+        loc: "Domestication of the common bean"
+        quote: "Bitocchi et al. (2013) used nucleotide data to suggest a different location for the domestication of the common bean: Oaxaca Valley, in the south of Mexico."
+      - { ref: src:wikidata-valley-of-oaxaca, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      A review reporting the authors' own earlier result. It adds that this place matches neither
+      Kwak et al.'s for the bean nor the place given for maize.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-104
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

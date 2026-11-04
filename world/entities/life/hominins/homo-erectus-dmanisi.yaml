@@ -1,0 +1,62 @@
+id: life/occurrences/homo-erectus-dmanisi
+kind: occurrence
+summary: >-
+  The early Homo fossils of Dmanisi, Georgia: five crania and much else from stratum B beneath the
+  medieval ruins, small-brained and among the first hominins known outside Africa. Stone tools there
+  are older than the fossils.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Early Homo, Dmanisi" }
+    unsourced: An editorial label, from the fossils' usual description and the place.
+  identified:
+    prop: identified_as
+    value: Homo erectus
+    source:
+      ref: src:ferring-2011-dmanisi
+      loc: abstract
+      quote: "The early Pleistocene colonization of temperate Eurasia by Homo erectus"
+    note: >-
+      The name is disputed. Lordkipanidze et al. (2013) describe the fossils only as early Homo, a
+      single evolving lineage with those of Africa.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:lordkipanidze-2013-dmanisi, loc: abstract }
+  location:
+    prop: location
+    value: { lat: 41.336111, lon: 44.343889, frame: frame:earth/present-day }
+    source:
+      ref: src:ferring-2011-dmanisi
+      loc: Introduction
+      quote: "Dmanisi is located in the southern Georgian Caucasus (41°20’10”N and 44°20’38”E)"
+    method: survey
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-511
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 1.77 Ma
+    source:
+      - ref: src:ferring-2011-dmanisi
+        loc: Introduction
+        quote: "all of those hominin fossils are from sediments of stratum B, dated to ca. 1.77 Ma, based on 40Ar/39Ar dates, paleomagnetism, and paleontologic constraints"
+      - ref: src:lordkipanidze-2013-dmanisi
+        loc: abstract
+        quote: "documenting the presence of Homo outside Africa around 1.8 million years ago"
+    method: radiometric/ar-ar
+    note: >-
+      Stone tools at the site are older, from the late Olduvai subchron, 1.85–1.78 Ma, so hominins were
+      there before these fossils; those tools are a claim about the site and not about this record.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-erectus
+    source:
+      - { ref: src:ferring-2011-dmanisi, loc: abstract }
+      - { ref: src:lordkipanidze-2013-dmanisi, loc: abstract }
+    note: Assigned to the species in the broad sense; see the note on the identification.

@@ -1,0 +1,15 @@
+id: src:yuan-shi-wikisource
+type: text
+kind: historian
+citation: >-
+  Yuan shi (元史, History of the Yuan), chapter 1, Chinese text on Chinese Wikisource.
+title: "元史"
+url: https://zh.wikisource.org/wiki/%E5%85%83%E5%8F%B2/%E5%8D%B7001
+via: Chinese Wikisource, with critical notes printed under the text.
+reliability: >-
+  The official dynastic history of the Mongol house, compiled under the Ming from its court
+  records, long after Genghis Khan. It dates by reigning years and the sixty-year cycle.
+verified:
+  by: machine:claude-code
+  how: >-
+    Chapter 1 read on Chinese Wikisource; quotations checked by script against that text.

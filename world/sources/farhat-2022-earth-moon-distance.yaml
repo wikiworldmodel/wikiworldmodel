@@ -1,0 +1,27 @@
+id: src:farhat-2022-earth-moon-distance
+type: publication
+kind: model
+citation: >-
+  Farhat, M., Auclair-Desrotour, P., Boué, G. & Laskar, J. (2022). The resonant tidal evolution of
+  the Earth-Moon distance. Astronomy & Astrophysics 665, L1.
+authors:
+  - "Farhat, M."
+  - "Auclair-Desrotour, P."
+  - "Boué, G."
+  - "Laskar, J."
+published: 2022
+title: The resonant tidal evolution of the Earth-Moon distance
+container: Astronomy & Astrophysics 665, L1
+doi: 10.1051/0004-6361/202243445
+license: CC-BY-4.0
+reliability: >-
+  A physical model of the tides that was not fitted to the geological data. Its Tables D.1 and D.2
+  list those data, but the semi-major axes and day lengths in them are computed from each study's
+  observed quantity with this model, and the tables say they may differ from the published values.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in the authors' PDF on arXiv (2207.00438), which carries the journal's proof header; the
+    published version was not compared with it. Tables D.1 to D.3 were read from the page as rendered
+    and transcribed; each cell quoted was checked by script against the PDF's text, and the row
+    quotes against that transcription. Metadata from Crossref.

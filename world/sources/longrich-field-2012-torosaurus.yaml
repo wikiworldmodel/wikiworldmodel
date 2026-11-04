@@ -1,0 +1,18 @@
+id: src:longrich-field-2012-torosaurus
+type: publication
+kind: measurement
+citation: >-
+  Longrich, N.R. & Field, D.J. (2012). Torosaurus is not Triceratops: ontogeny in chasmosaurine
+  ceratopsids as a case study in dinosaur taxonomy. PLoS ONE 7(2), e32623.
+authors:
+  - "Longrich, N.R."
+  - "Field, D.J."
+published: 2012
+title: "Torosaurus is not Triceratops: ontogeny in chasmosaurine ceratopsids as a case study in dinosaur taxonomy"
+container: "PLoS ONE 7(2), e32623"
+doi: 10.1371/journal.pone.0032623
+license: CC-BY
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC3290593); quotes checked by script against it.

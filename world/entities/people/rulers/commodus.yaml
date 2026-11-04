@@ -1,0 +1,81 @@
+id: people/rulers/commodus
+kind: person
+summary: Son of Marcus Aurelius, strangled on the last night of 192.
+author: machine:claude-code
+same_as: { wikidata: Q1434 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Commodus }
+    source:
+      ref: src:historia-augusta
+      loc: "Commodus 1.2"
+      quote: As for Commodus himself
+  start:
+    prop: start
+    value: 31 August 161 CE
+    source:
+      ref: src:historia-augusta
+      loc: "Commodus 1.2"
+      quote: at Lanuvium — where his mother's father was born, it is said — on the day before the Kalends of September, while his father and uncle were consuls
+    method: historical-account
+    note: >-
+      The day before the Kalends of September is 31 August, and the consulship of Marcus and
+      Verus is 161 CE (Clinton, p. 148, sets it there).
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/marcus-aurelius, edge: end }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 73, 22.6, vol. 9 p. 117"
+      quote: after he had ruled twelve years, nine months, and fourteen days
+    method: historical-account
+    note: >-
+      His sole rule; he had been acclaimed Imperator with his father years before (Historia
+      Augusta, Commodus 2.4). Dio's count runs from the day of Marcus' death.
+  end:
+    prop: end
+    value: 31 December 192 CE
+    source:
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 73, 22.4, vol. 9 p. 117"
+        quote: on the last day of the year, at night
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 73, 22.6, vol. 9 p. 117"
+        quote: Such was the end of Commodus
+    method: historical-account
+    note: >-
+      The year follows from Dio's twelve years, nine months and fourteen days from 17 March 180.
+  location:
+    prop: location
+    value: { lat: 41.674703, lon: 12.697593, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-lanuvium
+        loc: "representative point"
+      - ref: src:historia-augusta
+        loc: "Commodus 1.2"
+        quote: at Lanuvium
+    method: gazetteer
+    note: Marked at his birthplace, Lanuvium, at Pleiades' point.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 73, 22.6, vol. 9 p. 117"
+      quote: after he had ruled twelve years
+    note: Emperor.

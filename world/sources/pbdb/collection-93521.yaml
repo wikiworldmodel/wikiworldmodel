@@ -1,0 +1,24 @@
+id: src:pbdb/collection-93521
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 93521 ("Trinil", ID), occurrence 842460. Read through the
+  PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=93521
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+  Commons CC0".
+reliability: >-
+  A database record compiled from the literature; the collection reference, not read here, is: G.
+  D. van den Bergh. 1999. The Late Neogene elephantoid-bearing faunas of Indonesia and their
+  palaeozoogeographic implications. A study of the terrestrial faunal succession of Sulawesi,
+  Flores and Jav
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=93521&show=loc,strat,ref and from the occurrence list:
+    lat -7.366667, lng 111.349998, early_interval "Calabrian", formation "none given", geographic
+    note "none"; occurrence 842460, accepted name "Homo erectus".

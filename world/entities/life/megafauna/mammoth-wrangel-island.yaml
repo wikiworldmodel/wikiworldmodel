@@ -1,0 +1,55 @@
+id: life/megafauna/mammoth-wrangel-island
+kind: occurrence
+summary: >-
+  A woolly mammoth molar from Wrangel Island in the Arctic Ocean, radiocarbon-dated to about 4,300
+  years ago, whose genome showed how small the island's last population had become. It is one of the
+  youngest mammoths dated on the island, not the last.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Woolly mammoth, Wrangel Island" }
+    unsourced: An editorial label, from the taxon and the place name.
+  identified:
+    prop: identified_as
+    value: Mammuthus primigenius
+    source:
+      ref: src:palkopoulou-2015-mammoth-genomes
+      loc: "Results and Discussion, second paragraph"
+      quote: "We extracted DNA from the remains of ten woolly mammoths from Wrangel Island"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary: a molar tooth."
+  location:
+    prop: location
+    value: { lat: 71.233333, lon: -179.4, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-wrangel-island, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A representative point for the whole island, at about 0.02° precision. Where on the island the
+      tooth was found was not read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-103
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 4300 BP
+    source:
+      ref: src:palkopoulou-2015-mammoth-genomes
+      loc: "Results and Discussion, second paragraph (AA 40665)"
+      quote: "With a direct calibrated radiocarbon age of ~4,300 calendar years BP (AA 40665; Figure 1B, Table S1), this represents one of the most recently dated specimens that has been discovered on the island"
+    method: radiometric/radiocarbon
+    note: >-
+      As the paper rounds it. The measured age and its error are in its Table S1, which was not
+      read.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/mammuthus-primigenius
+    source:
+      ref: src:palkopoulou-2015-mammoth-genomes
+      loc: "Results and Discussion, second paragraph"

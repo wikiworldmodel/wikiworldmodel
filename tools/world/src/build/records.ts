@@ -6,8 +6,8 @@ import { parseRef, splitRef } from '../../../../core/refs.ts';
 import type { RotationModel } from '../../../../core/rotation-model.ts';
 import type { Bounds, Solution } from '../../../../core/stn.ts';
 import { centre, formatDuration, formatTimeValue, parseLag, parseTime, PRESENT_YEAR, type TimeValue } from '../../../../core/time.ts';
-import type { Basis, Estimate, Feature, FeatureBasis, FeatureName, FeatureTime } from '../../../../core/tileset.ts';
-import { chosen, pointOf, scenarioKey, subjectExists, type ClaimGroup, type Variant } from '../chronology.ts';
+import type { Basis, Estimate, Feature, FeatureMove, FeatureBasis, FeatureName, FeatureTime } from '../../../../core/tileset.ts';
+import { chosen, claimGroup, pointOf, scenarioKey, subjectExists, type ClaimGroup, type Variant } from '../chronology.ts';
 import { BASES, isMoment, type Claim, type Entity, type Source, type World } from '../world.ts';
 
 /** A form in words, for its claim: its type and what is known of it. */
@@ -56,7 +56,7 @@ function oneSided(c: Claim): boolean {
 
 /** The chosen claim of a subject's property in the default picture. */
 export function claimOf(s: Solved, subject: string, prop: string): Claim | undefined {
-  const g = s.groups.find((x) => x.subject === subject && x.prop === prop);
+  const g = claimGroup(s.world, subject, prop);
   return g ? chosen(g) : undefined;
 }
 
@@ -81,6 +81,9 @@ function timeOf(s: Solved, subject: string, b: Bounds, centres?: Bounds): Featur
   const endClaim = claimOf(s, subject, 'end');
   const end = estimate(b, centres, pointOf(w, subject, 'end'), !!directTime(s, subject, 'end'));
   const unknown = endClaim?.value === 'unknown';
+  const { record: whole, phase: part } = splitRef(subject);
+  // An end the kind shows at the latest time a range allows, as a taxon's last interval.
+  if (!part && endClaim && !unknown && w.vocab.kinds[w.entity.get(whole)?.kind ?? '']?.end === 'latest' && Number.isFinite(end.hi)) end.best = end.hi;
   // Something with no stated or derivable end still holds.
   if ((!endClaim || unknown) && end.hi === Infinity) end.best = null;
   const { record, phase } = splitRef(subject);
@@ -182,9 +185,9 @@ export interface Placement {
  * present-day coordinates go into a plate frame by undoing that plate's rotation at the
  * present (the identity, for PALEOMAP).
  */
-export function placement(s: Solved, e: Entity): Placement | undefined {
-  const loc = claimOf(s, e.id, 'location');
-  const fr = claimOf(s, e.id, 'frame');
+export function placement(s: Solved, e: Entity, subject: string = e.id): Placement | undefined {
+  const loc = claimOf(s, subject, 'location');
+  const fr = claimOf(s, subject, 'frame') ?? claimOf(s, e.id, 'frame');
   if (!loc || !fr) return undefined;
   const p = loc.value as { lat: number; lon: number; frame: string };
   const frame = s.world.frame.get(fr.value as string);
@@ -233,20 +236,38 @@ function statusOf(e: Entity): Feature['status'] {
  * picture's.
  */
 function variantTimes(s: Solved, subject: string, base: FeatureTime): Record<string, FeatureTime> {
+  // Asked for several times of each subject, and each answer walks every variant: worked out once.
+  let known = variantMemo.get(s);
+  if (!known) {
+    known = new Map();
+    variantMemo.set(s, known);
+  }
+  const ready = known.get(subject);
+  if (ready) return ready;
   const out: Record<string, FeatureTime> = {};
   const pictureTime = new Map<string, FeatureTime>();
   for (const v of s.variants) {
     if (v.scenario.picks?.length || !v.solution.ok) continue;
     pictureTime.set(v.key, timeOf(s, subject, v.solution.bounds, boundsOf(v.centres)));
   }
+  // What takes its start from its members may change with them; anything else only with its own two points.
+  const { record } = splitRef(subject);
+  const own = s.world.vocab.kinds[s.world.entity.get(record)?.kind ?? '']?.start !== 'latest';
+  const points = [pointOf(s.world, subject, 'start'), pointOf(s.world, subject, 'end')];
+  const moved = (b: Bounds | undefined) => !(b instanceof Map) || !('keptOver' in b) || points.some((p) => Map.prototype.has.call(b, p));
   for (const v of s.variants) {
     if (!v.key || !v.solution.ok) continue;
-    const t = timeOf(s, subject, v.solution.bounds, boundsOf(v.centres));
     const fallback = v.scenario.picks?.length ? (pictureTime.get(scenarioKey({ alts: v.scenario.alts })) ?? base) : base;
+    // A pick that keeps both points as its picture has them changes nothing here.
+    if (own && v.scenario.picks?.length && !moved(v.solution.bounds) && !moved(boundsOf(v.centres))) continue;
+    const t = timeOf(s, subject, v.solution.bounds, boundsOf(v.centres));
     if (!sameTime(t, fallback)) out[v.key] = t;
   }
+  known.set(subject, out);
   return out;
 }
+
+const variantMemo = new WeakMap<Solved, Map<string, Record<string, FeatureTime>>>();
 
 /** A subject's interval (an entity's, or a phase's) in the default picture, and in the scenarios where it differs. */
 export function subjectTime(s: Solved, subject: string): { time: FeatureTime; variants?: Record<string, FeatureTime> } {
@@ -258,7 +279,14 @@ export function subjectTime(s: Solved, subject: string): { time: FeatureTime; va
 export function features(s: Solved): Feature[] {
   const out: Feature[] = [];
   for (const e of s.world.entities) {
-    const pl = placement(s, e);
+    // A thing that moved says where it was in each of its phases.
+    const moves: FeatureMove[] = [];
+    for (const p of e.phases) {
+      const subject = `${e.id}@${p.id}`;
+      const at = placement(s, e, subject);
+      if (at) moves.push({ label: p.label ?? p.id, ...(at.plate !== undefined ? { plate: at.plate } : {}), location: at.location, ...subjectTime(s, subject) });
+    }
+    const pl = placement(s, e) ?? (e.phases.map((p) => placement(s, e, `${e.id}@${p.id}`)).find(Boolean) as Placement | undefined);
     if (!pl) continue;
     const time = timeOf(s, e.id, s.sol.bounds, boundsOf(s.centres));
     const by = derivedBy(s.sol.bounds, s.world, e.id);
@@ -273,6 +301,7 @@ export function features(s: Solved): Feature[] {
       frame: pl.frame,
       plate: pl.plate,
       location: pl.location,
+      ...(moves.length ? { moves } : {}),
       time,
       variants: Object.keys(variants).length ? variants : undefined,
       status: statusOf(e),
@@ -296,8 +325,12 @@ function valueText(s: Solved, c: Claim, labelOf: (ref: string) => string): strin
       return labelOf(String(v));
     case 'text':
       return Object.entries(v as Record<string, string>).map(([lang, t]) => (lang === 'en' ? t : `${t} (${lang})`)).join(' · ');
-    case 'quantity':
+    case 'quantity': {
+      const u = prop.unit ? ` ${prop.unit}` : '';
+      const q = v as { mean?: number; sd?: number; lo?: number; hi?: number };
+      if (typeof q === 'object' && q !== null) return q.mean !== undefined ? `${q.mean} ± ${q.sd}${u}` : `${q.lo}–${q.hi}${u}`;
       return `${(v as number).toLocaleString('en-US')}${prop.unit === '°' ? '' : ' '}${prop.unit}`;
+    }
     case 'string':
       return prop.values?.[String(v)] ?? String(v);
     case 'form':
@@ -412,7 +445,7 @@ export function records(s: Solved): EntityRecord[] {
       note: c.note,
     });
     const claims: ClaimRecord[] = e.claims.map((c) => {
-      const g = s.groups.find((x) => x.key === `${c.subject}|${c.prop}`);
+      const g = claimGroup(w, c.subject, c.prop);
       for (const ref of claimRefs(w, c)) if (!exists(ref)) wanted.add(splitRef(ref).record);
       return {
         ...common(c),
@@ -530,7 +563,7 @@ export function search(s: Solved, feats: Feature[]): SearchFile {
   return {
     entities: s.world.entities
       .filter((e) => !e.kind.startsWith('period/'))
-      .map((e) => ({ id: e.id, label: namesOf(s, e).label, kind: e.kind, summary: e.summary, time: timeOf(s, e.id, s.sol.bounds, boundsOf(s.centres)), located: located.has(e.id) })),
+      .map((e) => ({ id: e.id, label: namesOf(s, e).label, kind: e.kind, summary: e.summary, time: timeOf(s, e.id, s.sol.bounds, boundsOf(s.centres)), located: located.has(e.id), ...(e.id.startsWith('life/pbdb/') ? { bulk: true } : {}) })),
   };
 }
 

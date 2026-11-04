@@ -1,0 +1,13 @@
+id: src:devb-2024-nanhai-i
+type: publication
+kind: review
+citation: >-
+  Development Bureau, Hong Kong (13 October 2024). "Nanhai I" unravels the mystery of the Maritime Silk Road. My Blog.
+published: 2024
+title: '"Nanhai I" unravels the mystery of the Maritime Silk Road'
+container: Development Bureau, Government of Hong Kong, My Blog
+url: https://www.devb.gov.hk/en/home/my_blog/index_id_1568.html
+reliability: A government blog on an exhibition, reporting its curators. The only thing read that sets out the inscriptions and coins behind the year.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

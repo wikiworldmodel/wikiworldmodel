@@ -1,0 +1,72 @@
+id: people/first-cities/erlitou
+kind: settlement
+summary: >-
+  Erlitou, in the Yiluo River Basin at Yanshi in Henan, China: a site of about 300 hectares in the first half of the second millennium BCE, with palaces inside walled compounds and
+  workshops for bronze, ceramics, bone and jade, at the centre of the first large polity of the Central Plain. Whether it was a capital of the legendary Xia dynasty is argued; no
+  claim here says so.
+author: machine:claude-code
+same_as: { wikidata: Q2692927 }
+claims:
+  name:
+    prop: name
+    value: { en: Erlitou }
+    source: { ref: src:wikidata-erlitou, loc: "Q2692927, label" }
+  start-li:
+    prop: start
+    value: 1800 BCE
+    source:
+      ref: src:li-guo-chen-2026-central-plain
+      loc: section "The Central Plain in prehistory"
+      quote: "This trajectory culminates in the Erlitou (ELT) period (1800 to 1500 BCE)"
+    method: expert-estimate
+    rank: preferred
+    note: The dates of the period, taken for the site. Preferred as the most recent read; the radiocarbon study of the site itself (Zhang et al. 2021, Radiocarbon) could be read only in an abstract that gives no dates.
+  start-sandeford:
+    prop: start
+    value: 1900 BCE
+    source:
+      ref: src:sandeford-2018-primary-states
+      loc: section heading
+      quote: Erlitou, central China, ca 1900–1500 BCE
+    method: expert-estimate
+    note: For the Erlitou state and its region.
+  end:
+    prop: end
+    value: 1500 BCE
+    source:
+      - ref: src:li-guo-chen-2026-central-plain
+        loc: section "The Central Plain in prehistory"
+        quote: "This trajectory culminates in the Erlitou (ELT) period (1800 to 1500 BCE)"
+      - ref: src:sandeford-2018-primary-states
+        loc: section heading
+        quote: Erlitou, central China, ca 1900–1500 BCE
+    method: expert-estimate
+    note: The end of the period, taken for the decline of the site; later occupation is not covered.
+  location:
+    prop: location
+    value: { lat: 34.6925, lon: 112.69, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-erlitou, loc: "Q2692927, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area:
+    prop: settlement_area
+    value: 300
+    valid: { lo: 1800 BCE, hi: 1500 BCE }
+    source:
+      ref: src:li-guo-chen-2026-central-plain
+      loc: section "The Central Plain in prehistory"
+      quote: The ELT site, covering ∼300 ha
+    method: expert-estimate
+    note: For the site as a whole, with no moment given within the period.
+  population:
+    prop: population
+    value: 40000
+    valid: 1700 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Erlitou, column BC_1700" }
+    method: compilation
+    note: Modelski's figure, as digitized by Reba et al. (2016). No excavators' estimate could be read; the region's total, 27,841 to 82,085, is in Sandeford (2018).

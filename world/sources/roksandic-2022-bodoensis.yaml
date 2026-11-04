@@ -1,0 +1,21 @@
+id: src:roksandic-2022-bodoensis
+type: publication
+kind: review
+citation: >-
+  Roksandic, M., Radović, P., Wu, X.J. & Bae, C.J. (2022). Resolving the "muddle in the middle":
+  The case for Homo bodoensis sp. nov. Evolutionary Anthropology 31(1), 20–29.
+authors:
+  - "Roksandic, M."
+  - "Radović, P."
+  - "Wu, X.J."
+  - "Bae, C.J."
+published: 2022
+title: "Resolving the \"muddle in the middle\": The case for Homo bodoensis sp. nov"
+container: "Evolutionary Anthropology 31(1), 20–29"
+doi: 10.1002/evan.21929
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC9297855): the proposal to abandon H. heidelbergensis and H.
+    rhodesiensis, to name H. bodoensis, and to move Sima de los Huesos to H. neanderthalensis.
+    Quoted passages checked by script against the text retrieved.

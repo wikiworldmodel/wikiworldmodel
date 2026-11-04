@@ -1,0 +1,61 @@
+id: life/occurrences/cloudina-zaris
+kind: occurrence
+summary: >-
+  The funnel-in-funnel tube Cloudina from the Zaris Formation south of Osis, Nama Group, Namibia: an index
+  fossil of the first widespread animal skeletons. PBDB collection 7912.
+same_as: { pbdb: "occ:101798" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Cloudina, Zaris Formation" }
+    unsourced: An editorial label, from the taxon and the formation.
+  identified:
+    prop: identified_as
+    value: Cloudina sp.
+    source: { ref: src:pbdb/collection-7912, loc: "occurrence 101798, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:morais-2024-bocaina
+      loc: "Introduction"
+      quote: "Well-established and widespread biomineralization in animals, mainly represented by the extinct Nama assemblage of Cloudina"
+  location:
+    prop: location
+    value: { lat: -25.6, lon: 16.966667, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-7912, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      "South of Osis", given to about a tenth of a degree or so.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Zaris Formation
+    source: { ref: src:pbdb/collection-7912, loc: "formation" }
+  date:
+    prop: date
+    value: { lo: 550 Ma, hi: 539 Ma }
+    source:
+      ref: src:morais-2024-bocaina
+      loc: "Introduction"
+      quote: "is currently recognized as having started in the latest Ediacaran, between 550 and 539 Ma"
+    method: stratigraphic
+    note: >-
+      The span the paper gives to the assemblage as a whole, not a date for this collection, which the PBDB
+      assigns only to the Ediacaran.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/metazoa
+    source:
+      ref: src:morais-2024-bocaina
+      loc: "Introduction"
+      quote: "Well-established and widespread biomineralization in animals, mainly represented by the extinct Nama assemblage of Cloudina"
+    note: >-
+      An animal in this source. The PBDB classifies Cloudina in Cnidaria.

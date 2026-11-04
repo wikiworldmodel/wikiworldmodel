@@ -1,0 +1,26 @@
+id: src:roberts-2026-dueling-dinosaurs
+type: publication
+kind: measurement
+citation: >-
+  Roberts, E.M., Hendrix, M.S., Ramezani, J., Clyde, W.C., Zippi, P., Hodgson, S., Yuleridge, V.
+  & Zanno, L.E. (2026). High precision CA-ID-TIMS U-Pb zircon age for the "Dueling Dinosaurs"
+  locality, with implications for regional correlation, basal age and duration of the Hell Creek
+  Formation, Montana. PLOS ONE 21(5), e0328861.
+authors:
+  - "Roberts, E.M."
+  - "Hendrix, M.S."
+  - "Ramezani, J."
+  - "Clyde, W.C."
+  - "Zippi, P."
+  - "Hodgson, S."
+  - "Yuleridge, V."
+  - "Zanno, L.E."
+published: 2026
+title: "High precision CA-ID-TIMS U-Pb zircon age for the \"Dueling Dinosaurs\" locality, with implications for regional correlation, basal age and duration of the Hell Creek Formation, Montana"
+container: "PLOS ONE 21(5), e0328861"
+doi: 10.1371/journal.pone.0328861
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC13189327); quotes checked by script against it.

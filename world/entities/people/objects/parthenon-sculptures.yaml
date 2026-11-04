@@ -1,0 +1,138 @@
+id: people/objects/parthenon-sculptures
+kind: artefact/moved
+summary: >-
+  The part of the sculptures of the Parthenon that Lord Elgin's agents took from Athens from 1801: 15
+  metopes, 17 pedimental figures and 75 m of the frieze, as the British Museum counts them. Shipped to
+  England over a decade and shown in his houses, they passed to the Museum under an Act of 1816. The
+  sculptures left in Athens are not this record.
+author: machine:claude-code
+same_as: { wikidata: Q606662 }
+phases:
+  - id: parthenon
+    label: On the Parthenon, Athens
+  - id: park-lane
+    label: Lord Elgin's house, Park Lane, London
+  - id: burlington-house
+    label: Burlington House, London
+  - id: british-museum
+    label: British Museum, London
+claims:
+  name:
+    prop: name
+    value: { en: Parthenon Sculptures }
+    source: { ref: src:british-museum-parthenon-sculptures, loc: title, quote: "The Parthenon Sculptures" }
+    note: They are also called the Elgin Marbles, the name in the Act of 1816 and in the Select Committee's report.
+  parthenon-start:
+    prop: start
+    subject: "@parthenon"
+    value: { lo: 447 BCE, hi: 432 BCE }
+    source:
+      ref: src:british-museum-parthenon-sculptures
+      loc: "section 'What are they?'"
+      quote: "Made between 447BC and 432BC"
+    method: historical-account
+  parthenon-location:
+    prop: location
+    subject: "@parthenon"
+    value: { lat: 37.971558, lon: 23.726584, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-parthenon, loc: "place 168254096, representative point" }
+    method: gazetteer
+  parthenon-frame:
+    prop: frame
+    subject: "@parthenon"
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  park-lane-start:
+    prop: start
+    subject: "@park-lane"
+    value: { lo: 1802 CE, hi: 1807 CE }
+    source:
+      - ref: src:select-committee-1816-elgin-marbles
+        loc: "Appendix, p. xviii, Elgin's statement of 1816"
+        quote: "since the Marbles began to arrive, fourteen years ago"
+      - ref: src:select-committee-1816-elgin-marbles
+        loc: "Appendix, p. xv, Elgin's statement of 29 February 1816"
+        quote: "laid open to public inspection in my house in Park-Lane, and in Burlington-House, from the year 1807 to 1812"
+      - ref: src:british-museum-parthenon-sculptures
+        loc: "section 'How did they come to the British Museum?'"
+        quote: "between 1801 and 1805 acting under the oversight of the relevant authorities, Elgin removed about half of the remaining sculptures"
+    method: documentary
+    note: >-
+      A group that moved over years, so a range: the first cases reached England in 1802, by Elgin's
+      reckoning, and the great body of the collection was on show by 1807. The work at Athens began in the
+      summer of 1801; the Mentor sank off Cerigo with cases of frieze and metopes, and they were raised
+      over the next years. In England they went first to the Duchess of Portland's in Privy Gardens and the
+      Duke of Richmond's. Some of the sculptures stayed in Athens until later: about eighty more cases
+      reached England towards the end of 1812.
+  park-lane-location:
+    prop: location
+    subject: "@park-lane"
+    value: { lat: 51.508542, lon: -0.154806, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-park-lane, loc: "Q378991, P625 coordinate location" }
+      - ref: src:select-committee-1816-elgin-marbles
+        loc: "Appendix, pp. xviii-xix, Elgin's statement of 1816"
+        quote: "afterwards to my house in Park-Lane"
+    method: gazetteer
+    note: The street; the house is not placed here, but Elgin dates a letter from "6, Park Lane" in 1811.
+  park-lane-frame:
+    prop: frame
+    subject: "@park-lane"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  burlington-house-start:
+    prop: start
+    subject: "@burlington-house"
+    value: { lo: 1807 CE, hi: 1812 CE }
+    source:
+      - ref: src:select-committee-1816-elgin-marbles
+        loc: "Appendix, pp. xviii-xix, Elgin's statement of 1816"
+        quote: "finally to Burlington House"
+      - ref: src:select-committee-1816-elgin-marbles
+        loc: "Appendix, p. xv, Elgin's statement of 29 February 1816"
+        quote: "now forming part of my Collection in Burlington-House."
+    method: documentary
+    note: Elgin gives the two houses together, for 1807 to 1812, and not the year he moved the marbles between them, so a range. Burlington House was sold by the spring of 1815, and the marbles stayed until the sale to the nation.
+  burlington-house-location:
+    prop: location
+    subject: "@burlington-house"
+    value: { lat: 51.508889, lon: -0.139444, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-burlington-house, loc: "Q225471, P625 coordinate location" }
+    method: gazetteer
+  burlington-house-frame:
+    prop: frame
+    subject: "@burlington-house"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  british-museum-start:
+    prop: start
+    subject: "@british-museum"
+    value: { lo: 1 July 1816 CE, hi: 1816 CE }
+    source:
+      - ref: src:elgin-marbles-act-1816
+        loc: "56 George 3 c. 99, heading"
+        quote: "[1st July 1816.]"
+      - ref: src:british-museum-parthenon-sculptures
+        loc: "section 'How did they come to the British Museum?'"
+        quote: "prior to the sculptures entering the collection of the British Museum by Act of Parliament"
+    method: documentary
+    note: The Act vested the collection in the Trustees on 1 July 1816. The day the marbles were carried from Burlington House was not found in anything read, so this runs from the Act to the end of the year.
+  british-museum-location:
+    prop: location
+    subject: "@british-museum"
+    value: { lat: 51.519444, lon: -0.126944, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-british-museum, loc: "Q6373, P625 coordinate location" }
+    method: gazetteer
+  british-museum-frame:
+    prop: frame
+    subject: "@british-museum"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

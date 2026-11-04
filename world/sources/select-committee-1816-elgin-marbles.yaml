@@ -1,0 +1,22 @@
+id: src:select-committee-1816-elgin-marbles
+type: publication
+kind: eyewitness
+citation: >-
+  Report from the Select Committee of the House of Commons on the Earl of Elgin's Collection of
+  Sculptured Marbles, with minutes of evidence and appendix (1816). Reprinted in: Elgin Marbles: Letter
+  from the Chevalier Antonio Canova, and two memoirs read to the Royal Institute of France by the
+  Chevalier Visconti. London, 1816.
+published: 1816
+title: Report from the Select Committee of the House of Commons on the Earl of Elgin's Collection of Sculptured Marbles
+url: https://archive.org/details/elginmarbleslett00lond
+license: public-domain
+reliability: >-
+  Evidence given to Parliament by Elgin and those he employed, when he was selling the collection:
+  first-hand for dates and places, and interested in how the removal is described.
+verified:
+  by: machine:claude-code
+  how: >-
+    The report, Elgin's evidence and his statements in the appendix read in the Internet Archive's OCR
+    text. Pages are those of the running heads of the report, the minutes and the appendix. Quotations
+    checked by script with whitespace normalized; a hyphen at a line end is read as joined, or as
+    a hyphen where it belongs to a compound (Burlington-House).

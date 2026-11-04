@@ -1,0 +1,63 @@
+id: life/occurrences/paranthropus-boisei-oh-5
+kind: occurrence
+summary: >-
+  OH 5, the Paranthropus boisei cranium from the FLK gullies in Bed I at Olduvai Gorge, Tanzania, once
+  called Zinjanthropus, from the level of the butchery site FLK Zinj. PBDB collection 22617.
+same_as: { pbdb: "occ:229125", wikidata: Q7072568 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Paranthropus boisei (OH 5), Olduvai Gorge" }
+    unsourced: An editorial label, from the taxon, the specimen and the place.
+  identified:
+    prop: identified_as
+    value: Paranthropus boisei
+    source:
+      - { ref: src:pbdb/collection-22617, loc: "occurrence 229125, accepted name" }
+      - ref: src:dominguez-rodrigo-2013-oh-80
+        loc: Dental fossils
+        quote: "slightly smaller than are the crowns of the P3s of the P. boisei cranium OH 5"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:dominguez-rodrigo-2013-oh-80, loc: Dental fossils }
+  location:
+    prop: location
+    value: { lat: -2.9861, lon: 35.344398, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-22617, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: The PBDB's note places the collection in the central FLK gullies, with Olduvai hominids 5 and 6.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-712
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Bed I, Olduvai Gorge
+    source: { ref: src:dominguez-rodrigo-2013-oh-80, loc: "Results and Discussion", quote: "FLK 22 Zinjanthropus (Bed I, Olduvai)" }
+  date:
+    prop: date
+    value: 1.84 Ma
+    source:
+      - ref: src:dominguez-rodrigo-2021-zinj
+        loc: Introduction
+        quote: "in the anthropogenic site of FLK Zinj and in two of the most recently discovered and best preserved early Pleistocene anthropogenic sites in Africa: DS and PTK, (Bed I, Olduvai Gorge, Tanzania) (Fig. 1), dated to 1.84 Ma"
+      - ref: src:stancampiano-2022-ags
+        loc: Introduction
+        quote: "lies in Bed I below Tuff IC, dated to 1.832 ± 0.003 Ma"
+    method: stratigraphic
+    note: >-
+      Dated by the level of the site FLK Zinj (level 22) in Bed I. Stancampiano et al. say this of a
+      neighbouring site on the same clay stratum, level 22A, which runs across FLK Zinj; the Tuff IC
+      above it gives the youngest limit. The specimen is tied to the level by the site's name, as
+      "FLK 22 Zinjanthropus"; no paper read dates OH 5 itself.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/paranthropus-boisei
+    source:
+      - { ref: src:pbdb/collection-22617, loc: "occurrence 229125, accepted name" }
+      - { ref: src:dominguez-rodrigo-2013-oh-80, loc: Dental fossils }

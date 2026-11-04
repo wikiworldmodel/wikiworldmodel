@@ -1,0 +1,52 @@
+id: people/dispersals/monte-verde
+kind: event/dispersal
+summary: >-
+  Monte Verde in southern Chile, far down South America: hearths and seaweed in its upper layer, and,
+  in new excavations nearby, older traces whose human origin is called probable.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Monte Verde }
+    unsourced: An editorial label, from the place name.
+  date:
+    prop: date
+    value: { lo: 14.22 ka, hi: 13.98 ka }
+    source:
+      ref: src:dillehay-2008-monte-verde
+      loc: abstract
+      quote: "were directly dated between 14,220 and 13,980 calendar years before the present"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      Seaweed from hearths and other features of the upper layer, Monte Verde II, dated directly.
+      Preferred over the older traces, whose human origin is argued rather than plain. Llamas et al.
+      (2016) put people in southern Chile by 14.6 ka.
+  date-dillehay-2015:
+    prop: date
+    value: { lo: 18.5 ka, hi: 14.5 ka }
+    source:
+      ref: src:dillehay-2015-monte-verde
+      loc: abstract
+      quote: "discrete horizons of ephemeral human activity in a sandur plain setting radiocarbon and luminescence dated between at least ~18,500 and 14,500 cal BP"
+    method: radiometric
+    note: Stone artefacts, animal remains and burned areas in new test excavations in the area, argued to be of probable human origin.
+  location:
+    prop: location
+    value: { lat: -41.504722, lon: -73.204444, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-monte-verde, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-291
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  after-the-arrival:
+    rel: after
+    to: people/dispersals/americas-arrival
+    source:
+      ref: src:llamas-2016-americas-mtdna
+      loc: abstract
+      quote: "Archaeological evidence indicates the presence of humans as far as southern Chile by 14.6 thousand years ago (ka)"

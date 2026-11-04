@@ -1,0 +1,25 @@
+id: src:bitocchi-2017-phaseolus
+type: publication
+kind: review
+citation: >-
+  Bitocchi, E., Rau, D., Bellucci, E., … & Papa, R. (2017). Beans (Phaseolus ssp.) as a Model
+  for Understanding Crop Evolution. Frontiers in Plant Science 8, 722.
+authors:
+  - "Bitocchi, E."
+  - "Rau, D."
+  - "Bellucci, E."
+  - "Rodriguez, M."
+  - "Murgia, M.L."
+  - "Gioia, T."
+  - "Santo, D."
+  - "Nanni, L."
+# the first eight of 10 authors
+published: 2017
+title: "Beans (Phaseolus ssp.) as a Model for Understanding Crop Evolution"
+container: "Frontiers in Plant Science 8, 722"
+doi: 10.3389/fpls.2017.00722
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC5420584) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

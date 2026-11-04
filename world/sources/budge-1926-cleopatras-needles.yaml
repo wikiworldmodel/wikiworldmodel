@@ -1,0 +1,22 @@
+id: src:budge-1926-cleopatras-needles
+type: publication
+kind: review
+citation: >-
+  Budge, E.A.W. (1926). Cleopatra's Needles and Other Egyptian Obelisks. London: The Religious Tract
+  Society.
+authors:
+  - "Budge, E.A.W."
+published: 1926
+title: Cleopatra's Needles and Other Egyptian Obelisks
+url: https://archive.org/details/cleopatrasneedle0000sire_w9u7
+license: public-domain
+reliability: >-
+  A descriptive catalogue by the former Keeper of Egyptian and Assyrian Antiquities at the British
+  Museum, which corrects the date of the Alexandrian erection from the inscription on the bronze
+  crab.
+verified:
+  by: machine:claude-code
+  how: >-
+    The section on the obelisks of Thothmes III at Heliopolis (pp. 166-167) read in the Internet
+    Archive's OCR text. Quotations checked by script with whitespace normalized and a hyphen at a line
+    end read as joined; the OCR prints "i.e." as "t.e.", and a quotation keeps that.

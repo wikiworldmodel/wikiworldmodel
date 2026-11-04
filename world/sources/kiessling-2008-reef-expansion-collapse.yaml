@@ -1,0 +1,18 @@
+id: src:kiessling-2008-reef-expansion-collapse
+type: publication
+kind: compilation
+citation: >-
+  Kiessling, W. (2008). Sampling-standardized expansion and collapse of reef building in the
+  Phanerozoic. Fossil Record 11(1), 7–18.
+authors:
+  - "Kiessling, W."
+published: 2008
+title: "Sampling-standardized expansion and collapse of reef building in the Phanerozoic"
+container: Fossil Record 11(1), 7–18
+doi: 10.1002/mmng.200700008
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the open-access PDF (fr.copernicus.org/articles/11/7/2008); the parts
+    cited were read, and quotes checked by script against its text. Metadata from Crossref.

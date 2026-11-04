@@ -1,0 +1,69 @@
+id: life/occurrences/forest-wuda
+kind: occurrence
+summary: >-
+  The "vegetational Pompeii": a peat-forming swamp forest of tree ferns, Sigillaria, Cordaites and
+  Noeggerathiales buried by volcanic ash near Wuda, Inner Mongolia, mapped tree by tree over 1,000 m².
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Wuda vegetational Pompeii" }
+    unsourced: An editorial label, after the paper's title.
+  identified:
+    prop: identified_as
+    value: Sigillaria, Cordaites, tree ferns and Noeggerathiales
+    source:
+      ref: src:wang-2012-wuda
+      loc: abstract
+      quote: Tree ferns formed a lower canopy and either Cordaites, a coniferophyte, or Sigillaria, a lycopsid, were present as taller trees
+    note: >-
+      The main groups of the assemblage, not one identification.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:wang-2012-wuda
+      loc: abstract
+      quote: About 1,000 m2 of forest growing on peat could be reconstructed based on the actual location of individual plants
+    note: >-
+      The basis is a flora preserved in place in an ash fall, its trees mapped where they stood or fell.
+  location:
+    prop: location
+    value: { lat: 39.52, lon: 106.635, frame: frame:earth/present-day }
+    source:
+      ref: src:wang-2012-wuda
+      loc: "first paragraph after Fig. 1"
+      quote: which occur in a syncline (N39°28′48′′ to N39°33′36′′, E106°36′36′′ to E106°39′36′′) of about 20 km2
+    method: survey
+    note: >-
+      The middle of the box the paper gives for the syncline, in decimal degrees.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Taiyuan Formation
+    source:
+      ref: src:wang-2012-wuda
+      loc: "first paragraph after Fig. 1"
+      quote: its uppermost position in the Taiyuan Formation
+  date:
+    prop: date
+    value: 298 Ma
+    source:
+      ref: src:wang-2012-wuda
+      loc: abstract
+      quote: an early Permian (ca. 298 Ma) ash-fall tuff
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      From the floral composition and the tuff's place in the formation, stated as "ca." without an
+      uncertainty.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/tracheophyta
+    source: { ref: src:wang-2012-wuda, loc: "abstract: tree ferns, a coniferophyte and a lycopsid" }

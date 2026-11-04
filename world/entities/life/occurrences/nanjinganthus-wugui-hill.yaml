@@ -1,0 +1,73 @@
+id: life/occurrences/nanjinganthus-wugui-hill
+kind: occurrence
+summary: >-
+  Nanjinganthus dendrostyla, 264 specimens of a supposed flower from the South Xiangshan Formation at Wugui Hill, Nanjing, China,
+  in the latest Early Jurassic: claimed as the oldest flowers by almost 50 million years, and rejected by critics of all
+  pre-Cretaceous angiosperms. It is placed here only among seed plants, which both sides accept.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Nanjinganthus, Wugui Hill" }
+    unsourced: An editorial label, from the taxon and the place.
+  identified:
+    prop: identified_as
+    value: Nanjinganthus dendrostyla gen. et sp. nov.
+    source:
+      ref: src:fu-2018-nanjinganthus
+      loc: abstract
+      quote: "we describe a fossil flower, Nanjinganthus dendrostyla gen. et sp. nov."
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:fu-2018-nanjinganthus
+      loc: abstract
+      quote: "based on observations of 264 specimens of 198 individual flowers preserved on 34 slabs"
+  location:
+    prop: location
+    value: { lat: 32.138611, lon: 118.972222, frame: frame:earth/present-day }
+    source:
+      ref: src:fu-2018-nanjinganthus
+      loc: "Figure 1—figure supplement 1, caption"
+      quote: "Type locality (red asterisk, N32˚08′ 19″, E118˚58′ 20″) of Nanjinganthus in the suburbs of Nanjing, China."
+    method: survey
+    note: >-
+      Converted to decimal degrees. The paper's systematic section prints the same numbers with minutes and seconds transposed.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: South Xiangshan Formation
+    source:
+      ref: src:fu-2018-nanjinganthus
+      loc: abstract
+      quote: "from the South Xiangshan Formation (Early Jurassic) of China"
+  date:
+    prop: date
+    value: { lo: 207 Ma, hi: 174 Ma }
+    source:
+      ref: src:fu-2018-nanjinganthus
+      loc: "Isotopic dating"
+      quote: "we think that the age of Nanjinganthus falls in the scope ranging from 174 to 207 Ma and is closer to 174 Ma (the latest Early Jurassic)"
+    method: stratigraphic
+    note: >-
+      From palynology and fossil plants, with the youngest detrital zircon, 207 Ma, in the layers above, whose grains the authors
+      call reworked.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/spermatophyta
+    source:
+      - ref: src:bateman-2020-snark
+        loc: abstract
+        quote: "all supposed pre-Cretaceous angiosperms are assignable to other major clades among the gymnosperms sensu lato"
+      - ref: src:fu-2018-nanjinganthus
+        loc: abstract
+        quote: "we describe a fossil flower"
+    note: >-
+      A seed plant on either view; left out of life/taxa/angiospermae because that is the point in dispute.

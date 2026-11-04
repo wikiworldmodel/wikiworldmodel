@@ -1,0 +1,22 @@
+id: src:meadow-kenoyer-2001-harappa
+type: publication
+kind: measurement
+citation: >-
+  Meadow, R.H. & Kenoyer, J.M. (2001). Recent discoveries and highlights from excavations at Harappa: 1998–2000. Indo-Koko-Kenkyu
+  [Indian Archaeological Studies] 22, 19–36.
+authors:
+  - "Meadow, R.H."
+  - "Kenoyer, J.M."
+published: 2001
+title: "Recent discoveries and highlights from excavations at Harappa: 1998–2000"
+container: Indo-Koko-Kenkyu [Indian Archaeological Studies]
+url: https://web.archive.org/web/20231211050014/https://www.harappa.com/indus4/e2.html
+via: >-
+  The reprint on harappa.com, as "Recent Indus Discoveries and Highlights from Excavations at Harappa 1998-2000", read in the
+  Internet Archive's copies (e1, e2 and e6 of December 2023, e3 of March 2024), because harappa.com refused the script. The
+  journal's page numbers do not show there, and sections are cited instead.
+reliability: The excavators' own report of their work.
+verified:
+  by: machine:claude-code
+  how: >-
+    Sections 1, 2, 3 and 6 read in the archived copies. Quotes checked by script against their text, after normalizing whitespace.

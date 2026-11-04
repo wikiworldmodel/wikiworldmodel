@@ -1,0 +1,40 @@
+id: src:fox-kemper-2021-ipcc-ar6-chapter-9
+type: publication
+kind: review
+citation: >-
+  Fox-Kemper, B., Hewitt, H.T., Xiao, C., Aðalgeirsdóttir, G., Drijfhout, S.S., Edwards, T.L.,
+  Golledge, N.R., Hemer, M., Kopp, R.E., Krinner, G., Mix, A., Notz, D., Nowicki, S., Nurhati, I.S.,
+  Ruiz, L., Sallée, J.-B., Slangen, A.B.A. & Yu, Y. (2021). Ocean, Cryosphere and Sea Level Change. In
+  Climate Change 2021: The Physical Science Basis. Contribution of Working Group I to the Sixth
+  Assessment Report of the Intergovernmental Panel on Climate Change, pp. 1211–1362. Cambridge
+  University Press.
+authors:
+  - "Fox-Kemper, B."
+  - "Hewitt, H.T."
+  - "Xiao, C."
+  - "Aðalgeirsdóttir, G."
+  - "Drijfhout, S.S."
+  - "Edwards, T.L."
+  - "Golledge, N.R."
+  - "Hemer, M."
+  - "Kopp, R.E."
+  - "Krinner, G."
+  - "Mix, A."
+  - "Notz, D."
+  - "Nowicki, S."
+  - "Nurhati, I.S."
+  - "Ruiz, L."
+  - "Sallée, J.-B."
+  - "Slangen, A.B.A."
+  - "Yu, Y."
+published: 2021
+title: Ocean, Cryosphere and Sea Level Change
+container: Climate Change 2021, The Physical Science Basis (IPCC AR6 WGI), Chapter 9, pp. 1211–1362
+doi: 10.1017/9781009157896.011
+url: https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter09.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Read from the IPCC's PDF of the chapter: section 9.6.3.3 and Table 9.9 (p. 1302), with its
+    caption and column heads. Citation as the chapter itself asks to be cited. Quotes checked by
+    script against the text extracted from that PDF, after normalizing whitespace.

@@ -1,0 +1,18 @@
+id: src:dalla-vecchia-2019-seazzadactylus
+type: publication
+kind: measurement
+citation: >-
+  Dalla Vecchia, F.M. (2019). Seazzadactylus venierigen. et sp. nov., a new pterosaur (Diapsida:
+  Pterosauria) from the Upper Triassic (Norian) of northeastern Italy. PeerJ 7, e7363.
+authors:
+  - "Dalla Vecchia, F.M."
+published: 2019
+title: "Seazzadactylus venierigen. et sp. nov., a new pterosaur (Diapsida: Pterosauria) from the Upper Triassic (Norian) of northeastern Italy"
+container: PeerJ 7, e7363
+doi: 10.7717/peerj.7363
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC6661147) read via Europe PMC (fullTextXML): Norian pterosaurs as the oldest
+    found, the pterosaurs of the Dolomia di Forni Formation and its age. Quotes checked by
+    script against that text. Metadata from Crossref.

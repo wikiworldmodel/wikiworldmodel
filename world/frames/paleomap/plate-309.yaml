@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-309
+type: frame
+kind: plate
+title: West Svalbard (PALEOMAP plate 309)
+entity: earth/plates/west-svalbard
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 309
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 309

@@ -1,0 +1,60 @@
+id: people/writing/phoenician-alphabet
+kind: development/script
+summary: >-
+  The alphabet of twenty-two letters, all consonants, written from right to left, that took a fixed form in the Levant around the start of the first millennium BCE and fits the sounds of the Phoenician language. It grew out of the
+  second-millennium Proto-Canaanite inscriptions, and Hebrew, Aramaic and, by tradition, Greek writing were taken from it. Its earliest dated monument here is the inscription on the sarcophagus of Ahiram of Byblos.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Phoenician alphabet }
+    source:
+      ref: src:woods-2010-visible-language
+      loc: p. 13 (Time Line of Writing)
+      quote: 1000 Phoenician alphabet
+  start-ahiram:
+    prop: start
+    value: { ref: people/writing/ahiram-sarcophagus }
+    source:
+      - ref: src:lam-2010-alphabet
+        loc: p. 192
+        quote: With the turn of the first millennium bc came the stabilization of the alphabet in terms of the orientation of the letters and the direction of writing (right to left).
+      - ref: src:woods-2010-visible-language
+        loc: p. 13 (Time Line of Writing)
+        quote: 1000 Phoenician alphabet
+    method: expert-estimate
+    rank: preferred
+    note: Preferred as a named, dated monument, against a phrase for a process.
+  start-waal:
+    prop: start
+    value: { lo: 1100 BCE, hi: 1001 BCE }
+    source:
+      ref: src:waal-2018-phoenician-letters
+      loc: p. 85
+      quote: In the course of the 11th century bc the stances of the letters become stabilized and the writing direction is fixed from right to left
+    method: expert-estimate
+    note: The same stabilization, set a little earlier, with no one find named for it.
+  end:
+    prop: end
+    value: unknown
+    unsourced: No source read says when the script was last written.
+  location:
+    prop: location
+    value: { lat: 34.119249, lon: 35.646125, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-byblos, loc: "place 668216, representative point" }
+    method: gazetteer
+    note: Marked at Byblos, where the first monument here was found.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-508
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  first-attestation:
+    rel: evidenced-by
+    to: people/writing/ahiram-sarcophagus
+    source:
+      ref: src:lam-2010-alphabet
+      loc: p. 192, fig. 12.3, caption
+      quote: Ahiram Sarcophagus (Early Phoenician, ca. 1000 bc)

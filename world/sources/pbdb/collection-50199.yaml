@@ -1,0 +1,24 @@
+id: src:pbdb/collection-50199
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 50199 ("Mauer bei Heidelberg", DE), occurrence 497113.
+  Read through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=50199
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+  Commons CC0".
+reliability: >-
+  A database record compiled from the literature; the collection reference, not read here, is: W.
+  von Koenigswald and W.-D. Heinrich. 1999. Mittelpleistozane Saugetierfaunen aus Mitteleuropa -
+  der Versuch einer biostratigraphischen Zuordnung. Kaupia 9:53-112
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=50199&show=loc,strat,ref and from the occurrence list:
+    lat 49.333332, lng 8.816667, early_interval "Middle Pleistocene", formation "none given",
+    geographic note "locality is circa 150m North of the co-ordinates stated."; occurrence 497113,
+    accepted name "Homo heidelbergensis".

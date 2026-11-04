@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-123
+type: frame
+kind: plate
+title: E. Yukon Tanana (PALEOMAP plate 123)
+entity: earth/plates/east-yukon-tanana
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 123
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 123

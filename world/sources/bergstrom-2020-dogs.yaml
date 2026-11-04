@@ -1,0 +1,25 @@
+id: src:bergstrom-2020-dogs
+type: publication
+kind: measurement
+citation: >-
+  Bergström, A., Frantz, L., Schmidt, R., … & Skoglund, P. (2020). Origins and genetic legacy
+  of prehistoric dogs. Science 370(6516), 557–564.
+authors:
+  - "Bergström, A."
+  - "Frantz, L."
+  - "Schmidt, R."
+  - "Ersmark, E."
+  - "Lebrasseur, O."
+  - "Girdland-Flink, L."
+  - "Lin, A.T."
+  - "Storå, J."
+# the first eight of 56 authors
+published: 2020
+title: "Origins and genetic legacy of prehistoric dogs"
+container: "Science 370(6516), 557–564"
+doi: 10.1126/science.aba9572
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC7116352) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

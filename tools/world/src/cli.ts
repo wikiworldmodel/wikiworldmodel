@@ -16,7 +16,7 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
   async import() {
     await fetchAll();
     const world = await loadWorld();
-    for (const f of world.fields.filter((x) => !x.derived && x.grid?.kind === 'lonlat')) {
+    for (const f of world.fields.filter((x) => !x.derived && x.grid?.kind === 'lonlat' && fieldSource(x) !== 'climate')) {
       await (fieldSource(f) === 'elevation' ? importElevation(f) : importBlocks(f));
     }
   },
@@ -31,6 +31,31 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
     const text = JSON.stringify(snap);
     writeFileSync(join(REPO, file), text);
     console.log(`${snap.elements.length} elements (${old.elements.length} before) → ${file}`);
+    console.log(`In world/manifest.yaml point the dataset at repo:${file}, sha256 ${createHash('sha256').update(text).digest('hex')}, ${Buffer.byteLength(text)} bytes.`);
+  },
+  // A fresh extract of a formation from the Paleobiology Database, kept in world/snapshots. As with
+  // the map's, the old file stays until the manifest is changed to the new one.
+  async 'pbdb-snapshot'([formation = 'Hell Creek']) {
+    const { exportSnapshot: exportPbdb } = await import('./pbdb.ts');
+    const date = new Date().toISOString().slice(0, 10);
+    const file = `world/snapshots/pbdb-${formation.toLowerCase().replace(/[^a-z]+/g, '-')}-${date}.json`;
+    if (existsSync(join(REPO, file))) throw new Error(`${file} exists: one snapshot a day`);
+    const snap = await exportPbdb(formation, date);
+    const text = JSON.stringify(snap);
+    writeFileSync(join(REPO, file), text);
+    console.log(`${snap.occurrences.length} occurrences, ${snap.collections.length} collections, ${snap.taxa.length} taxa → ${file}`);
+    console.log(`In world/manifest.yaml point the dataset at repo:${file}, sha256 ${createHash('sha256').update(text).digest('hex')}, ${Buffer.byteLength(text)} bytes.`);
+  },
+  // A fresh extract of NOAA's hazard databases, kept in world/snapshots.
+  async 'noaa-snapshot'() {
+    const { exportHazards } = await import('./noaa.ts');
+    const date = new Date().toISOString().slice(0, 10);
+    const file = `world/snapshots/noaa-hazards-${date}.json`;
+    if (existsSync(join(REPO, file))) throw new Error(`${file} exists: one snapshot a day`);
+    const snap = await exportHazards(date);
+    const text = JSON.stringify(snap);
+    writeFileSync(join(REPO, file), text);
+    console.log(`${snap.rows.length} rows → ${file}`);
     console.log(`In world/manifest.yaml point the dataset at repo:${file}, sha256 ${createHash('sha256').update(text).digest('hex')}, ${Buffer.byteLength(text)} bytes.`);
   },
   async validate(args) {

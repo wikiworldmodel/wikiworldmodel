@@ -1,0 +1,17 @@
+id: src:wikidata-collinson-ridge
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q5147447 (Collinson Ridge, a bare rock spur in Antarctica), property P625
+  (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q5147447
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry, for a named place and not for the fossil site itself.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (-85.2167, -175.35) read from the item's JSON (Special:EntityData/Q5147447.json)
+    on 4 November 2026.

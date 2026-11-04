@@ -1,0 +1,111 @@
+id: life/transitions/animals
+kind: event/transition
+summary: >-
+  The first animals in the rock record. Dickinsonia and Kimberella, about 558 Ma, are the evidence nobody read doubts; older
+  rangeomorphs may be animals; fossil steroids and possible sponge fabrics reach back much further, and each is disputed. The record of
+  the group itself, with its molecular dates, is life/taxa/metazoa.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First animals }
+    unsourced: An editorial label.
+  start-nettersheim-2019:
+    prop: start
+    value: 558 Ma
+    source:
+      - ref: src:nettersheim-2019-rhizaria
+        loc: abstract
+        quote: "approximately 558-Myr-old Dickinsonia and Kimberella (Ediacara biota) provide the most reliable evidence for the emergence of animals"
+      - ref: src:bobrovskiy-2018-dickinsonia
+        loc: abstract
+        quote: "Dickinsonia and its relatives solely produced cholesteroids, a hallmark of animals."
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      Preferred as the oldest evidence whose animal nature is not disputed in what was read, in the body plan and in the chemistry. A date
+      by which animals certainly existed, so the latest they can have arisen; the molecular dates in life/taxa/metazoa are much older.
+  start-carlisle-2024:
+    prop: start
+    value: { ref: life/occurrences/charnia-drook }
+    source:
+      - ref: src:carlisle-2024-metazoan-timescale
+        loc: "Fossil calibrations, Crown-Metazoa"
+        quote: "Rangeomorphs such as Charnia masoni are the first definitive evidence of crown-group metazoans."
+      - ref: src:zhuravlev-wood-2018-cambrian-phases
+        loc: "Discussion"
+        quote: "The first probable metazoan body fossils (rangeomorphs) appeared at ~570 Ma"
+    note: >-
+      Carlisle et al. call them definitive; Zhuravlev and Wood, probable, and probably on the stem. Not preferred for that doubt, by a small
+      margin.
+  start-love-2009:
+    prop: start
+    value: { ref: life/occurrences/demosponge-steranes-huqf }
+    source:
+      - ref: src:love-2009-huqf-sponges
+        loc: abstract
+        quote: "They currently represent the oldest evidence for animals in the fossil record"
+      - ref: src:nettersheim-2019-rhizaria
+        loc: abstract
+        quote: "Negating these hydrocarbons as sponge biomarkers, our study places the oldest evidence for animals closer to the Cambrian Explosion."
+      - ref: src:shawar-2025-c31-steranes
+        loc: "significance statement"
+        quote: "We provide compelling evidence linking these ancient steranes to demosponges, with an onset significantly predating the Cambrian explosion."
+    note: >-
+      An open question: fossil steroids read as sponges by Love et al., negated by Nettersheim et al., who find the same molecules in unicellular
+      Rhizaria, and argued for again by Shawar et al. from rarer C31 steranes. Molecules are not preferred over bodies until that is settled.
+  start-turner-2021:
+    prop: start
+    value: { ref: life/occurrences/little-dal-vermiform }
+    source:
+      - ref: src:turner-2021-little-dal
+        loc: "Discussion"
+        quote: "If the Little Dal objects are truly sponge body fossils, they are older than the next-youngest undisputed sponge body fossils (Cambrian)"
+      - ref: src:carlisle-2024-metazoan-timescale
+        loc: "Introduction, first paragraph"
+        quote: "but the veracity of both records have been called into question"
+    note: >-
+      Not preferred: the paper itself says only "possible", and the date is older than the whole molecular interval in life/taxa/metazoa,
+      833.5–649.8 Ma. Picking it does not contradict the taxon, because the occurrence is not made a member of it.
+relations:
+  evidence-dickinsonia:
+    rel: evidenced-by
+    to: life/occurrences/dickinsonia-zimnie-gory
+    source:
+      ref: src:bobrovskiy-2018-dickinsonia
+      loc: abstract
+      quote: "Dickinsonia and its relatives solely produced cholesteroids, a hallmark of animals."
+  evidence-kimberella:
+    rel: evidenced-by
+    to: life/occurrences/kimberella-zimnie-gory
+    source:
+      ref: src:nettersheim-2019-rhizaria
+      loc: abstract
+      quote: "approximately 558-Myr-old Dickinsonia and Kimberella (Ediacara biota) provide the most reliable evidence for the emergence of animals"
+  evidence-charnia:
+    rel: evidenced-by
+    to: life/occurrences/charnia-drook
+    source:
+      ref: src:carlisle-2024-metazoan-timescale
+      loc: "Fossil calibrations, Crown-Metazoa"
+      quote: "Rangeomorphs such as Charnia masoni are the first definitive evidence of crown-group metazoans."
+    note: >-
+      Probable, not certain: see the competing start.
+  evidence-steranes:
+    rel: evidenced-by
+    to: life/occurrences/demosponge-steranes-huqf
+    source:
+      ref: src:love-2009-huqf-sponges
+      loc: abstract
+      quote: "They currently represent the oldest evidence for animals in the fossil record"
+    note: >-
+      Contested: see the competing start.
+  evidence-little-dal:
+    rel: evidenced-by
+    to: life/occurrences/little-dal-vermiform
+    source:
+      ref: src:turner-2021-little-dal
+      loc: "Background"
+      quote: "This petrographic study presents possible evidence of sponge body fossils in thin sections"
+    note: >-
+      Contested: see the competing start.

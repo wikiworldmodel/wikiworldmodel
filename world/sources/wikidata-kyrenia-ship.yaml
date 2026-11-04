@@ -1,0 +1,13 @@
+id: src:wikidata-kyrenia-ship
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q2234980 (Kyrenia ship), property P625 (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q2234980
+license: CC0-1.0
+reliability: Crowd-edited, with no reference on the coordinate, and within a few kilometres of the point in the database of Strauss et al. (35.333333, 33.316667).
+verified:
+  by: machine:claude-code
+  how: Coordinates (35.361294, 33.337502) read from the item's JSON (Special:EntityData/Q2234980.json, revision 2522957457, modified 2026-07-26).

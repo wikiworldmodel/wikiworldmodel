@@ -1,0 +1,49 @@
+id: earth/day-length/bitter-springs-formation
+kind: sample
+summary: >-
+  Growth layers of stromatolites in the Bitter Springs Formation of Australia, read by Vanyo and Awramik
+  as days and years: a day of about 20 hours. Layers in stromatolites may be broken by gaps, so this may
+  be a maximum.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Bitter Springs Formation stromatolites" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Bitter Springs Formation
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Bitter Springs Fm, Australia"
+      quote: 830 Bitter Springs Fm, Australia 20.1 – stromatolites
+    note: >-
+      No location is claimed: the compilation names only Australia, and the study behind the row, Vanyo and
+      Awramik (1985), was not read.
+  evidence:
+    prop: evidence
+    value: biosignature
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Bitter Springs Fm, Australia"
+      quote: 830 Bitter Springs Fm, Australia 20.1 – stromatolites
+  date:
+    prop: date
+    value: 830 Ma
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Bitter Springs Fm, Australia"
+      quote: 830 Bitter Springs Fm, Australia 20.1 – stromatolites
+    method: compilation
+  day-length:
+    prop: day_length
+    value: 20.1
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Bitter Springs Fm, Australia"
+      quote: 830 Bitter Springs Fm, Australia 20.1 – stromatolites
+    method: compilation
+    note: >-
+      As the compilation gives it, with no uncertainty. Mitchell and Kirscher warn that hidden gaps in the
+      layering make estimates from stromatolites possible maximum values, and Williams (2000) reports that
+      their reliability has been challenged.

@@ -1,0 +1,79 @@
+id: people/dispersals/tianyuan
+kind: occurrence
+summary: >-
+  The genome of a man from Tianyuan Cave outside Beijing, about 40,000 years old: from a population
+  ancestral to many present-day Asians and Native Americans, after Asians and Europeans had parted.
+same_as: { wikidata: Q2431198 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Tianyuan }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: anatomically modern human
+    source:
+      ref: src:fu-2013-tianyuan
+      loc: abstract
+      quote: "We have extracted DNA from a 40,000-y-old anatomically modern human from Tianyuan Cave outside Beijing, China."
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:fu-2013-tianyuan
+      loc: abstract
+      quote: "We have extracted DNA from a 40,000-y-old anatomically modern human"
+  location:
+    prop: location
+    value: { lat: 39.657778, lon: 115.871389, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-tianyuan-cave, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 40 ka
+    source:
+      ref: src:fu-2013-tianyuan
+      loc: "introduction"
+      quote: "radiocarbon-dated to 34,430 ± 510 y before present (BP) (uncalibrated), which corresponds to ∼40,000 calendar years BP"
+    method: radiometric/radiocarbon
+    note: The paper gives the calibrated age only as about 40,000 years, with no range.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        From a population ancestral to many present-day Asians and Native Americans that lived after
+        the divergence of Asians from Europeans. He shares more alleles with a 35,000-year-old
+        European than other ancient Europeans do, and carried segments of Denisovan ancestry from
+        the admixture that contributed to present-day mainland Asians.
+    source:
+      - ref: src:fu-2013-tianyuan
+        loc: abstract
+        quote: "derived from a population that was ancestral to many present-day Asians and Native Americans but postdated the divergence of Asians from Europeans"
+      - ref: src:yang-2017-tianyuan
+        loc: abstract
+        quote: "he shares more alleles with a 35,000-year-old European individual than he shares with other ancient Europeans"
+      - ref: src:massilani-2020-salkhit
+        loc: abstract
+        quote: "These segments derive from the same Denisovan admixture event(s) that contributed to present-day mainland Asians"
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:fu-2013-tianyuan
+      loc: abstract
+      quote: "anatomically modern human from Tianyuan Cave"
+  after-the-dispersal:
+    rel: after
+    to: people/dispersals/out-of-africa-main
+    source:
+      ref: src:fu-2013-tianyuan
+      loc: abstract
+      quote: "postdated the divergence of Asians from Europeans"

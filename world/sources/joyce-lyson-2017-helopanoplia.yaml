@@ -1,0 +1,18 @@
+id: src:joyce-lyson-2017-helopanoplia
+type: publication
+kind: measurement
+citation: >-
+  Joyce, W.G. & Lyson, T.R. (2017). The shell morphology of the latest Cretaceous
+  (Maastrichtian) trionychid turtle Helopanoplia distincta. PeerJ 5, e4169.
+authors:
+  - "Joyce, W.G."
+  - "Lyson, T.R."
+published: 2017
+title: "The shell morphology of the latest Cretaceous (Maastrichtian) trionychid turtle Helopanoplia distincta"
+container: "PeerJ 5, e4169"
+doi: 10.7717/peerj.4169
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC5733369); quotes checked by script against it.

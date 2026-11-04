@@ -1,0 +1,16 @@
+id: src:wikidata-rusinga-island
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q2356704 (Rusinga Island, Kenya), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q2356704
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry, for a named place and not for the fossil site itself.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (-0.4, 34.166667) read from the item's JSON (Special:EntityData/Q2356704.json) on
+    4 November 2026.

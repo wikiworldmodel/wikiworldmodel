@@ -1,0 +1,29 @@
+id: src:pbdb/collection-241485
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 241485 ("PFV 393 bonebed", US), occurrence 1704195. Read
+  through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=241485
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference B. T. Kligman, R. L.
+  Whatley, and J. Ramezani, A. D. Marsh, T. R. Lyson, A. J. Fitch, W. G. Parker, A. K.
+  Behrensmeyer. 2025. Unusual bone bed reveals a vertebrate community with pterosaurs and
+  turtles in equatorial Pangaea before the end-Triassic extinction. Proceedings of the National
+  Academy of Sciences 122(29):1-11. Interval ages are the PBDB's own, for the interval the
+  collection is assigned to; the primary reference was not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=241485&show=loc,strat,ref and
+    occs/list.json?coll_id=241485&show=ident,class on the main data service: collection name
+    "PFV 393 bonebed"; lat 35.088055; lng -109.806389; formation "Chinle"; member "Owl Rock";
+    early_interval Norian; max_ma 227.3, min_ma 205.7; occurrence 1704195, identified_name
+    "Eotephradactylus mcintireae n. gen. n. sp.", accepted_name "Eotephradactylus mcintireae"
+    (Chordata, Reptilia, Pterosauria).

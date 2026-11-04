@@ -1,0 +1,12 @@
+id: src:wikidata-cairo
+type: database-record
+kind: compilation
+citation: "Wikidata, item Q85 (Cairo, capital city of Egypt), property P625 (coordinate location)."
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q85
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a marker to within a few hundred metres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (30.044444, 31.235833) read from the item's JSON (Special:EntityData/Q85.json).

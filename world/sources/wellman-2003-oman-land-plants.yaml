@@ -1,0 +1,20 @@
+id: src:wellman-2003-oman-land-plants
+type: publication
+kind: measurement
+citation: >-
+  Wellman, C.H., Osterloff, P.L. & Mohiuddin, U. (2003). Fragments of the earliest land plants.
+  Nature 425(6955), 282–285.
+authors:
+  - "Wellman, C.H."
+  - "Osterloff, P.L."
+  - "Mohiuddin, U."
+published: 2003
+title: "Fragments of the earliest land plants"
+container: Nature 425(6955), 282–285
+doi: 10.1038/nature01884
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract in Europe PMC (PMID 13679913), against which quotes were checked by script; the
+    author's copy in White Rose Research Online (eprints.whiterose.ac.uk/106) was retrieved but is
+    not otherwise cited. Metadata from Crossref.

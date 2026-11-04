@@ -1,0 +1,16 @@
+id: src:pleiades-antium
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 422837, "Antium".
+snapshot: 2026-11-04
+container: Pleiades
+url: https://pleiades.stoa.org/places/422837
+license: CC-BY-3.0
+reliability: >-
+  A scholarly gazetteer of ancient places.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/422837/json) read directly: representative point
+    41.44795°N, 12.628995°E; a town of Latium on the coast.

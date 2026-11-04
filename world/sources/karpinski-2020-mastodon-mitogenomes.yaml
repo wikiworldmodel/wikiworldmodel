@@ -1,0 +1,23 @@
+id: src:karpinski-2020-mastodon-mitogenomes
+type: publication
+kind: measurement
+citation: >-
+  Karpinski, E., Hackenberger, D., Zazula, G., Widga, C., Duggan, A.T., Golding, G.B., Kuch, M.,
+  Klunk, J., Jass, C.N., Groves, P., … & Poinar, H.N. (2020). American mastodon mitochondrial
+  genomes suggest multiple dispersal events in response to Pleistocene climate oscillations. Nature
+  Communications 11, 4048.
+authors:
+  - "Karpinski, E."
+  - "Hackenberger, D."
+  - "Zazula, G."
+  - "Widga, C."
+  - "Poinar, H.N."
+published: 2020
+title: "American mastodon mitochondrial genomes suggest multiple dispersal events in response to Pleistocene climate oscillations"
+container: "Nature Communications 11, 4048"
+doi: 10.1038/s41467-020-17893-z
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC7463256). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

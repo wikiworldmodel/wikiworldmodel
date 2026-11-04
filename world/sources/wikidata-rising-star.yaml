@@ -1,0 +1,16 @@
+id: src:wikidata-rising-star
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q16899337 (Rising Star Cave, South Africa), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q16899337
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry, for the cave system and not for the chamber.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (-26.0203557, 27.7092316) read from the item through the wbgetentities API on 4
+    November 2026.

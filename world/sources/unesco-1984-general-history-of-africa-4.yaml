@@ -1,0 +1,22 @@
+id: src:unesco-1984-general-history-of-africa-4
+type: publication
+kind: review
+citation: >-
+  Niane, D.T. (ed.) (1984). General History of Africa, vol. 4, Africa from the Twelfth to the
+  Sixteenth Century. Paris: UNESCO; London: Heinemann; Berkeley: University of California Press.
+authors:
+  - "Niane, D.T."
+published: 1984
+title: General History of Africa, vol. 4
+container: UNESCO
+url: https://archive.org/details/unesco_general_history_africa_iv
+via: The Internet Archive's copy of UNESCO's free edition.
+reliability: >-
+  The UNESCO general history, by specialists. Its chapters disagree with each other about Mansa
+  Musa's dates, and so show the uncertainty: ch. 6 (Niane) has about 1307 to about 1337, with
+  1307–32 in a figure, and ch. 9 (Izard) has 1312–37.
+verified:
+  by: machine:claude-code
+  how: >-
+    Pp. 147 and 212 read in the page images of the scan (leaves n170, n235); the quotations
+    compared with a transcription from the images, since the OCR misreads the diacritics.

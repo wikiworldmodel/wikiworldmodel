@@ -1,0 +1,31 @@
+id: src:braun-2025-namorotukunan
+type: publication
+kind: measurement
+citation: >-
+  Braun, D.R., Palcu Rolier, D.V., Advokaat, E.L., Archer, W., Baraki, N.G., Biernat, M.D.,
+  Beaudoin, E., Behrensmeyer, A.K., Bobe, R., Elmes, K. et al. (2025). Early Oldowan technology
+  thrived during Pliocene environmental change in the Turkana Basin, Kenya. Nature Communications
+  16(1), 9401.
+authors:
+  - "Braun, D.R."
+  - "Palcu Rolier, D.V."
+  - "Advokaat, E.L."
+  - "Archer, W."
+  - "Baraki, N.G."
+  - "Biernat, M.D."
+  - "Beaudoin, E."
+  - "Behrensmeyer, A.K."
+  - "Bobe, R."
+  - "Elmes, K."
+published: 2025
+title: "Early Oldowan technology thrived during Pliocene environmental change in the Turkana Basin, Kenya"
+container: "Nature Communications 16(1), 9401"
+doi: 10.1038/s41467-025-64244-x
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 30 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC12586688): three archaeological horizons at Namorotukunan
+    spanning 2.75–2.44 Ma, with an age model from tephra markers and palaeomagnetism. Quoted
+    passages checked by script against the text retrieved.

@@ -1,0 +1,51 @@
+id: life/taxa/didelphodon
+kind: taxon
+summary: >-
+  The stagodontid metatherian Didelphodon vorax, the largest mammal of the Hell Creek Formation,
+  a powerful predator and scavenger.
+same_as: { pbdb: "txn:40007" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Didelphodon" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 40007"
+  body-plan:
+    prop: body_plan
+    value: small-mammal
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: quadruped
+    source:
+      ref: src:kielan-jaworowska-hurum-2006-limb-posture
+      loc: "abstract"
+      quote: "acquisition of the parasagittal stance was apparently characteristic only of boreosphenidans"
+    note: >-
+      Didelphodon is a metatherian, so among the boreosphenidans; the abstract read does not
+      name it.
+  mass-wilson-2016:
+    prop: body_mass
+    value: 5.2
+    source:
+      ref: src:wilson-2016-didelphodon
+      loc: "Results"
+      quote: "to 5.2 kg (4.2–6.2 kg) for the older adult individual (UWBM 94084"
+    method: model
+    rank: preferred
+    note: >-
+      From skull length and upper molar row of a grown animal from the Hell Creek Formation,
+      with a dasyuromorph equation. The young adult NDGS 431 came to 2.4 kg. Preferred as the
+      older adult, from cranial material rather than teeth alone.
+  mass-wilson-2013:
+    prop: body_mass
+    value: 1.7
+    source:
+      ref: src:wilson-2013-kpg-mammals
+      loc: "Mean body size and body-size disparity"
+      quote: "the nearly raccoon-sized metatherian Didel-phodon vorax (1.7 kg)"
+    method: model
+    note: >-
+      From the teeth alone, before the skulls were described.

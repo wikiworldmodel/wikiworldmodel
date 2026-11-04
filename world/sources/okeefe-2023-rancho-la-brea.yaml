@@ -1,0 +1,24 @@
+id: src:okeefe-2023-rancho-la-brea
+type: publication
+kind: measurement
+citation: >-
+  O'Keefe, F.R., Dunn, R.E., Weitzel, E.M., Waters, M.R., Martinez, L.N., Binder, W.J., Southon,
+  J.R., Cohen, J.E., Meachen, J.A., DeSantis, L.R.G., … & Lindsey, E.L. (2023). Pre-Younger Dryas
+  megafaunal extirpation at Rancho La Brea linked to fire-driven state shift. Science 381(6659),
+  eabo3594.
+authors:
+  - "O'Keefe, F.R."
+  - "Dunn, R.E."
+  - "Weitzel, E.M."
+  - "Waters, M.R."
+  - "Lindsey, E.L."
+published: 2023
+title: "Pre-Younger Dryas megafaunal extirpation at Rancho La Brea linked to fire-driven state shift"
+container: "Science 381(6659), eabo3594"
+doi: 10.1126/science.abo3594
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the Europe PMC record (PMID 37590347); the full text could not
+    be read here (the publisher refused the page). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

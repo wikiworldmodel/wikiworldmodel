@@ -1,0 +1,19 @@
+id: src:button-zanno-2023-thescelosaurus
+type: publication
+kind: measurement
+citation: >-
+  Button, D.J. & Zanno, L.E. (2023). Neuroanatomy of the late Cretaceous Thescelosaurus
+  neglectus (Neornithischia: Thescelosauridae) reveals novel ecological specialisations within
+  Dinosauria. Scientific Reports 13, 19224.
+authors:
+  - "Button, D.J."
+  - "Zanno, L.E."
+published: 2023
+title: "Neuroanatomy of the late Cretaceous Thescelosaurus neglectus (Neornithischia: Thescelosauridae) reveals novel ecological specialisations within Dinosauria"
+container: "Scientific Reports 13, 19224"
+doi: 10.1038/s41598-023-45658-3
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC10628235); quotes checked by script against it.

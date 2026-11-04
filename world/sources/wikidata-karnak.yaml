@@ -1,0 +1,12 @@
+id: src:wikidata-karnak
+type: database-record
+kind: compilation
+citation: "Wikidata, item Q522862 (Karnak Temple Complex), property P625 (coordinate location)."
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q522862
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a marker to within a few hundred metres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (25.718333, 32.658333) read from the item's JSON (Special:EntityData/Q522862.json).

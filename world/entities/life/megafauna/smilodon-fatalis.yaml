@@ -1,0 +1,58 @@
+id: life/taxa/smilodon-fatalis
+kind: taxon
+summary: >-
+  The North American sabre-toothed cat, best known from the tar pits of Rancho La Brea, where most
+  of its direct dates come from. Its youngest AMS date is about 13,200 years old, and it is unlikely
+  to be from the last of them. Its South American relative, Smilodon populator, is not included
+  here.
+same_as: { ott: 4117906, pbdb: "txn:46515" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: sabre-toothed cat, la: "Smilodon fatalis" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott4117906: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-pbdb:
+    prop: start
+    value: { lo: 2.58 Ma, hi: 0.21 Ma }
+    source: { ref: src:pbdb/taxon-46515, loc: "taxa/single: firstapp_max_ma, firstapp_min_ma" }
+    method: compilation
+    note: >-
+      The PBDB's first appearance, a wide interval because its oldest records are dated no closer
+      than the Pleistocene.
+  end-la-brea:
+    prop: end
+    value: { lo: 13272 BP, hi: 13093 BP }
+    source:
+      - ref: src:broughton-weitzel-2018-mixed-causes
+        loc: "Supplementary Data 1, row Rancho La Brea, Pit 67 (UCIAMS 91680)"
+        quote: "Smilodon California Rancho La Brea, Pit 67 UCIAMS 91680 11335 35 13272 13093 13179 CO MS 12 9"
+      - ref: src:okeefe-2023-rancho-la-brea
+        loc: abstract
+        quote: "Seven species of extinct megafauna disappeared by 12.9 ka, before the onset of the Younger Dryas"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The youngest AMS date in the compilation of Broughton & Weitzel, on bone collagen, 11,335 ± 35
+      14C years; the range is the table's calibrated one, without a stated confidence level. Their
+      population bust for the species is at 13,028 cal BP (Table 1). The abstract of O'Keefe et al.
+      does not name the seven species, so it is not certain that this one is among them. As Stewart
+      et al. (2021) say, the last dated fossil is with near certainty not the last cat.
+  end-first-american-bank:
+    prop: end
+    value: { lo: 11135 BP, hi: 10266 BP }
+    source:
+      ref: src:broughton-weitzel-2018-mixed-causes
+      loc: "Supplementary Data 1, row First American Bank (I-6125)"
+      quote: "Smilodon Tennessee First American Bank I-6125 9410 155 11135 10266 10679 CO ST 11 1,6"
+    method: radiometric/radiocarbon
+    note: >-
+      A conventional date from Tennessee, 9,410 ± 155 14C years, more than two thousand years
+      younger than the youngest AMS date. The compilation scores it lower than the AMS dates (11
+      against 12). No source read assesses it further.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott4117906, lineage: Smilodon < Felidae < Feliformia < Carnivora < Laurasiatheria < Boreoeutheria < Eutheria < Theria < Mammalia" }

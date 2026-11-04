@@ -1,0 +1,22 @@
+id: src:hultzsch-1925-inscriptions-of-asoka
+type: publication
+kind: review
+citation: >-
+  Hultzsch, E. (1925). Inscriptions of Asoka. New edition. Corpus Inscriptionum Indicarum, vol.
+  1. Oxford: Clarendon Press.
+authors:
+  - "Hultzsch, E."
+published: 1925
+title: Inscriptions of Asoka
+container: Corpus Inscriptionum Indicarum, vol. 1
+url: https://archive.org/details/InscriptionsOfAsoka.NewEditionByE.Hultzsch
+via: The Internet Archive's scan.
+reliability: >-
+  The standard edition of the edicts. Its introduction reckons Ashoka's regnal years from the
+  Greek kings named in the thirteenth rock-edict and from the Ceylon chronicle's reign lengths.
+verified:
+  by: machine:claude-code
+  how: >-
+    Introduction, pp. xxxii–xxxvi, read in the OCR of the scan; quotations checked by script
+    against that text, keeping to stretches the OCR reads cleanly. Its 'b.c.' is often misread
+    by the OCR, so the years are given in the notes of the claims.

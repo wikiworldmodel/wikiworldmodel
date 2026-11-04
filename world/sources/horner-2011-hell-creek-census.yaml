@@ -1,0 +1,20 @@
+id: src:horner-2011-hell-creek-census
+type: publication
+kind: measurement
+citation: >-
+  Horner, J.R., Goodwin, M.B. & Myhrvold, N. (2011). Dinosaur census reveals abundant
+  Tyrannosaurus and rare ontogenetic stages in the Upper Cretaceous Hell Creek Formation
+  (Maastrichtian), Montana, USA. PLoS ONE 6(2), e16574.
+authors:
+  - "Horner, J.R."
+  - "Goodwin, M.B."
+  - "Myhrvold, N."
+published: 2011
+title: "Dinosaur census reveals abundant Tyrannosaurus and rare ontogenetic stages in the Upper Cretaceous Hell Creek Formation (Maastrichtian), Montana, USA"
+container: "PLoS ONE 6(2), e16574"
+doi: 10.1371/journal.pone.0016574
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC3036655); quotes checked by script against it.

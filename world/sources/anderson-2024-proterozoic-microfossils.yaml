@@ -1,0 +1,21 @@
+id: src:anderson-2024-proterozoic-microfossils
+type: publication
+kind: review
+citation: >-
+  Anderson, R.P., Mughal, S. & Wedlake, G.O. (2024). Proterozoic microfossils continue to
+  provide new insights into the rise of complex eukaryotic life. Royal Society Open Science
+  11(8), 240154.
+authors:
+  - "Anderson, R.P."
+  - "Mughal, S."
+  - "Wedlake, G.O."
+published: 2024
+title: "Proterozoic microfossils continue to provide new insights into the rise of complex eukaryotic life"
+container: Royal Society Open Science 11(8), 240154
+doi: 10.1098/rsos.240154
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC11336685) read via Europe PMC (fullTextXML): the older claims on eukaryote
+    affinity, Grypania and the Gabon structures among them, allied to eukaryotes "without
+    conclusive evidence". Quotes checked by script against that text. Metadata from Crossref.

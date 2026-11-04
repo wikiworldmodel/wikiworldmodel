@@ -1,0 +1,26 @@
+id: src:ottoni-2013-pig
+type: publication
+kind: measurement
+citation: >-
+  Ottoni, C., Flink, L.G., Evin, A., … & Larson, G. (2013). Pig domestication and
+  human-mediated dispersal in western Eurasia revealed through ancient DNA and geometric
+  morphometrics. Molecular Biology and Evolution 30(4), 824–832.
+authors:
+  - "Ottoni, C."
+  - "Flink, L.G."
+  - "Evin, A."
+  - "Geörg, C."
+  - "De Cupere, B."
+  - "Van Neer, W."
+  - "Bartosiewicz, L."
+  - "Linderholm, A."
+# the first eight of 37 authors
+published: 2013
+title: "Pig domestication and human-mediated dispersal in western Eurasia revealed through ancient DNA and geometric morphometrics"
+container: "Molecular Biology and Evolution 30(4), 824–832"
+doi: 10.1093/molbev/mss261
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC3603306) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

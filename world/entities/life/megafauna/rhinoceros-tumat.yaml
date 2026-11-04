@@ -1,0 +1,56 @@
+id: life/megafauna/rhinoceros-tumat
+kind: occurrence
+summary: >-
+  A piece of woolly rhinoceros muscle in the stomach of a wolf puppy mummified in the permafrost at
+  Tumat in Yakutia, radiocarbon-dated to 14,400 years ago: one of the youngest woolly rhinoceros
+  remains known. Its genome shows no sign that the population was shrinking.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Woolly rhinoceros, Tumat" }
+    unsourced: An editorial label, from the taxon and the place name.
+  identified:
+    prop: identified_as
+    value: Coelodonta antiquitatis
+    source:
+      ref: src:gudjonsdottir-2026-woolly-rhinoceros
+      loc: abstract
+      quote: "muscle tissue of a 14,400-year-old woolly rhinoceros (Coelodonta antiquitatis)"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary: mummified muscle."
+  location:
+    prop: location
+    value: { lat: 70.7333, lon: 139.233, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-tumat, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      The village of Tumat, at about 0.3° precision; the paper says only that the wolf came from
+      "Tumat, a locality of Yakutia", and the find spot was not located from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-405
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 14.4 ka
+    source:
+      - ref: src:gudjonsdottir-2026-woolly-rhinoceros
+        loc: Introduction
+        quote: "was radiocarbon dated to 14.4 ka, making it one of the youngest known woolly rhinoceros remains"
+      - ref: src:gudjonsdottir-2026-woolly-rhinoceros
+        loc: Materials and Methods, Sample Information
+        quote: "Both the mummified tissue and the wolf puppy have been radiocarbon dated to 14.4 ka"
+    method: radiometric/radiocarbon
+    note: >-
+      Calibrated with IntCal20, as the paper says; it gives the age without an uncertainty in the
+      passages read.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/coelodonta-antiquitatis
+    source: { ref: src:gudjonsdottir-2026-woolly-rhinoceros, loc: abstract }

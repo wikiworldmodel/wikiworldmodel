@@ -1,0 +1,23 @@
+id: src:miller-2016-genyornis-predation
+type: publication
+kind: measurement
+citation: >-
+  Miller, G., Magee, J., Smith, M., Spooner, N., Baynes, A., Lehman, S., Fogel, M., Johnston, H.,
+  Williams, D., Clark, P., Florian, C., Holst, R. & DeVogel, S. (2016). Human predation contributed
+  to the extinction of the Australian megafaunal bird Genyornis newtoni ∼47 ka. Nature
+  Communications 7, 10496.
+authors:
+  - "Miller, G."
+  - "Magee, J."
+  - "Smith, M."
+  - "Spooner, N."
+  - "DeVogel, S."
+published: 2016
+title: "Human predation contributed to the extinction of the Australian megafaunal bird Genyornis newtoni ∼47 ka"
+container: "Nature Communications 7, 10496"
+doi: 10.1038/ncomms10496
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC4740177). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

@@ -1,0 +1,19 @@
+id: src:manning-2022-mazotos
+type: publication
+kind: measurement
+citation: >-
+  Manning, S.W., Lorentzen, B. & Demesticha, S. (2022). Dating Mediterranean shipwrecks: the Mazotos ship, radiocarbon
+  dating and the need for independent chronological anchors. Antiquity 96(388), 968–980.
+authors:
+  - "Manning, S.W."
+  - "Lorentzen, B."
+  - "Demesticha, S."
+published: 2022
+title: "Dating Mediterranean shipwrecks: the Mazotos ship, radiocarbon dating and the need for independent chronological anchors"
+container: Antiquity
+doi: 10.15184/aqy.2022.76
+url: https://www.cambridge.org/core/journals/antiquity/article/dating-mediterranean-shipwrecks-the-mazotos-ship-radiocarbon-dating-and-the-need-for-independent-chronological-anchors/EDE07E73018DD9767CD4FB74541878CC
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read on Cambridge Core. Quotes checked by script against it, after normalizing whitespace.

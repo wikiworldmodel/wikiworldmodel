@@ -1,0 +1,26 @@
+id: life/taxa/ardipithecus-ramidus
+kind: taxon
+summary: >-
+  Ardipithecus ramidus, from 4.4-million-year-old sediments in Ethiopia's Afar Rift: a woodland
+  hominin that walked on two legs in a more primitive way than Australopithecus, and climbed.
+same_as: { pbdb: "txn:83091", wikidata: Q312222 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Ardipithecus ramidus, la: "Ardipithecus ramidus" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83091: Ardipithecus ramidus (White et al. 1994)" }
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83091: rank 3 (species)" }
+  end:
+    prop: end
+    value: unknown
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83091: is_extant 0" }
+    note: The species is extinct; when it died out is not recorded here.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83091 < Ardipithecus (txn:83059) < Hominini (txn:91486)" }

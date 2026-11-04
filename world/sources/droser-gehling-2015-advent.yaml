@@ -1,0 +1,19 @@
+id: src:droser-gehling-2015-advent
+type: publication
+kind: review
+citation: >-
+  Droser, M.L. & Gehling, J.G. (2015). The advent of animals: The view from the Ediacaran.
+  Proceedings of the National Academy of Sciences 112(16), 4865–4870.
+authors:
+  - "Droser, M.L."
+  - "Gehling, J.G."
+published: 2015
+title: "The advent of animals: The view from the Ediacaran"
+container: Proceedings of the National Academy of Sciences 112(16), 4865–4870
+doi: 10.1073/pnas.1403669112
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read at PubMed Central (PMC4413262): the age span of the Ediacara biota, its
+    localities and assemblages, and Coronacollina acula as the oldest evidence of
+    skeletonization. Quotes checked by script against that text. Metadata from Crossref.

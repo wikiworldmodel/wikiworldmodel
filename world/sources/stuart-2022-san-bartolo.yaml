@@ -1,0 +1,20 @@
+id: src:stuart-2022-san-bartolo
+type: publication
+kind: measurement
+citation: >-
+  Stuart, D., Hurst, H., Beltrán, B. & Saturno, W. (2022). An early Maya calendar record from San Bartolo, Guatemala. Science Advances 8(15), eabl9290.
+authors:
+  - "Stuart, D."
+  - "Hurst, H."
+  - "Beltrán, B."
+  - "Saturno, W."
+published: 2022
+title: An early Maya calendar record from San Bartolo, Guatemala
+container: Science Advances
+doi: 10.1126/sciadv.abl9290
+url: https://europepmc.org/article/PMC/PMC9007507
+license: CC-BY-NC-4.0
+license_note: Single facts and short quotes, with credit.
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC9007507). Quotes checked by script against it, after normalizing whitespace.

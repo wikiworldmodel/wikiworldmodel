@@ -1,0 +1,100 @@
+id: people/writing/indus-script
+kind: development/script
+summary: >-
+  The script of the Indus civilization, on some 3,800 short texts. It is undeciphered: no reading is accepted, and the language, if it writes one, is unknown. Excavators at Harappa trace it back through
+  the Kot Diji phase, with the first Early Indus signs on pottery and a seal impression, to marks on Ravi-phase sherds. Where the marks become writing is a matter of definition, and the specialists differ.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Indus script }
+    source:
+      ref: src:rao-2009-indus-markov
+      loc: title
+      quote: A Markov model of the Indus script.
+  start-kot-diji:
+    prop: start
+    value: { ref: people/writing/harappa-kot-diji-inscriptions }
+    source:
+      - ref: src:harappa-com-oldest-indus-writing
+        loc: answer by Asko Parpola
+        quote: The earliest examples of Indus writing are from the Early Harappan Kot Diji period, which at Harappa is dated to c. 2800-2600 BCE.
+      - ref: src:meadow-kenoyer-2001-harappa
+        loc: section "Kot Diji Phase Developments"
+        quote: the development of the Indus script, the use of inscribed seals and the standardization of weights occurred during the Kot Diji period
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Preferred because here Parpola and the excavators agree. Parpola adds that most graffiti of this phase are not writing in the real sense, and
+      that the real inscriptions probably date to its late part.
+  start-ravi:
+    prop: start
+    value: { ref: people/writing/harappa-ravi-sherd }
+    source:
+      ref: src:harappa-com-oldest-indus-writing
+      loc: answer by Jonathan Mark Kenoyer
+      quote: The Ravi Phase at Harappa (3800-2800 BC) has the earliest evidence for signs that eventually were used in the later Indus Script.
+    method: stratigraphic
+    note: If the signs that later went into the script are counted. The same answer also says the Indus script proper begins with the Harappa Phase, the claim below.
+  start-harappa-phase:
+    prop: start
+    value: 2600 BCE
+    source:
+      - ref: src:harappa-com-oldest-indus-writing
+        loc: answer by Jonathan Mark Kenoyer
+        quote: The Indus Script begins with the Harappa Phase (2600-1900 BC).
+      - ref: src:harappa-com-oldest-indus-writing
+        loc: answer by Nisha Yadav
+        quote: The Indus writing in its fully developed form can be dated to about 2600-1900 BC.
+    method: stratigraphic
+    note: If only the fully developed script is counted. No single find is named for it.
+  end:
+    prop: end
+    value: 1900 BCE
+    source:
+      - ref: src:harappa-com-oldest-indus-writing
+        loc: answer by Nisha Yadav
+        quote: The Indus writing in its fully developed form can be dated to about 2600-1900 BC.
+      - ref: src:rao-2009-indus-markov
+        loc: abstract
+        quote: the Indus civilization (flourished ca. 2600-1900 B.C.)
+    method: stratigraphic
+    note: The end of the mature script with the urban phase. No date for its very last use was read.
+  decipherment:
+    prop: decipherment
+    value: undeciphered
+    source:
+      - ref: src:rao-2009-indus-markov
+        loc: abstract
+        quote: The script remains undeciphered, despite a large number of attempts and claimed decipherments over the past 80 years.
+      - ref: src:rao-2009-indus-entropy
+        loc: abstract
+        quote: The hypothesis that the script encodes language has recently been questioned.
+    note: Even whether it writes a language at all has been questioned; Rao et al. argue that it does.
+  location:
+    prop: location
+    value: { lat: 30.629618, lon: 72.865257, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-harappa, loc: "place 93441396, representative point" }
+    method: gazetteer
+    note: Marked at Harappa, where its earliest stages have been found in a dated sequence.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-501
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  first-attestation:
+    rel: evidenced-by
+    to: people/writing/harappa-kot-diji-inscriptions
+    source:
+      ref: src:meadow-kenoyer-2001-harappa
+      loc: section "Kot Diji Phase Developments"
+      quote: the first appearance of the Early Indus script that has been found on pottery, a sealing of a square seal with possible Early Indus script
+  earlier-signs:
+    rel: evidenced-by
+    to: people/writing/harappa-ravi-sherd
+    source:
+      ref: src:meadow-kenoyer-2001-harappa
+      loc: section "Ravi Phase and Kot Diji Phase Occupations"
+      quote: on into the Harappa Phase, where some of them can be identified as elements of the Indus writing system

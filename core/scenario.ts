@@ -17,15 +17,24 @@ export function scenarioKey(s: Scenario): string {
 /**
  * The value a scenario has, from values the build stored where they differ: the scenario
  * itself; else the first pick that changes it (combinations of picks are not precomputed);
- * else the picture without picks; else the default.
+ * else the picture without picks; else the default. Nor are combinations of alternatives: each
+ * is asked in turn, as alternatives of different groups mostly concern different records.
  */
 export function lookup<T>(variants: Record<string, T> | undefined, s: Scenario, fallback: T): T {
   if (!variants) return fallback;
   const exact = variants[scenarioKey(s)];
   if (exact) return exact;
+  const alts = (s.alts ?? []).slice().sort();
+  const pictures = alts.length > 1 ? alts.map((a) => [a]) : [alts];
   for (const p of (s.picks ?? []).slice().sort()) {
-    const one = variants[scenarioKey({ alts: s.alts, picks: [p] })];
+    for (const picture of pictures) {
+      const one = variants[scenarioKey({ alts: picture, picks: [p] })];
+      if (one) return one;
+    }
+  }
+  for (const picture of pictures) {
+    const one = variants[scenarioKey({ alts: picture })];
     if (one) return one;
   }
-  return variants[scenarioKey({ alts: s.alts })] ?? fallback;
+  return fallback;
 }

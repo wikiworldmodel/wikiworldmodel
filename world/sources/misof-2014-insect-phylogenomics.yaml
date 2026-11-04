@@ -1,0 +1,130 @@
+id: src:misof-2014-insect-phylogenomics
+type: publication
+kind: model
+citation: >-
+  Misof, B., Liu, S., Meusemann, K., Peters, R.S., Donath, A., Mayer, C., Frandsen, P.B., Ware,
+  J., Flouri, T., Beutel, R.G., Niehuis, O., Petersen, M., Izquierdo-Carrasco, F., Wappler, T.,
+  Rust, J., Aberer, A.J., Aspöck, U., Aspöck, H., Bartel, D., Blanke, A., Berger, S., Böhm, A.,
+  Buckley, T.R., Calcott, B., Chen, J., Friedrich, F., Fukui, M., Fujita, M., Greve, C., Grobe,
+  P., Gu, S., Huang, Y., Jermiin, L.S., Kawahara, A.Y., Krogmann, L., Kubiak, M., Lanfear, R.,
+  Letsch, H., Li, Y., Li, Z., Li, J., Lu, H., Machida, R., Mashimo, Y., Kapli, P., McKenna,
+  D.D., Meng, G., Nakagaki, Y., Navarrete-Heredia, J.L., Ott, M., Ou, Y., Pass, G.,
+  Podsiadlowski, L., Pohl, H., von Reumont, B.M., Schütte, K., Sekiya, K., Shimizu, S.,
+  Slipinski, A., Stamatakis, A., Song, W., Su, X., Szucsich, N.U., Tan, M., Tan, X., Tang, M.,
+  Tang, J., Timelthaler, G., Tomizuka, S., Trautwein, M., Tong, X., Uchifune, T., Walzl, M.G.,
+  Wiegmann, B.M., Wilbrandt, J., Wipfler, B., Wong, T.K.F., Wu, Q., Wu, G., Xie, Y., Yang, S.,
+  Yang, Q., Yeates, D.K., Yoshizawa, K., Zhang, Q., Zhang, R., Zhang, W., Zhang, Y., Zhao, J.,
+  Zhou, C., Zhou, L., Ziesmann, T., Zou, S., Li, Y., Xu, X., Zhang, Y., Yang, H., Wang, J.,
+  Wang, J., Kjer, K.M. & Zhou, X. (2014). Phylogenomics resolves the timing and pattern of
+  insect evolution. Science 346(6210), 763–767.
+authors:
+  - "Misof, B."
+  - "Liu, S."
+  - "Meusemann, K."
+  - "Peters, R.S."
+  - "Donath, A."
+  - "Mayer, C."
+  - "Frandsen, P.B."
+  - "Ware, J."
+  - "Flouri, T."
+  - "Beutel, R.G."
+  - "Niehuis, O."
+  - "Petersen, M."
+  - "Izquierdo-Carrasco, F."
+  - "Wappler, T."
+  - "Rust, J."
+  - "Aberer, A.J."
+  - "Aspöck, U."
+  - "Aspöck, H."
+  - "Bartel, D."
+  - "Blanke, A."
+  - "Berger, S."
+  - "Böhm, A."
+  - "Buckley, T.R."
+  - "Calcott, B."
+  - "Chen, J."
+  - "Friedrich, F."
+  - "Fukui, M."
+  - "Fujita, M."
+  - "Greve, C."
+  - "Grobe, P."
+  - "Gu, S."
+  - "Huang, Y."
+  - "Jermiin, L.S."
+  - "Kawahara, A.Y."
+  - "Krogmann, L."
+  - "Kubiak, M."
+  - "Lanfear, R."
+  - "Letsch, H."
+  - "Li, Y."
+  - "Li, Z."
+  - "Li, J."
+  - "Lu, H."
+  - "Machida, R."
+  - "Mashimo, Y."
+  - "Kapli, P."
+  - "McKenna, D.D."
+  - "Meng, G."
+  - "Nakagaki, Y."
+  - "Navarrete-Heredia, J.L."
+  - "Ott, M."
+  - "Ou, Y."
+  - "Pass, G."
+  - "Podsiadlowski, L."
+  - "Pohl, H."
+  - "von Reumont, B.M."
+  - "Schütte, K."
+  - "Sekiya, K."
+  - "Shimizu, S."
+  - "Slipinski, A."
+  - "Stamatakis, A."
+  - "Song, W."
+  - "Su, X."
+  - "Szucsich, N.U."
+  - "Tan, M."
+  - "Tan, X."
+  - "Tang, M."
+  - "Tang, J."
+  - "Timelthaler, G."
+  - "Tomizuka, S."
+  - "Trautwein, M."
+  - "Tong, X."
+  - "Uchifune, T."
+  - "Walzl, M.G."
+  - "Wiegmann, B.M."
+  - "Wilbrandt, J."
+  - "Wipfler, B."
+  - "Wong, T.K.F."
+  - "Wu, Q."
+  - "Wu, G."
+  - "Xie, Y."
+  - "Yang, S."
+  - "Yang, Q."
+  - "Yeates, D.K."
+  - "Yoshizawa, K."
+  - "Zhang, Q."
+  - "Zhang, R."
+  - "Zhang, W."
+  - "Zhang, Y."
+  - "Zhao, J."
+  - "Zhou, C."
+  - "Zhou, L."
+  - "Ziesmann, T."
+  - "Zou, S."
+  - "Li, Y."
+  - "Xu, X."
+  - "Zhang, Y."
+  - "Yang, H."
+  - "Wang, J."
+  - "Wang, J."
+  - "Kjer, K.M."
+  - "Zhou, X."
+published: 2014
+title: "Phylogenomics resolves the timing and pattern of insect evolution"
+container: Science 346(6210), 763–767
+doi: 10.1126/science.1257570
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 25378627); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

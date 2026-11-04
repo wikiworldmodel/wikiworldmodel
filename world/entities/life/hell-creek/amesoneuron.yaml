@@ -1,0 +1,44 @@
+id: life/taxa/amesoneuron
+kind: taxon
+summary: >-
+  A palm, in the Hell Creek rows of the snapshot a morphotype of its leaf flora. Palms grew
+  there: in the warmest interval they made up more than 5% of specimens at four census sites in
+  North Dakota.
+same_as: { pbdb: "txn:404982" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Amesoneuron" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 404982"
+  body-plan:
+    prop: body_plan
+    value: palm
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: upright
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 23, p. 145, s.v. Trachycarpus fortunei"
+      quote: "Stem solitary, to 12 m tall"
+    note: >-
+      The stem of the living palm named below.
+  height-flora-of-china:
+    prop: plant_height
+    value: 12
+    source:
+      - ref: src:flora-of-china
+        loc: "Vol. 23, p. 145, s.v. Trachycarpus fortunei"
+        quote: "Stem solitary, to 12 m tall"
+      - ref: src:wilf-2003-kpg-climate
+        loc: "Results, on the fossil plants"
+        quote: "palms exceeded 5% of total specimens at four census sites"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      No height is known for this fossil, and no source links it to a living genus. This is the
+      height of the living fan palm Trachycarpus fortunei, a stand-in chosen by the editor, not
+      by any source. A reviewer should look at this first.

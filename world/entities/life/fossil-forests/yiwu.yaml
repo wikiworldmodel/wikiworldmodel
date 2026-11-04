@@ -1,0 +1,66 @@
+id: life/occurrences/forest-yiwu
+kind: occurrence
+summary: >-
+  Upright conifer stumps in their growth positions in the Xishanyao Formation at Naomaohu, Yiwu County,
+  Xinjiang: the Yiwu Jurassic Forest, 78 trees mapped in one horizon, among 19 wood-bearing beds.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Yiwu Jurassic Forest" }
+    unsourced: An editorial label, the name the source uses.
+  identified:
+    prop: identified_as
+    value: Ductoagathoxylon wangii, Protophyllocladoxylon yiwuense, Yiwupitys elegans and Agathoxylon sp.
+    source:
+      ref: src:gou-2026-yiwu
+      loc: Results
+      quote: Four species of fossil conifer stems were described previously from this locality
+    note: >-
+      The conifers known from the locality's logs, not an identification of each stump.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:gou-2026-yiwu
+      loc: Introduction
+      quote: comprises numerous upright, permineralized conifer stumps preserved in their original growth positions
+    note: >-
+      The basis is the paper's upright stumps; 18 other beds at the section hold transported trunks.
+  location:
+    prop: location
+    value: { lat: 43.836389, lon: 95.457778, frame: frame:earth/present-day }
+    source:
+      ref: src:gou-2026-yiwu
+      loc: Introduction
+      quote: This fossil forest is situated at 43°50′11″ N, 95°27′28″ E
+    method: survey
+    note: >-
+      Converted to decimal degrees.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-628
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Xishanyao Formation
+    source:
+      ref: src:gou-2026-yiwu
+      loc: "Methods, Geological setting and materials"
+      quote: preserved within the middle–upper Xishanyao Formation at the Naomaohu section
+  date:
+    prop: date
+    value: { ref: ics/middle-jurassic }
+    source:
+      ref: src:gou-2026-yiwu
+      loc: "Methods, Geological setting and materials"
+      quote: the age of the fossil stumps is, therefore, constrained to the Middle Jurassic
+    method: stratigraphic
+    rank: preferred
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/spermatophyta
+    source: { ref: src:gou-2026-yiwu, loc: "Results: fossil conifer stems" }

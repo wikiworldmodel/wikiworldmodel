@@ -1,0 +1,24 @@
+id: src:pagani-2016-egdp
+type: publication
+kind: measurement
+citation: >-
+  Pagani, L., Lawson, D.J., Jagoda, E., … & Metspalu, M. (2016). Genomic analyses inform on
+  migration events during the peopling of Eurasia. Nature 538(7624), 238–242.
+authors:
+  - "Pagani, L."
+  - "Lawson, D.J."
+  - "Jagoda, E."
+  - "Metspalu, M."
+published: 2016
+title: "Genomic analyses inform on migration events during the peopling of Eurasia"
+container: "Nature 538(7624), 238–242"
+doi: 10.1038/nature19792
+reliability: >-
+  Its signal of an early expansion in Papuan genomes is at odds with Mallick et al. and Malaspinas
+  et al., published in the same issue of Nature, which find no need for one.
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC5164938); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

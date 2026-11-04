@@ -1,0 +1,29 @@
+id: src:pbdb/collection-176229
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 176229 ("Huangbanjigou, Jianshangou Bed (NIGP
+  collection)", CN), occurrence 1599829. Read through the PBDB data service (data1.2) on 4
+  November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=176229
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference D. R. Zheng, A. Nel, and
+  B. Wang, E. A. Jarzembowski, S. C. Chang, H. C. Zhang. 2016. The first Early Cretaceous
+  damsel-dragonfly (Odonata: Stenophlebiidae: Stenophlebia) from western Liaoning, China.
+  Cretaceous Research 61:124-128. Interval ages are the PBDB's own, for the interval the
+  collection is assigned to; the primary reference was not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=176229&show=loc,strat,ref and
+    occs/list.json?coll_id=176229&show=ident,class on the main data service: collection name
+    "Huangbanjigou, Jianshangou Bed (NIGP collection)"; lat 41.615002; lng 120.834999;
+    formation "Yixian"; early_interval Late Barremian; max_ma 125.77, min_ma 121.4; occurrence
+    1599829, identified_name "Archaefructus liaoningensis n. gen. n. sp.", accepted_name
+    "Archaefructus liaoningensis" (Angiospermae).

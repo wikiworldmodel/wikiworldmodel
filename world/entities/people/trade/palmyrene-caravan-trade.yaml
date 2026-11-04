@@ -1,0 +1,58 @@
+id: people/trade/palmyrene-caravan-trade
+kind: event
+summary: >-
+  The caravans of Palmyra, known from over forty inscriptions honouring their leaders and backers, from 19 to 270 CE, most of
+  them between 131 and 161. They went east to the Euphrates and on to Charax at the head of the Gulf, and goods came on by sea
+  from India. Some 2,000 fragments of silk come from the city's tombs. It bears on the Silk Road only at one remove: on
+  Gawlikowski's reading the sea route alone interested Palmyra's merchants, and not the land route through Iran.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Palmyrene caravan trade }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 10 CE, hi: 11 CE }
+    source:
+      ref: src:gawlikowski-1996-palmyra-caravan-trade
+      loc: p. 139
+      quote: "is the oldest direct proof of caravan movement in the oasis."
+    method: documentary
+    rank: preferred
+    note: >-
+      An inscription on the "tax of the camels", dated 10/11 A.D., which he then had in press, and so the earliest evidence and
+      not a start. He finds the sea route alone of interest to Palmyra, pp. 141–142, and no ancient author but Appian mentions
+      its trade.
+  start-caravan-inscriptions:
+    prop: start
+    value: 19 CE
+    source:
+      - ref: src:gawlikowski-1996-palmyra-caravan-trade
+        loc: "p. 142, list of caravan inscriptions, no. 1"
+        quote: "1. Inv. IX,6 (CIS II 3924). 19 A.D."
+      - ref: src:getty-ancient-palmyra
+        loc: "section 'Long-distance trade'"
+        quote: "over 40 inscriptions dating between 19 and 270 CE that honored leaders and supporters of the caravan trade."
+    method: documentary
+    note: The earliest of the honorific inscriptions, by "merchants from Seleucia", a word largely restored, he notes.
+  end:
+    prop: end
+    value: 270 CE
+    source:
+      ref: src:getty-ancient-palmyra
+      loc: "section 'Long-distance trade'"
+      quote: "over 40 inscriptions dating between 19 and 270 CE that honored leaders and supporters of the caravan trade."
+    method: documentary
+    note: The latest inscription, on the Getty's count. The last in Gawlikowski's list of 34 is dated after 260.
+  location:
+    prop: location
+    value: { lat: 34.552809393769074, lon: 38.264867215601384, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-palmyra, loc: "place 668331, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

@@ -1,0 +1,142 @@
+id: life/megafauna/extinction-sahul
+kind: event/extinction
+summary: >-
+  The loss of nearly all large animals in Australia and New Guinea, joined then as Sahul: every land
+  animal above about 100 kg, among them Diprotodon, the marsupial lion and the giant kangaroos.
+  Dated by the peak of the extinctions, some time around 42,000 years ago; a few genera went
+  earlier. It comes close to the limit of radiocarbon dating, so its date, and whether people or a
+  drying climate caused it, are among the most disputed of all.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Megafauna extinctions in Sahul }
+    unsourced: An editorial label.
+  date-saltre-2016:
+    prop: date
+    value: { lo: 48.1 ka, hi: 36.7 ka }
+    source:
+      ref: src:saltre-2016-sahul-climate
+      loc: Results
+      quote: "Our results show a peak in extinction events at 42.1 kyr (that is, median value of the distribution of estimated extinction dates in Fig. 1a) with a continent-wide confidence interval (CImegafauna) ranging from 36.7 to 48.1 kyr"
+    method: model
+    rank: preferred
+    note: >-
+      The peak, not the whole. The earliest five genera are estimated to have gone between 61 and 51
+      kyr, and ten more between 44 and 35. The interval runs between the 25th and 75th percentiles
+      of the estimates. Preferred because it uses the most fossil ages read, 659 rated for quality,
+      and estimates the extinction instead of taking the youngest fossil for it; taken at face
+      value, the fossils alone give a peak at 50.8 kyr.
+  date-roberts-2001:
+    prop: date
+    value: { lo: 51.2 ka, hi: 39.8 ka }
+    source:
+      ref: src:roberts-2001-australian-megafauna
+      loc: abstract
+      quote: "infer extinction across the continent around 46,400 years ago (95% confidence interval, 51,200 to 39,800 years ago)"
+    method: radiometric
+    note: >-
+      Burial ages for megafauna at 28 sites. Only the abstract could be read, and it does not say by
+      what method, so this is recorded only as radiometric.
+  date-van-der-kaars-2017:
+    prop: date
+    value: { lo: 45 ka, hi: 43.1 ka }
+    source:
+      ref: src:van-der-kaars-2017-sahul-sporormiella
+      loc: abstract
+      quote: "then a marked decline indicating megafaunal population collapse, from 45,000 to 43,100 years ago"
+    method: stratigraphic
+    note: >-
+      The dung fungus Sporormiella in a core off southwestern Australia, a proxy for the number of
+      plant-eaters there, not a date on any animal. Hocknull et al. (2020) doubt the proxy.
+  date-hocknull-2020:
+    prop: date
+    value: { lo: 48 ka, hi: 40 ka }
+    source:
+      ref: src:hocknull-2020-south-walker-creek
+      loc: "Results, Extinctions coincide with environmental deterioration"
+      quote: "extinctions occurred first within the interior (e.g. LEB) after 48 ka, then within the southern MDB after 45 ka; and then around the continental periphery (e.g. southwest Western Australia, Tasmania and SWC) after 41–40 ka"
+    method: radiometric
+    note: >-
+      Staggered, not one event: each of these is a time after which the extinction came, from the
+      youngest reliably dated fossils in each region, so the true dates run later than the range
+      here. Over three quarters of Sahul has no reliably dated site of this age.
+  location:
+    prop: location
+    value: { lat: -28.37, lon: 137.37, frame: frame:earth/present-day }
+    unsourced: A representative point at Lake Eyre, chosen to place the marker; the event has no single location.
+    method: editorial
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  evidenced-by-south-walker-creek:
+    rel: evidenced-by
+    to: life/megafauna/diprotodon-south-walker-creek
+    source:
+      ref: src:hocknull-2020-south-walker-creek
+      loc: "Results, Extinctions coincide with environmental deterioration"
+      quote: "the extinct megafauna taxa at SWC suffered local extinction sometime after their youngest last appearance age at SW9, which is 40.1 ± 1.7 ka"
+  caused-by-people:
+    rel: caused-by
+    to: people/dispersals/sahul-madjedbebe
+    alt: alt:megafauna-causes/human-driven
+    source:
+      - ref: src:saltre-2016-sahul-climate
+        loc: abstract
+        quote: "Our results reject climate change as the primary driver of megafauna extinctions in the world's most controversial context, and instead estimate that the megafauna disappeared Australia-wide ∼13,500 years after human arrival"
+      - ref: src:van-der-kaars-2017-sahul-sporormiella
+        loc: abstract
+        quote: "These findings rule out climate change, and implicate humans, as the primary extinction cause."
+      - ref: src:johnson-2016-sahul-megafauna
+        loc: abstract
+        quote: "multiple independent lines of evidence point to direct human impact as the most likely cause of extinction"
+      - ref: src:miller-2016-genyornis-predation
+        loc: abstract
+        quote: "Harvesting of their eggs by humans would have decreased Genyornis reproductive success, contributing to the bird's extinction by ∼47 ka."
+    note: >-
+      Holds only in the alternative "Driven by people". There is no kill site in Sahul (Svenning et
+      al. 2024), so the case rests on timing, on the absence of a climatic trigger, and on the burnt
+      eggshell of Miller et al. Saltré et al. put the first people at 55.6 kyr, with thousands of
+      years of overlap, so the killing need not have been quick.
+  caused-by-drying:
+    rel: caused-by
+    to: life/megafauna/sahul-hydroclimate-deterioration
+    alt: alt:megafauna-causes/climate-driven
+    source:
+      - ref: src:hocknull-2020-south-walker-creek
+        loc: abstract
+        quote: "megafauna extinctions coincide with regionally staggered spatio-temporal deterioration in hydroclimate coupled with sustained environmental change"
+      - ref: src:wroe-2013-sahul-climate
+        loc: abstract
+        quote: "Mounting evidence points to the loss of most species before the peopling of Sahul (circa 50–45 ka) and a significant role for climate change in the disappearance of the continent’s megafauna."
+    note: >-
+      Holds only in the alternative "Driven by climate". Wroe et al. put most of the losses long
+      before people came, within the last 400,000 years, a longer drying than this record holds.
+  both-people:
+    rel: caused-by
+    to: people/dispersals/sahul-madjedbebe
+    alt: alt:megafauna-causes/both
+    source:
+      ref: src:saltre-2019-southeast-australia
+      loc: abstract
+      quote: "We identify a combined climate-human effect on regional extirpation patterns"
+    note: >-
+      Holds only in the alternative "People and climate together". From southeastern Australia, not
+      the whole of Sahul.
+  both-drying:
+    rel: caused-by
+    to: life/megafauna/sahul-hydroclimate-deterioration
+    alt: alt:megafauna-causes/both
+    source:
+      ref: src:saltre-2019-southeast-australia
+      loc: Discussion
+      quote: "our results support the idea that human arrival in south-eastern Australia was an additional stressor to climate perturbations"
+    note: >-
+      Holds only in the alternative "People and climate together". Saltré et al. work from a climate
+      model and water availability, not from this deterioration by name; it is the closest record
+      here.

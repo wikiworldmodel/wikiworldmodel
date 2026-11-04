@@ -1,0 +1,55 @@
+id: people/rulers/aurelian
+kind: person
+summary: >-
+  A soldier from the Danube provinces who reunited the empire after the secessions of Gaul and
+  Palmyra, and built the walls of Rome.
+author: machine:claude-code
+same_as: { wikidata: Q46780 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Aurelian }
+    source:
+      ref: src:consularia-constantinopolitana
+      loc: "a. 270 (MGH AA 9, p. 228)"
+      quote: His conss. levatus Aurelianus imperator
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: 270 CE
+    source:
+      ref: src:consularia-constantinopolitana
+      loc: "a. 270 (MGH AA 9, p. 228)"
+      quote: His conss. levatus Aurelianus imperator
+    method: historical-account
+    note: >-
+      In English: in this consulship Aurelian was raised up as emperor. Mommsen sets the entry
+      against 270. His birth is not dated in any source read here, and the Historia Augusta
+      (Aurelian 3.1) cannot settle his birthplace, so the record gives neither.
+  end:
+    prop: end
+    value: 275 CE
+    source:
+      ref: src:consularia-constantinopolitana
+      loc: "a. 275 (MGH AA 9, p. 229)"
+      quote: His conss. occisus est Aurelianus imperator Caenofrurio et levatus est post dies Tacitus Romae
+    method: historical-account
+    note: >-
+      In English: in this consulship the emperor Aurelian was killed at Caenophrurium, and after
+      some days Tacitus was raised up at Rome. Mommsen sets the entry against 275. Lactantius
+      (ch. 6) also has him killed in Thrace, at the same place.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:consularia-constantinopolitana
+      loc: "a. 270 (MGH AA 9, p. 228)"
+      quote: levatus Aurelianus imperator
+    note: Emperor.

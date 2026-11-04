@@ -1,0 +1,29 @@
+id: src:ferring-2011-dmanisi
+type: publication
+kind: measurement
+citation: >-
+  Ferring, R., Oms, O., Agustí, J., Berna, F., Nioradze, M., Shelia, T., Tappen, M., Vekua, A.,
+  Zhvania, D. & Lordkipanidze, D. (2011). Earliest human occupations at Dmanisi (Georgian
+  Caucasus) dated to 1.85-1.78 Ma. Proceedings of the National Academy of Sciences 108(26),
+  10432–10436.
+authors:
+  - "Ferring, R."
+  - "Oms, O."
+  - "Agustí, J."
+  - "Berna, F."
+  - "Nioradze, M."
+  - "Shelia, T."
+  - "Tappen, M."
+  - "Vekua, A."
+  - "Zhvania, D."
+  - "Lordkipanidze, D."
+published: 2011
+title: "Earliest human occupations at Dmanisi (Georgian Caucasus) dated to 1.85-1.78 Ma"
+container: "Proceedings of the National Academy of Sciences 108(26), 10432–10436"
+doi: 10.1073/pnas.1106638108
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read at PubMed Central (PMC3127884): the site's coordinates, the hominin fossils in
+    stratum B at ca. 1.77 Ma, and older stone tools of 1.85–1.78 Ma. Quoted passages checked by
+    script against the text retrieved.

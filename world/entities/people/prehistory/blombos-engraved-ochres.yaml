@@ -1,0 +1,62 @@
+id: people/prehistory/blombos-engraved-ochres
+kind: artefact
+summary: >-
+  Pieces of red ochre engraved with abstract patterns, from the Middle Stone Age layers of Blombos Cave,
+  South Africa, with a later find from the same levels of a pattern drawn in ochre crayon on a flake.
+  PBDB collection 115167 gives the place.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Blombos engraved ochres" }
+    unsourced: An editorial label, from the finds and the place.
+  location:
+    prop: location
+    value: { lat: -34.408665, lon: 21.195189, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-115167, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-henshilwood-2018:
+    prop: date
+    value: 73 ka
+    source:
+      ref: src:henshilwood-2018-blombos
+      loc: abstract
+      quote: "recovered from approximately 73,000-year-old Middle Stone Age levels at Blombos Cave, South Africa"
+    rank: preferred
+    note: >-
+      The excavators' later figure for the levels that yielded the engravings. Preferred as the more recent;
+      the abstract read does not say how it was reached.
+  date-henshilwood-2002:
+    prop: date
+    value: 77 ka
+    source:
+      ref: src:henshilwood-2002-blombos
+      loc: abstract
+      quote: "A mean date of 77,000 years was obtained for the layers containing the engraved ochres by thermoluminescence dating of burnt lithics"
+    method: radiometric/luminescence
+    note: >-
+      Burnt stone from the layers, with an optically stimulated luminescence age of 70,000 years on
+      the dune above them. Older ochre at the cave is not part of this record: 13 further incised pieces
+      from levels of c. 75,000–100,000 years (Henshilwood et al. 2009) and a workshop for mixing it
+      100,000 years ago (Henshilwood et al. 2011).
+relations:
+  industry:
+    rel: member-of
+    to: people/prehistory/still-bay
+    source:
+      ref: src:henshilwood-2018-blombos
+      loc: abstract
+      quote: "The object comes from a level associated with stone tools of the Still Bay techno-complex that has previously yielded shell beads, cross-hatched engravings on ochre pieces and a variety of innovative technologies"
+  made-by-homo-sapiens:
+    rel: made-by
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:henshilwood-2018-blombos
+      loc: abstract
+      quote: "This drawing demonstrates the ability of early Homo sapiens in southern Africa to produce graphic designs on various media using different techniques."

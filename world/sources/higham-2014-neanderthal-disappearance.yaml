@@ -1,0 +1,29 @@
+id: src:higham-2014-neanderthal-disappearance
+type: publication
+kind: measurement
+citation: >-
+  Higham, T., Douka, K., Wood, R., Ramsey, C.B., Brock, F., Basell, L., Camps, M., Arrizabalaga,
+  A., Baena, J., Barroso-Ruíz, C. et al. (2014). The timing and spatiotemporal patterning of
+  Neanderthal disappearance. Nature 512(7514), 306–309.
+authors:
+  - "Higham, T."
+  - "Douka, K."
+  - "Wood, R."
+  - "Ramsey, C.B."
+  - "Brock, F."
+  - "Basell, L."
+  - "Camps, M."
+  - "Arrizabalaga, A."
+  - "Baena, J."
+  - "Barroso-Ruíz, C."
+published: 2014
+title: "The timing and spatiotemporal patterning of Neanderthal disappearance"
+container: "Nature 512(7514), 306–309"
+doi: 10.1038/nature13621
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 48 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 25143113): the end of the Mousterian at 41,030–39,260
+    cal BP (95.4%) across Europe. Quoted passages checked by script against the text retrieved.

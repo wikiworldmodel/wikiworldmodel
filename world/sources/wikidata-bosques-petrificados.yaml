@@ -1,0 +1,19 @@
+id: src:wikidata-bosques-petrificados
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q830083 (Bosques Petrificados de Jaramillo National Park), property P625
+  (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q830083
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry, for a named place and not for the fossil site itself.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (-47.665101, -67.994191) read from the item's JSON
+    (Special:EntityData/Q830083.json) on 4 November 2026. The item gives two values; this is the
+    one with a 1e-06 precision and a reference (P13052), the other is -47.6667, -68.1667. Its
+    Spanish names include Monumento natural Bosques Petrificados, in use until 2012 (P1448).

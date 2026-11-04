@@ -1,0 +1,32 @@
+# A derived field: declared, never stored (section 9.1). The renderer draws it from the climate at
+# the time shown, and from what the world's transitions say had come to exist by then: nothing that
+# is green is drawn before the record of land plants starts, and no forest before the first forests.
+id: field:earth/biome
+type: field
+title: What covered the land
+description: >-
+  What the land was covered with, derived at each spot from its climate and from what had evolved by
+  then. Which climate gets which cover is the renderer's reading of the Köppen–Geiger classes: a
+  rain forest in a wet tropical climate, a desert in a desert climate. Nobody mapped it, and the
+  texture within each cover is generated.
+derived: true
+from: [field:earth/climate]
+rule: biome-from-climate
+params:
+  # Köppen–Geiger classes, as Peel et al. (2007) define them; see their Table 1.
+  polar: 10
+  frost: 0
+  tropical: 18
+  cold: 0
+  arid: 1
+  desert: 0.5
+  # What a transition's start and end mean for the picture, where it gives no end: how many million
+  # years a cover takes to spread once it has appeared.
+  spread_myr: 30
+  # Reefs are drawn on shelves this shallow, in metres, within this many degrees of the equator.
+  reef_depth: 200
+  reef_latitude: 30
+source:
+  ref: src:peel-2007-koppen
+  loc: Table 1
+  quote: if 70% of MAP occurs in winter then P threshold = 2 x MAT

@@ -1,0 +1,23 @@
+id: src:bourgeon-2017-bluefish
+type: publication
+kind: measurement
+citation: >-
+  Bourgeon, L., Burke, A. & Higham, T. (2017). Earliest Human Presence in North America Dated to the
+  Last Glacial Maximum: New Radiocarbon Dates from Bluefish Caves, Canada. PLoS ONE 12(1), e0169486.
+authors:
+  - "Bourgeon, L."
+  - "Burke, A."
+  - "Higham, T."
+published: 2017
+title: "Earliest Human Presence in North America Dated to the Last Glacial Maximum: New Radiocarbon Dates from Bluefish Caves, Canada"
+container: "PLoS ONE 12(1), e0169486"
+doi: 10.1371/journal.pone.0169486
+reliability: >-
+  Contested: Potter et al. (2018) call the record at Bluefish Caves enigmatic and ask where the
+  abundant evidence of a settlement that early would be.
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC5218561); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

@@ -1,0 +1,80 @@
+id: people/trade/zhang-qian-first-mission
+kind: event
+summary: >-
+  The Han envoy Zhang Qian's journey in search of the Yuezhi, as allies against the Xiongnu. Taken prisoner on the way, he was
+  held for more than ten years, escaped to Ferghana, went on through Sogdiana to the Yuezhi in Bactria, failed to win them
+  over, was caught again on his way home, and came back after thirteen years with two men left of more than a hundred. His
+  report of the western countries is what the Shiji and the Han shu tell of them, and the Han shu says he "first opened up
+  the way into the Western regions".
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Zhang Qian's first mission to the West }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 140 BCE, hi: 134 BCE }
+    source:
+      - ref: src:shiji-123-hirth-1917
+        loc: "ch. 123, Waugh's section III, paragraph 1"
+        quote: "during the period of K'ien-yuan [140-134 BCE] he was a lang [a titular officer of the imperial household; a yeoman]."
+      - ref: src:benjamin-2003-yuezhi-migration
+        loc: "section '129/128 BCE'"
+        quote: "129/128 BCE: Zhang Qian also passes through Kangju"
+    method: historical-account
+    rank: preferred
+    note: >-
+      The text names only the reign period in which he volunteered, and the years in brackets are the editors'. Benjamin's
+      year, for his passing through Sogdiana after more than ten years' captivity, fits it.
+  start-wikipedia:
+    prop: start
+    value: 138 BCE
+    source:
+      ref: src:wikipedia-zhang-qian
+      loc: "section on the first mission"
+      quote: "to the Western Regions in 138 BC with a group of ninety-nine members"
+    method: expert-estimate
+    note: The year usually given. Wikipedia, because nothing better that names it could be read, and its authority for it was not traced.
+  end:
+    prop: end
+    value: { ref: people/trade/zhang-qian-first-mission, edge: start, lag: 13 yr }
+    source:
+      ref: src:shiji-123-hirth-1917
+      loc: "ch. 123, Waugh's section III, paragraph 3"
+      quote: "When Chang K'ien started on his journey, his caravan consisted of more than a hundred men; thirteen years later, only two lived to return."
+    method: historical-account
+    rank: preferred
+  end-wikipedia:
+    prop: end
+    value: { lo: 126 BCE, hi: 125 BCE }
+    source:
+      ref: src:wikipedia-zhang-qian
+      loc: "caption and section on the first mission"
+      quote: "for his expedition to Central Asia from 138 to 126 BC"
+    method: expert-estimate
+    note: The article's caption has 126 BC, and its text "Zhang Qian returned in 125 BC". Wikipedia, because nothing better that names it could be read.
+  location:
+    prop: location
+    value: { lat: 36.758055555556, lon: 66.898888888889, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-balkh, loc: "Q182159, P625 coordinate location" }
+      - ref: src:shiji-123-hirth-1917
+        loc: "ch. 123, Waugh's section III, paragraph 2"
+        quote: "Chang K 'ien went through the country of the Yue-chi to Ta-hia [Bactria]"
+    method: editorial
+    note: A marker's placement, at the far end of the journey. Ta-hia is a country and not a town, so the point chosen is Balkh, in it.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-514
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  under-the-han:
+    rel: during
+    to: people/polities/han
+    source:
+      ref: src:hanshu-96-wylie-1881
+      loc: "ch. 96, Waugh's edition, 'Notes on the Western Regions'"
+      quote: "The Han succeeded, and in the time of the Emperor Wu-ti, the babarians on all sides were invaded, the dignity of the empire was extended, and Chang K'ien first opened up the way into the Western regions."

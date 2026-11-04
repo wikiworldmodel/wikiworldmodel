@@ -1,0 +1,24 @@
+id: src:gorringe-1882-egyptian-obelisks
+type: publication
+kind: eyewitness
+citation: >-
+  Gorringe, H.H. (1882). Egyptian Obelisks. New York: published by the author. With a chapter,
+  "Removal of the Luxor Obelisk to Paris", by Lieutenant Seaton Schroeder, U.S.N.
+authors:
+  - "Gorringe, H.H."
+published: 1882
+title: Egyptian Obelisks
+url: https://archive.org/details/egyptianobelisks00gorruoft
+license: public-domain
+reliability: >-
+  Gorringe commanded the removal of the New York obelisk and writes of it at first hand. Schroeder's
+  chapter on the Luxor obelisk is drawn from LeBas's account and prints the inscriptions on the
+  pedestal in Paris. Gorringe's catalogue of older obelisks is a compilation of its time, on
+  Lepsius's chronology, and some of its dates have since been corrected.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in the Internet Archive's OCR text of the University of Toronto copy
+    (egyptianobelisks00gorruoft): the removal of the New York obelisk (pp. 28-31, 53-55), Schroeder's
+    chapter (pp. 85-92), the history of the obelisks of Heliopolis, and the record of all obelisks
+    (pp. 127, 130). Quotations checked by script against that text with whitespace normalized.

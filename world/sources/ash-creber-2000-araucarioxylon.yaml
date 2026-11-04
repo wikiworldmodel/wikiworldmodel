@@ -1,0 +1,19 @@
+id: src:ash-creber-2000-araucarioxylon
+type: publication
+kind: measurement
+citation: >-
+  Ash, S.R. & Creber, G.T. (2000). The Late Triassic Araucarioxylon arizonicum trees of the
+  Petrified Forest National Park, Arizona, USA. Palaeontology 43(1), 15–28.
+authors:
+  - "Ash, S.R."
+  - "Creber, G.T."
+published: 2000
+title: "The Late Triassic Araucarioxylon arizonicum trees of the Petrified Forest National Park, Arizona, USA"
+container: Palaeontology 43(1), 15–28
+doi: 10.1111/1475-4983.00116
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

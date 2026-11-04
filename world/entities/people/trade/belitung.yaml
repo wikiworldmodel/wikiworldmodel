@@ -1,0 +1,72 @@
+id: people/trade/belitung
+kind: event/shipwreck
+summary: >-
+  A dhow of the Arab tradition, built of African timber, that foundered off the island of Belitung in Indonesia in the second
+  quarter of the ninth century, with some 60,000 objects, nearly all Chinese ceramics of the late Tang, and a hoard of gold
+  and silver. Found by fishermen in 1998 and recovered by salvagers over two seasons. It shows the long sea trade between the
+  Gulf and China in that century. One bowl of its cargo is dated.
+author: machine:claude-code
+same_as: { wikidata: Q3589078 }
+claims:
+  name:
+    prop: name
+    value: { en: Belitung shipwreck }
+    source: { ref: src:guy-rare-and-strange-goods, loc: p. 19, quote: "The archaeological recovery of the Belitung shipwreck and its Tang cargo" }
+  date:
+    prop: date
+    value: { lo: 826 CE, hi: 850 CE }
+    source:
+      - ref: src:roots-sunken-treasure
+        loc: "paragraph beginning 'The exact date'"
+        quote: "It is thus likely that the Belitung ship sailed in the second quarter of the ninth century, possibly within a few seasons of the bowl’s manufacture."
+      - ref: src:guy-rare-and-strange-goods
+        loc: pp. 19–20
+        quote: "the most likely reading is “the sixteenth day of the seventh month in the second year of Baoli era,” equivalent to 826"
+    method: documentary
+    rank: preferred
+    note: >-
+      From a Changsha bowl with its date engraved on the base, one of 55,000, which gives a time after which the ship sailed.
+      Guy thinks the cargo left China within a few years of 826, probably a season or two after the bowl was made, so
+      the start of this range is likelier than its end. The radiocarbon tests on organic material that the Roots page mentions
+      were not seen.
+  date-beavan:
+    prop: date
+    value: 830 CE
+    source:
+      ref: src:beavan-koh-sdech
+      loc: "section on comparable wrecks"
+      quote: "the Belitung wreck (c. 830 AD) found about 1.6 km off the coast of Belitung Island, Indonesia (Flecker 2011:119)"
+    method: expert-estimate
+    note: In passing, with Flecker as its authority; the excavator's own account was not read.
+  location:
+    prop: location
+    value: { lat: -2.76083333, lon: 107.59518333, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-belitung-shipwreck, loc: "Q3589078, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-619
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value: { en: "The largest assemblage of late Tang glazed ceramics found, 55,000 of them bowls from the Changsha kilns, with gold and silver vessels and silver ingots." }
+    source:
+      - ref: src:guy-rare-and-strange-goods
+        loc: p. 19
+        quote: "The excavated cargo revealed the largest and most comprehensive assemblage of Chinese glazed ceramics from the late Tang dynasty found to date, together with a group of rare gold and silver vessels and silver ingots"
+  voyage:
+    prop: voyage
+    value: { en: "From Guangzhou, where the ceramics were likely gathered, on the long route to the Gulf, on a dhow probably chartered by Arab or Persian traders." }
+    source:
+      - ref: src:guy-rare-and-strange-goods
+        loc: p. 22
+        quote: "The Belitung ceramics most probably were consigned to Yangzhou, Ningbo, and Hangzhou from their respective production centers and likely shipped down the coast to Guangzhou"
+      - ref: src:guy-rare-and-strange-goods
+        loc: p. 27
+        quote: "from the Gulf to China, and back. The Belitung ship was part of that great enterprise."
+      - ref: src:roots-sunken-treasure
+        loc: "paragraph beginning 'Humble utilitarian items'"
+        quote: "Arab or Persian traders probably chartered the ship"
+    note: An inference from the ship's build, its timbers and the goods. No port of call is known.

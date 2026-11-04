@@ -1,0 +1,42 @@
+id: life/taxa/cercidiphyllum
+kind: taxon
+summary: >-
+  A katsura-like tree, in the Hell Creek rows of the snapshot C. ellipticum, C. genetrix and a
+  morphotype.
+same_as: { pbdb: "txn:54608" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Cercidiphyllum", en: "katsura" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 54608"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: broadleaf
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: upright
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 6, p. 126, s.v. Cercidiphyllum japonicum"
+      quote: "Trees, 10--20 m tall."
+    note: >-
+      A tree, as the flora describes the living plant.
+  height-flora-of-china:
+    prop: plant_height
+    value: 20
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 6, p. 126, s.v. Cercidiphyllum japonicum"
+      quote: "Trees, 10--20 m tall."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The upper figure for the living katsura, C. japonicum: a modern relative, not a Hell Creek
+      plant.

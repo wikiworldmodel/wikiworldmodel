@@ -1,0 +1,28 @@
+id: src:pbdb/collection-132797
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 132797 ("Bore WISBAW 1315 Depth 517.6 -517.78 m", DE),
+  occurrence 1070809. Read through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=132797
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference C. Brauckmann and J.
+  Schneider. 1996. Ein unter-karbonisches Insekt aus dem Raum Bitterfeld/Delitzsch (Pterygota,
+  Arnsbergium, Deutschland). Neues Jahrbuch für Geologie und Paläontologie, Monatshefte
+  1996(1):17-30. Interval ages are the PBDB's own, for the interval the collection is assigned
+  to; the primary reference was not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=132797&show=loc,strat,ref and
+    occs/list.json?coll_id=132797&show=ident,class on the main data service: collection name
+    "Bore WISBAW 1315 Depth 517.6 -517.78 m"; lat 51.599998; lng 12.24; formation
+    "Sandersdorf"; early_interval Arnsbergian; max_ma 326.9, min_ma 323.6; occurrence 1070809,
+    identified_name "Delitzschala bitterfeldensis n. gen. n. sp.", accepted_name "Delitzschala
+    bitterfeldensis" (Arthropoda, Insecta, Palaeodictyoptera).

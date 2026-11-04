@@ -1,0 +1,74 @@
+id: life/transitions/insect-flight
+kind: event/transition
+summary: >-
+  The first flying animals, winged insects. Wings appear in the fossil record about 325 million years ago, and are diverse soon after. Molecular clocks put the origin of winged insects some
+  eighty million years earlier, in the Early Devonian, across a gap with almost no insects in the rocks; the one Devonian fossil that seemed to fill it may be a centipede.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First flying insects }
+    unsourced: An editorial label.
+  start-prokop-2026:
+    prop: start
+    value: { ref: life/occurrences/delitzschala-bitterfeld }
+    source:
+      - ref: src:prokop-2026-eubleptus
+        loc: "Introduction"
+        quote: "with its earliest record from the early Late Carboniferous, about 325 million years ago"
+      - ref: src:schachat-2018-po2-insects
+        loc: abstract
+        quote: "the fossil record may accurately record the transformative evolutionary impact of insect flight"
+    rank: preferred
+    note: >-
+      The oldest fossil wings, and a fossil date. Schachat et al. (2018) find that the gap before such insects needs no special explanation if insects were neither diverse nor abundant before
+      wings, so the fossils may record the event itself. Prokop writes of Palaeodictyopterida; Delitzschala is among them (Osozawa and Nel 2024).
+  start-misof-2014:
+    prop: start
+    value: 406 Ma
+    source:
+      ref: src:misof-2014-insect-phylogenomics
+      loc: abstract
+      quote: "of insect flight to the Early Devonian (~406 Ma)"
+    method: molecular-clock
+    note: >-
+      Calibrated partly with Rhyniognatha as an insect, according to Haug and Haug (2017), who question that reading.
+  start-wang-2016:
+    prop: start
+    value: { lo: 425 Ma, hi: 399 Ma }
+    source:
+      ref: src:wang-2016-insect-stem-groups
+      loc: "Estimated divergence times in the deeper nodes of Insecta"
+      quote: "the origin of Pterygota is dated at about 413 Ma (95% HPD 425–399 Ma)"
+    method: molecular-clock
+    note: >-
+      An origin of the lineage with wings, not a fossil wing.
+  start-engel-grimaldi-2004:
+    prop: start
+    value: { ref: life/occurrences/rhyniognatha-rhynie }
+    source:
+      - ref: src:engel-grimaldi-2004-rhyniognatha
+        loc: abstract
+        quote: "Rhyniognatha has derived characters shared with winged insects, suggesting that the origin of wings may have been earlier than previously believed"
+      - ref: src:haug-haug-2017-rhyniognatha
+        loc: abstract
+        quote: "The newly observed structures do not support an interpretation as an insect."
+    note: >-
+      Mandibles only, and no wing: a claim that its owner belonged to the winged lineage. Rejected by the restudy of the specimen, and so not preferred.
+relations:
+  evidence-delitzschala:
+    rel: evidenced-by
+    to: life/occurrences/delitzschala-bitterfeld
+    source:
+      ref: src:wang-2016-insect-stem-groups
+      loc: "Fig. 3, caption"
+      quote: "Numbers from one to eight are stand for species Delitzschala bitterfeldensis"
+  evidence-rhyniognatha:
+    rel: evidenced-by
+    to: life/occurrences/rhyniognatha-rhynie
+    source:
+      ref: src:engel-grimaldi-2004-rhyniognatha
+      loc: abstract
+      quote: "Rhyniognatha has derived characters shared with winged insects"
+    note: >-
+      Contested: see the competing start.

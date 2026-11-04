@@ -1,0 +1,19 @@
+id: src:ibn-khaldun-histoire-des-berberes-2
+type: text
+kind: historian
+citation: >-
+  Ibn Khaldun, Histoire des Berbères et des dynasties musulmanes de l'Afrique septentrionale,
+  vol. 2, translated by W. McG. de Slane (Algiers: Imprimerie du Gouvernement, 1854).
+published: 1854
+title: Kitab al-'Ibar (Histoire des Berbères)
+url: https://archive.org/details/bub_gb_TXVBAAAAIAAJ
+via: The Internet Archive's scan of a Google Books copy.
+reliability: >-
+  The Maghribi historian's chapter on the kings of Mali, written a generation or two after Mansa
+  Musa, from informants who include the king's interpreter in Cairo. Almost all that is known of
+  the order and length of the reigns comes from it.
+verified:
+  by: machine:claude-code
+  how: >-
+    Pp. 110–116 read in the OCR of the scan; quotations checked by script against that text,
+    keeping to stretches the OCR reads cleanly.

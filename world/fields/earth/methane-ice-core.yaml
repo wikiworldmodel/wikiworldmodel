@@ -1,0 +1,17 @@
+id: field:earth/methane-ice-core
+type: field
+title: Atmospheric methane, ice cores
+quantity: concentration of methane in the atmosphere
+unit: ppb
+description: >-
+  Methane measured in the air trapped in the EPICA Dome C ice core (Loulergue et al. 2008), as the
+  IPCC's Sixth Assessment Report tabulates it, which goes on from it with yearly values for 1850–2019.
+  Its ages are on the EDC3 scale, not the one most of the CO₂ series uses.
+grid: { kind: series }
+time: { lo: 799.4 ka, hi: 2019 CE }
+data:
+  from: src:ar6-wg1-fig2-4
+  columns: { time: "3", value: "4" }
+  time_unit: ka-b2k
+basis: evidence
+interp: linear

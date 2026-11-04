@@ -1,0 +1,97 @@
+id: people/first-cities/tikal
+kind: settlement
+summary: >-
+  Tikal, in the forest of the Petén in northern Guatemala, one of the foremost Classic Maya cities. It had no lake or river, and its people depended on reservoirs that filled in the rainy season.
+  It reached its height around 830 CE, lost its people sharply, and was abandoned by about 900 CE.
+author: machine:claude-code
+same_as: { wikidata: Q181172 }
+claims:
+  name:
+    prop: name
+    value: { en: Tikal }
+    source: { ref: src:wikidata-tikal, loc: "Q181172, label" }
+  start-lentz:
+    prop: start
+    value: 1000 BCE
+    source:
+      ref: src:lentz-2021-tikal-edna
+      loc: abstract
+      quote: the occupation of Tikal (1000 BCE–900 CE)
+    method: expert-estimate
+    rank: preferred
+    note: From a paper on sediments spanning the city's life. Preferred as the recent statement; the urban phase comes much later, with the Classic period from 250 CE.
+  start-unesco:
+    prop: start
+    value: 800 BCE
+    source:
+      ref: src:unesco-whc-64-tikal
+      loc: Outstanding Universal Value, brief synthesis
+      quote: from the arrival of the first settlers (800 BC) to the last stages of historic occupation around the year 900
+    method: expert-estimate
+  end-900:
+    prop: end
+    value: 900 CE
+    source:
+      - ref: src:lentz-2021-tikal-edna
+        loc: abstract
+        quote: the occupation of Tikal (1000 BCE–900 CE)
+      - ref: src:unesco-whc-64-tikal
+        loc: Outstanding Universal Value, brief synthesis
+        quote: from the arrival of the first settlers (800 BC) to the last stages of historic occupation around the year 900
+    method: expert-estimate
+    rank: preferred
+    note: Preferred as the end both sources share; the paper below narrows it to the later ninth century.
+  end-lentz-2020:
+    prop: end
+    value: { lo: 850 CE, hi: 899 CE }
+    source:
+      ref: src:lentz-2020-tikal-reservoirs
+      loc: abstract
+      quote: its sharp population decline followed by abandonment during the late 9th century CE
+    method: expert-estimate
+    note: The same paper says "mid-ninth century CE" in its introduction. The last dated inscription is 869, UNESCO says.
+  location:
+    prop: location
+    value: { lat: 17.222094, lon: -89.623614, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-tikal, loc: "Q181172, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-205
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area:
+    prop: settlement_area
+    value: 1200
+    source:
+      ref: src:unesco-whc-64-tikal
+      loc: Outstanding Universal Value, brief synthesis
+      quote: A wider zone of key archaeological importance, around 1,200 hectares, covers residential areas and historic water reservoirs
+    method: survey
+    note: The zone of remains today, with an inner zone of about 400 hectares for the monuments and a wider periphery beyond it, so with no date.
+  population-lentz:
+    prop: population
+    value: { lo: 40000, hi: 62000 }
+    valid: 830 CE
+    source:
+      ref: src:lentz-2021-tikal-edna
+      loc: Introduction
+      quote: At its zenith around 830 CE the population reached somewhere between 40,000 and 62,000 inhabitants
+    method: expert-estimate
+    rank: preferred
+    note: Preferred as a range for a stated moment, in a recent paper by a team working at the site.
+  population-chandler:
+    prop: population
+    value: 63000
+    valid: 751 CE
+    source: { ref: src:reba-2016-urban-population, loc: "chandlerV2.csv, row Tikal, column AD_751" }
+    method: compilation
+    note: Chandler's figure, as digitized by Reba et al. (2016); he has 40,000 at 800 CE.
+  population-modelski:
+    prop: population
+    value: 100000
+    valid: 700 CE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Tikal, column AD_700" }
+    method: compilation
+    note: Modelski's figure, as digitized by Reba et al. (2016). His file also lists Tikal, impossibly, in the columns for 900 to 600 BC.

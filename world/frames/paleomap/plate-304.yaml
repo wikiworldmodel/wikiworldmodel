@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-304
+type: frame
+kind: plate
+title: Iberia (PALEOMAP plate 304)
+entity: earth/plates/iberia
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 304
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 304

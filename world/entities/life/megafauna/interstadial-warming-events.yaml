@@ -1,0 +1,45 @@
+id: life/megafauna/interstadial-warming-events
+kind: event/transition
+summary: >-
+  The abrupt warmings of the last glaciation, the Dansgaard-Oeschger interstadials, of which the
+  Bølling–Allerød is the last. Cooper et al. (2015) find that they go with the regional replacement
+  or extinction of megafauna across the north, and others blame the last of them for the woolly
+  rhinoceros. Svenning et al. (2024) answer that such swings were usual for a million and more
+  years, and brought no such losses before.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Interstadial warming events of the last glaciation }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 56 ka
+    source:
+      - ref: src:svenning-2024-late-quaternary-extinctions
+        loc: "Extinction drivers, Climatic causation"
+        quote: "rapid Dansgaard-Oeschger warming events between 56,000–12,000 ya (Cooper et al., 2015)"
+      - ref: src:cooper-2015-abrupt-warming
+        loc: abstract
+        quote: "31 detailed time series of regional megafaunal extinctions and replacements over the past 56,000 years"
+    method: stratigraphic
+    note: >-
+      The start of the span Cooper et al. studied, not of the events themselves, which go further
+      back: Svenning et al. note this kind of swing for at least 1.5 million years. Only the
+      abstract of Cooper et al. was read. Rasmussen & Svensson (2016, Science 351, 927) object to
+      the time scale they built, and Cooper et al. reply that the link holds on the standard
+      Greenland one too.
+  end:
+    prop: end
+    value: 12 ka
+    source:
+      - ref: src:svenning-2024-late-quaternary-extinctions
+        loc: "Extinction drivers, Climatic causation"
+        quote: "rapid Dansgaard-Oeschger warming events between 56,000–12,000 ya (Cooper et al., 2015)"
+      - ref: src:broughton-weitzel-2018-mixed-causes
+        loc: Introduction
+        quote: "warm interstadials associated with Dansgaard-Oeschger events2,3,9, such as the Bølling-Allerød (B-A; ~14.7−12.9 ka)"
+    method: stratigraphic
+    note: >-
+      The last of them is the Bølling–Allerød (earth/ice-ages/bolling-allerod), which ended about
+      12.9 ka, so the source's round figure runs a little long.

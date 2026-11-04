@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-330
+type: frame
+kind: plate
+title: Crete (PALEOMAP plate 330)
+entity: earth/plates/crete
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 330
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 330

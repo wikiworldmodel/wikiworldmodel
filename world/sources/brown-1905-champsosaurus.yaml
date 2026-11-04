@@ -1,0 +1,19 @@
+id: src:brown-1905-champsosaurus
+type: publication
+kind: measurement
+citation: >-
+  Brown, B. (1905). The osteology of Champsosaurus Cope. Memoirs of the American Museum of
+  Natural History 9(1), 1–26.
+authors:
+  - "Brown, B."
+published: 1905
+title: "The osteology of Champsosaurus Cope"
+container: "Memoirs of the American Museum of Natural History 9(1), 1–26"
+url: https://digitallibrary.amnh.org/handle/2246/63
+via: "The AMNH scan as archived at web.archive.org on 19 December 2019."
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the text layer of the AMNH scan. That layer runs the words together and reads the 1
+    of 1500 as I, so quotes are checked by script with all spaces removed; the spaces in the
+    quotes follow the page.

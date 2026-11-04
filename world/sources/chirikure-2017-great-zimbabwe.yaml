@@ -1,0 +1,21 @@
+id: src:chirikure-2017-great-zimbabwe
+type: publication
+kind: measurement
+citation: >-
+  Chirikure, S., Moultrie, T., Bandama, F., Dandara, C. & Manyanga, M. (2017). What was the population of Great Zimbabwe (CE1000–1800)?
+  PLoS ONE 12(6), e0178335.
+authors:
+  - "Chirikure, S."
+  - "Moultrie, T."
+  - "Bandama, F."
+  - "Dandara, C."
+  - "Manyanga, M."
+published: 2017
+title: What was the population of Great Zimbabwe (CE1000–1800)?
+container: PLoS ONE
+doi: 10.1371/journal.pone.0178335
+url: https://europepmc.org/article/PMC/PMC5470674
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC5470674). Quotes checked by script against it, after normalizing whitespace.

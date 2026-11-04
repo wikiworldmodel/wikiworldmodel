@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-331
+type: frame
+kind: plate
+title: Cyprus (PALEOMAP plate 331)
+note: Named from PALEOMAP_PlateModel.rot, "CYP  Cyprus". No plate record has been written for it yet.
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 331
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 331

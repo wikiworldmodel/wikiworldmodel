@@ -1,0 +1,16 @@
+id: src:pleiades-lugdunum
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 167717, "Col. Lugdunum".
+snapshot: 2026-11-04
+container: Pleiades
+url: https://pleiades.stoa.org/places/167717
+license: CC-BY-3.0
+reliability: >-
+  A scholarly gazetteer of ancient places.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/167717/json) read directly: representative point
+    45.758866°N, 4.819482°E; a Roman colony from 43 B.C..

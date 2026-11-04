@@ -1,0 +1,11 @@
+id: src:smb-nofretete-die-bueste
+type: publication
+kind: review
+citation: >-
+  Staatliche Museen zu Berlin, Ägyptisches Museum und Papyrussammlung. Büste der Nofretete: Die Büste.
+title: "Büste der Nofretete: Die Büste"
+url: https://www.smb.museum/museen-einrichtungen/aegyptisches-museum-und-papyrussammlung/sammeln-forschen/bueste-der-nofretete/die-bueste/
+reliability: The museum's own description, with its catalogue data for the bust (ÄM 23100).
+verified:
+  by: machine:claude-code
+  how: Read on the museum's site. Quotations checked by script against the page's text.

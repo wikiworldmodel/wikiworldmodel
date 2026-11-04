@@ -1,0 +1,18 @@
+id: src:ipcc-2021-ar6-wg1-spm
+type: publication
+kind: review
+citation: >-
+  IPCC (2021). Summary for Policymakers. In Climate Change 2021: The Physical Science Basis.
+  Contribution of Working Group I to the Sixth Assessment Report of the Intergovernmental Panel on
+  Climate Change, pp. 3–32. Cambridge University Press.
+published: 2021
+title: Summary for Policymakers
+container: Climate Change 2021, The Physical Science Basis (IPCC AR6 WGI), pp. 3–32
+doi: 10.1017/9781009157896.001
+url: https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_SPM.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the IPCC's PDF: the opening of section B and Box SPM.1 (p. 12), B.1.1 and Table
+    SPM.1 (p. 14) and B.5.3 (p. 21). Citation as its p. 3 asks it to be cited. Quotes checked by script against the
+    text extracted from that PDF, after normalizing whitespace.

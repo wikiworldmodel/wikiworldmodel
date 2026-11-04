@@ -1,0 +1,25 @@
+id: src:van-der-plicht-2015-giant-deer-siberia
+type: publication
+kind: measurement
+citation: >-
+  van der Plicht, J., Molodin, V.I., Kuzmin, Y.V., Vasiliev, S.K., Postnov, A.V. & Slavinsky, V.S.
+  (2015). New Holocene refugia of giant deer (Megaloceros giganteus Blum.) in Siberia: updated
+  extinction patterns. Quaternary Science Reviews 114, 182–188.
+authors:
+  - "van der Plicht, J."
+  - "Molodin, V.I."
+  - "Kuzmin, Y.V."
+  - "Vasiliev, S.K."
+  - "Postnov, A.V."
+  - "Slavinsky, V.S."
+published: 2015
+title: "New Holocene refugia of giant deer (Megaloceros giganteus Blum.) in Siberia: updated extinction patterns"
+container: "Quaternary Science Reviews 114, 182–188"
+doi: 10.1016/j.quascirev.2015.02.013
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the published PDF from the University of Groningen's repository (pure.rug.nl), the text
+    extracted with Ghostscript. Its text layer renders en dashes between numbers as the letter e and
+    drops some spaces, so the quote was checked by script after mapping those dashes back and
+    ignoring whitespace.

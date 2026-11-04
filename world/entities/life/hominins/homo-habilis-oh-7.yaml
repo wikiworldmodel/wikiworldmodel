@@ -1,0 +1,49 @@
+id: life/occurrences/homo-habilis-oh-7
+kind: occurrence
+summary: >-
+  OH 7, a partial skull and hand from Olduvai Gorge, Tanzania: the holotype of Homo habilis, which by
+  priority names one of the species of early Homo.
+same_as: { wikidata: Q7072569 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Homo habilis (OH 7), Olduvai Gorge" }
+    unsourced: An editorial label, from the taxon, the specimen and the place.
+  identified:
+    prop: identified_as
+    value: Homo habilis
+    source:
+      ref: src:spoor-2015-oh-7
+      loc: abstract
+      quote: "OH 7, the 1.8-million-year-old H. habilis holotype"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:spoor-2015-oh-7
+      loc: abstract
+      quote: "This partial skull and hand from Olduvai Gorge"
+  location:
+    prop: location
+    value: { lat: -2.98333, lon: 35.35, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-olduvai-gorge, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: A point for the gorge; the specimen's own locality was not located more closely from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-712
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 1.8 Ma
+    source: { ref: src:spoor-2015-oh-7, loc: abstract, quote: "OH 7, the 1.8-million-year-old H. habilis holotype" }
+    method: expert-estimate
+    note: A rounded age, given in passing and with no uncertainty; the abstract read does not say what dates it.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-habilis
+    source: { ref: src:spoor-2015-oh-7, loc: abstract }

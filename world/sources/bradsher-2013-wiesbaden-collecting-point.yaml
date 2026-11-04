@@ -1,0 +1,16 @@
+id: src:bradsher-2013-wiesbaden-collecting-point
+type: publication
+kind: review
+citation: >-
+  Bradsher, G. (2013). The Origins and Operations of the Wiesbaden Central Collecting Point. The Text
+  Message, blog of the Textual Records Division at the National Archives, 18 November 2013.
+authors:
+  - "Bradsher, G."
+published: 2013
+title: The Origins and Operations of the Wiesbaden Central Collecting Point
+container: The Text Message (U.S. National Archives)
+url: https://text-message.blogs.archives.gov/?p=4166
+reliability: An archivist of the U.S. National Archives, writing from the Army's records. It tells of the collections at Merkers and Frankfurt as a whole and does not name the bust.
+verified:
+  by: machine:claude-code
+  how: Read on the National Archives' blog. Quotations checked by script against the page's text.

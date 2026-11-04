@@ -1,0 +1,25 @@
+id: src:schmutz-2014-common-bean
+type: publication
+kind: measurement
+citation: >-
+  Schmutz, J., McClean, P.E., Mamidi, S., … & Jackson, S.A. (2014). A reference genome for
+  common bean and genome-wide analysis of dual domestications. Nature Genetics 46(7), 707–713.
+authors:
+  - "Schmutz, J."
+  - "McClean, P.E."
+  - "Mamidi, S."
+  - "Wu, G.A."
+  - "Cannon, S.B."
+  - "Grimwood, J."
+  - "Jenkins, J."
+  - "Shu, S."
+# the first eight of 41 authors
+published: 2014
+title: "A reference genome for common bean and genome-wide analysis of dual domestications"
+container: "Nature Genetics 46(7), 707–713"
+doi: 10.1038/ng.3008
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC7048698) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

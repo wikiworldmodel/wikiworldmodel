@@ -1,0 +1,17 @@
+id: src:der-issavi-2017-catalhoyuk
+type: publication
+kind: review
+citation: >-
+  Der, L. & Issavi, J. (2017). The Urban Quandary and the 'Mega-Site' from the Çatalhöyük Perspective. Journal of World Prehistory
+  30(3), 189–206.
+authors:
+  - "Der, L."
+  - "Issavi, J."
+published: 2017
+title: The Urban Quandary and the 'Mega-Site' from the Çatalhöyük Perspective
+container: Journal of World Prehistory
+doi: 10.1007/s10963-017-9103-x
+url: https://link.springer.com/article/10.1007/s10963-017-9103-x
+verified:
+  by: machine:claude-code
+  how: Only the abstract read, on the publisher's page. Quote checked by script against it. Citation details from Crossref.

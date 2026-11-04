@@ -1,0 +1,88 @@
+id: people/rulers/thutmose-iii
+kind: person
+summary: >-
+  Pharaoh of the Eighteenth Dynasty, whose campaigns took Egypt to the Euphrates. His reign is
+  dated to the day by a soldier's tomb, and placed in absolute time differently by each
+  chronology.
+author: machine:claude-code
+same_as: { wikidata: Q157899 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Pharaoh
+claims:
+  name:
+    prop: name
+    value: { en: Thutmose III }
+    source:
+      ref: src:breasted-1906-ancient-records-of-egypt
+      loc: "vol. 2, § 592"
+      quote: King Menkheperre (Thutmose III), triumphant
+  reign-start-conventional:
+    prop: start
+    subject: "@reign"
+    value: 1479 BCE
+    source:
+      ref: src:ramsey-2010-egypt-chronology
+      loc: "Table 1, row Thutmose III, columns Shaw and Hornung et al."
+      quote: Thutmose III 24 1479 1479 1494 1483 1498 1474
+    method: compilation
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      The conventional low chronology, in which Shaw (2000) and Hornung et al. (2006) agree, as
+      Ramsey et al. tabulate them; neither book was read.
+  reign-start-radiocarbon:
+    prop: start
+    subject: "@reign"
+    value: { lo: 1498 BCE, hi: 1474 BCE }
+    source:
+      ref: src:ramsey-2010-egypt-chronology
+      loc: "Table 1, row Thutmose III, modelled 95% hpd range"
+      quote: Thutmose III 24 1479 1479 1494 1483 1498 1474
+    method: radiometric/radiocarbon
+    basis: reconstruction
+    note: >-
+      The 95% range of the Bayesian model, with twenty-four radiocarbon dates from the reign;
+      the 68% range is 1494–1483, about a decade earlier than the conventional date.
+  reign-start-breasted:
+    prop: start
+    subject: "@reign"
+    value: 3 May 1501 BCE
+    source:
+      ref: src:breasted-1906-ancient-records-of-egypt
+      loc: "vol. 1, p. 42, note"
+      quote: The exact limits are May 3, 1501, to March 17, 1447 B. C.
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Meyer's date from the new-moon feasts of years 23 and 24, as Breasted gives it: the high
+      chronology of the early twentieth century.
+  end:
+    prop: end
+    value: { ref: people/rulers/thutmose-iii@reign, edge: start, lag: 19676 days }
+    source:
+      - ref: src:breasted-1906-ancient-records-of-egypt
+        loc: "vol. 2, § 592, inscription of Amenemhab"
+        quote: from year 1 to year 54, third month of the second season, the last day
+      - ref: src:breasted-1906-ancient-records-of-egypt
+        loc: "vol. 2, § 575"
+        quote: we may compute the exact length of his reign — fifty-three years, ten months, and twenty-six days
+    method: documentary
+    note: >-
+      The length of the reign from an officer's tomb at Thebes, as Breasted computes it. The lag
+      in days is the span between Breasted's limits, 3 May 1501 and 17 March 1447 BCE; it holds
+      whatever year the reign began. That he ruled to his death is the tomb's account.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/egypt-new-kingdom
+    source:
+      ref: src:breasted-1906-ancient-records-of-egypt
+      loc: "vol. 2, § 592, inscription of Amenemhab"
+      quote: King Menkheperre (Thutmose III)
+    note: >-
+      Pharaoh; his years count from his first accession, through the joint reign with
+      Hatshepsut.

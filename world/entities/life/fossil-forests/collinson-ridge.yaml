@@ -1,0 +1,81 @@
+id: life/occurrences/forest-collinson-ridge
+kind: occurrence
+summary: >-
+  One of three in situ fossil forests in the lower Fremouw Formation at Collinson Ridge, in the
+  central Transantarctic Mountains: at least 27 glossopterid trees between air-fall tuffs, growing at
+  polar latitudes just before the end-Permian extinction, or just after it if the age is younger.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Collinson Ridge fossil forest" }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: Glossopteris and Vertebraria
+    source:
+      ref: src:gulbranson-2022-polar-forests
+      loc: "Results, Dendrochronology"
+      quote: siltstones containing Glossopteris compressions/impressions and Vertebraria fossils
+    note: >-
+      Leaves and roots with the stumps; the paper says the wood has glossopterid affinities.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:gulbranson-2022-polar-forests
+      loc: "Results, Dendrochronology"
+      quote: The sampled fossil forest contains at least 27 in situ fossil trees interbedded with air-fall tuff
+    note: >-
+      The basis is the paper's in situ stumps.
+  location:
+    prop: location
+    value: { lat: -85.2167, lon: -175.35, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-collinson-ridge, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A point for the named ridge; the outcrop itself was not located from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-802
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Fremouw Formation
+    source:
+      ref: src:gulbranson-2022-polar-forests
+      loc: "Results, Dendrochronology"
+      quote: one of three in situ fossil forests in the lower Fremouw Formation
+  date:
+    prop: date
+    value: { ref: ics/changhsingian }
+    source:
+      ref: src:gulbranson-2022-polar-forests
+      loc: "Results, Dendrochronology"
+      quote: Collinson Ridge (latest Permian)
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The paper's reading: 10–30 m below the first Lystrosaurus, and glossopterid. Read as the last
+      stage of the Permian.
+  date-early-triassic:
+    prop: date
+    value: { ref: ics/lower-triassic }
+    source:
+      ref: src:gulbranson-2022-polar-forests
+      loc: "Geologic setting and age"
+      quote: possible extension of glossopterid ecosystems in the Transantarctic Basin in the vicinity of Collinson Ridge to much younger time intervals in the late Permian or possibly the Early Triassic
+    method: stratigraphic
+    note: >-
+      The Buckley–Fremouw contact at Collinson Ridge gives a maximum depositional age of 250.3 ± 2.2 Ma,
+      younger than the end-Permian extinction here, if the contact is taken as a datum. The paper
+      lays out both readings.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/spermatophyta
+    source: { ref: src:gulbranson-2022-polar-forests, loc: "Geologic setting and age: fossil wood with glossopterid affinities" }
+    note: >-
+      Glossopterids are taken here as seed plants; the paper does not say so in those words.

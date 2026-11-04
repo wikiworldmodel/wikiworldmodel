@@ -1,0 +1,50 @@
+id: people/trade/kangju-envoys-slip
+kind: occurrence
+summary: >-
+  A slip from Xuanquan recording an embassy from the King of Kangju, in Sogdiana and the steppe beyond it, coming in through
+  the Yumen Pass in 52 BCE: two envoys, ten nobles and 64 attendants, with two horses and ten camels as tribute and their own
+  nine horses, 31 donkeys, 25 camels and an ox, their goods checked at the pass. Kangju's envoys of 39 BCE complained of how
+  they had been treated, in another file of slips. Zhang (2026) sets such slips against the claim that hardly anyone went
+  the whole way.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Xuanquan slip of the envoys of Kangju }
+    unsourced: An editorial label.
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:zhang-2026-han-court-silk-road
+      loc: p. 86, slip ii90DXT0213 ③:6+T0214 ③:83
+      quote: "bringing with him two envoys from the King of Kangju, ten nobles, and sixty-four attendants."
+    note: Ink on a wooden slip, in two fragments joined.
+  date:
+    prop: date
+    value: { lo: 6 March 52 BCE, hi: 8 March 52 BCE }
+    source:
+      ref: src:zhang-2026-han-court-silk-road
+      loc: p. 87
+      quote: "This is a record of the Kangju King’s envoys passing through Xuanquan Post Station on March 6th and 8th, 52 BCE."
+    method: documentary
+    note: The slip's date, the gengxu day of the first month of the second year of Ganlu, as the author converts it. He does not say into which calendar; it is taken here as the proleptic Julian.
+  location:
+    prop: location
+    value: { lat: 40.264906, lon: 95.329734, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-xuanquanzhi, loc: "Q2598504, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-606
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  at-xuanquan:
+    rel: during
+    to: people/trade/xuanquan-postal-station
+    source:
+      ref: src:zhang-2026-han-court-silk-road
+      loc: p. 87
+      quote: "This is a record of the Kangju King’s envoys passing through Xuanquan Post Station on March 6th and 8th, 52 BCE."

@@ -1,0 +1,96 @@
+id: people/rulers/pakal
+kind: person
+summary: >-
+  Ruler of the Maya city of Palenque, whose birth, accession and death are carved at the site in
+  the Maya Long Count.
+author: machine:claude-code
+same_as: { wikidata: Q371384 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Lord of Palenque
+claims:
+  name:
+    prop: name
+    value: { en: "K'inich Janaab' Pakal" }
+    source:
+      ref: src:mathews-schele-1974-lords-of-palenque
+      loc: "text"
+      quote: Lord Shield Pacal
+    note: >-
+      Mathews and Schele call him Lord Shield Pacal, after the sign for his name; the label
+      K'inich Janaab' Pakal is Wikidata's, the later reading.
+  start:
+    prop: start
+    value: { lo: 21 March 603 CE, hi: 23 March 603 CE }
+    source:
+      - ref: src:mathews-schele-1974-lords-of-palenque
+        loc: "text, on the name glyph"
+        quote: his birthdate was 9.8.9.13.0 8 Ahau 13 Pop in the Maya Long Count
+      - ref: src:wikipedia-long-count
+        loc: "section on correlation, and its table"
+        quote: GMT 584,283 Modified Thompson 1 584,284 Thompson (Lounsbury) 584,285
+    method: documentary
+    note: >-
+      The Julian dates are worked out here from the Long Count day number and the correlation
+      constant, 584,283 (the GMT correlation) or 584,285 (Thompson-Lounsbury); the range is the
+      difference between them. Mathews and Schele give no Western date.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { lo: 24 July 615 CE, hi: 26 July 615 CE }
+    source:
+      - ref: src:mathews-schele-1974-lords-of-palenque
+        loc: "text, on accession glyphs"
+        quote: We have established 9.9.2.4.8 5 Lamat 1 Mol as the 'accession' date of Lord Shield Pacal
+      - ref: src:wikipedia-long-count
+        loc: "section on correlation, and its table"
+        quote: GMT 584,283 Modified Thompson 1 584,284 Thompson (Lounsbury) 584,285
+    method: documentary
+    note: >-
+      The Julian dates are worked out here from the Long Count day number and the correlation
+      constant, 584,283 (the GMT correlation) or 584,285 (Thompson-Lounsbury); the range is the
+      difference between them. Mathews and Schele give no Western date.
+  end:
+    prop: end
+    value: { lo: 26 August 683 CE, hi: 28 August 683 CE }
+    source:
+      - ref: src:mathews-schele-1974-lords-of-palenque
+        loc: "text, on the death texts"
+        quote: "9.12.11.5.18 6 Etz'nab 11 Yax is followed by 'Lord Shield'"
+      - ref: src:wikipedia-long-count
+        loc: "section on correlation, and its table"
+        quote: GMT 584,283 Modified Thompson 1 584,284 Thompson (Lounsbury) 584,285
+    method: documentary
+    note: >-
+      The Julian dates are worked out here from the Long Count day number and the correlation
+      constant, 584,283 (the GMT correlation) or 584,285 (Thompson-Lounsbury); the range is the
+      difference between them. Mathews and Schele give no Western date.
+  location:
+    prop: location
+    value: { lat: 17.48417, lon: -92.04639, frame: frame:earth/present-day }
+    source:
+      - ref: src:wikidata-palenque
+        loc: "P625 coordinate location"
+      - ref: src:mathews-schele-1974-lords-of-palenque
+        loc: "text, on accession glyphs"
+        quote: This date occurs a total of six times at Palenque
+    method: gazetteer
+    note: Marked at Palenque, the city of his reign, at the site.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-205
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/palenque
+    source:
+      ref: src:mathews-schele-1974-lords-of-palenque
+      loc: "text, on accession glyphs"
+      quote: the 'accession' date of Lord Shield Pacal
+    note: Lord (ajaw) of Palenque.

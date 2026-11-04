@@ -1,0 +1,24 @@
+id: field:earth/sea-level-stack
+type: field
+title: Sea level, last 800,000 years
+quantity: global mean sea level, relative to today's
+unit: m
+description: >-
+  Sea level through the glacial cycles from a stack of reconstructions from marine sediment cores (Spratt
+  & Lisiecki 2016), every 1 kyr, with its 95% confidence interval. It is scaled to −130 m at 24 ka and 0 m
+  at 5 ka. Its rows after 5 ka, which climb to several metres too high at 0 ka, are left out. The long
+  sea-level series follows changes over millions of years, and this one the cycles it leaves out.
+grid: { kind: series }
+time: { lo: 798 ka, hi: 5 ka }
+refines: field:earth/sea-level
+data:
+  from: src:spratt-lisiecki-2016-sea-level
+  columns:
+    time: "Age [ka BP]"
+    value: "Sea lev [m NN] (SeaLev_longPC1: Scaled first ...)"
+    lo: "CI low (SeaLev_longPC1_err_lo: Scaled...)"
+    hi: "CI up (SeaLev_longPC1_err_up: Scaled...)"
+  time_unit: ka
+  band: 95% confidence interval, from bootstrapping
+basis: reconstruction
+interp: linear

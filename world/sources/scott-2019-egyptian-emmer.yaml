@@ -1,0 +1,25 @@
+id: src:scott-2019-egyptian-emmer
+type: publication
+kind: measurement
+citation: >-
+  Scott, M.F., Botigué, L.R., Brace, S., … & Mott, R. (2019). A 3,000-year-old Egyptian emmer
+  wheat genome reveals dispersal and domestication history. Nature Plants 5(11), 1120–1128.
+authors:
+  - "Scott, M.F."
+  - "Botigué, L.R."
+  - "Brace, S."
+  - "Stevens, C.J."
+  - "Mullin, V.E."
+  - "Stevenson, A."
+  - "Thomas, M.G."
+  - "Fuller, D.Q."
+# the first eight of 9 authors
+published: 2019
+title: "A 3,000-year-old Egyptian emmer wheat genome reveals dispersal and domestication history"
+container: "Nature Plants 5(11), 1120–1128"
+doi: 10.1038/s41477-019-0534-5
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC6858886) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

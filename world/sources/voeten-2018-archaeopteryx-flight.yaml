@@ -1,0 +1,26 @@
+id: src:voeten-2018-archaeopteryx-flight
+type: publication
+kind: measurement
+citation: >-
+  Voeten, D.F.A.E., Cubo, J., de Margerie, E., Röper, M., Beyrand, V., Bureš, S., Tafforeau, P.
+  & Sanchez, S. (2018). Wing bone geometry reveals active flight in Archaeopteryx. Nature
+  Communications 9(1), 923.
+authors:
+  - "Voeten, D.F.A.E."
+  - "Cubo, J."
+  - "de Margerie, E."
+  - "Röper, M."
+  - "Beyrand, V."
+  - "Bureš, S."
+  - "Tafforeau, P."
+  - "Sanchez, S."
+published: 2018
+title: "Wing bone geometry reveals active flight in Archaeopteryx"
+container: Nature Communications 9(1), 923
+doi: 10.1038/s41467-018-03296-8
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC5849612) read via Europe PMC (fullTextXML): the wing bone geometry of
+    Archaeopteryx and the case for active flight. Quotes checked by script against that text.
+    Metadata from Crossref.

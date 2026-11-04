@@ -1,0 +1,27 @@
+id: src:grun-2005-skhul
+type: publication
+kind: measurement
+citation: >-
+  Grün, R., Stringer, C., McDermott, F., Nathan, R., Porat, N., Robertson, S., Taylor, L., Mortimer,
+  G., Eggins, S. & McCulloch, M. (2005). U-series and ESR analyses of bones and teeth relating to
+  the human burials from Skhul. Journal of Human Evolution 49(3), 316–334.
+authors:
+  - "Grün, R."
+  - "Stringer, C."
+  - "McDermott, F."
+  - "Nathan, R."
+  - "Porat, N."
+  - "Robertson, S."
+  - "Taylor, L."
+  - "Mortimer, G."
+  - "Eggins, S."
+  - "McCulloch, M."
+published: 2005
+title: "U-series and ESR analyses of bones and teeth relating to the human burials from Skhul"
+container: "Journal of Human Evolution 49(3), 316–334"
+doi: 10.1016/j.jhevol.2005.04.006
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

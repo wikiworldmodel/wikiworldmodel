@@ -1,0 +1,105 @@
+id: earth/day-length/weeli-wolli-formation
+kind: sample
+summary: >-
+  Cyclically striped banded iron formation of the Weeli Wolli Formation, Hamersley Basin, Western
+  Australia. The cycles were read in two ways, as annual layers grouped by the Moon's nodal cycle or
+  as fortnightly layers grouped in years, which give different days and lunar distances, and at least
+  one of the readings must be wrong.
+same_as: { wikidata: Q64422204 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Weeli Wolli Formation cycles" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Weeli Wolli Formation
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: Figure 14, p. 53
+      quote: cyclic banded iron formation from the Weeli Wolli Formation
+  evidence:
+    prop: evidence
+    value: tidal-rhythmite
+    source:
+      ref: src:lantink-2022-joffre-milankovitch
+      loc: Discussion
+      quote: the two tidalite-based estimates from the slightly younger Weeli Wolli Formation
+    note: >-
+      A tidal origin is a suggestion. Williams thinks these chemical deposits may record tidal
+      influences on hydrothermal plumes, and Eulenfeld and Heubeck (2023) note that it is debated.
+  date:
+    prop: date
+    value: 2450 Ma
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: p. 53
+      quote: is dated at 2450 Ma [Barley et al., 1997]
+  location:
+    prop: location
+    value: { lat: -21.8833, lon: 116.767, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-hamersley-range, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A representative point for the Hamersley Basin: the sources read give no sample site. It is the
+      gazetteer's point for the Hamersley Range.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  day-length-fortnightly:
+    prop: day_length
+    value: { mean: 18.8, sd: 0.6 }
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: Table 1, row "Length of solar day", column "2450 Ma†"
+      quote: Length of solar day (hours) (17.1 ± 1.1) (18.8 ± 0.6) 18.9 ± 0.5 (20.8) 21.9 ± 0.4 24.00
+    rank: preferred
+    note: >-
+      Williams's reading: the couplets are fortnightly layers grouped in annual cycles, 14.5 ± 0.5
+      synodic months a year, from which he derives the hours. Preferred because he, the one source read
+      that weighs the two, finds that only this reading gives a rate of deposition that fits the other
+      compacted iron formations of the basin. But he calls all these values unverified, Mitchell and
+      Kirscher (2023) leave both out, and the Joffre Member just below reads 16.9 h, closer to the other
+      reading. His 1990 paper gave about 19.7 h from the same count.
+  day-length-nodal:
+    prop: day_length
+    value: { mean: 17.1, sd: 1.1 }
+    source:
+      - ref: src:williams-2000-earth-rotation
+        loc: Table 1, row "Length of solar day", column "2450 Ma*"
+        quote: Length of solar day (hours) (17.1 ± 1.1) (18.8 ± 0.6) 18.9 ± 0.5 (20.8) 21.9 ± 0.4 24.00
+      - ref: src:walker-zahnle-1986-lunar-nodal-tide
+        loc: abstract
+        quote: We interpret a 23.3 +/- 0.3-yr periodicity preserved in a 2,500 Myr BP Australian banded iron formation (BIF) as reflecting the climatic influence of the lunar nodal tide
+    note: >-
+      Walker and Zahnle's reading: the couplets are annual, grouped by a lunar nodal cycle of 23.3 years.
+      The hours are Williams's derivation from that period, with his error of ±1.5 years (1σ) from the
+      data of Trendall (1973); Walker and Zahnle's own abstract gives ±0.3.
+  moon-distance-fortnightly:
+    prop: moon_distance
+    value: { mean: 54.6, sd: 1.8 }
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: p. 55
+      quote: Earth-Moon distance of 54.6 ± 1.8 RE
+    rank: preferred
+    note: >-
+      From 14.5 ± 0.5 synodic months a year by Kepler's third law. Preferred for the reason given for
+      this reading's day length. His 1990 paper gave 54.6 ± 1.2 from the same count.
+  moon-distance-nodal:
+    prop: moon_distance
+    value: { mean: 51.9, sd: 3.3 }
+    source:
+      - ref: src:williams-2000-earth-rotation
+        loc: Table 1, row "Lunar semimajor axis", column "2450 Ma*"
+        quote: Lunar semimajor axis (RE) (51.9 ± 3.3) (54.6 ± 1.8) 54.7 ± 0.7 (57.1) 58.16 ± 0.30 60.27
+      - ref: src:walker-zahnle-1986-lunar-nodal-tide
+        loc: abstract
+        quote: The lunar distance at 2,500 Myr BP would then have been about 52 Earth radii.
+    note: >-
+      Walker and Zahnle give about 52 Earth radii; the number and its ± are Williams's derivation from
+      their nodal period.

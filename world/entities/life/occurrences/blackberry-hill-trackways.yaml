@@ -1,0 +1,69 @@
+id: life/occurrences/blackberry-hill-trackways
+kind: occurrence
+summary: >-
+  Arthropod trackways in tidal-flat and nearshore rocks of the middle to late Cambrian at Blackberry Hill, central
+  Wisconsin, with the remains of the oldest euthycarcinoid, Mosineia: among the oldest signs of animals out of the
+  water.
+same_as: { wikidata: Q4922563 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Blackberry Hill trackways" }
+    unsourced: An editorial label, from the site.
+  identified:
+    prop: identified_as
+    value: Arthropod trackways, with Mosineia
+    source:
+      ref: src:tihelka-2022-arthropod-terrestrialization
+      loc: "3.1. Trace Fossil Evidence"
+      quote: "which preserves diversity of arthropod trackways in a tidal flat and nearshore environment, along with the remains of the oldest euthycarcinoid, Mosineia"
+  evidence:
+    prop: evidence
+    value: trace-fossil
+    source:
+      ref: src:tihelka-2022-arthropod-terrestrialization
+      loc: "3.1. Trace Fossil Evidence"
+      quote: "Another site famous for its Cambrian traces of life on land is the middle to late Cambrian Blackberry Hill in central Wisconsin"
+  location:
+    prop: location
+    value: { lat: 44.7109, lon: -89.512056, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-blackberry-hill, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  later-than:
+    prop: later_than
+    value: { ref: ics/miaolingian, edge: start }
+    source:
+      ref: src:tihelka-2022-arthropod-terrestrialization
+      loc: "3.1. Trace Fossil Evidence"
+      quote: "the middle to late Cambrian Blackberry Hill in central Wisconsin"
+    method: stratigraphic
+    note: >-
+      Middle to late Cambrian, so no older than the base of the middle Cambrian, here the Miaolingian.
+  earlier-than:
+    prop: earlier_than
+    value: { ref: ics/furongian, edge: end }
+    source:
+      ref: src:tihelka-2022-arthropod-terrestrialization
+      loc: "3.1. Trace Fossil Evidence"
+      quote: "the middle to late Cambrian Blackberry Hill in central Wisconsin"
+    method: stratigraphic
+    note: >-
+      Middle to late Cambrian, so no younger than the end of the late Cambrian, here the Furongian.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/arthropoda
+    source:
+      ref: src:tihelka-2022-arthropod-terrestrialization
+      loc: "3.1. Trace Fossil Evidence"
+      quote: "which preserves diversity of arthropod trackways in a tidal flat and nearshore environment"
+    note: >-
+      Euthycarcinoids lie on the myriapod stem according to the same review, so they count as arthropods but belong to
+      no living class.

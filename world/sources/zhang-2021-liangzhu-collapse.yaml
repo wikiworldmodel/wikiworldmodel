@@ -1,0 +1,39 @@
+id: src:zhang-2021-liangzhu-collapse
+type: publication
+kind: measurement
+citation: >-
+  Zhang, H., Cheng, H., Sinha, A., Spötl, C., Cai, Y., Liu, B., Kathayat, G., Li, H., Tian, Y., Li, Y., Zhao, J., Sha, L., Lu, J., Meng, B.,
+  Niu, X., Dong, X., Liang, Z., Zong, B., Ning, Y., Lan, J. & Edwards, R.L. (2021). Collapse of the Liangzhu and other Neolithic cultures in the
+  lower Yangtze region in response to climate change. Science Advances 7(48), eabi9275.
+authors:
+  - "Zhang, H."
+  - "Cheng, H."
+  - "Sinha, A."
+  - "Spötl, C."
+  - "Cai, Y."
+  - "Liu, B."
+  - "Kathayat, G."
+  - "Li, H."
+  - "Tian, Y."
+  - "Li, Y."
+  - "Zhao, J."
+  - "Sha, L."
+  - "Lu, J."
+  - "Meng, B."
+  - "Niu, X."
+  - "Dong, X."
+  - "Liang, Z."
+  - "Zong, B."
+  - "Ning, Y."
+  - "Lan, J."
+  - "Edwards, R.L."
+published: 2021
+title: Collapse of the Liangzhu and other Neolithic cultures in the lower Yangtze region in response to climate change
+container: Science Advances
+doi: 10.1126/sciadv.abi9275
+url: https://europepmc.org/article/PMC/PMC8626068
+license: CC-BY-NC-4.0
+license_note: A single fact and a short quote, with credit.
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC8626068). Quote checked by script against it, after normalizing whitespace.

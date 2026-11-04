@@ -1,0 +1,21 @@
+id: src:nogues-bravo-2008-woolly-mammoth
+type: publication
+kind: model
+citation: >-
+  Nogués-Bravo, D., Rodríguez, J., Hortal, J., Batra, P. & Araújo, M.B. (2008). Climate change,
+  humans, and the extinction of the woolly mammoth. PLoS Biology 6(4), e79.
+authors:
+  - "Nogués-Bravo, D."
+  - "Rodríguez, J."
+  - "Hortal, J."
+  - "Batra, P."
+  - "Araújo, M.B."
+published: 2008
+title: "Climate change, humans, and the extinction of the woolly mammoth"
+container: "PLoS Biology 6(4), e79"
+doi: 10.1371/journal.pbio.0060079
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC2276529). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

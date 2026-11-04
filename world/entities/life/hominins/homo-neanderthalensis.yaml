@@ -1,0 +1,37 @@
+id: life/taxa/homo-neanderthalensis
+kind: taxon
+summary: >-
+  The Neanderthals, Homo neanderthalensis King 1864, of western Eurasia. Taken here to include the
+  Middle Pleistocene fossils that already carry derived Neanderthal features, so it starts with the
+  Sima de los Huesos.
+same_as: { pbdb: "txn:83087", wikidata: Q40171 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Neanderthals, la: "Homo neanderthalensis" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83087: Homo neanderthalensis, King 1864" }
+    note: The PBDB gives the scientific name; the English name is an editorial gloss.
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83087: rank 3 (species)" }
+  end:
+    prop: end
+    value: { lo: 41030 BP, hi: 39260 BP }
+    source:
+      ref: src:higham-2014-neanderthal-disappearance
+      loc: abstract
+      quote: "We show that the Mousterian ended by 41,030-39,260 calibrated years bp (at 95.4% probability) across Europe."
+    method: radiometric/radiocarbon
+    note: >-
+      The end of the Mousterian, taken as the end of the Neanderthals. The paper finds that they
+      disappeared at different times in different regions, and that later "transitional" industries
+      end at a similar time. Djakovic et al. (2022) estimate 40,870 to 40,457 years cal BP for France
+      and Belgium alone. This is the date of the last Mousterian, not of the last Neanderthal bone.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83087 < Homo (txn:40901) < Hominini (txn:91486)" }
+    note: The tree here has no record for the genus Homo, so each species hangs directly on the tribe.

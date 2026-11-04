@@ -1,0 +1,13 @@
+id: src:culture-gouv-madrague-de-giens
+type: publication
+kind: review
+citation: >-
+  Ministère de la Culture (France). A formative excavation: the Madrague de Giens. Underwater archaeology, online
+  exhibition (archeologie.culture.gouv.fr).
+title: "A formative excavation: the Madrague de Giens"
+container: Underwater archaeology, Ministère de la Culture
+url: https://archeologie.culture.gouv.fr/archeo-sous-marine/en/madrague-de-giens-archaeology-fieldschool
+reliability: A ministry's popular account, with no references.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

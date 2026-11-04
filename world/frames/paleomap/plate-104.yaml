@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-104
+type: frame
+kind: plate
+title: Mexico (PALEOMAP plate 104)
+entity: earth/plates/mexico
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 104
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 104

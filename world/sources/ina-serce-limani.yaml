@@ -1,0 +1,12 @@
+id: src:ina-serce-limani
+type: publication
+kind: review
+citation: >-
+  Institute of Nautical Archaeology. Serçe Limanı Shipwreck Excavation. Project page.
+title: Serçe Limanı Shipwreck Excavation
+container: Institute of Nautical Archaeology, Projects
+url: https://nauticalarch.org/projects/serce-limani-shipwreck-excavation/
+reliability: A short summary, in place of Bass et al. (2004), the final report, which was not read.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

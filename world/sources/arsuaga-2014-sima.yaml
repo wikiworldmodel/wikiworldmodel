@@ -1,0 +1,30 @@
+id: src:arsuaga-2014-sima
+type: publication
+kind: measurement
+citation: >-
+  Arsuaga, J.L., Martínez, I., Arnold, L.J., Aranburu, A., Gracia-Téllez, A., Sharp, W.D., Quam,
+  R.M., Falguères, C., Pantoja-Pérez, A., Bischoff, J. et al. (2014). Neandertal roots: Cranial
+  and chronological evidence from Sima de los Huesos. Science 344(6190), 1358–1363.
+authors:
+  - "Arsuaga, J.L."
+  - "Martínez, I."
+  - "Arnold, L.J."
+  - "Aranburu, A."
+  - "Gracia-Téllez, A."
+  - "Sharp, W.D."
+  - "Quam, R.M."
+  - "Falguères, C."
+  - "Pantoja-Pérez, A."
+  - "Bischoff, J."
+published: 2014
+title: "Neandertal roots: Cranial and chronological evidence from Sima de los Huesos"
+container: "Science 344(6190), 1358–1363"
+doi: 10.1126/science.1253958
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 30 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 24948730): the hominin-bearing layer around 430,000
+    years ago, and 17 crania with Neandertal features in the face. Quoted passages checked by
+    script against the text retrieved.

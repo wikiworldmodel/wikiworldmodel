@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-804
+type: frame
+kind: plate
+title: Marie Byrdland (PALEOMAP plate 804)
+entity: earth/plates/marie-byrd-land
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 804
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 804

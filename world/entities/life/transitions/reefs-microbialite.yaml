@@ -1,0 +1,53 @@
+id: life/transitions/reefs-microbialite
+kind: event/transition
+summary: >-
+  Reefs of microbes between the first two animal reef systems: dendrolites, stromatolites and
+  thrombolites from the Middle Cambrian, with sponges joining them in the Early Ordovician, some as
+  kilometre-scale shelf-edge complexes. Reefs built almost without animals for some forty million
+  years or more.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Cambro-Ordovician microbialite reefs }
+    unsourced: An editorial label.
+  cover:
+    prop: cover
+    value: reefs
+    unsourced: "How the renderer should treat this transition: an editorial classification."
+  start:
+    prop: start
+    value: { ref: ics/miaolingian, edge: start }
+    source:
+      ref: src:rowland-shapiro-2002-cambrian-reefs
+      loc: abstract
+      quote: the corresponding resurgence of microbialite reefs from the Middle Cambrian through the Early Ordovician
+    method: stratigraphic
+    note: >-
+      The paper's Middle Cambrian begins as the Early Cambrian ends, read here as the start of the
+      Miaolingian. It says that reefs were common in subtidal and intertidal facies from then on, and
+      that thrombolitic and stromatolitic reefs became very widespread by the late Cambrian.
+  end-webby-2002:
+    prop: end
+    value: { ref: ics/middle-ordovician, edge: end }
+    source:
+      ref: src:webby-2002-ordovician-reefs
+      loc: abstract
+      quote: occurs across the Middle-Late Ordovician boundary with the changeover from microbial-dominated to metazoan and algal-dominated reefal growth
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Early–Middle Ordovician reefs are predominantly microbially built mud mounds, with sponges
+      (especially lithistids) and Calathium in many; the climax of microbial growth was in the
+      Tremadocian. Microbes did not stop building here, but became less conspicuous.
+  end-rowland-shapiro-2002:
+    prop: end
+    value: { ref: ics/lower-ordovician, edge: end }
+    source:
+      ref: src:rowland-shapiro-2002-cambrian-reefs
+      loc: abstract
+      quote: This anomalous interval of microbialite-dominated reefs, which lasted approximately forty million years
+    method: stratigraphic
+    note: >-
+      An end in the Early Ordovician, in a chapter that stops there; the diversity of reef-dwelling
+      animals was rising toward the end of it.

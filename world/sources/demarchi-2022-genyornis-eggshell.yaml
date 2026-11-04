@@ -1,0 +1,23 @@
+id: src:demarchi-2022-genyornis-eggshell
+type: publication
+kind: measurement
+citation: >-
+  Demarchi, B., Stiller, J., Grealy, A., Mackie, M., Deng, Y., Gilbert, T., Clarke, J., Legendre,
+  L.J., Boano, R., Sicheritz-Pontén, T., Magee, J., Zhang, G., Bunce, M., Collins, M.J. & Miller, G.
+  (2022). Ancient proteins resolve controversy over the identity of Genyornis eggshell. Proceedings
+  of the National Academy of Sciences of the USA 119(43), e2109326119.
+authors:
+  - "Demarchi, B."
+  - "Stiller, J."
+  - "Grealy, A."
+  - "Mackie, M."
+  - "Miller, G."
+published: 2022
+title: "Ancient proteins resolve controversy over the identity of Genyornis eggshell"
+container: "Proceedings of the National Academy of Sciences of the USA 119(43), e2109326119"
+doi: 10.1073/pnas.2109326119
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC9995833). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

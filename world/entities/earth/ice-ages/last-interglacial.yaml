@@ -1,0 +1,96 @@
+id: earth/ice-ages/last-interglacial
+kind: period
+summary: >-
+  The warm interval before the last glacial period, also called the Eemian: the most recent time that
+  global sea level stood metres above today's.
+author: machine:claude-code
+same_as: { wikidata: Q1295340 }
+claims:
+  name:
+    prop: name
+    value: { en: Last Interglacial }
+    source: { ref: src:gulev-2021-ipcc-ar6-chapter-2, loc: "Cross-Chapter Box 2.1, Table 1, p. 295" }
+  start-hoffman-2017:
+    prop: start
+    value: 129 ka
+    source:
+      - ref: src:hoffman-2017-last-interglaciation-temperatures
+        loc: abstract
+        quote: The last interglaciation (LIG, 129 to 116 thousand years ago) was the most recent time in Earth's history when global mean sea level was substantially higher than it is at present.
+      - ref: src:gulev-2021-ipcc-ar6-chapter-2
+        loc: "Cross-Chapter Box 2.1, Table 1, p. 295"
+        quote: Last Interglacial (LIG) 129–116 ka
+    method: expert-estimate
+    rank: preferred
+    note: The IPCC's reference period for the interglacial, a span the literature also uses.
+  start-dyer-2021:
+    prop: start
+    value: 130 ka
+    source:
+      ref: src:dyer-2021-bahamas-sea-level
+      loc: opening paragraph
+      quote: during the Eemian or last interglacial [LIG; ∼130 to 116 ka (1–3)]
+    method: expert-estimate
+  end-hoffman-2017:
+    prop: end
+    value: 116 ka
+    source:
+      - ref: src:hoffman-2017-last-interglaciation-temperatures
+        loc: abstract
+        quote: The last interglaciation (LIG, 129 to 116 thousand years ago)
+      - ref: src:gulev-2021-ipcc-ar6-chapter-2
+        loc: "Cross-Chapter Box 2.1, Table 1, p. 295"
+        quote: Last Interglacial (LIG) 129–116 ka
+      - ref: src:dyer-2021-bahamas-sea-level
+        loc: opening paragraph
+        quote: during the Eemian or last interglacial [LIG; ∼130 to 116 ka (1–3)]
+    method: expert-estimate
+  sea-level-ar6-2021:
+    prop: sea_level
+    value: { lo: 5, hi: 10 }
+    source:
+      ref: src:gulev-2021-ipcc-ar6-chapter-2
+      loc: "Section 2.3.3.3, p. 353"
+      quote: there is medium confidence that peak GMSL during the LIG was likely between 5 and 10 m higher than modern
+    method: compilation
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      The peak, as the IPCC assessed it (likely range), which is the widest weighing of the evidence here.
+      All these are estimates after correcting for the land's own motion.
+  sea-level-dutton-2015:
+    prop: sea_level
+    value: { lo: 6, hi: 9 }
+    source:
+      ref: src:dutton-2015-polar-ice-loss
+      loc: abstract
+      quote: during marine isotope stages 5e and 11, when the global mean reached 6 to 9 meters and 6 to 13 meters higher than present, respectively
+    method: compilation
+    basis: reconstruction
+    note: The peak, in marine isotope stage 5e.
+  sea-level-kopp-2009:
+    prop: sea_level
+    value: { mean: 8.7, sd: 0.7 }
+    source:
+      - ref: src:kopp-2009-last-interglacial-sea-level
+        loc: abstract
+        quote: We find a 95% probability that global sea level peaked at least 6.6 m higher than today during the last interglacial; it is likely (67% probability) to have exceeded 8.0 m but is unlikely (33% probability) to have exceeded 9.4 m.
+      - ref: src:spratt-lisiecki-2016-stack
+        loc: "Section 2, p. 1080"
+        quote: 8.7± 0.7 m for peak global mean sea level at the last interglacial (Kopp et al., 2009)
+    method: compilation
+    basis: reconstruction
+    note: The peak. Kopp et al.'s abstract gives probabilities; the mean and sd are how Spratt and Lisiecki (2016) sum them up.
+  sea-level-dyer-2021:
+    prop: sea_level
+    value: { lo: 1.2, hi: 5.3 }
+    source:
+      ref: src:dyer-2021-bahamas-sea-level
+      loc: abstract
+      quote: During the LIG, we find a 95% probability that global sea level peaked at least 1.2 m higher than today, and it is very unlikely (5% probability) to have exceeded 5.3 m.
+    method: model
+    basis: reconstruction
+    note: >-
+      The peak, between the 95% and 5% levels of exceedance. It comes from Bahamian sea-level records
+      weighted against 576 models of the land's response to the ice, and the paper suggests the peak may be
+      lower than previously assumed.

@@ -1,0 +1,69 @@
+id: life/occurrences/turkana-boy
+kind: occurrence
+summary: >-
+  Turkana Boy, KNM-WT 15000, the most complete early hominid skeleton when it was found, excavated in
+  situ at Nariokotome III, west of Lake Turkana, Kenya. PBDB collection 22342.
+same_as: { pbdb: "occ:228340", wikidata: Q1418632 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Turkana Boy (KNM-WT 15000), Nariokotome" }
+    unsourced: An editorial label, from the skeleton's names and the place.
+  identified:
+    prop: identified_as
+    value: Homo erectus
+    source:
+      ref: src:brown-1985-turkana-boy
+      loc: abstract
+      quote: "The specimen, KNM-WT 15000, is a male Homo erectus"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:brown-1985-turkana-boy, loc: abstract }
+  location:
+    prop: location
+    value: { lat: 4.2667, lon: 35.8167, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-22342, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-712
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Nachukui Formation
+    source: { ref: src:pbdb/collection-22342, loc: "formation" }
+  date-zollikofer-2024:
+    prop: date
+    value: { lo: 1.6 Ma, hi: 1.5 Ma }
+    source:
+      ref: src:zollikofer-2024-dmanisi-growth
+      loc: Introduction
+      quote: "The Nariokotome individual (KNM-WT 15 000), dated to approximately 1.6–1.5 million years ago (Ma)"
+    method: compilation
+    rank: preferred
+    note: Preferred as the range that takes in both other figures. The sources read give no uncertainty.
+  date-brown-1985:
+    prop: date
+    value: 1.6 Ma
+    source:
+      ref: src:brown-1985-turkana-boy
+      loc: abstract
+      quote: "excavated in situ in sediments dated close to 1.6 Myr"
+    note: The first report. The abstract read does not say how the sediments were dated.
+  date-lopez-rey-2026:
+    prop: date
+    value: 1.53 Ma
+    source:
+      ref: src:lopez-rey-2026-ribs
+      loc: Introduction
+      quote: "KNM‐WT 15000 (Nariokotome Boy, H. erectus s. l., ~1.53 Ma; Bastir et al. 2020)"
+    method: compilation
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-erectus
+    source: { ref: src:brown-1985-turkana-boy, loc: abstract }

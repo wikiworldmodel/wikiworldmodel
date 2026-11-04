@@ -1,0 +1,18 @@
+id: src:nielsen-2018-flaminian-obelisk
+type: publication
+kind: review
+citation: >-
+  Nielsen, N. (2018). Rome's Flaminian Obelisk: an epic journey from divine Egyptian symbol to tourist
+  attraction. The Conversation, republished by the University of Manchester.
+authors:
+  - "Nielsen, N."
+published: 2018
+title: "Rome's Flaminian Obelisk: an epic journey from divine Egyptian symbol to tourist attraction"
+url: https://www.manchester.ac.uk/about/news/romes-flaminian-obelisk-an-epic-journey-from-divine-egyptian-symbol-to-tourist-attraction/
+reliability: An Egyptologist's short article for the public, without references.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read on the University of Manchester's page. The author and year come from the copy at
+    brewminate.com, which says it was first published by The Conversation. Quotations checked by script
+    against the Manchester page's text.

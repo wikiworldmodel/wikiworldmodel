@@ -1,0 +1,20 @@
+id: src:walker-2006-stw-573
+type: publication
+kind: measurement
+citation: >-
+  Walker, J., Cliff, R.A. & Latham, A.G. (2006). U-Pb isotopic age of the StW 573 hominid from
+  Sterkfontein, South Africa. Science 314(5805), 1592–1594.
+authors:
+  - "Walker, J."
+  - "Cliff, R.A."
+  - "Latham, A.G."
+published: 2006
+title: "U-Pb isotopic age of the StW 573 hominid from Sterkfontein, South Africa"
+container: "Science 314(5805), 1592–1594"
+doi: 10.1126/science.1132916
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 17158326): 238U-206Pb ages of 2.17 ± 0.17 and 2.24
+    (−0.07, +0.09) Ma on speleothems above and below StW 573. Quoted passages checked by script
+    against the text retrieved.

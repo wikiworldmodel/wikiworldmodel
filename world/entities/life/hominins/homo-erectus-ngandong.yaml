@@ -1,0 +1,51 @@
+id: life/occurrences/homo-erectus-ngandong
+kind: occurrence
+summary: >-
+  Twelve skull caps and two tibiae of Homo erectus from a bone bed above the Solo River at Ngandong,
+  Java, dug between 1931 and 1933: the last known occurrence of the species. PBDB collection 93523.
+same_as: { pbdb: "occ:842494" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Homo erectus, Ngandong" }
+    unsourced: An editorial label, from the taxon and the place.
+  identified:
+    prop: identified_as
+    value: Homo erectus
+    source:
+      ref: src:rizal-2020-ngandong
+      loc: abstract
+      quote: "Twelve H. erectus calvaria (skull caps) and two tibiae (lower leg bones) were discovered from a bone bed located about 20 m above the Solo River at Ngandong (Central Java) between 1931 and 1933"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:rizal-2020-ngandong, loc: abstract }
+  location:
+    prop: location
+    value: { lat: -7.341667, lon: 111.446388, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-93523, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-620
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 117 ka, hi: 108 ka }
+    source:
+      ref: src:rizal-2020-ngandong
+      loc: abstract
+      quote: "with modelled ages of 117 to 108 thousand years (kyr) for the H. erectus bone bed"
+    method: radiometric
+    note: >-
+      A Bayesian model of 52 ages: uranium-series, luminescence, 40Ar/39Ar and uranium-series with
+      electron spin resonance. The hominins were not dated directly; non-human fossils from a
+      re-excavation of the bed were, and the bed gathered during floods.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-erectus
+    source: { ref: src:rizal-2020-ngandong, loc: abstract }

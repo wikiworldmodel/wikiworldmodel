@@ -1,0 +1,60 @@
+id: life/occurrences/swartpuntia-swartpunt
+kind: occurrence
+summary: >-
+  Swartpuntia germsi and other late Ediacaran soft-bodied fossils in the Spitskopf Member, Urusis Formation, at
+  Farm Swartpunt in the Nama Group, southern Namibia: among the last of the Ediacara biota, just below the
+  Cambrian. PBDB collection 89797.
+same_as: { pbdb: "occ:814515" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Swartpuntia, Farm Swartpunt" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Swartpuntia germsi
+    source: { ref: src:pbdb/collection-89797, loc: "occurrence 814515, accepted_name" }
+    note: >-
+      The record gives no identified name; this is the accepted name.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:darroch-2015-swartpunt
+      loc: "1. Introduction"
+      quote: "The fossil-bearing horizons at Farm Swartpunt are part of the latest Ediacaran Nama Group, Urusis Formation (Spitskopf Member), of southern Namibia"
+  location:
+    prop: location
+    value: { lat: -27.476517, lon: 16.696508, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-89797, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Urusis Formation
+    source: { ref: src:pbdb/collection-89797, loc: "formation; member Spitzkopf" }
+  date:
+    prop: date
+    value: { ref: ics/ediacaran }
+    source:
+      - { ref: src:pbdb/collection-89797, loc: "early_interval (Ediacaran)" }
+      - ref: src:darroch-2015-swartpunt
+        loc: "1. Introduction"
+        quote: "The fossil-bearing horizons at Farm Swartpunt are part of the latest Ediacaran Nama Group"
+    method: stratigraphic
+  later-than:
+    prop: later_than
+    value: { mean: 540.61 Ma, sd: 0.67 Myr }
+    source:
+      ref: src:darroch-2015-swartpunt
+      loc: "1. Introduction"
+      quote: "an ash bed approximately 85 m below the investigated fossil beds at 543.3 ± 1 Ma ([22]—see figure 1; recalculated to 540.61 ± 0.67 Ma in [23])"
+    method: radiometric/u-pb
+    note: >-
+      The recalculated age, as the paper reports it, is used. The ± level is not stated, so it is read as 1σ.

@@ -1,0 +1,30 @@
+id: src:sutikna-2016-liang-bua
+type: publication
+kind: measurement
+citation: >-
+  Sutikna, T., Tocheri, M.W., Morwood, M.J., Saptomo, E.W., Jatmiko, Awe, R.D., Wasisto, S.,
+  Westaway, K.E., Aubert, M., Li, B. et al. (2016). Revised stratigraphy and chronology for Homo
+  floresiensis at Liang Bua in Indonesia. Nature 532(7599), 366–369.
+authors:
+  - "Sutikna, T."
+  - "Tocheri, M.W."
+  - "Morwood, M.J."
+  - "Saptomo, E.W."
+  - "Awe, R.D."
+  - "Wasisto, S."
+  - "Westaway, K.E."
+  - "Aubert, M."
+  - "Li, B."
+published: 2016
+title: "Revised stratigraphy and chronology for Homo floresiensis at Liang Bua in Indonesia"
+container: "Nature 532(7599), 366–369"
+doi: 10.1038/nature17179
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 21 authors. The authors field
+  leaves out Jatmiko, who publishes under one name; the citation has it.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 27027286): the skeletal remains between about 100 and
+    60 kyr old, stone artefacts from about 190 to 50 kyr. It does not name the dating methods.
+    Quoted passages checked by script against the text retrieved.

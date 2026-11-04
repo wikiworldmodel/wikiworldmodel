@@ -1,0 +1,31 @@
+id: src:fotiadou-2026-late-neanderthals
+type: publication
+kind: measurement
+citation: >-
+  Fotiadou, C.M., Pedersen, J.B., Rougier, H., Roksandic, M., Spyrou, M.A., Nägele, K., Reiter,
+  E., Bocherens, H., Kandel, A.W., Haidle, M.N. et al. (2026). Archaeogenetic insights into the
+  demographic history of Late Neanderthals. Proceedings of the National Academy of Sciences
+  123(13), e2520565123.
+authors:
+  - "Fotiadou, C.M."
+  - "Pedersen, J.B."
+  - "Rougier, H."
+  - "Roksandic, M."
+  - "Spyrou, M.A."
+  - "Nägele, K."
+  - "Reiter, E."
+  - "Bocherens, H."
+  - "Kandel, A.W."
+  - "Haidle, M.N."
+published: 2026
+title: "Archaeogenetic insights into the demographic history of Late Neanderthals"
+container: "Proceedings of the National Academy of Sciences 123(13), e2520565123"
+doi: 10.1073/pnas.2520565123
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 22 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC13037871): mitochondrial genomes of Late Neanderthals, and
+    Feldhofer 2 from the Kleine Feldhofer Grotte, dated to 44 to 42 ka. Quoted passages checked by
+    script against the text retrieved.

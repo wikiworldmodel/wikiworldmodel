@@ -1,0 +1,19 @@
+id: src:wikidata-tam-pa-ling
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q27922296 (Tam Pa Ling Cave, Laos), property P625 (coordinate location).
+snapshot: "2026-11-03"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q27922296
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry, at about 0.01° precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (20.20861111, 103.40972222; precision 0.00957242035008) read from the item's JSON
+    (Special:EntityData/Q27922296.json, last revision 2463917114, modified 2026-02-16).

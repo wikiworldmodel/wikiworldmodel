@@ -1,0 +1,16 @@
+id: src:martens-2025-antikythera
+type: publication
+kind: review
+citation: >-
+  Martens, B. (2025). A gymnasion assemblage lost at sea? The statues from the Antikythera shipwreck reconsidered. Annual
+  of the British School at Athens 120, 367–419.
+authors: ["Martens, B."]
+published: 2025
+title: A gymnasion assemblage lost at sea? The statues from the Antikythera shipwreck reconsidered
+container: Annual of the British School at Athens
+doi: 10.1017/S006824542510021X
+url: https://www.cambridge.org/core/journals/annual-of-the-british-school-at-athens/article/gymnasion-assemblage-lost-at-sea-the-statues-from-the-antikythera-shipwreck-reconsidered/B9C19CBB7626F931B26FA93A480BD7EE
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read on Cambridge Core. Quotes checked by script against it, after normalizing whitespace.

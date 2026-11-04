@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-405
+type: frame
+kind: plate
+title: Verkhoyansk plate (PALEOMAP plate 405)
+entity: earth/plates/verkhoyansk
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 405
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 405

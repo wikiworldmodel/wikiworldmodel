@@ -1,0 +1,24 @@
+id: src:slimak-2022-mandrin
+type: publication
+kind: measurement
+citation: >-
+  Slimak, L., Zanolli, C., Higham, T., … & Metz, L. (2022). Modern human incursion into Neanderthal
+  territories 54,000 years ago at Mandrin, France. Science Advances 8(6), eabj9496.
+authors:
+  - "Slimak, L."
+  - "Zanolli, C."
+  - "Higham, T."
+  - "Metz, L."
+published: 2022
+title: "Modern human incursion into Neanderthal territories 54,000 years ago at Mandrin, France"
+container: "Science Advances 8(6), eabj9496"
+doi: 10.1126/sciadv.abj9496
+reliability: >-
+  The modern human attribution rests on one deciduous molar, by its shape, with no DNA:
+  Mylopotamitaki et al. (2024) write "if confirmed".
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC8827661); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

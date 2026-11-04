@@ -1,0 +1,29 @@
+id: src:pbdb/collection-224218
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 224218 ("Near Franceville", GA), occurrence 1586777.
+  Read through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=224218
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference A. El Albani, S.
+  Bengtson, and D. E. Canfield, A. Bekker, R. Macchiarelli, A. Mazurier, E. U. Hammarlund, P.
+  Boulvais, J.-J. Dupuy, C. Fontaine, F. T. Fürsich, F. Gauthier-Lafaye, F. Janvier, E. Javaux,
+  F. Ossa Ossa, A.-C. Pierson-Wickmann, A. Riboulleau, P. Sardini, D. Vachard, M. Whi. 2010.
+  Large colonial organisms with coordinated growth in oxygenated environments 2.1 Gyr ago.
+  Nature 466:100-104. Interval ages are the PBDB's own, for the interval the collection is
+  assigned to; the primary reference was not read here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=224218&show=loc,strat,ref and
+    occs/list.json?coll_id=224218&show=ident,class on the main data service: collection name
+    "Near Franceville"; lat -1.58; lng 13.55; formation "Francevillian B"; member "FB2";
+    early_interval Orosirian; max_ma 2050, min_ma 1800; occurrence 1586777, identified_name
+    "Life indet.", accepted_name "Life".

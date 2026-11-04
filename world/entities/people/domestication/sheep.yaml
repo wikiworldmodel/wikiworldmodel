@@ -1,0 +1,65 @@
+id: people/domestication/sheep
+kind: development
+summary: >-
+  The domestication of the sheep from the wild Ovis orientalis in the northern Fertile Crescent and
+  central Anatolia. At Aşıklı Höyük in Cappadocia, by about 8200 BCE, people kept morphologically
+  wild sheep inside the settlement, as their dung shows, and killed young males far more often than
+  young females. Bones that look domestic appear only about 9,500–9,000 years ago.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Sheep domestication }
+    unsourced: An editorial label.
+  start-zeder-2008:
+    prop: start
+    value: { lo: 11 ka, hi: 10.5 ka }
+    source:
+      ref: src:zeder-2008-mediterranean
+      loc: "Initial Animal Domestication in the Fertile Crescent"
+      quote: "both sheep and goats were brought under domestication (probably independently of one another and possibly multiple times) in the region that stretches from the northern Zagros to southeastern Anatolia between ca. 11,000 and 10,500 B.P., and perhaps even earlier"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      Ages in this paper are calibrated years before the present.
+  start-stiner-2014:
+    prop: start
+    value: { hi: 8200 BCE }
+    source:
+      ref: src:stiner-2014-asikli
+      loc: abstract
+      quote: "selective manipulation by humans by or before 8,200 cal B.C."
+    method: radiometric/radiocarbon
+    note: >-
+      The measured evidence at one site, as a limit. Abell et al. (2019) say by 8450 BCE at the same
+      site.
+  location-zeder-2008:
+    prop: location
+    value: { lat: 38.216, lon: 39.725, frame: frame:earth/present-day }
+    source:
+      - ref: src:zeder-2008-mediterranean
+        loc: "Initial Animal Domestication in the Fertile Crescent"
+        quote: "in the region that stretches from the northern Zagros to southeastern Anatolia"
+      - { ref: src:wikidata-cayonu, loc: "P625 coordinate location" }
+    method: editorial
+    rank: preferred
+    note: >-
+      A point in the middle of that region, at Çayönü. The paper itself allows several domestications.
+  location-central-anatolia:
+    prop: location
+    value: { lat: 38.349, lon: 34.23, frame: frame:earth/present-day }
+    source:
+      - ref: src:stiner-2014-asikli
+        loc: Introduction
+        quote: "The observation of multiple origins in sheep domestication (22), for example, illustrates the need to examine local histories"
+      - { ref: src:wikidata-asikli-hoyuk, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Aşıklı Höyük, as a local history in its own right. Zeder (2008) counts management here,
+      10,400–9,400 B.P., as a parallel to the pattern in the Zagros.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

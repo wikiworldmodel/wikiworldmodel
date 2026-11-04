@@ -1,0 +1,17 @@
+id: field:earth/polities
+type: field
+title: The world's states
+description: >-
+  Where the world's states were, year by year from 3400 BCE, as the Cliopatria dataset draws them:
+  rows of that dataset, not records of ours, thinned for the globe. Rome, which has records of its own,
+  is drawn from those. Cliopatria's coverage is uneven, and an empty place is not an empty land.
+grid: { kind: rows }
+time: { lo: 3400 BCE, hi: 1950 CE }
+data:
+  from: src:cliopatria-0.2.1
+  as: polities
+basis: reconstruction
+params:
+  # How far an outline may stray from the dataset's, in degrees: about seventeen kilometres, a pixel or
+  # two on the globe as close as it goes, and it keeps the file under 18 MB.
+  tolerance_deg: 0.15

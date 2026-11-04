@@ -1,0 +1,16 @@
+id: src:field-museum-sue-fact-sheet
+type: publication
+kind: measurement
+citation: >-
+  The Field Museum. A T. rex Named Sue: fact sheet for the traveling exhibition. Chicago: Field
+  Museum of Natural History.
+title: "A T. rex Named Sue"
+url: https://web.archive.org/web/20160818213556/https://www.fieldmuseum.org/sites/default/files/Sue%20Fact%20Sheet.pdf
+reliability: >-
+  A museum's description of its exhibit, not a technical paper; it does not say where on the
+  skeleton the height is taken.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the copy archived on 18 August 2016 at web.archive.org; the museum's own URL was not
+    tried. Quotes checked by script against its text layer.

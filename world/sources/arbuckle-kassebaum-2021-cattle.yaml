@@ -1,0 +1,18 @@
+id: src:arbuckle-kassebaum-2021-cattle
+type: publication
+kind: review
+citation: >-
+  Arbuckle, B.S. & Kassebaum, T.M. (2021). Management and domestication of cattle (Bos taurus)
+  in Neolithic Southwest Asia. Animal Frontiers 11(3), 10–19.
+authors:
+  - "Arbuckle, B.S."
+  - "Kassebaum, T.M."
+published: 2021
+title: "Management and domestication of cattle (Bos taurus) in Neolithic Southwest Asia"
+container: "Animal Frontiers 11(3), 10–19"
+doi: 10.1093/af/vfab015
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC8214434) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

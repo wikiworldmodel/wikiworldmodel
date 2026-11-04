@@ -1,0 +1,16 @@
+id: src:pleiades-lepcis-magna
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 344448, "Neapolis/Lepcis Magna".
+snapshot: 2026-11-04
+container: Pleiades
+url: https://pleiades.stoa.org/places/344448
+license: CC-BY-3.0
+reliability: >-
+  A scholarly gazetteer of ancient places.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/344448/json) read directly: representative point
+    32.636448°N, 14.297094°E; a Phoenician colony, later a Roman city.

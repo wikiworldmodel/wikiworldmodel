@@ -1,0 +1,25 @@
+id: src:greenfield-2022-early-dynastic-ur
+type: publication
+kind: measurement
+citation: >-
+  Greenfield, T.L., McMahon, A.M., O'Connell, T.C., Reade, H., Holmden, C., Fletcher, A.C., Zettler, R.L. & Petrie, C.A. (2022).
+  Were there royal herds? Understanding herd management and mobility using isotopic characterizations of cattle tooth enamel
+  from Early Dynastic Ur. PLoS ONE 17(6), e0265170.
+authors:
+  - "Greenfield, T.L."
+  - "McMahon, A.M."
+  - "O'Connell, T.C."
+  - "Reade, H."
+  - "Holmden, C."
+  - "Fletcher, A.C."
+  - "Zettler, R.L."
+  - "Petrie, C.A."
+published: 2022
+title: "Were there royal herds? Understanding herd management and mobility using isotopic characterizations of cattle tooth enamel from Early Dynastic Ur"
+container: PLoS ONE
+doi: 10.1371/journal.pone.0265170
+url: https://europepmc.org/article/PMC/PMC9200365
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC9200365). Quote checked by script against it, after normalizing whitespace.

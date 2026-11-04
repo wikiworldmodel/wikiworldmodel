@@ -1,0 +1,29 @@
+id: src:larsen-2019-catalhoyuk
+type: publication
+kind: measurement
+citation: >-
+  Larsen, C.S., Knüsel, C.J., Haddow, S.D., Pilloud, M.A., Milella, M., Sadvari, J.W., Pearson, J., Ruff, C.B., Garofalo, E.M.,
+  Bocaege, E., Betz, B.J., Dori, I. & Glencross, B. (2019). Bioarchaeology of Neolithic Çatalhöyük reveals fundamental transitions
+  in health, mobility, and lifestyle in early farmers. Proceedings of the National Academy of Sciences 116(26), 12615–12623.
+authors:
+  - "Larsen, C.S."
+  - "Knüsel, C.J."
+  - "Haddow, S.D."
+  - "Pilloud, M.A."
+  - "Milella, M."
+  - "Sadvari, J.W."
+  - "Pearson, J."
+  - "Ruff, C.B."
+  - "Garofalo, E.M."
+  - "Bocaege, E."
+  - "Betz, B.J."
+  - "Dori, I."
+  - "Glencross, B."
+published: 2019
+title: Bioarchaeology of Neolithic Çatalhöyük reveals fundamental transitions in health, mobility, and lifestyle in early farmers
+container: Proceedings of the National Academy of Sciences
+doi: 10.1073/pnas.1904345116
+url: https://pmc.ncbi.nlm.nih.gov/articles/PMC6601267/
+verified:
+  by: machine:claude-code
+  how: Full text read on PubMed Central (PMC6601267). Quotes checked by script against it, after normalizing whitespace.

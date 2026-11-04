@@ -1,0 +1,117 @@
+id: people/rulers/augustus
+kind: person
+summary: >-
+  The first Roman emperor, born Gaius Octavius, adopted by the will of Julius Caesar, sole ruler
+  after Actium and named Augustus in January 27 BCE. Sources reckon his rule from different
+  starts, here as competing claims.
+author: machine:claude-code
+same_as: { wikidata: Q1405 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Augustus }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Augustus 5.1"
+      quote: Augustus was born just before sunrise
+  start:
+    prop: start
+    value: 23 September 63 BCE
+    source:
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Augustus 5.1"
+        quote: on the ninth day before the Kalends of October in the consulship of Marcus Tullius Cicero and Gaius Antonius
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "56.30.5, vol. 7 p. 69"
+        quote: he had been born on the twenty-third of September
+    method: historical-account
+    note: >-
+      The ninth day before the Kalends of October is 23 September, and the consulship of Cicero
+      and Antonius is 63 BCE. This is a date in the Roman calendar before the reform of 45 BCE,
+      which then ran out of step with the seasons (so Thayer in his note on the passage); the
+      date is kept as the sources give it, not converted to the proleptic Julian calendar of the
+      time axis.
+  reign-start-settlement:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/events/augustus-named }
+    source:
+      ref: src:res-gestae-divi-augusti
+      loc: "34.2, Loeb p. 399"
+      quote: For this service on my part I was given the title of Augustus by decree of the senate
+    method: historical-account
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      The modern convention, the one that ends the Republic in people/polities/rome: his rule as
+      emperor begins with the settlement of January 27 BCE and takes the date of the naming,
+      whichever day of the competing ones is chosen.
+  reign-start-actium:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/events/battle-of-actium }
+    source:
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "56.30.5, vol. 7 p. 69"
+        quote: having been sole ruler, from the time of his victory at Actium forty-four years lacking thirteen days
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Augustus 8.3"
+        quote: and finally by himself for forty-four
+    method: historical-account
+    note: >-
+      Dio and Suetonius count his sole rule from Actium, forty-four years before his death.
+      Suetonius has him ruling the State before that too: with Antony and Lepidus from 43 BCE,
+      then with Antony alone for nearly twelve years.
+  end:
+    prop: end
+    value: 19 August 14 CE
+    source:
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Augustus 100.1"
+        quote: in the consulship of two Sextuses, Pompeius and Appuleius, on the fourteenth day before the Kalends of September at the ninth hour
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "56.30.5, vol. 7 p. 69"
+        quote: Thus on the nineteenth day of August, the day on which he had first become consul, he passed away
+    method: historical-account
+    note: >-
+      The fourteenth day before the Kalends of September is 19 August, and the consulship of the
+      two Sextuses is 14 CE. He died in the same room as his father, at Nola (Tacitus, Annals
+      1.5, 1.9). His reign ends with his life.
+  location:
+    prop: location
+    value: { lat: 41.889306, lon: 12.487109, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-palatine
+        loc: "representative point"
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Augustus 5.1"
+        quote: at the Ox-Heads in the Palatine quarter
+    method: gazetteer
+    note: >-
+      Marked at his birthplace as Suetonius gives it, the Ox-Heads on the Palatine, at the
+      hill's representative point. Suetonius adds (6.1) that people near Velitrae believed he
+      was born there.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Augustus 8.3"
+      quote: Then he levied armies and henceforth ruled the State
+    note: >-
+      Princeps, with the name Augustus from 27 BCE. Joined to the polity as a whole and not to
+      its empire phase, because the start of his reign and the start of that phase have
+      competing claims of their own, and a reader may pick one without the other.

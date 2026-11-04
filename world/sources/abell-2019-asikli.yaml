@@ -1,0 +1,23 @@
+id: src:abell-2019-asikli
+type: publication
+kind: measurement
+citation: >-
+  Abell, J.T., Quade, J., Duru, G., … & Özbaşaran, M. (2019). Urine salts elucidate Early
+  Neolithic animal management at Aşıklı Höyük, Turkey. Science Advances 5(4), eaaw0038.
+authors:
+  - "Abell, J.T."
+  - "Quade, J."
+  - "Duru, G."
+  - "Mentzer, S.M."
+  - "Stiner, M.C."
+  - "Uzdurum, M."
+  - "Özbaşaran, M."
+published: 2019
+title: "Urine salts elucidate Early Neolithic animal management at Aşıklı Höyük, Turkey"
+container: "Science Advances 5(4), eaaw0038"
+doi: 10.1126/sciadv.aaw0038
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC6469938) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

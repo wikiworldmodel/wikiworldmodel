@@ -1,0 +1,18 @@
+id: src:horner-goodwin-2009-pachycephalosaurus
+type: publication
+kind: measurement
+citation: >-
+  Horner, J.R. & Goodwin, M.B. (2009). Extreme cranial ontogeny in the Upper Cretaceous dinosaur
+  Pachycephalosaurus. PLoS ONE 4(10), e7626.
+authors:
+  - "Horner, J.R."
+  - "Goodwin, M.B."
+published: 2009
+title: "Extreme cranial ontogeny in the Upper Cretaceous dinosaur Pachycephalosaurus"
+container: "PLoS ONE 4(10), e7626"
+doi: 10.1371/journal.pone.0007626
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC2762616); quotes checked by script against it.

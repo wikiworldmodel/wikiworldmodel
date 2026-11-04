@@ -1,0 +1,79 @@
+id: life/taxa/dinornithiformes
+kind: taxon
+summary: >-
+  The moa, nine species of giant wingless birds found only in New Zealand. Their populations were
+  large and stable until Polynesians settled the islands in the 13th century, and they were gone
+  within about two centuries.
+same_as: { ott: 292471, pbdb: "txn:39294" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: moa, la: "Dinornithiformes" }
+    source:
+      - { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott292471: name" }
+      - ref: src:allentoft-2014-moa
+        loc: Significance
+        quote: "nine species of moa (large, wingless ratite birds) went extinct shortly after Polynesian settlement"
+  start-pbdb:
+    prop: start
+    value: { lo: 18.7 Ma, hi: 15.9 Ma }
+    source: { ref: src:pbdb/taxon-39294, loc: "taxa/single: firstapp_max_ma, firstapp_min_ma; occurrences such as 1309089, Saint Bathans" }
+    method: compilation
+    note: >-
+      The PBDB's first appearance, in the Altonian of the Saint Bathans area, from fossils it
+      assigns to the order: a record of the lineage in New Zealand, not its origin.
+  end-landcare-2014:
+    prop: end
+    value: { lo: 1420 CE, hi: 1470 CE }
+    source:
+      ref: src:landcare-2014-moa-chronology
+      loc: "release of 24 October 2014, on Perry et al. (2014)"
+      quote: "The results show that moa became extinct across New Zealand at the same time, between 1420 and 1470 AD (most likely between 1440-1445 AD) less than 200 years after initial human settlement in the mid-13th century."
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The extinction estimated from 653 dates audited down to the most reliable, from a release by
+      the authors' institute: Perry et al. (2014, Quaternary Science Reviews 105, 126–135) could not
+      be read, so a reviewer should check this against the paper. Preferred because it is the only
+      calendar date read that rests on the dates themselves.
+  end-bunbury-2022:
+    prop: end
+    value: { lo: 1415 CE, hi: 1460 CE }
+    source:
+      ref: src:bunbury-2022-maori-settlement
+      loc: Results
+      quote: "Our evaluation shows that moa hunting continued for ∼100 y before it stopped around AD 1400 to 1415. Three 14C ages fall outside the hunting period, the earliest dating to AD 1275 to 1295 (NZA-52932) and the youngest to AD 1415 to 1460 (NZA-52929 and Wk-12962), respectively."
+    method: radiometric/radiocarbon
+    note: >-
+      The youngest moa dates in a model of the archaeological record, which date the last hunting,
+      not the last moa.
+  end-holdaway-2014:
+    prop: end
+    value: { ref: life/megafauna/new-zealand-settlement, edge: start, lag: { hi: 150 yr } }
+    source:
+      ref: src:holdaway-2014-moa-population
+      loc: abstract
+      quote: "During a brief (<150 years) period and at population densities that never exceeded ~0.01 km(-2), Polynesians exterminated viable populations of moa by hunting and removal of habitat."
+    method: expert-estimate
+    note: >-
+      Counted from the settlement, in the habitable areas of the eastern South Island, which the
+      abstract treats. It is a lag, so the date follows the date of settlement.
+  end-tomlinson-2023:
+    prop: end
+    value: { ref: life/megafauna/new-zealand-settlement, edge: start, lag: { hi: 300 yr } }
+    source:
+      ref: src:tomlinson-2023-moa-preprint
+      loc: Results, Extinction dynamics
+      quote: "with extinctions occurring over a period of three centuries following initial human settlement"
+    method: model
+    basis: reconstruction
+    note: >-
+      From simulations of climate, people and moa for six species. The preprint, read in place of
+      the published version in Nature Ecology & Evolution (2024), adds that this overlap was much
+      longer than previously thought.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/aves
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott292471, lineage: Palaeognathae < Aves" }

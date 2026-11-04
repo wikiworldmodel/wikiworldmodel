@@ -1,0 +1,16 @@
+id: src:riggs-1906-basilemys
+type: publication
+kind: measurement
+citation: >-
+  Riggs, E.S. (1906). The carapace and plastron of Basilemys sinuosus, a new fossil tortoise
+  from the Laramie beds of Montana. Field Columbian Museum, Geological Series 2(7), 249–256.
+authors:
+  - "Riggs, E.S."
+published: 1906
+title: "The carapace and plastron of Basilemys sinuosus, a new fossil tortoise from the Laramie beds of Montana"
+container: "Field Columbian Museum, Geological Series 2(7), 249–256"
+url: https://archive.org/details/carapaceplastron27rigg
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the OCR text of the archive.org scan; quotes checked by script against that text.

@@ -1,0 +1,17 @@
+id: src:gilmore-1915-thescelosaurus
+type: publication
+kind: measurement
+citation: >-
+  Gilmore, C.W. (1915). Osteology of Thescelosaurus, an orthopodous dinosaur from the Lance
+  Formation of Wyoming. Proceedings of the United States National Museum 49(2127), 591–616.
+authors:
+  - "Gilmore, C.W."
+published: 1915
+title: "Osteology of Thescelosaurus, an orthopodous dinosaur from the Lance Formation of Wyoming"
+container: "Proceedings of the United States National Museum 49(2127), 591–616"
+url: https://archive.org/details/biostor-79442
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the OCR text of the archive.org scan (BioStor); quotes checked by script against
+    that text.

@@ -1,0 +1,29 @@
+id: src:yao-2020-longest-delay
+type: publication
+kind: review
+citation: >-
+  Yao, L., Aretz, M., Wignall, P.B., Chen, J., Vachard, D., Qi, Y., Shen, S. & Wang, X. (2020).
+  The longest delay: re-emergence of coral reef ecosystems after the Late Devonian extinctions.
+  Earth-Science Reviews 203, 103060.
+authors:
+  - "Yao, L."
+  - "Aretz, M."
+  - "Wignall, P.B."
+  - "Chen, J."
+  - "Vachard, D."
+  - "Qi, Y."
+  - "Shen, S."
+  - "Wang, X."
+published: 2020
+title: "The longest delay: re-emergence of coral reef ecosystems after the Late Devonian extinctions"
+container: Earth-Science Reviews 203, 103060
+doi: 10.1016/j.earscirev.2019.103060
+license: CC-BY-NC-ND-4.0
+license_note: >-
+  The licence stated on the repository's accepted manuscript.
+verified:
+  by: machine:claude-code
+  how: >-
+    The accepted manuscript retrieved from White Rose Research Online
+    (eprints.whiterose.ac.uk/id/eprint/158682); the parts cited were read, and quotes checked by
+    script against its text with line numbers removed. Metadata from Crossref.

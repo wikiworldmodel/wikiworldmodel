@@ -68,8 +68,115 @@ properties:
     description: The taxon name as identified in the original record.
   formation:
     type: string
-    applies_to: [occurrence, sample]
+    applies_to: [occurrence, sample, ecosystem]
     description: The geological formation the fossils or the sample come from.
+  evidence:
+    type: string
+    applies_to: [occurrence, sample]
+    values:
+      tidal-rhythmite: Thin layers laid down with the tides, whose counts give the days in a month or the months in a year.
+      cyclostratigraphy: Rhythmic beds paced by the slow cycles of the Earth's orbit and axis, whose periods give the rate of its precession.
+      body-fossil: The remains of an organism, such as a bone, a shell, a leaf or a cell.
+      trace-fossil: Something an organism left, such as a track, a burrow or a root trace.
+      palynomorph: Spores or pollen.
+      biosignature: A chemical or isotopic sign of life, or a structure that may be biological, with no organism preserved.
+      in-situ-forest: Trees fossilized where they grew, standing stumps or rooted trunks.
+      ancient-dna: A genome, or part of one, sequenced from the remains of an individual.
+      archaeobotanical: Plant remains from where people lived or worked, such as charred grain and chaff, impressions in pottery, or starch grains and phytoliths on tools and in sediment.
+      zooarchaeological: Animal remains from where people lived or worked, read for how people dealt with the animals, such as who was killed at what age, body size, burial, or dung and pens.
+      inscription: Signs of a writing system or its forerunners, cut, painted or pressed into something that has lasted, such as a clay tablet, a bone, a pot or a rock face.
+    description: What kind of evidence an occurrence or a sample is.
+  ancestry:
+    type: text
+    applies_to: [occurrence, event/dispersal, event/admixture]
+    description: >-
+      What a source reads in genomes of who an individual's ancestors were, or of what a dispersal
+      or a mixing left in later people, in words.
+  cargo:
+    type: text
+    applies_to: [event/shipwreck]
+    description: What a ship carried when it was lost, in words.
+  voyage:
+    type: text
+    applies_to: [event/shipwreck]
+    description: >-
+      Where a ship had sailed from and where it was bound when it was lost, in words. It is often an inference from
+      the cargo, and the note says so.
+  cover:
+    type: string
+    interp: step
+    applies_to: [event/transition]
+    values:
+      microbial-crust: Microbial crusts on the land, the first life to cover it.
+      land-plants: Low plants on damp ground, such as bryophyte-like plants and the first small vascular plants.
+      forests: Trees, and forests in the wetter climates.
+      grasslands: Grasses that dominate open country in seasonally dry climates.
+      reefs: Reefs built by animals or by microbes and algae, in warm shallow seas.
+    description: >-
+      The kind of cover a transition brought to the land or the shallow seas. The biome field
+      draws that cover from the transition's start on (never before it), spreading until its end.
+  taxon_rank:
+    type: string
+    applies_to: [taxon]
+    description: A taxon's rank in the classification it comes from, such as genus or family.
+  body_plan:
+    type: string
+    interp: step
+    applies_to: [taxon]
+    values:
+      ceratopsian: A horned, frilled, four-legged plant-eating dinosaur.
+      tyrannosaur: A two-legged predator with a great head and tiny arms.
+      hadrosaur: A duck-billed plant-eating dinosaur, standing on two legs or four.
+      ankylosaur: A low, armoured, four-legged plant-eating dinosaur.
+      pachycephalosaur: A two-legged dinosaur with a domed skull.
+      ornithopod: A small two-legged plant-eating dinosaur.
+      small-theropod: A small or middle-sized two-legged feathered predator or omnivore.
+      crocodilian: A long, low, four-legged semi-aquatic reptile with armoured back and a long tail.
+      turtle: A shelled reptile.
+      small-mammal: A small furred mammal.
+      conifer: A tree with needles or scale leaves, and a straight trunk.
+      palm: A palm, its leaves in a crown at the top of an unbranched stem.
+      broadleaf: A flowering tree or large shrub with broad leaves.
+      fern: A fern or other low spore-bearing plant.
+    description: >-
+      Which of a generator's kits draws a taxon: its general shape. Sizes come from the taxon's
+      other claims, and the details of the kit are the generator's guess.
+  body_length:
+    type: quantity
+    unit: m
+    interp: step
+    applies_to: [taxon]
+    description: The length of a grown animal, from snout to the end of its tail or, for a turtle, of its shell.
+  hip_height:
+    type: quantity
+    unit: m
+    interp: step
+    applies_to: [taxon]
+    description: How high a grown animal's hips stand off the ground.
+  body_mass:
+    type: quantity
+    unit: kg
+    interp: step
+    applies_to: [taxon]
+    description: The mass of a grown animal.
+  plant_height:
+    type: quantity
+    unit: m
+    interp: step
+    applies_to: [taxon]
+    description: How tall a grown plant stands.
+  posture:
+    type: string
+    interp: step
+    applies_to: [taxon]
+    values:
+      biped: Stands and walks on its hind legs.
+      quadruped: Stands and walks on all four legs, held under the body.
+      facultative-quadruped: Stands on its hind legs or on all four.
+      sprawling: Holds its legs out to the side, belly near the ground.
+      floating: Floats at the surface of still water.
+      upright: A plant with an upright stem.
+    description: How an animal stands, or how a plant grows.
   diameter:
     type: quantity
     unit: km
@@ -112,6 +219,69 @@ properties:
     description: >-
       The lowest latitude, north or south, at which ice reached sea level during a glaciation,
       as sea ice or as grounded ice, in degrees: 0 is ice to the equator.
+  day_length:
+    type: quantity
+    unit: h
+    interp: step
+    applies_to: [occurrence, sample, event/astronomical]
+    description: >-
+      How long the day was when a rock or a fossil formed: the solar day, unless the claim's
+      note says otherwise. The tides slow the Earth's spin, so the day has grown longer.
+  moon_distance:
+    type: quantity
+    unit: Earth radii
+    interp: step
+    applies_to: [occurrence, sample, event/astronomical]
+    description: >-
+      The mean distance from the Earth to the Moon, the semi-major axis of the Moon's orbit,
+      when a rock or a fossil formed, in Earth radii of 6378 km. The tides push the Moon away.
+  sea_level:
+    type: quantity
+    unit: m
+    interp: step
+    applies_to: [event, period]
+    description: >-
+      Global mean sea level at the height or the depth of an event or a period, in metres relative to today's:
+      a glacial lowstand is negative. `valid` says when, where the source does.
+  sea_level_change:
+    type: quantity
+    unit: m
+    interp: step
+    applies_to: [event, period]
+    description: How far global mean sea level moved over an event, in metres; a fall is negative. The note says over what span.
+  warming:
+    type: quantity
+    unit: °C
+    interp: step
+    applies_to: [event]
+    description: >-
+      How far global surface temperature moved over an event, in degrees Celsius; a cooling is negative.
+      `valid` says over what years, and the note against what reference period.
+  settlement_area:
+    type: quantity
+    unit: ha
+    interp: step
+    applies_to: [settlement]
+    description: >-
+      The area a settlement covered, in hectares, at the moment `valid` gives. Sources measure
+      different things, the settled area, the walled area or a protected zone, and the note says which.
+  population:
+    type: quantity
+    unit: people
+    interp: step
+    applies_to: [settlement]
+    description: >-
+      How many people lived in a settlement at the moment `valid` gives. For a city without a census
+      this is an estimate from its area, houses or food supply, and the estimates differ widely.
+  decipherment:
+    type: string
+    interp: step
+    applies_to: [development/script]
+    values:
+      undeciphered: Its signs cannot be read, and the language they write is not known.
+      partly-deciphered: Some of its signs can be read, and a few words or phrases understood.
+      deciphered: Its signs can be read, and the language they write is known.
+    description: Whether a writing system can be read today, as a source states it.
   territory:
     type: geometry
     interp: step
@@ -176,9 +346,21 @@ methods:
       pb-pb: { label: Pb–Pb dating }
       re-os: { label: Re–Os dating }
       radiocarbon: { label: Radiocarbon dating }
+      luminescence: { label: Luminescence dating }
+      u-series: { label: Uranium-series dating }
+      esr: { label: Electron spin resonance dating }
+      cosmogenic: { label: Cosmogenic nuclide burial dating }
+  amino-acid:
+    label: Amino acid geochronology
+    description: Relative ages from how far the amino acids in fossils have racemized, read against sites of known age.
   molecular-clock:
     label: Molecular clock
     description: Dated from genetic differences between living groups, calibrated with fossils.
+  ancestry-segments:
+    label: Ancestry segments
+    description: >-
+      Dated from the lengths of the segments of one population's ancestry in another's genomes,
+      which recombination shortens with each generation.
   model:
     label: Model projection
     description: Computed with a physical model, such as a model of the Sun's evolution or of galaxies' orbits.
@@ -198,6 +380,15 @@ methods:
   stratigraphic:
     label: Stratigraphic dating
     description: Dated by the position of the beds in a dated sequence, or by their fossils.
+  dendrochronology:
+    label: Tree rings
+    description: Dated by matching a timber's rings to a dated sequence. The last ring kept gives a time after which the tree was felled.
+  numismatic:
+    label: Coins
+    description: Dated by the latest coins in a deposit, which give a time after which it was left, and not its date.
+  typological:
+    label: Typology
+    description: Dated by the style of the objects in a deposit, such as its pottery, amphorae or their stamps, against dated examples elsewhere.
   expert-estimate:
     label: Expert estimate
     description: A value a source states without the measurement behind it.

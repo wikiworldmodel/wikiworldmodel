@@ -1,0 +1,19 @@
+id: src:benton-2022-angiosperm-revolution
+type: publication
+kind: review
+citation: >-
+  Benton, M.J., Wilf, P. & Sauquet, H. (2022). The Angiosperm Terrestrial Revolution and the
+  origins of modern biodiversity. New Phytologist 233(5), 2017–2035.
+authors:
+  - "Benton, M.J."
+  - "Wilf, P."
+  - "Sauquet, H."
+published: 2022
+title: "The Angiosperm Terrestrial Revolution and the origins of modern biodiversity"
+container: New Phytologist 233(5), 2017–2035
+doi: 10.1111/nph.17822
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 34699613); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

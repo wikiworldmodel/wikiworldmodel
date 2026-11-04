@@ -1,0 +1,11 @@
+id: src:louvre-collections-code-de-hammurabi
+type: database-record
+kind: compilation
+citation: Musée du Louvre, Collections. Code de Hammurabi, Sb 8, Département des Antiquités orientales.
+snapshot: 2026-11-04
+container: Collections du Louvre
+url: https://collections.louvre.fr/en/ark:/53355/cl010174436
+reliability: The museum's catalogue entry. It gives the excavation and the sharing of finds, not the day the stele reached Paris.
+verified:
+  by: machine:claude-code
+  how: Read on the museum's site. Quotations checked by script against the page's text.

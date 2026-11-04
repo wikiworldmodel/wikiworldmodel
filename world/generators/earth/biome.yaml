@@ -1,0 +1,26 @@
+# A generator: versioned code plus parameters plus a seed. It makes the texture the renderer draws
+# inside each cover of the land with: the mottling of a forest's canopy, the streaks of a desert,
+# the speckle of a reef, and the ragged edge between one cover and the next. What cover is drawn
+# where follows the climate field and the world's transitions; this only breaks up its surface.
+# It takes nothing from the world, so it has no inputs. Changing its output is a new version.
+id: gen:earth/biome-texture
+type: generator
+title: Texture of the land's cover
+version: 1
+code: generators/earth/biome/v1.ts
+runs_in: [build, client]
+outputs: { basis: procedural }
+inputs: []
+slots:
+  globe:
+    place: the whole globe
+    seed: earth/biome-texture
+params:
+  size: 512
+  # Cells of noise across one tile, for each channel: the canopy, the streaks, the edges and the
+  # speckle, and the number of octaves each is summed over.
+  canopy: 32
+  streaks: 16
+  edges: 6
+  speckle: 96
+  octaves: 4

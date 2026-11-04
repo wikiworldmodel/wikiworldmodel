@@ -1,0 +1,30 @@
+id: src:lozano-fernandez-2016-terrestrialization
+type: publication
+kind: model
+citation: >-
+  Lozano-Fernandez, J., Carton, R., Tanner, A.R., Puttick, M.N., Blaxter, M., Vinther, J.,
+  Olesen, J., Giribet, G., Edgecombe, G.D. & Pisani, D. (2016). A molecular palaeobiological
+  exploration of arthropod terrestrialization. Philosophical Transactions of the Royal Society
+  B: Biological Sciences 371(1699), 20150133.
+authors:
+  - "Lozano-Fernandez, J."
+  - "Carton, R."
+  - "Tanner, A.R."
+  - "Puttick, M.N."
+  - "Blaxter, M."
+  - "Vinther, J."
+  - "Olesen, J."
+  - "Giribet, G."
+  - "Edgecombe, G.D."
+  - "Pisani, D."
+published: 2016
+title: "A molecular palaeobiological exploration of arthropod terrestrialization"
+container: "Philosophical Transactions of the Royal Society B: Biological Sciences 371(1699), 20150133"
+doi: 10.1098/rstb.2015.0133
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC4920334) read via Europe PMC (fullTextXML): the oldest subaerial arthropod
+    traces, Pneumodesmus newmani at about 426 Ma, and the molecular estimates for arachnids,
+    hexapods and myriapods on land. Quotes checked by script against that text. Metadata from
+    Crossref.

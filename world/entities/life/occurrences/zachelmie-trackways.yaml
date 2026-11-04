@@ -1,0 +1,73 @@
+id: life/occurrences/zachelmie-trackways
+kind: occurrence
+summary: >-
+  Footprints and trackways in dolomites of the Wojciechowice Formation at Zachełmie Quarry, Holy Cross Mountains,
+  Poland, some with digits: the earliest evidence for tetrapods in the fossil record, older than the oldest body
+  fossils of tetrapods and of their finned relatives. A track says little of its maker, so the record is placed only
+  among jawed vertebrates.
+same_as: { wikidata: Q113541234 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Zachełmie trackways" }
+    unsourced: An editorial label, from the place.
+  identified:
+    prop: identified_as
+    value: Tetrapod tracks and trackways
+    source:
+      ref: src:niedzwiedzki-2010-zachelmie
+      loc: abstract
+      quote: "Here we present well-preserved and securely dated tetrapod tracks from Polish marine tidal flat sediments of early Middle Devonian (Eifelian stage) age"
+    note: >-
+      No ichnotaxon is given in what was read. Qvarnström et al. (2018) reinterpret the setting as ephemeral lakes rather
+      than a marine tidal flat.
+  evidence:
+    prop: evidence
+    value: trace-fossil
+    source:
+      ref: src:qvarnstrom-2018-zachelmie
+      loc: "Introduction, first paragraph"
+      quote: "The earliest evidence for tetrapods in the fossil record consists of early Middle Devonian trace fossils (tracks and trackways) from Zachełmie Quarry"
+  location:
+    prop: location
+    value: { lat: 50.973889, lon: 20.697778, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-zachelmie, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A point for the village that gives the quarry its name; the quarry was not located more closely from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Wojciechowice Formation
+    source:
+      ref: src:qvarnstrom-2018-zachelmie
+      loc: "Rare earth elements (REEs) data"
+      quote: "The samples from the Wojciechowice Formation, including the track-bearing horizons"
+  date:
+    prop: date
+    value: { ref: ics/eifelian }
+    source:
+      - ref: src:niedzwiedzki-2010-zachelmie
+        loc: abstract
+        quote: "early Middle Devonian (Eifelian stage) age"
+      - ref: src:long-2025-amniote-tracks
+        loc: "Discussion"
+        quote: "the trackways from Zachełmie in Poland (Eifelian)29 and Valentia Island in Ireland (Givetian)30, are, respectively, about 390 and 385 million years old"
+    method: stratigraphic
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/gnathostomata
+    source:
+      ref: src:qvarnstrom-2018-zachelmie
+      loc: "Introduction, first paragraph"
+      quote: "firmly imply an early tetrapod track maker and disqualify alternative interpretations such as the structures being elpistostegid tracks or fish resting traces with fecal pellets"
+    note: >-
+      Not in life/taxa/tetrapoda, which is the crown group: the maker was a limbed animal on its stem. Niedźwiedzki et al.
+      (2010) note that older claims of tetrapod trackways remained controversial; these are the ones they call secure.

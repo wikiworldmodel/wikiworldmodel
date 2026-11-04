@@ -1,0 +1,75 @@
+id: people/trade/kyrenia
+kind: event/shipwreck
+summary: >-
+  A small Greek merchant ship of the early Hellenistic age that sank off the north coast of Cyprus, excavated in 1967–1969,
+  with hundreds of amphorae, from Rhodes and elsewhere, thousands of almonds and some millstones. Its well-preserved hull is
+  a key to Greek shipbuilding. Its date is disputed within about twenty years: one worn coin says 294–290 BCE at the
+  earliest, and radiocarbon, on a curve revised for the purpose, a little later.
+author: machine:claude-code
+same_as: { wikidata: Q2234980 }
+claims:
+  name:
+    prop: name
+    value: { en: Kyrenia Ship }
+    source: { ref: src:manning-2024-kyrenia, loc: Abstract, quote: "The Kyrenia Ship, found off the north coast of Cyprus" }
+  date-manning-2024:
+    prop: date
+    value: { lo: 305 BCE, hi: 271 BCE }
+    source:
+      ref: src:manning-2024-kyrenia
+      loc: "Results, on Models 1A–C"
+      quote: "The indicated 68.3% and 95.4% hpd ranges, 286–272 BCE (68.3%) and 305–271 BCE (95.4%) are the upper and lower limits from each version of Models 1A, 1B and 1C."
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The last voyage, modelled from wiggle-matched timber and short-lived almonds, an astragalus and a twig, on the
+      calibration curve the paper revises. The range is the 95.4% one; the most likely one is 286–272 BCE. Preferred as
+      independent of the coin, though another reviewer might keep the excavators' date.
+  date-katzev-swiny-2023:
+    prop: date
+    value: { lo: 294 BCE, hi: 290 BCE }
+    source:
+      ref: src:manning-2024-kyrenia
+      loc: Abstract
+      quote: "A very specific date range is proposed: ca. 294–290 BCE, but is based on a less than certain reading of one coin recovered from the ship."
+    method: numismatic
+    note: >-
+      The final publication's date, by Katzev and Swiny (2023), at second hand. It rests on coin C7, which gives only a time after
+      which the ship sank; if the coin is set aside, the same publication suggests about 300 BCE.
+  date-radiocarbon-1:
+    prop: date
+    value: { mean: 288 BCE, sd: 62 yr }
+    source:
+      ref: src:manning-2024-kyrenia
+      loc: Introduction
+      quote: "Originally dated from a single radiocarbon (14C) measurement rather approximately 288±62 BCE"
+    method: radiometric/radiocarbon
+    rank: deprecated
+    note: The first date, at second hand. The source does not say what the ± is, so it is read as 1σ.
+  date-oxrep:
+    prop: date
+    value: { lo: 310 BCE, hi: 300 BCE }
+    source: { ref: src:oxrep-shipwrecks-2.1, loc: "Wreck ID 118, Earliest Date, Latest Date, Dating comment", quote: "c.300BC" }
+    method: typological
+    note: An older estimate, in the database's range. Manning et al. say a late fourth-century date was often suggested in the past.
+  location:
+    prop: location
+    value: { lat: 35.361294, lon: 33.337502, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-kyrenia-ship, loc: "Q2234980, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-331
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value: { en: "404 amphorae, from Rhodes and possibly Samos, Crete, Paros and Palestine; about 10,000 almonds, in sacks; 29 millstones." }
+    source:
+      - ref: src:oxrep-shipwrecks-2.1
+        loc: "Wreck ID 118, Comments"
+        quote: "A tumulus 10 x 19m of amphorae from Rhodes and possibly Samos, Crete, Paros and Palestine, 404 in total."
+      - ref: src:oxrep-shipwrecks-2.1
+        loc: "Wreck ID 118, Other cargo"
+        quote: "10,000 almonds, lying in clusters, indicating that they were carried in sacks."

@@ -1,0 +1,72 @@
+id: life/taxa/ursus-spelaeus
+kind: taxon
+summary: >-
+  The cave bear of Europe and the Urals, a large plant-eating bear whose bones fill the caves where
+  it hibernated, here in the broad sense, with its several lineages. It died out before the Last
+  Glacial Maximum, far earlier than most of the northern megafauna. Sources blame the cold of
+  Greenland Stadial 3, or competition with people for caves.
+same_as: { ott: 89827, pbdb: "txn:90654" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: cave bear, la: "Ursus spelaeus" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott89827: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-gretzinger-2019:
+    prop: start
+    value: { lo: 623 ka, hi: 314 ka }
+    source:
+      ref: src:gretzinger-2019-cave-bear-mitogenomes
+      loc: Results, Phylogenetic analysis
+      quote: "sharing a most recent common ancestor (MRCA) ~451 ka BP (~314–623 ka BP 95% CI)"
+    method: molecular-clock
+    note: >-
+      A crown age: the common ancestor of the five European mitochondrial lineages (Ursus ingressus
+      and U. spelaeus in the narrow sense among them), taken here as the group's origin. The group
+      may be older than that ancestor.
+  end-terlato-2019:
+    prop: end
+    value: { lo: 24200 BP, hi: 23500 BP }
+    source:
+      ref: src:terlato-2019-cave-bear-extinction
+      loc: abstract
+      quote: "Two direct radiocarbon dates on well-preserved collagen have yielded ages around 24,200–23,500 cal yr BP, which make them the latest known representatives of the species in Europe"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      Paina and Trene caves, northeastern Italy. Preferred as the youngest direct dates read, on
+      collagen said to be well preserved, and because an extinction cannot come before them; only
+      the abstract could be read.
+  end-baca-2016:
+    prop: end
+    value: { lo: 26100 BP, hi: 24300 BP }
+    source:
+      - ref: src:baca-2016-cave-bear-extinction
+        loc: abstract
+        quote: "we determined, following eight approaches, the extinction time of this mammal at 26,100–24,300 cal. years BP"
+      - ref: src:marciszak-2024-niedzwiedzia-cave
+        loc: Introduction
+        quote: "with all cave bears disappearing between 26,100–24,300 cal. years BP"
+    method: model
+    note: >-
+      A statistical estimate from 207 direct dates, including the youngest then known, 20,930 ± 140
+      14C years from Stajnia Cave, Poland. Leaving out young dates with no collagen data gives
+      27,000–26,100 cal. years BP.
+  end-pacher-stuart-2009:
+    prop: end
+    value: 27800 BP
+    source:
+      ref: src:pacher-stuart-2009-cave-bear
+      loc: abstract
+      quote: "c . 24 000 radiocarbon years BP ( c . 27 800 cal. yr BP), approximately coincident with the start of Greenland Stadial 3"
+    method: radiometric/radiocarbon
+    rank: deprecated
+    note: >-
+      The Alps and adjacent areas only, the one region then with fairly good evidence; the authors
+      ask whether it lasted later elsewhere. Later direct dates, above, show that it did.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott89827, lineage: Ursus < Ursidae < Caniformia < Carnivora < Laurasiatheria < Boreoeutheria < Eutheria < Theria < Mammalia" }

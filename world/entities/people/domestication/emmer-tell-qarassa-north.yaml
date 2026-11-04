@@ -1,0 +1,70 @@
+id: life/occurrences/emmer-tell-qarassa-north
+kind: occurrence
+summary: >-
+  Emmer wheat grains and chaff from the early Pre-Pottery Neolithic B levels of Tell Qarassa North in
+  southern Syria, dated by eight radiocarbon dates from the excavation area. About a fifth of the
+  chaff scored (21.1% of 19 pieces) has the tough scar of an ear that does not shatter, more than
+  wild stands give: an early stage of domestication, at a site that also gathered wild cereals.
+  Einkorn and barley from the same levels carry the same mark.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Emmer, Tell Qarassa North" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: T. dicoccoides/dicoccum
+    source:
+      ref: src:arranz-otaegui-2016-cereal-domestication
+      loc: "The Evidence of Cereal Domestication at Tell Qarassa North"
+      quote: "wild and domesticated-type species of emmer wheat (T. dicoccoides/dicoccum)"
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      - ref: src:arranz-otaegui-2016-cereal-domestication
+        loc: "The Evidence of Cereal Domestication at Tell Qarassa North"
+        quote: "Domesticated-type scars were identified on the emmer, einkorn, and barley chaff, and the proportions (21.1–41.2%) are larger than expected in wild cereal species"
+      - ref: src:arranz-otaegui-2016-cereal-domestication
+        loc: 'Table S6, row "TQN", Emmer'
+    note: >-
+      What shows it is domestic: a non-brittle rachis, with a tough abscission scar. The paper takes
+      about 10% such scars to be what wild stands give, and the emmer here has 21.1% of 19 pieces.
+      Few pieces, and under half: the paper calls it an early stage.
+  location:
+    prop: location
+    value: { lat: 32.835556, lon: 36.413722, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-tell-qarassa, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      The gazetteer's point for Tell Qarassa, which does not separate the northern site.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 10.7 ka, hi: 10.2 ka }
+    source:
+      - ref: src:arranz-otaegui-2016-cereal-domestication
+        loc: "The Evidence of Cereal Domestication at Tell Qarassa North"
+        quote: "eight radiocarbon dates from excavation area XYZ-67/68/69 indicate it was occupied during the EPPNB"
+      - ref: src:arranz-otaegui-2016-cereal-domestication
+        loc: "The Evidence of Cereal Domestication at Tell Qarassa North"
+        quote: "by 10.7–10.2 ka Cal BP there are positive signs that barley, emmer, and einkorn were being cultivated at TQN"
+    method: radiometric/radiocarbon
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott605173 and ott99252: Triticum turgidum lies within Magnoliopsida" }
+    note: >-
+      Emmer is a form of Triticum turgidum in Open Tree's taxonomy. Placed at the flowering plants;
+      no narrower taxon is needed here.
+  domestication:
+    rel: part-of
+    to: people/domestication/emmer
+    source: { ref: src:arranz-otaegui-2016-cereal-domestication, loc: "The Evidence of Cereal Domestication at Tell Qarassa North" }

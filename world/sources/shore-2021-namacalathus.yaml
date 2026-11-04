@@ -1,0 +1,26 @@
+id: src:shore-2021-namacalathus
+type: publication
+kind: measurement
+citation: >-
+  Shore, A.J., Wood, R.A., Butler, I.B., Zhuravlev, A.Y., McMahon, S., Curtis, A. & Bowyer, F.T.
+  (2021). Ediacaran metazoan reveals lophotrochozoan affinity and deepens root of Cambrian
+  Explosion. Science Advances 7(1), eabf2933.
+authors:
+  - "Shore, A.J."
+  - "Wood, R.A."
+  - "Butler, I.B."
+  - "Zhuravlev, A.Y."
+  - "McMahon, S."
+  - "Curtis, A."
+  - "Bowyer, F.T."
+published: 2021
+title: "Ediacaran metazoan reveals lophotrochozoan affinity and deepens root of Cambrian Explosion"
+container: Science Advances 7(1), eabf2933
+doi: 10.1126/sciadv.abf2933
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC7775780) read via Europe PMC (fullTextXML): Namacalathus from the uppermost
+    Upper Omkyk Member, below an ash bed dated at 547.32 ± 0.65 Ma, and its total-group
+    lophotrochozoan affinity. Quotes checked by script against that text. Metadata from
+    Crossref.

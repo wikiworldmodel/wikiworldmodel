@@ -1,0 +1,66 @@
+id: people/dispersals/beringia-bluefish
+kind: event/dispersal
+summary: >-
+  The first people known in eastern Beringia, the unglaciated land of Alaska and the Yukon: cut-marked
+  bones at Bluefish Caves in the Yukon, dated to about 24,000 years ago, in a record others call
+  enigmatic. Its publishers take it to show the Beringian standstill, a people held in Beringia by
+  the ice before they moved south.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First people in eastern Beringia }
+    unsourced: An editorial label.
+  date:
+    prop: date
+    value: 24 ka
+    source:
+      ref: src:bourgeon-2017-bluefish
+      loc: abstract
+      quote: "Our results demonstrate that humans occupied the site as early as 24,000 cal BP (19,650 ± 130 14C BP)."
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      Preferred because it is a direct date on bones with cut marks. Potter et al. (2018) allow that
+      the record "raises the possibility of population pulses into eastern Beringia as early as
+      24,000 years ago", but say a successful settlement then should have left more abundant sites
+      in the millennia after, which they do not see.
+  date-bourgeon-2017-earlier-view:
+    prop: date
+    value: 14 ka
+    source:
+      ref: src:bourgeon-2017-bluefish
+      loc: abstract
+      quote: "The weight of the available archaeological evidence suggests that the first peopling of North America occurred ca. 14,000 cal BP"
+    method: expert-estimate
+    note: >-
+      The view before these dates, for North America as a whole, as Bourgeon et al. report it and
+      then argue against.
+  ancestry-standstill:
+    prop: ancestry
+    value:
+      en: >-
+        A genetically isolated population lived in Beringia through the Last Glacial Maximum and
+        spread from there to North and South America after it: the ancestors of Native Americans.
+    alt: alt:peopling-of-the-americas/post-lgm
+    source:
+      - ref: src:bourgeon-2017-bluefish
+        loc: abstract
+        quote: "which proposes that a genetically isolated human population persisted in Beringia during the LGM and dispersed from there to North and South America during the post-LGM period"
+      - ref: src:moreno-mayar-2018-upward-sun-river
+        loc: abstract
+        quote: "Our findings support a long-term genetic structure in ancestral Native Americans, consistent with the Beringian 'standstill model'."
+      - ref: src:llamas-2016-americas-mtdna
+        loc: abstract
+        quote: "following previous isolation in eastern Beringia for ~2.4 to 9 thousand years after separation from eastern Siberian populations"
+  location:
+    prop: location
+    value: { lat: 64.135278, lon: -140.518611, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-bluefish-caves, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-123
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

@@ -1,0 +1,19 @@
+id: src:rozas-davila-2016-andean-megafauna
+type: publication
+kind: measurement
+citation: >-
+  Rozas-Davila, A., Valencia, B.G. & Bush, M.B. (2016). The functional extinction of Andean
+  megafauna. Ecology 97(10), 2533–2539.
+authors:
+  - "Rozas-Davila, A."
+  - "Valencia, B.G."
+  - "Bush, M.B."
+published: 2016
+title: "The functional extinction of Andean megafauna"
+container: "Ecology 97(10), 2533–2539"
+doi: 10.1002/ecy.1531
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the Europe PMC record (PMID 27859121); the full text could not
+    be read here. Quotes checked by script against the text retrieved, after normalizing whitespace.

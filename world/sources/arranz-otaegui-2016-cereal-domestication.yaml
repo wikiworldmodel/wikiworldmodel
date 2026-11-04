@@ -18,4 +18,7 @@ container: Proceedings of the National Academy of Sciences 113(49), 14001–1400
 doi: 10.1073/pnas.1612797113
 verified:
   by: machine:claude-code
-  how: Abstract read verbatim from the Europe PMC record (PMID 27930348); citation from Crossref.
+  how: >-
+    Abstract read verbatim from the Europe PMC record (PMID 27930348); citation from Crossref. For the
+    domestication records, the full text and its Table S6 were read as well, and their quotes checked by
+    script against them.

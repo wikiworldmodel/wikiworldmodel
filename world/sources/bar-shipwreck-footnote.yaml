@@ -1,0 +1,13 @@
+id: src:bar-shipwreck-footnote
+type: publication
+kind: review
+citation: >-
+  Footnote 1 to "Shipwreck!", a Biblical Archaeology Review article, in the BAS Library of the Biblical Archaeology
+  Society.
+title: Footnote 1 – Shipwreck!
+container: Biblical Archaeology Review (BAS Library)
+url: https://library.biblicalarchaeology.org/footnote/footnote-1-shipwreck/
+reliability: A magazine's footnote, read alone, so its issue and year are not given here. It is the only thing read that says what the Gelidonya date was measured on.
+verified:
+  by: machine:claude-code
+  how: The footnote's public page read directly on 4 November 2026. Quote checked by script against its text.

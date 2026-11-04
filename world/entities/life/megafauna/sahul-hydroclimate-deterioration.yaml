@@ -1,0 +1,35 @@
+id: life/megafauna/sahul-hydroclimate-deterioration
+kind: event/transition
+summary: >-
+  A sustained fall in the rainfall reaching the river basins of eastern and central Australia, in
+  staggered steps from about 48,000 years ago: the Lake Eyre basin first, then the Murray-Darling,
+  then the Fitzroy. Hocknull et al. (2020) tie the extinction of Sahul's megafauna to it; Saltré et
+  al. (2016) find that the dry conditions of that time were not unique, and that the megafauna had
+  come through worse.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Hydroclimatic deterioration in eastern Sahul }
+    unsourced: An editorial label, after the paper's words.
+  start:
+    prop: start
+    value: 48 ka
+    source:
+      ref: src:hocknull-2020-south-walker-creek
+      loc: "Results, Extinctions coincide with environmental deterioration"
+      quote: "Chronologically staggered and abrupt hydroclimatic deterioration starts around 48 ka in the LEB"
+    method: stratigraphic
+    note: >-
+      The earliest of the three basins, the Lake Eyre Basin, from lake levels and other proxies;
+      "then from 45 ka in the MDB" and "then from 40 ka in the FRB". The paper's Discussion also
+      sets it against a longer drying under way since the Middle Pleistocene.
+  end:
+    prop: end
+    value: { lo: 30 ka }
+    source:
+      ref: src:hocknull-2020-south-walker-creek
+      loc: "Results, Extinctions coincide with environmental deterioration"
+      quote: "from 48 ka and lasting until at least 30 ka"
+    method: stratigraphic
+    note: One-sided, as the source gives it. Rainfall in the Fitzroy basin recovered at some point since 30 ka.

@@ -1,0 +1,22 @@
+id: src:hocknull-2020-south-walker-creek
+type: publication
+kind: measurement
+citation: >-
+  Hocknull, S.A., Lewis, R., Arnold, L.J., Pietsch, T., Joannes-Boyau, R., Price, G.J., Moss, P.,
+  Wood, R., Dosseto, A., Louys, J., Olley, J. & Lawrence, R.A. (2020). Extinction of eastern Sahul
+  megafauna coincides with sustained environmental deterioration. Nature Communications 11, 2250.
+authors:
+  - "Hocknull, S.A."
+  - "Lewis, R."
+  - "Arnold, L.J."
+  - "Pietsch, T."
+  - "Lawrence, R.A."
+published: 2020
+title: "Extinction of eastern Sahul megafauna coincides with sustained environmental deterioration"
+container: "Nature Communications 11, 2250"
+doi: 10.1038/s41467-020-15785-w
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC7231803). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

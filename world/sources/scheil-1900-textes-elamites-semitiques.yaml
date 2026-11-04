@@ -1,0 +1,22 @@
+id: src:scheil-1900-textes-elamites-semitiques
+type: publication
+kind: measurement
+citation: >-
+  Scheil, V. (1900). Textes élamites-sémitiques, première série. Mémoires de la Délégation en Perse,
+  tome II. Paris: Ernest Leroux.
+authors:
+  - "Scheil, V."
+published: 1900
+title: Textes élamites-sémitiques, première série
+container: Mémoires de la Délégation en Perse
+url: https://archive.org/details/mmoires02franuoft
+license: public-domain
+reliability: >-
+  The first edition of the inscriptions on the stele. Scheil reads the Elamite text as naming a place
+  Sippar and doubts that it means the Babylonian city.
+verified:
+  by: machine:claude-code
+  how: >-
+    The discussion of provenance in the section on the obelisk of Manistu-Irba (p. 5, scan leaf 25, by
+    the scan's page numbers) read in the Internet Archive's OCR text. Quotations checked by script with
+    whitespace normalized and a hyphen at a line end read as joined.

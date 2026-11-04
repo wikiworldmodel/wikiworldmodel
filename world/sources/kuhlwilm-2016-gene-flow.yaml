@@ -1,0 +1,21 @@
+id: src:kuhlwilm-2016-gene-flow
+type: publication
+kind: measurement
+citation: >-
+  Kuhlwilm, M., Gronau, I., Hubisz, M.J., … & Castellano, S. (2016). Ancient gene flow from early
+  modern humans into Eastern Neanderthals. Nature 530(7591), 429–433.
+authors:
+  - "Kuhlwilm, M."
+  - "Gronau, I."
+  - "Hubisz, M.J."
+  - "Castellano, S."
+published: 2016
+title: "Ancient gene flow from early modern humans into Eastern Neanderthals"
+container: "Nature 530(7591), 429–433"
+doi: 10.1038/nature16544
+verified:
+  by: machine:claude-code
+  how: >-
+    Author manuscript in PubMed Central (PMC4933530), retrieved as XML through NCBI E-utilities; the
+    abstract and the passages cited were read, without the supplementary information. Quotes checked
+    by script against that text and the abstract in Europe PMC.

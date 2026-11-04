@@ -1,0 +1,69 @@
+id: life/occurrences/sorghum-kg23
+kind: occurrence
+summary: >-
+  Sorghum impressions in the chaff-tempered pottery of KG23, the largest Butana Group site, in the
+  southern Atbai of eastern Sudan, 3500–3000 BCE. Domestic and wild types are about equal among the
+  impressions: sorghum cultivated with some domestic traits, in the pre-domestication stage in the
+  authors' terms.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Sorghum, KG23" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: S. bicolor
+    source:
+      ref: src:winchell-2018-sorghum
+      loc: "Sorghum: an Eastern Sahelian Domesticate"
+      quote: "Of these, 65 sherds produced 279 identifiable plant impressions of which 249 were S. bicolor."
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      - ref: src:winchell-2018-sorghum
+        loc: "Sorghum: an Eastern Sahelian Domesticate"
+        quote: "The proportions of domestic to wild forms of sorghum recovered from the Khordhag Plain sherds are roughly equal"
+      - ref: src:winchell-2018-sorghum
+        loc: "Sorghum: an Eastern Sahelian Domesticate"
+        quote: "the domesticated type with torn rachillae, which can occur in very low frequencies in wild populations or with immature harvests"
+    note: >-
+      What shows it is domestic: torn rachillae, which the paper warns can also come from wild or
+      unripe plants. At Mahal Teglinos, 1960–1760 BCE, it reports also "rip scars", found only in
+      domestic plants.
+  location:
+    prop: location
+    value: { lat: 15.45, lon: 36.4, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-kassala, loc: "P625 coordinate location" }
+      - ref: src:winchell-2018-sorghum
+        loc: abstract
+        quote: "in the southern Atbai region of the far eastern Sahelian Belt in Africa"
+    method: gazetteer
+    note: >-
+      Kassala, the city at the Gash Delta in the southern Atbai, as a point for the region. KG23's own
+      coordinates were not in the text read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-716
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 3500 BCE, hi: 3000 BCE }
+    source:
+      ref: src:winchell-2018-sorghum
+      loc: "Sorghum: an Eastern Sahelian Domesticate"
+      quote: "populations associated with the Butana Group at KG23 (3500–3000 BC) were in the pre-domestication stage of the domestication process"
+    method: expert-estimate
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott552986 and ott99252: Sorghum bicolor lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/sorghum
+    source: { ref: src:winchell-2018-sorghum, loc: abstract }

@@ -1,0 +1,64 @@
+id: life/occurrences/horse-sintashta
+kind: occurrence
+summary: >-
+  Horses buried with spoke-wheeled chariots in the kurgans of the Sintashta culture, east of the Urals,
+  about 2000–1800 BCE. The DOM2 profile of today's domestic horses is universal among them, and the
+  chariots and the burials show what they were for. They are the earliest unambiguously managed horses
+  in one account.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Horse, Sintashta" }
+    unsourced: An editorial label, from the species and the culture.
+  identified:
+    prop: identified_as
+    value: DOM2
+    source:
+      ref: src:librado-2021-dom2
+      loc: "Expansion of steppe-related pastoralism"
+      quote: "the DOM2 genetic profile was ubiquitous among horses buried in Sintashta kurgans together with the earliest spoke-wheeled chariots around 2000–1800 bc"
+    note: >-
+      The paper's name for the genetic group of modern domestic horses.
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      - ref: src:librado-2021-dom2
+        loc: "Expansion of steppe-related pastoralism"
+        quote: "the DOM2 genetic profile was ubiquitous among horses buried in Sintashta kurgans together with the earliest spoke-wheeled chariots around 2000–1800 bc"
+      - ref: src:taylor-barron-ortiz-2021-botai
+        loc: "Debates over horse domestication in the Trans-Urals"
+        quote: "The earliest unambiguously managed specimens of the domestic horse, E. caballus, originate from the Sintashta culture"
+    note: >-
+      What shows it is domestic: genetics, chariots and burial together.
+  location:
+    prop: location
+    value: { lat: 52.492083, lon: 60.177944, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-sintashta, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      The site of Sintashta, standing for the culture's kurgans; the paper's samples come from several.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-402
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 2000 BCE, hi: 1800 BCE }
+    source:
+      ref: src:librado-2021-dom2
+      loc: "Expansion of steppe-related pastoralism"
+      quote: "around 2000–1800 bc"
+    method: radiometric/radiocarbon
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/equus-caballus
+    source: { ref: src:librado-2021-dom2, loc: abstract }
+  domestication:
+    rel: part-of
+    to: people/domestication/horse
+    source: { ref: src:librado-2021-dom2, loc: "Expansion of steppe-related pastoralism" }

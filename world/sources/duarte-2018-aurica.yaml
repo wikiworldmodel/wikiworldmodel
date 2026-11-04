@@ -1,0 +1,25 @@
+id: src:duarte-2018-aurica
+type: publication
+kind: model
+citation: >-
+  Duarte, J.C., Schellart, W.P. & Rosas, F.M. (2018). The future of Earth's oceans: consequences of
+  subduction initiation in the Atlantic and implications for supercontinent formation. Geological
+  Magazine 155(1), 45–58.
+authors:
+  - "Duarte, J.C."
+  - "Schellart, W.P."
+  - "Rosas, F.M."
+published: 2018
+title: "The future of Earth's oceans: consequences of subduction initiation in the Atlantic and implications for supercontinent formation"
+container: Geological Magazine 155(1), 45–58
+doi: 10.1017/S0016756816000716
+url: https://research.vu.nl/ws/files/338503655/the-future-of-earths-oceans-consequences-of-subduction-initiation-in-the-atlantic-and-implications-for-supercontinent-formation.pdf
+via: >-
+  The version of record in the VU Research Portal, read in the Internet Archive's copy of 1 October
+  2025, since the portal refused a direct download from here. The abstract also read on the publisher's
+  page (Cambridge Core).
+verified:
+  by: machine:claude-code
+  how: >-
+    The whole paper read in that PDF. Citation from it and from Crossref. Quotes checked by script
+    against the text of the publisher's page or of the PDF, after normalizing whitespace.

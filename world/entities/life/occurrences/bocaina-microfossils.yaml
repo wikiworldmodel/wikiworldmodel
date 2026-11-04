@@ -1,0 +1,64 @@
+id: life/occurrences/bocaina-microfossils
+kind: occurrence
+summary: >-
+  Sections of small bioclasts in phosphatic carbonates of the Bocaina Formation, Corumbá Group, Serra da
+  Bodoquena, Brazil, read as candidate metazoans able to biomineralize, older than any accepted animal
+  skeleton. No taxon is recorded here, as none has been named or generally accepted.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Bocaina Formation microfossils" }
+    unsourced: An editorial label, from the formation.
+  identified:
+    prop: identified_as
+    value: Unnamed candidate metazoans
+    source:
+      ref: src:morais-2024-bocaina
+      loc: abstract
+      quote: "These specimens, interpreted as diversified candidate metazoans"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:morais-2024-bocaina
+      loc: "Implications of the Bocaina assemblage"
+      quote: "suggests that four of five morphological categories were produced by early metazoans able to biomineralize"
+  location:
+    prop: location
+    value: { lat: -20.841408, lon: -56.598114, frame: frame:earth/present-day }
+    source:
+      ref: src:morais-2024-bocaina
+      loc: "Fig. 2, caption"
+      quote: "displaying the positions of the studied cores (DD003, DD004 and DD018) and EDEM open pit mine area"
+    method: map-trace
+    note: >-
+      The centre of that satellite image, 20º 50′ 29.07″ S, 56º 35′ 53.21″ W, converted to decimal degrees: a
+      view 2.7 km up, so the cores and the pit lie close by.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-201
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Bocaina Formation
+    source:
+      ref: src:morais-2024-bocaina
+      loc: abstract
+      quote: "diverse microfossils in thin sections and hand samples from the Ediacaran Bocaina Formation, Brazil"
+  date:
+    prop: date
+    value: { mean: 571 Ma, sd: 4.5 Myr }
+    source:
+      - ref: src:morais-2024-bocaina
+        loc: abstract
+        quote: "position this novel fossil record at 571 ± 9 Ma (weighted mean age)"
+      - ref: src:morais-2024-bocaina
+        loc: "Carbonate U-Pb LA-ICP-MS geochronology"
+        quote: "Uncertainties are given as 2σ and as propagated systematic uncertainties"
+    method: radiometric/u-pb
+    note: >-
+      Carbonate U–Pb ages, not ash beds. The stated ± is 2σ, so it is halved for sd. The paper also reports an earlier zircon
+      date from the formation at Porto Morrinhos, in another district, of 555.2 ± 0.7 Ma.

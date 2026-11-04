@@ -1,0 +1,27 @@
+id: src:long-2025-amniote-tracks
+type: publication
+kind: measurement
+citation: >-
+  Long, J.A., Niedźwiedzki, G., Garvey, J., Clement, A.M., Camens, A.B., Eury, C.A., Eason, J. &
+  Ahlberg, P.E. (2025). Earliest amniote tracks recalibrate the timeline of tetrapod evolution.
+  Nature 641(8065), 1193–1200.
+authors:
+  - "Long, J.A."
+  - "Niedźwiedzki, G."
+  - "Garvey, J."
+  - "Clement, A.M."
+  - "Camens, A.B."
+  - "Eury, C.A."
+  - "Eason, J."
+  - "Ahlberg, P.E."
+published: 2025
+title: "Earliest amniote tracks recalibrate the timeline of tetrapod evolution"
+container: Nature 641(8065), 1193–1200
+doi: 10.1038/s41586-025-08884-5
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC12119326) read via Europe PMC (fullTextXML): the Snowy Plains Formation
+    trackway slab from Barjarg, its early Tournaisian age, the molecular dates it is set
+    against, Hylonomus and Notalacerta at Joggins, and the Devonian tracks at Zachełmie.
+    Quotes checked by script against that text. Metadata from Crossref.

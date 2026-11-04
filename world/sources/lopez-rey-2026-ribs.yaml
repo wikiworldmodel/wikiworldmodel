@@ -1,0 +1,25 @@
+id: src:lopez-rey-2026-ribs
+type: publication
+kind: measurement
+citation: >-
+  López-Rey, J.M., García-Martínez, D., Gómez-Olivencia, A., Cambra-Moo, O., González-Martín, A.,
+  Bastir, M. & Bermúdez de Castro, J.M. (2026). Rib Cross-Sectional Mineralized Area in Early
+  Pleistocene Hominins: Insights From the Homo antecessor and H. erectus s. l. Fossil Record.
+  American Journal of Biological Anthropology 190(2), e70299.
+authors:
+  - "López-Rey, J.M."
+  - "García-Martínez, D."
+  - "Gómez-Olivencia, A."
+  - "Cambra-Moo, O."
+  - "González-Martín, A."
+  - "Bastir, M."
+  - "Bermúdez de Castro, J.M."
+published: 2026
+title: "Rib Cross-Sectional Mineralized Area in Early Pleistocene Hominins: Insights From the Homo antecessor and H. erectus s. l. Fossil Record"
+container: "American Journal of Biological Anthropology 190(2), e70299"
+doi: 10.1002/ajpa.70299
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC13292071): KNM-WT 15000 at ~1.53 Ma, in passing. Quoted
+    passages checked by script against the text retrieved.

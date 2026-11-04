@@ -1,0 +1,42 @@
+id: life/taxa/metasequoia
+kind: taxon
+summary: >-
+  A deciduous redwood. The Hell Creek rows of the snapshot name M. occidentalis and a
+  morphotype.
+same_as: { pbdb: "txn:55255" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Metasequoia", en: "dawn redwood" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 55255"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: conifer
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: upright
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 4, p. 60, s.v. Metasequoia glyptostroboides"
+      quote: "Trees to 50 m tall"
+    note: >-
+      A tree, as the flora describes the living plant.
+  height-flora-of-china:
+    prop: plant_height
+    value: 50
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 4, p. 60, s.v. Metasequoia glyptostroboides"
+      quote: "Trees to 50 m tall"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The greatest height of the living species M. glyptostroboides: a modern relative, not a
+      Hell Creek plant.

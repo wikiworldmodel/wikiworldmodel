@@ -1,0 +1,20 @@
+id: src:wikidata-wrangel-island
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q106594 (Wrangel Island, East Siberian and Chukchi Seas, Russia), property P625
+  (coordinate location).
+container: "Wikidata"
+url: https://www.wikidata.org/wiki/Q106594
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry; a point for the whole island.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (71.233333333333, -179.4; precision 0.016666666666667) read from the item's JSON
+    (Special:EntityData/Q106594.json, last revision 2555305010, modified 2026-10-09).

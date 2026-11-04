@@ -1,0 +1,15 @@
+id: src:pleiades-luxor-temple
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 71626430, "Luxor Temple" (Luxor, Egypt).
+snapshot: 2026-11-04
+container: Pleiades
+url: https://pleiades.stoa.org/places/71626430
+license: CC-BY-3.0
+reliability: A scholarly gazetteer of ancient places; its representative point is computed from the locations it lists.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/71626430/json) read directly: representative point
+    25.699627°N, 32.639301°E; the location "OSM location: Luxor Temple", marked certain; its own Wikidata reference is Q319841.

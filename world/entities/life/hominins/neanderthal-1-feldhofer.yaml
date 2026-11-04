@@ -1,0 +1,62 @@
+id: life/occurrences/neanderthal-1-feldhofer
+kind: occurrence
+summary: >-
+  Neandertal 1, the type specimen of the Neanderthals, found in 1856 in the Feldhofer caves in the
+  Neander Valley, western Germany; later digs of the dumped cave sediments found pieces that fit on it.
+same_as: { wikidata: Q821603 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Neandertal 1, Feldhofer" }
+    unsourced: An editorial label, from the specimen and the caves.
+  identified:
+    prop: identified_as
+    value: Homo neanderthalensis
+    source:
+      ref: src:schmitz-2002-feldhofer
+      loc: abstract
+      quote: "The 1856 discovery of the Neandertal type specimen (Neandertal 1) in western Germany"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:schmitz-2002-feldhofer, loc: abstract }
+  location:
+    prop: location
+    value: { lat: 51.22722222, lon: 6.94444444, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-neanderthal-1, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-fotiadou-2026:
+    prop: date
+    value: { lo: 44 ka, hi: 42 ka }
+    source:
+      ref: src:fotiadou-2026-late-neanderthals
+      loc: Results
+      quote: "Feldhofer 2, the latter being a Late Neanderthal from the Kleine Feldhofer Grotte in the Neander Valley dated to 44 to 42 ka"
+    rank: preferred
+    note: >-
+      The age given for the second individual from the cave, which Schmitz et al. (2002) found to be
+      of an age with Neandertal 1, so it stands for both. Preferred as a calendar age, comparable with
+      the rest of the axis. The paper read does not say here how it was reached.
+  date-schmitz-2002:
+    prop: date
+    value: 40000 BP
+    source:
+      ref: src:schmitz-2002-feldhofer
+      loc: abstract
+      quote: "Radiocarbon dates for Neandertal 1, from which a mtDNA sequence was determined in 1997, and a second individual indicate an age of approximately 40,000 yr for both."
+    method: radiometric/radiocarbon
+    note: >-
+      Direct radiocarbon dates on the bones. The abstract read does not say whether this age is
+      calibrated, and the full text could not be reached; if it is not, the calendar age is older.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-neanderthalensis
+    source: { ref: src:schmitz-2002-feldhofer, loc: abstract }

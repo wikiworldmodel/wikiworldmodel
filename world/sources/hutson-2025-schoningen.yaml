@@ -1,0 +1,31 @@
+id: src:hutson-2025-schoningen
+type: publication
+kind: measurement
+citation: >-
+  Hutson, J.M., Bittmann, F., Fischer, P., García-Moreno, A., Gaudzinski-Windheuser, S., Nelson,
+  E., Ortiz, J.E., Penkman, K.E.H., Perić, Z.M., Richter, D. et al. (2025). Revised age for
+  Schöningen hunting spears indicates intensification of Neanderthal cooperative behavior around
+  200,000 years ago. Science Advances 11(19), eadv0752.
+authors:
+  - "Hutson, J.M."
+  - "Bittmann, F."
+  - "Fischer, P."
+  - "García-Moreno, A."
+  - "Gaudzinski-Windheuser, S."
+  - "Nelson, E."
+  - "Ortiz, J.E."
+  - "Penkman, K.E.H."
+  - "Perić, Z.M."
+  - "Richter, D."
+published: 2025
+title: "Revised age for Schöningen hunting spears indicates intensification of Neanderthal cooperative behavior around 200,000 years ago"
+container: "Science Advances 11(19), eadv0752"
+doi: 10.1126/sciadv.adv0752
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 15 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC12063642): amino acid geochronology of the Spear Horizon, an
+    age of MIS 7, ~200,000 years, and the history of earlier estimates. Quoted passages checked by
+    script against the text retrieved.

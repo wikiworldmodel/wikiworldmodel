@@ -1,0 +1,14 @@
+id: src:wright-harappa-chronology
+type: publication
+kind: measurement
+citation: >-
+  Wright, R.P. et al. Introduction to the Beas Research, with Table 1, "Chronological Sequence based on Artifact Categories and
+  Radiocarbon Dates at Harappa". Beas Landscape and Settlement Survey, on harappa.com.
+title: Introduction to the Beas Research
+container: harappa.com
+url: https://web.archive.org/web/20240221113340/https://www.harappa.com/beas/chronology
+via: The Internet Archive's copy of 21 February 2024, because harappa.com refused the script. The page gives no date of its own.
+reliability: From the survey's directors, who work with the Harappa excavators; a web page, not a journal article.
+verified:
+  by: machine:claude-code
+  how: Table 1 read in the archived copy. Quote checked by script against its text, after normalizing whitespace.

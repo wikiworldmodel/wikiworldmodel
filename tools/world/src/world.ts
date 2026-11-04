@@ -12,6 +12,7 @@ import { parseDocument } from 'yaml';
 import { parseRef, RefError, splitRef, type Ref } from '../../../core/refs.ts';
 import type { LagInput, TimeInput } from '../../../core/time.ts';
 import { elementKey, ohmEntities, type OhmSnapshot } from './ohm.ts';
+import { pbdbEntities, type PbdbSnapshot } from './pbdb.ts';
 import { REPO, WORLD } from './paths.ts';
 
 export type Status = 'proposed' | 'accepted' | 'disputed' | 'deprecated';
@@ -113,12 +114,12 @@ export interface DatasetFile {
 
 export interface Dataset extends Source {
   /** a snapshot of a database whose elements become records (tools/world/src/ohm.ts) */
-  import?: { as: 'ohm-site'; frame: string };
+  import?: { as: 'ohm-site' | 'pbdb-formation'; frame: string };
   fetch: {
     url: string;
     sha256: string;
     bytes: number;
-    format: 'zip' | 'parquet' | 'csv' | 'tsv' | 'xlsx' | 'tif' | 'json';
+    format: 'zip' | 'parquet' | 'csv' | 'tsv' | 'xlsx' | 'tif' | 'json' | 'netcdf';
     files?: Record<string, DatasetFile>;
     upstream?: { url: string; sha256: string };
     via?: string;
@@ -152,17 +153,24 @@ export interface Field {
   datum?: string;
   frame?: string;
   /** a grid on a frame, or a series: one value for the whole planet at each time */
-  grid?: { kind: 'lonlat'; res_deg: number } | { kind: 'series' };
+  grid?: { kind: 'lonlat'; res_deg: number } | { kind: 'series' } | { kind: 'rows' };
   time?: { lo: TimeInput; hi: TimeInput; step?: string };
+  /** for a series: the series of the same quantity that this one is finer than, over part of its span */
+  refines?: string;
   data?: {
     from: string;
     file?: string;
+    /** what the data is read as, where it is not elevation */
+    as?: 'climate' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages';
+    places?: string;
+    /** a series of the world's own measurements: the property whose claims give its values */
+    prop?: string;
     /** for a series read from a table: column names, or a workbook's column letters */
-    columns?: { time: string; value: string; lo?: string; hi?: string };
+    columns?: { time: string; time_to?: string; value: string; lo?: string; hi?: string };
     /** for a workbook: the sheet, and the first row of data */
     sheet?: string;
     first_row?: number;
-    time_unit?: 'Ma' | 'ka' | 'BP' | 'CE';
+    time_unit?: 'Ma' | 'ka' | 'ka-b2k' | 'BP' | 'CE';
     band?: string;
   };
   basis?: Basis;
@@ -211,6 +219,8 @@ export interface Kind {
   moment?: boolean;
   /** latest: a start derived only from relations is shown at the latest time they allow */
   start?: 'latest';
+  /** latest: an end given as a range is shown at the latest time it allows */
+  end?: 'latest';
 }
 
 export interface Property {
@@ -282,6 +292,8 @@ export interface World {
   entity: Map<string, Entity>;
   /** snapshots of databases, by dataset id */
   snapshots: Map<string, OhmSnapshot>;
+  /** snapshots of a formation's fossils, by dataset id */
+  fossils: Map<string, PbdbSnapshot>;
   source: Map<string, Source>;
   frame: Map<string, Frame>;
   alternative: Map<string, Alternative>;
@@ -475,6 +487,15 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
     for (const k of [...adopted]) if (!snap.elements.some((x) => elementKey(x) === k)) loadIssues.push({ file: 'manifest.yaml', where: d.id, message: `no element ${k} in the snapshot` });
     entities.push(...ohmEntities(snap, d.id, path, d.import.frame, adopted));
   }
+  // A formation's taxa become records too, but its occurrences stay rows of the snapshot.
+  const fossils = new Map<string, PbdbSnapshot>();
+  for (const d of Object.values(manifest.datasets)) {
+    if (d.import?.as !== 'pbdb-formation') continue;
+    const path = d.fetch.url.replace(/^repo:/, '');
+    const snap = JSON.parse(await readFile(join(REPO, path), 'utf8')) as PbdbSnapshot;
+    fossils.set(d.id, snap);
+    entities.push(...pbdbEntities(snap, d.id, path, entities));
+  }
   const sources: Source[] = [
     ...sourceFiles.map((f) => ({ ...(f.data as unknown as Source), file: f.file })),
     ...Object.values(manifest.datasets),
@@ -497,6 +518,7 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
     loadIssues,
     entity: new Map(entities.map((e) => [e.id, e])),
     snapshots,
+    fossils,
     source: new Map(sources.map((s) => [s.id, s])),
     frame: new Map(frames.map((f) => [f.id, f])),
     alternative: new Map(alternatives.map((a) => [a.id, a])),

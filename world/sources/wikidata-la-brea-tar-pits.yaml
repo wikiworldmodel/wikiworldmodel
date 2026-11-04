@@ -1,0 +1,19 @@
+id: src:wikidata-la-brea-tar-pits
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q1147168 (La Brea Tar Pits, Los Angeles), property P625 (coordinate location).
+container: "Wikidata"
+url: https://www.wikidata.org/wiki/Q1147168
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry; a point for the whole park, not any one pit.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (34.063056, -118.355833; precision 0.00001) read from the item's JSON
+    (Special:EntityData/Q1147168.json, last revision 2478567734, modified 2026-04-05).

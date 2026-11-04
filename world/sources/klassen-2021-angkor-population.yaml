@@ -1,0 +1,32 @@
+id: src:klassen-2021-angkor-population
+type: publication
+kind: model
+citation: >-
+  Klassen, S., Carter, A.K., Evans, D.H., Ortman, S., Stark, M.T., Loyless, A.A., Polkinghorne, M., Heng, P., Hill, M., Wijker, P.,
+  Niles-Weed, J., Marriner, G.P., Pottier, C. & Fletcher, R.J. (2021). Diachronic modeling of the population within the medieval Greater
+  Angkor Region settlement complex. Science Advances 7(19), eabf8441.
+authors:
+  - "Klassen, S."
+  - "Carter, A.K."
+  - "Evans, D.H."
+  - "Ortman, S."
+  - "Stark, M.T."
+  - "Loyless, A.A."
+  - "Polkinghorne, M."
+  - "Heng, P."
+  - "Hill, M."
+  - "Wijker, P."
+  - "Niles-Weed, J."
+  - "Marriner, G.P."
+  - "Pottier, C."
+  - "Fletcher, R.J."
+published: 2021
+title: Diachronic modeling of the population within the medieval Greater Angkor Region settlement complex
+container: Science Advances
+doi: 10.1126/sciadv.abf8441
+url: https://europepmc.org/article/PMC/PMC8104873
+license: CC-BY-NC-4.0
+license_note: Single facts and short quotes, with credit.
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC8104873). Quotes checked by script against it, after normalizing whitespace.

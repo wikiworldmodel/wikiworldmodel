@@ -1,0 +1,15 @@
+id: src:hanshu-96-wylie-1881
+type: text
+kind: historian
+citation: >-
+  Ban Gu, Han shu, chapter 96, translated by A. Wylie, "Notes on the Western Regions", Journal of the Anthropological
+  Institute of Great Britain and Ireland 10 (1881), pp. 20–73; as reproduced in D.C. Waugh (ed.), Selections from the Han
+  Narrative Histories, Silk Road Seattle.
+published: 1881
+title: Han shu, chapter 96 (Wylie's translation)
+url: https://depts.washington.edu/silkroad/texts/hantxt1.html
+via: Daniel Waugh's web edition for Silk Road Seattle, which condenses the translation and adds glosses in square brackets. Wylie's article itself was not read. Its old spellings are kept, so that Ching Keih is Zheng Ji.
+reliability: The official history of the Former Han, and the first description of the two roads. Wylie's translation is old, and Hulsewé and Loewe's of 1979, the standard one, was not read.
+verified:
+  by: machine:claude-code
+  how: The section "Notes on the Western Regions" of the web edition read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

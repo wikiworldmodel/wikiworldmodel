@@ -1,0 +1,15 @@
+id: src:unesco-2008-aksum-obelisk-reinstalled
+type: publication
+kind: review
+citation: >-
+  UNESCO World Heritage Centre (2008). Mission accomplished: Aksum Obelisk successfully reinstalled.
+  News item, 1 August 2008.
+published: 2008
+title: "Mission accomplished: Aksum Obelisk successfully reinstalled"
+url: https://web.archive.org/web/20201213193026/https://whc.unesco.org/en/news/456/
+reliability: The news service of the body that ran the reinstallation.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the copy archived on 13 December 2020 at web.archive.org; the centre's own site answered
+    403 from here. Quotations checked by script against its text.

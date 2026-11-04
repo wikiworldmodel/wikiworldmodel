@@ -1,0 +1,27 @@
+id: src:pei-2020-powered-flight
+type: publication
+kind: model
+citation: >-
+  Pei, R., Pittman, M., Goloboff, P.A., Dececchi, T.A., Habib, M.B., Kaye, T.G., Larsson, H.C.,
+  Norell, M.A., Brusatte, S.L. & Xu, X. (2020). Potential for Powered Flight Neared by Most
+  Close Avialan Relatives, but Few Crossed Its Thresholds. Current Biology 30(20), 4033–4046.e8.
+authors:
+  - "Pei, R."
+  - "Pittman, M."
+  - "Goloboff, P.A."
+  - "Dececchi, T.A."
+  - "Habib, M.B."
+  - "Kaye, T.G."
+  - "Larsson, H.C."
+  - "Norell, M.A."
+  - "Brusatte, S.L."
+  - "Xu, X."
+published: 2020
+title: "Potential for Powered Flight Neared by Most Close Avialan Relatives, but Few Crossed Its Thresholds"
+container: Current Biology 30(20), 4033–4046.e8
+doi: 10.1016/j.cub.2020.06.105
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 32763170); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

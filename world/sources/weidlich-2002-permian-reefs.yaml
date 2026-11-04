@@ -1,0 +1,19 @@
+id: src:weidlich-2002-permian-reefs
+type: publication
+kind: review
+citation: >-
+  Weidlich, O. (2002). Middle and Late Permian reefs: distributional patterns and reservoir
+  potential. In Kiessling, W., Flügel, E. & Golonka, J. (eds), Phanerozoic Reef Patterns. SEPM
+  Special Publication 72, 339–390.
+authors:
+  - "Weidlich, O."
+published: 2002
+title: "Middle and Late Permian reefs: distributional patterns and reservoir potential"
+container: Phanerozoic Reef Patterns, SEPM Special Publication 72, 339–390
+doi: 10.2110/pec.02.72.0339
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

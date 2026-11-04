@@ -1,0 +1,26 @@
+id: src:lepre-2011-kokiselei
+type: publication
+kind: measurement
+citation: >-
+  Lepre, C.J., Roche, H., Kent, D.V., Harmand, S., Quinn, R.L., Brugal, J.P., Texier, P.J.,
+  Lenoble, A. & Feibel, C.S. (2011). An earlier origin for the Acheulian. Nature 477(7362), 82–85.
+authors:
+  - "Lepre, C.J."
+  - "Roche, H."
+  - "Kent, D.V."
+  - "Harmand, S."
+  - "Quinn, R.L."
+  - "Brugal, J.P."
+  - "Texier, P.J."
+  - "Lenoble, A."
+  - "Feibel, C.S."
+published: 2011
+title: "An earlier origin for the Acheulian"
+container: "Nature 477(7362), 82–85"
+doi: 10.1038/nature10372
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 21886161): Kokiselei 4, pushing the first appearance
+    of the Acheulian back to 1.76 Myr. It does not name the dating method. Quoted passages checked
+    by script against the text retrieved.

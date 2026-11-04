@@ -1,0 +1,17 @@
+id: src:wikidata-chogha-golan
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q24036929 (Chogha Golan), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q24036929
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "ChoghaGolan Hill". A point for the named place, of uncertain
+  precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (33.377361, 46.271092) read from the item's JSON
+    (Special:EntityData/Q24036929.json) on 3 November 2026.

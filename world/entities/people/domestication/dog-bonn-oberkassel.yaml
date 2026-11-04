@@ -1,0 +1,73 @@
+id: life/occurrences/dog-bonn-oberkassel
+kind: occurrence
+summary: >-
+  A young dog buried with people at Oberkassel, in Bonn: the earliest remains generally accepted
+  as a domestic dog, about 15,000 years old. Its shape and genes set it apart from the local wolves,
+  it was buried with humans, and it was cared for through an illness.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Dog, Bonn-Oberkassel" }
+    unsourced: An editorial label, from the species and the site.
+  identified:
+    prop: identified_as
+    value: domestic dog
+    source:
+      ref: src:perri-2021-dogs
+      loc: "The First Dogs"
+      quote: "The earliest generally accepted remains of a domestic dog, based on a convergence of morphological, genetic, isotopic, and contextual evidence, comes from the site of Bonn-Oberkassel in Germany"
+  evidence:
+    prop: evidence
+    value: zooarchaeological
+    source:
+      ref: src:perri-2021-dogs
+      loc: "The First Dogs"
+      quote: "The morphology and genetics of this young dog clearly distinguish it from local wolves. Its coburial with humans and the evidence for its care after suffering an illness also suggest it was a dog."
+    note: >-
+      What shows it is domestic: bones, genes, burial with people and care. The restudy these rest on,
+      Janssens et al. (2018), was not read.
+  location:
+    prop: location
+    value: { lat: 50.713889, lon: 7.166667, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-oberkassel, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      The gazetteer's point for the Oberkassel quarter of Bonn, not the find spot.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-perri-2021:
+    prop: date
+    value: 15 ka
+    source:
+      ref: src:perri-2021-dogs
+      loc: "The First Dogs"
+      quote: "comes from the site of Bonn-Oberkassel in Germany, dated to ∼15 ka"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      Preferred for naming this find; rounded, as "∼" says.
+  date-bergstrom-2020:
+    prop: date
+    value: 14.5 ka
+    source:
+      ref: src:bergstrom-2020-dogs
+      loc: "Assessing the relationship between dog and human population histories"
+      quote: "the earliest appearance of dog morphology in the fossil record, conservatively dated to 14.5kya (48)"
+    method: radiometric/radiocarbon
+    note: >-
+      The reference (48) is the restudy of Bonn-Oberkassel. Frantz et al. (2016) say about 15,000
+      years, and Bergström et al. (2022) by 14 ka.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/canis-familiaris
+    source: { ref: src:perri-2021-dogs, loc: "The First Dogs" }
+  domestication:
+    rel: part-of
+    to: people/domestication/dog
+    source: { ref: src:perri-2021-dogs, loc: "The First Dogs" }

@@ -1,0 +1,17 @@
+id: src:hou-hanshu-88-hill-2003
+type: text
+kind: historian
+citation: >-
+  Fan Ye, Hou Hanshu, chapter 88, translated by J.E. Hill, The Western Regions according to the Hou Hanshu, second edition
+  (September 2003). Silk Road Seattle.
+authors: ["Hill, J.E."]
+written: { hi: 445 CE }
+published: 2003
+title: The Western Regions according to the Hou Hanshu
+url: https://depts.washington.edu/silkroad/texts/hhshu/hou_han_shu.html
+reliability: >-
+  The official history of the Later Han, compiled from earlier records by Fan Ye, who died in 445 CE. The years in square
+  brackets and the identifications in round ones are the translator's.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

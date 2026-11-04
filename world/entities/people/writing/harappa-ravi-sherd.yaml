@@ -1,0 +1,42 @@
+id: people/writing/harappa-ravi-sherd
+kind: occurrence
+summary: >-
+  A sherd with incised marks from nearly the lowest level of the Ravi phase at Harappa, Period 1A, one of the marks and graffiti that the excavators see as forerunners of the Indus script. A news report in
+  1999 called it the earliest writing; the excavator corrected that, saying its interest lies in the unbroken sequence of inscribed sherds at the site, and that its date is an estimate.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Inscribed Ravi sherd, Harappa" }
+    unsourced: An editorial label, from the find and the place.
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:meadow-kenoyer-2001-harappa
+      loc: section "Ravi Phase and Kot Diji Phase Occupations"
+      quote: The use of pre-firing "potter's marks" and post-firing "graffiti" on pottery also indicates that concepts of graphic expression using abstract symbols were emerging
+    note: Marks and signs, not writing as such.
+  location:
+    prop: location
+    value: { lat: 30.629618, lon: 72.865257, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-harappa, loc: "place 93441396, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-501
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 3500 BCE, hi: 3300 BCE }
+    source:
+      - ref: src:meadow-1999-harappa-sherd
+        loc: communiqué of 24 May 1999
+        quote: The correct sherd PROBABLY dating somewhere between 3500 and 3300 BC
+      - ref: src:meadow-1999-harappa-sherd
+        loc: communiqué of 24 May 1999
+        quote: The date of 3300 to 3500 BC is an estimate based on currently available radiocarbon dates that do NOT come from contexts DIRECTLY associated with the sherd.
+    method: radiometric/radiocarbon
+    note: The excavator's own warning, in 1999. The later tables for the site move the start of the phase earlier (people/first-cities/harappa), and no revised date for this sherd could be read.

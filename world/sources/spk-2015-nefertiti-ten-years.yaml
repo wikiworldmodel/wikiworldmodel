@@ -1,0 +1,11 @@
+id: src:spk-2015-nefertiti-ten-years
+type: publication
+kind: review
+citation: Stiftung Preußischer Kulturbesitz (2015). Nefertiti Celebrates Ten Years Back on the Museumsinsel. News item, 12 August 2015.
+published: 2015
+title: Nefertiti Celebrates Ten Years Back on the Museumsinsel
+url: https://www.preussischer-kulturbesitz.de/en/news-detail/article/2015/08/12/nefertiti-celebrates-ten-years-back-on-the-museumsinsel.html
+reliability: The foundation that owns the bust, in a news item.
+verified:
+  by: machine:claude-code
+  how: Read on the foundation's site. Quotations checked by script against the page's text.

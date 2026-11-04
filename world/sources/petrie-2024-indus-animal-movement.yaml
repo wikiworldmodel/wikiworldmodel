@@ -1,0 +1,28 @@
+id: src:petrie-2024-indus-animal-movement
+type: publication
+kind: measurement
+citation: >-
+  Petrie, C.A., Lightfoot, E., Jones, P.J., Walker, J.R., Valentine, B.T., Krigbaum, J., le Roux, P., Joglekar, P.P., Shinde, V.,
+  Singh, R.N. & O'Connell, T.C. (2024). Animal movement on the hoof and on the cart and its implications for understanding
+  exchange within the Indus Civilisation. Scientific Reports 14, 158.
+authors:
+  - "Petrie, C.A."
+  - "Lightfoot, E."
+  - "Jones, P.J."
+  - "Walker, J.R."
+  - "Valentine, B.T."
+  - "Krigbaum, J."
+  - "le Roux, P."
+  - "Joglekar, P.P."
+  - "Shinde, V."
+  - "Singh, R.N."
+  - "O'Connell, T.C."
+published: 2024
+title: Animal movement on the hoof and on the cart and its implications for understanding exchange within the Indus Civilisation
+container: Scientific Reports
+doi: 10.1038/s41598-023-50249-3
+url: https://europepmc.org/article/PMC/PMC10762248
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC10762248). Quote checked by script against it, after normalizing whitespace.

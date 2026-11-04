@@ -1,0 +1,73 @@
+id: life/occurrences/forest-gilboa
+kind: occurrence
+summary: >-
+  The stumps of Eospermatopteris at Riverside Quarry, Gilboa, New York: tree-fern-like
+  cladoxylopsids in their place of growth, long called the Earth's oldest forest. Older forests are
+  now known.
+same_as: { pbdb: "occ:303385" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Gilboa fossil forest" }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: Eospermatopteris sp.
+    source:
+      - { ref: src:pbdb/collection-29282, loc: "occurrence 303385, identified_name" }
+      - ref: src:stein-2007-gilboa
+        loc: abstract
+        quote: showing an intact crown belonging to the cladoxylopsid Wattieza (Pseudosporochnales) and its attachment to Eospermatopteris trunk and base
+    note: >-
+      Eospermatopteris names the stumps; the whole plant carries the crown Wattieza.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:stein-2007-gilboa
+      loc: abstract
+      quote: fossil tree stumps, rooted and still in life position
+    note: >-
+      The basis is the abstract's statement that the stumps are rooted and in life position.
+  location:
+    prop: location
+    value: { lat: 42.383331, lon: -74.449997, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-29282, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      The PBDB's point for "Riverside quarry, Gilboa", given to about a hundredth of a degree.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Moscow Formation
+    source:
+      - { ref: src:pbdb/collection-29282, loc: "formation" }
+      - ref: src:stein-2020-cairo
+        loc: "Results, first paragraph (manuscript p. 4)"
+        quote: Riverside Quarry in the Cooperstown (Moscow) Formation
+  date:
+    prop: date
+    value: { ref: ics/givetian }
+    source:
+      - { ref: src:pbdb/collection-29282, loc: "early_interval (Givetian)" }
+      - ref: src:stein-2007-gilboa
+        loc: abstract
+        quote: Late Middle Devonian fossil tree stumps
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Stein et al. (2020) make it ca. 2–3 Myr younger than the forest at Cairo, whose strata they
+      correlate at ca. 385 Ma, depending on the time scale.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/tracheophyta
+    source: { ref: src:stein-2007-gilboa, loc: "abstract: a tree-fern-like plant within vascular plants" }
+    note: >-
+      A cladoxylopsid. The abstract places its body plan within vascular plants.

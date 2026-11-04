@@ -1,0 +1,17 @@
+id: src:meadow-1999-harappa-sherd
+type: publication
+kind: measurement
+citation: >-
+  Meadow, R.H. (1999). Clarification of BBC news report. Communiqué of 24 May 1999, posted by M. Witzel to the INDOLOGY mailing
+  list, 25 May 1999.
+authors:
+  - "Meadow, R.H."
+published: 1999
+title: Clarification of BBC news report
+container: INDOLOGY mailing list
+url: https://list.indology.info/pipermail/indology/1999-May/017203.html
+reliability: >-
+  The excavation's director correcting a news story; not peer reviewed, and he says the date is an estimate, subject to change.
+verified:
+  by: machine:claude-code
+  how: The list's archive page read directly. Quotes checked by script against its text, after normalizing whitespace.

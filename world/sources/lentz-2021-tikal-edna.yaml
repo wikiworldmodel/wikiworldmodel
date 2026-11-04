@@ -1,0 +1,24 @@
+id: src:lentz-2021-tikal-edna
+type: publication
+kind: measurement
+citation: >-
+  Lentz, D.L., Hamilton, T.L., Dunning, N.P., Tepe, E.J., Scarborough, V.L., Meyers, S.A., Grazioso, L. & Weiss, A.A. (2021).
+  Environmental DNA reveals arboreal cityscapes at the Ancient Maya Center of Tikal. Scientific Reports 11, 12725.
+authors:
+  - "Lentz, D.L."
+  - "Hamilton, T.L."
+  - "Dunning, N.P."
+  - "Tepe, E.J."
+  - "Scarborough, V.L."
+  - "Meyers, S.A."
+  - "Grazioso, L."
+  - "Weiss, A.A."
+published: 2021
+title: Environmental DNA reveals arboreal cityscapes at the Ancient Maya Center of Tikal
+container: Scientific Reports
+doi: 10.1038/s41598-021-91620-6
+url: https://europepmc.org/article/PMC/PMC8209062
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC8209062). Quotes checked by script against it, after normalizing whitespace.

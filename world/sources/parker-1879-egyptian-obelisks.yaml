@@ -1,0 +1,22 @@
+id: src:parker-1879-egyptian-obelisks
+type: publication
+kind: review
+citation: >-
+  Parker, J.H. (1879). The Archaeology of Rome: The Egyptian Obelisks. Oxford: James Parker & Co.;
+  London: John Murray.
+authors:
+  - "Parker, J.H."
+published: 1879
+title: "The Archaeology of Rome: The Egyptian Obelisks"
+url: https://archive.org/details/archaeologyrome12parkgoog
+license: public-domain
+reliability: >-
+  A survey of its time, useful here for printing the Latin inscriptions on the bases of the obelisks;
+  its own dates for the Egyptian kings are out of date.
+verified:
+  by: machine:claude-code
+  how: >-
+    The passage on the Vatican and Flaminian obelisks and the inscriptions on their bases read in the
+    Internet Archive's OCR text of the Google scan (archaeologyrome12parkgoog), compared with the
+    other scan (twelveegyptiano00parkgoog). The OCR garbles the date B.C. 10 in both; the quotation
+    stops short of it. Checked by script with whitespace normalized.

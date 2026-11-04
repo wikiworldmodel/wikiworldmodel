@@ -1,0 +1,28 @@
+id: src:mairal-2017-afromontane
+type: publication
+kind: measurement
+citation: >-
+  Mairal, M., Sanmartín, I., Herrero, A., Pokorny, L., Vargas, P., Aldasoro, J.J. & Alarcón, M.
+  (2017). Geographic barriers and Pleistocene climate change shaped patterns of genetic variation in
+  the Eastern Afromontane biodiversity hotspot. Scientific Reports 7, 45749.
+authors:
+  - "Mairal, M."
+  - "Sanmartín, I."
+  - "Herrero, A."
+  - "Pokorny, L."
+  - "Vargas, P."
+  - "Aldasoro, J.J."
+  - "Alarcón, M."
+published: 2017
+title: Geographic barriers and Pleistocene climate change shaped patterns of genetic variation in the Eastern Afromontane biodiversity hotspot
+container: Scientific Reports 7, 45749
+doi: 10.1038/srep45749
+reliability: >-
+  A paper on plant genetics, cited here only for a passing statement about the rift in its
+  introduction, with a reference to Fernandes et al. (2004, Earth and Planetary Science Letters 222,
+  197–208), which could not be read. It is not itself a study of the rift.
+verified:
+  by: machine:claude-code
+  how: >-
+    Introduction read in the full text from Europe PMC (PMC5387718). Citation from Crossref. Quotes
+    checked by script against the text retrieved, after normalizing whitespace.

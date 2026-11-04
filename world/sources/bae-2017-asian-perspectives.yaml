@@ -1,0 +1,19 @@
+id: src:bae-2017-asian-perspectives
+type: publication
+kind: review
+citation: >-
+  Bae, C.J., Douka, K. & Petraglia, M.D. (2017). On the origin of modern humans: Asian perspectives.
+  Science 358(6368), eaai9067.
+authors:
+  - "Bae, C.J."
+  - "Douka, K."
+  - "Petraglia, M.D."
+published: 2017
+title: "On the origin of modern humans: Asian perspectives"
+container: "Science 358(6368), eaai9067"
+doi: 10.1126/science.aai9067
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

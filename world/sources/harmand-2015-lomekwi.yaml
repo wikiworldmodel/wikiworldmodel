@@ -1,0 +1,31 @@
+id: src:harmand-2015-lomekwi
+type: publication
+kind: measurement
+citation: >-
+  Harmand, S., Lewis, J.E., Feibel, C.S., Lepre, C.J., Prat, S., Lenoble, A., Boës, X., Quinn,
+  R.L., Brenet, M., Arroyo, A. et al. (2015). 3.3-million-year-old stone tools from Lomekwi 3,
+  West Turkana, Kenya. Nature 521(7552), 310–315.
+authors:
+  - "Harmand, S."
+  - "Lewis, J.E."
+  - "Feibel, C.S."
+  - "Lepre, C.J."
+  - "Prat, S."
+  - "Lenoble, A."
+  - "Boës, X."
+  - "Quinn, R.L."
+  - "Brenet, M."
+  - "Arroyo, A."
+published: 2015
+title: "3.3-million-year-old stone tools from Lomekwi 3, West Turkana, Kenya"
+container: "Nature 521(7552), 310–315"
+doi: 10.1038/nature14464
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 21 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 25993961) and the publisher's page, whose text is
+    paywalled: the abstract, and the figure legends of the extended data: the site against marker
+    tuffs and lithofacies, and palaeomagnetic data from the Toroto Tuff and other units. Quoted
+    passages checked by script against the text retrieved.

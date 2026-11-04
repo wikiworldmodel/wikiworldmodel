@@ -1,0 +1,13 @@
+id: src:wikidata-mazotos
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q6798641 (Mazotos, a community in Larnaca District, Cyprus), property P625 (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q6798641
+license: CC0-1.0
+reliability: Crowd-edited; a point for the village, not the wreck.
+verified:
+  by: machine:claude-code
+  how: Coordinates (34.80363596, 33.48947019) read from the item's JSON (Special:EntityData/Q6798641.json, revision 2530500203, modified 2026-08-12).

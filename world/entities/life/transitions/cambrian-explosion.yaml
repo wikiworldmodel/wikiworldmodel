@@ -1,0 +1,71 @@
+id: life/transitions/cambrian-explosion
+kind: event/transition
+summary: >-
+  The Cambrian explosion: the rapid appearance in the fossil record of most animal phyla, of skeletons, burrows that rework the sea floor, and food webs like modern
+  ones. Conventionally from the base of the Cambrian, marked by a burrow; its roots go back into the Ediacaran, and how far it is a real burst of evolution rather than a
+  burst of things that fossilize is disputed. Molecular clocks put the divergence of the phyla much earlier.
+same_as: { wikidata: Q32919 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Cambrian explosion }
+    unsourced: An editorial label.
+  start-mcilroy-2022:
+    prop: start
+    value: { ref: life/occurrences/treptichnus-fortune-head }
+    source:
+      ref: src:mcilroy-2022-first-burrows
+      loc: "Introduction, first paragraph"
+      quote: "the beginning of the Cambrian Explosion of animal life"
+    rank: preferred
+    note: >-
+      The convention: the start is where the Cambrian starts, at the first complex burrows. McIlroy's first sentence ties the two together, and his second defines the boundary
+      by them. Follows the chart through that occurrence. Carlisle et al. (2024) describe the hypothesis as a diversification within the early Cambrian or, at the very earliest, the
+      latest Ediacaran.
+  start-zhuravlev-wood-2018:
+    prop: start
+    value: 543 Ma
+    source:
+      ref: src:zhuravlev-wood-2018-cambrian-phases
+      loc: "Discussion"
+      quote: "During the earlier phase of stem taxa radiation (~543–513 Ma)"
+    method: stratigraphic
+    note: >-
+      Skeletal species on the Siberian Platform, whose diversification starts before the boundary. The same paper also has bilaterian stem groups joining at about 560 Ma, and
+      reports claims that the first phase was the Nama assemblage, or began at about 561 Ma.
+  end-zhuravlev-wood-2018:
+    prop: end
+    value: 513 Ma
+    source:
+      ref: src:zhuravlev-wood-2018-cambrian-phases
+      loc: abstract
+      quote: "but were devastated during the early Cambrian Stage 4 Sinsk extinction event (~513 Ma)"
+    method: stratigraphic
+    note: >-
+      The end of the first phase, from the one source read that dates one. A second phase, of crown groups, runs on from there, and may have been cut short by the late Cambrian
+      SPICE event; crown brachiopods and molluscs go on diversifying into the Ordovician.
+relations:
+  evidence-treptichnus:
+    rel: evidenced-by
+    to: life/occurrences/treptichnus-fortune-head
+    source:
+      ref: src:mcilroy-2022-first-burrows
+      loc: "Introduction, first paragraph"
+      quote: "The base of the Cambrian period (and end of the Ediacaran) is defined by the first occurrence of trace fossils belonging to the Treptichnus pedum Assemblage Zone"
+  evidence-trilobites:
+    rel: evidenced-by
+    to: life/occurrences/profallotaspis-isit
+    source:
+      ref: src:daley-2018-euarthropoda
+      loc: abstract
+      quote: "Trilobites are crown group euarthropods that appear in the fossil record at 521 Ma"
+  evidence-haikouichthys:
+    rel: evidenced-by
+    to: life/occurrences/haikouichthys-haikou
+    source:
+      ref: src:carlisle-2024-metazoan-timescale
+      loc: "Introduction, first paragraph"
+      quote: "corroborated by fossil evidence for most bilaterian phyla in younger Cambrian biotas such as the Sirius Passet (35), Chengjiang (36), and Burgess Shale (37) Lagerstätten"
+    note: >-
+      The source names the Chengjiang biota and not this fossil. That the Yuanshan Formation at Haikou belongs to it is this record's reading, not a statement in a source read.

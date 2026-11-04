@@ -1,0 +1,14 @@
+id: src:china-daily-2023-xuanquanzhi
+type: publication
+kind: review
+citation: >-
+  Yang, X. (9 August 2023). Reviving glory of millennia-old posthouse ruins in Dunhuang. China Daily.
+authors: ["Yang, X."]
+published: 2023
+title: Reviving glory of millennia-old posthouse ruins in Dunhuang
+container: China Daily
+url: https://www.chinadailyhk.com/hk/article/344928
+reliability: A newspaper's report, quoting the site's and the museum's staff. It is the only thing read that gives the span of the slips' dates.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

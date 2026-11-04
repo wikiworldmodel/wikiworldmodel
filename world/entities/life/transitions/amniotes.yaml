@@ -1,0 +1,67 @@
+id: life/transitions/amniotes
+kind: event/transition
+summary: >-
+  The first amniotes, the vertebrates with the egg that freed them from water to breed: reptiles, birds and mammals. The body fossils start with Hylonomus at Joggins, in the
+  later Carboniferous, and molecular dates agree; clawed footprints in Australia, if a crown amniote made them, are at least 35 million years older. The record of the crown group is
+  life/taxa/amniota.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First amniotes }
+    unsourced: An editorial label.
+  start-joggins:
+    prop: start
+    value: { ref: life/occurrences/hylonomus-joggins }
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: "The Silesian tracks"
+      quote: "The earliest crown amniote fossils acknowledged in the current literature are trackways of Notalacerta and associated body fossils of the stem reptile Hylonomus (which may have been the trackmaker) in the middle Bashkirian of Joggins, Nova Scotia, Canada"
+    rank: preferred
+    note: >-
+      Preferred as a skeleton, not a footprint, and because the same paper concedes that the tracks have two readings. It is the view the authors set out to overturn, and may not last.
+  start-snowy-plains:
+    prop: start
+    value: { ref: life/occurrences/snowy-plains-tracks }
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: abstract
+      quote: "This pushes back the likely origin of crown-group amniotes by at least 35–40 million years."
+    note: >-
+      Claws at the base of the Carboniferous. The tracks also resemble Hylopus hardingi, which is not attributed to crown amniotes. If this claim is right, the single molecular claim in
+      life/taxa/amniota cannot stand, which is why this occurrence is not made a member of that taxon.
+  start-walbrzych:
+    prop: start
+    value: { ref: ics/serpukhovian }
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: "The Silesian tracks"
+      quote: "tracks similar to those of Notalacerta have also been discovered in the Wałbrzych Formation of the Intra-Sudetic Basin of Silesia in Poland, which has been dated as mid-Serpukhovian to early Bashkirian (Namurian A) on the basis of palynostratigaphy"
+    method: stratigraphic
+    note: >-
+      A smaller step in the same paper: about eight million years older than Joggins, in Europe. No occurrence is written for these tracks; they lack a locality in what was read.
+  start-timetree:
+    prop: start
+    value: { lo: 334.7 Ma, hi: 308.5 Ma }
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: "main text, on the molecular dates"
+      quote: "form a tight cluster with a median age of 319 million years, which corresponds to early Bashkirian (mid-Carboniferous); the spread of the cluster is 308.5 to 334.7 million years"
+    method: molecular-clock
+    note: >-
+      Thirty molecular studies curated at TimeTree, as this paper reports them. life/taxa/amniota holds a similar interval, from dos Reis et al. (2015).
+relations:
+  evidence-hylonomus:
+    rel: evidenced-by
+    to: life/occurrences/hylonomus-joggins
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: abstract
+      quote: "The known fossil record of crown-group amniotes begins in the late Carboniferous with the sauropsid trackmaker Notalacerta1,2 and the sauropsid body fossil Hylonomus"
+  evidence-snowy-plains:
+    rel: evidenced-by
+    to: life/occurrences/snowy-plains-tracks
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: abstract
+      quote: "shows footprints from a crown-group amniote with clawed feet, most probably a primitive sauropsid"

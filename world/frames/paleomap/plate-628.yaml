@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-628
+type: frame
+kind: plate
+title: Amuria (PALEOMAP plate 628)
+entity: earth/plates/amuria
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 628
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 628

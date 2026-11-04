@@ -1,0 +1,82 @@
+id: life/occurrences/rice-shangshan
+kind: occurrence
+summary: >-
+  Rice phytoliths from the early layers of Shangshan, Zhejiang, directly dated to about 9,400 years
+  ago. More of them carry over nine fish-scale marks than those of wild rice do, which is read as
+  partly domesticated rice. Preservation is poor, and few spikelet bases come from sites of this
+  culture to test it.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Rice, Shangshan" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: Oryza sativa
+    source:
+      ref: src:zuo-2017-shangshan-rice
+      loc: abstract
+      quote: "Phytolith remains of rice (Oryza sativa L.) recovered from the Shangshan site"
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      - ref: src:zuo-2017-shangshan-rice
+        loc: abstract
+        quote: "The morphology of rice bulliform phytoliths indicates they are closer to modern domesticated species than to wild species"
+      - ref: src:zuo-2017-shangshan-rice
+        loc: Results
+        quote: "the proportion of wild bulliform phytoliths with more than nine fish scales was 17.5 ± 8.3%, whereas for domesticated rice, the corresponding proportion was 63.7 ± 9.2%"
+    note: >-
+      What shows it is domestic: leaf phytoliths with many fish-scale marks, a statistical shift in a
+      trait, not an ear that cannot shatter.
+  location:
+    prop: location
+    value: { lat: 29.45601, lon: 119.97095, frame: frame:earth/present-day }
+    source:
+      ref: src:zuo-2017-shangshan-rice
+      loc: Introduction
+      quote: "the Shangshan site (N 29°27′21.636′′, E 119°58′15.42′′, 50 m above sea level)"
+    method: survey
+    note: >-
+      Converted to decimal degrees from the paper's degrees, minutes and seconds.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-zuo-2017:
+    prop: date
+    value: { lo: 9417 BP, hi: 9134 BP }
+    source:
+      ref: src:zuo-2017-shangshan-rice
+      loc: "Results; Table 1, SH-8-P"
+      quote: "8280 ± 40 B.P. (±2σ: 9,417–9,134 cal yr B.P.)"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      A direct date on phytoliths from the upper part of the eighth stratum, a 2σ range. Preferred
+      because the older dates are on organic matter in pottery, which may hold old carbon.
+  date-pottery:
+    prop: date
+    value: { lo: 11000 BP, hi: 8600 BP }
+    source:
+      ref: src:zuo-2017-shangshan-rice
+      loc: Introduction
+      quote: "dated to approximately 11,000–8,600 cal yr B.P. through the pottery sherds"
+    method: radiometric/radiocarbon
+    note: >-
+      The earlier dating of the whole site. The paper says that its dates from organic matter in the
+      sherds are debated for possible contamination by old carbon, and allows a start at about 10,000
+      cal yr B.P.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott709894 and ott99252: Oryza sativa lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/rice
+    source: { ref: src:zuo-2017-shangshan-rice, loc: abstract }

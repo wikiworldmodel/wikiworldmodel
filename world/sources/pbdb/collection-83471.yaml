@@ -1,0 +1,28 @@
+id: src:pbdb/collection-83471
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 83471 ("S. church Madonna Peraries, Rio Seazza valley",
+  IT), occurrence 777702. Read through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=83471
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference R. Wild. 1984. A new
+  pterosaur (Reptilia, Pterosauria) from the Upper Triassic (Norian) of Fruili, Italy. Gortania
+  - Atti del Museo Friulano di Storia Naturale 5:45-62. Interval ages are the PBDB's own, for
+  the interval the collection is assigned to; the primary reference was not read here unless
+  cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=83471&show=loc,strat,ref and
+    occs/list.json?coll_id=83471&show=ident,class on the main data service: collection name
+    "S. church Madonna Peraries, Rio Seazza valley"; lat 46.380554; lng 12.864722; formation
+    "Dolomia di Forni"; early_interval Alaunian; late_interval Sevatian; max_ma 215.38, min_ma
+    205.7; occurrence 777702, no identified_name, accepted_name "Preondactylus buffarinii"
+    (Chordata, Reptilia, Pterosauria).

@@ -1,0 +1,28 @@
+id: life/taxa/alphadon
+kind: taxon
+summary: >-
+  A small opossum-like metatherian, known from teeth and jaws. Its body mass in Wilson (2013) is
+  in a supplement that could not be fetched, so it has no size here.
+same_as: { pbdb: "txn:39947" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Alphadon" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 39947"
+  body-plan:
+    prop: body_plan
+    value: small-mammal
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: quadruped
+    source:
+      ref: src:kielan-jaworowska-hurum-2006-limb-posture
+      loc: "abstract"
+      quote: "acquisition of the parasagittal stance was apparently characteristic only of boreosphenidans"
+    note: >-
+      Alphadon is a metatherian, so among the boreosphenidans; the abstract read does not name
+      it.

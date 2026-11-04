@@ -1,0 +1,13 @@
+id: src:roots-sunken-treasure
+type: publication
+kind: review
+citation: >-
+  Kan, S.Y. Sunken Treasure: A Ninth Century Shipwreck. Roots, National Heritage Board, Singapore.
+authors: ["Kan, S.Y."]
+title: "Sunken Treasure: A Ninth Century Shipwreck"
+container: Roots, National Heritage Board, Singapore
+url: https://www.roots.gov.sg/en/stories-landing/stories/sunken-treasure-a-ninth-century-shipwreck/story
+reliability: A popular account from the board whose museum holds the cargo.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

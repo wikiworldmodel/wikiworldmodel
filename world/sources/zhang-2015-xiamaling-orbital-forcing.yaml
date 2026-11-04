@@ -1,0 +1,28 @@
+id: src:zhang-2015-xiamaling-orbital-forcing
+type: publication
+kind: measurement
+citation: >-
+  Zhang, S., Wang, X., Hammarlund, E.U., Wang, H., Costa, M.M., Bjerrum, C.J., Connelly, J.N.,
+  Zhang, B., Bian, L. & Canfield, D.E. (2015). Orbital forcing of climate 1.4 billion years ago.
+  Proceedings of the National Academy of Sciences 112(12), E1406–E1413.
+authors:
+  - "Zhang, S."
+  - "Wang, X."
+  - "Hammarlund, E.U."
+  - "Wang, H."
+  - "Costa, M.M."
+  - "Bjerrum, C.J."
+  - "Connelly, J.N."
+  - "Zhang, B."
+  - "Bian, L."
+  - "Canfield, D.E."
+published: 2015
+title: Orbital forcing of climate 1.4 billion years ago
+container: Proceedings of the National Academy of Sciences 112(12), E1406–E1413
+doi: 10.1073/pnas.1502239112
+verified:
+  by: machine:claude-code
+  how: >-
+    Read on PubMed Central (PMC4378410), without the SI Text, for the setting and the ages of the
+    Xiamaling Formation. Quotes checked by script against the text of that page. Metadata from
+    Crossref and the PMC page.

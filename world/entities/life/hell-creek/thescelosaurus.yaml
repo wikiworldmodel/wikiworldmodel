@@ -1,0 +1,78 @@
+id: life/taxa/thescelosaurus
+kind: taxon
+summary: >-
+  A robust, two-legged plant-eating dinosaur, among the commonest small dinosaurs of the Hell
+  Creek and Lance Formations.
+same_as: { pbdb: "txn:38742" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Thescelosaurus", en: "Thescelosaurus" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 38742"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: ornithopod
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: biped
+    source:
+      - ref: src:gilmore-1915-thescelosaurus
+        loc: "Restorations of Thescelosaurus"
+        quote: "doubtless served as a balancing organ when the upright bipedal posture was assumed"
+      - ref: src:button-zanno-2023-thescelosaurus
+        loc: "Discussion"
+        quote: "its bipedal skeletal proportions"
+  length-button-zanno-2023:
+    prop: body_length
+    value: 4.1
+    source:
+      ref: src:button-zanno-2023-thescelosaurus
+      loc: "Discussion"
+      quote: "the relatively large size of T. neglectus (up to ~ 4.1 m in total length"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      T. neglectus at its largest, as they cite it. Preferred as the most recent statement, in a
+      paper on the species.
+  length-gilmore-1915:
+    prop: body_length
+    value: 3.05
+    source:
+      ref: src:gilmore-1915-thescelosaurus
+      loc: "Restorations of Thescelosaurus"
+      quote: "When alive this animal was about 10 feet in length and 4 feet high in the position here represented."
+    method: expert-estimate
+    note: >-
+      The type, USNM 7757, from the Lance Formation of Wyoming; ten feet converted. The 4 feet
+      is the height of the whole animal in the pose of the plate, so it is not taken as a hip
+      height.
+  length-holtz-2012:
+    prop: body_length
+    value: 4
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 43, Thescelosaurids"
+      quote: "Thescelosaurus wonder reptile Late Cretaceous (66.8-65.5 MYA) 13.1 ft (4 m)? Sheep"
+    method: compilation
+    note: >-
+      A whole-genus figure; the question mark is the author's doubt.
+  mass-benson-2014:
+    prop: body_mass
+    value: 338.51
+    source:
+      - ref: src:benson-2014-dinosaur-body-mass
+        loc: "Dataset S1, sheet \"Mass estimates\", row Thescelosaurus_neglectus (AMNH 5891)"
+        quote: "Thescelosaurus_neglectus 338.505033198194 338.505033198194 measured circumferences"
+      - ref: src:button-zanno-2023-thescelosaurus
+        loc: "Discussion"
+        quote: "340 kg in mass"
+    method: model
+    note: >-
+      AMNH 5891, scaled from limb-bone circumferences; Button & Zanno round it to 340 kg.

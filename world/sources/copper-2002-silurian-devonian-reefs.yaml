@@ -1,0 +1,19 @@
+id: src:copper-2002-silurian-devonian-reefs
+type: publication
+kind: review
+citation: >-
+  Copper, P. (2002). Silurian and Devonian reefs: 80 Myr of global greenhouse between two ice
+  ages. In Kiessling, W., Flügel, E. & Golonka, J. (eds), Phanerozoic Reef Patterns. SEPM Special
+  Publication 72, 181–238.
+authors:
+  - "Copper, P."
+published: 2002
+title: "Silurian and Devonian reefs: 80 Myr of global greenhouse between two ice ages"
+container: Phanerozoic Reef Patterns, SEPM Special Publication 72, 181–238
+doi: 10.2110/pec.02.72.0181
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

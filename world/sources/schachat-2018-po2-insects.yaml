@@ -1,0 +1,24 @@
+id: src:schachat-2018-po2-insects
+type: publication
+kind: model
+citation: >-
+  Schachat, S.R., Labandeira, C.C., Saltzman, M.R., Cramer, B.D., Payne, J.L. & Boyce, C.K.
+  (2018). PhanerozoicpO2and the early evolution of terrestrial animals. Proceedings of the Royal
+  Society B: Biological Sciences 285(1871), 20172631.
+authors:
+  - "Schachat, S.R."
+  - "Labandeira, C.C."
+  - "Saltzman, M.R."
+  - "Cramer, B.D."
+  - "Payne, J.L."
+  - "Boyce, C.K."
+published: 2018
+title: "PhanerozoicpO2and the early evolution of terrestrial animals"
+container: "Proceedings of the Royal Society B: Biological Sciences 285(1871), 20172631"
+doi: 10.1098/rspb.2017.2631
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 29367401). The full text at PubMed Central answered a
+    request with a browser check, so it was not read. Quotes checked by script against that
+    text. Metadata from Crossref.

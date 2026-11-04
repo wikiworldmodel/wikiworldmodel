@@ -1,0 +1,308 @@
+id: people/objects/rosetta-stone
+kind: artefact/moved
+summary: >-
+  A broken granodiorite stele with a priestly decree of 196 BCE in hieroglyphic, demotic and Greek,
+  found in 1799 built into a wall of the fort near Rashid. It passed from French to British hands at
+  Alexandria in 1801 and has been in the British Museum since 1802, but for two years in the First
+  World War.
+author: machine:claude-code
+same_as: { wikidata: Q48584 }
+phases:
+  - id: temple
+    label: A temple, perhaps at Sais
+  - id: fort-julien
+    label: Built into a wall of the fort near Rashid
+  - id: cairo
+    label: The Institute, Cairo
+  - id: alexandria
+    label: Alexandria, in French then British hands
+  - id: voyage
+    label: On the voyage to England
+    gap: true
+  - id: society-of-antiquaries
+    label: Society of Antiquaries, Somerset House, London
+  - id: british-museum
+    label: British Museum, London
+  - id: holborn
+    label: Postal Tube Railway, Holborn
+  - id: british-museum-again
+    label: British Museum, London
+claims:
+  name:
+    prop: name
+    value: { en: Rosetta Stone }
+    source: { ref: src:british-museum-ea24, loc: curator's comments, quote: "The Rosetta Stone" }
+  temple-start:
+    prop: start
+    subject: "@temple"
+    value: 196 BCE
+    source:
+      - ref: src:british-museum-ea24
+        loc: production date
+        quote: "Ptolemaic Period, 196 BC"
+      - ref: src:british-museum-rosetta-stone-blog
+        loc: "section 'What does the inscription actually say?'"
+        quote: "an agreement issued by a council of priests in 196 BC"
+    method: historical-account
+    note: The year of the decree, which the stone copies. It says a copy was to go up in every sizeable temple; when this one was cut within or after that year is not known.
+  temple-location:
+    prop: location
+    subject: "@temple"
+    value: { lat: 30.96715, lon: 30.774367, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-sais, loc: "place 727217, representative point" }
+      - ref: src:ees-durham-sais-rashid
+        loc: "Rashid, paragraph 1"
+        quote: "the eminent Egyptologist Labib Habachi suggested that the Rosetta Stone found at the fort had originally been set up at Sais"
+    method: gazetteer
+    basis: reconstruction
+    note: >-
+      A suggestion, made because the walls of the fort hold blocks perhaps from Sais. The inscription
+      does not name the temple the stone stood in, and no source read shows it.
+  temple-frame:
+    prop: frame
+    subject: "@temple"
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  fort-julien-start:
+    prop: start
+    subject: "@fort-julien"
+    value: 1479 CE
+    source:
+      - ref: src:de-cosson-1939-forts-of-alexandria
+        loc: p. 312
+        quote: "Built by Qâitbâi, it was finished, according to Ibn Iyas, in 1479"
+      - ref: src:de-cosson-1939-forts-of-alexandria
+        loc: p. 317
+        quote: "During the reconstruction of the Fort by the French in 1799 the famous «Rosetta Stone» was discovered"
+      - ref: src:british-museum-rosetta-stone-blog
+        loc: "section 'When was it found?'"
+        quote: "It had apparently been built into a very old wall."
+    method: historical-account
+    basis: reconstruction
+    note: >-
+      The stone's own move is not dated. This is the year the fort was finished, on the reasoning that
+      the stone went in with the old blocks used to build it, which de Cosson and the excavators of Sais
+      describe. It could have come later. Budge gives the other account of its finding, that it was
+      lying on the ground.
+  fort-julien-location:
+    prop: location
+    subject: "@fort-julien"
+    value: { lat: 31.439722, lon: 30.389444, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-fort-julien, loc: "Q3077898, P625 coordinate location" }
+      - ref: src:british-museum-ea24
+        loc: findspot
+        quote: "Excavated/Findspot: Fort Saint Julien"
+    method: gazetteer
+  fort-julien-frame:
+    prop: frame
+    subject: "@fort-julien"
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cairo-start:
+    prop: start
+    subject: "@cairo"
+    value: { lo: 15 July 1799 CE, hi: 1799 CE }
+    source:
+      - ref: src:british-museum-rosetta-stone-blog
+        loc: "section 'When was it found?'"
+        quote: "They discovered the Rosetta Stone on 15 July 1799 while digging the foundations of an addition to a fort"
+      - ref: src:budge-1913-rosetta-stone
+        loc: p. 1
+        quote: "When Napoleon heard of the Stone, he ordered it to be taken to Cairo"
+    method: historical-account
+    rank: preferred
+    note: >-
+      It left the fort after the British Museum's day for the find, "the story most generally accepted"
+      by its own account, and Budge's sending it on to Cairo is put within the year. Budge has it go first
+      to Menou's house in Alexandria for a time; that stop is not modelled, as no date for it was read.
+  cairo-start-budge-1913:
+    prop: start
+    subject: "@cairo"
+    value: { lo: August 1799 CE, hi: 1799 CE }
+    source:
+      ref: src:budge-1913-rosetta-stone
+      loc: p. 1
+      quote: "He made his great discovery in August, 1799."
+    method: historical-account
+    note: Budge's month for the find. Accounts of the find are vague, as the British Museum says.
+  cairo-location:
+    prop: location
+    subject: "@cairo"
+    value: { lat: 30.044444, lon: 31.235833, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-cairo, loc: "Q85, P625 coordinate location" }
+      - ref: src:budge-1913-rosetta-stone
+        loc: p. 1
+        quote: "placed in the \" Institut National,\" which he had recently founded in that city"
+    method: gazetteer
+    note: The city; the Institute's house is not placed here.
+  cairo-frame:
+    prop: frame
+    subject: "@cairo"
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  alexandria-start:
+    prop: start
+    subject: "@alexandria"
+    value: { hi: September 1801 CE }
+    source:
+      - ref: src:budge-1913-rosetta-stone
+        loc: p. 2
+        quote: "the Stone was transferred from Cairo to General Menou's house in Alexandria"
+      - ref: src:turner-1812-account-of-the-rosetta-stone
+        loc: p. 213
+        quote: "The Stone was carefully brought to General Menou’s house ip Alexandria, covered with soft cotton cloth, and a double matting, where I first saw it."
+    method: historical-account
+    note: >-
+      Budge says it went after the ink impressions were taken, and that Turner claimed it in September
+      1801, by which time it was there. No earlier limit was read beyond the time in Cairo, so the date
+      shown lies somewhere between the two. In Alexandria Turner carried it off from Menou's house to
+      his own, on an artillery cart. The OCR reads "in" as "ip".
+  alexandria-location:
+    prop: location
+    subject: "@alexandria"
+    value: { lat: 31.201435, lon: 29.909773, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-alexandria, loc: "place 727070, representative point" }
+    method: gazetteer
+    note: The city; neither house is placed here.
+  alexandria-frame:
+    prop: frame
+    subject: "@alexandria"
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  voyage-start:
+    prop: start
+    subject: "@voyage"
+    value: October 1801 CE
+    source:
+      - ref: src:budge-1913-rosetta-stone
+        loc: p. 2
+        quote: "In the following month Major-General Turner obtained possession of the Stone, and embarked with it on H.M.S. \"L'Egyptienne,\""
+      - ref: src:turner-1812-account-of-the-rosetta-stone
+        loc: p. 214
+        quote: "I embarked with the Rosetta Stone, determining to share its fate, on board the Egyptienne frigate"
+    method: historical-account
+    note: The following month after September 1801, by Budge. A voyage has no one place, so this phase has none, and the marker stays at Alexandria until the stone reaches London.
+  society-of-antiquaries-start:
+    prop: start
+    subject: "@society-of-antiquaries"
+    value: 11 March 1802 CE
+    source:
+      - ref: src:turner-1812-account-of-the-rosetta-stone
+        loc: p. 208
+        quote: "of March, in the year 1802, the Society of Antiquaries received a letter from Granville Penn, Esq. informing them that, by the desire of Lord Hobart, he had forwarded two cases for the inspection of the Society"
+      - ref: src:budge-1913-rosetta-stone
+        loc: p. 2
+        quote: "On March 11 it was deposited at the rooms of the Society of Antiquaries of London"
+    method: documentary
+    note: >-
+      The Society's own record, whose sentence opens "On the eleventh of March". The stone had reached
+      Portsmouth in February 1802, gone round to Deptford by ship and been landed at the Custom House.
+  society-of-antiquaries-location:
+    prop: location
+    subject: "@society-of-antiquaries"
+    value: { lat: 51.511111, lon: -0.117778, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-somerset-house, loc: "Q1344889, P625 coordinate location" }
+      - ref: src:society-of-antiquaries-our-history
+        loc: "section 'Somerset House'"
+        quote: "The Society remained at Somerset House until 1874."
+    method: gazetteer
+  society-of-antiquaries-frame:
+    prop: frame
+    subject: "@society-of-antiquaries"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  british-museum-start:
+    prop: start
+    subject: "@british-museum"
+    value: { lo: July 1802 CE, hi: December 1802 CE }
+    source:
+      - ref: src:budge-1913-rosetta-stone
+        loc: p. 2
+        quote: "the Stone was removed from the Rooms of the Society of Antiquaries to the British Museum"
+      - ref: src:british-museum-rosetta-stone-blog
+        loc: "section 'Where is it now?'"
+        quote: "it was presented to the British Museum by George III in July of that year"
+      - ref: src:british-museum-ea24
+        loc: curator's comments
+        quote: "The Rosetta Stone has been exhibited in the British Museum since 1802, with only one break."
+    method: historical-account
+    note: >-
+      Budge says "towards the close of the year", the museum that George III gave it in July, so the
+      range runs from the gift to the end of the year.
+  british-museum-location:
+    prop: location
+    subject: "@british-museum"
+    value: { lat: 51.519444, lon: -0.126944, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-british-museum, loc: "Q6373, P625 coordinate location" }
+    method: gazetteer
+  british-museum-frame:
+    prop: frame
+    subject: "@british-museum"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  holborn-start:
+    prop: start
+    subject: "@holborn"
+    value: 1917 CE
+    source:
+      ref: src:british-museum-ea24
+      loc: curator's comments
+      quote: "Towards the end of the First World War, in 1917, when the Museum was concerned about heavy bombing in London, they moved it to safety"
+    method: historical-account
+  holborn-location:
+    prop: location
+    subject: "@holborn"
+    value: { lat: 51.5204, lon: -0.1136, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-holborn, loc: "Q123624, P625 coordinate location" }
+      - ref: src:british-museum-ea24
+        loc: curator's comments
+        quote: "The Rosetta Stone spent the next two years in a station on the Postal Tube Railway fifty feet below the ground at Holborn."
+    method: gazetteer
+    note: The area; the station is not placed here.
+  holborn-frame:
+    prop: frame
+    subject: "@holborn"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  british-museum-again-start:
+    prop: start
+    subject: "@british-museum-again"
+    value: 1919 CE
+    source:
+      ref: src:british-museum-rosetta-stone-blog
+      loc: "section 'Where is it now?'"
+      quote: "The iconic object spent the next two years in a station on the Postal Tube Railway 50 feet below the ground at Holborn."
+    method: historical-account
+    note: Two years on from 1917, as the museum says; the day it came back was not found.
+  british-museum-again-location:
+    prop: location
+    subject: "@british-museum-again"
+    value: { lat: 51.519444, lon: -0.126944, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-british-museum, loc: "Q6373, P625 coordinate location" }
+    method: gazetteer
+  british-museum-again-frame:
+    prop: frame
+    subject: "@british-museum-again"
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

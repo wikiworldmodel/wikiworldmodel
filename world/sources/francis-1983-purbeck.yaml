@@ -1,0 +1,18 @@
+id: src:francis-1983-purbeck
+type: publication
+kind: measurement
+citation: >-
+  Francis, J.E. (1983). The dominant conifer of the Jurassic Purbeck Formation, England.
+  Palaeontology 26(2), 277–294.
+authors:
+  - "Francis, J.E."
+published: 1983
+title: "The dominant conifer of the Jurassic Purbeck Formation, England"
+container: Palaeontology 26(2), 277–294
+url: https://www.palass.org/sites/default/files/media/publications/palaeontology/volume_26/vol26_part2_pp277-294.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Page 277 read from the Palaeontological Association's scan (palass.org, volume 26 part 2), put
+    through Tesseract OCR with the next three pages, since the scan has no text layer. Quotes
+    checked by script against that OCR and by eye against the page image. No DOI found.

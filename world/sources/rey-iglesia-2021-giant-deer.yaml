@@ -1,0 +1,24 @@
+id: src:rey-iglesia-2021-giant-deer
+type: publication
+kind: measurement
+citation: >-
+  Rey-Iglesia, A., Lister, A.M., Campos, P.F., Brace, S., Mattiangeli, V., Daly, K.G., Teasdale,
+  M.D., Bradley, D.G., Barnes, I. & Hansen, A.J. (2021). Exploring the phylogeography and population
+  dynamics of the giant deer (Megaloceros giganteus) using Late Quaternary mitogenomes. Proceedings
+  of the Royal Society B 288(1950), 20201864.
+authors:
+  - "Rey-Iglesia, A."
+  - "Lister, A.M."
+  - "Campos, P.F."
+  - "Brace, S."
+  - "Hansen, A.J."
+published: 2021
+title: "Exploring the phylogeography and population dynamics of the giant deer (Megaloceros giganteus) using Late Quaternary mitogenomes"
+container: "Proceedings of the Royal Society B 288(1950), 20201864"
+doi: 10.1098/rspb.2020.1864
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the PMC record through NCBI efetch (PMC8114472), the publisher
+    not allowing the full text there. Quotes checked by script against the text retrieved, after
+    normalizing whitespace.

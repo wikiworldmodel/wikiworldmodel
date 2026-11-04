@@ -14,6 +14,10 @@ claims:
     prop: identified_as
     value: Kimberella sp.
     source: { ref: src:pbdb/collection-51906, loc: "occurrence 513207, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 65.550003, lon: 39.766666, frame: frame:earth/present-day }

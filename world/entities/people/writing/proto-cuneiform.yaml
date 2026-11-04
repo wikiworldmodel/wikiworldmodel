@@ -1,0 +1,65 @@
+id: people/writing/proto-cuneiform
+kind: development/script
+summary: >-
+  The archaic script of southern Mesopotamia, the first stage of cuneiform, known from some five thousand tablets at Uruk and, in its later phase, from other sites in Babylonia. Its two phases, Uruk IV and
+  Uruk III, are named after levels at Uruk. Its texts are mostly administrative, and with the first Egyptian signs it is the earliest writing known. It is a part of people/developments/writing-mesopotamia, which runs on after it.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Proto-cuneiform }
+    source:
+      ref: src:woods-2010-visible-language
+      loc: p. 35 (ch. 2)
+      quote: Approximately five thousand proto-cuneiform tablets were unearthed at Uruk by the German Archaeological Institute between 1928 and 1976
+  start:
+    prop: start
+    value: { ref: people/writing/uruk-iv-tablets }
+    source:
+      ref: src:woods-2010-visible-language
+      loc: p. 71 (catalog, Uruk IV texts)
+      quote: conventionally dated to about 3200 bc, belong to the Uruk IV phase
+    method: expert-estimate
+    note: >-
+      As old as the earliest tablets, whose date is conventional. The invention of writing may lie somewhat before them: Woods places it in the Late Uruk period, ca. 3350–3100 BC.
+  end:
+    prop: end
+    value: 2900 BCE
+    source:
+      - ref: src:woods-2010-visible-language
+        loc: p. 35 (ch. 2)
+        quote: Uruk III (also known as the Jemdet Nasr period, ca. 3100 bc)
+      - ref: src:woods-2010-visible-language
+        loc: p. 60 (catalog nos. 18–19)
+        quote: Jemdet Nasr period, 3100–2900 bc
+    method: expert-estimate
+    note: >-
+      The end of the Jemdet Nasr period, with which Woods equates Uruk III, the last phase of the archaic script. This is a change of name, not an end to writing: the script develops
+      into cuneiform, and no source read sets a date for the change, so this is an editor's reading of the two periods.
+  location:
+    prop: location
+    value: { lat: 31.323375, lon: 45.639052, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-uruk, loc: "place 912986, representative point" }
+    method: gazetteer
+    note: Marked at Uruk, where it is first attested.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  first-attestation:
+    rel: evidenced-by
+    to: people/writing/uruk-iv-tablets
+    source:
+      ref: src:woods-2010-visible-language
+      loc: p. 71 (catalog, Uruk IV texts)
+      quote: conventionally dated to about 3200 bc, belong to the Uruk IV phase
+  in-mesopotamia:
+    rel: part-of
+    to: people/developments/writing-mesopotamia
+    source:
+      ref: src:woods-2010-visible-language
+      loc: p. 35 (ch. 2)
+      quote: testifying to the fact that the new technology spread quickly throughout Babylonia soon after its invention

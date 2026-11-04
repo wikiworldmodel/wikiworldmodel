@@ -1,0 +1,12 @@
+id: src:wikidata-tiergartenstrasse
+type: database-record
+kind: compilation
+citation: "Wikidata, item Q823089 (Tiergartenstraße, street in Berlin), property P625 (coordinate location)."
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q823089
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a marker to within a few hundred metres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (52.509819, 13.361157) read from the item's JSON (Special:EntityData/Q823089.json).

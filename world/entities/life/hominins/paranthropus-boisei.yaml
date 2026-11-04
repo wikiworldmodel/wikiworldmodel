@@ -1,0 +1,38 @@
+id: life/taxa/paranthropus-boisei
+kind: taxon
+summary: >-
+  Paranthropus boisei (Leakey 1959), a robust hominin of eastern Africa, known from the cranium OH 5
+  at Olduvai Gorge; it lived alongside early Homo.
+same_as: { ott: 3607689, pbdb: "txn:83068", wikidata: Q310531 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Paranthropus boisei, la: "Paranthropus boisei" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83068: Paranthropus boisei (Leakey 1959)" }
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83068: rank 3 (species)" }
+  end:
+    prop: end
+    value: { mean: 1.338 Ma, sd: 0.024 Myr }
+    source:
+      ref: src:dominguez-rodrigo-2013-oh-80
+      loc: abstract
+      quote: "at 1.338±0.024 Ma (1 sigma), represents one of the most recent occurrences of Paranthropus before its extinction in East Africa"
+    method: radiometric/ar-ar
+    note: >-
+      OH 80, from directly above Tuff IID at Olduvai, dated by 40Ar/39Ar. One of the last occurrences,
+      not a measured extinction; the fossil is not a record here, so its age is written on the species.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source:
+      - { ref: src:dominguez-rodrigo-2013-oh-80, loc: abstract, quote: "have yielded nine hominin teeth" }
+      - { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83068 < Paranthropus (txn:83063) < Hominina (txn:96643); Zinjanthropus (txn:83064) < Hominini (txn:91486)" }
+    note: >-
+      The papers call it a hominin. The PBDB's classification differs: it keeps Paranthropus in
+      Hominina, outside its tribe Hominini, while listing the older name Zinjanthropus under
+      Hominini as a synonym of Australopithecus.

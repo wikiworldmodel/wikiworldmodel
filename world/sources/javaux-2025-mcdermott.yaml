@@ -1,0 +1,22 @@
+id: src:javaux-2025-mcdermott
+type: publication
+kind: measurement
+citation: >-
+  Javaux, E.J. (2025). A diverse Palaeoproterozoic microbial ecosystem implies early
+  eukaryogenesis. Philosophical Transactions of the Royal Society B: Biological Sciences
+  380(1931), 20240092.
+authors:
+  - "Javaux, E.J."
+published: 2025
+title: "A diverse Palaeoproterozoic microbial ecosystem implies early eukaryogenesis"
+container: "Philosophical Transactions of the Royal Society B: Biological Sciences 380(1931), 20240092"
+doi: 10.1098/rstb.2024.0092
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC12329461) read via Europe PMC (fullTextXML): the McDermott Formation
+    assemblage (1.78–1.73 Ga, Tawallah Group, McArthur Basin, drill core GSD7), the age
+    bracket by the Seigal Volcanics below and the Wollogorang Formation above, the eukaryotic
+    taxa including Tappania plana and the single multicellular fragment Siphonoseptum, and the
+    review of older and younger claims. The drill core's position is not given in the text.
+    Quotes checked by script against that text. Metadata from Crossref.

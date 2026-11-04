@@ -1,0 +1,12 @@
+id: src:wikidata-perth-museum
+type: database-record
+kind: compilation
+citation: "Wikidata, item Q122199223 (Perth Museum, Perth, Scotland), property P625 (coordinate location)."
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q122199223
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a marker to within a few hundred metres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (56.39585, -3.4294) read from the item's JSON (Special:EntityData/Q122199223.json).

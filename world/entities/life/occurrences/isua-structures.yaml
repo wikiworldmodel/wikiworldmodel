@@ -16,6 +16,10 @@ claims:
     source: { ref: src:nutman-2016-isua, loc: "abstract" }
     note: >-
       Not a taxon: structures Nutman et al. attribute to microbial communities. Contested.
+  evidence:
+    prop: evidence
+    value: biosignature
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 65.09, lon: -50.04, frame: frame:earth/present-day }

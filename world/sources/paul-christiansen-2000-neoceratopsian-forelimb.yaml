@@ -1,0 +1,19 @@
+id: src:paul-christiansen-2000-neoceratopsian-forelimb
+type: publication
+kind: measurement
+citation: >-
+  Paul, G.S. & Christiansen, P. (2000). Forelimb posture in neoceratopsian dinosaurs:
+  implications for gait and locomotion. Paleobiology 26(3), 450–465.
+authors:
+  - "Paul, G.S."
+  - "Christiansen, P."
+published: 2000
+title: "Forelimb posture in neoceratopsian dinosaurs: implications for gait and locomotion"
+container: "Paleobiology 26(3), 450–465"
+doi: 10.1666/0094-8373(2000)026<0450:FPINDI>2.0.CO;2
+url: http://gspauldino.com/Forelimb.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the scan on the first author's site; its text layer has OCR slips.
+    Quotes checked by script against that text layer.

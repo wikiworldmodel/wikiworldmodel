@@ -1,0 +1,58 @@
+id: life/transitions/jawed-vertebrates
+kind: event/transition
+summary: >-
+  The first vertebrates with jaws, and with them teeth. The direct evidence begins in the early Silurian, with tooth whorls in Guizhou and whole fishes in Chongqing; molecular dates and
+  disarticulated scraps suggest that the group is older, from the Ordovician. The record of the group itself is life/taxa/gnathostomata.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First jawed vertebrates }
+    unsourced: An editorial label.
+  start-andreev-2022:
+    prop: start
+    value: { ref: life/occurrences/qianodus-rongxi }
+    source:
+      ref: src:andreev-2022-qianodus
+      loc: abstract
+      quote: "the earliest direct evidence for jawed vertebrates"
+    rank: preferred
+    note: >-
+      Preferred as the oldest direct evidence. These are isolated whorls, and the jaws are inferred from them, so the complete fishes below are the safer date for a jawed body.
+  start-zhu-2022:
+    prop: start
+    value: { ref: life/occurrences/shenacanthus-chongqing }
+    source:
+      ref: src:zhu-2022-chongqing-fishes
+      loc: abstract
+      quote: "diverse, well-preserved jawed fishes with complete bodies, from the early Silurian (Telychian age, around 436 Ma) of Chongqing, South China"
+    note: >-
+      The oldest whole jawed fishes, about 3 Myr younger.
+  start-andreev-2022-ordovician:
+    prop: start
+    value: { lo: 485 Ma, hi: 445 Ma }
+    source:
+      - ref: src:andreev-2022-qianodus
+        loc: abstract
+        quote: "supports an earlier emergence of jawed vertebrates as part of the Great Ordovician Biodiversification Event (approximately 485-445 million years ago)"
+      - ref: src:zhu-2022-chongqing-fishes
+        loc: abstract
+        quote: "Molecular studies suggest that the origin of jawed vertebrates was no later than the Late Ordovician period (around 450 million years ago (Ma))"
+    method: expert-estimate
+    note: >-
+      An inference from what the Silurian fossils imply, and from disarticulated micro-remains and molecular dates. No Ordovician jaw has been found.
+relations:
+  evidence-qianodus:
+    rel: evidenced-by
+    to: life/occurrences/qianodus-rongxi
+    source:
+      ref: src:andreev-2022-qianodus
+      loc: abstract
+      quote: "the earliest direct evidence for jawed vertebrates"
+  evidence-shenacanthus:
+    rel: evidenced-by
+    to: life/occurrences/shenacanthus-chongqing
+    source:
+      ref: src:zhu-2022-chongqing-fishes
+      loc: abstract
+      quote: "diverse, well-preserved jawed fishes with complete bodies"

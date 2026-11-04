@@ -1,0 +1,20 @@
+id: src:davis-2019-coopers-ferry
+type: publication
+kind: measurement
+citation: >-
+  Davis, L.G., Madsen, D.B., Becerra-Valdivia, L., … & Buvit, I. (2019). Late Upper Paleolithic
+  occupation at Cooper's Ferry, Idaho, USA, ~16,000 years ago. Science 365(6456), 891–897.
+authors:
+  - "Davis, L.G."
+  - "Madsen, D.B."
+  - "Becerra-Valdivia, L."
+  - "Buvit, I."
+published: 2019
+title: "Late Upper Paleolithic occupation at Cooper's Ferry, Idaho, USA, ~16,000 years ago"
+container: "Science 365(6456), 891–897"
+doi: 10.1126/science.aax9830
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

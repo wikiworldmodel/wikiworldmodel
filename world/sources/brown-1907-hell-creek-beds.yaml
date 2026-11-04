@@ -1,0 +1,17 @@
+id: src:brown-1907-hell-creek-beds
+type: publication
+kind: measurement
+citation: >-
+  Brown, B. (1907). The Hell Creek beds of the Upper Cretaceous of Montana: their relation to
+  contiguous deposits, with faunal and floral lists and a discussion of their correlation.
+  Bulletin of the American Museum of Natural History 23, 823–845.
+authors:
+  - "Brown, B."
+published: 1907
+title: "The Hell Creek beds of the Upper Cretaceous of Montana: their relation to contiguous deposits, with faunal and floral lists and a discussion of their correlation"
+container: "Bulletin of the American Museum of Natural History 23, 823–845"
+url: https://archive.org/details/bulletin-american-museum-natural-history-23-823-845
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the OCR text of the archive.org scan; quotes checked by script against that text.

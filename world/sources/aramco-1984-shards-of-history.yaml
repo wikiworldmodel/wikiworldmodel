@@ -1,0 +1,14 @@
+id: src:aramco-1984-shards-of-history
+type: publication
+kind: review
+citation: >-
+  Lawton, J. (1984). Shards of history. Aramco World 35(4), 4–11.
+authors: ["Lawton, J."]
+published: 1984
+title: Shards of history
+container: Aramco World
+url: https://archive.aramcoworld.com/issue/198404/shards.of.history.htm
+reliability: A magazine's report from a meeting at Corning on the wreck, in place of the final report, which was not read.
+verified:
+  by: machine:claude-code
+  how: Read directly in the magazine's archive. Quote checked by script against its text, after normalizing whitespace.

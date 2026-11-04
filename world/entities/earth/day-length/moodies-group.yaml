@@ -1,0 +1,64 @@
+id: earth/day-length/moodies-group
+kind: sample
+summary: >-
+  Tidal bundles in the foreset strata of a large subtidal sand dune in the Moodies Group, Barberton
+  Greenstone Belt, South Africa: the oldest tidal record suitable for analysis, read as a solar day
+  of about 13 hours and the Moon at about 70% of today's distance.
+same_as: { wikidata: Q104866315 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Moodies Group tidal bundles" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Moodies Group
+    source:
+      ref: src:eulenfeld-heubeck-2023-archean-moon-orbit
+      loc: abstract
+      quote: the oldest tidal record suitable for analysis from the Moodies Group, South Africa
+    note: >-
+      No location is claimed. Wikidata's point for the group (25.8°S, 31°E) lies in plate 701's
+      polygon, which the plate model holds only back to 600 Ma.
+  evidence:
+    prop: evidence
+    value: tidal-rhythmite
+    source:
+      ref: src:eulenfeld-heubeck-2023-archean-moon-orbit
+      loc: abstract
+      quote: Time frequency analysis of the series of thicknesses of the sandstone-shale layers yields a periodicity of 15.0 layers
+  date:
+    prop: date
+    value: 3.22 Ga
+    source:
+      ref: src:eulenfeld-heubeck-2023-archean-moon-orbit
+      loc: abstract
+      quote: with an age of 3.22 billion years
+  day-length:
+    prop: day_length
+    value: { lo: 11.5, hi: 13.9 }
+    source:
+      ref: src:eulenfeld-heubeck-2023-archean-moon-orbit
+      loc: Table 2, row "Solar day", column "default (bounds)"
+      quote: 12.9 (11.5, 13.9)
+    note: >-
+      The bounds for dominant diurnal tides, the authors' default; their central value is 12.9 h, not
+      the middle of this band, and dominant semidiurnal tides give 12.6 h. The hours follow from 30.0
+      layers per two neap-spring-neap cycles, by Kepler's third law and the conservation of angular
+      momentum. The bounds come from the layer counts alone. Compilations usually leave the Moodies
+      Group out because of doubts about earlier counts at this outcrop (Mitchell and Kirscher 2023,
+      Methods); this re-analysis allows for missing layers.
+  moon-distance:
+    prop: moon_distance
+    value: { lo: 37.85, hi: 45.14 }
+    source:
+      - ref: src:eulenfeld-heubeck-2023-archean-moon-orbit
+        loc: Table 2, row "Moon-Earth distance a", column "default (bounds)"
+        quote: 0.703 (0.628, 0.749)
+      - ref: src:williams-2000-earth-rotation
+        loc: Table 1, row "Lunar semimajor axis", column "Modern"
+        quote: Lunar semimajor axis (RE) (51.9 ± 3.3) (54.6 ± 1.8) 54.7 ± 0.7 (57.1) 58.16 ± 0.30 60.27
+    note: >-
+      The study gives the ratio to today's distance. In Earth radii, with today's 60.27 from Williams
+      (2000): 0.628 × 60.27 = 37.85 and 0.749 × 60.27 = 45.14. The central ratio, 0.703, is 42.37.

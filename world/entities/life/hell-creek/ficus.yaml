@@ -1,0 +1,42 @@
+id: life/taxa/ficus
+kind: taxon
+summary: >-
+  A fig by name, F. planicostata in the Hell Creek rows of the snapshot. Whether this form is a
+  true fig was not checked.
+same_as: { pbdb: "txn:53873" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Ficus", en: "fig" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 53873"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: broadleaf
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: upright
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 3, s.v. Ficus aurea"
+      quote: "Trees , evergreen, to 20 m."
+    note: >-
+      A tree, as the flora describes the living plant.
+  height-flora-of-north-america:
+    prop: plant_height
+    value: 20
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 3, s.v. Ficus aurea"
+      quote: "Trees , evergreen, to 20 m."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The living Florida strangler fig, F. aurea: a modern relative under the name the fossil
+      carries, not a Hell Creek plant.

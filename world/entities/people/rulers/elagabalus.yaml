@@ -1,0 +1,73 @@
+id: people/rulers/elagabalus
+kind: person
+summary: >-
+  A Syrian boy priest of the god Elagabalus, set up by his family as the son of Caracalla; beat
+  Macrinus and was killed by the soldiers at Rome.
+author: machine:claude-code
+same_as: { wikidata: Q1762 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Elagabalus }
+    source:
+      ref: src:historia-augusta
+      loc: "Macrinus 8.2"
+      quote: which had deserted to Varius Elagabalus
+  start:
+    prop: start
+    value: { lo: 203 CE, hi: 204 CE }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 80, 20.2, vol. 9 p. 477"
+      quote: at the age of eighteen
+    method: historical-account
+    note: Eighteen years before his death in 222.
+  reign-start-proclaimed:
+    prop: start
+    subject: "@reign"
+    value: 16 May 218 CE
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Book 79, vol. 9 p. 411"
+      quote: at dawn on the sixteenth of May persuaded the soldiers
+    method: historical-account
+    rank: preferred
+    note: >-
+      The day his grandmother's party brought him into the camp and the soldiers revolted for
+      him.
+  reign-start-battle:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/macrinus@reign, edge: end }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 80, 3.3, vol. 9 p. 445"
+      quote: reckoning from the battle in which he gained the supreme power
+    method: historical-account
+    note: Dio's own reckoning of the reign, from the defeat of Macrinus.
+  end:
+    prop: end
+    value: 12 March 222 CE
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 80, 3.3, vol. 9 p. 445"
+      quote: flourished merely for the three years, nine months and four days during which he ruled
+    method: historical-account
+    note: >-
+      Worked out from Dio: three years, nine months and four days after 8 June 218. No text read
+      here states the day.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 80, 3.3, vol. 9 p. 445"
+      quote: during which he ruled
+    note: Emperor.

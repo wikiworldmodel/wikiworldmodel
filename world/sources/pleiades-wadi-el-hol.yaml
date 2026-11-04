@@ -1,0 +1,15 @@
+id: src:pleiades-wadi-el-hol
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 313840750, "Wadi el-Hol" (Qena Bend, Egypt).
+snapshot: "2026-11-04"
+container: Pleiades
+url: https://pleiades.stoa.org/places/313840750
+license: CC-BY-3.0
+reliability: A scholarly gazetteer of ancient places; its point is given to three decimals, and Wikidata's differs by some 14 km.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/313840750/json) read directly on 4 November 2026:
+    representative point 25.93°N, 32.444°E. Wikidata Q1604301 gives 26.05°N, 32.41667°E.

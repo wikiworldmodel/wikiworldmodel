@@ -1,6 +1,9 @@
 // The inspect panel: what something is, when and where, every claim with its sources and
 // locators, the competing claims (which can be picked), its relations and the ones other
 // records make to it, and what the derived dates rest on.
+import type { ClimateClass } from '../../../core/climate.ts';
+import type { Cover } from '../../../core/planet.ts';
+import type { SceneFile, SceneTaxon } from '../../../core/scene.ts';
 import type { CitationRecord, ClaimRecord, EntityRecord, SeriesRecord, SourceRecord } from '../../../core/records.ts';
 import { splitRef } from '../../../core/refs.ts';
 import { lookup, scenarioKey, type Scenario } from '../../../core/scenario.ts';
@@ -64,6 +67,9 @@ const PROP_LABEL: Record<string, string> = {
   territory: 'Territory',
 };
 
+/** A property with no label of its own, in words: sea_level as "Sea level". */
+const words = (prop: string) => prop.charAt(0).toUpperCase() + prop.slice(1).replace(/_/g, ' ');
+
 const REL_LABEL: Record<string, string> = {
   before: 'before',
   after: 'after',
@@ -106,6 +112,36 @@ export interface TerrainInfo {
   coastline?: string;
   datum?: string;
   state?: PlanetStateInfo;
+  /** what covers the land here: the class the climate field gives, and which transitions have happened */
+  biome?: BiomeHere;
+  /** the state a borders dataset draws here, at this time */
+  polity?: { name: string; from: number; to: number; area: number; wikipedia?: string; source?: SourceRecord };
+}
+
+/** The land's cover at a place and time, and what it rests on. */
+export interface BiomeHere {
+  climate: ClimateClass;
+  label: string;
+  cover: Cover;
+  title: string;
+  /** the transitions that have happened by this time, and the next that has not */
+  transitions: { id: string; label: string }[];
+  next?: { id: string; label: string };
+  rule: string;
+  ruleSource?: SourceRecord;
+}
+
+/** In words, what the globe paints: the climate's class, as far as the transitions have gone. */
+export function coverWords(b: Pick<BiomeHere, 'climate' | 'cover'>): string {
+  const { climate, cover } = b;
+  if (climate === 'ice') return 'Ice';
+  if (cover.plants <= 0) return cover.crust > 0 ? 'Bare ground, under microbial crusts' : 'Bare rock and sand';
+  if (climate === 'desert') return 'Desert';
+  if (climate === 'tundra') return cover.plants < 0.5 ? 'Bare ground and the first low plants' : 'Tundra';
+  if (climate === 'steppe') return cover.grasses > 0.5 ? 'Grassland' : 'Low plants and scrub';
+  if (climate === 'savanna') return cover.grasses > 0.5 ? 'Savanna: grass and scattered trees' : cover.forests > 0.5 ? 'Dry woodland' : 'Low plants';
+  if (cover.forests < 0.5) return 'Low plants, without forests yet';
+  return climate === 'rainforest' ? 'Tropical rain forest' : climate === 'cold' ? 'Cold-winter forest' : 'Temperate forest';
 }
 
 /** The planet's phase and ice at the time shown, and the records that say so. */
@@ -114,6 +150,19 @@ export interface PlanetStateInfo {
   phase: string;
   ice?: { id: string; label: string; reach: string };
 }
+
+/** A taxon as a living scene draws it. */
+export interface OrganismHere {
+  taxon: SceneTaxon;
+  site: string;
+  slice: number;
+  fossils: SceneFile['fossils'];
+  /** how many of it the generator placed */
+  count: number;
+  generator: string;
+}
+
+const fmt = (x: number) => (x >= 10 ? x.toFixed(0) : x >= 1 ? x.toFixed(1) : x.toFixed(2));
 
 /** Where a click on the globe fell inside a polity's territory: the dataset's row drawn there. */
 export interface TerritoryHere {
@@ -134,7 +183,11 @@ export interface SeriesValue {
 }
 
 /** A number to three significant figures, as people write it. */
-export const fmtValue = (x: number) => Number(x.toPrecision(3)).toLocaleString('en-US');
+export const fmtValue = (x: number): string => {
+  const three = (v: number) => Number(v.toPrecision(3)).toLocaleString('en-US');
+  const size = Math.abs(x);
+  return size >= 1e9 ? `${three(x / 1e9)} billion` : size >= 1e6 ? `${three(x / 1e6)} million` : three(x);
+};
 
 export class InspectPanel {
   readonly el: HTMLElement;
@@ -180,7 +233,7 @@ export class InspectPanel {
     return `<a href="#" class="open" data-entity="${esc(id)}">${esc(label)}</a>`;
   }
 
-  showEntity(r: EntityRecord, scenario: Scenario, time: FeatureTime, here?: TerritoryHere): void {
+  showEntity(r: EntityRecord, scenario: Scenario, time: FeatureTime, here?: TerritoryHere, organism?: OrganismHere): void {
     const status = r.claims.every((c) => c.status === 'accepted') ? 'accepted' : r.claims.some((c) => c.status === 'disputed') ? 'disputed' : 'proposed';
     const machine = r.claims.some((c) => c.author.startsWith('machine:'));
     const alts = new Set(scenario.alts ?? []);
@@ -211,7 +264,7 @@ export class InspectPanel {
       const chosen = cs.find((c) => picks.has(c.ref)) ?? def;
       const phaseId = cs[0] ? splitRef(cs[0].subject).phase : undefined;
       const phase = phaseId ? r.phases.find((p) => p.id === phaseId) : undefined;
-      claims += `<div class="claim-group${competing ? ' competing' : ''}"><h4>${esc(PROP_LABEL[prop] ?? prop)}${phase ? ` <span class="phase">· ${esc(phase.label)}</span>` : ''}${competing ? ' <span class="badge">competing claims</span>' : ''}</h4>`;
+      claims += `<div class="claim-group${competing ? ' competing' : ''}"><h4>${esc(PROP_LABEL[prop] ?? words(prop))}${phase ? ` <span class="phase">· ${esc(phase.label)}</span>` : ''}${competing ? ' <span class="badge">competing claims</span>' : ''}</h4>`;
       for (const c of cs) {
         const v = competing && c !== def ? variant(c.ref) : undefined;
         const inconsistent = v && !v.consistent;
@@ -233,9 +286,9 @@ export class InspectPanel {
     }
     const relations = r.relations
       .filter((x) => !x.alt || alts.has(x.alt))
-      .map((x) => `<li><strong>${esc(REL_LABEL[x.rel] ?? x.rel)}</strong> ${this.link(x.to, x.toLabel, x.wanted)}${x.lagText ? ` <span class="muted">(${esc(x.lagText)})</span>` : ''} <span class="cite">— ${this.cites(r, x.sources, x.unsourced)}</span>${x.sources.filter((s) => s.quote).map((s) => `<blockquote>${esc(s.quote)}</blockquote>`).join('')}${x.note ? `<p class="note">${esc(x.note)}</p>` : ''}</li>`)
+      .map((x) => `<li><strong>${esc(REL_LABEL[x.rel] ?? x.rel.replace(/-/g, ' '))}</strong> ${this.link(x.to, x.toLabel, x.wanted)}${x.lagText ? ` <span class="muted">(${esc(x.lagText)})</span>` : ''} <span class="cite">— ${this.cites(r, x.sources, x.unsourced)}</span>${x.sources.filter((s) => s.quote).map((s) => `<blockquote>${esc(s.quote)}</blockquote>`).join('')}${x.note ? `<p class="note">${esc(x.note)}</p>` : ''}</li>`)
       .join('');
-    const inverse = r.inverse.map((x) => `<li><strong>${esc(REL_LABEL[x.rel] ?? x.rel)}</strong> ${this.link(x.from, x.fromLabel)} <span class="muted">(stated by that record)</span></li>`).join('');
+    const inverse = r.inverse.map((x) => `<li><strong>${esc(REL_LABEL[x.rel] ?? x.rel.replace(/-/g, ' '))}</strong> ${this.link(x.from, x.fromLabel)} <span class="muted">(stated by that record)</span></li>`).join('');
     const sources = Object.values(r.sources)
       .map((s) => `<li id="src-${esc(s.id)}"><p>${esc(s.citation)}</p>${s.doi ? `<a href="https://doi.org/${encodeURI(s.doi)}" target="_blank" rel="noopener">doi:${esc(s.doi)}</a>` : s.url ? `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.url)}</a>` : ''} <span class="badge">${esc(s.kind)}</span>${s.license ? ` <span class="badge">${esc(s.license)}</span>` : ''}${s.written ? `<p class="written">Written ${esc(s.written)}.</p>` : ''}${s.type === 'text' && s.reliability ? `<p class="note">${esc(s.reliability)}</p>` : ''}${s.verified ? `<p class="verified">Checked: ${esc(s.verified.how)}</p>` : ''}</li>`)
       .join('');
@@ -254,6 +307,7 @@ export class InspectPanel {
       `<div class="meta"><span class="kind">${esc(r.kindLabel)}</span><span class="badge basis-${esc(r.basis.time)}" title="How directly its dates rest on evidence">${esc(r.basis.time)}</span><span class="badge status-${status}">${status}${machine && status === 'proposed' ? ' · machine-made, needs review' : ''}</span></div>
       ${r.summary ? `<p class="summary">${esc(r.summary)}</p>` : ''}
       ${here ? this.hereSection(here) : ''}
+      ${organism ? this.organismSection(organism) : ''}
       <section><h3>When</h3><p class="when">${esc(fmtTime(time))}${picks.size || chosenAlts.length ? ' <span class="badge">with your choices</span>' : ''}</p>
       ${chosenAlts.map((a) => `<p class="method">In the alternative “${esc(this.cb.altTitle(a))}”.</p>`).join('')}
       ${phases ? `<ul class="phases">${phases}</ul>` : ''}
@@ -268,6 +322,16 @@ export class InspectPanel {
     for (const input of this.el.querySelectorAll<HTMLInputElement>('input[type=radio]')) {
       input.onchange = () => this.cb.onPick(input.dataset.members!.split(' '), input.value === input.dataset.default ? null : input.value);
     }
+  }
+
+  /** In a living scene: what puts this taxon there, from the records; and what the generator made up. */
+  private organismSection(o: OrganismHere): string {
+    const t = o.taxon;
+    const sizes = [t.fromMass ? `${fmt(t.mass!)} kg` : t.length !== undefined ? `${fmt(t.length)} m long` : '', t.hip !== undefined ? `${fmt(t.hip)} m at the hips` : '', t.height !== undefined ? `${fmt(t.height)} m tall` : ''].filter(Boolean).join(', ');
+    const rows = `${t.rows} ${t.rows === 1 ? 'occurrence' : 'occurrences'} in ${t.collections} ${t.collections === 1 ? 'collection' : 'collections'} of ${esc(o.fossils.title)}`;
+    return `<section class="here organism"><h3>In ${esc(o.site)}, ${esc(formatTime(o.slice))}</h3>
+      <p><strong>Recorded:</strong> ${rows}${sizes ? `; grown, ${esc(sizes)}, as the claims below say` : ''}.</p>
+      <p><strong>Generated:</strong> where each stands, that there are ${o.count} of it here, what each is doing, how old it is and its colour${t.fromMass ? ', and its length, from its mass and the shape of the kit' : ''}. Nobody recorded these. <span class="method">${esc(o.generator)}, shown in magenta in evidence mode.</span></p></section>`;
   }
 
   /** Inside a polity's territory: which of the dataset's rows is drawn there, and for what years. */
@@ -304,8 +368,25 @@ export class InspectPanel {
       <section><h3>Here, at ${esc(formatTime(info.t, 1e4))}</h3>
       <p class="big">${info.elevation >= 0 ? '' : '−'}${Math.abs(Math.round(info.elevation)).toLocaleString('en-US')} m <span class="muted">${info.elevation >= 0 ? 'above' : 'below'} the sea level of the time</span></p>
       <p>${lat}, ${lon} in the geographic frame of this time${info.plate ? `, on plate ${info.plate}${info.plateLabel ? ` (${esc(info.plateLabel)})` : ''}` : ', on no plate polygon (ocean floor the model does not track)'}.</p>
+      ${info.polity && info.elevation >= 0 ? this.politySection(info.polity) : ''}
+      ${info.biome && info.elevation >= 0 ? this.biomeSection(info.biome) : ''}
       <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time. The ${esc((info.coastline ?? 'coastline').toLowerCase())} is derived, not stored: the ${esc(info.datum === 'contemporaneous-sea-level' ? '0 m' : 'sea-level')} isoline of this field.</p></section>${this.stateSection(info.state)}${source}`,
     );
+  }
+
+  /** Which state a borders dataset draws here. */
+  private politySection(p: NonNullable<TerrainInfo['polity']>): string {
+    return `<div class="polity"><h3>Held by</h3><p class="big">${esc(p.name)}</p>
+      <p>As drawn for ${esc(formatTime(p.from))} to ${esc(formatTime(p.to - 1))}, at about ${p.area.toLocaleString('en-US')} km².${p.wikipedia ? ` <span class="muted">Wikipedia: ${esc(p.wikipedia)}.</span>` : ''}</p>
+      <p class="method">A row of ${esc(short(p.source, 'the borders dataset'))}, not a record of ours: its name, its years and its outline are as that dataset gives them, thinned for the globe.</p></div>`;
+  }
+
+  /** What covers the land here: the climate field's class, what the transitions allow by now, and what is generated. */
+  private biomeSection(b: BiomeHere): string {
+    const by = b.transitions.map((t) => this.link(t.id, t.label)).join(', ');
+    return `<div class="biome"><h3>Covered with</h3><p class="big">${esc(coverWords(b))}</p>
+      <p>The climate here is ${esc(b.label.toLowerCase())}, in ${esc(b.title)}.${by ? ` So far: ${by}.` : ' No transition has happened yet.'}${b.next ? ` Not yet: ${this.link(b.next.id, b.next.label)}.` : ''}</p>
+      <p class="method">${esc(b.rule)}${b.ruleSource ? ` The climate is from ${esc(short(b.ruleSource, b.ruleSource.id))}.` : ''} The pattern within it is generated: <span class="badge basis-procedural">procedural</span></p></div>`;
   }
 
   /** The globe where no field covers the time shown: what is not known, and why; and the planet's state, if it has one. */
@@ -322,6 +403,13 @@ export class InspectPanel {
 
   /** A global series: its value at a time, how it is known, and its source. */
   /** Something generated rather than recorded: what it is, and what it is made to fit. */
+  /** A row of a dataset drawn on the globe: what it says, and the dataset it comes from. */
+  showRow(title: string, kind: string, lines: string[], src: SourceRecord | undefined, note?: string): void {
+    const source = `<section><h3>Source</h3><ol class="sources"><li><p>${esc(src?.citation ?? '')}</p>${src?.doi ? `<a href="https://doi.org/${encodeURI(src.doi)}" target="_blank" rel="noopener">doi:${esc(src.doi)}</a>` : ''}</li></ol></section>`;
+    this.frame(title, `<div class="meta"><span class="kind">${esc(kind)}</span><span class="badge basis-evidence">evidence</span></div>
+      <section>${lines.map((l) => `<p>${esc(l)}</p>`).join('')}${note ? `<p class="note">${esc(note)}</p>` : ''}</section>${source}`);
+  }
+
   showGenerated(title: string, kind: string, text: string, why: string): void {
     this.el.hidden = false;
     this.el.innerHTML = `<header><h2>${esc(title)}</h2><button class="close" aria-label="Close">×</button></header>

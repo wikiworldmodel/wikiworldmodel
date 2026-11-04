@@ -1,0 +1,23 @@
+id: src:gudjonsdottir-2026-woolly-rhinoceros
+type: publication
+kind: measurement
+citation: >-
+  Guðjónsdóttir, S.M., Lord, E., Pochon, Z., Lemež, Š., Dussex, N., Stanton, D.W.G., Sinding,
+  M.-H.S., Fedorov, S., Dalén, L. & Chacón-Duque, J.C. (2026). Genome shows no recent inbreeding in
+  near-extinction woolly rhinoceros sample found in ancient wolf's stomach. Genome Biology and
+  Evolution 18(1), evaf239.
+authors:
+  - "Guðjónsdóttir, S.M."
+  - "Lord, E."
+  - "Pochon, Z."
+  - "Lemež, Š."
+  - "Chacón-Duque, J.C."
+published: 2026
+title: "Genome shows no recent inbreeding in near-extinction woolly rhinoceros sample found in ancient wolf's stomach"
+container: "Genome Biology and Evolution 18(1), evaf239"
+doi: 10.1093/gbe/evaf239
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC12799484). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

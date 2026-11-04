@@ -1,0 +1,80 @@
+id: people/dispersals/neanderthal-admixture
+kind: event/admixture
+summary: >-
+  The mixing between modern humans and Neanderthals from which most people outside Africa carry 1–2%
+  of their ancestry, after the main dispersal out of Africa. It has no location here: it is known
+  from genomes, and the sources read do not settle where it took place. Later, local mixing shows in
+  individuals such as Oase 1.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Interbreeding with Neanderthals }
+    unsourced: An editorial label.
+  date-iasi-2024:
+    prop: date
+    value: { lo: 50.5 ka, hi: 43.5 ka }
+    source:
+      ref: src:iasi-2024-neanderthal-ancestry
+      loc: abstract
+      quote: "the vast majority of Neandertal gene flow is attributable to a single, shared extended period of gene flow that occurred 50,500–43,500 years ago"
+    method: ancestry-segments
+    rank: preferred
+    note: >-
+      Preferred because it uses the most genomes, more than 300 over the past 50,000 years, and
+      because it holds the estimate of Sümer et al. It reads the gene flow as a stretch of time, not
+      a pulse.
+  date-sumer-2025:
+    prop: date
+    value: { lo: 49 ka, hi: 45 ka }
+    source:
+      ref: src:sumer-2025-ranis-genomes
+      loc: abstract
+      quote: "a single admixture event shared with all non-Africans that we date to approximately 45,000–49,000 years ago"
+    method: ancestry-segments
+  date-fu-2014:
+    prop: date
+    value: { lo: 60 ka, hi: 50 ka }
+    source:
+      ref: src:fu-2014-ust-ishim
+      loc: "main text, on the Neandertal segments"
+      quote: "the admixture between the ancestors of the Ust’-Ishim individual and Neandertals occurred approximately 50,000 to 60,000 years BP"
+    method: ancestry-segments
+    note: From one genome, under the assumption of a single event and a generation time of 29 years.
+  date-sankararaman-2012:
+    prop: date
+    value: { lo: 65 ka, hi: 47 ka }
+    source:
+      ref: src:sankararaman-2012-interbreeding
+      loc: abstract
+      quote: "the last gene flow from Neandertals (or their relatives) into Europeans likely occurred 37,000-86,000 years before the present (BP), and most likely 47,000-65,000 years ago"
+    method: ancestry-segments
+    note: From the decay of linkage disequilibrium in present-day Europeans.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        Most Neanderthal ancestry in people today comes from this one shared period of gene flow,
+        which all sequenced non-Africans have in common.
+    source:
+      - ref: src:iasi-2024-neanderthal-ancestry
+        loc: abstract
+        quote: "the vast majority of Neandertal gene flow is attributable to a single, shared extended period of gene flow"
+      - ref: src:sumer-2025-ranis-genomes
+        loc: abstract
+        quote: "This implies that ancestors of all non-Africans sequenced so far resided in a common population at this time"
+relations:
+  after-the-dispersal:
+    rel: after
+    to: people/dispersals/out-of-africa-main
+    source:
+      ref: src:iasi-2024-neanderthal-ancestry
+      loc: "Discussion"
+      quote: "the timing of this gene flow into the common ancestors of non-Africans provides a lower bound on the timing of the out-of-Africa migration"
+  during-the-neanderthals:
+    rel: during
+    to: life/taxa/homo-neanderthalensis
+    source:
+      ref: src:iasi-2024-neanderthal-ancestry
+      loc: "Discussion"
+      quote: "which is consistent with archaeological evidence for the overlap of modern humans and Neanderthals in Europe"

@@ -1,0 +1,9 @@
+id: earth/plates/turkey
+kind: plate
+summary: Plate 504 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Turkey }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 504", quote: "TRK  Turkey" }

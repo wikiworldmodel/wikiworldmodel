@@ -1,0 +1,22 @@
+id: src:dehasque-2024-mammoth-genome-erosion
+type: publication
+kind: measurement
+citation: >-
+  Dehasque, M., Morales, H.E., Díez-del-Molino, D., Pečnerová, P., Chacón-Duque, J.C., Kanellidou,
+  F., Muller, H., Plotnikov, V., Protopopov, A., Tikhonov, A., … & Dalén, L. (2024). Temporal
+  dynamics of woolly mammoth genome erosion prior to extinction. Cell 187(14), 3531–3540.
+authors:
+  - "Dehasque, M."
+  - "Morales, H.E."
+  - "Díez-del-Molino, D."
+  - "Pečnerová, P."
+  - "Dalén, L."
+published: 2024
+title: "Temporal dynamics of woolly mammoth genome erosion prior to extinction"
+container: "Cell 187(14), 3531–3540"
+doi: 10.1016/j.cell.2024.05.033
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the Europe PMC record (PMID 38942016); the full text could not
+    be read here. Quotes checked by script against the text retrieved, after normalizing whitespace.

@@ -1,0 +1,25 @@
+id: src:barker-2025-glacial-cycles
+type: publication
+kind: model
+citation: >-
+  Barker, S., Lisiecki, L.E., Knorr, G., Nuber, S. & Tzedakis, P.C. (2025). Distinct roles for
+  precession, obliquity, and eccentricity in Pleistocene 100-kyr glacial cycles. Science 387(6737),
+  eadp3491.
+authors:
+  - "Barker, S."
+  - "Lisiecki, L.E."
+  - "Knorr, G."
+  - "Nuber, S."
+  - "Tzedakis, P.C."
+published: 2025
+title: Distinct roles for precession, obliquity, and eccentricity in Pleistocene 100-kyr glacial cycles
+container: Science 387(6737), eadp3491
+doi: 10.1126/science.adp3491
+url: https://discovery.ucl.ac.uk/id/eprint/10205595/1/Barker%20et%20al_Revised_Round%202_combined.pdf
+via: The authors' accepted manuscript in UCL Discovery; its page numbers are not those of the journal.
+verified:
+  by: machine:claude-code
+  how: >-
+    Section 7 of the manuscript, on the next glacial inception, read in that PDF, whose text layer sets
+    the σ of "2σ" in a symbol font. Citation from Crossref. Quotes checked by script against the text
+    extracted from the PDF, after normalizing whitespace.

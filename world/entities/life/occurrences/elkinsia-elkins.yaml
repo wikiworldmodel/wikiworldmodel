@@ -14,6 +14,10 @@ claims:
     prop: identified_as
     value: Elkinsia polymorpha
     source: { ref: src:pbdb/collection-21025, loc: "occurrence 200780, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 38.906944, lon: -79.728333, frame: frame:earth/present-day }

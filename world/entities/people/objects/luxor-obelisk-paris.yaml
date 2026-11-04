@@ -1,0 +1,123 @@
+id: people/objects/luxor-obelisk-paris
+kind: artefact/moved
+summary: >-
+  The western of the two obelisks of Ramesses II before the temple of Luxor, given to France by the
+  viceroy of Egypt, shipped to Paris on a barge built for it, and raised in the Place de la Concorde
+  on 25 October 1836.
+author: machine:claude-code
+same_as: { wikidata: Q1503331 }
+phases:
+  - id: luxor
+    label: Temple of Luxor
+  - id: voyage
+    label: On the voyage to France
+    gap: true
+  - id: seine-quay
+    label: On the Seine at the Pont de la Concorde, Paris
+  - id: place-de-la-concorde
+    label: Place de la Concorde, Paris
+claims:
+  name:
+    prop: name
+    value: { en: Luxor Obelisk }
+    source: { ref: src:culture-gouv-obelisque-de-louxor, loc: "section heading", quote: "L'Obélisque de Louxor, plus ancien monument de Paris" }
+  luxor-start:
+    prop: start
+    subject: "@luxor"
+    value: { lo: 1300 BCE, hi: 1201 BCE }
+    source:
+      ref: src:culture-gouv-obelisque-de-louxor
+      loc: "section 'L'Obélisque de Louxor, plus ancien monument de Paris', paragraph 2"
+      quote: "Le monolithe date du XIIIe siècle avant notre ère"
+    method: historical-account
+    note: The ministry's century. It says the faces show offerings to the glory of Ramesses II.
+  luxor-location:
+    prop: location
+    subject: "@luxor"
+    value: { lat: 25.699627, lon: 32.639301, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-luxor-temple, loc: "place 71626430, representative point" }
+      - ref: src:culture-gouv-obelisque-de-louxor
+        loc: "section 'L'Obélisque de Louxor, plus ancien monument de Paris', paragraph 2"
+        quote: "Il ornait, avec un autre obélisque toujours en place, l’entrée du temple de Louxor à Thèbes."
+    method: gazetteer
+  luxor-frame:
+    prop: frame
+    subject: "@luxor"
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  voyage-start:
+    prop: start
+    subject: "@voyage"
+    value: 25 August 1832 CE
+    source:
+      - ref: src:gorringe-1882-egyptian-obelisks
+        loc: "p. 92, the Latin inscription on the pedestal in Paris"
+        quote: "die 25. Aug. A. 1832 Thebis Hecatompylis avectum"
+      - ref: src:gorringe-1882-egyptian-obelisks
+        loc: "p. 88, Schroeder's chapter"
+        quote: "the \"Luxor\" floated, and on the 2 5th started down the river"
+    method: documentary
+    note: >-
+      It had been lowered on 24 October 1831 and put aboard, and waited for the Nile to rise. It left
+      on 25 August 1832, went by Rosetta and Alexandria, and reached Toulon on the night of 10 May 1833.
+      A voyage has no one place, so this phase has none, and the marker stays at Luxor until the barge
+      reaches Paris. The OCR prints the day with a space, as "2 5th".
+  seine-quay-start:
+    prop: start
+    subject: "@seine-quay"
+    value: 23 December 1833 CE
+    source:
+      ref: src:gorringe-1882-egyptian-obelisks
+      loc: "p. 89, Schroeder's chapter"
+      quote: "On the 23d of December, 1833, the \" Luxor\" was in place"
+    method: documentary
+    note: >-
+      The barge lay at the foot of the western ramp
+      of the Pont de la Concorde, and the obelisk was hauled out on 9 August 1834 and stood on the quay
+      from the next day, until it was moved up the slope in 1836.
+  seine-quay-location:
+    prop: location
+    subject: "@seine-quay"
+    value: { lat: 48.86333, lon: 2.31944, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-pont-de-la-concorde, loc: "Q644398, P625 coordinate location" }
+      - ref: src:gorringe-1882-egyptian-obelisks
+        loc: "p. 89, Schroeder's chapter"
+        quote: "the foot of the western ramp at the Pont de la Concorde was naturally chosen"
+    method: gazetteer
+    note: Placed at the bridge's point; the ramp is at its end.
+  seine-quay-frame:
+    prop: frame
+    subject: "@seine-quay"
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  place-de-la-concorde-start:
+    prop: start
+    subject: "@place-de-la-concorde"
+    value: 25 October 1836 CE
+    source:
+      - ref: src:gorringe-1882-egyptian-obelisks
+        loc: "p. 92, the French inscription on the pedestal in Paris"
+        quote: "le 25 octobre, 1836."
+      - ref: src:culture-gouv-obelisque-de-louxor
+        loc: "section 'L'Obélisque de Louxor, plus ancien monument de Paris'"
+        quote: "L'obélisque est érigé en grande pompe devant 200 000 personnes, le 25 octobre 1836"
+    method: documentary
+  place-de-la-concorde-location:
+    prop: location
+    subject: "@place-de-la-concorde"
+    value: { lat: 48.865475, lon: 2.321133, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-place-de-la-concorde-obelisk, loc: "Q1503331, P625 coordinate location" }
+    method: gazetteer
+  place-de-la-concorde-frame:
+    prop: frame
+    subject: "@place-de-la-concorde"
+    value: frame:paleomap/plate-305
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

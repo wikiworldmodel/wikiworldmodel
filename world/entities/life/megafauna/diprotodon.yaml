@@ -1,0 +1,59 @@
+id: life/taxa/diprotodon
+kind: taxon
+summary: >-
+  The largest of Sahul's megafauna, here the genus, whose last species, the giant wombat-like
+  Diprotodon optatum, reached 2.8 tons and ranged widely across the continent. Its youngest reliably
+  dated remains are about 40,000 years old.
+same_as: { ott: 4943577, pbdb: "txn:40187" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Diprotodon, la: "Diprotodon" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott4943577: name" }
+    note: Open Tree gives the scientific name; the English name is the same word.
+  start-saltre-2016:
+    prop: start
+    value: { mean: 1018.5 ka, sd: 122.5 kyr }
+    source:
+      ref: src:saltre-2016-sahul-climate
+      loc: "Table 1, row Diprotodon"
+      quote: "Diprotodon Indet. (20), D. optatum (9) 29 44.2±5.7 – 1018.5±122.5"
+    method: compilation
+    note: >-
+      The oldest of the high-quality ages for the genus in the FosSahul database, which the table
+      gives at 1σ. An oldest record, not an origin: the genus may be older (the PBDB's first
+      appearance is 23.04–3.6 Ma, an interval far too wide to say).
+  end-hocknull-2020:
+    prop: end
+    value: { mean: 40.1 ka, sd: 1.7 kyr }
+    source:
+      - ref: src:hocknull-2020-south-walker-creek
+        loc: "Results, Reliable megafauna ages for eastern Sahul"
+        quote: "The youngest fossil deposit which occurs at SW9 has a weighted mean age of 40.1 ± 1.7 ka (n = 24)"
+      - ref: src:hocknull-2020-south-walker-creek
+        loc: "Table 1, row Diprotodon optatum (present at SW9)"
+    method: radiometric/luminescence
+    rank: preferred
+    note: >-
+      Preferred as the youngest date read with a high quality rating (A and A*). Hocknull et al.
+      stress that the extinction came sometime after this, as a last appearance is not an
+      extinction. Younger ages at Cuddie Springs have a lower rating and are equivocal (their Fig.
+      3).
+  end-saltre-2016:
+    prop: end
+    value: { mean: 44.2 ka, sd: 5.7 kyr }
+    source:
+      ref: src:saltre-2016-sahul-climate
+      loc: "Table 1, row Diprotodon"
+      quote: "Diprotodon Indet. (20), D. optatum (9) 29 44.2±5.7 – 1018.5±122.5"
+    method: compilation
+    note: >-
+      The youngest high-quality age in the database in 2016, before the South Walker Creek dates.
+      Saltré et al. model the extinction itself, correcting for the gap between the last fossil and
+      the last animal, within a window for ten genera of 44 to 35 kyr ago.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott4943577, lineage: Diprotodontidae < Diprotodontia < Metatheria < Theria < Mammalia" }

@@ -1,0 +1,148 @@
+id: people/objects/flaminian-obelisk
+kind: artefact/moved
+summary: >-
+  A red granite obelisk carved under Seti I for the temple of the Sun at Heliopolis, carried to Rome
+  by Augustus and set on the spina of the Circus Maximus, and raised again by Domenico Fontana for
+  Sixtus V in the Piazza del Popolo, where it stands.
+author: machine:claude-code
+same_as: { wikidata: Q568194, pleiades: 971580111 }
+# Three places, and two moves: to Rome under Augustus, and across Rome under Sixtus V.
+phases:
+  - id: heliopolis
+    label: Heliopolis
+  - id: circus-maximus
+    label: Circus Maximus, Rome
+  - id: piazza-del-popolo
+    label: Piazza del Popolo, Rome
+claims:
+  name:
+    prop: name
+    value: { en: Flaminian Obelisk }
+    source: { ref: src:nielsen-2018-flaminian-obelisk, loc: title, quote: "Rome’s Flaminian Obelisk" }
+  heliopolis-start:
+    prop: start
+    subject: "@heliopolis"
+    value: { lo: 1290 BCE, hi: 1279 BCE }
+    source:
+      - ref: src:nielsen-2018-flaminian-obelisk
+        loc: paragraph 2
+        quote: "The Flaminian Obelisk was carved at the height of Egypt’s New Kingdom, during the reign of Seti I (1290 to 1279 BCE)"
+      - ref: src:turismo-roma-flaminio-obelisk
+        loc: paragraph 2
+        quote: "Built around 1300 BC for the temple of the Sun, or Ra, in Heliopolis in Egypt"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Obeliscus Augusti in Circo Maximo, p. 367"
+        quote: "The hieroglyphics on the shaft were cut partly by Seti I and partly by Rameses II"
+    method: historical-account
+    note: >-
+      The reign in which it was carved, the nearest date read for its going up at Heliopolis; its
+      inscriptions were finished under Ramesses II, so it may have been raised somewhat later. Platner
+      and Ashby's obelisk entries were read at LacusCurtius.
+  heliopolis-location:
+    prop: location
+    subject: "@heliopolis"
+    value: { lat: 30.129404, lon: 31.307481, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-heliopolis, loc: "place 727117, representative point" }
+      - ref: src:ammianus-roman-history
+        loc: "17.4.12"
+        quote: "Octavius Augustus had brought over two obelisks from the city of Heliopolis in Egypt, one of which was set up in the Circus Maximus, the other in the Campus Martius"
+    method: gazetteer
+  heliopolis-frame:
+    prop: frame
+    subject: "@heliopolis"
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  circus-maximus-start:
+    prop: start
+    subject: "@circus-maximus"
+    value: 10 BCE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Obeliscus Augusti, p. 366"
+        quote: "brought to Rome by Augustus in 10 B.C."
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Obeliscus Augusti in Circo Maximo, p. 367"
+        quote: "brought from Heliopolis by Augustus at the same time as the gnomon"
+      - ref: src:turismo-roma-flaminio-obelisk
+        loc: paragraph 3
+        quote: "In 10 BC, together with the Campense Obelisk"
+      - ref: src:parker-1879-egyptian-obelisks
+        loc: opening chapter, the passage on the obelisks of Augustus
+        quote: "power for the fourteenth time"
+    method: documentary
+    rank: preferred
+    note: >-
+      The date rests on the inscription on the base (CIL VI.701), identical to that of the twin obelisk
+      in the Campus Martius (CIL VI.702): Augustus dedicates it to the Sun in his fourteenth year of
+      tribunician power, which Parker and Platner and Ashby read as 10 BCE. It dates the dedication;
+      the voyage came before it.
+  circus-maximus-start-gorringe-1882:
+    prop: start
+    subject: "@circus-maximus"
+    value: 20 BCE
+    source:
+      ref: src:gorringe-1882-egyptian-obelisks
+      loc: p. 130
+      quote: "Augustus caused it to be removed to Rome about B. C. 20"
+    method: expert-estimate
+    rank: deprecated
+    note: Gorringe says "about", gives no reason, and does not use the tribunician year on the base, which later writers follow.
+  circus-maximus-location:
+    prop: location
+    subject: "@circus-maximus"
+    value: { lat: 41.88593, lon: 12.485711, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-circus-maximus, loc: "place 458808506, representative point" }
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Obeliscus Augusti in Circo Maximo, p. 367"
+        quote: "erected on the spina of the circus Maximus"
+    method: gazetteer
+    note: >-
+      It stood on the spina, which is not placed more closely here; the point is the circus's. Platner
+      and Ashby say it was found broken in three in 1587, so it lay in the circus for centuries after
+      it fell, at a date not known.
+  circus-maximus-frame:
+    prop: frame
+    subject: "@circus-maximus"
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  piazza-del-popolo-start:
+    prop: start
+    subject: "@piazza-del-popolo"
+    value: 1589 CE
+    source:
+      - ref: src:fontana-1590-trasportatione
+        loc: "Libro Primo, f. 75v, the inscription on the base"
+        quote: "DEDICARI IVSSIT A. M. D. L X X X V I I I I. PONT. I I I I."
+      - ref: src:nielsen-2018-flaminian-obelisk
+        loc: "paragraph beginning 'When the Flaminian Obelisk was rediscovered in 1587'"
+        quote: "a task which he accomplished in 1589"
+      - ref: src:turismo-roma-flaminio-obelisk
+        loc: paragraph 5
+        quote: "It was raised in 1589."
+      - ref: src:gorringe-1882-egyptian-obelisks
+        loc: p. 130
+        quote: "removed to its present site, restored, and re-erected by Fontana"
+    method: documentary
+    note: >-
+      The year Sixtus V's inscription gives, cut when Fontana raised it: MDLXXXVIIII, the fourth of his
+      pontificate. Fontana says he was ordered to move it in 1588, and it was found in 1587. In the
+      quotation the OCR prints the numeral with spaces between its letters.
+  piazza-del-popolo-location:
+    prop: location
+    subject: "@piazza-del-popolo"
+    value: { lat: 41.910708, lon: 12.476343, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-flaminio-obelisk, loc: "place 971580111, representative point" }
+    method: gazetteer
+  piazza-del-popolo-frame:
+    prop: frame
+    subject: "@piazza-del-popolo"
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

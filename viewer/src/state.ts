@@ -20,6 +20,10 @@ export interface ViewState {
   sel: string | null;
   /** the hour of the day, in a city's light */
   hour: number;
+  /** the tree of life is open */
+  tree?: boolean;
+  /** the world's languages are drawn */
+  langs?: boolean;
   /**
    * A lighter way to draw the city, for slow machines and for tests run in software: no
    * shadows, occlusion, bloom or multisampling, and coarse meshes only. A link keeps it, so a
@@ -69,6 +73,8 @@ export function toSearch(build: string, s: ViewState): string {
   if (s.alt.length) p.set('alt', [...s.alt].sort().join(','));
   if (s.picks.length) p.set('pick', [...s.picks].sort().join(','));
   if (s.sel) p.set('sel', s.sel);
+  if (s.tree) p.set('tree', '1');
+  if (s.langs) p.set('langs', '1');
   if (s.quality) p.set('quality', s.quality);
   return `?${p.toString()}`;
 }
@@ -104,6 +110,8 @@ export function fromSearch(search: string, defaults: ViewState): { build?: strin
     picks: list('pick'),
     sel: p.get('sel'),
     hour: num('hour', defaults.hour),
+    tree: p.get('tree') === '1' || undefined,
+    langs: p.get('langs') === '1' || undefined,
     quality: p.get('quality') === 'fast' ? 'fast' : undefined,
   });
   return { build: buildOf(search), state };

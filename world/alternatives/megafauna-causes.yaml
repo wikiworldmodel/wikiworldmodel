@@ -1,0 +1,13 @@
+# A group of alternatives: its members exclude each other, and groups combine freely. A
+# claim belongs to the default picture unless it names an alternative (section 4.4).
+id: alt:megafauna-causes
+type: group
+title: Causes of the megafauna extinctions
+description: >-
+  What drove the loss of large animals on the continents over the last 50,000 years: people, climate
+  or both. The default picture dates the regional extinctions and names no cause for them on the
+  continents, where the cause is contested. On New Zealand, where it is not, the settlers are the
+  cause in every picture.
+# A steward decision: what a build shows. Shown on a machine's proposal, until a person decides.
+show: [alt:megafauna-causes/both, alt:megafauna-causes/climate-driven, alt:megafauna-causes/human-driven]
+default: null

@@ -1,0 +1,21 @@
+id: src:fewlass-2020-bacho-kiro
+type: publication
+kind: measurement
+citation: >-
+  Fewlass, H., Talamo, S., Wacker, L., … & Hublin, J.J. (2020). A 14C chronology for the Middle to
+  Upper Palaeolithic transition at Bacho Kiro Cave, Bulgaria. Nature Ecology & Evolution 4(6),
+  794–801.
+authors:
+  - "Fewlass, H."
+  - "Talamo, S."
+  - "Wacker, L."
+  - "Hublin, J.J."
+published: 2020
+title: "A 14C chronology for the Middle to Upper Palaeolithic transition at Bacho Kiro Cave, Bulgaria"
+container: "Nature Ecology & Evolution 4(6), 794–801"
+doi: 10.1038/s41559-020-1136-3
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

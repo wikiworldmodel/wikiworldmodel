@@ -1,0 +1,22 @@
+id: src:ranere-2009-xihuatoxtla
+type: publication
+kind: measurement
+citation: >-
+  Ranere, A.J., Piperno, D.R., Holst, I., Dickau, R. & Iriarte, J. (2009). The cultural and
+  chronological context of early Holocene maize and squash domestication in the Central Balsas
+  River Valley, Mexico. Proceedings of the National Academy of Sciences 106(13), 5014–5018.
+authors:
+  - "Ranere, A.J."
+  - "Piperno, D.R."
+  - "Holst, I."
+  - "Dickau, R."
+  - "Iriarte, J."
+published: 2009
+title: "The cultural and chronological context of early Holocene maize and squash domestication in the Central Balsas River Valley, Mexico"
+container: "Proceedings of the National Academy of Sciences 106(13), 5014–5018"
+doi: 10.1073/pnas.0812590106
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC2664064) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

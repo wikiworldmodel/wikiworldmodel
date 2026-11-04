@@ -1,0 +1,75 @@
+id: people/rulers/macrinus
+kind: person
+summary: >-
+  Prefect of the guard who had Caracalla killed and took the throne before he was even a
+  senator; beaten near Antioch by the army of Elagabalus.
+author: machine:claude-code
+same_as: { wikidata: Q1752 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+  - id: after
+    label: After his reign
+claims:
+  name:
+    prop: name
+    value: { en: Macrinus }
+    source:
+      ref: src:historia-augusta
+      loc: "Macrinus 8.1"
+      quote: And so, having been acclaimed emperor, Macrinus assumed the imperial power
+  start:
+    prop: start
+    value: { lo: September 164 CE, hi: November 164 CE }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Book 79, ch. 40, vol. 9 pp. 431–433"
+      quote: he was fifty-four years of age lacking some three or five months
+    method: historical-account
+    note: Worked out from his death in the summer of 218.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: 11 April 217 CE
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Book 79, ch. 41, vol. 9 p. 435"
+      quote: after ruling only a year and two months, lacking three days, reckoning the time to the date of the battle
+    method: historical-account
+    note: >-
+      Worked out from Dio: a year and two months less three days before the battle of 8 June
+      218. That is three days after the death of Caracalla.
+  reign-end:
+    prop: end
+    subject: "@reign"
+    value: 8 June 218 CE
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Book 79, ch. 39, vol. 9 p. 429"
+      quote: Macrinus, after being thus defeated on the eighth day of June
+    method: historical-account
+    note: Dio ends the reign with the defeat near Antioch.
+  end:
+    prop: end
+    value: { lo: 8 June 218 CE, hi: July 218 CE }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Book 79, ch. 40, vol. 9 p. 431"
+      quote: having been sentenced to die before entering Antioch, he was slain by Marcianus Taurus, a centurion
+    method: historical-account
+    note: >-
+      Dio has him flee, be caught at Chalcedon and be killed in Cappadocia on the way back, and
+      gives no day. The upper limit is an editorial allowance of some weeks for that journey,
+      not a source's date.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Book 79, ch. 41, vol. 9 p. 435"
+      quote: after ruling only a year and two months
+    note: Emperor.

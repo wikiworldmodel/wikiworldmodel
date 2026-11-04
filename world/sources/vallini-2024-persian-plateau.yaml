@@ -1,0 +1,31 @@
+id: src:vallini-2024-persian-plateau
+type: publication
+kind: measurement
+citation: >-
+  Vallini, L., Zampieri, C., Shoaee, M.J., Bortolini, E., Marciani, G., Aneli, S., Pievani, T.,
+  Benazzi, S., Barausse, A., Mezzavilla, M., Petraglia, M.D. & Pagani, L. (2024). The Persian
+  plateau served as hub for Homo sapiens after the main out of Africa dispersal. Nature
+  Communications 15(1), 1882.
+authors:
+  - "Vallini, L."
+  - "Zampieri, C."
+  - "Shoaee, M.J."
+  - "Bortolini, E."
+  - "Marciani, G."
+  - "Aneli, S."
+  - "Pievani, T."
+  - "Benazzi, S."
+  - "Barausse, A."
+  - "Mezzavilla, M."
+  - "Petraglia, M.D."
+  - "Pagani, L."
+published: 2024
+title: "The Persian plateau served as hub for Homo sapiens after the main out of Africa dispersal"
+container: "Nature Communications 15(1), 1882"
+doi: 10.1038/s41467-024-46161-7
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC10963722); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

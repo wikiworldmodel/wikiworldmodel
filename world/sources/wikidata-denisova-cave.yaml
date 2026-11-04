@@ -1,0 +1,19 @@
+id: src:wikidata-denisova-cave
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q1029322 (Denisova Cave, Russia), property P625 (coordinate location).
+snapshot: "2026-11-03"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q1029322
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry; no source is given for the point.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (51.397580555556, 84.676205555556; precision 2.7777777777778e-06) read from the
+    item's JSON (Special:EntityData/Q1029322.json, last revision 2499725827, modified 2026-05-30).

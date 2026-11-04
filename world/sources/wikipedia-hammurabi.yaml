@@ -1,0 +1,20 @@
+id: src:wikipedia-hammurabi
+type: database-record
+kind: review
+citation: >-
+  "Hammurabi." Wikipedia, the free encyclopedia (English edition).
+snapshot: 2026-11-04
+title: Hammurabi
+container: Wikipedia
+url: https://en.wikipedia.org/wiki/Hammurabi
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article that cites the Assyriological literature (Charpin 2003 and
+  2004). It is a last resort here: for the 43 years of the reign and the table of the four
+  chronologies, because Charpin's chapter is behind a browser check that was not to be passed
+  and his book could not be read. Its text can change.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-04; the quotations checked by script against
+    its text.

@@ -1,0 +1,64 @@
+id: life/occurrences/denisova-3
+kind: occurrence
+summary: >-
+  Denisova 3, the finger bone from Denisova Cave in the Altai Mountains of Siberia whose genome defined
+  the Denisovans, and among the youngest of their few fossils.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Denisova 3, Denisova Cave" }
+    unsourced: An editorial label, from the specimen and the cave.
+  identified:
+    prop: identified_as
+    value: Denisovans
+    source:
+      - ref: src:reich-2010-denisova
+        loc: abstract
+        quote: "Using DNA extracted from a finger bone found in Denisova Cave in southern Siberia, we have sequenced the genome of an archaic hominin to about 1.9-fold coverage."
+      - ref: src:slon-2017-denisova-2
+        loc: Discussion
+        quote: "one distal manual phalanx (Denisova 3)"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:reich-2010-denisova, loc: abstract }
+  location:
+    prop: location
+    value: { lat: 51.397580555556, lon: 84.676205555556, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-denisova-cave, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-401
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-massilani-2026:
+    prop: date
+    value: { mean: 65 ka, sd: 5 kyr }
+    source:
+      ref: src:massilani-2026-altai-neandertal
+      loc: Table 1
+      quote: "Denisova 3 D3 Denisovan Denisova Cave Altai Mountains, Siberia (Russia) 65 ka ± 10 ka (2 SD)"
+    rank: preferred
+    note: >-
+      Preferred because it names this specimen. The ± is given at 2 SD, halved here. The table does not
+      say how the age was reached.
+  date-douka-2019:
+    prop: date
+    value: { lo: 76 ka, hi: 52 ka }
+    source:
+      ref: src:douka-2019-denisova
+      loc: abstract
+      quote: "The youngest Denisovan dates to 52,000-76,000 years ago."
+    method: radiometric
+    note: >-
+      A Bayesian model of radiocarbon, uranium-series and optical ages with stratigraphic and genetic
+      data. The abstract read does not name the fossil; Denisova 3 and 4 are the younger lineage in the
+      other papers read (Jacobs et al. 2025).
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/denisovans
+    source: { ref: src:reich-2010-denisova, loc: abstract }

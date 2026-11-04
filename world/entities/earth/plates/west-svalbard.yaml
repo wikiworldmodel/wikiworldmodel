@@ -1,0 +1,9 @@
+id: earth/plates/west-svalbard
+kind: plate
+summary: Plate 309 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: West Svalbard }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 309", quote: "WSV West Svalbard" }

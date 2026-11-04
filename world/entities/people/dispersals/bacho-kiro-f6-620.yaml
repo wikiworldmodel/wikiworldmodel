@@ -1,0 +1,82 @@
+id: people/dispersals/bacho-kiro-f6-620
+kind: occurrence
+summary: >-
+  The genome of a man from Bacho Kiro Cave, Bulgaria, one of three Initial Upper Palaeolithic
+  individuals sequenced there, about 45,000 years old. All three were closer to later people in East
+  Asia and the Americas than to later west Eurasians, and all had recent Neanderthal ancestors.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Bacho Kiro F6-620 }
+    source:
+      ref: src:hajdinjak-2021-bacho-kiro
+      loc: "main text, on the specimens"
+      quote: "a lower molar (F6-620) found in the upper part of the Layer J in the Main Sector"
+    note: A molar; the bone fragment AA7-738 comes from the same individual, or from an identical twin.
+  identified:
+    prop: identified_as
+    value: modern human
+    source:
+      ref: src:hajdinjak-2021-bacho-kiro
+      loc: "main text, on the specimens"
+      quote: "their mitochondrial genomes are of the modern human type"
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:hajdinjak-2021-bacho-kiro
+      loc: abstract
+      quote: "Here we present genome-wide data from three individuals"
+  location:
+    prop: location
+    value: { lat: 42.946667, lon: 25.430278, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-bacho-kiro-cave, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-308
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 45.93 ka, hi: 42.58 ka }
+    source:
+      ref: src:hajdinjak-2021-bacho-kiro
+      loc: "main text, on the specimens"
+      quote: "directly radiocarbon-dated to between 45,930 and 42,580 calibrated years before present (cal. BP)"
+    method: radiometric/radiocarbon
+    note: The span of the five Initial Upper Palaeolithic specimens together, not of this one.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        From a modern human migration into Europe not known before from genomes, more closely related
+        to present-day and ancient people in East Asia and the Americas than to later west Eurasians,
+        with Neanderthal ancestors a few generations back.
+    source:
+      - ref: src:hajdinjak-2021-bacho-kiro
+        loc: abstract
+        quote: "these individuals are more closely related to present-day and ancient populations in East Asia and the Americas than to later west Eurasian populations"
+      - ref: src:hajdinjak-2021-bacho-kiro
+        loc: abstract
+        quote: "they belonged to a modern human migration into Europe that was not previously known from the genetic record"
+      - ref: src:hajdinjak-2021-bacho-kiro
+        loc: abstract
+        quote: "all three individuals had Neanderthal ancestors a few generations back in their family history"
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:hublin-2020-bacho-kiro
+      loc: abstract
+      quote: "Morphological analysis of a tooth and mitochondrial DNA from several hominin bone fragments, identified through proteomic screening, assign these finds to H. sapiens"
+  after-the-arrival:
+    rel: after
+    to: people/dispersals/bacho-kiro-cave
+    source:
+      ref: src:hajdinjak-2021-bacho-kiro
+      loc: abstract
+      quote: "were found in association with an Initial Upper Palaeolithic artefact assemblage"

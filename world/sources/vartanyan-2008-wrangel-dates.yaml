@@ -1,0 +1,22 @@
+id: src:vartanyan-2008-wrangel-dates
+type: publication
+kind: measurement
+citation: >-
+  Vartanyan, S.L., Arslanov, K.A., Karhu, J.A., Possnert, G. & Sulerzhitsky, L.D. (2008). Collection
+  of radiocarbon dates on the mammoths (Mammuthus primigenius) and other genera of Wrangel Island,
+  northeast Siberia, Russia. Quaternary Research 70(1), 51–59.
+authors:
+  - "Vartanyan, S.L."
+  - "Arslanov, K.A."
+  - "Karhu, J.A."
+  - "Possnert, G."
+  - "Sulerzhitsky, L.D."
+published: 2008
+title: "Collection of radiocarbon dates on the mammoths (Mammuthus primigenius) and other genera of Wrangel Island, northeast Siberia, Russia"
+container: "Quaternary Research 70(1), 51–59"
+doi: 10.1016/j.yqres.2008.03.005
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the OpenAlex record for the DOI; the full text could not be read
+    here. Quotes checked by script against the text retrieved, after normalizing whitespace.

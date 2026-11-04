@@ -1,0 +1,38 @@
+id: life/taxa/meniscoessus
+kind: taxon
+summary: >-
+  A large multituberculate, M. robustus, about a kilogram, among the commonest mammals of the
+  Hell Creek Formation.
+same_as: { pbdb: "txn:39832" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Meniscoessus" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 39832"
+  body-plan:
+    prop: body_plan
+    value: small-mammal
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: sprawling
+    source:
+      ref: src:kielan-jaworowska-hurum-2006-limb-posture
+      loc: "abstract"
+      quote: "We argue that early mammals (except for boreosphenidans) had sprawling limb posture"
+    note: >-
+      A case argued from hind limbs and spurs. Sereno argues that the forelimbs of
+      multituberculates were held under the body, and the paper disputes it.
+  mass-wilson-2012:
+    prop: body_mass
+    value: 1.208
+    source:
+      ref: src:wilson-2012-multituberculates
+      loc: "Supplementary Table 5, row Meniscoessus robustus"
+      quote: "Meniscoessus robustus 74 66 31.92 69.00 1.208 SL 86"
+    method: model
+    note: >-
+      M. robustus, from a skull length of 69 mm. In kilograms.

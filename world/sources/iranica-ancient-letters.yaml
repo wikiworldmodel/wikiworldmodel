@@ -1,0 +1,14 @@
+id: src:iranica-ancient-letters
+type: publication
+kind: review
+citation: >-
+  Sims-Williams, N. (1985). Ancient letters. Encyclopædia Iranica II/1, pp. 7–9.
+authors: ["Sims-Williams, N."]
+published: 1985
+title: Ancient letters
+container: Encyclopædia Iranica
+url: https://www.iranicaonline.org/articles/ancient-letters
+via: The Internet Archive's copy of 18 November 2023, because the encyclopaedia's site refused the script.
+verified:
+  by: machine:claude-code
+  how: Read in the archived copy. Quotes checked by script against its text, after normalizing whitespace.

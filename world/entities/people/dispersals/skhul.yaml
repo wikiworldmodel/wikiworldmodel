@@ -1,0 +1,43 @@
+id: people/dispersals/skhul
+kind: event/dispersal
+summary: >-
+  The burials of early modern humans at Skhul on Mount Carmel, Israel, broadly of an age with those
+  at Qafzeh: for long the first evidence of Homo sapiens outside Africa, and usually read as a
+  short-lived incursion into the Levant.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Skhul }
+    unsourced: An editorial label, from the place name.
+  date:
+    prop: date
+    value: { lo: 135 ka, hi: 100 ka }
+    source:
+      ref: src:grun-2005-skhul
+      loc: abstract
+      quote: "If the Skhul burials took place within a relatively short time span, then the best age estimate lies between 100 and 135 ka."
+    method: radiometric
+    note: >-
+      Uranium-series and ESR dates on the human fossils themselves. The abstract adds that this
+      agrees with thermoluminescence dates on burnt flint of 119 ± 18 ka, and that Skhul, Qafzeh
+      and Tabun all fall within 100 to 130 ka.
+  location:
+    prop: location
+    value: { lat: 32.625864, lon: 34.958519, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-skhul-cave, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-508
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  after-misliya:
+    rel: after
+    to: people/dispersals/misliya
+    source:
+      ref: src:groucutt-2018-al-wusta
+      loc: "main text, para. 1"
+      quote: "followed by Skhul and Qafzeh, where H. sapiens fossils have been dated to ~130-100 and ~100-90 ka respectively"

@@ -15,6 +15,10 @@ claims:
     prop: identified_as
     value: Palaeomyces gordonii
     source: { ref: src:pbdb/collection-10721, loc: "occurrence 129836, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: 57.337002, lon: -2.85, frame: frame:earth/present-day }

@@ -1,0 +1,51 @@
+id: people/trade/bom-jesus
+kind: event/shipwreck
+summary: >-
+  A Portuguese nau that left Lisbon in March 1533 for India, in a fleet of seven ships, and was lost on the coast of what is
+  now Namibia. Part of it was found on 1 April 2008 at Oranjemund, with copper ingots of the Fuggers among other things. The
+  excavation is not entirely published.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Bom Jesus }
+    source: { ref: src:castro-nadl-bom-jesus, loc: title, quote: "Bom Jesus (1533)" }
+  date:
+    prop: date
+    value: 1533 CE
+    source:
+      ref: src:castro-nadl-bom-jesus
+      loc: "heading, 'Dated'"
+      quote: "Dated: 1533 (Historical accounts)"
+    method: historical-account
+    note: The year it left Lisbon. The entry says only that it disappeared at sea, so the loss may be a little later.
+  location:
+    prop: location
+    value: { lat: -28.55, lon: 16.43333, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-oranjemund, loc: "Q1404518, P625 coordinate location" }
+      - ref: src:castro-nadl-bom-jesus
+        loc: Introduction
+        quote: "It disappeared at sea, never to be seen or heard from until a part of its remains was at Oranjemund, on April 1st, 2008."
+    method: gazetteer
+    note: The town; the site was not found placed in anything read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value: { en: "Copper ingots bearing the Fugger mark, and a large collection of other artefacts not yet published." }
+    source:
+      ref: src:castro-nadl-bom-jesus
+      loc: "section on the cargo"
+      quote: "There were copper ingots with the fugger mark, and a large collection of artifacts that is not yet published."
+  voyage:
+    prop: voyage
+    value: { en: "From Lisbon, bound for India." }
+    source:
+      ref: src:castro-nadl-bom-jesus
+      loc: Introduction
+      quote: "Bom Jesus left Lisbon in early March 1533 bound for India in the fleet of D. João Pereira, which was composed of seven ships"

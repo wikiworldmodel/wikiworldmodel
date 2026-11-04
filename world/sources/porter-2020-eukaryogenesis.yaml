@@ -1,0 +1,17 @@
+id: src:porter-2020-eukaryogenesis
+type: publication
+kind: review
+citation: >-
+  Porter, S.M. (2020). Insights into eukaryogenesis from the fossil record. Interface Focus
+  10(4), 20190105.
+authors:
+  - "Porter, S.M."
+published: 2020
+title: "Insights into eukaryogenesis from the fossil record"
+container: Interface Focus 10(4), 20190105
+doi: 10.1098/rsfs.2019.0105
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read at PubMed Central (PMC7333905), for the oldest widely accepted evidence of
+    eukaryotes. Quotes checked by script against that text. Metadata from Crossref.

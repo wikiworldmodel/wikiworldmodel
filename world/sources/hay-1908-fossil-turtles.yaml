@@ -1,0 +1,17 @@
+id: src:hay-1908-fossil-turtles
+type: publication
+kind: compilation
+citation: >-
+  Hay, O.P. (1908). The fossil turtles of North America. Carnegie Institution of Washington
+  Publication 75.
+authors:
+  - "Hay, O.P."
+published: 1908
+title: "The fossil turtles of North America"
+container: "Carnegie Institution of Washington Publication 75"
+url: https://archive.org/details/fossilturtlesofn00hayo
+verified:
+  by: machine:claude-code
+  how: >-
+    The entries cited read as the OCR text of the archive.org scan; quotes checked by script
+    against that text.

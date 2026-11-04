@@ -1,0 +1,83 @@
+id: life/taxa/mammuthus-primigenius
+kind: taxon
+summary: >-
+  The woolly mammoth. It vanished from most of its range around the end of the Pleistocene, but
+  small populations lived on into the Holocene on islands cut off by the rising sea: on St. Paul
+  Island in the Bering Sea until about 5,600 years ago, and on Wrangel Island off Siberia until
+  about 4,000 years ago. DNA in Siberian sediments may mean that others survived on the mainland as
+  late; that reading is disputed.
+same_as: { ott: 106258, pbdb: "txn:46027" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: woolly mammoth, la: "Mammuthus primigenius" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott106258: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-nogues-bravo-2008:
+    prop: start
+    value: 300 ka
+    source:
+      ref: src:nogues-bravo-2008-woolly-mammoth
+      loc: abstract
+      quote: "Woolly mammoths inhabited Eurasia and North America from late Middle Pleistocene (300 ky BP [300,000 years before present])"
+    method: expert-estimate
+  end-arppe-2019:
+    prop: end
+    value: 4000 BP
+    source:
+      - ref: src:arppe-2019-wrangel-mammoth-isotopes
+        loc: abstract
+        quote: "lived on Wrangel Island persisting well into the Holocene, going extinct at ca. 4000 cal BP"
+      - ref: src:dehasque-2024-mammoth-genome-erosion
+        loc: abstract
+        quote: "persisted for over 200 generations before becoming extinct around 4,000 years ago"
+      - ref: src:palkopoulou-2015-mammoth-genomes
+        loc: "Results and Discussion, first paragraph"
+        quote: "The last known population inhabited Wrangel Island until ~4,000 years before present (BP)"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The last mammoths known from their remains, on Wrangel Island. Preferred because it rests on
+      dated bones and is the calendar age these three sources agree on; "ca." and "around" are
+      theirs, so it is good to a few centuries at best. St. Paul Island's mammoths died out earlier,
+      5,600 ± 100 years ago (Graham et al. 2016, PNAS 113, 9310–9314; abstract).
+  end-vartanyan-2008:
+    prop: end
+    value: 3700 BP
+    source:
+      - ref: src:vartanyan-2008-wrangel-dates
+        loc: abstract
+        quote: "106 fall between 3700 and 9000 yr ago"
+      - ref: src:rogers-slatkin-2017-wrangel-genomes
+        loc: Introduction
+        quote: "Lone isolated island populations persisted out of human reach until roughly 3,700 years ago when the species finally went extinct"
+    method: radiometric/radiocarbon
+    note: >-
+      The youngest of Wrangel Island's radiocarbon dates. The abstract, the only part read, does not
+      say whether its "yr ago" are radiocarbon or calendar years; if radiocarbon, this may be the
+      same evidence as the calendar age of about 4000 BP, but no source read says so. Nogués-Bravo
+      et al. (2008, abstract) give 3.6 ky BP.
+  end-wang-2021:
+    prop: end
+    value: { mean: 3.9 ka, sd: 0.2 kyr }
+    source:
+      - ref: src:wang-2021-arctic-edna
+        loc: abstract
+        quote: "the woolly mammoth until 3.9 ± 0.2 thousand years ago (ka)"
+      - ref: src:wang-2021-arctic-edna
+        loc: Late-surviving megafauna
+        quote: "as late as 3.9 ± 0.2 ka (site LUR10)"
+    method: stratigraphic
+    note: >-
+      Mammoth DNA in dated sediment on the Taimyr Peninsula, on the Siberian mainland, not a bone.
+      The ± level was not checked, so it is read as 1σ. Disputed: Miller & Simpson (2022, Nature
+      612, E1–E3) argue that old remains decaying on cold ground, or exhumed, can put DNA into much
+      younger sediment, and Seeber et al. (2024, eLife 12, RP89992) find mammoth DNA in lake
+      sediments only centuries old. Wang et al. reply in the same issue that they see no evidence of
+      this in their samples.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott106258, lineage: Mammuthus < Elephantidae < Proboscidea < Afrotheria < Atlantogenata < Eutheria < Theria < Mammalia" }

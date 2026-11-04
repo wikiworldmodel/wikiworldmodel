@@ -1,0 +1,37 @@
+id: life/taxa/adocus
+kind: taxon
+summary: >-
+  A broad, low-shelled aquatic turtle, among the commonest in the Hell Creek Formation.
+same_as: { pbdb: "txn:37652" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Adocus" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 37652"
+  body-plan:
+    prop: body_plan
+    value: turtle
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: sprawling
+    source:
+      ref: src:butcher-blob-2008-cooter-turtles
+      loc: "abstract"
+      quote: "their highly sprawled posture"
+    note: >-
+      Of living turtles, as a guide to their extinct relatives.
+  length-hirayama-2021:
+    prop: body_length
+    value: 0.5
+    source:
+      ref: src:hirayama-2021-adocus-kohaku
+      loc: "text after Table 2"
+      quote: "relatively large size with at least a 50 cm long shell presumed"
+    method: expert-estimate
+    note: >-
+      Said of North American Adocus as a whole, as a lower limit: a whole-genus figure, not a
+      Hell Creek specimen.

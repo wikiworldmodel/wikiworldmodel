@@ -1,0 +1,64 @@
+id: people/rulers/otho
+kind: person
+summary: >-
+  Emperor for three months in 69, raised by the guard against Galba; he killed himself after his
+  army was beaten by that of Vitellius at Betriacum.
+author: machine:claude-code
+same_as: { wikidata: Q1416 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Otho }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Otho 2.1"
+      quote: The emperor Otho was born
+  start:
+    prop: start
+    value: 28 April 32 CE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Otho 2.1"
+      quote: The emperor Otho was born on the fourth day before the Kalends of May in the consulate of Camillus Arruntius and Domitius Ahenobarbus
+    method: historical-account
+    note: The fourth day before the Kalends of May is 28 April, and that consulship is 32 CE.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/galba, edge: end }
+    source:
+      ref: src:tacitus-histories
+      loc: "1.27"
+      quote: There twenty-three of the bodyguard hailed him as emperor
+    method: historical-account
+    note: The guard hailed him on the day Galba was killed (Tacitus, Histories 1.27–41).
+  end:
+    prop: end
+    value: { lo: 15 April 69 CE, hi: 19 April 69 CE }
+    source:
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 63 (64.15.2), vol. 8 p. 219"
+        quote: after he had lived thirty-seven years, lacking eleven days, and had reigned ninety days
+      - ref: src:suetonius-lives-of-the-caesars
+        loc: "Otho 11.2"
+        quote: in the thirty-eighth year of his age and on the ninety-fifth day of his reign
+    method: historical-account
+    note: >-
+      The counts disagree by a few days: ninety days after 15 January is 15 April, the
+      ninety-fifth day of the reign is 19 April, and thirty-seven years less eleven days after
+      28 April 32 is 17 April.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:tacitus-histories
+      loc: "1.27"
+      quote: hailed him as emperor
+    note: Emperor, in the second of the four reigns of 68–69.

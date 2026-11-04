@@ -1,0 +1,18 @@
+id: src:shiji-123-hirth-1917
+type: text
+kind: historian
+citation: >-
+  Sima Qian, Shiji, chapter 123, translated by F. Hirth, "The Story of Chang K'ien, China's Pioneer in Western Asia",
+  Journal of the American Oriental Society 37(2) (1917), pp. 93–116; as reproduced in D.C. Waugh (ed.), Selections from the
+  Han Narrative Histories, Silk Road Seattle.
+written: 100 BCE
+published: 1917
+title: Shiji, chapter 123 (Hirth's translation)
+url: https://depts.washington.edu/silkroad/texts/hantxt1.html
+via: Daniel Waugh's web edition for Silk Road Seattle, which condenses the translation and adds its dates and glosses in square brackets. Hirth's article itself was not read.
+reliability: >-
+  The Han court astrologer's history, written about 100 BCE, by de la Vaissière's account, from reports by the first envoys.
+  The text dates by reign periods and "thirteen years later"; the years in square brackets are the editors'.
+verified:
+  by: machine:claude-code
+  how: Section III of the web edition read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

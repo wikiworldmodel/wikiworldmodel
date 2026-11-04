@@ -1,0 +1,19 @@
+id: src:hublin-2009-neandertals
+type: publication
+kind: review
+citation: >-
+  Hublin, J.-J. (2009). The origin of Neandertals. Proceedings of the National Academy of Sciences
+  106(38), 16022–16027.
+authors:
+  - "Hublin, J.-J."
+published: 2009
+title: "The origin of Neandertals"
+container: "Proceedings of the National Academy of Sciences 106(38), 16022–16027"
+doi: 10.1073/pnas.0904119106
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 19805257): the proposal to use H. rhodesiensis for
+    the ancestors of H. sapiens and of Neandertals, and H. neanderthalensis for all specimens with
+    derived features. The PubMed Central page answered with a browser check, so the full text was
+    not read. Quoted passages checked by script against the text retrieved.

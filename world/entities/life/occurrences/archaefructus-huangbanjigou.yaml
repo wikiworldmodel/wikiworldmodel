@@ -1,0 +1,53 @@
+id: life/occurrences/archaefructus-huangbanjigou
+kind: occurrence
+summary: >-
+  The aquatic plant Archaefructus liaoningensis from the Jianshangou Bed of the Yixian Formation at Huangbanjigou, Liaoning, China: among
+  the oldest flowering plants known from more than pollen. PBDB collection 176229.
+same_as: { pbdb: "occ:1599829" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Archaefructus, Huangbanjigou" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Archaefructus liaoningensis n. gen. n. sp.
+    source: { ref: src:pbdb/collection-176229, loc: "occurrence 1599829, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:gomez-2015-montsechia
+      loc: abstract
+      quote: "Lower Cretaceous aquatic angiosperms, such as Archaefructus and Montsechia"
+  location:
+    prop: location
+    value: { lat: 41.615002, lon: 120.834999, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-176229, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Yixian Formation
+    source: { ref: src:pbdb/collection-176229, loc: "formation" }
+  date:
+    prop: date
+    value: { lo: 125.77 Ma, hi: 121.4 Ma }
+    source: { ref: src:pbdb/collection-176229, loc: "early_interval (Late Barremian), max_ma, min_ma" }
+    method: stratigraphic
+    note: >-
+      The PBDB's ages for its Late Barremian, on its own scale, and not the chart's Barremian.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source:
+      ref: src:gomez-2015-montsechia
+      loc: abstract
+      quote: "Lower Cretaceous aquatic angiosperms, such as Archaefructus and Montsechia"

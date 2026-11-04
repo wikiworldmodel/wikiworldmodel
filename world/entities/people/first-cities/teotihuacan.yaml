@@ -1,0 +1,130 @@
+id: people/first-cities/teotihuacan
+kind: settlement
+summary: >-
+  Teotihuacan, in the Basin of Mexico, the largest city of Mesoamerica in the first millennium: planned on an orthogonal grid, its people living in crowded one-story apartment compounds in
+  neighbourhoods of many origins. It collapsed around 550 CE. The first population figure, from the map of the whole city, is 125,000 as probable, with 75,000 as the least and more than 200,000
+  as possible; later authors mostly use smaller figures.
+author: machine:claude-code
+same_as: { wikidata: Q172613 }
+claims:
+  name:
+    prop: name
+    value: { en: Teotihuacan }
+    source:
+      ref: src:sugiyama-2021-teotihuacan-lidar
+      loc: title
+      quote: "Humans as geomorphic agents: Lidar detection of the past, present and future of the Teotihuacan Valley, Mexico"
+  start-sugiyama:
+    prop: start
+    value: 1 CE
+    source:
+      ref: src:sugiyama-2021-teotihuacan-lidar
+      loc: Introduction
+      quote: the site of a flourishing metropolis from CE 1–550
+    method: expert-estimate
+    rank: preferred
+    note: Preferred as the more recent statement. Earlier occupation in the valley is not covered.
+  start-froese:
+    prop: start
+    value: 100 CE
+    source:
+      ref: src:froese-2014-teotihuacan-government
+      loc: Introduction
+      quote: Starting around 100 AD, it rapidly grew into the largest city of Mesoamerica of the first millennium.
+    method: expert-estimate
+  end-collapse:
+    prop: end
+    value: 550 CE
+    source:
+      - ref: src:sugiyama-2021-teotihuacan-lidar
+        loc: section "Teotihuacan"
+        quote: Even after its collapse circa CE 550
+      - ref: src:froese-2014-teotihuacan-government
+        loc: Introduction
+        quote: High-resolution chronology of the city’s center places its collapse around 550 AD
+    method: expert-estimate
+    rank: preferred
+    note: The collapse of the city as a metropolis, not the last of its people. Preferred because it rests on a high-resolution chronology of the centre, as Froese et al. say.
+  end-unesco:
+    prop: end
+    value: 650 CE
+    source:
+      ref: src:unesco-whc-414-teotihuacan
+      loc: Outstanding Universal Value, criterion vi
+      quote: Following the destruction and abandonment of the city towards 650 A.D.
+    method: expert-estimate
+  location:
+    prop: location
+    value: { lat: 19.6925, lon: -98.843889, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-teotihuacan, loc: "Q172613, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-104
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area-sugiyama:
+    prop: settlement_area
+    value: 2000
+    valid: { lo: 250 CE, hi: 550 CE }
+    source:
+      - ref: src:sugiyama-2021-teotihuacan-lidar
+        loc: section "Teotihuacan"
+        quote: across an area of roughly 20 km2
+      - ref: src:froese-2014-teotihuacan-government
+        loc: Introduction
+        quote: It covered an area of about 20 km2
+    method: survey
+    rank: preferred
+    note: 20 km². Preferred because two recent papers agree on it. The moment is the city's apogee, as Sugiyama et al. date it.
+  area-unesco:
+    prop: settlement_area
+    value: 3600
+    valid: { lo: 250 CE, hi: 550 CE }
+    source:
+      ref: src:unesco-whc-414-teotihuacan
+      loc: Outstanding Universal Value, brief synthesis
+      quote: At the peak of its development the city stretched out over 36 km2.
+    method: expert-estimate
+  population-millon:
+    prop: population
+    value: 125000
+    valid: { lo: 250 CE, hi: 550 CE }
+    source:
+      ref: src:millon-1970-teotihuacan
+      loc: abstract
+      quote: At its height the city had a minimum population of 75,000, a probable population of 125,000, and a possible population of more than 200,000.
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      The probable figure, from the project that mapped the whole city. Preferred as the one figure here from a study made for the purpose; only the abstract could be read.
+      The moment is the city's apogee, as Sugiyama et al. date it, and Millon says only "at its height".
+  population-sugiyama:
+    prop: population
+    value: 100000
+    valid: { lo: 250 CE, hi: 550 CE }
+    source:
+      ref: src:sugiyama-2021-teotihuacan-lidar
+      loc: section "Teotihuacan"
+      quote: supported an estimated 100,000 inhabitants
+    method: expert-estimate
+  population-froese:
+    prop: population
+    value: { lo: 80000, hi: 100000 }
+    valid: 150 CE
+    source:
+      ref: src:froese-2014-teotihuacan-government
+      loc: Introduction
+      quote: a conservative estimate is that by 150 AD the city’s population had reached a plateau of between 80,000 and 100,000 inhabitants
+    method: expert-estimate
+  population-unesco:
+    prop: population
+    value: 25000
+    valid: { lo: 1 CE, hi: 700 CE }
+    source:
+      ref: src:unesco-whc-414-teotihuacan
+      loc: Outstanding Universal Value, brief synthesis
+      quote: one of the largest ancient cities in the Americas, with at least 25,000 inhabitants
+    method: expert-estimate
+    note: A lower limit, far below the rest, and the summary gives no evidence.

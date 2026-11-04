@@ -1,0 +1,22 @@
+id: src:xiang-2015-reply
+type: publication
+kind: measurement
+citation: >-
+  Xiang, H., Gao, J., Yu, B., Hofreiter, M. & Zhao, X. (2015). Reply to Peters et al.: Further
+  discussions confirm early Holocene chicken domestication in northern China. Proceedings of
+  the National Academy of Sciences 112(19), E2416.
+authors:
+  - "Xiang, H."
+  - "Gao, J."
+  - "Yu, B."
+  - "Hofreiter, M."
+  - "Zhao, X."
+published: 2015
+title: "Reply to Peters et al.: Further discussions confirm early Holocene chicken domestication in northern China"
+container: "Proceedings of the National Academy of Sciences 112(19), E2416"
+doi: 10.1073/pnas.1503956112
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC4434768) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

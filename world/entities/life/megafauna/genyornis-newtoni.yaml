@@ -1,0 +1,73 @@
+id: life/taxa/genyornis-newtoni
+kind: taxon
+summary: >-
+  A giant flightless bird of Australia, a mihirung of the extinct family Dromornithidae. Eggshell
+  from more than 200 sites dates its end to about 47,000 years ago, and burns on the shell suggest
+  that people cooked its eggs. Whether the shell was this bird's was long disputed, until ancient
+  proteins from it pointed back to Genyornis in 2022.
+same_as: { ott: 3600996, pbdb: "txn:159184" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: mihirung, la: "Genyornis newtoni" }
+    source:
+      ref: src:demarchi-2022-genyornis-eggshell
+      loc: Significance
+      quote: "a giant flightless “mihirung” Genyornis"
+    note: The scientific name is also Open Tree's (taxon_info ott3600996).
+  start-saltre-2016:
+    prop: start
+    value: { hi: 139.9 ka }
+    source:
+      ref: src:saltre-2016-sahul-climate
+      loc: "Table 1, row Genyornis"
+      quote: "Genyornis G. newtoni (252) 252 35±0.4 – 139.9±0"
+    method: compilation
+    note: >-
+      One-sided: it was there by then. The oldest high-quality age for the species in the FosSahul
+      database, an oldest record and not an origin. The PBDB's first appearance is 2.58–0.0117 Ma.
+  end-miller-2016:
+    prop: end
+    value: 47 ka
+    source:
+      - ref: src:miller-2016-genyornis-predation
+        loc: abstract
+        quote: "contributing to the bird's extinction by ∼47 ka"
+      - ref: src:miller-2016-genyornis-predation
+        loc: abstract
+        quote: "Dating by three methods restricts their occurrence to between 53.9 and 43.4 ka, and likely before 47 ka"
+      - ref: src:demarchi-2022-genyornis-eggshell
+        loc: Significance
+        quote: "The eggs are those of a Galloanseres (a group that includes extinct Dromornithidae, as well as extant landfowl and waterfowl), Genyornis, and not of the megapode"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      From the eggshell, by luminescence, amino acid racemization and radiocarbon. The quoted window
+      is that of the burnt shell. Miller et al. also give 50 ± 5 ka for the extinction, from their
+      earlier work. Preferred because it rests on the eggshell itself, directly dated. It stands or
+      falls with the shell being Genyornis's; Demarchi et al. (2022) find that it is.
+  end-saltre-2016:
+    prop: end
+    value: { mean: 35 ka, sd: 0.4 kyr }
+    source:
+      ref: src:saltre-2016-sahul-climate
+      loc: "Table 1, row Genyornis"
+      quote: "Genyornis G. newtoni (252) 252 35±0.4 – 139.9±0"
+    method: compilation
+    note: >-
+      The youngest age for the species rated high quality in the FosSahul database, at 1σ, with no
+      word in the table on what was dated. Miller et al. warn that radiocarbon dates on this
+      eggshell older than 40 ka should be read as minimum ages; whether that touches this age was
+      not read.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/aves
+    source:
+      ref: src:demarchi-2022-genyornis-eggshell
+      loc: abstract
+      quote: "the iconic extinct flightless bird Genyornis newtoni (†Dromornithidae, Galloanseres)"
+    note: >-
+      Galloanseres, the landfowl and waterfowl, lie within the crown birds. Open Tree's taxonomy
+      places Dromornithidae only in Dinosauria (taxon_info ott3600996), one level too broad.

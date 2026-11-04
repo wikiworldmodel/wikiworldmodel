@@ -1,0 +1,22 @@
+id: src:bengtson-2017-vindhyan
+type: publication
+kind: measurement
+citation: >-
+  Bengtson, S., Sallstedt, T., Belivanova, V. & Whitehouse, M. (2017). Three-dimensional
+  preservation of cellular and subcellular structures suggests 1.6 billion-year-old crown-group
+  red algae. PLOS Biology 15(3), e2000735.
+authors:
+  - "Bengtson, S."
+  - "Sallstedt, T."
+  - "Belivanova, V."
+  - "Whitehouse, M."
+published: 2017
+title: "Three-dimensional preservation of cellular and subcellular structures suggests 1.6 billion-year-old crown-group red algae"
+container: PLOS Biology 15(3), e2000735
+doi: 10.1371/journal.pbio.2000735
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC5349422) read via Europe PMC (fullTextXML), for the fossils of the Tirohan
+    Dolomite at Jankikund, Chitrakoot, and the case for their age of about 1.6 Ga. Quotes
+    checked by script against that text. Metadata from Crossref.

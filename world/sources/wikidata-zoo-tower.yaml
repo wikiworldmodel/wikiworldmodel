@@ -1,0 +1,12 @@
+id: src:wikidata-zoo-tower
+type: database-record
+kind: compilation
+citation: "Wikidata, item Q8074078 (Zoo Tower, fortified air defense tower in Berlin), property P625 (coordinate location)."
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q8074078
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a marker to within a few hundred metres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (52.51, 13.3358) read from the item's JSON (Special:EntityData/Q8074078.json).

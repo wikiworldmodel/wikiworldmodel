@@ -1,0 +1,82 @@
+id: people/trade/uluburun
+kind: event/shipwreck
+summary: >-
+  A merchant ship of the Late Bronze Age that sank off Uluburun, near Kaş in southern Turkey, about 1320 BCE, with ten
+  tons of Cypriot copper and a ton of tin in ingots, enough to make eleven tons of bronze, with glass ingots, ivory, ebony
+  and gold. Excavated over eleven seasons from 1984 to 1994. It is the world's largest assemblage of raw metals from the
+  Bronze Age, and a third of its tin has been traced to Central Asia.
+author: machine:claude-code
+same_as: { wikidata: Q573852 }
+claims:
+  name:
+    prop: name
+    value: { en: Uluburun shipwreck }
+    source: { ref: src:ina-uluburun, loc: title and first paragraph, quote: "The Uluburun shipwreck was excavated by INA over 11 seasons between 1984 and 1994" }
+  date:
+    prop: date
+    value: { mean: 1320 BCE, sd: 7.5 yr }
+    source:
+      - ref: src:powell-2022-uluburun-tin
+        loc: Introduction, paragraph on the cargo
+        quote: "Excavations of the LBA shipwreck [1320 cal. BCE ± 15 2σ (3)]"
+      - ref: src:ina-uluburun
+        loc: heading of the page
+        quote: "DATE OF WRECK: LATE BRONZE AGE, ca. 1320 +/- 15 B.C."
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The source's ± 15 is 2σ, halved here for sd. At second hand: Powell et al. take it from Manning et al. (2009), their
+      reference 3, which is in INA's bibliography too, and which was not read.
+  date-pulak-1996:
+    prop: date
+    value: { mean: 1318 BCE, sd: 2 yr }
+    source:
+      ref: src:pulak-1996-uluburun-dendro
+      loc: p. 13
+      quote: "the most recent sample on the wreck to 1319 ±2 B.C. or 1318 ±2 B.C., after taking into account the unmeasurable ring. It would appear, therefore, that the ship sank sometime after that date, but probably not much later."
+    method: dendrochronology
+    rank: deprecated
+    note: >-
+      The last ring of a small log or branch from the cargo, at the extreme recent end of a floating sequence dated to ±37
+      years, so this bounds the sinking from one side. Superseded by the date INA now gives.
+  date-oxrep:
+    prop: date
+    value: { lo: 1350 BCE, hi: 1300 BCE }
+    source: { ref: src:oxrep-shipwrecks-2.1, loc: "Wreck ID 8567, Earliest Date, Latest Date, Dating comment", quote: "late C14th BC" }
+    method: typological
+    note: The database's range, from the goods on board by its own account of its dates.
+  location:
+    prop: location
+    value: { lat: 36.128611111111, lon: 29.685833333333, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-uluburun-shipwreck, loc: "Q573852, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-504
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value:
+      en: >-
+        Ten metric tons of Cypriot copper ingots and one of tin ingots; glass ingots, unworked elephant tusks, ostrich
+        eggshells and faience beads; pottery; carved ivory and jewellery of gold and semi-precious stones.
+    source:
+      - ref: src:powell-2022-uluburun-tin
+        loc: Introduction, paragraph on the cargo
+        quote: "The ship’s primary cargo consisted of 10 metric tons (MT) of Cypriot copper ingots (5) and a staggering 1 MT of tin ingots"
+      - ref: src:ina-uluburun
+        loc: paragraph 2
+        quote: "Raw materials from distant lands included glass ingots, unworked elephant tusks, ostrich eggshells, and faience beads."
+    note: >-
+      Powell et al. trace one third of the tin to ores in Uzbekistan and Tajikistan and two thirds to the Taurus. Press
+      summaries report a later rebuttal of the Central Asian source, which was not read.
+  voyage:
+    prop: voyage
+    value: { en: Embarked from a port in the Levant. }
+    source:
+      ref: src:bar-shipwreck-footnote
+      loc: Footnote 1
+      quote: "scholars believe that the Cape Gelidonya ship, like the Uluburun ship, embarked from a Levantine port."
+    note: Said in passing, in a footnote about the Cape Gelidonya ship. Where it was bound was not found in anything read.

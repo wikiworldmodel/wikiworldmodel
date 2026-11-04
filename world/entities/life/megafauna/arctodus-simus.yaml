@@ -1,0 +1,63 @@
+id: life/taxa/arctodus-simus
+kind: taxon
+summary: >-
+  The giant short-faced bear, the largest carnivorous mammal native to North America, at 700–1,000
+  kg, known from Beringia to Mexico, California and Florida. The direct dates on it are few.
+same_as: { ott: 958945, pbdb: "txn:44309" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: giant short-faced bear, la: "Arctodus simus" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott958945: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-pbdb:
+    prop: start
+    value: { lo: 4.7 Ma, hi: 1.4 Ma }
+    source: { ref: src:pbdb/taxon-44309, loc: "taxa/single: firstapp_max_ma, firstapp_min_ma" }
+    method: compilation
+    note: >-
+      The PBDB's first appearance, from one Blancan record at Vallecito Creek, identified only as
+      Arctodus cf. simus (occurrence 195687); the next oldest it lists are Pleistocene.
+  end-friesenhahn:
+    prop: end
+    value: { lo: 12796 BP, hi: 12657 BP }
+    source:
+      ref: src:broughton-weitzel-2018-mixed-causes
+      loc: "Supplementary Data 1, row Friesenhahn Cave (NZA-28895)"
+      quote: "Arctodus Texas Friesenhahn Cave NZA-28895 10814 55 12796 12657 12718 CO MS 12 1,3"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      An AMS date on bone collagen, 10,814 ± 55 14C years, from Friesenhahn Cave, Texas, first
+      published by Schubert (2010, Quaternary International 217, 188–194), which was not read; the
+      range is the table's calibrated one, without a stated confidence level. Preferred because the
+      extinction estimate below agrees with it and the one younger date in the table stands alone.
+  end-mychajliw-2020:
+    prop: end
+    value: { lo: 13 ka, hi: 12 ka }
+    source:
+      ref: src:mychajliw-2020-short-faced-bear
+      loc: Results, Radiocarbon calibration and extinction modeling
+      quote: "we found that A. simus may have persisted until ~ 12–13,000 years before present based on the GRIWM method"
+    method: model
+    note: >-
+      A statistical estimate of the extinction from quality-controlled direct dates across North
+      America (n = 34, and post-Last Glacial Maximum only, n = 12).
+  end-bonner-springs:
+    prop: end
+    value: { lo: 11186 BP, hi: 10767 BP }
+    source:
+      ref: src:broughton-weitzel-2018-mixed-causes
+      loc: "Supplementary Data 1, row Bonner Springs (CAMS-20007)"
+      quote: "Arctodus Kansas Bonner Springs CAMS-20007 9630 60 11186 10767 10959 CO MS 12 3"
+    method: radiometric/radiocarbon
+    note: >-
+      The youngest date in the compilation, 9,630 ± 60 14C years. Two other dates from the same site
+      are much older in the same table, 10,921 ± 50 (NZA-28889) and 11,668 ± 50 (NZA-28890). Whether
+      they date one bear was not read, so no source read says which of them to believe.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott958945, lineage: Arctodus < Ursidae < Caniformia < Carnivora < Laurasiatheria < Boreoeutheria < Eutheria < Theria < Mammalia" }

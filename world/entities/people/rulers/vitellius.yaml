@@ -1,0 +1,83 @@
+id: people/rulers/vitellius
+kind: person
+summary: >-
+  Governor of Lower Germany, hailed by the Rhine legions in January 69, who beat Otho and was
+  killed at Rome that December by the troops of Vespasian.
+author: machine:claude-code
+same_as: { wikidata: Q1417 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Vitellius }
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Vitellius 3.2"
+      quote: The emperor Aulus Vitellius, son of Lucius, was born
+  start-september-24:
+    prop: start
+    value: 24 September 15 CE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Vitellius 3.2"
+      quote: day before the Kalends of October, or according to some, on the seventh day before the Ides of September, in the consulship of Drusus Caesar and Norbanus Flaccus
+    method: historical-account
+    rank: preferred
+    note: >-
+      The eighth day before the Kalends of October is 24 September (Thayer marks Rolfe's
+      'eighth' as a doubtful reading), and that consulship is 15 CE. Preferred as Suetonius'
+      first statement, and because Dio's age at death, fifty-four years and eighty-nine days,
+      counts back to about this day.
+  start-september-7:
+    prop: start
+    value: 7 September 15 CE
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Vitellius 3.2"
+      quote: or according to some, on the seventh day before the Ides of September
+    method: historical-account
+    note: The other day that Suetonius reports.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: 2 January 69 CE
+    source:
+      - ref: src:tacitus-histories
+        loc: "1.56"
+        quote: On the night which followed January first
+      - ref: src:tacitus-histories
+        loc: "1.57.1"
+        quote: The next day he entered Cologne with the horsemen of the legion and the auxiliary troops and saluted Vitellius as emperor
+    method: historical-account
+    note: >-
+      Fabius Valens saluted him at Cologne on the day after the legions of Upper Germany
+      mutinied. Dio's reign of a year less ten days fits this start.
+  end:
+    prop: end
+    value: { lo: 18 December 69 CE, hi: 23 December 69 CE }
+    source:
+      - ref: src:tacitus-histories
+        loc: "3.67"
+        quote: On December eighteenth, when Vitellius heard of the defection
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 64, ch. 22, vol. 8 p. 255"
+        quote: He had lived fifty-four years and eighty-nine days, and had reigned for a year lacking ten days
+    method: historical-account
+    note: >-
+      Tacitus' December eighteenth is the day he tried to abdicate, and he was killed in the
+      fighting at Rome some days later. Dio's counts put the death on about 22 or 23 December.
+      No day read here is stated outright.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:suetonius-lives-of-the-caesars
+      loc: "Vitellius 8.1"
+      quote: and hailed him as emperor
+    note: Emperor, in the third of the four reigns of 68–69.

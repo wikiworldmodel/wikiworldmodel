@@ -1,0 +1,34 @@
+id: src:klages-2020-pine-island
+type: publication
+kind: measurement
+citation: >-
+  Klages, J.P., Salzmann, U., Bickert, T., Hillenbrand, C.-D., Gohl, K., Kuhn, G., Bohaty, S.M.,
+  Titschack, J., Müller, J., Frederichs, T., Bauersachs, T., Ehrmann, W., van de Flierdt, T.,
+  Pereira, P.S., et al. (2020). Temperate rainforests near the South Pole during peak Cretaceous
+  warmth. Nature 580(7801), 81–86.
+authors:
+  - "Klages, J.P."
+  - "Salzmann, U."
+  - "Bickert, T."
+  - "Hillenbrand, C.-D."
+  - "Gohl, K."
+  - "Kuhn, G."
+  - "Bohaty, S.M."
+  - "Titschack, J."
+  - "Müller, J."
+  - "Frederichs, T."
+  - "Bauersachs, T."
+  - "Ehrmann, W."
+  - "van de Flierdt, T."
+  - "Pereira, P.S."
+published: 2020
+title: "Temperate rainforests near the South Pole during peak Cretaceous warmth"
+container: Nature 580(7801), 81–86
+doi: 10.1038/s41586-020-2148-5
+verified:
+  by: machine:claude-code
+  how: >-
+    The accepted manuscript retrieved from Lancaster EPrints
+    (eprints.lancs.ac.uk/id/eprint/143541); the parts cited were read, and quotes checked by
+    script against its text with line numbers removed; locators are that manuscript's. Metadata
+    from Crossref.

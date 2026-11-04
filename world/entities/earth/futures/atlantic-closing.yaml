@@ -1,0 +1,67 @@
+id: earth/futures/atlantic-closing
+kind: event/transition
+summary: >-
+  The Atlantic stops widening and closes. It does so in two of the scenarios for the next supercontinent,
+  Pangaea Proxima and Aurica, and has no date in the default picture. In the other two it does not close:
+  under Novopangaea it goes on opening and ends as the ocean around the supercontinent, and under Amasia
+  it stays open.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Closing of the Atlantic }
+    unsourced: An editorial label.
+  start-pangaea-proxima:
+    prop: start
+    value: 100 Myr from now
+    alt: alt:next-supercontinent/pangaea-proxima
+    source:
+      - ref: src:davies-2018-next-supercontinent
+        loc: section 4.1
+        quote: By 100 Ma the mid-Atlantic ridge starts to undergo subduction at the East American subduction zones
+      - ref: src:davies-2020-future-tides
+        loc: section 3.1, p. 294
+        quote: for another 100 Myr, after which it starts closing
+    method: model
+    basis: projection
+    note: Holds only in the alternative "Pangaea Proxima". Without its ridge the ocean can no longer go on opening.
+  end-pangaea-proxima:
+    prop: end
+    value: { ref: earth/futures/pangaea-proxima, edge: start }
+    alt: alt:next-supercontinent/pangaea-proxima
+    source:
+      ref: src:scotese-paleomap-pangea-ultima
+      loc: newpage11.htm
+      quote: 250 million years in the future, the Atlantic and Indian oceans have closed.
+    method: model
+    basis: projection
+    note: >-
+      Holds only in the alternative "Pangaea Proxima". As Davies et al. (2018) rebuild it, a remnant of
+      the Atlantic remains as part of an inland sea.
+  start-aurica:
+    prop: start
+    value: { lo: 50 Myr from now, hi: 100 Myr from now }
+    alt: alt:next-supercontinent/aurica
+    source:
+      - ref: src:davies-2018-next-supercontinent
+        loc: section 4.3
+        quote: However, a balance between spreading and consumption allows it to continue to open for some time.
+      - ref: src:davies-2018-next-supercontinent
+        loc: section 4.3
+        quote: In 100 Ma, both the Atlantic and the Pacific spreading centres have been subducted
+    method: model
+    basis: projection
+    note: >-
+      Holds only in the alternative "Aurica". The closing is not itself dated: at 50 Ma the Atlantic still
+      opens, and by 100 Ma its ridge is gone, so it starts between these two time slices.
+  end-aurica:
+    prop: end
+    value: { ref: earth/futures/aurica, edge: start }
+    alt: alt:next-supercontinent/aurica
+    source:
+      ref: src:davies-2018-next-supercontinent
+      loc: section 4.3
+      quote: By 250 Ma, the Atlantic has completely closed forming Aurica surrounded by the Pan-Asian Ocean
+    method: model
+    basis: projection
+    note: Holds only in the alternative "Aurica".

@@ -1,0 +1,22 @@
+id: src:manning-2024-kyrenia
+type: publication
+kind: measurement
+citation: >-
+  Manning, S.W., Lorentzen, B., Bridge, M., Dee, M.W., Southon, J. & Wenger, M. (2024). A revised radiocarbon calibration
+  curve 350–250 BCE impacts high-precision dating of the Kyrenia Ship. PLoS ONE 19(6), e0302645.
+authors:
+  - "Manning, S.W."
+  - "Lorentzen, B."
+  - "Bridge, M."
+  - "Dee, M.W."
+  - "Southon, J."
+  - "Wenger, M."
+published: 2024
+title: A revised radiocarbon calibration curve 350–250 BCE impacts high-precision dating of the Kyrenia Ship
+container: PLoS ONE
+doi: 10.1371/journal.pone.0302645
+url: https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0302645
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read on the journal's site. Quotes checked by script against it, after normalizing whitespace.

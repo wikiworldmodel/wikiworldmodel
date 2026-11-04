@@ -1,0 +1,36 @@
+id: src:nettersheim-2019-rhizaria
+type: publication
+kind: measurement
+citation: >-
+  Nettersheim, B.J., Brocks, J.J., Schwelm, A., Hope, J.M., Not, F., Lomas, M., Schmidt, C.,
+  Schiebel, R., Nowack, E.C.M., De Deckker, P., Pawlowski, J., Bowser, S.S., Bobrovskiy, I.,
+  Zonneveld, K., Kucera, M., Stuhr, M. & Hallmann, C. (2019). Putative sponge biomarkers in
+  unicellular Rhizaria question an early rise of animals. Nature Ecology & Evolution 3(4),
+  577–581.
+authors:
+  - "Nettersheim, B.J."
+  - "Brocks, J.J."
+  - "Schwelm, A."
+  - "Hope, J.M."
+  - "Not, F."
+  - "Lomas, M."
+  - "Schmidt, C."
+  - "Schiebel, R."
+  - "Nowack, E.C.M."
+  - "De Deckker, P."
+  - "Pawlowski, J."
+  - "Bowser, S.S."
+  - "Bobrovskiy, I."
+  - "Zonneveld, K."
+  - "Kucera, M."
+  - "Stuhr, M."
+  - "Hallmann, C."
+published: 2019
+title: "Putative sponge biomarkers in unicellular Rhizaria question an early rise of animals"
+container: Nature Ecology & Evolution 3(4), 577–581
+doi: 10.1038/s41559-019-0806-5
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 30833757); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

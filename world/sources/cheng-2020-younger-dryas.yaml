@@ -1,0 +1,42 @@
+id: src:cheng-2020-younger-dryas
+type: publication
+kind: measurement
+citation: >-
+  Cheng, H., Zhang, H., Spötl, C., Baker, J., Sinha, A., Li, H., Bartolomé, M., Moreno, A.,
+  Kathayat, G., Zhao, J., Dong, X., Li, Y., Ning, Y., Jia, X., Zong, B., Ait Brahim, Y.,
+  Pérez-Mejías, C., Cai, Y., Novello, V.F., Cruz, F.W., Severinghaus, J.P., An, Z. & Edwards,
+  R.L. (2020). Timing and structure of the Younger Dryas event and its underlying climate
+  dynamics. Proceedings of the National Academy of Sciences 117(38), 23408–23417.
+authors:
+  - "Cheng, H."
+  - "Zhang, H."
+  - "Spötl, C."
+  - "Baker, J."
+  - "Sinha, A."
+  - "Li, H."
+  - "Bartolomé, M."
+  - "Moreno, A."
+  - "Kathayat, G."
+  - "Zhao, J."
+  - "Dong, X."
+  - "Li, Y."
+  - "Ning, Y."
+  - "Jia, X."
+  - "Zong, B."
+  - "Ait Brahim, Y."
+  - "Pérez-Mejías, C."
+  - "Cai, Y."
+  - "Novello, V.F."
+  - "Cruz, F.W."
+  - "Severinghaus, J.P."
+  - "An, Z."
+  - "Edwards, R.L."
+published: 2020
+title: "Timing and structure of the Younger Dryas event and its underlying climate dynamics"
+container: "Proceedings of the National Academy of Sciences 117(38), 23408–23417"
+doi: 10.1073/pnas.2007869117
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read through Europe PMC (PMC7519346). Citation from Crossref. Quotes checked by
+    script against the text retrieved.

@@ -1,0 +1,27 @@
+id: src:liu-2020-anyang-metal
+type: publication
+kind: measurement
+citation: >-
+  Liu, R., Pollard, A.M., Cao, Q., Liu, C., Sainsbury, V., Howarth, P., Bray, P., Huan, L., Yao, B., Fu, Y. & Tang, J. (2020). Social
+  hierarchy and the choice of metal recycling at Anyang, the last capital of Bronze Age Shang China. Scientific Reports 10, 18794.
+authors:
+  - "Liu, R."
+  - "Pollard, A.M."
+  - "Cao, Q."
+  - "Liu, C."
+  - "Sainsbury, V."
+  - "Howarth, P."
+  - "Bray, P."
+  - "Huan, L."
+  - "Yao, B."
+  - "Fu, Y."
+  - "Tang, J."
+published: 2020
+title: Social hierarchy and the choice of metal recycling at Anyang, the last capital of Bronze Age Shang China
+container: Scientific Reports
+doi: 10.1038/s41598-020-75920-x
+url: https://europepmc.org/article/PMC/PMC7606620
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC7606620). Quote checked by script against it, after normalizing whitespace.

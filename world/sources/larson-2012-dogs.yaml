@@ -1,0 +1,26 @@
+id: src:larson-2012-dogs
+type: publication
+kind: measurement
+citation: >-
+  Larson, G., Karlsson, E.K., Perri, A., … & Lindblad-Toh, K. (2012). Rethinking dog
+  domestication by integrating genetics, archeology, and biogeography. Proceedings of the
+  National Academy of Sciences 109(23), 8878–8883.
+authors:
+  - "Larson, G."
+  - "Karlsson, E.K."
+  - "Perri, A."
+  - "Webster, M.T."
+  - "Ho, S.Y."
+  - "Peters, J."
+  - "Stahl, P.W."
+  - "Piper, P.J."
+# the first eight of 20 authors
+published: 2012
+title: "Rethinking dog domestication by integrating genetics, archeology, and biogeography"
+container: "Proceedings of the National Academy of Sciences 109(23), 8878–8883"
+doi: 10.1073/pnas.1203005109
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC3384140) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

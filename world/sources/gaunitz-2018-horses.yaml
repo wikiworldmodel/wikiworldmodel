@@ -1,0 +1,26 @@
+id: src:gaunitz-2018-horses
+type: publication
+kind: measurement
+citation: >-
+  Gaunitz, C., Fages, A., Hanghøj, K., … & Orlando, L. (2018). Ancient genomes revisit the
+  ancestry of domestic and Przewalski's horses. Science 360(6384), 111–114.
+authors:
+  - "Gaunitz, C."
+  - "Fages, A."
+  - "Hanghøj, K."
+  - "Albrechtsen, A."
+  - "Khan, N."
+  - "Schubert, M."
+  - "Seguin-Orlando, A."
+  - "Owens, I.J."
+# the first eight of 47 authors
+published: 2018
+title: "Ancient genomes revisit the ancestry of domestic and Przewalski's horses"
+container: "Science 360(6384), 111–114"
+doi: 10.1126/science.aao3297
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from the Europe PMC record (PMID 29472442), and the author manuscript at HAL
+    (hal-02406833) read on 3 November 2026, which may differ in detail from the published text.
+    Each quote checked by script against these; citation from the Europe PMC record.

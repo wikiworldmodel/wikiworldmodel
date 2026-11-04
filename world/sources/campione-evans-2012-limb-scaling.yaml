@@ -1,0 +1,19 @@
+id: src:campione-evans-2012-limb-scaling
+type: publication
+kind: measurement
+citation: >-
+  Campione, N.E. & Evans, D.C. (2012). A universal scaling relationship between body mass and
+  proximal limb bone dimensions in quadrupedal terrestrial tetrapods. BMC Biology 10, 60.
+authors:
+  - "Campione, N.E."
+  - "Evans, D.C."
+published: 2012
+title: "A universal scaling relationship between body mass and proximal limb bone dimensions in quadrupedal terrestrial tetrapods"
+container: "BMC Biology 10, 60"
+doi: 10.1186/1741-7007-10-60
+license: CC-BY-2.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC3403949), including Table 6; quotes checked by script
+    against it.

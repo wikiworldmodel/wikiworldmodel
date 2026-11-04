@@ -1,0 +1,65 @@
+id: people/trade/silk-roads-tian-shan-corridor
+kind: event
+summary: >-
+  The overland routes between China and the West, taken here in the one section the World Heritage List dates: the Tian-shan
+  corridor, some 5,000 km of trade routes from Chang'an through the Hexi Corridor and the Yumen Pass to Central Asia. It took
+  shape from the second century BCE, flourished from the sixth to the fourteenth century, and stayed in use until the
+  sixteenth. No lines are drawn for it: the records here say when and how it is evidenced. Whether it was a fixed road or an
+  open network is itself argued, by Zhang (2026) against Hansen.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Silk Roads: the Tian-shan corridor" }
+    source: { ref: src:unesco-whc-1442-silk-roads, loc: title, quote: "Silk Roads: the Routes Network of Chang'an-Tianshan Corridor" }
+  start:
+    prop: start
+    value: { lo: 200 BCE, hi: 101 BCE }
+    source:
+      - ref: src:unesco-whc-1442-silk-roads
+        loc: Statement of Outstanding Universal Value, brief synthesis
+        quote: "While some of these routes had been in use for millennia, by the 2nd century BC the volume of exchange had increased substantially"
+      - ref: src:iranica-chinese-iranian-relations-i
+        loc: paragraph 1
+        quote: "Contact between China and Iran was initiated toward the end of the 2nd century B.C.E. by the envoy Chang Ch’ien (Zhang Qian)"
+    method: expert-estimate
+    note: A century, and not a founding. Long-distance exchange is older, as UNESCO says.
+  end:
+    prop: end
+    value: { lo: 1501 CE, hi: 1600 CE }
+    source:
+      ref: src:unesco-whc-1442-silk-roads
+      loc: Statement of Outstanding Universal Value, brief synthesis
+      quote: "It flourished between the 6th and 14th century AD and remained in use as a major trade route until the 16th century."
+    method: expert-estimate
+  location:
+    prop: location
+    value: { lat: 34.304444, lon: 108.857222, frame: frame:earth/present-day }
+    source:
+      - { ref: src:unesco-whc-1442-silk-roads, loc: "list entry, coordinates", quote: "N34 18 16 E108 51 26" }
+      - ref: src:unesco-whc-1442-silk-roads
+        loc: Statement of Outstanding Universal Value, brief synthesis
+        quote: "Starting on the Loess plateau at Chang’an, the central capital of China in the Han and Tang Dynasties"
+    method: gazetteer
+    note: The single point UNESCO gives for the whole property, at Chang'an, where the corridor starts.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  evidenced-by-kangju-slip:
+    rel: evidenced-by
+    to: people/trade/kangju-envoys-slip
+    source:
+      ref: src:zhang-2026-han-court-silk-road
+      loc: "Abstract, p. 71"
+      quote: "The clearest evidence of this is found in Han dynasty slips that document direct diplomatic exchanges between the Han Court and various countries in Central, West, and South Asia."
+  evidenced-by-sogdian-letters:
+    rel: evidenced-by
+    to: people/trade/sogdian-ancient-letters
+    source:
+      ref: src:iranica-sogdian-trade
+      loc: "section 'Origins'"
+      quote: "the main proof of Sogdian commercial expansion in the direction of China is provided by a set of letters, the Sogdian Ancient Letters"

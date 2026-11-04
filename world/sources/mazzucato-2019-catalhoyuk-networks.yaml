@@ -1,0 +1,19 @@
+id: src:mazzucato-2019-catalhoyuk-networks
+type: publication
+kind: measurement
+citation: >-
+  Mazzucato, C. (2019). Socio-Material Archaeological Networks at Çatalhöyük a Community Detection Approach. Frontiers in Digital
+  Humanities 6, 8.
+authors:
+  - "Mazzucato, C."
+published: 2019
+title: Socio-Material Archaeological Networks at Çatalhöyük a Community Detection Approach
+container: Frontiers in Digital Humanities
+doi: 10.3389/fdigh.2019.00008
+url: https://www.frontiersin.org/journals/digital-humanities/articles/10.3389/fdigh.2019.00008/pdf
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the publisher's PDF. Quotes checked by script against its text layer, ignoring whitespace, because that
+    layer breaks some words with stray spaces.

@@ -1,0 +1,40 @@
+id: life/taxa/platanites
+kind: taxon
+summary: >-
+  An extinct leaf form, P. marginata in the Hell Creek rows of the snapshot, which the
+  Paleobiology Database places in the plane-tree family, Platanaceae.
+same_as: { pbdb: "txn:55905" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Platanites" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 55905"
+  body-plan:
+    prop: body_plan
+    value: broadleaf
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: upright
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 3, s.v. Platanus occidentalis"
+      quote: "Trees , to 50+ m"
+    note: >-
+      The living relative named below.
+  height-flora-of-north-america:
+    prop: plant_height
+    value: 50
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 3, s.v. Platanus occidentalis"
+      quote: "Trees , to 50+ m"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The living American sycamore, Platanus occidentalis, one of the tallest broad-leaved trees
+      of North America, in the family in which the database places this extinct form: a modern
+      relative at its largest, not a Hell Creek plant.

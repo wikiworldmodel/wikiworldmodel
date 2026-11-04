@@ -1,0 +1,21 @@
+id: src:peel-2007-koppen
+type: publication
+kind: review
+citation: >-
+  Peel, M.C., Finlayson, B.L. & McMahon, T.A. (2007). Updated world map of the Köppen-Geiger climate
+  classification. Hydrology and Earth System Sciences 11, 1633–1644.
+authors:
+  - "Peel, M.C."
+  - "Finlayson, B.L."
+  - "McMahon, T.A."
+published: 2007
+title: Updated world map of the Köppen-Geiger climate classification
+container: Hydrology and Earth System Sciences 11, 1633–1644
+doi: 10.5194/hess-11-1633-2007
+url: https://hess.copernicus.org/articles/11/1633/2007/
+license: CC-BY-NC-SA-2.5
+license_note: The article's licence, from Crossref. Only the definitions of the classes are used here, and a short quote.
+verified:
+  by: machine:claude-code
+  how: >-
+    The classes' criteria read from Table 1 of the PDF from the publisher's page; citation from Crossref.

@@ -1,0 +1,28 @@
+id: src:michel-2014-rusinga
+type: publication
+kind: measurement
+citation: >-
+  Michel, L.A., Peppe, D.J., Lutz, J.A., Driese, S.G., Dunsworth, H.M., Harcourt-Smith, W.E.H.,
+  Horner, W.H., Lehmann, T., Nightingale, S. & McNulty, K.P. (2014). Remnants of an ancient forest
+  provide ecological context for Early Miocene fossil apes. Nature Communications 5, 3236.
+authors:
+  - "Michel, L.A."
+  - "Peppe, D.J."
+  - "Lutz, J.A."
+  - "Driese, S.G."
+  - "Dunsworth, H.M."
+  - "Harcourt-Smith, W.E.H."
+  - "Horner, W.H."
+  - "Lehmann, T."
+  - "Nightingale, S."
+  - "McNulty, K.P."
+published: 2014
+title: "Remnants of an ancient forest provide ecological context for Early Miocene fossil apes"
+container: Nature Communications 5, 3236
+doi: 10.1038/ncomms4236
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the publisher's page and PDF (nature.com/articles/ncomms4236); the
+    parts cited were read, and quotes checked by script against the page's text. Metadata from
+    Crossref.

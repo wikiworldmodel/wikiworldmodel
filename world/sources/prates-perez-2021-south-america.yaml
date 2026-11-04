@@ -1,0 +1,21 @@
+id: src:prates-perez-2021-south-america
+type: publication
+kind: compilation
+citation: >-
+  Prates, L. & Perez, S.I. (2021). Late Pleistocene South American megafaunal extinctions associated
+  with rise of Fishtail points and human population. Nature Communications 12, 2175.
+authors:
+  - "Prates, L."
+  - "Perez, S.I."
+published: 2021
+title: "Late Pleistocene South American megafaunal extinctions associated with rise of Fishtail points and human population"
+container: "Nature Communications 12, 2175"
+doi: 10.1038/s41467-021-22506-4
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC8041891), and Supplementary Data 2 and 4
+    (41467_2021_22506_MOESM5_ESM.xls and MOESM7) from the publisher, parsed by script. Table quotes
+    are cells of a row joined by spaces, numbers as the parser gives them (-37.0). Rows checked by
+    script against those sheets; other quotes checked against the text, after normalizing
+    whitespace.

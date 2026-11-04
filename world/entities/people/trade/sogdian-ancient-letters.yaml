@@ -1,0 +1,68 @@
+id: people/trade/sogdian-ancient-letters
+kind: occurrence
+summary: >-
+  Five nearly complete letters in Sogdian on paper, found by Aurel Stein in 1907 in a ruined watchtower west of the Jade Gate,
+  apparently a mailbag lost on its way west. One is addressed to Samarkand. They tell of Sogdian merchants settled from
+  Dunhuang to Luoyang, of musk, pepper, silver and cloth, and of the sack of Luoyang by the Huns in 311. They are the earliest
+  substantial Sogdian writing, and the main proof of Sogdian trade towards China.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Sogdian Ancient Letters }
+    source: { ref: src:sims-williams-2004-sogdian-ancient-letters, loc: title, quote: "The Sogdian Ancient Letters" }
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:iranica-ancient-letters
+      loc: paragraph 1
+      quote: "ANCIENT LETTERS, name conventionally applied to a group of Sogdian paper documents; discovered in 1907 by Sir Aurel Stein."
+    note: Ink on paper, not a carved inscription, though the term is the nearest the vocabulary has.
+  date:
+    prop: date
+    value: { lo: 313 CE, hi: 314 CE }
+    source:
+      - ref: src:sims-williams-2004-sogdian-ancient-letters
+        loc: Waugh's introduction, paragraph 2
+        quote: "the most persuasive arguments (supported by Prof. Sims-Williams and his colleagues) point to 313 (-314) C.E."
+      - ref: src:iranica-sogdian-trade
+        loc: "section 'Origins'"
+        quote: "Written in 313 in the Gansu corridor, these show the presence of Sogdian merchant communities in the main cities of the region"
+    method: documentary
+    rank: preferred
+    note: From what the second letter says of the fall of Luoyang in 311. Nothing found with them dates them.
+  date-henning:
+    prop: date
+    value: { lo: 312 CE, hi: 313 CE }
+    source:
+      ref: src:iranica-ancient-letters
+      loc: paragraph on the date
+      quote: "Henning’s conclusion that the letters were written in the years 312-13 A.D. has been generally accepted."
+    method: documentary
+  date-harmatta:
+    prop: date
+    value: 190 CE
+    source:
+      ref: src:iranica-ancient-letters
+      loc: paragraph on the date
+      quote: "A recent attempt by J. Harmatta to refer the letters to the period immediately following an earlier sack of Lo-yang (not by the Huns) in 190 A.D. appears less soundly based."
+    method: documentary
+    rank: deprecated
+    note: The year of the earlier sack, shortly after which Harmatta would put them. Stein had thought them older still, before the garrisons left about the middle of the second century.
+  location:
+    prop: location
+    value: { lat: 40.352172, lon: 93.863826, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-yumen-pass, loc: "Q1324562, P625 coordinate location" }
+      - ref: src:sims-williams-2004-sogdian-ancient-letters
+        loc: Waugh's introduction, paragraph 2
+        quote: "in a Chinese watch tower just west of the Jade Gate"
+    method: gazetteer
+    note: The Yumen (Jade Gate) Pass. The watchtower itself, T.XII.a in Stein's numbering, is not placed here.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-606
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

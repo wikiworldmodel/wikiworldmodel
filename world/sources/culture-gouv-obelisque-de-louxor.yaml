@@ -1,0 +1,11 @@
+id: src:culture-gouv-obelisque-de-louxor
+type: publication
+kind: review
+citation: >-
+  Ministère de la Culture, DRAC Île-de-France. L'Obélisque de Louxor fait peau neuve.
+title: L'Obélisque de Louxor fait peau neuve
+url: https://www.culture.gouv.fr/Regions/DRAC-Ile-de-France/Actualites/Actualite-a-la-une/L-Obelisque-de-Louxor-fait-peau-neuve
+reliability: The office of the French state that has charge of the monument, describing its restoration.
+verified:
+  by: machine:claude-code
+  how: Read on the ministry's site. Quotations checked by script against the page's text.

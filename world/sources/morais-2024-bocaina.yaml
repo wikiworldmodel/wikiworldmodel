@@ -1,0 +1,36 @@
+id: src:morais-2024-bocaina
+type: publication
+kind: measurement
+citation: >-
+  Morais, L., Freitas, B.T., Fairchild, T.R., Clavijo Arcos, R.E., Guillong, M., Vance, D., de
+  Campos, M.D.R., Babinski, M., Pereira, L.G., Leme, J.M., Boggiani, P.C., Osés, G.L.,
+  Rudnitzki, I.D., Galante, D., Rodrigues, F. & Trindade, R.I.F. (2024). Dawn of diverse shelled
+  and carbonaceous animal microfossils at ~ 571 Ma. Scientific Reports 14(1), 14916.
+authors:
+  - "Morais, L."
+  - "Freitas, B.T."
+  - "Fairchild, T.R."
+  - "Clavijo Arcos, R.E."
+  - "Guillong, M."
+  - "Vance, D."
+  - "de Campos, M.D.R."
+  - "Babinski, M."
+  - "Pereira, L.G."
+  - "Leme, J.M."
+  - "Boggiani, P.C."
+  - "Osés, G.L."
+  - "Rudnitzki, I.D."
+  - "Galante, D."
+  - "Rodrigues, F."
+  - "Trindade, R.I.F."
+published: 2024
+title: "Dawn of diverse shelled and carbonaceous animal microfossils at ~ 571 Ma"
+container: Scientific Reports 14(1), 14916
+doi: 10.1038/s41598-024-65671-4
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC11213954) read via Europe PMC (fullTextXML): the microfossils of the Bocaina
+    Formation, Serra da Bodoquena, the carbonate U–Pb ages (571 ± 9 Ma weighted mean;
+    uncertainties stated as 2σ) and the position of the study area (caption of Fig. 2c).
+    Quotes checked by script against that text. Metadata from Crossref.

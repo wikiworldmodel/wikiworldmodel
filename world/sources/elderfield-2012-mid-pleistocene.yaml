@@ -1,0 +1,24 @@
+id: src:elderfield-2012-mid-pleistocene
+type: publication
+kind: measurement
+citation: >-
+  Elderfield, H., Ferretti, P., Greaves, M., Crowhurst, S., McCave, I.N., Hodell, D. & Piotrowski,
+  A.M. (2012). Evolution of Ocean Temperature and Ice Volume Through the Mid-Pleistocene Climate
+  Transition. Science 337(6095), 704–709.
+authors:
+  - "Elderfield, H."
+  - "Ferretti, P."
+  - "Greaves, M."
+  - "Crowhurst, S."
+  - "McCave, I.N."
+  - "Hodell, D."
+  - "Piotrowski, A.M."
+published: 2012
+title: "Evolution of Ocean Temperature and Ice Volume Through the Mid-Pleistocene Climate Transition"
+container: "Science 337(6095), 704–709"
+doi: 10.1126/science.1221294
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read through Europe PMC. The full text was not read. Citation from Crossref. Quotes
+    checked by script against the text retrieved.

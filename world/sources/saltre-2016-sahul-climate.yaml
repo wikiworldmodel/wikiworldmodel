@@ -1,0 +1,22 @@
+id: src:saltre-2016-sahul-climate
+type: publication
+kind: measurement
+citation: >-
+  Saltré, F., Rodríguez-Rey, M., Brook, B.W., Johnson, C.N., Turney, C.S.M., Alroy, J., Cooper, A.,
+  Beeton, N., Bird, M.I., Fordham, D.A., … & Bradshaw, C.J.A. (2016). Climate change not to blame
+  for late Quaternary megafauna extinctions in Australia. Nature Communications 7, 10511.
+authors:
+  - "Saltré, F."
+  - "Rodríguez-Rey, M."
+  - "Brook, B.W."
+  - "Johnson, C.N."
+  - "Bradshaw, C.J.A."
+published: 2016
+title: "Climate change not to blame for late Quaternary megafauna extinctions in Australia"
+container: "Nature Communications 7, 10511"
+doi: 10.1038/ncomms10511
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC4740174). Table quotes are cells of a row joined by
+    spaces. Quotes checked by script against the text retrieved, after normalizing whitespace.

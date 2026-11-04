@@ -8,7 +8,7 @@
 # What a published build may include: datasets and database records with any other licence,
 # or none, are refused. Cited publications contribute only facts and short quotes.
 publish:
-  licenses: [CC-BY-4.0, CC0-1.0, public-domain]
+  licenses: [CC-BY-4.0, CC-BY-3.0, CC0-1.0, public-domain]
 
 datasets:
   src:paleomap-plate-model:
@@ -226,6 +226,84 @@ datasets:
           path: cliopatria_polities_only_v021.geojson
           sha256: fc6f0d1e4cc42f45da83522b3696db6f2cc85ec0d12259a85c89b31347b8fc0a
 
+  src:li-2022-phanerozoic-climate:
+    type: dataset
+    kind: model
+    title: A high-resolution climate simulation dataset for the past 540 million years
+    citation: >-
+      Li, X., Hu, Y., Guo, J., Lan, J., Lin, Q., Bao, X., Yuan, S., Wei, M., Li, Z., Man, K., Yin, Z.,
+      Han, J., Zhang, J., Zhu, C., Zhao, Z., Liu, Y., Yang, J. & Nie, J. (2022). A high-resolution
+      climate simulation dataset for the past 540 million years. Scientific Data 9, 371. Data on
+      Figshare, doi:10.6084/m9.figshare.19920662.v1.
+    authors:
+      - "Li, X."
+      - "Hu, Y."
+      - "Nie, J."
+    published: 2022
+    version: Figshare version 1, the file High_Resolution_Climate_Simulation_Dataset_540_Myr.nc
+    container: Scientific Data 9, 371
+    doi: 10.1038/s41597-022-01490-4
+    url: https://doi.org/10.6084/m9.figshare.19920662.v1
+    credit: Climate (Li et al. 2022)
+    license: CC-BY-4.0
+    license_note: Stated on the Figshare record, read through its API, and on the article, from Crossref.
+    reliability: >-
+      Fifty-five runs of a climate model (CESM 1.2.2, 0.9° × 1.25°), from 540 Ma to the pre-industrial,
+      one every 10 Myr, on the PaleoDEMs of Scotese and Wright (2018), which the globe's elevation also
+      comes from. Its CO₂ is whatever brings each run to a reconstructed global mean temperature. There
+      are no prescribed ice sheets before the pre-industrial run, the soil is uniform loam, and the
+      land starts as warm grassland in every run, so it is a climate, not a record of what grew.
+    note: >-
+      Temperatures are of the surface, not of the air. Chosen over the runs of Pohl et al. (2022,
+      Zenodo 6620748, CC BY) for its finer grid and its present: at 0 Ma, those have Antarctica above
+      10 °C in summer and Germany under 7 °C, by a slab-ocean model that says its last 80 Myr are likely
+      too cold, and this has Antarctica frozen, the Amazon wet and Germany temperate.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence and file read through the Figshare API; variables and their dimensions from the file's
+        own header and the article's Data Records; the run's conditions from the article's Methods
+        (Europe PMC full text). The classes of 17 places on the pre-industrial run were read and compared.
+    fetch:
+      url: https://ndownloader.figshare.com/files/35396138
+      sha256: 611d9c9a2d486bb1e9f3e950b9d63d12a318b2fb634e422f7daa4158111bc274
+      bytes: 754246176
+      format: netcdf
+
+  src:pbdb-hell-creek-2026-11-04:
+    type: dataset
+    kind: compilation
+    title: The Paleobiology Database, the Hell Creek Formation
+    citation: >-
+      The Paleobiology Database. The occurrences and collections of the Hell Creek Formation, and the
+      taxa they name with all their parents, read through the data service (data1.2) on 4 November 2026.
+    version: Data service export of 2026-11-04, kept in world/snapshots
+    container: The Paleobiology Database
+    url: https://paleobiodb.org/
+    credit: Hell Creek fossils from the Paleobiology Database
+    license: CC0-1.0
+    license_note: >-
+      The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+      Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/). Earlier downloads gave CC BY 4.0.
+    reliability: >-
+      A compilation of the literature by many contributors. Ages are those of the interval a collection is
+      assigned to, most often the whole Late Maastrichtian or Lancian, so a row does not date a fossil
+      finely. Some taxa are known only from teeth, leaves or pollen. First and last appearances are of the
+      whole database, not of this formation. The primary references were not read here unless cited.
+    note: >-
+      A search by formation also finds names that contain it, such as Shell Creek: those are left out.
+      No stable URL serves an extract of a changing database, so the snapshot is kept in the repository
+      until there is a blob store. The query is in the snapshot's own `query` field.
+    verified:
+      by: machine:claude-code
+      how: Exported from the data service with the queries in the snapshot, by `npm run world -- pbdb-snapshot`.
+    import: { as: pbdb-formation, frame: "frame:paleomap/plate-101" }
+    fetch:
+      url: repo:world/snapshots/pbdb-hell-creek-2026-11-04.json
+      sha256: 64c84fb4a83b276d1730f913b1ce0bb02d3bc7f8317bcb35383b7dffc2f00af7
+      bytes: 961866
+      format: json
+
   src:ohm-rome-2026-11-01:
     type: dataset
     kind: compilation
@@ -392,3 +470,448 @@ datasets:
       sha256: b4983c653eeb75a5a88d0dd5887192f3416aefa211e147e17a0298404cf2d5ea
       bytes: 24525720
       format: tif
+
+  src:pbdb-diversity-2026-11-04:
+    type: dataset
+    kind: compilation
+    title: The Paleobiology Database, animal genera by stage
+    citation: >-
+      The Paleobiology Database. The diversity of Metazoa over the Phanerozoic, counted as genera by
+      stage, read through the data service (data1.2, occs/diversity) on 4 November 2026.
+    version: Data service export of 2026-11-04, kept in world/snapshots with the query in its header
+    container: The Paleobiology Database
+    url: https://paleobiodb.org/data1.2/occs/diversity_doc.html
+    credit: Biodiversity from the Paleobiology Database
+    license: CC0-1.0
+    license_note: >-
+      The answer's own header reads "Data License","Creative Commons CC0", with the URL
+      https://creativecommons.org/publicdomain/zero/1.0/.
+    reliability: >-
+      A count of what has been found and entered, not of what lived: it follows how much rock of each age
+      survives and how hard it has been looked at, and no correction for that is made here.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Query, licence and access time from the answer's own header, kept in the file. What each
+        column means from the service's documentation page, named above.
+    fetch:
+      url: repo:world/snapshots/pbdb-diversity-2026-11-04.csv
+      sha256: 61036dce59908c7619a9547bb7481733d6edea5e51074afc80d305fa28bae6a7
+      bytes: 8598
+      format: csv
+
+  src:noaa-hazards-2026-11-04:
+    type: dataset
+    kind: compilation
+    title: NOAA's global hazard databases, as of 4 November 2026
+    citation: >-
+      National Geophysical Data Center / World Data Service. Global Significant Volcanic Eruptions Database
+      (doi:10.7289/V5JW8BSH), Global Significant Earthquake Database (doi:10.7289/V5TD9V7K) and Global
+      Historical Tsunami Database (doi:10.7289/V5PN93H7). NOAA National Centers for Environmental Information.
+      Read through the Hazard Event service on 4 November 2026.
+    version: Service export of 2026-11-04, kept in world/snapshots
+    container: NOAA NCEI
+    url: https://www.ngdc.noaa.gov/hazel/view/hazards
+    credit: Eruptions, earthquakes and tsunamis from NOAA
+    license: public-domain
+    license_note: >-
+      A work of the United States government, like the ETOPO tiles. The databases' own metadata pages could
+      not be reached from where this was done; DataCite's records for the DOIs give no rights statement, and a
+      search result for the earthquake database's catalog entry says only that access is unrestricted.
+    reliability: >-
+      Compiled by NOAA from catalogs and reports, with old events far less complete than recent ones and
+      locations and years uncertain. A tsunami the database calls very doubtful or questionable is left out.
+      Eruptions and earthquakes are those it counts as significant, not all there were.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Titles, publisher and DOIs read from DataCite's API. Rows from the service, by world/snapshots'
+        tool, npm run world -- noaa-snapshot. No row was checked against its reports.
+    fetch:
+      url: repo:world/snapshots/noaa-hazards-2026-11-04.json
+      sha256: 16f7424a16b6fb65f74f47a4acf3f07f907508830964b1895f3d4a3d9d888b0e
+      bytes: 1177358
+      format: json
+
+  src:natural-earth-boundaries-5.1.2:
+    type: dataset
+    kind: compilation
+    title: Natural Earth, 1:50m land boundaries of countries
+    citation: >-
+      Natural Earth. Admin 0, boundary lines, land, 1:50m, version 5.1.2, in the GeoJSON of the project's
+      repository (nvkelso/natural-earth-vector).
+    version: 5.1.2
+    url: https://www.naturalearthdata.com/
+    credit: Today's borders and cities from Natural Earth
+    license: public-domain
+    license_note: >-
+      The project's terms of use say that all versions of its map data "are in the public domain".
+    reliability: >-
+      A small-scale map that follows de facto control, and marks some lines as disputed. It is one map for
+      the present, not a dated record of when each line was drawn.
+    verified:
+      by: machine:claude-code
+      how: Licence from the terms of use on the project's site; the file's fields read from the file.
+    fetch:
+      url: https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_50m_admin_0_boundary_lines_land.geojson
+      sha256: 2faac4f6b34386f3d21b6e018cf151f241f00e5c936d44dd17d7d9bfb147fa48
+      bytes: 760189
+      format: json
+
+  src:natural-earth-places-5.1.2:
+    type: dataset
+    kind: compilation
+    title: Natural Earth, 1:50m populated places
+    citation: >-
+      Natural Earth. Populated places, simple, 1:50m, version 5.1.2, in the GeoJSON of the project's
+      repository (nvkelso/natural-earth-vector).
+    version: 5.1.2
+    url: https://www.naturalearthdata.com/
+    credit: Today's borders and cities from Natural Earth
+    license: public-domain
+    license_note: >-
+      The project's terms of use say that all versions of its map data "are in the public domain".
+    reliability: A selection of cities and towns, with populations of no single stated year.
+    verified:
+      by: machine:claude-code
+      how: Licence from the terms of use on the project's site; the file's fields read from the file.
+    fetch:
+      url: https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_50m_populated_places_simple.geojson
+      sha256: 8e70756b39fae9bcdc1e332bfc510c024c5edd3a13203ffd20092ee37b61d978
+      bytes: 850767
+      format: json
+
+  src:itinere-2024:
+    type: dataset
+    kind: compilation
+    title: "A High-Resolution Dataset of Roads of the Roman Empire: Itiner-e static version 2024"
+    citation: >-
+      de Soto, P., Pažout, A., Brughmans, T., Bjerregaard Vahlstrup, P., et al. (2025). Itiner-e: A
+      high-resolution dataset of roads of the Roman Empire. Scientific Data 12, 1731. Data: version 1.3 on
+      Zenodo, doi:10.5281/zenodo.17122148.
+    published: 2025
+    version: "1.3"
+    doi: 10.5281/zenodo.17122148
+    url: https://itiner-e.org
+    credit: Roman roads from Itiner-e (de Soto et al. 2025)
+    license: CC-BY-4.0
+    license_note: >-
+      The project's About page says the atlas "is licensed under CC BY 4.0", and asks that the static
+      version be cited as de Soto et al. (2025). The Zenodo record's metadata as read through its API
+      shows no license field, and an older project page once gave a non-commercial license.
+    reliability: >-
+      Roads of the Roman Empire, about 300 BCE to 300 CE, from atlases, survey and excavation reports,
+      gazetteers and milestones, located on maps and aerial and satellite images. Most of its length is
+      conjectured: of its 299,000 km, the file's own lengths and marks give about 2.7% whose line is certain.
+      Few stretches have dates of their own; the rest are drawn for the field's whole span.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Title, version, description and files from the Zenodo API; licence from itiner-e.org/about; fields,
+        projection (EPSG:3395) and lengths from the file itself.
+    fetch:
+      url: https://zenodo.org/api/records/17122148/files/itinere_roads.geojson/content
+      sha256: 4f8f5cf99f387bab2c509b1bf50143e9a3117691e316f2f46a9bb1d3d4b1cc34
+      bytes: 78054413
+      format: json
+
+  src:glottolog-5.3:
+    type: dataset
+    kind: compilation
+    title: Glottolog 5.3, as CLDF
+    citation: >-
+      Hammarström, H., Forkel, R., Haspelmath, M. & Bank, S. (2026). Glottolog 5.3. Leipzig: Max Planck
+      Institute for Evolutionary Anthropology. Its table of languoids, cldf/languages.csv, in the release v5.3
+      of glottolog/glottolog-cldf.
+    published: 2026
+    version: "5.3"
+    url: https://glottolog.org
+    credit: Languages from Glottolog
+    license: CC-BY-4.0
+    license_note: >-
+      The site's footer says Glottolog 5.3 "is licensed under a Creative Commons Attribution 4.0 International
+      License", and the release carries that license in its LICENSE file.
+    reliability: >-
+      A catalogue of the world's languages and their families, with one point for each language where
+      linguists place it, about now. A language's point is not its area, and says nothing of where it was
+      spoken before. Families follow the catalogue's own classification.
+    verified:
+      by: machine:claude-code
+      how: Licence and citation from glottolog.org and the release's README and LICENSE; fields from the file itself.
+    fetch:
+      url: https://raw.githubusercontent.com/glottolog/glottolog-cldf/v5.3/cldf/languages.csv
+      sha256: 1a50a393bc81568b656f9522be18aa4f80f38e94309ba6c863d583234adfbb89
+      bytes: 2477017
+      format: csv
+
+  src:ar6-wg1-fig2-4:
+    type: dataset
+    kind: compilation
+    title: "Data for Figure 2.4a of IPCC AR6 WGI Chapter 2: CO₂, methane and N₂O from ice cores, the last 800 kyr"
+    citation: >-
+      Ahn, J. (2023). Chapter 2 of the Working Group I Contribution to the IPCC Sixth Assessment Report - data
+      for Figure 2.4 (v20221219). NERC EDS Centre for Environmental Data Analysis, 3 July 2023. Its CO₂ is from
+      Bereiter et al. (2015), Geophysical Research Letters 42, 542–549, doi:10.1002/2014GL061957, and its methane
+      from Loulergue et al. (2008), Nature 453, 383–386, doi:10.1038/nature06950.
+    authors:
+      - "Ahn, J."
+    published: 2023
+    version: v20221219, the file fig2_4a_main_figure_data.csv (CEDA's export of a sheet last revised on 24 February 2021)
+    container: CEDA Archive, for the IPCC Data Distribution Centre
+    doi: 10.5285/60eeb3cce51a457cb5ee1c577a0c8674
+    url: https://catalogue.ceda.ac.uk/uuid/60eeb3cce51a457cb5ee1c577a0c8674
+    credit: CO₂ and methane from ice cores (Bereiter et al. 2015; Loulergue et al. 2008), as tabulated for IPCC AR6
+    license: CC-BY-4.0
+    license_note: >-
+      The CEDA catalogue record, the archive's 00README_catalogue_and_licence.txt and the DOI's DataCite record all
+      state CC BY 4.0. Its License.txt adds that users should also cite the publications the data come from. Read here
+      instead of the same composites at NOAA NCEI (studies 17975 and 6093), whose records ask for a citation and state
+      no licence (the DOIs' rights lists are empty), and whose contributors are not US government employees, so the
+      files cannot simply be taken for public domain.
+    reliability: >-
+      Air measured in Antarctic ice cores, tabulated by IPCC authors for a figure, with ages in thousands of years
+      before 2000. Older than 0.25 ka, the CO₂ column is the composite of Bereiter et al. (2015), rounded to 0.1 ppm: it
+      joins stretches of records from Law Dome, Dome C, WAIS Divide, Siple Dome, Talos Dome, EDML and Vostok, most on the
+      AICC2012 age scale. Older than 0.25 ka, the methane column is the EPICA Dome C record of Loulergue et al. (2008), on
+      the EDC3 age scale. Those two age scales differ, by a median of 0.8 kyr and up to 6 kyr for the same methane samples, so
+      the two gases should not be compared at short lags. The yearly values for 1850–2019 and one for 1750 do not come
+      from those records: the sheet attributes them to "Annex 5".
+    note: >-
+      The table has no uncertainty column, so these series have no band. Its N₂O columns are not read. Bazin et al. (2013,
+      PANGAEA 824883, CC BY 3.0) give the same methane samples on AICC2012, without the recent values.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence read on the catalogue record, in the archive's readme and on DataCite. The file's md5 matches CEDA's
+        listing. Its rows were compared with NOAA's composite and methane table, read through Internet Archive captures
+        because NCEI's servers did not answer from where this was written: all 1723 CO₂ rows older than 0.25 ka equal the
+        composite to within rounding, and 2097 of 2268 methane rows equal Loulergue et al.'s (within 6 years), once 50
+        years are taken off the ages; the other 171 rows of each are the recent values.
+    fetch:
+      url: https://dap.ceda.ac.uk/badc/ar6_wg1/data/ch_02/ch2_fig04/v20221219/fig2_4a_main_figure_data.csv
+      sha256: 8d473c3b67bdd26e395bc335096a99a15630cececa738010a61c2bedeb67f859
+      bytes: 89027
+      format: csv
+
+  src:jouzel-2007-epica-dome-c:
+    type: dataset
+    kind: measurement
+    title: EPICA Dome C Ice Core 800KYr deuterium data and temperature estimates
+    citation: >-
+      Jouzel, J. & Masson-Delmotte, V. (2007). EPICA Dome C Ice Core 800KYr deuterium data and temperature estimates
+      [dataset]. PANGAEA. Supplement to: Jouzel, J. et al. (2007). Orbital and millennial Antarctic climate variability
+      over the past 800,000 years. Science 317, 793–796, doi:10.1126/science.1141038.
+    authors:
+      - "Jouzel, J."
+      - "Masson-Delmotte, V."
+    published: 2007
+    version: PANGAEA dataset 683655, its tab-separated text as served on 3 November 2026
+    container: PANGAEA
+    doi: 10.1594/PANGAEA.683655
+    url: https://doi.org/10.1594/PANGAEA.683655
+    credit: Antarctic temperature (EPICA Dome C, Jouzel et al. 2007)
+    license: CC-BY-3.0
+    license_note: >-
+      The file's own header and PANGAEA's record both state CC BY 3.0 Unported. The same table at NOAA NCEI (study 6080)
+      states no licence.
+    reliability: >-
+      A reconstruction for one place, not for the globe: the deuterium in the ice at Dome C, 3233 m up on the East
+      Antarctic plateau, turned into that site's temperature difference from the average of the last 1000 years, after
+      corrections for the isotopes of sea water and the height of the ice sheet. Each row is one 55 cm bag of ice, and the
+      deuterium was measured to 0.5‰. Its ages are on the EDC3 age scale, which later scales such as AICC2012 revise by up
+      to some thousands of years. The table gives no uncertainty for the temperature.
+    note: >-
+      PANGAEA generates this text from its database, so a change to the record's metadata would change the file and its
+      checksum without changing the rows. Downloaded twice here, with the same bytes.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence and columns read from the file's header and PANGAEA's record. All 5800 rows compared with NOAA's copy,
+        read through an Internet Archive capture: same temperatures, and ages within rounding. The article itself was not
+        read beyond the abstract in the header.
+    fetch:
+      url: https://doi.pangaea.de/10.1594/PANGAEA.683655?format=textfile
+      sha256: d68f751e490a33bd39448b7b642d50756b0b8b755b9dd89af8eed595abc439c3
+      bytes: 194383
+      format: tsv
+
+  src:spratt-lisiecki-2016-sea-level:
+    type: dataset
+    kind: compilation
+    title: A Late Pleistocene sea level stack, version 2
+    citation: >-
+      Spratt, R.M. & Lisiecki, L.E. (2025). A Late Pleistocene sea level stack, version 2 [dataset]. PANGAEA. Supplement
+      to: Spratt, R.M. & Lisiecki, L.E. (2016). A Late Pleistocene sea level stack. Climate of the Past 12, 1079–1092,
+      doi:10.5194/cp-12-1079-2016.
+    authors:
+      - "Spratt, R.M."
+      - "Lisiecki, L.E."
+    published: 2025
+    version: PANGAEA dataset 979830, its tab-separated text as served on 3 November 2026
+    container: PANGAEA
+    doi: 10.1594/PANGAEA.979830
+    url: https://doi.org/10.1594/PANGAEA.979830
+    credit: Sea level over the last 800 kyr (Spratt & Lisiecki 2016)
+    license: CC-BY-3.0
+    license_note: >-
+      The file's own header and PANGAEA's record both state CC BY 3.0 Unported, as the article does. The same table at
+      NOAA NCEI (study 19982) states no licence: the study's metadata has an empty licence field.
+    reliability: >-
+      A stack, not a measurement: the first principal component of sea-level reconstructions from marine sediment cores,
+      made by different methods and mostly aligned to the LR04 age scale, scaled so that it reads −130 m at 24 ka and 0 m at
+      5 ka. Its mean uncertainty is 9–12 m (1σ). It follows glacial cycles at 1 kyr steps and blurs anything shorter, and
+      it is not tied to today: its first row, at 0 ka, reads about +9 m, in a Holocene trend the authors think may come from
+      burrowing animals mixing the sediment. Sea level has in fact been near today's for the last 5 kyr.
+    note: >-
+      The table has a stack of seven records for 0–430 ka and one of five for 0–798 ka; the series reads the longer, whose
+      root mean square difference from the other is 3.4 m. "Version 2" is the data of the published paper, replacing PANGAEA
+      854045, the data of the discussion paper. PANGAEA generates this text from its database, so a change to the record's
+      metadata would change the file and its checksum without changing the rows.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence and columns read from the file's header and PANGAEA's record; method, scaling and uncertainties from the
+        article's full text (Copernicus PDF). All 799 rows compared with NOAA's copy, read through an Internet Archive
+        capture: no cell differs.
+    fetch:
+      url: https://doi.pangaea.de/10.1594/PANGAEA.979830?format=textfile
+      sha256: 3de6b7998554ec8ce8c44a6ce18fb23fd3b8a529bbe3bfa0af69992622803fb0
+      bytes: 46498
+      format: tsv
+
+  src:hyde-3.2.1-world-population:
+    type: dataset
+    kind: compilation
+    title: "HYDE 3.2.1, baseline scenario: the total population of the world"
+    citation: >-
+      Klein Goldewijk, K., Beusen, A., Doelman, J. & Stehfest, E. (2017). Anthropogenic land use estimates for the Holocene
+      – HYDE 3.2. Earth System Science Data 9, 927–953, doi:10.5194/essd-9-927-2017. The data: Klein Goldewijk, C.G.M.
+      (2017). Anthropogenic land-use estimates for the Holocene; HYDE 3.2, version 2.0. DANS Data Station Archaeology.
+    authors:
+      - "Klein Goldewijk, K."
+      - "Beusen, A."
+      - "Doelman, J."
+      - "Stehfest, E."
+    published: 2017
+    version: >-
+      HYDE 3.2.1 (its readme is dated 12 September 2017), baseline scenario, in version 2.0 of the DANS record; the one
+      table this needs, read on 4 November 2026 and kept in world/snapshots
+    container: DANS Data Station Archaeology
+    doi: 10.17026/dans-25g-gez3
+    url: https://doi.org/10.17026/dans-25g-gez3
+    credit: World population from HYDE 3.2.1 (Klein Goldewijk et al. 2017)
+    license: CC-BY-3.0
+    license_note: >-
+      The release's own readme says: "The Creative Commons License (CC BY 3.0) applies to all of the HYDE data." The article
+      is CC BY 3.0 too. The DANS record, through its API and its DataCite entry, says CC0-1.0 for the same files. The authors'
+      statement, the stricter of the two, is the one recorded here.
+    reliability: >-
+      A reconstruction, not a count. Series were built for each province or state of every country, within today's borders.
+      After 1950 they follow the UN's World Population Prospects (2008 revision). Before that they come largely from McEvedy
+      & Jones (1978), Livi-Bacci (2007) and Maddison (2001), "for some regions and time periods not undisputed and probably
+      on the low side of estimates", and "especially deeper into the past (pre-1500 CE), the numbers must be treated with
+      caution". The authors put their uncertainty at ±1% in 2000 CE, 5% in 1900, 10% in 1800, 25% in 1700, 50% in 850, 75% in
+      1 CE and 95% in 10,000 BCE, partly on their own judgement. The yearly values after 2000 lie almost on two straight
+      lines, 77.2 million more a year to 2010 and 74.9 million after that. By 2015 the total is 7.257 billion, where the
+      UN's 2024 revision, as Our World in Data tabulates it, has 7.470 billion.
+    note: >-
+      The snapshot is the row "Total" of the table baseline/txt/popc_r.txt, turned on its side. The readme calls that table
+      pop_r.txt and its unit thousands, but its numbers are people, as the article's totals show. It has columns up to 2017,
+      past the 2015 where the readme, the DANS record and the article all end the period, so the series stops at 2015. HYDE
+      labels its steps -10000 to -1000, then 0, 100 and on: the article calls the 0 step 1 CE and the first 10,000 BCE, and the
+      axis reads the labels as they stand, one year out before 1 CE. Table 6 of the article has 7,301 million for 2015 CE,
+      where its abstract and this table have 7.257 billion; its other values are this table's, to the nearest million. The
+      abstract's range for 10,000 BCE (under 0.01 to 8.9 million) is wider than its ±95% gives (0.2 to 8.6). The lower and
+      upper scenarios are not in the DANS record, only on request from the author, so the series has no band. HYDE 3.3 goes on
+      to 2023 under CC BY 4.0 (DataCite, doi:10.24416/UU01-AEZZIT), but its hosts answer a script with a bot check; its rows
+      up to 1790, as Our World in Data tabulates them, are within 1.6% of these.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence read from the readme, DANS's API and DataCite. The table read from the archive by HTTP range requests: its
+        CRC-32 matches the archive's directory, its total equals the sum of its regions, and is within 0.001% of the total of
+        the country table popc_c.txt. Totals compared with the article's full text (Copernicus XML): abstract, section 4.1
+        and Table 6. Quotes checked by script against those texts. The 5.3 GB archive itself was not downloaded, so its SHA-1
+        was not checked.
+    fetch:
+      url: repo:world/snapshots/hyde-3.2.1-world-population.csv
+      sha256: 544bfbae84881edcc3247c93fc6f49dc616fe6e110f12e2ad63d31b3dbdcb326
+      bytes: 2372
+      format: csv
+      via: >-
+        The table baseline/txt/popc_r.txt (25604 bytes, sha256 b6dffb84fb505b58dce652afb4955b1f62f823e808f39a5af34ebd66113ec930)
+        in HYDE3_2_1-baseline.zip (5339653974 bytes, SHA-1 0d0e4ff97deb59664ce6c34dfdeeafa08e487d20 as DANS states it),
+        https://archaeology.datastations.nl/api/access/datafile/5490328. The archive is far too big to fetch for one row.
+
+  src:hyde-3.2.1-world-land-use:
+    type: dataset
+    kind: compilation
+    title: "HYDE 3.2.1, baseline scenario: the world's cropland and grazing land"
+    citation: >-
+      Klein Goldewijk, K., Beusen, A., Doelman, J. & Stehfest, E. (2017). Anthropogenic land use estimates for the Holocene
+      – HYDE 3.2. Earth System Science Data 9, 927–953, doi:10.5194/essd-9-927-2017. The data: Klein Goldewijk, C.G.M.
+      (2017). Anthropogenic land-use estimates for the Holocene; HYDE 3.2, version 2.0. DANS Data Station Archaeology.
+    authors:
+      - "Klein Goldewijk, K."
+      - "Beusen, A."
+      - "Doelman, J."
+      - "Stehfest, E."
+    published: 2017
+    version: >-
+      HYDE 3.2.1 (its readme is dated 12 September 2017), baseline scenario, in version 2.0 of the DANS record; the two
+      tables this needs, read on 4 November 2026 and kept in world/snapshots
+    container: DANS Data Station Archaeology
+    doi: 10.17026/dans-25g-gez3
+    url: https://doi.org/10.17026/dans-25g-gez3
+    credit: Cropland and grazing land from HYDE 3.2.1 (Klein Goldewijk et al. 2017)
+    license: CC-BY-3.0
+    license_note: >-
+      The release's own readme says: "The Creative Commons License (CC BY 3.0) applies to all of the HYDE data." The article
+      is CC BY 3.0 too. The DANS record, through its API and its DataCite entry, says CC0-1.0 for the same files. The authors'
+      statement, the stricter of the two, is the one recorded here.
+    reliability: >-
+      A reconstruction that rests on worldwide records only from 1960 on. For 1960–2015 the article says the FAO's country
+      totals were followed exactly, and calls them quite reliable, though "for some countries they can be questioned".
+      Earlier, land per person was modelled back from 1960 along a curve for each country, from limited historical sources,
+      with subnational statistics for some larger countries such as the USA, India and China, and multiplied by population, so
+      these series carry the population series' errors too, and the article warns that the approach "is very sensitive to
+      the shape of the curve into the past". Its ranges, in each field's description, "should be treated with
+      care". It does not estimate shifting cultivation or wood harvesting. Other reconstructions differ widely: all
+      agricultural land in 1 CE is 344 Mha here and 1360 Mha in Kaplan et al.'s KK10, which the authors think very likely
+      overestimates, and cropland in 1700 is 293 Mha here and around 400 Mha in Ramankutty & Foley (1999) and Pongratz et al.
+      (2008).
+    note: >-
+      The snapshot holds the rows "Total" of the tables baseline/txt/cropland_r.txt and grazing_r.txt, turned on their sides.
+      The readme calls them croplandr.txt and grazingr.txt and gives their unit as km². The article bears that out in million
+      hectares (100 million ha is 1 million km²): the totals match all 17 dates of Table 5's world row and 15 of Table 2's,
+      whose 20 for 1850 and 51 for 1920 look like misprints, since its regional rows add up to these totals; they match Table
+      6, and together they make Table 7's HYDE row. Grazing land here is pasture_r.txt plus rangeland_r.txt plus
+      conv_rangeland_r.txt: the table called rangeland leaves out the converted part, which the article's "rangeland" includes.
+      The tables have columns up to 2017, past the 2015 where the readme, the DANS record and the article all end the period,
+      so the series stop at 2015. HYDE labels its steps -10000 to -1000, then 0, 100 and on: the article calls the 0 step 1 CE
+      and the first 10,000 BCE, and the axis reads the labels as they stand, one year out before 1 CE. The article's abstract
+      has 667 Mha of grazing land in 1700, where its results and Tables 5 and 6 have 664 or 663.5, like this table, and its
+      results have 1593 Mha of cropland in 2015, where its abstract and tables have 1591. Though it says FAO was followed
+      exactly, Table 5 prints FAO's grazing land as 3095, 3424 and 3359 Mha in 1960, 2000 and 2015 and its own as 3010, 3323 and
+      3241. The lower and upper scenarios are not in the DANS record, only on request from the author, so the series have no
+      band. The small numbers of the first steps (no cropland and 5 km² of grazing land in 10,000 BCE) are the table's, and
+      measure nothing so fine.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence read from the readme, DANS's API and DataCite. The tables read from the archive by HTTP range requests: their
+        CRC-32s match the archive's directory, each total equals the sum of its regions and is within 0.005% of the total of
+        its country table (cropland_c.txt, grazing_c.txt), and grazing land is within 0.006% of pasture, rangeland and
+        converted rangeland together. Totals compared by script with the article's full text (Copernicus XML): Tables 2, 5, 6
+        and 7. Quotes checked by script against those texts. The 5.3 GB archive itself was not downloaded, so its SHA-1 was
+        not checked.
+    fetch:
+      url: repo:world/snapshots/hyde-3.2.1-world-land-use.csv
+      sha256: d5fcae4329ff2f9906139ada4425f9c99c2b1ede01fba5b489a206411486f889
+      bytes: 3421
+      format: csv
+      via: >-
+        The tables baseline/txt/cropland_r.txt (20763 bytes, sha256 9f3b520f2835798f539d0af25f0ba32af8f59a276c2952c7f03fb3be449a44c2)
+        and baseline/txt/grazing_r.txt (21179 bytes, sha256 f7e19b02a5cc495b1106d1a966b34e022a52972de5aa4832dd4ee39fa88a6913) in
+        HYDE3_2_1-baseline.zip (5339653974 bytes, SHA-1 0d0e4ff97deb59664ce6c34dfdeeafa08e487d20 as DANS states it),
+        https://archaeology.datastations.nl/api/access/datafile/5490328. The archive is far too big to fetch for two rows.

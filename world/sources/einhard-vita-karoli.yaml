@@ -1,0 +1,19 @@
+id: src:einhard-vita-karoli
+type: text
+kind: eyewitness
+citation: >-
+  Einhard, The Life of Charlemagne (Vita Karoli), translated by S. E. Turner (New York: Harper &
+  Brothers, 1880), in the Internet Medieval Sourcebook.
+published: 1880
+title: Vita Karoli Magni
+url: https://sourcebooks.fordham.edu/basis/einhard.asp
+via: Internet Medieval Sourcebook, Fordham University, with its bracketed dates.
+reliability: >-
+  A courtier who knew Charlemagne, writing within a generation of his death. He says he will not
+  write of the king's birth and boyhood because nobody can tell him; his figure for the age at
+  death is the root of the older birth year of 742.
+verified:
+  by: machine:claude-code
+  how: >-
+    Chapters 3, 4, 28 and 30 read on the Sourcebook; quotations checked by script against that
+    text.

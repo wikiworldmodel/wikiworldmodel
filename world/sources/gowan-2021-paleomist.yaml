@@ -1,0 +1,27 @@
+id: src:gowan-2021-paleomist
+type: publication
+kind: model
+citation: >-
+  Gowan, E.J., Zhang, X., Khosravi, S., Rovere, A., Stocchi, P., Hughes, A.L.C., Gyllencreutz, R.,
+  Mangerud, J., Svendsen, J.-I. & Lohmann, G. (2021). A new global ice sheet reconstruction for
+  the past 80 000 years. Nature Communications 12(1), 1199.
+authors:
+  - "Gowan, E.J."
+  - "Zhang, X."
+  - "Khosravi, S."
+  - "Rovere, A."
+  - "Stocchi, P."
+  - "Hughes, A.L.C."
+  - "Gyllencreutz, R."
+  - "Mangerud, J."
+  - "Svendsen, J.-I."
+  - "Lohmann, G."
+published: 2021
+title: "A new global ice sheet reconstruction for the past 80 000 years"
+container: "Nature Communications 12(1), 1199"
+doi: 10.1038/s41467-021-21469-w
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read through Europe PMC (PMC7902671). Citation from Crossref. Quotes checked by
+    script against the text retrieved.

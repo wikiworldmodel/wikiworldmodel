@@ -1,0 +1,13 @@
+id: src:society-of-antiquaries-our-history
+type: publication
+kind: review
+citation: Society of Antiquaries of London. Our history.
+title: Our history
+url: https://www.sal.org.uk/about-us/our-history/
+reliability: The Society's account of itself, cited for where its rooms were in 1802.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read on the Society's site. It dates the move to Somerset House to 1780; the Society's article
+    "Before Burlington House" gives 1781. Both are before 1802. Quotations checked by script against the
+    page's text.

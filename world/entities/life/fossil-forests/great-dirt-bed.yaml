@@ -1,0 +1,73 @@
+id: life/occurrences/forest-great-dirt-bed
+kind: occurrence
+summary: >-
+  The conifer forests of the Lower Purbeck of Dorset: silicified stumps still rooted in the fossil soil
+  of the Great Dirt Bed, between hypersaline limestones and evaporites, on the shore of a shallow gulf.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Great Dirt Bed fossil forest, Dorset" }
+    unsourced: An editorial label, from the bed and the county.
+  identified:
+    prop: identified_as
+    value: Protocupressinoxylon purbeckensis
+    source:
+      ref: src:francis-1983-purbeck
+      loc: "p. 277, abstract"
+      quote: named here as Protocupressinoxylon purbeckensis sp. nov.
+    note: >-
+      The dominant conifer's wood. Its foliage is Cupressinocladus valdensis; cycadophytes grew with it.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:francis-1983-purbeck
+      loc: "p. 277, abstract"
+      quote: Silicified tree stumps, still rooted in the soils, stand erect and protrude into the overlying limestones
+    note: >-
+      The basis is the abstract's rooted, erect stumps. Francis also describes the setting as
+      semi-arid, with gypsum and caliche breccia forming before the soil did, and a closed forest of
+      conifers and cycadophytes on the soil itself.
+  location:
+    prop: location
+    value: { lat: 50.55, lon: -2.44, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-isle-of-portland, loc: "P625 coordinate location" }
+      - ref: src:francis-1983-purbeck
+        loc: "p. 277"
+        quote: in the Great Dirt Bed on both the mainland and the Isle of Portland
+    method: gazetteer
+    note: >-
+      A point for the Isle of Portland, one of the places the paper names; the bed also crops out on
+      the mainland of Dorset, a few kilometres away.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Lower Purbeck Formation
+    source:
+      ref: src:francis-1983-purbeck
+      loc: "p. 277, abstract"
+      quote: Fossil trees are preserved in situ in fossil soils in the Lower Purbeck (Upper Jurassic) strata of Dorset
+  date:
+    prop: date
+    value: { ref: ics/upper-jurassic }
+    source:
+      ref: src:francis-1983-purbeck
+      loc: "p. 277, abstract"
+      quote: the Lower Purbeck (Upper Jurassic) strata of Dorset
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Only to the series, as the paper gives it. Gou et al. (2026) also place the Purbeck forest in the
+      Late Jurassic. No source read gives its stage.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/spermatophyta
+    source: { ref: src:francis-1983-purbeck, loc: "p. 277, abstract: a conifer" }

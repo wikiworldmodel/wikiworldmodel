@@ -1,0 +1,22 @@
+id: src:gougeon-2018-mixed-layer
+type: publication
+kind: measurement
+citation: >-
+  Gougeon, R.C., Mángano, M.G., Buatois, L.A., Narbonne, G.M. & Laing, B.A. (2018). Early
+  Cambrian origin of the shelf sediment mixed layer. Nature Communications 9(1), 1909.
+authors:
+  - "Gougeon, R.C."
+  - "Mángano, M.G."
+  - "Buatois, L.A."
+  - "Narbonne, G.M."
+  - "Laing, B.A."
+published: 2018
+title: "Early Cambrian origin of the shelf sediment mixed layer"
+container: Nature Communications 9(1), 1909
+doi: 10.1038/s41467-018-04311-8
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC5953921) read via Europe PMC (fullTextXML), for the Chapel Island Formation
+    and the sections it was sampled in, Fortune Head among them. Quotes checked by script
+    against that text. Metadata from Crossref.

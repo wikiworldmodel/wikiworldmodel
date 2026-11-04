@@ -1,0 +1,27 @@
+id: src:pbdb/collection-68055
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 68055 ("Liang Bua Sector VII, 5.9 m depth and Sector XI,
+  Spit 58A", ID), occurrence 632375. Read through the PBDB data service (data1.2) on 4 November
+  2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=68055
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+  Commons CC0".
+reliability: >-
+  A database record compiled from the literature; the collection reference, not read here, is: M.
+  J. Morwood, R. P. Soejono, and R. G. Roberts, T. Sutikna, C. S. M. Turney, K. E. Westaway, W. J.
+  Rink, J.-x. Zhao, G. D. van den Bergh, Rokus Awe Due, D. R. Hobbs, M. W. Moore, M. I. Bird, L.
+  K. Fi
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=68055&show=loc,strat,ref and from the occurrence list:
+    lat -8.530556, lng 120.443611, early_interval "Late Pleistocene", formation "none given",
+    geographic note "cave formed in Miocene limestone... Flores... 14 km north of Ruteng and 25
+    km from the north coast, overlooking the Wae Racang river valley... 30 m wide and 25 m high at
+    the entrance, and up to 40 m deep"; occurrence 632375, accepted name "Homo floresiensis".

@@ -1,0 +1,47 @@
+id: life/taxa/homo-heidelbergensis
+kind: taxon
+summary: >-
+  Homo heidelbergensis Schoetensack 1908, named from the Mauer mandible: the large-brained hominins
+  of the Middle Pleistocene before Neanderthals and modern humans. What belongs in it, and whether
+  the name should be kept, is disputed; other authors use Homo rhodesiensis or Homo bodoensis.
+same_as: { ott: 3607676, pbdb: "txn:83086", wikidata: Q105784 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Homo heidelbergensis, la: "Homo heidelbergensis" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83086: Homo heidelbergensis, Schoetensack 1908" }
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83086: rank 3 (species)" }
+  end:
+    prop: end
+    value: unknown
+    source:
+      - { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83086: is_extant 0" }
+      - ref: src:grun-2020-broken-hill
+        loc: abstract
+        quote: "found a best age estimate of 299 ± 25 thousand years (mean ± 2σ)"
+    note: >-
+      The species is extinct; when it died out is not recorded here. The Broken Hill (Kabwe) skull,
+      often included in it, gives this age, so if it belongs here the species lasted at least so long.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source:
+      - { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83086 < Homo (txn:40901) < Hominini (txn:91486)" }
+      - ref: src:stringer-2012-heidelbergensis
+        loc: abstract
+        quote: "For some workers, it was the last common ancestor for the subsequent species Homo sapiens and Homo neanderthalensis; others regard it as only a European form, giving rise to the Neanderthals."
+      - ref: src:roksandic-2022-bodoensis
+        loc: abstract
+        quote: "the poorly defined and variably understood hominin taxa Homo heidelbergensis (both sensu stricto and sensu lato) and Homo rhodesiensis need to be abandoned"
+      - ref: src:hublin-2009-neandertals
+        loc: abstract
+        quote: 'It is proposed to use the term "Homo rhodesiensis" to designate the large-brained hominins ancestral to H. sapiens in Africa and at the root of the Neandertals in Europe'
+    note: >-
+      The tree here has no record for the genus Homo, so each species hangs directly on the tribe.
+      No ancestry to Homo sapiens or the Neanderthals is claimed, since that is what the sources
+      dispute.

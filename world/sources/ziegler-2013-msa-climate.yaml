@@ -1,0 +1,22 @@
+id: src:ziegler-2013-msa-climate
+type: publication
+kind: measurement
+citation: >-
+  Ziegler, M., Simon, M.H., Hall, I.R., Barker, S., Stringer, C. & Zahn, R. (2013). Development of
+  Middle Stone Age innovation linked to rapid climate change. Nature Communications 4, 1905.
+authors:
+  - "Ziegler, M."
+  - "Simon, M.H."
+  - "Hall, I.R."
+  - "Barker, S."
+  - "Stringer, C."
+  - "Zahn, R."
+published: 2013
+title: "Development of Middle Stone Age innovation linked to rapid climate change"
+container: "Nature Communications 4, 1905"
+doi: 10.1038/ncomms2897
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC4354264): the age of the Still Bay as 71.9–71.0 ka, citing
+    Jacobs et al. (2008). Quoted passages checked by script against the text retrieved.

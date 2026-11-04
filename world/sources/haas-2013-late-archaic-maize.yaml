@@ -1,0 +1,21 @@
+id: src:haas-2013-late-archaic-maize
+type: publication
+kind: measurement
+citation: >-
+  Haas, J., Creamer, W., Huamán Mesía, L., Goldstein, D., Reinhard, K. & Rodríguez, C.V. (2013). Evidence for maize (Zea mays) in the
+  Late Archaic (3000–1800 B.C.) in the Norte Chico region of Peru. Proceedings of the National Academy of Sciences 110(13), 4945–4949.
+authors:
+  - "Haas, J."
+  - "Creamer, W."
+  - "Huamán Mesía, L."
+  - "Goldstein, D."
+  - "Reinhard, K."
+  - "Rodríguez, C.V."
+published: 2013
+title: Evidence for maize (Zea mays) in the Late Archaic (3000–1800 B.C.) in the Norte Chico region of Peru
+container: Proceedings of the National Academy of Sciences
+doi: 10.1073/pnas.1219425110
+url: https://europepmc.org/article/MED/23440194
+verified:
+  by: machine:claude-code
+  how: Only the abstract read, from Europe PMC. Quote checked by script against it.

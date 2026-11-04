@@ -1,0 +1,67 @@
+id: life/occurrences/laetoli-footprints
+kind: occurrence
+summary: >-
+  The hominin trackways at Laetoli, Tanzania, pressed into a cemented ash: three individuals at Site G,
+  found in 1978, and two more at Site S, walking the same surface in the same direction. They are the
+  earliest hominin footprints known.
+same_as: { wikidata: Q9395372 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Laetoli footprints" }
+    unsourced: An editorial label, the name the trackways go by.
+  identified:
+    prop: identified_as
+    value: Australopithecus afarensis
+    source:
+      ref: src:masao-2016-laetoli
+      loc: abstract
+      quote: "the earliest hominin footprints in the world (3.66 million years old), discovered in 1978 at Site G and attributed to Australopithecus afarensis"
+    note: An attribution; footprints name no species themselves.
+  evidence:
+    prop: evidence
+    value: trace-fossil
+    source:
+      ref: src:masao-2016-laetoli
+      loc: Introduction
+      quote: "Footprints occur in 10 sublevels within the so-called Footprint Tuff, corresponding to the lower part of Tuff 7 in the Upper Laetolil Beds stratigraphic sequence (Hay, 1987)."
+  location:
+    prop: location
+    value: { lat: -3.13, lon: 35.130001, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-32050, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      The PBDB's point for the Upper Laetolil Beds as a whole, a composite of 25 localities including
+      Locality 8, where Sites G and S lie. Its own record for Locality 8 (collection 21800) gives
+      latitude −3.0125, which lies far nearer Olduvai than the "about 50 km south of Olduvai Gorge"
+      of Masao et al. (2016), and was not used.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-712
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Upper Laetolil Beds
+    source:
+      ref: src:masao-2016-laetoli
+      loc: Introduction
+      quote: "corresponding to the lower part of Tuff 7 in the Upper Laetolil Beds stratigraphic sequence (Hay, 1987)"
+  date:
+    prop: date
+    value: 3.66 Ma
+    source:
+      ref: src:masao-2016-laetoli
+      loc: Introduction
+      quote: "remarkable evidence of the earliest bipedal hominin tracks (Leakey and Hay, 1979; Leakey and Harris, 1987) dated to 3.66 million years ago (Ma) (Deino, 2011)"
+    method: radiometric/ar-ar
+    note: >-
+      Masao et al. cite Deino (2011), whose title is "40Ar/39Ar dating of Laetoli, Tanzania"; that
+      chapter was not read. No uncertainty is given.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/australopithecus-afarensis
+    source: { ref: src:masao-2016-laetoli, loc: abstract }

@@ -15,6 +15,10 @@ claims:
     prop: identified_as
     value: Buriolestes schultzi n. gen. n. sp.
     source: { ref: src:pbdb/collection-175578, loc: "occurrence 1347762, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: -29.658611, lon: -53.435833, frame: frame:earth/present-day }

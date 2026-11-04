@@ -4,7 +4,7 @@ World Model Zero (working title; the repository is `lightworld`) is a sourced, f
 history of Earth, life and civilization, from the Solar System's first solids to the far future,
 with a viewer to fly through it. It is a world model of the base-reality kind: every fact in it
 is a claim that cites a source, and nothing is made up to fill a gap without saying it was. The
-design is in [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md); what is built is in the five slice
+design is in [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md); what is built is in the six slice
 documents in [docs/](docs/).
 
 This guide is written for AI agents (and the people who run them) contributing research,
@@ -51,7 +51,7 @@ These are not style preferences. A pull request that breaks one is closed.
 ```sh
 npm install
 python3 -m venv .venv && .venv/bin/pip install -r tools/world/importers/requirements.txt
-npm run fetch          # the pinned datasets → .cache/datasets (165 MB)
+npm run fetch          # the pinned datasets → .cache/datasets (about 1.2 GB)
 npm run validate       # schema, references, vocabularies, review, chronology, plate frames
 npm test               # unit tests (they need only the plate model)
 npm run build:world    # → dist/builds/<id>/
@@ -63,7 +63,7 @@ npm run dev            # the viewer, at http://localhost:5173/
 Node 22.19+ or 24+, Python 3.12+.
 
 **Sandboxes with limited network access.** Datasets come from several hosts: GitHub, Zenodo,
-publishers' sites, NOAA, OpenTopography, INGV. If some are blocked where you run:
+Figshare, PANGAEA, CEDA, publishers' sites, NOAA, OpenTopography, INGV. If some are blocked where you run:
 
 - `npm run validate` and `npm test` need only the plate model, on GitHub:
   `npm run fetch -- src:paleomap-plate-model`. Records can be written and checked with no other
@@ -92,12 +92,14 @@ publishers' sites, NOAA, OpenTopography, INGV. If some are blocked where you run
 
 ## Finding work
 
+- **[docs/RECORD-SETS.md](docs/RECORD-SETS.md)**: the roadmap's record sets, what is left of them, and
+  the doubts their first drafts left behind: a person or an agent with a source can settle one.
 - **[docs/DATA-OUTLINE.md](docs/DATA-OUTLINE.md)**: everything a complete history needs, by
   domain, with candidate datasets, their licenses, and what is already here. Start from a row
   marked *missing* in an area you can research well.
 - **Wanted records**: references to records nobody has written, listed by
   `npm run validate -- --verbose` and in each build's `coverage.json`.
-- **Unsourced claims**: 112 at the time of writing, also in `coverage.json`. Find a source, or
+- **Unsourced claims**: 439 at the time of writing, also in `coverage.json`. Find a source, or
   confirm there is none.
 - **Each slice's "Next" section** in [docs/](docs/).
 - **Issues** labelled `good first issue` or `agents welcome`.
@@ -264,7 +266,9 @@ importer turns it into what the build needs, in [tools/world/](tools/world/), wi
 convert a large dataset into thousands of YAML records: records are for researched facts, and
 datasets are referenced, not copied (section 12 of the design). A database that changes every
 day, such as OpenHistoricalMap or the PBDB, is kept as a dated snapshot in
-[world/snapshots/](world/snapshots/) or a pinned archive, with the query that made it.
+[world/snapshots/](world/snapshots/) or a pinned archive, with the query that made it
+(`npm run world -- ohm-snapshot`, `npm run world -- pbdb-snapshot "Hell Creek"`). A taxon written by
+hand adopts the database's by its number: `same_as: { pbdb: "txn:38862" }`.
 
 ### A new term
 
@@ -283,7 +287,7 @@ element (`footprint: { from: src:ohm-…, elements: [way/…] }`) and the snapsh
 
 A slice is a thin piece of the world taken through every layer, from sources and records
 through validation and the build to the viewer, with criteria that say when it works. Each of
-the five built so far has a document in [docs/](docs/): what it adds, its pass criteria and
+the six built so far has a document in [docs/](docs/): what it adds, its pass criteria and
 where each is tested, its decisions, its limitations and what comes next.
 
 Propose a slice in an issue before starting one, with its pass criteria. Build it on a branch,

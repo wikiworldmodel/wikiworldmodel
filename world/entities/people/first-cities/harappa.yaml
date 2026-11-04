@@ -1,0 +1,99 @@
+id: people/first-cities/harappa
+kind: settlement
+summary: >-
+  Harappa, on the Ravi in Punjab, Pakistan, the site that gave the Harappan phase of the Indus civilization its name. A village of huts from the fourth millennium BCE, it grew
+  into a planned town in the Kot Diji phase and a walled city of over 150 hectares in the Harappa phase. People kept living there after the urban phase, in overcrowded
+  neighbourhoods rather than an abandoned site. The earliest signs that lead to the Indus script come from here (people/writing/indus-script).
+author: machine:claude-code
+same_as: { wikidata: Q185562, pleiades: 93441396 }
+phases:
+  - id: before-city
+    label: Before the city
+  - id: city
+    label: City
+claims:
+  name:
+    prop: name
+    value: { en: Harappa }
+    source: { ref: src:pleiades-harappa, loc: "place 93441396, names" }
+  start-wright:
+    prop: start
+    value: 3700 BCE
+    source:
+      ref: src:wright-harappa-chronology
+      loc: 'Table 1, row "Period 1"'
+      quote: ca. 3700 BC – ca. 2800 BC
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The table is "based on Artifact Categories and Radiocarbon Dates at Harappa". Preferred because Meadow (1999) warned the earlier dates of this phase
+      were subject to change, and this is the oldest and apparently the latest of the excavators' figures; the page itself has no date.
+  start-meadow-kenoyer:
+    prop: start
+    value: { hi: 3500 BCE }
+    source:
+      ref: src:meadow-kenoyer-2001-harappa
+      loc: section "Introduction"
+      quote: "The Ravi or Hakra Phase represents the initial occupation of the site (Period 1 : >3500 BC -2800 BCE)."
+    method: radiometric/radiocarbon
+    note: Before 3500 BCE, with the date left open. The table in the same section begins Period 1 at 3300 BCE, and the excavators' own figures for it have moved.
+  city-start:
+    prop: start
+    subject: "@city"
+    value: { lo: 2800 BCE, hi: 2600 BCE }
+    source:
+      ref: src:meadow-kenoyer-2001-harappa
+      loc: section "Kot Diji Phase Developments"
+      quote: initial urban development in the Indus region began between approximately 2,800 and 2,600 BCE during the Kot Diji Phase (Harappa Period 2)
+    method: stratigraphic
+    note: The first urban phase, with early planning and walled mounds. The full city follows in the Harappa Phase, 2600–1900 BCE.
+  end:
+    prop: end
+    value: 1300 BCE
+    source:
+      ref: src:wright-harappa-chronology
+      loc: 'Table 1, row "Period 5"'
+      quote: ca. 1800 BC(?) – <1300 BC
+    method: radiometric/radiocarbon
+    note: >-
+      The end of the Late Harappa Phase, the last in the table, which the table leaves open at "<1300 BC". The urban phase ends earlier, about 1900 BCE, but Meadow and Kenoyer
+      (2001, section "Late Harappa Phase") say the site "was not being abandoned" then.
+  location:
+    prop: location
+    value: { lat: 30.629618, lon: 72.865257, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-harappa, loc: "place 93441396, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-501
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area-harappa-phase:
+    prop: settlement_area
+    value: 150
+    valid: { lo: 2600 BCE, hi: 1900 BCE }
+    source:
+      ref: src:meadow-kenoyer-2001-harappa
+      loc: "section \"Harappa Phase Occupation: Chronology and Fortification Wall\""
+      quote: it is possible to determine the overall size of the city at over 150 hectares
+    method: survey
+    rank: preferred
+    note: A lower limit, for the city of the Harappa Phase, whose separate walled areas ranged from 10 to 25 hectares each.
+  area-kot-diji:
+    prop: settlement_area
+    value: 25
+    valid: { lo: 2800 BCE, hi: 2600 BCE }
+    source:
+      ref: src:meadow-kenoyer-2001-harappa
+      loc: section "Kot Diji Phase Developments"
+      quote: The total area of the Kot Diji settlement at Harappa is more than 25 hectares
+    method: survey
+    note: A lower limit.
+  population:
+    prop: population
+    value: 20000
+    valid: 2400 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Harappa, column BC_2400" }
+    method: compilation
+    note: Modelski's figure, as digitized by Reba et al. (2016); he holds it to 2200 BCE. No excavator's estimate could be read.

@@ -1,0 +1,19 @@
+id: src:jeram-1990-ludford
+type: publication
+kind: measurement
+citation: >-
+  Jeram, A.J., Selden, P.A. & Edwards, D. (1990). Land Animals in the Silurian: Arachnids and
+  Myriapods from Shropshire, England. Science 250(4981), 658–661.
+authors:
+  - "Jeram, A.J."
+  - "Selden, P.A."
+  - "Edwards, D."
+published: 1990
+title: "Land Animals in the Silurian: Arachnids and Myriapods from Shropshire, England"
+container: Science 250(4981), 658–661
+doi: 10.1126/science.250.4981.658
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 17810866); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

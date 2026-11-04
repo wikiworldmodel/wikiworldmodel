@@ -1,0 +1,12 @@
+id: src:smb-eighth-wonder-of-the-world
+type: publication
+kind: review
+citation: >-
+  Pergamonmuseum, Staatliche Museen zu Berlin. The Eighth Wonder of the World: the recent story of the
+  Pergamon Altar. Online exhibition, Google Arts & Culture.
+title: "The Eighth Wonder of the World: the recent story of the Pergamon Altar"
+url: https://artsandculture.google.com/story/BAUxU33U9zZUKg
+reliability: The account of the museum that holds the altar, from its own archive, for the public.
+verified:
+  by: machine:claude-code
+  how: Read on Google Arts & Culture. Quotations checked by script against the page's text.

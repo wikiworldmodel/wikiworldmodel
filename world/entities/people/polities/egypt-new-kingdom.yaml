@@ -1,0 +1,10 @@
+id: people/polities/egypt-new-kingdom
+kind: polity
+summary: >-
+  Egypt in its New Kingdom. Its dates are left to its rulers' records, because the chronologies of the period compete.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: New Kingdom of Egypt }
+    unsourced: An editorial label, in English.

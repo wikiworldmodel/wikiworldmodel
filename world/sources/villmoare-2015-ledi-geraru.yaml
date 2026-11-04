@@ -1,0 +1,27 @@
+id: src:villmoare-2015-ledi-geraru
+type: publication
+kind: measurement
+citation: >-
+  Villmoare, B., Kimbel, W.H., Seyoum, C., Campisano, C.J., DiMaggio, E.N., Rowan, J., Braun,
+  D.R., Arrowsmith, J.R. & Reed, K.E. (2015). Early Homo at 2.8 Ma from Ledi-Geraru, Afar,
+  Ethiopia. Science 347(6228), 1352–1355.
+authors:
+  - "Villmoare, B."
+  - "Kimbel, W.H."
+  - "Seyoum, C."
+  - "Campisano, C.J."
+  - "DiMaggio, E.N."
+  - "Rowan, J."
+  - "Braun, D.R."
+  - "Arrowsmith, J.R."
+  - "Reed, K.E."
+published: 2015
+title: "Early Homo at 2.8 Ma from Ledi-Geraru, Afar, Ethiopia"
+container: "Science 347(6228), 1352–1355"
+doi: 10.1126/science.aaa1343
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 25739410): a partial mandible from Ledi-Geraru that
+    establishes Homo at 2.80 to 2.75 Ma. Quoted passages checked by script against the text
+    retrieved.

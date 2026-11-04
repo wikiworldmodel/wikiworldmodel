@@ -1,0 +1,55 @@
+id: life/taxa/australopithecus-afarensis
+kind: taxon
+summary: >-
+  Australopithecus afarensis Johanson et al. 1978, from Hadar in Ethiopia and Laetoli in Tanzania:
+  the species of Lucy and of the Laetoli footprints.
+same_as: { pbdb: "txn:83055", wikidata: Q107685 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Australopithecus afarensis, la: "Australopithecus afarensis" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83055: Australopithecus afarensis, Johanson et al. 1978" }
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83055: rank 3 (species)" }
+  start-shea-2026:
+    prop: start
+    value: { hi: 3.9 Ma }
+    source:
+      ref: src:shea-2026-stone-tools-extinctions
+      loc: Table 2
+      quote: "Australopithecus afarensis 3.9 Ma (Belohdelie, Middle Awash Valley, Ethiopia)."
+    method: compilation
+    note: >-
+      A first appearance date for eastern Africa. The fossil is not a record here, so its age is
+      written on the species, which began no later than that.
+  end-hanegraef-2026:
+    prop: end
+    value: 2.96 Ma
+    source:
+      ref: src:hanegraef-2026-afarensis-mandibles
+      loc: Materials and methods
+      quote: "dated between ca. 3.42 and 2.96 Ma (Campisano, 2007)"
+    method: compilation
+    rank: preferred
+    note: >-
+      The youngest age of the Hadar specimens of this species. Preferred because it is an age for
+      specimens of the species itself. It is the last of that sample, not a measured extinction.
+  end-shea-2026:
+    prop: end
+    value: 2.4 Ma
+    source:
+      ref: src:shea-2026-stone-tools-extinctions
+      loc: Table 2
+      quote: "2.4 Ma (Bouri and Gamedah formations, Middle Awash Valley, Ethiopia)"
+    method: compilation
+    note: >-
+      The last appearance date in the table's row for this species. The table is introduced as
+      dates for eastern African hominin genera, so this may stand for more than the species.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83055 < Australopithecus (txn:40900) < Hominini (txn:91486)" }

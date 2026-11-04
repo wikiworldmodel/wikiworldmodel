@@ -1,0 +1,80 @@
+id: life/occurrences/sima-de-los-huesos
+kind: occurrence
+summary: >-
+  The Sima de los Huesos, a cave in the Sierra de Atapuerca, Spain: 28 hominin individuals and 17
+  crania, the oldest reliably dated remains with Neanderthal features, which show first in the face,
+  the jaw and the teeth.
+same_as: { wikidata: Q134470378 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Sima de los Huesos, Atapuerca" }
+    unsourced: An editorial label, the name of the site.
+  identified:
+    prop: identified_as
+    value: Homo neanderthalensis
+    source:
+      ref: src:roksandic-2022-bodoensis
+      loc: abstract
+      quote: "that many of the fossils from Western Europe (e.g. Sima de los Huesos) currently assigned to H. heidelbergensis s.s. be reassigned to Homo neanderthalensis"
+    note: Others have called the fossils Homo heidelbergensis, or early members of the Neanderthal lineage.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:arsuaga-2014-sima
+      loc: abstract
+      quote: "Seventeen Middle Pleistocene crania from the Sima de los Huesos site (Atapuerca, Spain) are analyzed"
+  location:
+    prop: location
+    value: { lat: 42.35, lon: -3.5, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-sima-de-los-huesos, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: Wikidata gives a rounded point, in the sierra.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-304
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-demuro-2019:
+    prop: date
+    value: { mean: 448 ka, sd: 15 kyr }
+    source:
+      ref: src:demuro-2019-sima
+      loc: abstract
+      quote: "the hominin-bearing layer (LU-6) was deposited between 455 ± 17 ka and 440 ± 15 ka (mean lower and upper boundary 68.2% probability range ± 1σ uncertainty, respectively), with a mean age of 448 ± 15 ka"
+    method: radiometric/luminescence
+    rank: preferred
+    note: >-
+      A Bayesian age-depth model of single-grain optical ages from the clays under and around the
+      bones, with earlier dates. Preferred because it dates the layer that holds them, from above
+      and below, where the earlier age was a minimum from above.
+  date-arsuaga-2014:
+    prop: date
+    value: 430 ka
+    source:
+      ref: src:arsuaga-2014-sima
+      loc: abstract
+      quote: "Using a variety of techniques, the hominin-bearing layer could be reassigned to a period around 430,000 years ago."
+    note: >-
+      Demuro et al. (2019) read this as a close minimum age, of at least 430 ka, for the material
+      immediately above the human remains.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-neanderthalensis
+    source:
+      - ref: src:demuro-2019-sima
+        loc: abstract
+        quote: "The SH fossils represent the oldest reliably dated hominin remains displaying Neandertal features across Eurasia."
+      - ref: src:meyer-2016-sima-dna
+        loc: abstract
+        quote: "which show that the Sima de los Huesos hominins were related to Neanderthals rather than to Denisovans"
+      - ref: src:hublin-2009-neandertals
+        loc: abstract
+        quote: 'to use the term "Homo neanderthalensis" to designate all of the specimens carrying derived metrical or non-metrical features used in the definition of the LP Neandertals'
+    note: >-
+      This relation sets where the Neanderthals start here. It follows Hublin's definition of the species;
+      on a narrower one these fossils would be its ancestors.

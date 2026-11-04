@@ -1,0 +1,31 @@
+id: src:grun-2020-broken-hill
+type: publication
+kind: measurement
+citation: >-
+  Grün, R., Pike, A., McDermott, F., Eggins, S., Mortimer, G., Aubert, M., Kinsley, L.,
+  Joannes-Boyau, R., Rumsey, M., Denys, C., Brink, J., Clark, T. & Stringer, C. (2020). Dating the
+  skull from Broken Hill, Zambia, and its position in human evolution. Nature 580(7803), 372–375.
+authors:
+  - "Grün, R."
+  - "Pike, A."
+  - "McDermott, F."
+  - "Eggins, S."
+  - "Mortimer, G."
+  - "Aubert, M."
+  - "Kinsley, L."
+  - "Joannes-Boyau, R."
+  - "Rumsey, M."
+  - "Denys, C."
+  - "Brink, J."
+  - "Clark, T."
+  - "Stringer, C."
+published: 2020
+title: "Dating the skull from Broken Hill, Zambia, and its position in human evolution"
+container: "Nature 580(7803), 372–375"
+doi: 10.1038/s41586-020-2165-4
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 32296179): a best age of 299 ± 25 thousand years
+    (mean ± 2σ) for the Broken Hill skull. Quoted passages checked by script against the text
+    retrieved.

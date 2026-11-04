@@ -1,0 +1,19 @@
+id: src:froese-2014-teotihuacan-government
+type: publication
+kind: model
+citation: >-
+  Froese, T., Gershenson, C. & Manzanilla, L.R. (2014). Can government be self-organized? A mathematical model of the collective
+  social organization of ancient Teotihuacan, central Mexico. PLoS ONE 9(10), e109966.
+authors:
+  - "Froese, T."
+  - "Gershenson, C."
+  - "Manzanilla, L.R."
+published: 2014
+title: "Can government be self-organized? A mathematical model of the collective social organization of ancient Teotihuacan, central Mexico"
+container: PLoS ONE
+doi: 10.1371/journal.pone.0109966
+url: https://europepmc.org/article/PMC/PMC4193847
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC4193847). Quotes checked by script against it, after normalizing whitespace.

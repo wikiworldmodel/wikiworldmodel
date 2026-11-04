@@ -1,0 +1,58 @@
+id: life/occurrences/common-bean-coxcatlan
+kind: occurrence
+summary: >-
+  Common beans from Coxcatlán Cave in the Tehuacán Valley of Puebla, 2,390–2,210 cal BP: among the
+  earliest found in Mesoamerica, and much younger than the genetic estimate for the domestication
+  of the bean. They are domestic by identification as the cultivated species; the source read gives
+  no separate trait.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Common bean, Coxcatlán Cave" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: Phaseolus vulgaris
+    source:
+      ref: src:kennett-2023-el-gigante
+      loc: Discussion
+      quote: "Common beans (Phaseolus vulgaris) from Coxcatlán Cave (Tehuacán) date between 2,390–2,210 cal BP"
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      ref: src:kennett-2023-el-gigante
+      loc: Discussion
+      quote: "which is roughly contemporary with the earliest common beans from Oaxaca (2,200–2,000 cal BP, [64])"
+    note: >-
+      Dated seeds. The original study, Kaplan and Lynch (1999), could not be read, so the domestic
+      traits it may report are left out.
+  location:
+    prop: location
+    value: { lat: 18.267222, lon: -97.149167, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-coxcatlan-cave, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-104
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 2390 BP, hi: 2210 BP }
+    source:
+      ref: src:kennett-2023-el-gigante
+      loc: Discussion
+      quote: "date between 2,390–2,210 cal BP"
+    method: radiometric/radiocarbon
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott825707 and ott99252: Phaseolus vulgaris lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/common-bean
+    source: { ref: src:kennett-2023-el-gigante, loc: Discussion }

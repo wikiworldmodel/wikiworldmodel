@@ -1,0 +1,23 @@
+id: src:kistler-2015-cucurbita
+type: publication
+kind: measurement
+citation: >-
+  Kistler, L., Newsom, L.A., Ryan, T.M., Clarke, A.C., Smith, B.D. & Perry, G.H. (2015). Gourds
+  and squashes (Cucurbita spp.) adapted to megafaunal extinction and ecological anachronism
+  through domestication. Proceedings of the National Academy of Sciences 112(49), 15107–15112.
+authors:
+  - "Kistler, L."
+  - "Newsom, L.A."
+  - "Ryan, T.M."
+  - "Clarke, A.C."
+  - "Smith, B.D."
+  - "Perry, G.H."
+published: 2015
+title: "Gourds and squashes (Cucurbita spp.) adapted to megafaunal extinction and ecological anachronism through domestication"
+container: "Proceedings of the National Academy of Sciences 112(49), 15107–15112"
+doi: 10.1073/pnas.1516109112
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC4679018) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

@@ -22,8 +22,8 @@ export default defineConfig({
   // behaviour, drawn the fast way; and the city's full-quality views, which take minutes each in
   // software. Locally, `npm run test:e2e` runs all three.
   projects: [
-    { name: 'globe', testMatch: /(golden|viewer)\.spec\.ts$/ },
-    { name: 'city', testMatch: /city\.spec\.ts$/ },
+    { name: 'globe', testMatch: /(golden|viewer|biomes|tree|layers)\.spec\.ts$/ },
+    { name: 'city', testMatch: /(city|life)\.spec\.ts$/ },
     { name: 'city-views', testMatch: /city-views\.spec\.ts$/ },
   ],
   webServer: {

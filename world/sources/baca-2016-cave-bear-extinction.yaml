@@ -1,0 +1,24 @@
+id: src:baca-2016-cave-bear-extinction
+type: publication
+kind: measurement
+citation: >-
+  Baca, M., Popović, D., Stefaniak, K., Marciszak, A., Urbanowski, M., Nadachowski, A. & Mackiewicz,
+  P. (2016). Retreat and extinction of the Late Pleistocene cave bear (Ursus spelaeus sensu lato).
+  The Science of Nature 103(11–12), 92.
+authors:
+  - "Baca, M."
+  - "Popović, D."
+  - "Stefaniak, K."
+  - "Marciszak, A."
+  - "Urbanowski, M."
+  - "Nadachowski, A."
+  - "Mackiewicz, P."
+published: 2016
+title: "Retreat and extinction of the Late Pleistocene cave bear (Ursus spelaeus sensu lato)"
+container: "The Science of Nature 103(11–12), 92"
+doi: 10.1007/s00114-016-1414-8
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC5059403). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

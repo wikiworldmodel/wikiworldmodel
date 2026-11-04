@@ -1,0 +1,71 @@
+id: people/dispersals/kostenki-14
+kind: occurrence
+summary: >-
+  The genome of an individual from Kostenki in European Russia, between about 38,700 and 36,200
+  years old: already on the western Eurasian side of the split from eastern Asians.
+same_as: { wikidata: Q139595311 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Kostenki 14 }
+    source:
+      ref: src:seguin-orlando-2014-kostenki
+      loc: abstract
+      quote: "We obtained a genome sequence from Kostenki 14 in European Russia"
+  identified:
+    prop: identified_as
+    value: anatomically modern human
+    source:
+      ref: src:seguin-orlando-2014-kostenki
+      loc: abstract
+      quote: "one of the oldest fossils of anatomically modern humans from Europe"
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:seguin-orlando-2014-kostenki
+      loc: abstract
+      quote: "We obtained a genome sequence from Kostenki 14"
+  location:
+    prop: location
+    value: { lat: 51.385833, lon: 39.051667, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-kostenki, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: The Kostyonki–Borshchyovo archaeological complex as a whole, not the Kostenki 14 site within it.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-301
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 38.7 ka, hi: 36.2 ka }
+    source:
+      ref: src:seguin-orlando-2014-kostenki
+      loc: abstract
+      quote: "dating from 38,700 to 36,200 years ago"
+    note: The abstract does not say how the age was reached, and the full text was not read.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        Shares a close ancestry with the Mal'ta boy, European Mesolithic hunter-gatherers, some
+        western Siberians and many Europeans, but not eastern Asians, with signs of ancestry from a
+        population basal to all Eurasians.
+    source:
+      - ref: src:seguin-orlando-2014-kostenki
+        loc: abstract
+        quote: "Kostenki 14 shares a close ancestry with the 24,000-year-old Mal'ta boy from central Siberia, European Mesolithic hunter-gatherers, some contemporary western Siberians, and many Europeans, but not eastern Asians."
+      - ref: src:seguin-orlando-2014-kostenki
+        loc: abstract
+        quote: "shows evidence of shared ancestry with a population basal to all Eurasians"
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:seguin-orlando-2014-kostenki
+      loc: abstract
+      quote: "one of the oldest fossils of anatomically modern humans from Europe"

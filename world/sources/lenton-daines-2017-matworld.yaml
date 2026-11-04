@@ -1,0 +1,18 @@
+id: src:lenton-daines-2017-matworld
+type: publication
+kind: review
+citation: >-
+  Lenton, T.M. & Daines, S.J. (2017). Matworld – the biogeochemical effects of early life on land.
+  New Phytologist 215(2), 531–537.
+authors:
+  - "Lenton, T.M."
+  - "Daines, S.J."
+published: 2017
+title: "Matworld – the biogeochemical effects of early life on land"
+container: New Phytologist 215(2), 531–537
+doi: 10.1111/nph.14338
+verified:
+  by: machine:claude-code
+  how: >-
+    The summary only, read through OpenAlex's record of the work; the full text could not be
+    reached. Quotes checked by script against it. Metadata from Crossref.

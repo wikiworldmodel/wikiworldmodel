@@ -1,0 +1,11 @@
+id: src:spk-2024-nefertiti-first-exhibition
+type: publication
+kind: review
+citation: Stiftung Preußischer Kulturbesitz (2024). First exhibition of the bust of Nefertiti 100 years ago. News item, 27 March 2024.
+published: 2024
+title: First exhibition of the bust of Nefertiti 100 years ago
+url: https://www.preussischer-kulturbesitz.de/en/news-detail/article/2024/03/27/first-exhibition-of-the-bust-of-nefertiti-100-years-ago.html
+reliability: The foundation that owns the bust, in a news item that also answers calls for its return.
+verified:
+  by: machine:claude-code
+  how: Read on the foundation's site. Quotations checked by script against the page's text.

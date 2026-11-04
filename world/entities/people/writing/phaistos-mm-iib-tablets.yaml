@@ -1,0 +1,38 @@
+id: people/writing/phaistos-mm-iib-tablets
+kind: occurrence
+summary: >-
+  Some 20 Linear A tablets from the Middle Minoan IIB layers of the palace at Phaistos, in southern Crete.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Linear A tablets, Phaistos" }
+    unsourced: An editorial label, from the finds and the place.
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: some 20 tablets from the MM IIB layers of the palace at Phaistos (Pugliese Carratelli 1958)
+  location:
+    prop: location
+    value: { lat: 35.05119, lon: 24.814438, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-phaistos, loc: "place 589987, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-330
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 1750 BCE, hi: 1700 BCE }
+    source:
+      - { ref: src:carter-kilikoglou-2022-malia-obsidian, loc: 'Table 1, row "MM IIB": 1750–1700 BC' }
+      - ref: src:tomas-2013-saving-on-clay
+        loc: section 9.3
+        quote: some 20 tablets from the MM IIB layers of the palace at Phaistos (Pugliese Carratelli 1958)
+    method: stratigraphic
+    note: The layer's ceramic phase is Tomas's; its dates in years are from a conventional chronology, whose absolute values are themselves argued.

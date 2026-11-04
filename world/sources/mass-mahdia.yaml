@@ -1,0 +1,12 @@
+id: src:mass-mahdia
+type: publication
+kind: review
+citation: >-
+  Maritime Stepping Stones (MaSS). Mahdia wreck. An entry in the database at mass.cultureelerfgoed.nl.
+title: Mahdia wreck
+container: Maritime Stepping Stones (MaSS)
+url: https://mass.cultureelerfgoed.nl/mahdia-wreck
+reliability: An unsigned summary that cites Hellenkemper Salies et al. (1994), Das Wrack, the standard work, which was not read. Its route is an inference from the cargo.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

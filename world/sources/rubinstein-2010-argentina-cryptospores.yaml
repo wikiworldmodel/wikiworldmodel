@@ -1,0 +1,23 @@
+id: src:rubinstein-2010-argentina-cryptospores
+type: publication
+kind: measurement
+citation: >-
+  Rubinstein, C.V., Gerrienne, P., de la Puente, G.S., Astini, R.A. & Steemans, P. (2010). Early
+  Middle Ordovician evidence for land plants in Argentina (eastern Gondwana). New Phytologist
+  188(2), 365–369.
+authors:
+  - "Rubinstein, C.V."
+  - "Gerrienne, P."
+  - "de la Puente, G.S."
+  - "Astini, R.A."
+  - "Steemans, P."
+published: 2010
+title: "Early Middle Ordovician evidence for land plants in Argentina (eastern Gondwana)"
+container: New Phytologist 188(2), 365–369
+doi: 10.1111/j.1469-8137.2010.03433.x
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract (Europe PMC, PMID 20731783) and the paper's Supporting Information (the ORBi
+    repository, orbi.uliege.be/handle/2268/72757, Notes S1–S2 and figure captions). The main text
+    could not be read. Quotes checked by script against the abstract. Metadata from Crossref.

@@ -1,0 +1,70 @@
+id: people/dispersals/denisovan-admixture
+kind: event/admixture
+summary: >-
+  The mixing between modern humans and Denisovans, whose mark is strongest in Papuans and Aboriginal
+  Australians, after the mixing with Neanderthals on average. It was probably not one event: several
+  Denisovan lineages show in living people, one of them perhaps until late in the Pleistocene.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Interbreeding with Denisovans }
+    unsourced: An editorial label.
+  date-malaspinas-2016:
+    prop: date
+    value: { lo: 50 ka, hi: 31 ka }
+    source:
+      ref: src:malaspinas-2016-australia
+      loc: "main text, on archaic admixture"
+      quote: "Denisovan/Australo-Papuan admixture took place ~44 kya (95% CI 31-50 kya"
+    method: molecular-clock
+    rank: preferred
+    note: >-
+      Preferred because it models the admixture directly and states its uncertainty. It is a
+      demographic model fitted to site frequencies, for the ancestors of Australians and Papuans
+      only. Jacobs et al. (2019) find that one Denisovan group's contribution went on until near the
+      end of the Pleistocene; their dates were not read.
+  date-sankararaman-2016:
+    prop: date
+    value: { lo: 54 ka, hi: 44 ka }
+    source:
+      ref: src:sankararaman-2016-denisovan
+      loc: "Results, on the date of Denisovan admixture"
+      quote: "we estimate 44,000–54,000 years ago for Denisovan admixture"
+    method: ancestry-segments
+    note: A rough estimate by the authors' own account, scaled from a date for Neanderthal admixture of 50,000–60,000 years ago.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        Some 4–6% of the genomes of present-day Melanesians, from at least two deeply divergent
+        Denisovan lineages in Papuans. East Asians carry another: the segments in the 40,000-year-old
+        Tianyuan individual come from the admixture shared with present-day mainland Asians.
+    source:
+      - ref: src:reich-2010-denisova
+        loc: abstract
+        quote: "contributed 4–6% of its genetic material to the genomes of present-day Melanesians"
+      - ref: src:jacobs-2019-denisovan-papuans
+        loc: abstract
+        quote: "modern Papuans carry hundreds of gene variants from two deeply divergent Denisovan lineages that separated over 350 thousand years ago"
+      - ref: src:jacobs-2019-denisovan-papuans
+        loc: abstract
+        quote: "A third Denisovan lineage occurs in modern East Asians."
+      - ref: src:massilani-2020-salkhit
+        loc: abstract
+        quote: "These segments derive from the same Denisovan admixture event(s) that contributed to present-day mainland Asians but are distinct from the Denisovan DNA segments in present-day Papuans and Aboriginal Australians."
+relations:
+  after-the-dispersal:
+    rel: after
+    to: people/dispersals/out-of-africa-main
+    source:
+      ref: src:malaspinas-2016-australia
+      loc: abstract
+      quote: "following a single out of Africa dispersal, and subsequently admixed with different archaic populations"
+  during-the-denisovans:
+    rel: during
+    to: life/taxa/denisovans
+    source:
+      ref: src:reich-2010-denisova
+      loc: abstract
+      quote: "contributed 4–6% of its genetic material to the genomes of present-day Melanesians"

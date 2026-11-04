@@ -1,0 +1,25 @@
+id: src:fu-2013-tianyuan
+type: publication
+kind: measurement
+citation: >-
+  Fu, Q., Meyer, M., Gao, X., Stenzel, U., Burbano, H.A., Kelso, J. & Pääbo, S. (2013). DNA analysis
+  of an early modern human from Tianyuan Cave, China. Proceedings of the National Academy of
+  Sciences of the USA 110(6), 2223–2227.
+authors:
+  - "Fu, Q."
+  - "Meyer, M."
+  - "Gao, X."
+  - "Stenzel, U."
+  - "Burbano, H.A."
+  - "Kelso, J."
+  - "Pääbo, S."
+published: 2013
+title: "DNA analysis of an early modern human from Tianyuan Cave, China"
+container: "Proceedings of the National Academy of Sciences of the USA 110(6), 2223–2227"
+doi: 10.1073/pnas.1221359110
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the article's page on PubMed Central (PMC3568306); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text and the abstract in Europe PMC.

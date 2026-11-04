@@ -1,0 +1,232 @@
+id: earth/futures/climate-to-2100
+kind: event/transition
+summary: >-
+  The warming of the climate and the rise of the sea over this century, as the IPCC's Sixth
+  Assessment projects them under five illustrative emissions scenarios that start in 2015. How much
+  depends on the emissions, and the report does not say how likely each scenario is, so the default
+  picture gives no amounts: they come with the alternatives "IPCC emissions scenarios". Warming began
+  long before 2015, and neither warming nor sea-level rise need stop at 2100.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Climate to 2100 under the IPCC scenarios }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 2015 CE
+    source:
+      ref: src:ipcc-2021-ar6-wg1-spm
+      loc: Box SPM.1.1, p. 12
+      quote: five illustrative scenarios that cover the range of possible future development of anthropogenic drivers of climate change found in the literature. They start in 2015
+    method: model
+    basis: projection
+    note: When the scenarios begin to differ, not when the warming began.
+  end:
+    prop: end
+    value: 2100 CE
+    source:
+      ref: src:ipcc-2021-ar6-wg1-spm
+      loc: section B, opening paragraph, p. 12
+      quote: Results over the 21st century are provided for the near term (2021–2040), mid-term (2041–2060) and long term (2081–2100)
+    method: model
+    basis: projection
+    note: >-
+      The end of the span these claims cover, not of the change: sea level goes on rising for
+      centuries to millennia (B.5.4, p. 21).
+  warming-ssp119:
+    prop: warming
+    value: { lo: 1.0, hi: 1.8 }
+    alt: alt:ipcc-ar6-scenarios/ssp119
+    valid: { lo: 2081 CE, hi: 2100 CE }
+    source:
+      - ref: src:ipcc-2021-ar6-wg1-spm
+        loc: B.1.1, p. 14; Table SPM.1, long term, p. 14
+        quote: very likely to be higher by 1.0°C to 1.8°C under the very low GHG emissions scenario considered (SSP1-1.9)
+      - ref: src:lee-2021-ipcc-ar6-chapter-4
+        loc: Table 4.5, long term 2081–2100, SSP1-1.9, relative to 1850–1900, p. 582
+        quote: 1.4 [1.0 to 1.8]
+    method: model
+    basis: projection
+    confidence: very-likely
+    note: >-
+      The global surface temperature averaged over 2081–2100, against 1850–1900. Best estimate 1.4 °C;
+      the range is the very likely one, 5–95%, which is the range these tables give.
+  warming-ssp126:
+    prop: warming
+    value: { lo: 1.3, hi: 2.4 }
+    alt: alt:ipcc-ar6-scenarios/ssp126
+    valid: { lo: 2081 CE, hi: 2100 CE }
+    source:
+      - ref: src:ipcc-2021-ar6-wg1-spm
+        loc: Table SPM.1, row SSP1-2.6, p. 14
+        quote: SSP1-2.6 1.5 1.2 to 1.8 1.7 1.3 to 2.2 1.8 1.3 to 2.4
+      - ref: src:lee-2021-ipcc-ar6-chapter-4
+        loc: Table 4.5, long term 2081–2100, SSP1-2.6, relative to 1850–1900, p. 582
+        quote: 1.8 [1.3 to 2.4]
+    method: model
+    basis: projection
+    confidence: very-likely
+    note: >-
+      The global surface temperature averaged over 2081–2100, against 1850–1900. Best estimate 1.8 °C;
+      the range is the very likely one, 5–95%. The last pair in the table's row is the long term.
+  warming-ssp245:
+    prop: warming
+    value: { lo: 2.1, hi: 3.5 }
+    alt: alt:ipcc-ar6-scenarios/ssp245
+    valid: { lo: 2081 CE, hi: 2100 CE }
+    source:
+      - ref: src:ipcc-2021-ar6-wg1-spm
+        loc: B.1.1, p. 14; Table SPM.1, long term, p. 14
+        quote: by 2.1°C to 3.5°C in the intermediate GHG emissions scenario (SSP2-4.5)
+      - ref: src:lee-2021-ipcc-ar6-chapter-4
+        loc: Table 4.5, long term 2081–2100, SSP2-4.5, relative to 1850–1900, p. 582
+        quote: 2.7 [2.1 to 3.5]
+    method: model
+    basis: projection
+    confidence: very-likely
+    note: >-
+      The global surface temperature averaged over 2081–2100, against 1850–1900. Best estimate 2.7 °C;
+      the range is the very likely one, 5–95%.
+  warming-ssp370:
+    prop: warming
+    value: { lo: 2.8, hi: 4.6 }
+    alt: alt:ipcc-ar6-scenarios/ssp370
+    valid: { lo: 2081 CE, hi: 2100 CE }
+    source:
+      - ref: src:ipcc-2021-ar6-wg1-spm
+        loc: Table SPM.1, row SSP3-7.0, p. 14
+        quote: SSP3-7.0 1.5 1.2 to 1.8 2.1 1.7 to 2.6 3.6 2.8 to 4.6
+      - ref: src:lee-2021-ipcc-ar6-chapter-4
+        loc: Table 4.5, long term 2081–2100, SSP3-7.0, relative to 1850–1900, p. 582
+        quote: 3.6 [2.8 to 4.6]
+    method: model
+    basis: projection
+    confidence: very-likely
+    note: >-
+      The global surface temperature averaged over 2081–2100, against 1850–1900. Best estimate 3.6 °C;
+      the range is the very likely one, 5–95%. The last pair in the table's row is the long term.
+  warming-ssp585:
+    prop: warming
+    value: { lo: 3.3, hi: 5.7 }
+    alt: alt:ipcc-ar6-scenarios/ssp585
+    valid: { lo: 2081 CE, hi: 2100 CE }
+    source:
+      - ref: src:ipcc-2021-ar6-wg1-spm
+        loc: B.1.1, p. 14; Table SPM.1, long term, p. 14
+        quote: by 3.3°C to 5.7°C under the very high GHG emissions scenario (SSP5-8.5)
+      - ref: src:lee-2021-ipcc-ar6-chapter-4
+        loc: Table 4.5, long term 2081–2100, SSP5-8.5, relative to 1850–1900, p. 582
+        quote: 4.4 [3.3 to 5.7]
+    method: model
+    basis: projection
+    confidence: very-likely
+    note: >-
+      The global surface temperature averaged over 2081–2100, against 1850–1900. Best estimate 4.4 °C;
+      the range is the very likely one, 5–95%.
+  sea-level-ssp119:
+    prop: sea_level_change
+    value: { lo: 0.28, hi: 0.55 }
+    alt: alt:ipcc-ar6-scenarios/ssp119
+    valid: 2100 CE
+    source:
+      - ref: src:ipcc-2021-ar6-wg1-spm
+        loc: B.5.3, p. 21
+        quote: 0.28–0.55 m under the very low GHG emissions scenario (SSP1-1.9)
+      - ref: src:fox-kemper-2021-ipcc-ar6-chapter-9
+        loc: Table 9.9, row Total (2100), column SSP1-1.9, p. 1302
+        quote: 0.38 (0.28–0.55)
+    method: model
+    basis: projection
+    confidence: likely
+    note: >-
+      Global mean sea level from 1995–2014 to 2100. Median 0.38 m; the range is the likely one, with
+      medium confidence, from the processes the projection has medium confidence in.
+  sea-level-ssp126:
+    prop: sea_level_change
+    value: { lo: 0.32, hi: 0.62 }
+    alt: alt:ipcc-ar6-scenarios/ssp126
+    valid: 2100 CE
+    source:
+      - ref: src:ipcc-2021-ar6-wg1-spm
+        loc: B.5.3, p. 21
+        quote: 0.32–0.62 m under the low GHG emissions scenario (SSP1-2.6)
+      - ref: src:fox-kemper-2021-ipcc-ar6-chapter-9
+        loc: Table 9.9, row Total (2100), column SSP1-2.6, p. 1302
+        quote: 0.44 (0.32–0.62)
+    method: model
+    basis: projection
+    confidence: likely
+    note: >-
+      Global mean sea level from 1995–2014 to 2100. Median 0.44 m; the range is the likely one, with
+      medium confidence, from the processes the projection has medium confidence in.
+  sea-level-ssp245:
+    prop: sea_level_change
+    value: { lo: 0.44, hi: 0.76 }
+    alt: alt:ipcc-ar6-scenarios/ssp245
+    valid: 2100 CE
+    source:
+      - ref: src:ipcc-2021-ar6-wg1-spm
+        loc: B.5.3, p. 21
+        quote: 0.44–0.76 m under the intermediate GHG emissions scenario (SSP2-4.5)
+      - ref: src:fox-kemper-2021-ipcc-ar6-chapter-9
+        loc: Table 9.9, row Total (2100), column SSP2-4.5, p. 1302
+        quote: 0.56 (0.44–0.76)
+    method: model
+    basis: projection
+    confidence: likely
+    note: >-
+      Global mean sea level from 1995–2014 to 2100. Median 0.56 m; the range is the likely one, with
+      medium confidence, from the processes the projection has medium confidence in.
+  sea-level-ssp370:
+    prop: sea_level_change
+    value: { lo: 0.55, hi: 0.90 }
+    alt: alt:ipcc-ar6-scenarios/ssp370
+    valid: 2100 CE
+    source:
+      ref: src:fox-kemper-2021-ipcc-ar6-chapter-9
+      loc: Table 9.9, row Total (2100), column SSP3-7.0, p. 1302
+      quote: 0.68 (0.55–0.90)
+    method: model
+    basis: projection
+    confidence: likely
+    note: >-
+      Global mean sea level from 1995–2014 to 2100. Median 0.68 m; the range is the likely one, with
+      medium confidence. The Summary for Policymakers gives this range for the other four scenarios
+      and not for this one, so it is from the chapter alone.
+  sea-level-ssp585:
+    prop: sea_level_change
+    value: { lo: 0.63, hi: 1.01 }
+    alt: alt:ipcc-ar6-scenarios/ssp585
+    valid: 2100 CE
+    source:
+      - ref: src:ipcc-2021-ar6-wg1-spm
+        loc: B.5.3, p. 21
+        quote: 0.63–1.01 m under the very high GHG emissions scenario (SSP5-8.5)
+      - ref: src:fox-kemper-2021-ipcc-ar6-chapter-9
+        loc: Table 9.9, row Total (2100), column SSP5-8.5, p. 1302
+        quote: 0.77 (0.63–1.01)
+    method: model
+    basis: projection
+    confidence: likely
+    rank: preferred
+    note: >-
+      Global mean sea level from 1995–2014 to 2100. Median 0.77 m; the range is the likely one, with
+      medium confidence. Preferred because it is the assessed range; the other claim here adds ice-sheet
+      processes the IPCC has low confidence in.
+  sea-level-ssp585-low-confidence:
+    prop: sea_level_change
+    value: { lo: 0.63, hi: 1.60 }
+    alt: alt:ipcc-ar6-scenarios/ssp585
+    valid: 2100 CE
+    source:
+      ref: src:fox-kemper-2021-ipcc-ar6-chapter-9
+      loc: Table 9.9, row Total (2100), column SSP5-8.5 Low Confidence, p. 1302
+      quote: 0.88 (0.63–1.60)
+    method: model
+    basis: projection
+    note: >-
+      Global mean sea level from 1995–2014 to 2100, with ice-sheet processes in which there is low
+      confidence, including marine ice-cliff instability. Median 0.88 m; a 17th–83rd percentile range
+      from a p-box, not an assessed likely range. The Summary for Policymakers adds that a rise
+      approaching 2 m by 2100 cannot be ruled out under this scenario (B.5.3, low confidence).

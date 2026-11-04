@@ -1,0 +1,31 @@
+id: src:manning-2016-mesopotamian-chronology
+type: publication
+kind: measurement
+citation: >-
+  Manning, S.W., Griggs, C.B., Lorentzen, B., Barjamovic, G., Ramsey, C.B., Kromer, B. & Wild,
+  E.M. (2016). Integrated tree-ring-radiocarbon high-resolution timeframe to resolve earlier
+  second millennium BCE Mesopotamian chronology. PLOS ONE 11(7), e0157144.
+authors:
+  - "Manning, S.W."
+  - "Griggs, C.B."
+  - "Lorentzen, B."
+  - "Barjamovic, G."
+  - "Ramsey, C.B."
+  - "Kromer, B."
+  - "Wild, E.M."
+published: 2016
+title: Integrated tree-ring-radiocarbon high-resolution timeframe to resolve earlier second millennium BCE Mesopotamian chronology
+container: PLOS ONE 11(7), e0157144
+doi: 10.1371/journal.pone.0157144
+url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4943651/
+license: CC-BY-4.0
+via: PubMed Central.
+reliability: >-
+  Radiocarbon wiggle-matching of Anatolian tree-ring series tied to Old Assyrian rulers. It
+  finds only the Middle or the Low-Middle Chronology compatible, ruling out the High, Low and
+  New (ultra-low) ones.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full on PubMed Central; the quotations checked by script against that text. The
+    article's author list was read from its first page.

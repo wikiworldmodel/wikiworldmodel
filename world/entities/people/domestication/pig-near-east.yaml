@@ -1,0 +1,57 @@
+id: people/domestication/pig-near-east
+kind: development
+summary: >-
+  The domestication of the pig from wild boar in the Near East, in southeast Anatolia. At Çayönü
+  molars shrink over two millennia until pigs look domestic by about 6800 BCE. These pigs later
+  went to Europe with farmers, where their genes were almost wholly replaced by those of European
+  boar. Pigs were also domesticated independently in China (people/domestication/pig-east-asia).
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Pig domestication in the Near East }
+    unsourced: An editorial label.
+  start-zeder-2008:
+    prop: start
+    value: { lo: 10.5 ka, hi: 10 ka }
+    source:
+      ref: src:zeder-2008-mediterranean
+      loc: "Initial Animal Domestication in the Fertile Crescent"
+      quote: "pigs were first domesticated somewhere in southeastern Anatolia by 10,500–10,000 B.P."
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      Ages in this paper are calibrated.
+  start-frantz-2019:
+    prop: start
+    value: { hi: 10.5 ka }
+    source:
+      ref: src:frantz-2019-pigs
+      loc: abstract
+      quote: "pig domestication had begun by ∼10,500 y before the present (BP) in the Near East"
+    method: expert-estimate
+  start-ottoni-2013:
+    prop: start
+    value: { hi: 8500 BCE }
+    source:
+      ref: src:ottoni-2013-pig
+      loc: Introduction
+      quote: "wild boar were domesticated independently in the Near East by at least 8,500 BC"
+    method: expert-estimate
+  location:
+    prop: location
+    value: { lat: 38.216, lon: 39.725, frame: frame:earth/present-day }
+    source:
+      - ref: src:ottoni-2013-pig
+        loc: Conclusions
+        quote: "begins with the domestication of pigs in Southwest Asia, at Upper Tigris sites including Çayönü Tepesi"
+      - { ref: src:wikidata-cayonu, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Marked at Çayönü. The same sentence allows upper Euphrates sites as well.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-105
+type: frame
+kind: plate
+title: Baja California (PALEOMAP plate 105)
+entity: earth/plates/baja-california
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 105
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 105

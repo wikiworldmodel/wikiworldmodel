@@ -1,0 +1,27 @@
+id: src:jacobs-2008-msa-ages
+type: publication
+kind: measurement
+citation: >-
+  Jacobs, Z., Roberts, R.G., Galbraith, R.F., Deacon, H.J., Grün, R., Mackay, A., Mitchell, P.,
+  Vogelsang, R. & Wadley, L. (2008). Ages for the Middle Stone Age of southern Africa:
+  implications for human behavior and dispersal. Science 322(5902), 733–735.
+authors:
+  - "Jacobs, Z."
+  - "Roberts, R.G."
+  - "Galbraith, R.F."
+  - "Deacon, H.J."
+  - "Grün, R."
+  - "Mackay, A."
+  - "Mitchell, P."
+  - "Vogelsang, R."
+  - "Wadley, L."
+published: 2008
+title: "Ages for the Middle Stone Age of southern Africa: implications for human behavior and dispersal"
+container: "Science 322(5902), 733–735"
+doi: 10.1126/science.1162219
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 18974351): the Still Bay and Howieson's Poort as
+    short phases within the Middle Stone Age of southern Africa. The abstract gives no ages.
+    Quoted passages checked by script against the text retrieved.

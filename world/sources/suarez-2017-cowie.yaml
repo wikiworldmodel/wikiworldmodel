@@ -1,0 +1,21 @@
+id: src:suarez-2017-cowie
+type: publication
+kind: measurement
+citation: >-
+  Suarez, S.E., Brookfield, M.E., Catlos, E.J. & Stöckli, D.F. (2017). A U-Pb zircon age
+  constraint on the oldest-recorded air-breathing land animal. PLOS ONE 12(6), e0179262.
+authors:
+  - "Suarez, S.E."
+  - "Brookfield, M.E."
+  - "Catlos, E.J."
+  - "Stöckli, D.F."
+published: 2017
+title: "A U-Pb zircon age constraint on the oldest-recorded air-breathing land animal"
+container: PLOS ONE 12(6), e0179262
+doi: 10.1371/journal.pone.0179262
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC5489152) read via Europe PMC (fullTextXML): U–Pb zircon ages of beds above
+    and below the Cowie Harbour Fish Bed, and the age of about 414 Ma they read from them.
+    Quotes checked by script against that text. Metadata from Crossref.

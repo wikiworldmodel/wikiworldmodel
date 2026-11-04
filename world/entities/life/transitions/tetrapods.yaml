@@ -1,0 +1,84 @@
+id: life/transitions/tetrapods
+kind: event/transition
+summary: >-
+  The origin of tetrapods, the vertebrates with limbs: a process from the first limbed animals on the stem to the emergence of the crown-group clades. Tiktaalik, a fish with fins and a
+  wrist, once marked its start among the body fossils, but footprints at Zachełmie are some ten million years older than the oldest of such fish, so limbed animals and finned ones overlap
+  in time. The record of the crown group is life/taxa/tetrapoda.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Origin of tetrapods }
+    unsourced: An editorial label.
+  start-qvarnstrom-2018:
+    prop: start
+    value: { ref: life/occurrences/zachelmie-trackways }
+    source:
+      - ref: src:qvarnstrom-2018-zachelmie
+        loc: "Introduction, first paragraph"
+        quote: "The earliest evidence for tetrapods in the fossil record consists of early Middle Devonian trace fossils (tracks and trackways) from Zachełmie Quarry"
+      - ref: src:long-2025-amniote-tracks
+        loc: "Discussion"
+        quote: "The earliest fossils of limbed tetrapods, the trackways from Zachełmie in Poland (Eifelian)"
+    rank: preferred
+    note: >-
+      Preferred because digit impressions and quadrupedal gait, without body drags, show a limbed maker, and the later literature read accepts this (Long et al. 2025). The tracks stand alone:
+      no body fossil of that age shows the animal.
+  start-daeschler-2006:
+    prop: start
+    value: { ref: life/occurrences/tiktaalik-nv2k17 }
+    source:
+      - ref: src:daeschler-2006-tiktaalik
+        loc: abstract
+        quote: "represents an intermediate between fish with fins and tetrapods with limbs"
+      - ref: src:niedzwiedzki-2010-zachelmie
+        loc: abstract
+        quote: "The earliest body fossils of tetrapods date to the Late Devonian period (late Frasnian stage) and are preceded by transitional elpistostegids such as Panderichthys and Tiktaalik that still have paired fins."
+    note: >-
+      The picture from body fossils alone, in which fish grade into limbed animals in the Late Devonian. It stands for those who read the tracks otherwise: Qvarnström et al. (2018) answer two such
+      readings, as tracks of elpistostegids and as resting traces of fish. Niedźwiedzki et al. say that the tracks force a radical reassessment of it.
+  end-long-2025-lethiscus:
+    prop: end
+    value: { ref: life/occurrences/lethiscus-wardie }
+    source:
+      - ref: src:long-2025-amniote-tracks
+        loc: "main text, first paragraph"
+        quote: "was not a single event but a process that began with the acquisition of incipient terrestrial locomotory competence in the tetrapod stem group and ended with the emergence of the major crown-group clades, amphibians and amniotes"
+      - ref: src:long-2025-amniote-tracks
+        loc: abstract
+        quote: "The earliest body fossils of crown-group tetrapods are mid-Carboniferous, and the oldest trackways are early Carboniferous"
+    rank: preferred
+    note: >-
+      The oldest crown tetrapod placed here, from the record's own sources (Benton et al. 2015). The sentence about "mid-Carboniferous" is the paper's summary of the view that it goes on to challenge.
+  end-long-2025-frasnian:
+    prop: end
+    value: { ref: ics/frasnian }
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: abstract
+      quote: "that the tetrapod crown-group node must be located deep within the Devonian; an estimate based on molecular-tree branch lengths suggests an approximate age of early Frasnian"
+    method: expert-estimate
+    note: >-
+      What the clawed tracks of the Snowy Plains Formation imply if a crown-group amniote made them. "Early Frasnian", a rough estimate by the authors' own account.
+relations:
+  evidence-zachelmie:
+    rel: evidenced-by
+    to: life/occurrences/zachelmie-trackways
+    source:
+      ref: src:qvarnstrom-2018-zachelmie
+      loc: "Introduction, first paragraph"
+      quote: "The earliest evidence for tetrapods in the fossil record consists of early Middle Devonian trace fossils (tracks and trackways) from Zachełmie Quarry"
+  evidence-tiktaalik:
+    rel: evidenced-by
+    to: life/occurrences/tiktaalik-nv2k17
+    source:
+      ref: src:daeschler-2006-tiktaalik
+      loc: abstract
+      quote: "provides unique insights into how and in what order important tetrapod characters arose"
+  evidence-lethiscus:
+    rel: evidenced-by
+    to: life/occurrences/lethiscus-wardie
+    source:
+      ref: src:benton-2015-animal-calibrations
+      loc: "CROWN TETRAPODA (41), discussion"
+      quote: "Lethiscus may be the oldest crown tetrapod currently"

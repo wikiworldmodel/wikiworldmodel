@@ -1,0 +1,164 @@
+id: people/first-cities/uruk
+kind: settlement
+summary: >-
+  Uruk, modern Warka, in southern Iraq. Settled from the Ubaid period, it grew in the later fourth millennium BCE to some 250 hectares,
+  arguably the world's first true city, and there writing appears (people/writing/uruk-iv-tablets). It grew further in the third millennium,
+  then shrank, and people still lived there into Sasanian times. Its size and population at any date are estimates, and they differ by a
+  factor of two or more.
+author: machine:claude-code
+same_as: { wikidata: Q168518, pleiades: 912986 }
+phases:
+  - id: before-city
+    label: Before the city
+  - id: city
+    label: City
+claims:
+  name:
+    prop: name
+    value: { en: Uruk }
+    source: { ref: src:pleiades-uruk, loc: "place 912986, names" }
+  start:
+    prop: start
+    value: { lo: 5000 BCE, hi: 4001 BCE }
+    source:
+      ref: src:cdli-wiki-uruk
+      loc: Introduction
+      quote: "Settlement at the site began in the Ubaid period (5th millennium BC)."
+    method: expert-estimate
+    note: The first settlement on the site, dated by its period. Ubaid villages were small, rarely more than a hectare or two (Ur 2014).
+  city-start-woods:
+    prop: start
+    subject: "@city"
+    value: 3350 BCE
+    source:
+      ref: src:woods-2010-visible-language
+      loc: p. 34 (ch. 2)
+      quote: "During the Late Uruk period (ca. 3350–3100 bc), which takes its name from the city, Uruk was characterized by rapid urbanization and population growth"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      The first urban phase taken as the start of the Late Uruk period, whose date the source gives as approximate. Preferred because it ties
+      the city to the phase of rapid urbanization; the place was already large earlier in the Uruk period.
+  city-start-cdli:
+    prop: start
+    subject: "@city"
+    value: 4000 BCE
+    source:
+      ref: src:cdli-wiki-uruk
+      loc: Introduction
+      quote: "In the Uruk period (4000-3000 BC) the site was the largest in Mesopotamia at 100 hectares."
+    method: expert-estimate
+    note: The start of the Uruk period as a whole, when the site was already the largest of its region. How early in that period it was so large is not said.
+  end:
+    prop: end
+    value: { lo: 224 CE, hi: 633 CE }
+    source:
+      ref: src:cdli-wiki-uruk
+      loc: Introduction
+      quote: "Settlement at Uruk finally came to an end during the Sassanian period (224-633 AD)."
+    method: expert-estimate
+    note: The end of settlement, not of the great city, which had declined long before.
+  location:
+    prop: location
+    value: { lat: 31.323375, lon: 45.639052, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-uruk, loc: "place 912986, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area-3100-bce:
+    prop: settlement_area
+    value: 250
+    valid: 3100 BCE
+    source:
+      - ref: src:ur-2014-households-cities
+        loc: section "Models for Early Urban Society in Mesopotamia"
+        quote: by 3100 BC the city of Uruk itself covered 250 hectares
+      - ref: src:woods-2010-visible-language
+        loc: p. 34 (ch. 2)
+        quote: a size of 2.5 sq. km — nearly twice the size of the next largest settlement
+      - ref: src:giosan-goodman-2025-sumer
+        loc: section 3.2, Brief Sumerian history
+        quote: reaching over 250 ha at its peak
+    method: expert-estimate
+    rank: preferred
+    note: Ur cites Finkbeiner (1991), which was not read. Woods's 2.5 sq. km is the same figure; the date is Ur's, and Woods gives it for the Late Uruk period.
+  area-uruk-period:
+    prop: settlement_area
+    value: 100
+    valid: { lo: 4000 BCE, hi: 3000 BCE }
+    source:
+      ref: src:cdli-wiki-uruk
+      loc: Introduction
+      quote: "In the Uruk period (4000-3000 BC) the site was the largest in Mesopotamia at 100 hectares."
+    method: expert-estimate
+    note: For the whole period, with no date within it. Ur (2014) also says Uruk exceeded one hundred hectares of settled area.
+  area-early-dynastic:
+    prop: settlement_area
+    value: 400
+    valid: { lo: 2900 BCE, hi: 2350 BCE }
+    source:
+      ref: src:cdli-wiki-uruk
+      loc: Introduction
+      quote: "Uruk continued to grow in the Early Dynastic period (2900-2350 BC), reaching a size of about 400 hectares."
+    method: expert-estimate
+  area-walled-2900-bce:
+    prop: settlement_area
+    value: 600
+    valid: 2900 BCE
+    source:
+      ref: src:pleiades-uruk
+      loc: "place 912986, description"
+      quote: "At its height (ca. 2900 BC), Uruk's population may have topped 50,000 people and its walls enclosed an area of more than six square kilometers"
+    method: expert-estimate
+    note: >-
+      The area inside the walls, more than 6 km², so at least 600 ha, and not all of it built on. A gazetteer's description, with no source named. Larger than
+      the settled area in the other claims because it counts what the walls enclosed.
+  population-woods:
+    prop: population
+    value: { lo: 20000, hi: 50000 }
+    valid: { lo: 3350 BCE, hi: 3100 BCE }
+    source:
+      ref: src:woods-2010-visible-language
+      loc: p. 34 (ch. 2)
+      quote: "swelling to a population of 20,000 to 50,000 individuals"
+    method: expert-estimate
+    rank: preferred
+    note: Preferred because it states the range rather than one figure. The source does not say how the estimate was made.
+  population-giosan:
+    prop: population
+    value: 25000
+    valid: { lo: 6000 BP, hi: 5200 BP }
+    source:
+      ref: src:giosan-goodman-2025-sumer
+      loc: section 3.2, Brief Sumerian history
+      quote: when it accommodated at least 25,000 people
+    method: expert-estimate
+    note: A lower limit, at the peak of the Uruk period (c. 6,000 BP–5,200 BP in this source), as it says of the 250 ha city.
+  population-modelski-3300:
+    prop: population
+    value: 40000
+    valid: 3300 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Uruk, column BC_3300" }
+    method: compilation
+    note: Modelski's figure, as digitized by Reba et al. (2016).
+  population-modelski-2800:
+    prop: population
+    value: 80000
+    valid: 2800 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Uruk, column BC_2800" }
+    method: compilation
+    note: Modelski's figure, as digitized by Reba et al. (2016); his highest for the city.
+  population-pleiades:
+    prop: population
+    value: 50000
+    valid: 2900 BCE
+    source:
+      ref: src:pleiades-uruk
+      loc: "place 912986, description"
+      quote: "At its height (ca. 2900 BC), Uruk's population may have topped 50,000 people"
+    method: expert-estimate
+    note: A gazetteer's description, with no source named, and "may have".

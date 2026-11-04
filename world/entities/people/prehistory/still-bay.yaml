@@ -1,0 +1,87 @@
+id: people/prehistory/still-bay
+kind: industry
+summary: >-
+  The Still Bay of southern Africa, bifacial points of a short phase of the Middle Stone Age, with
+  which come shell beads and engraved ochre. It has no location of its own here; its members say
+  where it was found.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Still Bay }
+    source:
+      ref: src:henshilwood-2018-blombos
+      loc: abstract
+      quote: "The object comes from a level associated with stone tools of the Still Bay techno-complex"
+  start-key-2026:
+    prop: start
+    value: 77 ka
+    source:
+      ref: src:key-2026-hominins-culture
+      loc: "section 2(a)"
+      quote: "Southern Africa's Still Bay bifacial point industry (77–70 ka)"
+    method: compilation
+    rank: preferred
+    note: >-
+      The most recent review read, citing Wadley (2015), which was not read. It allows the 77 ka layers
+      at Blombos Cave, which a narrower range would not.
+  start-hogberg-2016:
+    prop: start
+    value: 80 ka
+    source:
+      ref: src:hogberg-lombard-2016-still-bay
+      loc: Introduction
+      quote: "occurs in southern Africa during the later stages of the Middle Stone Age at roughly 80–70 ka"
+    method: compilation
+    note: The authors say all the published ages range roughly between these, with one exception.
+  start-ziegler-2013:
+    prop: start
+    value: 71.9 ka
+    source:
+      ref: src:ziegler-2013-msa-climate
+      loc: Discussion
+      quote: "The age of the SB industry (71.9–71.0 ka (ref. 7))"
+    method: compilation
+    rank: deprecated
+    note: >-
+      The ages of Jacobs et al. (2008), as cited here, from nine sites: both industries short-lived, 5000
+      years or less. Kept as data; it does not allow the older ages later reviews accept and is
+      contradicted by the Blombos ochres' dates, so it is not preferred.
+  end-key-2026:
+    prop: end
+    value: 70 ka
+    source:
+      - ref: src:key-2026-hominins-culture
+        loc: "section 2(a)"
+        quote: "Southern Africa's Still Bay bifacial point industry (77–70 ka)"
+      - ref: src:hogberg-lombard-2016-still-bay
+        loc: Introduction
+        quote: "all published age estimates for the Still Bay in southern Africa range roughly between 80 ka and 70 ka"
+    method: compilation
+    rank: preferred
+    note: The sources agree on this end; Högberg and Lombard call it rough.
+  end-ziegler-2013:
+    prop: end
+    value: 71.0 ka
+    source:
+      ref: src:ziegler-2013-msa-climate
+      loc: Discussion
+      quote: "The age of the SB industry (71.9–71.0 ka (ref. 7))"
+    method: compilation
+    rank: deprecated
+    note: The younger limit of Jacobs et al. (2008), as cited here; see the start.
+relations:
+  part-of-msa:
+    rel: part-of
+    to: people/prehistory/middle-stone-age
+    source:
+      ref: src:jacobs-2008-msa-ages
+      loc: abstract
+      quote: "two phases of technological and behavioral innovation within the Middle Stone Age of southern Africa-the Still Bay and Howieson's Poort industries"
+  made-by-homo-sapiens:
+    rel: made-by
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:henshilwood-2018-blombos
+      loc: abstract
+      quote: "This drawing demonstrates the ability of early Homo sapiens in southern Africa to produce graphic designs"

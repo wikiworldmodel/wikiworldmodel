@@ -1,0 +1,19 @@
+id: life/taxa/canis-familiaris
+kind: taxon
+summary: >-
+  Domestic dogs. Open Tree treats them as a subspecies of the grey wolf. Their start here is the
+  oldest find in the records that is generally accepted as a dog, not the moment of domestication
+  (people/domestication/dog).
+same_as: { ott: 247333 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: dogs, la: "Canis lupus familiaris" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "tnrs/match_names: Canis familiaris is a synonym of ott247333, accepted name Canis lupus familiaris" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott247333 and ott244265: Canis lupus familiaris lies within Mammalia" }

@@ -1,0 +1,18 @@
+id: src:zeder-hesse-2000-goats
+type: publication
+kind: measurement
+citation: >-
+  Zeder, M.A. & Hesse, B. (2000). The initial domestication of goats (Capra hircus) in the
+  Zagros mountains 10,000 years ago. Science 287(5461), 2254–2257.
+authors:
+  - "Zeder, M.A."
+  - "Hesse, B."
+published: 2000
+title: "The initial domestication of goats (Capra hircus) in the Zagros mountains 10,000 years ago"
+container: "Science 287(5461), 2254–2257"
+doi: 10.1126/science.287.5461.2254
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read from the Europe PMC record (PMID 10731145); the full text was not read.
+    Each quote checked by script against the abstract; citation from the same record.

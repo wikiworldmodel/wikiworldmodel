@@ -1,0 +1,17 @@
+id: src:wikidata-nevali-cori
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q1151606 (Nevalı Çori), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q1151606
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "Early Neolithic settlement and archaeological site". A point
+  for the named place, of uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (37.518333, 38.605556) read from the item's JSON
+    (Special:EntityData/Q1151606.json) on 3 November 2026.

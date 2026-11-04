@@ -1,0 +1,21 @@
+id: src:rauhut-2018-oldest-archaeopteryx
+type: publication
+kind: measurement
+citation: >-
+  Rauhut, O.W., Foth, C. & Tischlinger, H. (2018). The oldest Archaeopteryx (Theropoda:
+  Avialiae): a new specimen from the Kimmeridgian/Tithonian boundary of Schamhaupten, Bavaria.
+  PeerJ 6, e4191.
+authors:
+  - "Rauhut, O.W."
+  - "Foth, C."
+  - "Tischlinger, H."
+published: 2018
+title: "The oldest Archaeopteryx (Theropoda: Avialiae): a new specimen from the Kimmeridgian/Tithonian boundary of Schamhaupten, Bavaria"
+container: PeerJ 6, e4191
+doi: 10.7717/peerj.4191
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC5788062) read via Europe PMC (fullTextXML): the twelfth skeletal specimen,
+    the Gerstner Quarry at Schamhaupten, the Painten Formation at the Kimmeridgian/Tithonian
+    boundary. Quotes checked by script against that text. Metadata from Crossref.

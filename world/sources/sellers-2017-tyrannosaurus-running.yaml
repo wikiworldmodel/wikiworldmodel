@@ -1,0 +1,22 @@
+id: src:sellers-2017-tyrannosaurus-running
+type: publication
+kind: model
+citation: >-
+  Sellers, W.I., Pond, S.B., Brassey, C.A., Manning, P.L. & Bates, K.T. (2017). Investigating
+  the running abilities of Tyrannosaurus rex using stress-constrained multibody dynamic
+  analysis. PeerJ 5, e3420.
+authors:
+  - "Sellers, W.I."
+  - "Pond, S.B."
+  - "Brassey, C.A."
+  - "Manning, P.L."
+  - "Bates, K.T."
+published: 2017
+title: "Investigating the running abilities of Tyrannosaurus rex using stress-constrained multibody dynamic analysis"
+container: "PeerJ 5, e3420"
+doi: 10.7717/peerj.3420
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC5518979); quotes checked by script against it.

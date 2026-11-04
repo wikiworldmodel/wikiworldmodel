@@ -1,0 +1,13 @@
+id: src:wikidata-mahdia-shipwreck
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q3589083 (Mahdia shipwreck), property P625 (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q3589083
+license: CC0-1.0
+reliability: Crowd-edited, with no reference on the coordinate. Strauss et al. put the wreck at 35.5, 11.066667.
+verified:
+  by: machine:claude-code
+  how: Coordinates (35.531944, 11.124444) read from the item's JSON (Special:EntityData/Q3589083.json, revision 2559575319, modified 2026-10-21).

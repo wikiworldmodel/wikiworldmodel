@@ -12,6 +12,10 @@ claims:
     prop: identified_as
     value: Mesosaurus tenuidens
     source: { ref: src:pbdb/collection-90311, loc: "occurrence 820897, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary."
   location:
     prop: location
     value: { lat: -31.466667, lon: 19.766666, frame: frame:earth/present-day }

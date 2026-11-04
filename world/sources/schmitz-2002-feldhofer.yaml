@@ -1,0 +1,27 @@
+id: src:schmitz-2002-feldhofer
+type: publication
+kind: measurement
+citation: >-
+  Schmitz, R.W., Serre, D., Bonani, G., Feine, S., Hillgruber, F., Krainitzki, H., Pääbo, S. &
+  Smith, F.H. (2002). The Neandertal type site revisited: interdisciplinary investigations of
+  skeletal remains from the Neander Valley, Germany. Proceedings of the National Academy of
+  Sciences 99(20), 13342–13347.
+authors:
+  - "Schmitz, R.W."
+  - "Serre, D."
+  - "Bonani, G."
+  - "Feine, S."
+  - "Hillgruber, F."
+  - "Krainitzki, H."
+  - "Pääbo, S."
+  - "Smith, F.H."
+published: 2002
+title: "The Neandertal type site revisited: interdisciplinary investigations of skeletal remains from the Neander Valley, Germany"
+container: "Proceedings of the National Academy of Sciences 99(20), 13342–13347"
+doi: 10.1073/pnas.192464099
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 12232049): radiocarbon dates of about 40,000 yr for
+    Neandertal 1 and a second individual. The PubMed Central page answered with a browser check,
+    so the full text was not read. Quoted passages checked by script against the text retrieved.

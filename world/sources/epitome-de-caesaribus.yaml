@@ -1,0 +1,17 @@
+id: src:epitome-de-caesaribus
+type: text
+kind: historian
+citation: >-
+  Epitome de Caesaribus (Libellus de vita et moribus imperatorum), anonymous, formerly
+  attributed to Aurelius Victor. Latin text on The Latin Library.
+title: Epitome de Caesaribus
+url: https://www.thelatinlibrary.com/victor.caes2.html
+via: The Latin Library, which does not name its edition.
+reliability: >-
+  A late fourth- or early fifth-century digest of the emperors, with lengths of reign and life
+  that often differ from other lists.
+verified:
+  by: machine:claude-code
+  how: >-
+    Chapters 12–14, 39 and 41 read in the Latin on The Latin Library; the quotation checked by
+    script against that text.

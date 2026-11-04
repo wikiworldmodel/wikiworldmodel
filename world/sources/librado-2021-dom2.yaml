@@ -1,0 +1,25 @@
+id: src:librado-2021-dom2
+type: publication
+kind: measurement
+citation: >-
+  Librado, P., Khan, N., Fages, A., … & Orlando, L. (2021). The origins and spread of domestic
+  horses from the Western Eurasian steppes. Nature 598(7882), 634–640.
+authors:
+  - "Librado, P."
+  - "Khan, N."
+  - "Fages, A."
+  - "Kusliy, M.A."
+  - "Suchan, T."
+  - "Tonasso-Calvière, L."
+  - "Schiavinato, S."
+  - "Alioglu, D."
+# the first eight of 163 authors
+published: 2021
+title: "The origins and spread of domestic horses from the Western Eurasian steppes"
+container: "Nature 598(7882), 634–640"
+doi: 10.1038/s41586-021-04018-9
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC8550961) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

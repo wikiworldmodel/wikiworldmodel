@@ -1,0 +1,52 @@
+id: people/trade/palmyra-tariff
+kind: occurrence
+summary: >-
+  The tax law of Palmyra, cut on a stele in Palmyrene and Greek and set up in the agora in 137 CE: the council's revised tariff
+  of dues on goods entering and leaving the city, distinguishing loads carried by camel, donkey and cart. One of the chief
+  documents of the economy of the Roman East, and now in the Hermitage. Scholars differ on how much it shows of long-distance
+  trade and how much of local.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Tax law of Palmyra }
+    source: { ref: src:matthews-1984-tax-law-of-palmyra, loc: title, quote: "The Tax Law of Palmyra" }
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:getty-ancient-palmyra
+      loc: "section 'Long-distance trade'"
+      quote: "Chiseled in two languages, local Palmyrene (an Aramaic dialect) and Greek"
+  date:
+    prop: date
+    value: 137 CE
+    source:
+      - ref: src:matthews-1984-tax-law-of-palmyra
+        loc: "extract, opening sentence; p. 174 n. 1"
+        quote: "In the year A.D. 137 the council of the city of Palmyra in Syria agreed to revise and publish the tariff and regulations"
+      - ref: src:getty-ancient-palmyra
+        loc: "section 'Long-distance trade'"
+        quote: "a tariff stele (upright stone slab) erected in the agora in 137 CE, housed today in the State Hermitage Museum, St. Petersburg."
+    method: documentary
+    note: Dated by the stone itself, Matthews's note says, in the Palmyrene month of Nisan, April, of year 448 of the Seleucid era.
+  location:
+    prop: location
+    value: { lat: 34.552809393769074, lon: 38.264867215601384, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-palmyra, loc: "place 668331, representative point" }
+    method: gazetteer
+    note: Where it stood. It is not recorded here as an object that moved, though it is now in St. Petersburg.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  during-the-caravans:
+    rel: during
+    to: people/trade/palmyrene-caravan-trade
+    source:
+      ref: src:gawlikowski-1996-palmyra-caravan-trade
+      loc: "pp. 139–140"
+      quote: "This tax, together with other duties, was later incorporated into the Tariff of 137 A.D."

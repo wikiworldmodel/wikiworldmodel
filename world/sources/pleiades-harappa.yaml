@@ -1,0 +1,15 @@
+id: src:pleiades-harappa
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 93441396, "Harappa" (Punjab, Pakistan).
+snapshot: "2026-11-04"
+container: Pleiades
+url: https://pleiades.stoa.org/places/93441396
+license: CC-BY-3.0
+reliability: A scholarly gazetteer of ancient places; the point comes from an OpenStreetMap outline of the site.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/93441396/json) read directly on 4 November 2026:
+    representative point 30.629618°N, 72.865257°E.

@@ -5,11 +5,13 @@ import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
+import type { ClimateRule } from '../../../../core/climate.ts';
 import { encodeTile } from '../../../../core/container.ts';
 import type { CoverageFile, PeriodRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../../core/records.ts';
 import { bakeRotationModel, parseRot, RotationModel } from '../../../../core/rotation-model.ts';
 import { fromMa, parsePoint, PRESENT_YEAR, toMa, type TimePointInput } from '../../../../core/time.ts';
-import type { Basis, Feature, FieldInfo, FieldKeyframe, FramesFile, GeneratorConstraint, TileHeader, TileRef, Tileset } from '../../../../core/tileset.ts';
+import type { Basis, Feature, FieldInfo, FieldKeyframe, FramesFile, GeneratorConstraint, SiteInfo, TileHeader, TileRef, Tileset } from '../../../../core/tileset.ts';
+import { GENERATOR as BIOME_TEXTURE, VERSION as BIOME_TEXTURE_VERSION, generateBiomeTexture, type BiomeTextureParams } from '../../../../world/generators/earth/biome/v1.ts';
 import { GENERATOR as CLOUDS, VERSION as CLOUDS_VERSION, generateClouds, type CloudParams } from '../../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, VERSION as SURFACE_VERSION, generateSurface, type SurfaceParams } from '../../../../world/generators/earth/surface/v1.ts';
 import { claimGroups, solveScenario, solveVariants } from '../chronology.ts';
@@ -21,10 +23,15 @@ import { formatIssue, validateWorld } from '../validate/index.ts';
 import { loadWorld, type World } from '../world.ts';
 import { fieldFor, fieldLods, loadBlocks, loadSnapshots, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
 import { buildCity } from './city.ts';
+import { climateGrid, climateKeyframes, encodeClimate, forestChecks, type ClimateKeyframe } from './climate.ts';
+import { hazardLayer, languagesLayer, polityLayer, presentLayer, routesLayer } from './layers.ts';
+import { buildScene } from './scene.ts';
+import type { SceneParams } from '../../../../world/generators/life/scene/v1.ts';
 import { features as buildFeatures, periods as buildPeriods, records as buildRecords, search as buildSearch, sourceRecord, type Solved } from './records.ts';
 import { planet as buildPlanet } from './planet.ts';
 import { series as buildSeries } from './series.ts';
 import { territory as buildTerritory } from './territory.ts';
+import { tree as buildTree } from './tree.ts';
 
 // Share of PaleoDEM land that must fall inside the plate model's polygons at every snapshot,
 // a coarse check that field and frames come from the same model. This pair scores 0.85–1.00
@@ -192,8 +199,8 @@ export async function runBuild(args: string[]): Promise<number> {
   const grids: GridField[] = [];
   const imports: Record<string, string> = {};
   let pygplates = '';
-  for (const f of world.fields.filter((x) => !x.derived && x.grid?.kind === 'lonlat')) {
-    const mode = fieldSource(f);
+  for (const f of world.fields.filter((x) => !x.derived && x.grid?.kind === 'lonlat' && fieldSource(x) !== 'climate')) {
+    const mode = fieldSource(f) as 'elevation' | 'blocks';
     const dir = mode === 'elevation' ? await importElevation(f, log) : await importBlocks(f, log);
     imports[f.id] = dir.split('/').pop()!;
     const { meta, snapshots } = mode === 'elevation' ? await loadSnapshots(dir) : await loadBlocks(dir);
@@ -229,6 +236,7 @@ export async function runBuild(args: string[]): Promise<number> {
   const code = [
     { id: CLOUDS, version: CLOUDS_VERSION, run: (seed: string, p: unknown) => generateClouds(seed, p as CloudParams) },
     { id: SURFACE, version: SURFACE_VERSION, run: (seed: string, p: unknown) => generateSurface(seed, p as SurfaceParams) },
+    { id: BIOME_TEXTURE, version: BIOME_TEXTURE_VERSION, run: (seed: string, p: unknown) => generateBiomeTexture(seed, p as BiomeTextureParams) },
   ];
   const generators: GeneratorConstraint[] = [];
   for (const c of code) {
@@ -315,12 +323,61 @@ export async function runBuild(args: string[]): Promise<number> {
   put('search.json', stableStringify(found));
   put('series.json', stableStringify({ series: seriesList } satisfies SeriesFile));
   put('planet.json', stableStringify(buildPlanet(solved)));
-  put('territory.json', stableStringify(await buildTerritory(solved, log)));
-  put('coverage.json', stableStringify(coverage(world, wanted, allFeatures, tiles)));
+  const territoryFile = await buildTerritory(solved, log);
+  put('territory.json', stableStringify(territoryFile));
+  put('tree.json', stableStringify(buildTree(solved)));
+  // The climate field, on the plates of the elevation's snapshots, and the rule the biomes follow.
+  const climateField = world.fields.find((f) => fieldSource(f) === 'climate');
+  const biomeField = world.fields.find((f) => f.rule === 'biome-from-climate');
+  let climateKeys: ClimateKeyframe[] = [];
+  if (climateField && biomeField) {
+    const elevation = grids.find((g) => g.mode === 'elevation')!;
+    climateKeys = await climateKeyframes(world, climateField, elevation.snapshots, plateIndex, log);
+    put('climate.lwt', encodeClimate(climateGrid((climateField.grid as { res_deg: number }).res_deg), climateKeys, biomeField.params as unknown as ClimateRule));
+  }
   const city = await buildCity(solved, log);
   if (city) {
     for (const [path, bytes] of city.blobs) put(path, bytes);
     put(`city/${city.file.site.id}.json`, stableStringify(city.file));
+  }
+  // The outline's check of the biomes, and how much of the world rests on what.
+  const coverageFile = coverage(world, wanted, allFeatures, tiles);
+  if (climateKeys.length && biomeField) {
+    const forests = forestChecks(solved, climateKeys, climateGrid((climateField!.grid as { res_deg: number }).res_deg), biomeField.params as unknown as ClimateRule);
+    coverageFile.forests = forests;
+    const dry = forests.filter((f) => f.climate === 'desert');
+    log(`biomes  ${forests.length} fossil forests against the climate field: ${dry.length ? `${dry.length} in a reconstructed desert: ${dry.map((f) => `${f.id} (${f.ageMa} Ma)`).join(', ')}` : 'none in a reconstructed desert'}`);
+  }
+  put('coverage.json', stableStringify(coverageFile));
+  // What is drawn over the globe as rows of a dataset: today's map, and the hazards.
+  const present = await presentLayer(world);
+  if (present) put('present.json', stableStringify(present));
+  const hazards = await hazardLayer(world);
+  if (hazards) put('hazards.json', stableStringify(hazards));
+  const polities = await polityLayer(world, new Set(territoryFile.territories.flatMap((t) => t.claims.flatMap((c) => c.rows.map((r) => r.name)))));
+  if (polities) put('polities.json', stableStringify(polities));
+  const routes = await routesLayer(world);
+  if (routes) put('routes.json', stableStringify(routes));
+  const languages = await languagesLayer(world);
+  if (languages) put('languages.json', stableStringify(languages));
+  // The living scene, on the land and climate above.
+  const sites: SiteInfo[] = [];
+  if (city) {
+    const v = (world.generators.find((g) => g.id === 'gen:rome/fabric')!.params as unknown as { site: Pick<SiteInfo, 'near' | 'window' | 'view'> }).site;
+    sites.push({ kind: 'city', id: city.file.site.id, label: city.file.site.label, file: `city/${city.file.site.id}.json`, place: 'places/rome', origin: city.file.site.origin, span: city.file.site.span, slice: city.file.site.slice, near: v.near, window: v.window, view: v.view });
+  }
+  if (climateKeys.length && biomeField) {
+    const elevation = grids.find((g) => g.mode === 'elevation')!;
+    const cg = climateGrid((climateField!.grid as { res_deg: number }).res_deg);
+    const living = buildScene(solved, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, buildPlanet(solved), log);
+    if (living) {
+      const f = living.file;
+      for (const [path, bytes] of living.blobs) put(path, bytes);
+      put(`scene/${f.site.id}.json`, stableStringify(f));
+      const params = f.generator.params as unknown as SceneParams;
+      const heading = (Math.atan2(f.site.to_river[0], f.site.to_river[1]) * 180) / Math.PI + params.view.turn * (180 / Math.PI);
+      sites.push({ kind: 'life', id: f.site.id, label: f.site.label, file: `scene/${f.site.id}.json`, place: f.site.place, origin: f.site.origin, span: f.site.span, slice: f.site.slice, near: f.site.span, window: params.site.window.map((p) => parsePoint(p as TimePointInput).t) as [number, number], view: { x: f.site.focus[0], y: f.site.focus[1], range: params.view.range, heading: Math.round(((heading % 360) + 360) % 360), tilt: params.view.tilt } });
+    }
   }
 
   // 9. Index and identity.
@@ -330,11 +387,12 @@ export async function runBuild(args: string[]): Promise<number> {
     timeRange: span,
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
-    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined },
+    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(routes ? { routes: 'routes.json' } : {}), ...(languages ? { languages: 'languages.json' } : {}) },
+    climate: climateField && biomeField && climateKeys.length ? { field: climateField.id, title: climateField.title, description: climateField.description, biomeTitle: biomeField.title, biomeDescription: biomeField.description, source: climateField.data!.from, sourceRecord: sourceRecord(world.source.get(climateField.data!.from)!), params: biomeField.params ?? {} } : undefined,
     credits: credits(world),
     alternatives,
     kinds: Object.fromEntries(Object.entries(world.vocab.kinds).map(([k, v]) => [k, v.label])),
-    site: city ? { id: city.file.site.id, label: city.file.site.label, origin: city.file.site.origin, span: city.file.site.span, slice: city.file.site.slice } : undefined,
+    sites: sites.length ? sites : undefined,
   };
   const contentHash = sha256([...out.entries()].sort(([a], [b]) => (a < b ? -1 : 1)).map(([p, c]) => `${p} ${sha256(c)}`).join('\n') + stableStringify(tileset));
   const buildId = contentHash.slice(0, 16);

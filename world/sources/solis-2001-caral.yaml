@@ -1,0 +1,18 @@
+id: src:solis-2001-caral
+type: publication
+kind: measurement
+citation: >-
+  Solis, R.S., Haas, J. & Creamer, W. (2001). Dating Caral, a preceramic site in the Supe Valley on the central coast of Peru.
+  Science 292(5517), 723–726.
+authors:
+  - "Solis, R.S."
+  - "Haas, J."
+  - "Creamer, W."
+published: 2001
+title: Dating Caral, a preceramic site in the Supe Valley on the central coast of Peru
+container: Science
+doi: 10.1126/science.1059519
+url: https://europepmc.org/article/MED/11326098
+verified:
+  by: machine:claude-code
+  how: Only the abstract read, from Europe PMC. Quotes checked by script against it.

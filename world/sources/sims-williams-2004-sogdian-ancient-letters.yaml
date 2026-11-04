@@ -1,0 +1,16 @@
+id: src:sims-williams-2004-sogdian-ancient-letters
+type: publication
+kind: review
+citation: >-
+  Sims-Williams, N. (translator), with an introduction by D.C. Waugh (2004). The Sogdian Ancient Letters 1, 2, 3, and 5.
+  Silk Road Seattle.
+authors:
+  - "Sims-Williams, N."
+  - "Waugh, D.C."
+published: 2004
+title: The Sogdian Ancient Letters 1, 2, 3, and 5
+url: https://depts.washington.edu/silkroad/texts/sogdlet.html
+license_note: The translations are in copyright, and reproducing them needs the translator's permission, so only short quotes are taken here.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

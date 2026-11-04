@@ -135,6 +135,8 @@ export class CityRenderer {
   private waterVao: WebGLVertexArrayObject | null = null;
   private waterCount = 0;
   private waterLevel = 7;
+  /** the ground is land nobody has farmed: what the mask says of it is a wild place's */
+  wild = false;
 
   // Render targets, remade when the size changes.
   private w = 0;
@@ -583,6 +585,7 @@ void main() {
       uTime: f.time,
       uAOSize: [this.w, this.h],
       uEvidence: f.evidence ? 1 : 0,
+      uWild: this.wild ? 1 : 0,
     });
     const m = p.uniforms.get('uShadowM');
     if (m) gl.uniformMatrix4fv(m, false, this.shadowM);

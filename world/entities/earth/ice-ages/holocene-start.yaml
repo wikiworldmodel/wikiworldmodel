@@ -1,0 +1,74 @@
+id: earth/ice-ages/holocene-start
+kind: event/boundary
+summary: >-
+  The start of the Holocene, fixed at a depth of 1492.45 m in the NGRIP2 ice core from Greenland, where the
+  ice shows the first signs of warming at the end of the Younger Dryas. It is the Global Stratotype Section
+  and Point (GSSP) for the base of the Holocene and of its first stage, the Greenlandian.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Start of the Holocene }
+    unsourced: An editorial label for the base of the Holocene Series.
+  date-walker-2009:
+    prop: date
+    value: { mean: 11650 BP, sd: 49.5 yr }
+    source:
+      - ref: src:walker-2009-holocene-gssp
+        loc: abstract
+        quote: A timescale based on multi‐parameter annual layer counting provides an age of 11 700 calendar yr b2 k (before AD 2000) for the base of the Holocene, with a maximum counting error of 99 yr.
+      - ref: src:walker-2018-holocene-subdivision
+        loc: "The Greenlandian Stage/Age, p. 215"
+        quote: It has an estimated age of 11,700 yr b2k (before 2000 CE; Walker et al., 2008, 2009).
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The boundary's formal age. The source counts from 2000: 11,700 b2k is 11,650 BP. Its maximum counting
+      error of 99 yr is read as 2σ, as Cheng et al. (2020) read GICC05's, so the sd is 49.5 yr. The chart's
+      0.0117 Ma on ics/holocene reads on this axis as 11,700 BP, 50 years earlier; it is a rounder figure.
+  date-rasmussen-2006:
+    prop: date
+    value: { mean: 11653 BP, sd: 49.5 yr }
+    source:
+      ref: src:rasmussen-2006-gicc05
+      loc: "Table 4"
+      quote: YD – Preboreal transition 1492.45 11,703 99
+    method: stratigraphic
+    note: The same depth in the same core, as the chronology itself dates it, which the formal age rounds.
+  date-cheng-2020:
+    prop: date
+    value: { mean: 11700 BP, sd: 20 yr }
+    source:
+      - ref: src:cheng-2020-younger-dryas
+        loc: abstract
+        quote: followed by the North Atlantic between ∼11,700 ± 40 and 11,610 ± 40 B.P.
+      - ref: src:cheng-2020-younger-dryas
+        loc: "Results and Discussion, Speleothem Record from the North Atlantic Region"
+        quote: dating precision (±20 to 40 y; 2σ)
+    method: radiometric
+    note: >-
+      The start of the Younger Dryas's end in the North Atlantic region, from a uranium–thorium dated
+      stalagmite in Spain, not from the core. The ± is read as 2σ, so the sd is 20 yr.
+  location:
+    prop: location
+    value: { lat: 75.10, lon: -42.32, frame: frame:earth/present-day }
+    source:
+      ref: src:walker-2018-holocene-subdivision
+      loc: "The Greenlandian Stage/Age, p. 215"
+      quote: core was drilled to bedrock in 2003 (75.10°N; 42.32°W)
+    method: survey
+    note: The drill site. The boundary itself is a depth in the core, which is curated at the University of Copenhagen.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-102
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  base-of-the-holocene:
+    rel: part-of
+    to: ics/holocene
+    source:
+      ref: src:walker-2018-holocene-subdivision
+      loc: "The Greenlandian Stage/Age, p. 215"
+      quote: was ratified as the base of the Holocene Series/Epoch in 2008

@@ -1,0 +1,18 @@
+id: src:wikipedia-hattusa
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikipedia, "Hattusa" (English), as of 4 November 2026; for the population citing Strupler, N. (2022), Fouilles archéologiques de
+  la Ville Basse I (1935–1978), p. 134.
+title: Hattusa
+container: Wikipedia
+url: https://en.wikipedia.org/wiki/Hattusa
+license: CC-BY-SA-4.0
+license_note: A single fact and a short quote, with credit.
+reliability: >-
+  An encyclopedia, cited because the work it names could not be read and no other modern estimate could be. A reviewer should
+  check Strupler (2022) directly.
+verified:
+  by: machine:claude-code
+  how: The page's wikitext read directly on 4 November 2026. Quote checked by script against it.

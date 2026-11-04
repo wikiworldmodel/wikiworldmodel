@@ -1,0 +1,17 @@
+id: src:wikidata-ban-non-wat
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q806037 (Ban Non Wat), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q806037
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "village in Thailand". A point for the named place, of
+  uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (15.274415, 102.268896) read from the item's JSON
+    (Special:EntityData/Q806037.json) on 3 November 2026.

@@ -1,0 +1,61 @@
+id: people/prehistory/chatelperronian
+kind: industry
+summary: >-
+  The Châtelperronian of central France and northern Spain, an Upper Palaeolithic style of industry with
+  body ornaments, whose makers are disputed. It has no location of its own here: its dates are claims.
+same_as: { wikidata: Q1090851 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Châtelperronian }
+    source:
+      ref: src:hublin-2012-chatelperronian
+      loc: abstract
+      quote: "Châtelperronian (CP) artifact assemblages found in central France and northern Spain"
+  start:
+    prop: start
+    value: { lo: 45343 BP, hi: 44248 BP }
+    source:
+      ref: src:djakovic-2022-chatelperronian
+      loc: Results
+      quote: "Bayesian modelling suggests a start date for to Châtelperronian between 45,343 and 44,248 kya cal BP, and an end date between 41,081 and 40,138 kya cal BP."
+    method: radiometric/radiocarbon
+    note: >-
+      A Bayesian model of 28 radiocarbon dates from seven sites, recalibrated with IntCal20. The paper
+      writes "kya cal BP" for what are years cal BP.
+  end-bayes:
+    prop: end
+    value: { lo: 41081 BP, hi: 40138 BP }
+    source:
+      ref: src:djakovic-2022-chatelperronian
+      loc: Results
+      quote: "and an end date between 41,081 and 40,138 kya cal BP"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: Preferred as the model of all the dates, over an estimate from the youngest eight alone.
+  end-ole:
+    prop: end
+    value: { lo: 39894 BP, hi: 39798 BP }
+    source:
+      ref: src:djakovic-2022-chatelperronian
+      loc: Results
+      quote: "OLE modelling estimates the Châtelperronian to have disappeared by 39,894 to 39,798 years cal BP."
+    method: model
+    note: >-
+      Optimal linear estimation of the unseen end, from the eight youngest dates, from seven sites.
+relations:
+  made-by-neanderthals:
+    rel: made-by
+    to: life/taxa/homo-neanderthalensis
+    source:
+      - ref: src:hublin-2012-chatelperronian
+        loc: abstract
+        quote: "This date corroborates the assignment of CP assemblages to the latest Neandertals of western Europe."
+      - ref: src:gravina-2018-la-roche-a-pierrot
+        loc: abstract
+        quote: "produced no reliable evidence for a Neanderthal-Châtelperronian association at the site"
+    note: >-
+      The attribution rests on only two sites, Grotte du Renne and Saint-Césaire. Hublin et al. (2012)
+      defend it; Gravina et al. (2018) find no reliable association at Saint-Césaire, and ask who the
+      makers were.

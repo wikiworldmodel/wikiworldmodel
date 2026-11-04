@@ -1,0 +1,24 @@
+id: src:van-heerwaarden-2011-maize
+type: publication
+kind: measurement
+citation: >-
+  van Heerwaarden, J., Doebley, J., Briggs, W.H., … & Ross-Ibarra, J. (2011). Genetic signals
+  of origin, spread, and introgression in a large sample of maize landraces. Proceedings of the
+  National Academy of Sciences 108(3), 1088–1092.
+authors:
+  - "van Heerwaarden, J."
+  - "Doebley, J."
+  - "Briggs, W.H."
+  - "Glaubitz, J.C."
+  - "Goodman, M.M."
+  - "de Jesus Sanchez Gonzalez, J."
+  - "Ross-Ibarra, J."
+published: 2011
+title: "Genetic signals of origin, spread, and introgression in a large sample of maize landraces"
+container: "Proceedings of the National Academy of Sciences 108(3), 1088–1092"
+doi: 10.1073/pnas.1013011108
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC3024656) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

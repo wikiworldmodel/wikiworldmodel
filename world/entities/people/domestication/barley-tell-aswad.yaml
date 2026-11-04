@@ -1,0 +1,56 @@
+id: life/occurrences/barley-tell-aswad
+kind: occurrence
+summary: >-
+  Barley chaff from Tell Aswad in the Damascus Basin, about 10,500 years ago. In two studies of the
+  site about a third of the rachis pieces have the tough scar of an ear that does not shatter: the
+  clearest early sign of domestic barley in the paper's table.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Barley, Tell Aswad" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: Barley
+    source: { ref: src:arranz-otaegui-2016-cereal-domestication, loc: 'Table S6, rows "Aswad (van Zeist)" and "Aswad (Willcox)"' }
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      - ref: src:arranz-otaegui-2016-cereal-domestication
+        loc: "The Regional Evidence for Cereal Domestication (Early/Middle Pre-Pottery Neolithic B)"
+        quote: "In southern Syria, there are clear signs of cultivation of domesticated-type barley at Tell Aswad"
+      - { ref: src:arranz-otaegui-2016-cereal-domestication, loc: 'Table S6: "Aswad (van Zeist)" 29.8% domestic-type of 114; "Aswad (Willcox)" 35.2% of 54' }
+    note: >-
+      What shows it is domestic: a non-brittle rachis. In wild barley around 10% of the rachises at the
+      base of the ear have this scar anyway; the shares here are about three times that.
+  location:
+    prop: location
+    value: { lat: 33.4, lon: 36.55, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-tell-aswad, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      Given to the nearest minute of arc.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: 10.5 ka
+    source: { ref: src:arranz-otaegui-2016-cereal-domestication, loc: 'Table S6, rows "Aswad (van Zeist)" and "Aswad (Willcox)": c. 10.5 ka Cal BP' }
+    method: compilation
+    note: >-
+      The table's "c. 10.5".
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott657948 and ott99252: Hordeum vulgare lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/barley
+    source: { ref: src:arranz-otaegui-2016-cereal-domestication, loc: "The Regional Evidence for Cereal Domestication (Early/Middle Pre-Pottery Neolithic B)" }

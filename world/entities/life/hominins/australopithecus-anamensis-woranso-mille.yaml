@@ -1,0 +1,57 @@
+id: life/occurrences/australopithecus-anamensis-woranso-mille
+kind: occurrence
+summary: >-
+  A nearly complete hominin cranium from the Godaya Valley at Woranso-Mille, Ethiopia, assigned to
+  Australopithecus anamensis: the first view of the whole face and skull of the oldest species of the
+  genus, overlapping in time with Australopithecus afarensis.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Australopithecus anamensis cranium, Woranso-Mille" }
+    unsourced: An editorial label, from the taxon and the study area.
+  identified:
+    prop: identified_as
+    value: Australopithecus anamensis
+    source:
+      ref: src:haile-selassie-2019-woranso-mille
+      loc: abstract
+      quote: "We assign this cranium to A. anamensis"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:haile-selassie-2019-woranso-mille, loc: abstract }
+  location:
+    prop: location
+    value: { lat: 11.5, lon: 40.5, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-231987, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      The PBDB's rounded point for the Woranso-Mille study area, from a collection of another species
+      there; the cranium's own locality was not located more closely from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-716
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 3.804 Ma, hi: 3.777 Ma }
+    source:
+      - ref: src:saylor-2019-woranso-mille
+        loc: abstract
+        quote: "yield an age range of 3.804 ± 0.013 to 3.777 ± 0.014 million years old (mean ± 1σ) for the deltaic strata and the fossils that they contain"
+      - ref: src:haile-selassie-2019-woranso-mille
+        loc: abstract
+        quote: "that we date to 3.8 million years ago"
+    method: radiometric
+    note: >-
+      Dated by chemically correlated volcanic layers and palaeomagnetic stratigraphy, with a Bayesian
+      model of the dated tuffs. The interval runs between the means; the abstract does not name the
+      isotopic system.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/australopithecus-anamensis
+    source: { ref: src:haile-selassie-2019-woranso-mille, loc: abstract }

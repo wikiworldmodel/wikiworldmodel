@@ -1,0 +1,87 @@
+id: people/domestication/rice
+kind: development
+summary: >-
+  The domestication of rice from wild rice in China, a process of thousands of years. Leaf
+  phytoliths at Shangshan suggest it had begun in the Lower Yangtze by about 9,400 years ago;
+  spikelet bases from Huxi show selection against shattering soon after, and shattering types
+  still made up half the rice at Tianluoshan 7,000 years ago. Archaeology points to the Lower
+  Yangtze, while the genome of living rice was read as pointing to the Pearl River.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Rice domestication }
+    unsourced: An editorial label.
+  start-zuo-2017:
+    prop: start
+    value: { hi: 9400 BP }
+    source:
+      - ref: src:zuo-2017-shangshan-rice
+        loc: abstract
+        quote: "rice remains retrieved from early stages of the Shangshan and Hehuashan sites have ages of approximately 9,400 and 9,000 calibrated years before the present, respectively"
+      - ref: src:zuo-2017-shangshan-rice
+        loc: abstract
+        quote: "suggesting that rice domestication may have begun at Shangshan during the beginning of the Holocene"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The earliest rice with direct dates and a measured domestic trait, phytoliths with more than
+      nine fish-scale marks. Open at the earlier end, since the paper allows a start somewhat before
+      this. It says "may have begun", and the same trait occurs in some wild rice, in a smaller share.
+  start-zheng-2016:
+    prop: start
+    value: { hi: 8400 BP }
+    source:
+      ref: src:zheng-2016-huxi-rice
+      loc: Discussion
+      quote: "evidence of selection that shifted the population to reduced shattering by 9000–8400 BP"
+    method: radiometric/radiocarbon
+    note: >-
+      Open at the earlier end, as "by" allows. The oldest spikelet bases, and so the oldest direct
+      evidence on shattering, the trait that makes a domestic cereal.
+  start-fuller-2009:
+    prop: start
+    value: { lo: 6900 BP, hi: 6600 BP }
+    source:
+      ref: src:fuller-2009-tianluoshan-rice
+      loc: abstract
+      quote: "The process of rice domestication occurred in the Lower Yangtze region of Zhejiang, China, between 6900 and 6600 years ago."
+    method: radiometric/radiocarbon
+    rank: deprecated
+    note: >-
+      Older evidence of the same trait now exists at Huxi. The measurement itself stands, a rise in
+      non-shattering spikelet bases from 27% to 39%, and marks a later stage of the process.
+  location-lower-yangtze:
+    prop: location
+    value: { lat: 29.45601, lon: 119.97095, frame: frame:earth/present-day }
+    source:
+      - ref: src:zuo-2017-shangshan-rice
+        loc: Significance
+        quote: "rice domestication may have begun at Shangshan in the Lower Yangtze during the beginning of the Holocene"
+      - ref: src:zuo-2017-shangshan-rice
+        loc: Introduction
+        quote: "(N 29°27′21.636′′, E 119°58′15.42′′, 50 m above sea level)"
+    method: editorial
+    rank: preferred
+    note: >-
+      Marked at Shangshan. Preferred because dated remains with domestic traits are what place it
+      here.
+  location-pearl-river:
+    prop: location
+    value: { lat: 23.6, lon: 108.3, frame: frame:earth/present-day }
+    source:
+      - ref: src:huang-2012-rice-genome
+        loc: "Screens and annotation of domestication loci"
+        quote: "the middle area of the Pearl River in Guangxi province, southern China, was probably the place of the first development of cultivated rice"
+      - { ref: src:wikidata-guangxi, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Read from the genomes of living wild and cultivated rice, with no archaeological sample; the
+      paper notes that archaeology points to the Lower Yangtze. Marked at the gazetteer's point for
+      Guangxi.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

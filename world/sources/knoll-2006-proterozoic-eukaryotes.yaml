@@ -1,0 +1,22 @@
+id: src:knoll-2006-proterozoic-eukaryotes
+type: publication
+kind: review
+citation: >-
+  Knoll, A., Javaux, E., Hewitt, D. & Cohen, P. (2006). Eukaryotic organisms in Proterozoic
+  oceans. Philosophical Transactions of the Royal Society B: Biological Sciences 361(1470),
+  1023–1038.
+authors:
+  - "Knoll, A."
+  - "Javaux, E."
+  - "Hewitt, D."
+  - "Cohen, P."
+published: 2006
+title: "Eukaryotic organisms in Proterozoic oceans"
+container: "Philosophical Transactions of the Royal Society B: Biological Sciences 361(1470), 1023–1038"
+doi: 10.1098/rstb.2006.1843
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read at PubMed Central (PMC1578724): Grypania and its dispute, the Changcheng
+    and Mallapunyah acritarchs, and the reading of fossils as eukaryotes. Quotes checked by
+    script against that text. Metadata from Crossref.

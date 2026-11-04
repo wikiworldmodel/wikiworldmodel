@@ -1,0 +1,25 @@
+id: src:shawar-2025-c31-steranes
+type: publication
+kind: measurement
+citation: >-
+  Shawar, L., Love, G.D., Uveges, B.T., Zumberge, J.A., Cárdenas, P., Giner, J.-L. & Summons,
+  R.E. (2025). Chemical characterization of C 31 sterols from sponges and Neoproterozoic fossil
+  sterane counterparts. Proceedings of the National Academy of Sciences 122(41), e2503009122.
+authors:
+  - "Shawar, L."
+  - "Love, G.D."
+  - "Uveges, B.T."
+  - "Zumberge, J.A."
+  - "Cárdenas, P."
+  - "Giner, J.-L."
+  - "Summons, R.E."
+published: 2025
+title: "Chemical characterization of C 31 sterols from sponges and Neoproterozoic fossil sterane counterparts"
+container: Proceedings of the National Academy of Sciences 122(41), e2503009122
+doi: 10.1073/pnas.2503009122
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC12541326) read via Europe PMC (fullTextXML), for its statement that
+    Neoproterozoic C31 steranes link to demosponges. Quotes checked by script against that
+    text. Metadata from Crossref.

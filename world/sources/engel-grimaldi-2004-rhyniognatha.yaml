@@ -1,0 +1,18 @@
+id: src:engel-grimaldi-2004-rhyniognatha
+type: publication
+kind: measurement
+citation: >-
+  Engel, M.S. & Grimaldi, D.A. (2004). New light shed on the oldest insect. Nature 427(6975),
+  627–630.
+authors:
+  - "Engel, M.S."
+  - "Grimaldi, D.A."
+published: 2004
+title: "New light shed on the oldest insect"
+container: Nature 427(6975), 627–630
+doi: 10.1038/nature02291
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 14961119); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

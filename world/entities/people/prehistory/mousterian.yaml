@@ -1,0 +1,46 @@
+id: people/prehistory/mousterian
+kind: industry
+summary: >-
+  The Mousterian, the Middle Palaeolithic stone-tool tradition of western Eurasia, with its Levallois
+  flakes, generally attributed to the Neanderthals. It has no location of its own here: its dates are
+  claims, with the end better known than the start.
+same_as: { wikidata: Q259118 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Mousterian }
+    source:
+      ref: src:higham-2014-neanderthal-disappearance
+      loc: abstract
+      quote: "to construct robust chronologies from 40 key Mousterian and Neanderthal archaeological sites, ranging from Russia to Spain"
+  start:
+    prop: start
+    value: { hi: 250 ka }
+    source:
+      ref: src:valladas-2013-misliya
+      loc: abstract
+      quote: "Early Middle Paleolithic industries rich in Levallois and laminar products were assigned mean ages ranging from ~250 to ~160 ka (thousands of years ago)"
+    method: radiometric/luminescence
+    note: >-
+      Misliya Cave, Mount Carmel, Israel, by thermoluminescence of burnt flints; the paper names these
+      layers Early Middle Paleolithic (Mousterian). For the Levant only: no dated first Mousterian
+      in Europe was found in what was read. Early Levallois there is older, 295–290 ka in central Italy
+      (Soriano and Villa 2017), but the sources call those assemblages by other names.
+  end:
+    prop: end
+    value: { lo: 41030 BP, hi: 39260 BP }
+    source:
+      ref: src:higham-2014-neanderthal-disappearance
+      loc: abstract
+      quote: "We show that the Mousterian ended by 41,030-39,260 calibrated years bp (at 95.4% probability) across Europe."
+    method: radiometric/radiocarbon
+    note: A Bayesian model of radiocarbon dates from 40 sites; for Europe, and at different times in different regions.
+relations:
+  made-by-neanderthals:
+    rel: made-by
+    to: life/taxa/homo-neanderthalensis
+    source:
+      ref: src:higham-2024-italy
+      loc: Introduction
+      quote: "the Mousterian technocomplexes, generally attributed to Neanderthals"

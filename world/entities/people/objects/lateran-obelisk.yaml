@@ -1,0 +1,171 @@
+id: people/objects/lateran-obelisk
+kind: artefact/moved
+summary: >-
+  The largest of the obelisks in Rome, raised at Karnak in the fifteenth century BCE under Thutmose III and
+  Thutmose IV. Constantine had it brought down the Nile to Alexandria, Constantius II took it to the
+  Circus Maximus in 357, and Domenico Fontana raised it again at the Lateran for Sixtus V in 1588.
+author: machine:claude-code
+same_as: { wikidata: Q645181, pleiades: 464741837 }
+phases:
+  - id: karnak
+    label: Karnak, Thebes
+  - id: alexandria
+    label: Alexandria
+  - id: circus-maximus
+    label: Circus Maximus, Rome
+  - id: lateran
+    label: The Lateran, Rome
+claims:
+  name:
+    prop: name
+    value: { en: Lateran Obelisk }
+    source: { ref: src:gorringe-1882-egyptian-obelisks, loc: p. 127, quote: "THE LATERAN OBELISK." }
+  karnak-start:
+    prop: start
+    subject: "@karnak"
+    value: { lo: 1500 BCE, hi: 1401 BCE }
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Obeliscus Constantii, p. 368"
+        quote: "It was erected by Thutmose III in the fifteenth century B.C. in front of the temple of Ammon at Thebes."
+      - ref: src:gorringe-1882-egyptian-obelisks
+        loc: p. 127
+        quote: "Thothmes III ordered it to be made, but his successor, Thothmes IV, finished and placed it in position thirty-five years afterward."
+    method: historical-account
+    note: >-
+      Platner and Ashby's century, read at LacusCurtius. Gorringe, from the inscription on the shaft, has
+      Thutmose IV finish and raise it thirty-five years after Thutmose III ordered it, which could run a
+      little past the century.
+  karnak-location:
+    prop: location
+    subject: "@karnak"
+    value: { lat: 25.718333, lon: 32.658333, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-karnak, loc: "Q522862, P625 coordinate location" }
+      - ref: src:ammianus-roman-history
+        loc: "17.4.12"
+        quote: "being placed in the sacred part of his sumptuous temple"
+    method: gazetteer
+    note: >-
+      The temple of Amun at Thebes, which Wikidata's entry for the obelisk (Q645181) gives as Karnak, placed
+      at the complex's point; the obelisk's own footing within it is not placed here.
+  karnak-frame:
+    prop: frame
+    subject: "@karnak"
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  alexandria-start:
+    prop: start
+    subject: "@alexandria"
+    value: 330 CE
+    source:
+      - ref: src:gorringe-1882-egyptian-obelisks
+        loc: p. 127
+        quote: "A. D. 330 it was removed from Thebes"
+      - ref: src:ammianus-roman-history
+        loc: "17.4.13-14"
+        quote: "And when it had been conveyed down the channel of the Nile and landed at Alexandria, a ship of a size hitherto unknown was constructed"
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Obeliscus Constantii, p. 368"
+        quote: "Constantine did bring it down the Nile to Alexandria"
+    method: expert-estimate
+    note: >-
+      Gorringe says "about A.D. 330" and gives no evidence. Ammianus, writing within the century, says
+      only that Constantine tore it from its base, let it lie a long while, and had it brought to
+      Alexandria before he died, which limits it to his reign.
+  alexandria-location:
+    prop: location
+    subject: "@alexandria"
+    value: { lat: 31.201435, lon: 29.909773, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-alexandria, loc: "place 727070, representative point" }
+    method: gazetteer
+    note: The city; where it lay there, waiting for its ship, is not recorded.
+  alexandria-frame:
+    prop: frame
+    subject: "@alexandria"
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  circus-maximus-start:
+    prop: start
+    subject: "@circus-maximus"
+    value: 357 CE
+    source:
+      - ref: src:platner-ashby-1929
+        loc: "s.v. Obeliscus Constantii, p. 367"
+        quote: "the obelisk which is now standing at the Lateran which was brought to Rome by Constantius in 357 A.D."
+      - ref: src:ammianus-roman-history
+        loc: "17.4.1"
+        quote: "while Orfitus was still conducting his second prefecture, an obelisk was set up at Rome in the Circus Maximus"
+      - ref: src:ammianus-roman-history
+        loc: "16.10.17"
+        quote: "he determined to add to the adornments of the city by erecting in the Circus Maximus an obelisk"
+    method: historical-account
+    note: >-
+      Ammianus was writing of his own lifetime. He ties the raising to Constantius's visit to Rome and
+      to Orfitus's prefecture and dates neither by year; 357 is Platner and Ashby's year.
+  circus-maximus-location:
+    prop: location
+    subject: "@circus-maximus"
+    value: { lat: 41.88593, lon: 12.485711, frame: frame:earth/present-day }
+    source:
+      - { ref: src:pleiades-circus-maximus, loc: "place 458808506, representative point" }
+      - ref: src:ammianus-roman-history
+        loc: "17.4.15"
+        quote: "it was finally placed in the middle of the circus"
+    method: gazetteer
+    note: >-
+      The circus's point. It fell at a date not known and was buried there: Fontana dug it up in three
+      pieces in 1587, 24 palmi down, and says it was found on 15 February of that year.
+  circus-maximus-frame:
+    prop: frame
+    subject: "@circus-maximus"
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  lateran-start-fontana:
+    prop: start
+    subject: "@lateran"
+    value: 10 August 1588 CE
+    source:
+      - ref: src:fontana-1590-trasportatione
+        loc: "Libro Primo, f. 71r"
+        quote: "che fu allx dieci d Agofto 1588. giorno folenne del gloriofo Martire San Lorenzo"
+      - ref: src:gorringe-1882-egyptian-obelisks
+        loc: p. 127
+        quote: "Fontana restored and placed it in its present position in"
+    method: documentary
+    rank: preferred
+    note: >-
+      The architect's own record: set up and consecrated on 10 August 1588, the feast of St Lawrence.
+      It was dug up from February 1587 and dragged more than a mile and a half to the Lateran before
+      that, so the move is complete at this date. The OCR reads "alli" as "allx" and prints
+      long s as f. Gorringe's year prints as "i588" in the OCR, so the quotation stops before it, and
+      the Loeb editor's note on Ammianus also gives 1588.
+  lateran-start-platner-ashby:
+    prop: start
+    subject: "@lateran"
+    value: 1587 CE
+    source:
+      ref: src:platner-ashby-1929
+      loc: "s.v. Obeliscus Constantii, p. 368"
+      quote: "It was excavated by Sixtus V and erected in 1587 on its present site"
+    method: historical-account
+    note: 1587 is the year it was dug up. Fontana, who raised it, puts its raising in the next year.
+  lateran-location:
+    prop: location
+    subject: "@lateran"
+    value: { lat: 41.886844, lon: 12.504798, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-lateran-obelisk, loc: "place 464741837, representative point" }
+    method: gazetteer
+  lateran-frame:
+    prop: frame
+    subject: "@lateran"
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

@@ -1,0 +1,15 @@
+id: src:matthews-1984-tax-law-of-palmyra
+type: publication
+kind: review
+citation: >-
+  Matthews, J.F. (1984). The tax law of Palmyra: evidence for economic history in a city of the Roman East. Journal of Roman
+  Studies 74, 157–180.
+authors: ["Matthews, J.F."]
+published: 1984
+title: "The tax law of Palmyra: evidence for economic history in a city of the Roman East"
+container: Journal of Roman Studies
+url: https://www.cambridge.org/core/journals/journal-of-roman-studies/article/abs/tax-law-of-palmyra-evidence-for-economic-history-in-a-city-of-the-roman-east/CED2838692D345805DDC987CE74BC17A
+reliability: Read in its extract and footnotes only, which the publisher shows; the article itself is behind a paywall.
+verified:
+  by: machine:claude-code
+  how: The publisher's page read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

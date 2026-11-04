@@ -1,0 +1,16 @@
+id: src:gawlikowski-1996-palmyra-caravan-trade
+type: publication
+kind: review
+citation: >-
+  Gawlikowski, M. (1996). Palmyra and its caravan trade. In Palmyra and the Silk Road: International Colloquium, Palmyra,
+  7–11 April 1992. Les annales archéologiques arabes syriennes 42, 139–145.
+authors: ["Gawlikowski, M."]
+published: 1996
+title: Palmyra and its caravan trade
+container: Les annales archéologiques arabes syriennes
+url: https://archiv.ub.uni-heidelberg.de/propylaeumdok/4801/1/Gawlikowski_Palmyra_and_its_Caravan_1996.pdf
+via: The Internet Archive's copy of 18 October 2023, because the Heidelberg repository answers a script with a bot check, which was not attempted.
+reliability: By the excavator of Palmyra, with a list of 34 caravan inscriptions in its annex.
+verified:
+  by: machine:claude-code
+  how: Read in the archived PDF's text layer. Quotes checked by script after normalizing whitespace and line-end hyphens.

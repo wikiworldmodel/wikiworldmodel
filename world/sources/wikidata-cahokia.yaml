@@ -1,0 +1,16 @@
+id: src:wikidata-cahokia
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q333661 (Cahokia), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q333661
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "archaeological site near East St. Louis, Illinois, USA". A point for the named place,
+  given to the second of arc.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (38.653889, -90.064444) read from the item's JSON (Special:EntityData/Q333661.json) on 4 November 2026.

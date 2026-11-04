@@ -1,0 +1,54 @@
+id: people/domestication/broomcorn-millet
+kind: development
+summary: >-
+  The domestication of broomcorn, or common, millet in north China, known first from storage pits
+  at Cishan that once held a great weight of grain. Phytoliths and biomolecules identify the
+  grain as this millet alone before about 8,700 years ago. The wild ancestor has not been
+  conclusively identified, so no one has yet traced the change from wild to domestic.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Broomcorn millet domestication }
+    unsourced: An editorial label.
+  start-lu-2009:
+    prop: start
+    value: { hi: 10 ka }
+    source:
+      ref: src:lu-2009-cishan-millet
+      loc: Introduction
+      quote: "common millet agriculture arose independently in the semiarid regions of China by 10,000 cal yr BP"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      Open at the earlier end, as "by" allows. Agriculture, on the scale of the stores at Cishan;
+      the paper grants no clear evidence yet for the change from a wild ancestor.
+  start-fuller-2014:
+    prop: start
+    value: { hi: 8 ka }
+    source:
+      ref: src:fuller-2014-domestication-rates
+      loc: "Trajectories to Agriculture: Parallelism and Convergence in Cultural Evolution"
+      quote: "millet exploitation occurred by 9500 B.P., with clear cultivation by 8000 B.P."
+    method: expert-estimate
+    note: >-
+      A review, on millets in north China together, and more cautious.
+  location:
+    prop: location
+    value: { lat: 36.575183, lon: 114.112, frame: frame:earth/present-day }
+    source:
+      - ref: src:lu-2009-cishan-millet
+        loc: Introduction
+        quote: "The Cishan site (36°34.511′ N, 114°06.720′ E)"
+      - ref: src:yang-2012-early-millet
+        loc: Introduction
+        quote: "both foxtail millet (Setaria italica L. Beauv.) and broomcorn millet (Panicum miliaceum L.) were domesticated in northern China"
+    method: editorial
+    note: >-
+      Marked at Cishan. North China as a whole is what the sources claim.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

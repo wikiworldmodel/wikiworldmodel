@@ -1,0 +1,71 @@
+id: people/domestication/foxtail-millet
+kind: development
+summary: >-
+  The domestication of foxtail millet from green foxtail grass in north China. Starch grains on
+  stone tools at Nanzhuangtou and Donghulin suggest it was under way from about 11,000 years ago,
+  an argument from grain size and surface, not from a domestic trait in the plant itself. Charred
+  grains of foxtail millet are known only from about 8,000 years ago.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Foxtail millet domestication }
+    unsourced: An editorial label.
+  start-yang-2012:
+    prop: start
+    value: { lo: 11 ka, hi: 9.5 ka }
+    source:
+      - ref: src:yang-2012-early-millet
+        loc: abstract
+        quote: "foxtail millets were cultivated for an extended period of two millennia, during which this crop plant appears to have been undergoing domestication"
+      - ref: src:yang-2012-early-millet
+        loc: Discussion
+        quote: "During the period between 11 and 9.5 cal kyBP, the proportion of starch grains with wrinkled surfaces and rough edges, which are features diagnostic of wild foxtail grasses, decreases"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The earliest evidence read, offered by the authors as a hypothesis. Dates are those of the
+      sites, not of the starch grains.
+  start-fuller-2014:
+    prop: start
+    value: { hi: 8 ka }
+    source:
+      ref: src:fuller-2014-domestication-rates
+      loc: "Trajectories to Agriculture: Parallelism and Convergence in Cultural Evolution"
+      quote: "millet exploitation occurred by 9500 B.P., with clear cultivation by 8000 B.P."
+    method: expert-estimate
+    note: >-
+      A review, on millets in north China together: clear cultivation is the firmer claim. Open at
+      the earlier end.
+  start-lu-2009:
+    prop: start
+    value: 8700 BP
+    source:
+      ref: src:lu-2009-cishan-millet
+      loc: abstract
+      quote: "After ca. 8,700 cal yr BP, the grain crops began to contain a small quantity of foxtail millet."
+    method: radiometric/radiocarbon
+    rank: deprecated
+    note: >-
+      The record at one site, Cishan. Yang et al. (2012) extend the record of foxtail millet by
+      about two millennia.
+  location:
+    prop: location
+    value: { lat: 39.98, lon: 115.726667, frame: frame:earth/present-day }
+    source:
+      - ref: src:yang-2012-early-millet
+        loc: Introduction
+        quote: "both foxtail millet (Setaria italica L. Beauv.) and broomcorn millet (Panicum miliaceum L.) were domesticated in northern China"
+      - ref: src:yang-2012-early-millet
+        loc: Site descriptions
+        quote: "The Donghulin site (N39°58′48′′, E115°43′36′′)"
+    method: editorial
+    note: >-
+      Marked at Donghulin, one of the two earliest sites. North China as a whole is what the source
+      claims.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

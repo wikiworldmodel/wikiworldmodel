@@ -1,0 +1,14 @@
+id: src:harappa-com-oldest-indus-writing
+type: publication
+kind: review
+citation: >-
+  "How old is the oldest ancient Indus writing?", question 62 on harappa.com, with answers by A. Parpola, J.M. Kenoyer, N. Yadav,
+  M. Vidale and M. Vahia.
+title: How old is the oldest ancient Indus writing?
+container: harappa.com
+url: https://web.archive.org/web/20231130162157/https://www.harappa.com/answers/how-old-oldest-ancient-indus-writing
+via: The Internet Archive's copy of 30 November 2023, because harappa.com refused the script.
+reliability: Short statements by specialists, who disagree; not peer reviewed.
+verified:
+  by: machine:claude-code
+  how: The whole page read in the archived copy. Quotes checked by script against its text, after normalizing whitespace.

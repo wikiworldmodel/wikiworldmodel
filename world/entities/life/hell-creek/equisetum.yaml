@@ -1,0 +1,41 @@
+id: life/taxa/equisetum
+kind: taxon
+summary: >-
+  A horsetail, in the Hell Creek rows of the snapshot a morphotype.
+same_as: { pbdb: "txn:55064" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Equisetum", en: "horsetail" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 55064"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: fern
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: upright
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 2, s.v. Equisetum, key"
+      quote: "aerial stems erect and straight"
+    note: >-
+      A couplet of the key to the living genus.
+  height-flora-of-north-america:
+    prop: plant_height
+    value: 1.5
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 2, s.v. Equisetum laevigatum"
+      quote: "usually unbranched, 20--150 cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The upper figure for the stems of the living E. laevigatum: a modern relative, not a Hell
+      Creek plant.

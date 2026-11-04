@@ -1,0 +1,30 @@
+id: src:dominguez-rodrigo-2021-zinj
+type: publication
+kind: measurement
+citation: >-
+  Domínguez-Rodrigo, M., Baquedano, E., Organista, E., Cobo-Sánchez, L., Mabulla, A., Maskara, V.,
+  Gidna, A., Pizarro-Monzo, M., Aramendi, J., Galán, A.B. et al. (2021). Early Pleistocene
+  faunivorous hominins were not kleptoparasitic, and this impacted the evolution of human anatomy
+  and socio-ecology. Scientific Reports 11(1), 16135.
+authors:
+  - "Domínguez-Rodrigo, M."
+  - "Baquedano, E."
+  - "Organista, E."
+  - "Cobo-Sánchez, L."
+  - "Mabulla, A."
+  - "Maskara, V."
+  - "Gidna, A."
+  - "Pizarro-Monzo, M."
+  - "Aramendi, J."
+  - "Galán, A.B."
+published: 2021
+title: "Early Pleistocene faunivorous hominins were not kleptoparasitic, and this impacted the evolution of human anatomy and socio-ecology"
+container: "Scientific Reports 11(1), 16135"
+doi: 10.1038/s41598-021-94783-4
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 24 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC8352906): FLK Zinj, DS and PTK in Bed I at Olduvai, dated to
+    1.84 Ma. Quoted passages checked by script against the text retrieved.

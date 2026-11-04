@@ -1,0 +1,23 @@
+id: src:brocks-2017-rise-of-algae
+type: publication
+kind: measurement
+citation: >-
+  Brocks, J.J., Jarrett, A.J.M., Sirantoine, E., Hallmann, C., Hoshino, Y. & Liyanage, T.
+  (2017). The rise of algae in Cryogenian oceans and the emergence of animals. Nature 548(7669),
+  578–581.
+authors:
+  - "Brocks, J.J."
+  - "Jarrett, A.J.M."
+  - "Sirantoine, E."
+  - "Hallmann, C."
+  - "Hoshino, Y."
+  - "Liyanage, T."
+published: 2017
+title: "The rise of algae in Cryogenian oceans and the emergence of animals"
+container: Nature 548(7669), 578–581
+doi: 10.1038/nature23457
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 28813409); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

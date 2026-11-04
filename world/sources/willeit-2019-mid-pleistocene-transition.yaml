@@ -1,0 +1,20 @@
+id: src:willeit-2019-mid-pleistocene-transition
+type: publication
+kind: model
+citation: >-
+  Willeit, M., Ganopolski, A., Calov, R. & Brovkin, V. (2019). Mid-Pleistocene transition in
+  glacial cycles explained by declining CO2 and regolith removal. Science Advances 5(4), eaav7337.
+authors:
+  - "Willeit, M."
+  - "Ganopolski, A."
+  - "Calov, R."
+  - "Brovkin, V."
+published: 2019
+title: "Mid-Pleistocene transition in glacial cycles explained by declining CO2 and regolith removal"
+container: "Science Advances 5(4), eaav7337"
+doi: 10.1126/sciadv.aav7337
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read through Europe PMC (PMC6447376). Citation from Crossref. Quotes checked by
+    script against the text retrieved.

@@ -1,0 +1,33 @@
+id: src:pbdb/hominin-taxa
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, the taxon records of the hominin species used here and their genera.
+  Read through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/data1.2/taxa/list.json?base_name=Hominini&rank=genus
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+  Commons CC0".
+reliability: >-
+  The PBDB's working classification. Its Hominini also includes Pan, and it keeps Paranthropus and
+  Praeanthropus outside that tribe; see src:pbdb/taxon-91486.
+verified:
+  by: machine:claude-code
+  how: >-
+    taxa/single.json?name=<species>&show=attr,app,parent,class for each species: txn:77368
+    Sahelanthropus tchadensis, Brunet et al. 2002, parent txn:77367; txn:430484 Ardipithecus kadabba,
+    Haile-Selassie et al. 2004, parent txn:83059; txn:83091 Ardipithecus ramidus (White et al. 1994),
+    parent txn:83059; txn:384433 Australopithecus anamensis, Ward et al. 1999, parent txn:40900;
+    txn:83055 Australopithecus afarensis, Johanson et al. 1978, parent txn:40900; txn:83066
+    Australopithecus africanus, Dart 1925, parent txn:40900; txn:83068 Paranthropus boisei (Leakey
+    1959), parent txn:83063; txn:83082 Homo habilis, Leakey et al. 1964; txn:83084 Homo erectus (Dubois
+    1892); txn:83086 Homo heidelbergensis, Schoetensack 1908; txn:91487 Homo floresiensis, Brown et al.
+    2004; txn:384458 Homo naledi, Berger et al. 2015; txn:83087 Homo neanderthalensis, King 1864; the
+    last six with parent txn:40901. All rank 3 (species), is_extant 0.
+    taxa/list.json?base_name=Hominini&rank=genus: Ardipithecus (txn:83059), Homo (txn:40901),
+    Sahelanthropus (txn:77367) and Australopithecus (txn:40900) with parent txn:91486 (Hominini), and
+    Zinjanthropus (txn:83064) as a synonym of Australopithecus.
+    taxa/list.json?name=Paranthropus&rel=all_parents: Paranthropus < Hominina (txn:96643) < Hominidae.

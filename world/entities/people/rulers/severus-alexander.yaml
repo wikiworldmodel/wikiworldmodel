@@ -1,0 +1,65 @@
+id: people/rulers/severus-alexander
+kind: person
+summary: >-
+  Cousin of Elagabalus, emperor as a boy under the guidance of his mother, killed with her by
+  his own soldiers.
+author: machine:claude-code
+same_as: { wikidata: Q1769 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Severus Alexander }
+    source:
+      ref: src:historia-augusta
+      loc: "Severus Alexander 1.2"
+      quote: the imperial power passed to Aurelius Alexander
+  start:
+    prop: start
+    value: { lo: 205 CE, hi: 206 CE }
+    source:
+      ref: src:historia-augusta
+      loc: "Severus Alexander 60.1"
+      quote: he lived for twenty-nine years, three months, and seven days
+    method: historical-account
+    note: >-
+      Worked out from the Historia Augusta's age, counted back from his death; its Life of him
+      is among its least trustworthy, and the record gives this as a rough figure.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/elagabalus, edge: end }
+    source:
+      ref: src:historia-augusta
+      loc: "Severus Alexander 1.2"
+      quote: the imperial power passed to Aurelius Alexander
+    method: historical-account
+  end:
+    prop: end
+    value: { ref: people/rulers/severus-alexander@reign, edge: start, lag: 4757 days }
+    source:
+      - ref: src:historia-augusta
+        loc: "Severus Alexander 60.1"
+        quote: He ruled for thirteen years and nine days
+      - ref: src:eutropius-breviarium
+        loc: "8.23"
+        quote: Periit in Gallia militari tumultu tertio decimo imperii anno et die nono
+    method: historical-account
+    note: >-
+      Thirteen years and nine days after the death of Elagabalus; in English, Eutropius has him
+      perish in Gaul in a military riot in the thirteenth year and ninth day of his reign. No
+      text read here gives the calendar day.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:historia-augusta
+      loc: "Severus Alexander 60.1"
+      quote: He ruled for thirteen years and nine days
+    note: Emperor.

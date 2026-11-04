@@ -1,0 +1,47 @@
+id: earth/day-length/gaoyuzhuang-formation
+kind: sample
+summary: >-
+  Cycles in the Gaoyuzhuang Formation on the North China craton, read as Milankovitch cycles: a day of
+  about 19 hours.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Gaoyuzhuang Formation cycles" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Gaoyuzhuang Formation
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Gaoyuzhuang Fm, North China"
+      quote: 1560 Gaoyuzhuang Fm, North China 19.2 0.7 cyclostratigraphy
+    note: >-
+      No location is claimed: the compilation names only North China, and the study behind the row, Liu et
+      al. (2022), was not read.
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Gaoyuzhuang Fm, North China"
+      quote: 1560 Gaoyuzhuang Fm, North China 19.2 0.7 cyclostratigraphy
+  date:
+    prop: date
+    value: 1560 Ma
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Gaoyuzhuang Fm, North China"
+      quote: 1560 Gaoyuzhuang Fm, North China 19.2 0.7 cyclostratigraphy
+    method: compilation
+  day-length:
+    prop: day_length
+    value: { mean: 19.2, sd: 0.7 }
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Gaoyuzhuang Fm, North China"
+      quote: 1560 Gaoyuzhuang Fm, North China 19.2 0.7 cyclostratigraphy
+    method: compilation
+    note: >-
+      As the compilation gives it; its uncertainty is read as a standard deviation, as the compilation's
+      resampling does.

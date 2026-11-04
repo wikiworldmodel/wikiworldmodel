@@ -1,0 +1,11 @@
+id: src:bbc-2005-obelisk-arrives-back
+type: publication
+kind: review
+citation: BBC News (19 April 2005). Obelisk arrives back in Ethiopia.
+published: 2005
+title: Obelisk arrives back in Ethiopia
+url: https://news.bbc.co.uk/2/hi/africa/4458105.stm
+reliability: A news report written the day the first section landed.
+verified:
+  by: machine:claude-code
+  how: Read on the BBC's site. Quotations checked by script against the page's text.

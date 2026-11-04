@@ -1,0 +1,28 @@
+id: src:de-winter-2020-torreites-rudist
+type: publication
+kind: measurement
+citation: >-
+  de Winter, N.J., Goderis, S., Van Malderen, S.J.M., Sinnesael, M., Vansteenberge, S., Snoeck, C.,
+  Belza, J., Vanhaecke, F. & Claeys, P. (2020). Subdaily-scale chemical variability in a Torreites
+  sanchezi rudist shell: Implications for rudist paleobiology and the Cretaceous day-night cycle.
+  Paleoceanography and Paleoclimatology 35(2), e2019PA003723.
+authors:
+  - "de Winter, N.J."
+  - "Goderis, S."
+  - "Van Malderen, S.J.M."
+  - "Sinnesael, M."
+  - "Vansteenberge, S."
+  - "Snoeck, C."
+  - "Belza, J."
+  - "Vanhaecke, F."
+  - "Claeys, P."
+published: 2020
+title: "Subdaily-Scale Chemical Variability in a Torreites Sanchezi Rudist Shell: Implications for Rudist Paleobiology and the Cretaceous Day-Night Cycle"
+container: Paleoceanography and Paleoclimatology 35(2), e2019PA003723
+doi: 10.1029/2019PA003723
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full in the PDF in Ghent University's repository (biblio.ugent.be, publication 8685501),
+    with Appendix 1 and Data S9 from the paper's Zenodo record (3477900). Quotes checked by script
+    against the texts of the PDF and the appendix. Metadata from Crossref.

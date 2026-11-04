@@ -1,0 +1,9 @@
+id: earth/plates/variscan-europe
+kind: plate
+summary: Plate 305 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Variscan Europe }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 305", quote: "CEU - Variscan Europe" }

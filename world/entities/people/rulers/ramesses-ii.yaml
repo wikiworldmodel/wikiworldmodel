@@ -1,0 +1,87 @@
+id: people/rulers/ramesses-ii
+kind: person
+summary: >-
+  Pharaoh of the Nineteenth Dynasty, who fought the Hittites at Kadesh, and reigned for over
+  sixty-six years.
+author: machine:claude-code
+same_as: { wikidata: Q1523 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Pharaoh
+claims:
+  name:
+    prop: name
+    value: { en: Ramesses II }
+    source:
+      ref: src:breasted-1906-ancient-records-of-egypt
+      loc: "vol. 1, § 67, p. 44"
+      quote: The attempts to determine the accession of Ramses II astronomically have been unsuccessful
+  reign-start-conventional:
+    prop: start
+    subject: "@reign"
+    value: 1279 BCE
+    source:
+      - ref: src:ramsey-2010-egypt-chronology
+        loc: "Table 1, row Rameses II, columns Shaw and Hornung et al."
+        quote: Rameses II 2 1279 1279 1292 1281 1297 1273
+      - ref: src:gasche-1998-fall-of-babylon
+        loc: "p. 65"
+        quote: "widely accepted \"low chronology\" (which sets the accession year of Ramses II in 1279 BC)"
+    method: compilation
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      The conventional low chronology, as Ramsey et al. tabulate it and Gasche et al. describe
+      it.
+  reign-start-radiocarbon:
+    prop: start
+    subject: "@reign"
+    value: { lo: 1297 BCE, hi: 1273 BCE }
+    source:
+      ref: src:ramsey-2010-egypt-chronology
+      loc: "Table 1, row Rameses II, modelled 95% hpd range"
+      quote: Rameses II 2 1279 1279 1292 1281 1297 1273
+    method: radiometric/radiocarbon
+    basis: reconstruction
+    note: >-
+      The 95% range of the Bayesian model; only two dates are from the reign itself. The 68%
+      range is 1292–1281.
+  reign-start-breasted:
+    prop: start
+    subject: "@reign"
+    value: 1292 BCE
+    source:
+      ref: src:breasted-1906-ancient-records-of-egypt
+      loc: "vol. 1, § 67, p. 44, row Ramses II"
+      quote: "1292 1225 B.C."
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Breasted's table gives 1292–1225 B.C. for the reign, on the same high chronology as his
+      date for Thutmose III.
+  end:
+    prop: end
+    value: { ref: people/rulers/ramesses-ii@reign, edge: start, lag: { lo: 66 yr, hi: 67 yr } }
+    source:
+      - ref: src:josephus-against-apion
+        loc: "Against Apion 1.15"
+        quote: after him came Armesses Miammoun, for sixty-six years and two months
+      - ref: src:breasted-1906-ancient-records-of-egypt
+        loc: "vol. 1, § 67 and note a, p. 44"
+        quote: Total length (IV, 471)
+    method: historical-account
+    note: >-
+      Manetho as Josephus copies him gives sixty-six years and two months, and Breasted's table
+      sixty-seven from the monuments. The reign is taken to end with his life.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/egypt-new-kingdom
+    source:
+      ref: src:breasted-1906-ancient-records-of-egypt
+      loc: "vol. 1, § 67, p. 44"
+      quote: The attempts to determine the accession of Ramses II
+    note: Pharaoh. Egyptologists count the Nineteenth Dynasty within the New Kingdom.

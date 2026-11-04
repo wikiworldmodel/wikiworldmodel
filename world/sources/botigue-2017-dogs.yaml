@@ -1,0 +1,25 @@
+id: src:botigue-2017-dogs
+type: publication
+kind: measurement
+citation: >-
+  Botigué, L.R., Song, S., Scheu, A., … & Veeramah, K.R. (2017). Ancient European dog genomes
+  reveal continuity since the Early Neolithic. Nature Communications 8, 16082.
+authors:
+  - "Botigué, L.R."
+  - "Song, S."
+  - "Scheu, A."
+  - "Gopalan, S."
+  - "Pendleton, A.L."
+  - "Oetjens, M."
+  - "Taravella, A.M."
+  - "Seregély, T."
+# the first eight of 16 authors
+published: 2017
+title: "Ancient European dog genomes reveal continuity since the Early Neolithic"
+container: "Nature Communications 8, 16082"
+doi: 10.1038/ncomms16082
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC5520058) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

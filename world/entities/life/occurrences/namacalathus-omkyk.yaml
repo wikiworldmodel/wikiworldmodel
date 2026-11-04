@@ -1,0 +1,72 @@
+id: life/occurrences/namacalathus-omkyk
+kind: occurrence
+summary: >-
+  Namacalathus hermanastes, a stalked goblet with a calcitic skeleton, from reefs of the Omkyk Member, Zaris
+  Formation, Kuibis Subgroup of the Nama Group, Namibia: among the first animals with a skeleton. PBDB
+  collection 51737.
+same_as: { pbdb: "occ:510816" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Namacalathus, Omkyk Member" }
+    unsourced: An editorial label, from the taxon and the member.
+  identified:
+    prop: identified_as
+    value: Namacalathus hermanastes n. gen. n. sp.
+    source: { ref: src:pbdb/collection-51737, loc: "occurrence 510816, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:shore-2021-namacalathus
+      loc: "abstract"
+      quote: "which follows the underlying form of a stalked, cup-shaped, calcitic skeleton"
+  location:
+    prop: location
+    value: { lat: -24.866667, lon: 16.633333, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-51737, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Zaris Formation
+    source: { ref: src:pbdb/collection-51737, loc: "formation; member Omkyk" }
+  later-than:
+    prop: later_than
+    value: 550 Ma
+    source:
+      ref: src:shore-2021-namacalathus
+      loc: "Introduction"
+      quote: "including thrombolite reefs and shallow lagoons, ca. 550 to 540 Ma ago"
+    method: stratigraphic
+    note: >-
+      The oldest of the genus as the paper gives it, stated as "ca."; the PBDB assigns the collection only to the Ediacaran.
+  earlier-than:
+    prop: earlier_than
+    value: { mean: 547.32 Ma, sd: 0.65 Myr }
+    source:
+      ref: src:shore-2021-namacalathus
+      loc: "Results, first paragraph"
+      quote: "within the uppermost Upper Omkyk Member of the Nama Group, Namibia, from a low-energy, very shallow, dominantly carbonate, inner ramp setting, just below an ash bed dated at 547.32 ± 0.65 Ma old"
+    method: radiometric/u-pb
+    note: >-
+      Shore et al. date their own specimens, in the same member as the PBDB's collection, which may lie lower in
+      it. The ± level is not stated, so it is read as 1σ.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/bilateria
+    source:
+      - ref: src:shore-2021-namacalathus
+        loc: "Discussion"
+        quote: "The confirmation of total group lophotrochozoans in the Ediacaran"
+      - { ref: src:pbdb/collection-51737, loc: "occurrence 510816, classification: Lophotrochozoa" }
+    note: >-
+      A total-group lophotrochozoan, so a bilaterian. It has also been called a cnidarian or a protozoan, as the
+      paper reports before excluding them.

@@ -1,0 +1,18 @@
+id: src:taylor-barron-ortiz-2021-botai
+type: publication
+kind: measurement
+citation: >-
+  Taylor, W.T.T. & Barrón-Ortiz, C.I. (2021). Rethinking the evidence for early horse
+  domestication at Botai. Scientific Reports 11(1), 7440.
+authors:
+  - "Taylor, W.T.T."
+  - "Barrón-Ortiz, C.I."
+published: 2021
+title: "Rethinking the evidence for early horse domestication at Botai"
+container: "Scientific Reports 11(1), 7440"
+doi: 10.1038/s41598-021-86832-9
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC8018961) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

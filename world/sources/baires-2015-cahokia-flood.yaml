@@ -1,0 +1,17 @@
+id: src:baires-2015-cahokia-flood
+type: publication
+kind: review
+citation: >-
+  Baires, S.E., Baltus, M.R. & Buchanan, M.E. (2015). Correlation does not equal causation: Questioning the Great Cahokia Flood. Proceedings of the National Academy of Sciences 112(29), E3753.
+authors:
+  - "Baires, S.E."
+  - "Baltus, M.R."
+  - "Buchanan, M.E."
+published: 2015
+title: "Correlation does not equal causation: Questioning the Great Cahokia Flood"
+container: Proceedings of the National Academy of Sciences
+doi: 10.1073/pnas.1509104112
+url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4517203/
+verified:
+  by: machine:claude-code
+  how: The whole letter read on PubMed Central (PMC4517203). Quote checked by script against it, after normalizing whitespace.

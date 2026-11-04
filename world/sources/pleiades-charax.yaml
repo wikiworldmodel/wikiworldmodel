@@ -1,0 +1,16 @@
+id: src:pleiades-charax
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 912872, "Jebel Khayabir/Alexandria?/Antiochia?/Spasinou Charax?/Karkh
+  Maisan?/[Astarabad Ardashir]?".
+snapshot: "2026-11-04"
+container: Pleiades
+url: https://pleiades.stoa.org/places/912872
+license: CC-BY-3.0
+reliability: The gazetteer's title shows that the identification of the site with Charax is itself queried.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/912872/json) read directly on 4 November 2026: representative point
+    30.8093425°N, 47.562804°E. Quote checked by script against the JSON's description.

@@ -1,0 +1,36 @@
+id: life/taxa/salvinia
+kind: taxon
+summary: >-
+  A floating water fern, in the Hell Creek rows of the snapshot a morphotype.
+same_as: { pbdb: "txn:55250" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Salvinia" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 55250"
+  body-plan:
+    prop: body_plan
+    value: fern
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: floating
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 2, s.v. Salvinia"
+      quote: "Blades of floating leaves"
+  height-flora-of-north-america:
+    prop: plant_height
+    value: 0.06
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 2, s.v. Salvinia minima"
+      quote: "Stems to ca. 6 cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The stem of the living S. minima, which lies along the water rather than stands, so this
+      overstates its height: a modern relative.

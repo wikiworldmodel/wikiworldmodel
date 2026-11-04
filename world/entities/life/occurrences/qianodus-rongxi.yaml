@@ -1,0 +1,59 @@
+id: life/occurrences/qianodus-rongxi
+kind: occurrence
+summary: >-
+  Tooth whorls of Qianodus duplicis from the Rongxi Formation, Shiqian–Tunping section, near Leijiatun village,
+  Guizhou, China: the earliest direct evidence reported for jawed vertebrates. PBDB collection 238851.
+same_as: { pbdb: "occ:1686157" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Qianodus, Rongxi Formation" }
+    unsourced: An editorial label, from the taxon and the formation.
+  identified:
+    prop: identified_as
+    value: Qianodus duplicis
+    source:
+      - { ref: src:pbdb/collection-238851, loc: "occurrence 1686157, accepted_name" }
+      - ref: src:andreev-2022-qianodus
+        loc: abstract
+        quote: "describing Qianodus duplicis, a new genus and species of an early Silurian gnathostome based on isolated tooth whorls from Guizhou province, China"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:andreev-2022-qianodus
+      loc: abstract
+      quote: "based on isolated tooth whorls from Guizhou province, China"
+  location:
+    prop: location
+    value: { lat: 27.598429, lon: 108.231163, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-238851, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Rongxi Formation
+    source: { ref: src:pbdb/collection-238851, loc: "formation" }
+  date:
+    prop: date
+    value: { ref: ics/aeronian }
+    source:
+      - { ref: src:pbdb/collection-238851, loc: "early_interval (Aeronian), max_ma, min_ma" }
+      - ref: src:andreev-2022-qianodus
+        loc: abstract
+        quote: "from the late Silurian into the early Silurian (around 439 million years ago)"
+    method: stratigraphic
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/gnathostomata
+    source:
+      ref: src:andreev-2022-qianodus
+      loc: abstract
+      quote: "the earliest direct evidence for jawed vertebrates"

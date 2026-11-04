@@ -1,0 +1,22 @@
+id: src:lamanna-2014-anzu
+type: publication
+kind: measurement
+citation: >-
+  Lamanna, M.C., Sues, H.-D., Schachner, E.R. & Lyson, T.R. (2014). A new large-bodied
+  oviraptorosaurian theropod dinosaur from the latest Cretaceous of western North America. PLoS
+  ONE 9(3), e92022.
+authors:
+  - "Lamanna, M.C."
+  - "Sues, H.-D."
+  - "Schachner, E.R."
+  - "Lyson, T.R."
+published: 2014
+title: "A new large-bodied oviraptorosaurian theropod dinosaur from the latest Cretaceous of western North America"
+container: "PLoS ONE 9(3), e92022"
+doi: 10.1371/journal.pone.0092022
+license: CC0-1.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC3960162); quotes checked by script against it. The 2015
+    correction (PMC4414276) was seen; it does not concern the sizes cited.

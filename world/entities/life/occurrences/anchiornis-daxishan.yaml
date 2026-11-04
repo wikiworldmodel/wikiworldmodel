@@ -1,0 +1,66 @@
+id: life/occurrences/anchiornis-daxishan
+kind: occurrence
+summary: >-
+  Anchiornis huxleyi from the Tiaojishan Formation at Daxishan, western Liaoning, China: a small feathered dinosaur with long
+  feathers on its feet, older than Archaeopteryx. Described as a troodontid, it has since been recovered as an early
+  bird; whether it flew is not settled. PBDB collection 91487.
+same_as: { pbdb: "occ:829458" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Anchiornis, Daxishan" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Anchiornis huxleyi
+    source: { ref: src:pbdb/collection-91487, loc: "occurrence 829458, accepted_name" }
+    note: >-
+      The record gives no identified name; this is the accepted name.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:hu-2009-anchiornis
+      loc: abstract
+      quote: "an exceptionally well-preserved small theropod specimen collected from the earliest Late Jurassic Tiaojishan Formation of western Liaoning, China"
+  location:
+    prop: location
+    value: { lat: 40.916668, lon: 119.650002, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-91487, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Tiaojishan Formation
+    source:
+      ref: src:hu-2009-anchiornis
+      loc: abstract
+      quote: "the earliest Late Jurassic Tiaojishan Formation of western Liaoning, China"
+  date:
+    prop: date
+    value: { ref: ics/oxfordian }
+    source:
+      - { ref: src:pbdb/collection-91487, loc: "early_interval (Oxfordian), max_ma, min_ma" }
+      - ref: src:hu-2009-anchiornis
+        loc: abstract
+        quote: "the earliest Late Jurassic Tiaojishan Formation of western Liaoning, China"
+    method: stratigraphic
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/dinosauria
+    source:
+      - ref: src:hu-2009-anchiornis
+        loc: abstract
+        quote: "The specimen is referable to the Troodontidae, which are among the theropods most closely related to birds."
+      - ref: src:pei-2020-powered-flight
+        loc: abstract
+        quote: "the recovery of Anchiornithinae as the earliest diverging birds"
+    note: >-
+      A theropod dinosaur on either view; outside life/taxa/aves, the crown group.

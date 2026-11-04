@@ -1,0 +1,103 @@
+id: people/first-cities/ur
+kind: settlement
+summary: >-
+  Ur, Tell Muqayyar, in southern Iraq, on the Euphrates near the head of the Gulf as they then lay. Settled in the Ubaid period, it was a major city in the
+  Early Dynastic period and capital of the Third Dynasty of Ur. It was abandoned around the fourth century BCE. Its size is known only roughly, and no
+  excavation-based estimate of its population could be read: the figures here are the compilers'.
+author: machine:claude-code
+same_as: { wikidata: Q5699, pleiades: 912985 }
+phases:
+  - id: before-city
+    label: Before the city
+  - id: city
+    label: City
+claims:
+  name:
+    prop: name
+    value: { en: Ur }
+    source: { ref: src:pleiades-ur, loc: "place 912985, names" }
+  start-cdli:
+    prop: start
+    value: { lo: 5000 BCE, hi: 4001 BCE }
+    source:
+      ref: src:cdli-wiki-ur
+      loc: Introduction
+      quote: It was occupied from the Ubaid period (5th millennium BC)
+    method: expert-estimate
+    rank: preferred
+    note: Preferred because it gives the period as the excavated sequence does, not a single year.
+  start-pleiades:
+    prop: start
+    value: 3800 BCE
+    source:
+      ref: src:pleiades-ur
+      loc: "place 912985, description"
+      quote: "A major Sumerian city-state founded during the Ubaid period, ca. 3800 B.C."
+    method: expert-estimate
+    note: A gazetteer's description, with no source named.
+  city-start:
+    prop: start
+    subject: "@city"
+    value: { lo: 2900 BCE, hi: 2350 BCE }
+    source:
+      - ref: src:greenfield-2022-early-dynastic-ur
+        loc: section "Ur and The Royal Cemetery"
+        quote: "During the Early Dynastic period, Ur developed into a major urban centre"
+      - ref: src:cdli-wiki-ur
+        loc: section heading
+        quote: Ur in the Early Dynastic Period (2900-2350 BC)
+    method: expert-estimate
+    note: When in the period it became a city is not said, so the claim is the whole period. The dates are CDLI's.
+  end:
+    prop: end
+    value: { lo: 400 BCE, hi: 301 BCE }
+    source:
+      ref: src:cdli-wiki-ur
+      loc: Introduction
+      quote: until the Neo-Babylonian period (626-539 BC), and was abandoned shortly thereafter, around the 4th century BC
+    method: expert-estimate
+  location:
+    prop: location
+    value: { lat: 30.961318, lon: 46.10542, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-ur, loc: "place 912985, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  area-early-dynastic:
+    prop: settlement_area
+    value: 50
+    valid: { lo: 2900 BCE, hi: 2350 BCE }
+    source:
+      ref: src:greenfield-2022-early-dynastic-ur
+      loc: section "Ur and The Royal Cemetery"
+      quote: reaching at least 50 hectares in extent
+    method: expert-estimate
+    note: A lower limit. The dates of the period are CDLI's.
+  population-modelski-2100:
+    prop: population
+    value: 100000
+    valid: 2100 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Ur, column BC_2100" }
+    method: compilation
+    rank: preferred
+    note: >-
+      Modelski's figure, as digitized by Reba et al. (2016), for the time of the Third Dynasty. Preferred only as the later of two compilations.
+      It is high for a city of this size, and a reviewer should look for an estimate from the excavations.
+  population-chandler-2000:
+    prop: population
+    value: 65000
+    valid: 2000 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "chandlerV2.csv, row Ur, column BC_2000" }
+    method: compilation
+    note: Chandler's figure, as digitized by Reba et al. (2016).
+  population-modelski-2800:
+    prop: population
+    value: 12000
+    valid: 2800 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Ur, column BC_2800" }
+    method: compilation
+    note: Modelski's figure, as digitized by Reba et al. (2016), early in the city's life.

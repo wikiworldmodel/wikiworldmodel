@@ -1,0 +1,10 @@
+id: people/polities/egypt-old-kingdom
+kind: polity
+summary: >-
+  Egypt in its Old Kingdom, counted here from the Third Dynasty, as the record of Djoser has it. Its dates are left to its rulers' records: Cliopatria's row for it starts some way after Djoser, and the chronologies compete.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Old Kingdom of Egypt }
+    unsourced: An editorial label, in English.

@@ -1,0 +1,74 @@
+id: life/occurrences/snowy-plains-tracks
+kind: occurrence
+summary: >-
+  A slab of footprints with claws from the Home Station Sandstone member of the Snowy Plains Formation, on the Broken
+  River at Barjarg, Victoria, Australia: read as a crown-group amniote, most probably a primitive sauropsid, in the
+  earliest Carboniferous. That is 35–40 million years older than the previous record of amniotes, and older than the
+  molecular interval in the taxon's record, so the occurrence is placed here only among jawed vertebrates.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Snowy Plains Formation tracks" }
+    unsourced: An editorial label, from the formation.
+  identified:
+    prop: identified_as
+    value: Clawed tracks, specimen NMV P258240
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: "The Australian tracks"
+      quote: "from the bank of the Broken River at Barjarg, Taungurung Country, Victoria (Museums Victoria specimen NMV P258240)"
+    note: >-
+      No new ichnotaxon is named in what was read: the tracks closely resemble Notalacerta, Dromopus and Varanopus, and
+      bear some resemblance to Hylopus hardingi, which is not attributed to crown amniotes.
+  evidence:
+    prop: evidence
+    value: trace-fossil
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: abstract
+      quote: "shows footprints from a crown-group amniote with clawed feet, most probably a primitive sauropsid"
+  location:
+    prop: location
+    value: { lat: -36.9255, lon: 145.9948, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-barjarg, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A point for the community of Barjarg, not the river bank.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-801
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Snowy Plains Formation
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: "The Australian tracks"
+      quote: "The block derives from the Home Station Sandstone member of the Snowy Plains Formation in the upper part of the Mansfield Group"
+  date:
+    prop: date
+    value: { ref: ics/lower-mississippian }
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: abstract
+      quote: "A track-bearing slab from the Snowy Plains Formation of Victoria, Taungurung Country, securely dated to the early Tournaisian"
+    method: stratigraphic
+    note: >-
+      The chart's lower Mississippian is the Tournaisian. The authors narrow it to the early part, from the vertebrates in the
+      upper Mansfield Group.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/gnathostomata
+    source:
+      ref: src:long-2025-amniote-tracks
+      loc: "Discussion"
+      quote: "the amniote crown-group node can, at a minimum, be only marginally younger than the Devonian/Carboniferous boundary"
+    note: >-
+      The paper places the maker among crown amniotes, and on its other reading it is close to them. It is placed no closer here
+      than jawed vertebrates, because life/taxa/amniota has a single start claim, a molecular 331.5–318.0 Ma, which this occurrence
+      would contradict, and the middle of the interval in life/taxa/tetrapoda, 354.0–338.2 Ma, is younger than the Tournaisian too.
+      A competing claim in those records, from this paper, would allow it.

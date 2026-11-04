@@ -1,0 +1,13 @@
+id: src:wikidata-issyk-kul
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q42191 (Issyk-Kul, a lake in Kyrgyzstan), property P625 (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q42191
+license: CC0-1.0
+reliability: Crowd-edited; a point for the lake.
+verified:
+  by: machine:claude-code
+  how: Coordinates (42.416666666667, 77.25) read from the item's JSON (Special:EntityData/Q42191.json, revision 2564284107, modified 2026-11-03).

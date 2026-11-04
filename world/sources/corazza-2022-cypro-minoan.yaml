@@ -1,0 +1,20 @@
+id: src:corazza-2022-cypro-minoan
+type: publication
+kind: model
+citation: >-
+  Corazza, M., Tamburini, F., Valério, M. & Ferrara, S. (2022). Unsupervised deep learning supports reclassification of Bronze age cypriot writing
+  system. PLoS ONE 17(7), e0269544.
+authors:
+  - "Corazza, M."
+  - "Tamburini, F."
+  - "Valério, M."
+  - "Ferrara, S."
+published: 2022
+title: Unsupervised deep learning supports reclassification of Bronze age cypriot writing system
+container: PLoS ONE
+doi: 10.1371/journal.pone.0269544
+url: https://europepmc.org/article/PMC/PMC9282481
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC9282481). Quote checked by script against it, after normalizing whitespace.

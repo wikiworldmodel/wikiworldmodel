@@ -1,0 +1,14 @@
+id: src:iranica-chinese-iranian-relations-i
+type: publication
+kind: review
+citation: >-
+  Pulleyblank, E.G. (1991). Chinese-Iranian relations i. In pre-Islamic times. Encyclopædia Iranica V/4, pp. 424–431.
+authors: ["Pulleyblank, E.G."]
+published: 1991
+title: Chinese-Iranian relations i. In pre-Islamic times
+container: Encyclopædia Iranica
+url: https://www.iranicaonline.org/articles/chinese-iranian-i
+via: The Internet Archive's copy of 19 November 2023, because the encyclopaedia's site refused the script.
+verified:
+  by: machine:claude-code
+  how: Read in the archived copy. Quotes checked by script against its text, after normalizing whitespace.

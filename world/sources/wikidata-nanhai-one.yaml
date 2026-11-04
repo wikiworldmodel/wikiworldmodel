@@ -1,0 +1,13 @@
+id: src:wikidata-nanhai-one
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q1812739 (Nanhai One), property P625 (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q1812739
+license: CC0-1.0
+reliability: The item's point lies by the museum on Hailing Island that now holds the hull, not on the wreck site, which was not found placed in anything read.
+verified:
+  by: machine:claude-code
+  how: Coordinates (21.57602778, 111.86880556) read from the item's JSON (Special:EntityData/Q1812739.json, revision 2515913552, modified 2026-07-10).

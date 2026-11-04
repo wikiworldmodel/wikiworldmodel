@@ -1,0 +1,24 @@
+id: src:cerling-1997-c4-expansion
+type: publication
+kind: measurement
+citation: >-
+  Cerling, T.E., Harris, J.M., MacFadden, B.J., Leakey, M.G., Quade, J., Eisenmann, V. &
+  Ehleringer, J.R. (1997). Global vegetation change through the Miocene/Pliocene boundary. Nature
+  389(6647), 153–158.
+authors:
+  - "Cerling, T.E."
+  - "Harris, J.M."
+  - "MacFadden, B.J."
+  - "Leakey, M.G."
+  - "Quade, J."
+  - "Eisenmann, V."
+  - "Ehleringer, J.R."
+published: 1997
+title: "Global vegetation change through the Miocene/Pliocene boundary"
+container: Nature 389(6647), 153–158
+doi: 10.1038/38229
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read on the publisher's page (nature.com/articles/38229); the full text is
+    paywalled. Quotes checked by script against that page's text. Metadata from Crossref.

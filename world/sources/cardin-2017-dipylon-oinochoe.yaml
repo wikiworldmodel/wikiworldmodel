@@ -1,0 +1,18 @@
+id: src:cardin-2017-dipylon-oinochoe
+type: publication
+kind: compilation
+citation: >-
+  Cardin, M. (2017). Oinochoe del Dipylon [64]. Axon: Iscrizioni storiche greche 1(1), 19–30.
+authors:
+  - "Cardin, M."
+published: 2017
+title: Oinochoe del Dipylon
+container: "Axon: Iscrizioni storiche greche"
+doi: 10.14277/2532-6848/Axon-1-1-17-2
+url: https://edizionicafoscari.unive.it/en/edizioni4/riviste/axon/2017/1/oinochoe-del-dipylon/
+license: CC-BY-4.0
+reliability: A peer-reviewed edition of the inscription, in Italian.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the publisher's PDF. Quotes checked by script against its text layer, ignoring whitespace and rejoining words hyphenated at line ends.

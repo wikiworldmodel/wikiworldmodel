@@ -1,0 +1,60 @@
+id: life/occurrences/palaeotarbus-ludford
+kind: occurrence
+summary: >-
+  The arachnid Palaeotarbus jerami, with centipedes, from the Lower Bone Bed Member of the Downton Castle Sandstone
+  at Ludford Lane, Ludlow, Shropshire: an unequivocally terrestrial fauna of the late Silurian, with predators among
+  it. PBDB collection 11128.
+same_as: { pbdb: "occ:133127" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Palaeotarbus, Ludford Lane" }
+    unsourced: An editorial label, from the taxon and the place.
+  identified:
+    prop: identified_as
+    value: Palaeotarbus jerami n. gen.
+    source: { ref: src:pbdb/collection-11128, loc: "occurrence 133127, identified_name" }
+    note: >-
+      Tihelka et al. (2022) write that Palaeotarbus jerami is a junior synonym of Eotarbus jerami.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:jeram-1990-ludford
+      loc: abstract
+      quote: "A new assemblage of arthropod cuticles from Upper Silurian rocks in Shropshire, England, includes at least two centipedes and a trigonotarbid arachnid."
+  location:
+    prop: location
+    value: { lat: 52.361, lon: -2.7187, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-ludford, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A point for the village by the section. The PBDB's own point, 51.366669, -2.733333, lies about a degree too far
+      south for the place it names, Ludford Corner at Ludlow, so it looks like a slip, and is not used.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-315
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Downton Castle Sandstone
+    source: { ref: src:pbdb/collection-11128, loc: "formation; member Lower Bone Bed" }
+  date:
+    prop: date
+    value: { ref: ics/pridoli }
+    source:
+      - { ref: src:pbdb/collection-11128, loc: "early_interval (Pridoli), max_ma, min_ma" }
+      - ref: src:tihelka-2022-arthropod-terrestrialization
+        loc: "2.1. Arthropod Origins"
+        quote: "the Přídolí-aged Ludlow bone bed Member exposed at Ludford Lane"
+    method: stratigraphic
+    note: >-
+      Jeram et al. (1990) wrote 414 Myr for the late Silurian, on the time scale of the day.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/arthropoda
+    source: { ref: src:pbdb/collection-11128, loc: "occurrence 133127, classification: Arthropoda, Arachnida" }

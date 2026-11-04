@@ -197,6 +197,8 @@ export class Timebar {
   private track: TrackItem[] = [];
   private states: StateBand[] = [];
   private hovered: TrackItem | StateBand | null = null;
+  /** times lit up on the track: the fossils of the group chosen in the tree of life */
+  private lit: number[] = [];
 
   /** the periods as the current scenario dates them */
   private periods: PeriodRecord[];
@@ -256,6 +258,12 @@ export class Timebar {
       .filter((e) => e.time.start.best !== null && Number.isFinite(e.time.start.best))
       .map((e) => ({ entry: e, start: e.time.start.best!, end: e.time.instant ? null : e.time.end.best }))
       .sort((a, b) => a.start - b.start);
+  }
+
+  /** Times to light up on the track. */
+  setLit(times: number[]): void {
+    this.lit = times;
+    this.draw();
   }
 
   /** The planet's states, under the track. */
@@ -470,6 +478,11 @@ export class Timebar {
       g.fill();
     }
     g.globalAlpha = 1;
+    g.fillStyle = '#ffc45c';
+    for (const lit of this.lit) {
+      const px = x(lit);
+      if (px >= -2 && px <= w + 2) g.fillRect(px - 1, ty - 5, 2, 10);
+    }
 
     // The planet's states, a thin band under the track: its phases, then episodes over them.
     for (const b of [...this.states.filter((x) => !x.over), ...this.states.filter((x) => x.over)]) {

@@ -1,0 +1,21 @@
+id: src:mylopotamitaki-2024-ranis
+type: publication
+kind: measurement
+citation: >-
+  Mylopotamitaki, D., Weiss, M., Fewlass, H., … & Hublin, J.J. (2024). Homo sapiens reached the
+  higher latitudes of Europe by 45,000 years ago. Nature 626(7998), 341–346.
+authors:
+  - "Mylopotamitaki, D."
+  - "Weiss, M."
+  - "Fewlass, H."
+  - "Hublin, J.J."
+published: 2024
+title: "Homo sapiens reached the higher latitudes of Europe by 45,000 years ago"
+container: "Nature 626(7998), 341–346"
+doi: 10.1038/s41586-023-06923-7
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC10849966); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

@@ -1,0 +1,19 @@
+id: src:wikidata-bacho-kiro-cave
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q4838907 (Bacho Kiro cave, Bulgaria), property P625 (coordinate location).
+snapshot: "2026-11-03"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q4838907
+license: CC0-1.0
+license_note: >-
+  Wikidata's rights statement: all structured data from the main and property namespace is available
+  under the Creative Commons CC0 License.
+reliability: >-
+  A crowd-edited gazetteer entry; no source is given for the point.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (42.946666666667, 25.430277777778; precision 0.00027777777777778) read from the
+    item's JSON (Special:EntityData/Q4838907.json, last revision 2513550397, modified 2026-07-03).

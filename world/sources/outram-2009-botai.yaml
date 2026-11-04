@@ -1,0 +1,24 @@
+id: src:outram-2009-botai
+type: publication
+kind: measurement
+citation: >-
+  Outram, A.K., Stear, N.A., Bendrey, R., … & Evershed, R.P. (2009). The earliest horse
+  harnessing and milking. Science 323(5919), 1332–1335.
+authors:
+  - "Outram, A.K."
+  - "Stear, N.A."
+  - "Bendrey, R."
+  - "Olsen, S."
+  - "Kasparov, A."
+  - "Zaibert, V."
+  - "Thorpe, N."
+  - "Evershed, R.P."
+published: 2009
+title: "The earliest horse harnessing and milking"
+container: "Science 323(5919), 1332–1335"
+doi: 10.1126/science.1168594
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read from the Europe PMC record (PMID 19265018); the full text was not read.
+    Each quote checked by script against the abstract; citation from the same record.

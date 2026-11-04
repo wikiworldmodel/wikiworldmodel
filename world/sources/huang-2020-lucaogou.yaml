@@ -1,0 +1,25 @@
+id: src:huang-2020-lucaogou
+type: publication
+kind: measurement
+citation: >-
+  Huang, H., Gao, Y., Jones, M.M., Tao, H., Carroll, A.R., Ibarra, D.E., Wu, H. & Wang, C. (2020).
+  Astronomical forcing of Middle Permian terrestrial climate recorded in a large paleolake in
+  northwestern China. Palaeogeography, Palaeoclimatology, Palaeoecology 550, 109735.
+authors:
+  - "Huang, H."
+  - "Gao, Y."
+  - "Jones, M.M."
+  - "Tao, H."
+  - "Carroll, A.R."
+  - "Ibarra, D.E."
+  - "Wu, H."
+  - "Wang, C."
+published: 2020
+title: Astronomical forcing of Middle Permian terrestrial climate recorded in a large paleolake in northwestern China
+container: Palaeogeography, Palaeoclimatology, Palaeoecology 550, 109735
+doi: 10.1016/j.palaeo.2020.109735
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, from OpenAlex's record of this DOI, which gives no day length. Quotes checked
+    by script against that abstract. Metadata from Crossref.

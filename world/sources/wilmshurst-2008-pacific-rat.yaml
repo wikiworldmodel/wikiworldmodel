@@ -1,0 +1,22 @@
+id: src:wilmshurst-2008-pacific-rat
+type: publication
+kind: measurement
+citation: >-
+  Wilmshurst, J.M., Anderson, A.J., Higham, T.F.G. & Worthy, T.H. (2008). Dating the late
+  prehistoric dispersal of Polynesians to New Zealand using the commensal Pacific rat. Proceedings
+  of the National Academy of Sciences of the USA 105(22), 7676–7680.
+authors:
+  - "Wilmshurst, J.M."
+  - "Anderson, A.J."
+  - "Higham, T.F.G."
+  - "Worthy, T.H."
+published: 2008
+title: "Dating the late prehistoric dispersal of Polynesians to New Zealand using the commensal Pacific rat"
+container: "Proceedings of the National Academy of Sciences of the USA 105(22), 7676–7680"
+doi: 10.1073/pnas.0801507105
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the PMC record through NCBI efetch (PMC2409139), the publisher
+    not allowing the full text there. Quotes checked by script against the text retrieved, after
+    normalizing whitespace.

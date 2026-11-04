@@ -1,0 +1,74 @@
+id: people/rulers/trajan
+kind: person
+summary: >-
+  A general from Spain, adopted by Nerva, who conquered Dacia and died on the way back from his
+  Parthian war.
+author: machine:claude-code
+same_as: { wikidata: Q1425 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Trajan }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 68, 4.1, vol. 8 p. 367"
+      quote: Thus Trajan became Caesar and later emperor
+  start:
+    prop: start
+    value: 18 September 53 CE
+    source:
+      - ref: src:pliny-panegyricus
+        loc: "92.4"
+        quote: qui principem abstulit pessimum, dedit optimum, meliorem optimo genuit
+      - ref: src:eutropius-breviarium
+        loc: "8.5"
+        quote: Obiit autem aetatis anno sexagesimo tertio, mense nono, die quarto
+    method: historical-account
+    note: >-
+      In English: the day which took away the worst prince, gave the best, and bore one better
+      than the best: so Pliny puts Trajan's birthday on the day that Domitian died and Nerva
+      acceded, 18 September. The year is worked out from Eutropius, who gives an age at death of
+      sixty-three years, nine months and four days; his count falls some weeks later than this
+      day, so the year is firmer than the fit.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/nerva, edge: end }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 68, 4.1, vol. 8 p. 367"
+      quote: Thus Trajan became Caesar and later emperor
+    method: historical-account
+    note: He was at Cologne when Nerva died (Eutropius 8.2).
+  end:
+    prop: end
+    value: { lo: 8 August 117 CE, hi: 11 August 117 CE }
+    source:
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 68, 33.3, vol. 8 p. 423"
+        quote: he suddenly expired, after reigning nineteen years, six months and fifteen days
+      - ref: src:historia-augusta
+        loc: "Hadrian 4.7"
+        quote: On the third day before the Ides of August he received the news of Trajan's death
+      - ref: src:clinton-1845-fasti-romani
+        loc: "a. 98, p. 84"
+        quote: If therefore the number of days is accurate in Dio for both reigns, the death of Trajan will be placed at Aug. 9 A.D. 117
+    method: historical-account
+    note: >-
+      He died at Selinus in Cilicia. Hadrian heard of it in Syria on 11 August, which limits the
+      date; Dio's count from the competing dates for Nerva's death comes to 8–11 August.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 68, 4.1, vol. 8 p. 367"
+      quote: Caesar and later emperor
+    note: Emperor.

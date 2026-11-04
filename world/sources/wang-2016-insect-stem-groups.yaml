@@ -1,0 +1,28 @@
+id: src:wang-2016-insect-stem-groups
+type: publication
+kind: model
+citation: >-
+  Wang, Y.-H., Engel, M.S., Rafael, J.A., Wu, H.-Y., Rédei, D., Xie, Q., Wang, G., Liu, X.-G. &
+  Bu, W.-J. (2016). Fossil record of stem groups employed in evaluating the chronogram of
+  insects (Arthropoda: Hexapoda). Scientific Reports 6(1), 38939.
+authors:
+  - "Wang, Y.-H."
+  - "Engel, M.S."
+  - "Rafael, J.A."
+  - "Wu, H.-Y."
+  - "Rédei, D."
+  - "Xie, Q."
+  - "Wang, G."
+  - "Liu, X.-G."
+  - "Bu, W.-J."
+published: 2016
+title: "Fossil record of stem groups employed in evaluating the chronogram of insects (Arthropoda: Hexapoda)"
+container: Scientific Reports 6(1), 38939
+doi: 10.1038/srep38939
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC5154178) read via Europe PMC (fullTextXML): the molecular date for Pterygota
+    (about 413 Ma, 95% HPD 425–399 Ma), and Delitzschala bitterfeldensis among the stem-group
+    first appearances of its Fig. 3. Quotes checked by script against that text. Metadata from
+    Crossref.

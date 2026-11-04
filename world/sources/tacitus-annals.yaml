@@ -1,0 +1,18 @@
+id: src:tacitus-annals
+type: text
+kind: historian
+citation: >-
+  Tacitus, Annals, translated by J. Jackson, in Tacitus, vols. 3–5 (Loeb Classical Library,
+  1931–1937).
+published: 1937
+title: Annales
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Tacitus/Annals/home.html
+via: LacusCurtius, which reproduces Jackson's public-domain translation.
+reliability: >-
+  A senator and consul writing a century after Augustus, from the acta of the senate and earlier
+  histories; he seldom gives a day, and so the days he gives are marked ones.
+verified:
+  by: machine:claude-code
+  how: >-
+    Books 1, 6 and 14 read in part in Jackson's translation on LacusCurtius (marked there as
+    proofread); the quotations checked by script against that text.

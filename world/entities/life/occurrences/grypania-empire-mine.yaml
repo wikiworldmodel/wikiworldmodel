@@ -1,0 +1,65 @@
+id: life/occurrences/grypania-empire-mine
+kind: occurrence
+summary: >-
+  Coiled carbonaceous ribbons assigned to Grypania spiralis from the Negaunee Iron Formation at the
+  Empire Mine, Michigan: long the oldest large fossils claimed for eukaryotes, and contested. No taxon
+  is recorded here for that reason. PBDB collection 192010.
+same_as: { pbdb: "occ:1394220" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Grypania, Empire Mine" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Grypania spiralis
+    source: { ref: src:pbdb/collection-192010, loc: "occurrence 1394220, accepted_name" }
+    note: >-
+      The record gives no identified name; this is the accepted name.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:knoll-2006-proterozoic-eukaryotes
+      loc: "3. Palaeontological estimates of eukaryotic antiquity, paragraph on macroscopic compressions"
+      quote: "Grypania fossils are narrow ribbons, originally cylindrical, up to 13 mm long and 2 mm wide"
+    note: >-
+      That description is of Grypania in general. Knoll et al. report that Samuelsson and Butterfield (2001)
+      read these oldest specimens as possible composites of much smaller prokaryotic filaments; they themselves
+      hold that they were single organisms.
+  location:
+    prop: location
+    value: { lat: 46.454491, lon: -87.609329, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-192010, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+    note: >-
+      Knoll et al. (2006) call these populations Canadian. The PBDB places them in Michigan, under the paper's
+      title as it cites it ("from the 2.1-Billion-Year-Old Negaunee Iron-Formation, Michigan"), and that is
+      followed here.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Negaunee Iron Formation
+    source: { ref: src:pbdb/collection-192010, loc: "formation; collection reference" }
+  date:
+    prop: date
+    value: { ref: ics/orosirian }
+    source:
+      - { ref: src:pbdb/collection-192010, loc: "early_interval (Orosirian), max_ma, min_ma" }
+      - ref: src:knoll-2006-proterozoic-eukaryotes
+        loc: "3. Palaeontological estimates of eukaryotic antiquity, paragraph on macroscopic compressions"
+        quote: "Palaeoproterozoic (ca 1850 Myr) populations have been reported"
+      - ref: src:anderson-2024-proterozoic-microfossils
+        loc: "Recognizing early fossil eukaryotes and their diversity"
+        quote: "carbonaceous forms such as Grypania ~1900 Ma"
+    method: stratigraphic
+    note: >-
+      The sources read give about 1850 Ma (Knoll et al.), about 1900 Ma (Anderson et al.), nearly 2 Gyr
+      (El Albani et al. 2010) and about 1.8 Ga (El Albani et al. 2019, abstract, not cited as a source here);
+      the title of the first report says 2.1 billion years. The stage covers all but the last.

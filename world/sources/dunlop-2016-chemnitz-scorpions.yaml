@@ -1,0 +1,23 @@
+id: src:dunlop-2016-chemnitz-scorpions
+type: publication
+kind: measurement
+citation: >-
+  Dunlop, J.A., Legg, D.A., Selden, P.A., Fet, V., Schneider, J.W. & Rößler, R. (2016). Permian
+  scorpions from the Petrified Forest of Chemnitz, Germany. BMC Evolutionary Biology 16, 72.
+authors:
+  - "Dunlop, J.A."
+  - "Legg, D.A."
+  - "Selden, P.A."
+  - "Fet, V."
+  - "Schneider, J.W."
+  - "Rößler, R."
+published: 2016
+title: "Permian scorpions from the Petrified Forest of Chemnitz, Germany"
+container: BMC Evolutionary Biology 16, 72
+doi: 10.1186/s12862-016-0634-z
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved through Europe PMC (PMC4823912, fullTextXML); the parts cited were read,
+    and quotes checked by script against it. Metadata from Crossref.

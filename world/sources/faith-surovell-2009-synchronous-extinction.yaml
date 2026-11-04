@@ -1,0 +1,19 @@
+id: src:faith-surovell-2009-synchronous-extinction
+type: publication
+kind: compilation
+citation: >-
+  Faith, J.T. & Surovell, T.A. (2009). Synchronous extinction of North America's Pleistocene
+  mammals. Proceedings of the National Academy of Sciences of the USA 106(49), 20641–20645.
+authors:
+  - "Faith, J.T."
+  - "Surovell, T.A."
+published: 2009
+title: "Synchronous extinction of North America's Pleistocene mammals"
+container: "Proceedings of the National Academy of Sciences of the USA 106(49), 20641–20645"
+doi: 10.1073/pnas.0908153106
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the PMC record through NCBI efetch (PMC2791611), the publisher
+    not allowing the full text there. Quotes checked by script against the text retrieved, after
+    normalizing whitespace.

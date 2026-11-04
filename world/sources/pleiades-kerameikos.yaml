@@ -1,0 +1,15 @@
+id: src:pleiades-kerameikos
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 97294452, "Kerameikos" (Athens, Greece).
+snapshot: "2026-11-04"
+container: Pleiades
+url: https://pleiades.stoa.org/places/97294452
+license: CC-BY-3.0
+reliability: A scholarly gazetteer of ancient places. The point is the district, not the find spot of a single vase.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/97294452/json) read directly on 4 November 2026:
+    representative point 37.978416°N, 23.718301°E.

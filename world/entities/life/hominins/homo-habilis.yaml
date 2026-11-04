@@ -1,0 +1,38 @@
+id: life/taxa/homo-habilis
+kind: taxon
+summary: >-
+  Homo habilis Leakey et al. 1964, named from the OH 7 skull and hand at Olduvai Gorge, with a brain
+  size that overlaps those of other species of early Homo.
+same_as: { ott: 3607678, pbdb: "txn:83082", wikidata: Q101373 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Homo habilis, la: "Homo habilis" }
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83082: Homo habilis, Leakey et al. 1964" }
+  rank:
+    prop: taxon_rank
+    value: species
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83082: rank 3 (species)" }
+  start:
+    prop: start
+    value: { hi: 2.3 Ma }
+    source:
+      ref: src:spoor-2015-oh-7
+      loc: abstract
+      quote: "The latter is morphologically more derived than OH 7 but 500,000 years older, suggesting that the H. habilis lineage originated before 2.3 million years ago"
+    method: expert-estimate
+    note: >-
+      An inference, not a dated fossil of the species: A.L. 666-1 from Hadar is more derived than
+      OH 7 and much older, so the lineage leading to OH 7 must have split off before it.
+  end:
+    prop: end
+    value: unknown
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83082: is_extant 0" }
+    note: The species is extinct; when it died out is not recorded here.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source: { ref: src:pbdb/hominin-taxa, loc: "taxon txn:83082 < Homo (txn:40901) < Hominini (txn:91486)" }
+    note: The tree here has no record for the genus Homo, so each species hangs directly on the tribe.

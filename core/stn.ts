@@ -49,23 +49,8 @@ function edges(index: Map<string, number>, constraints: Constraint[]): Edge[] {
   return out;
 }
 
-/** Bellman–Ford from every node at once; returns a negative cycle if there is one. */
-function findNegativeCycle(n: number, es: Edge[]): Edge[] | undefined {
-  const dist = new Float64Array(n);
-  const pred: Array<Edge | undefined> = new Array(n);
-  let relaxing = false;
-  for (let iter = 0; iter <= n; iter++) {
-    relaxing = false;
-    for (const e of es) {
-      if (dist[e.u] + e.w < dist[e.v] - EPS) {
-        dist[e.v] = dist[e.u] + e.w;
-        pred[e.v] = e;
-        relaxing = true;
-      }
-    }
-    if (!relaxing) return undefined;
-  }
-  // Still relaxing after n+1 rounds, so the predecessor graph has a cycle: find it.
+/** A cycle in the predecessor graph, if there is one: it can only be a negative cycle. */
+function cycleIn(n: number, pred: Array<Edge | undefined>): Edge[] | undefined {
   const state = new Uint8Array(n); // 0 = unseen, 1 = on the current walk, 2 = done
   for (let start = 0; start < n; start++) {
     const walk: number[] = [];
@@ -87,6 +72,35 @@ function findNegativeCycle(n: number, es: Edge[]): Edge[] | undefined {
     }
     for (const w of walk) state[w] = 2;
   }
+  return undefined;
+}
+
+/**
+ * Bellman–Ford from every node at once; returns a negative cycle if there is one. A cycle shows in the
+ * predecessor graph long before the last round, so it is looked for every few rounds: most of the time of
+ * checking a world goes on claims that contradict it, which would otherwise run all the n rounds.
+ */
+function findNegativeCycle(n: number, es: Edge[]): Edge[] | undefined {
+  const dist = new Float64Array(n);
+  const pred: Array<Edge | undefined> = new Array(n);
+  for (let iter = 0; iter <= n; iter++) {
+    let relaxing = false;
+    for (const e of es) {
+      if (dist[e.u] + e.w < dist[e.v] - EPS) {
+        dist[e.v] = dist[e.u] + e.w;
+        pred[e.v] = e;
+        relaxing = true;
+      }
+    }
+    if (!relaxing) return undefined;
+    if (iter % 16 === 15) {
+      const cycle = cycleIn(n, pred);
+      if (cycle) return cycle;
+    }
+  }
+  // Still relaxing after n+1 rounds, so the predecessor graph has a cycle: find it.
+  const cycle = cycleIn(n, pred);
+  if (cycle) return cycle;
   throw new Error('negative cycle detected but not found (inconsistent tolerance?)');
 }
 
@@ -122,23 +136,33 @@ function pathSources(pred: Array<Edge | undefined>, from: number, to: number): s
   return out;
 }
 
+function conflictOf(cycle: Edge[]): Conflict {
+  const seen = new Set<Constraint>();
+  const cs: Constraint[] = [];
+  for (const e of cycle) {
+    if (!seen.has(e.c)) {
+      seen.add(e.c);
+      cs.push(e.c);
+    }
+  }
+  return { constraints: cs, slack: cycle.reduce((s, e) => s + e.w, 0) };
+}
+
+/** Whether a network holds, without working out its bounds: the conflict, if it does not. */
+export function conflictIn(points: string[], constraints: Constraint[]): Conflict | undefined {
+  const names = [ORIGIN, ...new Set(points)];
+  const index = new Map(names.map((p, i) => [p, i]));
+  const cycle = findNegativeCycle(names.length, edges(index, constraints));
+  return cycle && conflictOf(cycle);
+}
+
 export function solve(points: string[], constraints: Constraint[]): Solution {
   const names = [ORIGIN, ...[...new Set(points)].filter((p) => p !== ORIGIN).sort()];
   const index = new Map(names.map((p, i) => [p, i]));
   const es = edges(index, constraints);
   const n = names.length;
   const cycle = findNegativeCycle(n, es);
-  if (cycle) {
-    const seen = new Set<Constraint>();
-    const cs: Constraint[] = [];
-    for (const e of cycle) {
-      if (!seen.has(e.c)) {
-        seen.add(e.c);
-        cs.push(e.c);
-      }
-    }
-    return { ok: false, conflict: { constraints: cs, slack: cycle.reduce((s, e) => s + e.w, 0) } };
-  }
+  if (cycle) return { ok: false, conflict: conflictOf(cycle) };
   // Upper bounds: shortest paths from ORIGIN. Lower bounds: shortest paths to ORIGIN,
   // i.e. from ORIGIN in the reversed graph.
   const fwd = shortest(n, es, 0);

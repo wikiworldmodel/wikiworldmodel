@@ -1,0 +1,83 @@
+id: life/occurrences/little-foot-sterkfontein
+kind: occurrence
+summary: >-
+  Little Foot, StW 573, a nearly complete australopith skeleton from the Silberberg Grotto at
+  Sterkfontein, South Africa. Its age is disputed: the breccia around it and the flowstones in it give
+  very different dates.
+same_as: { wikidata: Q278863 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Little Foot (StW 573), Sterkfontein" }
+    unsourced: An editorial label, from the skeleton's names and the site.
+  identified:
+    prop: identified_as
+    value: Australopithecus prometheus
+    source:
+      ref: src:granger-2022-sterkfontein
+      loc: Introduction
+      quote: "places the A. prometheus skeleton StW 573 from the Silberberg Grotto"
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source: { ref: src:granger-2015-sterkfontein, loc: abstract }
+  location:
+    prop: location
+    value: { lat: -26.01583333, lon: 27.73444444, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-little-foot, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-701
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-granger-2015:
+    prop: date
+    value: { mean: 3.67 Ma, sd: 0.16 Myr }
+    source:
+      ref: src:granger-2015-sterkfontein
+      loc: abstract
+      quote: "it was deposited 3.67 ± 0.16 million years ago, far earlier than the 2.2 million year flowstones found within it"
+    method: radiometric/cosmogenic
+    rank: preferred
+    note: >-
+      An isochron burial date on the breccia that holds the skeleton, from aluminium-26 and
+      beryllium-10. The abstract does not state the ± level, so it is read as 1σ. Preferred because it
+      dates the sediment around the skeleton, and the authors show the flowstones fill later cavities.
+      The same group's later dating of Member 4 (Granger et al. 2022) is consistent with it.
+  date-kramers-dirks-2017:
+    prop: date
+    value: { lo: 2.8 Ma }
+    source:
+      ref: src:kramers-dirks-2017-little-foot
+      loc: abstract
+      quote: "data from one of these fragments point to a maximum age of 2.8 Ma for the sediment package and therefore also for the fossil"
+    method: radiometric/cosmogenic
+    note: >-
+      A reinterpretation of Granger et al.'s data: a chert fragment gives a maximum age, and sediment
+      re-deposited from an upper chamber could yield an isochron much older than its deposition.
+  date-walker-2006:
+    prop: date
+    value: 2.2 Ma
+    source:
+      ref: src:walker-2006-stw-573
+      loc: abstract
+      quote: "yield ages of 2.17 +/- 0.17 million years ago (Ma) and 2.24(-0.07)(+0.09) Ma, respectively, indicating an age for StW 573 of close to 2.2 Ma"
+    method: radiometric/u-pb
+    rank: deprecated
+    note: >-
+      Uranium-lead on flowstones above and below the skeleton. Granger et al. (2015) find that dated
+      flowstones at Sterkfontein fill cavities in breccias already cemented, so they do not bracket it.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/hominini
+    source:
+      - { ref: src:granger-2022-sterkfontein, loc: Introduction }
+      - { ref: src:granger-2015-sterkfontein, loc: abstract }
+    note: >-
+      An australopith, in a group for now: the sources read assign it to Australopithecus prometheus,
+      which has no record here, a species Granger et al. describe as recognized alongside
+      Australopithecus africanus at Sterkfontein.

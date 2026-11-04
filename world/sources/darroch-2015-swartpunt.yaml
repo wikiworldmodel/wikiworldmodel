@@ -1,0 +1,31 @@
+id: src:darroch-2015-swartpunt
+type: publication
+kind: measurement
+citation: >-
+  Darroch, S.A.F., Sperling, E.A., Boag, T.H., Racicot, R.A., Mason, S.J., Morgan, A.S., Tweedt,
+  S., Myrow, P., Johnston, D.T., Erwin, D.H. & Laflamme, M. (2015). Biotic replacement and mass
+  extinction of the Ediacara biota. Proceedings of the Royal Society B: Biological Sciences
+  282(1814), 20151003.
+authors:
+  - "Darroch, S.A.F."
+  - "Sperling, E.A."
+  - "Boag, T.H."
+  - "Racicot, R.A."
+  - "Mason, S.J."
+  - "Morgan, A.S."
+  - "Tweedt, S."
+  - "Myrow, P."
+  - "Johnston, D.T."
+  - "Erwin, D.H."
+  - "Laflamme, M."
+published: 2015
+title: "Biotic replacement and mass extinction of the Ediacara biota"
+container: "Proceedings of the Royal Society B: Biological Sciences 282(1814), 20151003"
+doi: 10.1098/rspb.2015.1003
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read at PubMed Central (PMC4571692): the fossil beds at Farm Swartpunt in the
+    Urusis Formation, the dated ash beds below them, and the age of the Mistaken Point
+    assemblages it compares them with. Quotes checked by script against that text. Metadata
+    from Crossref.

@@ -1,0 +1,112 @@
+id: people/domestication/dog
+kind: development
+summary: >-
+  The domestication of the dog from the grey wolf: the first domestic animal, and the only one from
+  the Pleistocene. When, where and how many times are all open. Bones generally accepted as dogs
+  begin about 15,000 years ago, while genetic estimates and disputed fossils reach to 40,000; the
+  east of Eurasia, southern East Asia and a double origin, east and west, have all been argued from
+  genomes. Records here keep each reading, and the disputed fossils do not bind the date.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Dog domestication }
+    unsourced: An editorial label.
+  start-larson-2012:
+    prop: start
+    value: { hi: 15 ka }
+    source:
+      - ref: src:larson-2012-dogs
+        loc: Conclusion
+        quote: "Though clear signs of the dog domestication process are visible 15,000 y ago"
+      - ref: src:perri-2021-dogs
+        loc: "The First Dogs"
+        quote: "The earliest generally accepted dog dates to ∼15 ka (from the site of Bonn-Oberkassel, discussed below)."
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      A limit from the fossils only, open at the earlier end: dogs existed by then, and how much
+      earlier is what the other claims dispute. Dates here come from the record of the bones, with
+      no estimate of when the process began.
+  start-perri-2021:
+    prop: start
+    value: { hi: 23 ka }
+    source:
+      ref: src:perri-2021-dogs
+      loc: abstract
+      quote: "it suggests that dogs were domesticated in Siberia by ∼23,000 y ago"
+    method: molecular-clock
+    note: >-
+      From the matching divergences of dog and human lineages in Siberia and the Americas. A
+      hypothesis, by the paper's own account.
+  start-botigue-2017:
+    prop: start
+    value: { lo: 40 ka, hi: 20 ka }
+    source:
+      ref: src:botigue-2017-dogs
+      loc: abstract
+      quote: "we narrow the timing of dog domestication to 20,000–40,000 years ago"
+    method: molecular-clock
+    note: >-
+      Mutation rate calibrated on a 7,000-year-old dog. Divergence between dogs and wolves need not
+      mark domestication itself.
+  start-wang-2016:
+    prop: start
+    value: 33 ka
+    source:
+      ref: src:wang-2016-dogs
+      loc: abstract
+      quote: "indicating an ancient origin of domestic dogs in southern East Asia 33 000 years ago"
+    method: molecular-clock
+  location-eastern-eurasia:
+    prop: location
+    value: { lat: 60, lon: 105, frame: frame:earth/present-day }
+    source:
+      - ref: src:bergstrom-2022-wolves
+        loc: abstract
+        quote: "dogs are overall more closely related to ancient wolves from eastern Eurasia than to those from western Eurasia, suggesting a domestication process in the east"
+      - ref: src:perri-2021-dogs
+        loc: abstract
+        quote: "it suggests that dogs were domesticated in Siberia by ∼23,000 y ago"
+      - { ref: src:wikidata-siberia, loc: "P625 coordinate location" }
+    method: editorial
+    rank: preferred
+    note: >-
+      The gazetteer's point for Siberia, as a marker for the east of Eurasia. Preferred because 72
+      ancient wolf genomes are the most direct evidence read, but no ancient wolf matches the dog's
+      ancestors, and dogs in the Near East and Africa carry up to half their ancestry from a second
+      wolf population, by admixture or a separate domestication.
+  location-southern-east-asia:
+    prop: location
+    value: { lat: 25.049444, lon: 102.708889, frame: frame:earth/present-day }
+    source:
+      - ref: src:wang-2016-dogs
+        loc: abstract
+        quote: "dogs from southern East Asia have significantly higher genetic diversity compared to other populations, and are the most basal group relating to gray wolves"
+      - { ref: src:wikidata-yunnan, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Read from living dogs. Larson et al. (2012) warn that basal position in modern dogs tells of
+      isolation, not of age. Marked at the gazetteer's point for Yunnan.
+  location-western-eurasia:
+    prop: location
+    value: { lat: 50.713889, lon: 7.166667, frame: frame:earth/present-day }
+    source:
+      - ref: src:frantz-2016-dogs
+        loc: abstract
+        quote: "dogs may have been domesticated independently in Eastern and Western Eurasia from distinct wolf populations"
+      - ref: src:botigue-2017-dogs
+        loc: abstract
+        quote: "We find no genetic evidence to support the recent hypothesis proposing dual origins of dog domestication."
+      - { ref: src:wikidata-oberkassel, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      The western of the two origins Frantz et al. propose, marked at Oberkassel; the eastern falls
+      with the preferred claim. Botigué et al. reject it, and Bergström et al. (2022) leave open a
+      separate process for the second ancestry they find.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-401
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

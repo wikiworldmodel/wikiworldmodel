@@ -1,0 +1,28 @@
+id: src:conze-1880-ergebnisse-pergamon
+type: publication
+kind: eyewitness
+citation: >-
+  Conze, A., Humann, C., Bohn, R., Stiller, H., Lolling, G. & Raschdorff, O. (1880). Die Ergebnisse der
+  Ausgrabungen zu Pergamon: vorläufiger Bericht. Berlin: Weidmannsche Buchhandlung. Offprint from the
+  Jahrbuch der Königlich Preussischen Kunstsammlungen, vol. 1.
+authors:
+  - "Conze, A."
+  - "Humann, C."
+  - "Bohn, R."
+  - "Stiller, H."
+  - "Lolling, G."
+  - "Raschdorff, O."
+published: 1880
+title: "Die Ergebnisse der Ausgrabungen zu Pergamon: vorläufiger Bericht"
+url: https://archive.org/details/dieergebnisseder00conz
+license: public-domain
+reliability: The excavators' first report, with Humann's own narrative of the digging and the shipping.
+verified:
+  by: machine:claude-code
+  how: >-
+    Humann's history of the undertaking (Geschichte der Unternehmung, pp. 8-34) read in the Internet
+    Archive's OCR text of two scans (dieergebnisseder00conz and dieergebnisseder00conz_0). Both print
+    "Am Montag den 9. September 1879" for the first day of the dig (p. 17); 9 September was a Monday in
+    1878, and the narrative runs from 1878, so this looks like a misprint, and no quotation rests on it.
+    Pages follow the running heads. Quotations checked by script with whitespace normalized and a hyphen
+    at a line end read as joined.

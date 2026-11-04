@@ -1,0 +1,95 @@
+id: people/dispersals/denisova-11
+kind: occurrence
+summary: >-
+  The genome of a female from Denisova Cave in the Altai, at least 13 years old when she died, who
+  had a Neanderthal mother and a Denisovan father: not a modern human, but the most direct record of
+  how archaic groups mixed when they met.
+same_as: { wikidata: Q56233289 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Denisova 11 }
+    source:
+      ref: src:slon-2018-denisova-11
+      loc: "Figure 2 legend"
+      quote: "Denisova 11 carries both Neandertal and Denisovan ancestry."
+  identified:
+    prop: identified_as
+    value: Neanderthal–Denisovan offspring
+    source:
+      ref: src:slon-2018-denisova-11
+      loc: abstract
+      quote: "a first-generation Neanderthal-Denisovan offspring"
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:slon-2018-denisova-11
+      loc: abstract
+      quote: "Here we present the genome of"
+  location:
+    prop: location
+    value: { lat: 51.397581, lon: 84.676206, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-denisova-cave, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-401
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 140 ka, hi: 80 ka }
+    source:
+      ref: src:douka-2019-denisova
+      loc: abstract
+      quote: "as well as Denisova 11, the daughter of a Neanderthal and a Denisovan4-date to between 80,000 and 140,000 years ago"
+    method: radiometric
+    note: >-
+      A Bayesian model combining radiocarbon, uranium-series and optical ages with stratigraphic and
+      genetic data, not a date on the bone itself.
+  earlier-than-slon-2018:
+    prop: earlier_than
+    value: 50 ka
+    source:
+      ref: src:slon-2018-denisova-11
+      loc: "main text, on the specimen"
+      quote: "direct radiocarbon dating showed it to be >50,000 years old"
+    method: radiometric/radiocarbon
+    note: The direct date on the bone, past the reach of radiocarbon, so one-sided.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        A Neanderthal mother, from a population closer to the Neanderthals who lived later in Europe
+        than to an earlier Neanderthal from the cave, and a Denisovan father, with traces of
+        Neanderthal ancestry of his own, from a population related to a later Denisovan from the
+        cave.
+    source:
+      - ref: src:slon-2018-denisova-11
+        loc: abstract
+        quote: "it comes from an individual who had a Neanderthal mother and a Denisovan father"
+      - ref: src:slon-2018-denisova-11
+        loc: abstract
+        quote: "The father, whose genome bears traces of Neanderthal ancestry, came from a population related to a later Denisovan found in the cave"
+      - ref: src:slon-2018-denisova-11
+        loc: abstract
+        quote: "The mother came from a population more closely related to Neanderthals who lived later in Europe"
+relations:
+  taxon-mother:
+    rel: member-of
+    to: life/taxa/homo-neanderthalensis
+    source:
+      ref: src:slon-2018-denisova-11
+      loc: abstract
+      quote: "it comes from an individual who had a Neanderthal mother and a Denisovan father"
+    note: A first-generation offspring, so she belongs to both her parents' groups.
+  taxon-father:
+    rel: member-of
+    to: life/taxa/denisovans
+    source:
+      ref: src:slon-2018-denisova-11
+      loc: abstract
+      quote: "it comes from an individual who had a Neanderthal mother and a Denisovan father"

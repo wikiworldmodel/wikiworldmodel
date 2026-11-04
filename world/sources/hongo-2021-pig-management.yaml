@@ -1,0 +1,20 @@
+id: src:hongo-2021-pig-management
+type: publication
+kind: review
+citation: >-
+  Hongo, H., Kikuchi, H. & Nasu, H. (2021). Beginning of pig management in Neolithic China:
+  comparison of domestication processes between northern and southern regions. Animal Frontiers
+  11(3), 30–42.
+authors:
+  - "Hongo, H."
+  - "Kikuchi, H."
+  - "Nasu, H."
+published: 2021
+title: "Beginning of pig management in Neolithic China: comparison of domestication processes between northern and southern regions"
+container: "Animal Frontiers 11(3), 30–42"
+doi: 10.1093/af/vfab021
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC8214443) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

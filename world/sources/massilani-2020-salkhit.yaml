@@ -1,0 +1,20 @@
+id: src:massilani-2020-salkhit
+type: publication
+kind: measurement
+citation: >-
+  Massilani, D., Skov, L., Hajdinjak, M., … & Pääbo, S. (2020). Denisovan ancestry and population
+  history of early East Asians. Science 370(6516), 579–583.
+authors:
+  - "Massilani, D."
+  - "Skov, L."
+  - "Hajdinjak, M."
+  - "Pääbo, S."
+published: 2020
+title: "Denisovan ancestry and population history of early East Asians"
+container: "Science 370(6516), 579–583"
+doi: 10.1126/science.abc1166
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

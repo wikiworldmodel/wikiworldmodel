@@ -1,0 +1,18 @@
+id: people/polities/han
+kind: polity
+summary: >-
+  The Han dynasty of China. Written for the rulers that hold office in it: its end is the borders dataset's last year, and it starts with its
+  first ruler's reign, on a day the dataset's first row, by the year, cannot be set against. Its land is drawn from those
+  rows as they are, not as a territory of this record.
+author: machine:claude-code
+same_as: { wikidata: Q1068371 }
+claims:
+  name:
+    prop: name
+    value: { en: Han dynasty }
+    unsourced: An editorial label, in English.
+  end:
+    prop: end
+    value: 237 CE
+    source: { ref: src:cliopatria-0.2.1, loc: 'rows named "Han Dynasty": the latest ToYear' }
+    method: compilation

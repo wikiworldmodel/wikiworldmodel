@@ -1,0 +1,21 @@
+id: src:sonett-1996-tides-lunar-retreat
+type: publication
+kind: measurement
+citation: >-
+  Sonett, C.P., Kvale, E.P., Zakharian, A., Chan, M.A. & Demko, T.M. (1996). Late Proterozoic and
+  Paleozoic tides, retreat of the Moon, and rotation of the Earth. Science 273(5271), 100–104.
+authors:
+  - "Sonett, C.P."
+  - "Kvale, E.P."
+  - "Zakharian, A."
+  - "Chan, M.A."
+  - "Demko, T.M."
+published: 1996
+title: Late Proterozoic and Paleozoic Tides, Retreat of the Moon, and Rotation of the Earth
+container: Science 273(5271), 100–104
+doi: 10.1126/science.273.5271.100
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, from the PubMed record (PMID 8688061) through Europe PMC. Quotes checked by
+    script against that abstract. Metadata from Crossref.

@@ -1,0 +1,18 @@
+id: src:webby-2002-ordovician-reefs
+type: publication
+kind: review
+citation: >-
+  Webby, B.D. (2002). Patterns of Ordovician reef development. In Kiessling, W., Flügel, E. &
+  Golonka, J. (eds), Phanerozoic Reef Patterns. SEPM Special Publication 72, 129–179.
+authors:
+  - "Webby, B.D."
+published: 2002
+title: "Patterns of Ordovician reef development"
+container: Phanerozoic Reef Patterns, SEPM Special Publication 72, 129–179
+doi: 10.2110/pec.02.72.0129
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

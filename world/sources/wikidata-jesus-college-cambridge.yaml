@@ -1,0 +1,12 @@
+id: src:wikidata-jesus-college-cambridge
+type: database-record
+kind: compilation
+citation: "Wikidata, item Q1146700 (Jesus College, University of Cambridge), property P625 (coordinate location)."
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q1146700
+license: CC0-1.0
+reliability: A crowd-edited gazetteer entry; adequate for placing a marker to within a few hundred metres.
+verified:
+  by: machine:claude-code
+  how: Coordinates (52.209111, 0.123389) read from the item's JSON (Special:EntityData/Q1146700.json).

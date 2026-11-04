@@ -1,0 +1,103 @@
+id: life/transitions/multicellularity
+kind: event/transition
+summary: >-
+  Eukaryotes made of many cells. The date depends on what is accepted: filaments of cells in the late Palaeoproterozoic,
+  Bangiomorpha a billion years ago as the oldest assigned to a living group, and centimetre-sized structures in Gabon at 2.1 Ga,
+  whose makers are contested. This record marks the first appearance in any lineage.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Multicellular eukaryotes }
+    unsourced: An editorial label.
+  start-miao-2024:
+    prop: start
+    value: 1635 Ma
+    source:
+      ref: src:miao-2024-qingshania
+      loc: abstract
+      quote: "Here, we report cellularly preserved multicellular microfossils (Qingshania magnifica) from the ~1635-million-year-old Chuanlinggou Formation, North China."
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      With cells preserved, and dated from an ash bed above; nothing read doubts that they are multicellular eukaryotes, and only
+      whether they are algae is open (Javaux 2025: "possible"). Preferred over the fragment below and the contested structures in
+      Gabon. Stated with "~": the occurrence records the bound itself, an ash above the fossils at 1634.8 ± 6.9 Ma.
+  start-javaux-2025:
+    prop: start
+    value: { ref: life/occurrences/mcdermott-assemblage }
+    source:
+      ref: src:javaux-2025-mcdermott
+      loc: "Possible and unambiguous eukaryotes"
+      quote: "A fragment of multicellular unsheathed thin-walled filament"
+    note: >-
+      Older, and one fragment: "this single fragment" is the author's own phrase, and it is what pushes multicellularity back in this
+      assemblage. Not preferred for that reason.
+  start-bangiomorpha:
+    prop: start
+    value: { ref: life/occurrences/bangiomorpha-somerset-island }
+    source:
+      ref: src:javaux-2025-mcdermott
+      loc: "Earliest eukaryotes in a possible micro-/nano-oxic niche"
+      quote: "An early LECA is consistent with the fossil record of late Mesoproterozoic multicellular algae (1.05 Ga Bangiomorpha pubescens [51]"
+    note: >-
+      The oldest multicellular fossil assigned with confidence to a living group, so the date for those who accept only that.
+  start-bengtson-2017:
+    prop: start
+    value: 1600 Ma
+    source:
+      - ref: src:bengtson-2017-vindhyan
+        loc: abstract
+        quote: "The ~1.6 Ga Tirohan Dolomite of the Lower Vindhyan in central India contains phosphatized stromatolitic microbialites."
+      - ref: src:javaux-2025-mcdermott
+        loc: "Interpreting the body fossil record"
+        quote: "The age of these fossils is proposed to be 1.6 Ga [54] but could be as young as 1.07 Ga, depending on correlations [127]."
+    method: stratigraphic
+    note: >-
+      Filaments and lobed thalli read as red algae, in India. Both the identity and the age are questioned, and no occurrence is written
+      for them here.
+  start-el-albani-2010:
+    prop: start
+    value: { ref: life/occurrences/francevillian-fb2 }
+    source:
+      - ref: src:el-albani-2010-francevillian
+        loc: abstract
+        quote: "may be seen as ancient representatives of multicellular life"
+      - ref: src:anderson-2024-proterozoic-microfossils
+        loc: "Recognizing early fossil eukaryotes and their diversity"
+        quote: "have also all been allied to eukaryotes but without conclusive evidence; other origins either as bacteria or as non-biogenic structures exist"
+    note: >-
+      Some 350 million years older than anything else claimed here. The discoverers argue for coordinated growth; Anderson et al. do not
+      accept that the structures are shown to be eukaryotes, or even biological, and Javaux (2025) says of the smooth vesicles in the same
+      rocks that they could be eukaryotic or prokaryotic.
+relations:
+  evidence-qingshania:
+    rel: evidenced-by
+    to: life/occurrences/qingshania-kuancheng
+    source:
+      ref: src:miao-2024-qingshania
+      loc: abstract
+      quote: "cellularly preserved multicellular microfossils (Qingshania magnifica)"
+  evidence-bangiomorpha:
+    rel: evidenced-by
+    to: life/occurrences/bangiomorpha-somerset-island
+    source:
+      ref: src:javaux-2025-mcdermott
+      loc: "Earliest eukaryotes in a possible micro-/nano-oxic niche"
+      quote: "late Mesoproterozoic multicellular algae (1.05 Ga Bangiomorpha pubescens [51]"
+  evidence-mcdermott:
+    rel: evidenced-by
+    to: life/occurrences/mcdermott-assemblage
+    source:
+      ref: src:javaux-2025-mcdermott
+      loc: "Possible and unambiguous eukaryotes"
+      quote: "A fragment of multicellular unsheathed thin-walled filament"
+  evidence-francevillian:
+    rel: evidenced-by
+    to: life/occurrences/francevillian-fb2
+    source:
+      ref: src:el-albani-2014-francevillian
+      loc: "Discussion"
+      quote: "We have earlier proposed that the flexible sheets with radial fabric represent colonial organisms showing incipient multicellular organization"
+    note: >-
+      Contested: see the competing start.

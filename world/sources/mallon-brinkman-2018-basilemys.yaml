@@ -1,0 +1,19 @@
+id: src:mallon-brinkman-2018-basilemys
+type: publication
+kind: measurement
+citation: >-
+  Mallon, J.C. & Brinkman, D.B. (2018). Basilemys morrinensis, a new species of nanhsiungchelyid
+  turtle from the Horseshoe Canyon Formation (Upper Cretaceous) of Alberta, Canada. Journal of
+  Vertebrate Paleontology 38(2), e1431922.
+authors:
+  - "Mallon, J.C."
+  - "Brinkman, D.B."
+published: 2018
+title: "Basilemys morrinensis, a new species of nanhsiungchelyid turtle from the Horseshoe Canyon Formation (Upper Cretaceous) of Alberta, Canada"
+container: "Journal of Vertebrate Paleontology 38(2), e1431922"
+doi: 10.1080/02724634.2018.1431922
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as a copy of the publisher's page archived at web.archive.org; quotes checked
+    by script against it.

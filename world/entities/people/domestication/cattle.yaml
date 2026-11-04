@@ -1,0 +1,80 @@
+id: people/domestication/cattle
+kind: development
+summary: >-
+  The domestication of taurine cattle from the aurochs in southwest Asia. The usual account has
+  it begin about 8500 BCE in the upper Euphrates valley, on slight changes in bone size at Dja'de.
+  Arbuckle and Kassebaum argue that this early change is a mirage, that
+  cattle with a domestic body appear only in the eighth millennium BCE, and that management began
+  earlier over a wide area. Zebu cattle were domesticated separately, not recorded here.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Taurine cattle domestication }
+    unsourced: An editorial label.
+  start-zeder-2008:
+    prop: start
+    value: { lo: 11 ka, hi: 10 ka }
+    source:
+      ref: src:zeder-2008-mediterranean
+      loc: "Initial Animal Domestication in the Fertile Crescent"
+      quote: "taurine cattle were initially domesticated somewhere in the upper Eu-phrates Valley between ca. 11,000 and 10,000 B.P."
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      Ages in this paper are calibrated. Rests on Helmer et al. (2005), not read here, which is what
+      Arbuckle and Kassebaum dispute.
+  start-verdugo-2019:
+    prop: start
+    value: 10.5 ka
+    source:
+      ref: src:verdugo-2019-cattle
+      loc: Introduction
+      quote: "was domesticated ca. 10,500 BP within the restricted locality of the Upper Euphrates and Tigris drainages of the Fertile Crescent"
+    method: expert-estimate
+    note: >-
+      Stated from the same zooarchaeology, as background to the genomes.
+  start-arbuckle-kassebaum-2021:
+    prop: start
+    value: { hi: 8000 BCE }
+    source:
+      ref: src:arbuckle-kassebaum-2021-cattle
+      loc: Introduction
+      quote: "the management of cattle must have preceded changes in phenotype and likely emerged a millennium or more earlier across a wide geographic region"
+    method: expert-estimate
+    note: >-
+      A millennium or more before phenotypes of the eighth millennium BCE; so before about 8000 BCE,
+      with no earlier limit.
+  location-upper-euphrates:
+    prop: location
+    value: { lat: 36.383306, lon: 38.183278, frame: frame:earth/present-day }
+    source:
+      - ref: src:zeder-2008-mediterranean
+        loc: "Initial Animal Domestication in the Fertile Crescent"
+        quote: "taurine cattle were initially domesticated somewhere in the upper Eu-phrates Valley"
+      - ref: src:verdugo-2019-cattle
+        loc: "main text, closing summary"
+        quote: "Bos taurus were initially derived from a restricted northern Fertile Crescent genetic background"
+      - { ref: src:wikidata-djade, loc: "P625 coordinate location" }
+    method: editorial
+    rank: preferred
+    note: >-
+      Marked at Dja'de el-Mughara.
+  location-levant:
+    prop: location
+    value: { lat: 33.4, lon: 36.55, frame: frame:earth/present-day }
+    source:
+      - ref: src:arbuckle-kassebaum-2021-cattle
+        loc: Introduction
+        quote: "across a wide geographic region including much of the northern and southern Levant"
+      - { ref: src:wikidata-tell-aswad, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      The other reading, with no single centre. Marked at Tell Aswad, where the paper reports
+      changes in horns before the Pottery Neolithic, as a point in the southern Levant.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

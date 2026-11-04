@@ -1,0 +1,55 @@
+id: earth/day-length/nanfen-formation
+kind: sample
+summary: >-
+  Laminated argillaceous limestones of the Nanfen Formation on the North China craton, whose magnetic
+  susceptibility in three drillcores shows Milankovitch cycles: a day of about 18.9 hours and the Moon
+  at about 54 Earth radii.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Nanfen Formation cycles" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Nanfen Formation
+    source:
+      ref: src:bao-2022-nanfen-length-of-day
+      loc: abstract
+      quote: c. 1.1 Ga laminated argillaceous limestones of the Nanfen Formation from the North China craton
+    note: >-
+      No location is claimed: the abstract, all that could be read, names only the North China craton.
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:bao-2022-nanfen-length-of-day
+      loc: abstract
+      quote: Milankovitch cycles are successfully recognized
+  date:
+    prop: date
+    value: 1.1 Ga
+    source:
+      ref: src:bao-2022-nanfen-length-of-day
+      loc: abstract
+      quote: c. 1.1 Ga laminated argillaceous limestones of the Nanfen Formation from the North China craton
+  day-length:
+    prop: day_length
+    value: { mean: 18.94, sd: 0.39 }
+    source:
+      ref: src:bao-2022-nanfen-length-of-day
+      loc: abstract
+      quote: The Earth–Moon distance and LOD are thus estimated at 3.43 ± 0.04 × 10 8 m and 18.94 ± 0.39 h
+    note: >-
+      The abstract does not say what the ± is: read as 1σ. Mitchell and Kirscher (2023) define this
+      study's error bars as the difference between the mean of its estimates and the one furthest from it.
+  moon-distance:
+    prop: moon_distance
+    value: { mean: 53.78, sd: 0.63 }
+    source:
+      ref: src:bao-2022-nanfen-length-of-day
+      loc: abstract
+      quote: The Earth–Moon distance and LOD are thus estimated at 3.43 ± 0.04 × 10 8 m and 18.94 ± 0.39 h
+    note: >-
+      The abstract gives 3.43 ± 0.04 × 10⁸ m, read as 1σ: 343,000 ± 4,000 km. In Earth radii of 6378.1366
+      km (Farhat et al. 2022, Table D.3): 343,000 / 6378.1366 = 53.78 and 4,000 / 6378.1366 = 0.63.

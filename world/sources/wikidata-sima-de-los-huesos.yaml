@@ -1,0 +1,16 @@
+id: src:wikidata-sima-de-los-huesos
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q28952348 (Sima de los Huesos, a cave and Palaeolithic site in Spain), property
+  P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q28952348
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry with a rounded point.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (42.35, -3.5) read from the item through the wbgetentities API on 4 November 2026.

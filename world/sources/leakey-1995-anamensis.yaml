@@ -1,0 +1,21 @@
+id: src:leakey-1995-anamensis
+type: publication
+kind: measurement
+citation: >-
+  Leakey, M.G., Feibel, C.S., McDougall, I. & Walker, A. (1995). New four-million-year-old hominid
+  species from Kanapoi and Allia Bay, Kenya. Nature 376(6541), 565–571.
+authors:
+  - "Leakey, M.G."
+  - "Feibel, C.S."
+  - "McDougall, I."
+  - "Walker, A."
+published: 1995
+title: "New four-million-year-old hominid species from Kanapoi and Allia Bay, Kenya"
+container: "Nature 376(6541), 565–571"
+doi: 10.1038/376565a0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 7637803): a new species of Australopithecus from
+    Kanapoi and Allia Bay, between about 3.9 and 4.2 million years old. Quoted passages checked by
+    script against the text retrieved.

@@ -35,6 +35,14 @@ export const MAT = {
   dentil: 28,
   frieze: 29,
   pool: 30,
+  hide: 31,
+  horn: 32,
+  shell: 33,
+  fur: 34,
+  needle: 35,
+  frond: 36,
+  bark: 37,
+  broad: 38,
 } as const;
 
 export type Material = (typeof MAT)[keyof typeof MAT];

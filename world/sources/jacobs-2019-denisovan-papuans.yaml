@@ -1,0 +1,20 @@
+id: src:jacobs-2019-denisovan-papuans
+type: publication
+kind: measurement
+citation: >-
+  Jacobs, G.S., Hudjashov, G., Saag, L., … & Cox, M.P. (2019). Multiple Deeply Divergent Denisovan
+  Ancestries in Papuans. Cell 177(4), 1010–1021.e32.
+authors:
+  - "Jacobs, G.S."
+  - "Hudjashov, G."
+  - "Saag, L."
+  - "Cox, M.P."
+published: 2019
+title: "Multiple Deeply Divergent Denisovan Ancestries in Papuans"
+container: "Cell 177(4), 1010–1021.e32"
+doi: 10.1016/j.cell.2019.02.035
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

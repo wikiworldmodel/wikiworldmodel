@@ -1,0 +1,18 @@
+id: src:wikipedia-long-count
+type: database-record
+kind: review
+citation: >-
+  "Mesoamerican Long Count calendar." Wikipedia, the free encyclopedia (English edition).
+snapshot: 2026-11-04
+title: Mesoamerican Long Count calendar
+container: Wikipedia
+url: https://en.wikipedia.org/wiki/Mesoamerican_Long_Count_calendar
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for the value of the correlation constant between
+  the Long Count and day numbers, which the Maya sources read here do not state.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-04; the quotation checked by script against
+    its text.

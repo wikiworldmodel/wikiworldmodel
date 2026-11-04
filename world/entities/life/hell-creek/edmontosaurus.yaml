@@ -1,0 +1,78 @@
+id: life/taxa/edmontosaurus
+kind: taxon
+summary: >-
+  The flat-headed hadrosaur Edmontosaurus, here E. annectens, which older records in the
+  snapshot call Anatosaurus. A single bonebed in the Hell Creek Formation of South Dakota, the
+  Ruth Mason quarry, records a whole population.
+same_as: { pbdb: "txn:38761" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Edmontosaurus", en: "Edmontosaurus" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 38761"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: hadrosaur
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: facultative-quadruped
+    source:
+      ref: src:maidment-2012-ornithischian-stance
+      loc: "Discussion"
+      quote: "large ornithopods and hadrosaurs walked quadrupedally at least some of the time: consequently, their forelimb elements would need to be adapted to this behaviour to some extent, even if they were not obligate quadrupeds"
+  length-morris-1970:
+    prop: body_length
+    value: 12.19
+    source:
+      - ref: src:morris-1970-hadrosaur-bills
+        loc: "Bill morphology of Anatosaurus cf. A. annectens (LACM 23502)"
+        quote: "The specimen is a mature individual approximately forty feet long."
+      - ref: src:morris-1970-hadrosaur-bills
+        loc: "Introduction"
+        quote: "from the Hell Creek beds of Montana"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      LACM 23502, forty feet converted: an approximate statement, not a measurement. Preferred
+      as the only length read of a mature Hell Creek animal.
+  length-holtz-2012:
+    prop: body_length
+    value: 12
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 48, Edmontosaurinins, under Anatosaurus"
+      quote: "* Anatosaurus duck reptile Late Cretaceous (66.8-65.5 MYA) 39.4 ft (12 m) Elephant"
+    method: compilation
+    note: >-
+      The late species, which Holtz lists under Anatosaurus; one figure for all of it, with no
+      measurement behind it.
+  mass-wosik-evans-2022:
+    prop: body_mass
+    value: 5595
+    source:
+      ref: src:wosik-evans-2022-edmontosaurus
+      loc: "section 5, Discussion"
+      quote: "the average asymptotic body mass was ~5595 kg, whereas the maximum was ~6075 kg"
+    method: model
+    rank: preferred
+    note: >-
+      A growth curve of the Ruth Mason Dinosaur Quarry bonebed, Hell Creek Formation of South
+      Dakota. Preferred as the grown size of a Hell Creek population rather than of one large
+      individual.
+  mass-benson-2014:
+    prop: body_mass
+    value: 6610.08
+    source:
+      ref: src:benson-2014-dinosaur-body-mass
+      loc: "Dataset S1, sheet \"Mass estimates\", row Edmontosaurus_annectens (AMNH 5730)"
+      quote: "Edmontosaurus_annectens 6610.07935956202 6610.07935956202 measured circumferences"
+    method: model
+    note: >-
+      One of the largest skeletons known, which Wosik & Evans put at about 6603 kg.

@@ -1,0 +1,99 @@
+id: earth/day-length/qiongzhusi-formation
+kind: sample
+summary: >-
+  Gamma-ray logs and Fe/Al records of the early Cambrian Qiongzhusi Formation in the Well A borehole at
+  Leshan, Sichuan, South China, from which two independent approaches give two estimates of the day,
+  about 21.3 and 21.8 hours.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Qiongzhusi Formation, Well A" }
+    unsourced: An editorial label, from the rock unit and the borehole.
+  formation:
+    prop: formation
+    value: Qiongzhusi Formation
+    source:
+      ref: src:zhang-2022-qiongzhusi-cyclostratigraphy
+      loc: abstract
+      quote: early Cambrian Stage 2-Stage 3 Qiongzhusi Formation of the Well A borehole in South China
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:zhang-2022-qiongzhusi-cyclostratigraphy
+      loc: abstract
+      quote: are utilized to conduct cyclostratigraphic analysis
+  date:
+    prop: date
+    value: 524 Ma
+    source:
+      ref: src:zhang-2022-qiongzhusi-cyclostratigraphy
+      loc: section 5.4, p. 12
+      quote: in the Early Cambrian (∼524 Ma)
+    note: >-
+      The age the study gives for its estimates, on an astronomical time scale tied to a U–Pb age of 526.2 ±
+      1.9 Ma at the base of the formation in the nearby Maidiping section.
+  location:
+    prop: location
+    value: { lat: 29.5854, lon: 103.75755, frame: frame:earth/present-day }
+    source:
+      - ref: src:wikidata-leshan
+        loc: "P625 coordinate location"
+      - ref: src:zhang-2022-qiongzhusi-cyclostratigraphy
+        loc: section 2.1
+        quote: Well A is located at Leshan City
+    method: gazetteer
+    note: >-
+      A representative point, the gazetteer's for the city: the paper gives no coordinates for the well.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  day-length-timeoptmcmc:
+    prop: day_length
+    value: { mean: 21.80, sd: 0.025 }
+    source:
+      ref: src:zhang-2022-qiongzhusi-cyclostratigraphy
+      loc: section 5.4, p. 12
+      quote: Earth-Moon distance of 371,650 ± 350 km and length of day of 21.80 ± 0.05 h
+    rank: preferred
+    note: >-
+      From a Bayesian inversion of the Fe/Al record between 3480 and 3520 m. The sentence gives 2σ for the
+      precession constant these follow from, so the ± is read as 2σ and halved. Preferred as the method behind
+      the Xiamaling and Walvis Ridge records, which keeps the series comparable; the authors state no
+      preference, and the two estimates disagree beyond their stated uncertainties.
+  day-length-obliquity:
+    prop: day_length
+    value: { mean: 21.29, sd: 0.19 }
+    source:
+      ref: src:zhang-2022-qiongzhusi-cyclostratigraphy
+      loc: section 5.4, p. 12
+      quote: a day length of 21.29 ± 0.19 hr
+    note: >-
+      From an obliquity period of 29.6 ± 0.7 kyr. The ± of that period comes from the resolution of the
+      spectrum, and the ± here is not said to be a σ: read as 1σ.
+  moon-distance-timeoptmcmc:
+    prop: moon_distance
+    value: { mean: 58.27, sd: 0.027 }
+    source:
+      ref: src:zhang-2022-qiongzhusi-cyclostratigraphy
+      loc: section 5.4, p. 12
+      quote: Earth-Moon distance of 371,650 ± 350 km and length of day of 21.80 ± 0.05 h
+    rank: preferred
+    note: >-
+      The ± is read as 2σ, so 175 km; preferred for the reason given for this estimate's day length. In Earth
+      radii of 6378.1366 km (Farhat et al. 2022, Table D.3): 371,650 / 6378.1366 = 58.27 and 175 / 6378.1366
+      = 0.027.
+  moon-distance-obliquity:
+    prop: moon_distance
+    value: { mean: 57.73, sd: 0.20 }
+    source:
+      ref: src:zhang-2022-qiongzhusi-cyclostratigraphy
+      loc: section 5.4, p. 12
+      quote: an Earth-Moon distance of 368,200 ± 1,300 km
+    note: >-
+      The ± is read as 1σ. In Earth radii of 6378.1366 km (Farhat et al. 2022, Table D.3): 368,200 / 6378.1366
+      = 57.73 and 1,300 / 6378.1366 = 0.20.

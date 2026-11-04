@@ -1,0 +1,21 @@
+id: src:rowan-2026-turkana-necking
+type: publication
+kind: measurement
+citation: >-
+  Rowan, C.M., Kolawole, F., Bécel, A., Betka, P. & Rowan, J. (2026). Necking of the active Turkana Rift
+  Zone and the priming of eastern Africa for continental breakup. Nature Communications 17, 3585.
+authors:
+  - "Rowan, C.M."
+  - "Kolawole, F."
+  - "Bécel, A."
+  - "Betka, P."
+  - "Rowan, J."
+published: 2026
+title: Necking of the active Turkana Rift Zone and the priming of eastern Africa for continental breakup
+container: Nature Communications 17, 3585
+doi: 10.1038/s41467-026-71663-x
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC (PMC13106691). It gives no date for the breakup. Citation from
+    Crossref. Quotes checked by script against the text retrieved, after normalizing whitespace.

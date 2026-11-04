@@ -1,0 +1,65 @@
+id: people/trade/yassiada
+kind: event/shipwreck
+summary: >-
+  A Byzantine merchant ship of about 625, wrecked off the islet of Yassıada in the Aegean with some 900 amphorae of wine.
+  Excavated from 1961 to 1964 under George Bass. A steelyard names its captain, the priest Georgios; its coins, nearly all of
+  Heraclius, date it; and its hull, built partly shell-first and partly skeleton-first, marks a stage in how ships were
+  built.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Yassıada seventh-century shipwreck }
+    unsourced: An editorial label, from the place and the century. There are other wrecks at Yassıada.
+  date:
+    prop: date
+    value: { lo: 625 CE, hi: 630 CE }
+    source:
+      ref: src:oxrep-shipwrecks-2.1
+      loc: "Wreck ID 8609, Earliest Date, Latest Date, Comments"
+      quote: "The ship can be dated from 16 gold coins and 50 copper coins to AD 626, as all but one gold coin were issues of the Emperor Heraclius."
+    method: numismatic
+    rank: preferred
+    note: >-
+      The database's range, with its comment on the coins, which give a time after which it sank. The final report (Bass and
+      van Doorninck 1982) was not read.
+  date-ina:
+    prop: date
+    value: 625 CE
+    source: { ref: src:ina-yassiada, loc: heading of the page, quote: "DATE OF WRECK: A.D. 625" }
+    method: expert-estimate
+    note: With no basis given on the page. The Levantine Ceramics Project has it "Dated to the third decade of the 7th c."
+  location:
+    prop: location
+    value: { lat: 36.992777777778, lon: 27.198055555556, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-yassiada, loc: "Q34784485, P625 coordinate location" }
+      - ref: src:ina-yassiada
+        loc: paragraph 1
+        quote: "The wreck lay about 32-39 m deep off Yassıada"
+    method: gazetteer
+    note: The island, not the wreck.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-504
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value: { en: "About 900 amphoras of wine, some of them reused, coated inside with pitch." }
+    source:
+      ref: src:ina-yassiada
+      loc: paragraph 3
+      quote: "The ship was carrying approximately 900 amphoras, coated internally with pitch, and carrying wine."
+  voyage:
+    prop: voyage
+    value: { en: Perhaps supplying the Byzantine troops of Heraclius. }
+    source:
+      - ref: src:levantine-ceramics-yassi-ada
+        loc: description
+        quote: "Possibly engaged in official imperial supply under Heraclius."
+      - ref: src:oxrep-shipwrecks-2.1
+        loc: "Wreck ID 8609, Comments"
+        quote: "The ship may have belonged to the Church and was transporting low-grade wine intended for Byzantine troops."
+    note: A guess from the cargo. INA's page doubts that it was a coastal wine trader. Where it was bound was not found in anything read.

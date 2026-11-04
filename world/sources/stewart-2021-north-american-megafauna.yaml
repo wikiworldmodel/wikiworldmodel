@@ -1,0 +1,20 @@
+id: src:stewart-2021-north-american-megafauna
+type: publication
+kind: measurement
+citation: >-
+  Stewart, M., Carleton, W.C. & Groucutt, H.S. (2021). Climate change, not human population growth,
+  correlates with Late Quaternary megafauna declines in North America. Nature Communications 12,
+  965.
+authors:
+  - "Stewart, M."
+  - "Carleton, W.C."
+  - "Groucutt, H.S."
+published: 2021
+title: "Climate change, not human population growth, correlates with Late Quaternary megafauna declines in North America"
+container: "Nature Communications 12, 965"
+doi: 10.1038/s41467-021-21201-8
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC7886903). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

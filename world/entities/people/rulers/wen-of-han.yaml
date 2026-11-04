@@ -1,0 +1,53 @@
+id: people/rulers/wen-of-han
+kind: person
+summary: >-
+  A son of Gaozu, brought from his kingdom of Dai by the ministers after the fall of the Lü
+  family; a long and peaceful reign that later writers held up as a model.
+author: machine:claude-code
+same_as: { wikidata: Q7221 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Han
+claims:
+  name:
+    prop: name
+    value: { en: Emperor Wen of Han }
+    source:
+      ref: src:chavannes-1897-memoires-historiques-2
+      loc: "ch. 10, p. 487"
+      quote: l'empereur mourut dans le palais Wei-yang
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: 14 November 180 BCE
+    source:
+      ref: src:chavannes-1897-memoires-historiques-2
+      loc: "ch. 9, p. 440"
+      quote: "(14 nov. 180), qui était le dernier jour du mois"
+    method: historical-account
+    note: >-
+      Chavannes' Julian day: the day he reached Chang'an, when the ministers brought him the
+      seal and raised him to Son of Heaven. His birth is not dated in anything read here.
+  end:
+    prop: end
+    value: 6 July 157 BCE
+    source:
+      ref: src:chavannes-1897-memoires-historiques-2
+      loc: "ch. 10, p. 487"
+      quote: "(6 juillet 157 av. J.-C.)"
+    method: historical-account
+    note: >-
+      Chavannes' Julian day, in the seventh year of the second period of the reign, for the day
+      he died in the Weiyang palace.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/han
+    source:
+      ref: src:chavannes-1897-memoires-historiques-2
+      loc: "ch. 9, p. 440"
+      quote: "(14 nov. 180), qui était le dernier jour du mois"
+    note: Emperor.

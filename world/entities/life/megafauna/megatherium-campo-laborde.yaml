@@ -1,0 +1,72 @@
+id: life/megafauna/megatherium-campo-laborde
+kind: occurrence
+summary: >-
+  A giant ground sloth killed and butchered at the edge of a swamp at Campo Laborde, in the Pampas
+  of Argentina, about 12,600 years ago, with stone tools among the bones: the only confirmed giant
+  ground sloth kill site in the Americas.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Giant ground sloth, Campo Laborde" }
+    unsourced: An editorial label, from the taxon and the site name.
+  identified:
+    prop: identified_as
+    value: Megatherium americanum
+    source:
+      ref: src:politis-2019-campo-laborde
+      loc: Results
+      quote: "One individual each of three extinct megafauna taxa was identified: a giant ground sloth (M. americanum) and two glyptodonts (Neosclerocalyptus sp. and Doedicurus sp.)."
+  evidence:
+    prop: evidence
+    value: body-fossil
+    unsourced: "Read from the record's own sources and summary: bones."
+  location:
+    prop: location
+    value: { lat: -37, lon: -60.384724, frame: frame:earth/present-day }
+    source: { ref: src:prates-perez-2021-south-america, loc: "Supplementary Data 4, row Megatherium americanum, Campo Laborde" }
+    method: compilation
+    note: >-
+      A compiled point, not a survey, with its latitude rounded. Politis et al. put the site in the
+      upper basin of Tapalqué Creek, ~15 km north-northeast of Olavarría, which fits this point and
+      the same table's Arroyo Tapalqué finds (-36.73, -60.18) better than the point in the paper's
+      Supplementary Data 2 (-37.05, -61.1), 0.7° further west.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-290
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date-politis-2019:
+    prop: date
+    value: { lo: 12677 BP, hi: 12547 BP }
+    source:
+      - ref: src:politis-2019-campo-laborde
+        loc: "Table 1, row CAMS-171852"
+        quote: "Accepted age is 10,655 ± 35 14C years BP (CAMS-171852) due to having the highest mass bone (3.058 g) and lowest SD."
+      - ref: src:politis-2019-campo-laborde
+        loc: abstract
+        quote: "at 12,600 cal years BP"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      XAD-purified collagen from a metacarpal, FCS.CLA.154. The range is Table 1's calibration at 2σ
+      (95.4%), 12,547–12,677 cal BP. Preferred because Politis et al. show that humates remaining in
+      the collagen made the earlier dates too young.
+  date-holocene:
+    prop: date
+    value: { lo: 11982 BP, hi: 10250 BP }
+    source:
+      ref: src:politis-2019-campo-laborde
+      loc: "2016–2017 AMS 14C dating program; Table 1, row AA-71665"
+      quote: "that was first dated in 2007 as 9730 ± 290 14C years BP (AA-71665; table S3) and was redated"
+    method: radiometric/radiocarbon
+    rank: deprecated
+    note: >-
+      The first date on the same bone, calibrated in Table 1 to 10,250–11,982 cal BP, which made the
+      site evidence for Holocene survival. Superseded by the redating above.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/megatherium-americanum
+    source: { ref: src:politis-2019-campo-laborde, loc: abstract }

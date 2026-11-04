@@ -1,0 +1,28 @@
+id: src:pbdb/collection-84333
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 84333 ("Cowie Harbour, Stonehaven (NMS collection)",
+  UK), occurrence 1204297. Read through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=84333
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, gives "data_license": "Creative
+  Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+reliability: >-
+  A database record compiled from the literature: collection reference H. M. Wilson and L. I.
+  Anderson. 2004. Morphology and taxonomy of Paleozoic millipedes (Diplopoda: Chilognatha:
+  Archipolypoda) from Scotland. Journal of Paleontology 78(1):169-184. Interval ages are the
+  PBDB's own, for the interval the collection is assigned to; the primary reference was not read
+  here unless cited separately.
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=84333&show=loc,strat,ref and
+    occs/list.json?coll_id=84333&show=ident,class on the main data service: collection name
+    "Cowie Harbour, Stonehaven (NMS collection)"; lat 56.971001; lng -2.2; formation "Cowie";
+    member "Dictyocaris"; group "Stonehaven"; early_interval Homerian; max_ma 430.6, min_ma
+    426.7; occurrence 1204297, identified_name "Pneumodesmus newmani n. gen. n. sp.",
+    accepted_name "Pneumodesmus newmani" (Arthropoda, Myriapoda).

@@ -1,0 +1,11 @@
+id: earth/plates/colorado-subplate
+kind: plate
+summary: Plate 291 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Colorado Subplate }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 291", quote: "CSS-PRB Colorado Subplate-Parana Basin" }
+    note: >-
+      The label names this plate against the Parana Basin (PRB). This is a subplate of South America, not the Colorado of North America.

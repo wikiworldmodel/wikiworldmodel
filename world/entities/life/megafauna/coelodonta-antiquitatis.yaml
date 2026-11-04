@@ -1,0 +1,74 @@
+id: life/taxa/coelodonta-antiquitatis
+kind: taxon
+summary: >-
+  The woolly rhinoceros, a cold-adapted grazer of northern Eurasia. Its fossils stop about 14,000
+  years ago. Sediment DNA and a simulation put its end some thousands of years later, in the early
+  Holocene of northeastern Siberia.
+same_as: { ott: 145474, pbdb: "txn:54846" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: woolly rhinoceros, la: "Coelodonta antiquitatis" }
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott145474: name" }
+    note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  start-fordham-2024:
+    prop: start
+    value: 2.5 Ma
+    source:
+      ref: src:fordham-2024-woolly-rhinoceros
+      loc: Introduction
+      quote: "originating on the Tibetan plateau approximately 2.5 million years ago"
+    method: expert-estimate
+    note: >-
+      As the paper states it, in passing, citing an earlier study that was not read.
+  end-lord-2020:
+    prop: end
+    value: 14 ka
+    source:
+      - ref: src:lord-2020-woolly-rhinoceros
+        loc: abstract
+        quote: "became extinct approximately 14 thousand years before present (ka BP)"
+      - ref: src:gudjonsdottir-2026-woolly-rhinoceros
+        loc: abstract
+        quote: "a cold-adapted herbivore that went extinct ∼14,000-years ago"
+      - ref: src:lorenzen-2011-late-quaternary-megafauna
+        loc: Modes of extinction
+        quote: "woolly rhinoceros remains widely distributed across Eurasia until it disappears from the fossil record c. 14 ka BP"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The end of the fossil record, from the radiocarbon chronology of Stuart & Lister (2012,
+      Quaternary Science Reviews 51, 1–17), which these papers cite but which was not read.
+      Preferred because it rests on dated remains: the later dates below rest on sediment DNA and on
+      a model, and DNA in sediment can be older than the sediment (Seeber et al. 2024, eLife 12,
+      RP89992).
+  end-wang-2021:
+    prop: end
+    value: { mean: 9.8 ka, sd: 0.2 kyr }
+    source:
+      ref: src:wang-2021-arctic-edna
+      loc: abstract
+      quote: "the woolly rhinoceros until 9.8 ± 0.2 ka"
+    method: stratigraphic
+    note: >-
+      DNA in dated sediment in northeast Kolyma, not a bone. The ± level was not checked, so it is
+      read as 1σ. Miller & Simpson (2022, Nature 612, E1–E3) question such late DNA for mammoth;
+      Seeber et al. (2024) find woolly rhinoceros DNA too in sediment only centuries old.
+  end-fordham-2024:
+    prop: end
+    value: 8.7 ka
+    source:
+      ref: src:fordham-2024-woolly-rhinoceros
+      loc: Results and Discussion, Extinction Dynamics
+      quote: "finally going extinct in north-east Siberia at ~8.7 ka B.P."
+    method: model
+    basis: reconstruction
+    note: >-
+      The extinction in simulations of climate, people and rhinoceroses, validated against fossils
+      and ancient DNA: a reconstruction, not a date on any remains.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/mammalia
+    source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott145474, lineage: Coelodonta < Rhinocerotidae < Perissodactyla < Laurasiatheria < Boreoeutheria < Eutheria < Theria < Mammalia" }

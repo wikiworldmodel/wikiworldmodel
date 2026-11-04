@@ -1,0 +1,25 @@
+id: src:wang-2020-chickens
+type: publication
+kind: measurement
+citation: >-
+  Wang, M.S., Thakur, M., Peng, M.S., … & Zhang, Y.P. (2020). 863 genomes reveal the origin and
+  domestication of chicken. Cell Research 30(8), 693–701.
+authors:
+  - "Wang, M.S."
+  - "Thakur, M."
+  - "Peng, M.S."
+  - "Jiang, Y."
+  - "Frantz, L.A.F."
+  - "Li, M."
+  - "Zhang, J.J."
+  - "Wang, S."
+# the first eight of 57 authors
+published: 2020
+title: "863 genomes reveal the origin and domestication of chicken"
+container: "Cell Research 30(8), 693–701"
+doi: 10.1038/s41422-020-0349-y
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC7395088) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

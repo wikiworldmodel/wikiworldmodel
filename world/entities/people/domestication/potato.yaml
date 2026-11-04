@@ -1,0 +1,37 @@
+id: people/domestication/potato
+kind: development
+summary: >-
+  The domestication of the potato from wild relatives in the Andes of southern Peru. Tubers rarely
+  survive, and the record read begins with starch on grinding stones at Jiskairumoko, by Lake
+  Titicaca, from 3400 BCE on, with a form consistent with cultivated or domesticated potato. No
+  source read dates the start of the process, so the start here comes from that sample.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Potato domestication }
+    unsourced: An editorial label.
+  location:
+    prop: location
+    value: { lat: -16.0866, lon: -69.6354, frame: frame:earth/present-day }
+    source:
+      - ref: src:hardigan-2017-solanum
+        loc: abstract
+        quote: "domesticated from wild Solanum species native to the Andes of southern Peru"
+      - ref: src:spooner-2005-potato
+        loc: abstract
+        quote: "our data support a monophyletic origin of the landrace cultivars from the northern component of this complex in Peru"
+      - ref: src:rumold-aldenderfer-2016-jiskairumoko
+        loc: Introduction
+        quote: "Recent molecular and phytogeographical data indicate the high south-central Andes as the locus of domestication"
+      - { ref: src:wikidata-ilave, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Marked at Ilave, the town of the central Ilave Valley where Jiskairumoko lies. The sources
+      name a region, and do not agree on it more closely than that.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-201
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

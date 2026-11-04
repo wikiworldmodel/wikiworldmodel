@@ -1,0 +1,16 @@
+id: src:wikidata-yinxu
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  Wikidata, item Q464904 (Yinxu), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q464904
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "archeological site of the last capital of China's Shang dynasty". A point for the
+  named place, given to the second of arc.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (36.1225, 114.318611) read from the item's JSON (Special:EntityData/Q464904.json) on 4 November 2026.

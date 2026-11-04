@@ -1,0 +1,81 @@
+id: people/prehistory/middle-stone-age
+kind: industry
+summary: >-
+  The Middle Stone Age of Africa, the prepared-core and point technologies that followed the Acheulean,
+  with Levallois flaking among them, and with pigment and long-distance transport of stone. It has no
+  location of its own here: its first occurrences are the claims on its start, from Kenya and Morocco
+  to South Africa. A broad grouping more than a single industry.
+same_as: { wikidata: Q1931902 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Middle Stone Age }
+    source:
+      ref: src:deino-2018-olorgesailie
+      loc: abstract
+      quote: "The origin of the Middle Stone Age (MSA) marks the transition from a highly persistent mode of stone toolmaking, the Acheulean, to a period of increasing technological innovation"
+  start-deino-2018:
+    prop: start
+    value: { lo: 320 ka, hi: 305 ka }
+    source:
+      ref: src:deino-2018-olorgesailie
+      loc: abstract
+      quote: "with a definitive MSA lacking Acheulean elements beginning most likely by ~320,000 years ago, but at least by 305,000 years ago"
+    method: radiometric
+    rank: preferred
+    note: >-
+      Olorgesailie, Kenya, by 40Ar/39Ar and uranium series. Preferred as the best dated first
+      occurrence of a Middle Stone Age with no Acheulean elements left in it.
+  start-richter-2017:
+    prop: start
+    value: { mean: 315 ka, sd: 34 kyr }
+    source:
+      ref: src:richter-2017-jebel-irhoud
+      loc: abstract
+      quote: "A weighted average age places these Middle Stone Age artefacts and fossils at 315 ± 34 thousand years ago."
+    method: radiometric/luminescence
+    note: >-
+      Jebel Irhoud, Morocco, by thermoluminescence of heated flints, among the earliest directly dated
+      Middle Stone Age assemblages. The ± level was not checked, so it is read as 1σ.
+  start-key-2026:
+    prop: start
+    value: { lo: 320 ka, hi: 280 ka }
+    source:
+      ref: src:key-2026-hominins-culture
+      loc: "section 2(a)"
+      quote: "Levallois flaking can be observed from 320–280 ka in South Africa and Kenya [28]. The MSA broadly emerges from this point onwards"
+    method: compilation
+    note: Dated by the review's first Levallois flaking, the prepared-core method.
+  start-blackwood-2026:
+    prop: start
+    value: { lo: 500 ka, hi: 400 ka }
+    source:
+      ref: src:blackwood-2026-amanzi
+      loc: abstract
+      quote: "lithic technologies considered diagnostic of the MSA have been found alongside Acheulian technology in eastern Africa and the interior of southern Africa by ~ 500 − 400 ka"
+    method: compilation
+    note: >-
+      The earliest elements of the Middle Stone Age, still alongside the Acheulean. It came much later
+      to some regions: to about 230 ± 18 ka on South Africa's southern coast, by the same paper.
+  end:
+    prop: end
+    value: unknown
+    unsourced: This record set stops at 40 ka, and no source read gives an end.
+relations:
+  made-by-homo-sapiens:
+    rel: made-by
+    to: life/taxa/homo-sapiens
+    source:
+      - ref: src:blackwood-2026-amanzi
+        loc: abstract
+        quote: "the earliest H. sapiens fossils are associated with the Middle Stone Age (MSA)"
+      - ref: src:richter-2017-jebel-irhoud
+        loc: abstract
+        quote: "which are directly associated with newly discovered remains of H. sapiens"
+      - ref: src:berger-2017-naledi
+        loc: abstract
+        quote: "we cannot exclude that this lineage was responsible for the production of Acheulean or Middle Stone Age tool industries"
+    note: >-
+      Not its only possible maker: Berger et al. (2017) cannot exclude Homo naledi, whose fossils date
+      from the same time in southern Africa.

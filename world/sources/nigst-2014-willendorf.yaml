@@ -1,0 +1,29 @@
+id: src:nigst-2014-willendorf
+type: publication
+kind: measurement
+citation: >-
+  Nigst, P.R., Haesaerts, P., Damblon, F., Frank-Fellner, C., Mallol, C., Viola, B., Götzinger,
+  M., Niven, L., Trnka, G. & Hublin, J.-J. (2014). Early modern human settlement of Europe north of
+  the Alps occurred 43,500 years ago in a cold steppe-type environment. Proceedings of the
+  National Academy of Sciences 111(40), 14394–14399.
+authors:
+  - "Nigst, P.R."
+  - "Haesaerts, P."
+  - "Damblon, F."
+  - "Frank-Fellner, C."
+  - "Mallol, C."
+  - "Viola, B."
+  - "Götzinger, M."
+  - "Niven, L."
+  - "Trnka, G."
+  - "Hublin, J.-J."
+published: 2014
+title: "Early modern human settlement of Europe north of the Alps occurred 43,500 years ago in a cold steppe-type environment"
+container: "Proceedings of the National Academy of Sciences 111(40), 14394–14399"
+doi: 10.1073/pnas.1412201111
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read at PubMed Central (PMC4209988): Willendorf II AH 3, Early Aurignacian, at the
+    onset of GIS 11 around 43,500 cal B.P., from stratigraphic and radiocarbon data. Quoted
+    passages checked by script against the text retrieved.

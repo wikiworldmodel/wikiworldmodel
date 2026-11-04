@@ -1,0 +1,31 @@
+id: src:french-2015-archean-biomarkers
+type: publication
+kind: measurement
+citation: >-
+  French, K.L., Hallmann, C., Hope, J.M., Schoon, P.L., Zumberge, J.A., Hoshino, Y., Peters,
+  C.A., George, S.C., Love, G.D., Brocks, J.J., Buick, R. & Summons, R.E. (2015). Reappraisal of
+  hydrocarbon biomarkers in Archean rocks. Proceedings of the National Academy of Sciences
+  112(19), 5915–5920.
+authors:
+  - "French, K.L."
+  - "Hallmann, C."
+  - "Hope, J.M."
+  - "Schoon, P.L."
+  - "Zumberge, J.A."
+  - "Hoshino, Y."
+  - "Peters, C.A."
+  - "George, S.C."
+  - "Love, G.D."
+  - "Brocks, J.J."
+  - "Buick, R."
+  - "Summons, R.E."
+published: 2015
+title: "Reappraisal of hydrocarbon biomarkers in Archean rocks"
+container: Proceedings of the National Academy of Sciences 112(19), 5915–5920
+doi: 10.1073/pnas.1419563112
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 25918387). The full text at PubMed Central answered a
+    request with a browser check, so it was not read. Quotes checked by script against that
+    text. Metadata from Crossref.

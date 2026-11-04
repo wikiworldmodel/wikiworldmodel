@@ -1,0 +1,27 @@
+id: src:ramezani-2011-chinle
+type: publication
+kind: measurement
+citation: >-
+  Ramezani, J., Hoke, G.D., Fastovsky, D.E., Bowring, S.A., Therrien, F., Dworkin, S.I., Atchley,
+  S.C. & Nordt, L.C. (2011). High-precision U-Pb zircon geochronology of the Late Triassic Chinle
+  Formation, Petrified Forest National Park (Arizona, USA): Temporal constraints on the early
+  evolution of dinosaurs. Geological Society of America Bulletin 123(11–12), 2142–2159.
+authors:
+  - "Ramezani, J."
+  - "Hoke, G.D."
+  - "Fastovsky, D.E."
+  - "Bowring, S.A."
+  - "Therrien, F."
+  - "Dworkin, S.I."
+  - "Atchley, S.C."
+  - "Nordt, L.C."
+published: 2011
+title: "High-precision U-Pb zircon geochronology of the Late Triassic Chinle Formation, Petrified Forest National Park (Arizona, USA): Temporal constraints on the early evolution of dinosaurs"
+container: Geological Society of America Bulletin 123(11–12), 2142–2159
+doi: 10.1130/B30433.1
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

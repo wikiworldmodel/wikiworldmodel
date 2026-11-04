@@ -1,0 +1,22 @@
+id: src:suetonius-lives-of-the-caesars
+type: text
+kind: historian
+citation: >-
+  Suetonius, The Lives of the Caesars, books 2–8 (The Deified Augustus to Domitian). In
+  Suetonius, vols. 1 and 2, translated by J. C. Rolfe (Loeb Classical Library, 1913–1914).
+published: 1914
+written: { lo: 119 CE, hi: 122 CE }
+title: De vita Caesarum
+url: https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Suetonius/12Caesars/home.html
+via: LacusCurtius, which reproduces Rolfe's public-domain translation.
+reliability: >-
+  An imperial secretary and biographer writing under Trajan and Hadrian, from earlier writers
+  and archives. He gives birthdays and death days by the Roman calendar and usually the consuls
+  of the year; his ages and reign lengths are not always consistent with them.
+verified:
+  by: machine:claude-code
+  how: >-
+    The Lives of Augustus, Tiberius, Gaius, Claudius, Nero, Galba, Otho, Vitellius, Vespasian,
+    Titus and Domitian read in Rolfe's translation on LacusCurtius (all marked there as
+    proofread), and the quotations checked by script against that text. The book 1 Life is a
+    record of its own, src:suetonius-divus-julius.

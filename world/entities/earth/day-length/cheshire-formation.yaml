@@ -1,0 +1,50 @@
+id: earth/day-length/cheshire-formation
+kind: sample
+summary: >-
+  Carbonate cycles of the Cheshire Formation in Zimbabwe, read as Milankovitch cycles: the oldest
+  estimate of the length of the day in Mitchell and Kirscher's compilation, about 17 hours.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Cheshire Formation cycles" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Cheshire Formation
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Cheshire Fm, Zimbabwe"
+      quote: 2650 Cheshire Fm, Zimbabwe 17.3 0.5 cyclostratigraphy
+    note: >-
+      No location is claimed. The compilation names only Zimbabwe, and a point in the Belingwe
+      Greenstone Belt, where its reference places these cycles, lies in plate 701's polygon, which the
+      plate model holds only back to 600 Ma.
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Cheshire Fm, Zimbabwe"
+      quote: 2650 Cheshire Fm, Zimbabwe 17.3 0.5 cyclostratigraphy
+  date:
+    prop: date
+    value: 2650 Ma
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Cheshire Fm, Zimbabwe"
+      quote: 2650 Cheshire Fm, Zimbabwe 17.3 0.5 cyclostratigraphy
+    method: compilation
+  day-length:
+    prop: day_length
+    value: { mean: 17.3, sd: 0.5 }
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Cheshire Fm, Zimbabwe"
+      quote: 2650 Cheshire Fm, Zimbabwe 17.3 0.5 cyclostratigraphy
+    method: compilation
+    note: >-
+      As the compilation gives it, from the carbonate cycles of Hofmann et al. (2004), which were not
+      read. Its uncertainty is the difference between the mean of a unit's estimates and the one
+      furthest from it; the compilation's own resampling uses it as a standard deviation, and so does
+      this record.

@@ -1,0 +1,35 @@
+id: src:rasmussen-2006-gicc05
+type: publication
+kind: measurement
+citation: >-
+  Rasmussen, S.O., Andersen, K.K., Svensson, A.M., Steffensen, J.P., Vinther, B.M., Clausen, H.B.,
+  Siggaard-Andersen, M.-L., Johnsen, S.J., Larsen, L.B., Dahl-Jensen, D., Bigler, M.,
+  Röthlisberger, R., Fischer, H., Goto-Azuma, K., Hansson, M.E. & Ruth, U. (2006). A new Greenland
+  ice core chronology for the last glacial termination. Journal of Geophysical Research:
+  Atmospheres 111(D6), 2005JD006079.
+authors:
+  - "Rasmussen, S.O."
+  - "Andersen, K.K."
+  - "Svensson, A.M."
+  - "Steffensen, J.P."
+  - "Vinther, B.M."
+  - "Clausen, H.B."
+  - "Siggaard-Andersen, M.-L."
+  - "Johnsen, S.J."
+  - "Larsen, L.B."
+  - "Dahl-Jensen, D."
+  - "Bigler, M."
+  - "Röthlisberger, R."
+  - "Fischer, H."
+  - "Goto-Azuma, K."
+  - "Hansson, M.E."
+  - "Ruth, U."
+published: 2006
+title: "A new Greenland ice core chronology for the last glacial termination"
+container: "Journal of Geophysical Research: Atmospheres 111(D6), 2005JD006079"
+doi: 10.1029/2005JD006079
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the PDF in AWI's repository (ePIC 12532), with the ages and errors from
+    its Table 4. Citation from Crossref. Quotes checked by script against the text retrieved.

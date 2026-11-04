@@ -1,0 +1,19 @@
+id: src:hofling-scott-2002-cretaceous-buildups
+type: publication
+kind: review
+citation: >-
+  Höfling, R. & Scott, R.W. (2002). Early and mid-Cretaceous buildups. In Kiessling, W., Flügel,
+  E. & Golonka, J. (eds), Phanerozoic Reef Patterns. SEPM Special Publication 72, 521–548.
+authors:
+  - "Höfling, R."
+  - "Scott, R.W."
+published: 2002
+title: "Early and mid-Cretaceous buildups"
+container: Phanerozoic Reef Patterns, SEPM Special Publication 72, 521–548
+doi: 10.2110/pec.02.72.0521
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

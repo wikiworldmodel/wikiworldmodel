@@ -1,0 +1,28 @@
+id: src:kistler-2018-maize-south-america
+type: publication
+kind: measurement
+citation: >-
+  Kistler, L., Maezumi, S.Y., Gregorio de Souza, J., … & Allaby, R.G. (2018). Multiproxy
+  evidence highlights a complex evolutionary legacy of maize in South America. Science
+  362(6420), 1309–1313.
+authors:
+  - "Kistler, L."
+  - "Maezumi, S.Y."
+  - "Gregorio de Souza, J."
+  - "Przelomska, N.A.S."
+  - "Malaquias Costa, F."
+  - "Smith, O."
+  - "Loiselle, H."
+  - "Ramos-Madrigal, J."
+# the first eight of 17 authors
+published: 2018
+title: "Multiproxy evidence highlights a complex evolutionary legacy of maize in South America"
+container: "Science 362(6420), 1309–1313"
+doi: 10.1126/science.aav0207
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read from the Europe PMC record (PMID 30545889), and the accepted manuscript at
+    White Rose Research Online (eprint 140081) read on 3 November 2026, which may differ in
+    detail from the published text. Each quote checked by script against these; citation from
+    the Europe PMC record.

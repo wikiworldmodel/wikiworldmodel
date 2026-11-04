@@ -1,0 +1,21 @@
+id: src:talento-ganopolski-2021-future-glacial-cycles
+type: publication
+kind: model
+citation: >-
+  Talento, S. & Ganopolski, A. (2021). Reduced-complexity model for the impact of anthropogenic CO2
+  emissions on future glacial cycles. Earth System Dynamics 12(4), 1275–1293.
+authors:
+  - "Talento, S."
+  - "Ganopolski, A."
+published: 2021
+title: Reduced-complexity model for the impact of anthropogenic CO2 emissions on future glacial cycles
+container: Earth System Dynamics 12(4), 1275–1293
+doi: 10.5194/esd-12-1275-2021
+url: https://esd.copernicus.org/articles/12/1275/2021/esd-12-1275-2021.pdf
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract and the results on future glacial cycles (section 4) read from the publisher's PDF.
+    Citation from Crossref. Quotes checked by script against the text extracted from that PDF, after
+    normalizing whitespace.

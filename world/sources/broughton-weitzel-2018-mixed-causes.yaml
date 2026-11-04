@@ -1,0 +1,24 @@
+id: src:broughton-weitzel-2018-mixed-causes
+type: publication
+kind: measurement
+citation: >-
+  Broughton, J.M. & Weitzel, E.M. (2018). Population reconstructions for humans and megafauna
+  suggest mixed causes for North American Pleistocene extinctions. Nature Communications 9, 5441.
+authors:
+  - "Broughton, J.M."
+  - "Weitzel, E.M."
+published: 2018
+title: "Population reconstructions for humans and megafauna suggest mixed causes for North American Pleistocene extinctions"
+container: "Nature Communications 9, 5441"
+doi: 10.1038/s41467-018-07897-1
+reliability: >-
+  A compilation of direct dates from the literature with the compilers' calibration; the originals
+  were not read. Stewart et al. (2021) reuse the data and reject its summed-date method.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC6303330), and Supplementary Data 1
+    (41467_2018_7897_MOESM4_ESM.xlsx, 521 direct radiocarbon dates with calibrated ranges, sheets
+    Dates and References) from the publisher, parsed by script. Table quotes are cells of a row
+    joined by spaces. Rows checked by script against that sheet; other quotes checked against the
+    text, after normalizing whitespace.

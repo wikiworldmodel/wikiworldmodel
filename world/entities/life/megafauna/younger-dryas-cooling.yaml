@@ -1,0 +1,33 @@
+id: life/megafauna/younger-dryas-cooling
+kind: event/transition
+summary: >-
+  The abrupt return to cold of the Younger Dryas, with its fast changes in vegetation, as an event
+  that a cause can name. Stewart et al. (2021) read North America's final megafauna declines as
+  following its onset; O'Keefe et al. (2023) date seven species' disappearance at Rancho La Brea to
+  just before it. Its dates are those of the period earth/ice-ages/younger-dryas, which holds the
+  evidence for them.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Younger Dryas cooling }
+    unsourced: An editorial label, after the period.
+  start:
+    prop: start
+    value: { ref: earth/ice-ages/younger-dryas, edge: start }
+    source:
+      ref: src:stewart-2021-north-american-megafauna
+      loc: Discussion
+      quote: "the unique conditions of the YD—i.e., abrupt cooling, increased seasonality, increased CO2, and major vegetation changes"
+    method: stratigraphic
+    note: >-
+      The record exists because caused-by must point to an event, and the Younger Dryas is recorded
+      as a period. Stewart et al. round the period to ~12.9–11.7 ka.
+  end:
+    prop: end
+    value: { ref: earth/ice-ages/younger-dryas, edge: end }
+    source:
+      ref: src:stewart-2021-north-american-megafauna
+      loc: Discussion
+      quote: "the cold YD stadial (~12.9–11.7 ka)"
+    method: stratigraphic

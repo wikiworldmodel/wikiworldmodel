@@ -1,0 +1,9 @@
+id: earth/plates/north-new-zealand
+kind: plate
+summary: Plate 806 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: North New Zealand }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 806", quote: "NNZ North New Zealand" }

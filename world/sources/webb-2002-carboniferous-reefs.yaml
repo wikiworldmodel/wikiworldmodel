@@ -1,0 +1,18 @@
+id: src:webb-2002-carboniferous-reefs
+type: publication
+kind: review
+citation: >-
+  Webb, G.E. (2002). Latest Devonian and Early Carboniferous reefs. In Kiessling, W., Flügel, E. &
+  Golonka, J. (eds), Phanerozoic Reef Patterns. SEPM Special Publication 72, 239–269.
+authors:
+  - "Webb, G.E."
+published: 2002
+title: "Latest Devonian and Early Carboniferous reefs"
+container: Phanerozoic Reef Patterns, SEPM Special Publication 72, 239–269
+doi: 10.2110/pec.02.72.0239
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through OpenAlex's record of the work (api.openalex.org), whose text
+    keeps some OCR errors; the full text could not be reached. Quotes were checked by script
+    against that abstract. Metadata from Crossref.

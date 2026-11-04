@@ -1,0 +1,77 @@
+id: life/occurrences/forest-strathcona-fiord
+kind: occurrence
+summary: >-
+  The Strathcona Fiord Fossil Forest, Ellesmere Island: large, closely spaced stumps in a coal seam,
+  a dense swamp forest in the Arctic of the early Eocene.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Strathcona Fiord Fossil Forest" }
+    unsourced: An editorial label, the name the source uses.
+  identified:
+    prop: identified_as
+    value: in situ tree stumps
+    source:
+      ref: src:eberle-2020-strathcona
+      loc: abstract
+      quote: permineralized in situ tree stumps protruding from a prominent coal
+    note: >-
+      Not a taxon: the paper read does not identify the trees.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:eberle-2020-strathcona
+      loc: abstract
+      quote: permineralized in situ tree stumps protruding from a prominent coal
+    note: >-
+      The basis is the abstract's in situ stumps, which the paper compares to today's cypress swamps
+      for their size and spacing.
+  location:
+    prop: location
+    value: { lat: 78.6833, lon: -82.6667, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-strathcona-fiord, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      A point for the fiord, given coarsely. The paper puts the vertebrate locality above the forest's
+      coal "just south of 78˚ 40’ N latitude" on the southwestern coast of the fiord, without a longitude.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-106
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Margaret Formation
+    source:
+      - ref: src:eberle-2020-strathcona
+        loc: abstract
+        quote: Lower Eocene (Wasatchian-aged) sediments of the Margaret Formation on Ellesmere
+      - ref: src:eberle-2020-strathcona
+        loc: Geologic setting
+        quote: erroneously mapped the Strathcona Fiord Fossil Forest and its thick coal as part of the Mount Lawson Formation
+    note: >-
+      The paper places the vertebrate locality in the lower portion of the Margaret Formation and the
+      forest's coal directly below it, correcting a geological map that had the coal in the Mount Lawson
+      Formation.
+  date:
+    prop: date
+    value: { ref: ics/ypresian }
+    source:
+      ref: src:eberle-2020-strathcona
+      loc: Geologic setting
+      quote: Strathcona Fiord fossil vertebrate sites have previously been interpreted as early Eocene (Wasatchian) in age
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      A suggested age, by correlation. The Wasatchian is a North American land-mammal age, read here as
+      the Ypresian; the paper does not name the stage.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/tracheophyta
+    source: { ref: src:eberle-2020-strathcona, loc: "abstract: tree stumps" }
+    note: >-
+      Trees, so vascular plants, whatever else they were.

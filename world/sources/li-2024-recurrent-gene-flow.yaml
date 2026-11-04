@@ -1,0 +1,21 @@
+id: src:li-2024-recurrent-gene-flow
+type: publication
+kind: measurement
+citation: >-
+  Li, L., Comi, T.J., Bierman, R.F. & Akey, J.M. (2024). Recurrent gene flow between Neanderthals
+  and modern humans over the past 200,000 years. Science 385(6705), eadi1768.
+authors:
+  - "Li, L."
+  - "Comi, T.J."
+  - "Bierman, R.F."
+  - "Akey, J.M."
+published: 2024
+title: "Recurrent gene flow between Neanderthals and modern humans over the past 200,000 years"
+container: "Science 385(6705), eadi1768"
+doi: 10.1126/science.adi1768
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC12885488); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

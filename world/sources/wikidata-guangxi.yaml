@@ -1,0 +1,17 @@
+id: src:wikidata-guangxi
+type: database-record
+kind: compilation
+snapshot: "2026-11-03"
+citation: >-
+  Wikidata, item Q15176 (Guangxi), property P625 (coordinate location).
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q15176
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry: "Provincial area of China organized in 1958 as an autonomous
+  region for the Zhuang people". A point for the named place, of uncertain precision.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (23.6, 108.3) read from the item's JSON (Special:EntityData/Q15176.json) on 3
+    November 2026.

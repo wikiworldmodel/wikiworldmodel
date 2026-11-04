@@ -1,0 +1,24 @@
+id: src:semaw-1997-gona
+type: publication
+kind: measurement
+citation: >-
+  Semaw, S., Renne, P., Harris, J.W., Feibel, C.S., Bernor, R.L., Fesseha, N. & Mowbray, K.
+  (1997). 2.5-million-year-old stone tools from Gona, Ethiopia. Nature 385(6614), 333–336.
+authors:
+  - "Semaw, S."
+  - "Renne, P."
+  - "Harris, J.W."
+  - "Feibel, C.S."
+  - "Bernor, R.L."
+  - "Fesseha, N."
+  - "Mowbray, K."
+published: 1997
+title: "2.5-million-year-old stone tools from Gona, Ethiopia"
+container: "Nature 385(6614), 333–336"
+doi: 10.1038/385333a0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 9002516): the name of the Oldowan, and tools at Gona
+    dated between 2.6 and 2.5 Myr by radioisotopic ages and magnetic polarity. Quoted passages
+    checked by script against the text retrieved.

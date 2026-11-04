@@ -1,0 +1,19 @@
+id: src:broussolle-2022-supercontinent-cycle
+type: publication
+kind: model
+citation: >-
+  Broussolle, A. (2022). Mathematical modelling reveals potential acceleration of the supercontinent
+  cycle. Scientific Reports 12, 17391.
+authors:
+  - "Broussolle, A."
+published: 2022
+title: Mathematical modelling reveals potential acceleration of the supercontinent cycle
+container: Scientific Reports 12, 17391
+doi: 10.1038/s41598-022-21662-x
+url: https://www.nature.com/articles/s41598-022-21662-x.pdf
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract and introduction read from the publisher's PDF. Citation from Crossref. Quotes checked
+    by script against the text extracted from that PDF, after normalizing whitespace.

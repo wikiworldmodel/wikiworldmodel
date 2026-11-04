@@ -1,0 +1,43 @@
+id: life/taxa/ginkgo
+kind: taxon
+summary: >-
+  The ginkgo, in the Hell Creek rows of the snapshot G. adiantoides.
+same_as: { pbdb: "txn:55067" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Ginkgo", en: "ginkgo" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 55067"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: broadleaf
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+    note: >-
+      Neither a conifer nor a flowering tree; broad leaves make this the nearest kit.
+  posture:
+    prop: posture
+    value: upright
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 4, p. 8, s.v. Ginkgo biloba"
+      quote: "Trees to 40 m tall"
+    note: >-
+      A tree, as the flora describes the living plant.
+  height-flora-of-china:
+    prop: plant_height
+    value: 40
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 4, p. 8, s.v. Ginkgo biloba"
+      quote: "Trees to 40 m tall"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The greatest height of the living species G. biloba: a modern relative, not a Hell Creek
+      plant.

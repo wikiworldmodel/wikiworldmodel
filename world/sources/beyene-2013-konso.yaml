@@ -1,0 +1,29 @@
+id: src:beyene-2013-konso
+type: publication
+kind: measurement
+citation: >-
+  Beyene, Y., Katoh, S., Woldegabriel, G., Hart, W.K., Uto, K., Sudo, M., Kondo, M., Hyodo, M.,
+  Renne, P.R., Suwa, G. & Asfaw, B. (2013). The characteristics and chronology of the earliest
+  Acheulean at Konso, Ethiopia. Proceedings of the National Academy of Sciences 110(5), 1584–1591.
+authors:
+  - "Beyene, Y."
+  - "Katoh, S."
+  - "Woldegabriel, G."
+  - "Hart, W.K."
+  - "Uto, K."
+  - "Sudo, M."
+  - "Kondo, M."
+  - "Hyodo, M."
+  - "Renne, P.R."
+  - "Suwa, G."
+  - "Asfaw, B."
+published: 2013
+title: "The characteristics and chronology of the earliest Acheulean at Konso, Ethiopia"
+container: "Proceedings of the National Academy of Sciences 110(5), 1584–1591"
+doi: 10.1073/pnas.1221285110
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read at PubMed Central (PMC3562807): the earliest Acheulean at Konso at ~1.75 Ma,
+    just above the KYT2 tuff, 1.74 ± 0.03 Ma. Quoted passages checked by script against the text
+    retrieved.

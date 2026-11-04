@@ -1,0 +1,47 @@
+id: earth/day-length/hongshuizhuang-formation
+kind: sample
+summary: >-
+  Cycles in the Hongshuizhuang Formation on the North China craton, read as Milankovitch cycles: a day
+  of about 19.7 hours, a full hour longer than the slightly younger Xiamaling Formation gives.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Hongshuizhuang Formation cycles" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Hongshuizhuang Formation
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Hongshuizhuang Fm, North China"
+      quote: 1450 Hongshuizhuang Fm, North China 19.7 0.2 cyclostratigraphy
+    note: >-
+      No location is claimed: the compilation names only North China, and the study behind the row, Cheng
+      et al. (2020), was not read.
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Hongshuizhuang Fm, North China"
+      quote: 1450 Hongshuizhuang Fm, North China 19.7 0.2 cyclostratigraphy
+  date:
+    prop: date
+    value: 1450 Ma
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Hongshuizhuang Fm, North China"
+      quote: 1450 Hongshuizhuang Fm, North China 19.7 0.2 cyclostratigraphy
+    method: compilation
+  day-length:
+    prop: day_length
+    value: { mean: 19.7, sd: 0.2 }
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "Hongshuizhuang Fm, North China"
+      quote: 1450 Hongshuizhuang Fm, North China 19.7 0.2 cyclostratigraphy
+    method: compilation
+    note: >-
+      As the compilation gives it; its uncertainty is read as a standard deviation, as the compilation's
+      resampling does.

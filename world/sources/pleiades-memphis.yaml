@@ -1,0 +1,15 @@
+id: src:pleiades-memphis
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 736963, "Memphis" (Mit Rahina, Egypt).
+snapshot: "2026-11-04"
+container: Pleiades
+url: https://pleiades.stoa.org/places/736963
+license: CC-BY-3.0
+reliability: A scholarly gazetteer of ancient places.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/736963/json) read directly on 4 November 2026:
+    representative point 29.849491°N, 31.255061°E.

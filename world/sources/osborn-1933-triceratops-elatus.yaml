@@ -1,0 +1,16 @@
+id: src:osborn-1933-triceratops-elatus
+type: publication
+kind: measurement
+citation: >-
+  Osborn, H.F. (1933). Mounted skeleton of Triceratops elatus. American Museum Novitates 654.
+authors:
+  - "Osborn, H.F."
+published: 1933
+title: "Mounted skeleton of Triceratops elatus"
+container: "American Museum Novitates 654"
+url: https://archive.org/details/mountedskeletonno65osbo
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the OCR text of the archive.org scan; quotes checked by script against that text,
+    including its noisy leader dots.

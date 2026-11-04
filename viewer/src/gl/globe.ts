@@ -13,7 +13,7 @@
 //
 // Over the land, polities' territory (ui/territory.ts): one polity per channel of a map
 // texture, its land tinted and its frontiers outlined. Its coasts are the field's.
-import type { Look } from '../../../core/planet.ts';
+import type { Cover, Look } from '../../../core/planet.ts';
 import type { SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
 import { program, setUniforms, texture2D, type GL, type Program } from './context.ts';
 import type { Mat4 } from '../mat.ts';
@@ -52,6 +52,18 @@ uniform highp sampler2D uTerritory;
 uniform float uTerritoryOn;
 uniform mat3 uTerritoryColors;
 uniform int uTerritorySel;
+// The climate of the land at the two keyframes around the time shown, as the climate field holds it.
+uniform highp samplerCube uClimate0;
+uniform highp samplerCube uClimate1;
+uniform float uClimateMix;
+uniform float uClimateOn;
+// How far each cover has spread: microbial crusts, land plants, forests, grasslands.
+uniform vec4 uCover;
+uniform float uReefs;
+// The biome rule's thresholds: polar, frost, tropical, cold; arid, desert, reef depth and latitude.
+uniform vec4 uRule;
+uniform vec4 uRule2;
+uniform highp sampler2D uBiomeTex;
 in vec3 vN;
 out vec4 o;
 
@@ -118,6 +130,64 @@ vec2 mapUv(vec3 n) {
 // ice's edge, A fine texture.
 vec4 pattern(vec3 n) {
   return textureGrad(uPattern, mapUv(n), vec2(0.0), vec2(0.0));
+}
+
+// The generator's texture of the land's cover, at a scale in repeats around the globe. Its level of
+// detail is worked out from the direction, not the map position, which jumps at the date line.
+vec4 coverTex(vec3 n, float scale) {
+  vec2 uv = mapUv(n) * vec2(scale, scale * 0.5);
+  vec2 g = vec2(length(fwidth(n)) * scale * 0.16);
+  return textureGrad(uBiomeTex, uv, vec2(g.x, 0.0), vec2(0.0, g.y));
+}
+
+// What covers the land here: the climate says what could grow, and the world's transitions what had
+// come to exist by now. With no land plants yet, only rock, sand, frost and a film of microbes are drawn.
+vec3 biome(vec3 n, float e, float reach) {
+  vec4 k = mix(texture(uClimate0, n), texture(uClimate1, n), uClimateMix);
+  vec4 wide = coverTex(n, 5.0);
+  vec4 near = coverTex(n, 37.0);
+  float rag = (wide.b - 0.5) + (near.b - 0.5) * 0.5;
+  float hot = k.r * 110.0 - 60.0 + rag * 6.0;
+  float cold = k.g * 110.0 - 60.0 + rag * 6.0;
+  float wetness = k.b * k.b * 4.0 * (1.0 + rag * 0.8);
+  float margin = k.a * 300.0 - 150.0 + rag * 50.0;
+  float polar = smoothstep(uRule.x + 1.0, uRule.x - 1.0, hot);
+  float frost = smoothstep(uRule.y + 1.0, uRule.y - 1.0, hot);
+  float dry = smoothstep(uRule2.x * 1.06, uRule2.x * 0.94, wetness) * (1.0 - polar);
+  float desert = smoothstep(uRule2.y * 1.1, uRule2.y * 0.9, wetness) * (1.0 - polar);
+  float tropical = smoothstep(uRule.z - 1.0, uRule.z + 1.0, cold);
+  float boreal = smoothstep(uRule.w + 1.0, uRule.w - 1.0, cold);
+  float rainy = smoothstep(-8.0, 8.0, margin);
+  float fine = mix(wide.a, near.a, reach);
+  float mott = mix(wide.r, near.r, reach);
+  float streak = mix(wide.g, near.g, reach);
+  // Bare ground: rock and weathered regolith, and sand where it is driest.
+  vec3 rock = mix(vec3(0.44, 0.37, 0.30), vec3(0.58, 0.50, 0.41), fine);
+  vec3 sand = mix(vec3(0.80, 0.68, 0.47), vec3(0.67, 0.53, 0.35), streak);
+  vec3 c = mix(rock, sand, desert);
+  // Microbial crusts darken damp ground.
+  c = mix(c, c * vec3(0.72, 0.70, 0.60), uCover.x * (1.0 - dry) * (1.0 - frost) * 0.8);
+  // Low plants on damp ground, patchy at first and thickening as they spread; tundra is the same to the eye.
+  vec3 low = mix(vec3(0.30, 0.34, 0.15), vec3(0.42, 0.42, 0.22), fine);
+  float patches = smoothstep(1.0 - uCover.y * 1.15, 1.0 - uCover.y * 0.75, mott);
+  c = mix(c, low, patches * (1.0 - dry) * (1.0 - frost));
+  // Trees, in the colours of their climates, where it is warm and wet enough.
+  vec3 trees = mix(vec3(0.17, 0.30, 0.11), vec3(0.11, 0.22, 0.08), mott);
+  trees = mix(trees, mix(vec3(0.10, 0.19, 0.11), vec3(0.06, 0.13, 0.08), mott), boreal);
+  trees = mix(trees, mix(vec3(0.05, 0.19, 0.06), vec3(0.10, 0.27, 0.08), mott), tropical * rainy);
+  float woods = smoothstep(1.0 - uCover.z * 1.15, 1.0 - uCover.z * 0.75, wide.r * 0.5 + 0.25) * (1.0 - dry) * (1.0 - polar);
+  c = mix(c, trees, woods * (1.0 - tropical * (1.0 - rainy) * 0.8));
+  // Open country: where grasses have come it is grassland, before them scrub.
+  vec3 grass = mix(vec3(0.55, 0.49, 0.24), vec3(0.43, 0.43, 0.19), mott);
+  vec3 scrub = mix(vec3(0.42, 0.40, 0.25), vec3(0.34, 0.34, 0.18), mott);
+  vec3 open = mix(scrub, grass, uCover.w);
+  float seasonal = tropical * (1.0 - rainy) * (1.0 - dry) * (1.0 - polar);
+  c = mix(c, open, uCover.y * max(seasonal, dry * (1.0 - desert)) * 0.95);
+  // Above the trees, bare rock; and ice where no month thaws.
+  float h = e / 1000.0;
+  c = mix(c, vec3(0.50, 0.44, 0.37) * (0.85 + 0.3 * fine), smoothstep(2.6, 3.6, h));
+  c = mix(c, vec3(0.90, 0.92, 0.95) * (0.92 + 0.14 * fine), max(frost, smoothstep(4.2, 5.4, h)));
+  return c;
 }
 
 // Territory over the land: each channel's polity tinted, its frontier outlined, brighter for
@@ -217,7 +287,19 @@ void main() {
   vec3 grad = (t1 * ex + t2 * ey) / (2.0 * h * 6371000.0) * exaggeration;
   vec3 bump = normalize(n - grad);
   float diffuse = max(dot(bump, uSun), 0.0);
-  vec3 c = (uMode == 1 ? blockRamp(e) : ramp(e)) * (0.22 + 0.85 * diffuse);
+  vec3 base = uMode == 1 ? blockRamp(e) : ramp(e);
+  if (uMode == 0 && uClimateOn > 0.5) {
+    // Close up the cover's texture is finer: from a third of an Earth radius above the ground.
+    float reach = smoothstep(1.9, 1.25, length(uEye));
+    if (e >= 0.0) base = biome(n, e, reach);
+    else if (uReefs > 0.5 && e > -uRule2.z && abs(n.z) < sin(radians(uRule2.w))) {
+      // Reefs on warm shelves, broken up by the generator's speckle.
+      vec4 t = coverTex(n, 37.0);
+      float reef = smoothstep(0.55, 0.8, t.a) * smoothstep(-uRule2.z, -uRule2.z * 0.4, e);
+      base = mix(base, vec3(0.42, 0.78, 0.72), reef * 0.75);
+    }
+  }
+  vec3 c = base * (0.22 + 0.85 * diffuse);
   if (e < 0.0) {
     float spec = pow(max(dot(reflect(-uSun, n), view), 0.0), 60.0);
     c += vec3(0.55, 0.65, 0.75) * spec * 0.35;
@@ -352,6 +434,8 @@ export interface GlobeLook {
   /** the lowest latitude ice reaches, in degrees; 90 is none */
   iceReach: number;
   iceEdge: number;
+  /** how far each cover of the land has spread, 0–1 */
+  cover: Cover;
   rim: RGB;
   halo: RGB;
   /** cover is density × opacity + base */
@@ -364,7 +448,7 @@ const CLEAR_CLOUDS = { opacity: 0.78, base: 0, tint: [1, 1, 1] as RGB, glow: [0,
 const NONE: RGB = [0, 0, 0];
 
 /** As the world was drawn before it had states: today's sky, clouds, no ice. */
-export const PLAIN_LOOK: GlobeLook = { formed: true, surface: 0, air: 0, crust: 0, iceReach: 90, iceEdge: 0, rim: RIM, halo: HALO, clouds: CLEAR_CLOUDS };
+export const PLAIN_LOOK: GlobeLook = { formed: true, surface: 0, air: 0, crust: 0, iceReach: 90, iceEdge: 0, cover: { crust: 0, plants: 0, forests: 0, grasses: 0, reefs: 0 }, rim: RIM, halo: HALO, clouds: CLEAR_CLOUDS };
 
 const SURFACES: Record<string, number> = { ocean: 1, magma: 2, 'crust-and-magma': 3, 'bare-rock': 4 };
 
@@ -373,12 +457,12 @@ const SURFACES: Record<string, number> = { ocean: 1, magma: 2, 'crust-and-magma'
  * overcast and lit from below by the magma; over a Snowball Earth they are thin. Where no
  * atmosphere is claimed the sky is today's, except over a molten surface, drawn bare.
  */
-export function globeLook(look: Look, draw: SurfaceParams['draw'] | undefined): GlobeLook {
+export function globeLook(look: Look, draw: SurfaceParams['draw'] | undefined, cover?: Cover): GlobeLook {
   if (!look.formed) return { ...PLAIN_LOOK, formed: false, rim: NONE, halo: NONE, clouds: null };
   const surface = SURFACES[look.surface ?? ''] ?? 0;
   const crustAt = draw?.crust ?? { start: 0, end: 0.96, over_magma: 0.82 };
   const crust = surface === 3 ? crustAt.over_magma : crustAt.start + (crustAt.end - crustAt.start) * look.progress;
-  const base = { ...PLAIN_LOOK, surface, crust, iceReach: look.iceReach, iceEdge: draw?.ice_edge ?? 5 };
+  const base = { ...PLAIN_LOOK, surface, crust, iceReach: look.iceReach, iceEdge: draw?.ice_edge ?? 5, cover: cover ?? PLAIN_LOOK.cover };
   if (look.atmosphere === 'rock-vapour') return { ...base, air: 1, rim: [1.0, 0.62, 0.28], halo: [1.0, 0.55, 0.2], clouds: null };
   if (look.atmosphere === 'steam') {
     const glow = 1 - crust;
@@ -411,6 +495,8 @@ export interface GlobeFrame {
   look: GlobeLook;
   showClouds: boolean;
   territory?: GlobeTerritory;
+  /** the climate's mix between its two keyframes, if the land is painted from it */
+  climate?: { mix: number; rule: { polar: number; frost: number; tropical: number; cold: number; arid: number; desert: number; reef_depth: number; reef_latitude: number } };
 }
 
 export class GlobeRenderer {
@@ -422,7 +508,10 @@ export class GlobeRenderer {
   private cloudTex: WebGLTexture | null = null;
   private patternTex: WebGLTexture;
   private territoryTex: WebGLTexture;
+  private biomeTex: WebGLTexture;
   private emptyVao: WebGLVertexArrayObject;
+  /** the climate's two cube maps, once the field has them */
+  climateCubes: [WebGLTexture, WebGLTexture] | null = null;
 
   constructor(private gl: GL, private fieldCube: WebGLTexture, private cubeSize: number) {
     this.surface = program(gl, 'surface', SPHERE_VS, SURFACE_FS);
@@ -448,6 +537,18 @@ export class GlobeRenderer {
     // Until the surface generator has run, a flat pattern: nothing is drawn from it.
     this.patternTex = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([128, 128, 128, 128]), filter: gl.LINEAR, wrapS: gl.REPEAT });
     this.territoryTex = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0, 0, 0, 255]), filter: gl.LINEAR, wrapS: gl.REPEAT });
+    this.biomeTex = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([128, 128, 128, 128]), filter: gl.LINEAR, wrapS: gl.REPEAT });
+  }
+
+  /** The generator's texture of the land's cover: a tile that repeats both ways. */
+  setBiomeTexture(size: number, rgba: Uint8Array): void {
+    const gl = this.gl;
+    gl.deleteTexture(this.biomeTex);
+    this.biomeTex = texture2D(gl, { width: size, height: size, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: rgba, filter: gl.LINEAR, wrapS: gl.REPEAT });
+    gl.bindTexture(gl.TEXTURE_2D, this.biomeTex);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+    gl.generateMipmap(gl.TEXTURE_2D);
   }
 
   /** Polities' territory: an equirectangular map, one polity per colour channel. */
@@ -503,7 +604,24 @@ export class GlobeRenderer {
     gl.bindTexture(gl.TEXTURE_2D, this.patternTex);
     gl.activeTexture(gl.TEXTURE2);
     gl.bindTexture(gl.TEXTURE_2D, this.territoryTex);
-    setUniforms(gl, this.surface, { uField: 0, uPattern: 1, uTerritory: 2 }, ['uField', 'uPattern', 'uTerritory']);
+    gl.activeTexture(gl.TEXTURE3);
+    gl.bindTexture(gl.TEXTURE_2D, this.biomeTex);
+    const cl = f.climate && this.climateCubes ? this.climateCubes : null;
+    gl.activeTexture(gl.TEXTURE4);
+    gl.bindTexture(gl.TEXTURE_CUBE_MAP, cl ? cl[0] : this.fieldCube);
+    gl.activeTexture(gl.TEXTURE5);
+    gl.bindTexture(gl.TEXTURE_CUBE_MAP, cl ? cl[1] : this.fieldCube);
+    setUniforms(gl, this.surface, { uField: 0, uPattern: 1, uTerritory: 2, uBiomeTex: 3, uClimate0: 4, uClimate1: 5 }, ['uField', 'uPattern', 'uTerritory', 'uBiomeTex', 'uClimate0', 'uClimate1']);
+    const r = f.climate?.rule;
+    const cv = look.cover;
+    setUniforms(gl, this.surface, {
+      uClimateOn: cl ? 1 : 0,
+      uClimateMix: f.climate?.mix ?? 0,
+      uCover: [cv.crust, cv.plants, cv.forests, cv.grasses],
+      uReefs: cv.reefs,
+      uRule: r ? [r.polar, r.frost, r.tropical, r.cold] : [0, 0, 0, 0],
+      uRule2: r ? [r.arid, r.desert, r.reef_depth, r.reef_latitude] : [0, 0, 0, 0],
+    });
     const ter = f.territory;
     setUniforms(gl, this.surface, { uTerritoryOn: ter?.on ? 1 : 0, uTerritoryColors: (ter?.colors ?? [[0, 0, 0], [0, 0, 0], [0, 0, 0]]).flat(), uTerritorySel: ter?.selected ?? -1 }, ['uTerritorySel']);
     setUniforms(gl, this.surface, {

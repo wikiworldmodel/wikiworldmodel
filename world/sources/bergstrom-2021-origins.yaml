@@ -1,0 +1,21 @@
+id: src:bergstrom-2021-origins
+type: publication
+kind: review
+citation: >-
+  Bergström, A., Stringer, C., Hajdinjak, M., Scerri, E.M.L. & Skoglund, P. (2021). Origins of
+  modern human ancestry. Nature 590(7845), 229–237.
+authors:
+  - "Bergström, A."
+  - "Stringer, C."
+  - "Hajdinjak, M."
+  - "Scerri, E.M.L."
+  - "Skoglund, P."
+published: 2021
+title: "Origins of modern human ancestry"
+container: "Nature 590(7845), 229–237"
+doi: 10.1038/s41586-021-03244-5
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

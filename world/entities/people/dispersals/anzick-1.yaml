@@ -1,0 +1,81 @@
+id: people/dispersals/anzick-1
+kind: occurrence
+summary: >-
+  The genome of an infant buried with Clovis tools at the Anzick site in western Montana, about
+  12,600 years ago: closer to all indigenous Americans than to any other people, and compatible
+  with a population directly ancestral to many of them.
+same_as: { wikidata: Q19593761 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Anzick-1 }
+    source:
+      ref: src:rasmussen-2014-anzick
+      loc: abstract
+      quote: "a male infant (Anzick-1)"
+  identified:
+    prop: identified_as
+    value: human
+    source:
+      ref: src:rasmussen-2014-anzick
+      loc: title
+      quote: "The genome of a Late Pleistocene human from a Clovis burial site in western Montana"
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:rasmussen-2014-anzick
+      loc: abstract
+      quote: "Here we report the genome sequence of a male infant (Anzick-1)"
+  location:
+    prop: location
+    value: { lat: 45.985, lon: -110.651667, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-anzick, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 12.707 ka, hi: 12.556 ka }
+    source:
+      ref: src:rasmussen-2014-anzick
+      loc: abstract
+      quote: "The human bones date to 10,705 ± 35 (14)C years bp (approximately 12,707-12,556 calendar years bp)"
+    method: radiometric/radiocarbon
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        More closely related to all indigenous American populations than to any other group, and
+        compatible with a population directly ancestral to many contemporary Native Americans. Shares
+        the gene flow from the Mal'ta population into Native American ancestors.
+    source:
+      - ref: src:rasmussen-2014-anzick
+        loc: abstract
+        quote: "the Anzick-1 individual is more closely related to all indigenous American populations than to any other group"
+      - ref: src:rasmussen-2014-anzick
+        loc: abstract
+        quote: "Our data are compatible with the hypothesis that Anzick-1 belonged to a population directly ancestral to many contemporary Native Americans."
+      - ref: src:rasmussen-2014-anzick
+        loc: abstract
+        quote: "the gene flow from the Siberian Upper Palaeolithic Mal'ta population into Native American ancestors is also shared by the Anzick-1 individual"
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:rasmussen-2014-anzick
+      loc: title
+      quote: "a Late Pleistocene human"
+  after-the-arrival:
+    rel: after
+    to: people/dispersals/americas-arrival
+    source:
+      ref: src:rasmussen-2014-anzick
+      loc: abstract
+      quote: "the Clovis complex as having developed south of the North American ice sheets from an ancestral technology"

@@ -1,0 +1,21 @@
+id: src:politis-2019-campo-laborde
+type: publication
+kind: measurement
+citation: >-
+  Politis, G.G., Messineo, P.G., Stafford, T.W. & Lindsey, E.L. (2019). Campo Laborde: A Late
+  Pleistocene giant ground sloth kill and butchering site in the Pampas. Science Advances 5(3),
+  eaau4546.
+authors:
+  - "Politis, G.G."
+  - "Messineo, P.G."
+  - "Stafford, T.W."
+  - "Lindsey, E.L."
+published: 2019
+title: "Campo Laborde: A Late Pleistocene giant ground sloth kill and butchering site in the Pampas"
+container: "Science Advances 5(3), eaau4546"
+doi: 10.1126/sciadv.aau4546
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC6402857). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

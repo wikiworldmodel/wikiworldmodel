@@ -1,0 +1,17 @@
+id: src:prave-2002-torridonian
+type: publication
+kind: measurement
+citation: >-
+  Prave, A.R. (2002). Life on land in the Proterozoic: Evidence from the Torridonian rocks of
+  northwest Scotland. Geology 30(9), 811–814.
+authors:
+  - "Prave, A.R."
+published: 2002
+title: "Life on land in the Proterozoic: Evidence from the Torridonian rocks of northwest Scotland"
+container: Geology 30(9), 811–814
+doi: 10.1130/0091-7613(2002)030<0811:LOLITP>2.0.CO;2
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, as OpenAlex's record of the publisher's page gives it; the full text is
+    paywalled. Quotes checked by script against it. Metadata from Crossref.

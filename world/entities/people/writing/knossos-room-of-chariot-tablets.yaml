@@ -1,0 +1,44 @@
+id: people/writing/knossos-room-of-chariot-tablets
+kind: occurrence
+summary: >-
+  About 650 Linear B tablets from the Room of the Chariot Tablets in the palace at Knossos, older than the rest of the Knossos tablets and the earliest known in the script.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Room of the Chariot Tablets, Knossos" }
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: The earliest are c.650 tablets from the Room of the Chariot Tablets at Knossos
+  evidence:
+    prop: evidence
+    value: inscription
+    source:
+      ref: src:tomas-2013-saving-on-clay
+      loc: section 9.3
+      quote: "The earliest are c.650 tablets from the Room of the Chariot Tablets at Knossos (hereafter RCT), dated to LM II or early LM IIIA1 (Driessen 1990: 117)."
+  location:
+    prop: location
+    value: { lat: 35.297847, lon: 25.163106, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-knossos, loc: "place 589872, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-330
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 1450 BCE, hi: 1380 BCE }
+    source:
+      - ref: src:tomas-2013-saving-on-clay
+        loc: section 9.3
+        quote: "dated to LM II or early LM IIIA1 (Driessen 1990: 117)"
+      - { ref: src:carter-kilikoglou-2022-malia-obsidian, loc: 'Table 1, rows "LM II": 1450–1400 BC, and "LM IIIA1": 1400–1380 BC' }
+      - ref: src:tamburini-2025-decipherment
+        loc: section 3.1.1
+        quote: dating back to approximately 1450 BC
+    method: stratigraphic
+    note: LM II or early LM IIIA1, here the whole span of both phases in the years of a conventional chronology; Driessen (1990) was not read.

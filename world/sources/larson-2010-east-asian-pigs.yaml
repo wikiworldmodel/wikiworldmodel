@@ -1,0 +1,26 @@
+id: src:larson-2010-east-asian-pigs
+type: publication
+kind: measurement
+citation: >-
+  Larson, G., Liu, R., Zhao, X., … & Li, N. (2010). Patterns of East Asian pig domestication,
+  migration, and turnover revealed by modern and ancient DNA. Proceedings of the National
+  Academy of Sciences 107(17), 7686–7691.
+authors:
+  - "Larson, G."
+  - "Liu, R."
+  - "Zhao, X."
+  - "Yuan, J."
+  - "Fuller, D."
+  - "Barton, L."
+  - "Dobney, K."
+  - "Fan, Q."
+# the first eight of 14 authors
+published: 2010
+title: "Patterns of East Asian pig domestication, migration, and turnover revealed by modern and ancient DNA"
+container: "Proceedings of the National Academy of Sciences 107(17), 7686–7691"
+doi: 10.1073/pnas.0912264107
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC2867865) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

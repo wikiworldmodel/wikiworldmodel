@@ -1,0 +1,21 @@
+id: src:zhang-2026-han-court-silk-road
+type: publication
+kind: review
+citation: >-
+  Zhang, D. (2026). The management of the Silk Road by the Han court as revealed in excavated manuscripts. Journal of
+  Chinese Humanities 12, 71–88.
+authors: ["Zhang, D."]
+published: 2026
+title: The Management of the Silk Road by the Han Court as Revealed in Excavated Manuscripts
+container: Journal of Chinese Humanities
+doi: 10.1163/23521341-12340215
+url: https://www.lhp.sdu.edu.cn/__local/2/ED/C6/D79222A8C26D39255333DBC546F_C115A954_91147.pdf
+license: CC-BY-4.0
+reliability: >-
+  By an editor of the Xuanquan slips; it argues a case, against Hansen's, that the Silk Road was a
+  fixed and state-kept route. The slips are read through this paper: their editions, in Chinese, were not read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The published PDF, from Shandong University's site, read in its text layer. Quotes checked by script; the text layer
+    breaks some words with stray spaces, so they were compared with all whitespace removed.

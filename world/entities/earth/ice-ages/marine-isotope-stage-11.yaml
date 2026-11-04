@@ -1,0 +1,43 @@
+id: earth/ice-ages/marine-isotope-stage-11
+kind: period
+summary: >-
+  A warm stage about 400,000 years ago, within the span of the ice-core records, when sea level stood
+  metres above today's, as it did again in the Last Interglacial.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Marine Isotope Stage 11 }
+    source: { ref: src:spratt-lisiecki-2016-stack, loc: "Section 2, p. 1080" }
+  start:
+    prop: start
+    value: 424 ka
+    source:
+      ref: src:lisiecki-raymo-2005-lr04
+      loc: "LR04_MISboundaries.txt, row 11/12"
+      quote: 11/12 424
+    method: stratigraphic
+    note: The boundary between stages 11 and 12 on the LR04 age model, for the benthic δ18O stack, not the sea-level record or the ice.
+  end:
+    prop: end
+    value: 374 ka
+    source:
+      ref: src:lisiecki-raymo-2005-lr04
+      loc: "LR04_MISboundaries.txt, row 10/11"
+      quote: 10/11 374
+    method: stratigraphic
+  sea-level-dutton-2015:
+    prop: sea_level
+    value: { lo: 6, hi: 13 }
+    source:
+      - ref: src:dutton-2015-polar-ice-loss
+        loc: abstract
+        quote: during marine isotope stages 5e and 11, when the global mean reached 6 to 9 meters and 6 to 13 meters higher than present, respectively
+      - ref: src:spratt-lisiecki-2016-stack
+        loc: "Section 2, p. 1080"
+        quote: Marine Isotope Stage (MIS) 11 at∼ 400 ka suggest a global mean sea level of 6–13 m above modern (Raymo and Mitrovica, 2012).
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The peak, from coastal records corrected for the land's own motion. Spratt and Lisiecki report that
+      estimates from individual ocean-sediment records vary far more, between −5 and 57 m above modern.

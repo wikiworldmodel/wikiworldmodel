@@ -1,0 +1,46 @@
+id: life/megafauna/new-zealand-settlement
+kind: event/dispersal
+summary: >-
+  The first people in New Zealand, Polynesian settlers who reached it in the 13th century, among the
+  last large islands to be settled. It is here as the cause of the moa's extinction.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Polynesian settlement of New Zealand }
+    unsourced: An editorial label.
+  date-bunbury-2022:
+    prop: date
+    value: { lo: 1250 CE, hi: 1275 CE }
+    source:
+      ref: src:bunbury-2022-maori-settlement
+      loc: Results
+      quote: "settlement occurred a decade earlier in the NI (HPD of AD 1250 to 1275) than in the SI (HPD of AD 1280 to 1295)"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The North Island, the earlier of the two. Preferred as the model with the largest dataset
+      read, 2,254 terrestrial and marine ages. The level of the HPD range was not checked.
+  date-wilmshurst-2008:
+    prop: date
+    value: 1280 CE
+    source:
+      ref: src:wilmshurst-2008-pacific-rat
+      loc: abstract
+      quote: "the Pacific rat was introduced to both main islands of New Zealand ≈1280 A.D."
+    method: radiometric/radiocarbon
+    note: >-
+      From radiocarbon dates on rat bones and rat-gnawed seeds, the rat having come with the
+      settlers.
+  location:
+    prop: location
+    value: { lat: -41.3, lon: 174.0, frame: frame:earth/present-day }
+    unsourced: A representative point on Cook Strait, between the two main islands, chosen to place the marker.
+    method: editorial
+    basis: reconstruction
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-806
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

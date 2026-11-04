@@ -1,0 +1,66 @@
+id: life/occurrences/potato-jiskairumoko
+kind: occurrence
+summary: >-
+  Potato starch on grinding stones from Jiskairumoko, an early village at 3,890 m in the Ilave Valley
+  by Lake Titicaca, occupied about 3400–1600 BCE. Of 141 starch grains from 14 tools, 50 are
+  consistent with cultivated or domesticated potato, by their shape, against a study of wild and
+  cultivated starch.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Potato, Jiskairumoko" }
+    unsourced: An editorial label, from the crop and the site.
+  identified:
+    prop: identified_as
+    value: Solanum tuberosum
+    source:
+      ref: src:rumold-aldenderfer-2016-jiskairumoko
+      loc: abstract
+      quote: "the early use of potato (Solanum tuberosum) within its botanical locus of origin"
+  evidence:
+    prop: evidence
+    value: archaeobotanical
+    source:
+      ref: src:rumold-aldenderfer-2016-jiskairumoko
+      loc: abstract
+      quote: "Of 141 starch microremains recovered from 14 groundstone tools from Jiskairumoko, 50 are identified as consistent with cultivated or domesticated potato"
+    note: >-
+      What shows it is domestic: the form of starch grains, a reading the authors hold open, since
+      wild, weedy and domestic potatoes cross freely.
+  location:
+    prop: location
+    value: { lat: -16.0866, lon: -69.6354, frame: frame:earth/present-day }
+    source:
+      - { ref: src:wikidata-ilave, loc: "P625 coordinate location" }
+      - ref: src:rumold-aldenderfer-2016-jiskairumoko
+        loc: The Study Area
+        quote: "situated in the central Ilave Valley of the western Titicaca Basin of southern Peru"
+    method: gazetteer
+    note: >-
+      The town of Ilave. The site's own coordinates were not in the text read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-201
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 3400 BCE, hi: 1600 BCE }
+    source:
+      ref: src:rumold-aldenderfer-2016-jiskairumoko
+      loc: abstract
+      quote: "dating to the Late Archaic to Early Formative periods (∼3,400 cal y BC to 1,600 cal y BC)"
+    method: radiometric/radiocarbon
+    note: >-
+      The span of the site, not a date on the starch.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/angiospermae
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott494835 and ott99252: Solanum tuberosum lies within Magnoliopsida" }
+  domestication:
+    rel: part-of
+    to: people/domestication/potato
+    source: { ref: src:rumold-aldenderfer-2016-jiskairumoko, loc: abstract }

@@ -1,0 +1,75 @@
+id: people/first-cities/memphis
+kind: settlement
+summary: >-
+  Memphis, at Mit Rahina on the western side of the Nile, by tradition the first capital of a united Egypt, and an important centre for most of Egyptian history. The date of its
+  founding is traditional, not excavated. It was eclipsed when Fustat was founded.
+author: machine:claude-code
+same_as: { wikidata: Q5715, pleiades: 736963 }
+claims:
+  name:
+    prop: name
+    value: { en: Memphis }
+    source: { ref: src:pleiades-memphis, loc: "place 736963, names" }
+  start:
+    prop: start
+    value: 3000 BCE
+    source:
+      - ref: src:unesco-whc-86-memphis
+        loc: Outstanding Universal Value, brief synthesis
+        quote: Traditionally believed to have been founded in 3000 BC as the capital of a politically unified Egypt
+      - ref: src:herodotus-histories
+        loc: "2.99.4"
+        quote: he first founded in it that city which is now called Memphis
+    method: tradition
+    basis: reconstruction
+    note: >-
+      A date from tradition: UNESCO says so, and gives no evidence. Herodotus has the priests tell him that Min, the first king of Egypt, founded the city; he gives no date.
+  end:
+    prop: end
+    value: 642 CE
+    source:
+      - ref: src:unesco-whc-86-memphis
+        loc: Outstanding Universal Value, brief synthesis
+        quote: until it was eclipsed by the foundation of the Islamic garrison city of Fustat
+      - ref: src:unesco-whc-89-historic-cairo
+        loc: Outstanding Universal Value, brief synthesis
+        quote: the earlier cities of Fustat (642 AD)
+    method: expert-estimate
+    note: >-
+      When Fustat took its place, not when the last people left. The date comes from UNESCO's page on Cairo; the page on Memphis gives none. Pleiades records names
+      for the place into late antiquity and after.
+  location:
+    prop: location
+    value: { lat: 29.849491, lon: 31.255061, frame: frame:earth/present-day }
+    source: { ref: src:pleiades-memphis, loc: "place 736963, representative point" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-715
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  population-modelski-2500:
+    prop: population
+    value: 30000
+    valid: 2500 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Memphis, column BC_2500" }
+    method: compilation
+    note: Modelski's figure, as digitized by Reba et al. (2016), for the Old Kingdom.
+  population-chandler-2000:
+    prop: population
+    value: 60000
+    valid: 2000 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "chandlerV2.csv, row Memphis, column BC_2000" }
+    method: compilation
+    note: Chandler's figure, as digitized by Reba et al. (2016).
+  population-modelski-1100:
+    prop: population
+    value: 100000
+    valid: 1100 BCE
+    source: { ref: src:reba-2016-urban-population, loc: "modelskiAncientV2.csv, row Memphis, column BC_1100" }
+    method: compilation
+    rank: preferred
+    note: >-
+      Modelski's figure, as digitized by Reba et al. (2016), his highest, held with one gap to 300 BCE; Chandler has the same at 430 BCE. Preferred as the height these compilers
+      agree on, though neither gives its evidence row by row.

@@ -1,0 +1,130 @@
+id: life/taxa/triceratops
+kind: taxon
+summary: >-
+  The horned dinosaur Triceratops, the commonest dinosaur of the Hell Creek Formation in the
+  census of its Montana outcrops, known there from many isolated skulls and fewer skeletons.
+same_as: { pbdb: "txn:38862" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Triceratops", en: "Triceratops" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 38862"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: ceratopsian
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: quadruped
+    source:
+      - ref: src:maidment-2012-ornithischian-stance
+        loc: "Introduction"
+        quote: "quadrupedality evolved within at least three lineages independently: once in the armored stegosaurs and ankylosaurs, once in the frilled ceratopsids, and once in the duck-billed hadrosaurs"
+      - ref: src:paul-christiansen-2000-neoceratopsian-forelimb
+        loc: "abstract"
+        quote: "were placed directly beneath the glenoids"
+    note: >-
+      How upright the forelimbs were is disputed; Paul & Christiansen read the hands of a
+      probable ceratopsid trackway as beneath the shoulders.
+  length-osborn-1933:
+    prop: body_length
+    value: 7.08
+    source:
+      - ref: src:osborn-1933-triceratops-elatus
+        loc: "Principal proportions of the skeleton in meters"
+        quote: "Total length following curves, rostrum to tip of tail.........7.08"
+      - ref: src:osborn-1933-triceratops-elatus
+        loc: "Composite skull and skeleton"
+        quote: "The basis of the mount is the skeleton Amer. Mus. 5033"
+    method: survey
+    rank: preferred
+    note: >-
+      A measured mount built on AMNH 5033, from near Lismas, Montana, with bones of other
+      individuals, along the curves of the body; a straight line over the same mount is 5.80 m.
+      Preferred as the only measured length read of a Hell Creek skeleton, and with the same
+      mount as the hip height preferred here. It is a grown animal, not the largest: Horner et
+      al. (2011) speak of adults with 3.0 m skulls, far beyond this one.
+  length-gilmore-1905:
+    prop: body_length
+    value: 5.99
+    source:
+      ref: src:gilmore-1905-triceratops-mount
+      loc: "p. 434"
+      quote: "is 19 feet 8 inches in length"
+    method: survey
+    note: >-
+      USNM 4842 as mounted, restored, from the tip of the beak to the end of the tail; 19 feet 8
+      inches converted.
+  length-holtz-2012:
+    prop: body_length
+    value: 9
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 52, Chasmosaurines"
+      quote: "Triceratops three-horned face Late Cretaceous (66.8-65.5 MYA) 29.5 ft (9 m) Elephant"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.
+  hip-osborn-1933:
+    prop: hip_height
+    value: 2.165
+    source:
+      ref: src:osborn-1933-triceratops-elatus
+      loc: "Principal proportions of the skeleton in meters"
+      quote: "Highest point of spine at sacrum...................00006 2.165"
+    method: survey
+    rank: preferred
+    note: >-
+      The top of the sacrum on the mount, above its base; the digits 00006 are the OCR of leader
+      dots. The same mount as the length preferred here.
+  hip-gilmore-1905:
+    prop: hip_height
+    value: 2.49
+    source:
+      ref: src:gilmore-1905-triceratops-mount
+      loc: "p. 434"
+      quote: "of the sacrum) it is 8 feet 2 indies above the base"
+    method: survey
+    note: >-
+      USNM 4842 as mounted; 8 feet 2 inches converted ("indies" is the OCR of "inches").
+  mass-campione-evans-2012:
+    prop: body_mass
+    value: 7400
+    source:
+      ref: src:campione-evans-2012-limb-scaling
+      loc: "Table 6, row Triceratops horridus"
+      quote: "Triceratops horridus NSM PV 20379 8480 5310 6400 3938 4964 7400 5550-9250"
+    method: model
+    rank: preferred
+    note: >-
+      Scaled from limb-bone circumferences, with a stated range of 5550–9250 kg. Earlier
+      estimates in the same row run from 3938 to 8480 kg. Preferred for its stated error and
+      because it lies within what volumetric models give.
+  mass-benson-2014:
+    prop: body_mass
+    value: 13536.12
+    source:
+      ref: src:benson-2014-dinosaur-body-mass
+      loc: "Dataset S1, sheet \"Mass estimates\", row Triceratops_horridus (AMNH 5033)"
+      quote: "Triceratops_horridus 13536.1207452006 13536.1207452006 measured circumferences"
+    method: model
+    note: >-
+      The same equation as the preferred claim, on AMNH 5033, the basis of the mount above. The
+      dataset gives T. prorsus (USNM 4842) 10900.51 kg. Far above any other estimate read: a
+      reviewer should check the humeral circumference in the row, 491.5 mm.
+  mass-paul-christiansen-2000:
+    prop: body_mass
+    value: 6420
+    source:
+      ref: src:paul-christiansen-2000-neoceratopsian-forelimb
+      loc: "Fig. 1, caption"
+      quote: "Triceratops or Torosaurus, based primarily on USNM 4842 (6420 kg)"
+    method: model
+    note: >-
+      From a skeletal restoration.

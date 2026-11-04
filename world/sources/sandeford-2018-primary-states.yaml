@@ -1,0 +1,16 @@
+id: src:sandeford-2018-primary-states
+type: publication
+kind: review
+citation: >-
+  Sandeford, D.S. (2018). Organizational complexity and demographic scale in primary states. Royal Society Open Science 5(5), 171137.
+authors:
+  - "Sandeford, D.S."
+published: 2018
+title: Organizational complexity and demographic scale in primary states
+container: Royal Society Open Science
+doi: 10.1098/rsos.171137
+url: https://europepmc.org/article/PMC/PMC5990841
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: Full text read from Europe PMC (PMC5990841). Quote checked by script against it, after normalizing whitespace.

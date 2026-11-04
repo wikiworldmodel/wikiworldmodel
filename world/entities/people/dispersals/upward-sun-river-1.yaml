@@ -1,0 +1,81 @@
+id: people/dispersals/upward-sun-river-1
+kind: occurrence
+summary: >-
+  The genome of one of two infants buried at Upward Sun River in central Alaska, about 11,500 years
+  ago: the genome that defines the Ancient Beringians, a population basal to all Native Americans
+  sequenced.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Upward Sun River 1 }
+    source:
+      ref: src:moreno-mayar-2018-upward-sun-river
+      loc: abstract
+      quote: "by sequencing the USR1 genome"
+  identified:
+    prop: identified_as
+    value: human
+    source:
+      ref: src:moreno-mayar-2018-upward-sun-river
+      loc: abstract
+      quote: "Analyses of human remains from Late Pleistocene Alaska are important"
+  evidence:
+    prop: evidence
+    value: ancient-dna
+    source:
+      ref: src:moreno-mayar-2018-upward-sun-river
+      loc: abstract
+      quote: "by sequencing the USR1 genome to an average coverage of approximately 17 times"
+  location:
+    prop: location
+    value: { lat: 64.2008, lon: -149.4937, frame: frame:earth/present-day }
+    source: { ref: src:wikipedia-upward-sun-river-site, loc: "infobox coordinates" }
+    method: gazetteer
+    note: >-
+      From an encyclopedia article, because no gazetteer read has the site and the papers read print
+      no coordinates; Potter et al. (2014) place the site in the central Tanana River basin.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-123
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 11.6 ka, hi: 11.27 ka }
+    source:
+      - ref: src:potter-2014-upward-sun-river
+        loc: "Results, on the dating of the burial"
+        quote: "with a mean pooled radiocarbon age of 9970 ± 30 B.P. (11,600–11,270 cal B.P.)"
+      - ref: src:moreno-mayar-2018-upward-sun-river
+        loc: abstract
+        quote: "The remains of two infants were recovered at Upward Sun River (USR), and have been dated to around 11.5 thousand years ago (ka)."
+    method: radiometric/radiocarbon
+    note: Four dates from the burial pit, not on the bones, pooled.
+  ancestry:
+    prop: ancestry
+    value:
+      en: >-
+        Most closely related to Native Americans, but basal to all of them sequenced so far: a
+        distinct Ancient Beringian population, which with the ancestors of other Native Americans
+        descends from one founding population that first split from East Asians around 36 ka, with
+        gene flow until around 25 ka.
+    source:
+      - ref: src:moreno-mayar-2018-upward-sun-river
+        loc: abstract
+        quote: "USR1 is most closely related to Native Americans, but falls basal to all previously sequenced contemporary and ancient Native Americans"
+      - ref: src:moreno-mayar-2018-upward-sun-river
+        loc: abstract
+        quote: "USR1 represents a distinct Ancient Beringian population"
+      - ref: src:moreno-mayar-2018-upward-sun-river
+        loc: abstract
+        quote: "descended from a single founding population that initially split from East Asians around 36 ± 1.5 ka, with gene flow persisting until around 25 ± 1.1 ka"
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:moreno-mayar-2018-upward-sun-river
+      loc: abstract
+      quote: "human remains from Late Pleistocene Alaska"

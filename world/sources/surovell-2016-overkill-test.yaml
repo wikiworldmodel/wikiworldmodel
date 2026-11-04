@@ -1,0 +1,21 @@
+id: src:surovell-2016-overkill-test
+type: publication
+kind: compilation
+citation: >-
+  Surovell, T.A., Pelton, S.R., Anderson-Sprecher, R. & Myers, A.D. (2016). Test of Martin's
+  overkill hypothesis using radiocarbon dates on extinct megafauna. Proceedings of the National
+  Academy of Sciences of the USA 113(4), 886–891.
+authors:
+  - "Surovell, T.A."
+  - "Pelton, S.R."
+  - "Anderson-Sprecher, R."
+  - "Myers, A.D."
+published: 2016
+title: "Test of Martin's overkill hypothesis using radiocarbon dates on extinct megafauna"
+container: "Proceedings of the National Academy of Sciences of the USA 113(4), 886–891"
+doi: 10.1073/pnas.1504020112
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the OpenAlex record for the DOI; the full text could not be read
+    here. Quotes checked by script against the text retrieved, after normalizing whitespace.

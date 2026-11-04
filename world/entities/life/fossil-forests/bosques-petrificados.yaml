@@ -1,0 +1,77 @@
+id: life/occurrences/forest-bosques-petrificados
+kind: occurrence
+summary: >-
+  Araucarian conifers of the La Matilde Formation at the Monumento Natural Bosques Petrificados,
+  Santa Cruz, Patagonia: stumps in life position and great fallen trunks in two forest levels, buried
+  in pyroclastic rocks in the Middle Jurassic.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Bosques Petrificados, Patagonia" }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: Araucaria cf. A. mirabilis
+    source:
+      ref: src:falaschi-2011-la-matilde
+      loc: abstract
+      quote: The cones were assigned to Araucaria cf. A. mirabilis
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      ref: src:falaschi-2011-la-matilde
+      loc: "p. 124, Introduction"
+      quote: permineralized trunks, whether stumps in life position or huge trunks, lying horizontally, without any evidence of transport
+    note: >-
+      The basis is the paper's stumps in life position.
+  location:
+    prop: location
+    value: { lat: -47.665101, lon: -67.994191, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-bosques-petrificados, loc: "P625 coordinate location (the value with a reference)" }
+    method: gazetteer
+    note: >-
+      A point for the protected area, which Wikidata also lists as Monumento natural Bosques
+      Petrificados; the outcrop itself was not located from a source read. Wikidata's other value lies
+      about 13 km west of this one.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-291
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: La Matilde Formation
+    source:
+      ref: src:falaschi-2011-la-matilde
+      loc: "p. 124, Stratigraphy and sedimentology"
+      quote: rocks of the La Matilde Formation (Bahía Laura Group)
+  later-than:
+    prop: later_than
+    value: { ref: ics/bathonian, edge: start }
+    source:
+      ref: src:falaschi-2011-la-matilde
+      loc: "p. 124, Stratigraphy and sedimentology"
+      quote: that is in the Bathonian–Callovian interval
+    method: radiometric
+    note: >-
+      The formation's radiometric ages, given as between 157 and 162 ± 5–10 M.y. and read by the paper
+      as Bathonian–Callovian, so no older than the base of the Bathonian. Those numbers are
+      younger than the Callovian on the chart used here: the stages are what is kept.
+  earlier-than:
+    prop: earlier_than
+    value: { ref: ics/callovian, edge: end }
+    source:
+      ref: src:falaschi-2011-la-matilde
+      loc: "p. 124, Stratigraphy and sedimentology"
+      quote: that is in the Bathonian–Callovian interval
+    method: radiometric
+    note: >-
+      So no younger than the top of the Callovian.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/spermatophyta
+    source: { ref: src:falaschi-2011-la-matilde, loc: "abstract: conifers, Araucariaceae" }

@@ -1,0 +1,18 @@
+id: field:earth/day-length
+type: field
+title: Length of the day
+quantity: length of the day
+unit: h
+description: >-
+  How long the day was, from the world's own records of tidal rhythmites, Milankovitch cycles and
+  growth bands, each at its own date: the Earth's spin has been slowing as the tides carry the Moon
+  away. Each point is one study's estimate, drawn with the band it gives; the methods disagree, and
+  turning their counts into hours assumes that the Earth and the Moon conserved their angular momentum.
+grid: { kind: series }
+time: { lo: 3.22 Ga, hi: 0 Ma }
+data:
+  from: src:williams-2000-earth-rotation
+  prop: day_length
+  band: the uncertainty or the bounds each study gives
+basis: evidence
+interp: linear

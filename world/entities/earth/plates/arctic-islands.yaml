@@ -1,0 +1,11 @@
+id: earth/plates/arctic-islands
+kind: plate
+summary: Plate 106 of the PALEOMAP plate model.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Arctic Islands }
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlateModel.rot, plate 106", quote: "ARC-GRN Arctic Islands-Greenland 100 MY Future" }
+    note: >-
+      The label names this plate against Greenland (GRN).

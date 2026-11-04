@@ -1,0 +1,17 @@
+id: src:sun-xin-nanhai-i
+type: publication
+kind: review
+citation: >-
+  Sun, J. & Xin, G. Shipwreck archaeology in China: a case study of the Nanhai I shipwreck. In Conference Papers: Singapore
+  and the Southeast Asian Maritime Interaction Sphere. Southeast Asian Site Reports. NUS Press.
+authors:
+  - "Sun, J."
+  - "Xin, G."
+title: Shipwreck Archaeology in China—A Case Study of the Nanhai I Shipwreck
+container: "Southeast Asian Site Reports. Conference Papers: Singapore and the Southeast Asian Maritime Interaction Sphere"
+doi: 10.56159/samis
+url: https://epress.nus.edu.sg/sitereports/samis/content/6.%20Nanhai-One/
+reliability: A paper by archaeologists of the excavation. The DOI is the volume's, and no year was shown on the page read.
+verified:
+  by: machine:claude-code
+  how: Read directly on NUS Press's site. Quotes checked by script against its text, after normalizing whitespace.

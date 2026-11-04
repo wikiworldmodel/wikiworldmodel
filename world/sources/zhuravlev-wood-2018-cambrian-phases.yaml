@@ -1,0 +1,19 @@
+id: src:zhuravlev-wood-2018-cambrian-phases
+type: publication
+kind: measurement
+citation: >-
+  Zhuravlev, A.Y. & Wood, R.A. (2018). The two phases of the Cambrian Explosion. Scientific
+  Reports 8(1), 16656.
+authors:
+  - "Zhuravlev, A.Y."
+  - "Wood, R.A."
+published: 2018
+title: "The two phases of the Cambrian Explosion"
+container: Scientific Reports 8(1), 16656
+doi: 10.1038/s41598-018-34962-y
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC6226464) read via Europe PMC (fullTextXML): the two phases of the Cambrian
+    Explosion on the Siberian Platform and the Sinsk Event at about 513 Ma. Quotes checked by
+    script against that text. Metadata from Crossref.

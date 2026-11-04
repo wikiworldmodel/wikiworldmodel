@@ -1,0 +1,13 @@
+id: src:wikidata-uluburun-shipwreck
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q573852 (Uluburun shipwreck), property P625 (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q573852
+license: CC0-1.0
+reliability: Crowd-edited, with no reference on the coordinate, and close to the database of Strauss et al. (36.13086, 29.6878).
+verified:
+  by: machine:claude-code
+  how: Coordinates (36.128611111111, 29.685833333333) read from the item's JSON (Special:EntityData/Q573852.json, revision 2539065422, modified 2026-09-01).

@@ -1,22 +1,142 @@
 {
- "places/rome": [
+ "people/objects/pergamon-altar": [
+  797,
+  11
+ ],
+ "people/objects/okukor": [
+  757,
+  35
+ ],
+ "people/objects/parthenon-sculptures": [
+  758,
+  55
+ ],
+ "people/objects/rosetta-stone": [
+  758,
+  72
+ ],
+ "people/objects/stone-of-scone": [
+  758,
+  89
+ ],
+ "people/objects/bust-of-nefertiti": [
+  792,
+  45
+ ],
+ "people/objects/luxor-obelisk-paris": [
+  776,
+  50
+ ],
+ "people/objects/code-of-hammurabi": [
+  776,
+  67
+ ],
+ "people/objects/stele-of-naram-sin": [
+  776,
+  84
+ ],
+ "people/domestication/horse": [
+  866,
+  55
+ ],
+ "people/objects/flaminian-obelisk": [
   836,
   86
+ ],
+ "places/rome": [
+  836,
+  103
+ ],
+ "people/objects/lateran-obelisk": [
+  836,
+  120
+ ],
+ "people/objects/obelisk-of-axum": [
+  836,
+  137
  ],
  "places/constantinople": [
   882,
   90
  ],
+ "people/objects/cleopatras-needle-new-york": [
+  423,
+  92
+ ],
+ "people/domestication/pig-near-east": [
+  907,
+  104
+ ],
+ "people/domestication/sheep": [
+  907,
+  121
+ ],
+ "people/domestication/einkorn": [
+  909,
+  140
+ ],
+ "people/writing/greek-alphabet": [
+  883,
+  107
+ ],
+ "people/domestication/cattle": [
+  912,
+  165
+ ],
+ "people/domestication/goat": [
+  924,
+  123
+ ],
+ "people/writing/phoenician-alphabet": [
+  918,
+  177
+ ],
+ "people/domestication/barley": [
+  921,
+  181
+ ],
+ "people/domestication/emmer": [
+  923,
+  150
+ ],
  "people/developments/writing-mesopotamia": [
   933,
-  139
+  190
+ ],
+ "people/writing/proto-sinaitic": [
+  931,
+  207
+ ],
+ "people/domestication/common-bean": [
+  321,
+  199
  ],
  "earth/structures/chicxulub-crater": [
   330,
-  203
+  220
+ ],
+ "people/domestication/maize": [
+  317,
+  215
+ ],
+ "people/domestication/squash": [
+  316,
+  243
+ ],
+ "people/writing/maya-script": [
+  323,
+  261
+ ],
+ "people/domestication/sorghum": [
+  964,
+  238
  ],
  "earth/lips/central-atlantic-magmatic-province": [
   752,
   318
+ ],
+ "people/domestication/potato": [
+  386,
+  470
  ]
 }

@@ -1,0 +1,26 @@
+id: src:kennett-2023-el-gigante
+type: publication
+kind: measurement
+citation: >-
+  Kennett, D.J., Harper, T.K., VanDerwarker, A., … & Hirth, K.G. (2023). Trans-Holocene
+  Bayesian chronology for tree and field crop use from El Gigante rockshelter, Honduras. PLOS
+  ONE 18(6), e0287195.
+authors:
+  - "Kennett, D.J."
+  - "Harper, T.K."
+  - "VanDerwarker, A."
+  - "Thakar, H.B."
+  - "Domic, A."
+  - "Blake, M."
+  - "Benz, B.F."
+  - "George, R.J."
+# the first eight of 12 authors
+published: 2023
+title: "Trans-Holocene Bayesian chronology for tree and field crop use from El Gigante rockshelter, Honduras"
+container: "PLOS ONE 18(6), e0287195"
+doi: 10.1371/journal.pone.0287195
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC10289419) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

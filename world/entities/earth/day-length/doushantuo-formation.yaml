@@ -1,0 +1,60 @@
+id: earth/day-length/doushantuo-formation
+kind: sample
+summary: >-
+  Rock magnetic cycles in the Ediacaran Doushantuo Formation of South China, read as Milankovitch cycles:
+  a day of about 22 hours.
+same_as: { wikidata: Q2445119 }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Doushantuo Formation cycles" }
+    unsourced: An editorial label, from the rock unit and what was measured.
+  formation:
+    prop: formation
+    value: Doushantuo Formation
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "560, Doushantuo Fm, South China"
+      quote: 560 Doushantuo Fm, South China 22.1 0.1 cyclostratigraphy
+  evidence:
+    prop: evidence
+    value: cyclostratigraphy
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "560, Doushantuo Fm, South China"
+      quote: 560 Doushantuo Fm, South China 22.1 0.1 cyclostratigraphy
+  date:
+    prop: date
+    value: 560 Ma
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "560, Doushantuo Fm, South China"
+      quote: 560 Doushantuo Fm, South China 22.1 0.1 cyclostratigraphy
+    method: compilation
+  location:
+    prop: location
+    value: { lat: 27.0029, lon: 107.4779, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-doushantuo-formation, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      The gazetteer's point for the formation, which crops out widely: the compilation names only South
+      China, and the study behind the row, Gong et al. (2019), was not read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  day-length:
+    prop: day_length
+    value: { mean: 22.1, sd: 0.1 }
+    source:
+      ref: src:mitchell-kirscher-2023-day-length
+      loc: Extended Data Table 1, row "560, Doushantuo Fm, South China"
+      quote: 560 Doushantuo Fm, South China 22.1 0.1 cyclostratigraphy
+    method: compilation
+    note: >-
+      As the compilation gives it; its uncertainty is read as a standard deviation, as the compilation's
+      resampling does. Other studies, at other levels of the formation, give it 21.8 ± 0.4 h at 570 Ma and
+      21.7 ± 1.1 h at 550 Ma.

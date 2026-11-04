@@ -1,0 +1,22 @@
+id: src:potter-2014-upward-sun-river
+type: publication
+kind: measurement
+citation: >-
+  Potter, B.A., Irish, J.D., Reuther, J.D. & McKinney, H.J. (2014). New insights into Eastern
+  Beringian mortuary behavior: a terminal Pleistocene double infant burial at Upward Sun River.
+  Proceedings of the National Academy of Sciences of the USA 111(48), 17060–17065.
+authors:
+  - "Potter, B.A."
+  - "Irish, J.D."
+  - "Reuther, J.D."
+  - "McKinney, H.J."
+published: 2014
+title: "New insights into Eastern Beringian mortuary behavior: a terminal Pleistocene double infant burial at Upward Sun River"
+container: "Proceedings of the National Academy of Sciences of the USA 111(48), 17060–17065"
+doi: 10.1073/pnas.1413131111
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the article's page on PubMed Central (PMC4260572); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text and the abstract in Europe PMC.

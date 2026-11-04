@@ -1,0 +1,25 @@
+id: src:bergstrom-2022-wolves
+type: publication
+kind: measurement
+citation: >-
+  Bergström, A., Stanton, D.W.G., Taron, U.H., … & Skoglund, P. (2022). Grey wolf genomic
+  history reveals a dual ancestry of dogs. Nature 607(7918), 313–320.
+authors:
+  - "Bergström, A."
+  - "Stanton, D.W.G."
+  - "Taron, U.H."
+  - "Frantz, L."
+  - "Sinding, M.S."
+  - "Ersmark, E."
+  - "Pfrengle, S."
+  - "Cassatt-Johnstone, M."
+# the first eight of 81 authors
+published: 2022
+title: "Grey wolf genomic history reveals a dual ancestry of dogs"
+container: "Nature 607(7918), 313–320"
+doi: 10.1038/s41586-022-04824-9
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC9279150) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

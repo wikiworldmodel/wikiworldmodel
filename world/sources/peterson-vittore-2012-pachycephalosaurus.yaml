@@ -1,0 +1,18 @@
+id: src:peterson-vittore-2012-pachycephalosaurus
+type: publication
+kind: measurement
+citation: >-
+  Peterson, J.E. & Vittore, C.P. (2012). Cranial pathologies in a specimen of
+  Pachycephalosaurus. PLoS ONE 7(4), e36227.
+authors:
+  - "Peterson, J.E."
+  - "Vittore, C.P."
+published: 2012
+title: "Cranial pathologies in a specimen of Pachycephalosaurus"
+container: "PLoS ONE 7(4), e36227"
+doi: 10.1371/journal.pone.0036227
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC3340332); quotes checked by script against it.

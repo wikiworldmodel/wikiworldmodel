@@ -1,0 +1,15 @@
+id: src:pleiades-hattusa
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 283602441, "Hattusa" (Boğazkale, Turkey).
+snapshot: "2026-11-04"
+container: Pleiades
+url: https://pleiades.stoa.org/places/283602441
+license: CC-BY-3.0
+reliability: A scholarly gazetteer of ancient places; its description is a short summary, not a study.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/283602441/json) read directly on 4 November 2026:
+    representative point 40.014913°N, 34.617158°E. Quote checked by script against the JSON's details field.

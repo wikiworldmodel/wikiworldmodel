@@ -1,0 +1,26 @@
+id: src:casanova-2022-botai
+type: publication
+kind: measurement
+citation: >-
+  Casanova, E., Knowles, T.D.J., Outram, A.K., … & Evershed, R.P. (2022). Direct 14C dating of
+  equine products preserved in archaeological pottery vessels from Botai and Bestamak,
+  Kazakhstan. Archaeological and Anthropological Sciences 14(9), 175.
+authors:
+  - "Casanova, E."
+  - "Knowles, T.D.J."
+  - "Outram, A.K."
+  - "Stear, N.A."
+  - "Roffet-Salque, M."
+  - "Zaibert, V."
+  - "Logvin, A."
+  - "Shevnina, I."
+# the first eight of 10 authors
+published: 2022
+title: "Direct 14C dating of equine products preserved in archaeological pottery vessels from Botai and Bestamak, Kazakhstan"
+container: "Archaeological and Anthropological Sciences 14(9), 175"
+doi: 10.1007/s12520-022-01630-2
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC9388454) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

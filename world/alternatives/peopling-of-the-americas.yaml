@@ -1,0 +1,14 @@
+# A group of alternatives: its members exclude each other, and groups combine freely. A
+# claim belongs to the default picture unless it names an alternative (section 4.4).
+id: alt:peopling-of-the-americas
+type: group
+title: Peopling of the Americas
+description: >-
+  Whether people were south of the great ice sheets before the Last Glacial Maximum, about 26.5–19 ka,
+  or came after it. Both sides accept the sites from about 16 ka on. They part over the footprints at
+  White Sands and a few older sites, and over how to read the Beringian standstill in Native
+  American genomes. The default picture says only what both accept.
+# A steward decision: what a build shows, and which member it shows by default (none: the
+# default picture). Shown on a machine's proposal, until a person decides.
+show: [alt:peopling-of-the-americas/post-lgm, alt:peopling-of-the-americas/pre-lgm]
+default: null

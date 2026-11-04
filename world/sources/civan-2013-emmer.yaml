@@ -1,0 +1,20 @@
+id: src:civan-2013-emmer
+type: publication
+kind: measurement
+citation: >-
+  Civáň, P., Ivaničová, Z. & Brown, T.A. (2013). Reticulated origin of domesticated emmer wheat
+  supports a dynamic model for the emergence of agriculture in the fertile crescent. PLOS ONE
+  8(11), e81955.
+authors:
+  - "Civáň, P."
+  - "Ivaničová, Z."
+  - "Brown, T.A."
+published: 2013
+title: "Reticulated origin of domesticated emmer wheat supports a dynamic model for the emergence of agriculture in the fertile crescent"
+container: "PLOS ONE 8(11), e81955"
+doi: 10.1371/journal.pone.0081955
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC3843696) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

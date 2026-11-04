@@ -1,0 +1,11 @@
+id: src:glasgow-police-museum-stone-of-destiny
+type: publication
+kind: review
+citation: >-
+  Glasgow Police Museum. The Stone of Destiny, 1950. Crime casebook, interesting cases.
+title: The Stone of Destiny, 1950
+url: https://www.policemuseum.org.uk/crime-casebook/interesting-cases/the-stone-of-destiny-1950/
+reliability: A museum of the police force that held the stone in April 1951, with detail of that week that the others do not give. No references.
+verified:
+  by: machine:claude-code
+  how: Read on the museum's site. Quotations checked by script against the page's text.

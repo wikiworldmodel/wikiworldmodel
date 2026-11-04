@@ -1,0 +1,86 @@
+id: people/rulers/chandragupta-maurya
+kind: person
+summary: >-
+  Founder of the Maurya empire, who overthrew the Nandas and made terms with Seleucus; the
+  Sandrocottus of the Greek writers.
+author: machine:claude-code
+same_as: { wikidata: Q188541 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: King of Magadha
+claims:
+  name:
+    prop: name
+    value: { en: Chandragupta Maurya }
+    source:
+      ref: src:cambridge-history-of-india-1922
+      loc: "p. 698"
+      quote: Chandragupta 321-297
+  reign-start-cambridge:
+    prop: start
+    subject: "@reign"
+    value: 321 BCE
+    source:
+      - ref: src:cambridge-history-of-india-1922
+        loc: "p. 313"
+        quote: this suzerainty passed from the Nandas to the Mauryas, probably c. 321 B.C.
+      - ref: src:cambridge-history-of-india-1922
+        loc: "p. 698"
+        quote: Chandragupta 321-297
+    method: expert-estimate
+    basis: reconstruction
+    rank: preferred
+    note: Reckoned between the death of Alexander and the treaty with Seleucus.
+  reign-start-hultzsch:
+    prop: start
+    subject: "@reign"
+    value: 320 BCE
+    source:
+      ref: src:hultzsch-1925-inscriptions-of-asoka
+      loc: "p. xxxv"
+      quote: if the length of reigns as given in the Mahavamsa is accepted
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Hultzsch's working date, the mean of outside dates 323 and 317, with which Chandragupta
+      rules 320–296 (p. xxxv–xxxvi).
+  reign-start-jain:
+    prop: start
+    subject: "@reign"
+    value: { lo: 313 BCE, hi: 312 BCE }
+    source:
+      ref: src:cambridge-history-of-india-1922
+      loc: "p. 698"
+      quote: The Jain authorities give the year of his accession as 313 (312)
+    method: tradition
+    note: >-
+      The date of a Jain tradition, as the Cambridge History reports it; it may rather mark an
+      epoch of the Jain church (p. 164).
+  end:
+    prop: end
+    value: { ref: people/rulers/chandragupta-maurya@reign, edge: start, lag: 24 yr }
+    source:
+      - ref: src:cambridge-history-of-india-1922
+        loc: "p. 698"
+        quote: Chandragupta 321-297
+      - ref: src:hultzsch-1925-inscriptions-of-asoka
+        loc: "p. xxxv"
+        quote: if the length of reigns as given in the Mahavamsa is accepted
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Twenty-four years on both scholars' reckoning, 321–297 and 320–296, from the Ceylon
+      chronicle's length; the end of his reign is taken for his life, for lack of a source read
+      on what came after. Jain tradition, not read here, has him abdicate.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/maurya-empire
+    source:
+      ref: src:cambridge-history-of-india-1922
+      loc: "p. 313"
+      quote: this suzerainty passed from the Nandas to the Mauryas
+    note: King of Magadha and founder of the Maurya empire.

@@ -1,0 +1,69 @@
+id: people/trade/sinan
+kind: event/shipwreck
+summary: >-
+  A trading ship about 32 m long that left Ningbo for Hakata in 1323 and sank off the south-west coast of Korea, with some
+  20,000 ceramics, 28 tons of copper coins and over a thousand pieces of red sandalwood. Hundreds of wooden cargo tags,
+  eight of them dated, name its Japanese consignees, above all the temple of Tofukuji in Kyoto, burnt in 1319, for whose
+  rebuilding it seems to have sailed. Found in a fisherman's net in 1975.
+author: machine:claude-code
+same_as: { wikidata: Q2288725 }
+claims:
+  name:
+    prop: name
+    value: { en: Sinan shipwreck }
+    source: { ref: src:lee-2011-sinan-shipwreck-collection, loc: p. 105, quote: "a China-Japan trade ship that sank near the Sinan coast" }
+  date:
+    prop: date
+    value: 1323 CE
+    source:
+      ref: src:lee-2011-sinan-shipwreck-collection
+      loc: p. 107
+      quote: "so assuming that the loading was completed immediately before the embarkation, the ship likely departed sometime around the sixth month of 1323."
+    method: documentary
+    rank: preferred
+    note: >-
+      From tablets inscribed "third year of Zhizhi", with the fifth or sixth month, reckoned as 1323. It is the year the ship
+      left; that it sank on that voyage is taken from the cargo, none of it later than 1323.
+  date-jeong-1977:
+    prop: date
+    value: { lo: 1320 CE, hi: 1339 CE }
+    source:
+      ref: src:lee-2011-sinan-shipwreck-collection
+      loc: p. 107
+      quote: "The earliest possible year was determined to be 1311, and the ship was conjectured to have been from the 1320s or the 1330s"
+    method: numismatic
+    rank: deprecated
+    note: Jeong Yangmo's estimate of 1977 from the coins and the lack of blue-and-white ware, at second hand, before the tablets were read.
+  location:
+    prop: location
+    value: { lat: 35.020833, lon: 126.085, frame: frame:earth/present-day }
+    source:
+      ref: src:lee-2011-sinan-shipwreck-collection
+      loc: p. 105
+      quote: "at the exact geographical coordinates of 35° 1' 15\" N latitude and 126° 5' 6\" E longitude."
+    method: survey
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-611
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+  cargo:
+    prop: cargo
+    value: { en: "20,600 ceramics, nearly all Chinese and most of them celadon from Longquan and porcelain; 28 tons of copper coins; 1,107 pieces of red sandalwood; 729 metal objects." }
+    source:
+      - ref: src:lee-2011-sinan-shipwreck-collection
+        loc: "p. 106, Table 1"
+        quote: "Quantity 12,377 5,311 509 2,306 188 729  45 575 22,040 28 tons  1,107 720"
+      - ref: src:lee-2011-sinan-shipwreck-collection
+        loc: p. 108
+        quote: "A total of 20,600 items of various types have been retrieved so far."
+    note: The table reads, in order, celadon, porcelain, black-glazed, mixed-glazed and white-glazed ware, metal and stone objects, others, the total, coins, red sandalwood and hull pieces. Its total and the text's differ a little.
+  voyage:
+    prop: voyage
+    value: { en: "From Mingzhou (Ningbo) in China, bound for Hakata in Japan and then Kyoto." }
+    source:
+      ref: src:lee-2011-sinan-shipwreck-collection
+      loc: p. 108
+      quote: "the Sinan ship was a merchant vessel that departed Mingzhou (present day Ningbo), China in 1323 for Hakata, Japan."
+    note: From the port named on a bronze weight and from the owners on the tablets.

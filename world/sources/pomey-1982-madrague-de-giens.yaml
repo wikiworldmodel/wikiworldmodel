@@ -1,0 +1,17 @@
+id: src:pomey-1982-madrague-de-giens
+type: publication
+kind: measurement
+citation: >-
+  Pomey, P. (1982). Le navire romain de la Madrague de Giens. Comptes rendus des séances de l'Académie des Inscriptions
+  et Belles-Lettres 126(1), 133–154.
+authors: ["Pomey, P."]
+published: 1982
+title: Le navire romain de la Madrague de Giens
+container: Comptes rendus des séances de l'Académie des Inscriptions et Belles-Lettres
+doi: 10.3406/crai.1982.13926
+url: https://www.persee.fr/doc/crai_0065-0536_1982_num_126_1_13926
+verified:
+  by: machine:claude-code
+  how: >-
+    The opening page read on Persée and the whole in the Persée PDF, from a copy on ancientportsantiques.com. Quotes
+    checked by script against the PDF's text layer and Persée's page, after normalizing whitespace.

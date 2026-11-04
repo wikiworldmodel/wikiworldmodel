@@ -1,0 +1,12 @@
+id: field:earth/hazards
+type: field
+title: Eruptions, earthquakes and tsunamis
+description: >-
+  The significant eruptions, earthquakes and tsunamis of NOAA's databases, each drawn around its year.
+  Old events are far less complete than recent ones: fewer rings in the past does not mean fewer events.
+grid: { kind: rows }
+time: { lo: 4360 BCE, hi: 2026 CE }
+data:
+  from: src:noaa-hazards-2026-11-04
+  as: hazards
+basis: evidence

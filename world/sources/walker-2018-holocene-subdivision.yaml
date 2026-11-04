@@ -1,0 +1,31 @@
+id: src:walker-2018-holocene-subdivision
+type: publication
+kind: review
+citation: >-
+  Walker, M., Head, M.J., Berkelhammer, M., Björck, S., Cheng, H., Cwynar, L., Fisher, D., Gkinis,
+  V., Long, A., Lowe, J., Newnham, R., Rasmussen, S.O. & Weiss, H. (2018). Formal ratification of
+  the subdivision of the Holocene Series/Epoch (Quaternary System/Period): two new Global Boundary
+  Stratotype Sections and Points (GSSPs) and three new stages/subseries. Episodes 41(4), 213–223.
+authors:
+  - "Walker, M."
+  - "Head, M.J."
+  - "Berkelhammer, M."
+  - "Björck, S."
+  - "Cheng, H."
+  - "Cwynar, L."
+  - "Fisher, D."
+  - "Gkinis, V."
+  - "Long, A."
+  - "Lowe, J."
+  - "Newnham, R."
+  - "Rasmussen, S.O."
+  - "Weiss, H."
+published: 2018
+title: "Formal ratification of the subdivision of the Holocene Series/Epoch (Quaternary System/Period): two new Global Boundary Stratotype Sections and Points (GSSPs) and three new stages/subseries"
+container: "Episodes 41(4), 213–223"
+doi: 10.18814/epiiugs/2018/018016
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the publisher's PDF (Episodes). Citation from Crossref. Quotes checked by
+    script against the text retrieved.

@@ -1,0 +1,59 @@
+id: life/transitions/reefs-carboniferous
+kind: event/transition
+summary: >-
+  The return of skeletal reefs after the Late Devonian extinctions, the longest delay in reef
+  history: coral reefs in the late Viséan, then low mounds and banks of calcareous algae,
+  chaetetid sponges and microbes through the Pennsylvanian.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Carboniferous coral and algal reefs }
+    unsourced: An editorial label.
+  cover:
+    prop: cover
+    value: reefs
+    unsourced: "How the renderer should treat this transition: an editorial classification."
+  start-yao-2020:
+    prop: start
+    value: 347 Ma
+    source:
+      ref: src:yao-2020-longest-delay
+      loc: "Conclusions (manuscript p. 34)"
+      quote: began at c. 347 Ma, about 12 Ma after the Hangenberg crisis (359 Ma)
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      The first few metazoan reefs, from the early Viséan. Before this lies the gap: a metazoan "reef
+      gap" through the Tournaisian. It is a gap in animal reefs, not in all reefs. Rare Tournaisian
+      shallow-water reefs were built mainly by stromatolites and thrombolites (Webb 2002), and
+      deep-water mounds of microbes, sponges and bryozoans peaked in the late Tournaisian. No record
+      here covers them. Stated as "c.", without an uncertainty.
+  start-yao-2020-proliferation:
+    prop: start
+    value: 336 Ma
+    source:
+      - ref: src:yao-2020-longest-delay
+        loc: "Conclusions (manuscript p. 34)"
+        quote: whilst it was 23 Ma (c. 336 Ma) before reefs proliferated
+      - ref: src:webb-2002-carboniferous-reefs
+        loc: abstract
+        quote: increased to peak during the late Visean
+    method: stratigraphic
+    note: >-
+      The start of abundant reefs, in the late Asbian to early Brigantian, and not of the first few.
+  end-wahlman-2002:
+    prop: end
+    value: { ref: ics/gzhelian, edge: end }
+    source:
+      ref: src:wahlman-2002-late-paleozoic-reefs
+      loc: abstract
+      quote: those two buildup communities merged
+    method: stratigraphic
+    note: >-
+      Not a crisis but a change of builders: in the Early Permian the Upper Carboniferous phylloid
+      algal and sponge communities merged into the reefs of the next record. Webb (2002) has shallow
+      buildups falling through the late Serpukhovian and Bashkirian; Flügel & Kiessling (2002) count
+      a first-order reef crisis at the Mississippian–Pennsylvanian boundary. The Pennsylvanian's
+      buildups are mostly low banks and mounds, with few large reef builders, except on the
+      seamounts of Japan.

@@ -1,0 +1,19 @@
+id: src:mudelsee-raymo-2005-slow-dynamics
+type: publication
+kind: compilation
+citation: >-
+  Mudelsee, M. & Raymo, M.E. (2005). Slow dynamics of the Northern Hemisphere glaciation.
+  Paleoceanography 20(4), 2005PA001153.
+authors:
+  - "Mudelsee, M."
+  - "Raymo, M.E."
+published: 2005
+title: "Slow dynamics of the Northern Hemisphere glaciation"
+container: "Paleoceanography 20(4), 2005PA001153"
+doi: 10.1029/2005PA001153
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read through OpenAlex's copy of the publisher's record; the publisher's PDF refused
+    the download. The full text was not read. Citation from Crossref. Quotes checked by script
+    against the text retrieved.

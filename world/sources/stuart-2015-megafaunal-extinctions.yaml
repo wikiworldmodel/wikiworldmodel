@@ -1,0 +1,17 @@
+id: src:stuart-2015-megafaunal-extinctions
+type: publication
+kind: review
+citation: >-
+  Stuart, A.J. (2015). Late Quaternary megafaunal extinctions on the continents: a short review.
+  Geological Journal 50(3), 338–363.
+authors:
+  - "Stuart, A.J."
+published: 2015
+title: "Late Quaternary megafaunal extinctions on the continents: a short review"
+container: "Geological Journal 50(3), 338–363"
+doi: 10.1002/gj.2633
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the OpenAlex record for the DOI; the full text could not be read
+    here. Quotes checked by script against the text retrieved, after normalizing whitespace.

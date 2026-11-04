@@ -1,0 +1,21 @@
+id: field:earth/world-population
+type: field
+title: World population
+quantity: people alive in the whole world
+unit: people
+description: >-
+  How many people were alive in the whole world, in the baseline of HYDE 3.2.1, which builds it up from estimates
+  for each province or state of every country. It is a reconstruction, not a count, and the further back the rougher.
+  Its authors give 4.4 million for 10,000 BCE, with a range from under 10,000 people to 8.9 million, and 232 million
+  for 1 CE, with a range of 58–406 million against 170–330 million in the literature, and they say the numbers before
+  1500 CE must be treated with caution. Its steps are 1,000 years long up to 1 CE, 100 years up to 1700, 10 years up to
+  2000 and then one year, and it stops at 2015. Between steps the line is simply straight, not an estimate.
+grid: { kind: series }
+# HYDE labels its first step -10000, and the axis reads that as it stands: a year out, which these numbers cannot tell.
+time: { lo: -10000, hi: 2015 CE }
+data:
+  from: src:hyde-3.2.1-world-population
+  columns: { time: year, value: people }
+  time_unit: CE
+basis: reconstruction
+interp: linear

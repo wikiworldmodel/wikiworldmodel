@@ -1,0 +1,41 @@
+id: life/taxa/cinnamomum
+kind: taxon
+summary: >-
+  A laurel-family tree, C. lineafolia in the Hell Creek rows of the snapshot.
+same_as: { pbdb: "txn:54617" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Cinnamomum", en: "cinnamon" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 54617"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: broadleaf
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: upright
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 7, s.v. Cinnamomum camphora"
+      quote: "Evergreen large trees, up to 30 m tall"
+    note: >-
+      A tree, as the flora describes the living plant.
+  height-flora-of-china:
+    prop: plant_height
+    value: 30
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 7, s.v. Cinnamomum camphora"
+      quote: "Evergreen large trees, up to 30 m tall"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The living camphor tree, C. camphora, a large species of the genus: a modern relative, not
+      a Hell Creek plant.

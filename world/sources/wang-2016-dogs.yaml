@@ -1,0 +1,25 @@
+id: src:wang-2016-dogs
+type: publication
+kind: measurement
+citation: >-
+  Wang, G.D., Zhai, W., Yang, H.C., … & Zhang, Y.P. (2016). Out of southern East Asia: the
+  natural history of domestic dogs across the world. Cell Research 26(1), 21–33.
+authors:
+  - "Wang, G.D."
+  - "Zhai, W."
+  - "Yang, H.C."
+  - "Wang, L."
+  - "Zhong, L."
+  - "Liu, Y.H."
+  - "Fan, R.X."
+  - "Yin, T.T."
+# the first eight of 16 authors
+published: 2016
+title: "Out of southern East Asia: the natural history of domestic dogs across the world"
+container: "Cell Research 26(1), 21–33"
+doi: 10.1038/cr.2015.147
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC4816135) on 3 November 2026. Each quote checked
+    by script against that text; citation from the Europe PMC record.

@@ -1,0 +1,30 @@
+id: src:fu-2018-nanjinganthus
+type: publication
+kind: measurement
+citation: >-
+  Fu, Q., Diez, J.B., Pole, M., García Ávila, M., Liu, Z.-J., Chu, H., Hou, Y., Yin, P., Zhang,
+  G.-Q., Du, K. & Wang, X. (2018). An unexpected noncarpellate epigynous flower from the
+  Jurassic of China. eLife 7, e38827.
+authors:
+  - "Fu, Q."
+  - "Diez, J.B."
+  - "Pole, M."
+  - "García Ávila, M."
+  - "Liu, Z.-J."
+  - "Chu, H."
+  - "Hou, Y."
+  - "Yin, P."
+  - "Zhang, G.-Q."
+  - "Du, K."
+  - "Wang, X."
+published: 2018
+title: "An unexpected noncarpellate epigynous flower from the Jurassic of China"
+container: eLife 7, e38827
+doi: 10.7554/elife.38827
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC6298773) read via Europe PMC (fullTextXML): the locality of Nanjinganthus at
+    Wugui Hill with its coordinates, the South Xiangshan Formation, and the age the authors
+    reach (174–207 Ma, closer to 174 Ma). Quotes checked by script against that text. Metadata
+    from Crossref.

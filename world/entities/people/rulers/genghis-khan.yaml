@@ -1,0 +1,74 @@
+id: people/rulers/genghis-khan
+kind: person
+summary: >-
+  Temüjin, who united the Mongol tribes, took the title Genghis in 1206 and began the conquests
+  of the Mongol empire.
+author: machine:claude-code
+same_as: { wikidata: Q720 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Great Khan of the Mongols
+claims:
+  name:
+    prop: name
+    value: { en: Genghis Khan, zh: 成吉思皇帝 }
+    source:
+      ref: src:yuan-shi-wikisource
+      loc: "ch. 1"
+      quote: "諸王羣臣共上尊號曰成吉思皇帝"
+  start:
+    prop: start
+    value: 1162 CE
+    source:
+      - ref: src:giles-1898-chinese-biographical-dictionary
+        loc: "entry 605"
+        quote: A.D. 1162—1227
+      - ref: src:yuan-shi-wikisource
+        loc: "ch. 1"
+        quote: "言訖而崩，壽六十六"
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Giles gives the Western year. The Yuan shi has in English: having said this he died, aged
+      sixty-six, by Chinese reckoning, which comes to the same year.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: 1206 CE
+    source:
+      ref: src:yuan-shi-wikisource
+      loc: "ch. 1"
+      quote: "元年丙寅，帝大會諸王羣臣，建九游白旗，即皇帝位於斡難河之源"
+    method: historical-account
+    note: >-
+      In English: in the first year, bingyin, the emperor held a great assembly of the princes
+      and ministers, raised the white banner of nine tails, and took the throne at the source of
+      the Onon river. The bingyin year of the sixty-year cycle is 1206; the text equates it to
+      the sixth year of the Jin era Taihe.
+  end:
+    prop: end
+    value: 1227 CE
+    source:
+      - ref: src:yuan-shi-wikisource
+        loc: "ch. 1"
+        quote: "秋七月壬午，不豫。己丑，崩于薩里川哈老徒之行宮"
+      - ref: src:giles-1898-chinese-biographical-dictionary
+        loc: "entry 605"
+        quote: A.D. 1162—1227
+    method: historical-account
+    note: >-
+      In English: in the autumn, seventh month, on the day renwu he fell ill; on the day jichou
+      he died at the travelling palace of Halaotu on the Sali river. The twenty-second year of
+      the reign, 1227. The Julian day was not worked out here.
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/mongol-empire
+    source:
+      ref: src:yuan-shi-wikisource
+      loc: "ch. 1"
+      quote: "即皇帝位於斡難河之源"
+    note: Great Khan, called emperor in the Chinese history.

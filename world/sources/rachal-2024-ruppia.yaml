@@ -1,0 +1,24 @@
+id: src:rachal-2024-ruppia
+type: publication
+kind: measurement
+citation: >-
+  Rachal, D.M., Dello-Russo, R. & Cuba, M. (2024). The Pleistocene footprints are younger than we
+  thought: correcting the radiocarbon dates of Ruppia seeds, Tularosa Basin, New Mexico. Quaternary
+  Research 117, 67–78.
+authors:
+  - "Rachal, D.M."
+  - "Dello-Russo, R."
+  - "Cuba, M."
+published: 2024
+title: "The Pleistocene footprints are younger than we thought: correcting the radiocarbon dates of Ruppia seeds, Tularosa Basin, New Mexico"
+container: "Quaternary Research 117, 67–78"
+doi: 10.1017/qua.2023.74
+reliability: >-
+  Disputed: Pigati et al. (2023) and Holliday et al. (2025) date the footprint horizons by other
+  means than Ruppia seeds, and find ages that agree with the seeds' uncorrected ones.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read on the publisher's page (Cambridge Core); the full text was not available here,
+    so how the paper reaches its figure of ~7500 years was not read. Quotes checked by script
+    against the abstract.

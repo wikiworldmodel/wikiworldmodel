@@ -1,0 +1,22 @@
+id: src:lambeck-2014-sea-level-ice-volumes
+type: publication
+kind: model
+citation: >-
+  Lambeck, K., Rouby, H., Purcell, A., Sun, Y. & Sambridge, M. (2014). Sea level and global ice
+  volumes from the Last Glacial Maximum to the Holocene. Proceedings of the National Academy of
+  Sciences 111(43), 15296–15303.
+authors:
+  - "Lambeck, K."
+  - "Rouby, H."
+  - "Purcell, A."
+  - "Sun, Y."
+  - "Sambridge, M."
+published: 2014
+title: "Sea level and global ice volumes from the Last Glacial Maximum to the Holocene"
+container: "Proceedings of the National Academy of Sciences 111(43), 15296–15303"
+doi: 10.1073/pnas.1411762111
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read through Europe PMC, and the full text on PubMed Central (PMC4217469). Citation
+    from Crossref. Quotes checked by script against the text retrieved.

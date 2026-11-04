@@ -1,0 +1,20 @@
+id: src:harper-1904-code-of-hammurabi
+type: publication
+kind: review
+citation: >-
+  Harper, R.F. (1904). The Code of Hammurabi, King of Babylon, about 2250 B.C. Chicago: The University
+  of Chicago Press; London: Luzac & Co.
+authors:
+  - "Harper, R.F."
+published: 1904
+title: The Code of Hammurabi, King of Babylon, about 2250 B.C.
+url: https://archive.org/details/codeofhammurabik00harpuoft
+license: public-domain
+reliability: >-
+  An early English edition and translation. Its chronology is that of its time; its translation is
+  cited here for what the text itself says of where the stele stood.
+verified:
+  by: machine:claude-code
+  how: >-
+    The introduction and the epilogue (p. 99) read in the Internet Archive's OCR text. Quotations
+    checked by script with whitespace normalized.

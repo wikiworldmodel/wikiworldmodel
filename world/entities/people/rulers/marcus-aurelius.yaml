@@ -1,0 +1,81 @@
+id: people/rulers/marcus-aurelius
+kind: person
+summary: >-
+  Emperor and Stoic writer, adopted by Antoninus, who shared the throne with Lucius Verus and
+  died on campaign on the Danube.
+author: machine:claude-code
+same_as: { wikidata: Q1430 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: reign
+    label: Emperor of Rome
+claims:
+  name:
+    prop: name
+    value: { en: Marcus Aurelius }
+    source:
+      ref: src:historia-augusta
+      loc: "Marcus Aurelius 1.5"
+      quote: Marcus himself was born at Rome
+  start:
+    prop: start
+    value: 26 April 121 CE
+    source:
+      ref: src:historia-augusta
+      loc: "Marcus Aurelius 1.5"
+      quote: Marcus himself was born at Rome on the sixth day before the Kalends of May in the second consulship of his grandfather and the first of Augur
+    method: historical-account
+    note: The sixth day before the Kalends of May is 26 April, and that consulship is 121 CE.
+  reign-start:
+    prop: start
+    subject: "@reign"
+    value: { ref: people/rulers/antoninus-pius, edge: end }
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 71, 1.1, vol. 9 p. 3"
+      quote: upon obtaining the throne at the death of Antoninus, his adoptive father
+    method: historical-account
+    note: >-
+      He took Lucius Verus as his colleague at once; Verus has no record of his own here yet.
+  end:
+    prop: end
+    value: 17 March 180 CE
+    source:
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 72, LXXI.33, vol. 9 p. 61"
+        quote: he passed away on the seventeenth of March
+      - ref: src:cassius-dio-roman-history-56-80
+        loc: "Epitome of Book 72, LXXI.34, vol. 9 pp. 63–65"
+        quote: although he lived fifty-eight years, ten months, and twenty-two days
+    method: historical-account
+    note: The year follows from Dio's age counted from April 121, which comes to March 180.
+  location:
+    prop: location
+    value: { lat: 41.889977, lon: 12.491258, frame: frame:earth/present-day }
+    source:
+      - ref: src:pleiades-rome
+        loc: "representative point"
+      - ref: src:historia-augusta
+        loc: "Marcus Aurelius 1.5"
+        quote: in a villa on the Caelian Hill
+    method: gazetteer
+    note: >-
+      Marked at his birthplace, in Rome, at the city's representative point; the villa on the
+      Caelian is not located.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-307
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  held-office:
+    rel: held-office
+    subject: "@reign"
+    to: people/polities/rome@empire
+    source:
+      ref: src:cassius-dio-roman-history-56-80
+      loc: "Epitome of Book 72, LXXI.34, vol. 9 p. 65"
+      quote: had been emperor himself nineteen years and eleven days
+    note: Emperor, at first with Lucius Verus.

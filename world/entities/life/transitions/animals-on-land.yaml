@@ -1,0 +1,85 @@
+id: life/transitions/animals-on-land
+kind: event/transition
+summary: >-
+  The first animals out of the water, all arthropods: from Cambrian visitors who left trackways on tidal flats and dunes, to residents with air-breathing bodies. Here the
+  start is the visitors, and the end the oldest residents; the fossil record of residents is a hundred million years younger than the molecular dates for the groups they belong
+  to. Land plants of the same time are life/transitions/land-plants.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First animals on land }
+    unsourced: An editorial label.
+  start-tihelka-2022:
+    prop: start
+    value: 500 Ma
+    source:
+      ref: src:tihelka-2022-arthropod-terrestrialization
+      loc: "3.1. Trace Fossil Evidence"
+      quote: "The oldest of these include trackways on land from the late Cambrian (~500 Ma) of Ontario, Canada produced by arthropods with at least 11 pairs of similar walking legs and a long tail-spine, presumably made by the extinct euthycarcinoids"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      The oldest direct evidence of animals out of the water, though they may not have stayed out long. The Ontario site could not be located from a source read, so the occurrence
+      tied to this transition is the other site that the review describes, Blackberry Hill.
+  start-lozano-fernandez-2016:
+    prop: start
+    value: { ref: ics/ordovician }
+    source:
+      ref: src:lozano-fernandez-2016-terrestrialization
+      loc: "Conclusion"
+      quote: "that these lineages colonized the land in the Ordovician or the Silurian (Arachnida) and the Ordovician (Hexapoda)"
+    method: molecular-clock
+    note: >-
+      The authors' reading of their molecular clock for arachnids and hexapods. Tihelka et al. (2022) review dates as old as the Cambrian–Ordovician. An origin of a land group, not a
+      fossil of it.
+  start-pneumodesmus:
+    prop: start
+    value: { ref: life/occurrences/pneumodesmus-cowie }
+    source:
+      ref: src:wellman-2024-stonehaven
+      loc: abstract
+      quote: "includes the oldest reported air-breathing land animal"
+    note: >-
+      For those who count only animals that could live out of water. The date moves with the dispute in that record.
+  end-pneumodesmus:
+    prop: end
+    value: { ref: life/occurrences/pneumodesmus-cowie }
+    source:
+      ref: src:lozano-fernandez-2016-terrestrialization
+      loc: "The timescale of arthropod terrestrialization"
+      quote: "The oldest terrestrial myriapod body fossil (which is also the oldest undisputably terrestrial animal) is the ca 426 Ma millipede Pneumodesmus newmani"
+    rank: preferred
+    note: >-
+      Taken as the end: by then animals were residents, breathing air. Follows the occurrence's date, whose competing claims are about 13 Myr apart.
+  end-jeram-1990:
+    prop: end
+    value: { ref: life/occurrences/palaeotarbus-ludford }
+    source:
+      ref: src:jeram-1990-ludford
+      loc: abstract
+      quote: "This unequivocal terrestrial fauna from the Silurian constitutes the earliest direct record of land animals."
+    note: >-
+      With predators among them, so an ecosystem, not a lone visitor. If Pneumodesmus is as young as Suarez et al. (2017) say, this is the older of the two, as Tihelka et al. (2022) hold.
+relations:
+  evidence-blackberry-hill:
+    rel: evidenced-by
+    to: life/occurrences/blackberry-hill-trackways
+    source:
+      ref: src:tihelka-2022-arthropod-terrestrialization
+      loc: "3.1. Trace Fossil Evidence"
+      quote: "Another site famous for its Cambrian traces of life on land is the middle to late Cambrian Blackberry Hill in central Wisconsin"
+  evidence-pneumodesmus:
+    rel: evidenced-by
+    to: life/occurrences/pneumodesmus-cowie
+    source:
+      ref: src:tihelka-2022-arthropod-terrestrialization
+      loc: "2.1. Arthropod Origins"
+      quote: "The earliest animal possessing unambiguous terrestrial adaptations is the millipede Pneumodesmus newmani"
+  evidence-ludford:
+    rel: evidenced-by
+    to: life/occurrences/palaeotarbus-ludford
+    source:
+      ref: src:tihelka-2022-arthropod-terrestrialization
+      loc: "2.1. Arthropod Origins"
+      quote: "The earliest fossil assemblage preserving arthropods belonging to terrestrial clades is the Přídolí-aged Ludlow bone bed Member exposed at Ludford Lane"

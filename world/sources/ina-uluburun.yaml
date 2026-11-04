@@ -1,0 +1,12 @@
+id: src:ina-uluburun
+type: publication
+kind: review
+citation: >-
+  Institute of Nautical Archaeology. Uluburun Late Bronze Age Shipwreck Excavation. Project page.
+title: Uluburun Late Bronze Age Shipwreck Excavation
+container: Institute of Nautical Archaeology, Projects
+url: https://nauticalarch.org/projects/uluburun-late-bronze-age-shipwreck-excavation/
+reliability: A short summary by the institute that excavated the wreck. Its date rests on Manning et al. (2009), in its bibliography, which was not read.
+verified:
+  by: machine:claude-code
+  how: Read directly on 4 November 2026. Quotes checked by script against its text, after normalizing whitespace.

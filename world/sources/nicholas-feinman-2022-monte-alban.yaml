@@ -1,0 +1,20 @@
+id: src:nicholas-feinman-2022-monte-alban
+type: publication
+kind: review
+citation: >-
+  Nicholas, L.M. & Feinman, G.M. (2022). The Foundation of Monte Albán, Intensification, and Growth: Coactive Processes and Joint
+  Production. Frontiers in Political Science 4, 805047.
+authors:
+  - "Nicholas, L.M."
+  - "Feinman, G.M."
+published: 2022
+title: "The Foundation of Monte Albán, Intensification, and Growth: Coactive Processes and Joint Production"
+container: Frontiers in Political Science
+doi: 10.3389/fpos.2022.805047
+url: https://www.frontiersin.org/journals/political-science/articles/10.3389/fpos.2022.805047/pdf
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the publisher's PDF. Quotes checked by script against its text layer, ignoring whitespace, because that
+    layer breaks some words with stray spaces.

@@ -1,0 +1,31 @@
+id: src:dominguez-rodrigo-2013-oh-80
+type: publication
+kind: measurement
+citation: >-
+  Domínguez-Rodrigo, M., Pickering, T.R., Baquedano, E., Mabulla, A., Mark, D.F., Musiba, C.,
+  Bunn, H.T., Uribelarrea, D., Smith, V., Diez-Martin, F. et al. (2013). First partial skeleton of
+  a 1.34-million-year-old Paranthropus boisei from Bed II, Olduvai Gorge, Tanzania. PLOS ONE
+  8(12), e80347.
+authors:
+  - "Domínguez-Rodrigo, M."
+  - "Pickering, T.R."
+  - "Baquedano, E."
+  - "Mabulla, A."
+  - "Mark, D.F."
+  - "Musiba, C."
+  - "Bunn, H.T."
+  - "Uribelarrea, D."
+  - "Smith, V."
+  - "Diez-Martin, F."
+published: 2013
+title: "First partial skeleton of a 1.34-million-year-old Paranthropus boisei from Bed II, Olduvai Gorge, Tanzania"
+container: "PLOS ONE 8(12), e80347"
+doi: 10.1371/journal.pone.0080347
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 19 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC3855051): OH 80 above Tuff IID, 1.338 ± 0.024 Ma (1 sigma)
+    by 40Ar/39Ar, and the comparisons with the P. boisei cranium OH 5. Quoted passages checked by
+    script against the text retrieved.

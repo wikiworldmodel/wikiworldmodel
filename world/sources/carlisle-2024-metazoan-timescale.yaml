@@ -1,0 +1,22 @@
+id: src:carlisle-2024-metazoan-timescale
+type: publication
+kind: model
+citation: >-
+  Carlisle, E., Yin, Z., Pisani, D. & Donoghue, P.C.J. (2024). Ediacaran origin and
+  Ediacaran-Cambrian diversification of Metazoa. Science Advances 10(46), eadp7161.
+authors:
+  - "Carlisle, E."
+  - "Yin, Z."
+  - "Pisani, D."
+  - "Donoghue, P.C.J."
+published: 2024
+title: "Ediacaran origin and Ediacaran-Cambrian diversification of Metazoa"
+container: Science Advances 10(46), eadp7161
+doi: 10.1126/sciadv.adp7161
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC11559618) read via Europe PMC (fullTextXML): the calibration on Charnia
+    masoni in the Drook Formation (574.17 Ma ± 0.66 Myr), the doubts on pre-Ediacaran sponge
+    records, and the estimate for crown Metazoa (613.2–593.4 Ma). Quotes checked by script
+    against that text. Metadata from Crossref.

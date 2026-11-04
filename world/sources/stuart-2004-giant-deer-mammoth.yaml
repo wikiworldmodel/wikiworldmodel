@@ -1,0 +1,20 @@
+id: src:stuart-2004-giant-deer-mammoth
+type: publication
+kind: measurement
+citation: >-
+  Stuart, A.J., Kosintsev, P.A., Higham, T.F.G. & Lister, A.M. (2004). Pleistocene to Holocene
+  extinction dynamics in giant deer and woolly mammoth. Nature 431(7009), 684–689.
+authors:
+  - "Stuart, A.J."
+  - "Kosintsev, P.A."
+  - "Higham, T.F.G."
+  - "Lister, A.M."
+published: 2004
+title: "Pleistocene to Holocene extinction dynamics in giant deer and woolly mammoth"
+container: "Nature 431(7009), 684–689"
+doi: 10.1038/nature02890
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the Europe PMC record (PMID 15470427); the full text could not
+    be read here. Quotes checked by script against the text retrieved, after normalizing whitespace.

@@ -1,0 +1,43 @@
+id: people/trade/xuanquan-postal-station
+kind: building/civic
+summary: >-
+  The Han relay station at Xuanquan, in the desert of Dunhuang, one of nine in that commandery and some 45 known between
+  Chang'an and the frontier. It normally had 37 staff, 40 horses and over ten carriages. Excavated in 1990–92, it gave
+  more than 35,000 wooden and bamboo slips, the largest such find, recording who passed through and what they were fed: the
+  daily paperwork of the eastern road. Two mileage records, one of them from here, list the stations from Chang'an to Dunhuang.
+author: machine:claude-code
+same_as: { wikidata: Q2598504 }
+claims:
+  name:
+    prop: name
+    value: { en: Xuanquan Postal Station, zh: 懸泉置 }
+    source: { ref: src:zhang-2026-han-court-silk-road, loc: p. 73, quote: "the Xuanquan Postal Station 懸泉置 site" }
+  start:
+    prop: start
+    value: 111 BCE
+    source:
+      ref: src:china-daily-2023-xuanquanzhi
+      loc: "paragraph beginning 'The slips unearthed'"
+      quote: "The slips unearthed from the Xuanquanzhi Ruins span 218 years, with the earliest written in 111 BC and the latest in 107 AD."
+    method: documentary
+    note: The earliest dated slip, so the station may be older. From a newspaper; the slips' editions were not read.
+  end:
+    prop: end
+    value: 107 CE
+    source:
+      ref: src:china-daily-2023-xuanquanzhi
+      loc: "paragraph beginning 'The slips unearthed'"
+      quote: "The slips unearthed from the Xuanquanzhi Ruins span 218 years, with the earliest written in 111 BC and the latest in 107 AD."
+    method: documentary
+    note: The latest dated slip, so the station may have gone on. The same article has relics of the Han and Jin here.
+  location:
+    prop: location
+    value: { lat: 40.264906, lon: 95.329734, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-xuanquanzhi, loc: "Q2598504, P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-606
+    source: { ref: src:paleomap-plate-model, loc: PALEOMAP_PlatePolygons.gpml }
+    method: plate-polygon
+    basis: reconstruction

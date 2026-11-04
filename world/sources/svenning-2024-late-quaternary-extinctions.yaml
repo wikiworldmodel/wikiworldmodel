@@ -1,0 +1,28 @@
+id: src:svenning-2024-late-quaternary-extinctions
+type: publication
+kind: review
+citation: >-
+  Svenning, J.-C., Lemoine, R.T., Bergman, J., Buitenwerf, R., Le Roux, E., Lundgren, E., Mungi, N.
+  & Pedersen, R.Ø. (2024). The late-Quaternary megafauna extinctions: Patterns, causes, ecological
+  consequences and implications for ecosystem management in the Anthropocene. Cambridge Prisms:
+  Extinction 2, e5.
+authors:
+  - "Svenning, J.-C."
+  - "Lemoine, R.T."
+  - "Bergman, J."
+  - "Buitenwerf, R."
+  - "Le Roux, E."
+  - "Lundgren, E."
+  - "Mungi, N."
+  - "Pedersen, R.Ø."
+published: 2024
+title: "The late-Quaternary megafauna extinctions: Patterns, causes, ecological consequences and implications for ecosystem management in the Anthropocene"
+container: "Cambridge Prisms: Extinction 2, e5"
+doi: 10.1017/ext.2024.4
+reliability: >-
+  A review that takes a side: it concludes for human causation and against climate.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC11895740). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

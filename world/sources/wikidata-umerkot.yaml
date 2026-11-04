@@ -1,0 +1,17 @@
+id: src:wikidata-umerkot
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q2625910 (Umerkot, city in Sindh, Pakistan), property P625 (coordinate
+  location).
+snapshot: 2026-11-04
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q2625910
+license: CC0-1.0
+reliability: >-
+  A crowd-edited gazetteer entry, adequate for placing the town of the fort of Umarkot to a few
+  kilometres.
+verified:
+  by: machine:claude-code
+  how: >-
+    Coordinates (25.36139, 69.73611) read from the item through the Wikidata API.

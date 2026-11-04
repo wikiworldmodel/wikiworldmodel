@@ -1,0 +1,17 @@
+id: src:zeder-2008-mediterranean
+type: publication
+kind: review
+citation: >-
+  Zeder, M.A. (2008). Domestication and early agriculture in the Mediterranean Basin: Origins,
+  diffusion, and impact. Proceedings of the National Academy of Sciences 105(33), 11597–11604.
+authors:
+  - "Zeder, M.A."
+published: 2008
+title: "Domestication and early agriculture in the Mediterranean Basin: Origins, diffusion, and impact"
+container: "Proceedings of the National Academy of Sciences 105(33), 11597–11604"
+doi: 10.1073/pnas.0801317105
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the PMC page (PMC2575338) on 3 November 2026. Each quote checked by
+    script against that text; citation from the Europe PMC record.

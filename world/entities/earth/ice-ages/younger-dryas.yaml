@@ -1,0 +1,57 @@
+id: earth/ice-ages/younger-dryas
+kind: period
+summary: >-
+  A return to cold in the high northern latitudes that broke into the warming of the last deglaciation,
+  for a little over a thousand years, before the abrupt warming that opens the Holocene.
+author: machine:claude-code
+same_as: { wikidata: Q944279 }
+claims:
+  name:
+    prop: name
+    value: { en: Younger Dryas }
+    source: { ref: src:cheng-2020-younger-dryas, loc: title }
+  start-rasmussen-2006:
+    prop: start
+    value: { mean: 12846 BP, sd: 69 yr }
+    source:
+      ref: src:rasmussen-2006-gicc05
+      loc: "Table 4"
+      quote: Onset of Younger Dryas 1526.52 12,896 138
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Annual layers counted in the NGRIP ice core, on the same chronology as the base of the Holocene.
+      The source counts from 2000: 12,896 b2k is 12,846 BP. Its maximum counting error of 138 yr is read
+      as 2σ, as Cheng et al. (2020) read GICC05's, so the sd is 69 yr.
+  start-cheng-2020:
+    prop: start
+    value: { mean: 12870 BP, sd: 15 yr }
+    source:
+      - ref: src:cheng-2020-younger-dryas
+        loc: abstract
+        quote: Our analysis suggests that the onsets of YD in the North Atlantic (12,870 ± 30 B.P.) and the Asian Monsoon-Westerlies region are essentially synchronous within a few decades
+      - ref: src:cheng-2020-younger-dryas
+        loc: "Results and Discussion, Speleothem Record from the North Atlantic Region"
+        quote: dating precision (±20 to 40 y; 2σ)
+    method: radiometric
+    note: >-
+      Uranium–thorium dating of a stalagmite from Seso Cave, Spain, correlated with the ice core. The ± is
+      read as 2σ, as the paper gives that record's precision, so the sd is 15 yr. It agrees with the ice
+      core within the core's counting error, and is far more precise.
+relations:
+  before-the-holocene:
+    rel: before
+    to: earth/ice-ages/holocene-start
+    lag: 0 yr
+    source:
+      ref: src:walker-2009-holocene-gssp
+      loc: abstract
+      quote: the first signs of climatic warming at the end of the Younger Dryas/Greenland Stadial 1 cold phase
+    note: The boundary of the Holocene is defined at the end of this cold phase, so its end is not written here but follows from that record.
+  part-of-the-deglaciation:
+    rel: part-of
+    to: earth/ice-ages/last-deglaciation
+    source:
+      ref: src:clark-2012-last-deglaciation
+      loc: "Fig. 2 caption, on the records of the last deglaciation"
+      quote: LGM, Last Glacial Maximum; OD, Oldest Dryas; BA, Bølling–Allerød; ACR, Antarctic Cold Reversal; YD, Younger Dryas.

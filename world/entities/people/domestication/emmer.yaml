@@ -1,0 +1,86 @@
+id: people/domestication/emmer
+kind: development
+summary: >-
+  The domestication of emmer wheat from wild emmer in the Fertile Crescent, after a long time of
+  cultivating the wild plant. Its mark is an ear that no longer shatters by itself and so needs
+  people to sow it, and such ears spread slowly: a fifth of the chaff at the first site, not
+  dominant for a thousand years or more. The first such chaff is in southern Syria; a later
+  appearance in the Zagros and a mixed wild ancestry argue against one centre.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Emmer wheat domestication }
+    unsourced: An editorial label.
+  start-arranz-otaegui-2016:
+    prop: start
+    value: { lo: 10.7 ka, hi: 10.2 ka }
+    source:
+      ref: src:arranz-otaegui-2016-cereal-domestication
+      loc: "The Evidence of Cereal Domestication at Tell Qarassa North"
+      quote: "by 10.7–10.2 ka Cal BP there are positive signs that barley, emmer, and einkorn were being cultivated at TQN"
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The first chaff with more tough-scarred pieces than wild stands give. Cultivation of the
+      wild plant came first, so this dates the appearance of the domestic trait, not the first
+      farming of emmer.
+  start-scott-2019:
+    prop: start
+    value: 9700 BCE
+    source:
+      ref: src:scott-2019-egyptian-emmer
+      loc: abstract
+      quote: "cultivated from around 9700 BCE in the Levant"
+    method: expert-estimate
+    note: >-
+      Cultivation, in the sentence that also calls emmer one of the first cereals domesticated:
+      an earlier edge of the same process, before tough chaff is known in any number.
+  start-tanno-willcox-2006:
+    prop: start
+    value: 9500 BP
+    source:
+      ref: src:tanno-willcox-2006-wild-wheat
+      loc: abstract
+      quote: "indehiscent domesticates were slow to appear, emerging approximately 9500 years before the present"
+    method: expert-estimate
+    rank: deprecated
+    note: >-
+      The argument for a slow change stands, but tough chaff is now dated earlier at Tell Qarassa
+      North. The abstract speaks of wheat in general; the full text was not read.
+  location-southern-syria:
+    prop: location
+    value: { lat: 32.835556, lon: 36.413722, frame: frame:earth/present-day }
+    source:
+      - ref: src:arranz-otaegui-2016-cereal-domestication
+        loc: Significance
+        quote: "Domesticated-type cereal chaff (>10%) is found in southern Syria around 10.7–10.2 ka Cal BP but appears around 400–1,000 y later in the other regions."
+      - ref: src:civan-2013-emmer
+        loc: abstract
+        quote: "diverse wild populations were collected from a large area west of the Euphrates and cultivated in mixed stands"
+      - { ref: src:wikidata-tell-qarassa, loc: "P625 coordinate location" }
+    method: editorial
+    rank: preferred
+    note: >-
+      Marked at Tell Qarassa, the site with such chaff that has been counted here. A point for a
+      process both papers spread over a region; Civáň et al. read the genetics as a mixed
+      population west of the Euphrates, not one wild source.
+  location-zagros:
+    prop: location
+    value: { lat: 33.377361, lon: 46.271092, frame: frame:earth/present-day }
+    source:
+      - ref: src:riehl-2013-chogha-golan
+        loc: abstract
+        quote: "Around 9800 calendar years before the present, domesticated-type emmer appears."
+      - { ref: src:wikidata-chogha-golan, loc: "P625 coordinate location" }
+    method: editorial
+    note: >-
+      Chogha Golan, in the foothills of the Zagros: the paper argues for long plant management
+      here, in the east of the Fertile Crescent, and so against a single western centre. Later
+      than southern Syria, and marked at the site.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-503
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction

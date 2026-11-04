@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-290
+type: frame
+kind: plate
+title: Salado subplate (PALEOMAP plate 290)
+entity: earth/plates/salado-subplate
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 290
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 290

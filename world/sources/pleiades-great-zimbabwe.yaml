@@ -1,0 +1,17 @@
+id: src:pleiades-great-zimbabwe
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 322739224, "Great Zimbabwe" (Masvingo, Zimbabwe).
+snapshot: "2026-11-04"
+container: Pleiades
+url: https://pleiades.stoa.org/places/322739224
+license: CC-BY-3.0
+reliability: >-
+  A scholarly gazetteer of ancient places, here far from its core region. Its description follows UNESCO's short text,
+  including the 80 hectares that UNESCO's longer statement gives as almost 800.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/322739224/json) read directly on 4 November 2026:
+    representative point 20.270936°S, 30.933198°E. Quote checked by script against the JSON's description.

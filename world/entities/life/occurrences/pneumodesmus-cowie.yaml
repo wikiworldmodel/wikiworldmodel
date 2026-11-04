@@ -1,0 +1,72 @@
+id: life/occurrences/pneumodesmus-cowie
+kind: occurrence
+summary: >-
+  The millipede Pneumodesmus newmani from the Cowie Harbour Fish Bed, Stonehaven, Scotland: the oldest reported
+  air-breathing land animal, with spiracles preserved. Its age is disputed by about 13 million years, late Silurian
+  against early Devonian. PBDB collection 84333.
+same_as: { pbdb: "occ:1204297" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Pneumodesmus, Cowie Harbour" }
+    unsourced: An editorial label, from the taxon and the collection’s place name.
+  identified:
+    prop: identified_as
+    value: Pneumodesmus newmani n. gen. n. sp.
+    source: { ref: src:pbdb/collection-84333, loc: "occurrence 1204297, identified_name" }
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:tihelka-2022-arthropod-terrestrialization
+      loc: "2.1. Arthropod Origins"
+      quote: "The terrestrial character of this organism is indisputable since it possesses spiracles, openings on the cuticle that allow air to enter the tracheal system"
+  location:
+    prop: location
+    value: { lat: 56.971001, lon: -2.2, frame: frame:earth/present-day }
+    source: { ref: src:pbdb/collection-84333, loc: "collection coordinates (lat, lng)" }
+    method: compilation
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-313
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Cowie Formation
+    source: { ref: src:pbdb/collection-84333, loc: "formation; member Dictyocaris" }
+  date-wellman-2024:
+    prop: date
+    value: { ref: ics/homerian }
+    source:
+      - ref: src:wellman-2024-stonehaven
+        loc: abstract
+        quote: "We report on newly discovered dispersed spore assemblages and additional zircon data that confirm a late Wenlock (late Silurian) age."
+      - { ref: src:pbdb/collection-84333, loc: "early_interval (Homerian), max_ma, min_ma" }
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Preferred as the latest peer-reviewed study read, which answers the one below with new spores and new zircons.
+      The answer has itself been answered: a 2025 preprint by Brookfield et al., not peer reviewed, holds that the two
+      dated sections are different strata, and that the millipede beds are Pridoli–Lochkovian.
+  date-suarez-2017:
+    prop: date
+    value: 414 Ma
+    source:
+      - ref: src:suarez-2017-cowie
+        loc: "Discussion"
+        quote: "The Cowie Harbour Fish Bed thus appears to be ~414 Ma in age, almost 13 million years younger than the currently accepted age."
+      - ref: src:brookfield-2025-cowie-preprint
+        loc: abstract
+        quote: "the totality of the evidence firmly dates the millipede-bearing strata as Pridoli-Lochkovian"
+    method: radiometric/u-pb
+    note: >-
+      From zircons in beds above and below the fish bed. Tihelka et al. (2022) accept it, and the 2025 preprint argues for the
+      same side of the question, without the same number.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/arthropoda
+    source: { ref: src:pbdb/collection-84333, loc: "occurrence 1204297, classification: Arthropoda, Myriapoda" }

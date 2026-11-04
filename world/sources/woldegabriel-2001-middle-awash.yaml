@@ -1,0 +1,26 @@
+id: src:woldegabriel-2001-middle-awash
+type: publication
+kind: measurement
+citation: >-
+  WoldeGabriel, G., Haile-Selassie, Y., Renne, P.R., Hart, W.K., Ambrose, S.H., Asfaw, B., Heiken,
+  G. & White, T. (2001). Geology and palaeontology of the Late Miocene Middle Awash valley, Afar
+  rift, Ethiopia. Nature 412(6843), 175–178.
+authors:
+  - "WoldeGabriel, G."
+  - "Haile-Selassie, Y."
+  - "Renne, P.R."
+  - "Hart, W.K."
+  - "Ambrose, S.H."
+  - "Asfaw, B."
+  - "Heiken, G."
+  - "White, T."
+published: 2001
+title: "Geology and palaeontology of the Late Miocene Middle Awash valley, Afar rift, Ethiopia"
+container: "Nature 412(6843), 175–178"
+doi: 10.1038/35084058
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 11449271): the earliest hominids of the Middle Awash
+    dated to between 5.54 and 5.77 Myr. It does not name the method. Quoted passages checked by
+    script against the text retrieved.

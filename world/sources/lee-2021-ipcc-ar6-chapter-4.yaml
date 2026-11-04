@@ -1,0 +1,36 @@
+id: src:lee-2021-ipcc-ar6-chapter-4
+type: publication
+kind: review
+citation: >-
+  Lee, J.-Y., Marotzke, J., Bala, G., Cao, L., Corti, S., Dunne, J.P., Engelbrecht, F., Fischer, E.,
+  Fyfe, J.C., Jones, C., Maycock, A., Mutemi, J., Ndiaye, O., Panickal, S. & Zhou, T. (2021). Future
+  Global Climate: Scenario-Based Projections and Near-Term Information. In Climate Change 2021: The
+  Physical Science Basis. Contribution of Working Group I to the Sixth Assessment Report of the
+  Intergovernmental Panel on Climate Change, pp. 553–672. Cambridge University Press.
+authors:
+  - "Lee, J.-Y."
+  - "Marotzke, J."
+  - "Bala, G."
+  - "Cao, L."
+  - "Corti, S."
+  - "Dunne, J.P."
+  - "Engelbrecht, F."
+  - "Fischer, E."
+  - "Fyfe, J.C."
+  - "Jones, C."
+  - "Maycock, A."
+  - "Mutemi, J."
+  - "Ndiaye, O."
+  - "Panickal, S."
+  - "Zhou, T."
+published: 2021
+title: "Future Global Climate: Scenario-Based Projections and Near-Term Information"
+container: Climate Change 2021, The Physical Science Basis (IPCC AR6 WGI), Chapter 4, pp. 553–672
+doi: 10.1017/9781009157896.006
+url: https://www.ipcc.ch/report/ar6/wg1/downloads/report/IPCC_AR6_WGI_Chapter04.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Read from the IPCC's PDF of the chapter: Table 4.5 (p. 582), with its caption. Citation as the
+    chapter itself asks to be cited. Quotes checked by script against the text extracted from that
+    PDF, after normalizing whitespace.

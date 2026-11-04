@@ -1,0 +1,16 @@
+id: src:louvre-code-of-hammurabi-notice
+type: publication
+kind: review
+citation: >-
+  Iselin, C., after a text by B. André-Salvini. Law Code of Hammurabi, king of Babylon. Musée du
+  Louvre, work notice.
+authors:
+  - "Iselin, C."
+title: Law Code of Hammurabi, king of Babylon
+url: https://web.archive.org/web/20191210180902/https://www.louvre.fr/en/oeuvre-notices/law-code-hammurabi-king-babylon
+reliability: The notice of the department that holds the stele, written from its curator's book.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the copy archived on 10 December 2019 at web.archive.org. Quotations checked by script
+    against its text.

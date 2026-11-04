@@ -1,0 +1,23 @@
+id: src:demuro-2019-sima
+type: publication
+kind: measurement
+citation: >-
+  Demuro, M., Arnold, L.J., Aranburu, A., Sala, N. & Arsuaga, J.L. (2019). New bracketing
+  luminescence ages constrain the Sima de los Huesos hominin fossils (Atapuerca, Spain) to MIS 12.
+  Journal of Human Evolution 131, 76–95.
+authors:
+  - "Demuro, M."
+  - "Arnold, L.J."
+  - "Aranburu, A."
+  - "Sala, N."
+  - "Arsuaga, J.L."
+published: 2019
+title: "New bracketing luminescence ages constrain the Sima de los Huesos hominin fossils (Atapuerca, Spain) to MIS 12"
+container: "Journal of Human Evolution 131, 76–95"
+doi: 10.1016/j.jhevol.2018.12.003
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read via Europe PMC (PMID 31182208): single-grain TT-OSL ages and an age-depth
+    model: the hominin-bearing layer at 448 ± 15 ka. Quoted passages checked by script against the
+    text retrieved.

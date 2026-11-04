@@ -1,0 +1,39 @@
+id: earth/day-length/wells-devonian-corals
+kind: occurrence
+summary: >-
+  The Middle Devonian corals in which Wells (1963) counted daily growth lines between annual bands:
+  about 400 lines to the year, the first estimate of the days in a past year from growth rings.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Wells's Devonian corals" }
+    unsourced: An editorial label, from the author of the study and the fossils.
+  evidence:
+    prop: evidence
+    value: body-fossil
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: p. 38
+      quote: Counts of presumed daily growth lines
+    note: >-
+      No location is claimed: Wells's paper could not be read, and Williams's summary of it names no locality.
+  date:
+    prop: date
+    value: 380 Ma
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: p. 38
+      quote: Middle Devonian (380 Ma) corals
+  day-length:
+    prop: day_length
+    value: { lo: 21.38, hi: 22.77 }
+    source:
+      ref: src:williams-2000-earth-rotation
+      loc: p. 38
+      quote: there were ~400 daily growth lines (range 385–410) per year
+    note: >-
+      Williams's summary of Wells (1963), which could not be read. The hours are arithmetic, with the year
+      taken as constant: 365.24 × 24 h = 8765.76 h, which over 410 lines is 21.38 h, over 385 is 22.77 h and
+      over 400 is 21.91 h, so Wells's 400 is not the middle of this band. Williams warns that such counts in
+      fossils are approximations whose reliability has been questioned.

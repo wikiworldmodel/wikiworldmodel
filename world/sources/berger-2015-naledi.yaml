@@ -1,0 +1,29 @@
+id: src:berger-2015-naledi
+type: publication
+kind: measurement
+citation: >-
+  Berger, L.R., Hawks, J., de Ruiter, D.J., Churchill, S.E., Schmid, P., Delezene, L.K., Kivell,
+  T.L., Garvin, H.M., Williams, S.A., DeSilva, J.M. et al. (2015). Homo naledi, a new species of
+  the genus Homo from the Dinaledi Chamber, South Africa. eLife 4.
+authors:
+  - "Berger, L.R."
+  - "Hawks, J."
+  - "de Ruiter, D.J."
+  - "Churchill, S.E."
+  - "Schmid, P."
+  - "Delezene, L.K."
+  - "Kivell, T.L."
+  - "Garvin, H.M."
+  - "Williams, S.A."
+  - "DeSilva, J.M."
+published: 2015
+title: "Homo naledi, a new species of the genus Homo from the Dinaledi Chamber, South Africa"
+container: "eLife 4"
+doi: 10.7554/elife.09560
+note: >-
+  The author list is shortened to its first ten; Europe PMC lists 47 authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC4559886): the description of Homo naledi from the Dinaledi
+    Chamber. Quoted passages checked by script against the text retrieved.

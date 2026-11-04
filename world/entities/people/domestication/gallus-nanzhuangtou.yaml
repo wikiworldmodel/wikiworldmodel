@@ -1,0 +1,92 @@
+id: life/occurrences/gallus-nanzhuangtou
+kind: occurrence
+summary: >-
+  Bird bones from Nanzhuangtou on the North China Plain, directly dated to over 10,000 years ago. Xiang
+  et al. read mitochondrial DNA from them as Gallus, and so as the earliest chickens. Peters et al.
+  answer that such bones are pheasant and that the climate did not suit junglefowl; Xiang et al.
+  reply. Here it does not bind the date of the chicken.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Bird bones, Nanzhuangtou" }
+    unsourced: An editorial label, from the site; what the birds were is in dispute.
+  identified-peters-2022:
+    prop: identified_as
+    value: pheasant
+    source:
+      ref: src:peters-2022-chickens
+      loc: Introduction
+      quote: "a reanalysis of those bones based upon discrete osteomorphological criteria demonstrated that the specimens were derived from pheasants"
+    rank: preferred
+    note: >-
+      Preferred for having looked at the bones, as a general reassessment of northern China's early
+      birds; the sentence does not name this site alone.
+  identified-xiang-2014:
+    prop: identified_as
+    value: Gallus
+    source:
+      ref: src:xiang-2014-chickens
+      loc: abstract
+      quote: "all investigated bones, including the oldest from the Nanzhuangtou site, are derived from the genus Gallus, rather than any other related genus, such as Phasianus"
+    note: >-
+      From short mitochondrial sequences. Peters et al. (2015) doubt that DNA of this age and length
+      could survive there.
+  evidence:
+    prop: evidence
+    value: zooarchaeological
+    source:
+      ref: src:xiang-2014-chickens
+      loc: abstract
+      quote: "Here we report ancient mitochondrial DNA sequences from the earliest archaeological chicken bones from China"
+    note: >-
+      What was claimed to show it is domestic: DNA of Gallus, far north of where junglefowl live, in a
+      farming context. Nothing in the bones themselves.
+  location:
+    prop: location
+    value: { lat: 39.111111, lon: 115.656944, frame: frame:earth/present-day }
+    source:
+      ref: src:yang-2012-early-millet
+      loc: Site descriptions
+      quote: "Nanzhuangtou (39°6′40′′N, 115°39′25′′E)"
+    method: survey
+    note: >-
+      Converted to decimal degrees from the paper's degrees, minutes and seconds.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-604
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 10465 BP, hi: 10430 BP }
+    source:
+      ref: src:xiang-2015-reply
+      loc: letter
+      quote: "the direct radiocarbon dating confirms the early Neolithic ages of the investigated bones (10,465–10,430 B.P. for Nanzhuangtou and 7,960–7,845 B.P. for Cishan)"
+    method: radiometric/radiocarbon
+    note: >-
+      Peters et al. (2015) point out that the site also has later deposits, which Xiang et al. say the
+      squares sampled did not.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/aves
+    source: { ref: src:opentree-synthesis-16.1, loc: "induced_subtree of ott153563 and ott81461: Gallus gallus lies within Aves" }
+    note: >-
+      Placed at the birds, since pheasant and junglefowl alike are birds.
+  domestication:
+    rel: part-of
+    to: people/domestication/chicken
+    source:
+      - ref: src:xiang-2014-chickens
+        loc: abstract
+        quote: "northern China represents one region of the earliest chicken domestication"
+      - ref: src:peters-2015-letter
+        loc: letter
+        quote: "this claim is extraordinary"
+    rank: deprecated
+    note: >-
+      Kept, but it does not bind the date of chicken domestication: the preferred reading is that these
+      birds were not chickens.

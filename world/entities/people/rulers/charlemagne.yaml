@@ -1,0 +1,115 @@
+id: people/rulers/charlemagne
+kind: person
+summary: >-
+  King of the Franks, conqueror of the Lombards and the Saxons, crowned emperor at Rome by Pope
+  Leo at Christmas 800.
+author: machine:claude-code
+same_as: { wikidata: Q3044 }
+phases:
+  - id: before
+    label: Before his reign
+  - id: king
+    label: King of the Franks
+  - id: emperor
+    label: King and emperor
+claims:
+  name:
+    prop: name
+    value: { en: Charlemagne, la: Karolus }
+    source:
+      ref: src:annales-regni-francorum
+      loc: "a. 814, p. 140"
+      quote: Domnus Karolus
+  start-748:
+    prop: start
+    value: 2 April 748 CE
+    source:
+      - ref: src:wikipedia-charlemagne
+        loc: "section on his birth"
+        quote: showed that 2 April in the year recorded would have actually been in 748
+      - ref: src:wikipedia-charlemagne
+        loc: "section on his birth"
+        quote: Presently, most scholars accept April 748
+    method: expert-estimate
+    basis: reconstruction
+    rank: preferred
+    note: >-
+      Becher's argument (Francia 19/1, 1992) from an addition to the Annales Petaviani and the
+      Lorsch commemoration of 2 April, as Wikipedia reports it; cited as a last resort, because
+      the article itself sits behind a browser check here. The annalists' year began at Easter.
+  start-742:
+    prop: start
+    value: 742 CE
+    source:
+      - ref: src:einhard-vita-karoli
+        loc: "ch. 30"
+        quote: in the seventy-second year of his age and the forty-seventh of his reign
+      - ref: src:annales-regni-francorum
+        loc: "a. 814, p. 140"
+        quote: anno aetatis circiter septuagesimo primo
+    method: historical-account
+    note: >-
+      The older year, from Einhard's age at death; the revised annals have in English: in about
+      the seventy-first year of his age.
+  king-start:
+    prop: start
+    subject: "@king"
+    value: 9 October 768 CE
+    source:
+      ref: src:annales-regni-francorum
+      loc: "a. 768, p. 28"
+      quote: domnus Carolus VII. Id. Octobr. in Noviomo civitate
+    method: historical-account
+    note: >-
+      In English: the lord Charles on the seventh day before the Ides of October in the city of
+      Noyon. That is 9 October, with his brother Carloman raised the same day at Soissons;
+      Einhard (ch. 3) has the Franks in assembly make them both kings.
+  emperor-start:
+    prop: start
+    subject: "@emperor"
+    value: 25 December 800 CE
+    source:
+      - ref: src:annales-regni-francorum
+        loc: "a. 801, p. 113"
+        quote: Ipse autem cum die sacratissima natalis Domini
+      - ref: src:annales-regni-francorum
+        loc: "a. 801, p. 113"
+        quote: imperator et augustus appellatus est
+    method: historical-account
+    note: >-
+      In English: on the most holy day of the Lord's birth, at St Peter's, Pope Leo set a crown
+      on his head, and he was called emperor and Augustus. The annalist begins the year at
+      Christmas, so Christmas 800 stands under 801.
+  end:
+    prop: end
+    value: 28 January 814 CE
+    source:
+      - ref: src:einhard-vita-karoli
+        loc: "ch. 30"
+        quote: He died January twenty-eighth
+      - ref: src:annales-regni-francorum
+        loc: "a. 814, p. 140"
+        quote: V. Kal. Febr. rebus humanis excessit
+    method: historical-account
+    note: >-
+      The fifth day before the Kalends of February is 28 January. In the revised annals: he
+      departed from human affairs.
+relations:
+  held-office-king:
+    rel: held-office
+    subject: "@king"
+    to: people/polities/frankish-kingdom
+    source:
+      ref: src:annales-regni-francorum
+      loc: "a. 768, p. 28"
+      quote: domnus Carolus VII. Id. Octobr. in Noviomo civitate
+    note: King of the Franks, jointly with Carloman until 771.
+  held-office-emperor:
+    rel: held-office
+    subject: "@emperor"
+    to: people/polities/frankish-kingdom
+    source:
+      ref: src:annales-regni-francorum
+      loc: "a. 801, p. 113"
+      quote: imperator et augustus appellatus est
+    note: King of the Franks and emperor.

@@ -1,0 +1,103 @@
+id: life/transitions/microbial-crusts
+kind: event/transition
+summary: >-
+  Microbial life on the land: mats and crusts on river plains, lake margins and soils, the first
+  cover the continents had. The start is the oldest direct fossil of mats on river deposits; the
+  claims around it are older signs at hot springs and an inference from geochemistry. The end is
+  when geochemical proxies show an extensive cover.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Microbial crusts on land }
+    unsourced: An editorial label.
+  cover:
+    prop: cover
+    value: microbial-crust
+    unsourced: "How the renderer should treat this transition: an editorial classification."
+  start-homann-2018:
+    prop: start
+    value: 3220 Ma
+    source:
+      ref: src:homann-2018-moodies
+      loc: abstract
+      quote: direct fossil evidence for life on land 3,220 million years ago (Ma)
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Terrestrial microbial mats draping fluvial conglomerates and gravelly sandstones of the Moodies
+      Group, South Africa. Preferred because mats on a river plain are a cover on ordinary ground,
+      where the older claim below is a hot-spring field. The abstract gives the age without an
+      uncertainty, so it stands as a point; the competing claims show the spread of the evidence.
+  start-djokic-2017:
+    prop: start
+    value: 3.48 Ga
+    source:
+      ref: src:djokic-2017-dresser
+      loc: abstract
+      quote: all of which preserve a suite of microbial biosignatures indicative of the earliest life on land
+    method: stratigraphic
+    note: >-
+      Hot spring deposits in the ca. 3.48 Ga Dresser Formation, Pilbara, in a volcanic caldera:
+      life on land, but at geothermal pools and vents rather than a cover on the land. Given as
+      "ca.", without an uncertainty.
+  start-beraldi-campesi-2013:
+    prop: start
+    value: 3450 Ma
+    source:
+      ref: src:beraldi-campesi-2013-early-life-on-land
+      loc: abstract
+      quote: evidence of microbial colonization of coastal environments ~3,450 Ma ago
+    method: expert-estimate
+    note: >-
+      A review's reading of coastal, not inland, settings; it adds indirect geochemical evidence
+      from paleosols older than 3,400 Ma.
+  start-lenton-daines-2017:
+    prop: start
+    value: 3.0 Ga
+    source:
+      ref: src:lenton-daines-2017-matworld
+      loc: summary
+      quote: were probably present in terrestrial habitats from c. 3.0 billion yr ago (Ga) onwards
+    method: expert-estimate
+    note: >-
+      Mats fuelled by oxygenic photosynthesis in particular, inferred from an oxidative weathering
+      signal in ancient soils.
+  end-wellman-strother-2015:
+    prop: end
+    value: 850 Ma
+    source:
+      ref: src:wellman-strother-2015-terrestrial-biota
+      loc: abstract
+      quote: Geochemical proxies indicate the establishment of an extensive soil‐forming microbial cover by 850 Ma
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      When the cover had spread, from the one source read that dates an extensive cover. Lenton &
+      Daines (2017, summary) call the evidence for a Neoproterozoic "greening of the land" at
+      0.85–0.54 Ga currently equivocal.
+  end-prave-2002:
+    prop: end
+    value: { lo: 1200 Ma, hi: 1000 Ma }
+    source:
+      ref: src:prave-2002-torridonian
+      loc: abstract
+      quote: Earth's biosphere had adapted to and colonized land surfaces many hundreds of millions of years before the dawn of the Phanerozoic
+    method: stratigraphic
+    note: >-
+      Microbially induced structures, with remnants of apparent microbial crusts, on subaerially
+      exposed surfaces of the Stoer Group and Diabaig Formation (ca. 1200–1000 Ma), many of them
+      well away from wetted ground. Evidence from one region of Scotland, so a date by which crusts
+      lived far from water rather than one by which they were everywhere.
+  end-beraldi-campesi-2013:
+    prop: end
+    value: { ref: ics/neoarchean }
+    source:
+      ref: src:beraldi-campesi-2013-early-life-on-land
+      loc: abstract
+      quote: they constituted the earliest terrestrial ecosystems, at least since the Neoarchean
+    method: expert-estimate
+    note: >-
+      The review argues that from then on microbes went on to form a biomass-rich cover with mature
+      soils. An inference from their adaptations and an old, rare fossil record; much earlier than
+      the geochemical date preferred here.

@@ -1,0 +1,70 @@
+id: life/taxa/anzu
+kind: taxon
+summary: >-
+  The large caenagnathid oviraptorosaur Anzu wyliei, from the Hell Creek Formation of the
+  Dakotas, known from three partial skeletons.
+same_as: { pbdb: "txn:290022" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Anzu", en: "Anzu" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 290022"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: small-theropod
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: biped
+    source:
+      ref: src:lamanna-2014-anzu
+      loc: "Results, Body mass estimation"
+      quote: "using the equation for mass estimation in bipedal dinosaurs"
+  length-lamanna-2014:
+    prop: body_length
+    value: 3.5
+    source:
+      ref: src:lamanna-2014-anzu
+      loc: "Discussion, Caenagnathid morphology"
+      quote: "With an approximate body length of 3.5 m, a height at the hip of roughly 1.5 m"
+    method: expert-estimate
+  hip-lamanna-2014:
+    prop: hip_height
+    value: 1.5
+    source:
+      ref: src:lamanna-2014-anzu
+      loc: "Discussion, Caenagnathid morphology"
+      quote: "With an approximate body length of 3.5 m, a height at the hip of roughly 1.5 m"
+    method: expert-estimate
+  mass-lamanna-2014:
+    prop: body_mass
+    value: 247.8
+    source:
+      - ref: src:lamanna-2014-anzu
+        loc: "Results, Body mass estimation"
+        quote: "generated an estimate of 247.8 kg for Anzu"
+      - ref: src:lamanna-2014-anzu
+        loc: "Results, Body mass estimation"
+        quote: "the body mass of the holotype of Anzu wyliei was probably approximately 200–300 kg"
+    method: model
+    rank: preferred
+    note: >-
+      The paper settles on 200–300 kg; a claim takes one number, and this is the published
+      estimate it reports nearest the middle, made by another study on a cast of the skeleton.
+      Preferred as the description of the species.
+  mass-atkins-weltman-2024:
+    prop: body_mass
+    value: 342
+    source:
+      ref: src:atkins-weltman-2024-eoneophron
+      loc: "Discussion"
+      quote: "the much larger CM 78000, which, using the same methods, weighed between 202 and 342 kg"
+    method: model
+    note: >-
+      The top of their range, for the holotype CM 78000.

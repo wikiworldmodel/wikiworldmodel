@@ -1,0 +1,17 @@
+id: src:berry-2019-first-forests
+type: publication
+kind: review
+citation: >-
+  Berry, C.M. (2019). The evolution of the first forests in the Devonian. Vestnik IG Komi SC UB
+  RAS 2019(11), 20–24.
+authors:
+  - "Berry, C.M."
+published: 2019
+title: "The evolution of the first forests in the Devonian"
+container: Vestnik IG Komi SC UB RAS 2019(11), 20–24
+doi: 10.19110/2221-1381-2019-11-20-24
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from the journal's PDF, reached through its DOI; the parts cited were
+    read, and quotes checked by script against the PDF's text.

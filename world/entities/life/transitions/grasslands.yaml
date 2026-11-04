@@ -1,0 +1,81 @@
+id: life/transitions/grasslands
+kind: event/transition
+summary: >-
+  The spread of grass-dominated open country, in steps: open-habitat grasses appear in the
+  Paleogene, C3 grass-dominated habitats spread in the mid-late Cenozoic, and C4 grasses expand at
+  low latitudes in the Late Neogene. The timing differs from region to region; the dated regional
+  record read here is North America's.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Spread of grasslands }
+    unsourced: An editorial label.
+  cover:
+    prop: cover
+    value: grasslands
+    unsourced: "How the renderer should treat this transition: an editorial classification."
+  start-stromberg-2005:
+    prop: start
+    value: { lo: 26.5 Ma, hi: 21.9 Ma }
+    source:
+      ref: src:stromberg-2005-grasses
+      loc: Results and Discussion, central Great Plains
+      quote: constrained to the latest Oligocene or earliest Miocene (26.5–21.9 Ma)
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      C3 grassland: the shift to open habitats with trees and mainly C3 pooid grasses, woodlands or
+      savannas, in the Nebraska/Wyoming phytolith record. The first dated spread of grass-dominated
+      habitats found in a source read, though from one continent. Open-habitat grasses themselves had
+      diversified by about 34 Ma, 7–11 Myr before they became dominant (abstract).
+  start-stromberg-2005-northern-rockies:
+    prop: start
+    value: { ref: ics/burdigalian }
+    source:
+      ref: src:stromberg-2005-grasses
+      loc: Results and Discussion, northern Rocky Mountains
+      quote: seems to have occurred later in Montana/Idaho, by the late Early Miocene
+    method: stratigraphic
+    note: >-
+      The same shift a little later, in Montana and Idaho; the paper asks for more data. Read here as
+      the Burdigalian, the later part of the Early Miocene. Strömberg (2011, abstract) says that the
+      timing of these events varied between regions.
+  start-cerling-1997:
+    prop: start
+    value: { lo: 8 Ma, hi: 6 Ma }
+    source:
+      ref: src:cerling-1997-c4-expansion
+      loc: abstract
+      quote: Between 8 and 6 million years ago, there was a global increase in the biomass of plants using C4 photosynthesis
+    method: stratigraphic
+    note: >-
+      C4 expansion, from carbon isotopes in tooth enamel on four continents: the start of the
+      transition only on a reading in which grassland means the C4 grasslands of the tropics. It
+      began earlier at lower latitudes.
+  end-edwards-2010:
+    prop: end
+    value: { lo: 8 Ma, hi: 3 Ma }
+    source:
+      - ref: src:edwards-2010-c4-grasslands
+        loc: abstract
+        quote: their sudden rise to ecological dominance 3 to 8 million years ago
+      - ref: src:stromberg-2011-grasslands
+        loc: abstract
+        quote: finally, the Late Neogene expansion of C 4 grasses at tropical-subtropical latitudes
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      C4 expansion, which Strömberg (2011) makes the last step of a multistage development. Edwards
+      et al. note that its pattern and drivers were more complex than once assumed. The stray space
+      in "C 4" is the abstract's, as the record read gives it.
+  end-cerling-1997:
+    prop: end
+    value: { lo: 8 Ma, hi: 6 Ma }
+    source:
+      ref: src:cerling-1997-c4-expansion
+      loc: abstract
+      quote: This abrupt and widespread increase in C4 biomass
+    method: stratigraphic
+    note: >-
+      The narrower window from tooth enamel alone; the increase itself, not the end of it.

@@ -1,0 +1,81 @@
+id: life/transitions/land-plants
+kind: event/transition
+summary: >-
+  The first land plants: low, bryophyte-like plants known first from their spores, cryptospores
+  that appear in the Middle Ordovician. Fossils of the plants themselves come much later, in the
+  Silurian. The molecular clock puts the origin of the group earlier than any of these fossils.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First land plants }
+    unsourced: An editorial label.
+  cover:
+    prop: cover
+    value: land-plants
+    unsourced: "How the renderer should treat this transition: an editorial classification."
+  start-rubinstein-2010:
+    prop: start
+    value: { lo: 473 Ma, hi: 471 Ma }
+    source:
+      - ref: src:rubinstein-2010-argentina-cryptospores
+        loc: abstract
+        quote: Dapingian (early Middle Ordovician, c. 473-471 Ma) palynological samples from Argentina
+      - ref: src:rubinstein-2010-argentina-cryptospores
+        loc: abstract
+        quote: are currently the earliest evidence of plants on land
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      A diverse cryptospore assemblage from the Zanjón Formation, dated by the chitinozoan
+      Lagenochitina combazi (Supporting Information, Note S1). The range is the paper's for the
+      Dapingian, on an older time scale than the chart used here. Dispersed spores, not plants: they
+      are preferred because they are the oldest fossils generally taken for land plants.
+  start-wellman-2003:
+    prop: start
+    value: 475 Ma
+    source:
+      ref: src:wellman-2003-oman-land-plants
+      loc: abstract
+      quote: the earliest generally accepted reports are from rocks of mid-Ordovician age (Llanvirn, 475 million years ago)
+    method: stratigraphic
+    note: >-
+      The dispersed-spore record as it stood in 2003; the paper's Ordovician plant fragments from
+      Oman, with spores inside sporangia, are what tie such spores to land plants. The number looks
+      like an older time scale's: Rubinstein et al. (2010) date the oldest reports before theirs to
+      the late Darriwilian, c. 463–461 Ma.
+  start-strother-foster-2021:
+    prop: start
+    value: 480 Ma
+    source:
+      ref: src:strother-foster-2021-charophyte-origins
+      loc: abstract
+      quote: a Tremadocian (Early Ordovician, about 480 Ma) assemblage with elements of both Cambrian and younger embryophyte spores
+    method: stratigraphic
+    note: >-
+      An assemblage that links embryophyte spores to their algal ancestors. The authors read it as
+      part of a long acquisition of the embryophyte genome, not completed until the mid-Silurian
+      (about 430 Ma), so it may not record land plants as such.
+  start-morris-2018:
+    prop: start
+    value: { lo: 514.8 Ma, hi: 473.5 Ma }
+    source:
+      ref: src:morris-2018-land-plant-timescale
+      loc: "Table 3, Embryophyta (monophyletic bryophytes)"
+    method: molecular-clock
+    note: >-
+      The crown-group age of land plants, a 95% HPD interval. An origin is not a cover: the first
+      plants may have been rare long before they left spores in any number.
+  end-lenton-daines-2017:
+    prop: end
+    value: { lo: 0.45 Ga, hi: 0.4 Ga }
+    source:
+      ref: src:lenton-daines-2017-matworld
+      loc: summary
+      quote: the mid-Palaeozoic c. 0.45-0.4 Ga shows global atmospheric changes consistent with increased terrestrial productivity and intensified weathering by the first land plants
+    method: expert-estimate
+    note: >-
+      When plants had spread enough to change the atmosphere; indirect evidence for their spread,
+      and the only statement of it found in a source read. Rubinstein et al. (2010, abstract) find
+      Dapingian to Aeronian cryptospore assemblages similar, and evolution extremely slow over the
+      first 35–45 Myr.

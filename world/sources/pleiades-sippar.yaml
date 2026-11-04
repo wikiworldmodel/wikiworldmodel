@@ -1,0 +1,15 @@
+id: src:pleiades-sippar
+type: database-record
+kind: compilation
+citation: >-
+  Pleiades, a gazetteer of past places: place 894089, "Sippar" (Tall Abū Ḥabbah, Iraq).
+snapshot: 2026-11-04
+container: Pleiades
+url: https://pleiades.stoa.org/places/894089
+license: CC-BY-3.0
+reliability: A scholarly gazetteer of ancient places; its representative point is computed from the locations it lists.
+verified:
+  by: machine:claude-code
+  how: >-
+    The place's JSON (pleiades.stoa.org/places/894089/json) read directly: representative point
+    33.059738°N, 44.254243°E; three locations (DARE, OSM, CIGS), all marked certain; its own Wikidata reference is Q619707.

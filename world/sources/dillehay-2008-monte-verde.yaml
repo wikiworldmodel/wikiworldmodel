@@ -1,0 +1,23 @@
+id: src:dillehay-2008-monte-verde
+type: publication
+kind: measurement
+citation: >-
+  Dillehay, T.D., Ramírez, C., Pino, M., Collins, M.B., Rossen, J. & Pino-Navarro, J.D. (2008).
+  Monte Verde: seaweed, food, medicine, and the peopling of South America. Science 320(5877),
+  784–786.
+authors:
+  - "Dillehay, T.D."
+  - "Ramírez, C."
+  - "Pino, M."
+  - "Collins, M.B."
+  - "Rossen, J."
+  - "Pino-Navarro, J.D."
+published: 2008
+title: "Monte Verde: seaweed, food, medicine, and the peopling of South America"
+container: "Science 320(5877), 784–786"
+doi: 10.1126/science.1156533
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC; the full text was not available here. Quotes checked by script
+    against the abstract.

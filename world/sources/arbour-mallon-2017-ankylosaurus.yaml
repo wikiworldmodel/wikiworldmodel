@@ -1,0 +1,20 @@
+id: src:arbour-mallon-2017-ankylosaurus
+type: publication
+kind: measurement
+citation: >-
+  Arbour, V.M. & Mallon, J.C. (2017). Unusual cranial and postcranial anatomy in the archetypal
+  ankylosaur Ankylosaurus magniventris. FACETS 2, 764–794.
+authors:
+  - "Arbour, V.M."
+  - "Mallon, J.C."
+published: 2017
+title: "Unusual cranial and postcranial anatomy in the archetypal ankylosaur Ankylosaurus magniventris"
+container: "FACETS 2, 764–794"
+doi: 10.1139/facets-2017-0063
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as a copy of the publisher's page archived at web.archive.org, the
+    publisher's own site refusing scripted access; quotes checked by script against it,
+    including Table 5.

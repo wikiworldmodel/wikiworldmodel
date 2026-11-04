@@ -1,0 +1,10 @@
+id: people/polities/babylon-first-dynasty
+kind: polity
+summary: >-
+  The kingdom of Babylon under its first dynasty, that of Hammurabi. Its dates are left to its rulers' records, because the chronologies of the period compete.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: First Dynasty of Babylon }
+    unsourced: An editorial label, in English.

@@ -1,0 +1,23 @@
+id: src:liu-2015-fuyan
+type: publication
+kind: measurement
+citation: >-
+  Liu, W., Martinón-Torres, M., Cai, Y.J., … & Wu, X.J. (2015). The earliest unequivocally modern
+  humans in southern China. Nature 526(7575), 696–699.
+authors:
+  - "Liu, W."
+  - "Martinón-Torres, M."
+  - "Cai, Y.J."
+  - "Wu, X.J."
+published: 2015
+title: "The earliest unequivocally modern humans in southern China"
+container: "Nature 526(7575), 696–699"
+doi: 10.1038/nature15696
+reliability: >-
+  Disputed: Sun et al. (2021) date human teeth from the same cave to the Holocene and the deposits
+  to much younger than the flowstone used here.
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC and on the publisher's page, which shows only a preview; the full
+    text was not available here. Quotes checked by script against the abstract.

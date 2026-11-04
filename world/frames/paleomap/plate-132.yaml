@@ -1,0 +1,15 @@
+id: frame:paleomap/plate-132
+type: frame
+kind: plate
+title: Eastern Basin & Range (PALEOMAP plate 132)
+entity: earth/plates/eastern-basin-and-range
+parent: frame:earth/geographic
+transform:
+  rotations: src:paleomap-plate-model
+  file: rotations
+  plate: 132
+  interp: slerp
+extent:
+  polygons: src:paleomap-plate-model
+  file: polygons
+  plate: 132

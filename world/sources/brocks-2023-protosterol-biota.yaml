@@ -1,0 +1,27 @@
+id: src:brocks-2023-protosterol-biota
+type: publication
+kind: measurement
+citation: >-
+  Brocks, J.J., Nettersheim, B.J., Adam, P., Schaeffer, P., Jarrett, A.J.M., Güneli, N.,
+  Liyanage, T., van Maldegem, L.M., Hallmann, C. & Hope, J.M. (2023). Lost world of complex life
+  and the late rise of the eukaryotic crown. Nature 618(7966), 767–773.
+authors:
+  - "Brocks, J.J."
+  - "Nettersheim, B.J."
+  - "Adam, P."
+  - "Schaeffer, P."
+  - "Jarrett, A.J.M."
+  - "Güneli, N."
+  - "Liyanage, T."
+  - "van Maldegem, L.M."
+  - "Hallmann, C."
+  - "Hope, J.M."
+published: 2023
+title: "Lost world of complex life and the late rise of the eukaryotic crown"
+container: Nature 618(7966), 767–773
+doi: 10.1038/s41586-023-06170-w
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read via Europe PMC (PMID 37286610); the full text was not read. Quotes checked
+    by script against that text. Metadata from Crossref.

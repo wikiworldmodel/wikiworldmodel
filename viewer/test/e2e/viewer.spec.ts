@@ -147,6 +147,7 @@ test('switching the time-scale alternative re-dates the stages and the records t
   await expect(panel.locator('.when')).toContainText('290.1 Ma – 283.5 Ma');
   await expect(panel).toContainText('during Artinskian');
   // The PBDB's own time scale ends the Artinskian at 279.3 Ma.
+  await page.locator('.tg-alts').click();
   await page.selectOption('select[data-group="alt:time-scale"]', 'alt:time-scale/pbdb-2022');
   await idle(page);
   expect(await settledUrl(page)).toContain('alt=alt%3Atime-scale%2Fpbdb-2022');

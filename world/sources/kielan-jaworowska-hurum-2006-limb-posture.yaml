@@ -1,0 +1,17 @@
+id: src:kielan-jaworowska-hurum-2006-limb-posture
+type: publication
+kind: review
+citation: >-
+  Kielan-Jaworowska, Z. & Hurum, J.H. (2006). Limb posture in early mammals: sprawling or
+  parasagittal. Acta Palaeontologica Polonica 51(3), 393–406.
+authors:
+  - "Kielan-Jaworowska, Z."
+  - "Hurum, J.H."
+published: 2006
+title: "Limb posture in early mammals: sprawling or parasagittal"
+container: "Acta Palaeontologica Polonica 51(3), 393–406"
+url: https://www.app.pan.pl/article/item/app51-393.html
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract read on the journal's page; quotes checked by script against it.

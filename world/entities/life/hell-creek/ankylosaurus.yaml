@@ -1,0 +1,67 @@
+id: life/taxa/ankylosaurus
+kind: taxon
+summary: >-
+  The club-tailed armoured dinosaur Ankylosaurus, rare but very large, whose holotype comes from
+  the Hell Creek Formation of Garfield County, Montana.
+same_as: { pbdb: "txn:38837" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Ankylosaurus", en: "Ankylosaurus" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 38837"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: ankylosaur
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: quadruped
+    source:
+      ref: src:maidment-2012-ornithischian-stance
+      loc: "Introduction"
+      quote: "quadrupedality evolved within at least three lineages independently: once in the armored stegosaurs and ankylosaurs, once in the frilled ceratopsids, and once in the duck-billed hadrosaurs"
+  length-arbour-mallon-2017:
+    prop: body_length
+    value: 6.5
+    source:
+      ref: src:arbour-mallon-2017-ankylosaurus
+      loc: "Size of Ankylosaurus"
+      quote: "we illustrated a length of approximately 6.5 m for AMNH 5895"
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      The Hell Creek holotype, its known parts drawn to scale and the missing ones estimated.
+      From proportions the authors get 6.45–8.51 m for it, and 7.56–9.99 m for the largest
+      skull, CMN 8880 (Table 5). Preferred as the figure for the Hell Creek specimen itself.
+  length-holtz-2012:
+    prop: body_length
+    value: 9
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 41, Ankylosaurines"
+      quote: "Ankylosaurus fused reptile Late Cretaceous (66.8-65.5 MYA) 29.5 ft (9 m) Rhino"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.
+  mass-arbour-mallon-2017:
+    prop: body_mass
+    value: 4780
+    source:
+      - ref: src:arbour-mallon-2017-ankylosaurus
+        loc: "Size of Ankylosaurus"
+        quote: "the estimated mass is 4.78 ± 1.22 t"
+      - ref: src:benson-2014-dinosaur-body-mass
+        loc: "Dataset S1, sheet \"Mass estimates\", row Ankylosaurus_magniventris (AMNH 5214)"
+        quote: "Ankylosaurus_magniventris 4780.73914408325 4780.73914408325 measured circumferences"
+    method: model
+    note: >-
+      AMNH 5214, the smallest known, from Alberta, scaled from limb-bone circumferences. The
+      largest skull scales to about 7.95 ± 2.04 t, which the authors themselves treat with
+      scepticism; they also cite about 6 t (Paul 1997) and about 1.7 t (Seebacher 2001), the
+      last excessively small in their view.

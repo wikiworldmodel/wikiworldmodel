@@ -1,0 +1,13 @@
+id: src:flora-of-china
+type: publication
+kind: compilation
+citation: >-
+  Flora of China Editorial Committee (eds.) (1994–2013). Flora of China. Science Press, Beijing,
+  and Missouri Botanical Garden Press, St. Louis. Online at efloras.org.
+title: "Flora of China"
+url: http://www.efloras.org/flora_page.aspx?flora_id=2
+verified:
+  by: machine:claude-code
+  how: >-
+    The treatments cited read at efloras.org, each located by volume and taxon; quotes checked
+    by script against those pages. These describe living plants.

@@ -1,0 +1,63 @@
+id: people/dispersals/tam-pa-ling
+kind: event/dispersal
+summary: >-
+  A frontal bone and a piece of a tibia from the deepest layers of Tam Pà Ling, a cave in northern
+  Laos: Homo sapiens in Southeast Asia by about 77,000 years ago, long before the main dispersal is
+  usually dated to have got there.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Tam Pà Ling }
+    unsourced: An editorial label, from the place name.
+  date:
+    prop: date
+    value: { mean: 77 ka, sd: 4.5 kyr }
+    source:
+      - ref: src:freidline-2023-tam-pa-ling
+        loc: abstract
+        quote: "TPL 6 confirms the presence of H. sapiens by 70 ± 3 kyr, and TPL 7 extends this range to 77 ± 9 kyr"
+      - ref: src:freidline-2023-tam-pa-ling
+        loc: "Results, on the Bayesian model"
+        quote: "from 77 ± 9 to 2 ± 0.8 ka (at 2 σ)"
+    method: radiometric
+    note: >-
+      The modelled age of the tibia TPL 7, from luminescence dating of the sediments and
+      uranium-series and ESR dating of animal teeth. The source's ± is 2σ, halved here for sd. The
+      fossil lies 30 cm below the deepest sediment sample, so it may be older.
+  ancestry:
+    prop: ancestry
+    value: { en: "The shape of the frontal bone suggests descent from a gracile immigrant population, not from local archaic people." }
+    source:
+      ref: src:freidline-2023-tam-pa-ling
+      loc: abstract
+      quote: "suggest descent from a gracile immigrant population rather than evolution from or admixture with local archaic populations"
+    note: Read from anatomy; attempts to get DNA from two teeth found earlier in the cave failed.
+  ancestry-late-only:
+    prop: ancestry
+    value: { en: "Bones this old outside Africa come from populations other than the one that all sequenced non-Africans descend from." }
+    alt: alt:leaving-africa/late-only
+    source:
+      ref: src:sumer-2025-ranis-genomes
+      loc: abstract
+      quote: "further suggests that modern human remains older than 50,000 years from outside Africa represent different non-African populations"
+  location:
+    prop: location
+    value: { lat: 20.208611, lon: 103.409722, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-tam-pa-ling, loc: "P625 coordinate location" }
+    method: gazetteer
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-615
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+relations:
+  after-the-early-dispersal:
+    rel: after
+    to: people/dispersals/out-of-africa-early
+    alt: alt:leaving-africa/early-successful
+    source:
+      ref: src:freidline-2023-tam-pa-ling
+      loc: abstract
+      quote: "supporting an early dispersal of H. sapiens into Southeast Asia"

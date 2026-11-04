@@ -1,0 +1,76 @@
+id: life/occurrences/forest-curio-bay
+kind: occurrence
+summary: >-
+  In situ fossil forest horizons at Curio Bay, on the Catlins coast of New Zealand: conifers with an
+  understory of tree ferns and non-coniferous gymnosperms, overwhelmed by a series of river floods.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Curio Bay fossil forest" }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: conifers
+    source:
+      ref: src:pole-2020-catlins
+      loc: "Curio Bay section"
+      quote: a relatively low canopy of conifers
+    note: >-
+      Not a taxon name: the paper read gives the group only.
+  evidence:
+    prop: evidence
+    value: in-situ-forest
+    source:
+      - ref: src:pole-2020-catlins
+        loc: Introduction
+        quote: with in situ Jurassic fossil forests
+      - ref: src:gou-2026-yiwu
+        loc: Discussion
+        quote: The Curio Bay Forest within Middle Jurassic strata at Curio Bay, southern New Zealand
+    note: >-
+      The basis is Pole's description, with in situ fossil trees in the fine beds; Gou et al. take it as
+      one of four in situ Jurassic forests evaluated quantitatively.
+  location:
+    prop: location
+    value: { lat: -46.66209, lon: 169.09883, frame: frame:earth/present-day }
+    source:
+      ref: src:pole-2020-catlins
+      loc: "Curio Bay section"
+      quote: "NZTM: 1301560, 4824990"
+    method: survey
+    note: >-
+      Converted from New Zealand Transverse Mercator (NZGD2000) by the published projection formulas;
+      Wikidata's Q2667315 agrees to within 0.001°.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-807
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  formation:
+    prop: formation
+    value: Ferndale Group
+    source:
+      ref: src:pole-2020-catlins
+      loc: Geological settings
+      quote: marine origin for the Ferndale Group (which included Curio Bay)
+    note: >-
+      A group, not a formation: the rank of the unit the paper names, after Campbell et al. (2003).
+  date:
+    prop: date
+    value: { ref: ics/middle-jurassic }
+    source:
+      - ref: src:pole-2020-catlins
+        loc: Geological settings
+        quote: an early Middle Jurassic, marine-marginal marine origin for the Ferndale Group
+      - ref: src:gou-2026-yiwu
+        loc: Discussion
+        quote: The Curio Bay Forest within Middle Jurassic strata at Curio Bay, southern New Zealand
+    method: stratigraphic
+    rank: preferred
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/spermatophyta
+    source: { ref: src:pole-2020-catlins, loc: "Curio Bay section: conifers" }

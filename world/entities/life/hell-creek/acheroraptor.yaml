@@ -1,0 +1,61 @@
+id: life/taxa/acheroraptor
+kind: taxon
+summary: >-
+  The dromaeosaurid Acheroraptor temertyorum, named from an upper and a lower jaw from the Hell
+  Creek Formation of Garfield County, Montana.
+same_as: { pbdb: "txn:283585" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Acheroraptor", en: "Acheroraptor" }
+    source:
+      ref: src:pbdb-hell-creek-2026-11-04
+      loc: "taxon 283585"
+    note: >-
+      The Paleobiology Database gives the scientific name; the English name is an editorial
+      gloss.
+  body-plan:
+    prop: body_plan
+    value: small-theropod
+    unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
+  posture:
+    prop: posture
+    value: biped
+    unsourced: "Not stated for this species, known only from its jaws; an editorial choice, as for the other theropods here."
+  length-evans-2013:
+    prop: body_length
+    value: 4
+    source:
+      - ref: src:evans-2013-acheroraptor-note
+        loc: "paragraph 1"
+        quote: "It was relatively large for a “raptor”, approaching Deinonychus in size"
+      - ref: src:holtz-2012-dinosaur-genus-list
+        loc: "p. 17, Velociraptorines, the row of Deinonychus"
+        quote: "Deinonychus terrible claws Early Cretaceous (118-110MYA) 13.1ft (4 m) Wolf"
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Its own size is unknown: the species rests on an upper and a lower jaw. The first author
+      of its description says it approached Deinonychus in size, and this value is that of
+      Deinonychus, so it is an upper bound by comparison, not a measurement. The description
+      itself (Evans, Larson & Currie 2013) could be read only in abstract, which gives no size.
+      A reviewer should look at this first.
+  mass-evans-2013:
+    prop: body_mass
+    value: 96.65
+    source:
+      - ref: src:evans-2013-acheroraptor-note
+        loc: "paragraph 1"
+        quote: "It was relatively large for a “raptor”, approaching Deinonychus in size"
+      - ref: src:benson-2014-dinosaur-body-mass
+        loc: "Dataset S1, sheet \"Mass estimates\", row Deinonychus_antirrhopus (MCZ 4371)"
+        quote: "Deinonychus_antirrhopus 96.6548716030334 96.6548716030334 measured circumferences"
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      Its own size is unknown: the species rests on an upper and a lower jaw. The first author
+      of its description says it approached Deinonychus in size, and this value is that of
+      Deinonychus, so it is an upper bound by comparison, not a measurement. The description
+      itself (Evans, Larson & Currie 2013) could be read only in abstract, which gives no size.
+      A reviewer should look at this first.

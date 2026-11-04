@@ -1,0 +1,24 @@
+id: src:fuller-2009-tianluoshan-rice
+type: publication
+kind: measurement
+citation: >-
+  Fuller, D.Q., Qin, L., Zheng, Y., … & Sun, G.P. (2009). The domestication process and
+  domestication rate in rice: spikelet bases from the Lower Yangtze. Science 323(5921),
+  1607–1610.
+authors:
+  - "Fuller, D.Q."
+  - "Qin, L."
+  - "Zheng, Y."
+  - "Zhao, Z."
+  - "Chen, X."
+  - "Hosoya, L.A."
+  - "Sun, G.P."
+published: 2009
+title: "The domestication process and domestication rate in rice: spikelet bases from the Lower Yangtze"
+container: "Science 323(5921), 1607–1610"
+doi: 10.1126/science.1166605
+verified:
+  by: machine:claude-code
+  how: >-
+    Abstract only, read from the Europe PMC record (PMID 19299619); the full text was not read.
+    Each quote checked by script against the abstract; citation from the same record.

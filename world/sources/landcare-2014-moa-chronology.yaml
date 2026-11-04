@@ -1,0 +1,21 @@
+id: src:landcare-2014-moa-chronology
+type: publication
+kind: review
+citation: >-
+  Landcare Research (2014). New study reveals timing for rapid and widespread extinction of New
+  Zealand's moa. Media release, 24 October 2014, on Perry, G.L.W., Wheeler, A.B., Wood, J.R. &
+  Wilmshurst, J.M. (2014), Quaternary Science Reviews 105, 126–135.
+published: 2014
+title: "New study reveals timing for rapid and widespread extinction of New Zealand's moa"
+container: "Landcare Research, media releases"
+url: http://web.archive.org/web/20200810031940/https://www.landcareresearch.co.nz/about/news/media-releases/new-study-reveals-timing-for-rapid-and-widespread-extinction-of-new-zealands-moa
+reliability: >-
+  A press release by an institute of two of the authors, not the paper, which could not be read: its
+  abstract is not in Europe PMC or OpenAlex, and the publisher's page refused the script. A reviewer
+  should check its figures against Perry et al. (2014, doi:10.1016/j.quascirev.2014.09.025).
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the archived page in the Internet Archive (snapshot of 10 August 2020), its text
+    extracted by script. Quotes checked by script against the text retrieved, after normalizing
+    whitespace.

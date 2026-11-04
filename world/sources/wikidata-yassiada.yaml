@@ -1,0 +1,13 @@
+id: src:wikidata-yassiada
+type: database-record
+kind: compilation
+citation: >-
+  Wikidata, item Q34784485 (Yassıada, an island off the south-western coast of Turkey), property P625 (coordinate location).
+snapshot: "2026-11-04"
+container: Wikidata
+url: https://www.wikidata.org/wiki/Q34784485
+license: CC0-1.0
+reliability: Crowd-edited; a point for the island, and close to the database of Strauss et al. (36.99166, 27.19583).
+verified:
+  by: machine:claude-code
+  how: Coordinates (36.992777777778, 27.198055555556) read from the item's JSON (Special:EntityData/Q34784485.json, revision 2449511692, modified 2025-12-31).

@@ -1,0 +1,10 @@
+id: src:westminster-abbey-coronation-chair
+type: publication
+kind: review
+citation: Westminster Abbey. The Coronation Chair.
+title: The Coronation Chair
+url: https://www.westminster-abbey.org/history/explore-our-history/the-coronation-chair
+reliability: The Abbey's account of the chair and the stone it held. It separates the stone's legendary earlier history from what is certain.
+verified:
+  by: machine:claude-code
+  how: Read on the Abbey's site. Quotations checked by script against the page's text.

@@ -1,0 +1,69 @@
+id: life/transitions/reefs-rudist
+kind: event/transition
+summary: >-
+  The rudist bivalves of Cretaceous carbonate platforms, which dominated low-latitude "reefs" from
+  the Aptian until they died out at the end of the Cretaceous. Whether they built reefs at all is
+  disputed: most were gregarious sediment-dwellers, massed on platforms where corals lived alongside
+  them.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Rudist reefs }
+    unsourced: An editorial label.
+  cover:
+    prop: cover
+    value: reefs
+    unsourced: "How the renderer should treat this transition: an editorial classification."
+  start-skelton-gili-2012:
+    prop: start
+    value: { ref: ics/aptian, edge: start }
+    source:
+      ref: src:skelton-gili-2012-aptian-rudists
+      loc: abstract
+      quote: in the earliest Aptian was accompanied by prolific rudist diversification
+    method: stratigraphic
+    rank: preferred
+    note: >-
+      Platform growth with diversifying rudists throughout the Atlantic, the Tethys and the
+      low-latitude Pacific seamounts. It broke off in the mid-Early Aptian and resumed, so this is the
+      first spread of rudist platforms and not an unbroken run.
+  start-hofling-scott-2002:
+    prop: start
+    value: { ref: ics/lower-cretaceous }
+    source:
+      ref: src:hofling-scott-2002-cretaceous-buildups
+      loc: abstract
+      quote: a shallow-water association of corals and rudists that built reefs and other structures
+    method: stratigraphic
+    note: >-
+      Dates this association only to the Early Cretaceous; the same abstract has rudist-dominated
+      associations on ramp margins in the Aptian–Albian.
+  end:
+    prop: end
+    value: { ref: earth/events/kpg-extinction, edge: start }
+    source:
+      ref: src:steuber-2002-rudist-extinction
+      loc: abstract
+      quote: argues for a catastrophic, impact-related demise of Caribbean Cretaceous reefal ecosystems at the Cretaceous-Tertiary boundary
+    method: stratigraphic
+    note: >-
+      Species-rich rudist-coral associations persisted into the latest Maastrichtian in Jamaica, by
+      strontium isotopes, against the then accepted stepwise extinction in the middle Maastrichtian.
+relations:
+  during-cretaceous:
+    rel: during
+    to: ics/cretaceous
+    source:
+      - ref: src:johnson-2002-upper-cretaceous-reefs
+        loc: abstract
+        quote: occurred in low paleolatitudes (0–30° N) and were dominated by rudist bivalves
+      - ref: src:gili-gotz-2018-rudist-paleoecology
+        loc: Introduction
+        quote: Most rudists were highly gregarious and formed vast congregations on the shallow tops and gently sloping flanks of carbonate platforms
+    note: >-
+      Kiessling (2008) writes of rudists as important "reef" builders, in quotation marks. Gili & Götz
+      (2018) describe them as level-bottom sediment dwellers, and Gili, Masse & Skelton (1995) title
+      their paper "Rudists as gregarious sediment-dwellers, not reef-builders". Drawing them as reefs
+      here follows the reef compilations, which count them; on the other view this record is no reef
+      at all.

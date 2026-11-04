@@ -1,0 +1,19 @@
+id: src:desilva-throckmorton-2010-lucy
+type: publication
+kind: measurement
+citation: >-
+  DeSilva, J.M. & Throckmorton, Z.J. (2010). Lucy's flat feet: the relationship between the ankle
+  and rearfoot arching in early hominins. PLOS ONE 5(12), e14432.
+authors:
+  - "DeSilva, J.M."
+  - "Throckmorton, Z.J."
+published: 2010
+title: "Lucy's flat feet: the relationship between the ankle and rearfoot arching in early hominins"
+container: "PLOS ONE 5(12), e14432"
+doi: 10.1371/journal.pone.0014432
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC3010983): A.L. 288-1 as 3.18 Myr old, in the abstract and in
+    its table of specimens. The dating paper behind that figure was not read. Quoted passages
+    checked by script against the text retrieved.

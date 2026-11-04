@@ -1,0 +1,84 @@
+id: people/dispersals/white-sands
+kind: occurrence
+summary: >-
+  Human footprints in the sediments of ancient Lake Otero at White Sands, New Mexico, dated by seeds,
+  pollen, luminescence and the lake's own record to about 23,000–21,000 years ago, in the Last Glacial
+  Maximum. Critics hold that the seeds' dates are thousands of years too old. If they are right, the
+  footprints do not bear on the first arrival; if not, people were south of the ice before it closed.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: White Sands footprints }
+    unsourced: An editorial label, from the place name.
+  identified:
+    prop: identified_as
+    value: human footprints
+    source:
+      ref: src:bennett-2021-white-sands
+      loc: abstract
+      quote: "multiple in situ human footprints"
+  evidence:
+    prop: evidence
+    value: trace-fossil
+    source:
+      ref: src:bennett-2021-white-sands
+      loc: abstract
+      quote: "multiple in situ human footprints are stratigraphically constrained"
+  location:
+    prop: location
+    value: { lat: 32.779722, lon: -106.171667, frame: frame:earth/present-day }
+    source: { ref: src:wikidata-white-sands, loc: "P625 coordinate location" }
+    method: gazetteer
+    note: >-
+      White Sands National Park as a whole, at about its visitor centre. The footprints are at its
+      Locality 2, which was not located from a source read.
+  frame:
+    prop: frame
+    value: frame:paleomap/plate-101
+    source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml" }
+    method: plate-polygon
+    basis: reconstruction
+  date:
+    prop: date
+    value: { lo: 23 ka, hi: 21 ka }
+    source:
+      - ref: src:bennett-2021-white-sands
+        loc: abstract
+        quote: "bracketed by seed layers that yield calibrated radiocarbon ages between ~23 and 21 thousand years ago"
+      - ref: src:pigati-2023-white-sands
+        loc: abstract
+        quote: "The results show that the chronologic framework originally established for the White Sands footprints is robust"
+      - ref: src:holliday-2025-white-sands
+        loc: abstract
+        quote: "providing another line of evidence further supporting the validity of an LGM age for the tracks"
+    method: radiometric/radiocarbon
+    note: >-
+      First from seeds of the water plant Ruppia. Pigati et al. then dated pollen of land plants from
+      the same horizons and quartz grains by luminescence (at least 21.5 ± 1.9 ka), and Holliday et
+      al. palustrine mud of the lake in two independent laboratories. All of it agrees with the seeds.
+  date-rachal-2024:
+    prop: date
+    value: { lo: 15.5 ka }
+    alt: alt:peopling-of-the-americas/post-lgm
+    source:
+      - ref: src:rachal-2024-ruppia
+        loc: abstract
+        quote: "the human footprints purported to have been made during the local last glacial maximum could be at least ~7500 yr younger"
+      - ref: src:madsen-2022-white-sands-comment
+        loc: abstract
+        quote: "Reservoir effects may have caused radiocarbon ages to appear thousands of years too old."
+    method: radiometric/radiocarbon
+    note: >-
+      Rachal et al. give the correction, not the age: at least about 7500 years off the oldest seed
+      date, 23 ka, gives no earlier than about 15.5 ka, with no later limit. They worked from modern
+      Ruppia in Salt Creek. It concerns the seeds only: the abstracts read say nothing of the pollen
+      or the luminescence ages.
+relations:
+  taxon:
+    rel: member-of
+    to: life/taxa/homo-sapiens
+    source:
+      ref: src:bennett-2021-white-sands
+      loc: abstract
+      quote: "multiple in situ human footprints"

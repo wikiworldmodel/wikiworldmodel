@@ -1,0 +1,18 @@
+id: src:meyers-malinverno-2018-milankovitch
+type: publication
+kind: measurement
+citation: >-
+  Meyers, S.R. & Malinverno, A. (2018). Proterozoic Milankovitch cycles and the history of the
+  solar system. Proceedings of the National Academy of Sciences 115(25), 6363–6368.
+authors:
+  - "Meyers, S.R."
+  - "Malinverno, A."
+published: 2018
+title: Proterozoic Milankovitch cycles and the history of the solar system
+container: Proceedings of the National Academy of Sciences 115(25), 6363–6368
+doi: 10.1073/pnas.1717689115
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full on PubMed Central (PMC6016783), without the SI Appendix. Quotes and Table 2 checked
+    by script against the text of that page. Metadata from Crossref.

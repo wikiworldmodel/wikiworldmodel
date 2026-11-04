@@ -1,0 +1,21 @@
+id: src:mallick-2016-sgdp
+type: publication
+kind: measurement
+citation: >-
+  Mallick, S., Li, H., Lipson, M., … & Reich, D. (2016). The Simons Genome Diversity Project: 300
+  genomes from 142 diverse populations. Nature 538(7624), 201–206.
+authors:
+  - "Mallick, S."
+  - "Li, H."
+  - "Lipson, M."
+  - "Reich, D."
+published: 2016
+title: "The Simons Genome Diversity Project: 300 genomes from 142 diverse populations"
+container: "Nature 538(7624), 201–206"
+doi: 10.1038/nature18964
+verified:
+  by: machine:claude-code
+  how: >-
+    Author manuscript in PubMed Central (PMC5161557), retrieved as XML through NCBI E-utilities; the
+    abstract and the passages cited were read, without the supplementary information. Quotes checked
+    by script against that text and the abstract in Europe PMC.

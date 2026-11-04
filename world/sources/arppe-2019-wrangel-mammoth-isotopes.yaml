@@ -1,0 +1,24 @@
+id: src:arppe-2019-wrangel-mammoth-isotopes
+type: publication
+kind: measurement
+citation: >-
+  Arppe, L., Karhu, J.A., Vartanyan, S., Drucker, D.G., Etu-Sihvola, H. & Bocherens, H. (2019).
+  Thriving or surviving? The isotopic record of the Wrangel Island woolly mammoth population.
+  Quaternary Science Reviews 222, 105884.
+authors:
+  - "Arppe, L."
+  - "Karhu, J.A."
+  - "Vartanyan, S."
+  - "Drucker, D.G."
+  - "Etu-Sihvola, H."
+  - "Bocherens, H."
+published: 2019
+title: "Thriving or surviving? The isotopic record of the Wrangel Island woolly mammoth population"
+container: "Quaternary Science Reviews 222, 105884"
+doi: 10.1016/j.quascirev.2019.105884
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as the abstract only, from the OpenAlex record for the DOI; the full text could not be read
+    here (the publisher refused the open PDF to the script). Quotes checked by script against the
+    text retrieved, after normalizing whitespace.

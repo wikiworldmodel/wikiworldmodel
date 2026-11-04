@@ -1,0 +1,26 @@
+id: src:pbdb/collection-22139
+type: database-record
+kind: compilation
+snapshot: "2026-11-04"
+citation: >-
+  The Paleobiology Database, collection 22139 ("Middle Awash - Adu-Asa fm.", ET), occurrence
+  656691. Read through the PBDB data service (data1.2) on 4 November 2026.
+container: The Paleobiology Database
+url: https://paleobiodb.org/classic/basicCollectionSearch?collection_no=22139
+license: CC0-1.0
+license_note: >-
+  The data service's datainfo header, read on 4 November 2026, states "Data License: Creative
+  Commons CC0".
+reliability: >-
+  A database record compiled from the literature; the collection reference, not read here, is: J.
+  E. Kalb, M. Jeager, and C. J. Jolly, B. Kana. 1982. Preliminary geology and paleoecology of a
+  Sangoan site at Andalee, Middle Awash Valley, Ethiopia. Journal of Archaeological Science
+  9:349-363
+verified:
+  by: machine:claude-code
+  how: >-
+    Values read from colls/single.json?id=22139&show=loc,strat,ref and from the occurrence list:
+    lat 10.3167, lng 40.25, early_interval "Tortonian", formation "Adu-Asa", geographic note
+    "Latitude and logitude assigned from Asa Koma, Adu-Asa fm. is exposed in SW valley between
+    725-825 m a.s.l. and in the Central Awash Complex between ~640-660 m a.s.l."; occurrence
+    656691, accepted name "Ardipithecus kadabba".

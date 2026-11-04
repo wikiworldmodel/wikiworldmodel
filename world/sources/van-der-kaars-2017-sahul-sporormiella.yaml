@@ -1,0 +1,22 @@
+id: src:van-der-kaars-2017-sahul-sporormiella
+type: publication
+kind: measurement
+citation: >-
+  van der Kaars, S., Miller, G.H., Turney, C.S.M., Cook, E.J., Nürnberg, D., Schönfeld, J., Kershaw,
+  A.P. & Lehman, S.J. (2017). Humans rather than climate the primary cause of Pleistocene megafaunal
+  extinction in Australia. Nature Communications 8, 14142.
+authors:
+  - "van der Kaars, S."
+  - "Miller, G.H."
+  - "Turney, C.S.M."
+  - "Cook, E.J."
+  - "Lehman, S.J."
+published: 2017
+title: "Humans rather than climate the primary cause of Pleistocene megafaunal extinction in Australia"
+container: "Nature Communications 8, 14142"
+doi: 10.1038/ncomms14142
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC5263868). Quotes checked by script against the text
+    retrieved, after normalizing whitespace.

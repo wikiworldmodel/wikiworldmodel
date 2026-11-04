@@ -1,0 +1,21 @@
+id: src:sikora-2019-siberia
+type: publication
+kind: measurement
+citation: >-
+  Sikora, M., Pitulko, V.V., Sousa, V.C., … & Willerslev, E. (2019). The population history of
+  northeastern Siberia since the Pleistocene. Nature 570(7760), 182–188.
+authors:
+  - "Sikora, M."
+  - "Pitulko, V.V."
+  - "Sousa, V.C."
+  - "Willerslev, E."
+published: 2019
+title: "The population history of northeastern Siberia since the Pleistocene"
+container: "Nature 570(7760), 182–188"
+doi: 10.1038/s41586-019-1279-z
+verified:
+  by: machine:claude-code
+  how: >-
+    Author manuscript in PubMed Central (PMC7617447), retrieved as XML through NCBI E-utilities; the
+    abstract and the passages cited were read, without the supplementary information. Quotes checked
+    by script against that text and the abstract in Europe PMC.

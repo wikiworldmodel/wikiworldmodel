@@ -1,0 +1,24 @@
+id: src:fontana-1590-trasportatione
+type: publication
+kind: eyewitness
+citation: >-
+  Fontana, D. (1590). Della trasportatione dell'obelisco vaticano et delle fabriche di nostro signore
+  Papa Sisto V. Rome: Domenico Basa.
+authors:
+  - "Fontana, D."
+published: 1590
+title: Della trasportatione dell'obelisco vaticano
+url: https://archive.org/details/dellatrasportat00font
+license: public-domain
+reliability: >-
+  The architect's own account of the obelisks he raised for Sixtus V, with the inscriptions he cut on
+  their bases, published the year after the last of them went up.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in the Internet Archive's OCR text of three scans (dellatrasportat00font,
+    gri_33125008662708 and dellatrasportati00dome), Libro Primo, the chapters on the Lateran obelisk
+    (ff. 70v-71v) and on the obelisk of the Madonna del Popolo (ff. 75r-v). The OCR prints the long s
+    as f and misreads some letters; quotations keep the OCR of dellatrasportat00font as it stands,
+    checked by script with whitespace normalized, and a note says where a letter is misread. Folios
+    follow the running heads.

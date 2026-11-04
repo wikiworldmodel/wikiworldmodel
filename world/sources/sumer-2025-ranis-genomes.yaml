@@ -1,0 +1,21 @@
+id: src:sumer-2025-ranis-genomes
+type: publication
+kind: measurement
+citation: >-
+  Sümer, A.P., Rougier, H., Villalba-Mouco, V., … & Krause, J. (2025). Earliest modern human genomes
+  constrain timing of Neanderthal admixture. Nature 638(8051), 711–717.
+authors:
+  - "Sümer, A.P."
+  - "Rougier, H."
+  - "Villalba-Mouco, V."
+  - "Krause, J."
+published: 2025
+title: "Earliest modern human genomes constrain timing of Neanderthal admixture"
+container: "Nature 638(8051), 711–717"
+doi: 10.1038/s41586-024-08420-x
+verified:
+  by: machine:claude-code
+  how: >-
+    Open-access full text retrieved as XML from Europe PMC (PMC11839475); the abstract and the
+    passages cited were read, without the supplementary information. Quotes checked by script
+    against that text.

@@ -1,0 +1,27 @@
+id: src:walter-2025-crocodylian-body-size
+type: publication
+kind: model
+citation: >-
+  Walter, J.D., Massonne, T., Paiva, A.L.S., Martin, J.E., Delfino, M. & Rabi, M. (2025).
+  Expanded phylogeny elucidates Deinosuchus relationships, crocodylian osmoregulation and
+  body-size evolution. Communications Biology 8, 611.
+authors:
+  - "Walter, J.D."
+  - "Massonne, T."
+  - "Paiva, A.L.S."
+  - "Martin, J.E."
+  - "Delfino, M."
+  - "Rabi, M."
+published: 2025
+title: "Expanded phylogeny elucidates Deinosuchus relationships, crocodylian osmoregulation and body-size evolution"
+container: "Communications Biology 8, 611"
+doi: 10.1038/s42003-025-07653-4
+url: https://doi.org/10.6084/m9.figshare.27901317
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC12018936). Supplementary Data 2 read from Figshare: table
+    "Table S1.xlsx", sheet "Results", whose rows are quoted with their cells joined by spaces,
+    checked by script. The sheet gives head width in cm and does not state the unit of total
+    length; its values (Deinosuchus riograndensis about 581) show they too are centimetres.
