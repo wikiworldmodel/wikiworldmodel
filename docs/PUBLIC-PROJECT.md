@@ -432,17 +432,20 @@ full build takes several minutes, and the browser tests 10–15 on SwiftShader, 
 for the city at full quality. So CI is in tiers, and only the first runs on every pull
 request:
 
-- **Checks**, about a minute: the typecheck, the validators and the unit tests, from the
+- **Checks**, a few minutes: the typecheck, the validators and the unit tests, from the
   code, the records and the plate model alone. Their cost grows with the world, so keep it
   near-linear: the plate-frame lookups are cached per location, and a world-wide pass that
-  turns quadratic (as `claimOf` did, at 13 of validation's 19 seconds) is a bug. When the
-  world is large enough that validating all of it takes minutes, the next step is to check
-  what a change touches and its neighbours.
+  turns quadratic is a bug. Two have been: `claimOf`, at 13 of validation's 19 seconds; and
+  the competing dates, every one solved in every picture against the whole world, 6,656
+  solves at 1,429 entities. Now each competing date is solved only in the piece of the
+  network it is in (`solveChanged` in `core/stn.ts`). The largest piece, the time scale and
+  the tree of life with all that is dated by them, is still more than half the network; it is
+  the next to split.
 - **Build**, when `master` changes or a pull request changes how the world is built: every
-  dataset, the build, checks on it, and the deployment. Records alone don't trigger it; the
+  dataset, the build (once), checks on it, and the deployment. Records alone don't trigger it; the
   validators are their check. The import is cached by its input hash.
-- **Render**, nightly: the browser tests against their goldens. A failure means a picture
-  changed, for a person to look at.
+- **Nightly**: the browser tests against their goldens, and a second build compared to the
+  byte with the first. A failure means a picture or a byte changed, for a person to look at.
 
 ## 9. Security and trust
 
