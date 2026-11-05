@@ -1,8 +1,10 @@
-# The viewer, drawn in Chromium and compared with its golden images: the globe, the city drawn
-# the fast way, and the city at full quality. Drawing in software takes minutes a view, so this
-# runs nightly and by hand, never on a pull request. A failure means a picture changed: look at
-# the diffs it uploads, and update the goldens if the change was meant.
-name: Render
+# What takes too long for every change, nightly and by hand, never on a pull request:
+# - render: the viewer, drawn in Chromium and compared with its golden images: the globe, the city
+#   drawn the fast way, and the city at full quality. Drawing in software takes minutes a view. A
+#   failure means a picture changed: look at the diffs it uploads, and update the goldens if the
+#   change was meant.
+# - reproducible: the world built twice, to the same bytes.
+name: Nightly
 
 on:
   workflow_dispatch:
@@ -10,7 +12,7 @@ on:
     - cron: '17 4 * * *'
 
 concurrency:
-  group: render-${{ github.ref }}
+  group: nightly-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -67,3 +69,41 @@ jobs:
           name: render-${{ matrix.project }}
           path: test-results
           retention-days: 7
+
+  reproducible:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.13'
+          cache: pip
+          cache-dependency-path: tools/world/importers/requirements.txt
+
+      - name: Install
+        run: |
+          npm ci
+          python -m pip install -r tools/world/importers/requirements.txt
+
+      - uses: actions/cache@v6
+        with:
+          path: .cache/datasets
+          key: datasets-${{ hashFiles('world/manifest.yaml') }}
+
+      - uses: actions/cache@v6
+        with:
+          path: .cache/import
+          key: import-${{ hashFiles('world/manifest.yaml', 'world/snapshots/**', 'tools/world/importers/**', 'tools/world/src/**', 'world/generators/**') }}
+
+      - name: Build the world, then again, and compare
+        run: |
+          npm run fetch
+          npm run build:world
+          npm run test:reproducible

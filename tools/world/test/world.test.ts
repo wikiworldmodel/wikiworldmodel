@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, describe, expect, it } from 'vitest';
 import { toMa } from '../../../core/time.ts';
-import { pointOf, solveScenario, solveVariants } from '../src/chronology.ts';
+import { pointOf, solveScenario } from '../src/chronology.ts';
 import { WORLD } from '../src/paths.ts';
 import { validateWorld } from '../src/validate/index.ts';
 import { loadWorld } from '../src/world.ts';
@@ -64,8 +64,9 @@ describe('the world', async () => {
   });
 
   it('finds the 1992 Chicxulub date inconsistent with the rest of the world, and says why', () => {
-    const variants = solveVariants(world);
-    const swisher = variants.find((v) => v.key === 'earth/events/chicxulub-impact#date-swisher-1992')!;
+    // Two picks, not the thousands solveVariants makes: those are tested in variants.test.ts.
+    const picked = (pick: string) => ({ solution: solveScenario(world, { picks: [pick] }), centres: solveScenario(world, { picks: [pick] }, true) });
+    const swisher = picked('earth/events/chicxulub-impact#date-swisher-1992');
     expect(swisher.solution.ok).toBe(false);
     if (swisher.solution.ok) return;
     // It is too young for the Deccan eruptions it falls within, and for the extinction it
@@ -76,7 +77,7 @@ describe('the world', async () => {
       ['earth/events/chicxulub-impact#date-swisher-1992', 'earth/events/chicxulub-impact#during-deccan', 'earth/lips/deccan-traps#main-end'],
       ['earth/events/chicxulub-impact#date-swisher-1992', 'earth/events/kpg-extinction#caused-by-chicxulub', 'earth/events/kpg-extinction#date-ics', 'ics/danian#ics-start'],
     ]).toContainEqual(clash);
-    const yin = variants.find((v) => v.key === 'earth/events/india-asia-collision#date-yin-harrison-2000')!;
+    const yin = picked('earth/events/india-asia-collision#date-yin-harrison-2000');
     expect(yin.centres.ok && at(yin.centres.bounds, 'earth/orogens/himalaya', 'start')[0]).toBeCloseTo(70, 6);
   });
 

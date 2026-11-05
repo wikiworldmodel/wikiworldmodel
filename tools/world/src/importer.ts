@@ -1,7 +1,7 @@
 // Runs the Python importer (pyGPlates) on fetched datasets, caching its output by input hash.
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { parseDuration, parsePoint, toMa, type TimePointInput } from '../../../core/time.ts';
 import { datasetFile, loadManifest } from './manifest.ts';
@@ -132,7 +132,10 @@ export async function resolvePoints(points: PointQuery[]): Promise<PointResult[]
     const stdout = execFileSync(python(), [IMPORTER, 'points', reqPath], { encoding: 'utf8' });
     for (const { id, ...r } of JSON.parse(stdout).points as PointResult[]) known[id] = r;
     const sorted = Object.fromEntries(Object.entries(known).sort(([a], [b]) => (a < b ? -1 : 1)));
-    await writeFile(file, JSON.stringify(sorted));
+    // Written aside and moved into place, so that a reader at the same moment never sees half a file.
+    const part = `${file}.${process.pid}.part`;
+    await writeFile(part, JSON.stringify(sorted));
+    await rename(part, file);
   }
   return points.map((p) => ({ id: p.id, ...known[keyOf(p)] }));
 }

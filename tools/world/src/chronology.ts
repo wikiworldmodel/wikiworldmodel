@@ -3,7 +3,7 @@
 // scenario (core/scenario.ts): the default picture, plus alternatives and picked claims.
 import { parseRef, splitRef } from '../../../core/refs.ts';
 import { scenarioKey, type Scenario } from '../../../core/scenario.ts';
-import { conflictIn, ORIGIN, solve, type Bounds, type Conflict, type Constraint, type Solution } from '../../../core/stn.ts';
+import { conflictIn, ORIGIN, solve, solveChanged, type Bounds, type Conflict, type Constraint, type Solution } from '../../../core/stn.ts';
 import { bounds, centre, parseLag, parseTime, type TimeValue } from '../../../core/time.ts';
 import { isMoment, type Claim, type Relation, type World } from './world.ts';
 
@@ -146,16 +146,11 @@ export function buildNetwork(world: World, s: Scenario = {}, centres = false): {
 
 const pictureNetworks = new WeakMap<World, Map<string, { points: string[]; constraints: Constraint[] }>>();
 
-/** A picture's network, with one group's constraints changed for the claim picked; undefined if that cannot be done in place. */
-function pickedNetwork(world: World, s: Scenario, centres: boolean): { points: string[]; constraints: Constraint[] } | undefined {
-  const pick = s.picks![0];
-  const { record, part } = splitRef(pick);
-  const claim = world.entity.get(record)?.claims.find((c) => c.key === part);
-  const g = claim && claimGroup(world, claim.subject, claim.prop);
-  if (!claim || !g || !world.vocab.properties[g.prop]?.moment) return undefined;
-  const picture: Scenario = s.alts?.length ? { alts: s.alts } : {};
-  const before = chosen(g, picture);
-  if (!before) return undefined;
+/**
+ * A picture's network, made once per world: the picks in it are made from it, sharing its points
+ * and its unchanged constraints, so comparing a pick with its picture is cheap (solveChanged).
+ */
+export function pictureNetwork(world: World, picture: Scenario, centres = false): { points: string[]; constraints: Constraint[] } {
   let known = pictureNetworks.get(world);
   if (!known) {
     known = new Map();
@@ -167,6 +162,20 @@ function pickedNetwork(world: World, s: Scenario, centres: boolean): { points: s
     base = wholeNetwork(world, picture, centres);
     known.set(key, base);
   }
+  return base;
+}
+
+/** A picture's network, with one group's constraints changed for the claim picked; undefined if that cannot be done in place. */
+function pickedNetwork(world: World, s: Scenario, centres: boolean): { points: string[]; constraints: Constraint[] } | undefined {
+  const pick = s.picks![0];
+  const { record, part } = splitRef(pick);
+  const claim = world.entity.get(record)?.claims.find((c) => c.key === part);
+  const g = claim && claimGroup(world, claim.subject, claim.prop);
+  if (!claim || !g || !world.vocab.properties[g.prop]?.moment) return undefined;
+  const picture: Scenario = s.alts?.length ? { alts: s.alts } : {};
+  const before = chosen(g, picture);
+  if (!before) return undefined;
+  const base = pictureNetwork(world, picture, centres);
   const at = base.constraints.findIndex((c) => c.source === before.ref);
   if (at < 0) return undefined;
   // In place, so that the order of the constraints, on which ties in the solver turn, is the same as if made whole.
@@ -338,18 +347,39 @@ export function solveVariants(world: World, alternatives?: string[]): Variant[] 
   let rootSol: Bounds | undefined;
   let rootCentres: Bounds | undefined;
   let picture: Variant | undefined;
+  type Network = ReturnType<typeof buildNetwork>;
+  let nets: { sol: Network; centres: Network } | undefined;
+  // A pick, solved again only in the pieces of the network its claim is in (solveChanged).
+  const picked = (net: Network, base: Bounds | undefined, s: Scenario, centres: boolean): Solution => {
+    const mine = buildNetwork(world, s, centres);
+    const quick = base && solveChanged({ ...net, bounds: base }, mine.points, mine.constraints);
+    if (!quick) return overBase(solve(mine.points, mine.constraints), base);
+    if (!quick.ok) return quick;
+    const bounds = new BoundsOver(base!);
+    for (const [point, b] of quick.changed) bounds.set(point, b);
+    return { ok: true, bounds };
+  };
   for (const scenario of scenariosOf(world, alternatives)) {
-    const isPicture = !scenario.picks?.length;
-    const under = isPicture ? { sol: rootSol, centres: rootCentres } : { sol: boundsOf(picture!.solution), centres: boundsOf(picture!.centres) };
-    const v: Variant = { key: scenarioKey(scenario), scenario, solution: overBase(solveScenario(world, scenario), under.sol), centres: overBase(solveScenario(world, scenario, true), under.centres) };
-    out.push(v);
-    if (isPicture) {
+    let v: Variant;
+    if (!scenario.picks?.length) {
+      nets = { sol: pictureNetwork(world, scenario), centres: pictureNetwork(world, scenario, true) };
+      const sol = solve(nets.sol.points, nets.sol.constraints);
+      const centres = solve(nets.centres.points, nets.centres.constraints);
+      v = { key: scenarioKey(scenario), scenario, solution: overBase(sol, rootSol), centres: overBase(centres, rootCentres) };
       picture = v;
       if (!rootSol) {
         rootSol = boundsOf(v.solution);
         rootCentres = boundsOf(v.centres);
       }
+    } else {
+      v = {
+        key: scenarioKey(scenario),
+        scenario,
+        solution: picked(nets!.sol, boundsOf(picture!.solution), scenario, false),
+        centres: picked(nets!.centres, boundsOf(picture!.centres), scenario, true),
+      };
     }
+    out.push(v);
   }
   return out;
 }

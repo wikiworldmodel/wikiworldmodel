@@ -19,6 +19,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "test": "vitest run --project unit",
     "test:build": "vitest run --project build",
+    "test:reproducible": "vitest run --project reproducible",
     "test:e2e": "playwright test --global-timeout=7200000",
     "check": "npm run typecheck && npm run validate && npm test"
   },
