@@ -68,7 +68,12 @@ export interface Feature {
   /** interval under other scenarios (keyed by scenario key), where it differs */
   variants?: Record<string, FeatureTime>;
   status: 'proposed' | 'accepted' | 'disputed' | 'deprecated';
+  /** from how far away it shows by itself: derived by the build, and no claim about the world */
+  prominence?: number;
 }
+
+/** Kinds a site draws, in its own streets, and the globe does not. */
+export const cityKind = (k: string) => /^(building|monument|works|open)(\/|$)/.test(k);
 
 /** Where a thing was for one phase of its life. */
 export interface FeatureMove {
@@ -120,14 +125,13 @@ export interface GeneratorConstraint {
 }
 
 export interface TileHeader {
-  format: 'lightworld-tile@3';
+  format: 'lightworld-tile@4';
   id: string;
   lod: number;
   bbox: [number, number, number, number];
   time: [number, number];
   /** the gridded field that covers the tile's span, if any does */
   field: FieldContent | null;
-  features: Feature[];
   generators: GeneratorConstraint[];
 }
 
@@ -188,7 +192,7 @@ export interface FieldInfo {
 }
 
 export interface Tileset {
-  format: 'lightworld-tileset@3';
+  format: 'lightworld-tileset@4';
   build: string;
   /** gridded fields, in order of preference where two cover the same time */
   fields: FieldInfo[];
@@ -196,7 +200,7 @@ export interface Tileset {
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string; people?: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string; people?: string; features: string };
   /** the climate field the land is painted from, and the derived field that paints it */
   climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown> };
   /** the ice sheets drawn over the land, where a field has them, instead of a claimed latitude */

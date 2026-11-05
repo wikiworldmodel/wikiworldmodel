@@ -20,6 +20,8 @@ export interface MarkerContext {
   placed: (plate: number) => boolean;
   /** records lit up by the group chosen in the tree of life: shown at any time, and marked */
   lit?: ReadonlySet<string> | null;
+  /** the camera is as close as the globe goes: nothing in view is left out */
+  closest?: boolean;
 }
 
 const KIND_CLASS_PREFIX: [string, string][] = [
@@ -88,6 +90,17 @@ export function visibility(time: FeatureTime, t: number, halo: number, evidence:
   return Math.min(a, b);
 }
 
+/** More than this, and the screen is only dots: the most prominent stay, with what is chosen or lit. */
+export const MOST_MARKERS = 150;
+
+/** The markers to draw: all, up to the limit; past it, what must stay and the most prominent. */
+export function mostProminent<T extends { f: Pick<Feature, 'id' | 'prominence'> }>(placed: T[], limit: number, keep: (id: string) => boolean): T[] {
+  if (placed.length <= limit) return placed;
+  const order = (m: T) => (keep(m.f.id) ? 1e9 : (m.f.prominence ?? 0));
+  const best = new Set([...placed].sort((a, b) => order(b) - order(a) || (a.f.id < b.f.id ? -1 : 1)).slice(0, limit));
+  return placed.filter((m) => best.has(m));
+}
+
 export class Markers {
   readonly el: HTMLElement;
   private nodes = new Map<string, HTMLButtonElement>();
@@ -100,7 +113,7 @@ export class Markers {
 
   update(features: Feature[], camera: Camera, ctx: MarkerContext): void {
     const seen = new Set<string>();
-    const placed: { f: Feature; x: number; y: number; vis: number; t: FeatureTime }[] = [];
+    const all: { f: Feature; x: number; y: number; vis: number; t: FeatureTime }[] = [];
     for (const f of features) {
       const time = timeFor(f, ctx.scenario);
       const lit = !!ctx.lit?.has(f.id);
@@ -113,8 +126,9 @@ export class Markers {
       const p = rotate(q, unitVector(here.location.lat, here.location.lon)) as V3;
       const s = camera.project(p);
       if (!s.visible) continue;
-      placed.push({ f, x: s.x, y: s.y, vis, t: time });
+      all.push({ f, x: s.x, y: s.y, vis, t: time });
     }
+    const placed = ctx.closest ? all : mostProminent(all, MOST_MARKERS, (id) => id === ctx.selected || !!ctx.lit?.has(id));
     // Dots that land on top of each other (an event and the structure it made) fan out downwards,
     // a little: past that they stay where they are, and coming closer separates them.
     placed.sort((a, b) => a.y - b.y || a.x - b.x || (a.f.id < b.f.id ? -1 : 1));

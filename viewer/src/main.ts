@@ -9,10 +9,10 @@ import { coverAt, lookAt, spanOf, valueOf, type Cover, type Look } from '../../c
 import { conj, mul, rotate, toLatLon, unitVector, type Quat } from '../../core/quat.ts';
 import type { EntityRecord } from '../../core/records.ts';
 import { splitRef } from '../../core/refs.ts';
-import { lookup, type Scenario } from '../../core/scenario.ts';
+import { lookup, scenarioKey, type Scenario } from '../../core/scenario.ts';
 import type { TerritoryFile } from '../../core/territory.ts';
 import { indexTree, subtree, type TreeFile } from '../../core/tree.ts';
-import { placeAt, type Feature, type FeatureTime, type FieldInfo, type GeneratorConstraint, type SiteInfo } from '../../core/tileset.ts';
+import { cityKind, placeAt, type FeatureTime, type FieldInfo, type GeneratorConstraint, type SiteInfo } from '../../core/tileset.ts';
 import { formatTime, fromMa, historical, PRESENT_YEAR, toMa } from '../../core/time.ts';
 import { GENERATOR as BIOME_TEXTURE, generateBiomeTexture, type BiomeTextureParams } from '../../world/generators/earth/biome/v1.ts';
 import { GENERATOR as CLOUDS, generateClouds, type CloudParams } from '../../world/generators/earth/clouds/v1.ts';
@@ -23,6 +23,7 @@ import { LifeScene } from './city/life.ts';
 import { CityScene } from './city/scene.ts';
 import { autoTilt, groundHit, localView, projectLocal, rayOf, sunAt, type LocalView } from './city/view.ts';
 import { CityLabels } from './ui/citylabels.ts';
+import { FeatureTiles } from './features.ts';
 import { fetchLog, getBytes, getJSON, latestBuild, loadBuild, loadRecord, type Build } from './data.ts';
 import { FieldRenderer, type FieldTileGPU } from './gl/field.ts';
 import { globeLook, GlobeRenderer } from './gl/globe.ts';
@@ -86,7 +87,6 @@ const CITY_SOLID = 4.5e5;
 const GLOBE_GONE = 4.5e4;
 const RAD = Math.PI / 180;
 /** Kinds that belong to a city: they are drawn and named in the city's scene, not on the globe. */
-const cityKind = (k: string) => /^(building|monument|works|open)(\/|$)/.test(k);
 
 const ROOT = new URL('./', location.href).href;
 
@@ -159,7 +159,11 @@ async function start(root: HTMLElement): Promise<void> {
   const camera = new Camera();
   const tiles = new TileManager(build);
   const gpuTiles = new Map<string, FieldTileGPU>();
-  const features = new Map<string, Feature>();
+  const features = new FeatureTiles(build, build.features);
+  features.onLoad = () => {
+    dirty = true;
+    if (state.sel && !shownRecord) void showSelection();
+  };
   let cloudSpec: GeneratorConstraint | null = null;
   const clouds = { expected: '', actual: null as string | null };
   let cloudsReady = false;
@@ -305,8 +309,12 @@ async function start(root: HTMLElement): Promise<void> {
     fossils.set(treeFile, nodes);
     const records = treeFile.members.filter((m) => nodes.has(m.taxon));
     litMarkers = new Set(records.map((m) => m.entity));
-    const times = records.map((m) => features.get(m.entity)?.time.start.best).filter((x): x is number => typeof x === 'number');
-    timebar.setLit([...fossils.times(), ...times].sort((a, b) => a - b));
+    void features.load(litMarkers).then(() => {
+      if (litFor !== id) return;
+      const times = records.map((m) => features.get(m.entity)?.time.start.best).filter((x): x is number => typeof x === 'number');
+      timebar.setLit([...fossils.times(), ...times].sort((a, b) => a - b));
+      dirty = true;
+    });
   }
   // The sites: each one's scene loads as the camera comes near it, or at once if a link starts there.
   // The site is the one the view is at: of those drawn for the time shown, the one the camera is near;
@@ -459,7 +467,7 @@ async function start(root: HTMLElement): Promise<void> {
       inspect.hide();
       return;
     }
-    const r = await loadRecord(build, id);
+    const [r] = await Promise.all([loadRecord(build, id), features.load([id]), scenarioKey(scenario()) ? features.wantVariants() : undefined]);
     if (state.sel !== id) return;
     const f = features.get(id);
     shownRecord = id;
@@ -493,7 +501,6 @@ async function start(root: HTMLElement): Promise<void> {
   // Tiles → GPU, features, generator constraints.
   tiles.onLoad = (t: LoadedTile) => {
     if (t.header.field) gpuTiles.set(t.ref.id, field.addTile(t.ref.id, t.ref.lod, t.header.field.grid, t.keyframes));
-    for (const f of t.header.features) features.set(f.id, f);
     if (!cloudSpec && t.header.generators.length) {
       cloudSpec = t.header.generators.find((g) => g.generator === CLOUDS) ?? null;
       if (cloudSpec) void makeClouds(cloudSpec);
@@ -764,7 +771,8 @@ async function start(root: HTMLElement): Promise<void> {
       present.update(camera, state.t, state.cam.dist, stage.clientWidth, stage.clientHeight);
       hazards.update(camera, state.t, Math.max(timebar.yearsPerPixels(state.t, 8), 0.5), stage.clientWidth, stage.clientHeight);
     }
-    const onGlobe = [...features.values()].filter((f) => !cityKind(f.kind));
+    if (scenarioKey(scenario())) features.wantVariants();
+    const onGlobe = features.update({ t: state.t, halo: halo(state.t), ...camera.reach(), rotation: plateNow, placed: (plate) => !!fi && build.model.reaches(plate, age) }, litMarkers, state.sel);
     markers.el.hidden = inCity && range < 1.2e5;
     markers.update(onGlobe, camera, {
       t: state.t,
@@ -773,6 +781,7 @@ async function start(root: HTMLElement): Promise<void> {
       scenario: scenario(),
       selected: state.sel,
       lit: litMarkers,
+      closest: camera.reach().footprint === 0,
       plateRotation: plateNow,
       // Where no field covers the time, or the plate model does not reach, nothing is placed.
       placed: (plate) => !!fi && build.model.reaches(plate, age),
@@ -803,7 +812,7 @@ async function start(root: HTMLElement): Promise<void> {
     dirty = false;
     render();
     // Tiles may still be arriving; keep rendering until they have.
-    if (tiles.busy) dirty = true;
+    if (tiles.busy || features.busy) dirty = true;
   }
 
   // Globe interaction, and near the ground, a map's: drag the ground, turn with the right button
@@ -1234,6 +1243,11 @@ async function start(root: HTMLElement): Promise<void> {
   /** Open an entity, and move to its time and place if it is not in view. */
   function goTo(id: string): void {
     here = null;
+    // Its marker may be somewhere the view has not asked for: fetch it, then go.
+    if (features.has(id) && (!features.get(id) || (scenarioKey(scenario()) && !features.hasVariants))) {
+      void Promise.all([features.load([id]), scenarioKey(scenario()) ? features.wantVariants() : undefined]).then(() => goTo(id));
+      return;
+    }
     const f = features.get(id) ?? null;
     const entry = build.search.entities.find((e) => e.id === id)!;
     const home = sites.find((s) => s.kind === 'city');
@@ -1312,7 +1326,7 @@ async function start(root: HTMLElement): Promise<void> {
   history.replaceState(null, '', toSearch(build.id, state));
   window.__lightworld = {
     build: build.id,
-    idle: () => !tiles.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && (!state.langs || !!languages.file || !ts.files.languages) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
+    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && (!state.langs || !!languages.file || !ts.files.languages) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
     state: () => state,
     url: () => toSearch(build.id, state),
     requests: fetchLog,

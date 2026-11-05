@@ -24,6 +24,8 @@ import { loadWorld, type World } from '../world.ts';
 import { fieldFor, fieldLods, loadBlocks, loadSnapshots, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
 import { buildCity } from './city.ts';
 import { climateGrid, climateKeyframes, encodeClimate, forestChecks, type ClimateKeyframe } from './climate.ts';
+import { FEATURE_INDEX } from '../../../../core/featuretiles.ts';
+import { prominenceOf, tileFeatures } from './featuretiles.ts';
 import { buildIce, type IceBuilt } from './ice.ts';
 import { hazardLayer, languagesLayer, peopleLayer, polityLayer, presentLayer, routesLayer } from './layers.ts';
 import { buildScene } from './scene.ts';
@@ -54,16 +56,6 @@ function dataCommit(): { commit: string; dirty: boolean } {
 }
 
 /** Does a feature's interval (in any scenario) come near a tile's time span? */
-function overlaps(f: Feature, span: [number, number]): boolean {
-  const margin = (span[1] - span[0]) * 0.25;
-  const times = [f.time, ...Object.values(f.variants ?? {})];
-  return times.some((t) => {
-    const lo = Number.isFinite(t.start.lo) ? t.start.lo : t.start.best ?? -Infinity;
-    const hi = t.end.best === null ? Infinity : Number.isFinite(t.end.hi) ? t.end.hi : t.end.best;
-    return lo <= span[1] + margin && hi >= span[0] - margin;
-  });
-}
-
 /** Attribution for what the build shows: its datasets, and the databases its records cite. */
 function credits(world: World): Tileset['credits'] {
   const out: Tileset['credits'] = [];
@@ -267,7 +259,14 @@ export async function runBuild(args: string[]): Promise<number> {
   const seriesList = await buildSeries(world);
   const span = worldSpan(periodList, found, grids, seriesList);
 
-  // 7. Tiles: every span of time has LOD 0 tiles (its features and generator constraints, and
+  // The markers, tiled apart from the terrain: by time, place and prominence.
+  const rule = world.vocab.prominence;
+  const prominent = new Map(world.entities.map((e) => [e.id, prominenceOf(rule, e)]));
+  const tiledFeatures = tileFeatures(allFeatures, rule, (f) => prominent.get(f.id) ?? 0);
+  for (const [path, content] of tiledFeatures.files) put(path, content);
+  log(`features ${tiledFeatures.index.tiles.length} tiles, ${Object.keys(tiledFeatures.index.where).length} features`);
+
+  // 7. Tiles: every span of time has LOD 0 tiles (its generator constraints, and
   // the field that covers it, if any); spans with a field also have finer LOD 1 tiles.
   const cuts = grids.flatMap((g) => [g.snapshots[0].ageMa, g.snapshots.at(-1)!.ageMa]);
   const lods = fieldLods(timeBins(toMa(span[0]), toMa(span[1]), cuts), grids);
@@ -293,13 +292,12 @@ export async function runBuild(args: string[]): Promise<number> {
         const id = `${lod.lod}/${x}-${y}/b${bi}`;
         const parentBin = lods[0].binsMa.findIndex(([o, yy]) => younger >= yy && older <= o);
         const header: TileHeader = {
-          format: 'lightworld-tile@3',
+          format: 'lightworld-tile@4',
           id,
           lod: lod.lod,
           bbox: cell,
           time,
           field,
-          features: lod.lod === 0 ? allFeatures.filter((f) => overlaps(f, time)) : [],
           generators: lod.lod === 0 ? generators : [],
         };
         const bytes = encodeTile(header as unknown as Record<string, unknown>, arrays, stableStringify);
@@ -395,12 +393,12 @@ export async function runBuild(args: string[]): Promise<number> {
 
   // 9. Index and identity.
   const tileset: Omit<Tileset, 'build'> = {
-    format: 'lightworld-tileset@3',
+    format: 'lightworld-tileset@4',
     fields: grids.map((g) => fieldInfo(world, g)),
     timeRange: span,
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
-    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(routes ? { routes: 'routes.json' } : {}), ...(languages ? { languages: 'languages.json' } : {}), ...(people ? { people: 'people.lwt' } : {}) },
+    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(routes ? { routes: 'routes.json' } : {}), ...(languages ? { languages: 'languages.json' } : {}), ...(people ? { people: 'people.lwt' } : {}), features: FEATURE_INDEX },
     climate: climateField && biomeField && climateKeys.length ? { field: climateField.id, title: climateField.title, description: climateField.description, biomeTitle: biomeField.title, biomeDescription: biomeField.description, source: climateField.data!.from, sourceRecord: sourceRecord(world.source.get(climateField.data!.from)!), params: biomeField.params ?? {} } : undefined,
     ice: iceField && ice ? { field: iceField.id, title: iceField.title, description: iceField.description, uncertainty: iceField.uncertainty, basis: iceField.basis!, source: iceField.data!.from, sourceRecord: sourceRecord(world.source.get(iceField.data!.from)!), coverage: ice.coverage, keyframesMa: ice.keyframesMa, projection: iceField.projection ? { method: iceField.projection.method, until: parsePoint(iceField.projection.until as TimePointInput).t, note: iceField.projection.note } : undefined, marginM: ice.marginM, scenarios: ice.scenarios } : undefined,
     credits: credits(world),

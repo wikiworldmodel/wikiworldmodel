@@ -264,6 +264,14 @@ export interface Vocab {
   relations: Record<string, RelationType>;
   sourceTypes: Record<string, string>;
   sourceKinds: Record<string, string>;
+  prominence: ProminenceRule;
+}
+
+/** How the build derives from how far away a record shows: see schema/vocab/prominence.yaml. */
+export interface ProminenceRule {
+  budget: number;
+  domains: Record<string, { reserve: number; kinds: Record<string, number> }>;
+  scale: Record<string, { at: number; add: number }[]>;
 }
 
 /** A record as it appears in its file, before normalization, for schema validation. */
@@ -456,6 +464,7 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
     relations: relDoc.relations,
     sourceTypes: srcDoc.types,
     sourceKinds: srcDoc.kinds,
+    prominence: await yamlOf<ProminenceRule>(from('schema/vocab/prominence.yaml')),
   };
 
   const raw: RawRecord[] = [];

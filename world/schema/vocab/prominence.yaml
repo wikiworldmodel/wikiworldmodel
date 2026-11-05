@@ -1,0 +1,68 @@
+# Prominence: from how far away a record shows on the globe by itself. It is a choice about what
+# a map can hold, not a claim about the world, and it says nothing of how much anything mattered:
+# it never hides a record from search, from its panel or from flying there. The build derives it
+# from a record's kind and measured size, by this rule. It is a first draft, proposed by a machine,
+# to be tweaked. See docs/FEATURE-TILES.md.
+#
+# Never rank by how many sources or links a record has: that measures how much has been researched.
+#
+#   budget   how many features a cell of a feature tile holds; the rest go to its four children,
+#            so a place is never crowded out from afar by a busier place elsewhere
+#   domains  a cell keeps the top `reserve` of each domain first, so that one domain cannot fill it;
+#            `kinds` gives each kind a score, 0 to 9, which its children share unless they have
+#            their own
+#   scale    what a measured size adds to the score: the largest `at` the record's largest value
+#            reaches. Properties in the units of properties.yaml
+budget: 32
+domains:
+  earth:
+    reserve: 6
+    kinds:
+      event/impact: 9
+      event/extinction: 9
+      event/formation: 8
+      event/glaciation: 8
+      event/transition: 8
+      event/collision: 7
+      event/astronomical: 7
+      event/boundary: 6
+      large-igneous-province: 8
+      body: 7
+      landform: 6
+      landform/impact-crater: 7
+      landform/mountain-range: 7
+      sample: 3
+  life:
+    reserve: 6
+    kinds:
+      ecosystem: 7
+      taxon: 5
+      occurrence: 3
+  people:
+    reserve: 6
+    kinds:
+      event: 6
+      event/dispersal: 7
+      event/political: 6
+      event/conquest: 6
+      event/spaceflight: 6
+      event/battle: 5
+      event/admixture: 5
+      event/shipwreck: 3
+      polity: 8
+      settlement: 6
+      development: 6
+      industry: 5
+      artefact: 4
+      person: 4
+scale:
+  population:
+    - { at: 10000, add: 1 }
+    - { at: 100000, add: 2 }
+    - { at: 1000000, add: 3 }
+  settlement_area:
+    - { at: 100, add: 1 }
+    - { at: 1000, add: 2 }
+  area:
+    - { at: 100000, add: 1 }
+    - { at: 1000000, add: 2 }

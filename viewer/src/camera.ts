@@ -27,10 +27,12 @@ export class Camera {
   eye!: V3;
   width = 1;
   height = 1;
+  private tilted = false;
 
   update(s: CameraState, width: number, height: number): void {
     this.width = width;
     this.height = height;
+    this.tilted = !!(s.tilt || s.heading);
     const lat = Math.max(-89.5, Math.min(89.5, s.lat));
     const near = Math.min(0.02, (s.dist - 1) * 0.4);
     const fov = s.dist < 1.05 ? fovFor((s.dist - 1) * 6371000) : FOV;
@@ -55,6 +57,22 @@ export class Camera {
     this.proj = perspective(fov, width / height, near, 50);
     this.viewProj = multiply(this.proj, this.view);
     this.invViewProj = invert(this.viewProj);
+  }
+
+  /**
+   * What the camera can see of the globe, in degrees from the point under it: how far `sees` (the
+   * screen's corner, or the horizon if the view is tilted), and how much the screen spans, `footprint`.
+   * As close as the globe goes, it spans nothing: everything in view is wanted, or some of it could
+   * never be reached by coming nearer.
+   */
+  reach(): { dir: number[]; sees: number; footprint: number } {
+    const d = Math.hypot(...this.eye);
+    const horizon = (Math.acos(Math.min(1, 1 / d)) * 180) / Math.PI;
+    // The screen's corner: where its ray meets the globe, if it does.
+    const corner = Math.atan(Math.hypot(1, this.width / this.height) / this.proj[5]);
+    const s = d * Math.sin(corner);
+    const footprint = s >= 1 ? horizon : ((Math.asin(s) - corner) * 180) / Math.PI;
+    return { dir: this.eye.map((c) => c / d), sees: this.tilted ? horizon : footprint, footprint: Math.abs(d - MIN_DIST) < 0.01 ? 0 : footprint };
   }
 
   /** Screen position (CSS pixels) of a world point, and whether it faces the camera. */

@@ -5,7 +5,8 @@ import { join, relative } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { decodeTile } from '../../../core/container.ts';
 import { fromMa, PRESENT_YEAR, toMa } from '../../../core/time.ts';
-import type { TileHeader, Tileset } from '../../../core/tileset.ts';
+import { featureTileUrl, type FeatureIndex } from '../../../core/featuretiles.ts';
+import { cityKind, type Feature, type TileHeader, type Tileset } from '../../../core/tileset.ts';
 import type { IceHeader } from '../../../core/ice.ts';
 import { chosenClaim, type PlanetFile } from '../../../core/planet.ts';
 import { peopleAt, type PeopleFile, type PeopleHeader } from '../../../core/layers.ts';
@@ -57,7 +58,7 @@ describe('build', () => {
     const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
     for (const ref of ts.tiles) {
       const { header, arrays } = decodeTile<TileHeader>(bytes(join(dir, ref.url)));
-      // A span no field covers has only the coarse tile, for its features.
+      // A span no field covers has only the coarse tile, for its generator constraints.
       const covering = ts.fields.find((f) => f.coverage[0] < ref.time[1] && f.coverage[1] > ref.time[0]);
       expect(header.field?.id).toBe(covering?.id);
       if (!header.field) {
@@ -149,6 +150,36 @@ describe('build', () => {
     ]);
     expect(rec('earth/lips/deccan-traps').inverse).toEqual([expect.objectContaining({ rel: 'contains', from: 'earth/events/chicxulub-impact' })]);
     expect(rec('earth/plates/africa').inverse.map((x) => x.from)).toEqual(expect.arrayContaining(['life/mesosaurus/calvinia', 'life/mesosaurus/kabus']));
+  });
+
+  it('tiles the markers apart from the terrain: each once, by time, place and prominence', () => {
+    const dir = latestBuild();
+    const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
+    const index = JSON.parse(readFileSync(join(dir, ts.files.features), 'utf8')) as FeatureIndex;
+    const seen = new Map<string, Feature>();
+    for (const r of index.tiles) {
+      const rows = JSON.parse(readFileSync(join(dir, featureTileUrl(r)), 'utf8')) as Feature[];
+      expect(rows.filter((f) => !f.moves).length).toBeLessThanOrEqual(32);
+      for (const f of rows) {
+        expect(seen.has(f.id)).toBe(false);
+        seen.set(f.id, f);
+        expect(f.variants).toBeUndefined();
+        expect(typeof f.prominence).toBe('number');
+      }
+    }
+    expect(Object.keys(index.where).sort()).toEqual([...seen.keys()].sort());
+    // The terrain tiles carry none, and what a site draws is not on the globe.
+    const { header } = decodeTile<TileHeader>(bytes(join(dir, ts.tiles[0].url)));
+    expect('features' in header).toBe(false);
+    expect([...seen.values()].filter((f) => cityKind(f.kind))).toEqual([]);
+    // An impact outranks a fossil, and a measured size adds to a kind's score.
+    const of = (end: string) => [...seen.values()].find((f) => f.id.endsWith(end))!.prominence!;
+    expect(of('chicxulub-impact')).toBeGreaterThan(of('homo-sapiens-jebel-irhoud'));
+    expect(of('lips/deccan-traps')).toBeGreaterThan(8);
+    // Dates under other pictures are kept apart, for those who ask.
+    const variants = JSON.parse(readFileSync(join(dir, 'features/variants.json'), 'utf8')) as Record<string, unknown>;
+    expect(Object.keys(variants).length).toBeGreaterThan(0);
+    for (const id of Object.keys(variants)) expect(seen.has(id)).toBe(true);
   });
 
   it('writes a coverage map: unsourced claims, wanted records, basis by tile', () => {

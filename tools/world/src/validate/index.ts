@@ -1,6 +1,8 @@
 // Validators: CI for history (section 9.2 of WORLD-MODEL.md). Each check adds issues; any
 // error fails the run. The chronology and frame checks run on the default picture and again
 // on every alternative combined with it.
+import { cityKind } from '../../../../core/tileset.ts';
+import { kindScore } from '../build/featuretiles.ts';
 import { existsSync, readFileSync } from 'node:fs';
 import { join, resolve } from 'node:path';
 import { Ajv2020 } from 'ajv/dist/2020.js';
@@ -515,11 +517,28 @@ function checkLicenses(world: World, issues: Issue[]): void {
   }
 }
 
+/** The rule for how far away a record shows names real kinds and sizes, and covers what is on the globe. */
+function checkProminence(world: World, issues: Issue[]): void {
+  const rule = world.vocab.prominence;
+  const file = 'schema/vocab/prominence.yaml';
+  const domains = Object.entries(rule.domains);
+  if (domains.reduce((n, [, d]) => n + d.reserve, 0) > rule.budget) issues.push({ level: 'error', check: 'vocab', file, where: 'domains', message: `the domains reserve more than the budget of ${rule.budget}` });
+  for (const [name, d] of domains) {
+    for (const k of Object.keys(d.kinds)) if (!world.vocab.kinds[k]) issues.push({ level: 'error', check: 'vocab', file, where: `domains.${name}`, message: `unknown kind "${k}"` });
+  }
+  for (const p of Object.keys(rule.scale)) if (world.vocab.properties[p]?.type !== 'quantity') issues.push({ level: 'error', check: 'vocab', file, where: 'scale', message: `"${p}" is not a quantity` });
+  for (const e of world.entities) {
+    if (cityKind(e.kind) || !world.vocab.kinds[e.kind] || !e.claims.some((c) => c.prop === 'location')) continue;
+    if (!kindScore(rule, e.kind)) issues.push({ level: 'error', check: 'vocab', file: e.file, where: 'kind', message: `the prominence rule gives no score for the kind "${e.kind}"` });
+  }
+}
+
 export async function validateWorld(world: World, opts: { frames?: boolean } = {}): Promise<Report> {
   const issues: Issue[] = world.loadIssues.map((e) => ({ level: 'error', check: 'load', file: e.file, where: e.where, message: e.message }));
   checkSchemas(world, issues);
   const wanted = checkRecords(world, issues);
   checkRanks(world, issues);
+  checkProminence(world, issues);
   checkDuplicates(world, issues);
   if (world.root === WORLD || existsSync(join(world.root, 'manifest.yaml'))) checkLicenses(world, issues);
   for (const w of wanted) {
