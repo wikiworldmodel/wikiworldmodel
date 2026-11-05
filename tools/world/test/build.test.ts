@@ -1,7 +1,8 @@
-// Pass criteria: building twice gives byte-identical output, and the tile set is complete.
+// Pass criteria: the tile set is complete, and holds what the world says. They read the build that
+// `npm run build:world` made; that building it again gives the same bytes is reproducible.test.ts.
 import { createHash } from 'node:crypto';
-import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, relative } from 'node:path';
+import { readFileSync, statSync } from 'node:fs';
+import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { decodeTile } from '../../../core/container.ts';
 import { fromMa, PRESENT_YEAR, toMa } from '../../../core/time.ts';
@@ -14,7 +15,6 @@ import { territoriesAt, type TerritoryFile } from '../../../core/territory.ts';
 import type { CoverageFile, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../core/records.ts';
 import { GENERATOR, generateClouds, type CloudParams } from '../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
-import { runBuild } from '../src/build/index.ts';
 import { latestBuild } from './helpers.ts';
 
 /** A file's bytes as an ArrayBuffer of their own (small files share Node's buffer pool). */
@@ -23,36 +23,7 @@ function bytes(path: string): ArrayBuffer {
   return b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer;
 }
 
-function digest(dir: string): Map<string, string> {
-  const out = new Map<string, string>();
-  const walk = (d: string) => {
-    for (const name of readdirSync(d).sort()) {
-      const p = join(d, name);
-      if (statSync(p).isDirectory()) walk(p);
-      else out.set(relative(dir, p), createHash('sha256').update(readFileSync(p)).digest('hex'));
-    }
-  };
-  walk(dir);
-  return out;
-}
-
 describe('build', () => {
-  it('is reproducible: two builds are byte-identical', async () => {
-    const quiet = console.log;
-    console.log = () => {};
-    try {
-      expect(await runBuild([])).toBe(0);
-      const first = latestBuild();
-      const a = digest(first);
-      expect(await runBuild([])).toBe(0);
-      const second = latestBuild();
-      expect(second).toBe(first);
-      expect(digest(second)).toEqual(a);
-    } finally {
-      console.log = quiet;
-    }
-  }, 900_000);
-
   it('has, in every tile, the keyframes that bracket every moment of its span', () => {
     const dir = latestBuild();
     const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;

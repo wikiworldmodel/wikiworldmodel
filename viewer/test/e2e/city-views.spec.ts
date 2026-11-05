@@ -1,5 +1,5 @@
 // The city as drawn at full quality, against goldens: shadows, occlusion, bloom and fine meshes.
-// In software each view takes minutes, so these run with the other browser tests in render.yml,
+// In software each view takes minutes, so these run with the other browser tests in nightly.yml,
 // nightly and on demand.
 import { expect, test } from '@playwright/test';
 import { canvasPng, idle, latestBuild } from './helpers.ts';

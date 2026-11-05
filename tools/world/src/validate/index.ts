@@ -12,9 +12,9 @@ import { Ajv2020 } from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import { formProblem } from '../../../../core/city.ts';
 import { parseRef, RefError, splitRef } from '../../../../core/refs.ts';
-import type { Constraint, Conflict, Solution } from '../../../../core/stn.ts';
+import { conflictChanged, conflictIn, type Constraint, type Conflict, type Solution } from '../../../../core/stn.ts';
 import { parseLag, parseTime, TimeError, toMa } from '../../../../core/time.ts';
-import { available, chosen, claimGroup, claimGroups, conflictInScenario, pictures, pointOf, scenariosOf, solveScenario, type Scenario } from '../chronology.ts';
+import { available, buildNetwork, chosen, pictureNetwork, claimGroup, claimGroups, conflictInScenario, pictures, pointOf, scenariosOf, solveScenario, type Scenario } from '../chronology.ts';
 import { resolvePoints } from '../importer.ts';
 import { WORLD } from '../paths.ts';
 import { kindIs, loadWorld, schemaDir, type Claim, type Entity, type Relation, type World } from '../world.ts';
@@ -438,9 +438,20 @@ function checkChronology(world: World, issues: Issue[]): void {
   // date in the build falls back to the middle of its bounds, so it must hold, in the default picture.
   const centred = conflictInScenario(world, {}) ? undefined : conflictInScenario(world, {}, true);
   if (centred) issues.push({ level: 'error', check: 'chronology', message: `with each dated claim at the middle of its range, ${describeConflict(world, centred)}` });
-  // One at a time, with nothing kept but what is wrong: there are thousands of them.
+  // One at a time, with nothing kept but what is wrong: there are thousands of them. A pick is
+  // checked only in the pieces of its picture's network that it changes (conflictChanged).
+  let picture: { points: string[]; constraints: Constraint[]; holds: boolean } | undefined;
   for (const scenario of scenariosOf(world)) {
-    const conflict = conflictInScenario(world, scenario);
+    let conflict: Conflict | undefined;
+    if (!scenario.picks?.length) {
+      const net = pictureNetwork(world, scenario);
+      conflict = conflictIn(net.points, net.constraints);
+      picture = { ...net, holds: !conflict };
+    } else {
+      const net = buildNetwork(world, scenario);
+      const quick = picture?.holds ? conflictChanged(picture, net.points, net.constraints) : 'whole';
+      conflict = quick === 'whole' ? conflictIn(net.points, net.constraints) : quick;
+    }
     if (!conflict) continue;
     const v = { scenario, solution: { conflict } };
     const pick = v.scenario.picks?.[0];

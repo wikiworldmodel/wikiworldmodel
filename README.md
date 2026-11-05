@@ -96,14 +96,14 @@ npm run build:viewer && npm run test:e2e   # browser tests, golden renders inclu
 
 CI runs in three tiers, so that the checks on a pull request stay quick as the world grows:
 
-- **Checks** (`ci.yml`), on every pull request and push to master, in about a minute: the typecheck,
-  `npm run validate` and `npm test`. They need only the plate model, 1 MB from GitHub, and
+- **Checks** (`ci.yml`), on every pull request and push to master, in a few minutes: the typecheck,
+  `npm run validate` and `npm test`, its files side by side. They need only the plate model, 1 MB from GitHub, and
   pyGPlates is asked only about locations it has not placed before.
 - **Build** (`build.yml`), when master changes, when a pull request changes how the world is
   built, and by hand: every dataset, `npm run build:world`, `npm run test:build`, the viewer,
-  and on master the site's deployment.
-- **Render** (`render.yml`), nightly and by hand: the browser tests against their goldens, in
-  three groups that can also be run alone with `--project`: `globe`, `city` (the city's
+  and on master the site's deployment. It builds the world once.
+- **Nightly** (`nightly.yml`), and by hand: the world built again and compared to the byte
+  (`npm run test:reproducible`), and the browser tests against their goldens, in three groups that can also be run alone with `--project`: `globe`, `city` (the city's
   behaviour, drawn the fast way) and `city-views` (the city at full quality, minutes a view in
   software).
 

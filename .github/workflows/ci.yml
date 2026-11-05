@@ -2,7 +2,7 @@
 # model (1 MB), so they take about a minute and grow slowly with the world: the typecheck, the
 # validator (schema, references, vocabularies, licenses, chronology, plate frames) and the unit
 # tests. Building the world, and drawing it, happen elsewhere: build.yml when master changes or
-# a pull request changes how the world is built, render.yml nightly.
+# a pull request changes how the world is built, nightly.yml nightly.
 name: Checks
 
 on:
@@ -18,7 +18,7 @@ concurrency:
 jobs:
   checks:
     runs-on: ubuntu-24.04
-    timeout-minutes: 15
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v7
 
@@ -61,5 +61,9 @@ jobs:
       - name: Validate the world
         run: npm run validate
 
+      # Side by side, each in its own process; the life scene generator's test needs more than
+      # Node's default heap.
       - name: Unit tests
         run: npm test
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
