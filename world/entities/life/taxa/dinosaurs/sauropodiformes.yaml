@@ -1,0 +1,48 @@
+id: life/taxa/sauropodiformes
+kind: taxon
+summary: >-
+  The near-sauropods: big long-necked plant-eaters, some walking on all fours, close to the true
+  sauropods. The sauropods have their own record.
+same_as: { pbdb: "txn:174880" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Sauropodiformes }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.27
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.74, 0.73, 0.002]
+            - [-0.34, 0.84, 0.72, 0.008]
+            - [-0.2, 0.94, 0.68, 0.018]
+            - [-0.086, 1.0, 0.62, 0.032]
+            - [0.0, 1.03, 0.56, 0.046]
+            - [0.086, 1.04, 0.5, 0.062]
+            - [0.17, 1.04, 0.48, 0.066]
+            - [0.24, 1.03, 0.6, 0.048]
+            - [0.295, 1.06, 0.78, 0.026]
+          neck: { r: 0.013 }
+        legs: { r: 0.048 }
+        arms: { points: [[0.05, 0.25, 0.72, 0.019], [0.056, 0.265, 0.44, 0.015], [0.052, 0.31, 0.24, 0.012], [0.05, 0.33, 0.14, 0.008]] }
+        thumb: { from: [0.046, 0.327, 0.15], to: [0.034, 0.365, 0.08], r: 0.0055 }
+    unsourced: >-
+      A machine's reconstruction: a heavier body and thicker arms and legs than the plan, from the
+      silhouette of the larger Plateosaurus in "Plateosaurus Scale.svg" on Wikimedia Commons, as
+      nothing nearer was looked at.
+  length:
+    prop: body_length
+    value: { lo: 2.4, hi: 10 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 27, Near-Sauropods", quote: "Leonerasaurus Las Leoneras [Formation] reptile Early Jurassic? (199.6-183 MYA)? 7.9 ft (2.4m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 27, Near-Sauropods", quote: "Melanorosaurus Black Mountain [South Africa] Late Triassic to Early (2l6.5-189.6 MYA) 32.8 ft (10 m)" }
+    method: compilation
+    note: >-
+      The range across the named genera of the table "Near-Sauropods" (pp. 27-28), leaving out the
+      20 cm of Mussaurus, the size of its hatchling, and the 1 m of Fulengia and Tawasaurus, each of
+      which the list says "May simply be a baby Lufengosaurus", standing for any member with no
+      length of its own.

@@ -1,0 +1,34 @@
+id: life/taxa/ceratopsidae
+kind: taxon
+summary: >-
+  The true horned dinosaurs of the Late Cretaceous of western North America and Asia, with large
+  frills and horns.
+same_as: { pbdb: "txn:38851" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ceratopsidae }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: ceratopsian
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  posture:
+    prop: posture
+    value: quadruped
+    source:
+      ref: src:maidment-2012-ornithischian-stance
+      loc: "Introduction"
+      quote: "quadrupedality evolved within at least three lineages independently: once in the armored stegosaurs and ankylosaurs, once in the frilled ceratopsids, and once in the duck-billed hadrosaurs"
+  length:
+    prop: body_length
+    value: { lo: 2.5, hi: 9 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 51, Centrosaurines", quote: "Avaceratops [American fossil hunter] Ava Late Cretaceous (80-72.8 MYA) 8.2 ft (2.5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 51, Chasmosaurines", quote: "Eotriceratops dawn Triceratops Late Cretaceous (70.6-68.5 MYA) 29.5 ft (9 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Centrosaurines" and "Chasmosaurines" (pp. 51-52), standing for
+      any member with no length of its own, leaving out Ceratops (doubted by the author) and the 1 m
+      of Tatankaceratops, which the author suspects is a young Triceratops.

@@ -1,0 +1,302 @@
+// A scene as it is looked at: the ground, then whichever cells a view needs, then which individuals to draw
+// and at what detail. The same code runs in a browser's worker, in the build and in the tests. A frame's cost
+// depends on what is on the screen and is bounded by a budget, not on how much lives in the scene.
+import type { Form } from '../../../core/form.ts';
+import type { LivingTaxon, SceneSpec } from '../../../core/scene.ts';
+import { GroundSampler, type GroundGridData } from '../city/ground.ts';
+import { Mesh } from '../city/kit.ts';
+import { hashString } from '../city/math.ts';
+import { drawAnimal, drawPlant, POSE, type Detail, type Stance } from './forms.ts';
+import { CELL, CELLS, cellBytes, cellKey, coverMask, EXTENT, groundGrids, LandCover, makePlan, placeLook, waterSheet, watersFor, type CellRows, type LivingParams, type LivingPlan, type PlaceLook } from './scene/v2.ts';
+
+export const INSTANCE_STRIDE = 28;
+
+/** A view: where the eye is, which way it looks, and how big things come out on the screen. */
+export interface LifeView {
+  eye: [number, number, number];
+  forward: [number, number, number];
+  right: [number, number, number];
+  up: [number, number, number];
+  fov: number;
+  aspect: number;
+  /** the frame's height in pixels */
+  height: number;
+  clearance: number;
+}
+
+export interface Budget {
+  /** the most individuals a frame draws */
+  instances: number;
+  /** the most triangles, as the meshes say */
+  triangles: number;
+  /** on the slowest machines, only coarse meshes */
+  fast: boolean;
+}
+
+export const FULL_BUDGET: Budget = { instances: 220000, triangles: 9000000, fast: false };
+export const FAST_BUDGET: Budget = { instances: 16000, triangles: 400000, fast: true };
+
+/** One kind of mesh and everyone drawn with it this frame. */
+export interface Batch {
+  proto: number;
+  count: number;
+  /** INSTANCE_STRIDE bytes each: x, y, z, scale, fx, fy as floats, then entity and tint as shorts */
+  data: ArrayBuffer;
+}
+
+export interface ProtoMesh {
+  proto: number;
+  vertices: ArrayBuffer;
+  indices: Uint32Array;
+}
+
+export interface Selection {
+  batches: Batch[];
+  /** meshes the batches use that have not been handed out before */
+  protos: ProtoMesh[];
+  instances: number;
+  triangles: number;
+  /** whether more cells are still to be made for this view */
+  pending: number;
+  /** the nearest groups, to name */
+  groups: { taxon: number; at: [number, number]; base: number; top: number }[];
+}
+
+export const protoOf = (taxon: number, variant: number, detail: Detail) => (taxon << 8) | (variant << 2) | detail;
+export const protoParts = (p: number): { taxon: number; variant: number; detail: Detail } => ({ taxon: p >> 8, variant: (p >> 2) & 63, detail: (p & 3) as Detail });
+
+const WALKING = new Set<number>([POSE.walk, POSE.fly]);
+
+export class SceneStream {
+  readonly look: PlaceLook;
+  readonly levels: GroundGridData[];
+  readonly ground: GroundSampler;
+  readonly plan: LivingPlan;
+  readonly params: LivingParams;
+  readonly cover: LandCover;
+  /** every cell made so far, at the most it was made */
+  private cells = new Map<number, CellRows>();
+  private meshes = new Map<number, { tris: number }>();
+  private tones: number[];
+  private keep = 1;
+  private fullReach: number;
+  private nearReach: number;
+
+  constructor(readonly spec: SceneSpec, private budget: Budget = FULL_BUDGET) {
+    this.params = spec.generator.params as unknown as LivingParams;
+    this.look = placeLook(spec);
+    const waters = watersFor(spec, this.look);
+    this.levels = groundGrids(spec, this.look, waters);
+    this.ground = new GroundSampler(this.levels);
+    this.plan = makePlan(spec, this.ground, this.look, waters);
+    this.cover = new LandCover(spec, this.ground, this.look.water, this.plan.focus);
+    this.tones = spec.taxa.map((t) => hashString(t.id) & 255);
+    this.fullReach = this.params.reach.full;
+    this.nearReach = this.params.reach.near;
+  }
+
+  /** What the ground is, as an image: as fine as asked for. */
+  mask(size: number): { data: Uint8Array; box: [number, number, number, number] } {
+    return { data: coverMask(this.cover, size, EXTENT), box: [-EXTENT, -EXTENT, EXTENT, EXTENT] };
+  }
+
+  water(): { vertices: Float32Array; indices: Uint32Array } {
+    return waterSheet(this.spec, this.look);
+  }
+
+  /** A cell's rows, made at least to this tier. */
+  cell(i: number, j: number, tier: number): CellRows {
+    const k = cellKey(i, j);
+    const have = this.cells.get(k);
+    if (have && have.tier >= tier) return have;
+    const c = this.plan.cell(i, j, tier);
+    this.cells.set(k, c);
+    return c;
+  }
+
+  /** A mesh of one kind of body or plant: the same to the byte everywhere. */
+  mesh(proto: number): ProtoMesh {
+    const { taxon, variant, detail } = protoParts(proto);
+    const t = this.spec.taxa[taxon];
+    const form = this.spec.forms[t.form];
+    const m = new Mesh(detail >= 2 ? 4096 : 512);
+    m.entity = taxon + 1;
+    if (form.kind === 'plant') drawPlant(m, form, t.height ?? 1, (variant + 1) * 0x9e37, detail, this.tones[taxon]);
+    else drawAnimal(m, form, this.stance(t, form, variant, detail, this.tones[taxon]));
+    const { vertices, indices } = m.arrays();
+    this.meshes.set(proto, { tris: indices.length / 3 });
+    return { proto, vertices, indices };
+  }
+
+  private stance(t: LivingTaxon, form: Form, variant: number, detail: Detail, tint: number): Stance {
+    const pose = variant >> 3;
+    const stride = (variant >> 1) & 3;
+    return { L: t.length ?? 1, H: t.hip ?? (t.length ?? 1) * (form.hip ?? 0.3), pose, phase: (stride + 0.5) / 4, sway: (stride - 1.5) * 0.07, detail, tint, biped: (variant & 1) === 1 };
+  }
+
+  /** Which mesh an individual is drawn with. */
+  private variantOf(t: LivingTaxon, form: Form, pose: number, phase: number, shade: number, detail: Detail): number {
+    if (form.kind === 'plant') return shade & 3;
+    const biped = t.biped || (t.posture === 'facultative-quadruped' && pose !== POSE.graze && pose !== POSE.drink && (shade & 1) === 1);
+    // From afar only how it stands shows; the far shape has only one.
+    if (detail === 0) return (POSE.stand << 3) | (biped ? 1 : 0);
+    const stride = WALKING.has(pose) ? phase >> 6 : 0;
+    return (pose << 3) | (stride << 1) | (biped ? 1 : 0);
+  }
+
+  /** What to draw for a view: this is what a frame costs, and it stays within the budget. */
+  select(v: LifeView, sent: Set<number>, spendMs: () => boolean = () => true): Selection {
+    const taxa = this.spec.taxa;
+    const K = v.height / (2 * Math.tan(v.fov / 2));
+    const t = Math.tan(v.fov / 2);
+    const side = t * v.aspect;
+    const [ex, ey, ez] = v.eye;
+    const [fx, fy, fz] = v.forward;
+    const groundZ = this.ground.at(ex, ey);
+    const heights = taxa.map((x) => (x.height ?? x.length ?? 1));
+    const buckets = new Map<number, { f: Float32Array; s: Uint16Array; n: number }>();
+    let pending = 0;
+    let instances = 0;
+    const cap = this.budget.instances;
+    const keepR = 1400 * this.keep;
+    const R0 = keepR * keepR;
+    const reachOut = Math.min(EXTENT * 1.4, Math.max(5000, v.clearance * 8 + 6000));
+    const span = Math.ceil(reachOut / CELL);
+    const ci = Math.floor(ex / CELL);
+    const cj = Math.floor(ey / CELL);
+    // Nearest first, so that a budget spent falls on what is far.
+    const order: { i: number; j: number; d: number }[] = [];
+    for (let j = cj - span; j <= cj + span; j++) {
+      if (j < -CELLS / 2 || j >= CELLS / 2) continue;
+      for (let i = ci - span; i <= ci + span; i++) {
+        if (i < -CELLS / 2 || i >= CELLS / 2) continue;
+        const cx = (i + 0.5) * CELL;
+        const cy = (j + 0.5) * CELL;
+        const dx = cx - ex;
+        const dy = cy - ey;
+        const dz = groundZ - ez;
+        const d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+        if (d > reachOut) continue;
+        const r = CELL * 0.75 + 90;
+        const fw = dx * fx + dy * fy + dz * fz;
+        // Behind the eye, it casts no shadow worth keeping unless it is close.
+        if (fw < -r && d > this.nearReach * 2) continue;
+        const rt = dx * v.right[0] + dy * v.right[1] + dz * v.right[2];
+        const up = dx * v.up[0] + dy * v.up[1] + dz * v.up[2];
+        if (d > this.nearReach * 2) {
+          if (Math.abs(rt) > fw * side + r * Math.sqrt(1 + side * side)) continue;
+          if (Math.abs(up) > fw * t + r * Math.sqrt(1 + t * t)) continue;
+        }
+        order.push({ i, j, d });
+      }
+    }
+    order.sort((a, b) => a.d - b.d);
+    const groups: Selection['groups'] = [];
+    for (const { i, j, d } of order) {
+      const want = this.budget.fast ? (d < this.fullReach * 0.6 ? 1 : 0) : d < this.nearReach ? 2 : d < this.fullReach ? 1 : 0;
+      const have = this.cells.get(cellKey(i, j));
+      let c = have;
+      if (!have || have.tier < want) {
+        if (spendMs()) c = this.cell(i, j, want);
+        else pending++;
+      }
+      if (!c) continue;
+      const { place, taxon, pose, shade, phase, rank, count } = c;
+      for (let q = 0; q < count; q++) {
+        if (instances >= cap) break;
+        const a = q * 6;
+        const px = place[a];
+        const py = place[a + 1];
+        const pz = place[a + 2];
+        const size = place[a + 3];
+        const k = taxon[q];
+        const dx = px - ex;
+        const dy = py - ey;
+        const dz = pz - ez;
+        const dd = dx * dx + dy * dy + dz * dz;
+        const tall = heights[k] * size;
+        const pxs2 = (tall * tall * K * K) / dd;
+        // Under about a pixel and a half it is left to the eye, and the ground's colour.
+        if (pxs2 < 2.25) continue;
+        // The same individuals at every distance: further off, only the lowest ranks.
+        if (dd > R0 && rank[q] * dd > 256 * R0) continue;
+        const pxs = Math.sqrt(pxs2);
+        const detail: Detail = this.budget.fast ? (pxs >= 26 ? 1 : 0) : pxs >= 70 ? 2 : pxs >= 9 ? 1 : 0;
+        const t0 = taxa[k];
+        const form = this.spec.forms[t0.form];
+        // A low plant is a mesh only close by.
+        if (form.kind === 'plant' && form.behave?.layer === 'under' && detail < 2) continue;
+        const proto = protoOf(k, this.variantOf(t0, form, pose[q], phase[q], shade[q], detail), detail);
+        let b = buckets.get(proto);
+        if (!b) {
+          const buf = new ArrayBuffer(INSTANCE_STRIDE * 64);
+          b = { f: new Float32Array(buf), s: new Uint16Array(buf), n: 0 };
+          buckets.set(proto, b);
+        }
+        if ((b.n + 1) * INSTANCE_STRIDE > b.f.byteLength) {
+          const buf = new ArrayBuffer(b.f.byteLength * 2);
+          new Uint8Array(buf).set(new Uint8Array(b.f.buffer));
+          b.f = new Float32Array(buf);
+          b.s = new Uint16Array(buf);
+        }
+        const o = b.n * 7;
+        b.f[o] = px;
+        b.f[o + 1] = py;
+        b.f[o + 2] = pz;
+        b.f[o + 3] = size;
+        b.f[o + 4] = place[a + 4];
+        b.f[o + 5] = place[a + 5];
+        b.s[b.n * 14 + 12] = k + 1;
+        b.s[b.n * 14 + 13] = form.kind === 'plant' ? shade[q] >> 2 : shade[q] >> 3;
+        b.n++;
+        instances++;
+      }
+      // Names for what is close: the first of each group.
+      if (d < this.fullReach * 0.6) {
+        for (let g = 0; g + 3 < c.groups.length; g += 4) {
+          const k = c.groups[g + 3];
+          const hip = taxa[k].hip ?? (taxa[k].length ?? 1) * 0.3;
+          groups.push({ taxon: k, at: [c.groups[g], c.groups[g + 1]], base: c.groups[g + 2], top: c.groups[g + 2] + hip * 1.5 });
+        }
+      }
+    }
+    // Pay for meshes, and keep within the budget of triangles: the far share thins next time if it did not.
+    const batches: Batch[] = [];
+    const protos: ProtoMesh[] = [];
+    let triangles = 0;
+    for (const proto of [...buckets.keys()].sort((a, b) => a - b)) {
+      const b = buckets.get(proto)!;
+      if (!sent.has(proto)) {
+        protos.push(this.mesh(proto));
+        sent.add(proto);
+      } else if (!this.meshes.has(proto)) this.mesh(proto);
+      triangles += b.n * this.meshes.get(proto)!.tris;
+      batches.push({ proto, count: b.n, data: b.f.buffer.slice(0, b.n * INSTANCE_STRIDE) as ArrayBuffer });
+    }
+    if (instances >= cap || triangles > this.budget.triangles) this.keep = Math.max(0.2, this.keep * 0.8);
+    else if (instances < cap * 0.6 && triangles < this.budget.triangles * 0.6) this.keep = Math.min(1, this.keep * 1.1);
+    groups.sort((a, b) => Math.hypot(a.at[0] - ex, a.at[1] - ey) - Math.hypot(b.at[0] - ex, b.at[1] - ey));
+    return { batches, protos, instances, triangles, pending, groups: groups.slice(0, 64) };
+  }
+
+  /** The bytes that prove a scene is the same scene: its ground, the cell it is arrived at, and a mesh of its first taxon. */
+  digestBytes(): Uint8Array {
+    const parts: Uint8Array[] = this.levels.map((l) => new Uint8Array(l.z.buffer, l.z.byteOffset, l.z.byteLength));
+    const [fx, fy] = this.plan.focus;
+    const c = this.cell(Math.floor(fx / CELL), Math.floor(fy / CELL), 2);
+    parts.push(cellBytes(c));
+    if (this.spec.taxa.length) {
+      const t = this.spec.forms[this.spec.taxa[0].form];
+      const m = this.mesh(protoOf(0, t.kind === 'plant' ? 0 : POSE.stand << 3, 2));
+      parts.push(new Uint8Array(m.vertices), new Uint8Array(m.indices.buffer, m.indices.byteOffset, m.indices.byteLength));
+    }
+    const out = new Uint8Array(parts.reduce((n, x) => n + x.length, 0));
+    let o = 0;
+    for (const x of parts) {
+      out.set(x, o);
+      o += x.length;
+    }
+    return out;
+  }
+}
+

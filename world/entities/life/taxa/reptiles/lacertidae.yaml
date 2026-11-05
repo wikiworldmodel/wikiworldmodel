@@ -1,0 +1,25 @@
+id: life/taxa/lacertidae
+kind: taxon
+summary: >-
+  Wall and rock lizards of Eurasia and Africa.
+same_as: { pbdb: "txn:37958" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Lacertidae", en: "wall lizards" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.035, hi: 0.502 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Ophisops elbaensis, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "1.0316794950209207 NA 35"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Gallotia simonyi, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "2691.534804 NA 502"
+    method: compilation
+    note: >-
+      From snout to vent, as the plan's length is. Grzimek's Size row has them usually under 20 cm
+      and at most about 50 cm.

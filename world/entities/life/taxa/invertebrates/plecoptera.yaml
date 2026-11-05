@@ -1,0 +1,25 @@
+id: life/taxa/plecoptera
+kind: taxon
+summary: >-
+  The stoneflies, with aquatic young and the adult's wings folded flat over a long body. They take the insects' generic
+  body, with their own range of sizes.
+same_as: { pbdb: "txn:133906" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Plecoptera, en: "stoneflies" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.003, hi: 0.063 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Plecoptera Capniidae\""
+        quote: "Plecoptera Capniidae 287 3 25 (Parker 1982)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Plecoptera Pteronarcyidae\""
+        quote: "Plecoptera Pteronarcyidae 12 38 63 (Arnett 2000)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres.

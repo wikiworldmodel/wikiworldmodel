@@ -1,0 +1,37 @@
+id: life/taxa/lepidodendrales
+kind: taxon
+summary: >-
+  The scale trees of the Carboniferous coal swamps, Lepidodendron and Lepidophloios among them.
+same_as: { pbdb: "txn:157277" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lepidodendrales, en: scale trees }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: scale-tree
+    source:
+      ref: src:thomas-2021-lycospora
+      loc: "p. 11, Introduction"
+      quote: "started life as an unbranched leafy stem"
+    note: >-
+      The plan draws what Thomas describes: a stem unbranched until it forks into a crown. How far
+      apart the forks stand is a machine's reconstruction.
+  height:
+    prop: plant_height
+    value: { lo: 25, hi: 45 }
+    source:
+      - ref: src:thomas-2021-lycospora
+        loc: "p. 11, Introduction"
+        quote: "growing up to ca. 45 m in height"
+      - ref: src:wang-2012-wuda
+        loc: "Results"
+        quote: "many attaining heights of up to 25 m or more"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The upper figure is Thomas's for the tallest arborescent lycophytes. No figure was read for a
+      small member of this group, so the lower one is Wang et al.'s for Sigillaria, a pole-like tree
+      of the same kind in another family.

@@ -1,0 +1,25 @@
+id: life/taxa/testudo
+kind: taxon
+summary: >-
+  The Mediterranean tortoises and their fossil kin.
+same_as: { pbdb: "txn:37744" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Testudo", en: "Mediterranean tortoises" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.185, hi: 0.35 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Testudo graeca, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "4981 NA 185"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Testudo marginata, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "10956 NA 350"
+    method: compilation
+    note: >-
+      The straight length of the shell. T. horsfieldii is left out: the dataset gives it 493.8 mm,
+      which looks wrong beside Hermann's tortoise at up to 26 cm in Grzimek's and needs checking.

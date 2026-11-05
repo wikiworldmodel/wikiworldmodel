@@ -1,0 +1,28 @@
+id: life/taxa/telmatosaurus
+kind: taxon
+summary: >-
+  Telmatosaurus, a small early duck-bill of the latest Cretaceous islands of Romania.
+same_as: { pbdb: "txn:64068" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Telmatosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction: the plan hadrosaur looked at against "Telmatosaurus Scale.svg" on
+      Wikimedia Commons, and nothing changed from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 5
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 46, Primitive Hadrosaurids"
+      quote: "Telmatosaurus marsh reptile Late Cretaceous (70.6-65.5 MYA) 16.4 ft (5 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

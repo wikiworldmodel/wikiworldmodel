@@ -1,0 +1,44 @@
+# Measured from "Massospondylus scale SW.svg" and "Plateosaurus Scale.svg" on Wikimedia Commons.
+description: >-
+  An early long-necked plant-eater walking on its hind legs, with a small head, a long tail and clawed thumbs.
+kind: animal
+mass_length: 3.5
+hip: 0.25
+behave: { group: [2, 8], habitat: any, poses: [stand, walk, walk, graze, alert] }
+parts:
+  body:
+    type: trunk
+    sides: [12, 6]
+    rings:
+      - [-0.5, 0.8, 0.79, 0.002]
+      - [-0.34, 0.875, 0.78, 0.006]
+      - [-0.2, 0.96, 0.75, 0.013]
+      - [-0.086, 1.0, 0.72, 0.022]
+      - [0.0, 1.02, 0.66, 0.034]
+      - [0.086, 1.01, 0.59, 0.052]
+      - [0.17, 1.0, 0.55, 0.056]
+      - [0.24, 0.99, 0.66, 0.04]
+      - [0.295, 1.02, 0.8, 0.022]
+    neck: { r: 0.0105, steps: [6, 2] }
+  legs: { type: digitigrade, y: 0.085, x: 0.04, top: 0.84, knee: 0.52, ankle: 0.22, r: 0.04, swing: 0.085 }
+  arms:
+    type: chain
+    mirror: true
+    sides: [6, 4]
+    points: [[0.044, 0.25, 0.72, 0.014], [0.05, 0.265, 0.5, 0.0105], [0.046, 0.32, 0.36, 0.008], [0.044, 0.35, 0.3, 0.005]]
+  thumb: { type: spike, mirror: true, near: true, mat: horn, tint: 60, from: [0.04, 0.345, 0.31], to: [0.03, 0.38, 0.26], r: 0.0045, sides: [5, 3] }
+  head:
+    type: head
+    sides: [10, 5]
+    thin: false
+    at:
+      stand: { y: 0.42, z: 1.2, pitch: 0.14 }
+      alert: { y: 0.4, z: 1.5, pitch: 0.02 }
+      low: { y: 0.46, reach: 0.075, clear: 0.06, pitch: 0.8 }
+    rings:
+      - [-0.004, 0, 0.0115, 0.0125]
+      - [0.018, 0.002, 0.0135, 0.015]
+      - [0.04, -0.002, 0.0105, 0.011]
+      - [0.062, -0.005, 0.0075, 0.0065]
+      - [0.075, -0.0065, 0.004, 0.0035]
+  eyes: { type: eyes, on: head, near: true, at: [0.0125, 0.02, 0.006], r: 0.0034 }

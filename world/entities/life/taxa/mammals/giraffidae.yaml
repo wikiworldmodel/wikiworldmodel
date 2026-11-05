@@ -1,0 +1,70 @@
+id: life/taxa/giraffidae
+kind: taxon
+summary: >-
+  Giraffes, okapis and the extinct sivatheres.
+same_as: { pbdb: "txn:42690" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Giraffidae, en: "giraffes and okapis" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.5
+      behave: { group: [1, 6], habitat: edge, poses: [graze, stand, stand, walk, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.56, 0.52, 0.005]
+            - [-0.485, 0.72, 0.68, 0.008]
+            - [-0.462, 0.9, 0.84, 0.012]
+            - [-0.43, 0.99, 0.8, 0.03]
+            - [-0.39, 1.01, 0.68, 0.062]
+            - [-0.32, 1.04, 0.6, 0.08]
+            - [-0.2, 1.08, 0.56, 0.09]
+            - [-0.06, 1.14, 0.56, 0.094]
+            - [0.05, 1.22, 0.6, 0.088]
+            - [0.13, 1.28, 0.7, 0.066]
+          neck: { r: 0.03, steps: [5, 2] }
+        head:
+          at:
+            stand: { y: 0.34, z: 1.9, pitch: 0.42 }
+            alert: { y: 0.34, z: 2.02, pitch: 0.25 }
+            low: { y: 0.4, reach: 0.17, pitch: 1.15 }
+          rings:
+            - [-0.012, 0.004, 0.022, 0.028]
+            - [0.03, 0.006, 0.027, 0.036]
+            - [0.08, -0.008, 0.021, 0.026]
+            - [0.125, -0.02, 0.015, 0.017]
+            - [0.16, -0.028, 0.012, 0.013]
+        ossicones: { type: spike, on: head, mirror: true, mat: fur, tint_add: -30, sides: [5, 4], from: [0.012, 0.012, 0.03], to: [0.016, 0.0, 0.08], r: 0.0075 }
+    unsourced: >-
+      A machine's reconstruction, with a neck between the okapi's and the giraffe's, and the
+      okapi's short skin-covered horns, from their accounts on the Animal Diversity Web. Only
+      compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 1.8, hi: 4.18 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Okapia johnstoni, Other Physical Features"
+        quote: "Range length 180 to 250 cm"
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Giraffa camelopardalis, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Giraffa camelopardalis 2.00 964654.73 -999.00 4177.03"
+    method: compilation
+    note: >-
+      From the okapi to the giraffe’s head and body.
+  mass:
+    prop: body_mass
+    value: { lo: 210, hi: 1930 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Okapia johnstoni, Other Physical Features"
+        quote: "Range mass 210 to 350 kg"
+      - ref: src:animal-diversity-web
+        loc: "account of Giraffa camelopardalis, Physical Description"
+        quote: "Bulls weigh up to 1,930 kg"
+    method: compilation

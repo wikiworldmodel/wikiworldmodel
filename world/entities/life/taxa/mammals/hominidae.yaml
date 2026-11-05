@@ -1,0 +1,75 @@
+id: life/taxa/hominidae
+kind: taxon
+summary: >-
+  The great apes and humans. A member with no form nearer draws as a tailless ape on its knuckles;
+  hominins have their own plan at the tribe.
+same_as: { pbdb: "txn:40899" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hominidae, en: "great apes" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.5
+      mass_length: 40
+      behave: { group: [2, 10], habitat: forest, poses: [stand, stand, walk, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.43, 0.86, 0.72, 0.03]
+            - [-0.39, 1.0, 0.62, 0.08]
+            - [-0.26, 1.1, 0.56, 0.104]
+            - [-0.1, 1.24, 0.62, 0.112]
+            - [0.03, 1.4, 0.72, 0.118]
+            - [0.12, 1.5, 0.86, 0.108]
+            - [0.17, 1.5, 1.0, 0.08]
+          neck: { r: 0.06, steps: [2, 1] }
+        hind: { y: -0.28, x: 0.066, top: 0.84, knee: 0.56, ankle: 0.1, r: 0.056 }
+        fore: { y: 0.14, x: 0.098, top: 1.16, r: 0.044, swing: 0.1 }
+        head:
+          at:
+            stand: { y: 0.25, z: 1.5, pitch: 0.16 }
+            alert: { y: 0.25, z: 1.62, pitch: -0.04 }
+            low: { y: 0.3, reach: 0.14, pitch: 0.9 }
+          rings:
+            - [-0.01, 0.018, 0.05, 0.056]
+            - [0.03, 0.024, 0.068, 0.078]
+            - [0.075, 0.012, 0.062, 0.068]
+            - [0.11, -0.018, 0.044, 0.042]
+            - [0.13, -0.03, 0.034, 0.024]
+        ears: { at: [0.068, 0.02, 0.034], r: [0.006, 0.012, 0.016] }
+        eyes: { at: [0.042, 0.078, 0.034], r: 0.0075 }
+    unsourced: >-
+      A machine's reconstruction, from the plate of a gorilla's skeleton in Brehms Tierleben
+      (Gorilla_skeleton_Brehms_Tierleben.png on Wikimedia Commons): arms reaching past the
+      knees, short legs, a broad chest, no tail. A knuckle-walking stance is taken from
+      general knowledge.
+  length:
+    prop: body_length
+    value: { lo: 0.635, hi: 1.85 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Pan troglodytes, Physical Description"
+        quote: "Adult chimpanzees have a head and body length ranging between 635 and 925 mm"
+      - ref: src:animal-diversity-web
+        loc: "account of Gorilla beringei, Physical Description"
+        quote: "with average lengths of 150 cm for females and 185 cm for males"
+    method: compilation
+    note: >-
+      The living apes. Its hominins have their own sizes.
+  mass:
+    prop: body_mass
+    value: { lo: 34, hi: 300 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Pan_paniscus, column Mass.g (grams)"
+        quote: "Pan_paniscus,Primates,Hominidae,Pan,paniscus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,34000.1"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Primates (Primates)\""
+        quote: "weighing 225–300 kg (496–661 lb)"
+    method: compilation
+    note: >-
+      From the bonobo to Gigantopithecus, whose size is known only from teeth and jaws.

@@ -1,0 +1,22 @@
+id: src:fishbase-freshwater-fishes
+type: database-record
+kind: compilation
+citation: >-
+  Froese, R. & Pauly, D. (eds). FishBase: species summaries of living fishes. World Wide Web
+  electronic publication.
+authors:
+  - "Froese, R."
+  - "Pauly, D."
+snapshot: 2026-11-05
+title: "FishBase species summaries"
+container: "FishBase"
+url: https://www.fishbase.se/
+reliability: >-
+  A standard curated database of the world's fishes. Each length is that of a living species,
+  cited here to stand for its fossil relatives, and each row gives the reference it took the
+  length from. Each locator names the species.
+verified:
+  by: machine:claude-code
+  how: >-
+    Each species' summary page read at fishbase.se on the date of the snapshot; quotes checked by
+    script against its text.

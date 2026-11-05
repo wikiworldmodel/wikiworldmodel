@@ -1,0 +1,6 @@
+description: >-
+  A leafy herb, low and without a woody stem.
+kind: plant
+behave: { layer: under, weight: 1, wet: 0.2 }
+parts:
+  plant: { type: tuft, blades: 14, spread: 0.6, wide: 0.06, mat: broad }

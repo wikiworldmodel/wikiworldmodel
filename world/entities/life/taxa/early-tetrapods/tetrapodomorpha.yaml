@@ -1,0 +1,37 @@
+id: life/taxa/tetrapodomorpha
+kind: taxon
+summary: >-
+  Tetrapodomorphs: the lobe-finned fishes nearer to land vertebrates than to lungfish, and the first limbed ones of the Devonian,
+  in the shallows between fins and feet.
+same_as: { pbdb: "txn:77135" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Tetrapodomorpha }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: stem-tetrapod
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in the tree.
+      The plan is a machine's reconstruction, from the skeletal reconstruction of Ichthyostega in Ahlberg (2018), Fig. 1 (Wikimedia
+      Commons, "Ichthyostega skeletal reconstruction 2018.png"). The fishes among them, such as Eusthenopteron, are drawn too low and
+      flat by it.
+  length:
+    prop: body_length
+    value: { lo: 0.6, hi: 2.1 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Acanthostega, Description"
+        quote: "The 60 cm (24 in) Acanthostega"
+      - ref: src:downs-2018-eusthenopteron
+        loc: "Eusthenopteron jenkinsi, Diagnosis"
+        quote: "estimated body length from referred materials is approximately 2.1 m"
+      - ref: src:herbst-2022-eryops-pose
+        loc: "Discussion"
+        quote: "Early tetrapods also varied dramatically in adult body sizes"
+    method: expert-estimate
+    note: >-
+      From Acanthostega, by an encyclopedia, to the large fish Eusthenopteron jenkinsi. Herbst et al. put the larger early tetrapods at
+      about 2 m. Elpistostege, Tiktaalik and the rhizodonts may have been longer.

@@ -1,0 +1,62 @@
+id: life/taxa/procolophonoidea
+kind: taxon
+summary: >-
+  Procolophonoids: small, stout parareptiles of the Permian and Triassic, with broad triangular heads, and spiky cheeks in some.
+same_as: { pbdb: "txn:37517" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Procolophonoidea }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.15
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.74, 0.64, 0.003]
+            - [-0.42, 0.84, 0.58, 0.012]
+            - [-0.34, 0.98, 0.5, 0.026]
+            - [-0.26, 1.14, 0.42, 0.05]
+            - [-0.16, 1.32, 0.3, 0.09]
+            - [-0.04, 1.42, 0.26, 0.102]
+            - [0.07, 1.42, 0.3, 0.096]
+            - [0.15, 1.3, 0.4, 0.074]
+            - [0.2, 1.16, 0.56, 0.054]
+          neck: { r: 0.04, steps: [2, 1] }
+        thigh: { points: [[0.07, -0.19, 0.76, 0.034], [0.125, -0.17, 0.74, 0.029], [0.172, -0.155, 0.6, 0.023]] }
+        shin: { y: -0.155, x: 0.172, top: 0.62, r: 0.022, swing: 0.05 }
+        arm: { points: [[0.07, 0.13, 0.8, 0.03], [0.115, 0.125, 0.74, 0.025], [0.158, 0.12, 0.6, 0.02]] }
+        forearm: { y: 0.12, x: 0.158, top: 0.62, r: 0.019, swing: 0.045 }
+        head:
+          at:
+            stand: { y: 0.25, z: 0.98, pitch: 0.08 }
+            alert: { y: 0.25, z: 1.2, pitch: -0.08 }
+            low: { y: 0.27, reach: 0.2, pitch: 0.4 }
+          rings:
+            - [-0.012, 0.004, 0.066, 0.046]
+            - [0.03, 0.012, 0.088, 0.056]
+            - [0.09, 0.006, 0.066, 0.05]
+            - [0.14, -0.006, 0.04, 0.034]
+            - [0.18, -0.014, 0.018, 0.018]
+        cheek-spines: { type: spike, on: head, near: true, mirror: true, mat: horn, tint: 150, sides: [5, 4], from: [0.07, 0.03, -0.012], to: [0.12, -0.012, -0.024], r: 0.009 }
+        eyes: { at: [0.052, 0.09, 0.024], r: 0.014 }
+    unsourced: >-
+      A machine's reconstruction: a stout body with a short tail and a broad triangular head with large eyes, from the life
+      restoration of Procolophon on Wikimedia Commons ("Procolophon BW.jpg").
+  length:
+    prop: body_length
+    value: { lo: 0.3, hi: 0.33 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Procolophon, Description"
+        quote: "Procolophon reached a length up to 30 centimetres (12 in)"
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Hypsognathus, Description"
+        quote: "with a length of 33 centimetres (13 in)"
+    method: compilation
+    note: >-
+      The two best known genera. An encyclopedia, cited as nothing better could be read; the Middle Triassic of Brazil has
+      a skull only 9.5 mm long (Müller et al. 2026), so some were far smaller.

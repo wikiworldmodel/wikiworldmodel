@@ -1,0 +1,37 @@
+id: life/taxa/tritylodontidae
+kind: taxon
+summary: >-
+  Tritylodontids: plant-eating cynodonts of the Late Triassic and Jurassic, with gnawing front teeth like a rodent's on a short deep skull.
+same_as: { pbdb: "txn:39208" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Tritylodontidae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          rings:
+            - [-0.012, 0.012, 0.036, 0.036]
+            - [0.03, 0.016, 0.06, 0.046]
+            - [0.08, 0.01, 0.052, 0.042]
+            - [0.12, -0.002, 0.03, 0.032]
+            - [0.15, -0.012, 0.019, 0.022]
+        jaw: { rings: [[0.02, -0.044, 0.036, 0.013], [0.09, -0.052, 0.028, 0.013], [0.145, -0.042, 0.012, 0.008]] }
+        mouth: null
+        incisors: { type: spike, on: head, near: true, mirror: true, mat: horn, tint: 200, sides: [5, 4], from: [0.007, 0.15, -0.022], to: [0.008, 0.172, -0.042], r: 0.0055 }
+    unsourced: >-
+      A machine's reconstruction: the plan's body with a shorter, deeper head and two front teeth, from no figure: a reviewer should compare it
+      with one of Kayentatherium or Oligokyphus.
+  length:
+    prop: body_length
+    value: 1
+    source:
+      ref: src:wikipedia-early-vertebrates
+      loc: "Kayentatherium, Description"
+      quote: "It was about a meter long"
+    method: compilation
+    note: One of the larger genera stands for the family. An encyclopedia, cited as nothing better could be read.

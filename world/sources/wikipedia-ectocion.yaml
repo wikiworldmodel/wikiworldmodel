@@ -1,0 +1,18 @@
+id: src:wikipedia-ectocion
+type: database-record
+kind: review
+citation: >-
+  "Ectocion." Wikipedia, the free encyclopedia (English edition), revision 1253095459.
+snapshot: 2026-11-05
+title: Ectocion
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Ectocion&oldid=1253095459
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for a body mass, for which nothing better could be
+  read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-05, last edited 24 October 2024; the quotations checked
+    by script against its text, after normalizing whitespace.

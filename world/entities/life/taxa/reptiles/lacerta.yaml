@@ -1,0 +1,24 @@
+id: life/taxa/lacerta
+kind: taxon
+summary: >-
+  Green lizards, sand lizards and their fossil kin.
+same_as: { pbdb: "txn:37962" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Lacerta", en: "green and sand lizards" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.114, hi: 0.174 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Lacerta agilis, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "33.88441561 NA 114"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Lacerta trilineata, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "117.4897555 NA 174"
+    method: compilation
+    note: >-
+      From snout to vent, as the plan's length is: the living species of the genus in the dataset.

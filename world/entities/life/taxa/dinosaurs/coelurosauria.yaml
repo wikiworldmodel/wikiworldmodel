@@ -1,0 +1,56 @@
+id: life/taxa/coelurosauria
+kind: taxon
+summary: >-
+  The coelurosaurs, feathered theropods from which tyrant dinosaurs, ostrich dinosaurs and birds all
+  came. Its record speaks for small early forms such as the compsognathids and coelurids; the groups
+  within it have their own.
+same_as: { pbdb: "txn:53940" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Coelurosauria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: small-theropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      mass_length: 4.4
+      parts:
+        body:
+          rings:
+            - [-0.66, 0.92, 0.9, 0.003]
+            - [-0.52, 0.98, 0.92, 0.009]
+            - [-0.37, 1.03, 0.93, 0.016]
+            - [-0.22, 1.1, 0.88, 0.028]
+            - [-0.09, 1.19, 0.74, 0.0414]
+            - [0.02, 1.22, 0.64, 0.046]
+            - [0.09, 1.22, 0.72, 0.0368]
+        head:
+          at:
+            stand: { y: 0.2, z: 1.42, pitch: 0.12 }
+            low: { y: 0.27, reach: 0.0825, clear: 0.06, pitch: 0.8 }
+          rings:
+            - [-0.0075, 0, 0.02, 0.02]
+            - [0.03, 0.0015, 0.023, 0.023]
+            - [0.07, -0.0045, 0.0135, 0.012]
+            - [0.095, -0.0075, 0.004, 0.004]
+        eyes: { at: [0.019, 0.03, 0.008], r: 0.0042 }
+    unsourced: >-
+      A machine's reconstruction: the plan's body drawn out to its full length, with a longer tail
+      and a longer head. No skeletal figure of this group was looked at; the tail is drawn after
+      those of the dromaeosaurs and of Coelophysis.
+  length:
+    prop: body_length
+    value: { lo: 0.3, hi: 4 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 9, Primitive Coelurosaurs", quote: "Nqwebasaurus Nqweba [South Africa] reptile Early Cretaceous (145.5-136.4 MYA) 12 in (30 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 10, Primitive Coelurosaurs", quote: "Xinjiangovenator hunter of Xinjiang [China] Early Cretaceous (time very uncertain) 13.1 ft (4 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Primitive Coelurosaurs" (pp. 9-10), "Compsognathids" and
+      "Coelurids" (p. 10), leaving out the 7 m of Phaedrolosaurus, doubted by the author and, as he
+      says, known only from a single tooth.

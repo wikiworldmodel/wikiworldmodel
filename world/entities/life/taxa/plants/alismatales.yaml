@@ -1,0 +1,39 @@
+id: life/taxa/alismatales
+kind: taxon
+summary: >-
+  Water plants: pondweeds, frogbits and water soldiers. The arums, which the database places
+  elsewhere, are not here.
+same_as: { pbdb: "txn:54946" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Alismatales, en: pondweeds and frogbits }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: floating-fern
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 22, s.v. Potamogeton natans"
+      quote: "Leaves both submersed and floating"
+    note: >-
+      Said of a pondweed, by far the commonest genus here.
+  form:
+    prop: body_form
+    value:
+      parts:
+        plant: { radius: 1.6 }
+    unsourced: "A machine's reconstruction: smaller patches than a floating fern's mats."
+  height:
+    prop: plant_height
+    value: { lo: 0.3, hi: 0.9 }
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 22, s.v. Potamogeton natans"
+      quote: "Cauline stems terete, often rust-spotted, 30--90 cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The stem of a living pondweed, which rises through the water: a modern relative, and more than
+      the plant stands above the water.

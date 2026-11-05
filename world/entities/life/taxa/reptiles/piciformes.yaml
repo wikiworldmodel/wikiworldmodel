@@ -1,0 +1,26 @@
+id: life/taxa/piciformes
+kind: taxon
+summary: >-
+  Woodpeckers, toucans, barbets and their kin; in the fossils named nearly all woodpeckers.
+same_as: { pbdb: "txn:39434" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Piciformes", en: "woodpeckers and relatives" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        bill: { from: [0, 0.09, -0.002], to: [0, 0.225, -0.01], r: 0.018 }
+        legs: { knee: 0.62, ankle: 0.3 }
+    unsourced: "A machine's reconstruction: a straight chisel of a bill and short legs on the plan's small bird. No skeletal figure was looked at."
+  length:
+    prop: body_length
+    value: { lo: 0.075, hi: 0.6 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Woodpeckers, Wrynecks, and Piculets (Picidae)\""
+      quote: "piculets: 3–6.3 in (7.5–16 cm);0.24–1.2 oz (6.8–33 g); woodpeckers: 4.7–24 in (12–60 cm); 0.6–21+ oz (17–600+ g)"
+    method: compilation

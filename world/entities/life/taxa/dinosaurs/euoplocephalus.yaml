@@ -1,0 +1,28 @@
+id: life/taxa/euoplocephalus
+kind: taxon
+summary: >-
+  Euoplocephalus, a club-tailed ankylosaur of the Late Cretaceous of Alberta and Montana.
+same_as: { pbdb: "txn:38838" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Euoplocephalus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Ankylosauridae, which was measured from
+      this genus: "Euoplocephalus scale.png" on Wikimedia Commons. Nothing here differs from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 7
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 41, Ankylosaurines"
+      quote: "Euoplocephalus well-armored head Late Cretaceous (70.6-68.5 MYA) 23 ft (7 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

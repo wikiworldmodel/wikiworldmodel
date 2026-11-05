@@ -1,0 +1,28 @@
+id: life/taxa/pteridophyta
+kind: taxon
+summary: >-
+  Ferns and fern-like plants, as the database classifies them: much of it is dispersed spores and
+  fern foliage.
+same_as: { pbdb: "txn:54828" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pteridophyta, en: ferns and their allies }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: fern
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 0.28, hi: 1.2 }
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 2, s.v. Dryopteris filix-mas"
+      quote: "Leaves monomorphic, dying back in winter, 28--120 × 10--30 cm."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The fronds of a living male fern, standing for a fern with no height of its own: a modern
+      relative, and a frond's length rather than a measured height.

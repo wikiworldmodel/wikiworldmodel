@@ -1,0 +1,18 @@
+id: src:aberdeen-rhynie-chert-flora
+type: database-record
+kind: review
+citation: >-
+  University of Aberdeen, School of Geosciences. The Rhynie Chert: Fossil Flora. Web page of the
+  university's teaching resource on the Early Devonian Rhynie chert.
+snapshot: 2026-11-05
+title: "The Rhynie Chert: Fossil Flora"
+container: University of Aberdeen, School of Geosciences
+url: https://www.abdn.ac.uk/rhynie/flora.htm
+reliability: >-
+  A university's teaching resource that summarizes the published descriptions of these plants; the
+  heights are estimates of whole plants pieced together from sections through the chert.
+verified:
+  by: machine:claude-code
+  how: >-
+    The page read at abdn.ac.uk on the date of the snapshot; quotes checked by script against its
+    text.

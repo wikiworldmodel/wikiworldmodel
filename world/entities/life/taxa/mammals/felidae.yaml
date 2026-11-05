@@ -1,0 +1,69 @@
+id: life/taxa/felidae
+kind: taxon
+summary: >-
+  Cats, living and extinct.
+same_as: { pbdb: "txn:41045" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Felidae, en: "cats" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.34
+      behave: { group: [1, 3], habitat: edge, poses: [walk, walk, stand, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.74, 0.68, 0.008]
+            - [-0.44, 0.62, 0.55, 0.01]
+            - [-0.37, 0.62, 0.54, 0.012]
+            - [-0.3, 0.84, 0.74, 0.016]
+            - [-0.26, 1.0, 0.72, 0.04]
+            - [-0.19, 1.05, 0.56, 0.068]
+            - [-0.09, 1.02, 0.52, 0.068]
+            - [0.01, 1.02, 0.48, 0.074]
+            - [0.1, 1.06, 0.46, 0.076]
+            - [0.17, 1.08, 0.58, 0.06]
+          neck: { r: 0.05, steps: [2, 1] }
+        head:
+          at:
+            stand: { y: 0.24, z: 1.1, pitch: 0.08 }
+            alert: { y: 0.24, z: 1.3, pitch: -0.05 }
+            low: { y: 0.28, reach: 0.11, pitch: 0.9 }
+          rings:
+            - [-0.012, 0.008, 0.042, 0.044]
+            - [0.018, 0.012, 0.054, 0.052]
+            - [0.05, 0.008, 0.05, 0.046]
+            - [0.08, -0.004, 0.038, 0.03]
+            - [0.105, -0.008, 0.028, 0.017]
+        ears: { from: [0.036, 0.012, 0.042], to: [0.046, 0.002, 0.066], r: 0.016 }
+        eyes: { at: [0.036, 0.062, 0.024], r: 0.007 }
+    unsourced: >-
+      A machine's reconstruction, with a short round head and a long tail, as cats are
+      generally known, and as the lion's account on the Animal Diversity Web says of the tail;
+      only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.337, hi: 3.7 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Felis nigripes, Other Physical Features"
+        quote: "Range length 337 to 500 mm"
+      - ref: src:animal-diversity-web
+        loc: "account of Panthera tigris, Physical Description"
+        quote: "Male Siberian tigers can grow to 3.7 meters"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 1.3, hi: 380.2 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Felis_nigripes, column Mass.g (grams)"
+        quote: "Felis_nigripes,Carnivora,Felidae,Felis,nigripes,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,1300"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Panthera_spelaea, column Mass.g (grams)"
+        quote: "Panthera_spelaea,Carnivora,Felidae,Panthera,spelaea,1,0,0,0,Imputed,PHYLACINE 1.2.1,380189.4"
+    method: compilation

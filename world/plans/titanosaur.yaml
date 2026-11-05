@@ -1,0 +1,42 @@
+# Measured from Patagotitan in "Patagotitan-Scale-Diagram-Steveoc86.svg" on Wikimedia Commons.
+description: >-
+  A broad-bodied, wide-striding sauropod with a neck raised high, a small head and a tail that thins and droops.
+kind: animal
+mass_length: 5.3
+hip: 0.175
+behave: { group: [2, 6], habitat: open, poses: [stand, stand, walk, walk, alert] }
+parts:
+  body:
+    type: trunk
+    sides: [14, 7]
+    rings:
+      - [-0.483, 0.48, 0.47, 0.0008]
+      - [-0.414, 0.62, 0.57, 0.002]
+      - [-0.32, 0.753, 0.634, 0.005]
+      - [-0.207, 0.774, 0.634, 0.009]
+      - [-0.113, 0.946, 0.656, 0.03]
+      - [-0.019, 1.108, 0.548, 0.07]
+      - [0.075, 1.258, 0.462, 0.086]
+      - [0.141, 1.409, 0.656, 0.076]
+      - [0.197, 1.56, 1.15, 0.036]
+      - [0.263, 1.97, 1.71, 0.022]
+      - [0.329, 2.3, 2.11, 0.017]
+      - [0.37, 2.5, 2.33, 0.014]
+      - [0.395, 2.58, 2.43, 0.0125]
+    neck: { r: 0.0115, steps: [1, 1] }
+  hind: { type: pillar, y: -0.02, x: 0.068, top: 0.86, r: 0.034, swing: 0.03 }
+  fore: { type: pillar, y: 0.12, x: 0.06, top: 1.02, r: 0.028, swing: 0.03, phase: 1 }
+  head:
+    type: head
+    thin: false
+    sides: [10, 5]
+    at:
+      stand: { y: 0.41, z: 2.53, pitch: 0.3 }
+      alert: { y: 0.412, z: 2.58, pitch: 0.08 }
+    rings:
+      - [-0.002, 0, 0.009, 0.0095]
+      - [0.012, 0.002, 0.0105, 0.012]
+      - [0.026, 0.0, 0.0085, 0.0095]
+      - [0.04, -0.003, 0.0075, 0.0055]
+      - [0.048, -0.0045, 0.0075, 0.0038]
+  eyes: { type: eyes, on: head, near: true, at: [0.0095, 0.013, 0.005], r: 0.0018 }

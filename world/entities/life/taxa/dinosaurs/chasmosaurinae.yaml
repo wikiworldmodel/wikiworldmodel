@@ -1,0 +1,32 @@
+id: life/taxa/chasmosaurinae
+kind: taxon
+summary: >-
+  The chasmosaurines: horned dinosaurs with long brow horns, a small nose horn, shallow long snouts
+  and long frills.
+same_as: { pbdb: "txn:52773" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Chasmosaurinae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        frill: { r: 0.22, dir: [-0.72, 0.68], across: 0.72, scallop: 0.025 }
+    unsourced: >-
+      A machine's reconstruction: a longer frill than the plan, whose horns are already those of
+      Triceratops, from the words on chasmosaurines in Holtz (2012, pp. 51-52): "typically large
+      brow horns and shallow, long snouts".
+  length:
+    prop: body_length
+    value: { lo: 5, hi: 9 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 51, Chasmosaurines", quote: "Kosmoceratops decorated horned face Late Cretaceous (80-72.8 MYA) 16.5 ft (5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 51, Chasmosaurines", quote: "Eotriceratops dawn Triceratops Late Cretaceous (70.6-68.5 MYA) 29.5 ft (9 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Chasmosaurines" (pp. 51-52), standing for any member with no
+      length of its own, leaving out Ceratops (doubted by the author) and the 1 m of
+      Tatankaceratops, which the author suspects is a young Triceratops.

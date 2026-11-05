@@ -1,0 +1,46 @@
+id: life/taxa/palaeonisciformes
+kind: taxon
+summary: >-
+  Palaeoniscoids: the old kind of ray-finned fish, of the late Palaeozoic and Triassic, with thick shining scales, a big eye set far
+  forward and an upper tail lobe carried by the spine.
+same_as: { pbdb: "txn:34963" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Palaeonisciformes, en: palaeoniscoids }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.53, 1.76, 1.68, 0.002]
+            - [-0.44, 1.56, 1.32, 0.006]
+            - [-0.32, 1.58, 0.82, 0.018]
+            - [-0.2, 1.72, 0.46, 0.034]
+            - [-0.06, 1.84, 0.2, 0.05]
+            - [0.06, 1.9, 0.12, 0.056]
+            - [0.16, 1.84, 0.16, 0.054]
+        tail: { points: [[0, -0.36, 1.1], [0, -0.42, 1.5], [0, -0.53, 1.76], [0, -0.46, 0.9], [0, -0.47, 0.3], [0, -0.36, 0.7]] }
+        dorsal: { points: [[0, -0.14, 1.78], [0, -0.22, 1.66], [0, -0.28, 2.3], [0, -0.2, 2.42], [0, -0.09, 1.84]] }
+        anal: { points: [[0, -0.22, 0.46], [0, -0.3, 0.64], [0, -0.34, 0.04], [0, -0.26, -0.06], [0, -0.16, 0.34]] }
+        eyes: { at: [0.04, 0.16, 0.022], r: 0.019 }
+    unsourced: >-
+      A machine's reconstruction: a forked tail whose upper lobe carries the end of the body, the dorsal fin set back, and a big eye, from
+      the description of Palaeoniscum in Wikipedia and with no figure looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.3, hi: 0.55 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Palaeoniscum, Description"
+        quote: "Palaeoniscum had a torpedo-shaped body 30 cm (12 in) in length"
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Cheirolepis, Description"
+        quote: "Cheirolepis was a predatory freshwater and estuarine animal about 55 centimetres (22 in) long."
+    method: compilation
+    note: >-
+      Two early ray-fins stand for the order; the second is in another order in the database. An encyclopedia, cited as nothing better
+      could be read.

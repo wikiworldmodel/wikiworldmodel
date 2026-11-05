@@ -1,0 +1,43 @@
+id: life/taxa/perissodactyla
+kind: taxon
+summary: >-
+  Horses, rhinoceroses, tapirs and their extinct kin.
+same_as: { pbdb: "txn:106418" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Perissodactyla, en: "odd-toed ungulates" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: ungulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.6, hi: 7.4 }
+    source:
+      - ref: src:wikipedia-hyracotherium
+        loc: "top of the article"
+        quote: "genus of small (about 60 cm in length)"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Odd-toed ungulates (Perissodactyla)\""
+        quote: "7.4 m (24.3 ft) in length from nose to rump"
+    method: compilation
+    note: >-
+      From Hyracotherium to the largest Paraceratherium, from Wikipedia as no measured
+      skeleton could be read.
+  mass:
+    prop: body_mass
+    value: { lo: 3.9, hi: 20600 }
+    source:
+      - ref: src:wikipedia-sifrhippus
+        loc: "section \"Description\""
+        quote: "Individuals likely weighed between 8.5–12 pounds (3.9–5.4 kg)"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Odd-toed ungulates (Perissodactyla)\""
+        quote: "estimated to be around 20.6 t (22.7 short tons)"
+    method: compilation
+    note: >-
+      From Sifrhippus to an unnamed Dzungariotherium, from Wikipedia as nothing better could
+      be read.

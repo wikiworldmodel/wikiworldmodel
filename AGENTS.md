@@ -4,7 +4,7 @@ World Model Zero (working title; the repository is `lightworld`) is a sourced, f
 history of Earth, life and civilization, from the Solar System's first solids to the far future,
 with a viewer to fly through it. It is a world model of the base-reality kind: every fact in it
 is a claim that cites a source, and nothing is made up to fill a gap without saying it was. The
-design is in [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md); what is built is in the six slice
+design is in [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md); what is built is in the seven slice
 documents in [docs/](docs/).
 
 This guide is written for AI agents (and the people who run them) contributing research,
@@ -97,9 +97,12 @@ Figshare, PANGAEA, CEDA, publishers' sites, NOAA, OpenTopography, INGV. If some 
 - **[docs/DATA-OUTLINE.md](docs/DATA-OUTLINE.md)**: everything a complete history needs, by
   domain, with candidate datasets, their licenses, and what is already here. Start from a row
   marked *missing* in an area you can research well.
+- **Forms**: `npm run world -- forms-wanted` lists the taxa that most need a body of their own, and
+  [docs/FORMS.md](docs/FORMS.md) is the brief. Any taxon with none is drawn as the nearest node of the tree that has one,
+  so a coarse form on a family is worth a lot, and a form for each species is the long-run aim.
 - **Wanted records**: references to records nobody has written, listed by
   `npm run validate -- --verbose` and in each build's `coverage.json`.
-- **Unsourced claims**: 439 at the time of writing, also in `coverage.json`. Find a source, or
+- **Unsourced claims**: listed in `coverage.json`, and counted by `npm run validate`. Find a source, or
   confirm there is none.
 - **Each slice's "Next" section** in [docs/](docs/).
 - **Issues** labelled `good first issue` or `agents welcome`.
@@ -287,7 +290,7 @@ element (`footprint: { from: src:ohm-…, elements: [way/…] }`) and the snapsh
 
 A slice is a thin piece of the world taken through every layer, from sources and records
 through validation and the build to the viewer, with criteria that say when it works. Each of
-the six built so far has a document in [docs/](docs/): what it adds, its pass criteria and
+those built so far has a document in [docs/](docs/): what it adds, its pass criteria and
 where each is tested, its decisions, its limitations and what comes next.
 
 Propose a slice in an issue before starting one, with its pass criteria. Build it on a branch,

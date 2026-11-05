@@ -1,0 +1,16 @@
+id: life/taxa/caytoniales
+kind: taxon
+summary: >-
+  Seed plants of the Mesozoic with Sagenopteris leaves. No height was read for them, so they take
+  the low height of the nodes above, and it is a low shrub that is drawn.
+same_as: { pbdb: "txn:56128" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Caytoniales, en: caytonias }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: shrub
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."

@@ -1,0 +1,26 @@
+id: life/taxa/sauropodomorpha
+kind: taxon
+summary: >-
+  The long-necked plant-eaters: from small two-legged Triassic forms, which this record speaks for,
+  to the giant sauropods, which have their own.
+same_as: { pbdb: "txn:38633" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Sauropodomorpha }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: prosauropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.7, hi: 8 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 24, Guaibasaurids", quote: "Agnosphitys unknown begetter Late Triassic (228-204 MYA) 2.3 ft (70 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 25, Other Primitive Sauropodomorphs", quote: "Plateosauravus Plateosaurus ancestor Late Triassic (235-228 MYA) 26.2 ft (8 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Guaibasaurids" and "Other Primitive Sauropodomorphs" (pp. 24-25),
+      standing for any early member with no length of its own.

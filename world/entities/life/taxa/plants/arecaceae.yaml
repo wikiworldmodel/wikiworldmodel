@@ -1,0 +1,29 @@
+id: life/taxa/arecaceae
+kind: taxon
+summary: >-
+  Palms.
+same_as: { pbdb: "txn:53807" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Arecaceae, en: palms }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: palm
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 3, hi: 30 }
+    source:
+      - ref: src:flora-of-north-america
+        loc: "Vol. 22, p. 105, s.v. Serenoa repens"
+        quote: "Stems usually creeping, branched, sometimes ascending, to 1--3 m."
+      - ref: src:flora-of-north-america
+        loc: "Vol. 22, p. 117, s.v. Roystonea regia"
+        quote: "Stems gray-white, 30 m"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living palms, from a saw palmetto to a royal palm: modern relatives.

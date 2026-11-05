@@ -1,0 +1,59 @@
+id: life/taxa/archaeopteryx
+kind: taxon
+summary: >-
+  The feathered long-tailed flyer of the Late Jurassic of Germany: long bony tail, toothed jaws and
+  clawed fingers.
+same_as: { pbdb: "txn:39240" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Archaeopteryx" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.26
+      behave: { flies: null, group: [1, 2], habitat: any, poses: [stand, walk, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 1.06, 1.02, 0.008]
+            - [-0.38, 1.08, 1.03, 0.011]
+            - [-0.26, 1.12, 1.04, 0.014]
+            - [-0.17, 1.22, 1.02, 0.024]
+            - [-0.1, 1.38, 0.9, 0.056]
+            - [-0.03, 1.56, 0.76, 0.074]
+            - [0.05, 1.66, 0.72, 0.08]
+            - [0.12, 1.72, 0.86, 0.066]
+            - [0.17, 1.76, 1.14, 0.044]
+          neck: { r: 0.028, steps: [3, 1] }
+        tail-vanes: { type: sheet, mat: feather, mirror: true, near: true, points: [[0.006, -0.17, 1.12], [0.05, -0.24, 1.08], [0.056, -0.44, 1.05], [0.008, -0.52, 1.04]] }
+        legs: { y: -0.02, x: 0.04, top: 1.0, knee: 0.66, ankle: 0.34, r: 0.034, swing: 0.1 }
+        wings: { shoulder: [0.07, 0.12, 1.5], span: 0.72, chord: 0.24, sweep: 0.14, folded: 0.32, drop: 0.5 }
+        finger-claws: { type: spike, mat: horn, mirror: true, near: true, not: [fly], from: [0.08, 0.14, 1.38], to: [0.09, 0.19, 1.16], r: 0.006, sides: [4, 3] }
+        head:
+          at:
+            stand: { y: 0.24, z: 2.14, pitch: 0.06 }
+            alert: { y: 0.23, z: 2.26, pitch: -0.04 }
+            low: { y: 0.3, reach: 0.2, clear: 0.05, pitch: 0.9 }
+            fly: { y: 0.27, z: 1.84, pitch: 0.05 }
+          rings:
+            - [-0.02, 0, 0.026, 0.03]
+            - [0.02, 0.003, 0.036, 0.04]
+            - [0.06, 0.0, 0.028, 0.03]
+            - [0.1, -0.006, 0.018, 0.018]
+        bill: null
+        snout: { type: tube, on: head, sides: [6, 4], rings: [[0.09, -0.005, 0.018, 0.018], [0.14, -0.01, 0.012, 0.012], [0.18, -0.014, 0.006, 0.006]] }
+        eyes: { at: [0.03, 0.04, 0.012], r: 0.01 }
+    unsourced: "A machine's reconstruction from what is known of the animal in general: a long bony tail with feathers down both sides, jaws in place of a bill and clawed fingers on the wing. No skeletal figure was looked at. It is drawn on the ground, as how well it flew is not settled by anything read here."
+  length:
+    prop: body_length
+    value: 0.4
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 16, Archaeopterygids"
+      quote: "Archaeopteryx ancient wing Late Jurassic (150.8-145.5 MYA) 1.3 ft (40 cm) Chicken Germany; Portugal?"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

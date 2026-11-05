@@ -1,0 +1,39 @@
+description: >-
+  A big flightless bird on long strong legs, with a heavy feathered body, a long bare neck, a small flat-billed head and
+  wings shrunk to plumes. Its length is its height with the head up, as such birds are measured.
+kind: animal
+hip: 0.42
+mass_length: 9
+behave: { group: [1, 6], habitat: open, poses: [stand, walk, walk, graze, alert] }
+parts:
+  body:
+    type: trunk
+    mat: feather
+    sides: [12, 5]
+    rings:
+      - [-0.33, 1.24, 1.05, 0.015]
+      - [-0.29, 1.32, 1.0, 0.05]
+      - [-0.22, 1.42, 0.9, 0.09]
+      - [-0.13, 1.5, 0.82, 0.118]
+      - [-0.03, 1.5, 0.8, 0.122]
+      - [0.05, 1.46, 0.88, 0.1]
+      - [0.11, 1.5, 1.2, 0.042]
+    neck: { r: 0.02, steps: [6, 2] }
+  legs: { type: digitigrade, mat: hide, y: -0.04, x: 0.05, top: 1.1, knee: 0.8, ankle: 0.46, r: 0.045, swing: 0.1 }
+  plumes: { type: sheet, mat: feather, mirror: true, gap: 0.004, points: [[0.1, 0.06, 1.34], [0.13, -0.04, 1.34], [0.135, -0.18, 1.12], [0.115, -0.2, 0.98], [0.105, -0.05, 1.12]] }
+  head:
+    type: head
+    mat: hide
+    sides: [8, 4]
+    thin: false
+    at:
+      stand: { y: 0.14, z: 2.26, pitch: 0.08 }
+      alert: { y: 0.11, z: 2.36, pitch: 0.0 }
+      low: { y: 0.3, reach: 0.1, clear: 0.05, pitch: 1.0 }
+    rings:
+      - [-0.012, 0, 0.016, 0.02]
+      - [0.012, 0.004, 0.022, 0.024]
+      - [0.04, 0.0, 0.018, 0.016]
+      - [0.062, -0.003, 0.012, 0.008]
+  bill: { type: tube, on: head, mat: horn, sides: [6, 4], rings: [[0.055, -0.003, 0.014, 0.008], [0.08, -0.005, 0.012, 0.005], [0.1, -0.007, 0.006, 0.003]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.02, 0.018, 0.009], r: 0.0075 }

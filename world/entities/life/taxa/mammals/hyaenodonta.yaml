@@ -1,0 +1,60 @@
+id: life/taxa/hyaenodonta
+kind: taxon
+summary: >-
+  Meat-eaters of the Paleogene and early Neogene with very large heads, once set in Creodonta.
+same_as: { pbdb: "txn:253430" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hyaenodonta, en: "hyaenodonts" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.3
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.56, 0.42, 0.01]
+            - [-0.42, 0.62, 0.46, 0.016]
+            - [-0.34, 0.74, 0.58, 0.02]
+            - [-0.27, 0.92, 0.74, 0.024]
+            - [-0.23, 1.04, 0.7, 0.05]
+            - [-0.16, 1.1, 0.56, 0.062]
+            - [-0.06, 1.08, 0.52, 0.062]
+            - [0.04, 1.1, 0.5, 0.064]
+            - [0.12, 1.16, 0.56, 0.058]
+          neck: { r: 0.05, steps: [3, 1] }
+        head:
+          at:
+            stand: { y: 0.21, z: 1.2, pitch: 0.12 }
+            alert: { y: 0.21, z: 1.36, pitch: -0.02 }
+            low: { y: 0.27, reach: 0.21, pitch: 0.9 }
+          rings:
+            - [-0.012, 0.01, 0.046, 0.054]
+            - [0.05, 0.016, 0.058, 0.064]
+            - [0.12, 0.002, 0.044, 0.05]
+            - [0.18, -0.014, 0.032, 0.034]
+            - [0.225, -0.022, 0.026, 0.022]
+        hind: { y: -0.17, x: 0.046, top: 0.86, knee: 0.56, ankle: 0.2, r: 0.046 }
+        fore: { y: 0.09, x: 0.05, top: 0.8, r: 0.028 }
+        ears: { from: [0.04, 0.004, 0.044], to: [0.052, -0.012, 0.075], r: 0.014 }
+        eyes: { at: [0.04, 0.1, 0.03] }
+    unsourced: >-
+      A machine's reconstruction, from the photograph of Hyaenodon horridus on Wikipedia's
+      page for the genus: a long, heavy skull on a long low body, with a thin tail.
+  mass:
+    prop: body_mass
+    value: { lo: 0.03, hi: 880 }
+    source:
+      - ref: src:sole-2015-kerberos
+        loc: "text after Fig 15"
+        quote: "that of proviverrines (0.03–20 kg)"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Hyaenodonts (Hyaenodonta)\""
+        quote: "Megistotherium osteothlastes at 500–880 kg (1,100–1,940 lb)"
+    method: compilation
+    note: >-
+      From the smallest proviverrines to Megistotherium, from Wikipedia as nothing better
+      could be read. No length of the whole animal was read: the plan makes it from the mass.

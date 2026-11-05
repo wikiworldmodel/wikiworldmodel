@@ -1,0 +1,37 @@
+description: >-
+  A long, low, eel-like early tetrapod of the water: a long narrow head, a body of many vertebrae, small legs and a deep tail.
+kind: animal
+hip: 0.09
+behave: { group: [1, 2], habitat: edge, poses: [rest, rest, stand] }
+parts:
+  body:
+    type: trunk
+    sides: [12, 5]
+    rings:
+      - [-0.53, 0.98, 0.9, 0.002]
+      - [-0.42, 1.26, 0.56, 0.005]
+      - [-0.3, 1.36, 0.44, 0.011]
+      - [-0.18, 1.34, 0.46, 0.018]
+      - [-0.08, 1.3, 0.46, 0.028]
+      - [0.03, 1.32, 0.44, 0.032]
+      - [0.13, 1.32, 0.44, 0.032]
+      - [0.22, 1.26, 0.48, 0.031]
+      - [0.29, 1.18, 0.54, 0.029]
+    neck: { r: 0.028, steps: [2, 1] }
+  thigh: { type: chain, mirror: true, sides: [5, 3], points: [[0.024, -0.1, 0.7, 0.014], [0.055, -0.09, 0.72, 0.011], [0.085, -0.085, 0.56, 0.008]] }
+  shin: { type: pillar, y: -0.085, x: 0.085, top: 0.58, r: 0.0075, swing: 0.022 }
+  arm: { type: chain, mirror: true, sides: [5, 3], points: [[0.024, 0.235, 0.7, 0.011], [0.05, 0.23, 0.72, 0.009], [0.075, 0.23, 0.56, 0.007]] }
+  forearm: { type: pillar, y: 0.23, x: 0.075, top: 0.58, r: 0.0065, swing: 0.02, phase: 1 }
+  head:
+    type: head
+    at:
+      stand: { y: 0.335, z: 0.96, pitch: 0.02 }
+      alert: { y: 0.335, z: 1.24, pitch: -0.08 }
+      low: { y: 0.34, reach: 0.17, pitch: 0.1 }
+    rings:
+      - [-0.008, 0.002, 0.03, 0.024]
+      - [0.03, 0.005, 0.036, 0.026]
+      - [0.075, 0.002, 0.031, 0.021]
+      - [0.12, -0.002, 0.022, 0.015]
+      - [0.16, -0.003, 0.012, 0.009]
+  eyes: { type: eyes, on: head, near: true, at: [0.022, 0.055, 0.019], r: 0.006 }

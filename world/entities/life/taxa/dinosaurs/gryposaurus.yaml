@@ -1,0 +1,29 @@
+id: life/taxa/gryposaurus
+kind: taxon
+summary: >-
+  Gryposaurus, a hook-nosed duck-bill of the Late Cretaceous of western North America.
+same_as: { pbdb: "txn:53014" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Gryposaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Kritosaurini, which was measured from this
+      genus: the silhouette "Gryposaurus Scale.svg" on Wikimedia Commons. Nothing here differs from
+      it.
+  length-holtz-2012:
+    prop: body_length
+    value: 8.5
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 47, Gryposaurinins"
+      quote: "Gryposaurus hook-nosed reptile Late Cretaceous (83.5-72.8 MYA) 27.9 ft (8.5 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

@@ -1,0 +1,37 @@
+id: life/taxa/synapsida
+kind: taxon
+summary: >-
+  Synapsids: mammals and everything nearer to them than to reptiles. As a body it stands here for the early, sprawling
+  grade once called pelycosaurs, and for any synapsid with no form below it.
+same_as: { pbdb: "txn:38882" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Synapsida, en: synapsids }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: pelycosaur
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in
+      the tree. The plan is a machine's reconstruction, from the photograph of the mounted Dimetrodon at the Royal Tyrrell
+      Museum (Wikimedia Commons, "Dimetrodon Royal Tyrrell Museum.jpg").
+  length:
+    prop: body_length
+    value: { lo: 1.2, hi: 4.6 }
+    source:
+      - ref: src:olson-1954-caseidae
+        loc: "p. 194, Casea broilii"
+        quote: "lightly built species about four feet in length"
+      - ref: src:canoville-2026-dimetrodon-life-history
+        loc: "Introduction, p. 1"
+        quote: "ranged in adult total body length and body weight from about 1.7 m and 38 kg"
+      - ref: src:canoville-2026-dimetrodon-life-history
+        loc: "Introduction, p. 1"
+        quote: "up to 4.6 m and 250 kg"
+    method: expert-estimate
+    note: >-
+      The small early caseid Casea (four feet converted) and the largest Dimetrodon stand for the early synapsids with no
+      length of their own. Smaller ones existed: Reisz (1972) has primitive pelycosaurs from 20 cm snout to vent. The giant
+      caseids have their own range below.

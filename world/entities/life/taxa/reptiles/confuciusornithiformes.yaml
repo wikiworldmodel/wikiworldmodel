@@ -1,0 +1,62 @@
+id: life/taxa/confuciusornithiformes
+kind: taxon
+summary: >-
+  Toothless short-tailed birds of the Early Cretaceous of China, with big wing claws, among the
+  commonest fossils of the Jehol beds.
+same_as: { pbdb: "txn:67263" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Confuciusornithiformes", en: "confuciusornithids" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.3, 1.34, 1.24, 0.026]
+            - [-0.22, 1.42, 1.2, 0.04]
+            - [-0.16, 1.56, 1.12, 0.05]
+            - [-0.11, 1.68, 0.98, 0.076]
+            - [-0.03, 1.86, 0.74, 0.106]
+            - [0.05, 2.0, 0.66, 0.118]
+            - [0.12, 2.14, 0.8, 0.104]
+            - [0.18, 2.22, 1.2, 0.07]
+        streamers: { type: chain, mat: feather, mirror: true, near: true, not: [fly], sides: [4, 3], points: [[0.008, -0.28, 1.28, 0.005], [0.014, -0.42, 1.16, 0.004], [0.02, -0.6, 1.0, 0.006]] }
+        bill: { from: [0, 0.09, -0.004], to: [0, 0.2, -0.018], r: 0.03 }
+        wing-claws: { type: spike, mat: horn, mirror: true, near: true, not: [fly], from: [0.1, 0.11, 1.84], to: [0.116, 0.17, 1.6], r: 0.008, sides: [4, 3] }
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 19, Confuciusornithids"
+      quote: "Confuciusornithids were toothless small primitive avialians."
+    note: >-
+      A machine's reconstruction: a toothless deep beak, a short tail with the two long streamers
+      known in some specimens, and big wing claws. No skeletal figure was looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.15, hi: 0.5 }
+    source:
+      - ref: src:holtz-2012-dinosaur-genus-list
+        loc: "p. 19"
+        quote: "* Eoconfuciusornis dawn Confuciusornis Early Cretaceous (136.4-130 MYA) 6 in (15 cm) Pigeon China"
+      - ref: src:holtz-2012-dinosaur-genus-list
+        loc: "p. 19, row Confuciusornis"
+        quote: "Early Cretaceous (125-120 MYA) 1.6 ft (50 cm) Chicken China"
+    method: compilation
+    note: >-
+      The range across the genera the list gives.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/avialae
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 19, Confuciusornithids"
+      quote: "Confuciusornithids were toothless small primitive avialians."
+    note: >-
+      The database files the order under Pygostylia under Aves. Aves on this tree is the crown
+      group, whose record leaves stem birds out and dates its origin to 114.3-84.2 Ma, and these
+      birds were gone by about then, so a place under it squeezes both records' dates. Hence it
+      hangs from Avialae.

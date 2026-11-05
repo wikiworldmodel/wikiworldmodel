@@ -1,0 +1,34 @@
+id: life/taxa/psychodomorpha
+kind: taxon
+summary: >-
+  The moth flies, sand flies, dung midges and their relatives: small flies, often hairy. It takes the gnats' body, with
+  its own range of sizes.
+same_as: { pbdb: "txn:140715" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Psychodomorpha, en: "moth flies and their relatives" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: gnat
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a slender long-legged fly, from general knowledge; no figure was
+      compared with it. Moth flies are stouter and hairier than it.
+  length:
+    prop: body_length
+    value: { lo: 0.0006, hi: 0.023 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Diptera Scatopsidae\""
+        quote: "Diptera Scatopsidae 407 0.6 4.1 (McAlpine et al., eds, 1981)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Diptera Tanyderidae\""
+        quote: "Diptera Tanyderidae 55 11 23 20 42 (Arnett, 2000) Data given as wingspan"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for the families of this group, its millimetres given in metres.
+      The database has Tanyderinae within Psychodidae; the table has them apart, and converted their lengths from
+      wingspans.

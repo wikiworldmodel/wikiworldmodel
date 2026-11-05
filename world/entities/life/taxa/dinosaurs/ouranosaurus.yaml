@@ -1,0 +1,71 @@
+id: life/taxa/ouranosaurus
+kind: taxon
+summary: >-
+  Ouranosaurus, an iguanodont of the Early Cretaceous of Niger with a tall ridge of spines along its
+  back.
+same_as: { pbdb: "txn:38751" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ouranosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.27
+      parts:
+        body-on-four:
+          rings:
+            - [-0.513, 0.63, 0.62, 0.002]
+            - [-0.33, 0.76, 0.62, 0.008]
+            - [-0.145, 0.9, 0.62, 0.022]
+            - [0.0, 1.1, 0.4, 0.06]
+            - [0.127, 1.16, 0.36, 0.08]
+            - [0.255, 1.15, 0.42, 0.07]
+            - [0.31, 0.92, 0.6, 0.04]
+            - [0.345, 0.8, 0.62, 0.026]
+          neck: { r: 0.022 }
+        body-on-two:
+          rings:
+            - [-0.513, 0.63, 0.62, 0.002]
+            - [-0.33, 0.76, 0.62, 0.008]
+            - [-0.145, 0.9, 0.62, 0.022]
+            - [0.0, 1.1, 0.4, 0.06]
+            - [0.07, 1.2, 0.42, 0.075]
+            - [0.13, 1.3, 0.52, 0.07]
+            - [0.18, 1.4, 0.7, 0.05]
+            - [0.2, 1.46, 0.9, 0.03]
+          neck: { r: 0.022 }
+        hind: { y: 0.0 }
+        fore: { y: 0.25, top: 0.66 }
+        arms: { points: [[0.076, 0.17, 1.1, 0.022], [0.084, 0.19, 0.82, 0.016], [0.078, 0.22, 0.6, 0.011]] }
+        thumbs-four: { from: [0.066, 0.265, 0.1], to: [0.03, 0.3, 0.2] }
+        thumbs-up: { from: [0.074, 0.22, 0.6], to: [0.05, 0.26, 0.7] }
+        head:
+          at:
+            stand: { y: 0.355, z: 0.72, pitch: 0.12 }
+            alert: { y: 0.35, z: 0.86, pitch: 0.02 }
+            low: { y: 0.37, reach: 0.135, clear: 0.05, pitch: 0.8 }
+            upright: { y: 0.26, z: 1.72, pitch: 0.2 }
+          rings:
+            - [-0.005, 0, 0.016, 0.022]
+            - [0.03, 0.003, 0.017, 0.024]
+            - [0.07, -0.004, 0.014, 0.015]
+            - [0.105, -0.008, 0.013, 0.009]
+            - [0.13, -0.01, 0.013, 0.006]
+    unsourced: >-
+      A machine's reconstruction, its outline measured from the silhouette "Ouranosaurus Scale.svg"
+      on Wikimedia Commons: a tall hump from shoulder to tail and a long flat snout on lower hips
+      than the plan.
+  length-holtz-2012:
+    prop: body_length
+    value: 6
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 44, Primitive Styracosternans"
+      quote: "Ouranosaurus brave reptile [also monitor reptile] Early Cretaceous (125-112 MYA) 19.7 ft (6 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it. The silhouette looked at for the form
+      draws about 8.5 m.

@@ -1,0 +1,37 @@
+id: life/taxa/araucariaceae
+kind: taxon
+summary: >-
+  Monkey puzzles, kauris and their relatives, with the fossil wood and pollen placed among them.
+same_as: { pbdb: "txn:54789" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Araucariaceae, en: monkey puzzles }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        tree: { reach: 0.2, trunk: 0.016, flare: 1.8, tiers: 8, start: 0.66, drop: 0.016 }
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 4, p. 9, s.v. Araucaria cunninghamii"
+      quote: "crown tower-shaped when young, becoming flat topped with age"
+    note: >-
+      A machine's reconstruction from this description of a grown tree: a long bare trunk, with flat
+      tiers at the top.
+  height:
+    prop: plant_height
+    value: { lo: 40, hi: 70 }
+    source:
+      - ref: src:flora-of-china
+        loc: "Vol. 4, p. 10, s.v. Agathis dammara"
+        quote: "Trees to 40 m tall"
+      - ref: src:flora-of-china
+        loc: "Vol. 4, p. 9, s.v. Araucaria cunninghamii"
+        quote: "Trees to 70 m tall"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living members at their greatest: modern relatives.

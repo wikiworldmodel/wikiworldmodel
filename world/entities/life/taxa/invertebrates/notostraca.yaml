@@ -1,0 +1,44 @@
+id: life/taxa/notostraca
+kind: taxon
+summary: >-
+  The tadpole shrimps, with a flat shield over the head and most of the trunk, and two long tail filaments.
+same_as: { pbdb: "txn:133207" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Notostraca, en: "tadpole shrimps" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.2
+      behave: { group: [2, 8], habitat: water, poses: [stand] }
+      parts:
+        valve-right: null
+        valve-left: null
+        shield: { type: lump, zl: true, mat: chitin, at: [0, 0.2, 0.11], r: [0.2, 0.3, 0.06], sides: [10, 5], bands: [4, 3] }
+        trunk: { type: tube, zl: true, mat: chitin, sides: [6, 4], rings: [[0, 0.02, 0.08, 0.1, 0.05], [0, -0.1, 0.08, 0.075, 0.042], [0, -0.14, 0.08, 0.06, 0.034], [0, -0.22, 0.08, 0.06, 0.036], [0, -0.26, 0.08, 0.048, 0.03], [0, -0.34, 0.08, 0.046, 0.03], [0, -0.38, 0.08, 0.036, 0.024], [0, -0.48, 0.08, 0.03, 0.022], [0, -0.5, 0.08, 0.005, 0.004]] }
+        tails: { type: spike, zl: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.015, -0.49, 0.08], to: [0.09, -0.92, 0.06], r: 0.009 }
+        eyes: { mirror: true, at: [0.04, 0.34, 0.165], r: [0.016, 0.02, 0.012] }
+        antennae: null
+        limbs: { n: 6, from: [0.03, 0.24, 0.05], to: [0.03, -0.1, 0.05], r: [0.06, 0.0, -0.045], thick: 0.007 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. Notostraca (Tadpole shrimps), Physical characteristics"
+        quote: "covered by a large and shield-like carapace, which is dorsoventrally flattened"
+    note: >-
+      The shield is the article's. The rest is a machine's reconstruction, with no figure compared.
+  length:
+    prop: body_length
+    value: { lo: 0.01, hi: 0.11 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. Notostraca (Tadpole shrimps), Physical characteristics"
+        quote: "with most species ranging in size from 0.4 to 1.6 in (10–40 mm)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. Notostraca (Tadpole shrimps), Physical characteristics"
+        quote: "Triops cancriformis has been reported to reach a length of 4.0 in (11 cm)"
+    method: compilation
+    note: >-
+      A reference work's numbers. It writes 4.0 in for 11 cm; the metric figure is used.

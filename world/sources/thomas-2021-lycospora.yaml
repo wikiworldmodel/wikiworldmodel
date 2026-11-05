@@ -1,0 +1,18 @@
+id: src:thomas-2021-lycospora
+type: publication
+kind: review
+citation: >-
+  Thomas, B.A. (2021). Why Lycospora dominated many Pennsylvanian spore assemblages. Fossil Imprint
+  77(1), 11–16.
+authors:
+  - "Thomas, B.A."
+published: 2021
+title: "Why Lycospora dominated many Pennsylvanian spore assemblages"
+container: Fossil Imprint 77(1), 11–16
+doi: 10.37520/fi.2021.002
+url: https://publikace.nm.cz/file/041428794b8d385350b9fd2e4322fad4/30293/2_Thomas.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved as the PDF on the National Museum Prague's publications site; the parts
+    cited were read, and quotes checked by script against the text extracted from the PDF.

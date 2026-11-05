@@ -1,0 +1,33 @@
+id: life/taxa/isoetales
+kind: taxon
+summary: >-
+  Quillworts, with the spores the database places among them, and some of their extinct relatives.
+same_as: { pbdb: "txn:55160" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Isoetales, en: quillworts }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: clubmoss
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        plant: { blades: 22, spread: 0.7, wide: 0.02, mat: frond }
+    unsourced: "A machine's reconstruction of a quillwort's tuft of long thin leaves, from the description in the Flora of China."
+  height:
+    prop: plant_height
+    value: { lo: 0.15, hi: 0.3 }
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 2-3, s.v. Isoëtes sinensis"
+      quote: "Plants helophytic, 15-30 cm tall."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      A living quillwort: a modern relative. Its extinct relatives could be far larger, and those
+      the database puts here are drawn the same until someone writes theirs.

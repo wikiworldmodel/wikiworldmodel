@@ -1,0 +1,32 @@
+id: src:lheritier-2024-arthropleura
+type: publication
+kind: measurement
+citation: >-
+  Lhéritier, M., Edgecombe, G.D., Garwood, R.J., Buisson, A., Gerbe, A., Koch, N.M., Vannier, J., Escarguel, G., Adrien, J.,
+  Fernandez, V., Bergeret-Medina, A. & Perrier, V. (2024). Head anatomy and phylogenomics show the Carboniferous giant Arthropleura
+  belonged to a millipede-centipede group. Science Advances 10(41), eadp6362.
+authors:
+  - "Lhéritier, M."
+  - "Edgecombe, G.D."
+  - "Garwood, R.J."
+  - "Buisson, A."
+  - "Gerbe, A."
+  - "Koch, N.M."
+  - "Vannier, J."
+  - "Escarguel, G."
+  - "Adrien, J."
+  - "Fernandez, V."
+  - "Bergeret-Medina, A."
+  - "Perrier, V."
+published: 2024
+title: Head anatomy and phylogenomics show the Carboniferous giant Arthropleura belonged to a millipede-centipede group
+container: Science Advances
+doi: 10.1126/sciadv.adp6362
+url: https://pmc.ncbi.nlm.nih.gov/articles/PMC11463278/
+license: CC-BY-4.0
+reliability: Its specimens are juveniles from Montceau-les-Mines; the reconstruction in Fig. 8 is of one of them.
+verified:
+  by: machine:claude-code
+  how: >-
+    The full text read through Europe PMC's service, and the reconstruction in Fig. 8 looked at on PubMed Central. Quotes checked by
+    script against that text.

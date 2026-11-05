@@ -1,0 +1,19 @@
+id: src:sci-news-2018-lisowicia
+type: database-record
+kind: review
+citation: >-
+  "Elephant-Sized Dicynodont from Triassic Period Discovered: Lisowicia bojani." Sci.News, on
+  Sulej, T. & Niedźwiedzki, G. (2019), An elephant-sized Late Triassic synapsid with erect limbs,
+  Science 363(6422), 78–80.
+snapshot: 2026-11-05
+title: "Elephant-Sized Dicynodont from Triassic Period Discovered: Lisowicia bojani"
+container: "Sci.News"
+url: https://www.sci.news/paleontology/elephant-sized-dicynodont-triassic-period-lisowicia-bojani-06649.html
+reliability: >-
+  A science news site reporting a paper in Science, which sits behind a paywall and could not be
+  read. It is a second-hand report of that paper's estimate.
+verified:
+  by: machine:claude-code
+  how: >-
+    The page read at sci.news on the date of the snapshot; quotes checked by script against its
+    text.

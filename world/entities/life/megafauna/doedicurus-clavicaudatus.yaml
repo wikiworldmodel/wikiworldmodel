@@ -52,6 +52,38 @@ claims:
       by an amount no source read states. Doubted: the site's dates run from 6,550 to 12,350 14C
       years, the two ends set aside as outliers, and Politis et al. ask for new dates at La Moderna,
       as humates made such dates too young at Campo Laborde.
+  body-plan:
+    prop: body_plan
+    value: glyptodont
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        tail: { points: [[0, -0.3, 0.14, 0.054], [0, -0.38, 0.13, 0.04], [0, -0.44, 0.125, 0.034]] }
+        club: { type: lump, mat: shell, zl: true, sides: [8, 4], bands: [4, 2], at: [0, -0.47, 0.125], r: [0.06, 0.05, 0.05] }
+        spikes: { type: row, n: 4, zl: true, from: [0.05, -0.5, 0.11], to: [0.03, -0.44, 0.16], item: spike, mirror: true, r: [0.04, -0.012, 0.03], thick: 0.012 }
+    unsourced: >-
+      A machine's reconstruction: the plan's shell and a tail ending in a spiked club, as
+      Doedicurus is usually described; only compared with its sheet.
+  length-mammal-forms:
+    prop: body_length
+    value: 4
+    source:
+      ref: src:wikipedia-largest-prehistoric-animals
+      loc: "section \"Glyptodonts, armadillos and pampatheres (Cingulata)\""
+      quote: "at 4 m (13 ft) long, 1.5 m (4 ft 11 in) high"
+    method: compilation
+    note: >-
+      From Wikipedia, as no measured skeleton could be read.
+  mass-mammal-forms:
+    prop: body_mass
+    value: 1468
+    source:
+      ref: src:faurby-2020-phylacine
+      loc: "Data/Traits/Trait_data.csv, row Doedicurus_clavicaudatus, column Mass.g (grams)"
+      quote: "Doedicurus_clavicaudatus,Cingulata,CingulataFam,Doedicurus,clavicaudatus,1,0,0,0,Imputed,PHYLACINE 1.2.1,1468000"
+    method: compilation
 relations:
   parent:
     rel: descends-from

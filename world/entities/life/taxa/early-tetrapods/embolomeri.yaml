@@ -1,0 +1,28 @@
+id: life/taxa/embolomeri
+kind: taxon
+summary: >-
+  Embolomeres, such as Pholiderpeton and Archeria: long-bodied, long-tailed swimming hunters of the Carboniferous and Permian.
+same_as: { pbdb: "txn:37178" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Embolomeri, en: embolomeres }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: embolomere
+    unsourced: >-
+      Which plan draws it: an editorial classification, from its place in the tree. The plan is a machine's reconstruction, from no
+      skeletal figure: a reviewer should compare it with Holmes's Archeria or Clack's Pholiderpeton.
+  length:
+    prop: body_length
+    value: { lo: 2, hi: 4 }
+    source:
+      ref: src:wikipedia-early-vertebrates
+      loc: "Pholiderpeton, Description"
+      quote: "Pholiderpeton scutigerum measured 2 metres (6 ft 7 in) in length, while specimens of P. attheyi had 41 centimetres (16 in) long skull and could measure up to 4 metres (13 ft) long."
+    method: compilation
+    note: >-
+      Pholiderpeton's two species, among the largest of the group: many were smaller. An encyclopedia, cited as nothing better could
+      be read.

@@ -1,0 +1,96 @@
+id: life/taxa/eryops
+kind: taxon
+summary: >-
+  Eryops, the great flat-headed amphibian of the early Permian of North America, strongly built for a life at the water's edge.
+same_as: { pbdb: "txn:37011" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Eryops }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.17
+      parts:
+        body:
+          rings:
+            - [-0.52, 0.54, 0.46, 0.004]
+            - [-0.43, 0.64, 0.44, 0.012]
+            - [-0.34, 0.78, 0.42, 0.024]
+            - [-0.25, 0.96, 0.4, 0.042]
+            - [-0.17, 1.14, 0.38, 0.066]
+            - [-0.08, 1.3, 0.34, 0.086]
+            - [0.02, 1.4, 0.32, 0.094]
+            - [0.11, 1.42, 0.34, 0.092]
+            - [0.18, 1.34, 0.42, 0.08]
+          neck: { r: 0.06, steps: [2, 1] }
+        thigh: { points: [[0.07, -0.13, 0.8, 0.036], [0.12, -0.11, 0.72, 0.03], [0.17, -0.095, 0.6, 0.024]] }
+        shin: { y: -0.095, x: 0.17, top: 0.62, r: 0.024, swing: 0.045 }
+        hindfoot: { at: [0.18, -0.07, 0.05], r: [0.032, 0.046, 0.009] }
+        arm: { points: [[0.08, 0.145, 0.84, 0.038], [0.135, 0.13, 0.74, 0.032], [0.18, 0.13, 0.6, 0.025]] }
+        forearm: { y: 0.13, x: 0.18, top: 0.62, r: 0.024, swing: 0.04 }
+        forefoot: { at: [0.19, 0.155, 0.05], r: [0.03, 0.044, 0.009] }
+        head:
+          at:
+            stand: { y: 0.21, z: 1.04, pitch: 0.04 }
+            alert: { y: 0.21, z: 1.3, pitch: -0.1 }
+            low: { y: 0.22, reach: 0.29, pitch: 0.2 }
+          rings:
+            - [-0.014, 0.004, 0.09, 0.032]
+            - [0.04, 0.012, 0.106, 0.04]
+            - [0.11, 0.01, 0.094, 0.034]
+            - [0.18, 0.002, 0.074, 0.027]
+            - [0.24, -0.004, 0.052, 0.02]
+            - [0.285, -0.008, 0.028, 0.013]
+        jaw:
+          rings:
+            - [0.0, -0.034, 0.086, 0.014]
+            - [0.12, -0.032, 0.08, 0.012]
+            - [0.23, -0.022, 0.048, 0.009]
+            - [0.28, -0.018, 0.022, 0.006]
+        eyes: { at: [0.05, 0.11, 0.036], r: 0.011 }
+        spines: { type: row, near: true, n: 22, item: plate, from: [0, -0.2, 1.1], to: [0, 0.19, 1.42], r: [0, 0.018, 0.02], size: [0.7, 1, 1.1, 1.1, 0.8] }
+    unsourced: >-
+      A machine's reconstruction: a head a quarter of the whole length, thick limbs and short broad spines along the back,
+      from the photograph of the AMNH's mounted Eryops (Wikimedia Commons, "Eryops AMNH.jpg").
+  length-wikipedia:
+    prop: body_length
+    value: { lo: 1.5, hi: 3 }
+    source:
+      ref: src:wikipedia-early-vertebrates
+      loc: "Eryops, Description"
+      quote: "Eryops averaged a little over 1.5–2.0 m (4 ft 11 in – 6 ft 7 in) long and could grow up to 3 m (9 ft 10 in)"
+    method: compilation
+    rank: preferred
+    note: >-
+      Preferred as it gives both the usual and the greatest size; Herbst et al. below give only the greatest. An encyclopedia,
+      cited as Schoch (2002) and (2009), whom it and they rest on, could not be read.
+  length-herbst:
+    prop: body_length
+    value: 3
+    source:
+      ref: src:herbst-2022-eryops-pose
+      loc: "Introduction"
+      quote: "(~3 m adult body length; Schoch 2002)"
+    method: expert-estimate
+  mass-hart:
+    prop: body_mass
+    value: { lo: 102, hi: 222 }
+    source:
+      ref: src:hart-2022-temnospondyl-mass
+      loc: "Abstract"
+      quote: "and that of Eryops between 102 and 222 kg"
+    method: model
+    rank: preferred
+    note: Preferred as it brings many methods together, tested on living animals of like shape.
+  mass-strong:
+    prop: body_mass
+    value: { lo: 86.88, hi: 131.42 }
+    source:
+      ref: src:strong-2025-ichthyostega
+      loc: "Results, Mass estimates"
+      quote: "yielding an estimated mass of 86.88–131.42 kg (mean = 110.28 kg)"
+    method: model
+    note: One digital model of one specimen, with its range.

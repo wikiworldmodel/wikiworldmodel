@@ -1,0 +1,49 @@
+id: life/taxa/monotremata
+kind: taxon
+summary: >-
+  The egg-laying mammals: platypuses and echidnas and their extinct kin.
+same_as: { pbdb: "txn:39737" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Monotremata, en: "monotremes" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.09
+      parts:
+        snout: { type: spike, zl: true, mat: horn, tint: 60, sides: [6, 4], from: [0, 0.33, 0.12], to: [0, 0.5, 0.08], r: 0.032 }
+        tail: { from: [0, -0.2, 0.11], to: [0, -0.34, 0.05], r: 0.04 }
+    unsourced: >-
+      A machine's reconstruction, as a low body and a long beak or snout, from the accounts of
+      the platypus and the echidnas on the Animal Diversity Web; only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.3, hi: 0.9 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Tachyglossus aculeatus, Physical Description"
+        quote: "ranging in length from about 30 to 40 cm"
+      - ref: src:animal-diversity-web
+        loc: "account of Zaglossus bruijni, Physical Description"
+        quote: "reaching 40 cm to 90 cm in total length (snout to tail)"
+    method: compilation
+    note: >-
+      From the short-beaked echidna to the western long-beaked echidna, the largest living
+      one.
+  mass:
+    prop: body_mass
+    value: { lo: 1.484, hi: 30 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Ornithorhynchus_anatinus, column Mass.g (grams)"
+        quote: "Ornithorhynchus_anatinus,Monotremata,Ornithorhynchidae,Ornithorhynchus,anatinus,1,0,1,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,1484.3"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Zaglossus_hacketti, column Mass.g (grams)"
+        quote: "Zaglossus_hacketti,Monotremata,Tachyglossidae,Zaglossus,hacketti,1,0,0,0,Imputed,PHYLACINE 1.2.1,30000"
+    method: compilation
+    note: >-
+      From the platypus to the extinct long-beaked echidna, in kilograms here and grams in the
+      dataset.

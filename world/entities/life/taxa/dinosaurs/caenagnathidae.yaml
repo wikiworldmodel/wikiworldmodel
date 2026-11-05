@@ -1,0 +1,21 @@
+id: life/taxa/caenagnathidae
+kind: taxon
+summary: >-
+  The caenagnathids: long-legged oviraptorosaurs of the Late Cretaceous of North America and Asia.
+same_as: { pbdb: "txn:54544" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Caenagnathidae }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 2, hi: 3 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 15, Elmisaurids", quote: "Chirostenotes narrow-handed one Late Cretaceous (80-72.8 MYA) 6.6 ft (2 m)?" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 15, Elmisaurids", quote: "Hagryphus claws of the western desert Late Cretaceous (80-72.8 MYA) 9.8 ft (3 m)?" }
+    method: compilation
+    note: >-
+      The named genera of the table "Elmisaurids" on that page, standing for any member with no
+      length of its own: both ends are the author's own doubt.

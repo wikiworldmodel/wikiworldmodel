@@ -1,0 +1,32 @@
+id: life/taxa/camarasaurus
+kind: taxon
+summary: >-
+  Camarasaurus, the commonest sauropod of the Morrison Formation, its neck held high and its skull
+  deep.
+same_as: { pbdb: "txn:38697" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Camarasaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        jaw: { type: tube, on: head, near: true, sides: [6, 4], rings: [[0.006, -0.013, 0.009, 0.004], [0.03, -0.015, 0.009, 0.0035], [0.052, -0.012, 0.0075, 0.003]] }
+        nares: { type: lump, on: head, near: true, at: [0, 0.03, 0.013], r: [0.007, 0.012, 0.004], sides: [6, 3], bands: [4, 2] }
+    unsourced: >-
+      A machine's reconstruction: the plan sauropod, which was measured from C. supremus in
+      "Camarasaurus supremus Skeletal Multiview.png" on Wikimedia Commons, with the jaw and the
+      ridge over the nostrils seen there added close up.
+  length-holtz-2012:
+    prop: body_length
+    value: 18
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 32, Primitive Macronarians"
+      quote: "Camarasaurus chambered [vertebrae] reptile Late Jurassic (155.7-150.8 MYA) 59 ft (18 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

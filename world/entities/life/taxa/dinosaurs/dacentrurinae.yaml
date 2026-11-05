@@ -1,0 +1,42 @@
+id: life/taxa/dacentrurinae
+kind: taxon
+summary: >-
+  The dacentrurines, stegosaurs with more spines than plates and, in Miragaia, a very long neck.
+same_as: { pbdb: "txn:81342" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dacentrurinae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        plates-left:
+          n: 10
+          from: [-0.008, 0.02, 0.76]
+          to: [-0.008, 0.72, 0.62]
+          item: plate
+          r: [0, 0.05, 0.11]
+          size: [0.45, 0.65, 0.85, 0.95, 0.9, 0.8, 0.72, 0.65, 0.55, 0.45]
+        plates-right:
+          n: 9
+          from: [0.008, 0.055, 0.8]
+          to: [0.008, 0.685, 0.66]
+          item: plate
+          r: [0, 0.05, 0.11]
+          size: [0.55, 0.75, 0.9, 0.95, 0.85, 0.78, 0.7, 0.6, 0.5]
+    unsourced: >-
+      A machine's reconstruction: narrower, more spine-like plates than the plan, from the
+      silhouette "Dacentrurus Scale.svg" on Wikimedia Commons.
+  length:
+    prop: body_length
+    value: { lo: 6.1, hi: 8 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 39, Dacentrurines", quote: "Miragaia Mirigaia [Parish in Portugal] Late Jurassic (150.8-145.5 MYA) 20 ft (6.1 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 39, Dacentrurines", quote: "Dacentrurus very spiky tail Late Jurassic (161.2-145.5 MYA) 26.2 ft (8 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Dacentrurines" on that page, standing for any member
+      with no length of its own.

@@ -1,0 +1,59 @@
+id: life/taxa/merycoidodontidae
+kind: taxon
+summary: >-
+  Stout, short-legged, sheep-sized plant-eaters of North America, of the Eocene to the Miocene.
+same_as: { pbdb: "txn:42488" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Merycoidodontidae, en: "oreodonts" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.34
+      mass_length: 16
+      behave: { group: [4, 18], habitat: open, poses: [graze, graze, stand, walk, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.56, 0.48, 0.008]
+            - [-0.44, 0.68, 0.58, 0.012]
+            - [-0.37, 0.84, 0.72, 0.018]
+            - [-0.31, 1.0, 0.76, 0.04]
+            - [-0.25, 1.06, 0.6, 0.08]
+            - [-0.14, 1.08, 0.5, 0.098]
+            - [-0.01, 1.06, 0.48, 0.1]
+            - [0.09, 1.08, 0.54, 0.086]
+            - [0.16, 1.1, 0.64, 0.066]
+          neck: { r: 0.046, steps: [3, 1] }
+        hind: { y: -0.22, x: 0.056, top: 0.84, knee: 0.56, ankle: 0.26, r: 0.05 }
+        fore: { y: 0.08, x: 0.058, top: 0.76, r: 0.026 }
+        head:
+          at:
+            stand: { y: 0.24, z: 1.12, pitch: 0.2 }
+            alert: { y: 0.24, z: 1.28, pitch: 0.02 }
+            low: { y: 0.27, reach: 0.15, pitch: 1.0 }
+          rings:
+            - [-0.012, 0.008, 0.044, 0.046]
+            - [0.03, 0.014, 0.05, 0.056]
+            - [0.075, 0.002, 0.036, 0.042]
+            - [0.115, -0.014, 0.026, 0.028]
+            - [0.145, -0.02, 0.022, 0.018]
+        ears: { from: [0.032, 0.0, 0.04], to: [0.048, -0.02, 0.07], r: 0.012 }
+        eyes: { at: [0.034, 0.07, 0.022] }
+    unsourced: >-
+      A machine's reconstruction, from the photograph of the Merycoidodon mount at the
+      American Museum of Natural History on Wikipedia's page for the genus: a heavy head, a
+      short neck, short legs and a long tail.
+  length:
+    prop: body_length
+    value: 1.4
+    source:
+      ref: src:wikipedia-merycoidodon
+      loc: "section \"Morphology\""
+      quote: "but had a longer body, at about 1.4 metres (4.6 ft)"
+    method: compilation
+    note: >-
+      Merycoidodon, from Wikipedia as nothing better could be read, standing for the family.

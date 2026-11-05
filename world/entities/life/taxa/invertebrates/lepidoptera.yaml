@@ -1,0 +1,33 @@
+id: life/taxa/lepidoptera
+kind: taxon
+summary: >-
+  The moths and butterflies, with scaled wings. Most are moths, and the body drawn is a moth's.
+same_as: { pbdb: "txn:71428" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lepidoptera, en: "moths and butterflies" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: moth
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, after Britannica's account of Lepidoptera and general knowledge; no figure
+      was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 0.154 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Lepidoptera Blastobasidae\""
+        quote: "Lepidoptera Blastobasidae 377 1 11 5 35 (Capinera 2008) Data given as wingspan"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Lepidoptera Noctuidae\""
+        quote: "Lepidoptera Noctuidae 30579 3 154 7 360 (Arnett 2000)/(Ohl & Thiele 2007) Data given as wingspan"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres. The table
+      converted these lengths from wingspans, which is rough: Noctuidae from a span of up to 360 mm. The span of the
+      wings in the plan is about that ratio.

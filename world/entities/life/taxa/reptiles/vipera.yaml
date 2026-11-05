@@ -1,0 +1,24 @@
+id: life/taxa/vipera
+kind: taxon
+summary: >-
+  The true vipers of Eurasia.
+same_as: { pbdb: "txn:38158" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Vipera", en: "vipers" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.363, hi: 1.1 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Vipera altaica, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "27.31039616 363 NA"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Vipera ammodytes, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "687.7854751 1100 611"
+    method: compilation
+    note: >-
+      Total length: the living species of the genus in the dataset.

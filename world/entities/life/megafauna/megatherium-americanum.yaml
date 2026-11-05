@@ -60,6 +60,43 @@ claims:
       Table 1 to 10,250–11,982 cal BP. The site's other early dates ran younger still, to 6,740 ±
       480 14C years, not calibrated in the text read. Superseded: Politis et al. show that humates
       in the collagen made these dates too young.
+  body-plan:
+    prop: body_plan
+    value: ground-sloth
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length-mammal-forms:
+    prop: body_length
+    value: 6
+    source:
+      ref: src:wikipedia-largest-prehistoric-animals
+      loc: "section \"Anteaters and sloths (Pilosa)\""
+      quote: "measuring 6 metres (20 ft) in length"
+    method: compilation
+    note: >-
+      From Wikipedia, as no measured skeleton could be read.
+  mass-mammal-forms:
+    prop: body_mass
+    value: 6265
+    source:
+      ref: src:faurby-2020-phylacine
+      loc: "Data/Traits/Trait_data.csv, row Megatherium_americanum, column Mass.g (grams)"
+      quote: "Megatherium_americanum,Pilosa,Megatheriidae,Megatherium,americanum,1,0,0,0,Imputed,PHYLACINE 1.2.1,6265000"
+    method: compilation
+    note: >-
+      A high estimate: Deak et al. (2025) treat figures around 6,000 kg as high-end. See the
+      claim beside it.
+  mass-brassey-gardiner:
+    prop: body_mass
+    value: 3706
+    source:
+      ref: src:deak-2025-ground-sloths
+      loc: "Methods, the mass estimates used in their simulations"
+      quote: "Megatherium (3,706 kg; Brassey and Gardiner 2015)"
+    method: model
+    rank: preferred
+    note: >-
+      As Deak et al. report Brassey & Gardiner (2015), which could not be read itself. Preferred because it
+      is the estimate they rest on, treating higher ones as high-end.
 relations:
   parent:
     rel: descends-from

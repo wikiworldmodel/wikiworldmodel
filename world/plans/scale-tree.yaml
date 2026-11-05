@@ -1,0 +1,6 @@
+description: >-
+  A scale tree: a tall bare pole that forks over and over at its top, with grassy leaves at the tips.
+kind: plant
+behave: { layer: canopy, weight: 0.8, wet: 2.6 }
+parts:
+  tree: { type: scale-tree, trunk: 0.03, fork_at: 0.68, spread: 0.15, forks: 3 }

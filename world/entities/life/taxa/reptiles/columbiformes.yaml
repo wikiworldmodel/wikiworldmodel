@@ -1,0 +1,66 @@
+id: life/taxa/columbiformes
+kind: taxon
+summary: >-
+  Pigeons and doves: compact flying birds with small heads and full breasts.
+same_as: { pbdb: "txn:39349" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Columbiformes", en: "pigeons and doves" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [1, 10], flies: [3, 30] }
+      parts:
+        body:
+          rings:
+            - [-0.42, 1.1, 1.02, 0.04]
+            - [-0.32, 1.16, 1.06, 0.044]
+            - [-0.24, 1.24, 1.1, 0.04]
+            - [-0.17, 1.36, 1.08, 0.05]
+            - [-0.1, 1.56, 0.94, 0.082]
+            - [-0.02, 1.84, 0.7, 0.118]
+            - [0.06, 2.06, 0.66, 0.13]
+            - [0.13, 2.16, 0.84, 0.11]
+            - [0.19, 2.24, 1.26, 0.068]
+          neck: { r: 0.034, steps: [3, 1] }
+        head:
+          rings:
+            - [-0.02, 0, 0.028, 0.032]
+            - [0.02, 0.004, 0.038, 0.042]
+            - [0.06, 0.002, 0.03, 0.03]
+            - [0.09, -0.004, 0.014, 0.016]
+        bill: { from: [0, 0.08, -0.004], to: [0, 0.15, -0.012], r: 0.012 }
+        eyes: { at: [0.03, 0.04, 0.014], r: 0.009 }
+        wings: { span: 0.8, chord: 0.24, sweep: 0.28, beat: 0.3 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Pigeons and Doves (Columbidae)\""
+      quote: "they generally have small heads and full-breasted bodies"
+    note: >-
+      The body follows this. The rest is a machine's reconstruction; no skeletal figure was looked
+      at.
+  length:
+    prop: body_length
+    value: { lo: 0.15, hi: 0.8 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Pigeons and Doves (Columbidae)\""
+      quote: "5.9–31.5 in (15–120 cm); 1.1–4.4 lb (0.5–2 kg)"
+    method: compilation
+    note: >-
+      The upper end is taken from the inches, as 31.5 in is 80 cm and the row's own 120 cm does not
+      agree with it.
+  mass:
+    prop: body_mass
+    value: { lo: 0.03, hi: 3 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Columbiformes (Pigeons, Doves, and Dodos)\""
+      quote: "which weighs about 1.1 oz (30 g) and the largest the Victoria crowned-pigeon (Goura victoria) of Papua New Guinea at 3.7–6.6 lb (1.7–3 kg)"
+    method: compilation
+    note: >-
+      The Size row's masses, 0.5–2 kg, are not used: the order's own entry gives the diamond dove
+      and the crowned-pigeon.

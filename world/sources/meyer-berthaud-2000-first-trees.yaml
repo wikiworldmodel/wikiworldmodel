@@ -1,0 +1,17 @@
+id: src:meyer-berthaud-2000-first-trees
+type: publication
+kind: review
+citation: >-
+  Meyer-Berthaud, B. (2000). [The first trees. The Archaeopteris model]. Journal de la Société de
+  Biologie 194(2), 65–70.
+authors:
+  - "Meyer-Berthaud, B."
+published: 2000
+title: "[The first trees. The Archaeopteris model]"
+container: Journal de la Société de Biologie 194(2), 65–70
+doi: 10.1051/jbio/2000194020065
+verified:
+  by: machine:claude-code
+  how: >-
+    The English abstract only, read in Europe PMC (PMID 11098430); the journal's own site would not
+    serve the page without a browser. Quotes checked by script against the abstract.

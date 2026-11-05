@@ -1,0 +1,16 @@
+id: src:case-1907-diadectes
+type: publication
+kind: measurement
+citation: >-
+  Case, E.C. (1907). Restoration of Diadectes. The Journal of Geology 15(6), 556–559.
+authors:
+  - "Case, E.C."
+published: 1907
+title: "Restoration of Diadectes"
+container: "The Journal of Geology 15(6)"
+url: https://archive.org/details/jstor-30061495
+verified:
+  by: machine:claude-code
+  how: >-
+    The Internet Archive's OCR text of the JSTOR early-journal copy read; quotes checked by script
+    against it. The restoration, as reprinted in Popular Science Monthly 73, looked at.

@@ -1,0 +1,42 @@
+id: life/taxa/megalosauroidea
+kind: taxon
+summary: >-
+  The megalosaurs and their kin, long-snouted big hunters of the Jurassic and Cretaceous. The
+  spinosaurs have their own record.
+same_as: { pbdb: "txn:57247" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Megalosauroidea }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          at:
+            stand: { y: 0.27, z: 1.14, pitch: 0.08 }
+          rings:
+            - [-0.005, 0, 0.025, 0.03]
+            - [0.03, 0.002, 0.029, 0.037]
+            - [0.075, -0.004, 0.022, 0.028]
+            - [0.115, -0.01, 0.015, 0.018]
+            - [0.15, -0.014, 0.009, 0.01]
+        jaw: { rings: [[0.015, -0.034, 0.02, 0.01], [0.08, -0.04, 0.018, 0.009], [0.13, -0.036, 0.011, 0.006], [0.152, -0.028, 0.006, 0.0035]] }
+        mouth: { rings: [[0.03, -0.029, 0.018, 0.005], [0.095, -0.031, 0.014, 0.004], [0.146, -0.022, 0.006, 0.0025]] }
+        eyes: { at: [0.023, 0.032, 0.018], r: 0.005 }
+    unsourced: >-
+      A machine's reconstruction: a longer, lower skull than the plan, from the silhouettes
+      "Torvosaurus Scale.svg" on Wikimedia Commons and the heading of the table "Megalosaurids" in
+      Holtz (2012).
+  length:
+    prop: body_length
+    value: { lo: 5, hi: 12 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 6, Primitive Megalosauroids", quote: "Marshosaurus [American paleontologist Othniel Late Jurassic (155.7-150.8 MYA) 16.4 ft (5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 7, Megalosaurids", quote: "Torvosaurus savage reptile Late Jurassic (155.7-150.8 MYA) 39.4 ft (12 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Primitive Megalosauroids" and "Megalosaurids" (pp. 6-7), standing
+      for any member with no length of its own.

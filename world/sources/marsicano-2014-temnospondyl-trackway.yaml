@@ -1,0 +1,20 @@
+id: src:marsicano-2014-temnospondyl-trackway
+type: publication
+kind: measurement
+citation: >-
+  Marsicano, C.A., Wilson, J.A. & Smith, R.M.H. (2014). A temnospondyl trackway from the early
+  Mesozoic of western Gondwana and its implications for basal tetrapod locomotion. PLoS ONE 9(8),
+  e103255.
+authors:
+  - "Marsicano, C.A."
+  - "Wilson, J.A."
+  - "Smith, R.M.H."
+published: 2014
+title: "A temnospondyl trackway from the early Mesozoic of western Gondwana and its implications for basal tetrapod locomotion"
+container: "PLoS ONE 9(8), e103255"
+doi: 10.1371/journal.pone.0103255
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC4123899); quotes checked by script against it.

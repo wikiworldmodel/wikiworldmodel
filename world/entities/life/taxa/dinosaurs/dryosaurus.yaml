@@ -1,0 +1,29 @@
+id: life/taxa/dryosaurus
+kind: taxon
+summary: >-
+  Dryosaurus, a small swift iguanodont of the Late Jurassic of western North America.
+same_as: { pbdb: "txn:38731" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dryosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Dryosauridae, which was measured from this
+      genus: D. elderae in "Dryosaurus Scale.svg" on Wikimedia Commons. Nothing here differs from
+      it.
+  length-holtz-2012:
+    prop: body_length
+    value: 3
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 43, Dryosaurids"
+      quote: "Dryosaurus tree reptile Late Jurassic (155.7-150.8 MYA) 9.8 ft (3 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

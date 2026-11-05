@@ -1,0 +1,18 @@
+id: src:wikipedia-phenacodus
+type: database-record
+kind: review
+citation: >-
+  "Phenacodus." Wikipedia, the free encyclopedia (English edition), revision 1368756023.
+snapshot: 2026-11-05
+title: Phenacodus
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Phenacodus&oldid=1368756023
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for a body mass, for which nothing better could be
+  read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-05, last edited 10 August 2026; the quotations checked
+    by script against its text, after normalizing whitespace.

@@ -1,0 +1,41 @@
+id: life/taxa/pseudoscorpiones
+kind: taxon
+summary: >-
+  The false scorpions, tiny and tailless, with venomous pincers.
+same_as: { pbdb: "txn:229078" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pseudoscorpiones, en: "false scorpions" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: scorpion
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The body starts from the scorpion's, as the article compares them.
+  form:
+    prop: body_form
+    value:
+      parts:
+        tail: null
+        bulb: null
+        sting: null
+        body: { rings: [[0, 0.34, 0.085, 0.05, 0.03], [0, 0.22, 0.09, 0.09, 0.045], [0, -0.02, 0.09, 0.13, 0.055], [0, -0.3, 0.085, 0.11, 0.05], [0, -0.48, 0.08, 0.04, 0.02], [0, -0.5, 0.08, 0.006, 0.005]] }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. false scorpion"
+        quote: "They resemble true scorpions but are tailless"
+    note: >-
+      The article's comparison; the proportions are a machine's reconstruction, with no figure compared.
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 0.0075 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. false scorpion"
+        quote: "only 1 to 7.5 mm (0.04 to 0.3 inch) long"
+    method: compilation
+    note: >-
+      An encyclopedia's numbers, cited for lack of a work that could be read.

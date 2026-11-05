@@ -1,0 +1,41 @@
+# Measured from "Psittacosaurus Scale.svg" on Wikimedia Commons.
+description: >-
+  A small two-legged early horned dinosaur with a big deep parrot-beaked head, short arms and a long tail.
+kind: animal
+mass_length: 9.6
+hip: 0.34
+behave: { group: [2, 8], habitat: any, poses: [stand, walk, graze, graze, alert] }
+parts:
+  body:
+    type: trunk
+    sides: [10, 5]
+    rings:
+      - [-0.55, 0.62, 0.61, 0.002]
+      - [-0.44, 0.72, 0.65, 0.007]
+      - [-0.32, 0.84, 0.68, 0.014]
+      - [-0.2, 0.95, 0.66, 0.026]
+      - [-0.09, 1.02, 0.56, 0.05]
+      - [0.0, 1.04, 0.42, 0.072]
+      - [0.09, 1.0, 0.38, 0.078]
+      - [0.17, 0.96, 0.46, 0.066]
+      - [0.22, 0.96, 0.64, 0.044]
+    neck: { r: 0.036, steps: [3, 1] }
+  legs: { type: digitigrade, y: -0.03, x: 0.05, top: 0.78, knee: 0.5, ankle: 0.22, r: 0.046, swing: 0.1 }
+  arms: { type: chain, mirror: true, sides: [6, 4], points: [[0.06, 0.18, 0.66, 0.018], [0.066, 0.2, 0.46, 0.014], [0.06, 0.25, 0.36, 0.01], [0.056, 0.27, 0.32, 0.006]] }
+  head:
+    type: head
+    sides: [12, 6]
+    thin: false
+    at:
+      stand: { y: 0.285, z: 1.0, pitch: 0.12 }
+      alert: { y: 0.27, z: 1.16, pitch: 0.0 }
+      low: { y: 0.32, reach: 0.22, clear: 0.05, pitch: 0.8 }
+    rings:
+      - [-0.008, 0.0, 0.042, 0.036]
+      - [0.03, 0.006, 0.046, 0.05]
+      - [0.075, 0.002, 0.036, 0.05]
+      - [0.115, -0.012, 0.024, 0.038]
+      - [0.14, -0.024, 0.016, 0.024]
+  beak: { type: tube, on: head, mat: horn, tint: 90, sides: [8, 4], thin: false, rings: [[0.135, -0.024, 0.016, 0.024], [0.165, -0.044, 0.008, 0.012], [0.178, -0.066, 0.002, 0.002]] }
+  jaw: { type: tube, on: head, near: true, sides: [6, 4], rings: [[0.04, -0.044, 0.03, 0.012], [0.1, -0.052, 0.02, 0.012], [0.14, -0.06, 0.008, 0.008]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.04, 0.05, 0.02], r: 0.009 }

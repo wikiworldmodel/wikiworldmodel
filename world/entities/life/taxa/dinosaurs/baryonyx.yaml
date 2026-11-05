@@ -1,0 +1,30 @@
+id: life/taxa/baryonyx
+kind: taxon
+summary: >-
+  Baryonyx, a spinosaur of the Early Cretaceous of England, named for its heavy thumb claw.
+same_as: { pbdb: "txn:58891" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Baryonyx }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        ridge: null
+    unsourced: >-
+      A machine's reconstruction: the family's form with no ridge of spines, as the silhouette
+      "Baryonyx Size Diagram by PaleoGeek.svg" on Wikimedia Commons shows only a low rise over the
+      hips.
+  length-holtz-2012:
+    prop: body_length
+    value: 10
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 7, Spinosaurids"
+      quote: "Baryonyx heavy claw Early Cretaceous (140.2-112 MYA) 32.8 ft (10 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

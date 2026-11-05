@@ -1,0 +1,45 @@
+id: life/taxa/cynodontia
+kind: taxon
+summary: >-
+  Cynodonts: the therapsids nearest mammals, and the group that includes them. As a body it stands here for the Permian and
+  Triassic ones and the other mammal forerunners with no form of their own.
+same_as: { pbdb: "txn:39168" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cynodontia, en: cynodonts }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: cynodont
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in
+      the tree. The plan is a machine's reconstruction, with its proportions read off the skeletal reconstruction of
+      Massetognathus in Jenkins (1970), Fig. 9. Mammals have their own plans.
+  length:
+    prop: body_length
+    value: { lo: 0.5, hi: 2 }
+    source:
+      - ref: src:jenkins-1970-massetognathus
+        loc: "Discussion, first sentence"
+        quote: "about 50 cm in length from head to tail, was a cynodont of relatively slender build"
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Cynognathus, Description"
+        quote: "up to 2 metres (6 ft 7 in) in total length"
+    method: expert-estimate
+    note: >-
+      Massetognathus and the large Cynognathus stand for the cynodonts with no length of their own; the last of them, nearest
+      mammals, were far smaller. The upper end is from an encyclopedia, citing Botha et al. (2005), which could not be read.
+  mass:
+    prop: body_mass
+    value: { lo: 1, hi: 100 }
+    source:
+      - ref: src:filippini-2022-cynodont-mass
+        loc: "Abstract"
+        quote: "Small traversodontids such as Andescynodon mendozensis and Pascualgnathus polanskii were between 1 to 3.5 kg."
+      - ref: src:filippini-2022-cynodont-mass
+        loc: "Abstract"
+        quote: "reached or surpassed 100 kg"
+    method: model
+    note: From small traversodontids to adult Cynognathus and Exaeretodon, both of the Triassic of Argentina.

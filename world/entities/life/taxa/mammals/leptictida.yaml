@@ -1,0 +1,39 @@
+id: life/taxa/leptictida
+kind: taxon
+summary: >-
+  Small insect-eaters of the Cretaceous to the Oligocene, with long snouts and long hind legs.
+same_as: { pbdb: "txn:40251" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Leptictida }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.13
+      parts:
+        snout: { type: spike, zl: true, mat: fur, sides: [5, 4], from: [0, 0.33, 0.16], to: [0, 0.47, 0.15], r: 0.022 }
+        ears: { type: lump, zl: true, mat: fur, near: true, mirror: true, sides: [6, 4], bands: [3, 2], at: [0.05, 0.25, 0.21], r: [0.012, 0.024, 0.04] }
+        hind: { from: [0.077, -0.16, 0.13], to: [0.0924, -0.1, 0] }
+        fore: { from: [0.077, 0.14, 0.13], to: [0.0924, 0.15, 0] }
+        body: { at: [0, 0, 0.19] }
+        head: { at: [0, 0.26, 0.18] }
+        tail: { from: [0, -0.2, 0.17], to: [0, -0.6, 0.06] }
+    unsourced: >-
+      A machine's reconstruction, on the form written for elephant shrews, with which they are
+      often compared: long hind legs, a long snout, a long tail. No skeleton of one was looked
+      at.
+  length:
+    prop: body_length
+    value: 0.875
+    source:
+      ref: src:wikipedia-largest-prehistoric-animals
+      loc: "section \"Leptictids (Leptictida)\""
+      quote: "head with trunk 375 mm (14.8 in) long, and tail 500 mm (20 in) long"
+    method: compilation
+    note: >-
+      The largest known, Leptictidium tobieni, its head and trunk with its tail, from
+      Wikipedia as nothing better could be read. No smaller member was read, so this
+      overstates the rest.

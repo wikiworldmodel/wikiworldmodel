@@ -1,0 +1,27 @@
+id: life/taxa/multituberculata
+kind: taxon
+summary: >-
+  The multituberculates: rodent-like mammals with gnawing incisors and many-cusped molars, from
+  the Jurassic to the Eocene.
+same_as: { pbdb: "txn:39779" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Multituberculata, en: "multituberculates" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  mass:
+    prop: body_mass
+    value: { lo: 0.006, hi: 40 }
+    source:
+      - ref: src:wilson-2012-multituberculates
+        loc: "Supplementary Table 5, row Bolodon minor"
+        quote: "Bolodon minor 146 140 0.96 - 0.006 m1-SL 60,61"
+      - ref: src:krause-2021-taeniolabis
+        loc: "Comparisons and Discussion, \"Cranial Size and Body Mass Estimates\""
+        quote: "to have had a body mass of approximately 35–40 kg"
+    method: compilation
+    note: >-
+      The smallest species in the table of Wilson et al., from the area of its lower molar, to
+      the largest known multituberculate, Taeniolabis taoensis, from the size of its skull. No
+      length of the whole animal was read, so the plan makes its length from the mass.

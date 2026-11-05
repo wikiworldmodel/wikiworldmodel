@@ -1,0 +1,22 @@
+id: src:evans-2014-beelzebufo
+type: publication
+kind: measurement
+citation: >-
+  Evans, S.E., Groenke, J.R., Jones, M.E.H., Turner, A.H. & Krause, D.W. (2014). New material of
+  Beelzebufo, a hyperossified frog (Amphibia: Anura) from the Late Cretaceous of Madagascar. PLoS
+  ONE 9(1), e87236.
+authors:
+  - "Evans, S.E."
+  - "Groenke, J.R."
+  - "Jones, M.E.H."
+  - "Turner, A.H."
+  - "Krause, D.W."
+published: 2014
+title: "New material of Beelzebufo, a hyperossified frog (Amphibia: Anura) from the Late Cretaceous of Madagascar"
+container: "PLoS ONE 9(1), e87236"
+doi: 10.1371/journal.pone.0087236
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC3905036); quotes checked by script against it.

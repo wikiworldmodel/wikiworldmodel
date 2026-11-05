@@ -1,0 +1,6 @@
+description: >-
+  A cushion of moss, close to the ground.
+kind: plant
+behave: { layer: under, weight: 0.5, wet: 1.4 }
+parts:
+  plant: { type: shrub, wide: 1.6, lumps: 6, mat: frond }

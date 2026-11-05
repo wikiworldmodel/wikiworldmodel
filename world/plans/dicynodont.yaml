@@ -1,0 +1,39 @@
+description: >-
+  A stout plant-eating therapsid: a barrel body and very short tail, a large head ending in a horny beak, usually with a pair of tusks, hind legs under it and forelegs bowed out.
+kind: animal
+hip: 0.22
+behave: { group: [1, 8], habitat: open, poses: [graze, graze, stand, walk] }
+parts:
+  body:
+    type: trunk
+    rings:
+      - [-0.5, 0.86, 0.72, 0.006]
+      - [-0.45, 0.98, 0.7, 0.02]
+      - [-0.39, 1.16, 0.6, 0.046]
+      - [-0.31, 1.34, 0.46, 0.086]
+      - [-0.21, 1.46, 0.36, 0.118]
+      - [-0.09, 1.52, 0.32, 0.13]
+      - [0.02, 1.52, 0.34, 0.124]
+      - [0.11, 1.44, 0.46, 0.094]
+    neck: { r: 0.062, steps: [3, 1] }
+  hind: { type: pillar, y: -0.27, x: 0.1, top: 0.9, r: 0.044, swing: 0.04 }
+  hindfoot: { type: lump, near: true, not: [walk, fly], mirror: true, at: [0.108, -0.25, 0.05], r: [0.036, 0.05, 0.012], sides: [8, 4], bands: [3, 2] }
+  arm: { type: chain, mirror: true, sides: [6, 3], points: [[0.085, 0.07, 1.0, 0.042], [0.125, 0.05, 0.78, 0.035], [0.142, 0.06, 0.52, 0.027]] }
+  forearm: { type: pillar, y: 0.06, x: 0.142, top: 0.54, r: 0.027, swing: 0.04, phase: 1 }
+  forefoot: { type: lump, near: true, not: [walk, fly], mirror: true, at: [0.15, 0.08, 0.05], r: [0.032, 0.046, 0.012], sides: [8, 4], bands: [3, 2] }
+  head:
+    type: head
+    at:
+      stand: { y: 0.17, z: 1.28, pitch: 0.3 }
+      alert: { y: 0.17, z: 1.48, pitch: 0.12 }
+      low: { y: 0.2, reach: 0.25, clear: 0.34, pitch: 0.62 }
+    rings:
+      - [-0.016, 0.006, 0.056, 0.05]
+      - [0.035, 0.014, 0.07, 0.066]
+      - [0.09, 0.006, 0.066, 0.064]
+      - [0.15, -0.012, 0.046, 0.05]
+      - [0.2, -0.03, 0.028, 0.034]
+  beak: { type: tube, on: head, mat: horn, tint: 80, sides: [8, 4], thin: false, rings: [[0.196, -0.03, 0.028, 0.034], [0.235, -0.052, 0.014, 0.018], [0.25, -0.066, 0.003, 0.004]] }
+  jaw: { type: tube, on: head, sides: [8, 4], rings: [[0.03, -0.054, 0.05, 0.016], [0.13, -0.066, 0.036, 0.016], [0.205, -0.07, 0.014, 0.008]] }
+  tusks: { type: spike, on: head, mirror: true, mat: horn, tint: 200, sides: [6, 4], from: [0.034, 0.135, -0.03], to: [0.04, 0.16, -0.1], r: 0.011 }
+  eyes: { type: eyes, on: head, near: true, at: [0.058, 0.07, 0.034], r: 0.0095 }

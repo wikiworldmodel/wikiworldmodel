@@ -1,0 +1,21 @@
+id: life/taxa/turiasauria
+kind: taxon
+summary: >-
+  The turiasaurs, heavy European and African sauropods of the Jurassic and Early Cretaceous.
+same_as: { pbdb: "txn:91328" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Turiasauria }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 14, hi: 30 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 30, Turiasaurs", quote: "Galveosaurus Galve [Spain] reptile Late Jurassic to Early (150.8-140.2 MYA) 45.9 ft (14 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 30, Turiasaurs", quote: "Turiasaurus Spain where it was discovered] Cretaceous (150.8-140.2 MYA) 99 ft (30 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Turiasaurs" on that page, standing for any member
+      with no length of its own.

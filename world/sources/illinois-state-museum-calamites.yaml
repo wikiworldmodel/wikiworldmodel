@@ -1,0 +1,16 @@
+id: src:illinois-state-museum-calamites
+type: database-record
+kind: compilation
+citation: >-
+  Illinois State Museum. Calamites sp. Page of the museum's online exhibit of Mazon Creek fossil plants.
+snapshot: 2026-11-05
+title: "Calamites sp."
+container: Illinois State Museum, Mazon Creek exhibit
+url: https://museum.state.il.us/exhibits/mazon_creek/calamites.html
+reliability: >-
+  A museum's exhibit text, which gives no source for its figure.
+verified:
+  by: machine:claude-code
+  how: >-
+    The page read at museum.state.il.us on the date of the snapshot; quotes checked by script against
+    its text.

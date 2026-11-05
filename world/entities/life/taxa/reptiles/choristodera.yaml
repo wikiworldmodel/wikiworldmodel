@@ -1,0 +1,50 @@
+id: life/taxa/choristodera
+kind: taxon
+summary: >-
+  Freshwater reptiles of the Jurassic to the Miocene, of the northern continents: the early ones
+  small and lizard-like, the later ones like gharials.
+same_as: { pbdb: "txn:37784" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Choristodera", en: "choristoderes" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: crocodilian
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.6, 0.5, 0.003]
+            - [-0.4, 0.82, 0.42, 0.008]
+            - [-0.28, 1.0, 0.42, 0.018]
+            - [-0.16, 1.14, 0.44, 0.034]
+            - [-0.06, 1.24, 0.34, 0.058]
+            - [0.04, 1.26, 0.3, 0.07]
+            - [0.13, 1.2, 0.34, 0.05]
+            - [0.2, 1.12, 0.46, 0.036]
+            - [0.25, 1.08, 0.5, 0.034]
+            - [0.31, 1.12, 0.62, 0.042]
+            - [0.37, 1.0, 0.62, 0.026]
+            - [0.44, 0.9, 0.62, 0.013]
+            - [0.5, 0.82, 0.62, 0.008]
+    unsourced: "A machine's reconstruction from the skulls drawn to scale in Fig. 1 of Matsumoto & Evans (2010), which are mostly not as long-snouted as the later forms: the plan's body with a slimmer snout."
+  posture:
+    prop: posture
+    value: sprawling
+    unsourced: "No work read states its stance; an editorial choice, as for the crocodilians it resembles in shape."
+  length:
+    prop: body_length
+    value: { lo: 0.3, hi: 1 }
+    source:
+      ref: src:matsumoto-evans-2010-choristoderes
+      loc: "p. 254"
+      quote: "are smaller (0.3-1.0m)"
+    method: compilation
+    note: >-
+      The early forms, called non-neochoristoderes there; the neochoristoderes have their own.

@@ -1,0 +1,26 @@
+id: life/taxa/colosteidae
+kind: taxon
+summary: >-
+  Colosteids, such as Greererpeton and Colosteus: long-bodied, short-limbed, flat-headed swimmers of the Carboniferous.
+same_as: { pbdb: "txn:36975" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Colosteidae, en: colosteids }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: embolomere
+    unsourced: >-
+      Which plan draws it: an editorial classification, as the long-bodied, short-limbed swimmer nearest in shape. Nothing here says they are
+      related. No figure of a colosteid was looked at.
+  length:
+    prop: body_length
+    value: { lo: 1, hi: 1.4 }
+    source:
+      ref: src:wikipedia-early-vertebrates
+      loc: "Greererpeton, Description"
+      quote: "Adults have overall length of 1.0–1.4 metres (3.3–4.6 ft) or 1.5 metres (4.9 ft)"
+    method: compilation
+    note: One genus stands for the family. An encyclopedia, cited as nothing better could be read.

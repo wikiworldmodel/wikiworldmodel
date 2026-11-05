@@ -1,0 +1,35 @@
+id: life/taxa/anas
+kind: taxon
+summary: >-
+  The dabbling ducks: mallards, teals and their kin.
+same_as: { pbdb: "txn:67686" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Anas", en: "dabbling ducks" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.36, hi: 0.65 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Ducks, Geese, and Swans (Anatidae)\", Brown teal"
+        quote: "14.2–18.9 in (36–48 cm); 0.8–1.5 lb (375–700 g)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Ducks, Geese, and Swans (Anatidae)\", Mallard"
+        quote: "19.7–25.6 in (50–65 cm); 1.7–3.5 lb (750–1,580 g)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the species of the genus the entry describes.
+  mass:
+    prop: body_mass
+    value: { lo: 0.375, hi: 1.58 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Ducks, Geese, and Swans (Anatidae)\", Brown teal"
+        quote: "14.2–18.9 in (36–48 cm); 0.8–1.5 lb (375–700 g)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Ducks, Geese, and Swans (Anatidae)\", Mallard"
+        quote: "19.7–25.6 in (50–65 cm); 1.7–3.5 lb (750–1,580 g)"
+    method: compilation

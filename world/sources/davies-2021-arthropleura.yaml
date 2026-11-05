@@ -1,0 +1,26 @@
+id: src:davies-2021-arthropleura
+type: publication
+kind: measurement
+citation: >-
+  Davies, N.S., Garwood, R.J., McMahon, W.J., Schneider, J.W. & Shillito, A.P. (2021). The largest arthropod in Earth history:
+  insights from newly discovered Arthropleura remains (Serpukhovian Stainmore Formation, Northumberland, England). Journal of the
+  Geological Society 179(3), jgs2021-115.
+authors:
+  - "Davies, N.S."
+  - "Garwood, R.J."
+  - "McMahon, W.J."
+  - "Schneider, J.W."
+  - "Shillito, A.P."
+published: 2021
+title: >-
+  The largest arthropod in Earth history: insights from newly discovered Arthropleura remains (Serpukhovian Stainmore Formation,
+  Northumberland, England)
+container: Journal of the Geological Society
+doi: 10.1144/jgs2021-115
+url: https://www.repository.cam.ac.uk/handle/1810/330763
+reliability: The size is an estimate from a fragment 76 by 36 cm that was part of a moult, scaled up from other specimens.
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract read through OpenAlex and the submitted version read from Cambridge's repository, where the same sentence stands; the
+    publisher's page is behind a browser check that was not to be passed. Quotes checked by script against the abstract.

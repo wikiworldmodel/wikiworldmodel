@@ -1,0 +1,38 @@
+id: life/taxa/podicipediformes
+kind: taxon
+summary: >-
+  Grebes: diving birds of fresh water, with their legs at the very back of the body.
+same_as: { pbdb: "txn:39551" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Podicipediformes", en: "grebes" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: waterfowl
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        bill: null
+        beak: { type: spike, on: head, mat: horn, sides: [6, 4], from: [0, 0.08, -0.006], to: [0, 0.19, -0.014], r: 0.016 }
+    unsourced: "A machine's reconstruction: a pointed bill on the plan's swimming bird. No skeletal figure was looked at."
+  length:
+    prop: body_length
+    value: { lo: 0.2, hi: 0.78 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Podicipediformes (Grebes)\""
+      quote: "7.9–31 in (20–78 cm); 0.25–4.0 lb (112–1,826 g)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.112, hi: 1.826 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Podicipediformes (Grebes)\""
+      quote: "7.9–31 in (20–78 cm); 0.25–4.0 lb (112–1,826 g)"
+    method: compilation

@@ -1,0 +1,31 @@
+id: life/taxa/allosaurus
+kind: taxon
+summary: >-
+  Allosaurus, the great hunter of the Late Jurassic of western North America and Portugal.
+same_as: { pbdb: "txn:38590" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Allosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        crests: { type: spike, on: head, mirror: true, tint_add: 18, from: [0.02, 0.022, 0.034], to: [0.022, 0.05, 0.062], r: 0.009, sides: [6, 3] }
+    unsourced: >-
+      A machine's reconstruction: the large-theropod plan, itself measured from the silhouette of
+      OMNH 1708 and 2114 in "Allosaurus size comparison.svg" on Wikimedia Commons, with the low
+      horns over the eyes seen there.
+  length-holtz-2012:
+    prop: body_length
+    value: 12
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 8, Allosaurids"
+      quote: "Allosaurus strange [vertebra] reptile Late Jurassic (155.7-150.8 MYA) 39.4 ft (12 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it, at the top of what is claimed for the
+      genus: the silhouettes looked at show most individuals nearer 8 to 10 m.

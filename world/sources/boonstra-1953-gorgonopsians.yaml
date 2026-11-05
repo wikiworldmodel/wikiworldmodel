@@ -1,0 +1,17 @@
+id: src:boonstra-1953-gorgonopsians
+type: publication
+kind: measurement
+citation: >-
+  Boonstra, L.D. (1953). The gorgonopsians, Aelurognathus microdon and Hipposaurus boonstrai,
+  reconstructed. Annals of the South African Museum 42, 29–31.
+authors:
+  - "Boonstra, L.D."
+published: 1953
+title: "The gorgonopsians, Aelurognathus microdon and Hipposaurus boonstrai, reconstructed"
+container: "Annals of the South African Museum 42, 29–31"
+url: https://archive.org/details/biostor-111647
+verified:
+  by: machine:claude-code
+  how: >-
+    The Internet Archive's scan with its OCR text read; quotes checked by script against the text
+    layer.

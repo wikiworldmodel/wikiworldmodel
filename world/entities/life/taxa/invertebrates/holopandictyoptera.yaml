@@ -1,0 +1,19 @@
+id: life/taxa/holopandictyoptera
+kind: taxon
+summary: >-
+  The cockroaches and termites, the mantises and their stem groups, as the database's classification has them. It says
+  only which body they start from: each of its larger groups has its own size.
+same_as: { pbdb: "txn:269497" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Holopandictyoptera }
+    unsourced: "The classification's own name."
+  body-plan:
+    prop: body_plan
+    value: cockroach
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a cockroach, from general knowledge; no figure was compared with it. Its
+      fore wings are tegmina, flat at rest.

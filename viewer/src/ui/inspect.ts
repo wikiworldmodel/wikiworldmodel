@@ -3,7 +3,7 @@
 // records make to it, and what the derived dates rest on.
 import type { ClimateClass } from '../../../core/climate.ts';
 import type { Cover } from '../../../core/planet.ts';
-import type { SceneFile, SceneTaxon } from '../../../core/scene.ts';
+import type { LivingTaxon, SceneSpec } from '../../../core/scene.ts';
 import type { CitationRecord, ClaimRecord, EntityRecord, SeriesRecord, SourceRecord } from '../../../core/records.ts';
 import { splitRef } from '../../../core/refs.ts';
 import { lookup, scenarioKey, type Scenario } from '../../../core/scenario.ts';
@@ -201,12 +201,12 @@ export interface PlanetStateInfo {
 
 /** A taxon as a living scene draws it. */
 export interface OrganismHere {
-  taxon: SceneTaxon;
+  taxon: LivingTaxon;
   site: string;
   slice: number;
-  fossils: SceneFile['fossils'];
-  /** how many of it the generator placed */
-  count: number;
+  /** the stage of the chart it is drawn for, if it is a place with no scene of its own */
+  stage?: string;
+  fossils: SceneSpec['fossils'];
   generator: string;
 }
 
@@ -280,6 +280,9 @@ export class InspectPanel {
     const id = splitRef(ref).record;
     return `<a href="#" class="open" data-entity="${esc(id)}">${esc(label)}</a>`;
   }
+
+  /** How to go and see a taxon where it lived, if there is somewhere to go: what the panel offers. */
+  seeIt: ((id: string) => { label: string; go: () => void } | undefined) | null = null;
 
   showEntity(r: EntityRecord, scenario: Scenario, time: FeatureTime, here?: TerritoryHere, organism?: OrganismHere): void {
     const status = r.claims.every((c) => c.status === 'accepted') ? 'accepted' : r.claims.some((c) => c.status === 'disputed') ? 'disputed' : 'proposed';
@@ -367,6 +370,15 @@ export class InspectPanel {
       ${r.wanted.length ? `<section><h3>Wanted</h3><p class="method">Referred to here but not written yet: ${r.wanted.map((w) => `<code>${esc(w)}</code>`).join(', ')}.</p></section>` : ''}
       <section><h3>Sources</h3><ol class="sources">${sources}</ol></section>`,
     );
+    // A taxon can be gone and seen, where the most of its fossils are.
+    const see = organism ? undefined : this.seeIt?.(r.id);
+    if (see) {
+      const button = document.createElement('button');
+      button.className = 'see-it';
+      button.textContent = see.label;
+      button.onclick = see.go;
+      this.el.querySelector('.meta')?.after(button);
+    }
     for (const input of this.el.querySelectorAll<HTMLInputElement>('input[type=radio]')) {
       input.onchange = () => this.cb.onPick(input.dataset.members!.split(' '), input.value === input.dataset.default ? null : input.value);
     }
@@ -376,10 +388,48 @@ export class InspectPanel {
   private organismSection(o: OrganismHere): string {
     const t = o.taxon;
     const sizes = [t.fromMass ? `${fmt(t.mass!)} kg` : t.length !== undefined ? `${fmt(t.length)} m long` : '', t.hip !== undefined ? `${fmt(t.hip)} m at the hips` : '', t.height !== undefined ? `${fmt(t.height)} m tall` : ''].filter(Boolean).join(', ');
-    const rows = `${t.rows} ${t.rows === 1 ? 'occurrence' : 'occurrences'} in ${t.collections} ${t.collections === 1 ? 'collection' : 'collections'} of ${esc(o.fossils.title)}`;
-    return `<section class="here organism"><h3>In ${esc(o.site)}, ${esc(formatTime(o.slice))}</h3>
-      <p><strong>Recorded:</strong> ${rows}${sizes ? `; grown, ${esc(sizes)}, as the claims below say` : ''}.</p>
-      <p><strong>Generated:</strong> where each stands, that there are ${o.count} of it here, what each is doing, how old it is and its colour${t.fromMass ? ', and its length, from its mass and the shape of the kit' : ''}. Nobody recorded these. <span class="method">${esc(o.generator)}, shown in magenta in evidence mode.</span></p></section>`;
+    const rows = `${t.rows} ${t.rows === 1 ? 'occurrence' : 'occurrences'}`;
+    const where = (km: number) => (km < 20 ? 'close by' : `about ${(Math.round(km / 10) * 10).toLocaleString('en-US')} km from here, over land`);
+    const recorded =
+      t.tier === 'formation'
+        ? `<strong>Recorded:</strong> ${rows} in ${t.collections} ${t.collections === 1 ? 'collection' : 'collections'} of ${esc(o.fossils.title)}${sizes && !t.size_from ? `; grown, ${esc(sizes)}, as the claims below say` : ''}.`
+        : t.tier === 'here'
+          ? `<strong>Recorded here:</strong> ${rows} of ${esc(o.fossils.title)} in this stage, the nearest ${where(t.km ?? 0)}.`
+          : t.tier === 'region'
+            ? `<strong>Inferred:</strong> the nearest of its ${rows} in this stage is ${where(t.km ?? 0)}, and no fossil puts it at this spot. That it lived here too is a guess from the land and the climate between.`
+            : `<strong>A stand-in:</strong> nothing of this kind is recorded within reach: the nearest fossil of any kind is ${where(t.km ?? 0)}. ${esc(t.label)} stands for what sort of thing may have lived here, and is no claim that it did.`;
+    const body = t.own ? `<p><strong>Its body:</strong> its own form, as the claims below say.</p>` : `<p><strong>Its body:</strong> drawn from the form of ${esc(t.form_label)}, the nearest node of the tree with one. No one has written its own yet.</p>`;
+    const size = t.size_from ? `<p><strong>Its size:</strong> ${esc(sizes)}, within the range the record of ${esc(t.size_from)} gives. No one has measured it here.</p>` : '';
+    return `<section class="here organism"><h3>In ${esc(o.site)}, ${esc(o.stage ?? formatTime(o.slice))}</h3>
+      <p>${recorded}</p>${body}${size}
+      <p><strong>Generated:</strong> where each stands, how many there are, what each is doing, how old it is and its colour${t.fromMass ? ', and its length, from its mass and the shape of the plan' : ''}. Nobody recorded these. <span class="method">${esc(o.generator)}, shown in magenta in evidence mode.</span></p></section>`;
+  }
+
+  /** What the records say lived at this place and time, in tiers, and what was made of it. */
+  showLifeHere(spec: SceneSpec, note?: string): void {
+    const group = (tier: string, title: string, say: string) => {
+      const list = spec.taxa.filter((t) => t.tier === tier);
+      if (!list.length) return '';
+      const items = list.map((t) => {
+        const name = t.id.startsWith('txn:') ? esc(t.label) : this.link(t.id, t.label);
+        const size = t.length !== undefined ? `${fmt(t.length)} m` : t.height !== undefined ? `${fmt(t.height)} m tall` : '';
+        const own = t.own ? '' : `, drawn as ${esc(t.form_label)}`;
+        return `<li>${name}${size ? ` <span class="method">${esc(size)}${own}</span>` : own ? ` <span class="method">${own.slice(2)}</span>` : ''}</li>`;
+      });
+      return `<section class="here organism"><h3>${esc(title)}</h3><p class="note">${esc(say)}</p><ul>${items.join('')}</ul></section>`;
+    };
+    const b = spec.biome;
+    const none = spec.taxa.length ? '' : '<section class="here organism"><h3>Nothing on land</h3><p>No fossil of anything living on land is known from this stage, anywhere within reach. The land is drawn bare.</p></section>';
+    this.frame(spec.site.stage ?? 'This place', `<div class="meta"><span class="kind">What lived here</span> <span class="badge basis-procedural">procedural</span></div>
+      <p class="summary">Where the climate field reads the land at ${esc(String(b.ageMa))} Ma it is ${esc(b.label.toLowerCase())}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%. Every plant and animal you see is placed by a generator: only who could be here comes from fossils.</p>
+      ${none}${group('here', 'Recorded here', 'A fossil of it within a few hundred km, from this stage.')}${group('region', 'Recorded in the region', 'A fossil of it can be reached overland, in a like climate. That it lived at this spot is an inference.')}${group('standin', 'Stand-ins', 'Nothing of this kind is known within reach. These stand for what sort of thing may have lived here, and are no claim that it did.')}
+      ${note ? `<section><p class="note">${esc(note)}</p></section>` : ''}`);
+  }
+
+  /** A living thing that is only a row of a database: what the row says, and what was made of it. */
+  showOrganism(t: LivingTaxon, o: OrganismHere, src: SourceRecord | undefined): void {
+    const source = `<section><h3>Source</h3><ol class="sources"><li><p>${esc(src?.citation ?? '')}</p></li></ol></section>`;
+    this.frame(t.label, `<div class="meta"><span class="kind">Taxon, in the Paleobiology Database</span> <span class="badge basis-procedural">procedural</span></div>${this.organismSection(o)}${source}`);
   }
 
   /** Inside a polity's territory: which of the dataset's rows is drawn there, and for what years. */

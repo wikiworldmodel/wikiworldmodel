@@ -1,0 +1,35 @@
+description: >-
+  An armoured jawed fish: a head and chest in boxes of bony plate, a slim scaled or naked tail behind them, and a wide flattened underside.
+kind: animal
+hip: 0.11
+behave: { group: [1, 6], habitat: water, poses: [stand, walk] }
+parts:
+  body:
+    type: trunk
+    sides: [12, 5]
+    rings:
+      - [-0.52, 1.86, 1.76, 0.002]
+      - [-0.4, 1.66, 1.3, 0.01]
+      - [-0.26, 1.58, 0.82, 0.024]
+      - [-0.12, 1.66, 0.46, 0.046]
+      - [-0.02, 1.76, 0.28, 0.07]
+  armour: { type: lump, mat: shell, tint: 120, at: [0, 0.09, 1.02], r: [0.094, 0.15, 0.09], sides: [10, 5], bands: [5, 3] }
+  head:
+    type: head
+    mat: shell
+    tint: 120
+    sides: [12, 5]
+    at:
+      stand: { y: 0.24, z: 1.06, pitch: 0.04 }
+    rings:
+      - [-0.02, 0, 0.084, 0.074]
+      - [0.05, 0.004, 0.082, 0.068]
+      - [0.12, -0.002, 0.066, 0.054]
+      - [0.175, -0.01, 0.046, 0.036]
+      - [0.205, -0.014, 0.022, 0.018]
+  jaw: { type: tube, on: head, sides: [8, 4], rings: [[0.02, -0.06, 0.05, 0.012], [0.12, -0.056, 0.04, 0.01], [0.195, -0.04, 0.014, 0.006]] }
+  dorsal: { type: sheet, gap: 0.0015, points: [[0, -0.1, 1.66], [0, -0.26, 1.6], [0, -0.26, 2.06], [0, -0.2, 2.5], [0, -0.04, 1.76]] }
+  tailfin: { type: sheet, gap: 0.0015, points: [[0, -0.34, 1.3], [0, -0.3, 1.0], [0, -0.42, 0.9], [0, -0.52, 1.76], [0, -0.44, 1.6]] }
+  pelvic: { type: sheet, mirror: true, gap: 0.0015, points: [[0.04, -0.14, 0.56], [0.08, -0.22, 0.34], [0.06, -0.23, 0.44], [0.03, -0.17, 0.64]] }
+  pectoral: { type: sheet, mirror: true, gap: 0.0015, points: [[0.085, 0.08, 0.52], [0.17, -0.02, 0.2], [0.13, -0.06, 0.34], [0.08, -0.02, 0.56]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.05, 0.11, 0.03], r: 0.0115 }

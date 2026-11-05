@@ -1,0 +1,33 @@
+id: life/taxa/stegosauria
+kind: taxon
+summary: >-
+  The plated dinosaurs: small low heads, tall hips, plates or spines along the back and spikes on
+  the tail.
+same_as: { pbdb: "txn:38798" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Stegosauria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: stegosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  posture:
+    prop: posture
+    value: quadruped
+    source:
+      ref: src:maidment-2012-ornithischian-stance
+      loc: "Introduction"
+      quote: "quadrupedality evolved within at least three lineages independently: once in the armored stegosaurs and ankylosaurs, once in the frilled ceratopsids, and once in the duck-billed hadrosaurs"
+  length:
+    prop: body_length
+    value: { lo: 3.5, hi: 9 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 39, Huayangosauridae", quote: "Chungkingosaurus Chongqing [China] reptile Late Jurassic (161.2-155.7 MYA) 11.5 ft (3.5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 39, Stegosaurines", quote: "Stegosaurus covered reptile Late Jurassic (155.7-150.8 MYA) 29.5 ft (9 m)" }
+    method: compilation
+    note: >-
+      The range across the tables of stegosaurs on pp. 38-39, standing for any member with no length
+      of its own.

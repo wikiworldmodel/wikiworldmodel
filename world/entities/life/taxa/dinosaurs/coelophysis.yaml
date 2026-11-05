@@ -1,0 +1,30 @@
+id: life/taxa/coelophysis
+kind: taxon
+summary: >-
+  Coelophysis, a slim hunter of the Late Triassic of New Mexico, known from a mass of skeletons at
+  Ghost Ranch.
+same_as: { pbdb: "txn:38520" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Coelophysis }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Coelophysoidea, which was measured from
+      this genus: AMNH 7223 in "Coelophysis Scale.svg" on Wikimedia Commons. Nothing here differs
+      from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 2.7
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 2, Coelophysoids"
+      quote: "Coelophysis hollow form Late Triassic (204-201.6 MYA) 8.9 ft (2.7 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

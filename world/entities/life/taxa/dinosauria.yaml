@@ -11,6 +11,16 @@ claims:
     value: { en: dinosaurs, la: Dinosauria }
     source: { ref: src:opentree-taxonomy-3.7, loc: "taxon_info ott90215: name" }
     note: Open Tree gives the scientific name; the English name is an editorial gloss.
+  posture:
+    prop: posture
+    value: biped
+    source:
+      ref: src:benson-2014-dinosaur-body-mass
+      loc: Introduction
+      quote: "The first dinosaurs appeared more than 230 Ma ago in the Triassic Period, as small-bodied (10–60 kg), bipedal, generalists."
+    note: >-
+      How the group began, and so how anything below it stands unless a nearer node says
+      otherwise, as the sauropods and the armoured and horned dinosaurs do.
 relations:
   parent:
     rel: descends-from

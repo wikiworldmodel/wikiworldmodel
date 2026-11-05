@@ -1,0 +1,79 @@
+id: life/taxa/dinocerata
+kind: taxon
+summary: >-
+  Rhinoceros-sized plant-eaters of the Paleocene and Eocene, the later ones with three pairs of
+  bony knobs on the skull and long upper canines.
+same_as: { pbdb: "txn:40591" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dinocerata, en: "uintatheres" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: heavy-ungulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.44
+      behave: { group: [1, 3], habitat: any, poses: [graze, stand, stand, walk] }
+      parts:
+        body:
+          rings:
+            - [-0.47, 0.72, 0.66, 0.005]
+            - [-0.455, 0.84, 0.76, 0.008]
+            - [-0.44, 0.96, 0.84, 0.014]
+            - [-0.41, 1.04, 0.66, 0.066]
+            - [-0.34, 1.12, 0.5, 0.106]
+            - [-0.22, 1.18, 0.44, 0.122]
+            - [-0.08, 1.2, 0.42, 0.128]
+            - [0.05, 1.24, 0.46, 0.12]
+            - [0.13, 1.26, 0.56, 0.098]
+            - [0.18, 1.18, 0.66, 0.078]
+          neck: { r: 0.064, steps: [2, 1] }
+        hind: { y: -0.28, x: 0.08, top: 0.78, r: 0.048 }
+        fore: { y: 0.1, x: 0.08, top: 0.8, r: 0.05 }
+        head:
+          at:
+            stand: { y: 0.23, z: 1.0, pitch: 0.24 }
+            alert: { y: 0.23, z: 1.14, pitch: 0.06 }
+            low: { y: 0.26, reach: 0.26, pitch: 0.9 }
+          rings:
+            - [-0.016, 0.01, 0.048, 0.056]
+            - [0.06, 0.01, 0.05, 0.056]
+            - [0.13, 0.0, 0.04, 0.044]
+            - [0.2, -0.012, 0.034, 0.032]
+            - [0.25, -0.02, 0.028, 0.02]
+        rear-knobs: { type: spike, on: head, mirror: true, sides: [6, 4], from: [0.034, 0.02, 0.046], to: [0.05, 0.0, 0.135], r: 0.026 }
+        middle-knobs: { type: spike, on: head, mirror: true, sides: [6, 4], from: [0.028, 0.12, 0.03], to: [0.042, 0.12, 0.095], r: 0.018 }
+        nose-knobs: { type: spike, on: head, mirror: true, sides: [5, 4], from: [0.018, 0.21, 0.006], to: [0.026, 0.225, 0.05], r: 0.012 }
+        sabres: { type: spike, on: head, mirror: true, mat: horn, tint: 205, sides: [6, 4], from: [0.026, 0.16, -0.03], to: [0.032, 0.15, -0.135], r: 0.012 }
+        ears: { from: [0.04, -0.006, 0.05], to: [0.06, -0.03, 0.09], r: 0.012 }
+        eyes: { at: [0.046, 0.1, 0.022] }
+    unsourced: >-
+      A machine's reconstruction, from the photograph of the Uintatherium mount on Wikipedia's
+      page for the genus (Museum_of_Natural_History_Uintatherium.jpg): tall columnar legs, a
+      long heavy skull with knobs and sabres. Early members had neither.
+  length:
+    prop: body_length
+    value: 4
+    source:
+      ref: src:wikipedia-largest-prehistoric-animals
+      loc: "section \"Dinoceratans (Dinocerata)\""
+      quote: "4 m (13 ft) in length and 2.25 t (2.48 short tons)"
+    method: compilation
+    note: >-
+      Uintatherium, from Wikipedia as nothing better could be read, standing for the order.
+      Early members were far smaller.
+  mass:
+    prop: body_mass
+    value: 2250
+    source:
+      ref: src:wikipedia-largest-prehistoric-animals
+      loc: "section \"Dinoceratans (Dinocerata)\""
+      quote: "4 m (13 ft) in length and 2.25 t (2.48 short tons)"
+    method: compilation
+    note: >-
+      Uintatherium, as the length beside it.

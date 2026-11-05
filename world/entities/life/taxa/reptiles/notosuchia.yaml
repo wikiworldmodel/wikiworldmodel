@@ -1,0 +1,30 @@
+id: life/taxa/notosuchia
+kind: taxon
+summary: >-
+  The land crocodyliforms of the Cretaceous of Gondwana, on long legs, some plant-eaters and some
+  hunters.
+same_as: { pbdb: "txn:66692" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Notosuchia", en: "notosuchians" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: notosuchian
+    unsourced: "An editorial classification, from its place in the tree. The database files the group as marine, an error that comes down from the crocodilians, so the atlas does not draw most of it yet."
+  length:
+    prop: body_length
+    value: { lo: 0.75, hi: 4 }
+    source:
+      - ref: src:wikipedia-simosuchus
+        loc: "article text"
+        quote: "Fully grown individuals were about 0.75 metres"
+      - ref: src:wikipedia-notosuchia
+        loc: "Baurusuchus, in the list of the group"
+        quote: "A large hypercarnivore 3.5 to 4 metres"
+    method: compilation
+    note: >-
+      Cited from Wikipedia because nothing better could be read: a 2026 paper on the group's size
+      could not be retrieved. Simosuchus to Baurusuchus.

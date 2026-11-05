@@ -1,0 +1,36 @@
+id: life/taxa/rhynchosauria
+kind: taxon
+summary: >-
+  Stocky, beaked plant-eaters of the Triassic, at times the commonest animals of their faunas.
+same_as: { pbdb: "txn:38205" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Rhynchosauria", en: "rhynchosaurs" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: rhynchosaur
+    source:
+      ref: src:wikipedia-rhynchosauria
+      loc: "article text"
+      quote: "with stocky bodies and a powerful beak"
+    note: >-
+      The plan's description follows this, cited from Wikipedia as nothing better could be read for
+      the body; the skulls in Ezcurra et al. (2016) were looked at. Which plan draws the group is an
+      editorial classification.
+  length:
+    prop: body_length
+    value: { lo: 1.3, hi: 2.25 }
+    source:
+      - ref: src:wikipedia-hyperodapedon
+        loc: "article text"
+        quote: "gordoni had a total length around 1.3 metres"
+      - ref: src:wikipedia-rhynchosauria
+        loc: "article text"
+        quote: "Later and more advanced genera grew upto 2.25 metres or more in length"
+    method: compilation
+    note: >-
+      Cited from Wikipedia because nothing better could be read. The earliest forms were much
+      smaller, and no length of them was read.

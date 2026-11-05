@@ -1,0 +1,36 @@
+id: life/taxa/nymphaeales
+kind: taxon
+summary: >-
+  Water lilies, with their floating leaves.
+same_as: { pbdb: "txn:54894" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Nymphaeales, en: water lilies }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: floating-fern
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 3, s.v. Nuphar"
+      quote: "Leaves floating, submersed, or emersed."
+  form:
+    prop: body_form
+    value:
+      parts:
+        plant: { radius: 1.6 }
+    unsourced: "A machine's reconstruction: smaller patches than a floating fern's mats."
+  height:
+    prop: plant_height
+    value: { lo: 0.2, hi: 0.5 }
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 6, s.v. Nuphar pumila"
+      quote: "Petiole 20--50 cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The leaf stalk of a living water lily, which rises through the water to a leaf on its surface:
+      a modern relative, and more than the plant stands above the water.

@@ -1,0 +1,29 @@
+id: life/taxa/creodonta
+kind: taxon
+summary: >-
+  The database's remainder of a group once used for Hyaenodonta and Oxyaenodonta together, which
+  have their own records.
+same_as: { pbdb: "txn:40902" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Creodonta, en: "creodonts" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: carnivoran
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  mass:
+    prop: body_mass
+    value: { lo: 0.03, hi: 880 }
+    source:
+      - ref: src:sole-2015-kerberos
+        loc: "text after Fig 15"
+        quote: "that of proviverrines (0.03–20 kg)"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Hyaenodonts (Hyaenodonta)\""
+        quote: "Megistotherium osteothlastes at 500–880 kg (1,100–1,940 lb)"
+    method: compilation
+    note: >-
+      The range of the hyaenodonts, standing for what the database leaves here.

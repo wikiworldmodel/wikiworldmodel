@@ -1,0 +1,29 @@
+id: life/taxa/torvosaurus
+kind: taxon
+summary: >-
+  Torvosaurus, a big long-snouted hunter of the Late Jurassic of North America and Portugal.
+same_as: { pbdb: "txn:38587" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Torvosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Megalosauroidea, whose long skull was
+      taken from this genus: "Torvosaurus Scale.svg" on Wikimedia Commons. Nothing here differs from
+      it.
+  length-holtz-2012:
+    prop: body_length
+    value: 12
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 7, Megalosaurids"
+      quote: "Torvosaurus savage reptile Late Jurassic (155.7-150.8 MYA) 39.4 ft (12 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

@@ -1,0 +1,36 @@
+id: life/taxa/lystrosaurus
+kind: taxon
+summary: >-
+  Lystrosaurus, the dicynodont of the end of the Permian and the start of the Triassic, whose snout bends sharply down from its
+  high-set eyes, and which for a while was much the commonest large land animal on Earth.
+same_as: { pbdb: "txn:39049" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lystrosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          at:
+            stand: { y: 0.18, z: 1.4, pitch: 0.16 }
+            alert: { y: 0.18, z: 1.58, pitch: 0.02 }
+            low: { y: 0.21, z: 1.06, pitch: 0.34 }
+          rings:
+            - [-0.016, 0.006, 0.056, 0.052]
+            - [0.03, 0.018, 0.074, 0.072]
+            - [0.08, 0.018, 0.07, 0.07]
+            - [0.125, -0.012, 0.05, 0.06]
+            - [0.15, -0.05, 0.034, 0.044]
+            - [0.165, -0.09, 0.022, 0.026]
+        beak: { rings: [[0.163, -0.09, 0.022, 0.026], [0.178, -0.118, 0.012, 0.012], [0.182, -0.134, 0.003, 0.004]] }
+        jaw: { rings: [[0.03, -0.062, 0.05, 0.016], [0.1, -0.09, 0.038, 0.016], [0.15, -0.126, 0.016, 0.009]] }
+        tusks: { from: [0.034, 0.12, -0.05], to: [0.038, 0.128, -0.128], r: 0.01 }
+        eyes: { at: [0.06, 0.07, 0.056], r: 0.0115 }
+    unsourced: >-
+      A machine's reconstruction: the short high head with its snout bent down and its eyes on top, from the life restoration
+      of Lystrosaurus murrayi on Wikimedia Commons ("Lystr murr1DB.jpg"). Its size is left to the node above: no length of a
+      whole skeleton could be read, only femora.

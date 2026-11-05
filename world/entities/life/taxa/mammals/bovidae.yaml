@@ -1,0 +1,52 @@
+id: life/taxa/bovidae
+kind: taxon
+summary: >-
+  Antelopes, cattle, sheep and goats.
+same_as: { pbdb: "txn:42742" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Bovidae, en: "bovids" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.52
+      parts:
+        horns: { type: chain, on: head, mirror: true, mat: horn, tint: 60, sides: [6, 4], points: [[0.02, 0.0, 0.03, 0.0115], [0.04, -0.02, 0.058, 0.009], [0.055, -0.048, 0.09, 0.0065], [0.052, -0.07, 0.125, 0.002]] }
+        head:
+          rings:
+            - [-0.012, 0.004, 0.028, 0.032]
+            - [0.03, 0.006, 0.033, 0.04]
+            - [0.08, -0.008, 0.026, 0.03]
+            - [0.13, -0.022, 0.018, 0.021]
+            - [0.17, -0.032, 0.016, 0.016]
+    unsourced: >-
+      A machine's reconstruction, from the family's account on the Animal Diversity Web: at
+      least one pair of horns, on both sexes generally. Only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.5, hi: 3.3 }
+    source:
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Neotragus pygmaeus, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Neotragus pygmaeus 2.00 3913.68 -999.00 499.99"
+      - ref: src:animal-diversity-web
+        loc: "account of Bos frontalis, Physical Description"
+        quote: "Typical length of the body and head is 2.5 to 3.3 meters"
+    method: compilation
+    note: >-
+      Head and body, without the hanging tail, from which the form’s length is little
+      different.
+  mass:
+    prop: body_mass
+    value: { lo: 2.5, hi: 1126 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Madoqua_piacentinii, column Mass.g (grams)"
+        quote: "Madoqua_piacentinii,Cetartiodactyla,Bovidae,Madoqua,piacentinii,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,2500"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Bubalus_palaeokerabau, column Mass.g (grams)"
+        quote: "Bubalus_palaeokerabau,Cetartiodactyla,Bovidae,Bubalus,palaeokerabau,1,0,0,0,Imputed,PHYLACINE 1.2.1,1125940.4"
+    method: compilation

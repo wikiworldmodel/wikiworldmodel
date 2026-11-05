@@ -1,0 +1,19 @@
+id: src:cannell-2018-giant-dragonflies
+type: publication
+kind: model
+citation: >-
+  Cannell, A.E.R. (2018). The engineering of the giant dragonflies of the Permian: revised body mass, power, air supply,
+  thermoregulation and the role of air density. Journal of Experimental Biology 221(19), jeb185405.
+authors:
+  - "Cannell, A.E.R."
+published: 2018
+title: >-
+  The engineering of the giant dragonflies of the Permian: revised body mass, power, air supply, thermoregulation and the role of
+  air density
+container: Journal of Experimental Biology
+doi: 10.1242/jeb.185405
+reliability: >-
+  Only the abstract was read: the journal's pages and PDF are behind a browser check that was not to be passed.
+verified:
+  by: machine:claude-code
+  how: The abstract read through Europe PMC's service; the quote checked by script against it.

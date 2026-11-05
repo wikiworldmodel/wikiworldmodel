@@ -1,0 +1,33 @@
+id: life/taxa/salviniales
+kind: taxon
+summary: >-
+  Water ferns, of mats on still water.
+same_as: { pbdb: "txn:56125" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Salviniales, en: floating ferns }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: floating-fern
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 2-3, s.v. Salviniaceae"
+      quote: "Plants aquatic, forming floating mats"
+  height:
+    prop: plant_height
+    value: { lo: 0.03, hi: 0.06 }
+    source:
+      - ref: src:flora-of-north-america
+        loc: "Vol. 2, s.v. Azolla"
+        quote: "Stems prostrate, 1--3 cm, or nearly erect, 3--5 cm"
+      - ref: src:flora-of-north-america
+        loc: "Vol. 2, s.v. Salvinia minima"
+        quote: "Stems to ca. 6 cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The stems of living water ferns, which lie along the water rather than stand: modern
+      relatives, and an overstatement of how far they rise.

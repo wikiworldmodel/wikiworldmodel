@@ -1,0 +1,26 @@
+id: life/taxa/trichoptera
+kind: taxon
+summary: >-
+  The caddisflies, moth-like with hairy wings held like a roof. They take the insects' generic body, with their own
+  range of sizes.
+same_as: { pbdb: "txn:134123" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Trichoptera, en: "caddisflies" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.0015, hi: 0.028 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Trichoptera Hydroptilidae\""
+        quote: "Trichoptera Hydroptilidae 2124 1.5 4 4 12 (Neboiss 1986) Data as wingspan"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Trichoptera Phryganeidae\""
+        quote: "Trichoptera Phryganeidae 84 12 28 18 43 (Wiggins 1998) Data as forewing length"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres. The table
+      converted its lengths for this order from wingspans and wing lengths, which is rough.

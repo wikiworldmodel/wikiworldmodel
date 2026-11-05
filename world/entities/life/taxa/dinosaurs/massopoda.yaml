@@ -1,0 +1,23 @@
+id: life/taxa/massopoda
+kind: taxon
+summary: >-
+  The larger sauropodomorphs: the massospondylids, the near-sauropods and the sauropods. Its record
+  speaks for those in no smaller group, such as Anchisaurus and the riojasaurs.
+same_as: { pbdb: "txn:181611" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Massopoda }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 2.4, hi: 10 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 27, Near-Sauropods", quote: "Anchisaurus near reptile Early Jurassic (189.6-175.6 MYA) 7.9 ft (2.4m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 25, Riojasaurids", quote: "Riojasaurus La Rioja Province [Argentina] Late Triassic (228-204 MYA) 32.8 ft (10 m)" }
+    method: compilation
+    note: >-
+      The range of the genera the database places directly in Massopoda, in the tables "Near-
+      Sauropods" (p. 27) and "Riojasaurids" (p. 25), standing for any member with no length of its
+      own.

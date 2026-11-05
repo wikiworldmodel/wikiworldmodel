@@ -1,0 +1,33 @@
+description: >-
+  A small two-legged plant-eating dinosaur.
+kind: animal
+hip: 0.3
+behave: { group: [1, 4], habitat: any, poses: [stand, walk, graze, alert] }
+parts:
+  body:
+    type: trunk
+    sides: [10, 5]
+    rings:
+      - [-0.56, 0.92, 0.9, 0.003]
+      - [-0.44, 0.98, 0.92, 0.009]
+      - [-0.32, 1.03, 0.93, 0.016]
+      - [-0.2, 1.1, 0.88, 0.028]
+      - [-0.09, 1.19, 0.74, 0.054]
+      - [0.02, 1.22, 0.64, 0.06]
+      - [0.09, 1.22, 0.72, 0.048]
+    neck: { r: 0.018, steps: [4, 1] }
+  legs: { type: digitigrade, y: -0.03, x: 0.03, top: 1.0, knee: 0.62, ankle: 0.26, r: 0.04, swing: 0.1 }
+  arms: { type: chain, near: true, mirror: true, sides: [5, 4], points: [[0.03, 0.08, 1.06, 0.012], [0.05, 0.05, 0.84, 0.009], [0.042, 0.11, 0.72, 0.006]] }
+  head:
+    type: head
+    sides: [10, 5]
+    thin: false
+    at:
+      stand: { y: 0.17, z: 1.34, pitch: 0.12 }
+      low: { y: 0.24, reach: 0.088, clear: 0.06, pitch: 0.8 }
+    rings:
+      - [-0.008, 0, 0.0216, 0.0216]
+      - [0.024, 0.0016, 0.024, 0.024]
+      - [0.06, -0.0048, 0.0132, 0.012]
+      - [0.08, -0.008, 0.00384, 0.00384]
+  eyes: { type: eyes, on: head, near: true, at: [0.0204, 0.024, 0.0084], r: 0.00432 }

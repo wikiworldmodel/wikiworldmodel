@@ -1,0 +1,38 @@
+id: life/taxa/lycospora
+kind: taxon
+summary: >-
+  A dispersed microspore of the Carboniferous coal swamps, and so a sign of the scale trees that
+  shed it: it is drawn as one of them.
+same_as: { pbdb: "txn:277985" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lycospora }
+    unsourced: "The classification's own name."
+  body-plan:
+    prop: body_plan
+    value: scale-tree
+    source:
+      ref: src:thomas-2021-lycospora
+      loc: "p. 11, abstract"
+      quote: "The microspore genus Lycospora in its wider sense is produced by both heterosporous cones, Flemingites, and homosporous cones Lepidostrobus."
+    note: >-
+      Thomas calculates these spores as produced by individual Pennsylvanian arborescent lycophytes:
+      the spore stands for its tree.
+  height:
+    prop: plant_height
+    value: { lo: 25, hi: 45 }
+    source:
+      - ref: src:thomas-2021-lycospora
+        loc: "p. 11, Introduction"
+        quote: "growing up to ca. 45 m in height"
+      - ref: src:wang-2012-wuda
+        loc: "Results"
+        quote: "many attaining heights of up to 25 m or more"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The upper figure is Thomas's for the tallest arborescent lycophytes. No figure was read for a
+      small member of this group, so the lower one is Wang et al.'s for Sigillaria, a pole-like tree
+      of the same kind in another family.

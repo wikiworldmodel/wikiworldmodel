@@ -1,0 +1,31 @@
+id: life/taxa/lambeosaurinae
+kind: taxon
+summary: >-
+  The hollow-crested duck-bills.
+same_as: { pbdb: "txn:53394" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lambeosaurinae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        crest: { type: lump, on: head, tint_add: 18, at: [0, 0.03, 0.05], r: [0.013, 0.038, 0.034], sides: [10, 5], bands: [6, 3] }
+    unsourced: >-
+      A machine's reconstruction: a rounded hollow crest on top of the skull, from the silhouettes
+      "Corythosaurus Scale.svg" and "Hypacrosaurus Size.svg" on Wikimedia Commons. Each genus
+      differs in its crest.
+  length:
+    prop: body_length
+    value: { lo: 5, hi: 12 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 46, Primitive Lambeosaurines", quote: "Pararhabdodon near Rhabdodon Late Cretaceous (70.6-65.5 MYA) 16.4 ft (5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 47, Corythosaurinins", quote: "Olorotitan giant swan Late Cretaceous (66.8-65.5 MYA) 39.4 ft (12 m)" }
+    method: compilation
+    note: >-
+      The range across the named genera of the tables "Primitive Lambeosaurines",
+      "Parasaurolophinins" (p. 46) and "Corythosaurinins" (p. 47), standing for any member with no
+      length of its own.

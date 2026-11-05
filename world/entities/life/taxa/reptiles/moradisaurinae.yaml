@@ -1,0 +1,22 @@
+id: life/taxa/moradisaurinae
+kind: taxon
+summary: >-
+  The large plant-eating captorhinids of the Permian.
+same_as: { pbdb: "txn:134808" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Moradisaurinae", en: "moradisaurines" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: 2
+    source:
+      ref: src:leblanc-2015-captorhinids-bally-mountain
+      loc: "p. 35"
+      quote: "an estimated snout-vent length in excess of 2 meters"
+    method: expert-estimate
+    note: >-
+      From snout to vent, as the plan's length is: Moradisaurus, the largest, stated as more than
+      this and standing for the subfamily, some of which were smaller.

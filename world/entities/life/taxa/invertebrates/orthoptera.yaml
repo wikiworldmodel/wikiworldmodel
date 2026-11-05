@@ -1,0 +1,32 @@
+id: life/taxa/orthoptera
+kind: taxon
+summary: >-
+  The grasshoppers, crickets and katydids, with leathery narrow fore wings and great hind legs for leaping. Its body has
+  the long antennae of crickets and katydids, the larger part of the order among fossils.
+same_as: { pbdb: "txn:56641" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Orthoptera, en: "grasshoppers and crickets" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: grasshopper
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, after Britannica's account of Orthoptera (narrow leathery fore wings
+      called tegmina) and general knowledge; no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.002, hi: 0.165 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Orthoptera Myrmecophilidae\""
+        quote: "Orthoptera Myrmecophilidae 8 2 4 (Arnett 2000)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Orthoptera Proscopiidae\""
+        quote: "Orthoptera Proscopiidae 214 25 165 (Parker 1982)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres.

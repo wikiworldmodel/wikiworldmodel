@@ -18,7 +18,11 @@ import { GENERATOR as BIOME_TEXTURE, generateBiomeTexture, type BiomeTexturePara
 import { GENERATOR as CLOUDS, generateClouds, type CloudParams } from '../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../world/generators/earth/surface/v1.ts';
 import { EARTH_RADIUS, fromLocal, toLocal, type CityStructure } from '../../core/city.ts';
+import type { AtlasWhere } from '../../core/atlas.ts';
+import type { SceneFileV2 } from '../../core/scene.ts';
+import { latticeOf } from '../../world/generators/life/spec.ts';
 import { Camera, MAX_DIST, MIN_DIST } from './camera.ts';
+import { LifeAtlas, type ClimateData } from './city/lifeatlas.ts';
 import { LifeScene } from './city/life.ts';
 import { CityScene } from './city/scene.ts';
 import { autoTilt, groundHit, localView, projectLocal, rayOf, sunAt, type LocalView } from './city/view.ts';
@@ -74,7 +78,11 @@ export interface LightworldHandle {
   /** where a structure's label would be on the screen, for tests */
   structureAt(id: string): { x: number; y: number } | undefined;
   /** the living scene as the viewer has it, if one is loaded */
-  scene(): { site: string; plan: { expected: string; actual: string | null }; cell: { expected: string; actual: string | null }; taxa: { id: string; plan: string; rows: number; count: number }[]; organisms: number } | null;
+  scene(): { site: string; plan: { expected: string; actual: string | null }; taxa: { id: string; label: string; form: string; own: boolean; tier: string; km?: number; rows: number; drawn: boolean }[]; instances: number; triangles: number; meshes: number; groundMs: number; stage?: string; climate: string; focus: [number, number]; toRiver: [number, number]; origin: { lat: number; lon: number } } | null;
+  /** a browser's hash of the scene of a place and a time, as a witness in the build has it */
+  lifeDigest(lat: number, lon: number, t: number): Promise<string | null>;
+  /** how far the atlas reaches, as the build says */
+  atlas(): { bins: number; coverage: unknown } | null;
   /** where each group of a taxon stands: on the screen, and on the globe, for tests */
   organismsAt(id: string): { x: number; y: number; depth: number }[];
   organismPlaces(id: string): { lat: number; lon: number; x: number; y: number }[];
@@ -84,6 +92,9 @@ export interface LightworldHandle {
 /** Below this the city's scene is drawn, fading in over the globe; and below the lower height the globe is gone. */
 const CITY_TOP = 1.1e6;
 const CITY_SOLID = 4.5e5;
+/** The same for a scene of any place: it is made as it is needed, so it starts nearer the ground. */
+const LIFE_TOP = 3.2e5;
+const LIFE_SOLID = 1.2e5;
 const GLOBE_GONE = 4.5e4;
 const RAD = Math.PI / 180;
 /** Kinds that belong to a city: they are drawn and named in the city's scene, not on the globe. */
@@ -179,9 +190,11 @@ async function start(root: HTMLElement): Promise<void> {
   let climateAges: number[] = [];
   let climateRule: (ClimateRule & { reef_depth: number; reef_latitude: number }) | null = null;
   let climateReady = !ts.files.climate;
+  let climateData: ClimateData | null = null;
   if (ts.files.climate) {
     void getBytes(build.base + ts.files.climate).then((data) => {
       const { header, arrays } = decodeTile<ClimateHeader>(data);
+      climateData = { header, arrays };
       field.setClimate(header.grid, header.keyframes.map((k) => ({ ageMa: k.ageMa, values: arrays[k.values] as Uint8Array, plate: arrays[k.plate] as Uint16Array })));
       globe.climateCubes = [field.climateCubes![0].texture, field.climateCubes![1].texture];
       climateAges = header.keyframes.map((k) => k.ageMa).sort((a, b) => a - b);
@@ -322,16 +335,37 @@ async function start(root: HTMLElement): Promise<void> {
   const sites: SiteInfo[] = ts.sites ?? [];
   const scenes = new Map<string, CityScene | LifeScene>();
   const loadingScenes = new Set<string>();
+  const failedScenes = new Set<string>();
   let site: SiteInfo | undefined;
   let city: CityScene | LifeScene | null = null;
   let labelledSite: string | null = null;
+  // Anywhere else on land, at any time the atlas covers: a scene the browser makes as it is wanted.
+  const lifeAtlas = build.atlas ? new LifeAtlas(build, build.atlas, () => (climateData && climateRule ? { data: climateData, rule: climateRule } : null), build.atlas.generator, build.planet, build.model, ts.fields.find((f) => f.mode === 'elevation')?.coastline?.isolineM ?? 20) : null;
+  /** the scene of the place the camera is over, and the one being made to take its place */
+  let lifeSite: SiteInfo | null = null;
+  let lifeLoading: string | null = null;
+  let lifeRest = 0;
+  let lifeKey = '';
+  /** a place with no land under it, or nothing to draw: not asked again until the view moves */
+  const lifeEmpty = new Set<string>();
   const labels = new CityLabels();
+  // A name that belongs to a record opens it; one that is only a row of a database says what the row says.
+  labels.onSelect = (id) => {
+    // In a living scene a name is of something standing here: it opens where it is, at the time shown.
+    if (!(city instanceof LifeScene)) return goTo(id);
+    if (!id.startsWith('txn:')) return setState({ sel: id });
+    const info = organismInfo(id);
+    if (!info) return;
+    setState({ sel: null });
+    shownRecord = null;
+    inspect.showOrganism(info.taxon, info, build.atlas?.sourceRecord);
+  };
   labels.el.hidden = true;
   stage.appendChild(labels.el);
   const cityBar = document.createElement('div');
   cityBar.className = 'citybar';
   cityBar.hidden = true;
-  cityBar.innerHTML = `<label title="The hour of the day">Light <input type="range" min="${HOURS[0]}" max="${HOURS[1]}" step="0.05" aria-label="Hour of the day" /></label><button class="to-globe" title="Back out to the whole Earth">Globe</button><span class="city-help" title="Drag to move over the ground. Right-drag or shift-drag to turn and tilt. Scroll to go towards what the pointer is on. W, A, S and D to walk. L for the light. Click anything to see how we know.">?</span>`;
+  cityBar.innerHTML = `<label title="The hour of the day">Light <input type="range" min="${HOURS[0]}" max="${HOURS[1]}" step="0.05" aria-label="Hour of the day" /></label><button class="life-here" hidden title="What the records say lived here, and how sure that is"></button><button class="life-go" hidden title="Go down to where something of each is standing">Go and see</button><button class="to-globe" title="Back out to the whole Earth">Globe</button><span class="city-help" title="Drag to move over the ground. Right-drag or shift-drag to turn and tilt. Scroll to go towards what the pointer is on. W, A, S and D to walk. L for the light. Click anything to see how we know.">?</span>`;
   stage.appendChild(cityBar);
   const cityEnter = document.createElement('button');
   cityEnter.className = 'city-enter';
@@ -423,14 +457,28 @@ async function start(root: HTMLElement): Promise<void> {
   function siteFor(t: number, cam: ViewState['cam']): SiteInfo | undefined {
     const within = (list: SiteInfo[], reach: number) => list.map((s) => ({ s, d: distanceFrom(s, cam.lat, cam.lon) })).filter((x) => x.d < reach).sort((a, b) => a.d - b.d)[0]?.s;
     const open = sites.filter((s) => t >= s.span[0] && t <= s.span[1]);
-    return within(open, 2.2e6) ?? within(sites, 1.5e6) ?? open[0] ?? sites[0];
+    const near = within(open, 2.2e6);
+    const range = (cam.dist - 1) * EARTH_RADIUS;
+    // A city, or a place with its own scene that the camera is right over, is that place. Otherwise, near the
+    // ground, the scene of wherever the camera is, once there is one.
+    const atPlace = !!near && (near.kind === 'city' || distanceFrom(near, cam.lat, cam.lon) < 15e3 || range > LIFE_TOP * 1.4);
+    if (atPlace) return near;
+    if (lifeSite && t >= lifeSite.span[0] && t <= lifeSite.span[1] && range < LIFE_TOP * 1.4) return lifeSite;
+    return near ?? within(sites, 1.5e6) ?? open[0] ?? sites[0];
   }
   function atSite(t: number, cam: ViewState['cam']): void {
     site = siteFor(t, cam);
     city = site ? scenes.get(site.id) ?? null : null;
   }
+  /** Is this somewhere a scene can be made? Not by a city, which has its own way down. */
+  function canDrawLife(t: number, cam: ViewState['cam']): boolean {
+    if (!lifeAtlas) return false;
+    if (sites.some((s) => s.kind === 'city' && t >= s.span[0] && t <= s.span[1] && distanceFrom(s, cam.lat, cam.lon) < 1.4e6)) return false;
+    return lifeAtlas.canDraw(t, cam.lat, cam.lon);
+  }
   /** How close to the Earth a view may come here: to the street at the site, nowhere near it elsewhere. */
   function lowestDist(cam: ViewState['cam'], t: number): number {
+    if (canDrawLife(t, cam)) return 1 + 2 / EARTH_RADIUS;
     if (!siteOpen(t)) return MIN_DIST;
     const d = siteDistance(cam.lat, cam.lon);
     if (d > 1.4e6) return MIN_DIST;
@@ -443,7 +491,7 @@ async function start(root: HTMLElement): Promise<void> {
     next.t = Math.max(dataRange[0], Math.min(dataRange[1], next.t));
     atSite(next.t, next.cam);
     // A time the site is not drawn for takes the camera back up to the globe.
-    if (next.cam.dist < MIN_DIST && !siteOpen(next.t)) next.cam = { lat: next.cam.lat, lon: next.cam.lon, dist: MIN_DIST };
+    if (next.cam.dist < MIN_DIST && !siteOpen(next.t) && !canDrawLife(next.t, next.cam)) next.cam = { lat: next.cam.lat, lon: next.cam.lon, dist: MIN_DIST };
     const selChanged = next.sel !== state.sel;
     const altsChanged = JSON.stringify([next.alt, next.picks]) !== JSON.stringify([state.alt, state.picks]);
     state = next;
@@ -467,7 +515,7 @@ async function start(root: HTMLElement): Promise<void> {
       inspect.hide();
       return;
     }
-    const [r] = await Promise.all([loadRecord(build, id), features.load([id]), scenarioKey(scenario()) ? features.wantVariants() : undefined]);
+    const [r] = await Promise.all([loadRecord(build, id), features.load([id]), scenarioKey(scenario()) ? features.wantVariants() : undefined, wantWhere()]);
     if (state.sel !== id) return;
     const f = features.get(id);
     shownRecord = id;
@@ -475,13 +523,39 @@ async function start(root: HTMLElement): Promise<void> {
     inspect.showEntity(r, scenario(), f ? timeFor(f, scenario()) : recordTime(r, scenario()), inside, organismInfo(id));
   }
 
+  /** Where to go to see each taxon: small, and only wanted once a record is open. */
+  let lifeWhere: Record<string, AtlasWhere> | null = null;
+  let whereLoading: Promise<void> | null = null;
+  function wantWhere(): Promise<void> | undefined {
+    if (!build.atlas || lifeWhere) return undefined;
+    whereLoading ??= getJSON<Record<string, AtlasWhere>>(build.base + build.atlas.where).then((w) => {
+      lifeWhere = w;
+    });
+    return whereLoading;
+  }
+  /** A taxon to show when the scene of where it lived has come. */
+  let arriving: string | null = null;
+  inspect.seeIt = (id) => {
+    const w = lifeWhere?.[id];
+    if (!w) return undefined;
+    return {
+      label: `See it where it lived, ${formatTime(w.t)}`,
+      go: () => {
+        arriving = id;
+        const span = Math.max(2e6, Math.abs(w.t) * 0.4);
+        setState({ t: w.t, window: clampWindow([w.t - span, w.t + span], limits) });
+        flyTo({ lat: w.lat, lon: w.lon, dist: 1 + 1800 / EARTH_RADIUS, heading: 0, tilt: 60 }, 3600);
+      },
+    };
+  };
+
   /** What a living scene has of a taxon: what the records say of it there, and what was invented. */
   function organismInfo(id: string): OrganismHere | undefined {
-    const c = [...scenes.values()].find((x): x is LifeScene => x instanceof LifeScene);
+    const c = city instanceof LifeScene ? city : [...scenes.values()].find((x): x is LifeScene => x instanceof LifeScene);
     const t = c?.taxonOf(id);
     if (!c || !t) return undefined;
-    const g = c.file.generator;
-    return { taxon: t, site: c.file.site.label, slice: c.file.site.slice, fossils: c.file.fossils, count: c.counts[c.file.taxa.indexOf(t)], generator: `${g.generator}, version ${g.version}, seed "${g.seed}"` };
+    const g = c.spec.generator;
+    return { taxon: t, site: c.spec.site.place ? c.spec.site.label : 'this place', slice: c.spec.site.slice, stage: c.spec.site.stage, fossils: c.spec.fossils, generator: `${g.generator}, version ${g.version}, seed "${g.seed}"` };
   }
 
   /** An entity's interval in a scenario, from its record (for entities with no marker). */
@@ -621,10 +695,15 @@ async function start(root: HTMLElement): Promise<void> {
     }
     camera.update(state.cam, stage.clientWidth, stage.clientHeight);
     const range = (state.cam.dist - 1) * EARTH_RADIUS;
-    const wantsCity = !!site && siteOpen(state.t) && range < CITY_TOP * 1.4 && siteDistance(state.cam.lat, state.cam.lon) < 1.6e6;
+    maintainLife();
+    arriveIfReady();
+    const made = site === lifeSite && !!lifeSite;
+    const top = made ? LIFE_TOP : CITY_TOP;
+    const solidAt = made ? LIFE_SOLID : CITY_SOLID;
+    const wantsCity = !!site && siteOpen(state.t) && range < top * 1.4 && siteDistance(state.cam.lat, state.cam.lon) < 1.6e6;
     // Loaded before it is needed: as soon as the way down is on offer.
-    if (site && siteOpen(state.t) && state.cam.dist < 2.2 && siteDistance(state.cam.lat, state.cam.lon) < 2e6 && !city && !loadingScenes.has(site.id)) void loadScene(site);
-    const inCity = wantsCity && !!city?.ready && range < CITY_TOP;
+    if (site && !made && siteOpen(state.t) && state.cam.dist < 2.2 && siteDistance(state.cam.lat, state.cam.lon) < 2e6 && !city && !loadingScenes.has(site.id)) void loadScene(site);
+    const inCity = wantsCity && !!city?.ready && range < top;
     const globeHidden = inCity && range < GLOBE_GONE;
     // A projection holds the field's youngest keyframe, and the plates where they are then.
     const fi = fieldAt(state.t);
@@ -718,13 +797,14 @@ async function start(root: HTMLElement): Promise<void> {
       v.width = stage.clientWidth;
       v.height = stage.clientHeight;
       frameView = v;
-      const t0 = 1 - Math.max(0, Math.min(1, (range - CITY_SOLID) / (CITY_TOP - CITY_SOLID)));
+      const t0 = 1 - Math.max(0, Math.min(1, (range - solidAt) / (top - solidAt)));
       const alpha = t0 * t0 * (3 - 2 * t0);
       city!.select(state.sel);
       city!.render(v, sunAt(state.hour, site!.origin.lat), state.t, state.evidence, alpha, globeHidden, w, h);
-      if (labelledSite !== site!.id) {
+      const labelKey = `${site!.id}|${city instanceof LifeScene ? city.labelSerial : 0}`;
+      if (labelledSite !== labelKey) {
         labels.setStructures(city!.named, city!.tops, site!.label, (s) => s.label);
-        labelledSite = site!.id;
+        labelledSite = labelKey;
       }
       labels.update(v, city!.ground, city!.skyline, state.t, state.sel);
     }
@@ -736,7 +816,17 @@ async function start(root: HTMLElement): Promise<void> {
     if (state.people) people.legend(state.t);
     canvas.classList.toggle('in-city', inCity);
     if (inCity) cityBar.querySelector<HTMLInputElement>('input')!.value = String(state.hour);
-    const enter = !!site && !inCity && state.cam.dist < 2.2 && siteDistance(state.cam.lat, state.cam.lon) < 1.5e6;
+    // What lives here, and how sure that is, where a scene is of a place with no formation of its own.
+    const showHere = inCity && city instanceof LifeScene && !city.spec.site.place;
+    lifeHere.hidden = !showHere;
+    lifeGo.hidden = !showHere || !(city as LifeScene).spec.taxa.length || (city as LifeScene).atSea;
+    if (showHere) {
+      const taxa = (city as LifeScene).spec.taxa;
+      const n = (tier: string) => taxa.filter((x) => x.tier === tier).length;
+      const words = (city as LifeScene).atSea ? 'At sea: nothing is drawn here yet' : taxa.length ? `${n('here')} recorded here, ${n('region')} nearby, ${n('standin')} stand-ins` : 'Nothing recorded here';
+      if (lifeHere.textContent !== words) lifeHere.textContent = words;
+    }
+    const enter = !!site && !made && !inCity && state.cam.dist < 2.2 && siteDistance(state.cam.lat, state.cam.lon) < 1.5e6;
     cityEnter.hidden = !enter;
     if (enter) cityEnter.textContent = `Fly down into ${site!.label}, ${formatTime(site!.slice)}`;
     if (inCity && site!.kind === 'city') {
@@ -821,7 +911,7 @@ async function start(root: HTMLElement): Promise<void> {
   canvas.addEventListener('contextmenu', (e) => e.preventDefault());
   canvas.addEventListener('pointerdown', (e) => {
     canvas.setPointerCapture(e.pointerId);
-    flight = null;
+    stopFlight();
     drag = { x: e.clientX, y: e.clientY, cam: { ...state.cam }, moved: false, turn: e.button === 2 || e.shiftKey || e.altKey };
   });
   canvas.addEventListener('pointermove', (e) => {
@@ -859,7 +949,7 @@ async function start(root: HTMLElement): Promise<void> {
   });
   canvas.addEventListener('wheel', (e) => {
     e.preventDefault();
-    flight = null;
+    stopFlight();
     zoomBy(e.deltaY, e.offsetX, e.offsetY);
   }, { passive: false });
 
@@ -904,11 +994,23 @@ async function start(root: HTMLElement): Promise<void> {
           const k = after / before;
           [lat, lon] = fromLocal(site.origin, hit[0] + (x - hit[0]) * k, hit[1] + (y - hit[1]) * k);
         }
-      } else if (deltaY < 0) {
+      } else if (deltaY < 0 && !canDrawLife(state.t, cam)) {
         // Coming down from orbit, drift towards the city.
         const k = Math.min(1, (before - after) / Math.max(before, 1)) * 0.9;
         lat += (site.origin.lat - lat) * k;
         lon += (site.origin.lon - lon) * k;
+      }
+    }
+    // Anywhere else, towards what the pointer is on.
+    if (!frameView && deltaY < 0 && dist < MIN_DIST * 1.4 && canDrawLife(state.t, cam)) {
+      const hit = camera.pick(sx, sy);
+      if (hit) {
+        const k = Math.min(1, (before - after) / Math.max(before, 1));
+        lat += (hit.lat - lat) * k;
+        let dLon = hit.lon - lon;
+        if (dLon > 180) dLon -= 360;
+        if (dLon < -180) dLon += 360;
+        lon += dLon * k;
       }
     }
     const tilt = Math.max(0, Math.min(112, (cam.tilt ?? 0) + autoTilt(after) - autoTilt(before)));
@@ -932,11 +1034,31 @@ async function start(root: HTMLElement): Promise<void> {
     dirty = true;
   }
 
+  /** The reader has taken the controls: nothing carries on without them. */
+  function stopFlight(): void {
+    flight = null;
+    arriving = null;
+  }
+
+  /** Whether a view near the ground has a scene still to come. A site's is set going; a scene of anywhere is maintainLife's. */
+  function sceneComing(to: ViewState['cam']): boolean {
+    const t = state.t;
+    const s = siteFor(t, to);
+    if (s && s !== lifeSite && t >= s.span[0] && t <= s.span[1] && (s.kind === 'city' || distanceFrom(s, to.lat, to.lon) < 15e3)) {
+      if (failedScenes.has(s.id)) return false;
+      if (!scenes.get(s.id) && !loadingScenes.has(s.id)) void loadScene(s);
+      return !scenes.get(s.id)?.ready;
+    }
+    if (!canDrawLife(t, to)) return false;
+    const key = lifeKeyAt(t, to);
+    return !lifeEmpty.has(key) && !(lifeSite?.id === key && scenes.get(key)?.ready);
+  }
+
   function stepFlight(now: number): void {
     const f = flight!;
     let u = Math.min(1, (now - f.t0) / f.ms);
-    // A flight into the city waits above it until the city is ready.
-    if (u > 0.3 && f.to.dist < MIN_DIST && !city?.ready) {
+    // A flight into a scene waits above it until the scene is ready.
+    if (u > 0.3 && f.to.dist < MIN_DIST && sceneComing(f.to)) {
       u = 0.3;
       f.t0 = now - u * f.ms;
     }
@@ -945,13 +1067,24 @@ async function start(root: HTMLElement): Promise<void> {
     const g = Math.min(1, e * 1.5);
     const a0 = Math.log(f.from.dist - 1);
     const a1 = Math.log(f.to.dist - 1);
+    // A long way is flown high, whatever the heights at its ends, and the short way round.
+    const dLon = ((f.to.lon - f.from.lon + 540) % 360) - 180;
+    const dLat = f.to.lat - f.from.lat;
+    const reach = Math.hypot(dLat, dLon * Math.cos(((f.from.lat + f.to.lat) / 2) * RAD)) * RAD;
+    const top = reach > 0.03 ? Math.max(Math.log(MIN_DIST - 1), Math.log(reach * 0.5)) : -Infinity;
+    const smooth = (x: number) => {
+      const c = Math.max(0, Math.min(1, x));
+      return c * c * (3 - 2 * c);
+    };
+    // Up, across, and down over the place: it comes down once it is there.
+    const height = top > Math.max(a0, a1) ? a0 + (top - a0) * smooth(e / 0.15) + (a1 - top) * smooth((e - 2 / 3) * 3) : a0 + (a1 - a0) * e;
     let dh = ((f.to.heading! - f.from.heading! + 540) % 360) - 180;
     if (Math.abs(dh) < 1e-6) dh = 0;
     setState({
       cam: {
-        lat: f.from.lat + (f.to.lat - f.from.lat) * g,
-        lon: f.from.lon + (f.to.lon - f.from.lon) * g,
-        dist: 1 + Math.exp(a0 + (a1 - a0) * e),
+        lat: f.from.lat + dLat * g,
+        lon: f.from.lon + dLon * g,
+        dist: 1 + Math.exp(height),
         heading: f.from.heading! + dh * e,
         tilt: f.from.tilt! + (f.to.tilt! - f.from.tilt!) * e,
       },
@@ -960,24 +1093,98 @@ async function start(root: HTMLElement): Promise<void> {
   }
 
   async function loadScene(s: SiteInfo): Promise<void> {
+    if (failedScenes.has(s.id)) return;
     loadingScenes.add(s.id);
     try {
       const fast = state.quality === 'fast';
-      const scene = s.kind === 'life' ? new LifeScene(gl!, build, s, { fast }) : new CityScene(gl!, build, s.file, { fast });
+      const scene = s.kind === 'life' ? await (async () => {
+        const f = await getJSON<SceneFileV2>(build.base + s.file);
+        return new LifeScene(gl!, f.spec, f.sha256, { fast });
+      })() : new CityScene(gl!, build, s.file, { fast });
       scene.onChange = () => (dirty = true);
       await scene.load();
       scenes.set(s.id, scene);
       atSite(state.t, state.cam);
       scene.setScenario(scenario());
-      labels.onSelect = (id) => goTo(id);
     } catch (err) {
       // The globe still works without the scene.
       console.error(`${s.id}: ${err instanceof Error ? err.message : String(err)}`.slice(0, 900));
+      failedScenes.add(s.id);
       notice.textContent = `${s.label} could not be drawn here: ${err instanceof Error ? err.message.split('\n')[0] : err}`;
       notice.hidden = false;
     }
     loadingScenes.delete(s.id);
     dirty = true;
+  }
+
+  /** The key of the scene a place and time would have. */
+  const lifeKeyAt = (t: number, at: { lat: number; lon: number }): string => {
+    const { lat, lon } = latticeOf(at.lat, at.lon);
+    return `${lifeAtlas?.binAt(t)?.from}|${lat.toFixed(2)}|${lon.toFixed(2)}`;
+  };
+
+  /** The scene of wherever the camera is, or is flying down to: made once it has come to rest over a new place, and shown once it is ready. */
+  function maintainLife(): void {
+    if (!lifeAtlas || !gl) return;
+    // The stage's lists have come, and say there is no land here: back up, as for any time nothing is drawn for.
+    if (state.cam.dist < MIN_DIST && !siteOpen(state.t) && !canDrawLife(state.t, state.cam)) {
+      setState({ cam: { lat: state.cam.lat, lon: state.cam.lon, dist: MIN_DIST } });
+      return;
+    }
+    const cam = flight && flight.to.dist < MIN_DIST ? flight.to : state.cam;
+    const range = (cam.dist - 1) * EARTH_RADIUS;
+    if (range > LIFE_TOP * 1.4 || !canDrawLife(state.t, cam)) return;
+    // A place that has its own scene, and the camera right over it, is that place.
+    const there = cam === state.cam ? site : siteFor(state.t, cam);
+    if (there && there !== lifeSite && there.kind === 'life' && distanceFrom(there, cam.lat, cam.lon) < 15e3) return;
+    const key = lifeKeyAt(state.t, cam);
+    if (lifeEmpty.has(key) || !climateData || !climateRule) return;
+    const now = performance.now();
+    if (key !== lifeKey) {
+      lifeKey = key;
+      lifeRest = now;
+    }
+    const inSpan = !!lifeSite && state.t >= lifeSite.span[0] && state.t <= lifeSite.span[1];
+    // Near the ground, the scene is always this place's; higher up, it can be some way off.
+    const off = lifeSite ? distanceFrom(lifeSite, cam.lat, cam.lon) : Infinity;
+    const close = inSpan && (lifeSite!.id === key || (range > 3e4 && off < Math.max(9e3, range * 0.5)));
+    if (close || lifeLoading === key) return;
+    if (lifeLoading) return;
+    if (now - lifeRest < (lifeSite ? 260 : 0)) {
+      dirty = true;
+      return;
+    }
+    lifeLoading = key;
+    void makeLife(key, cam.lat, cam.lon, state.t);
+  }
+
+  async function makeLife(key: string, lat: number, lon: number, t: number): Promise<void> {
+    try {
+      const spec = await lifeAtlas!.spec(lat, lon, t, scenario());
+      if (!spec) {
+        lifeEmpty.add(key);
+        return;
+      }
+      const scene = new LifeScene(gl!, spec, null, { fast: state.quality === 'fast' });
+      scene.onChange = () => (dirty = true);
+      await scene.load();
+      const previous = lifeSite;
+      lifeSite = { kind: 'life', id: key, label: spec.site.stage ?? 'this place', file: '', origin: spec.site.origin, span: spec.site.span, slice: spec.site.slice, near: spec.site.span, window: spec.site.span, view: { x: scene.focus[0], y: scene.focus[1], range: 74, heading: 0, tilt: 81 } };
+      scenes.set(key, scene);
+      if (previous) {
+        const old = scenes.get(previous.id);
+        scenes.delete(previous.id);
+        if (old instanceof LifeScene) old.dispose();
+      }
+      atSite(state.t, state.cam);
+      scene.setScenario(scenario());
+    } catch (err) {
+      console.error(`the scene of ${key}: ${err instanceof Error ? err.message : String(err)}`.slice(0, 900));
+      lifeEmpty.add(key);
+    } finally {
+      lifeLoading = null;
+      dirty = true;
+    }
   }
 
   /** The way into a site, as its record says. */
@@ -996,6 +1203,40 @@ async function start(root: HTMLElement): Promise<void> {
   cityEnter.onclick = () => enterSite();
   cityBar.querySelector<HTMLInputElement>('input')!.oninput = (e) => setState({ hour: Number((e.target as HTMLInputElement).value) });
   cityBar.querySelector<HTMLButtonElement>('.to-globe')!.onclick = () => flyTo({ lat: state.cam.lat, lon: state.cam.lon, dist: 2.6 }, 4200);
+  const lifeGo = cityBar.querySelector<HTMLButtonElement>('.life-go')!;
+  lifeGo.onclick = () => {
+    if (!(city instanceof LifeScene) || !site) return;
+    const [lat, lon] = fromLocal(site.origin, city.focus[0], city.focus[1]);
+    const heading = ((Math.atan2(city.toRiver[0], city.toRiver[1]) * 180) / Math.PI + 17 + 360) % 360;
+    flyTo({ lat, lon, dist: 1 + 74 / EARTH_RADIUS, heading: Math.round(heading), tilt: 81 }, 1800);
+  };
+  /** Down to where something of each is standing, once the scene of the place a taxon was asked for has come. */
+  function arriveIfReady(): void {
+    if (!arriving || flight) return;
+    // There may be nothing to go to: no scene can be made here.
+    if (!canDrawLife(state.t, state.cam) && !(site?.kind === 'life' && siteOpen(state.t))) {
+      arriving = null;
+      return;
+    }
+    if (lifeEmpty.has(lifeKeyAt(state.t, state.cam))) {
+      arriving = null;
+      return;
+    }
+    if (!(city instanceof LifeScene) || !city.ready || !site || site.kind !== 'life') return;
+    if (distanceFrom(site, state.cam.lat, state.cam.lon) > 15e3) return;
+    const id = arriving;
+    arriving = null;
+    const taxon = city.taxonOf(id);
+    lifeGo.click();
+    if (taxon) setState({ sel: id });
+  }
+  const lifeHere = cityBar.querySelector<HTMLButtonElement>('.life-here')!;
+  lifeHere.onclick = () => {
+    if (!(city instanceof LifeScene)) return;
+    setState({ sel: null });
+    shownRecord = null;
+    inspect.showLifeHere(city.spec, build.atlas?.description);
+  };
 
   /** Fly to a structure of the city, looking at its front, at a time it stands. */
   function flyToStructure(home: SiteInfo, s: CityStructure): void {
@@ -1019,12 +1260,20 @@ async function start(root: HTMLElement): Promise<void> {
       here = null;
       if (city instanceof LifeScene) {
         const found = city.pick(px, py);
-        if (found.taxon) return setState({ sel: found.taxon.id });
+        if (found.taxon) {
+          const t = found.taxon;
+          // A taxon with a record opens it; one that is only a row of the database says what the row says.
+          if (!t.id.startsWith('txn:')) return setState({ sel: t.id });
+          setState({ sel: null });
+          shownRecord = null;
+          return inspect.showOrganism(t, organismInfo(t.id)!, build.atlas?.sourceRecord);
+        }
         setState({ sel: null });
         shownRecord = null;
-        const b = city.file.biome;
-        const g = city.file.generator;
-        return inspect.showGenerated('The floodplain', 'Generated ground', `A river's plain, drawn where ${site!.label} stood. Its rivers, ponds and glades are invented, so that what lived here has somewhere to stand. Where the climate field reads the land at ${b.ageMa} Ma, it is ${b.label.toLowerCase()}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%.`, `${g.generator}, version ${g.version}, seed "${g.seed}": no bend of this river was recorded. Only the land it lies in comes from the world, from the elevation field beyond its edge.`);
+        const b = city.spec.biome;
+        const g = city.spec.generator;
+        const where = city.spec.site.place ? `drawn where ${site!.label} stood` : 'drawn for this place and time';
+        return inspect.showGenerated(city.spec.site.place ? 'The floodplain' : 'The land here', 'Generated ground', `A land ${where}. Its rivers, ponds and glades are invented, so that what lived here has somewhere to stand. Where the climate field reads the land at ${b.ageMa} Ma, it is ${b.label.toLowerCase()}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%.`, `${g.generator}, version ${g.version}, seed "${g.seed}": no bend of this river was recorded. Only the land it lies in comes from the world, from the elevation field beyond its edge.`);
       }
       const found = city!.pick(px, py);
       if (found.structure) return setState({ sel: found.structure.id });
@@ -1297,7 +1546,7 @@ async function start(root: HTMLElement): Promise<void> {
     if ((e.target as HTMLElement).tagName === 'INPUT') return;
     if (frameView && 'wasd'.includes(e.key.toLowerCase()) && e.key.length === 1) {
       walking.add(e.key.toLowerCase());
-      flight = null;
+      stopFlight();
       dirty = true;
       e.preventDefault();
       return;
@@ -1322,7 +1571,16 @@ async function start(root: HTMLElement): Promise<void> {
   });
 
   /** Is the view waiting on the city's scene? */
-  const cityWanted = () => !!site && siteOpen(state.t) && (state.cam.dist - 1) * EARTH_RADIUS < CITY_TOP * 1.4 && siteDistance(state.cam.lat, state.cam.lon) < 1.6e6 && !(city?.settled && city.plan.actual && (!(city instanceof LifeScene) || city.cell.actual));
+  const cityWanted = () => {
+    const range = (state.cam.dist - 1) * EARTH_RADIUS;
+    if (lifeLoading || arriving) return true;
+    const made = site === lifeSite && !!lifeSite;
+    // A scene is wanted here and has not come, or has not settled.
+    if (!made && lifeAtlas && range < LIFE_TOP * 1.4 && canDrawLife(state.t, state.cam) && !(site && distanceFrom(site, state.cam.lat, state.cam.lon) < 15e3)) {
+      if (!lifeEmpty.has(lifeKeyAt(state.t, state.cam))) return true;
+    }
+    return !!site && siteOpen(state.t) && range < (made ? LIFE_TOP : CITY_TOP) * 1.4 && siteDistance(state.cam.lat, state.cam.lon) < 1.6e6 && !(city?.settled && city.plan.actual);
+  };
   history.replaceState(null, '', toSearch(build.id, state));
   window.__lightworld = {
     build: build.id,
@@ -1369,12 +1627,24 @@ async function start(root: HTMLElement): Promise<void> {
       return s && frameView ? projectLocal(frameView, s.at[0], s.at[1], s.base) : undefined;
     },
     scene: () => {
-      const c = [...scenes.values()].find((x): x is LifeScene => x instanceof LifeScene);
-      return c ? { site: c.file.site.id, plan: c.plan, cell: c.cell, taxa: c.file.taxa.map((t, i) => ({ id: t.id, plan: t.plan, rows: t.rows, count: c.counts[i] })), organisms: c.count } : null;
+      const c = city instanceof LifeScene ? city : [...scenes.values()].find((x): x is LifeScene => x instanceof LifeScene);
+      if (!c) return null;
+      const drawn = new Set(c.named.map((x) => x.id));
+      return { site: c.spec.site.id, plan: c.plan, taxa: c.spec.taxa.map((t) => ({ id: t.id, label: t.label, form: t.form_label, own: t.own, tier: t.tier, km: t.km, rows: t.rows, drawn: drawn.has(t.id) })), instances: c.last.instances, triangles: c.last.triangles, meshes: c.last.meshes, groundMs: c.groundMs, stage: c.spec.site.stage, climate: c.spec.biome.climate, focus: c.focus, toRiver: c.toRiver, origin: c.spec.site.origin };
     },
+    lifeDigest: async (lat, lon, t) => {
+      const spec = await lifeAtlas?.spec(lat, lon, t, {});
+      if (!spec) return null;
+      const scene = new LifeScene(gl!, spec, null, { fast: true });
+      await scene.load();
+      while (!scene.plan.actual) await new Promise((r) => setTimeout(r, 20));
+      scene.dispose();
+      return scene.plan.actual;
+    },
+    atlas: () => (build.atlas ? { bins: build.atlas.bins.length, coverage: build.atlas.coverage } : null),
     organismPlaces: (id) => {
       if (!(city instanceof LifeScene)) return [];
-      const o = city.file.site.origin;
+      const o = city.spec.site.origin;
       return city.named.filter((x) => x.id === id).map((x) => {
         const [lat, lon] = fromLocal(o, x.at[0], x.at[1]);
         return { lat, lon, x: x.at[0], y: x.at[1] };
@@ -1383,7 +1653,7 @@ async function start(root: HTMLElement): Promise<void> {
     organismsAt: (id) => {
       if (!(city instanceof LifeScene) || !frameView) return [];
       const v = frameView;
-      return city.named.filter((x) => x.id === id).map((x) => projectLocal(v, x.at[0], x.at[1], x.base + 1)).filter((p): p is { x: number; y: number; depth: number } => !!p);
+      return city.named.filter((x) => x.id === id).map((x) => projectLocal(v, x.at[0], x.at[1], x.base + 1)).filter((p): p is { x: number; y: number; depth: number } => !!p && p.x >= 0 && p.y >= 0 && p.x < stage.clientWidth && p.y < stage.clientHeight);
     },
     set: (s) => setState(s),
   };

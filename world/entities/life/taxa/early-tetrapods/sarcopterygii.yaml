@@ -1,0 +1,31 @@
+id: life/taxa/sarcopterygii
+kind: taxon
+summary: >-
+  Lobe-finned fishes: coelacanths, lungfishes and the fishes on the way to land vertebrates, with paired fins on fleshy stalks.
+same_as: { pbdb: "txn:67348" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Sarcopterygii, en: lobe-finned fishes }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: lobe-fin
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in the tree. The
+      plan is a machine's drawing of the general shape of a lobe-finned fish, from no figure.
+  length:
+    prop: body_length
+    value: { lo: 0.35, hi: 2.1 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Dipterus, Description"
+        quote: "which was about 35 centimetres (14 in) long"
+      - ref: src:downs-2018-eusthenopteron
+        loc: "Eusthenopteron jenkinsi, Diagnosis"
+        quote: "estimated body length from referred materials is approximately 2.1 m"
+    method: expert-estimate
+    note: >-
+      From a small Devonian lungfish, by an encyclopedia, to a large tetrapodomorph fish. The living coelacanth reaches 1.68 m on FishBase,
+      and some Palaeozoic rhizodonts were longer.

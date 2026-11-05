@@ -1,0 +1,61 @@
+id: life/taxa/giraffa
+kind: taxon
+summary: >-
+  The giraffes.
+same_as: { pbdb: "txn:42695" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Giraffa, en: "giraffes" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.56
+      mass_length: 25
+      parts:
+        body:
+          rings:
+            - [-0.48, 0.6, 0.56, 0.005]
+            - [-0.47, 0.76, 0.72, 0.008]
+            - [-0.45, 0.92, 0.84, 0.012]
+            - [-0.42, 1.0, 0.8, 0.03]
+            - [-0.38, 1.03, 0.72, 0.056]
+            - [-0.31, 1.1, 0.66, 0.072]
+            - [-0.2, 1.2, 0.68, 0.082]
+            - [-0.08, 1.32, 0.72, 0.082]
+            - [0.02, 1.44, 0.84, 0.07]
+            - [0.09, 1.54, 1.12, 0.042]
+          neck: { r: 0.022, steps: [6, 2] }
+        hind: { y: -0.3, x: 0.05, top: 0.82, knee: 0.56, ankle: 0.34, r: 0.044 }
+        fore: { y: 0.03, x: 0.054, top: 0.86, r: 0.022 }
+        head:
+          at:
+            stand: { y: 0.3, z: 2.4, pitch: 0.42 }
+            alert: { y: 0.3, z: 2.5, pitch: 0.25 }
+            low: { y: 0.44, reach: 0.16, pitch: 1.1 }
+    unsourced: >-
+      A machine's reconstruction, from the giraffe's account on the Animal Diversity Web: 3.3
+      m at the shoulders, a neck of 2.4 m, a steeply sloping back, skin-covered horns. Only
+      compared with its sheet.
+  length:
+    prop: body_length
+    value: 4.18
+    source:
+      ref: src:jones-2009-pantheria
+      loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Giraffa camelopardalis, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+      quote: "Giraffa camelopardalis 2.00 964654.73 -999.00 4177.03"
+    method: compilation
+    note: >-
+      Head and body, without the tail.
+  mass:
+    prop: body_mass
+    value: { lo: 1180, hi: 1930 }
+    source:
+      ref: src:animal-diversity-web
+      loc: "account of Giraffa camelopardalis, Physical Description"
+      quote: "Bulls weigh up to 1,930 kg, while cows can weigh up to 1,180 kg"
+    method: compilation
+    note: >-
+      The most each sex is said to weigh.

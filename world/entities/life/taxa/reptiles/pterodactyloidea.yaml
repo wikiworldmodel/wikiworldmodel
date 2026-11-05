@@ -1,0 +1,65 @@
+id: life/taxa/pterodactyloidea
+kind: taxon
+summary: >-
+  The short-tailed pterosaurs of the Late Jurassic and the Cretaceous, with long faces and long
+  necks.
+same_as: { pbdb: "txn:38479" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Pterodactyloidea", en: "short-tailed pterosaurs" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      mass_length: 4
+      parts:
+        body:
+          rings:
+            - [-0.42, 1.5, 1.4, 0.004]
+            - [-0.37, 1.6, 1.36, 0.01]
+            - [-0.31, 1.76, 1.2, 0.03]
+            - [-0.24, 2.0, 1.06, 0.044]
+            - [-0.17, 2.14, 1.16, 0.044]
+            - [-0.12, 2.2, 1.4, 0.03]
+          neck: { r: 0.016, steps: [5, 2] }
+        vane: null
+        hind: { y: -0.29, x: 0.03 }
+        fore: { y: -0.14, x: 0.05, top: 2.0 }
+        folded-finger: { points: [[0.056, -0.14, 0.66, 0.0075], [0.078, -0.21, 1.3, 0.006], [0.076, -0.31, 1.9, 0.004], [0.066, -0.45, 2.1, 0.0018]] }
+        wings: { shoulder: [0.04, -0.15, 2.0], span: 1.12, chord: 0.2, sweep: 0.26 }
+        trailing: { points: [[0.03, -0.3, 1.2, 0.01], [0.05, -0.4, 1.1, 0.006], [0.06, -0.47, 1.05, 0.004]] }
+        head:
+          at:
+            stand: { y: 0.07, z: 3.6, pitch: 0.2 }
+            alert: { y: 0.03, z: 3.9, pitch: 0.06 }
+            low: { y: 0.17, reach: 0.33, clear: 0.05, pitch: 1.0 }
+            fly: { y: 0.09, z: 2.6, pitch: 0.08 }
+          rings:
+            - [-0.012, 0, 0.018, 0.026]
+            - [0.04, 0.002, 0.024, 0.036]
+            - [0.12, -0.006, 0.016, 0.028]
+            - [0.24, -0.016, 0.009, 0.016]
+            - [0.38, -0.024, 0.003, 0.005]
+        jaw: { rings: [[0.05, -0.03, 0.014, 0.006], [0.2, -0.03, 0.008, 0.005], [0.36, -0.028, 0.003, 0.003]] }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Evolution of the Reptiles\""
+      quote: "These reptiles had a much longer face, longer neck, and shorter tail than the rhamphorhynchoids."
+    note: >-
+      The form follows this; its proportions are a machine's reconstruction, with the wing planform
+      from Fig. 2 of Witton (2008).
+  mass:
+    prop: body_mass
+    value: { lo: 0.07, hi: 36.68 }
+    source:
+      - ref: src:witton-2008-pterosaur-body-mass
+        loc: "p. 151, Table 4, row Pterodactylus"
+        quote: "Pterodactylus 0.43 4.62 0.07 0.65"
+      - ref: src:witton-2008-pterosaur-body-mass
+        loc: "p. 151, Table 4, row Pteranodon (large)"
+        quote: "Pteranodon (large) 5.96 2553.54 36.68 359.84"
+    method: model
+    note: >-
+      The azhdarchids, which reach far higher, have their own.

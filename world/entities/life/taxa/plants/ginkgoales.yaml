@@ -1,0 +1,42 @@
+id: life/taxa/ginkgoales
+kind: taxon
+summary: >-
+  The ginkgos and their extinct relatives such as Baiera and Sphenobaiera.
+same_as: { pbdb: "txn:56138" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ginkgoales, en: ginkgos }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: broadleaf
+    unsourced: "Which plan draws it and everything below it: neither a conifer nor a flowering tree, but broad leaves make this the nearest plan. An editorial classification."
+  form:
+    prop: body_form
+    value:
+      parts:
+        tree: { crown: 0.2, fork: [0.24, 0.1], trunk: 0.02, limbs: 3 }
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 2, s.v. Ginkgo biloba"
+      quote: "Crown somewhat ovoid to obovoid, tending to be asymmetric, primary branches ascending at ca. 45° from trunk."
+    note: >-
+      A machine's reconstruction, from this description of the living tree: a narrower crown on
+      fewer limbs, forking low.
+  height:
+    prop: plant_height
+    value: { lo: 30, hi: 40 }
+    source:
+      - ref: src:flora-of-north-america
+        loc: "Vol. 2, s.v. Ginkgo biloba"
+        quote: "Trees to 30 m."
+      - ref: src:flora-of-china
+        loc: "Vol. 4, p. 8, s.v. Ginkgo biloba"
+        quote: "Trees to 40 m tall"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The living species at its greatest, in two floras: a modern relative, and much taller than its
+      extinct kin may have been.

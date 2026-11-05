@@ -1,0 +1,33 @@
+id: life/taxa/lepospondyli
+kind: taxon
+summary: >-
+  Lepospondyls: small early tetrapods of many shapes, some salamander-like, some snake-like, some with heads like boomerangs.
+  Whether they make one group is disputed.
+same_as: { pbdb: "txn:37250" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lepospondyli, en: lepospondyls }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: microsaur
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in
+      the tree. The plan is a machine's reconstruction of a small elongate tetrapod, from the description of Microbrachis in
+      Wikipedia and with no skeletal figure looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.15, hi: 0.25 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Microbrachis, Description"
+        quote: "about 15 centimetres (6 in) long"
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Pantylus, Description"
+        quote: "It was about 25 centimetres (10 in) long"
+    method: compilation
+    note: >-
+      Two microsaurs stand for the small ones. An encyclopedia, cited as nothing better could be read: the papers read on
+      them give skulls, not whole lengths.

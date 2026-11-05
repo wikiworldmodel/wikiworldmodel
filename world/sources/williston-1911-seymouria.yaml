@@ -1,0 +1,17 @@
+id: src:williston-1911-seymouria
+type: publication
+kind: measurement
+citation: >-
+  Williston, S.W. (1911). Restoration of Seymouria baylorensis Broili, an American cotylosaur.
+  The Journal of Geology 19(3), 232–237.
+authors:
+  - "Williston, S.W."
+published: 1911
+title: "Restoration of Seymouria baylorensis Broili, an American cotylosaur"
+container: "The Journal of Geology 19(3)"
+url: https://archive.org/details/jstor-30063488
+verified:
+  by: machine:claude-code
+  how: >-
+    The Internet Archive's OCR text of the JSTOR early-journal copy read; quotes checked by script
+    against it.

@@ -1,0 +1,18 @@
+id: src:winhold-2004-unionidae
+type: database-record
+kind: review
+citation: >-
+  Winhold, L. 2004. "Unionidae" (On-line), Animal Diversity Web. University of Michigan Museum of Zoology.
+authors:
+  - "Winhold, L."
+published: 2004
+snapshot: 2026-11-05
+title: Unionidae
+container: Animal Diversity Web
+url: https://animaldiversity.org/accounts/Unionidae/
+reliability: >-
+  An educational resource, written largely by students and edited; this account gives Smith (2001) for the lengths, which was not
+  read.
+verified:
+  by: machine:claude-code
+  how: The page fetched and read on 2026-11-05; the quote checked by script against the text saved.

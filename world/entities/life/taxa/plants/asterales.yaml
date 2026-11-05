@@ -1,0 +1,26 @@
+id: life/taxa/asterales
+kind: taxon
+summary: >-
+  Daisies and bellflowers.
+same_as: { pbdb: "txn:54943" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Asterales, en: daisies and their relatives }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: herb
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 0.3, hi: 1.5 }
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 20, s.v. Solidago canadensis"
+      quote: "Plants 30–150(–200) cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      A living goldenrod, standing for the order: a modern relative, chosen by the editor.

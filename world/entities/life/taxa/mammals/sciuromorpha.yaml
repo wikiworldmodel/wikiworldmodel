@@ -1,0 +1,35 @@
+id: life/taxa/sciuromorpha
+kind: taxon
+summary: >-
+  Squirrels, marmots and dormice.
+same_as: { pbdb: "txn:41481" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Sciuromorpha, en: "squirrels and dormice" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    value: { lo: 0.11, hi: 0.68 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Myosciurus pumilio, Physical Description"
+        quote: "The length of head and body is 60 to 75 mm, while the length of tail is 50 to 60 mm"
+      - ref: src:animal-diversity-web
+        loc: "account of Marmota monax, Physical Description"
+        quote: "range from 415 to 675 mm in total length"
+    method: compilation
+    note: >-
+      From the African pygmy squirrel, head and body with the shortest tail, to the woodchuck.
+  mass:
+    prop: body_mass
+    value: { lo: 0.0095, hi: 8 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Myomimus_setzeri, column Mass.g (grams)"
+        quote: "Myomimus_setzeri,Rodentia,Gliridae,Myomimus,setzeri,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,9.5"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Marmota_sibirica, column Mass.g (grams)"
+        quote: "Marmota_sibirica,Rodentia,Sciuridae,Marmota,sibirica,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,8000"
+    method: compilation

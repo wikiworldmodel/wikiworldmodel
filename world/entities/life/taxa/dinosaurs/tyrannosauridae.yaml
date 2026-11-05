@@ -1,0 +1,47 @@
+id: life/taxa/tyrannosauridae
+kind: taxon
+summary: >-
+  The tyrant dinosaurs proper: huge skulls, thick necks, two-fingered arms that were tiny, and long
+  running legs.
+same_as: { pbdb: "txn:38606" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Tyrannosauridae }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: tyrannosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      mass_length: 11
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.64, 0.62, 0.004]
+            - [-0.42, 0.74, 0.68, 0.016]
+            - [-0.34, 0.85, 0.71, 0.03]
+            - [-0.26, 0.96, 0.74, 0.046]
+            - [-0.17, 1.07, 0.76, 0.064]
+            - [-0.08, 1.15, 0.7, 0.08]
+            - [0.02, 1.17, 0.58, 0.092]
+            - [0.1, 1.16, 0.6, 0.082]
+            - [0.16, 1.16, 0.72, 0.06]
+    unsourced: >-
+      A machine's editorial change: the plan's tail drawn in so that snout to tail comes to the
+      length claimed, as it runs a tenth over, and the bulk the generator assumes where no mass is
+      claimed, from the volume of the body at the density of water. Tyrannosaurus keeps its own plan
+      as it was.
+  length:
+    prop: body_length
+    value: { lo: 6, hi: 12.4 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 11, Tyrannosaurines", quote: "Alioramus other branch Late Cretaceous (70.6-68.5 MYA) 19.7 ft (6 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 11, Tyrannosaurines", quote: "Tyrannosaurus tyrant reptile Late Cretaceous (66.8-65.5 MYA) 40.7ft (12.4 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Albertosaurines" and "Tyrannosaurines" (pp. 11-12), standing for
+      any member with no length of its own.

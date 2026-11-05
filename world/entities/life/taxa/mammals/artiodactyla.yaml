@@ -1,0 +1,42 @@
+id: life/taxa/artiodactyla
+kind: taxon
+summary: >-
+  Even-toed ungulates: pigs, hippopotamuses, camels, ruminants, and their kin. Whales, which the
+  database sets within them, are marine and are not drawn.
+same_as: { pbdb: "txn:87634" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Artiodactyla, en: "even-toed ungulates" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: ungulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.45, hi: 5.05 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Hyemoschus aquaticus, Physical Description"
+        quote: "The water chevrotain has a body length of between 45 and 85 cm"
+      - ref: src:animal-diversity-web
+        loc: "account of Hippopotamus amphibius, Physical Description"
+        quote: "hippopotamusi measure between 209 and 505 cm in length, including a tail of about 35 cm in length"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.554, hi: 4200 }
+    source:
+      - ref: src:orliac-2012-diacodexis
+        loc: "Table 1, row Diacodexis ilicis"
+        quote: "Diacodexis ilicis 554 (a) 3.93 3.81 3.62 3.84"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Even-toed ungulates (Artiodactyla)\""
+        quote: "and 3,500–4,200 kg (7,700–9,300 lb) in weight"
+    method: compilation
+    note: >-
+      From the earliest artiodactyl, as estimated from its astragalus, to Hippopotamus
+      antiquus, from Wikipedia as nothing better could be read. In the table the mass of
+      Diacodexis is in grams.

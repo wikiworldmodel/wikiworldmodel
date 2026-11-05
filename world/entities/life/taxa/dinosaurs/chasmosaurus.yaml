@@ -1,0 +1,30 @@
+id: life/taxa/chasmosaurus
+kind: taxon
+summary: >-
+  Chasmosaurus, a long-frilled chasmosaurine of the Campanian of Alberta.
+same_as: { pbdb: "txn:38855" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Chasmosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        brow: { to: [0.05, 0.15, 0.13] }
+        frill: { r: 0.23, dir: [-0.56, 0.83], across: 0.55, tall: 0.95, scallop: 0.02 }
+    unsourced: >-
+      A machine's reconstruction: short brow horns and a long, steep, narrow frill, from C. belli in
+      the silhouette "Ceratopsidae Scale V2.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 7
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 51, Chasmosaurines"
+      quote: "Chasmosaurus wide-opening [frill] reptile Late Cretaceous (80-72.8 MYA) 23 ft (7 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

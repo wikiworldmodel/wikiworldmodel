@@ -1,0 +1,29 @@
+id: life/taxa/pentaceratops
+kind: taxon
+summary: >-
+  Pentaceratops, a long-frilled, long-horned chasmosaurine of the Campanian of New Mexico.
+same_as: { pbdb: "txn:38859" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pentaceratops }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        frill: { r: 0.29, dir: [-0.5, 0.86], across: 0.5, tall: 0.95, scallop: 0.03 }
+    unsourced: >-
+      A machine's reconstruction: a very long, steep frill, from P. sternbergii in the silhouette
+      "Ceratopsidae Scale V2.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 8
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 52, Chasmosaurines"
+      quote: "Pentaceratops five-horned face Late Cretaceous (80-72.8 MYA) 26.2 ft (8 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

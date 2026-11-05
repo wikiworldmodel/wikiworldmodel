@@ -1,0 +1,37 @@
+id: life/taxa/ruminantia
+kind: taxon
+summary: >-
+  Cud-chewing artiodactyls: chevrotains, deer, giraffes, pronghorns and bovids.
+same_as: { pbdb: "txn:42587" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ruminantia, en: "ruminants" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    value: { lo: 0.45, hi: 4.18 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Hyemoschus aquaticus, Physical Description"
+        quote: "The water chevrotain has a body length of between 45 and 85 cm"
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Giraffa camelopardalis, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Giraffa camelopardalis 2.00 964654.73 -999.00 4177.03"
+    method: compilation
+    note: >-
+      Head and body at both ends, without the tail.
+  mass:
+    prop: body_mass
+    value: { lo: 1.7, hi: 2000 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Tragulus_versicolor, column Mass.g (grams)"
+        quote: "Tragulus_versicolor,Cetartiodactyla,Tragulidae,Tragulus,versicolor,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,1700"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Even-toed ungulates (Artiodactyla)\""
+        quote: "to possibly 2,000 kg (4,400 lb)"
+    method: compilation
+    note: >-
+      From a mouse deer to Bison latifrons, from Wikipedia as nothing better could be read.

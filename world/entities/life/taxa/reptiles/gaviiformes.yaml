@@ -1,0 +1,38 @@
+id: life/taxa/gaviiformes
+kind: taxon
+summary: >-
+  Loons, or divers: heavy swimming birds with dagger bills.
+same_as: { pbdb: "txn:39706" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Gaviiformes", en: "loons" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: waterfowl
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        bill: null
+        beak: { type: spike, on: head, mat: horn, sides: [6, 4], from: [0, 0.08, -0.006], to: [0, 0.2, -0.012], r: 0.02 }
+    unsourced: "A machine's reconstruction: a dagger bill on the plan's swimming bird. No skeletal figure was looked at."
+  length:
+    prop: body_length
+    value: { lo: 0.53, hi: 0.91 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Gaviiformes (Loons)\""
+      quote: "20.8–35.8 in (53–91 cm); 2.2–14.1 lb (1.0–6.4 kg)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 1, hi: 6.4 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Gaviiformes (Loons)\""
+      quote: "20.8–35.8 in (53–91 cm); 2.2–14.1 lb (1.0–6.4 kg)"
+    method: compilation

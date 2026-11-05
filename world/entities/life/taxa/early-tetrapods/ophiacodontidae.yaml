@@ -1,0 +1,65 @@
+id: life/taxa/ophiacodontidae
+kind: taxon
+summary: >-
+  Ophiacodontids, such as Ophiacodon: early synapsids with the longest, deepest skulls of their grade, often thought to have
+  hunted in and near the water.
+same_as: { pbdb: "txn:38884" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ophiacodontidae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          at:
+            stand: { y: 0.27, z: 1.14, pitch: 0.08 }
+            alert: { y: 0.27, z: 1.38, pitch: -0.08 }
+            low: { y: 0.28, reach: 0.23, pitch: 0.36 }
+          rings:
+            - [-0.012, 0.006, 0.026, 0.04]
+            - [0.04, 0.014, 0.032, 0.058]
+            - [0.1, 0.006, 0.026, 0.05]
+            - [0.16, -0.012, 0.016, 0.034]
+            - [0.215, -0.02, 0.009, 0.016]
+        jaw:
+          rings:
+            - [0.012, -0.044, 0.022, 0.014]
+            - [0.1, -0.05, 0.016, 0.011]
+            - [0.21, -0.034, 0.007, 0.005]
+        mouth:
+          rings:
+            - [0.03, -0.032, 0.024, 0.004]
+            - [0.12, -0.034, 0.015, 0.004]
+            - [0.208, -0.028, 0.007, 0.003]
+    source:
+      ref: src:van-valkenburgh-jenkins-2002-synapsid-predators
+      loc: "p. 271"
+      quote: "longest skull of any pelycosaur"
+    note: >-
+      The long head is the source's; its shape and everything else here is a machine's reconstruction of the plan, with no
+      skeletal figure of Ophiacodon looked at.
+  length-wikipedia:
+    prop: body_length
+    value: { lo: 1.6, hi: 3 }
+    source:
+      ref: src:wikipedia-early-vertebrates
+      loc: "Ophiacodon, Description"
+      quote: "ranging from 1.6 to 3 metres (5.2 to 9.8 ft) in length and 26 to 230 kilograms (57 to 507 lb) in weight"
+    method: compilation
+    rank: preferred
+    note: >-
+      Preferred as a range across the genus's specimens. An encyclopedia, cited as nothing better could be read: Felice &
+      Angielczyk, whom it cites, could not be.
+  length-van-valkenburgh-jenkins:
+    prop: body_length
+    value: 4
+    source:
+      ref: src:van-valkenburgh-jenkins-2002-synapsid-predators
+      loc: "p. 271"
+      quote: "500 mm (Romer and Price, 1941) and a total length of more than four meters."
+    method: expert-estimate
+    note: The largest remains only, and "more than" four metres.

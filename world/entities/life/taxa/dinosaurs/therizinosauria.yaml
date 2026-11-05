@@ -1,0 +1,25 @@
+id: life/taxa/therizinosauria
+kind: taxon
+summary: >-
+  The therizinosaurs: pot-bellied, long-necked plant-eaters with enormous hand claws.
+same_as: { pbdb: "txn:67254" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Therizinosauria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: therizinosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 1.9, hi: 9.6 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 14, Primitive Therizinosaurs", quote: "Beipiaosaurus Beipiao City [China] reptile Early Cretaceous (125-120 MYA) 6.1 ft (1.9 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 14, Therizinosaurids", quote: "Therizinosaurus scythe reptile Late Cretaceous (70.6-68.5 MYA) 31.5 ft (9.6 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Primitive Therizinosaurs" and "Therizinosaurids" on that page,
+      standing for any member with no length of its own.

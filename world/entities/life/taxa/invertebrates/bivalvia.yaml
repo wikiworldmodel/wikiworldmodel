@@ -1,0 +1,33 @@
+id: life/taxa/bivalvia
+kind: taxon
+summary: >-
+  The bivalves. The body drawn is a freshwater mussel's, and the range is for those of fresh water and the shore.
+same_as: { pbdb: "txn:16005" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Bivalvia, en: "bivalves" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: mussel
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, after the description of Unionidae in Watson & Dallwitz (the shell oblong,
+      and about half as long across from the hinge); no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 0.25 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. bivalve"
+        quote: "Bivalves range in size from about one millimetre (0.04 inch) in length"
+      - ref: src:winhold-2004-unionidae
+        loc: "Physical Description"
+        quote: "Adult unionids can range anywhere from 30 to 250 mm (Smith 2001) in length"
+    method: compilation
+    note: >-
+      The class's small end, from an encyclopedia, cited for lack of a work that could be read, and the large end of the
+      freshwater mussels. The same sentence gives the giant clam of coral reefs at more than 137 cm, which is left out
+      here because this atlas holds no seas yet.

@@ -1,0 +1,30 @@
+id: life/taxa/therizinosaurus
+kind: taxon
+summary: >-
+  Therizinosaurus, the largest sloth dinosaur, from latest Cretaceous Mongolia, its hand claws the
+  longest known.
+same_as: { pbdb: "txn:38553" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Therizinosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the plan therizinosaur, which was measured from this
+      genus: PIN 551-483 in "Therizinosaurus size.png" on Wikimedia Commons. Nothing here differs
+      from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 9.6
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 14, Therizinosaurids"
+      quote: "Therizinosaurus scythe reptile Late Cretaceous (70.6-68.5 MYA) 31.5 ft (9.6 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

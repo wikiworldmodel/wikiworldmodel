@@ -1,0 +1,28 @@
+id: life/taxa/masiakasaurus
+kind: taxon
+summary: >-
+  Masiakasaurus, a small noasaur of latest Cretaceous Madagascar, with teeth angled forward.
+same_as: { pbdb: "txn:56388" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Masiakasaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction: the form of its family looked at against "Masiakasaurus Scale.svg"
+      on Wikimedia Commons, and nothing changed from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 1.5
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 4, Noasaurids"
+      quote: "Masiakasaurus vicious reptile Late Cretaceous (70.6-65.5 MYA) 4.9 ft (1.5 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

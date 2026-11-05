@@ -1,0 +1,27 @@
+description: >-
+  A bat: a small furry body hung between wings of skin stretched on long fingers. Its length is its head and body.
+kind: animal
+hip: 0.5
+# Its mesh, head and all, at the density of water, for its length.
+mass_length: 25
+behave: { group: [4, 24], habitat: air, poses: [fly], flies: [2, 40] }
+parts:
+  body: { type: lump, mat: fur, zl: true, sides: [8, 4], bands: [5, 3], at: [0, -0.06, 0.5], r: [0.12, 0.36, 0.12] }
+  head: 
+    type: head
+    mat: fur
+    sides: [8, 4]
+    at:
+      stand: { y: 0.28, z: 1.04, pitch: 0.1 }
+      fly: { y: 0.28, z: 1.0, pitch: 0.1 }
+    rings:
+      - [-0.05, 0, 0.09, 0.09]
+      - [0.02, 0, 0.1, 0.105]
+      - [0.09, -0.01, 0.07, 0.07]
+      - [0.15, -0.02, 0.03, 0.03]
+  ears: { type: spike, on: head, mirror: true, mat: membrane, sides: [4, 4], from: [0.05, 0.0, 0.07], to: [0.09, -0.05, 0.25], r: 0.05 }
+  wings: { type: wing, mat: membrane, shoulder: [0.08, 0.14, 1.12], span: 2.2, chord: 0.95, sweep: 0.42, beat: 0.2, arm: 0.026, folded: 0.5, drop: 0.5 }
+  tail: { type: sheet, mat: membrane, poses: [fly], points: [[0, -0.34, 1.02], [0.2, -0.32, 0.96], [0.12, -0.74, 0.95], [0, -0.82, 0.95], [-0.12, -0.74, 0.95], [-0.2, -0.32, 0.96]] }
+  legs: { type: spike, mat: fur, mirror: true, poses: [fly], near: true, sides: [4, 4], from: [0.09, -0.3, 0.95], to: [0.2, -0.62, 0.9], r: 0.03 }
+  perch: { type: spike, mat: fur, mirror: true, not: [fly], near: true, sides: [4, 4], from: [0.09, -0.26, 0.8], to: [0.14, -0.3, 0], r: 0.03 }
+  eyes: { type: eyes, on: head, near: true, at: [0.06, 0.08, 0.03], r: 0.018 }

@@ -1,0 +1,21 @@
+id: life/taxa/carabidae
+kind: taxon
+summary: >-
+  The ground beetles, one of the largest families of beetles. It takes the beetles' body, with its own range of sizes.
+same_as: { pbdb: "txn:69183" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Carabidae, en: "ground beetles" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 0.085 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Coleoptera Carabidae\""
+        quote: "Coleoptera Carabidae 40000 1 85 (Beutel & Leschen, 2005)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this family, its millimetres given in metres.

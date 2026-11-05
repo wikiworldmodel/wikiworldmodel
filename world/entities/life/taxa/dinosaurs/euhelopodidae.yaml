@@ -1,0 +1,22 @@
+id: life/taxa/euhelopodidae
+kind: taxon
+summary: >-
+  The euhelopodids, long-necked sauropods of the Cretaceous of Asia.
+same_as: { pbdb: "txn:38699" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Euhelopodidae }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 12, hi: 25 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 32, Primitive Macronarians", quote: "Euhelopus true marsh foot Late Jurassic (155.7-148 MYA) 39.4 ft (12 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 34, Primitive Titanosaurs", quote: "Phuwiangosaurus Phu Wiang [Thailand] reptile Early Cretaceous (140.2-130 MYA) 82 ft (25 m)" }
+    method: compilation
+    note: >-
+      The two genera the list gives a length for that the database places here, one in the table
+      "Primitive Macronarians" and one in "Primitive Titanosaurs", standing for any member with no
+      length of its own.

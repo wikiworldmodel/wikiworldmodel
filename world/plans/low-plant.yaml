@@ -1,0 +1,6 @@
+description: >-
+  A low tuft of thin, nearly bare stems: an early land plant, or a plant of no known kind.
+kind: plant
+behave: { layer: under, weight: 0.6, wet: 1.2 }
+parts:
+  plant: { type: tuft, blades: 26, spread: 0.32, wide: 0.012 }

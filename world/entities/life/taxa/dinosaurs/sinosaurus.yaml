@@ -1,0 +1,51 @@
+id: life/taxa/sinosaurus
+kind: taxon
+summary: >-
+  Sinosaurus, an Early Jurassic crested hunter of China, whose species sinensis was once called
+  Dilophosaurus.
+same_as: { pbdb: "txn:38266" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Sinosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.25
+      parts:
+        head:
+          at:
+            stand: { y: 0.29, z: 1.26, pitch: 0.1 }
+          rings:
+            - [-0.006, 0, 0.016, 0.021]
+            - [0.025, 0.002, 0.019, 0.026]
+            - [0.06, -0.003, 0.012, 0.016]
+            - [0.085, -0.002, 0.009, 0.01]
+            - [0.105, -0.004, 0.008, 0.008]
+            - [0.125, -0.008, 0.004, 0.004]
+        crests:
+          type: sheet
+          on: head
+          mirror: true
+          mat: hide
+          tint_add: 20
+          points: [[0.009, 0.04, 0.012], [0.008, 0.095, 0.0], [0.007, 0.08, 0.03], [0.006, 0.04, 0.05], [0.006, 0.005, 0.05], [0.008, -0.004, 0.02]]
+        jaw: { rings: [[0.012, -0.02, 0.013, 0.006], [0.07, -0.018, 0.009, 0.0045], [0.12, -0.015, 0.0045, 0.003]] }
+        eyes: { at: [0.017, 0.022, 0.012], r: 0.0045 }
+    unsourced: >-
+      A machine's reconstruction, the same as Dilophosaurus: no figure of Sinosaurus itself was
+      looked at, and its crest and proportions are taken from its likeness to Dilophosaurus.
+  length-holtz-2012:
+    prop: body_length
+    value: 6
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 3, Dilophosaurids and relatives"
+      quote: "No official genus name; formerly \"Dilophosaurus\" sinensis Early Jurassic (199.6-183 MYA) 19.7 ft (6 m)"
+    method: compilation
+    note: >-
+      The list gives this species a row of its own under no official genus, and gives Sinosaurus
+      proper no length. The database now names it Sinosaurus sinensis, so this row stands for the
+      genus: a figure with no measurement behind it.

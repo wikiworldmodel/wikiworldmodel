@@ -28,8 +28,8 @@ import { FEATURE_INDEX } from '../../../../core/featuretiles.ts';
 import { prominenceOf, tileFeatures } from './featuretiles.ts';
 import { buildIce, type IceBuilt } from './ice.ts';
 import { hazardLayer, languagesLayer, peopleLayer, polityLayer, presentLayer, routesLayer } from './layers.ts';
-import { buildScene } from './scene.ts';
-import type { SceneParams } from '../../../../world/generators/life/scene/v1.ts';
+import { buildAtlas } from './atlas.ts';
+import { buildScene, witnesses } from './scene.ts';
 import { features as buildFeatures, periods as buildPeriods, records as buildRecords, search as buildSearch, sourceRecord, type Solved } from './records.ts';
 import { planet as buildPlanet } from './planet.ts';
 import { series as buildSeries } from './series.ts';
@@ -373,6 +373,7 @@ export async function runBuild(args: string[]): Promise<number> {
   if (people) put('people.lwt', encodeTile(people.header as unknown as Record<string, unknown>, people.arrays, stableStringify));
   // The living scene, on the land and climate above.
   const sites: SiteInfo[] = [];
+  let atlasFile: string | undefined;
   if (city) {
     const v = (world.generators.find((g) => g.id === 'gen:rome/fabric')!.params as unknown as { site: Pick<SiteInfo, 'near' | 'window' | 'view'> }).site;
     sites.push({ kind: 'city', id: city.file.site.id, label: city.file.site.label, file: `city/${city.file.site.id}.json`, place: 'places/rome', origin: city.file.site.origin, span: city.file.site.span, slice: city.file.site.slice, near: v.near, window: v.window, view: v.view });
@@ -383,11 +384,21 @@ export async function runBuild(args: string[]): Promise<number> {
     const living = buildScene(solved, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, buildPlanet(solved), log);
     if (living) {
       const f = living.file;
-      for (const [path, bytes] of living.blobs) put(path, bytes);
-      put(`scene/${f.site.id}.json`, stableStringify(f));
-      const params = f.generator.params as unknown as SceneParams;
-      const heading = (Math.atan2(f.site.to_river[0], f.site.to_river[1]) * 180) / Math.PI + params.view.turn * (180 / Math.PI);
-      sites.push({ kind: 'life', id: f.site.id, label: f.site.label, file: `scene/${f.site.id}.json`, place: f.site.place, origin: f.site.origin, span: f.site.span, slice: f.site.slice, near: f.site.span, window: params.site.window.map((p) => parsePoint(p as TimePointInput).t) as [number, number], view: { x: f.site.focus[0], y: f.site.focus[1], range: params.view.range, heading: Math.round(((heading % 360) + 360) % 360), tilt: params.view.tilt } });
+      const spec = f.spec;
+      put(`scene/${spec.site.id}.json`, stableStringify(f));
+      const lp = world.generators.find((g) => g.id === 'gen:life/scene')!.params as unknown as { site: { window: string[] }; view: { range: number; turn: number; tilt: number } };
+      const heading = (Math.atan2(f.to_river[0], f.to_river[1]) * 180) / Math.PI + lp.view.turn * (180 / Math.PI);
+      sites.push({ kind: 'life', id: spec.site.id, label: spec.site.label, file: `scene/${spec.site.id}.json`, place: spec.site.place, origin: spec.site.origin, span: spec.site.span, slice: spec.site.slice, near: spec.site.span, window: lp.site.window.map((p) => parsePoint(p as TimePointInput).t) as [number, number], view: { x: f.focus[0], y: f.focus[1], range: lp.view.range, heading: Math.round(((heading % 360) + 360) % 360), tilt: lp.view.tilt } });
+    }
+    // Who lived where, for a scene of any place on land.
+    const atlas = buildAtlas(solved, periodList, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, log);
+    if (atlas) {
+      for (const [path, content] of atlas.files) put(path, content);
+      const seen = witnesses(solved, atlas.index, atlas.files, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, buildPlanet(solved), log);
+      put('life/witness.json', stableStringify(seen));
+      atlasFile = 'life/atlas.json';
+      coverageFile.forms = { ...atlas.index.coverage, wanted: atlas.wanted.slice(0, 200) };
+      put('coverage.json', stableStringify(coverageFile));
     }
   }
 
@@ -398,7 +409,7 @@ export async function runBuild(args: string[]): Promise<number> {
     timeRange: span,
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
-    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(routes ? { routes: 'routes.json' } : {}), ...(languages ? { languages: 'languages.json' } : {}), ...(people ? { people: 'people.lwt' } : {}), features: FEATURE_INDEX },
+    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(routes ? { routes: 'routes.json' } : {}), ...(languages ? { languages: 'languages.json' } : {}), ...(people ? { people: 'people.lwt' } : {}), ...(atlasFile ? { atlas: atlasFile } : {}), features: FEATURE_INDEX },
     climate: climateField && biomeField && climateKeys.length ? { field: climateField.id, title: climateField.title, description: climateField.description, biomeTitle: biomeField.title, biomeDescription: biomeField.description, source: climateField.data!.from, sourceRecord: sourceRecord(world.source.get(climateField.data!.from)!), params: biomeField.params ?? {} } : undefined,
     ice: iceField && ice ? { field: iceField.id, title: iceField.title, description: iceField.description, uncertainty: iceField.uncertainty, basis: iceField.basis!, source: iceField.data!.from, sourceRecord: sourceRecord(world.source.get(iceField.data!.from)!), coverage: ice.coverage, keyframesMa: ice.keyframesMa, projection: iceField.projection ? { method: iceField.projection.method, until: parsePoint(iceField.projection.until as TimePointInput).t, note: iceField.projection.note } : undefined, marginM: ice.marginM, scenarios: ice.scenarios } : undefined,
     credits: credits(world),

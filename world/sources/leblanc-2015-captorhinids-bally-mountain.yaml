@@ -1,0 +1,20 @@
+id: src:leblanc-2015-captorhinids-bally-mountain
+type: publication
+kind: measurement
+citation: >-
+  LeBlanc, A.R.H., Brar, A.K., May, W.J. & Reisz, R.R. (2015). Multiple tooth-rowed captorhinids from the Early Permian fissure
+  fills of the Bally Mountain Locality of Oklahoma. Vertebrate Anatomy Morphology Palaeontology 1, 35–49.
+authors:
+  - "LeBlanc, A.R.H."
+  - "Brar, A.K."
+  - "May, W.J."
+  - "Reisz, R.R."
+published: 2015
+title: "Multiple tooth-rowed captorhinids from the Early Permian fissure fills of the Bally Mountain Locality of Oklahoma"
+container: Vertebrate Anatomy Morphology Palaeontology 1, 35–49
+doi: 10.18435/B5RP4N
+verified:
+  by: machine:claude-code
+  how: >-
+    The whole PDF read from the journal's page. Quotes checked by script against its text layer, with whitespace normalized.
+    Metadata from Crossref.

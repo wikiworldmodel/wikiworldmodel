@@ -1,0 +1,46 @@
+id: life/taxa/cervidae
+kind: taxon
+summary: >-
+  Deer, with branching antlers on the males.
+same_as: { pbdb: "txn:42652" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cervidae, en: "deer" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      behave: { group: [1, 6], habitat: edge, poses: [graze, graze, stand, walk, alert] }
+      parts:
+        antlers: { type: chain, on: head, mirror: true, mat: horn, tint: 130, sides: [5, 4], points: [[0.016, -0.004, 0.034, 0.0075], [0.036, -0.03, 0.09, 0.006], [0.052, -0.038, 0.15, 0.0048], [0.05, -0.012, 0.21, 0.0024]] }
+        brow: { type: spike, on: head, near: true, mirror: true, mat: horn, tint: 130, sides: [4, 4], from: [0.026, -0.018, 0.058], to: [0.036, 0.04, 0.09], r: 0.0048 }
+        bez: { type: spike, on: head, near: true, mirror: true, mat: horn, tint: 130, sides: [4, 4], from: [0.044, -0.034, 0.12], to: [0.066, 0.015, 0.16], r: 0.004 }
+    unsourced: >-
+      A machine's reconstruction, with the branching antlers for which deer are known, on the
+      plan's body; only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.85, hi: 3.1 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Pudu puda, Physical Description"
+        quote: "body length is short, usually not exceeding 85 cm"
+      - ref: src:animal-diversity-web
+        loc: "account of Alces alces, Physical Description"
+        quote: "Live weights of males range from 360 to 600 kg with lengths from 2.4 to 3.1 m"
+    method: compilation
+    note: >-
+      From a pudu, at the most its account gives, to a moose.
+  mass:
+    prop: body_mass
+    value: { lo: 9.6, hi: 800 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Pudu_mephistophiles, column Mass.g (grams)"
+        quote: "Pudu_mephistophiles,Cetartiodactyla,Cervidae,Pudu,mephistophiles,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,9600"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Megaceroides_algericus, column Mass.g (grams)"
+        quote: "Megaceroides_algericus,Cetartiodactyla,Cervidae,Megaceroides,algericus,1,0,0,0,Imputed,PHYLACINE 1.2.1,800000"
+    method: compilation

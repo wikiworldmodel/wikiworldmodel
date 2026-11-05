@@ -1,0 +1,24 @@
+id: life/taxa/acrodonta
+kind: taxon
+summary: >-
+  Agamas, dragon lizards and chameleons.
+same_as: { pbdb: "txn:90440" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Acrodonta", en: "agamas and chameleons" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.0199, hi: 0.418 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Brookesia micra, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "0.301995172 NA 19.9"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Uromastyx aegyptia, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "2818.382931 NA 418"
+    method: compilation
+    note: >-
+      From snout to vent, as the plan's length is.

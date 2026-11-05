@@ -1,0 +1,40 @@
+id: life/taxa/ostracoda
+kind: taxon
+summary: >-
+  The ostracods or seed shrimps, tiny crustaceans closed in a two-valved shell. The database calls the class marine, and
+  only those it calls otherwise are drawn on land.
+same_as: { pbdb: "txn:22826" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ostracoda, en: "ostracods" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: clam-shrimp
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The body is the clam shrimp's, as the key says they look alike.
+  form:
+    prop: body_form
+    value:
+      parts:
+        limbs: null
+    source:
+      - ref: src:lucid-key-ostracoda
+        loc: "Overview"
+        quote: "ostracods have a modified bivalved carapace that totally encloses the body in a clam-like fashion"
+    note: >-
+      The shell is the quote's; the same key says the first antennae protrude. Its outline is the clam shrimp's plan,
+      which is a machine's reconstruction.
+  length:
+    prop: body_length
+    value: { lo: 0.0002, hi: 0.008 }
+    source:
+      - ref: src:lucid-key-ostracoda
+        loc: "Overview"
+        quote: "some interstitial forms are as small as 0.2 mm and some freshwater species attain 8 mm"
+    method: compilation
+    note: >-
+      Of fresh water. The same sentence says most are 0.5 to 2 mm.

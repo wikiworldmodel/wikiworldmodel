@@ -1,0 +1,31 @@
+id: life/taxa/dipnomorpha
+kind: taxon
+summary: >-
+  Lungfishes and their stem: lobe-finned fishes of the Devonian to now, mostly of fresh water, which breathe air and grind their food
+  on tooth plates.
+same_as: { pbdb: "txn:67350" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dipnomorpha, en: lungfishes }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: lungfish
+    unsourced: >-
+      Which plan draws it: an editorial classification, from its place in the tree. The plan is a machine's drawing of a living
+      lungfish's general shape, from no figure. Early lungfishes such as Dipterus had separate fins on the back, and are not drawn so here.
+  length:
+    prop: body_length
+    value: { lo: 0.35, hi: 1.7 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Dipterus, Description"
+        quote: "which was about 35 centimetres (14 in) long"
+      - ref: src:fishbase-freshwater-fishes
+        loc: "Neoceratodus forsteri, Size / Weight / Age"
+        quote: "Max length : 170 cm TL male/unsexed"
+    method: compilation
+    note: >-
+      From the Devonian Dipterus, by an encyclopedia, to the living Australian lungfish; the African Protopterus reaches 2 m on FishBase.

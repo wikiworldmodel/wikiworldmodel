@@ -1,0 +1,31 @@
+id: life/taxa/heterodontosauridae
+kind: taxon
+summary: >-
+  The heterodontosaurs, tiny early ornithischians with tusks and grasping hands.
+same_as: { pbdb: "txn:38722" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Heterodontosauridae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        tusk: { type: spike, on: head, mirror: true, near: true, mat: horn, tint: 200, from: [0.01, 0.055, -0.012], to: [0.011, 0.06, -0.03], r: 0.0028, sides: [5, 3] }
+        arms: { points: [[0.03, 0.08, 0.86, 0.013], [0.05, 0.06, 0.66, 0.01], [0.044, 0.13, 0.5, 0.007], [0.04, 0.16, 0.42, 0.004]] }
+    unsourced: >-
+      A machine's reconstruction: tusks and longer hands than the plan, from what the name and the
+      heading of the table "Heterodontosaurids" in Holtz (2012) say ("Strong-Snouted Early Bird-
+      Hipped Dinosaurs"); no skeletal figure of them was looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.75, hi: 1.2 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 38, Heterodontosaurids", quote: "Fruitadens Fruita [quarry in Colorado] tooth Late Jurassic (155.7-150.8 MYA) 30 in (75 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 38, Heterodontosaurids", quote: "Abrictosaurus awake reptile Early Jurassic (199.6-189.6 MYA) 3.9 ft (1.2 m)" }
+    method: compilation
+    note: >-
+      The range across the named genera of the table "Heterodontosaurids" on that page, standing for
+      any member with no length of its own.

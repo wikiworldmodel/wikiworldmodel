@@ -1,0 +1,18 @@
+id: src:engelman-2023-dunkleosteus-mouths
+type: publication
+kind: measurement
+citation: >-
+  Engelman, R.K. (2023). Giant, swimming mouths: oral dimensions of extant sharks do not
+  accurately predict body size in Dunkleosteus terrelli (Placodermi: Arthrodira). PeerJ 11,
+  e15131.
+authors:
+  - "Engelman, R.K."
+published: 2023
+title: "Giant, swimming mouths: oral dimensions of extant sharks do not accurately predict body size in Dunkleosteus terrelli (Placodermi: Arthrodira)"
+container: "PeerJ 11, e15131"
+doi: 10.7717/peerj.15131
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC10100833); quotes checked by script against it.

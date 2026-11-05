@@ -1,0 +1,40 @@
+description: >-
+  A massive early therapsid: a deep chest, high shoulders and a back sloping down to low hips, a very short tail, thick stooping forelegs and a heavy skull.
+kind: animal
+hip: 0.27
+behave: { group: [1, 5], habitat: open, poses: [graze, stand, walk, alert] }
+parts:
+  body:
+    type: trunk
+    rings:
+      - [-0.5, 0.92, 0.78, 0.006]
+      - [-0.45, 1.04, 0.74, 0.022]
+      - [-0.4, 1.18, 0.64, 0.054]
+      - [-0.33, 1.32, 0.48, 0.096]
+      - [-0.24, 1.44, 0.38, 0.132]
+      - [-0.12, 1.58, 0.34, 0.156]
+      - [0.0, 1.74, 0.4, 0.156]
+      - [0.09, 1.82, 0.56, 0.124]
+      - [0.15, 1.82, 0.86, 0.088]
+    neck: { r: 0.062, steps: [3, 1] }
+  hind: { type: pillar, y: -0.3, x: 0.125, top: 0.98, r: 0.06, swing: 0.04 }
+  hindfoot: { type: lump, near: true, not: [walk, fly], mirror: true, at: [0.135, -0.27, 0.05], r: [0.05, 0.075, 0.016], sides: [8, 4], bands: [3, 2] }
+  arm: { type: chain, mirror: true, sides: [7, 3], points: [[0.11, 0.1, 1.24, 0.066], [0.15, 0.07, 0.94, 0.056], [0.168, 0.075, 0.66, 0.044]] }
+  forearm: { type: pillar, y: 0.075, x: 0.168, top: 0.68, r: 0.042, swing: 0.035, phase: 1 }
+  forefoot: { type: lump, near: true, not: [walk, fly], mirror: true, at: [0.178, 0.105, 0.05], r: [0.048, 0.07, 0.016], sides: [8, 4], bands: [3, 2] }
+  head:
+    type: head
+    at:
+      stand: { y: 0.24, z: 1.96, pitch: 0.3 }
+      alert: { y: 0.24, z: 2.1, pitch: 0.12 }
+      low: { y: 0.3, reach: 0.2, pitch: 1.0 }
+    rings:
+      - [-0.012, 0.006, 0.052, 0.056]
+      - [0.03, 0.016, 0.062, 0.072]
+      - [0.08, 0.008, 0.056, 0.07]
+      - [0.125, -0.006, 0.046, 0.06]
+      - [0.16, -0.018, 0.036, 0.046]
+      - [0.185, -0.026, 0.022, 0.028]
+  jaw: { type: tube, on: head, sides: [8, 4], rings: [[0.014, -0.058, 0.046, 0.02], [0.09, -0.072, 0.04, 0.02], [0.17, -0.066, 0.024, 0.014]] }
+  dome: { type: lump, on: head, at: [0, 0.04, 0.062], r: [0.054, 0.052, 0.032], sides: [10, 5], bands: [5, 3] }
+  eyes: { type: eyes, on: head, near: true, at: [0.054, 0.08, 0.032], r: 0.0095 }

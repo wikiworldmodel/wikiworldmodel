@@ -1,0 +1,52 @@
+id: life/taxa/albertosaurinae
+kind: taxon
+summary: >-
+  The albertosaurines, the slender tyrant dinosaurs.
+same_as: { pbdb: "txn:67658" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Albertosaurinae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.33
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.6, 0.58, 0.004]
+            - [-0.42, 0.7, 0.64, 0.014]
+            - [-0.34, 0.8, 0.67, 0.026]
+            - [-0.26, 0.9, 0.7, 0.04]
+            - [-0.17, 1.0, 0.72, 0.056]
+            - [-0.08, 1.07, 0.68, 0.07]
+            - [0.02, 1.09, 0.58, 0.08]
+            - [0.1, 1.08, 0.6, 0.072]
+            - [0.16, 1.08, 0.7, 0.054]
+        head:
+          at:
+            stand: { y: 0.27, z: 1.1, pitch: 0.12 }
+            alert: { y: 0.26, z: 1.22, pitch: 0.1 }
+            low: { y: 0.3, z: 0.6, pitch: 0.5 }
+          rings:
+            - [-0.01, 0.0, 0.04, 0.05]
+            - [0.05, 0.004, 0.05, 0.064]
+            - [0.11, -0.006, 0.044, 0.056]
+            - [0.17, -0.016, 0.032, 0.04]
+            - [0.215, -0.024, 0.022, 0.026]
+            - [0.238, -0.026, 0.01, 0.013]
+    unsourced: >-
+      A machine's reconstruction: a slimmer body and head on longer legs than the plan, from the
+      silhouette "Gorgosaurusscale.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 8.6
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 11, Albertosaurines"
+      quote: "Albertosaurus Alberta [Canada] reptile Late Cretaceous (72.8-66.8 MYA) 28.2 ft (8.6 m)"
+    method: compilation
+    note: >-
+      The list gives both genera of its table "Albertosaurines" the same length as this row.

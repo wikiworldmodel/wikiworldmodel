@@ -1,0 +1,31 @@
+id: life/taxa/pinaceae
+kind: taxon
+summary: >-
+  The pine family.
+same_as: { pbdb: "txn:54794" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pinaceae, en: "pines, firs and spruces" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        tree: { reach: 0.12, trunk: 0.018, flare: 1.6, tiers: 11, start: 0.4, drop: 0.05 }
+    unsourced: "A machine's reconstruction: a narrower, higher crown than the general conifer's, from the Flora of North America's descriptions of Pinus."
+  height:
+    prop: plant_height
+    value: { lo: 21, hi: 75 }
+    source:
+      - ref: src:flora-of-north-america
+        loc: "Vol. 2, s.v. Pinus edulis"
+        quote: "Shrubs or trees to 21m"
+      - ref: src:flora-of-north-america
+        loc: "Vol. 2, s.v. Pinus lambertiana"
+        quote: "Trees to 75m"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living pines at their greatest, from a small pinyon to the sugar pine: modern relatives.

@@ -1,0 +1,38 @@
+id: life/taxa/protosuchidae
+kind: taxon
+summary: >-
+  Small land crocodyliforms of the Early Jurassic, short-snouted and armoured.
+same_as: { pbdb: "txn:38325" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Protosuchidae", en: "protosuchids" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: notosuchian
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          rings:
+            - [-0.02, 0, 0.038, 0.034]
+            - [0.03, 0.0, 0.044, 0.044]
+            - [0.07, -0.01, 0.03, 0.034]
+            - [0.11, -0.018, 0.02, 0.024]
+            - [0.135, -0.022, 0.012, 0.014]
+        jaw: { rings: [[0.02, -0.044, 0.034, 0.012], [0.07, -0.044, 0.024, 0.01], [0.125, -0.038, 0.012, 0.006]] }
+    unsourced: "A machine's reconstruction: a shorter snout on the plan's land crocodyliform. No skeletal figure was looked at."
+  length:
+    prop: body_length
+    value: 0.8
+    source:
+      ref: src:wikipedia-protosuchus
+      loc: "article text"
+      quote: "Protosuchus was about 80 centimetres"
+    method: compilation
+    note: >-
+      Cited from Wikipedia because nothing better could be read.

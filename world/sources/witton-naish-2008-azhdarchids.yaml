@@ -1,0 +1,17 @@
+id: src:witton-naish-2008-azhdarchids
+type: publication
+kind: review
+citation: >-
+  Witton, M.P. & Naish, D. (2008). A reappraisal of azhdarchid pterosaur functional morphology and paleoecology. PLoS ONE 3(5),
+  e2271.
+authors:
+  - "Witton, M.P."
+  - "Naish, D."
+published: 2008
+title: "A reappraisal of azhdarchid pterosaur functional morphology and paleoecology"
+container: PLoS ONE 3(5), e2271
+doi: 10.1371/journal.pone.0002271
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC2386974) read via Europe PMC (fullTextXML). Quotes checked by script against that text. Metadata from Crossref.

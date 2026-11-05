@@ -1,0 +1,52 @@
+id: life/taxa/formicidae
+kind: taxon
+summary: >-
+  The ants, drawn as workers: wingless, with a large head, elbowed antennae and a node on the thin waist.
+same_as: { pbdb: "txn:70728" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Formicidae, en: "ants" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.2
+      behave: { group: [3, 12], habitat: any, poses: [walk, walk, stand] }
+      parts:
+        rest-wings: null
+        fly-fore: null
+        fly-hind: null
+        head: { at: [0, 0.37, 0.16], r: [0.085, 0.1, 0.07] }
+        eyes: { at: [0.075, 0.39, 0.18], r: [0.012, 0.022, 0.024] }
+        jaws: { type: spike, near: true, zl: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.04, 0.46, 0.13], to: [0.01, 0.53, 0.12], r: 0.014 }
+        thorax: { at: [0, 0.15, 0.165], r: [0.06, 0.125, 0.07] }
+        waist: { rings: [[0, 0.03, 0.14, 0.016, 0.016], [0, -0.06, 0.135, 0.016, 0.016]] }
+        node: { type: lump, zl: true, mat: chitin, at: [0, -0.015, 0.16], r: [0.026, 0.03, 0.042], sides: [6, 4], bands: [3, 2] }
+        gaster: { rings: [[0, -0.07, 0.135, 0.05, 0.05], [0, -0.18, 0.14, 0.095, 0.085], [0, -0.34, 0.125, 0.085, 0.075], [0, -0.48, 0.1, 0.012, 0.012]] }
+        antennae: { points: [[0.04, 0.43, 0.19, 0.006], [0.16, 0.46, 0.27, 0.005], [0.2, 0.68, 0.2, 0.003]] }
+        fore-legs: { points: [[0.04, 0.23, 0.1, 0.01], [0.14, 0.3, 0.15, 0.008], [0.2, 0.4, 0.03, 0.005], [0.24, 0.47, 0.004, 0.0025]] }
+        mid-legs: { points: [[0.045, 0.14, 0.1, 0.01], [0.17, 0.14, 0.17, 0.008], [0.28, 0.1, 0.03, 0.005], [0.33, 0.06, 0.004, 0.0025]] }
+        hind-legs: { points: [[0.045, 0.06, 0.1, 0.011], [0.19, -0.06, 0.2, 0.009], [0.3, -0.24, 0.03, 0.005], [0.35, -0.33, 0.004, 0.0025]] }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. ant"
+        quote: "Typically, an ant has a large head and a slender, oval abdomen joined to the thorax, or midsection, by a small waist."
+      - ref: src:britannica-online-animals
+        loc: "s.v. ant"
+        quote: "The antennae are always elbowed."
+    note: >-
+      The head, waist and antennae are the article's. Its proportions, and the worker's being the one drawn, are a
+      machine's reconstruction, with no figure compared.
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 0.033 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Hymenoptera Formicidae\""
+        quote: "Hymenoptera Formicidae 10000 1 33 (Arnett 2000)/(Lenhart et al. 2013) Sizes given based on workers"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this family, its millimetres given in metres. The table gives
+      its sizes for workers.

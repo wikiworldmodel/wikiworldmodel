@@ -1,0 +1,22 @@
+id: life/taxa/ornithopoda
+kind: taxon
+summary: >-
+  The beaked dinosaurs. This record speaks for those in no smaller group, such as Hypsilophodon; the
+  iguanodonts have their own.
+same_as: { pbdb: "txn:38713" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ornithopoda }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 0.65, hi: 2 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 42, Primitive Ornithopods", quote: "Gasparinisaura [Argentine paleontologist Zulma Late Cretaceous (83-78 MYA) 2.1 ft (65 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 42, Primitive Ornithopods", quote: "Atlascopcosaurus Atlas Copco [company that makes Early Cretaceous (118-110 MYA) 6.6 ft (2 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Primitive Ornithopods" on that page, standing for any member with
+      no length of its own.

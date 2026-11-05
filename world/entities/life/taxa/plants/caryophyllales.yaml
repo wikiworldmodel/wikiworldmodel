@@ -1,0 +1,26 @@
+id: life/taxa/caryophyllales
+kind: taxon
+summary: >-
+  Pinks, goosefoots and their relatives.
+same_as: { pbdb: "txn:54896" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Caryophyllales, en: pinks and goosefoots }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: herb
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 0.1, hi: 3 }
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 4, p. 296, s.v. Chenopodium album"
+      quote: "Stems erect to sprawling, simple to much-branched, 1-30 dm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      A living goosefoot, standing for the order: a modern relative, chosen by the editor.

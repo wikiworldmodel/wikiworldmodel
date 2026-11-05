@@ -1,0 +1,31 @@
+id: src:faurby-2020-phylacine
+type: dataset
+kind: compilation
+citation: >-
+  Faurby, S., Pedersen, R.Ø., Davis, M., Schowanek, S.D., Jarvie, S., Antonelli, A. & Svenning,
+  J.-C. (2020). PHYLACINE 1.2.1: An update to the Phylogenetic Atlas of Mammal Macroecology. Updating
+  Faurby, S., Davis, M., Pedersen, R.Ø., Schowanek, S.D., Antonelli, A. & Svenning, J.-C. (2018).
+  PHYLACINE 1.2: The Phylogenetic Atlas of Mammal Macroecology. Ecology, doi:10.1002/ecy.2443.
+authors:
+  - "Faurby, S."
+  - "Pedersen, R.Ø."
+  - "Davis, M."
+  - "Schowanek, S.D."
+  - "Jarvie, S."
+  - "Antonelli, A."
+  - "Svenning, J.-C."
+published: 2020
+title: "PHYLACINE 1.2.1: An update to the Phylogenetic Atlas of Mammal Macroecology"
+doi: 10.5281/zenodo.3690867
+url: https://github.com/MegaPast2Future/PHYLACINE_1.2/blob/v1.2.1/Data/Traits/Trait_data.csv
+reliability: >-
+  A database of all mammal species of the last 130,000 years, living and recently extinct, with a
+  mass for each: most from Smith et al. (2003) and other compilations, and some, marked in its
+  Mass.Method column, imputed from relatives. Its masses are in grams. Each cited here is one
+  row's value. The dataset is cited, and not imported into the build.
+verified:
+  by: machine:claude-code
+  how: >-
+    Data/Traits/Trait_data.csv fetched from the repository's master branch, sha256
+    ab035a8fab3d18673dea1d4a56f741e3ea9f8ba460461c7a1e738621ca315ec7, the same file as at the tag
+    v1.2.1. The rows quoted checked by script against it. The citation is from the repository's README.

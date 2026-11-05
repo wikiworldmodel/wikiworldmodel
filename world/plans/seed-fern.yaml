@@ -1,0 +1,6 @@
+description: >-
+  A seed fern: a slender stem with a crown of very long, broad, spreading fronds.
+kind: plant
+behave: { layer: canopy, weight: 1, wet: 0.4 }
+parts:
+  plant: { type: fern, on_stem: 0.72, stem: 0.016, reach: 0.42, fronds: 12, across: 0.16, arch: [0.3, 0.25], steps: 5 }

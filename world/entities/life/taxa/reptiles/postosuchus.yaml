@@ -1,0 +1,22 @@
+id: life/taxa/postosuchus
+kind: taxon
+summary: >-
+  A large rauisuchian of the Late Triassic of the American Southwest.
+same_as: { pbdb: "txn:38264" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Postosuchus" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 4, hi: 6 }
+    source:
+      ref: src:weinbaum-2011-postosuchus-skull
+      loc: "p. 19"
+      quote: "two large specimens (estimated length 4–6 meters)"
+    method: expert-estimate
+    note: >-
+      Chatterjee's (1985) estimate, as Weinbaum gives it. The smaller specimens he took for
+      juveniles may be another animal.

@@ -1,0 +1,28 @@
+id: life/taxa/saurischia
+kind: taxon
+summary: >-
+  The lizard-hipped dinosaurs. Here it holds what the database places in it directly: the
+  sauropodomorphs, which have a record of their own, and early forms such as the herrerasaurs and
+  Eodromaeus.
+same_as: { pbdb: "txn:38505" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Saurischia }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: basal-theropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.5, hi: 4 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 2, Primitive Saurischians", quote: "Alwalkeria Walker Late Triassic (228-203.6 MYA) 1.6 ft (50 cm)?" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 2, Herrerasaurs", quote: "Herrerasaurus [Argentine farmer Victorino] Late Triassic (235-228 MYA) 13.1ft (4 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the tables "Primitive Saurischians" and "Herrerasaurs" on that
+      page; Alwalkeria is the author's own doubt. It stands for the early forms the database places
+      directly in Saurischia: sauropodomorphs have their own.

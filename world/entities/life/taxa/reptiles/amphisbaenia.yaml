@@ -1,0 +1,80 @@
+id: life/taxa/amphisbaenia
+kind: taxon
+summary: >-
+  Wormlizards: limbless burrowers with blunt heads and ringed scales.
+same_as: { pbdb: "txn:58739" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Amphisbaenia", en: "wormlizards" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: snake
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [1, 2], habitat: any, poses: [rest] }
+      mass_length: 2
+      parts:
+        body:
+          points:
+            - [0.0, -0.355, 0.0189, 0.0189]
+            - [0.003, -0.3347, 0.0189, 0.0189]
+            - [0.011, -0.3144, 0.022, 0.022]
+            - [0.0211, -0.2941, 0.022, 0.022]
+            - [0.0292, -0.2738, 0.022, 0.022]
+            - [0.0313, -0.2535, 0.022, 0.022]
+            - [0.0246, -0.2332, 0.022, 0.022]
+            - [0.0083, -0.2129, 0.022, 0.022]
+            - [-0.0128, -0.1926, 0.022, 0.022]
+            - [-0.0316, -0.1724, 0.022, 0.022]
+            - [-0.0448, -0.1521, 0.022, 0.022]
+            - [-0.05, -0.1318, 0.022, 0.022]
+            - [-0.0463, -0.1115, 0.022, 0.022]
+            - [-0.0344, -0.0912, 0.022, 0.022]
+            - [-0.0163, -0.0709, 0.022, 0.022]
+            - [0.0046, -0.0506, 0.022, 0.022]
+            - [0.0247, -0.0303, 0.022, 0.022]
+            - [0.0405, -0.01, 0.022, 0.022]
+            - [0.049, 0.0103, 0.022, 0.022]
+            - [0.0488, 0.0306, 0.022, 0.022]
+            - [0.0399, 0.0509, 0.022, 0.022]
+            - [0.0239, 0.0712, 0.022, 0.022]
+            - [0.0037, 0.0915, 0.022, 0.022]
+            - [-0.0172, 0.1118, 0.022, 0.022]
+            - [-0.035, 0.1321, 0.022, 0.022]
+            - [-0.0466, 0.1524, 0.022, 0.022]
+            - [-0.0499, 0.1726, 0.022, 0.022]
+            - [-0.0432, 0.1929, 0.022, 0.022]
+            - [-0.0264, 0.2132, 0.022, 0.022]
+            - [-0.0088, 0.2335, 0.022, 0.022]
+            - [0.0057, 0.2538, 0.022, 0.022]
+            - [0.0144, 0.2741, 0.022, 0.022]
+            - [0.0166, 0.2944, 0.022, 0.022]
+            - [0.0133, 0.3147, 0.022, 0.022]
+            - [0.0071, 0.335, 0.022, 0.022]
+        head:
+          rings:
+            - [-0.004, 0, 0.02, 0.018]
+            - [0.012, 0.001, 0.021, 0.019]
+            - [0.028, 0.0, 0.017, 0.015]
+            - [0.038, -0.001, 0.01, 0.009]
+        eyes: null
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Wormlizards (Amphisbaenidae)\""
+      quote: "Elongate, slender, limbless, fossorial reptiles with scales arranged in annular rings"
+    note: >-
+      The form follows this: a body that does not taper, a blunt head and no eyes to see. Its
+      proportions are a machine's reconstruction. They live underground, which is not drawn.
+  length:
+    prop: body_length
+    value: { lo: 0.1, hi: 0.8 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Wormlizards (Amphisbaenidae)\""
+      quote: "from tiny worm-like species of 4 in (100 mm) maximum length to some of the largest known amphisbaenians of more than 32 in (800 mm)"
+    method: compilation

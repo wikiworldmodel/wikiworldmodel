@@ -1,0 +1,40 @@
+description: >-
+  A rhynchosaur: a stocky plant-eating archosauromorph of the Triassic, with a broad deep head ending in a powerful hooked
+  beak, a barrel of a body on sprawling, heavy-clawed legs and a tapering tail. Its length is from the beak to the tip of the tail.
+kind: animal
+hip: 0.2
+mass_length: 25
+behave: { group: [2, 8], habitat: any, poses: [stand, walk, graze, alert] }
+parts:
+  body:
+    type: trunk
+    sides: [12, 5]
+    rings:
+      - [-0.5, 0.5, 0.42, 0.006]
+      - [-0.4, 0.68, 0.42, 0.02]
+      - [-0.29, 0.92, 0.42, 0.045]
+      - [-0.18, 1.2, 0.42, 0.09]
+      - [-0.06, 1.38, 0.38, 0.122]
+      - [0.05, 1.38, 0.38, 0.122]
+      - [0.14, 1.3, 0.44, 0.1]
+      - [0.21, 1.18, 0.54, 0.066]
+    neck: { r: 0.05, steps: [2, 1] }
+  hind: { type: chain, mirror: true, sides: [6, 3], points: [[0.1, -0.13, 0.8, 0.05], [0.18, -0.12, 0.6, 0.036], [0.2, -0.13, 0.12, 0.026], [0.21, -0.09, 0.03, 0.022]] }
+  fore: { type: chain, mirror: true, sides: [6, 3], points: [[0.1, 0.13, 0.84, 0.038], [0.17, 0.11, 0.6, 0.028], [0.185, 0.14, 0.12, 0.022], [0.195, 0.18, 0.03, 0.018]] }
+  head:
+    type: head
+    sides: [10, 5]
+    thin: false
+    at:
+      stand: { y: 0.27, z: 1.1, pitch: 0.16 }
+      alert: { y: 0.27, z: 1.24, pitch: 0.06 }
+      low: { y: 0.3, reach: 0.17, clear: 0.05, pitch: 0.75 }
+    rings:
+      - [-0.02, 0, 0.056, 0.05]
+      - [0.03, 0.002, 0.082, 0.062]
+      - [0.09, -0.004, 0.066, 0.05]
+      - [0.14, -0.012, 0.034, 0.034]
+      - [0.17, -0.018, 0.016, 0.022]
+  beak: { type: tube, on: head, mat: horn, sides: [6, 4], rings: [[0.155, -0.014, 0.016, 0.022], [0.19, -0.024, 0.012, 0.02], [0.205, -0.052, 0.006, 0.01]] }
+  jaw: { type: tube, on: head, near: true, sides: [6, 4], rings: [[0.02, -0.056, 0.05, 0.012], [0.09, -0.052, 0.04, 0.012], [0.15, -0.044, 0.016, 0.008]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.06, 0.05, 0.03], r: 0.012 }

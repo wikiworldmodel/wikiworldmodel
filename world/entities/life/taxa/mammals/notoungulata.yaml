@@ -1,0 +1,30 @@
+id: life/taxa/notoungulata
+kind: taxon
+summary: >-
+  South American hoofed mammals, from small rabbit-like forms to the rhinoceros-sized toxodonts.
+same_as: { pbdb: "txn:43320" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Notoungulata, en: "notoungulates" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: ungulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  mass:
+    prop: body_mass
+    value: { lo: 10, hi: 2295 }
+    source:
+      - ref: src:croft-lorente-2021-sanu-limbs
+        loc: "Introduction"
+        quote: "the only ones with many species of medium to large size (ca. 10–1,000 kg)"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Trigonodops_lopesi, column Mass.g (grams)"
+        quote: "Trigonodops_lopesi,Notoungulata,Toxodontidae,Trigonodops,lopesi,1,0,0,0,Imputed,PHYLACINE 1.2.1,2294926.7"
+    method: compilation
+    note: >-
+      Croft & Lorente’s range is of the notoungulates and litopterns together; the high end is
+      PHYLACINE’s largest. No length of the whole group was read: the plan makes it from the
+      mass.

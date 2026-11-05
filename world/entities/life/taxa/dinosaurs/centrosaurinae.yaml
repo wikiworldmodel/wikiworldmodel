@@ -1,0 +1,40 @@
+id: life/taxa/centrosaurinae
+kind: taxon
+summary: >-
+  The centrosaurines: horned dinosaurs with deep snouts, usually a large nose horn or boss and short
+  brow horns, and short frills edged with spikes.
+same_as: { pbdb: "txn:53953" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Centrosaurinae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        nose: { from: [0, 0.18, 0.016], to: [0, 0.225, 0.13], r: 0.019 }
+        brow: { from: [0.036, 0.09, 0.07], to: [0.044, 0.125, 0.11], r: 0.012 }
+        frill: { r: 0.17, across: 0.76, scallop: 0.09, scallops: 10 }
+        head:
+          rings:
+            - [-0.01, 0.0, 0.06, 0.06]
+            - [0.06, 0.012, 0.074, 0.08]
+            - [0.12, 0.004, 0.062, 0.072]
+            - [0.18, -0.014, 0.04, 0.056]
+            - [0.23, -0.034, 0.02, 0.032]
+    unsourced: >-
+      A machine's reconstruction: a big upright nose horn, small brow horns, a short scalloped frill
+      and a deeper snout than the plan, from the silhouettes "Centrosaurus Scale.svg" and
+      "Styracosaurus Scale.svg" on Wikimedia Commons.
+  length:
+    prop: body_length
+    value: { lo: 2.5, hi: 8 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 51, Centrosaurines", quote: "Avaceratops [American fossil hunter] Ava Late Cretaceous (80-72.8 MYA) 8.2 ft (2.5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 51, Centrosaurines", quote: "Pachyrhinosaurus thick-nosed reptile Late Cretaceous (80-66.8 MYA) 26.2 ft (8 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Centrosaurines" on p. 51, standing for any member with no length
+      of its own.

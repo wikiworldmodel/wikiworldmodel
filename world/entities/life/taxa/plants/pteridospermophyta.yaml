@@ -1,0 +1,33 @@
+id: life/taxa/pteridospermophyta
+kind: taxon
+summary: >-
+  Seed ferns that the database places in no narrower group.
+same_as: { pbdb: "txn:56130" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pteridospermophyta, en: seed ferns }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: seed-fern
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 5, hi: 15 }
+    source:
+      - ref: src:luthardt-2022-medullosa
+        loc: "Introduction"
+        quote: "show up to 5 m high plants"
+      - ref: src:luthardt-2022-medullosa
+        loc: "Abstract"
+        quote: "usually not exceeding 15 m in height"
+      - ref: src:luthardt-2022-medullosa
+        loc: "Abstract"
+        quote: "the medullosan seed ferns represent the largest and most essential systematic group"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The figures for Medullosa, the largest group of seed ferns, standing for a seed fern with no
+      height of its own: no height was read for anything named here.

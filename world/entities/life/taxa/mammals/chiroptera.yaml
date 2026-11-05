@@ -1,0 +1,39 @@
+id: life/taxa/chiroptera
+kind: taxon
+summary: >-
+  Bats, the only flying mammals.
+same_as: { pbdb: "txn:40622" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Chiroptera, en: "bats" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: bat
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.029, hi: 0.34 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Craseonycteris thonglongyai, Physical Description"
+        quote: "The size of the head and body is 29 to 33 mm long"
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Pteropus livingstonii, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Pteropus livingstonii -999.00 734.27 172.95 340.00"
+    method: compilation
+    note: >-
+      Head and body, which is the length its plan is written for.
+  mass:
+    prop: body_mass
+    value: { lo: 0.002, hi: 1.075 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Kerivoula_minuta, column Mass.g (grams)"
+        quote: "Kerivoula_minuta,Chiroptera,Vespertilionidae,Kerivoula,minuta,0,0,0,1,Taxonomic,PHYLACINE 1.2,2.1"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Acerodon_jubatus, column Mass.g (grams)"
+        quote: "Acerodon_jubatus,Chiroptera,Pteropodidae,Acerodon,jubatus,0,0,0,1,Taxonomic,PHYLACINE 1.2,1075"
+    method: compilation

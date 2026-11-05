@@ -1,0 +1,30 @@
+id: life/taxa/anthracosauria
+kind: taxon
+summary: >-
+  Anthracosaurs as the database has them: the stem of amniotes and everything on the way to them, from the Carboniferous into the
+  Permian. As a body it stands for the small, stout ones with no form below it.
+same_as: { pbdb: "txn:37177" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Anthracosauria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: reptiliomorph
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else, amniotes aside: an editorial classification, from its
+      place in the tree. The plan is a machine's reconstruction, from the life restoration of Seymouria and the skeleton of
+      Diasparactus in Williston (1925), p. 217 (Wikimedia Commons, "The Osteology of the Reptiles p217.png").
+  length:
+    prop: body_length
+    value: { lo: 0.3, hi: 1.5 }
+    source:
+      ref: src:wikipedia-early-vertebrates
+      loc: "Seymouriamorpha, Description"
+      quote: "They ranged from 30 cm (1 ft) long lizard-sized creatures to the 1.5 m (5 ft) long Enosuchus."
+    method: compilation
+    note: >-
+      The seymouriamorphs' range, standing for their relatives here. An encyclopedia, cited as nothing better could be read:
+      Williston (1911) gives only 21 inches from the snout of a Seymouria to the sixth vertebra of its tail.

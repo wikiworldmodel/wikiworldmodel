@@ -1,0 +1,29 @@
+id: life/taxa/pinacosaurus
+kind: taxon
+summary: >-
+  Pinacosaurus, a lightly built club-tailed ankylosaur of the Late Cretaceous of Mongolia and China.
+same_as: { pbdb: "txn:38833" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pinacosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        club: { r: [0.026, 0.036, 0.016] }
+    unsourced: >-
+      A machine's reconstruction: a much smaller tail club than the family's, from the silhouette
+      "Pinacosaurus Scale.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 5
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 41, Ankylosaurines"
+      quote: "Pinacosaurus plank reptile Late Cretaceous (85.8-70.6 MYA) 16.4 ft (5 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

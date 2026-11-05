@@ -1,0 +1,33 @@
+id: life/taxa/fringillidae
+kind: taxon
+summary: >-
+  Finches: small songbirds with short conical bills.
+same_as: { pbdb: "txn:39450" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Fringillidae", en: "finches" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        bill: { from: [0, 0.09, -0.004], to: [0, 0.165, -0.014], r: 0.03 }
+    unsourced: "A machine's reconstruction: the short conical bill of a seed-eater on the plan's small bird."
+  length:
+    prop: body_length
+    value: { lo: 0.1, hi: 0.25 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Finches (Fringillidae)\""
+      quote: "Body length about 4–10 in (10–25 cm) and weight 0.3–2.1 oz (8–60 g)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.008, hi: 0.06 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Finches (Fringillidae)\""
+      quote: "Body length about 4–10 in (10–25 cm) and weight 0.3–2.1 oz (8–60 g)"
+    method: compilation

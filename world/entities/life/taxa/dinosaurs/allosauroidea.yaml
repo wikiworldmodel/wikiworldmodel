@@ -1,0 +1,21 @@
+id: life/taxa/allosauroidea
+kind: taxon
+summary: >-
+  The carnosaurs: Allosaurus and its kin, the sinraptorids and the shark-toothed giants.
+same_as: { pbdb: "txn:64112" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Allosauroidea }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 3.5, hi: 13.2 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 7, Sinraptorids", quote: "Gasosaurus gas reptile Middle Jurassic (167.7-161.2 MYA) 11.5 ft (3.5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 8, Carcharodontosaurids", quote: "Giganotosaurus giant southern reptile Late Cretaceous (99.6-97 MYA) 43.3 ft (13.2 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Sinraptorids" (pp. 7-8), "Allosaurids" and "Carcharodontosaurids"
+      (p. 8), standing for any member with no length of its own.

@@ -1,0 +1,26 @@
+id: life/taxa/macronaria
+kind: taxon
+summary: >-
+  The big-nosed sauropods. This record speaks for those in no smaller group; Camarasaurus, the
+  brachiosaurs and the titanosaurs have their own.
+same_as: { pbdb: "txn:57438" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Macronaria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: sauropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 5, hi: 21.5 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 32, Primitive Macronarians", quote: "Bellusaurus fine reptile Late Jurassic (161.2-155.7 MYA) 16.4 ft (5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 32, Primitive Macronarians", quote: "Jainosaurus [Indian paleontologist Sohan Lal] Late Cretaceous (70.6-65.5 MYA) 70.5 ft (21.5 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Primitive Macronarians" (pp. 31-32), standing for any member with
+      no length of its own.

@@ -1,0 +1,57 @@
+id: life/taxa/dromornithiformes
+kind: taxon
+summary: >-
+  The mihirungs, or thunder birds: huge flightless birds of Australia with massive beaks.
+same_as: { pbdb: "txn:98841" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Dromornithiformes", en: "mihirungs" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: ratite
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      mass_length: 22
+      behave: { group: [1, 2], habitat: open, poses: [stand, walk, walk, graze, alert] }
+      parts:
+        plumes: { points: [[0.1, 0.03, 1.4], [0.125, -0.02, 1.38], [0.13, -0.1, 1.2], [0.112, -0.09, 1.1]] }
+        legs: { r: 0.07, knee: 0.74, ankle: 0.4 }
+        body:
+          rings:
+            - [-0.33, 1.14, 0.92, 0.02]
+            - [-0.28, 1.26, 0.84, 0.066]
+            - [-0.2, 1.4, 0.74, 0.115]
+            - [-0.1, 1.5, 0.68, 0.14]
+            - [0.0, 1.56, 0.72, 0.138]
+            - [0.07, 1.62, 0.9, 0.11]
+            - [0.11, 1.7, 1.12, 0.08]
+          neck: { r: 0.06, steps: [5, 2] }
+        head:
+          at:
+            stand: { y: 0.15, z: 2.02, pitch: 0.12 }
+            alert: { y: 0.12, z: 2.12, pitch: 0.05 }
+            low: { y: 0.3, reach: 0.24, clear: 0.05, pitch: 0.9 }
+          rings:
+            - [-0.03, -0.004, 0.044, 0.056]
+            - [0.03, 0.006, 0.05, 0.08]
+            - [0.09, 0.008, 0.044, 0.092]
+            - [0.14, 0.0, 0.036, 0.086]
+        bill: { rings: [[0.13, -0.002, 0.036, 0.08], [0.18, -0.012, 0.028, 0.066], [0.22, -0.026, 0.016, 0.04], [0.235, -0.038, 0.005, 0.014]] }
+        eyes: { at: [0.042, 0.05, 0.04], r: 0.012 }
+    unsourced: "A machine's reconstruction from what is known of the group in general: the plan's big flightless bird with a massive beak. No skeletal figure was looked at."
+  length:
+    prop: body_length
+    value: { lo: 1.5, hi: 3 }
+    source:
+      ref: src:wikipedia-dromornithidae
+      loc: "article text"
+      quote: "These birds ranged from about the size of a modern cassowary 1.5 to 1.8 m (4 ft 11 in to 5 ft 11 in) up to 3 m (9 ft 10 in) in the case of Dromornis stirtoni"
+    method: compilation
+    note: >-
+      Their height, as the plan's length is, cited from Wikipedia because nothing better could be
+      read.

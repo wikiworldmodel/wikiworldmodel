@@ -21,6 +21,10 @@ claims:
     note: >-
       A crown-group age: the last common ancestor of the living members, which is this group’s
       origin here. A composite of the 95% HPD intervals of the paper’s main analyses.
+  body-plan:
+    prop: body_plan
+    value: small-mammal
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
 relations:
   parent:
     rel: descends-from

@@ -1,0 +1,26 @@
+description: >-
+  A gnat, midge or crane fly: a small head on a slender humped body, long thin legs, long antennae and one narrow pair of
+  wings. Its length is the body's, without the legs.
+kind: animal
+hip: 0.28
+behave: { group: [2, 8], habitat: air, poses: [fly, fly, stand], flies: [0.2, 2.5] }
+parts:
+  head: { type: lump, zl: true, mat: chitin, at: [0, 0.42, 0.2], r: [0.045, 0.05, 0.05], sides: [6, 4], bands: [4, 3] }
+  eyes: { type: lump, zl: true, near: true, mat: dark, mirror: true, at: [0.028, 0.43, 0.21], r: [0.022, 0.03, 0.036], sides: [5, 4], bands: [3, 2] }
+  thorax: { type: lump, zl: true, mat: chitin, at: [0, 0.27, 0.215], r: [0.07, 0.125, 0.085], sides: [8, 4], bands: [4, 3] }
+  abdomen:
+    type: tube
+    zl: true
+    mat: chitin
+    sides: [6, 4]
+    rings:
+      - [0, 0.16, 0.2, 0.05, 0.05]
+      - [0, -0.1, 0.17, 0.05, 0.045]
+      - [0, -0.35, 0.14, 0.036, 0.03]
+      - [0, -0.48, 0.125, 0.015, 0.014]
+  rest-wings: { type: sheet, zl: true, mat: membrane, mirror: true, not: [fly], gap: 0.002, points: [[0.03, 0.25, 0.285], [0.11, 0.05, 0.25], [0.11, -0.36, 0.2], [0.06, -0.44, 0.2], [0.012, -0.1, 0.25]] }
+  fly-wings: { type: wing, mat: membrane, poses: [fly], shoulder: [0.04, 0.27, 1.02], span: 0.82, chord: 0.17, sweep: 0.08, beat: 0.35, arm: 0.003 }
+  antennae: { type: spike, near: true, zl: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.012, 0.46, 0.23], to: [0.1, 0.74, 0.3], r: 0.0045 }
+  fore-legs: { type: chain, near: true, zl: true, mat: chitin, mirror: true, not: [fly], sides: [3, 3], points: [[0.04, 0.32, 0.14, 0.007], [0.17, 0.43, 0.3, 0.005], [0.29, 0.6, 0.015, 0.0025]] }
+  mid-legs: { type: chain, near: true, zl: true, mat: chitin, mirror: true, not: [fly], sides: [3, 3], points: [[0.045, 0.26, 0.13, 0.007], [0.25, 0.28, 0.33, 0.005], [0.42, 0.3, 0.015, 0.0025]] }
+  hind-legs: { type: chain, near: true, zl: true, mat: chitin, mirror: true, not: [fly], sides: [3, 3], points: [[0.045, 0.2, 0.13, 0.007], [0.23, 0.02, 0.35, 0.005], [0.4, -0.22, 0.015, 0.0025]] }

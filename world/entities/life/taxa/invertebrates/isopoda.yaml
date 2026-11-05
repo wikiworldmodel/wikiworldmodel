@@ -1,0 +1,30 @@
+id: life/taxa/isopoda
+kind: taxon
+summary: >-
+  The woodlice, pill bugs and water lice, flattened and plated, seven pairs of like legs under a low body. It takes the
+  generic arthropod's body, with a pair of tail stumps.
+same_as: { pbdb: "txn:22794" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Isopoda, en: "woodlice and their relatives" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [1, 5], habitat: wet, poses: [stand, walk] }
+      parts:
+        tail-stumps: { type: spike, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.05, -0.47, 0.08], to: [0.09, -0.58, 0.06], r: 0.012 }
+    unsourced: "A machine's reconstruction of the general shape of the group, from general knowledge of woodlice; no figure was compared with it."
+  length:
+    prop: body_length
+    value: { lo: 0.0007, hi: 0.035 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. isopod"
+        quote: "are from 0.7 to 35 mm (0.28 to 1.4 inches) long"
+    method: compilation
+    note: >-
+      An encyclopedia's numbers for most species, cited for lack of a work that could be read. A marine one grows to 35
+      cm.

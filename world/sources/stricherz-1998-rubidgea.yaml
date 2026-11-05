@@ -1,0 +1,23 @@
+id: src:stricherz-1998-rubidgea
+type: database-record
+kind: review
+citation: >-
+  Stricherz, V. (1998). First complete fossil of fierce prehistoric predator found in South
+  Africa. University of Washington News, 8 December 1998.
+authors:
+  - "Stricherz, V."
+snapshot: 2026-11-05
+published: 1998
+title: "First complete fossil of fierce prehistoric predator found in South Africa"
+container: "University of Washington News"
+url: https://www.washington.edu/news/1998/12/08/first-complete-fossil-of-fierce-prehistoric-predator-found-in-south-africa/
+reliability: >-
+  A university's news release on a find by its own palaeontologist, Peter Ward, with Roger Smith.
+  It is used because the works that give the lengths of the largest gorgonopsians could not be
+  read: a last resort.
+verified:
+  by: machine:claude-code
+  how: >-
+    The page read through a fetching tool on the date of the snapshot, whose reply gave the
+    sentence quoted, on the skull and whole length. The tool's reply is the text the quote was
+    checked against, as the page itself would not open directly.

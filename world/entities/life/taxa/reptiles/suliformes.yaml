@@ -1,0 +1,55 @@
+id: life/taxa/suliformes
+kind: taxon
+summary: >-
+  Cormorants, anhingas, boobies, gannets and frigatebirds: fish-eating waterbirds, most of those in
+  the fossils cormorants.
+same_as: { pbdb: "txn:358821" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Suliformes", en: "cormorants, boobies and frigatebirds" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: waterfowl
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.17
+      parts:
+        head:
+          at:
+            stand: { y: 0.27, z: 3.0, pitch: 0.08 }
+            alert: { y: 0.26, z: 3.15, pitch: 0.0 }
+            low: { y: 0.34, reach: 0.2, clear: 0.05, pitch: 0.9 }
+            fly: { y: 0.3, z: 2.2, pitch: 0.03 }
+        bill: null
+        beak: { type: tube, on: head, mat: horn, sides: [6, 4], rings: [[0.075, -0.004, 0.018, 0.018], [0.13, -0.008, 0.012, 0.012], [0.175, -0.01, 0.008, 0.01], [0.195, -0.022, 0.004, 0.005]] }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Cormorants and Anhingas (Phalacrocoracidae)\""
+      quote: "Sleek, dark-colored, large to medium-sized, long-necked waterbirds with all toes joined by webs"
+    note: >-
+      The neck and webs follow this. The narrow hooked bill is a machine's reconstruction; no
+      skeletal figure was looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.48, hi: 1.02 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Cormorants and Anhingas (Phalacrocoracidae)\""
+      quote: "Variation among species ranges from 19 to 40 in (48–102 cm) and weight 1.5–7.7 lb (0.7–3.5 kg)"
+    method: compilation
+    note: >-
+      The cormorants, the largest family in the order's fossils; boobies and gannets, 64–100 cm, lie
+      within it.
+  mass:
+    prop: body_mass
+    value: { lo: 0.7, hi: 3.5 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Cormorants and Anhingas (Phalacrocoracidae)\""
+      quote: "Variation among species ranges from 19 to 40 in (48–102 cm) and weight 1.5–7.7 lb (0.7–3.5 kg)"
+    method: compilation

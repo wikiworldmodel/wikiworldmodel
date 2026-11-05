@@ -1,0 +1,39 @@
+id: life/taxa/dasyuromorphia
+kind: taxon
+summary: >-
+  The marsupial carnivores: quolls, dunnarts, the Tasmanian devil, and the thylacine.
+same_as: { pbdb: "txn:66283" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dasyuromorphia, en: "marsupial carnivores" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: carnivoran
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.055, hi: 1.95 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Planigale ingrami, Physical Description"
+        quote: "Long-tailed planigales weigh 4.2 to 4.3 grams and are 55 to 65 mm in length"
+      - ref: src:animal-diversity-web
+        loc: "account of Thylacinus cynocephalus, Physical Description"
+        quote: "Tasmanian wolves had an overall body length of approximately 1230 to 1950 mm"
+    method: compilation
+    note: >-
+      The low end may be head and body alone: the account does not say.
+  mass:
+    prop: body_mass
+    value: { lo: 0.0042, hi: 30 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Planigale ingrami, Physical Description"
+        quote: "Long-tailed planigales weigh 4.2 to 4.3 grams and are 55 to 65 mm in length"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Thylacinus_cynocephalus, column Mass.g (grams)"
+        quote: "Thylacinus_cynocephalus,Dasyuromorphia,Thylacinidae,Thylacinus,cynocephalus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,30000"
+    method: compilation

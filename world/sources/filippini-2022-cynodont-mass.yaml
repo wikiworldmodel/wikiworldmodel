@@ -1,0 +1,20 @@
+id: src:filippini-2022-cynodont-mass
+type: publication
+kind: model
+citation: >-
+  Filippini, F.S., Abdala, F. & Cassini, G.H. (2022). Body mass estimation in Triassic cynodonts
+  from Argentina based on limb variables. Acta Palaeontologica Polonica 67(2), 543–557.
+authors:
+  - "Filippini, F.S."
+  - "Abdala, F."
+  - "Cassini, G.H."
+published: 2022
+title: "Body mass estimation in Triassic cynodonts from Argentina based on limb variables"
+container: "Acta Palaeontologica Polonica 67(2), 543–557"
+doi: 10.4202/app.00919.2021
+url: https://www.app.pan.pl/archive/published/app67/app009192021.pdf
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's PDF read at the journal's site; quotes checked by script against its text layer.

@@ -1,0 +1,25 @@
+id: life/taxa/sciuridae
+kind: taxon
+summary: >-
+  Squirrels, chipmunks and marmots.
+same_as: { pbdb: "txn:41486" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Sciuridae, en: "squirrels and marmots" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.12
+      behave: { group: [1, 3], habitat: forest, poses: [stand, walk, alert] }
+      parts:
+        tail: null
+        brush: { type: chain, zl: true, mat: fur, sides: [7, 4], points: [[0, -0.2, 0.16, 0.022], [0, -0.32, 0.2, 0.036], [0, -0.42, 0.27, 0.046], [0, -0.47, 0.37, 0.042], [0, -0.46, 0.45, 0.022]] }
+        body: { at: [0, 0, 0.17] }
+        head: { at: [0, 0.26, 0.2] }
+        ears: { type: spike, zl: true, mat: fur, near: true, mirror: true, sides: [4, 4], from: [0.03, 0.24, 0.255], to: [0.04, 0.22, 0.31], r: 0.016 }
+    unsourced: >-
+      A machine's reconstruction, from the squirrels' account on the Animal Diversity Web:
+      long, bushy tails. Only compared with its sheet.

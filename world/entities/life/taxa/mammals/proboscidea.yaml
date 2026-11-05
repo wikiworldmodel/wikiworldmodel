@@ -1,0 +1,44 @@
+id: life/taxa/proboscidea
+kind: taxon
+summary: >-
+  Elephants and their kin, from early small forms to the largest land mammals.
+same_as: { pbdb: "txn:43230" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Proboscidea, en: "proboscideans" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: proboscidean
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 2.3, hi: 6.4 }
+    source:
+      - ref: src:larramendi-2016-proboscideans
+        loc: "p. 555, section on Plesielephantiformes"
+        quote: "an extremely elongated animal 230 cm in length"
+      - ref: src:animal-diversity-web
+        loc: "account of Elephas maximus, Physical Description"
+        quote: "The body length ranges from 550 to 640 cm"
+    method: compilation
+    note: >-
+      From Moeritherium, as Larramendi restores it, to the Asian elephant. No body length was
+      read for the largest proboscideans; their heights are in Larramendi’s Table 8.
+  mass:
+    prop: body_mass
+    value: { lo: 200, hi: 16000 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Elephas_cypriotes, column Mass.g (grams)"
+        quote: "Elephas_cypriotes,Proboscidea,Elephantidae,Elephas,cypriotes,1,0,0,0,Imputed,PHYLACINE 1.2.1,200000"
+      - ref: src:larramendi-2016-proboscideans
+        loc: "Table 8, row Mammut borsoni ♂"
+        quote: "body mass 13.7 < 13.7–18.4 (16) 18.5–20.4 20.5–25.6 25.7–28.4"
+    method: compilation
+    note: >-
+      From the smallest dwarf elephant in PHYLACINE to the mean full-grown male of the largest
+      species in Larramendi. Earlier forms were far smaller: he says "a few kilograms", with
+      no number.

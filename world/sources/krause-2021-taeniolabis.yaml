@@ -1,0 +1,26 @@
+id: src:krause-2021-taeniolabis
+type: publication
+kind: measurement
+citation: >-
+  Krause, D.W., Hoffmann, S., Lyson, T.R., Dougan, L.G., Petermann, H., Tecza, A., Chester, S.G.B.
+  & Miller, I.M. (2021). New skull material of Taeniolabis taoensis (Multituberculata,
+  Taeniolabididae) from the early Paleocene (Danian) of the Denver Basin, Colorado. Journal of
+  Mammalian Evolution 28(4), from p. 1083.
+authors:
+  - "Krause, D.W."
+  - "Hoffmann, S."
+  - "Lyson, T.R."
+  - "Dougan, L.G."
+  - "Petermann, H."
+  - "Tecza, A."
+  - "Chester, S.G.B."
+  - "Miller, I.M."
+published: 2021
+title: "New skull material of Taeniolabis taoensis (Multituberculata, Taeniolabididae) from the early Paleocene (Danian) of the Denver Basin, Colorado"
+container: "Journal of Mammalian Evolution 28(4)"
+doi: 10.1007/s10914-021-09584-3
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC8667543). Quotes checked by script against the
+    text retrieved, after normalizing whitespace.

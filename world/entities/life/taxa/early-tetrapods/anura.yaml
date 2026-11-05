@@ -1,0 +1,31 @@
+id: life/taxa/anura
+kind: taxon
+summary: >-
+  Frogs and toads, from the Jurassic to now.
+same_as: { pbdb: "txn:97112" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Anura, en: frogs and toads }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: frog
+    unsourced: >-
+      Which plan draws it: an editorial classification, from its place in the tree. The plan is a machine's drawing of a frog's
+      general shape, from no figure: a reviewer should compare it.
+  length:
+    prop: body_length
+    value: { lo: 0.0077, hi: 0.232 }
+    source:
+      - ref: src:rittmeyer-2012-paedophryne
+        loc: "Abstract"
+        quote: "attaining an average body size of only 7.7 mm"
+      - ref: src:evans-2014-beelzebufo
+        loc: "Discussion, Body Size"
+        quote: "(SVL = ∼232 mm"
+    method: expert-estimate
+    note: >-
+      A frog's length is from snout to vent. From the smallest known vertebrate to the largest Beelzebufo, of the Late Cretaceous of
+      Madagascar. Living frogs reach a little more; a typical frog is near the middle of this range or below it.

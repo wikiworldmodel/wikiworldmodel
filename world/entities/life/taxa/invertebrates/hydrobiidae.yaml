@@ -1,0 +1,35 @@
+id: life/taxa/hydrobiidae
+kind: taxon
+summary: >-
+  The tiny mud and spire snails of fresh and brackish water, with a tall tapering shell.
+same_as: { pbdb: "txn:60680" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hydrobiidae, en: "mud snails" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [3, 12], habitat: edge, poses: [stand, walk] }
+      parts:
+        shell: { rings: [[0.141, 0.154, 0.218, 0.168, 0.168], [0.225, 0.148, 0.409, 0.161, 0.161], [0.319, 0.011, 0.521, 0.155, 0.155], [0.351, -0.18, 0.511, 0.149, 0.149], [0.288, -0.321, 0.408, 0.144, 0.144], [0.157, -0.346, 0.289, 0.138, 0.138], [0.019, -0.258, 0.236, 0.133, 0.133], [-0.063, -0.123, 0.286, 0.128, 0.128], [-0.063, -0.029, 0.415, 0.123, 0.123], [-0.001, -0.034, 0.555, 0.119, 0.119], [0.068, -0.134, 0.638, 0.114, 0.114], [0.092, -0.274, 0.63, 0.11, 0.11], [0.046, -0.378, 0.554, 0.106, 0.106], [-0.051, -0.397, 0.467, 0.102, 0.102], [-0.152, -0.332, 0.428, 0.098, 0.098], [-0.213, -0.233, 0.465, 0.094, 0.094], [-0.212, -0.163, 0.559, 0.091, 0.091], [-0.167, -0.167, 0.663, 0.087, 0.087], [-0.116, -0.241, 0.723, 0.084, 0.084], [-0.099, -0.344, 0.718, 0.081, 0.081], [-0.132, -0.42, 0.662, 0.078, 0.078], [-0.203, -0.434, 0.598, 0.075, 0.075], [-0.278, -0.386, 0.569, 0.072, 0.072], [-0.322, -0.313, 0.596, 0.069, 0.069], [-0.322, -0.262, 0.666, 0.067, 0.067], [-0.289, -0.265, 0.742, 0.064, 0.064], [-0.251, -0.319, 0.786, 0.062, 0.062], [-0.239, -0.395, 0.783, 0.059, 0.059], [-0.263, -0.451, 0.741, 0.057, 0.057], [-0.316, -0.461, 0.694, 0.055, 0.055], [-0.371, -0.426, 0.673, 0.053, 0.053], [-0.403, -0.372, 0.693, 0.051, 0.051], [-0.403, -0.335, 0.744, 0.049, 0.049], [-0.378, -0.337, 0.8, 0.047, 0.047], [-0.351, -0.377, 0.833, 0.045, 0.045], [-0.342, -0.433, 0.83, 0.044, 0.044], [-0.36, -0.474, 0.8, 0.042, 0.042], [-0.398, -0.481, 0.765, 0.04, 0.04], [-0.439, -0.455, 0.749, 0.039, 0.039], [-0.463, -0.416, 0.764, 0.037, 0.037], [-0.462, -0.388, 0.802, 0.036, 0.036]] }
+        ball: { at: [0.03, -0.02, 0.3], r: [0.15, 0.24, 0.24] }
+    source:
+      - ref: src:watson-dallwitz-nonmarine-molluscs
+        loc: "Hydrobiidae"
+        quote: "height about 1.7–2.3 x the width; high-spired and tapered gradually from the body whorl"
+    note: >-
+      The proportions are the description's. How the shell is carried is a machine's reconstruction, with no figure
+      compared.
+  length:
+    prop: body_length
+    value: { lo: 0.0025, hi: 0.009 }
+    source:
+      - ref: src:watson-dallwitz-nonmarine-molluscs
+        loc: "Hydrobiidae"
+        quote: "2.5–6(–9) mm in its maximum dimension"
+    method: compilation
+    note: >-
+      The family's range in Britain and Ireland, its only range read: elsewhere it may be wider.

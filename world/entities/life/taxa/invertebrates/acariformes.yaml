@@ -1,0 +1,43 @@
+id: life/taxa/acariformes
+kind: taxon
+summary: >-
+  The mites of this larger group, tiny and round.
+same_as: { pbdb: "txn:155664" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Acariformes, en: "mites" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [3, 12], habitat: forest, poses: [stand, walk] }
+      parts:
+        carapace: null
+        fangs: null
+        eyes: null
+        abdomen: { at: [0, -0.04, 0.22], r: [0.32, 0.46, 0.2] }
+        jaws: { at: [0.03, 0.44, 0.15], r: [0.03, 0.06, 0.04] }
+        palps: { points: [[0.06, 0.38, 0.14, 0.012], [0.11, 0.48, 0.13, 0.01], [0.12, 0.56, 0.08, 0.006]] }
+        leg-1: { points: [[0.2, 0.26, 0.14, 0.018], [0.34, 0.42, 0.2, 0.014], [0.44, 0.56, 0.1, 0.009], [0.5, 0.64, 0.004, 0.004]] }
+        leg-2: { points: [[0.24, 0.12, 0.14, 0.018], [0.42, 0.18, 0.2, 0.014], [0.54, 0.2, 0.1, 0.009], [0.6, 0.22, 0.004, 0.004]] }
+        leg-3: { points: [[0.24, -0.08, 0.14, 0.018], [0.42, -0.12, 0.2, 0.014], [0.54, -0.16, 0.1, 0.009], [0.6, -0.18, 0.004, 0.004]] }
+        leg-4: { points: [[0.2, -0.22, 0.14, 0.018], [0.34, -0.36, 0.2, 0.014], [0.44, -0.5, 0.1, 0.009], [0.5, -0.58, 0.004, 0.004]] }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. arachnid"
+        quote: "short-legged, round-bodied mites"
+    note: >-
+      The short legs and round body are the article's; their proportions are a machine's reconstruction, with no figure
+      compared.
+  length:
+    prop: body_length
+    value: { lo: 0.0001, hi: 0.006 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. mite"
+        quote: "the smallest is about 0.1 mm (0.004 inch) in length and the largest about 6 mm (0.25 inch)"
+    method: compilation
+    note: >-
+      An encyclopedia's numbers, cited for lack of a work that could be read.

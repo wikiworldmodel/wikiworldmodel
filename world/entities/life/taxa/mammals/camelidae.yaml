@@ -1,0 +1,75 @@
+id: life/taxa/camelidae
+kind: taxon
+summary: >-
+  Camels, llamas and their extinct kin, most of whom lived in North America.
+same_as: { pbdb: "txn:42513" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Camelidae, en: "camels and llamas" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.56
+      mass_length: 22
+      behave: { group: [2, 10], habitat: open, poses: [graze, stand, stand, walk, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.47, 0.72, 0.66, 0.006]
+            - [-0.455, 0.84, 0.78, 0.008]
+            - [-0.44, 0.95, 0.86, 0.012]
+            - [-0.41, 1.0, 0.76, 0.034]
+            - [-0.36, 1.03, 0.66, 0.066]
+            - [-0.26, 1.06, 0.6, 0.082]
+            - [-0.14, 1.08, 0.56, 0.09]
+            - [-0.02, 1.08, 0.56, 0.088]
+            - [0.07, 1.08, 0.62, 0.07]
+            - [0.13, 1.06, 0.72, 0.05]
+          neck: { r: 0.024, steps: [5, 2] }
+        hind: { y: -0.31, x: 0.05, top: 0.84, knee: 0.6, ankle: 0.36, r: 0.046 }
+        fore: { y: 0.065, x: 0.052, top: 0.74, r: 0.02 }
+        head:
+          at:
+            stand: { y: 0.34, z: 1.5, pitch: 0.1 }
+            alert: { y: 0.34, z: 1.6, pitch: 0.0 }
+            low: { y: 0.4, reach: 0.15, pitch: 1.05 }
+          rings:
+            - [-0.012, 0.002, 0.024, 0.028]
+            - [0.03, 0.006, 0.028, 0.034]
+            - [0.075, -0.004, 0.02, 0.024]
+            - [0.12, -0.012, 0.015, 0.016]
+            - [0.15, -0.014, 0.014, 0.012]
+        ears: { from: [0.016, 0.004, 0.03], to: [0.024, -0.012, 0.06], r: 0.009 }
+        eyes: { at: [0.024, 0.05, 0.018] }
+    unsourced: >-
+      A machine's reconstruction, from the family's account on the Animal Diversity Web: long,
+      gracile necks, a small head, long slender legs. No hump is drawn, since those of the
+      extinct kinds are unknown. Only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 1.1, hi: 3.45 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Vicugna vicugna, Other Physical Features"
+        quote: "Range length 1.1 to 1.9 m"
+      - ref: src:animal-diversity-web
+        loc: "account of Camelus bactrianus, Physical Description"
+        quote: "The length of the head and body is 2.25-3.45 m"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 47.5, hi: 2486 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Vicugna_vicugna, column Mass.g (grams)"
+        quote: "Vicugna_vicugna,Cetartiodactyla,Camelidae,Vicugna,vicugna,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,47499.6"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Even-toed ungulates (Artiodactyla)\""
+        quote: "It possibly reached 2,485.6 kg (5,480 lb)"
+    method: compilation
+    note: >-
+      From the vicuña to Titanotylopus, from Wikipedia as nothing better could be read. Early
+      camelids were smaller, and no figure for them was read.

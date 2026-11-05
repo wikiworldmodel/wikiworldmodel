@@ -1,0 +1,30 @@
+id: life/taxa/carnotaurus
+kind: taxon
+summary: >-
+  Carnotaurus, an abelisaur of Late Cretaceous Patagonia with a pair of stout horns over its eyes.
+same_as: { pbdb: "txn:54533" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Carnotaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        legs: { top: 0.84, knee: 0.56, ankle: 0.24, r: 0.042 }
+        horns: { type: spike, on: head, mirror: true, tint_add: 18, from: [0.022, 0.024, 0.042], to: [0.058, 0.026, 0.078], r: 0.012, sides: [6, 3] }
+    unsourced: >-
+      A machine's reconstruction: the abelisaur form with longer legs and horns over the eyes, from
+      "Carnotaurus Size Chart.png" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 8
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 5, Abelisaurids"
+      quote: "Carnotaurus meat[-eating] bull Late Cretaceous (83.5-65.5MYA) 26.2 ft (8 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

@@ -1,0 +1,23 @@
+id: src:miller-2016-polar-forests
+type: publication
+kind: measurement
+citation: >-
+  Miller, M.F., Knepprath, N.E., Cantrill, D.J., Francis, J.E. & Isbell, J.L. (2016). Highly
+  productive polar forests from the Permian of Antarctica. Palaeogeography, Palaeoclimatology,
+  Palaeoecology 441(2), 292–304.
+authors:
+  - "Miller, M.F."
+  - "Knepprath, N.E."
+  - "Cantrill, D.J."
+  - "Francis, J.E."
+  - "Isbell, J.L."
+published: 2016
+title: "Highly productive polar forests from the Permian of Antarctica"
+container: Palaeogeography, Palaeoclimatology, Palaeoecology 441(2), 292–304
+doi: 10.1016/j.palaeo.2015.06.016
+url: https://nora.nerc.ac.uk/id/eprint/511105/
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read in the NERC Open Research Archive's record of the work; the full text was
+    not read. Quotes checked by script against that record's text.

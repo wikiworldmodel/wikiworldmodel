@@ -1,0 +1,60 @@
+id: life/taxa/antiarchi
+kind: taxon
+summary: >-
+  Antiarchs, such as Bothriolepis and Pterichthyodes: boxy placoderms of the Devonian lakes and rivers, with their eyes on top of the head
+  and jointed armoured arms for fins.
+same_as: { pbdb: "txn:34407" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Antiarchi, en: antiarchs }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.52, 1.02, 0.98, 0.002]
+            - [-0.4, 1.12, 0.88, 0.008]
+            - [-0.26, 1.28, 0.72, 0.02]
+            - [-0.14, 1.46, 0.5, 0.036]
+            - [-0.06, 1.72, 0.3, 0.07]
+        armour: { at: [0, 0.1, 1.0], r: [0.11, 0.17, 0.096] }
+        head:
+          at:
+            stand: { y: 0.27, z: 0.98, pitch: 0 }
+          rings:
+            - [-0.02, 0, 0.09, 0.06]
+            - [0.04, 0.002, 0.086, 0.054]
+            - [0.09, -0.002, 0.07, 0.04]
+            - [0.13, -0.008, 0.044, 0.024]
+            - [0.15, -0.01, 0.018, 0.01]
+        jaw: null
+        tailfin: { points: [[0, -0.28, 1.0], [0, -0.14, 1.44], [0, -0.26, 1.4], [0, -0.53, 1.0], [0, -0.26, 0.62], [0, -0.14, 0.56]] }
+        dorsal: { points: [[0, -0.1, 1.5], [0, -0.22, 1.36], [0, -0.22, 1.86], [0, -0.14, 1.96], [0, -0.04, 1.7]] }
+        pelvic: null
+        pectoral: { type: chain, gap: null, mat: shell, tint: 120, mirror: true, sides: [5, 3], points: [[0.1, 0.2, 0.62, 0.018], [0.16, 0.12, 0.42, 0.014], [0.2, -0.01, 0.26, 0.006]] }
+        eyes: { at: [0.024, 0.05, 0.05], r: 0.0095 }
+    source:
+      ref: src:dupret-2023-bothriolepis
+      loc: "Systematic palaeontology, Diagnosis"
+      quote: "Bothriolepis species reaching large sizes (estimated approximately up to 50 cm long)"
+    note: >-
+      The source is for the length below; the form is a machine's reconstruction of a box of armour with eyes on top and armoured arms, from
+      the figures in Dupret et al. (2023) of the plates and from no restored whole animal.
+  length:
+    prop: body_length
+    value: { lo: 0.3, hi: 0.5 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Bothriolepis, Description"
+        quote: "averaging around 30 centimetres (12 in) in length"
+      - ref: src:dupret-2023-bothriolepis
+        loc: "Systematic palaeontology, Diagnosis"
+        quote: "Bothriolepis species reaching large sizes (estimated approximately up to 50 cm long)"
+    method: expert-estimate
+    note: >-
+      Bothriolepis stands for the group. The largest, B. rex, is given as 1.7 m by Wikipedia, and the smallest antiarchs had armour only 20 mm
+      long (Dupret et al. 2023).

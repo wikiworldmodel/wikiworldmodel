@@ -1,0 +1,31 @@
+id: life/taxa/majungasaurus
+kind: taxon
+summary: >-
+  Majungasaurus, an abelisaur of latest Cretaceous Madagascar with a single low horn on its skull.
+same_as: { pbdb: "txn:38582" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Majungasaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.27
+      parts:
+        dome: { type: lump, on: head, tint_add: 18, at: [0, 0.03, 0.046], r: [0.011, 0.018, 0.009], sides: [8, 4], bands: [5, 3] }
+    unsourced: >-
+      A machine's reconstruction: the abelisaur form on lower hips with a low boss on the skull,
+      from "Majungasaurus size chart.png" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 9
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 5, Abelisaurids"
+      quote: "Majungasaurus Majunga District [Madagascar] Late Cretaceous (70.6-65.5 MYA) 29.5 ft (9 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it. The chart looked at for its form draws
+      about 6.75 m.

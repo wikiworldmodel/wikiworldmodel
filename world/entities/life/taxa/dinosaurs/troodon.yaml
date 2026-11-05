@@ -1,0 +1,21 @@
+id: life/taxa/troodon
+kind: taxon
+summary: >-
+  Troodon, a long-legged raptor of the Late Cretaceous of western North America.
+same_as: { pbdb: "txn:38572" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Troodon }
+    unsourced: The classification's own name.
+  length-holtz-2012:
+    prop: body_length
+    value: 2.4
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 18, Troodontids"
+      quote: "Troodon wounding tooth Late Cretaceous (80-72.8 MYA) 7.9 ft (2.4 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

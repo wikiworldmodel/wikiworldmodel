@@ -1,0 +1,53 @@
+id: life/taxa/thelodontomorphi
+kind: taxon
+summary: >-
+  Thelodonts: small jawless fishes of the Ordovician to the Devonian, covered in tiny tooth-like scales in place of bony plates.
+same_as: { pbdb: "txn:149856" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Thelodontomorphi, en: thelodonts }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: jawless-fish
+    unsourced: >-
+      Which plan it starts from: an editorial classification, as the nearest in shape.
+  form:
+    prop: body_form
+    value:
+      parts:
+        shield: null
+        spine: null
+        body:
+          rings:
+            - [-0.44, 1.02, 0.94, 0.004]
+            - [-0.32, 1.2, 0.74, 0.016]
+            - [-0.18, 1.42, 0.5, 0.034]
+            - [-0.04, 1.6, 0.34, 0.056]
+            - [0.1, 1.62, 0.32, 0.076]
+            - [0.2, 1.44, 0.42, 0.074]
+        head:
+          mat: hide
+          tint: null
+          at:
+            stand: { y: 0.24, z: 0.96, pitch: 0 }
+          rings:
+            - [-0.02, 0, 0.074, 0.05]
+            - [0.05, -0.002, 0.066, 0.036]
+            - [0.11, -0.006, 0.042, 0.022]
+            - [0.15, -0.008, 0.016, 0.009]
+        eyes: { at: [0.056, 0.04, 0.014], r: 0.0085 }
+    unsourced: >-
+      A machine's reconstruction: the plan's shape with its plates taken away, from no figure: a reviewer should compare it with one of
+      Thelodus or Furcacauda.
+  length:
+    prop: body_length
+    value: { lo: 0.15, hi: 0.3 }
+    source:
+      ref: src:wikipedia-early-vertebrates
+      loc: "Thelodonti, Description"
+      quote: "which appeared to reach 15–30 cm in length"
+    method: compilation
+    note: An encyclopedia, cited as nothing better could be read.

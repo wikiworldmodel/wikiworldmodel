@@ -1,0 +1,39 @@
+id: life/taxa/hygrophila
+kind: taxon
+summary: >-
+  The pulmonate snails of fresh water, with a single pair of short flat tentacles and their eyes at the bases.
+same_as: { pbdb: "txn:312821" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hygrophila, en: "pond snails and ramshorns" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [1, 5], habitat: edge, poses: [stand, walk] }
+      parts:
+        tentacles: { from: [0.03, 0.68, 0.14], to: [0.13, 0.82, 0.15], r: 0.022 }
+        eyes: { at: [0.04, 0.66, 0.16], r: [0.012, 0.012, 0.012] }
+    source:
+      - ref: src:watson-dallwitz-nonmarine-molluscs
+        loc: "Planorbidae"
+        quote: "The animal with one pair of tentacles only. Eyes at the bases of the tentacles."
+    note: >-
+      The tentacles and eyes are the description's, of the ramshorns; the same is taken for the pond snails. Their
+      proportions are a machine's reconstruction.
+  length:
+    prop: body_length
+    value: { lo: 0.002, hi: 0.05 }
+    source:
+      - ref: src:watson-dallwitz-nonmarine-molluscs
+        loc: "Planorbidae"
+        quote: "2–17 mm wide"
+      - ref: src:watson-dallwitz-nonmarine-molluscs
+        loc: "Lymnaeidae"
+        quote: "(7–)10–45(–50) mm high"
+    method: compilation
+    note: >-
+      From the smallest ramshorn to the largest pond snail of Britain and Ireland, the only ranges read: elsewhere they
+      may be wider.

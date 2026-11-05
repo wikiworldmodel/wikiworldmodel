@@ -1,0 +1,21 @@
+id: src:mehmood-2025-temnospondyl-recovery
+type: publication
+kind: review
+citation: >-
+  Mehmood, A., Singh, S.A., Elsler, A. & Benton, M.J. (2025). The ecology and geography of
+  temnospondyl recovery after the Permian-Triassic mass extinction. Royal Society Open Science
+  12(3), 241200.
+authors:
+  - "Mehmood, A."
+  - "Singh, S.A."
+  - "Elsler, A."
+  - "Benton, M.J."
+published: 2025
+title: "The ecology and geography of temnospondyl recovery after the Permian-Triassic mass extinction"
+container: "Royal Society Open Science 12(3), 241200"
+doi: 10.1098/rsos.241200
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC11879622); quotes checked by script against it.

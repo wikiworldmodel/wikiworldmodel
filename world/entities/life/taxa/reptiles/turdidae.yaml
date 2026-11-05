@@ -1,0 +1,27 @@
+id: life/taxa/turdidae
+kind: taxon
+summary: >-
+  Thrushes and chats: small and middling songbirds.
+same_as: { pbdb: "txn:129843" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Turdidae", en: "thrushes and chats" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.125, hi: 0.33 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Thrushes and Chats (Turdidae)\""
+      quote: "Smaller chats are 5 in (12.5 cm) long and weigh 0.5 oz (15 g); larger thrushes are 13 in (33 cm) long, weighing 4.9 oz (140 g)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.015, hi: 0.14 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Thrushes and Chats (Turdidae)\""
+      quote: "Smaller chats are 5 in (12.5 cm) long and weigh 0.5 oz (15 g); larger thrushes are 13 in (33 cm) long, weighing 4.9 oz (140 g)"
+    method: compilation

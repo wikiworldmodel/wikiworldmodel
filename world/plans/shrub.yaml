@@ -1,0 +1,6 @@
+description: >-
+  A shrub: lumps of leaves with no clear trunk.
+kind: plant
+behave: { layer: under, weight: 1, wet: 0 }
+parts:
+  plant: { type: shrub, wide: 0.6, lumps: 5 }

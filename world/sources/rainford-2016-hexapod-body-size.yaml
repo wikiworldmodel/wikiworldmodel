@@ -1,0 +1,30 @@
+id: src:rainford-2016-hexapod-body-size
+type: publication
+kind: compilation
+citation: >-
+  Rainford, J.L., Hofreiter, M. & Mayhew, P.J. (2016). Phylogenetic analyses suggest that diversification and body size
+  evolution are independent in insects. BMC Evolutionary Biology 16:8, with Additional file 1, Table S1: compiled body length
+  data for included terminal groups.
+authors:
+  - "Rainford, J.L."
+  - "Hofreiter, M."
+  - "Mayhew, P.J."
+published: 2016
+title: Phylogenetic analyses suggest that diversification and body size evolution are independent in insects
+container: BMC Evolutionary Biology
+doi: 10.1186/s12862-015-0570-3
+url: https://eprints.whiterose.ac.uk/92915/
+license: CC-BY-4.0
+reliability: >-
+  The least and greatest body length of 774 groups of hexapods, mostly families, each row from the reference it names: a taxonomic
+  or regional work, not measurements of this paper's own. Length is from the front of the head to the end of the abdomen, without
+  wing cases, antennae or cerci. Where a work gave a wingspan or a wing length, as for most moths and caddisflies, the row's length
+  was converted from it by measuring illustrations, so those rows are rougher. It covers living groups: a fossil group's size is not
+  in it.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's PDF read from the White Rose repository (eprints.whiterose.ac.uk/92915); the publisher's own page is behind a
+    browser check that was not to be passed. Additional file 1 read whole as the .docx from the publisher's file host
+    (static-content.springer.com) and its Table S1 taken apart by script. A row quoted here is that row's cells in order, separated
+    by spaces, without the empty ones. All quotes checked by script against those texts.

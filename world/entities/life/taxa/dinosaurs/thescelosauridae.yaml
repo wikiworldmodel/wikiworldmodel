@@ -1,0 +1,22 @@
+id: life/taxa/thescelosauridae
+kind: taxon
+summary: >-
+  The thescelosaurs and their burrowing kin: small to middle-sized two-legged plant-eaters of the
+  Cretaceous.
+same_as: { pbdb: "txn:64386" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Thescelosauridae }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 1.8, hi: 4 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 43, Zephyrosaurs", quote: "Zephyrosaurus Zephyr [Greek god of the west Early Cretaceous (118-110 MYA) 5.9 ft (1.8 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 43, Thescelosaurids", quote: "Thescelosaurus wonder reptile Late Cretaceous (66.8-65.5 MYA) 13.1 ft (4 m)?" }
+    method: compilation
+    note: >-
+      The range across the tables "Zephyrosaurs" (pp. 42-43) and "Thescelosaurids" (p. 43), standing
+      for any member with no length of its own.

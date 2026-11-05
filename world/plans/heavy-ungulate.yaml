@@ -1,0 +1,39 @@
+description: >-
+  A heavy hoofed mammal: a great barrel of a body on short thick legs, a short neck, a long low head.
+kind: animal
+hip: 0.42
+# Its mesh, head and all, at the density of water, for its length.
+mass_length: 43
+behave: { group: [1, 6], habitat: open, poses: [graze, graze, stand, walk, alert] }
+parts:
+  body:
+    type: trunk
+    rings:
+      - [-0.5, 0.6, 0.56, 0.005]
+      - [-0.485, 0.76, 0.71, 0.008]
+      - [-0.462, 0.92, 0.85, 0.012]
+      - [-0.435, 1.0, 0.72, 0.04]
+      - [-0.4, 1.03, 0.54, 0.09]
+      - [-0.32, 1.06, 0.4, 0.118]
+      - [-0.2, 1.05, 0.33, 0.136]
+      - [-0.06, 1.04, 0.3, 0.142]
+      - [0.06, 1.06, 0.31, 0.13]
+      - [0.15, 1.1, 0.38, 0.106]
+      - [0.21, 1.08, 0.48, 0.08]
+    neck: { r: 0.066, steps: [3, 1] }
+  hind: { type: pillar, y: -0.28, x: 0.082, top: 0.72, r: 0.05, swing: 0.05 }
+  fore: { type: pillar, y: 0.13, x: 0.082, top: 0.66, r: 0.046, swing: 0.05, phase: 1 }
+  head:
+    type: head
+    at:
+      stand: { y: 0.27, z: 0.88, pitch: 0.34 }
+      alert: { y: 0.27, z: 1.02, pitch: 0.14 }
+      low: { y: 0.29, reach: 0.235, pitch: 0.95 }
+    rings:
+      - [-0.016, 0.006, 0.05, 0.056]
+      - [0.05, 0.01, 0.06, 0.066]
+      - [0.12, 0.0, 0.052, 0.056]
+      - [0.18, -0.012, 0.046, 0.046]
+      - [0.215, -0.02, 0.042, 0.036]
+  ears: { type: spike, on: head, mirror: true, sides: [5, 4], from: [0.036, 0.006, 0.048], to: [0.058, -0.02, 0.095], r: 0.015 }
+  eyes: { type: eyes, on: head, near: true, at: [0.05, 0.09, 0.016], r: 0.0065 }

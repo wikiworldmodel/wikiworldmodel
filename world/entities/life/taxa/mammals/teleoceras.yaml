@@ -1,0 +1,52 @@
+id: life/taxa/teleoceras
+kind: taxon
+summary: >-
+  A barrel-bodied, short-legged rhinoceros of the American Miocene, with a small nasal horn.
+same_as: { pbdb: "txn:43226" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Teleoceras }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.27
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.8, 0.74, 0.006]
+            - [-0.485, 0.92, 0.84, 0.01]
+            - [-0.465, 1.06, 0.92, 0.014]
+            - [-0.44, 1.2, 0.76, 0.05]
+            - [-0.39, 1.3, 0.48, 0.11]
+            - [-0.28, 1.34, 0.36, 0.145]
+            - [-0.14, 1.36, 0.32, 0.158]
+            - [0.0, 1.38, 0.32, 0.158]
+            - [0.11, 1.38, 0.38, 0.135]
+            - [0.18, 1.3, 0.5, 0.1]
+          neck: { r: 0.07, steps: [2, 1] }
+        head:
+          at:
+            stand: { y: 0.25, z: 1.1, pitch: 0.34 }
+            alert: { y: 0.25, z: 1.26, pitch: 0.14 }
+            low: { y: 0.27, reach: 0.21, pitch: 0.75 }
+        hind: { y: -0.27, x: 0.1, top: 0.86, r: 0.05 }
+        fore: { y: 0.1, x: 0.1, top: 0.84, r: 0.048 }
+        frontal: null
+        nasal: { from: [0, 0.2, 0.024], to: [0, 0.205, 0.08], r: 0.022 }
+    unsourced: >-
+      A machine's reconstruction, from the restoration by Horsfall (1912) on Wikipedia's page
+      for the genus (Teleoceras_Horsfall.jpg): a hippopotamus-like barrel on very short legs,
+      and a small horn.
+  length:
+    prop: body_length
+    value: 4
+    source:
+      ref: src:wikipedia-teleoceras
+      loc: "section \"Description\""
+      quote: "It grew up to lengths of 13 feet (4.0 meters) long."
+    method: compilation
+    note: >-
+      From Wikipedia, as nothing better could be read.

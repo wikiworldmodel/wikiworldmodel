@@ -1,0 +1,31 @@
+id: life/taxa/culicomorpha
+kind: taxon
+summary: >-
+  The mosquitoes, midges and biting midges: slender flies with long legs, whose larvae live in water.
+same_as: { pbdb: "txn:142047" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Culicomorpha, en: "mosquitoes and midges" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: gnat
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a slender long-legged fly, from general knowledge; no figure was
+      compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.0006, hi: 0.013 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Diptera Corethrellidae\""
+        quote: "Diptera Corethrellidae 111 0.6 2.5 (Brown et al., 2009)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Diptera Chironomidae\""
+        quote: "Diptera Chironomidae 7290 1 13 (Brown et al., 2009)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for the families of this group, its millimetres given in metres.

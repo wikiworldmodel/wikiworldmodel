@@ -1,0 +1,28 @@
+id: life/taxa/gorgosaurus
+kind: taxon
+summary: >-
+  Gorgosaurus, a slender tyrant dinosaur of the Campanian of Alberta and Montana.
+same_as: { pbdb: "txn:53193" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Gorgosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Albertosaurinae, which was measured from
+      this genus: "Gorgosaurusscale.svg" on Wikimedia Commons. Nothing here differs from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 8.6
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 11, Albertosaurines"
+      quote: "Gorgosaurus fierce reptile Late Cretaceous (80-72.8 MYA) 28.2 ft (8.6 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

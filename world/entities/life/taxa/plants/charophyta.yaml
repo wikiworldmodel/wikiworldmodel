@@ -1,0 +1,15 @@
+id: life/taxa/charophyta
+kind: taxon
+summary: >-
+  Stoneworts and their relatives, of fresh water.
+same_as: { pbdb: "txn:55110" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Charophyta, en: stoneworts }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: floating-fern
+    unsourced: "Not a land plant: a mat on the water stands in, so that it is not drawn as Plantae's fallback, a low land plant. An editorial classification."

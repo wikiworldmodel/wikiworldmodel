@@ -1,0 +1,42 @@
+id: life/taxa/struthio
+kind: taxon
+summary: >-
+  The ostriches, the largest living birds, and their fossil kin in Africa and Eurasia.
+same_as: { pbdb: "txn:39278" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Struthio", en: "ostriches" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        legs: { toes: false }
+        toes-two: { type: chain, mat: hide, mirror: true, near: true, not: [walk], sides: [4, 3], points: [[0.048, -0.04, 0.04, 0.009], [0.052, -0.0, 0.02, 0.008], [0.054, 0.03, 0.012, 0.004]] }
+        plumes: { points: [[0.1, 0.07, 1.36], [0.145, -0.05, 1.38], [0.155, -0.22, 1.1], [0.12, -0.25, 0.92], [0.105, -0.05, 1.08]] }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Ostriches (Struthionidae)\""
+      quote: "Very large flightless birds with large, loose-feathered wings, two toes"
+    note: >-
+      The big wing plumes and the two toes follow this; the rest is the plan's.
+  length:
+    prop: body_length
+    value: { lo: 1.75, hi: 2.75 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Ostriches (Struthionidae)\""
+      quote: "5.7–9.0 ft (175–275 cm); 139–345 lb (63–157 kg)"
+    method: compilation
+    note: >-
+      Heights, as with the plan's length.
+  mass:
+    prop: body_mass
+    value: { lo: 63, hi: 157 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Ostriches (Struthionidae)\""
+      quote: "5.7–9.0 ft (175–275 cm); 139–345 lb (63–157 kg)"
+    method: compilation

@@ -1,0 +1,61 @@
+id: life/taxa/saltasauridae
+kind: taxon
+summary: >-
+  The saltasaurids: small to middle-sized armoured titanosaurs, some of the last sauropods, their
+  bodies low and their necks held less high.
+same_as: { pbdb: "txn:64335" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Saltasauridae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.17
+      parts:
+        body:
+          rings:
+            - [-0.56, 0.62, 0.61, 0.001]
+            - [-0.46, 0.76, 0.72, 0.003]
+            - [-0.34, 0.84, 0.72, 0.008]
+            - [-0.22, 0.94, 0.7, 0.018]
+            - [-0.11, 1.02, 0.6, 0.044]
+            - [-0.02, 1.08, 0.46, 0.082]
+            - [0.07, 1.1, 0.4, 0.094]
+            - [0.14, 1.1, 0.5, 0.08]
+            - [0.19, 1.14, 0.78, 0.04]
+            - [0.25, 1.3, 1.02, 0.024]
+          neck: { r: 0.0115, steps: [4, 1] }
+        head:
+          at:
+            stand: { y: 0.42, z: 1.6, pitch: 0.25 }
+            alert: { y: 0.4, z: 1.9, pitch: 0.08 }
+        hind: { y: -0.03, top: 0.82 }
+        fore: { y: 0.13, top: 0.84 }
+        scutes:
+          type: row
+          near: true
+          mat: horn
+          tint: 170
+          mirror: true
+          n: 9
+          from: [0.05, -0.1, 0.98]
+          to: [0.056, 0.15, 1.06]
+          item: lump
+          r: [0.012, 0.012, 0.007]
+          size: [0.7, 1, 1.2, 1.2, 1.1, 1.2, 1.2, 1, 0.7]
+    unsourced: >-
+      A machine's reconstruction: a lower body, a neck held less high and small armour plates, from
+      the silhouette "Saltasaurus size.png" on Wikimedia Commons.
+  length:
+    prop: body_length
+    value: { lo: 12, hi: 15 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 37, Saltasaurids", quote: "Saltasaurus Salta Province [Argentina] reptile Late Cretaceous (72.8-66.8 MYA) 39.4 ft (12 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 37, Saltasaurids", quote: "Neuquensaurus Neuquén Province [Argentina] Late Cretaceous (85.8-83.5MYA) 49.2 ft (15 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Saltasaurids" on that page, standing for any member with no length
+      of its own. Alamosaurus is listed elsewhere, and has its own record.

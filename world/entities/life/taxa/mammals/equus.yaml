@@ -1,0 +1,44 @@
+id: life/taxa/equus
+kind: taxon
+summary: >-
+  Horses, asses and zebras: the last genus of the family, and among the commonest fossils of the
+  Pleistocene.
+same_as: { pbdb: "txn:42996" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Equus, en: "horses, asses and zebras" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.62
+    unsourced: >-
+      A machine's reconstruction, the same as its family's, a little taller at the hips; only
+      compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 2.25, hi: 2.7 }
+    source:
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Equus hemionus, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Equus hemionus -999.00 235248.07 -999.00 2250.00"
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Equus grevyi, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Equus grevyi -999.00 408000.35 -999.00 2700.00"
+    method: compilation
+    note: >-
+      Head and body, without the hanging tail, from which the form’s length is little
+      different.
+  mass:
+    prop: body_mass
+    value: { lo: 175, hi: 1250 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Equus_quagga, column Mass.g (grams)"
+        quote: "Equus_quagga,Perissodactyla,Equidae,Equus,quagga,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,175000"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Odd-toed ungulates (Perissodactyla)\""
+        quote: "It was estimated to grow to more than 1,250 kg (1.38 short tons)"
+    method: compilation

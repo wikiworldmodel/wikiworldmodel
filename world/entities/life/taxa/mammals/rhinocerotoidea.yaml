@@ -1,0 +1,42 @@
+id: life/taxa/rhinocerotoidea
+kind: taxon
+summary: >-
+  Rhinoceroses and the hornless amynodonts, hyracodonts and paraceratheres.
+same_as: { pbdb: "txn:43140" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Rhinocerotoidea, en: "rhinoceroses and their kin" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: heavy-ungulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 3, hi: 7.4 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Diceros bicornis, Other Physical Features"
+        quote: "Range length 3.0 to 3.75 m"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Odd-toed ungulates (Perissodactyla)\""
+        quote: "7.4 m (24.3 ft) in length from nose to rump"
+    method: compilation
+    note: >-
+      From the black rhinoceros to the largest Paraceratherium. The small hyracodontids of the
+      Eocene were shorter: no figure for them was read.
+  mass:
+    prop: body_mass
+    value: { lo: 1180, hi: 20600 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Diceros_bicornis, column Mass.g (grams)"
+        quote: "Diceros_bicornis,Perissodactyla,Rhinocerotidae,Diceros,bicornis,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,1180510.9"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Odd-toed ungulates (Perissodactyla)\""
+        quote: "estimated to be around 20.6 t (22.7 short tons)"
+    method: compilation
+    note: >-
+      The hyracodontids lie below the low end: no figure for them was read.

@@ -1,0 +1,76 @@
+id: life/taxa/anteosauria
+kind: taxon
+summary: >-
+  Anteosaurs, such as Anteosaurus and Titanophoneus: the great dinocephalian hunters, with long deep skulls and heavy canines.
+same_as: { pbdb: "txn:357013" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Anteosauria, en: anteosaurs }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.24
+      behave: { group: [1, 2], habitat: any, poses: [walk, walk, stand, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.76, 0.66, 0.004]
+            - [-0.42, 0.84, 0.64, 0.012]
+            - [-0.34, 0.96, 0.6, 0.024]
+            - [-0.26, 1.08, 0.56, 0.042]
+            - [-0.18, 1.2, 0.5, 0.068]
+            - [-0.08, 1.34, 0.44, 0.09]
+            - [0.03, 1.46, 0.44, 0.094]
+            - [0.12, 1.5, 0.52, 0.082]
+            - [0.18, 1.44, 0.66, 0.06]
+          neck: { r: 0.048, steps: [3, 1] }
+        hind: { y: -0.18, x: 0.09, top: 0.96, r: 0.048, swing: 0.06 }
+        hindfoot: { at: [0.097, -0.15, 0.05], r: [0.036, 0.056, 0.014] }
+        arm: { points: [[0.08, 0.13, 1.06, 0.05], [0.115, 0.105, 0.82, 0.04], [0.128, 0.11, 0.6, 0.03]] }
+        forearm: { y: 0.11, x: 0.128, top: 0.62, r: 0.028, swing: 0.05 }
+        forefoot: { at: [0.136, 0.135, 0.05], r: [0.034, 0.05, 0.014] }
+        head:
+          at:
+            stand: { y: 0.255, z: 1.36, pitch: 0.2 }
+            alert: { y: 0.255, z: 1.56, pitch: 0.04 }
+            low: { y: 0.28, reach: 0.23, pitch: 0.8 }
+          rings:
+            - [-0.012, 0.006, 0.042, 0.052]
+            - [0.04, 0.016, 0.052, 0.072]
+            - [0.1, 0.008, 0.044, 0.066]
+            - [0.16, -0.008, 0.032, 0.05]
+            - [0.215, -0.018, 0.021, 0.03]
+        jaw:
+          rings:
+            - [0.012, -0.056, 0.036, 0.016]
+            - [0.1, -0.06, 0.028, 0.015]
+            - [0.205, -0.044, 0.014, 0.009]
+        dome: { at: [0, 0.03, 0.06], r: [0.042, 0.04, 0.022] }
+        canines: { type: spike, on: head, near: true, mirror: true, mat: horn, tint: 200, sides: [6, 4], from: [0.024, 0.15, -0.03], to: [0.026, 0.16, -0.098], r: 0.009 }
+        eyes: { at: [0.042, 0.07, 0.034], r: 0.0095 }
+    unsourced: >-
+      A machine's reconstruction: a longer, lower body with a longer tail than the plan's plant-eater, and a long deep skull
+      with heavy canines, from the description in Van Valkenburgh & Jenkins (2002) and with no skeletal figure looked at.
+  length:
+    prop: body_length
+    value: 5
+    source:
+      ref: src:van-valkenburgh-jenkins-2002-synapsid-predators
+      loc: "p. 273"
+      quote: "body length of Anteosaurus is estimated at more than 5 meters (Boonstra, 1954)."
+    method: expert-estimate
+    note: >-
+      The largest genus, and "more than" five metres. Smaller anteosaurs, such as Australosyodon, take this too until
+      someone writes theirs.
+  mass:
+    prop: body_mass
+    value: 400
+    source:
+      ref: src:benoit-midzuk-2024-dinocephalian-brains
+      loc: "Results"
+      quote: "about 400 kg, which is below what Bakker (1975)"
+    method: model
+    note: A sculpted model of Anteosaurus. The same paper says it is below Bakker's estimate of 1975.

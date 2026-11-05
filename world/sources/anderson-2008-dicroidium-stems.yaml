@@ -1,0 +1,19 @@
+id: src:anderson-2008-dicroidium-stems
+type: publication
+kind: measurement
+citation: >-
+  Anderson, H.M., Holmes, W.B.K. & Fitness, L.A. (2008). Stems with attached Dicroidium leaves from the
+  Ipswich Coal Measures, Queensland, Australia. Memoirs of the Queensland Museum 52(2), 1–12.
+authors:
+  - "Anderson, H.M."
+  - "Holmes, W.B.K."
+  - "Fitness, L.A."
+published: 2008
+title: "Stems with attached Dicroidium leaves from the Ipswich Coal Measures, Queensland, Australia"
+container: Memoirs of the Queensland Museum 52(2), 1–12
+url: https://archive.org/download/biostor-260507/biostor-260507.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    The scanned article as a PDF from the Internet Archive; the first page was read, as an image and as
+    the PDF's text, and quotes checked by script against that text, which keeps the scan's errors.

@@ -1,0 +1,33 @@
+id: life/taxa/parareptilia
+kind: taxon
+summary: >-
+  Parareptiles: an early branch of the reptiles, mostly small and lizard-like, with the heavy pareiasaurs and the stout
+  procolophonids among them.
+same_as: { pbdb: "txn:99778" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Parareptilia, en: parareptiles }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: parareptile
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in
+      the tree. The plan is a machine's reconstruction of a small lizard-like reptile, from no figure of a parareptile: a
+      reviewer should compare it with one of Macroleter or Bolosaurus.
+  length:
+    prop: body_length
+    value: { lo: 0.3, hi: 0.75 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Procolophon, Description"
+        quote: "Procolophon reached a length up to 30 centimetres (12 in)"
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Macroleter, Description"
+        quote: "Macroleter had an 8 cm skull, and an overall length of 75 cm."
+    method: compilation
+    note: >-
+      Two genera stand for the small parareptiles. An encyclopedia, cited as nothing better could be read: the papers read on
+      parareptiles give skulls, not whole lengths.

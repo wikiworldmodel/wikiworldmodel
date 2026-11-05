@@ -1,0 +1,38 @@
+id: life/taxa/marattiales
+kind: taxon
+summary: >-
+  Marattioid ferns: today big ferns on a short stock, and before them the tree fern Psaronius, which
+  says otherwise for itself.
+same_as: { pbdb: "txn:404550" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Marattiales, en: marattioid ferns }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: tree-fern
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      behave: { layer: under }
+      parts:
+        plant: { on_stem: 0.1, stem: 0.06, reach: 1, fronds: 9, across: 0.13, arch: [0.6, 0.3] }
+    unsourced: "A machine's reconstruction of a big fern on a short stock, from the Flora of China's description of living Angiopteris."
+  height:
+    prop: plant_height
+    value: { lo: 0.5, hi: 5 }
+    source:
+      - ref: src:flora-of-china
+        loc: "Vol. 2-3, s.v. Angiopteris, key"
+        quote: "Fronds 0.5-1.2 m, with 4-6 pairs of pinnae"
+      - ref: src:flora-of-china
+        loc: "Vol. 2-3, s.v. Angiopteris evecta"
+        quote: "Fronds 2-5 m; stipes smooth."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The fronds of living Angiopteris, standing for the plant's height: modern relatives, and a
+      frond's length rather than a measured height.

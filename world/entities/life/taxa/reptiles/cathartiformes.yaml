@@ -1,0 +1,50 @@
+id: life/taxa/cathartiformes
+kind: taxon
+summary: >-
+  New World vultures and condors: great soaring scavengers with bare heads.
+same_as: { pbdb: "txn:326041" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Cathartiformes", en: "New World vultures" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: raptor
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        head: { mat: hide, rings: [[-0.03, 0, 0.028, 0.03], [0.02, 0.004, 0.038, 0.038], [0.065, 0.002, 0.03, 0.03], [0.095, -0.002, 0.018, 0.02]] }
+        wings: { span: 1.2, chord: 0.38, sweep: 0.06, beat: 0.08 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"New World Vultures (Cathartidae)\""
+      quote: "highly social birds that feed primarily on carrion with very few or no f"
+    note: >-
+      The bare small head and the long broad wings are a machine's reconstruction; no skeletal
+      figure was looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.56, hi: 1.34 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"New World Vultures (Cathartidae)\""
+        quote: "22–27 in (56–69 cm), 2.4–4.2 lb (1.1–1.9 kg)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"New World Vultures (Cathartidae)\""
+        quote: "46–53 in (117–134 cm) 17–24 lb (7.7–10.9 kg)"
+    method: compilation
+    note: >-
+      The entry's Size row gives only a mass. From its species accounts: the black vulture to the
+      California condor.
+  mass:
+    prop: body_mass
+    value: { lo: 1, hi: 15 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"New World Vultures (Cathartidae)\""
+      quote: "2.2–33.1 lb (1–15 kg)"
+    method: compilation

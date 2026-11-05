@@ -1,0 +1,25 @@
+id: life/taxa/corvus
+kind: taxon
+summary: >-
+  Crows and ravens.
+same_as: { pbdb: "txn:39446" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Corvus", en: "crows and ravens" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.39, hi: 0.69 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Crows and Jays (Corvidae)\", American crow"
+        quote: "15.21–19.11 in (39–49 cm)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Crows and Jays (Corvidae)\", Common raven"
+        quote: "22.62–26.91 in (58–69 cm)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the species of the genus the entry describes, though smaller
+      crows are known.

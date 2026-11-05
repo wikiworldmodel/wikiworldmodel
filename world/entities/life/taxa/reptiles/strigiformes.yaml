@@ -1,0 +1,82 @@
+id: life/taxa/strigiformes
+kind: taxon
+summary: >-
+  Owls: birds of prey of the night, upright, with large round heads, forward-facing eyes and facial
+  discs.
+same_as: { pbdb: "txn:39397" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Strigiformes", en: "owls" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: raptor
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      behave: { flies: [2, 25] }
+      parts:
+        body:
+          rings:
+            - [-0.17, 0.84, 0.68, 0.04]
+            - [-0.155, 1.06, 0.78, 0.06]
+            - [-0.135, 1.42, 0.86, 0.08]
+            - [-0.105, 1.9, 0.86, 0.118]
+            - [-0.05, 2.46, 0.9, 0.15]
+            - [0.0, 2.92, 1.02, 0.158]
+            - [0.04, 3.2, 1.6, 0.14]
+            - [0.06, 3.3, 2.4, 0.11]
+          neck: { r: 0.11, steps: [1, 1] }
+        body-flying:
+          rings:
+            - [-0.5, 2.44, 2.38, 0.06]
+            - [-0.4, 2.5, 2.42, 0.066]
+            - [-0.3, 2.56, 2.38, 0.066]
+            - [-0.2, 2.76, 2.16, 0.09]
+            - [-0.08, 3.06, 1.96, 0.14]
+            - [0.04, 3.16, 2.02, 0.14]
+            - [0.12, 3.16, 2.3, 0.1]
+          neck: { r: 0.09, steps: [2, 1] }
+        thighs: { at: [0.062, -0.04, 0.72], r: [0.04, 0.056, 0.13] }
+        legs: { mat: feather, y: -0.02, x: 0.06, top: 0.95, knee: 0.6, ankle: 0.26 }
+        wings: { shoulder: [0.13, 0.03, 2.9], span: 0.92, chord: 0.36, sweep: 0.05, folded: 0.2, drop: 2.0 }
+        head:
+          at:
+            stand: { y: 0.03, z: 3.72, pitch: 0.02 }
+            alert: { y: 0.03, z: 3.8, pitch: -0.06 }
+            low: { y: 0.18, reach: 0.14, clear: 0.05, pitch: 0.8 }
+            fly: { y: 0.15, z: 3.24, pitch: 0.02 }
+          rings:
+            - [-0.09, 0, 0.09, 0.1]
+            - [-0.03, 0.008, 0.132, 0.14]
+            - [0.03, 0.006, 0.128, 0.13]
+            - [0.08, -0.004, 0.07, 0.08]
+        disc: { type: lump, on: head, mat: feather, tint_add: 24, mirror: true, near: true, at: [0.058, 0.066, 0.006], r: [0.064, 0.024, 0.08], sides: [8, 4], bands: [4, 2] }
+        bill: { rings: [[0.08, -0.018, 0.014, 0.02], [0.102, -0.022, 0.01, 0.016], [0.114, -0.04, 0.004, 0.006]] }
+        eyes: { at: [0.056, 0.092, 0.02], r: 0.024 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Owls (Strigidae)\""
+      quote: "Typical owls have large, rounded heads, forward-facing eyes, facial discs of feathers"
+    note: >-
+      The head follows this. The upright body and the rest are a machine's reconstruction; no
+      skeletal figure was looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.12, hi: 0.75 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Owls (Strigidae)\""
+      quote: "4.7–29.5 in (12–75 cm); 1.4–148 oz (40–4,200 g)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.04, hi: 4.2 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Owls (Strigidae)\""
+      quote: "4.7–29.5 in (12–75 cm); 1.4–148 oz (40–4,200 g)"
+    method: compilation

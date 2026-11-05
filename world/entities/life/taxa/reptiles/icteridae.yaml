@@ -1,0 +1,27 @@
+id: life/taxa/icteridae
+kind: taxon
+summary: >-
+  New World blackbirds, orioles and meadowlarks.
+same_as: { pbdb: "txn:83663" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Icteridae", en: "New World blackbirds" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.17, hi: 0.55 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"New World Blackbirds and Orioles (Icteridae)\""
+      quote: "6.7–21.5 in (17–55 cm); 0.6 oz–1.2 lb (16–528g)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.016, hi: 0.528 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"New World Blackbirds and Orioles (Icteridae)\""
+      quote: "6.7–21.5 in (17–55 cm); 0.6 oz–1.2 lb (16–528g)"
+    method: compilation

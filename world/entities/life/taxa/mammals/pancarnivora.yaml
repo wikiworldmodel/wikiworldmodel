@@ -1,0 +1,42 @@
+id: life/taxa/pancarnivora
+kind: taxon
+summary: >-
+  Carnivorans with the oxyaenids and hyaenodonts, as the database groups them.
+same_as: { pbdb: "txn:509476" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pancarnivora, en: "carnivorans and their extinct kin" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: carnivoran
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.165, hi: 3.7 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Mustela nivalis, Other Physical Features"
+        quote: "Range length 165 to 217 mm"
+      - ref: src:animal-diversity-web
+        loc: "account of Panthera tigris, Physical Description"
+        quote: "Male Siberian tigers can grow to 3.7 meters"
+    method: compilation
+    note: >-
+      From the least weasel to the largest living tiger, for any member with nothing nearer to
+      say.
+  mass:
+    prop: body_mass
+    value: { lo: 0.0875, hi: 709.5 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Mustela_subpalmata, column Mass.g (grams)"
+        quote: "Mustela_subpalmata,Carnivora,Mustelidae,Mustela,subpalmata,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,87.5"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Arctodus_simus, column Mass.g (grams)"
+        quote: "Arctodus_simus,Carnivora,Ursidae,Arctodus,simus,1,0,0,0,Imputed,PHYLACINE 1.2.1,709500"
+    method: compilation
+    note: >-
+      Land carnivorans in PHYLACINE. Seals, which are heavier, are marine and are not drawn.

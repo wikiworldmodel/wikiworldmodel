@@ -1,0 +1,48 @@
+id: life/taxa/aphidomorpha
+kind: taxon
+summary: >-
+  The aphids and their relatives, drawn as a wingless aphid: soft and pear-shaped, on thin legs, with two tubes on the
+  abdomen.
+same_as: { pbdb: "txn:181102" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Aphidomorpha, en: "aphids" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.33
+      behave: { group: [3, 12], habitat: any, poses: [stand, walk] }
+      parts:
+        body: { at: [0, -0.1, 0.2], r: [0.2, 0.38, 0.17] }
+        shield: { at: [0, 0.2, 0.2], r: [0.12, 0.12, 0.1] }
+        head: { at: [0, 0.37, 0.17], r: [0.075, 0.08, 0.06] }
+        eyes: { at: [0.07, 0.38, 0.19] }
+        triangle: null
+        hard-wings: null
+        clear-wings: null
+        cornicles: { type: spike, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.09, -0.33, 0.28], to: [0.14, -0.47, 0.35], r: 0.016 }
+        beak: { from: [0, 0.4, 0.13], to: [0, 0.1, 0.03] }
+        antennae: { points: [[0.04, 0.44, 0.2, 0.005], [0.2, 0.62, 0.3, 0.003], [0.42, 0.72, 0.22, 0.0015]] }
+        fore-legs: { points: [[0.07, 0.22, 0.09, 0.01], [0.2, 0.3, 0.22, 0.007], [0.3, 0.4, 0.008, 0.003]] }
+        mid-legs: { points: [[0.1, 0.05, 0.06, 0.01], [0.28, 0.06, 0.22, 0.007], [0.4, 0.02, 0.008, 0.003]] }
+        hind-legs: { points: [[0.1, -0.1, 0.06, 0.011], [0.3, -0.2, 0.26, 0.008], [0.44, -0.36, 0.008, 0.003]] }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. aphid"
+        quote: "most species have a pair of tubelike projections (cornicles) on their abdomens"
+    note: >-
+      The tubes are the article's. The rest is a machine's reconstruction, with no figure compared, and winged aphids
+      are not drawn.
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 0.008 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Hemiptera Aphidoidea\""
+        quote: "Hemiptera Aphidoidea 4375 1 8 (Capinera 2008) Includes Phylloxeroidea"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for aphids, its millimetres given in metres.

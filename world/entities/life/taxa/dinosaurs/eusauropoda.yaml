@@ -1,0 +1,22 @@
+id: life/taxa/eusauropoda
+kind: taxon
+summary: >-
+  The true sauropods. This record speaks for those in no smaller group, such as Shunosaurus and
+  Jobaria.
+same_as: { pbdb: "txn:57437" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Eusauropoda }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 8.7, hi: 25 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 29, Primitive Eusauropods", quote: "Shunosaurus Sichuan [China] reptile Middle Jurassic (167.7-161.2MYA) 28.5 ft (8.7 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 29, Primitive Eusauropods", quote: "Chuanjiesaurus Chuanjie Village [China] reptile Middle Jurassic (171.6-164.7 MYA) 82 ft (25 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Primitive Eusauropods" (pp. 28-29), standing for any member with
+      no length of its own.

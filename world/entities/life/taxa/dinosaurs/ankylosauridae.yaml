@@ -1,0 +1,31 @@
+id: life/taxa/ankylosauridae
+kind: taxon
+summary: >-
+  The club-tailed tank dinosaurs: broad heads, flat bodies and a bony club on a stiff tail.
+same_as: { pbdb: "txn:38831" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ankylosauridae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        club: { type: lump, mat: horn, tint: 170, at: [0, -0.54, 0.3], r: [0.05, 0.05, 0.03], sway: 1, bands: [6, 3], sides: [10, 5] }
+    unsourced: >-
+      A machine's reconstruction: the plan's tail club put back, as Ankylosauria above takes it
+      away; its size and place are the plan's, drawn for Ankylosaurus, and were looked at against
+      the silhouette "Euoplocephalus scale.png" on Wikimedia Commons.
+  length:
+    prop: body_length
+    value: { lo: 2, hi: 9 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 41, Primitive Ankylosaurids", quote: "Minmi from Minmi Crossing [Australia] Early Cretaceous (125-99.6 MYA) 6.6 ft (2 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 40, Primitive Ankylosaurids", quote: "Cedarpelta Cedar Mountain Formation shield Early to Late (102-98 MYA) 29.5 ft (9 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Primitive Ankylosaurids" (pp. 40-41) and "Ankylosaurines" (p.
+      41), standing for any member with no length of its own, leaving out the 34 cm of
+      Liaoningosaurus, which the list says is "Known only from a nearly complete juvenile skeleton".

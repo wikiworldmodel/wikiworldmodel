@@ -1,0 +1,29 @@
+id: life/taxa/cheirolepidiaceae
+kind: taxon
+summary: >-
+  An extinct family of Mesozoic conifers that shed the pollen Classopollis.
+same_as: { pbdb: "txn:56316" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cheirolepidiaceae }
+    unsourced: "The classification's own name."
+  form:
+    prop: body_form
+    value:
+      parts:
+        tree: { reach: 0.17, trunk: 0.02, flare: 1.6, tiers: 9, start: 0.36, drop: 0.06 }
+    unsourced: "A machine's reconstruction, with no figure of the whole tree read: a conifer with a broader, higher crown."
+  height:
+    prop: plant_height
+    value: 22.4
+    source:
+      ref: src:axsmith-jacobs-2005-frenelopsis
+      loc: "abstract"
+      quote: "was a large tree (at least 22.4 m tall, extrapolated from maximum trunk diameter)"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Frenelopsis ramosissima, from the Lower Cretaceous of Texas, standing for the family; the same
+      abstract says it had been reconstructed before as a small shrub. A least figure.

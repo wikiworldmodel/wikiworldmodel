@@ -1,0 +1,28 @@
+id: life/taxa/oviraptorosauria
+kind: taxon
+summary: >-
+  The oviraptorosaurs: feathered omnivores with short deep toothless skulls, often crested, and
+  short tails.
+same_as: { pbdb: "txn:54546" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Oviraptorosauria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: oviraptorosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.7, hi: 8.6 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 14, Primitive Oviraptorosaurs", quote: "Protarchaeopteryx first Archaeopteryx Early Cretaceous (125-120 MYA) 2.3 ft (70 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 15, Oviraptorids", quote: "Gigantoraptor giant thief Late Cretaceous (95-80 MYA) 28.2 ft (8.6 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Primitive Oviraptorosaurs", "Primitive Caenagnathoids",
+      "Elmisaurids" and "Oviraptorids" (pp. 14-16), standing for any member with no length of its
+      own, leaving out the 7 m of Thecocoelurus, doubted by the author and "Known only from an
+      incomplete vertebra".

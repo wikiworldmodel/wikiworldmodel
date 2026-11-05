@@ -1,0 +1,19 @@
+id: life/taxa/therapsida
+kind: taxon
+summary: >-
+  Therapsids, the mammal-like reptiles of older books: the synapsids that took on a more upright stance, and from which
+  cynodonts and mammals came. As a body it stands for those with no form below it.
+same_as: { pbdb: "txn:38935" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Therapsida, en: therapsids }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: therapsid
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in
+      the tree. The plan is a machine's reconstruction, from the photograph of the AMNH's mounted Lycaenops (Wikimedia
+      Commons, "Lycaenops AMNH.jpg") and the skeletal reconstruction of Moschorhinus in Stuart et al. (2024), Fig. 14.

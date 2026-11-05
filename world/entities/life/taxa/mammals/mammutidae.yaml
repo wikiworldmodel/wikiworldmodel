@@ -1,0 +1,73 @@
+id: life/taxa/mammutidae
+kind: taxon
+summary: >-
+  The mastodons: long, low, heavy proboscideans with cusped teeth.
+same_as: { pbdb: "txn:43273" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Mammutidae, en: "mastodons" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.44
+      parts:
+        body:
+          rings:
+            - [-0.47, 0.42, 0.36, 0.006]
+            - [-0.46, 0.68, 0.58, 0.012]
+            - [-0.44, 0.92, 0.78, 0.02]
+            - [-0.41, 1.0, 0.64, 0.072]
+            - [-0.33, 1.06, 0.5, 0.11]
+            - [-0.2, 1.08, 0.46, 0.13]
+            - [-0.06, 1.12, 0.45, 0.136]
+            - [0.06, 1.16, 0.46, 0.13]
+            - [0.15, 1.18, 0.52, 0.106]
+            - [0.2, 1.12, 0.6, 0.086]
+          neck: { r: 0.075, steps: [2, 1] }
+        head:
+          at:
+            stand: { y: 0.245, z: 1.08, pitch: 0.28 }
+            alert: { y: 0.245, z: 1.18, pitch: 0.08 }
+            low: { y: 0.265, z: 0.98, pitch: 0.6 }
+          rings:
+            - [-0.02, 0.02, 0.052, 0.062]
+            - [0.035, 0.026, 0.07, 0.082]
+            - [0.09, 0.008, 0.068, 0.078]
+            - [0.13, -0.03, 0.05, 0.058]
+        hind: { r: 0.058 }
+        fore: { r: 0.06 }
+        tusks:
+          points:
+            - [0.038, 0.1, -0.04, 0.0165]
+            - [0.052, 0.17, -0.07, 0.015]
+            - [0.066, 0.26, -0.09, 0.012]
+            - [0.07, 0.35, -0.08, 0.009]
+            - [0.062, 0.42, -0.04, 0.004]
+        ears:
+          points:
+            - [0.06, 0.025, 0.05]
+            - [0.095, 0.015, 0.1]
+            - [0.115, -0.03, 0.09]
+            - [0.115, -0.06, 0.0]
+            - [0.085, -0.04, -0.06]
+    unsourced: >-
+      A machine's reconstruction, from Larramendi's remark that mastodons had more elongated
+      and wider bodies than elephants, with the tusks long and forward as they are generally
+      restored; only compared with its sheet.
+  mass:
+    prop: body_mass
+    value: { lo: 8000, hi: 16000 }
+    source:
+      - ref: src:larramendi-2016-proboscideans
+        loc: "Table 8, row Mammut americanum ♂"
+        quote: "body mass 6.8 < 6.8–9.2 (8) 9.3–10.2 10.3–12.8 12.9–14.2"
+      - ref: src:larramendi-2016-proboscideans
+        loc: "Table 8, row Mammut borsoni ♂"
+        quote: "body mass 13.7 < 13.7–18.4 (16) 18.5–20.4 20.5–25.6 25.7–28.4"
+    method: compilation
+    note: >-
+      The mean full-grown males of the two species in the table. Earlier mammutids were
+      smaller.

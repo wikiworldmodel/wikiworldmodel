@@ -1,0 +1,35 @@
+id: life/taxa/parasaurolophus
+kind: taxon
+summary: >-
+  Parasaurolophus, the duck-bill with a long hollow tube of a crest sweeping back from its skull.
+same_as: { pbdb: "txn:38766" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Parasaurolophus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        crest: null
+        tube:
+          type: tube
+          on: head
+          tint_add: 18
+          sides: [8, 4]
+          rings: [[0.1, 0.02, 0.009, 0.012], [0.06, 0.05, 0.012, 0.015], [0.0, 0.082, 0.012, 0.015], [-0.07, 0.103, 0.011, 0.013], [-0.13, 0.112, 0.008, 0.009], [-0.16, 0.112, 0.004, 0.005]]
+    unsourced: >-
+      A machine's reconstruction: the long tube of P. walkeri, from the silhouette "Parasaurolophus
+      Scale.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 10
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 46, Parasaurolophinins"
+      quote: "Parasaurolophus near Saurolophus Late Cretaceous (80-72.8 MYA) 32.8 ft (10 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

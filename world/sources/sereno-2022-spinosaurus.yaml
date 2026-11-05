@@ -1,0 +1,28 @@
+id: src:sereno-2022-spinosaurus
+type: publication
+kind: measurement
+citation: >-
+  Sereno, P.C., Myhrvold, N., Henderson, D.M., Fish, F.E., Vidal, D., Baumgart, S.L., Keillor,
+  T.M., Formoso, K.K. & Conroy, L.L. (2022). Spinosaurus is not an aquatic dinosaur. eLife 11,
+  e80092.
+authors:
+  - "Sereno, P.C."
+  - "Myhrvold, N."
+  - "Henderson, D.M."
+  - "Fish, F.E."
+  - "Vidal, D."
+  - "Baumgart, S.L."
+  - "Keillor, T.M."
+  - "Formoso, K.K."
+  - "Conroy, L.L."
+published: 2022
+title: "Spinosaurus is not an aquatic dinosaur"
+container: "eLife 11, e80092"
+doi: 10.7554/eLife.80092
+license: CC-BY
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC9711522), including Table 7; quotes checked by script
+    against it. Its Figure 1 was looked at in the copy on Wikimedia Commons, "Digital skeletal
+    reconstructions of Spinosaurus and Suchomimus.png".

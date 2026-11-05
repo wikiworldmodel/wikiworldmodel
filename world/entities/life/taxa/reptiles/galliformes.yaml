@@ -1,0 +1,69 @@
+id: life/taxa/galliformes
+kind: taxon
+summary: >-
+  Fowls, pheasants, grouse, turkeys and their kin: plump ground birds that fly in short bursts.
+same_as: { pbdb: "txn:39330" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Galliformes", en: "fowls" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.24
+      mass_length: 9
+      behave: { flies: null, group: [1, 8], habitat: open, poses: [stand, walk, walk, graze, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.44, 1.9, 1.76, 0.03]
+            - [-0.36, 1.92, 1.66, 0.052]
+            - [-0.27, 1.92, 1.44, 0.078]
+            - [-0.17, 1.96, 1.12, 0.106]
+            - [-0.05, 2.06, 0.82, 0.135]
+            - [0.06, 2.14, 0.76, 0.138]
+            - [0.14, 2.2, 0.9, 0.112]
+            - [0.2, 2.26, 1.3, 0.07]
+          neck: { r: 0.04, steps: [3, 1] }
+        legs: { y: -0.02, x: 0.05, top: 1.0, knee: 0.66, ankle: 0.34, r: 0.04, swing: 0.08 }
+        wings: { shoulder: [0.12, 0.13, 1.85], span: 0.55, chord: 0.3, sweep: 0.08, folded: 0.34, drop: 0.32 }
+        head:
+          at:
+            stand: { y: 0.29, z: 2.56, pitch: 0.05 }
+            alert: { y: 0.28, z: 2.78, pitch: -0.03 }
+            low: { y: 0.34, reach: 0.16, clear: 0.05, pitch: 1.0 }
+            fly: { y: 0.3, z: 2.36, pitch: 0.05 }
+          rings:
+            - [-0.02, 0, 0.03, 0.032]
+            - [0.02, 0.003, 0.04, 0.042]
+            - [0.06, 0.0, 0.032, 0.032]
+            - [0.09, -0.006, 0.016, 0.018]
+        bill: { from: [0, 0.082, -0.004], to: [0, 0.135, -0.018], r: 0.018 }
+        eyes: { at: [0.032, 0.04, 0.012], r: 0.009 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Galliformes (Chicken-like Birds)\""
+      quote: "with a stocky body, small head, and short wings"
+    note: >-
+      The body follows this. The rest, and how it is drawn on the ground rather than in the air, is
+      a machine's reconstruction; no skeletal figure was looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.15, hi: 1.25 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Fowls and Pheasants (Phasianidae)\""
+      quote: "6–49 in (15–125 cm); 1.5 oz–24.2 lb (43 g–11.0 kg)"
+    method: compilation
+    note: >-
+      The Size row of the largest family, which holds most of the order's fossils.
+  mass:
+    prop: body_mass
+    value: { lo: 0.043, hi: 11 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Fowls and Pheasants (Phasianidae)\""
+      quote: "6–49 in (15–125 cm); 1.5 oz–24.2 lb (43 g–11.0 kg)"
+    method: compilation

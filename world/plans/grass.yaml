@@ -1,0 +1,6 @@
+description: >-
+  A grass or a sedge: a tuft of thin blades.
+kind: plant
+behave: { layer: under, weight: 1.4, wet: 0.2 }
+parts:
+  plant: { type: tuft, blades: 30, spread: 0.45, wide: 0.012 }

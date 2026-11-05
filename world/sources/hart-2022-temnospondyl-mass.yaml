@@ -1,0 +1,21 @@
+id: src:hart-2022-temnospondyl-mass
+type: publication
+kind: model
+citation: >-
+  Hart, L.J., Campione, N.E. & McCurry, M.R. (2022). On the estimation of body mass in
+  temnospondyls: a case study using the large-bodied Eryops and Paracyclotosaurus. Palaeontology
+  65(6), e12629.
+authors:
+  - "Hart, L.J."
+  - "Campione, N.E."
+  - "McCurry, M.R."
+published: 2022
+title: "On the estimation of body mass in temnospondyls: a case study using the large-bodied Eryops and Paracyclotosaurus"
+container: "Palaeontology 65(6), e12629"
+doi: 10.1111/pala.12629
+url: https://rune.une.edu.au/web/handle/1959.11/56328
+verified:
+  by: machine:claude-code
+  how: >-
+    Only the abstract read, on the record of the University of New England's repository, as the
+    publisher's page refused a script; the quote checked by script against it.

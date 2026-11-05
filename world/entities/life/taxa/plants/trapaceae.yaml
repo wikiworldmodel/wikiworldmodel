@@ -1,0 +1,36 @@
+id: life/taxa/trapaceae
+kind: taxon
+summary: >-
+  Water chestnuts, floating rosettes on still water.
+same_as: { pbdb: "txn:55503" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Trapaceae, en: water chestnuts }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: floating-fern
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 10, s.v. Trapa natans"
+      quote: "Leaves of floating rosettes"
+  form:
+    prop: body_form
+    value:
+      parts:
+        plant: { radius: 1.6 }
+    unsourced: "A machine's reconstruction: smaller patches than a floating fern's mats."
+  height:
+    prop: plant_height
+    value: 0.2
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 10, s.v. Trapa natans"
+      quote: "toward outer edges of rosette, to 20 cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The longest leaf stalks of a rosette of the living water chestnut, which lie on the water: a
+      modern relative, and an overstatement of how far it rises.

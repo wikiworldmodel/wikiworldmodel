@@ -1,0 +1,40 @@
+id: life/taxa/ursidae
+kind: taxon
+summary: >-
+  Bears.
+same_as: { pbdb: "txn:41301" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ursidae, en: "bears" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: bear
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 1.2, hi: 2.5 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Helarctos malayanus, Other Physical Features"
+        quote: "Range length 1.2 to 1.5 m"
+      - ref: src:animal-diversity-web
+        loc: "account of Ursus maritimus, Physical Description"
+        quote: "can reach 2.5 m in length from tip of nose to tip of tail"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 46.5, hi: 1749 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Helarctos_malayanus, column Mass.g (grams)"
+        quote: "Helarctos_malayanus,Carnivora,Ursidae,Helarctos,malayanus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,46500"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Caniformia\""
+        quote: "could have weighed 1,588–1,749 kg (3,501–3,856 lb)"
+    method: compilation
+    note: >-
+      From the sun bear to Arctotherium angustidens, from Wikipedia as nothing better could be
+      read.

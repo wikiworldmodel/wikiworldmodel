@@ -1,0 +1,45 @@
+id: life/taxa/dimetrodon
+kind: taxon
+summary: >-
+  Dimetrodon, the great sail-backed hunter of the early Permian of North America, with one small species in Germany.
+same_as: { pbdb: "txn:38904" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dimetrodon }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        sail: { rings: [[0, -0.125, 1.24, 0.002, 0.05], [0, -0.09, 1.5, 0.002, 0.3], [0, -0.03, 1.96, 0.002, 0.76], [0, 0.04, 2.24, 0.002, 1.04], [0, 0.11, 2.3, 0.002, 1.1], [0, 0.17, 2.1, 0.002, 0.9], [0, 0.23, 1.74, 0.002, 0.54], [0, 0.285, 1.32, 0.002, 0.12]] }
+        spines: { type: row, near: true, mat: horn, tint: 170, n: 15, item: spike, from: [0, -0.115, 1.16], to: [0, 0.27, 1.16], r: [0, -0.015, 0.385], thick: 0.0065, size: [0.3, 0.66, 0.9, 1, 0.98, 0.8, 0.4] }
+    unsourced: >-
+      A machine's reconstruction: the tall sail of spines, highest over the middle of the trunk, from the photograph of the
+      mounted Dimetrodon at the Royal Tyrrell Museum (Wikimedia Commons, "Dimetrodon Royal Tyrrell Museum.jpg").
+  length:
+    prop: body_length
+    value: { lo: 1.7, hi: 4.6 }
+    source:
+      - ref: src:canoville-2026-dimetrodon-life-history
+        loc: "Introduction, p. 1"
+        quote: "ranged in adult total body length and body weight from about 1.7 m and 38 kg"
+      - ref: src:canoville-2026-dimetrodon-life-history
+        loc: "Introduction, p. 1"
+        quote: "up to 4.6 m and 250 kg"
+    method: expert-estimate
+    note: >-
+      Across the North American species, D. natalis to D. angelensis. The German D. teutonis is smaller, with an estimated
+      55 cm from snout to vent.
+  mass:
+    prop: body_mass
+    value: { lo: 38, hi: 250 }
+    source:
+      - ref: src:canoville-2026-dimetrodon-life-history
+        loc: "Introduction, p. 1"
+        quote: "ranged in adult total body length and body weight from about 1.7 m and 38 kg"
+      - ref: src:canoville-2026-dimetrodon-life-history
+        loc: "Introduction, p. 1"
+        quote: "up to 4.6 m and 250 kg"
+    method: expert-estimate

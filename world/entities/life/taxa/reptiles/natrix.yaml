@@ -1,0 +1,24 @@
+id: life/taxa/natrix
+kind: taxon
+summary: >-
+  The grass and water snakes of Eurasia.
+same_as: { pbdb: "txn:38138" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Natrix", en: "water snakes" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.8, hi: 2 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Natrix maura, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "135.8020191 800 483"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Natrix natrix, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "2800.928844 2000 320"
+    method: compilation
+    note: >-
+      Total length: the living species of the genus in the dataset.

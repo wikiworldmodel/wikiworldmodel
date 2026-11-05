@@ -1,0 +1,30 @@
+id: life/taxa/brontosaurus
+kind: taxon
+summary: >-
+  Brontosaurus, separated from Apatosaurus again by the database after a long time as one genus with
+  it.
+same_as: { pbdb: "txn:52983" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Brontosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Apatosaurinae, which was measured from
+      this genus: CM 563 in "Apatosaurus scale mmartyniuk wiki.png" on Wikimedia Commons. Nothing
+      here differs from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 26
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 30, Apatosaurines", quote: "Apatosaurus deceptive [chevron] reptile Late Jurassic (155.7-150.8 MYA) 85.3 ft (26 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 30, Apatosaurines, comment on Apatosaurus", quote: 'Includes the species formerly called "Brontosaurus".' }
+    method: compilation
+    note: >-
+      The list, older than the split, counts it as Apatosaurus and gives no row of its own: this is
+      that row, a whole-genus figure with no measurement behind it.

@@ -65,6 +65,18 @@ claims:
     note: >-
       The Alps and adjacent areas only, the one region then with fairly good evidence; the authors
       ask whether it lasted later elsewhere. Later direct dates, above, show that it did.
+  body-plan:
+    prop: body_plan
+    value: bear
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  mass-mammal-forms:
+    prop: body_mass
+    value: 390.4
+    source:
+      ref: src:faurby-2020-phylacine
+      loc: "Data/Traits/Trait_data.csv, row Ursus_spelaeus, column Mass.g (grams)"
+      quote: "Ursus_spelaeus,Carnivora,Ursidae,Ursus,spelaeus,1,0,0,0,Imputed,PHYLACINE 1.2.1,390416.7"
+    method: compilation
 relations:
   parent:
     rel: descends-from

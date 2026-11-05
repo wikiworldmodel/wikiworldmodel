@@ -1,0 +1,27 @@
+id: life/taxa/cyatheales
+kind: taxon
+summary: >-
+  Tree ferns and their relatives, living and Mesozoic. Some of its fossil foliage may have grown on
+  smaller plants.
+same_as: { pbdb: "txn:196332" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cyatheales, en: tree ferns }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: tree-fern
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 5, hi: 15 }
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 2-3, s.v. Alsophila spinulosa"
+      quote: "Trunk 5-15 m or sometimes more than 20 m"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      A living tree fern's trunk: a modern relative, not any fossil.

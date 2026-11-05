@@ -1,0 +1,39 @@
+id: life/taxa/metatheria
+kind: taxon
+summary: >-
+  Marsupials and their extinct relatives. Any member with no form nearer draws as a small mammal.
+same_as: { pbdb: "txn:183662" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Metatheria, en: "metatherians" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    value: { lo: 0.1, hi: 1.0 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Monodelphis domestica, Physical Description"
+        quote: "Body length of adults ranges from 10 to 15 cm"
+      - ref: src:animal-diversity-web
+        loc: "account of Didelphidae"
+        quote: "members may be over 1,000 mm long"
+    method: compilation
+    note: >-
+      The range of living opossums, standing for any metatherian with nothing nearer to say.
+      The low end is head and body, without the tail. The Cretaceous and Paleogene members
+      read of are within it.
+  mass:
+    prop: body_mass
+    value: { lo: 0.008, hi: 2.2 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Gracilinanus_emiliae, column Mass.g (grams)"
+        quote: "Gracilinanus_emiliae,Didelphimorphia,Didelphidae,Gracilinanus,emiliae,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,7.6"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Didelphis_virginiana, column Mass.g (grams)"
+        quote: "Didelphis_virginiana,Didelphimorphia,Didelphidae,Didelphis,virginiana,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,2195.5"
+    method: compilation
+    note: >-
+      The living opossums, as a stand-in for the same members.

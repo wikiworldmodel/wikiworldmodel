@@ -1,0 +1,57 @@
+id: life/taxa/carcharodontosauridae
+kind: taxon
+summary: >-
+  The shark-toothed giants: long, low, huge skulls, short arms and high spines over the back.
+same_as: { pbdb: "txn:65363" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Carcharodontosauridae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.57, 0.6, 0.59, 0.002]
+            - [-0.45, 0.74, 0.67, 0.006]
+            - [-0.31, 0.88, 0.71, 0.013]
+            - [-0.17, 1.0, 0.69, 0.027]
+            - [-0.07, 1.05, 0.6, 0.044]
+            - [0.01, 1.07, 0.48, 0.058]
+            - [0.09, 1.06, 0.42, 0.062]
+            - [0.16, 1.04, 0.5, 0.054]
+            - [0.22, 1.04, 0.72, 0.036]
+          neck: { r: 0.03, steps: [3, 1] }
+        arms: { points: [[0.05, 0.18, 0.7, 0.012], [0.054, 0.18, 0.56, 0.009], [0.05, 0.22, 0.48, 0.006], [0.046, 0.245, 0.45, 0.003]] }
+        claws: { from: [0.046, 0.243, 0.455], to: [0.044, 0.265, 0.4], r: 0.0038 }
+        head:
+          at:
+            stand: { y: 0.29, z: 1.16, pitch: 0.08 }
+            alert: { y: 0.28, z: 1.3, pitch: 0.02 }
+            low: { y: 0.33, z: 0.68, pitch: 0.5 }
+          rings:
+            - [-0.005, 0, 0.03, 0.032]
+            - [0.03, 0.002, 0.034, 0.043]
+            - [0.075, -0.004, 0.027, 0.034]
+            - [0.115, -0.012, 0.018, 0.024]
+            - [0.15, -0.018, 0.011, 0.013]
+        jaw: { rings: [[0.015, -0.04, 0.024, 0.012], [0.08, -0.05, 0.022, 0.01], [0.13, -0.046, 0.013, 0.007], [0.152, -0.036, 0.007, 0.004]] }
+        mouth: { rings: [[0.03, -0.034, 0.021, 0.006], [0.095, -0.04, 0.017, 0.005], [0.146, -0.03, 0.007, 0.003]] }
+        eyes: { at: [0.028, 0.038, 0.02], r: 0.0055 }
+    unsourced: >-
+      A machine's reconstruction: a longer, larger skull and shorter arms than the plan, from the
+      silhouettes "Carcharodontosaurus Scale.svg" and "Giganotosaurus Scale.svg" on Wikimedia
+      Commons.
+  length:
+    prop: body_length
+    value: { lo: 6, hi: 13.2 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 8, Carcharodontosaurids", quote: "Shaochilong shark tooth dragon Late Cretaceous (93.6-89.3 MYA) 19.7 ft (6 m)?" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 8, Carcharodontosaurids", quote: "Giganotosaurus giant southern reptile Late Cretaceous (99.6-97 MYA) 43.3 ft (13.2 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Carcharodontosaurids" on that page, standing for any
+      member with no length of its own. The lower end is the author's own doubt.

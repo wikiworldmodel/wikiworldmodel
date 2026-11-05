@@ -1,0 +1,49 @@
+id: life/taxa/ochotonidae
+kind: taxon
+summary: >-
+  Pikas: small, round-eared and without a visible tail.
+same_as: { pbdb: "txn:42155" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ochotonidae, en: "pikas" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.16
+      mass_length: 39
+      parts:
+        body: { at: [0, -0.1, 0.2], r: [0.15, 0.36, 0.17] }
+        head: { at: [0, 0.3, 0.24], r: [0.1, 0.17, 0.11] }
+        scut: null
+        ears: { type: lump, from: null, to: null, r: [0.012, 0.03, 0.04], at: [0.075, 0.25, 0.34], bands: [3, 2], near: true, sides: [6, 4] }
+        fore: { from: [0.08, 0.16, 0.12], to: [0.085, 0.18, 0], r: 0.03 }
+        hind: { from: [0.1, -0.22, 0.12], to: [0.11, -0.17, 0], r: 0.036 }
+    unsourced: >-
+      A machine's reconstruction, from the account of Ochotona princeps on the Animal
+      Diversity Web: an ovoid body, short ears and limbs, no visible tail. Only compared with
+      its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.16, hi: 0.29 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Ochotona princeps, Other Physical Features"
+        quote: "Range length 162 to 216 mm"
+      - ref: src:animal-diversity-web
+        loc: "account of Ochotonidae"
+        quote: "than 285 mm in length (Smith, 2008)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.074, hi: 0.494 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Ochotona_cansus, column Mass.g (grams)"
+        quote: "Ochotona_cansus,Lagomorpha,Ochotonidae,Ochotona,cansus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,74.5"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Ochotona_whartoni, column Mass.g (grams)"
+        quote: "Ochotona_whartoni,Lagomorpha,Ochotonidae,Ochotona,whartoni,1,0,0,0,Imputed,PHYLACINE 1.2.1,494.4"
+    method: compilation

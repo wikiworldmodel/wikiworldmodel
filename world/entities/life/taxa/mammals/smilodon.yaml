@@ -1,0 +1,45 @@
+id: life/taxa/smilodon
+kind: taxon
+summary: >-
+  The great sabre-toothed cats of the American Pleistocene.
+same_as: { pbdb: "txn:41079" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Smilodon, en: "sabre-toothed cats" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      parts:
+        sabres: { from: [0.03, 0.13, -0.012], to: [0.036, 0.104, -0.16], r: 0.015 }
+    unsourced: >-
+      A machine's reconstruction, from the photograph of the mounted Smilodon populator
+      skeleton at the Tellus Science Museum on Wikipedia's page for the genus: longer sabres
+      than its plan's.
+  length:
+    prop: body_length
+    value: 1.75
+    source:
+      ref: src:wikipedia-smilodon
+      loc: "top of the article"
+      quote: "height of 100 cm (39 in) and body length of 175 cm (69 in)"
+    method: compilation
+    note: >-
+      S. fatalis, standing for the genus, from Wikipedia as no measured skeleton could be
+      read.
+  mass:
+    prop: body_mass
+    value: { lo: 55, hi: 470 }
+    source:
+      - ref: src:wikipedia-smilodon
+        loc: "top of the article"
+        quote: "S. gracilis was the smallest species at 55 to 100 kg"
+      - ref: src:wikipedia-smilodon
+        loc: "top of the article"
+        quote: "at 220 to 470 kg (490 to 1,040 lb) in weight"
+    method: compilation
+    note: >-
+      From S. gracilis to S. populator, from Wikipedia. PHYLACINE has 219 kg for S. fatalis
+      and 294.5 kg for S. populator.

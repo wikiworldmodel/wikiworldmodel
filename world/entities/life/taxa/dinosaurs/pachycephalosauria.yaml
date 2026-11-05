@@ -1,0 +1,32 @@
+id: life/taxa/pachycephalosauria
+kind: taxon
+summary: >-
+  The dome-headed dinosaurs.
+same_as: { pbdb: "txn:38782" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pachycephalosauria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: pachycephalosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      mass_length: 8
+    unsourced: >-
+      Only the bulk the generator assumes where no mass is claimed: the volume of the plan's own
+      body, at the density of water.
+  length:
+    prop: body_length
+    value: { lo: 0.6, hi: 7 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 48, Primitive PachycephaIosaurs", quote: "Wannanosaurus southern Anhui [China] reptile Late Cretaceous (70.6-68.5 MYA) 2 ft (60 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 49, PachycephaIosaurids", quote: "Pachycephalosaurus thickheaded reptile Late Cretaceous (66.8-65.5.MYA) 23 ft (7 m)" }
+    method: compilation
+    note: >-
+      The range across the tables of pachycephalosaurs on pp. 48-49, standing for any member with no
+      length of its own.

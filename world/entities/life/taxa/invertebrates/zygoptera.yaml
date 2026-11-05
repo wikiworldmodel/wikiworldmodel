@@ -1,0 +1,45 @@
+id: life/taxa/zygoptera
+kind: taxon
+summary: >-
+  The damselflies, slighter than dragonflies, with eyes set apart on a wide head and the wings held together over the
+  back at rest.
+same_as: { pbdb: "txn:94227" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Zygoptera, en: "damselflies" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        head: { r: [0.085, 0.032, 0.036] }
+        eyes: { at: [0.078, 0.445, 0.205], r: [0.026, 0.028, 0.034] }
+        thorax: { r: [0.045, 0.085, 0.06] }
+        abdomen: { rings: [[0, 0.24, 0.19, 0.024, 0.026], [0, 0.1, 0.185, 0.011, 0.013], [0, -0.2, 0.18, 0.01, 0.012], [0, -0.45, 0.175, 0.01, 0.012], [0, -0.5, 0.174, 0.004, 0.005]] }
+        rest-fore: { points: [[0.004, 0.31, 0.24], [0.012, 0.1, 0.33], [0.012, -0.24, 0.37], [0.006, -0.3, 0.35], [0.002, 0.05, 0.27]] }
+        rest-hind: { points: [[0.004, 0.27, 0.24], [0.01, 0.06, 0.31], [0.01, -0.22, 0.34], [0.005, -0.27, 0.32], [0.002, 0.02, 0.26]] }
+        fly-fore: { chord: 0.09 }
+        fly-hind: { chord: 0.09 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. damselfly"
+        quote: "they hold their wings vertically and together when at rest"
+    note: >-
+      The wings at rest are the article's. The wide head and the proportions are a machine's reconstruction, from
+      general knowledge of damselflies, with no figure compared.
+  length:
+    prop: body_length
+    value: { lo: 0.015, hi: 0.12 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Odonata Isostictidae\""
+        quote: "Odonata Isostictidae 45 15 40 (Watson 1974)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Odonata Pseudostigmatidae\""
+        quote: "Odonata Pseudostigmatidae 19 80 120 (Esquivel 1997)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for the families of this suborder, its millimetres given in
+      metres.

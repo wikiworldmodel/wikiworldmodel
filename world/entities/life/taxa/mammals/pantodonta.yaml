@@ -1,0 +1,77 @@
+id: life/taxa/pantodonta
+kind: taxon
+summary: >-
+  Heavy plant-eaters of the Paleocene and Eocene, the first large mammals.
+same_as: { pbdb: "txn:40556" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pantodonta, en: "pantodonts" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: heavy-ungulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.4
+      mass_length: 30
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.56, 0.5, 0.005]
+            - [-0.45, 0.66, 0.6, 0.008]
+            - [-0.4, 0.82, 0.74, 0.012]
+            - [-0.36, 1.0, 0.82, 0.024]
+            - [-0.32, 1.1, 0.64, 0.08]
+            - [-0.24, 1.16, 0.46, 0.112]
+            - [-0.1, 1.14, 0.38, 0.13]
+            - [0.03, 1.08, 0.4, 0.12]
+            - [0.11, 1.02, 0.48, 0.096]
+            - [0.16, 0.98, 0.56, 0.08]
+          neck: { r: 0.066, steps: [2, 1] }
+        hind: { y: -0.22, x: 0.082, top: 0.8, r: 0.046 }
+        fore: { y: 0.08, x: 0.086, top: 0.76, r: 0.044 }
+        head:
+          at:
+            stand: { y: 0.21, z: 0.9, pitch: 0.2 }
+            alert: { y: 0.21, z: 1.04, pitch: 0.02 }
+            low: { y: 0.24, reach: 0.24, pitch: 0.85 }
+          rings:
+            - [-0.016, 0.012, 0.056, 0.06]
+            - [0.05, 0.018, 0.068, 0.07]
+            - [0.12, 0.004, 0.056, 0.056]
+            - [0.18, -0.01, 0.046, 0.042]
+            - [0.225, -0.018, 0.04, 0.028]
+        tusks: { type: spike, on: head, mirror: true, near: true, mat: horn, tint: 200, sides: [5, 4], from: [0.03, 0.2, -0.03], to: [0.04, 0.21, -0.095], r: 0.012 }
+        ears: { from: [0.044, 0.004, 0.052], to: [0.056, -0.014, 0.085], r: 0.014 }
+    unsourced: >-
+      A machine's reconstruction, from the photograph of Osborn's Coryphodon mount on
+      Wikipedia's page for the genus (Hutchinson_coryphodon.jpg): a big head on a short neck,
+      a back higher at the hips than the shoulders, thick legs, a thin tail.
+  length:
+    prop: body_length
+    value: 2.5
+    source:
+      ref: src:wikipedia-largest-prehistoric-animals
+      loc: "section \"Cimolestans (Cimolesta)\""
+      quote: "2.5 m (8 ft 2 in) long"
+    method: compilation
+    note: >-
+      Coryphodon, the largest, from Wikipedia as Uhen & Gingerich (1995) could not be read.
+      Smaller pantodonts lie below it, and no figure for them was read.
+  mass:
+    prop: body_mass
+    value: { lo: 340, hi: 700 }
+    source:
+      - ref: src:wikipedia-coryphodon
+        loc: "section \"Description\""
+        quote: "Uhen & Gingerich 1995 estimated the mean body mass for the type species C. eocaenus to 340 kg"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Cimolestans (Cimolesta)\""
+        quote: "up to 700 kg (1,500 lb) of mass"
+    method: compilation
+    note: >-
+      From Wikipedia, as Uhen & Gingerich (1995) could not be read.

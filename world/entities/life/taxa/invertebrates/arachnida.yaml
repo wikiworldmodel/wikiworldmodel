@@ -1,0 +1,27 @@
+id: life/taxa/arachnida
+kind: taxon
+summary: >-
+  The spiders, scorpions, mites and their relatives. The body drawn for any with none of their own is a spider's.
+same_as: { pbdb: "txn:19008" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Arachnida, en: "arachnids" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: spider
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a spider, from general knowledge; no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 8e-05, hi: 0.21 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. arachnid"
+        quote: "Arachnids range in size from tiny mites that measure 0.08 mm (0.003 inch) to the enormous scorpion Hadogenes troglodytes of Africa, which may be 21 cm (8 inches) or more in length."
+    method: compilation
+    note: >-
+      An encyclopedia's numbers, cited for lack of a work that could be read.

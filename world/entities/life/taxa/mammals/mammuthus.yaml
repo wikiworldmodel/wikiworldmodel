@@ -1,0 +1,29 @@
+id: life/taxa/mammuthus
+kind: taxon
+summary: >-
+  The mammoths, of Africa, Eurasia and North America.
+same_as: { pbdb: "txn:43266" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Mammuthus, en: "mammoths" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: mammoth
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  mass:
+    prop: body_mass
+    value: { lo: 759, hi: 11000 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Mammuthus_exilis, column Mass.g (grams)"
+        quote: "Mammuthus_exilis,Proboscidea,Elephantidae,Mammuthus,exilis,1,0,0,0,Imputed,PHYLACINE 1.2.1,759000"
+      - ref: src:larramendi-2016-proboscideans
+        loc: "Table 8, row Mammuthus meridionalis ♂, Mammuthus trogontherii ♂"
+        quote: "body mass 9.6 < 9.6–12.7 (11) 12.8–14 14.1–17.4 17.5–19.5"
+    method: compilation
+    note: >-
+      From the dwarf mammoth of the Channel Islands to the mean full-grown male steppe
+      mammoth. No length was read: its length is its family’s.

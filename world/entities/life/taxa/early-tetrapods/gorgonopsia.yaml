@@ -1,0 +1,61 @@
+id: life/taxa/gorgonopsia
+kind: taxon
+summary: >-
+  Gorgonopsians: the sabre-toothed hunters of the later Permian, from the size of a fox to that of a bear, with long deep skulls.
+same_as: { pbdb: "txn:39095" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Gorgonopsia, en: gorgonopsians }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.24
+      parts:
+        head:
+          at:
+            stand: { y: 0.27, z: 1.18, pitch: 0.24 }
+            alert: { y: 0.27, z: 1.38, pitch: 0.06 }
+            low: { y: 0.3, reach: 0.2, pitch: 0.75 }
+          rings:
+            - [-0.012, 0.004, 0.034, 0.042]
+            - [0.035, 0.012, 0.044, 0.06]
+            - [0.09, 0.006, 0.037, 0.056]
+            - [0.145, -0.008, 0.026, 0.044]
+            - [0.19, -0.016, 0.016, 0.028]
+        jaw:
+          rings:
+            - [0.014, -0.05, 0.03, 0.015]
+            - [0.09, -0.056, 0.023, 0.014]
+            - [0.182, -0.044, 0.011, 0.008]
+        mouth: { type: tube, on: head, near: true, mat: dark, sides: [6, 4], rings: [[0.03, -0.036, 0.032, 0.004], [0.11, -0.042, 0.022, 0.004], [0.18, -0.04, 0.012, 0.003]] }
+        canines: { type: spike, on: head, near: true, mirror: true, mat: horn, tint: 200, sides: [6, 4], from: [0.018, 0.14, -0.034], to: [0.02, 0.15, -0.104], r: 0.0075 }
+        eyes: { at: [0.036, 0.06, 0.036], r: 0.0095 }
+    source:
+      - ref: src:boonstra-1953-gorgonopsians
+        loc: "p. 29"
+        quote: "The shoulder height is 570 mm. and at the hips the height is 368 mm."
+      - ref: src:boonstra-1953-gorgonopsians
+        loc: "p. 29"
+        quote: "of the skeleton is 1,530 mm. and measured over the curvature of the back is"
+    note: >-
+      The hips' share of the length is Boonstra's reconstruction of Aelurognathus microdon, 368 mm on 1,530 mm; he adds that
+      the mount's arched back is overdone, so the shoulders are lower here than his 570 mm. The rest is a machine's
+      reconstruction, from the photograph of the AMNH's mounted Lycaenops (Wikimedia Commons, "Lycaenops AMNH.jpg").
+  length:
+    prop: body_length
+    value: { lo: 1.53, hi: 2.97 }
+    source:
+      - ref: src:boonstra-1953-gorgonopsians
+        loc: "p. 29"
+        quote: "of the skeleton is 1,530 mm. and measured over the curvature of the back is"
+      - ref: src:stricherz-1998-rubidgea
+        loc: "paragraph on the skeleton's measurements"
+        quote: "the overall length was nearly 9.75 feet"
+    method: survey
+    note: >-
+      A middle-sized gorgonopsian measured on its reconstructed mount, and a complete Rubidgea from a news release, 9.75 feet
+      converted. Smaller species were much smaller, with skulls of about 15 cm (Botha 2025), and no length of the whole
+      animal was found for them. Inostrancevia may have reached 3.5 m, by Wikipedia.

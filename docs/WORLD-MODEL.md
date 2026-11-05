@@ -1,13 +1,15 @@
 # Lightworld world model — design overview
 
-Status: draft proposal. Six slices are built: Cambrian to today, the whole
+Status: draft proposal. Seven slices are built: Cambrian to today, the whole
 span from the Hadean to the far future, Earth's states (a magma ocean, oceans,
 Snowball ice), Rome (a polity's borders, dates to the day, written evidence),
-Rome the city (buildings as records, generated fabric, street level), and life at
-a place and a time (biomes through time, a tree of life, a generated living scene).
+Rome the city (buildings as records, generated fabric, street level), life at
+a place and a time (biomes through time, a tree of life, a generated living scene),
+and life anywhere (forms on the tree of life, an atlas of who lived where, a scene of any place).
 [FIRST-SLICE.md](FIRST-SLICE.md), [SECOND-SLICE.md](SECOND-SLICE.md),
 [THIRD-SLICE.md](THIRD-SLICE.md), [FOURTH-SLICE.md](FOURTH-SLICE.md),
-[FIFTH-SLICE.md](FIFTH-SLICE.md) and [SIXTH-SLICE.md](SIXTH-SLICE.md) say what they
+[FIFTH-SLICE.md](FIFTH-SLICE.md), [SIXTH-SLICE.md](SIXTH-SLICE.md) and
+[SEVENTH-SLICE.md](SEVENTH-SLICE.md) say what they
 test and where they depart from this document. It covers the world model and its main consumer, an
 interactive viewer for flying through space and time. The film is a second
 consumer: a scripted flight through the same world, rendered offline.

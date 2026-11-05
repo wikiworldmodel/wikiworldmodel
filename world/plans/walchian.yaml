@@ -1,0 +1,6 @@
+description: >-
+  An early conifer: a straight trunk with flat tiers of spreading branches, like a young monkey puzzle.
+kind: plant
+behave: { layer: canopy, weight: 1, wet: -0.2 }
+parts:
+  tree: { type: conifer, reach: 0.22, trunk: 0.018, flare: 1.4, tiers: 9, start: 0.18, drop: 0.03 }

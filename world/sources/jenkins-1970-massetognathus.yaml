@@ -1,0 +1,17 @@
+id: src:jenkins-1970-massetognathus
+type: publication
+kind: measurement
+citation: >-
+  Jenkins, F.A. Jr. (1970). The Chañares (Argentina) Triassic reptile fauna. VII. The postcranial
+  skeleton of the traversodontid Massetognathus pascuali (Therapsida, Cynodontia). Breviora 352,
+  1–28.
+authors:
+  - "Jenkins, F.A."
+published: 1970
+title: "The Chañares (Argentina) Triassic reptile fauna. VII. The postcranial skeleton of the traversodontid Massetognathus pascuali (Therapsida, Cynodontia)"
+container: "Breviora 352, 1–28"
+url: https://archive.org/details/biostor-4189
+verified:
+  by: machine:claude-code
+  how: >-
+    The Internet Archive's OCR text read; quotes checked by script against it.

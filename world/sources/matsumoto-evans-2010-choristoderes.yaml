@@ -1,0 +1,18 @@
+id: src:matsumoto-evans-2010-choristoderes
+type: publication
+kind: review
+citation: >-
+  Matsumoto, R. & Evans, S.E. (2010). Choristoderes and the freshwater assemblages of Laurasia. Journal of Iberian Geology
+  36(2), 253–274.
+authors:
+  - "Matsumoto, R."
+  - "Evans, S.E."
+published: 2010
+title: "Choristoderes and the freshwater assemblages of Laurasia"
+container: Journal of Iberian Geology 36(2), 253–274
+doi: 10.5209/rev_JIGE.2010.v36.n2.11
+verified:
+  by: machine:claude-code
+  how: >-
+    The whole PDF read from the journal's page, including Fig. 1 (the skulls drawn to scale) and Table 1. Quotes checked by script
+    against its text layer, with whitespace normalized; the cells of a table's row are as the text layer runs them.

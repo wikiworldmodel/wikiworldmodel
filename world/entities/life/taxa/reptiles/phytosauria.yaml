@@ -1,0 +1,71 @@
+id: life/taxa/phytosauria
+kind: taxon
+summary: >-
+  The long-snouted armoured semi-aquatic predators of the Late Triassic, crocodile-like, with their
+  nostrils near the eyes.
+same_as: { pbdb: "txn:38292" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Phytosauria", en: "phytosaurs" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: crocodilian
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.6, 0.5, 0.003]
+            - [-0.4, 0.82, 0.42, 0.008]
+            - [-0.28, 1.0, 0.42, 0.018]
+            - [-0.16, 1.14, 0.44, 0.034]
+            - [-0.06, 1.24, 0.34, 0.058]
+            - [0.03, 1.26, 0.3, 0.07]
+            - [0.11, 1.2, 0.34, 0.05]
+            - [0.17, 1.12, 0.46, 0.036]
+            - [0.21, 1.08, 0.52, 0.032]
+            - [0.255, 1.1, 0.62, 0.036]
+            - [0.3, 0.96, 0.66, 0.019]
+            - [0.36, 0.84, 0.68, 0.009]
+            - [0.43, 0.8, 0.68, 0.0075]
+            - [0.475, 0.82, 0.66, 0.0115]
+            - [0.5, 0.78, 0.66, 0.009]
+        nostrils: { type: lump, near: true, sides: [8, 4], at: [0, 0.3, 1.0], r: [0.012, 0.02, 0.01] }
+        eyes: { at: [0.03, 0.262, 1.1] }
+        plates-neck: { to: [0.014, 0.17, 1.1] }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Evolution of the Reptiles\""
+      quote: "Although the nasal openings were on top of the head, they were set far back on the snout rather than on the tip"
+    note: >-
+      The nostrils and the very long snout follow this; the rest is the plan's. Otherwise a
+      machine's reconstruction; no skeletal figure was looked at.
+  length:
+    prop: body_length
+    value: 4.5
+    source:
+      ref: src:heckert-2003-phytosaur-mass
+      loc: "abstract"
+      quote: "appear to have approached 4.5 m total body length for a ~400 kg phytosaur"
+    method: model
+    note: >-
+      Revueltian phytosaurs of New Mexico, from equations for living crocodilians. The only length
+      read: larger ones are spoken of, but no source for them could be read.
+  mass:
+    prop: body_mass
+    value: { lo: 25, hi: 535 }
+    source:
+      - ref: src:heckert-2003-phytosaur-mass
+        loc: "abstract"
+        quote: "range between 25 and 500 kg"
+      - ref: src:heckert-2003-phytosaur-mass
+        loc: "abstract"
+        quote: "one individual that may have weighed as much as 535 kg"
+    method: model
+    note: >-
+      Includes juveniles at the low end.

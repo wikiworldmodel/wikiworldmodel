@@ -1,0 +1,32 @@
+id: life/taxa/branchiopoda
+kind: taxon
+summary: >-
+  The clam shrimps, water fleas, fairy shrimps and tadpole shrimps, small crustaceans of mostly fresh water. Most of
+  those in the land's fossils are clam shrimps, and that is the body drawn.
+same_as: { pbdb: "txn:22113" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Branchiopoda, en: "clam shrimps, water fleas and their relatives" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: clam-shrimp
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a clam shrimp, after the account in Grzimek's (s.v. Conchostraca: all
+      are laterally flattened and possess a bivalve carapace, joined by a dorsal hinge); no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.00025, hi: 0.1 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. branchiopod"
+        quote: "The smallest branchiopods are found among the anomopods, where some species are only 0.25 millimetre (0.01 inch) long."
+      - ref: src:britannica-online-animals
+        loc: "s.v. branchiopod"
+        quote: "The largest living branchiopod is Branchinecta gigas, a fairy shrimp that reaches a length of 10 centimetres (3.9 inches)."
+    method: compilation
+    note: >-
+      An encyclopedia's numbers, cited for lack of a work that could be read.

@@ -1,0 +1,39 @@
+id: life/taxa/anseriformes
+kind: taxon
+summary: >-
+  Ducks, geese, swans and screamers: swimming birds with broad flat bills.
+same_as: { pbdb: "txn:39620" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Anseriformes", en: "waterfowl" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: waterfowl
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Ducks, Geese, and Swans (Anatidae)\""
+      quote: "with a broad stocky body, webbed feet, and a flattened bill"
+    note: >-
+      The plan's description follows this; which plan draws the group is an editorial
+      classification, from its place in the tree.
+  length:
+    prop: body_length
+    value: { lo: 0.34, hi: 1.8 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Ducks, Geese, and Swans (Anatidae)\""
+      quote: "13–71 in (34–180 cm); 0.56–29.8 lb (255 g–13.5 kg)"
+    method: compilation
+    note: >-
+      The Size row of the family, which is nearly all of the order in the fossils named.
+  mass:
+    prop: body_mass
+    value: { lo: 0.255, hi: 13.5 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Ducks, Geese, and Swans (Anatidae)\""
+      quote: "13–71 in (34–180 cm); 0.56–29.8 lb (255 g–13.5 kg)"
+    method: compilation

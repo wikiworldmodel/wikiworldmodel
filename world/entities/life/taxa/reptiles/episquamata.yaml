@@ -1,0 +1,25 @@
+id: life/taxa/episquamata
+kind: taxon
+summary: >-
+  Wall lizards, whiptails, tegus and their relatives, in the classification used here with a few
+  other groups.
+same_as: { pbdb: "txn:340707" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Episquamata", en: "wall lizards, whiptails and relatives" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.028, hi: 0.614 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Gymnophthalmus cryptus, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "0.398107171 NA 28"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Salvator rufescens, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "8317.638 NA 614"
+    method: compilation
+    note: >-
+      From snout to vent, as the plan's length is.

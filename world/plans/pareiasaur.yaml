@@ -1,0 +1,43 @@
+description: >-
+  A massive armoured plant-eating parareptile: a barrel body, stout bowed legs, a very short tail and a broad knobbed head, with bony studs down its back.
+kind: animal
+hip: 0.33
+behave: { group: [1, 4], habitat: open, poses: [graze, graze, stand, walk] }
+parts:
+  body:
+    type: trunk
+    rings:
+      - [-0.5, 0.74, 0.62, 0.006]
+      - [-0.45, 0.86, 0.6, 0.022]
+      - [-0.4, 1.02, 0.54, 0.056]
+      - [-0.33, 1.16, 0.44, 0.102]
+      - [-0.23, 1.26, 0.36, 0.14]
+      - [-0.11, 1.34, 0.32, 0.158]
+      - [0.01, 1.42, 0.34, 0.152]
+      - [0.1, 1.44, 0.44, 0.118]
+      - [0.17, 1.38, 0.6, 0.08]
+    neck: { r: 0.066, steps: [3, 1] }
+  thigh: { type: chain, mirror: true, sides: [7, 3], points: [[0.1, -0.3, 0.86, 0.058], [0.15, -0.28, 0.72, 0.05], [0.178, -0.27, 0.52, 0.04]] }
+  shin: { type: pillar, y: -0.27, x: 0.178, top: 0.54, r: 0.04, swing: 0.03 }
+  hindfoot: { type: lump, near: true, not: [walk, fly], mirror: true, at: [0.186, -0.245, 0.05], r: [0.044, 0.066, 0.018], sides: [8, 4], bands: [3, 2] }
+  arm: { type: chain, mirror: true, sides: [7, 3], points: [[0.1, 0.09, 0.94, 0.056], [0.155, 0.075, 0.78, 0.05], [0.185, 0.085, 0.54, 0.04]] }
+  forearm: { type: pillar, y: 0.085, x: 0.185, top: 0.56, r: 0.04, swing: 0.03, phase: 1 }
+  forefoot: { type: lump, near: true, not: [walk, fly], mirror: true, at: [0.193, 0.11, 0.05], r: [0.044, 0.066, 0.018], sides: [8, 4], bands: [3, 2] }
+  studs: { type: row, near: true, mat: horn, tint: 110, mirror: true, n: 8, item: lump, from: [0.035, -0.34, 1.14], to: [0.035, 0.14, 1.42], r: [0.016, 0.018, 0.012], size: [0.8, 1.1, 1.2, 0.8] }
+  studs-flank: { type: row, near: true, mat: horn, tint: 110, mirror: true, n: 8, item: lump, from: [0.09, -0.3, 1.08], to: [0.09, 0.06, 1.3], r: [0.014, 0.016, 0.011], size: [0.7, 1.1, 1.1, 0.8] }
+  head:
+    type: head
+    at:
+      stand: { y: 0.22, z: 1.3, pitch: 0.16 }
+      alert: { y: 0.22, z: 1.44, pitch: 0.02 }
+      low: { y: 0.26, reach: 0.2, pitch: 0.9 }
+    rings:
+      - [-0.014, 0.004, 0.06, 0.05]
+      - [0.03, 0.012, 0.078, 0.066]
+      - [0.08, 0.006, 0.07, 0.06]
+      - [0.13, -0.012, 0.05, 0.046]
+      - [0.175, -0.026, 0.03, 0.03]
+  jaw: { type: tube, on: head, sides: [8, 4], rings: [[0.014, -0.056, 0.06, 0.018], [0.09, -0.062, 0.046, 0.016], [0.165, -0.05, 0.024, 0.01]] }
+  cheeks: { type: lump, on: head, mirror: true, at: [0.074, 0.02, -0.03], r: [0.02, 0.03, 0.026], sides: [8, 4], bands: [4, 2] }
+  brow: { type: lump, on: head, near: true, mirror: true, at: [0.042, 0.075, 0.058], r: [0.016, 0.018, 0.012], sides: [6, 4], bands: [3, 2] }
+  eyes: { type: eyes, on: head, near: true, at: [0.06, 0.082, 0.024], r: 0.0095 }

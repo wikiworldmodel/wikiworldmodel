@@ -1,0 +1,65 @@
+id: life/taxa/ornithischia
+kind: taxon
+summary: >-
+  The bird-hipped dinosaurs. This record speaks for small early forms; the armoured, ridge-headed
+  and beaked groups within it have their own.
+same_as: { pbdb: "txn:38712" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ornithischia }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: ornithopod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.26
+      mass_length: 4.8
+      parts:
+        body:
+          rings:
+            - [-0.66, 0.8, 0.78, 0.003]
+            - [-0.52, 0.86, 0.82, 0.009]
+            - [-0.37, 0.92, 0.84, 0.016]
+            - [-0.22, 0.98, 0.8, 0.028]
+            - [-0.09, 1.02, 0.68, 0.05]
+            - [0.02, 1.02, 0.56, 0.058]
+            - [0.09, 1.0, 0.66, 0.046]
+          neck: { r: 0.018, steps: [4, 1] }
+        legs: { top: 0.86, knee: 0.56, ankle: 0.26 }
+        arms: { points: [[0.03, 0.08, 0.86, 0.012], [0.05, 0.06, 0.66, 0.009], [0.042, 0.12, 0.54, 0.006]] }
+        head:
+          at:
+            stand: { y: 0.2, z: 1.14, pitch: 0.1 }
+            low: { y: 0.27, reach: 0.1, clear: 0.06, pitch: 0.8 }
+          rings:
+            - [-0.008, 0, 0.0216, 0.0216]
+            - [0.03, 0.0016, 0.025, 0.025]
+            - [0.072, -0.0048, 0.0145, 0.0135]
+            - [0.098, -0.008, 0.0042, 0.0042]
+        eyes: { at: [0.0204, 0.03, 0.0084], r: 0.0046 }
+    unsourced: >-
+      A machine's reconstruction: the plan's body drawn out to its full length and held lower, with
+      a longer tail and head, from the silhouette "Hypsilophodon Scale Chart.svg" on Wikimedia
+      Commons.
+  posture:
+    prop: posture
+    value: biped
+    source:
+      ref: src:maidment-2012-ornithischian-stance
+      loc: "Materials and Methods, Groups used in analyses"
+      quote: "Bipedality is the basal condition for ornithischians"
+  length:
+    prop: body_length
+    value: { lo: 0.75, hi: 2 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 38, Heterodontosaurids", quote: "Fruitadens Fruita [quarry in Colorado] tooth Late Jurassic (155.7-150.8 MYA) 30 in (75 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 42, Primitive Neornithischians", quote: "Stormbergia for the Stormberg Group Early Jurassic (196.5-183 MYA) 6.6 ft (2 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Heterodontosaurids" (p. 38) and "Primitive Neornithischians" (pp.
+      41-42), standing for any early member with no length of its own.

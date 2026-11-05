@@ -1,0 +1,19 @@
+id: src:chevrinais-2017-triazeugacanthus
+type: publication
+kind: measurement
+citation: >-
+  Chevrinais, M., Sire, J.-Y. & Cloutier, R. (2017). Unravelling the ontogeny of a Devonian early
+  gnathostome, the "acanthodian" Triazeugacanthus affinis (eastern Canada). PeerJ 5, e3969.
+authors:
+  - "Chevrinais, M."
+  - "Sire, J.-Y."
+  - "Cloutier, R."
+published: 2017
+title: "Unravelling the ontogeny of a Devonian early gnathostome, the \"acanthodian\" Triazeugacanthus affinis (eastern Canada)"
+container: "PeerJ 5, e3969"
+doi: 10.7717/peerj.3969
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC5661438); quotes checked by script against it.

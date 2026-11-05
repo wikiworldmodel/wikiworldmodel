@@ -1,0 +1,26 @@
+id: life/taxa/ericaceae
+kind: taxon
+summary: >-
+  Heaths, rhododendrons and blueberries.
+same_as: { pbdb: "txn:55506" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ericaceae, en: heaths }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: shrub
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 1, hi: 5 }
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 8, s.v. Vaccinium, key"
+      quote: "Shrubs 10-50 dm; leaf blades 15-70 mm."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living blueberries, standing for the family: modern relatives, chosen by the editor.

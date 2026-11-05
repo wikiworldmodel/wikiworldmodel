@@ -51,7 +51,7 @@ export function tree(s: Solved): TreeFile {
       const coll = place.get(o.collection);
       if (taxon !== undefined && coll !== undefined) rows.push([taxon, coll, o.max, o.min]);
     }
-    fossils.push({ source, plate: w.frame.get(frame)?.transform?.plate ?? 0, collections, rows });
+    fossils.push({ source, plate: w.frame.get(frame!)?.transform?.plate ?? 0, collections, rows });
   }
   return { format: 'lightworld-tree@1', nodes, members, fossils };
 }

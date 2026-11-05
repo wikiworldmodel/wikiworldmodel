@@ -1,0 +1,6 @@
+description: >-
+  A broad-leaved flowering tree.
+kind: plant
+behave: { layer: canopy, weight: 1.5, wet: -0.9 }
+parts:
+  tree: { type: broadleaf, crown: 0.34, fork: [0.36, 0.14], trunk: 0.022, limbs: 4 }

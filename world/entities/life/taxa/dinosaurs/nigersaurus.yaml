@@ -1,0 +1,30 @@
+id: life/taxa/nigersaurus
+kind: taxon
+summary: >-
+  Nigersaurus, a rebbachisaur of the Early Cretaceous of Niger, its broad square muzzle held to the
+  ground.
+same_as: { pbdb: "txn:57366" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Nigersaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Rebbachisauridae, whose low head was taken
+      from this genus: the silhouette "Nigersaurus Size Chart.svg" on Wikimedia Commons. Nothing
+      here differs from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 15
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 31, Rebbachisaurids"
+      quote: "Nigersaurus Niger reptile Early Cretaceous (118-110 MYA) 49.2 ft (15 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

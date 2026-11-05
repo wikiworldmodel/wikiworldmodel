@@ -1,0 +1,29 @@
+id: life/taxa/corythosaurus
+kind: taxon
+summary: >-
+  Corythosaurus, the helmet-crested duck-bill of the Campanian of Alberta and Montana.
+same_as: { pbdb: "txn:38760" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Corythosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        crest: { at: [0, 0.05, 0.05], r: [0.012, 0.056, 0.042] }
+    unsourced: >-
+      A machine's reconstruction: a tall rounded helmet of a crest, from the silhouette
+      "Corythosaurus Scale.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 9
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 47, Corythosaurinins"
+      quote: "Corythosaurus helmet reptile Late Cretaceous (80-72.8 MYA) 29.5 ft (9 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

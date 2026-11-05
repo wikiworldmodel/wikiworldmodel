@@ -1,0 +1,31 @@
+id: life/taxa/pareiasauria
+kind: taxon
+summary: >-
+  Pareiasaurs: the heavy armoured plant-eating parareptiles of the middle and late Permian, often the largest animals around
+  them.
+same_as: { pbdb: "txn:56750" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pareiasauria, en: pareiasaurs }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: pareiasaur
+    unsourced: >-
+      Which plan draws it: an editorial classification, from its place in the tree. The plan is a machine's reconstruction,
+      from the photograph of the AMNH's mounted Scutosaurus (Wikimedia Commons, "Scutosaurus AMNH.jpg").
+  length:
+    prop: body_length
+    value: { lo: 1, hi: 3 }
+    source:
+      - ref: src:romano-2021-scutosaurus
+        loc: "Introduction"
+        quote: "the small, derived Obirkovia gladiator (<1 m long)"
+      - ref: src:romano-2021-scutosaurus
+        loc: "Introduction"
+        quote: "pareiasaurs were the only other amniote group that attained massive size in the middle Permian (up to 3 m long)"
+    method: expert-estimate
+    note: >-
+      The range across the group as the paper gives it, with its small end "less than" a metre.

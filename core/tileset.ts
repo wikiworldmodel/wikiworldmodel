@@ -200,7 +200,7 @@ export interface Tileset {
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string; people?: string; features: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string; people?: string; atlas?: string; features: string };
   /** the climate field the land is painted from, and the derived field that paints it */
   climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown> };
   /** the ice sheets drawn over the land, where a field has them, instead of a claimed latitude */

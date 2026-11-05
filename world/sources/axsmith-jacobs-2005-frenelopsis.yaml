@@ -1,0 +1,19 @@
+id: src:axsmith-jacobs-2005-frenelopsis
+type: publication
+kind: measurement
+citation: >-
+  Axsmith, B.J. & Jacobs, B.F. (2005). The conifer Frenelopsis ramosissima (Cheirolepidiaceae) in the
+  Lower Cretaceous of Texas: systematic, biogeographical, and paleoecological implications.
+  International Journal of Plant Sciences 166(2).
+authors:
+  - "Axsmith, B.J."
+  - "Jacobs, B.F."
+published: 2005
+title: "The conifer Frenelopsis ramosissima (Cheirolepidiaceae) in the Lower Cretaceous of Texas: systematic, biogeographical, and paleoecological implications"
+container: International Journal of Plant Sciences 166(2)
+doi: 10.1086/427202
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read through Europe PMC's record of the work; the full text was not read. Quotes
+    checked by script against the abstract.

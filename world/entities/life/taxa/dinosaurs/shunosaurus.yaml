@@ -1,0 +1,53 @@
+id: life/taxa/shunosaurus
+kind: taxon
+summary: >-
+  Shunosaurus, a small early sauropod of the Middle Jurassic of China with a bony club on its tail.
+same_as: { pbdb: "txn:38660" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Shunosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      behave: { poses: [stand, walk, walk, alert] }
+      parts:
+        body:
+          not: null
+          rings:
+            - [-0.56, 0.84, 0.82, 0.002]
+            - [-0.45, 0.85, 0.81, 0.003]
+            - [-0.38, 0.87, 0.8, 0.005]
+            - [-0.31, 0.89, 0.78, 0.009]
+            - [-0.24, 0.93, 0.74, 0.016]
+            - [-0.18, 0.97, 0.7, 0.024]
+            - [-0.12, 1.0, 0.64, 0.038]
+            - [-0.07, 1.0, 0.54, 0.054]
+            - [-0.01, 1.05, 0.44, 0.066]
+            - [0.04, 1.13, 0.4, 0.07]
+            - [0.09, 1.21, 0.44, 0.062]
+            - [0.13, 1.3, 0.68, 0.04]
+            - [0.17, 1.42, 0.98, 0.028]
+            - [0.22, 1.63, 1.3, 0.021]
+            - [0.27, 1.82, 1.56, 0.017]
+            - [0.31, 1.96, 1.75, 0.0145]
+            - [0.335, 2.0, 1.83, 0.013]
+        body-low: null
+        club: { type: lump, mat: horn, tint: 170, at: [0, -0.56, 0.84], r: [0.012, 0.022, 0.014], sway: 1, bands: [6, 3], sides: [8, 4] }
+        club-spikes: { type: spike, mirror: true, near: true, mat: horn, tint: 170, sway: 1, from: [0.008, -0.57, 0.84], to: [0.026, -0.59, 0.92], r: 0.005, sides: [5, 3] }
+    unsourced: >-
+      A machine's reconstruction: the plan with a level tail ending in a small club and two spikes,
+      from the silhouette "Shunosaurus Scale.svg" on Wikimedia Commons. The spikes come from memory
+      of published descriptions of the club, unchecked: the silhouette does not show them.
+  length-holtz-2012:
+    prop: body_length
+    value: 8.7
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 29, Primitive Eusauropods"
+      quote: "Shunosaurus Sichuan [China] reptile Middle Jurassic (167.7-161.2MYA) 28.5 ft (8.7 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

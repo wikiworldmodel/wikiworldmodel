@@ -1,0 +1,32 @@
+id: life/taxa/hymenoptera
+kind: taxon
+summary: >-
+  The sawflies, wasps, bees and ants. Most have four clear wings and a narrow waist.
+same_as: { pbdb: "txn:70707" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hymenoptera, en: "wasps, bees and ants" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: wasp
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, after Britannica's account of Hymenoptera (four membranous wings and a
+      narrow waist) and general knowledge; no figure was compared with it. Sawflies, with no waist, are drawn with one
+      here.
+  length:
+    prop: body_length
+    value: { lo: 0.0002, hi: 0.06 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Hymenoptera Mymaridae\""
+        quote: "Hymenoptera Mymaridae 1424 0.2 2 (Parker 1982)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Hymenoptera Pelecinidae\""
+        quote: "Hymenoptera Pelecinidae 3 30 60 (Parker 1982)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres.

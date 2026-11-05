@@ -1,0 +1,26 @@
+description: >-
+  A frog or toad: its length is snout to vent, with a short broad body and head, no tail, and long hind legs folded at its sides.
+kind: animal
+hip: 0.42
+behave: { group: [1, 5], habitat: wet, poses: [rest, rest, stand] }
+parts:
+  body: { type: lump, sides: [10, 5], bands: [6, 3], at: [0, -0.1, 0.62], r: [0.24, 0.36, 0.19] }
+  head:
+    type: head
+    sides: [10, 5]
+    at:
+      stand: { y: 0.14, z: 0.86, pitch: 0.12 }
+      alert: { y: 0.14, z: 0.98, pitch: -0.02 }
+      low: { y: 0.16, reach: 0.34, pitch: 0.34 }
+    rings:
+      - [-0.05, 0.0, 0.2, 0.13]
+      - [0.05, 0.012, 0.25, 0.13]
+      - [0.16, 0.0, 0.225, 0.1]
+      - [0.25, -0.016, 0.16, 0.07]
+      - [0.31, -0.024, 0.09, 0.042]
+  eyes: { type: lump, on: head, mat: dark, mirror: true, at: [0.125, 0.14, 0.085], r: [0.038, 0.044, 0.042], sides: [8, 4], bands: [4, 2] }
+  thigh: { type: chain, mirror: true, sides: [6, 3], points: [[0.1, -0.38, 0.5, 0.085], [0.22, -0.26, 0.44, 0.075], [0.33, -0.1, 0.34, 0.052]] }
+  shank: { type: chain, mirror: true, sides: [6, 3], points: [[0.33, -0.1, 0.34, 0.052], [0.33, -0.28, 0.2, 0.04], [0.31, -0.46, 0.08, 0.026]] }
+  hindfoot: { type: chain, mirror: true, sides: [5, 3], points: [[0.31, -0.46, 0.08, 0.026], [0.36, -0.28, 0.04, 0.022], [0.41, -0.06, 0.03, 0.014]] }
+  arm: { type: chain, mirror: true, sides: [5, 3], points: [[0.2, 0.08, 0.5, 0.042], [0.27, 0.14, 0.26, 0.033], [0.25, 0.26, 0.05, 0.024]] }
+  hand: { type: lump, near: true, mirror: true, at: [0.25, 0.3, 0.03], r: [0.05, 0.05, 0.012], sides: [6, 3], bands: [3, 2] }

@@ -1,0 +1,72 @@
+id: life/taxa/ceratosaurus
+kind: taxon
+summary: >-
+  Ceratosaurus, a horned Late Jurassic hunter with a row of bony scutes down its back.
+same_as: { pbdb: "txn:38600" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ceratosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.57, 0.62, 0.6, 0.0025]
+            - [-0.45, 0.76, 0.62, 0.0075]
+            - [-0.31, 0.88, 0.62, 0.015]
+            - [-0.17, 0.97, 0.6, 0.027]
+            - [-0.07, 1.01, 0.56, 0.04]
+            - [0.01, 1.02, 0.5, 0.05]
+            - [0.09, 0.99, 0.45, 0.054]
+            - [0.16, 0.96, 0.52, 0.047]
+            - [0.21, 1.0, 0.72, 0.032]
+          neck: { r: 0.027 }
+        head:
+          at:
+            stand: { y: 0.26, z: 1.14, pitch: 0.12 }
+          rings:
+            - [-0.005, 0, 0.026, 0.034]
+            - [0.03, 0.003, 0.03, 0.046]
+            - [0.07, -0.002, 0.024, 0.038]
+            - [0.11, -0.01, 0.017, 0.026]
+            - [0.145, -0.016, 0.01, 0.014]
+        jaw: { rings: [[0.015, -0.042, 0.021, 0.012], [0.07, -0.052, 0.02, 0.01], [0.12, -0.048, 0.012, 0.007], [0.146, -0.036, 0.007, 0.004]] }
+        mouth: { rings: [[0.03, -0.037, 0.019, 0.006], [0.09, -0.041, 0.015, 0.005], [0.14, -0.03, 0.007, 0.003]] }
+        horn: { type: spike, on: head, tint_add: 18, from: [0, 0.095, 0.012], to: [0, 0.1, 0.066], r: 0.012, sides: [6, 3] }
+        brow: { type: spike, on: head, mirror: true, tint_add: 18, from: [0.018, 0.028, 0.038], to: [0.02, 0.045, 0.066], r: 0.009, sides: [6, 3] }
+        scutes-tail:
+          type: row
+          near: true
+          tint_add: 18
+          n: 7
+          from: [0, -0.26, 0.9]
+          to: [0, -0.07, 1.0]
+          item: lump
+          r: [0.005, 0.012, 0.012]
+        scutes-back:
+          type: row
+          near: true
+          tint_add: 18
+          n: 7
+          from: [0, -0.03, 1.02]
+          to: [0, 0.2, 0.98]
+          item: lump
+          r: [0.005, 0.012, 0.012]
+    unsourced: >-
+      A machine's reconstruction: a bigger, deeper head with a nose horn and brow horns, a deep tail
+      and a line of scutes, from the silhouette "Ceratosaurus Size Comparison by PaleoGeek.svg" on
+      Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 6.1
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 4, Ceratosaurids"
+      quote: "Ceratosaurus horned reptile Late Jurassic (155.7-150.8 MYA) 20 ft (6.1 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

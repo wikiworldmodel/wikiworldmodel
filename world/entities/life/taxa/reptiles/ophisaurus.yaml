@@ -1,0 +1,58 @@
+id: life/taxa/ophisaurus
+kind: taxon
+summary: >-
+  Glass lizards: legless lizards with long tails, often taken for snakes.
+same_as: { pbdb: "txn:38009" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Ophisaurus", en: "glass lizards" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.05
+      behave: { group: [1, 2], habitat: any, poses: [rest, stand] }
+      parts:
+        hind: null
+        fore: null
+        body:
+          rings:
+            - [-1.42, 0.5, 0.02, 0.004]
+            - [-1.2, 0.8, 0.02, 0.012]
+            - [-0.95, 1.1, 0.02, 0.02]
+            - [-0.7, 1.4, 0.02, 0.028]
+            - [-0.5, 1.6, 0.02, 0.034]
+            - [-0.34, 1.8, 0.02, 0.038]
+            - [-0.2, 1.9, 0.02, 0.04]
+            - [-0.06, 1.9, 0.02, 0.04]
+            - [0.06, 1.9, 0.02, 0.04]
+            - [0.16, 1.8, 0.02, 0.038]
+          neck: { r: 0.034, steps: [2, 1] }
+        head:
+          at:
+            stand: { y: 0.28, z: 1.0, pitch: 0.02 }
+            alert: { y: 0.28, z: 1.0, pitch: 0.02 }
+            low: { y: 0.28, z: 1.0, pitch: 0.02 }
+          rings:
+            - [-0.02, 0, 0.034, 0.03]
+            - [0.03, 0.002, 0.042, 0.032]
+            - [0.1, -0.006, 0.032, 0.024]
+            - [0.17, -0.012, 0.016, 0.012]
+        jaw: { rings: [[0.03, -0.022, 0.03, 0.008], [0.1, -0.02, 0.022, 0.006], [0.16, -0.016, 0.008, 0.003]] }
+        eyes: { at: [0.032, 0.06, 0.012], r: 0.009 }
+    unsourced: "A machine's reconstruction: the plan's lizard with its legs taken away and its belly on the ground. No skeletal figure was looked at. It lies straight, as the plan's body cannot bend from side to side."
+  length:
+    prop: body_length
+    value: { lo: 0.183, hi: 0.359 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Ophisaurus mimicus, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "20.89296131 NA 183"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Ophisaurus attenuatus, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "147.9108388 NA 359"
+    method: compilation
+    note: >-
+      From snout to vent, as the plan's length is: the living species of the genus in the dataset.

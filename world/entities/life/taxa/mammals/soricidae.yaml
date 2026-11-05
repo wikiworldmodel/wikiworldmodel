@@ -1,0 +1,35 @@
+id: life/taxa/soricidae
+kind: taxon
+summary: >-
+  Shrews.
+same_as: { pbdb: "txn:40443" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Soricidae, en: "shrews" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    value: { lo: 0.035, hi: 0.147 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Suncus etruscus, Physical Description"
+        quote: "ranging from 35 to 50 mm in length"
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Crocidura goliath, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Crocidura goliath -999.00 87.92 -999.00 147.42"
+    method: compilation
+    note: >-
+      Head and body, without the tail, which neither says.
+  mass:
+    prop: body_mass
+    value: { lo: 0.002, hi: 0.092 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Sorex_yukonicus, column Mass.g (grams)"
+        quote: "Sorex_yukonicus,Eulipotyphla,Soricidae,Sorex,yukonicus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,1.6"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Scutisorex_somereni, column Mass.g (grams)"
+        quote: "Scutisorex_somereni,Eulipotyphla,Soricidae,Scutisorex,somereni,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,91.5"
+    method: compilation

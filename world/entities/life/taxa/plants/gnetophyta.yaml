@@ -1,0 +1,27 @@
+id: life/taxa/gnetophyta
+kind: taxon
+summary: >-
+  Gnetophytes, among the land's rows mostly pollen. They are drawn as the living joint fir, though
+  the living Gnetum climbs.
+same_as: { pbdb: "txn:263827" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Gnetophyta, en: gnetophytes }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: wiry-shrub
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 0.5, hi: 1.5 }
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 4, p. 97, s.v. Ephedra, key"
+      quote: "Shrubs or subshrubs, usually 50-150 cm."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living Ephedra, standing for the group: a modern relative.

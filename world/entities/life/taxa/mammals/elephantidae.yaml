@@ -1,0 +1,34 @@
+id: life/taxa/elephantidae
+kind: taxon
+summary: >-
+  Elephants, mammoths and straight-tusked elephants.
+same_as: { pbdb: "txn:43263" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Elephantidae, en: "elephants and mammoths" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    value: { lo: 5.5, hi: 6.4 }
+    source:
+      ref: src:animal-diversity-web
+      loc: "account of Elephas maximus, Physical Description"
+      quote: "The body length ranges from 550 to 640 cm"
+    method: compilation
+    note: >-
+      The Asian elephant, standing for the family: no other body length was read.
+  mass:
+    prop: body_mass
+    value: { lo: 200, hi: 13000 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Elephas_cypriotes, column Mass.g (grams)"
+        quote: "Elephas_cypriotes,Proboscidea,Elephantidae,Elephas,cypriotes,1,0,0,0,Imputed,PHYLACINE 1.2.1,200000"
+      - ref: src:larramendi-2016-proboscideans
+        loc: "Table 8, row Palaeoloxodon antiquus ♂"
+        quote: "body mass 10.8 < 10.8–15 (13) 15.1–16.6 16.7–20.7 20.8–23"
+    method: compilation
+    note: >-
+      From the dwarf elephant of Cyprus to the mean full-grown straight-tusked elephant.

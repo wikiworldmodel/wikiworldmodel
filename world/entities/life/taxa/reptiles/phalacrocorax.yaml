@@ -1,0 +1,24 @@
+id: life/taxa/phalacrocorax
+kind: taxon
+summary: >-
+  Cormorants.
+same_as: { pbdb: "txn:39689" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Phalacrocorax", en: "cormorants" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.56, hi: 0.93 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Cormorants and Anhingas (Phalacrocoracidae)\", Pelagic cormorant"
+        quote: "Body length of 22 in (56 cm)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Cormorants and Anhingas (Phalacrocoracidae)\", Great cormorant"
+        quote: "has a body length of about 37 in (93 cm)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the species of the genus the entry describes.

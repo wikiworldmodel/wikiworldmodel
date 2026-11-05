@@ -1,0 +1,21 @@
+id: src:maidment-2015-stegosaurus-stenops
+type: publication
+kind: measurement
+citation: >-
+  Maidment, S.C.R., Brassey, C. & Barrett, P.M. (2015). The postcranial skeleton of an
+  exceptionally complete individual of the plated dinosaur Stegosaurus stenops (Dinosauria:
+  Thyreophora) from the Upper Jurassic Morrison Formation of Wyoming, U.S.A. PLoS ONE 10(10),
+  e0138352.
+authors:
+  - "Maidment, S.C.R."
+  - "Brassey, C."
+  - "Barrett, P.M."
+published: 2015
+title: "The postcranial skeleton of an exceptionally complete individual of the plated dinosaur Stegosaurus stenops (Dinosauria: Thyreophora) from the Upper Jurassic Morrison Formation of Wyoming, U.S.A."
+container: "PLoS ONE 10(10), e0138352"
+doi: 10.1371/journal.pone.0138352
+license: CC-BY
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC4605687); the quote checked by script against it.

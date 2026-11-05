@@ -1,0 +1,6 @@
+description: >-
+  A wiry, nearly leafless shrub of many thin upright green stems, like a joint fir.
+kind: plant
+behave: { layer: under, weight: 1, wet: -0.3 }
+parts:
+  plant: { type: tuft, blades: 40, spread: 0.55, wide: 0.012, mat: needle }

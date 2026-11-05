@@ -1,0 +1,78 @@
+id: life/taxa/suoidea
+kind: taxon
+summary: >-
+  Pigs and peccaries.
+same_as: { pbdb: "txn:42380" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Suoidea, en: "pigs and peccaries" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.42
+      mass_length: 26
+      behave: { group: [1, 8], habitat: forest, poses: [graze, graze, stand, walk, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.72, 0.68, 0.004]
+            - [-0.475, 0.84, 0.8, 0.007]
+            - [-0.45, 0.93, 0.87, 0.01]
+            - [-0.42, 0.98, 0.72, 0.05]
+            - [-0.36, 1.0, 0.54, 0.088]
+            - [-0.24, 1.02, 0.46, 0.108]
+            - [-0.1, 1.05, 0.44, 0.114]
+            - [0.04, 1.14, 0.46, 0.11]
+            - [0.13, 1.18, 0.54, 0.09]
+            - [0.18, 1.12, 0.6, 0.072]
+          neck: { r: 0.06, steps: [2, 1] }
+        hind: { y: -0.3, x: 0.056, top: 0.72, knee: 0.56, ankle: 0.28, r: 0.05 }
+        fore: { y: 0.1, x: 0.058, top: 0.66, r: 0.026 }
+        head:
+          at:
+            stand: { y: 0.21, z: 0.88, pitch: 0.36 }
+            alert: { y: 0.21, z: 1.0, pitch: 0.14 }
+            low: { y: 0.24, reach: 0.21, pitch: 0.8 }
+          rings:
+            - [-0.016, 0.012, 0.05, 0.056]
+            - [0.04, 0.012, 0.054, 0.064]
+            - [0.09, 0.0, 0.04, 0.046]
+            - [0.145, -0.016, 0.026, 0.028]
+            - [0.19, -0.026, 0.022, 0.02]
+        tusks: { type: spike, on: head, mirror: true, near: true, mat: horn, tint: 200, sides: [5, 4], from: [0.024, 0.13, -0.03], to: [0.044, 0.155, 0.03], r: 0.008 }
+        ears: { from: [0.03, 0.004, 0.05], to: [0.05, -0.02, 0.1], r: 0.016 }
+        eyes: { at: [0.036, 0.09, 0.022], r: 0.0055 }
+    unsourced: >-
+      A machine's reconstruction, from the account of pigs on the Animal Diversity Web: a
+      mobile snout with a disk at its tip, upper canines growing out and back into tusks. Only
+      compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.6, hi: 2.4 }
+    source:
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Sus salvanius, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Sus salvanius 2.00 7974.13 -999.00 599.66"
+      - ref: src:animal-diversity-web
+        loc: "account of Sus scrofa, Physical Description"
+        quote: "Wild boars range from 153 to 240 cm in total length"
+    method: compilation
+    note: >-
+      The low end is the pygmy hog’s head and body, the high end a wild boar with its tail.
+  mass:
+    prop: body_mass
+    value: { lo: 7.7, hi: 500 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Porcula_salvania, column Mass.g (grams)"
+        quote: "Porcula_salvania,Cetartiodactyla,Suidae,Porcula,salvania,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,7718"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Even-toed ungulates (Artiodactyla)\""
+        quote: "having measured up to 500 kg (1,100 lb)"
+    method: compilation
+    note: >-
+      From the pygmy hog to Kubanochoerus gigas, from Wikipedia as nothing better could be
+      read.

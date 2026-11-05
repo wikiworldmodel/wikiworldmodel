@@ -1,0 +1,39 @@
+id: life/taxa/mantodea
+kind: taxon
+summary: >-
+  The mantises, with a long neck-like first segment of the thorax, a triangular head and grasping fore legs.
+same_as: { pbdb: "txn:180000" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Mantodea, en: "mantises" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.3
+      behave: { group: [1, 1], habitat: forest, poses: [stand] }
+      parts:
+        body: { at: [0, -0.24, 0.19], r: [0.085, 0.27, 0.06] }
+        tegmina: { points: [[0.012, -0.02, 0.25], [0.08, -0.1, 0.19], [0.07, -0.4, 0.15], [0.03, -0.52, 0.16], [0.004, -0.25, 0.24]] }
+        shield: null
+        neck: { type: chain, zl: true, mat: chitin, sides: [6, 3], points: [[0, -0.02, 0.2, 0.042], [0, 0.2, 0.28, 0.03], [0, 0.38, 0.36, 0.028]] }
+        head: { at: [0, 0.42, 0.38], r: [0.075, 0.04, 0.055] }
+        eyes: { at: [0.075, 0.42, 0.4], r: [0.025, 0.028, 0.035] }
+        antennae: { points: [[0.02, 0.45, 0.41, 0.003], [0.1, 0.62, 0.5, 0.002], [0.18, 0.78, 0.5, 0.001]] }
+        cerci: { from: [0.03, -0.48, 0.16], to: [0.05, -0.56, 0.15], r: 0.006 }
+        fore-legs: { points: [[0.03, 0.34, 0.33, 0.016], [0.06, 0.46, 0.2, 0.028], [0.05, 0.6, 0.3, 0.018], [0.04, 0.66, 0.2, 0.008]] }
+        mid-legs: { points: [[0.05, 0.02, 0.17, 0.01], [0.24, 0.08, 0.3, 0.007], [0.38, 0.12, 0.005, 0.003]] }
+        hind-legs: { points: [[0.05, -0.06, 0.17, 0.01], [0.26, -0.12, 0.32, 0.007], [0.4, -0.3, 0.005, 0.003]] }
+    unsourced: "A machine's reconstruction of the general shape of the group, from general knowledge of mantises; no figure was compared with it."
+  length:
+    prop: body_length
+    value: { lo: 0.01, hi: 0.17 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Mantodea\""
+        quote: "Mantodea 2163 10 170 (Prete 1999) Represents Order"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres.

@@ -38,6 +38,44 @@ claims:
       generally accepted 23.8–35 Ma for the ape–Old World monkey split. Not preferred: its
       middle, 6.0 Ma, is younger than Sahelanthropus (6.8–7.2 Ma); only its oldest part agrees
       with that fossil.
+  body-plan:
+    prop: body_plan
+    value: hominin
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length-mammal-forms:
+    prop: body_length
+    value: { lo: 1.05, hi: 1.916 }
+    source:
+      - ref: src:will-2017-hominin-body-size
+        loc: "Table 3, row australopithecines, under stature"
+        quote: "australopithecines 7 125.43 120.00 117.87 140.95 17.20 105.00 151.00 13.7"
+      - ref: src:will-2017-hominin-body-size
+        loc: "Table 3, row Pleistocene Homo sapiens, under stature"
+        quote: "Pleistocene Homo sapiensb 60 170.34 171.85 153.78 184.62 10.64 144.80 191.60 6.2"
+    method: compilation
+    note: >-
+      Standing height, in centimetres in the table: the lowest minimum and the highest maximum
+      among its groups, for any hominin with nothing nearer to say.
+  mass-mammal-forms:
+    prop: body_mass
+    value: { lo: 22.7, hi: 91.3 }
+    source:
+      - ref: src:will-2017-hominin-body-size
+        loc: "Table 3, row australopithecines, under body mass"
+        quote: "australopithecines 47 34.64 33.90 22.99 54.23 8.79 22.70 63.60 25.4"
+      - ref: src:will-2017-hominin-body-size
+        loc: "Table 3, row Pleistocene Homo sapiens, under body mass"
+        quote: "Pleistocene Homo sapiensb 57 67.16 69.80 53.72 80.58 10.16 42.70 91.30 15.1"
+    method: compilation
+  posture:
+    prop: posture
+    value: biped
+    source:
+      ref: src:kramer-sylvester-2025-australopithecine-hip
+      loc: Introduction
+      quote: "various researchers have argued that most, if not all, extinct hominins practiced some form of bipedalism"
+    note: >-
+      How like modern walking it was is the disputed part: the plan draws one upright stance for all.
 relations:
   parent:
     rel: descends-from

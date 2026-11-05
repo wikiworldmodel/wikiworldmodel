@@ -123,24 +123,19 @@ properties:
     type: string
     interp: step
     applies_to: [taxon]
-    values:
-      ceratopsian: A horned, frilled, four-legged plant-eating dinosaur.
-      tyrannosaur: A two-legged predator with a great head and tiny arms.
-      hadrosaur: A duck-billed plant-eating dinosaur, standing on two legs or four.
-      ankylosaur: A low, armoured, four-legged plant-eating dinosaur.
-      pachycephalosaur: A two-legged dinosaur with a domed skull.
-      ornithopod: A small two-legged plant-eating dinosaur.
-      small-theropod: A small or middle-sized two-legged feathered predator or omnivore.
-      crocodilian: A long, low, four-legged semi-aquatic reptile with armoured back and a long tail.
-      turtle: A shelled reptile.
-      small-mammal: A small furred mammal.
-      conifer: A tree with needles or scale leaves, and a straight trunk.
-      palm: A palm, its leaves in a crown at the top of an unbranched stem.
-      broadleaf: A flowering tree or large shrub with broad leaves.
-      fern: A fern or other low spore-bearing plant.
     description: >-
-      Which of a generator's kits draws a taxon: its general shape. Sizes come from the taxon's
-      other claims, and the details of the kit are the generator's guess.
+      Which body plan in world/plans draws a taxon and everything below it in the tree that says
+      nothing else: its general shape. Sizes come from the taxon's other claims, and the details of
+      a plan are the generator's guess.
+  body_form:
+    type: body-form
+    interp: step
+    applies_to: [taxon]
+    description: >-
+      How a taxon's body differs from the one it inherits from its nearest node above: parts changed,
+      added or taken away by name, in proportions of its own length, as docs/FORMS.md describes. What it
+      does not say is the parent's. Whatever a source does not support is a machine's reconstruction, and
+      the claim says which.
   body_length:
     type: quantity
     unit: m

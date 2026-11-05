@@ -1,0 +1,34 @@
+description: >-
+  A lungfish: a long, eel-like, thick body, a small blunt head, a single fin running round the end of the tail, and paired fins on fleshy stalks.
+kind: animal
+hip: 0.09
+behave: { group: [1, 3], habitat: water, poses: [stand, walk] }
+parts:
+  body:
+    type: trunk
+    sides: [12, 5]
+    rings:
+      - [-0.5, 1.02, 0.98, 0.003]
+      - [-0.38, 1.3, 0.7, 0.012]
+      - [-0.24, 1.5, 0.5, 0.026]
+      - [-0.1, 1.62, 0.38, 0.04]
+      - [0.04, 1.68, 0.32, 0.048]
+      - [0.18, 1.68, 0.32, 0.05]
+      - [0.3, 1.58, 0.42, 0.048]
+  head:
+    type: head
+    sides: [12, 5]
+    at:
+      stand: { y: 0.32, z: 1.0, pitch: 0 }
+    rings:
+      - [-0.02, 0, 0.048, 0.056]
+      - [0.05, -0.002, 0.044, 0.048]
+      - [0.1, -0.006, 0.034, 0.034]
+      - [0.15, -0.008, 0.018, 0.018]
+      - [0.175, -0.008, 0.008, 0.008]
+  tailfin: { type: sheet, gap: 0.0015, points: [[0, -0.3, 1.0], [0, -0.04, 1.62], [0, -0.14, 1.9], [0, -0.3, 1.74], [0, -0.42, 1.48], [0, -0.53, 1.0], [0, -0.42, 0.52], [0, -0.3, 0.26], [0, -0.16, 0.2], [0, -0.06, 0.4]] }
+  pectoral: { type: chain, mirror: true, sides: [5, 3], points: [[0.044, 0.26, 0.6, 0.014], [0.085, 0.2, 0.38, 0.012], [0.125, 0.12, 0.26, 0.004]] }
+  pelvic: { type: chain, mirror: true, sides: [5, 3], points: [[0.034, -0.1, 0.5, 0.012], [0.07, -0.16, 0.3, 0.01], [0.105, -0.24, 0.2, 0.003]] }
+  pectoralfin: { type: sheet, near: true, mirror: true, gap: 0.0015, points: [[0.07, 0.22, 0.46], [0.15, 0.1, 0.2], [0.11, 0.09, 0.28], [0.06, 0.18, 0.4]] }
+  pelvicfin: { type: sheet, near: true, mirror: true, gap: 0.0015, points: [[0.055, -0.13, 0.36], [0.125, -0.26, 0.14], [0.09, -0.26, 0.22], [0.05, -0.17, 0.32]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.034, 0.1, 0.016], r: 0.006 }

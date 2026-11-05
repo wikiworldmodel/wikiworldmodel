@@ -1,0 +1,45 @@
+id: life/taxa/homo
+kind: taxon
+summary: >-
+  The genus of humans. The species here hang on the tribe, as they did before this record was
+  written; it adopts the rows the database names only to the genus.
+same_as: { pbdb: "txn:40901" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Homo, en: "humans" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    value: { lo: 1.042, hi: 1.916 }
+    source:
+      ref: src:will-2017-hominin-body-size
+      loc: "Table 2, row Late Pleistocene, under stature"
+      quote: "Late Pleistocene 92 167.14 168.95 153.78 180.52 12.24 104.20 191.60 7.3"
+    method: compilation
+    note: >-
+      Standing height in centimetres in the table, its minimum and maximum across the whole
+      genus at the time; the table does not name the smallest individual.
+  mass:
+    prop: body_mass
+    value: { lo: 32, hi: 91.3 }
+    source:
+      - ref: src:will-2017-hominin-body-size
+        loc: "Table 3, row early Homo, under body mass"
+        quote: "early Homo 40 54.73 54.00 42.68 67.41 12.84 32.00 81.00 23.5"
+      - ref: src:will-2017-hominin-body-size
+        loc: "Table 3, row Pleistocene Homo sapiens, under body mass"
+        quote: "Pleistocene Homo sapiensb 57 67.16 69.80 53.72 80.58 10.16 42.70 91.30 15.1"
+    method: compilation
+    note: >-
+      The lowest minimum and highest maximum in the two rows.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source:
+      ref: src:pbdb-land-2026-11-05
+      loc: "taxon 40901: Homo < Hominini (txn:91486)"
+    note: >-
+      From the PBDB. This record stands for the rows named only to the genus.

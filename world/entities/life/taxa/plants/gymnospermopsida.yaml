@@ -1,0 +1,32 @@
+id: life/taxa/gymnospermopsida
+kind: taxon
+summary: >-
+  In the database this class holds the corystosperms: seed ferns with forked Dicroidium leaves,
+  which dominated many Triassic floras of Gondwana.
+same_as: { pbdb: "txn:55926" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Gymnospermopsida, en: corystosperms }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: seed-fern
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: 10
+    source:
+      - ref: src:anderson-2008-dicroidium-stems
+        loc: "p. 1"
+        quote: "a palmiform tree with a substantial trunk to lOm"
+      - ref: src:anderson-2008-dicroidium-stems
+        loc: "p. 1"
+        quote: "that Dicroidium ranged from shrubs to tall trees"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Petriella's reconstruction of 1978, as Anderson et al. report it; the scan's text reads lOm,
+      and the page's image 10m. The same page says other authors have speculated on shrubs, and on
+      tall trees, so this is one reading of a plant whose habit is little known.

@@ -1,0 +1,29 @@
+id: life/taxa/brachiosaurus
+kind: taxon
+summary: >-
+  Brachiosaurus, the giraffe-shaped giant of the Late Jurassic of western North America.
+same_as: { pbdb: "txn:38677" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Brachiosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the plan brachiosaur, which was measured from this
+      genus: the silhouette "Brachiosaurus scale 1.svg" on Wikimedia Commons. Nothing here differs
+      from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 26
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 33, Brachiosaurids"
+      quote: "Brachiosaurus arm reptile Late Jurassic (155.7-150.8 MYA) 85.3 ft (26 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

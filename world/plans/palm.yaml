@@ -1,0 +1,6 @@
+description: >-
+  A palm: a straight trunk with a head of pleated fans.
+kind: plant
+behave: { layer: canopy, weight: 1.2, wet: 0.1 }
+parts:
+  tree: { type: palm, trunk: 0.03, lean: 0.12, head: 0.88, size: 0.34, fronds: 11 }

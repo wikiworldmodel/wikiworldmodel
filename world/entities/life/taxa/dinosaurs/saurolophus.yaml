@@ -1,0 +1,30 @@
+id: life/taxa/saurolophus
+kind: taxon
+summary: >-
+  Saurolophus, a duck-bill of the latest Cretaceous of Alberta and Mongolia with a spike-shaped
+  crest sweeping back from its skull.
+same_as: { pbdb: "txn:38768" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Saurolophus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        crest: { type: spike, on: head, tint_add: 18, from: [0, 0.05, 0.03], to: [0, -0.07, 0.12], r: 0.014, sides: [6, 3] }
+    unsourced: >-
+      A machine's reconstruction: a solid crest as a spike over the back of the skull, from
+      "Saurolophus-sp-Scale-Chart-SVG-Steveoc86.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 12
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 48, Saurolophinins"
+      quote: "Saurolophus crested reptile Late Cretaceous (72.8-65.5 MYA) 39.4 ft (12 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

@@ -1,0 +1,41 @@
+id: life/taxa/coniferophyta
+kind: taxon
+summary: >-
+  A third branch of the database's for conifers, which holds the earliest of them, Walchia and
+  Lebachia.
+same_as: { pbdb: "txn:56176" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Coniferophyta, en: conifers and cordaites }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: walchian
+    source:
+      ref: src:hernandez-castillo-2003-thucydia
+      loc: "abstract"
+      quote: "developmental variations among lateral branching systems in juvenile trees of the extant conifer Araucaria heterophylla"
+    note: >-
+      Said of Thucydia mahoningensis, another walchian conifer, and a machine's reconstruction
+      beyond that.
+  height:
+    prop: plant_height
+    value: { lo: 10, hi: 15 }
+    source:
+      - ref: src:hernandez-castillo-2003-thucydia
+        loc: "abstract"
+        quote: "is considered to be a small tree"
+      - ref: src:flora-of-north-america
+        loc: "Vol. 2, s.v. Juniperus communis"
+        quote: "Shrubs or small trees dioecious, to 4 m (if trees, to 10 m)"
+      - ref: src:flora-of-north-america
+        loc: "Vol. 2, s.v. Taxus brevifolia"
+        quote: "Shrubs or small trees to 15(--25) m"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      No height was read for any walchian conifer. Thucydia is considered a small tree, and these
+      are the heights of the small trees among living conifers: a stand-in chosen by the editor, not
+      by any source. A reviewer should look at this first.

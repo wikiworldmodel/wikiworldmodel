@@ -1,0 +1,25 @@
+id: life/taxa/thysanoptera
+kind: taxon
+summary: >-
+  The thrips, tiny and slender, with narrow fringed wings. They take the insects' generic body, with their own range of
+  sizes.
+same_as: { pbdb: "txn:176587" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Thysanoptera, en: "thrips" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.0006, hi: 0.014 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Thysanoptera Heterothripidae\""
+        quote: "Thysanoptera Heterothripidae 76 0.6 1.5 (Retana-Salazar 2009)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Thysanoptera Phlaeothripidae\""
+        quote: "Thysanoptera Phlaeothripidae 3532 2 14 (Lewis 1973)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres.

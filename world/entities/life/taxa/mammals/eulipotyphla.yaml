@@ -1,0 +1,42 @@
+id: life/taxa/eulipotyphla
+kind: taxon
+summary: >-
+  Shrews, moles, hedgehogs and their extinct kin.
+same_as: { pbdb: "txn:92588" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Eulipotyphla, en: "shrews, moles and hedgehogs" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      parts:
+        snout: { type: spike, zl: true, mat: fur, sides: [5, 4], from: [0, 0.31, 0.13], to: [0, 0.47, 0.11], r: 0.04 }
+        tail: { from: [0, -0.2, 0.125], to: [0, -0.52, 0.04], r: 0.016 }
+    unsourced: >-
+      A machine's reconstruction, from the account of Soricomorpha on the Animal Diversity
+      Web: a long, slender snout. Only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.035, hi: 0.6 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Soricomorpha"
+        quote: "which weigh about 3 grams and are about 35 mm long, from head to body."
+      - ref: src:animal-diversity-web
+        loc: "account of Soricomorpha"
+        quote: "are the largest species in this order, and can be up to 600 mm long."
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.002, hi: 1.25 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Sorex_yukonicus, column Mass.g (grams)"
+        quote: "Sorex_yukonicus,Eulipotyphla,Soricidae,Sorex,yukonicus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,1.6"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Atelerix_algirus, column Mass.g (grams)"
+        quote: "Atelerix_algirus,Eulipotyphla,Erinaceidae,Atelerix,algirus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,1250"
+    method: compilation

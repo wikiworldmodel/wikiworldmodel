@@ -1,0 +1,28 @@
+id: life/taxa/lissamphibia
+kind: taxon
+summary: >-
+  The living amphibians, frogs, salamanders and caecilians, and the extinct albanerpetontids with them. As a body it stands for
+  those with no form below it, as a small salamander.
+same_as: { pbdb: "txn:67351" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lissamphibia, en: living amphibians }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: salamander
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in the tree.
+      The plan is a machine's drawing of a salamander's general shape, from no figure: a reviewer should compare it. A caecilian is
+      drawn as a salamander until someone writes one; the snapshot has one row of them.
+  length:
+    prop: body_length
+    value: { lo: 0.05, hi: 0.15 }
+    source:
+      ref: src:ebsco-newts-salamanders
+      loc: "paragraph beginning 'Newts and salamanders live in the water and on land'"
+      quote: "The average adult salamanders and newts measure 2 to 6 inches (5 to 15 centimeters) long"
+    method: compilation
+    note: A typical living salamander stands for the group; inches to metres as the source gives them.

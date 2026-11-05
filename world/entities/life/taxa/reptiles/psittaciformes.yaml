@@ -1,0 +1,66 @@
+id: life/taxa/psittaciformes
+kind: taxon
+summary: >-
+  Parrots: flying birds with big heads, short deep hooked bills and, in many, long tails.
+same_as: { pbdb: "txn:39357" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Psittaciformes", en: "parrots" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [2, 12], flies: [3, 30] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.86, 0.8, 0.018]
+            - [-0.36, 1.02, 0.96, 0.024]
+            - [-0.24, 1.2, 1.1, 0.028]
+            - [-0.16, 1.36, 1.1, 0.04]
+            - [-0.09, 1.62, 0.96, 0.076]
+            - [-0.02, 1.96, 0.8, 0.1]
+            - [0.04, 2.24, 0.84, 0.104]
+            - [0.1, 2.46, 1.1, 0.086]
+            - [0.14, 2.56, 1.56, 0.06]
+          neck: { r: 0.05, steps: [2, 1] }
+        wings: { shoulder: [0.09, 0.08, 2.1], folded: 0.42, drop: 0.95, chord: 0.2, sweep: 0.24 }
+        head:
+          at:
+            stand: { y: 0.19, z: 2.86, pitch: 0.1 }
+            alert: { y: 0.19, z: 2.94, pitch: 0.0 }
+            low: { y: 0.28, reach: 0.18, clear: 0.05, pitch: 0.9 }
+            fly: { y: 0.24, z: 2.5, pitch: 0.08 }
+          rings:
+            - [-0.04, 0, 0.05, 0.054]
+            - [0.015, 0.008, 0.066, 0.07]
+            - [0.06, 0.004, 0.056, 0.058]
+            - [0.09, -0.002, 0.032, 0.036]
+        bill: null
+        beak: { type: tube, on: head, mat: horn, sides: [6, 4], rings: [[0.08, 0.002, 0.03, 0.04], [0.112, 0.004, 0.024, 0.038], [0.136, -0.016, 0.014, 0.026], [0.142, -0.042, 0.004, 0.008]] }
+        eyes: { at: [0.052, 0.045, 0.024], r: 0.012 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Psittaciformes (Parrots)\""
+      quote: "Very small to large, often brightly colored birds with hooked bill and zygodactyl feet"
+    note: >-
+      The hooked bill follows this. The rest is a machine's reconstruction; no skeletal figure was
+      looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.08, hi: 1 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Psittaciformes (Parrots)\""
+      quote: "3.2–39.4 in (8–100 cm); 0.02–6.6 lb (0.01–3 kg)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.01, hi: 3 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Psittaciformes (Parrots)\""
+      quote: "3.2–39.4 in (8–100 cm); 0.02–6.6 lb (0.01–3 kg)"
+    method: compilation

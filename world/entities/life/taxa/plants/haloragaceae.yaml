@@ -1,0 +1,32 @@
+id: life/taxa/haloragaceae
+kind: taxon
+summary: >-
+  Water milfoils, Myriophyllum above all. Nothing draws below the surface yet, so a mat on it stands
+  in.
+same_as: { pbdb: "txn:118086" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Haloragaceae, en: water milfoils }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: floating-fern
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 10, s.v. Myriophyllum spicatum"
+      quote: "Herbs monoecious, aquatic, often forming dense stands."
+    note: >-
+      A stand-in: they stand mostly below the surface, and a mat on the water is the nearest plan.
+  height:
+    prop: plant_height
+    value: { lo: 1, hi: 2.5 }
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 13, s.v. Myriophyllum spicatum"
+      quote: "Stem much branched, 100-250 cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The length of a stem of a living milfoil, mostly under water: a modern relative.

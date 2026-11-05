@@ -1,0 +1,21 @@
+id: src:nyakatura-2015-orobates
+type: publication
+kind: model
+citation: >-
+  Nyakatura, J.A., Andrada, E., Curth, S. & Fischer, M.S. (2015). A three-dimensional skeletal
+  reconstruction of the stem amniote Orobates pabsti (Diadectidae): analyses of body mass, centre
+  of mass position, and joint mobility. PLoS ONE 10(9), e0137284.
+authors:
+  - "Nyakatura, J.A."
+  - "Andrada, E."
+  - "Curth, S."
+  - "Fischer, M.S."
+published: 2015
+title: "A three-dimensional skeletal reconstruction of the stem amniote Orobates pabsti (Diadectidae): analyses of body mass, centre of mass position, and joint mobility"
+container: "PLoS ONE 10(9), e0137284"
+doi: 10.1371/journal.pone.0137284
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC4565719); quotes checked by script against it.

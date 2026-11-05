@@ -1,0 +1,30 @@
+id: life/taxa/centrosaurus
+kind: taxon
+summary: >-
+  Centrosaurus, the commonest horned dinosaur of the Campanian bonebeds of Alberta, with one long
+  nose horn.
+same_as: { pbdb: "txn:38854" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Centrosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        nose: { from: [0, 0.178, 0.016], to: [0, 0.25, 0.135], r: 0.02 }
+    unsourced: >-
+      A machine's reconstruction: a long nose horn angled forward, from the silhouette "Centrosaurus
+      Scale.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 5.7
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 51, Centrosaurines"
+      quote: "Centrosaurus spur [frill] reptile Late Cretaceous (80-72.8 MYA) 18.7 ft (5.7 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

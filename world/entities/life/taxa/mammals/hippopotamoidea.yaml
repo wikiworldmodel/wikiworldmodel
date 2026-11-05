@@ -1,0 +1,81 @@
+id: life/taxa/hippopotamoidea
+kind: taxon
+summary: >-
+  Hippopotamuses and the anthracotheres.
+same_as: { pbdb: "txn:42442" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hippopotamoidea, en: "hippopotamuses and anthracotheres" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: heavy-ungulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.3
+      behave: { group: [2, 12], habitat: wet, poses: [stand, stand, walk, graze] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.74, 0.7, 0.005]
+            - [-0.485, 0.86, 0.8, 0.008]
+            - [-0.465, 0.98, 0.88, 0.012]
+            - [-0.44, 1.08, 0.66, 0.06]
+            - [-0.38, 1.16, 0.42, 0.128]
+            - [-0.26, 1.24, 0.34, 0.158]
+            - [-0.12, 1.28, 0.32, 0.17]
+            - [0.03, 1.28, 0.34, 0.162]
+            - [0.13, 1.24, 0.42, 0.132]
+            - [0.19, 1.14, 0.54, 0.098]
+          neck: { r: 0.086, steps: [2, 1] }
+        hind: { y: -0.29, x: 0.105, top: 0.72, r: 0.05 }
+        fore: { y: 0.1, x: 0.105, top: 0.7, r: 0.05 }
+        head:
+          at:
+            stand: { y: 0.24, z: 0.96, pitch: 0.12 }
+            alert: { y: 0.24, z: 1.1, pitch: -0.05 }
+            low: { y: 0.26, reach: 0.2, pitch: 0.7 }
+          rings:
+            - [-0.02, 0.012, 0.07, 0.074]
+            - [0.04, 0.018, 0.08, 0.088]
+            - [0.095, 0.0, 0.062, 0.064]
+            - [0.145, -0.008, 0.072, 0.068]
+            - [0.18, -0.012, 0.078, 0.052]
+        ears: { type: lump, from: null, to: null, near: false, at: [0.05, -0.004, 0.09], r: [0.014, 0.008, 0.016], bands: [3, 2], sides: [5, 4] }
+        eyes: { at: [0.06, 0.06, 0.066], r: 0.0085 }
+    unsourced: >-
+      A machine's reconstruction, from the account of Hippopotamus amphibius on the Animal
+      Diversity Web: a bulky barrel on short legs, eyes and ears set high on the head. Only
+      compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 1.5, hi: 5.05 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Hexaprotodon liberiensis, Other Physical Features"
+        quote: "Range length 1.50 to 1.75 m"
+      - ref: src:animal-diversity-web
+        loc: "account of Hippopotamus amphibius, Physical Description"
+        quote: "hippopotamusi measure between 209 and 505 cm in length, including a tail of about 35 cm in length"
+    method: compilation
+    note: >-
+      The living hippopotamuses. Small anthracotheres were shorter, and no figure for them was
+      read.
+  mass:
+    prop: body_mass
+    value: { lo: 160, hi: 4200 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Hexaprotodon liberiensis, Other Physical Features"
+        quote: "Range mass 160 to 275 kg"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Even-toed ungulates (Artiodactyla)\""
+        quote: "and 3,500–4,200 kg (7,700–9,300 lb) in weight"
+    method: compilation
+    note: >-
+      From the pygmy hippopotamus to Hippopotamus antiquus, from Wikipedia as nothing better
+      could be read.

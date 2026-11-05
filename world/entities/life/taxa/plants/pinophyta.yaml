@@ -1,0 +1,31 @@
+id: life/taxa/pinophyta
+kind: taxon
+summary: >-
+  Conifers, as one of the database's several branches for them: the pines, yews and others in its
+  Pinales.
+same_as: { pbdb: "txn:82139" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pinophyta, en: conifers }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: conifer
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 15, hi: 45 }
+    source:
+      - ref: src:flora-of-north-america
+        loc: "Vol. 2, s.v. Taxus brevifolia"
+        quote: "Shrubs or small trees to 15(--25) m"
+      - ref: src:flora-of-china
+        loc: "Vol. 4, p. 14, s.v. Pinus massoniana"
+        quote: "Trees to 45 m tall"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living conifers, from a small yew to a tall pine, standing for a conifer with no height of its
+      own: modern relatives.

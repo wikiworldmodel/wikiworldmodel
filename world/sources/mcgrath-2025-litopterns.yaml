@@ -1,0 +1,24 @@
+id: src:mcgrath-2025-litopterns
+type: publication
+kind: measurement
+citation: >-
+  McGrath, A.J., Croft, D.A., Carrillo, J.D., Suárez, M.G., Vanegas, A., Cooke, S.B. & Link, A.
+  (2025). New Miocene litoptern remains from Colombia and ecological structure of American Neogene
+  herbivore guilds. BMC Zoology 10, 17.
+authors:
+  - "McGrath, A.J."
+  - "Croft, D.A."
+  - "Carrillo, J.D."
+  - "Suárez, M.G."
+  - "Vanegas, A."
+  - "Cooke, S.B."
+  - "Link, A."
+published: 2025
+title: "New Miocene litoptern remains from Colombia and ecological structure of American Neogene herbivore guilds"
+container: "BMC Zoology 10, 17"
+doi: 10.1186/s40850-025-00232-4
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC12366096). Quotes checked by script against the
+    text retrieved, after normalizing whitespace.

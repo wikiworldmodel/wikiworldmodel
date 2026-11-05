@@ -1,0 +1,27 @@
+id: src:maidment-2020-garjainia-postcranium
+type: publication
+kind: measurement
+citation: >-
+  Maidment, S.C.R., Sennikov, A.G., Ezcurra, M.D., Dunne, E.M., Gower, D.J., Hedrick, B.P., Meade, L.E., Raven, T.J.,
+  Paschchenko, D.I. & Butler, R.J. (2020). The postcranial skeleton of the erythrosuchid archosauriform Garjainia prima from the
+  Early Triassic of European Russia. Royal Society Open Science 7, 201089.
+authors:
+  - "Maidment, S.C.R."
+  - "Sennikov, A.G."
+  - "Ezcurra, M.D."
+  - "Dunne, E.M."
+  - "Gower, D.J."
+  - "Hedrick, B.P."
+  - "Meade, L.E."
+  - "Raven, T.J."
+  - "Paschchenko, D.I."
+  - "Butler, R.J."
+published: 2020
+title: "The postcranial skeleton of the erythrosuchid archosauriform Garjainia prima from the Early Triassic of European Russia"
+container: Royal Society Open Science 7, 201089
+doi: 10.1098/rsos.201089
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC7813270) read via Europe PMC (fullTextXML). Quotes checked by script against that text. Metadata from Crossref.

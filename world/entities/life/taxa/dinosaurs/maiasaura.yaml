@@ -1,0 +1,30 @@
+id: life/taxa/maiasaura
+kind: taxon
+summary: >-
+  Maiasaura, the "good mother" duck-bill of the Campanian of Montana, found with its nests and
+  young.
+same_as: { pbdb: "txn:38765" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Maiasaura }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        brow-ridge: { type: lump, on: head, at: [0, 0.065, 0.028], r: [0.016, 0.022, 0.012], sides: [8, 4], bands: [5, 3] }
+    unsourced: >-
+      A machine's reconstruction: a small solid crest before the eyes, from the silhouette
+      "Maiasaura Scale.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 9
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 48, Brachylophosaurinins"
+      quote: "Maiasaura good-mother reptile Late Cretaceous (80-72.8 MYA) 29.5 ft (9 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

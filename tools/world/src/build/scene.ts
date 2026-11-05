@@ -1,43 +1,26 @@
-// A living scene for the viewer (scene/<site>.json and its ground). Which taxa are drawn comes from
-// the snapshot's rows and the records' claims; a taxon the records place elsewhere or elsewhen, or
-// one with no size, is left out and says why. The ground is the generator's plain, set into the land
-// the elevation field reconstructs for the moment.
-import { climateClass, CLIMATE_LABEL, type ClimateRule } from '../../../../core/climate.ts';
-import { fromLocal } from '../../../../core/city.ts';
+// The living scenes the build can answer for. The Hell Creek is a place with its own formation's rows: which
+// taxa are drawn comes from the snapshot and the records' claims, and a taxon the records place elsewhere or
+// elsewhen, or with no form or size, is left out and says why. Anywhere else, the browser makes the scene
+// itself from the atlas: witness places here are made the same way, and their hashes kept so that a browser
+// can be held to them. No ground and no organism is stored for either.
+import { atlasHasLand, atlasList, type AtlasBin, type AtlasIndex } from '../../../../core/atlas.ts';
+import { climateClass, CLIMATE_LABEL, decodeNode, type ClimateRule } from '../../../../core/climate.ts';
+import { canonicalForm, type Form } from '../../../../core/form.ts';
 import { coverAt, type PlanetFile } from '../../../../core/planet.ts';
 import { rotate, toLatLon, conj, unitVector } from '../../../../core/quat.ts';
-import { isPlant, type BodyPlan, type SceneFile, type SceneOmission, type SceneTaxon } from '../../../../core/scene.ts';
+import type { LivingTaxon, SceneFileV2, SceneOmission, SceneSpec } from '../../../../core/scene.ts';
 import { parsePoint, toMa, type TimePointInput } from '../../../../core/time.ts';
-import { GroundSampler } from '../../../../world/generators/city/ground.ts';
-import { hashString } from '../../../../world/generators/city/math.ts';
-import { SceneBuilder } from '../../../../world/generators/life/cells.ts';
-import { arrival, fbm, plainGrid, planBytes, scenePlan, VERSION, watersOf, type SceneParams } from '../../../../world/generators/life/scene/v1.ts';
+import { cubeRoot, placeSpec, reliefPatch, sizeWithin, type PlaceWorld } from '../../../../world/generators/life/spec.ts';
+import { FULL_BUDGET, SceneStream } from '../../../../world/generators/life/stream.ts';
+import { VERSION, type LivingParams } from '../../../../world/generators/life/scene/v2.ts';
+import { FormTree } from '../forms.ts';
 import { pbdbNumber } from '../pbdb.ts';
-import { sha256 } from '../util.ts';
-import type { Snapshot } from './fields.ts';
-import { SRC_W } from './fields.ts';
+import { sha256, stableStringify } from '../util.ts';
 import type { ClimateKeyframe } from './climate.ts';
-import { blur, encodeGrid, type GroundGrid } from './ground.ts';
+import { SRC_W, type Snapshot } from './fields.ts';
 import { claimOf, labeller, subjectTime, type Solved } from './records.ts';
 
 const SCENE = 'gen:life/scene';
-
-const smooth = (a: number, b: number, x: number) => {
-  const t = Math.max(0, Math.min(1, (x - a) / (b - a)));
-  return t * t * (3 - 2 * t);
-};
-
-/** The elevation field's height at a paleo-position: its grid is a degree square, from 90°N and 180°W. */
-function elevationAt(snap: Snapshot, lat: number, lon: number): number {
-  const fy = 90 - lat;
-  const fx = ((((lon + 180) % 360) + 360) % 360);
-  const j = Math.max(0, Math.min(179, Math.floor(fy)));
-  const i = Math.floor(fx);
-  const u = fx - i;
-  const v = fy - j;
-  const at = (a: number, b: number) => snap.elev[b * SRC_W + (a % SRC_W)];
-  return (at(i, j) * (1 - u) + at(i + 1, j) * u) * (1 - v) + (at(i, j + 1) * (1 - u) + at(i + 1, j + 1) * u) * v;
-}
 
 const quantity = (v: unknown): number | undefined => {
   if (typeof v === 'number') return v;
@@ -50,18 +33,27 @@ const quantity = (v: unknown): number | undefined => {
   return undefined;
 };
 
+const elevationOf = (snap: Snapshot) => (lat: number, lon: number): number => snap.elev[Math.max(0, Math.min(180, 90 - Math.round(lat))) * SRC_W + (((Math.round(lon) + 180) % SRC_W) + SRC_W) % SRC_W];
+const plateOf = (snap: Snapshot) => (lat: number, lon: number): number => snap.plate[Math.max(0, Math.min(180, 90 - Math.round(lat))) * SRC_W + (((Math.round(lon) + 180) % SRC_W) + SRC_W) % SRC_W];
+const nearestOf = <T extends { ageMa: number }>(list: T[], age: number): T => [...list].sort((a, b) => Math.abs(a.ageMa - age) - Math.abs(b.ageMa - age))[0];
+
+/** What a keyframe of the climate says at a place, from the bytes the viewer reads too. */
+const climateOf = (key: ClimateKeyframe, grid: { step: number; nx: number; lon0: number; lat0: number }) => (lat: number, lon: number) => {
+  const row = Math.round((grid.lat0 - lat) / grid.step);
+  const col = ((Math.round((lon - grid.lon0) / grid.step) % grid.nx) + grid.nx) % grid.nx;
+  const k = (row * grid.nx + col) * 4;
+  return decodeNode([key.values[k] / 255, key.values[k + 1] / 255, key.values[k + 2] / 255, key.values[k + 3] / 255]);
+};
+
 export interface SceneBuild {
-  file: SceneFile;
-  blobs: Map<string, Uint8Array>;
-  /** what the rest of the build and its tests want to know */
-  rule: ClimateRule;
+  file: SceneFileV2;
 }
 
 export function buildScene(s: Solved, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, log: (m: string) => void): SceneBuild | undefined {
   const w = s.world;
   const gen = w.generators.find((g) => g.id === SCENE);
   if (!gen) return undefined;
-  const params = gen.params as unknown as SceneParams;
+  const params = gen.params as unknown as LivingParams & { site: { id: string; label: string; ecosystem: string; snapshot: string; slice: string; window: [string, string]; flow?: number } };
   if (gen.version !== VERSION) throw new Error(`${SCENE}: the record is version ${gen.version}, the code version ${VERSION}`);
   const site = params.site;
   const eco = w.entity.get(site.ecosystem);
@@ -73,8 +65,6 @@ export function buildScene(s: Solved, elevation: Snapshot[], climate: ClimateKey
   const labelOf = labeller(s);
   const slice = parsePoint(site.slice as TimePointInput).t;
   const sliceMa = toMa(slice);
-
-  // Where the place stood then: its coordinates today, carried by its plate.
   const loc = claimOf(s, eco.id, 'location')?.value as { lat: number; lon: number } | undefined;
   const frame = claimOf(s, eco.id, 'frame')?.value as string | undefined;
   const plate = frame ? w.frame.get(frame)?.transform?.plate : undefined;
@@ -85,12 +75,12 @@ export function buildScene(s: Solved, elevation: Snapshot[], climate: ClimateKey
   };
   const origin = positionAt(sliceMa);
   const place = { lat: Math.round(origin.lat * 1e5) / 1e5, lon: Math.round(origin.lon * 1e5) / 1e5 };
-
   const { time: ecoTime } = subjectTime(s, eco.id);
   const span: [number, number] = [ecoTime.start.best ?? slice, ecoTime.end.best ?? slice];
   if (slice < span[0] || slice > span[1]) throw new Error(`${SCENE}: the slice ${site.slice} is outside ${eco.id}'s own time`);
 
-  // Which taxa: every record with a body plan, if the snapshot has it here at this moment.
+  // Which taxa: every record with a body plan of its own, if the snapshot has it here at this moment.
+  const tree = new FormTree(w);
   const byNo = new Map(snap.taxa.map((t) => [t.no, t]));
   const rows = new Map<number, { rows: number; collections: Set<number> }>();
   let inSlice = 0;
@@ -104,47 +94,97 @@ export function buildScene(s: Solved, elevation: Snapshot[], climate: ClimateKey
       rows.set(x, r);
     }
   }
-  const taxa: SceneTaxon[] = [];
+  const taxa: LivingTaxon[] = [];
   const omitted: SceneOmission[] = [];
+  const forms: Record<string, Form> = {};
   const covered = new Set<number>();
-  for (const e of [...w.entities].sort((a, b) => (a.id < b.id ? -1 : 1))) {
-    if (e.kind !== 'taxon') continue;
-    const plan = claimOf(s, e.id, 'body_plan')?.value as BodyPlan | undefined;
-    if (!plan) continue;
-    const label = labelOf(e.id);
+  const most = Math.max(1, ...[...rows.values()].map((r) => r.rows));
+  // Every record that says something of its body and has rows here; but a clade whose members are on the list too is
+  // not on it itself, or a family would stand beside its own genera.
+  const candidates = [...w.entities].sort((a, b) => (a.id < b.id ? -1 : 1)).filter((e) => {
+    if (e.kind !== 'taxon' || (!claimOf(s, e.id, 'body_plan') && !claimOf(s, e.id, 'body_form'))) return false;
     const no = pbdbNumber(e);
-    const here = no !== undefined ? rows.get(no) : undefined;
+    return no !== undefined && rows.has(no);
+  });
+  const above = new Set<string>();
+  const candidateOf = new Map(candidates.map((e) => [pbdbNumber(e)!, e.id]));
+  for (const e of candidates) {
+    for (const up of tree.path(e.id).slice(1)) above.add(up);
+    // And by the database's classification, as its rows are counted, where the world's tree goes another way.
+    for (let x = byNo.get(pbdbNumber(e)!)?.parent ?? 0, g = 0; x && byNo.has(x) && g < 200; x = byNo.get(x)!.parent, g++) {
+      const id = candidateOf.get(x);
+      if (id) above.add(id);
+    }
+  }
+  for (const e of candidates) {
+    if (above.has(e.id)) continue;
+    const label = labelOf(e.id);
+    const no = pbdbNumber(e)!;
+    const here = rows.get(no)!;
     const { time, variants } = subjectTime(s, e.id);
     const leave = (why: string) => omitted.push({ id: e.id, label, why });
-    if (!here) {
-      leave(`The snapshot has no occurrence of it in the formation at ${site.slice}.`);
-      continue;
-    }
     if ((time.start.best ?? -Infinity) > slice || (time.end.best ?? Infinity) < slice) {
       leave(`Its record does not put it alive at ${site.slice}.`);
       continue;
     }
-    const claimedLength = quantity(claimOf(s, e.id, 'body_length')?.value);
-    const hip = quantity(claimOf(s, e.id, 'hip_height')?.value);
-    const mass = quantity(claimOf(s, e.id, 'body_mass')?.value);
-    // A body plan may say what its body weighs for its length: a claimed mass then gives the size, as the kit is shaped.
-    const massShare = params.animals.mass_length?.[plan];
-    const fromMass = claimedLength === undefined && mass !== undefined && massShare !== undefined;
-    const length = fromMass ? Math.round(Math.cbrt(mass! / massShare!) * 1000) / 1000 : claimedLength;
-    const height = quantity(claimOf(s, e.id, 'plant_height')?.value);
-    const posture = claimOf(s, e.id, 'posture')?.value as string | undefined;
-    if (isPlant(plan) ? height === undefined && posture !== 'floating' : length === undefined) {
-      leave(isPlant(plan) ? 'No claim gives its height, and a size is not guessed.' : 'No claim gives its length, and a size is not guessed.');
+    const form = tree.form(e.id);
+    const source = tree.source(e.id);
+    if (!form || !source) {
+      leave('No node above it in the tree has a body plan.');
       continue;
     }
-    taxa.push({ id: e.id, label, plan, ...(posture ? { posture } : {}), ...(fromMass ? { fromMass: true } : {}), ...(length !== undefined ? { length } : {}), ...(hip !== undefined ? { hip } : {}), ...(height !== undefined ? { height } : {}), ...(mass !== undefined ? { mass } : {}), rows: here.rows, collections: here.collections.size, time, ...(variants ? { variants } : {}) });
-    covered.add(no!);
+    const plantForm = form.kind === 'plant';
+    // A size of its own, as its claims give it; or a place in the range of the nearest node above that gives one.
+    const sized = (prop: 'body_length' | 'hip_height' | 'plant_height' | 'body_mass') => {
+      const own = quantity(claimOf(s, e.id, prop)?.value);
+      if (own !== undefined) return { value: own, from: undefined as string | undefined };
+      const q = tree.size(e.id, prop);
+      return q ? { value: sizeWithin({ ...q, from: labelOf(q.from) }, no)!, from: labelOf(q.from) } : undefined;
+    };
+    const lengthClaim = plantForm ? undefined : sized('body_length');
+    const hip = plantForm ? undefined : quantity(claimOf(s, e.id, 'hip_height')?.value);
+    const massClaim = plantForm ? undefined : sized('body_mass');
+    const fromMass = !plantForm && lengthClaim === undefined && massClaim !== undefined;
+    const length = fromMass ? Math.round(cubeRoot(massClaim!.value / (form.mass_length ?? 20)) * 1000) / 1000 : lengthClaim?.value;
+    const heightClaim = plantForm ? sized('plant_height') : undefined;
+    const height = heightClaim?.value;
+    const posture = tree.posture(e.id);
+    if (plantForm ? height === undefined && form.behave?.layer !== 'float' : length === undefined) {
+      leave(plantForm ? 'No node above it gives a height, and a size is not guessed.' : 'No node above it gives a length, and a size is not guessed.');
+      continue;
+    }
+    const canon = canonicalForm(form);
+    const key = sha256(stableStringify(canon)).slice(0, 16);
+    forms[key] = canon;
+    const sizeFrom = plantForm ? heightClaim?.from : lengthClaim?.from ?? massClaim?.from;
+    taxa.push({
+      id: e.id,
+      label,
+      form: key,
+      form_from: source.from,
+      form_label: labelOf(source.from),
+      own: source.own,
+      tier: 'formation',
+      weight: here.rows / most,
+      rows: here.rows,
+      collections: here.collections.size,
+      ...(posture ? { posture } : {}),
+      biped: posture === 'biped',
+      ...(length !== undefined ? { length } : {}),
+      ...(hip !== undefined ? { hip } : {}),
+      ...(height !== undefined ? { height } : {}),
+      ...(massClaim !== undefined ? { mass: massClaim.value } : {}),
+      ...(sizeFrom ? { size_from: sizeFrom } : {}),
+      ...(fromMass ? { fromMass: true } : {}),
+      time,
+      ...(variants ? { variants } : {}),
+    });
+    covered.add(no);
   }
   if (!taxa.length) {
-    log(`scene   ${site.id}: not built: no taxon of the formation has a body plan and a size yet`);
+    log(`scene   ${site.id}: not built: no taxon of the formation has a form and a size yet`);
     return undefined;
   }
-  // How much of the slice's rows the drawn taxa account for.
   let drawnRows = 0;
   for (const o of snap.occurrences) {
     if (o.max < sliceMa || o.min > sliceMa) continue;
@@ -155,80 +195,102 @@ export function buildScene(s: Solved, elevation: Snapshot[], climate: ClimateKey
       }
     }
   }
-
-  // The land it stands on, as the elevation field reconstructs it: the snapshot nearest the slice.
-  const nearest = [...elevation].sort((a, b) => Math.abs(a.ageMa - sliceMa) - Math.abs(b.ageMa - sliceMa))[0];
-  const at = positionAt(nearest.ageMa);
-  const relief = (x: number, y: number) => {
-    const [lat, lon] = fromLocal(at, x, y);
-    return elevationAt(nearest, lat, lon);
-  };
-  const g = params.ground;
-  const seedText = gen.slots[site.id]?.seed ?? site.id;
-  const seed = hashString(seedText);
-  const water = Math.round(Math.max(relief(0, 0), g.lowest_water));
-  const waters = watersOf(g, seed, 6000);
-  const blended = (x: number, y: number, plain: number) => {
-    const r = Math.sqrt(x * x + y * y);
-    const k = smooth(g.blend[0], g.blend[1], r);
-    return k ? plain + (relief(x, y) - plain) * k : plain;
-  };
-  const fine = { nx: 1281, ny: 1281, x0: -6400, y0: -6400, cell: 10 };
-  const mid = { nx: 1281, ny: 1281, x0: -32000, y0: -32000, cell: 50 };
-  const far = { nx: 1201, ny: 1201, x0: -480000, y0: -480000, cell: 800 };
-  const level0: GroundGrid = { ...fine, z: plainGrid(fine, g, water, seed, waters) };
-  const level1: GroundGrid = { ...mid, z: plainGrid(mid, g, water, seed, waters) };
-  for (let j = 0; j < mid.ny; j++) for (let i = 0; i < mid.nx; i++) level1.z[j * mid.nx + i] = blended(mid.x0 + i * mid.cell, mid.y0 + j * mid.cell, level1.z[j * mid.nx + i]);
-  const level2: GroundGrid = { ...far, z: new Float32Array(far.nx * far.ny) };
-  for (let j = 0; j < far.ny; j++) {
-    for (let i = 0; i < far.nx; i++) {
-      const x = far.x0 + i * far.cell;
-      const y = far.y0 + j * far.cell;
-      const r = relief(x, y);
-      // A degree's grid is smooth at this scale: the high ground takes some invented roughness, in proportion.
-      const rough = r > 80 ? (r - 80) * 0.7 * (fbm(x / 26000, y / 26000, seed + 71) - 0.5) : 0;
-      level2.z[j * far.nx + i] = blended(x, y, water + g.rise) + rough * smooth(g.blend[0], g.blend[1], Math.sqrt(x * x + y * y));
-    }
-  }
-  blur(level2, 1.2);
-  const blobs = new Map<string, Uint8Array>();
-  const ground = [level0, level1, level2].map((grid, i) => {
-    const url = `scene/${site.id}/ground-${i}.bin`;
-    blobs.set(url, encodeGrid(grid));
-    return { url, nx: grid.nx, ny: grid.ny, x0: grid.x0, y0: grid.y0, cell: grid.cell };
-  });
-  const sampler = new GroundSampler(ground.map((l) => ({ ...l, z: new Int16Array(blobs.get(l.url)!.buffer) })));
-  const arrive = arrival(waters, 2600, params.cover.clearing * 0.72);
-
-  // The climate there, as the field reads it, at the keyframe nearest the slice.
-  const key = [...climate].sort((a, b) => Math.abs(a.ageMa - sliceMa) - Math.abs(b.ageMa - sliceMa))[0];
-  const kp = positionAt(key.ageMa);
-  const { step, nx, lon0, lat0 } = climateGridInfo;
-  const row = Math.round((lat0 - kp.lat) / step);
-  const col = ((Math.round((kp.lon - lon0) / step) % nx) + nx) % nx;
-  const k = (row * nx + col) * 4;
-  const node = { hot: key.nodes[k], cold: key.nodes[k + 1], aridity: key.nodes[k + 2], margin: key.nodes[k + 3] };
+  const key = nearestOf(elevation, sliceMa);
+  const at = positionAt(key.ageMa);
+  const isoline = (w.fields.find((f) => f.id === 'field:earth/coastline') as unknown as { isoline_m?: number } | undefined)?.isoline_m ?? 20;
+  const relief = reliefPatch(at.lat, at.lon, elevationOf(key), isoline);
+  const ck = nearestOf(climate, sliceMa);
+  const kp = positionAt(ck.ageMa);
+  const node = climateOf(ck, climateGridInfo)(kp.lat, kp.lon);
   const climateNow = climateClass(node, rule);
   const cover = coverAt(planet, slice, {});
-
-  const file: SceneFile = {
-    format: 'lightworld-scene@1',
-    site: { id: site.id, label: site.label, place: eco.id, origin: place, today: { lat: loc.lat, lon: loc.lon }, span, slice, water_level: water, focus: [Math.round(arrive.at[0]), Math.round(arrive.at[1])], to_river: [Math.round(arrive.toRiver[0] * 1000) / 1000, Math.round(arrive.toRiver[1] * 1000) / 1000] },
-    ground,
+  const { site: _site, ...rest } = params;
+  const seedText = gen.slots[site.id]?.seed ?? site.id;
+  const spec: SceneSpec = {
+    format: 'lightworld-scene@2',
+    site: { id: site.id, label: site.label, place: eco.id, origin: place, relief_at: { lat: Math.round(at.lat * 1e5) / 1e5, lon: Math.round(at.lon * 1e5) / 1e5 }, span, slice },
+    relief,
+    biome: { climate: climateNow, label: CLIMATE_LABEL[climateNow], field: 'field:earth/climate', ageMa: ck.ageMa, cover: { plants: cover.plants, forests: cover.forests, grasses: cover.grasses }, node },
     taxa,
     omitted,
-    biome: { climate: climateNow, label: CLIMATE_LABEL[climateNow], field: 'field:earth/climate', ageMa: key.ageMa, cover: { plants: cover.plants, forests: cover.forests, grasses: cover.grasses } },
+    forms,
     fossils: { source: site.snapshot, rows: inSlice, collections: new Set(snap.occurrences.filter((o) => o.max >= sliceMa && o.min <= sliceMa).map((o) => o.collection)).size, title: w.manifest.datasets[site.snapshot].title ?? site.snapshot, drawn: drawnRows },
-    generator: { generator: gen.id, version: gen.version, seed: seedText, basis: 'procedural', params: gen.params, outputSha256: '', cell: { key: 0, detail: 1, sha256: '' } },
+    generator: { generator: gen.id, version: gen.version, seed: seedText, basis: 'procedural', params: { ...rest, ground: { ...params.ground, flow: site.flow } } as unknown as Record<string, unknown> },
   };
-  const plan = scenePlan(file, sampler);
-  file.generator.outputSha256 = sha256(planBytes(plan));
-  // One cell's mesh too, in the middle of it all: the browser's must match it to the byte.
-  const builder = new SceneBuilder(file, sampler.levels, plan);
-  const half = 17 * 400;
-  const cellKey = Math.floor((file.site.focus[1] + half) / 400) * 34 + Math.floor((file.site.focus[0] + half) / 400);
-  const { vertices, indices } = builder.build(cellKey, 1).arrays();
-  file.generator.cell = { key: cellKey, detail: 1, sha256: sha256(Buffer.concat([new Uint8Array(vertices), new Uint8Array(indices.buffer, indices.byteOffset, indices.byteLength)])) };
-  log(`scene   ${site.id}: ${taxa.length} taxa drawn and ${omitted.length} left out; ${plan.count} organisms; water at ${water} m; ${climateNow}; at ${place.lat}, ${place.lon}`);
-  return { file, blobs, rule };
+  const stream = new SceneStream(spec, FULL_BUDGET);
+  const file: SceneFileV2 = { format: 'lightworld-scene-file@2', spec, sha256: sha256(stream.digestBytes()), focus: stream.plan.focus, to_river: stream.plan.toRiver, water_level: stream.look.water };
+  log(`scene   ${site.id}: ${taxa.length} taxa drawn and ${omitted.length} left out; water at ${stream.look.water} m; ${climateNow}; at ${place.lat}, ${place.lon}`);
+  return { file };
+}
+
+/** The questions a place's spec asks, answered from the build's files. */
+export function placeWorld(s: Solved, index: AtlasIndex, bin: AtlasBin, forms: Record<string, Form>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile): PlaceWorld {
+  const w = s.world;
+  const gen = w.generators.find((g) => g.id === SCENE)!;
+  const { site: _site, ...rest } = gen.params as unknown as LivingParams & { site: unknown };
+  const midMa = toMa(bin.slice);
+  const key = nearestOf(elevation, midMa);
+  const ck = nearestOf(climate, midMa);
+  const isoline = (w.fields.find((f) => f.id === 'field:earth/coastline') as unknown as { isoline_m?: number } | undefined)?.isoline_m ?? 20;
+  const cover = coverAt(planet, bin.slice, {});
+  return {
+    atlas: index,
+    bin,
+    list: (lat, lon) => (atlasHasLand(bin, index.grid, lat, lon) ? atlasList(bin, index.grid, lat, lon) : undefined),
+    forms,
+    keyAge: key.ageMa,
+    elevation: elevationOf(key),
+    plate: plateOf(key),
+    carry: (plate, lat, lon, a, b) => {
+      if (!s.model.reaches(plate, a) || !s.model.reaches(plate, b)) return [lat, lon];
+      const [la, lo] = toLatLon(rotate(s.model.total(plate, b), rotate(conj(s.model.total(plate, a)), unitVector(lat, lon))));
+      return [la, lo];
+    },
+    climateAge: ck.ageMa,
+    climate: climateOf(ck, climateGridInfo),
+    rule,
+    climateField: 'field:earth/climate',
+    cover: { plants: cover.plants, forests: cover.forests, grasses: cover.grasses },
+    isoline,
+    generator: { id: gen.id, version: gen.version, params: rest as unknown as Record<string, unknown> },
+  };
+}
+
+export interface Witness {
+  lat: number;
+  lon: number;
+  t: number;
+  sha256: string;
+  taxa: number;
+}
+
+/** A few places the browser is held to: the same scene, to the byte, as the build makes here. */
+export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, string>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, log: (m: string) => void): Witness[] {
+  const forms = JSON.parse(files.get(index.forms)!) as Record<string, Form>;
+  const out: Witness[] = [];
+  // A stage from each part of the chart that has rows, at the patch with the longest list; and from the middle one, the
+  // places a mistake would hide: as far toward a pole as it has land, and by the line where longitude wraps.
+  const stages = index.bins.filter((b) => b.rows > 200);
+  const chosen = [stages[Math.floor(stages.length * 0.3)], stages[Math.floor(stages.length * 0.6)], stages[Math.floor(stages.length * 0.9)]].filter(Boolean);
+  const patchPlace = (key: number): [number, number] => [90 - (Math.floor(key / index.grid.nx) + 0.5) * index.grid.step, -180 + ((key % index.grid.nx) + 0.5) * index.grid.step];
+  chosen.forEach((ref, order) => {
+    const bin = JSON.parse(files.get(ref.file)!) as AtlasBin;
+    const pw = placeWorld(s, index, bin, forms, elevation, climate, climateGridInfo, rule, planet);
+    const keys = Object.keys(bin.nodes).map(Number);
+    const places: [number, number][] = [patchPlace(keys.sort((a, b) => bin.nodes[String(b)].length - bin.nodes[String(a)].length || a - b)[0])];
+    if (order === 1) {
+      const polar = [...keys].sort((a, b) => Math.abs(patchPlace(b)[0]) - Math.abs(patchPlace(a)[0]) || a - b)[0];
+      places.push(patchPlace(polar));
+      const edge = [...keys].sort((a, b) => Math.abs(patchPlace(b)[1]) - Math.abs(patchPlace(a)[1]) || a - b)[0];
+      places.push(patchPlace(edge));
+    }
+    for (const [lat, lon] of places) {
+      const spec = placeSpec(pw, lat, lon, toMa(bin.slice));
+      if (!spec) continue;
+      const stream = new SceneStream(spec, FULL_BUDGET);
+      out.push({ lat, lon, t: bin.slice, sha256: sha256(stream.digestBytes()), taxa: spec.taxa.length });
+      log(`witness ${ref.name}: ${spec.taxa.length} taxa at ${lat}, ${lon}, ${spec.biome.climate}, water ${stream.look.water} m`);
+    }
+  });
+  return out;
 }

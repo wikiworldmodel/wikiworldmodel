@@ -1,0 +1,50 @@
+id: life/taxa/proterosuchidae
+kind: taxon
+summary: >-
+  Sprawling predators of the earliest Triassic, among the first archosauriforms, with hooked snouts.
+same_as: { pbdb: "txn:38218" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Proterosuchidae", en: "proterosuchids" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: rauisuchian
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.15
+      parts:
+        hind: null
+        fore: null
+        hind-splayed: { type: chain, mirror: true, sides: [6, 3], points: [[0.05, -0.08, 0.8, 0.03], [0.13, -0.06, 0.62, 0.022], [0.15, -0.09, 0.1, 0.015], [0.18, -0.05, 0.03, 0.012]] }
+        fore-splayed: { type: chain, mirror: true, sides: [6, 3], points: [[0.05, 0.12, 0.74, 0.024], [0.12, 0.11, 0.58, 0.018], [0.14, 0.15, 0.1, 0.012], [0.165, 0.19, 0.03, 0.01]] }
+        hook: { type: spike, on: head, mat: hide, sides: [5, 3], from: [0, 0.165, -0.02], to: [0, 0.2, -0.066], r: 0.012 }
+    source:
+      ref: src:wikipedia-proterosuchus
+      loc: "article text"
+      quote: "mid-sized quadrupedal reptile with a sprawling stance"
+    note: >-
+      The stance follows this, and the hooked snout the same article. Cited from Wikipedia because
+      nothing better could be read; the rest is a machine's reconstruction.
+  posture:
+    prop: posture
+    value: sprawling
+    source:
+      ref: src:wikipedia-proterosuchus
+      loc: "article text"
+      quote: "mid-sized quadrupedal reptile with a sprawling stance"
+  length:
+    prop: body_length
+    value: 3.5
+    source:
+      ref: src:wikipedia-proterosuchus
+      loc: "article text"
+      quote: "could reach a length of up to 3.5 meters"
+    method: compilation
+    note: >-
+      Cited from Wikipedia because nothing better could be read: the largest, standing for the
+      family.

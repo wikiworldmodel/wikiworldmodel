@@ -1,52 +1,11 @@
-// A living scene as the build writes it and the viewer draws it: a place at a moment, the ground
-// under it, and the taxa the records put there. Positions are metres on a local grid, as a city's
-// are: x east and y north of the site's origin, which is where the place stood then, not where it
-// is today. Which taxa, how big and when come from the records; where each animal and plant stands,
-// how many, what it is doing and what colour it is come from the generator.
-import type { GroundLevel } from './city.ts';
-import type { ClimateClass } from './climate.ts';
+// A living scene: what it is made from, by the build and by the browser alike. A place at a moment, the land
+// around it, and the taxa the records put there. Positions are metres on a local grid, as a city's are: x east
+// and y north of the site's origin, which is where the place stood then, not where it is today. Which taxa, how
+// big and when come from the records; where each animal and plant stands, how many, what it is doing and what
+// colour it is come from the generator.
+import type { ClimateClass, ClimateNode } from './climate.ts';
+import type { Form } from './form.ts';
 import type { FeatureTime } from './tileset.ts';
-
-/** How a taxon is drawn, as its `body_plan` claim says. */
-export type BodyPlan =
-  | 'ceratopsian'
-  | 'tyrannosaur'
-  | 'hadrosaur'
-  | 'ankylosaur'
-  | 'pachycephalosaur'
-  | 'ornithopod'
-  | 'small-theropod'
-  | 'crocodilian'
-  | 'turtle'
-  | 'small-mammal'
-  | 'conifer'
-  | 'palm'
-  | 'broadleaf'
-  | 'fern';
-
-const PLANT_PLANS: ReadonlySet<string> = new Set(['conifer', 'palm', 'broadleaf', 'fern']);
-export const isPlant = (plan: string) => PLANT_PLANS.has(plan);
-
-export interface SceneTaxon {
-  /** its record */
-  id: string;
-  label: string;
-  plan: BodyPlan;
-  posture?: string;
-  /** the grown animal's length and the height of its hips, in metres, as its claims give them */
-  length?: number;
-  hip?: number;
-  /** its length is not claimed: the kit's shape gives it, from the mass that is */
-  fromMass?: boolean;
-  /** the grown plant's height, in metres, as its claim gives it */
-  height?: number;
-  mass?: number;
-  /** the snapshot's rows that put it in this formation at this moment, and the collections they are in */
-  rows: number;
-  collections: number;
-  time: FeatureTime;
-  variants?: Record<string, FeatureTime>;
-}
 
 /** A taxon of the formation that is not drawn, and why not. */
 export interface SceneOmission {
@@ -62,48 +21,88 @@ export interface SceneCover {
   grasses: number;
 }
 
-export interface SceneFile {
-  format: 'lightworld-scene@1';
+/** How a taxon in a scene rests on evidence. A site's own taxa come from its formation's rows. */
+export type SceneTier = 'formation' | 'here' | 'region' | 'standin';
+
+export interface LivingTaxon {
+  /** a record's id, or the database's number as `txn:123` where no record adopts it */
+  id: string;
+  label: string;
+  /** a key in the scene's forms; and whose form that is */
+  form: string;
+  form_from: string;
+  form_label: string;
+  /** whether the form is the taxon's own: if not, it is its nearest node's, and it says so */
+  own: boolean;
+  tier: SceneTier;
+  /** to the nearest of its rows, in km */
+  km?: number;
+  /** how common it is in the list it comes from, 0–1 */
+  weight: number;
+  /** the rows of its stage, or its formation */
+  rows: number;
+  collections?: number;
+  posture?: string;
+  biped: boolean;
+  /** how big it grew, in metres or kg: what the generator draws, within any range a claim gives */
+  length?: number;
+  hip?: number;
+  height?: number;
+  mass?: number;
+  /** where its length or height comes from, if not its own measurement */
+  size_from?: string;
+  /** its length follows from a claimed mass */
+  fromMass?: boolean;
+  diet?: string;
+  time: FeatureTime;
+  variants?: Record<string, FeatureTime>;
+}
+
+/** The elevation field around a place, at the keyframe nearest its time: rows from the north, in metres above the coast. */
+export interface ReliefPatch {
+  lat0: number;
+  lon0: number;
+  step: number;
+  nx: number;
+  ny: number;
+  z: number[];
+}
+
+/** Everything a scene is made from: nothing else about the world goes in, and the same spec makes the same bytes. */
+export interface SceneSpec {
+  format: 'lightworld-scene@2';
   site: {
     id: string;
     label: string;
-    /** the record the scene belongs to */
-    place: string;
+    /** the record the scene belongs to, if it is a place with a record */
+    place?: string;
     /** the local grid's origin: where the place stood at the slice, in the globe's coordinates at that time */
     origin: { lat: number; lon: number };
-    /** the place's own coordinates today */
-    today: { lat: number; lon: number };
+    /** where that is in the coordinates of the relief's keyframe, as the plate had carried it */
+    relief_at?: { lat: number; lon: number };
     /** the times it is drawn for, and the moment it describes */
     span: [number, number];
     slice: number;
-    water_level: number;
-    /** where a visitor arrives, in local metres, and the direction from there to the river */
-    focus: [number, number];
-    to_river: [number, number];
+    /** what its stage is called */
+    stage?: string;
   };
-  /** finest first, as a city's: a place uses the finest level that covers it */
-  ground: GroundLevel[];
-  taxa: SceneTaxon[];
+  relief: ReliefPatch;
+  biome: { climate: ClimateClass; label: string; field: string; ageMa: number; cover: SceneCover; node: ClimateNode };
+  taxa: LivingTaxon[];
   omitted: SceneOmission[];
-  /** the climate field's reading of the place, and the cover the transitions allow */
-  biome: { climate: ClimateClass; label: string; field: string; ageMa: number; cover: SceneCover };
-  /** the rows the scene rests on */
-  fossils: {
-    source: string;
-    title: string;
-    rows: number;
-    collections: number;
-    /** how many of those rows belong to a taxon that is drawn */
-    drawn: number;
-  };
-  generator: {
-    generator: string;
-    version: number;
-    seed: string;
-    basis: 'procedural';
-    params: Record<string, unknown>;
-    /** the hash of the plan, and of one cell's mesh, which the browser must match to the byte */
-    outputSha256: string;
-    cell: { key: number; detail: number; sha256: string };
-  };
+  forms: Record<string, Form>;
+  /** what the taxa rest on */
+  fossils: { source: string; title: string; rows: number; collections: number; drawn: number };
+  generator: { generator: string; version: number; seed: string; basis: 'procedural'; params: Record<string, unknown> };
+}
+
+/** A scene the build wrote, with what proves a browser made the same one. */
+export interface SceneFileV2 {
+  format: 'lightworld-scene-file@2';
+  spec: SceneSpec;
+  /** the hash of its ground, the cell it is arrived at and one mesh */
+  sha256: string;
+  focus: [number, number];
+  to_river: [number, number];
+  water_level: number;
 }

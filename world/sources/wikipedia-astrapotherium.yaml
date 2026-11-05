@@ -1,0 +1,18 @@
+id: src:wikipedia-astrapotherium
+type: database-record
+kind: review
+citation: >-
+  "Astrapotherium." Wikipedia, the free encyclopedia (English edition), revision 1379090377.
+snapshot: 2026-11-05
+title: Astrapotherium
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Astrapotherium&oldid=1379090377
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for the size of the genus, for which nothing better
+  could be read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-05, last edited 7 October 2026; the quotations checked
+    by script against its text, after normalizing whitespace.

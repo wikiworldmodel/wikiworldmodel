@@ -13,7 +13,7 @@ Each domain lists its needs in a table:
 | Column | Meaning |
 |---|---|
 | **Need** | what the world should hold |
-| **Here** | ✓ have it · ◐ partly · ○ missing (as of the sixth slice and its [record sets](RECORD-SETS.md)) |
+| **Here** | ✓ have it · ◐ partly · ○ missing (as of the seventh slice and the [record sets](RECORD-SETS.md)) |
 | **Sources** | candidate datasets and works. Datasets named here exist; check their current version. |
 | **License** | ✓ CC0, CC BY or public domain, so a build may use it · ✗ share-alike, non-commercial or closed: may be cited, quoted briefly and linked, but not imported · ? not confirmed here, check before importing |
 | **As** | **D** a dataset in the manifest with an importer · **R** researched records · **F** a field (gridded or a series) · **G** a generator · **C** a check (evidence a derived value is tested against) |
@@ -148,9 +148,9 @@ What every other domain leans on.
 
 | Need | Here | Sources | License | As |
 |---|---|---|---|---|
-| Tree of life: topology | ◐ 26 clades from cellular organisms to Homo sapiens, and the Hell Creek's taxa with their parents from the PBDB, with a panel | Open Tree of Life synthetic tree; PBDB | ✓ (check) | D |
+| Tree of life: topology | ◐ 26 clades from cellular organisms to Homo sapiens, the Hell Creek's taxa with their parents from the PBDB, and every taxon that has a form, with a panel; the land's 104,000 taxa as rows | Open Tree of Life synthetic tree; PBDB | ✓ (check) | D |
 | Tree of life: divergence times | ◐ | TimeTree; fossil calibrations (Benton et al. 2015) | ? TimeTree | D/R |
-| Fossil occurrences with paleo-coordinates | ◐ 26 written, 16 fossil forests, and a snapshot of the Hell Creek's 5,277 rows | Paleobiology Database | ✓ CC0 by the service's notice of November 2026 (earlier CC BY) | D (snapshot) |
+| Fossil occurrences with paleo-coordinates | ◐ 26 written, 16 fossil forests, a snapshot of the Hell Creek's 5,277 rows, and of the land's 245,000 over the Phanerozoic; no seas | Paleobiology Database | ✓ CC0 by the service's notice of November 2026 (earlier CC BY) | D (snapshot) |
 | Quaternary fossils and pollen | ○ | Neotoma | ✓ CC BY | D |
 | Present-day species occurrences | ○ | GBIF (licensed per dataset: keep CC0 and CC BY) | ◐ | D |
 | Species ranges through time | ○ | derived from occurrences (alpha hulls), as the design proposes | — | F (derived) |
@@ -158,7 +158,7 @@ What every other domain leans on.
 | Major transitions: eukaryotes, multicellularity, Ediacara, the Cambrian explosion, land plants, flight, amniotes, flowers, grasses | ✓ as records with their evidence: 14 of life's, and the land's covers; reef builders in seven episodes | literature | — | R |
 | The five mass extinctions and the smaller ones | ✓ five | literature; PBDB-derived diversity curves | ✓ | R + F |
 | Biodiversity through time | ◐ animal genera by stage, uncorrected | PBDB-derived curves; Sepkoski's compendium | ✓ PBDB | F |
-| Dinosaurs, mammals and other famous groups, as taxa with ranges and specimens | ◐ the Hell Creek's, with sizes and postures | PBDB; museum records; literature | ✓ | D + R |
+| Dinosaurs, mammals and other famous groups, as taxa with ranges and specimens | ◐ the Hell Creek's, with sizes and postures; and a form and a size range for most groups on land, written by agents | PBDB; museum records; literature | ✓ | D + R |
 | Museum specimens (the T. rex you can click in Chicago) | ○ | GBIF and iDigBio specimen records; museum open data (Smithsonian, CC0) | ✓ | D + R |
 | Megafauna extinctions | ◐ five regions, 13 genera and species, three pictures of the cause among the alternatives | literature; dated last occurrences | — | R |
 | Domestication of plants and animals | ◐ worldwide, from the sources of each, as 47 records | literature; archaeobotanical and zooarchaeological databases | ? | R |

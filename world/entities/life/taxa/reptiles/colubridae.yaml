@@ -1,0 +1,19 @@
+id: life/taxa/colubridae
+kind: taxon
+summary: >-
+  Rat snakes, racers and their kin: the largest family of snakes.
+same_as: { pbdb: "txn:38127" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Colubridae", en: "colubrid snakes" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.16, hi: 3.7 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Colubrids (Colubridae)\""
+      quote: "6 in–12 ft (160 mm–3.7 m)"
+    method: compilation

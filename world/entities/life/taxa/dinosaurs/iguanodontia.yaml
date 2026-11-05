@@ -1,0 +1,35 @@
+id: life/taxa/iguanodontia
+kind: taxon
+summary: >-
+  The iguanodonts, the large beaked dinosaurs. This record speaks for those in no smaller group.
+same_as: { pbdb: "txn:52805" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Iguanodontia }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: iguanodont
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  posture:
+    prop: posture
+    value: facultative-quadruped
+    source:
+      ref: src:maidment-2012-ornithischian-stance
+      loc: "Materials and Methods, Predominantly quadrupedal hadrosaurs"
+      quote: "facultatively quadrupedal ornithopod Iguanodon bernissartensis"
+    note: >-
+      Their stance has been argued over, as this source says at length; Iguanodon is its example of
+      a large ornithopod that walked on two legs or four.
+  length:
+    prop: body_length
+    value: { lo: 2.1, hi: 13 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 43, Primitive Iguanodontians", quote: "Anabisetia for [Argentine archaeologist] Ana Late Cretaceous (94-91 MYA) 6.8 ft (2.1 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 44, Primitive Styracosternans", quote: "Iguanodon iguana tooth Early Cretaceous (130-120 MYA) 42.7 ft (13 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Primitive Iguanodontians" (p. 43), "Camptosaurids" and "Primitive
+      Styracosternans" (pp. 44-45), standing for any member with no length of its own.

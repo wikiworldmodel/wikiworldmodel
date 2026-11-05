@@ -1,0 +1,25 @@
+id: life/taxa/pleurodira
+kind: taxon
+summary: >-
+  The side-necked turtles of the southern continents.
+same_as: { pbdb: "txn:37589" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Pleurodira", en: "side-necked turtles" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.155, hi: 1.07 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Pseudemydura umbrina, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "606 NA 155"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Podocnemis expansa, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "64845 NA 1070"
+    method: compilation
+    note: >-
+      The straight length of the shell, the smallest and largest of living species in the dataset.
+      Some fossil ones were far larger.

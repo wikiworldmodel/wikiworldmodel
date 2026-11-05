@@ -1,0 +1,76 @@
+description: >-
+  An elephant or one of its kin: a huge body on columnar legs, a domed head, a long trunk, tusks and broad ears. Its length runs from the forehead to the end of the tail, without the trunk's reach.
+kind: animal
+hip: 0.46
+# Its mesh, head and all, at the density of water, for its length.
+mass_length: 44
+behave: { group: [2, 10], habitat: any, poses: [graze, stand, stand, walk, alert] }
+parts:
+  body:
+    type: trunk
+    rings:
+      - [-0.47, 0.42, 0.36, 0.006]
+      - [-0.46, 0.68, 0.58, 0.012]
+      - [-0.44, 0.92, 0.78, 0.02]
+      - [-0.41, 1.0, 0.66, 0.066]
+      - [-0.33, 1.05, 0.52, 0.104]
+      - [-0.2, 1.1, 0.48, 0.122]
+      - [-0.06, 1.15, 0.47, 0.128]
+      - [0.06, 1.19, 0.48, 0.122]
+      - [0.15, 1.2, 0.54, 0.1]
+      - [0.2, 1.16, 0.62, 0.08]
+    neck: { r: 0.075, steps: [2, 1] }
+  hind: { type: pillar, y: -0.25, x: 0.085, top: 0.76, r: 0.056, swing: 0.045 }
+  fore: { type: pillar, y: 0.12, x: 0.088, top: 0.72, r: 0.056, swing: 0.045, phase: 1 }
+  head:
+    type: head
+    at:
+      stand: { y: 0.25, z: 1.12, pitch: 0.32 }
+      alert: { y: 0.25, z: 1.22, pitch: 0.1 }
+      low: { y: 0.27, z: 0.98, pitch: 0.62 }
+    rings:
+      - [-0.02, 0.04, 0.052, 0.07]
+      - [0.035, 0.05, 0.076, 0.098]
+      - [0.09, 0.02, 0.072, 0.09]
+      - [0.13, -0.03, 0.05, 0.062]
+    thin: false
+  nose:
+    type: chain
+    on: head
+    sides: [8, 5]
+    points:
+      - [0, 0.125, -0.05, 0.042]
+      - [0, 0.165, -0.13, 0.034]
+      - [0, 0.18, -0.22, 0.027]
+      - [0, 0.18, -0.31, 0.021]
+      - [0, 0.195, -0.39, 0.015]
+      - [0, 0.225, -0.43, 0.009]
+  tusks:
+    type: chain
+    on: head
+    mirror: true
+    mat: horn
+    tint: 210
+    sides: [6, 4]
+    points:
+      - [0.038, 0.1, -0.05, 0.015]
+      - [0.05, 0.16, -0.11, 0.0135]
+      - [0.058, 0.23, -0.14, 0.011]
+      - [0.056, 0.3, -0.12, 0.0065]
+      - [0.046, 0.34, -0.08, 0.002]
+  ears:
+    type: sheet
+    on: head
+    mirror: true
+    mat: hide
+    gap: 0.003
+    points:
+      - [0.06, 0.03, 0.06]
+      - [0.1, 0.03, 0.12]
+      - [0.13, -0.03, 0.135]
+      - [0.15, -0.09, 0.09]
+      - [0.15, -0.11, 0.0]
+      - [0.125, -0.09, -0.09]
+      - [0.095, -0.045, -0.11]
+      - [0.07, -0.0, -0.05]
+  eyes: { type: eyes, on: head, near: true, at: [0.072, 0.075, 0.015], r: 0.0065 }

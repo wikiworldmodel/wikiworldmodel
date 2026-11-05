@@ -1,0 +1,44 @@
+id: life/taxa/coelophysoidea
+kind: taxon
+summary: >-
+  The coelophysoids: slim, early, long-necked hunters of the Late Triassic and Early Jurassic with a
+  kink in the snout.
+same_as: { pbdb: "txn:55476" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Coelophysoidea }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.6, 0.86, 0.85, 0.0018]
+            - [-0.47, 0.9, 0.86, 0.004]
+            - [-0.34, 0.94, 0.86, 0.006]
+            - [-0.21, 0.98, 0.84, 0.01]
+            - [-0.1, 1.01, 0.78, 0.017]
+            - [-0.02, 1.02, 0.66, 0.027]
+            - [0.06, 1.0, 0.6, 0.031]
+            - [0.13, 1.0, 0.64, 0.027]
+            - [0.17, 1.04, 0.78, 0.018]
+          neck: { r: 0.0085 }
+        head:
+          at:
+            stand: { y: 0.29, z: 1.22, pitch: 0.06 }
+    unsourced: >-
+      A machine's reconstruction: a slimmer, straighter body than the plan, from the silhouette of
+      AMNH 7223 in "Coelophysis Scale.svg" on Wikimedia Commons.
+  length:
+    prop: body_length
+    value: { lo: 1.1, hi: 5.5 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 3, Coelophysoids", quote: "Procompsognathus before Compsognathus LateTriassic (228-204 MYA) 3.6 ft (1.1 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 2, Coelophysoids", quote: "Gojirasaurus Godzilla reptile LateTriassic (228-204 MYA) 18 ft (5.5 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Coelophysoids" (pp. 2-3), standing for any member
+      with no length of its own.

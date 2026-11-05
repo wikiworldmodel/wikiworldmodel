@@ -1,0 +1,32 @@
+id: life/taxa/panephemeroptera
+kind: taxon
+summary: >-
+  The mayflies and their fossil stem group.
+same_as: { pbdb: "txn:193466" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Panephemeroptera, en: "mayflies and their stem group" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: mayfly
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, from general knowledge of mayflies; no figure was compared with it. Fossil
+      stem members may differ.
+  length:
+    prop: body_length
+    value: { lo: 0.0015, hi: 0.035 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Ephemeroptera Prosopistomatidae\""
+        quote: "Ephemeroptera Prosopistomatidae 19 1.5 4.5 (Pearson & Penridge 1979)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Ephemeroptera Palingeniidae\""
+        quote: "Ephemeroptera Palingeniidae 32 15 35 (Parker, 1982)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for living mayflies, its millimetres given in metres. Fossil
+      members may lie outside it; none was read.

@@ -1,0 +1,32 @@
+id: life/taxa/chondrichthyes
+kind: taxon
+summary: >-
+  Sharks, rays and chimaeras, with skeletons of cartilage. As a body it stands for the river and lake sharks of the Palaeozoic and
+  Mesozoic, as this atlas holds no seas yet.
+same_as: { pbdb: "txn:34422" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Chondrichthyes, en: cartilaginous fishes }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: shark
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in the tree. The
+      plan is a machine's drawing of the general shape of a shark, from no figure.
+  length:
+    prop: body_length
+    value: { lo: 1.5, hi: 2.6 }
+    source:
+      - ref: src:beck-2016-orthacanthus
+        loc: "p. 110"
+        quote: "the living animal could be about 150 cm in total length"
+      - ref: src:fishbase-freshwater-fishes
+        loc: "Carcharhinus leucas, Size / Weight / Age"
+        quote: "common length : 260 cm TL male/unsexed"
+    method: expert-estimate
+    note: >-
+      An estimated Permian Orthacanthus, and the common length of the living bull shark, which enters rivers, stand for the sharks of fresh
+      water here. The ones of the sea are far more various, and the small ones are not within this range.

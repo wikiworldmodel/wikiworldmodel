@@ -1,0 +1,23 @@
+id: life/taxa/argentinosaurus
+kind: taxon
+summary: >-
+  Argentinosaurus, a titanosaur of the Cretaceous of Argentina, among the largest animals ever to
+  walk.
+same_as: { pbdb: "txn:66645" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Argentinosaurus }
+    unsourced: The classification's own name.
+  length-holtz-2012:
+    prop: body_length
+    value: 36.6
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 36, Antarctosaurids"
+      quote: "Argentinosaurus Argentina reptile Late Cretaceous (97-93.5 MYA) 120 ft (36.6 m)?"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it, and the author's own doubt: the animal is
+      known from a few bones.

@@ -1,0 +1,18 @@
+id: src:kramer-sylvester-2025-australopithecine-hip
+type: publication
+kind: measurement
+citation: >-
+  Kramer, P.A. & Sylvester, A.D. (2025). Hip stabilization in an australopithecine-like hip: the
+  influence of shape on muscle activation. Biology Open 14(6), bio061931.
+authors:
+  - "Kramer, P.A."
+  - "Sylvester, A.D."
+published: 2025
+title: "Hip stabilization in an australopithecine-like hip: the influence of shape on muscle activation"
+container: "Biology Open 14(6), bio061931"
+doi: 10.1242/bio.061931
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC12208404). Quotes checked by script against the
+    text retrieved, after normalizing whitespace.

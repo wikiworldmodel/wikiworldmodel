@@ -1,0 +1,28 @@
+id: life/taxa/diplopoda
+kind: taxon
+summary: >-
+  The millipedes, with two pairs of legs to most rings of the body.
+same_as: { pbdb: "txn:57323" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Diplopoda, en: "millipedes" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: millipede
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, from Britannica's account of millipedes and general knowledge; no figure
+      was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.002, hi: 0.28 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. millipede"
+        quote: "The length ranges from 2 to 280 mm (0.08 to 11 inches)."
+    method: compilation
+    note: >-
+      Living millipedes, in an encyclopedia's numbers, cited for lack of a work that could be read.

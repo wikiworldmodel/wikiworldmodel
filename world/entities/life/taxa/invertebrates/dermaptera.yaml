@@ -1,0 +1,37 @@
+id: life/taxa/dermaptera
+kind: taxon
+summary: >-
+  The earwigs: flat and slender, with short leathery fore wings and a pair of forceps at the tail.
+same_as: { pbdb: "txn:71371" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dermaptera, en: "earwigs" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        fore-wings: { mat: chitin, points: [[0.012, 0.2, 0.2], [0.07, 0.12, 0.15], [0.07, -0.04, 0.13], [0.01, -0.06, 0.18]] }
+        forceps: { type: chain, zl: true, mat: chitin, mirror: true, sides: [4, 3], points: [[0.02, -0.45, 0.085, 0.014], [0.05, -0.56, 0.075, 0.012], [0.012, -0.72, 0.07, 0.004]] }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. earwig"
+        quote: "large membranous hindwings that lie hidden under short, leathery forewings"
+    note: >-
+      The short fore wings are the article's. The forceps and the proportions are a machine's reconstruction, with no
+      figure compared.
+  length:
+    prop: body_length
+    value: { lo: 0.004, hi: 0.08 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Dermaptera Labiidae\""
+        quote: "Dermaptera Labiidae 495 4 7 (Arnett, 2000)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Dermaptera Labiduridae\""
+        quote: "Dermaptera Labiduridae 64 18 80 (Arnett, 2000)/(Berenbaum, 2007)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres.

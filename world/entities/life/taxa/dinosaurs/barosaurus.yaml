@@ -1,0 +1,52 @@
+id: life/taxa/barosaurus
+kind: taxon
+summary: >-
+  Barosaurus, a diplodocid of the Morrison Formation with an even longer neck and a shorter tail.
+same_as: { pbdb: "txn:38666" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Barosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.545, 0.76, 0.75, 0.0005]
+            - [-0.47, 0.88, 0.865, 0.001]
+            - [-0.4, 0.98, 0.955, 0.002]
+            - [-0.33, 1.04, 0.99, 0.004]
+            - [-0.26, 1.08, 0.97, 0.007]
+            - [-0.2, 1.09, 0.91, 0.012]
+            - [-0.14, 1.06, 0.8, 0.02]
+            - [-0.09, 1.03, 0.66, 0.032]
+            - [-0.05, 1.0, 0.5, 0.046]
+            - [0.0, 0.99, 0.36, 0.05]
+            - [0.05, 0.98, 0.32, 0.048]
+            - [0.09, 0.97, 0.4, 0.038]
+            - [0.13, 0.96, 0.6, 0.026]
+          neck: { r: 0.0075, steps: [9, 2] }
+        hind: { y: -0.055 }
+        fore: { y: 0.08 }
+        head:
+          at:
+            stand: { y: 0.41, z: 1.42, pitch: 0.2 }
+            alert: { y: 0.38, z: 2.0, pitch: 0.05 }
+            low: { y: 0.42, reach: 0.042, pitch: 0.9, clear: 0.06 }
+    unsourced: >-
+      A machine's reconstruction: the same body as the plan with the neck lengthened to about 36% of
+      the whole and the tail shortened, from the silhouettes "Barosaurus-size-3.svg" on Wikimedia
+      Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 26
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 31, Diplodocines"
+      quote: "Barosaurus heavy reptile Late Jurassic (155.7-150.8MYA) 85.3 ft (26 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

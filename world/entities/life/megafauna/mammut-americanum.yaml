@@ -55,6 +55,68 @@ claims:
       thousands of years than any AMS date in it, so it is probably too young, as dates on
       contaminated mastodon bones have proved to be in the north (Zazula et al. 2014). No source
       read assesses this one.
+  body-plan:
+    prop: body_plan
+    value: proboscidean
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.44
+      parts:
+        body:
+          rings:
+            - [-0.47, 0.42, 0.36, 0.006]
+            - [-0.46, 0.68, 0.58, 0.012]
+            - [-0.44, 0.92, 0.78, 0.02]
+            - [-0.41, 1.0, 0.64, 0.072]
+            - [-0.33, 1.06, 0.5, 0.11]
+            - [-0.2, 1.08, 0.46, 0.13]
+            - [-0.06, 1.12, 0.45, 0.136]
+            - [0.06, 1.16, 0.46, 0.13]
+            - [0.15, 1.18, 0.52, 0.106]
+            - [0.2, 1.12, 0.6, 0.086]
+          neck: { r: 0.075, steps: [2, 1] }
+        head:
+          at:
+            stand: { y: 0.245, z: 1.08, pitch: 0.28 }
+            alert: { y: 0.245, z: 1.18, pitch: 0.08 }
+            low: { y: 0.265, z: 0.98, pitch: 0.6 }
+          rings:
+            - [-0.02, 0.02, 0.052, 0.062]
+            - [0.035, 0.026, 0.07, 0.082]
+            - [0.09, 0.008, 0.068, 0.078]
+            - [0.13, -0.03, 0.05, 0.058]
+        hind: { r: 0.058 }
+        fore: { r: 0.06 }
+        tusks:
+          points:
+            - [0.038, 0.1, -0.04, 0.0165]
+            - [0.052, 0.17, -0.07, 0.015]
+            - [0.066, 0.26, -0.09, 0.012]
+            - [0.07, 0.35, -0.08, 0.009]
+            - [0.062, 0.42, -0.04, 0.004]
+        ears:
+          points:
+            - [0.06, 0.025, 0.05]
+            - [0.095, 0.015, 0.1]
+            - [0.115, -0.03, 0.09]
+            - [0.115, -0.06, 0.0]
+            - [0.085, -0.04, -0.06]
+    unsourced: >-
+      A machine's reconstruction, from Larramendi's account of mastodon proportions: longer
+      and lower than an elephant, the tusks long and forward. The same form as the record for
+      Mammutidae, as this record hangs directly on Mammalia.
+  mass-mammal-forms:
+    prop: body_mass
+    value: { lo: 6800, hi: 9200 }
+    source:
+      ref: src:larramendi-2016-proboscideans
+      loc: "Table 8, row Mammut americanum ♂"
+      quote: "body mass 6.8 < 6.8–9.2 (8) 9.3–10.2 10.3–12.8 12.9–14.2"
+    method: model
+    note: >-
+      The average grade for full-grown males, in tonnes in the table.
 relations:
   parent:
     rel: descends-from

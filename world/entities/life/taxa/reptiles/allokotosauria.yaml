@@ -1,0 +1,44 @@
+id: life/taxa/allokotosauria
+kind: taxon
+summary: >-
+  Plant-eating archosauromorphs of the Triassic, Trilophosaurus chief among them in the fossils
+  named.
+same_as: { pbdb: "txn:347447" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Allokotosauria", en: "trilophosaurs and relatives" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: rhynchosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        beak: { rings: [[0.155, -0.014, 0.014, 0.018], [0.185, -0.02, 0.01, 0.014], [0.195, -0.034, 0.005, 0.008]] }
+        head:
+          rings:
+            - [-0.02, 0, 0.044, 0.044]
+            - [0.03, 0.002, 0.06, 0.052]
+            - [0.09, -0.004, 0.046, 0.04]
+            - [0.14, -0.012, 0.024, 0.026]
+            - [0.17, -0.018, 0.014, 0.018]
+    unsourced: "A machine's reconstruction: a narrower head than the plan's rhynchosaur. No skeletal figure was looked at."
+  posture:
+    prop: posture
+    value: sprawling
+    unsourced: "No work read states its stance; an editorial choice."
+  length:
+    prop: body_length
+    value: 2.5
+    source:
+      ref: src:wikipedia-trilophosaurus
+      loc: "article text"
+      quote: "It was a herbivore up to 2.5 m long."
+    method: compilation
+    note: >-
+      Cited from Wikipedia because nothing better could be read: Trilophosaurus at its largest,
+      standing for the group.

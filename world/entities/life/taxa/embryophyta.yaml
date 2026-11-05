@@ -22,6 +22,29 @@ claims:
     note: >-
       A crown-group age: the last common ancestor of the living members, which is this group’s
       origin here. 95% HPD interval; under the hornworts-sister topology it is 515.2–482.1 Ma.
+  body-plan:
+    prop: body_plan
+    value: low-plant
+    unsourced: "What draws any land plant with no form nearer: a low plant of bare stems, as the first land plants were. An editorial classification."
+  height:
+    prop: plant_height
+    value: { lo: 0.1, hi: 0.4 }
+    source:
+      - ref: src:munster-rhynie-chert-flora
+        loc: "II. The Rhynie Chert flora"
+        quote: "The vascular land plants were small, ca. 10 to 40 cm high."
+      - ref: src:aberdeen-rhynie-chert-flora
+        loc: "Basic information on the higher plants in the Rhynie chert, Aglaophyton major"
+        quote: "This plant grew to around 15cm in height"
+      - ref: src:aberdeen-rhynie-chert-flora
+        loc: "Basic information on the higher plants in the Rhynie chert, Asteroxylon mackiei"
+        quote: "The aerial upright axes of the plant grew to about 40cm in height"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The Early Devonian plants of the Rhynie chert, standing for a land plant with no height of its
+      own: Cooksonia, the liverworts, Psilophyton and others take it until someone reads theirs. Most
+      land plants are not this size, and this is a floor to draw from and no claim about them all.
 relations:
   parent:
     rel: descends-from

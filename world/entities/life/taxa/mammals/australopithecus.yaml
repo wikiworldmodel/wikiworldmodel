@@ -1,0 +1,53 @@
+id: life/taxa/australopithecus
+kind: taxon
+summary: >-
+  The upright early hominins of Africa, with long arms and short legs.
+same_as: { pbdb: "txn:40900" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Australopithecus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.47
+      parts:
+        arms: { points: [[0.112, 0.0, 0.795, 0.032], [0.13, -0.012, 0.61, 0.024], [0.136, 0.012, 0.44, 0.018], [0.138, 0.024, 0.37, 0.013]] }
+        torso:
+          rings:
+            - [0, 0.0, 0.46, 0.096, 0.062]
+            - [0, 0.0, 0.54, 0.09, 0.062]
+            - [0, 0.0, 0.62, 0.09, 0.064]
+            - [0, 0.0, 0.71, 0.094, 0.066]
+            - [0, 0.0, 0.79, 0.086, 0.056]
+            - [0, 0.0, 0.825, 0.05, 0.036]
+    unsourced: >-
+      A machine's reconstruction, the plan with longer arms for its height and a wider trunk,
+      as the group is generally described; only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 1.05, hi: 1.51 }
+    source:
+      ref: src:will-2017-hominin-body-size
+      loc: "Table 3, row australopithecines, under stature"
+      quote: "australopithecines 7 125.43 120.00 117.87 140.95 17.20 105.00 151.00 13.7"
+    method: compilation
+    note: >-
+      Standing height in centimetres in the table.
+  mass:
+    prop: body_mass
+    value: { lo: 22.7, hi: 63.6 }
+    source:
+      ref: src:will-2017-hominin-body-size
+      loc: "Table 3, row australopithecines, under body mass"
+      quote: "australopithecines 47 34.64 33.90 22.99 54.23 8.79 22.70 63.60 25.4"
+    method: compilation
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source:
+      ref: src:pbdb-land-2026-11-05
+      loc: "taxon 40900: Australopithecus < Hominini (txn:91486)"

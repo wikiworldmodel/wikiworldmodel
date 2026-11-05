@@ -1,0 +1,31 @@
+id: life/taxa/deinonychus
+kind: taxon
+summary: >-
+  Deinonychus, the "terrible claw" of the Early Cretaceous of western North America, whose study
+  remade the picture of dinosaurs.
+same_as: { pbdb: "txn:38562" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Deinonychus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the plan dromaeosaur, which was measured from this
+      genus: the silhouette "Deinonychus Scale.svg" on Wikimedia Commons. Nothing here differs from
+      it.
+  length-holtz-2012:
+    prop: body_length
+    value: 4
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 17, Velociraptorines"
+      quote: "Deinonychus terrible claws Early Cretaceous (118-110MYA) 13.1ft (4 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it; the silhouette looked at for the plan
+      draws about 3.7 m.

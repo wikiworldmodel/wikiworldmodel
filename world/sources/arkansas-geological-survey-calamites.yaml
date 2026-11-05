@@ -1,0 +1,16 @@
+id: src:arkansas-geological-survey-calamites
+type: database-record
+kind: compilation
+citation: >-
+  Arkansas Geological Survey. Lycopods. Fact sheet on Calamites, a PDF on the survey's website.
+snapshot: 2026-11-05
+title: "Calamites"
+container: Arkansas Geological Survey
+url: https://www.geology.arkansas.gov/docs/pdf/geology/invertebrate_fossils/Calamites.pdf
+reliability: >-
+  A state survey's fact sheet, which gives no source for its figure.
+verified:
+  by: machine:claude-code
+  how: >-
+    The PDF read at geology.arkansas.gov on the date of the snapshot; quotes checked by script against
+    the text extracted from it.

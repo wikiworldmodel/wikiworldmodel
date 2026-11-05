@@ -1,0 +1,35 @@
+id: life/taxa/nelumbonaceae
+kind: taxon
+summary: >-
+  Lotuses, with leaves on or held above the water.
+same_as: { pbdb: "txn:55399" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Nelumbonaceae, en: lotuses }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: floating-fern
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 3, s.v. Nelumbonaceae"
+      quote: "alternate, floating or emersed"
+  form:
+    prop: body_form
+    value:
+      parts:
+        plant: { radius: 1.6 }
+    unsourced: "A machine's reconstruction: smaller patches than a floating fern's mats, and flat, though a lotus's leaves may stand above the water."
+  height:
+    prop: plant_height
+    value: { lo: 1, hi: 2 }
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 6, s.v. Nelumbo nucifera"
+      quote: "Petiole 1--2 m"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The leaf stalk of the living lotus, much of it under water: a modern relative.

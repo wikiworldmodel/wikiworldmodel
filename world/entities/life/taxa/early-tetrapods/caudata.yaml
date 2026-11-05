@@ -1,0 +1,34 @@
+id: life/taxa/caudata
+kind: taxon
+summary: >-
+  Salamanders and newts and their extinct stem, from the Jurassic to now.
+same_as: { pbdb: "txn:53229" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Caudata, en: salamanders }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length-typical:
+    prop: body_length
+    value: { lo: 0.05, hi: 0.15 }
+    source:
+      ref: src:ebsco-newts-salamanders
+      loc: "paragraph beginning 'Newts and salamanders live in the water and on land'"
+      quote: "The average adult salamanders and newts measure 2 to 6 inches (5 to 15 centimeters) long"
+    method: compilation
+    rank: preferred
+    note: >-
+      Preferred for what any salamander with no length of its own takes: the extremes below would draw most too large.
+  length-extremes:
+    prop: body_length
+    value: { lo: 0.025, hi: 1.7 }
+    source:
+      - ref: src:gale-encyclopedia-salamanders
+        loc: "Biology of salamanders"
+        quote: "have a total body length of only 1 in (2.5 cm)"
+      - ref: src:gale-encyclopedia-salamanders
+        loc: "Biology of salamanders"
+        quote: "largest living salamanders can be as long as 5.5 ft (1.7 m)"
+    method: compilation
+    note: The smallest Thorius and the giant salamanders of Asia.

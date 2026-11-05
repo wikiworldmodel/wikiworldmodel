@@ -1,0 +1,18 @@
+id: src:wikipedia-chalicotherium
+type: database-record
+kind: review
+citation: >-
+  "Chalicotherium." Wikipedia, the free encyclopedia (English edition), revision 1380774700.
+snapshot: 2026-11-05
+title: Chalicotherium
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Chalicotherium&oldid=1380774700
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for a body mass, which it gives without a citation.
+  Nothing better could be read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-05, last edited 17 October 2026; the quotations checked
+    by script against its text, after normalizing whitespace.

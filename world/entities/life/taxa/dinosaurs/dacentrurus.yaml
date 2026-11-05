@@ -1,0 +1,28 @@
+id: life/taxa/dacentrurus
+kind: taxon
+summary: >-
+  Dacentrurus, a heavy, spiny stegosaur of the Late Jurassic of Europe.
+same_as: { pbdb: "txn:38808" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dacentrurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Dacentrurinae, which was measured from
+      this genus: "Dacentrurus Scale.svg" on Wikimedia Commons. Nothing here differs from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 8
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 39, Dacentrurines"
+      quote: "Dacentrurus very spiky tail Late Jurassic (161.2-145.5 MYA) 26.2 ft (8 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

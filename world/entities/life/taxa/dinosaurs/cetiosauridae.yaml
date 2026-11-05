@@ -1,0 +1,21 @@
+id: life/taxa/cetiosauridae
+kind: taxon
+summary: >-
+  The cetiosaurs, early whale-sized sauropods of the Jurassic.
+same_as: { pbdb: "txn:38654" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cetiosauridae }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 12, hi: 18.3 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 29, Primitive Cetiosaurids", quote: "Tehuelchesaurus Tehuelche [Native Argentine Late Jurassic (155.7-145.5 MYA) 39.4 ft (12 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 29, Primitive Cetiosaurids", quote: "Barapasaurus big-leg reptile Early Jurassic (199.6-175.6 MYA) 60 ft (18.3 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Primitive Cetiosaurids" on that page, standing for
+      any member with no length of its own.

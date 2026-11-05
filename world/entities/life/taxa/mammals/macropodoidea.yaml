@@ -1,0 +1,39 @@
+id: life/taxa/macropodoidea
+kind: taxon
+summary: >-
+  The kangaroo superfamily as the database places it, here mainly the extinct short-faced
+  kangaroos (Sthenurinae). They walk upright by the plan; whether they hopped is disputed.
+same_as: { pbdb: "txn:53070" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Macropodoidea }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: macropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  mass:
+    prop: body_mass
+    value: { lo: 50, hi: 232 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Procoptodon_browneorum, column Mass.g (grams)"
+        quote: "Procoptodon_browneorum,Diprotodontia,Macropodidae,Procoptodon,browneorum,1,0,0,0,Imputed,PHYLACINE 1.2.1,50000"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Procoptodon_goliah, column Mass.g (grams)"
+        quote: "Procoptodon_goliah,Diprotodontia,Macropodidae,Procoptodon,goliah,1,0,0,0,Imputed,PHYLACINE 1.2.1,232000"
+    method: compilation
+    note: >-
+      The sthenurines in PHYLACINE, standing for the superfamily as the snapshot places its
+      rows. No length of the whole animal was read: the plan makes it from the mass.
+  posture:
+    prop: posture
+    value: biped
+    source:
+      ref: src:janis-2014-sthenurine-locomotion
+      loc: Introduction
+      quote: "Kangaroos are famous for their style of locomotion – bipedal hopping"
+    note: >-
+      Janis et al. argue that the largest sthenurines may have walked on two legs rather than hopped; either way they stood upright.

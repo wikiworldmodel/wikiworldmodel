@@ -1,0 +1,29 @@
+id: life/taxa/kritosaurini
+kind: taxon
+summary: >-
+  The hook-nosed duck-bills, Kritosaurus and Gryposaurus among them.
+same_as: { pbdb: "txn:267712" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Kritosaurini }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        nose-arch: { type: lump, on: head, at: [0, 0.095, 0.022], r: [0.022, 0.05, 0.024], sides: [8, 4], bands: [5, 3] }
+    unsourced: >-
+      A machine's reconstruction: an arched snout, from the silhouette "Gryposaurus Scale.svg" on
+      Wikimedia Commons.
+  length:
+    prop: body_length
+    value: { lo: 8.5, hi: 9 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 47, Gryposaurinins", quote: "Gryposaurus hook-nosed reptile Late Cretaceous (83.5-72.8 MYA) 27.9 ft (8.5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 47, Gryposaurinins", quote: "Kritosaurus separated reptile Late Cretaceous (80-72.8 MYA) 29.5 ft (9 m)" }
+    method: compilation
+    note: >-
+      The named genera of the table "Gryposaurinins" that the database places here, standing for any
+      member with no length of its own.
