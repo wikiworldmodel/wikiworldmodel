@@ -1,0 +1,25 @@
+description: >-
+  A grasshopper or cricket: a long body with a saddle behind the head, narrow fore wings lying along the back, long antennae
+  and great hind legs, their thighs thick and their knees above the back. Its length is the body's.
+kind: animal
+hip: 0.22
+behave: { group: [1, 4], habitat: open, poses: [stand, walk] }
+parts:
+  head: { type: lump, zl: true, mat: chitin, at: [0, 0.42, 0.2], r: [0.06, 0.075, 0.09], sides: [8, 4], bands: [4, 3] }
+  eyes: { type: lump, zl: true, near: true, mat: dark, mirror: true, at: [0.05, 0.45, 0.235], r: [0.016, 0.026, 0.032], sides: [5, 4], bands: [3, 2] }
+  saddle: { type: lump, zl: true, mat: chitin, at: [0, 0.26, 0.185], r: [0.075, 0.125, 0.095], sides: [8, 4], bands: [4, 3] }
+  abdomen:
+    type: tube
+    zl: true
+    mat: chitin
+    sides: [8, 4]
+    rings:
+      - [0, 0.14, 0.17, 0.065, 0.075]
+      - [0, -0.1, 0.15, 0.065, 0.065]
+      - [0, -0.32, 0.125, 0.045, 0.045]
+      - [0, -0.48, 0.105, 0.016, 0.016]
+  tegmina: { type: sheet, zl: true, mat: membrane, mirror: true, gap: 0.002, points: [[0.015, 0.18, 0.265], [0.085, 0.02, 0.165], [0.07, -0.46, 0.09], [0.03, -0.62, 0.095], [0.006, -0.2, 0.24]] }
+  antennae: { type: chain, near: true, zl: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.03, 0.48, 0.25, 0.005], [0.18, 0.76, 0.36, 0.003], [0.38, 1.06, 0.32, 0.0015]] }
+  fore-legs: { type: chain, near: true, zl: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.05, 0.3, 0.1, 0.012], [0.12, 0.34, 0.14, 0.009], [0.16, 0.42, 0.02, 0.005], [0.18, 0.47, 0.003, 0.003]] }
+  mid-legs: { type: chain, near: true, zl: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.055, 0.2, 0.1, 0.012], [0.16, 0.2, 0.14, 0.009], [0.22, 0.14, 0.02, 0.005], [0.25, 0.1, 0.003, 0.003]] }
+  hind-legs: { type: chain, zl: true, mat: chitin, mirror: true, sides: [5, 3], points: [[0.07, 0.08, 0.1, 0.022], [0.115, -0.12, 0.22, 0.034], [0.135, -0.34, 0.33, 0.012], [0.16, -0.08, 0.06, 0.008], [0.17, -0.02, 0.012, 0.006], [0.175, -0.14, 0.003, 0.004]] }

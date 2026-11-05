@@ -1,0 +1,33 @@
+id: life/taxa/hadrosauroidea
+kind: taxon
+summary: >-
+  The duck-billed dinosaurs and their nearest kin. This record speaks for the early forms; the
+  family proper has its own.
+same_as: { pbdb: "txn:52811" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hadrosauroidea }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: hadrosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  posture:
+    prop: posture
+    value: facultative-quadruped
+    source:
+      ref: src:maidment-2012-ornithischian-stance
+      loc: "Discussion, Do differences exist in the humeral scaling of bipedal and quadrupedal ornithischians"
+      quote: "large ornithopods and hadrosaurs walked quadrupedally at least some of the time"
+  length:
+    prop: body_length
+    value: { lo: 3.5, hi: 10 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 45, Primitive Hadrosaurs", quote: "Probactrosaurus before Bactrosaurus Early Cretaceous (136.4-125 MYA) 11.5 ft (3.5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 45, Primitive Hadrosaurs", quote: "Jinzhousaurus Jinzhou [China] reptile Early Cretaceous (125-120 MYA) 32.8 ft (10 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Primitive Hadrosaurs" on that page, standing for any member with
+      no length of its own.

@@ -1,0 +1,21 @@
+id: src:will-2017-hominin-body-size
+type: publication
+kind: compilation
+citation: >-
+  Will, M., Pablos, A. & Stock, J.T. (2017). Long-term patterns of body mass and stature evolution
+  within the hominin lineage. Royal Society Open Science 4(11), 171339.
+authors:
+  - "Will, M."
+  - "Pablos, A."
+  - "Stock, J.T."
+published: 2017
+title: "Long-term patterns of body mass and stature evolution within the hominin lineage"
+container: "Royal Society Open Science 4(11), 171339"
+doi: 10.1098/rsos.171339
+verified:
+  by: machine:claude-code
+  how: >-
+    Read from the full text on PubMed Central (PMC5717693). Quotes checked by script against the
+    text of the page, after normalizing whitespace; cells of a table read in order, separated by
+    spaces. The letter after some names in the tables (as in "sapiensb") is a footnote mark,
+    kept as the text has it.

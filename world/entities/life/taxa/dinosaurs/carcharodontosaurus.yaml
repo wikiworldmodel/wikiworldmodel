@@ -1,0 +1,29 @@
+id: life/taxa/carcharodontosaurus
+kind: taxon
+summary: >-
+  Carcharodontosaurus, a shark-toothed giant of the Cretaceous of North Africa.
+same_as: { pbdb: "txn:38576" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Carcharodontosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Carcharodontosauridae, which was measured
+      from this genus: "Carcharodontosaurus Scale.svg" on Wikimedia Commons. Nothing here differs
+      from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 12
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 8, Carcharodontosaurids"
+      quote: "Carcharodontosaurus Carcharodon [scientific name for Early to Late (112-93.5 MYA) 39.4 ft (12 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

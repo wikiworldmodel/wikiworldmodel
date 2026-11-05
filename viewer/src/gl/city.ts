@@ -23,6 +23,20 @@ export interface CellGPU {
   bytes: number;
 }
 
+/** One kind of mesh drawn many times, with a buffer of everyone drawn with it. */
+export interface InstancedGPU {
+  vao: WebGLVertexArrayObject;
+  vbo: WebGLBuffer;
+  ibo: WebGLBuffer;
+  instances: WebGLBuffer;
+  /** bytes the instance buffer holds */
+  capacity: number;
+  indexCount: number;
+  count: number;
+  /** drawn into the shadow map: what is only a shape is left out */
+  casts: boolean;
+}
+
 export interface CityFrame {
   /** the eye, in local metres above sea level, with the Earth's curve already taken off */
   eye: V3;
@@ -133,10 +147,16 @@ export class CityRenderer {
   private fullCount = 0;
   private emptyVao: WebGLVertexArrayObject;
   private waterVao: WebGLVertexArrayObject | null = null;
+  private waterBuffers: WebGLBuffer[] = [];
   private waterCount = 0;
   private waterLevel = 7;
   /** the ground is land nobody has farmed: what the mask says of it is a wild place's */
   wild = false;
+  /** what the wild land's colours are, ten tones in threes; and its shares of forest, low plants and bare ground */
+  private tones: Float32Array = new Float32Array(30);
+  private shares: V3 = [1, 1, 0];
+  /** everything drawn by instancing, by what mesh it is */
+  private instanced = new Map<number, InstancedGPU>();
 
   // Render targets, remade when the size changes.
   private w = 0;
@@ -248,6 +268,10 @@ void main() {
     gl.activeTexture(gl.TEXTURE0 + UNIT.mask);
     this.mask = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0, 0, 0, 0]), filter: gl.LINEAR });
 
+    // What a mesh with no instances reads for its instance's entity: an integer attribute that is not enabled must
+    // have an integer value, or every plain draw is refused.
+    gl.vertexAttribI4ui(7, 0, 0, 0, 0);
+
     const ring = ringMesh(64, 30);
     this.ringVao = gl.createVertexArray()!;
     gl.bindVertexArray(this.ringVao);
@@ -342,6 +366,121 @@ void main() {
     gl.activeTexture(gl.TEXTURE0);
   }
 
+  /** Let go of the ground's grids, for a site to take their place. */
+  clearGround(): void {
+    const gl = this.gl;
+    for (const t of [...this.groundTex, ...this.normalTex]) gl.deleteTexture(t);
+    this.groundTex = [];
+    this.normalTex = [];
+    this.grids = [];
+    this.meshSerial++;
+  }
+
+  /** The colours and shares of the land, as a place's climate gives them. */
+  setLand(tones: Float32Array, shares: V3): void {
+    this.tones = tones;
+    this.shares = shares;
+  }
+
+  /** A mesh that will be drawn by instancing. */
+  addInstanced(id: number, vertices: ArrayBuffer, indices: Uint32Array, casts: boolean): void {
+    const gl = this.gl;
+    const vao = gl.createVertexArray()!;
+    gl.bindVertexArray(vao);
+    const vbo = gl.createBuffer()!;
+    gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+    const stride = 28;
+    gl.enableVertexAttribArray(0);
+    gl.vertexAttribPointer(0, 3, gl.FLOAT, false, stride, 0);
+    gl.enableVertexAttribArray(1);
+    gl.vertexAttribPointer(1, 4, gl.UNSIGNED_BYTE, true, stride, 12);
+    gl.enableVertexAttribArray(2);
+    gl.vertexAttribPointer(2, 2, gl.FLOAT, false, stride, 16);
+    gl.enableVertexAttribArray(3);
+    gl.vertexAttribIPointer(3, 2, gl.UNSIGNED_BYTE, stride, 24);
+    gl.enableVertexAttribArray(4);
+    gl.vertexAttribIPointer(4, 1, gl.UNSIGNED_SHORT, stride, 26);
+    const instances = gl.createBuffer()!;
+    gl.bindBuffer(gl.ARRAY_BUFFER, instances);
+    gl.bufferData(gl.ARRAY_BUFFER, 28 * 16, gl.DYNAMIC_DRAW);
+    gl.enableVertexAttribArray(5);
+    gl.vertexAttribPointer(5, 4, gl.FLOAT, false, 28, 0);
+    gl.vertexAttribDivisor(5, 1);
+    gl.enableVertexAttribArray(6);
+    gl.vertexAttribPointer(6, 2, gl.FLOAT, false, 28, 16);
+    gl.vertexAttribDivisor(6, 1);
+    gl.enableVertexAttribArray(7);
+    gl.vertexAttribIPointer(7, 2, gl.UNSIGNED_SHORT, 28, 24);
+    gl.vertexAttribDivisor(7, 1);
+    const ibo = gl.createBuffer()!;
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
+    gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+    gl.bindVertexArray(null);
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+    this.instanced.set(id, { vao, vbo, ibo, instances, capacity: 28 * 16, indexCount: indices.length, count: 0, casts });
+  }
+
+  /** Who is drawn with each mesh this frame. Meshes not named draw nobody. */
+  setInstances(batches: { proto: number; count: number; data: ArrayBuffer }[]): void {
+    const gl = this.gl;
+    for (const g of this.instanced.values()) g.count = 0;
+    for (const b of batches) {
+      const g = this.instanced.get(b.proto);
+      if (!g) continue;
+      gl.bindBuffer(gl.ARRAY_BUFFER, g.instances);
+      if (b.data.byteLength > g.capacity) {
+        g.capacity = b.data.byteLength * 2;
+        gl.bufferData(gl.ARRAY_BUFFER, g.capacity, gl.DYNAMIC_DRAW);
+      }
+      gl.bufferSubData(gl.ARRAY_BUFFER, 0, new Uint8Array(b.data));
+      g.count = b.count;
+    }
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+    this.meshSerial++;
+  }
+
+  /** Let go of everything drawn by instancing. */
+  clearInstanced(): void {
+    const gl = this.gl;
+    for (const g of this.instanced.values()) {
+      gl.deleteVertexArray(g.vao);
+      gl.deleteBuffer(g.vbo);
+      gl.deleteBuffer(g.ibo);
+      gl.deleteBuffer(g.instances);
+    }
+    this.instanced.clear();
+    this.meshSerial++;
+  }
+
+  /** How many are drawn by instancing, and the triangles that makes. */
+  instancedStats(): { meshes: number; instances: number; triangles: number } {
+    let instances = 0;
+    let triangles = 0;
+    let meshes = 0;
+    for (const g of this.instanced.values()) {
+      if (!g.count) continue;
+      meshes++;
+      instances += g.count;
+      triangles += (g.count * g.indexCount) / 3;
+    }
+    return { meshes, instances, triangles };
+  }
+
+  private drawInstanced(p: Program, shadow: boolean): void {
+    if (!this.instanced.size) return;
+    const gl = this.gl;
+    const loc = p.uniforms.get('uInstanced');
+    if (loc) gl.uniform1f(loc, 1);
+    for (const g of this.instanced.values()) {
+      if (!g.count || (shadow && !g.casts)) continue;
+      gl.bindVertexArray(g.vao);
+      gl.drawElementsInstanced(gl.TRIANGLES, g.indexCount, gl.UNSIGNED_INT, 0, g.count);
+    }
+    if (loc) gl.uniform1f(loc, 0);
+    gl.bindVertexArray(null);
+  }
+
   /** What the plan says the ground is: R built-up, G garden. */
   setMask(data: Uint8Array, size: number, box: [number, number, number, number]): void {
     const gl = this.gl;
@@ -359,14 +498,19 @@ void main() {
   setWater(vertices: Float32Array, indices: Uint32Array, level: number): void {
     const gl = this.gl;
     this.waterLevel = level;
+    if (this.waterVao) gl.deleteVertexArray(this.waterVao);
+    for (const b of this.waterBuffers) gl.deleteBuffer(b);
     this.waterVao = gl.createVertexArray()!;
     gl.bindVertexArray(this.waterVao);
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
+    const vb = gl.createBuffer()!;
+    gl.bindBuffer(gl.ARRAY_BUFFER, vb);
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
     gl.enableVertexAttribArray(0);
     gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 0, 0);
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, gl.createBuffer());
+    const ib = gl.createBuffer()!;
+    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ib);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
+    this.waterBuffers = [vb, ib];
     gl.bindVertexArray(null);
     this.waterCount = indices.length;
   }
@@ -586,7 +730,12 @@ void main() {
       uAOSize: [this.w, this.h],
       uEvidence: f.evidence ? 1 : 0,
       uWild: this.wild ? 1 : 0,
+      uSeaSurface: this.wild ? 1 : 0,
     });
+    const tone = p.uniforms.get('uTone');
+    if (tone) gl.uniform3fv(tone, this.tones);
+    const share = p.uniforms.get('uShare');
+    if (share) gl.uniform3fv(share, this.shares);
     const m = p.uniforms.get('uShadowM');
     if (m) gl.uniformMatrix4fv(m, false, this.shadowM);
   }
@@ -621,7 +770,8 @@ void main() {
         const fsnap = fine * 2;
         const fx = Math.round(eye[0] / fsnap) * fsnap;
         const fy = Math.round(eye[1] / fsnap) * fsnap;
-        const ext = fine * 64;
+        // Short of the finer ring's edge: exactly at it, a pixel can fall between the two and show as a dash.
+        const ext = fine * 63.5;
         gl.uniform4f(innerLoc!, fx - ext, fy - ext, fx + ext, fy + ext);
         gl.drawElements(gl.TRIANGLES, this.ringCount, gl.UNSIGNED_INT, 0);
       }
@@ -690,10 +840,11 @@ void main() {
         gl.bindVertexArray(c.vao);
         gl.drawElements(gl.TRIANGLES, c.count, gl.UNSIGNED_INT, 0);
       }
+      this.drawInstanced(this.depthP, true);
       gl.enable(gl.CULL_FACE);
       // The hills cast shadows too.
       gl.useProgram(this.terrainDepthP.program);
-      setUniforms(gl, this.terrainDepthP, { uViewProj: m, uEye: [0, 0, 0] });
+      setUniforms(gl, this.terrainDepthP, { uViewProj: m, uEye: [0, 0, 0], uSeaSurface: this.wild ? 1 : 0 });
       this.setGrids(this.terrainDepthP);
       const ring = Math.max(0, Math.ceil(Math.log2((r * 2.2) / 320)));
       this.drawRings(this.terrainDepthP, f.focus, ring, ring, ring);
@@ -775,7 +926,7 @@ void main() {
     if (!this.fast) {
       gl.colorMask(false, false, false, false);
       gl.useProgram(this.terrainDepthP.program);
-      setUniforms(gl, this.terrainDepthP, { uViewProj: vp, uEye: f.eye });
+      setUniforms(gl, this.terrainDepthP, { uViewProj: vp, uEye: f.eye, uSeaSurface: this.wild ? 1 : 0 });
       this.setGrids(this.terrainDepthP);
       this.drawRings(this.terrainDepthP, f.eye, finest, Math.min(split, last), finest);
       gl.useProgram(this.depthP.program);
@@ -786,6 +937,7 @@ void main() {
         gl.bindVertexArray(c.vao);
         gl.drawElements(gl.TRIANGLES, c.count, gl.UNSIGNED_INT, 0);
       }
+      this.drawInstanced(this.depthP, false);
       gl.bindVertexArray(null);
       gl.colorMask(true, true, true, true);
       gl.bindFramebuffer(gl.READ_FRAMEBUFFER, this.msFb);
@@ -813,9 +965,10 @@ void main() {
       gl.bindVertexArray(c.vao);
       gl.drawElements(gl.TRIANGLES, c.count, gl.UNSIGNED_INT, 0);
     }
+    this.drawInstanced(this.meshP, false);
     gl.depthMask(true);
     gl.depthFunc(gl.LESS);
-    if (this.waterVao) {
+    if (this.waterVao && this.waterCount) {
       this.useLit(this.waterP, f, vp);
       gl.bindVertexArray(this.waterVao);
       gl.drawElements(gl.TRIANGLES, this.waterCount, gl.UNSIGNED_INT, 0);
@@ -951,7 +1104,7 @@ void main() {
     // The ground first, so it hides what lies behind a hill.
     gl.colorMask(false, false, false, false);
     gl.useProgram(this.terrainDepthP.program);
-    setUniforms(gl, this.terrainDepthP, { uViewProj: vp, uEye: f.eye });
+    setUniforms(gl, this.terrainDepthP, { uViewProj: vp, uEye: f.eye, uSeaSurface: this.wild ? 1 : 0 });
     this.setGrids(this.terrainDepthP);
     const { finest, split, last } = this.ringsFor(f);
     this.drawRings(this.terrainDepthP, f.eye, finest, Math.min(split, last), finest);
@@ -962,6 +1115,7 @@ void main() {
       gl.bindVertexArray(c.vao);
       gl.drawElements(gl.TRIANGLES, c.count, gl.UNSIGNED_INT, 0);
     }
+    this.drawInstanced(this.idP, false);
     gl.bindVertexArray(null);
     const px = new Uint8Array(4);
     gl.readPixels(x, y, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px);

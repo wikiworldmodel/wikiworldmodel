@@ -1,0 +1,38 @@
+id: life/taxa/typothoracisinae
+kind: taxon
+summary: >-
+  The generally wide-bodied aetosaurs, such as Typothorax.
+same_as: { pbdb: "txn:163803" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Typothoracisinae", en: "wide-bodied aetosaurs" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.52, 0.46, 0.008]
+            - [-0.4, 0.68, 0.44, 0.028]
+            - [-0.28, 0.9, 0.44, 0.066]
+            - [-0.16, 1.12, 0.46, 0.13]
+            - [-0.06, 1.24, 0.44, 0.17]
+            - [0.04, 1.22, 0.4, 0.175]
+            - [0.13, 1.14, 0.42, 0.145]
+            - [0.2, 1.02, 0.5, 0.09]
+            - [0.26, 0.94, 0.58, 0.046]
+          neck: { r: 0.03, steps: [2, 1] }
+        hind: { x: 0.13 }
+        fore: { x: 0.125 }
+        armour-back: { from: [0.05, -0.17, 1.12], to: [0.05, 0.1, 1.24], r: [0.04, 0.018, 0.007] }
+        armour-flank: { from: [0.125, -0.15, 0.9], to: [0.14, 0.1, 0.98], r: [0.03, 0.018, 0.009] }
+    source:
+      ref: src:desojo-2013-aetosauria
+      loc: "abstract"
+      quote: "the spinose Desmatosuchinae and the generally wide-bodied Typothoracisinae"
+    note: >-
+      The wider body follows this; how much wider is a machine's reconstruction. No skeletal figure
+      was looked at.

@@ -1,0 +1,42 @@
+id: life/taxa/thyreophora
+kind: taxon
+summary: >-
+  The armoured dinosaurs. This record speaks for the small early forms such as Scutellosaurus, with
+  rows of scutes down the back; the plated and the tank dinosaurs have their own.
+same_as: { pbdb: "txn:52777" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Thyreophora }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        scutes:
+          type: row
+          near: true
+          mat: horn
+          tint: 170
+          mirror: true
+          n: 8
+          from: [0.012, -0.26, 0.96]
+          to: [0.026, 0.05, 1.01]
+          item: lump
+          r: [0.008, 0.012, 0.009]
+          size: [0.7, 0.8, 1, 1.1, 1.2, 1.3, 1.2, 1]
+    unsourced: >-
+      A machine's reconstruction: the small plan above with low rows of scutes along the back and
+      the base of the tail, from the silhouette "Scutellosaurus Scale.svg" on Wikimedia Commons. The
+      figure carries them on down the tail, but a row cannot swing with it.
+  length:
+    prop: body_length
+    value: { lo: 1, hi: 4 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 38, Primitive Thyreophorans", quote: "Lesothosaurus Lesotho reptile Early Jurassic (196.5-183 MYA) 3.3 ft (1 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 38, Primitive Thyreophorans", quote: "Scelidosaurus . shin reptile Early Jurassic (196.5-183 MYA) 13.1 ft (4 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Primitive Thyreophorans" on that page, standing for any early
+      member with no length of its own.

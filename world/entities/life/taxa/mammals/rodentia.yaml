@@ -1,0 +1,36 @@
+id: life/taxa/rodentia
+kind: taxon
+summary: >-
+  Rodents, the largest order of mammals.
+same_as: { pbdb: "txn:41370" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Rodentia, en: "rodents" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    value: { lo: 0.105, hi: 1.34 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Micromys minutus, Physical Description"
+        quote: "ranging in size from 55 to 75 mm long, with a tail that is usually 50 to 75 mm long"
+      - ref: src:animal-diversity-web
+        loc: "account of Hydrochoerus hydrochaeris, Other Physical Features"
+        quote: "Range length 106 to 134 cm"
+    method: compilation
+    note: >-
+      From the harvest mouse, head and body with the shortest tail, to the capybara. The giant
+      fossil caviomorphs were longer: no length of theirs was read.
+  mass:
+    prop: body_mass
+    value: { lo: 0.004, hi: 480 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Salpingotulus_michaelis, column Mass.g (grams)"
+        quote: "Salpingotulus_michaelis,Rodentia,Dipodidae,Salpingotulus,michaelis,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,3.9"
+      - ref: src:engelman-2022-largest-rodents
+        loc: "abstract"
+        quote: "480 kg for J. monesi"
+    method: compilation

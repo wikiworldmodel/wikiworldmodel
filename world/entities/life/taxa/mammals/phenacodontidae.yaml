@@ -1,0 +1,77 @@
+id: life/taxa/phenacodontidae
+kind: taxon
+summary: >-
+  Early ungulates of the Paleocene and Eocene.
+same_as: { pbdb: "txn:42284" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Phenacodontidae }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: ungulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.4
+      mass_length: 13
+      behave: { group: [1, 5], habitat: any, poses: [graze, stand, walk, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.42, 0.34, 0.012]
+            - [-0.42, 0.56, 0.44, 0.022]
+            - [-0.33, 0.8, 0.66, 0.03]
+            - [-0.25, 1.02, 0.82, 0.04]
+            - [-0.19, 1.14, 0.76, 0.064]
+            - [-0.11, 1.18, 0.64, 0.074]
+            - [-0.01, 1.14, 0.58, 0.074]
+            - [0.08, 1.06, 0.58, 0.068]
+            - [0.15, 1.02, 0.64, 0.056]
+          neck: { r: 0.038, steps: [3, 1] }
+        hind: { y: -0.15, x: 0.048, top: 0.92, knee: 0.56, ankle: 0.2, r: 0.05 }
+        fore: { y: 0.1, x: 0.05, top: 0.78, r: 0.024 }
+        head:
+          at:
+            stand: { y: 0.24, z: 1.1, pitch: 0.2 }
+            alert: { y: 0.24, z: 1.26, pitch: 0.02 }
+            low: { y: 0.28, reach: 0.16, pitch: 1.0 }
+          rings:
+            - [-0.012, 0.006, 0.032, 0.036]
+            - [0.03, 0.01, 0.036, 0.042]
+            - [0.075, 0.0, 0.028, 0.03]
+            - [0.12, -0.014, 0.018, 0.02]
+            - [0.155, -0.02, 0.015, 0.014]
+        ears: { from: [0.026, 0.004, 0.036], to: [0.036, -0.012, 0.064], r: 0.011 }
+        eyes: { at: [0.03, 0.065, 0.018] }
+    unsourced: >-
+      A machine's reconstruction, from the photograph of the Phenacodus mount at the American
+      Museum of Natural History on Wikipedia's page for the genus (Phenacodus_AMNH.jpg): a low
+      arched back, a long thick tail, a low head.
+  length:
+    prop: body_length
+    value: 1.5
+    source:
+      ref: src:wikipedia-largest-prehistoric-animals
+      loc: "section \"Phenacodontids (Phenacodontidae)\""
+      quote: "It was 1.5 m (4 ft 11 in) long"
+    method: compilation
+    note: >-
+      Phenacodus, from Wikipedia as nothing better could be read, standing for the family;
+      Ectocion was far smaller.
+  mass:
+    prop: body_mass
+    value: { lo: 6, hi: 87 }
+    source:
+      - ref: src:wikipedia-ectocion
+        loc: "top of the article"
+        quote: "It reached 6 to 12 kg"
+      - ref: src:wikipedia-phenacodus
+        loc: "section \"Postcrania\""
+        quote: "P. trilobatus is estimated at 22 to 87 kg"
+    method: compilation
+    note: >-
+      From Wikipedia, as nothing better could be read.

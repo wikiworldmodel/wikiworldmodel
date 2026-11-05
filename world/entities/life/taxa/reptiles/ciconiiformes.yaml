@@ -1,0 +1,42 @@
+id: life/taxa/ciconiiformes
+kind: taxon
+summary: >-
+  Storks: tall wading and stalking birds with big bills.
+same_as: { pbdb: "txn:39633" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Ciconiiformes", en: "storks" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: wader
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        bill: { to: [0, 0.2, -0.012], r: 0.018 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Storks (Ciconiidae)\""
+      quote: "Distinctive medium to large wading birds with long legs, long necks, and large powerful bills"
+    note: >-
+      The plan and the heavier bill follow this.
+  length:
+    prop: body_length
+    value: { lo: 0.75, hi: 1.52 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Storks (Ciconiidae)\""
+      quote: "30–60 in (75–152 cm); 2.9–19.7 lb (1.3–8.9 kg)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 1.3, hi: 8.9 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Storks (Ciconiidae)\""
+      quote: "30–60 in (75–152 cm); 2.9–19.7 lb (1.3–8.9 kg)"
+    method: compilation

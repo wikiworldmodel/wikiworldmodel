@@ -1,0 +1,30 @@
+id: life/taxa/poaceae
+kind: taxon
+summary: >-
+  Grasses.
+same_as: { pbdb: "txn:53546" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Poaceae, en: grasses }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: grass
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 0.06, hi: 2 }
+    source:
+      - ref: src:flora-of-china
+        loc: "Vol. 22, s.v. Poa annua"
+        quote: "6–30(–45) cm tall"
+      - ref: src:flora-of-china
+        loc: "Vol. 22, s.v. Phragmites australis"
+        quote: "Culms up to 2 m or more tall"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living grasses, from a meadow grass to a common reed: modern relatives. Bamboos are far
+      taller, and nobody has written theirs.

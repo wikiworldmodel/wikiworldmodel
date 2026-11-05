@@ -56,6 +56,18 @@ claims:
       The youngest date in the compilation, 9,630 ± 60 14C years. Two other dates from the same site
       are much older in the same table, 10,921 ± 50 (NZA-28889) and 11,668 ± 50 (NZA-28890). Whether
       they date one bear was not read, so no source read says which of them to believe.
+  body-plan:
+    prop: body_plan
+    value: bear
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  mass-mammal-forms:
+    prop: body_mass
+    value: 709.5
+    source:
+      ref: src:faurby-2020-phylacine
+      loc: "Data/Traits/Trait_data.csv, row Arctodus_simus, column Mass.g (grams)"
+      quote: "Arctodus_simus,Carnivora,Ursidae,Arctodus,simus,1,0,0,0,Imputed,PHYLACINE 1.2.1,709500"
+    method: compilation
 relations:
   parent:
     rel: descends-from

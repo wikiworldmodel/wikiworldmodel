@@ -1,0 +1,19 @@
+id: src:tarquini-2022-sparassodonts
+type: publication
+kind: review
+citation: >-
+  Tarquini, S.D., Ladevèze, S. & Prevosti, F.J. (2022). The multicausal twilight of South American
+  native mammalian predators (Metatheria, Sparassodonta). Scientific Reports 12, 1224.
+authors:
+  - "Tarquini, S.D."
+  - "Ladevèze, S."
+  - "Prevosti, F.J."
+published: 2022
+title: "The multicausal twilight of South American native mammalian predators (Metatheria, Sparassodonta)"
+container: "Scientific Reports 12, 1224"
+doi: 10.1038/s41598-022-05266-z
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC8786871). Quotes checked by script against the
+    text retrieved, after normalizing whitespace.

@@ -1,0 +1,30 @@
+id: life/taxa/shuvosauridae
+kind: taxon
+summary: >-
+  Toothless two-legged crocodile-line archosaurs of the Late Triassic, built much like ostrich
+  dinosaurs.
+same_as: { pbdb: "txn:90275" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Shuvosauridae", en: "shuvosaurids" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: small-theropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [1, 3], habitat: any, poses: [stand, walk, walk, alert] }
+      parts:
+        body: { mat: hide }
+        legs: { mat: hide }
+        arms: { mat: hide, points: [[0.03, 0.06, 1.06, 0.01], [0.04, 0.04, 0.9, 0.007], [0.036, 0.08, 0.8, 0.005]] }
+        head: { mat: hide }
+    unsourced: "A machine's reconstruction from what is known of the group in general: the two-legged body of the plan, scaled and not feathered, with short arms. No skeletal figure was looked at."
+  posture:
+    prop: posture
+    value: biped
+    unsourced: "Which the group's bones are read as; an editorial classification."

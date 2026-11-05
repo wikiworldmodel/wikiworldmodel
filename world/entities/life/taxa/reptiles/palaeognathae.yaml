@@ -1,0 +1,51 @@
+id: life/taxa/palaeognathae
+kind: taxon
+summary: >-
+  Ostriches, rheas, cassowaries, emus, kiwis, the extinct moas and elephant birds, and the tinamous.
+  The big flightless runner is the body it starts from.
+same_as: { pbdb: "txn:39261" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Palaeognathae", en: "ratites and tinamous" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: ratite
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Ostriches (Struthionidae)\""
+      quote: "Very large flightless birds with large, loose-feathered wings, two toes"
+    note: >-
+      The plan's description follows this; which plan draws the group is an editorial
+      classification, from its place in the tree.
+  posture:
+    prop: posture
+    value: biped
+    unsourced: "Birds walk on their hind legs; an editorial classification."
+  length:
+    prop: body_length
+    value: { lo: 0.92, hi: 3 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Rheas (Rheidae)\""
+        quote: "36.4–55 in (92–140 cm); 33–88 lb (15–40 kg)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Elephant Birds (Aepyornithidae)\""
+        quote: "Some species probably 10 ft (3 m), 880 lb (400 kg)"
+    method: compilation
+    note: >-
+      From the smaller rheas to the elephant birds, for any of the big runners with no size of its
+      own. Kiwis, tinamous, moas and ostriches have theirs.
+  mass:
+    prop: body_mass
+    value: { lo: 14, hi: 400 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Cassowaries (Casuariidae)\""
+        quote: "40–67 in (102–170 cm); 30–130 lb (14–59 kg)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Elephant Birds (Aepyornithidae)\""
+        quote: "Some species probably 10 ft (3 m), 880 lb (400 kg)"
+    method: compilation

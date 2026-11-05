@@ -1,0 +1,26 @@
+id: life/taxa/rubus
+kind: taxon
+summary: >-
+  Brambles and raspberries.
+same_as: { pbdb: "txn:264405" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Rubus, en: brambles }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: shrub
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 0.05, hi: 3 }
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 9, s.v. Rubus"
+      quote: "Shrubs, subshrubs, or herbs, perennial, 0.5–30(–50) dm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living species: modern relatives.

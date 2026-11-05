@@ -1,0 +1,18 @@
+id: src:wikipedia-sifrhippus
+type: database-record
+kind: review
+citation: >-
+  "Sifrhippus." Wikipedia, the free encyclopedia (English edition), revision 1285769466.
+snapshot: 2026-11-05
+title: Sifrhippus
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Sifrhippus&oldid=1285769466
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for the mass of the genus: its likely source, Secord
+  et al. (2012), could not be read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-05, last edited 15 April 2025; the quotations checked
+    by script against its text, after normalizing whitespace.

@@ -1,0 +1,42 @@
+id: life/taxa/bennettitales
+kind: taxon
+summary: >-
+  Bennettites, cycad-like plants of the Mesozoic: some squat and stout, others low branching shrubs.
+same_as: { pbdb: "txn:55214" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Bennettitales, en: bennettites }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: cycad
+    source:
+      ref: src:ucmp-bennettitales
+      loc: "first paragraph"
+      quote: "were originally mistaken for cycads because of their cycad-like growth form"
+  form:
+    prop: body_form
+    value:
+      parts:
+        plant: { on_stem: 0.3, stem: 0.11, reach: 0.72, fronds: 12, across: 0.08, arch: [0.55, 0.2] }
+    source:
+      ref: src:ucmp-bennettitales
+      loc: "second paragraph"
+      quote: "the cycadeoids with stout trunks"
+    note: >-
+      A machine's reconstruction of the squat form. The other group, relatives of Williamsonia, had
+      slender branching trunks, and nobody has written their form yet.
+  height:
+    prop: plant_height
+    value: { lo: 1, hi: 2 }
+    source:
+      ref: src:pott-takimoto-2025-ohaniella
+      loc: "Discussion, Restoration and habitus"
+      quote: "low-growing shrub-like plants probably up to 1–2 m tall"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Whole plants of Williamsoniaceae from the Late Jurassic of Japan, standing for the order: no
+      height was read for the stout-trunked cycadeoids.

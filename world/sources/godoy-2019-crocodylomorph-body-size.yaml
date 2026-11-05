@@ -1,0 +1,20 @@
+id: src:godoy-2019-crocodylomorph-body-size
+type: publication
+kind: model
+citation: >-
+  Godoy, P.L., Benson, R.B.J., Bronzati, M. & Butler, R.J. (2019). The multi-peak adaptive landscape of crocodylomorph body size
+  evolution. BMC Evolutionary Biology 19, 167.
+authors:
+  - "Godoy, P.L."
+  - "Benson, R.B.J."
+  - "Bronzati, M."
+  - "Butler, R.J."
+published: 2019
+title: "The multi-peak adaptive landscape of crocodylomorph body size evolution"
+container: BMC Evolutionary Biology 19, 167
+doi: 10.1186/s12862-019-1466-4
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on the publisher's page. Quotes checked by script against it. Metadata from Crossref.

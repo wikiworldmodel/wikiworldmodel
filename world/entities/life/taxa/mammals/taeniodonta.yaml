@@ -1,0 +1,31 @@
+id: life/taxa/taeniodonta
+kind: taxon
+summary: >-
+  Stout digging and gnawing mammals of the Paleocene and Eocene, drawn with the bear plan as the
+  nearest build.
+same_as: { pbdb: "txn:40609" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Taeniodonta, en: "taeniodonts" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: bear
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  mass:
+    prop: body_mass
+    value: { lo: 20, hi: 50 }
+    source:
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Cimolestans (Cimolesta)\""
+        quote: "reached 20 kg (44 lb) in body mass"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Cimolestans (Cimolesta)\""
+        quote: "reached 50 kg (110 lb)"
+    method: compilation
+    note: >-
+      Wortmania and Psittacotherium, of the early Paleocene, from Wikipedia as nothing better
+      could be read. Later taeniodonts may have been larger. No length of the whole animal was
+      read: the plan makes it from the mass.

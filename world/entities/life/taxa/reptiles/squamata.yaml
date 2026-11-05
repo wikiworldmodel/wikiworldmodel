@@ -1,0 +1,21 @@
+id: life/taxa/squamata
+kind: taxon
+summary: >-
+  Lizards and snakes. The lizard is the body the group starts from, with its sizes on the groups
+  within it. No size is claimed here, so that the mosasaurs, which the classification has directly
+  under this node and the database does not all file as marine, are not drawn on land.
+same_as: { pbdb: "txn:36379" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Squamata", en: "lizards and snakes" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: lizard
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  posture:
+    prop: posture
+    value: sprawling
+    unsourced: "Of the lizard's body; an editorial classification."

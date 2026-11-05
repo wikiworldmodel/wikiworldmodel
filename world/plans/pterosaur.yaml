@@ -1,0 +1,46 @@
+description: >-
+  A flying reptile with wings of skin on one vastly long finger, walking on all fours when grounded: a small furred body,
+  a big head, a short neck and a long stiff tail with a vane. Its length is from the snout to the tip of the tail.
+kind: animal
+hip: 0.14
+mass_length: 6
+behave: { group: [1, 5], habitat: air, poses: [fly], flies: [5, 120] }
+parts:
+  body:
+    type: trunk
+    mat: fur
+    sides: [10, 5]
+    rings:
+      - [-0.56, 1.32, 1.27, 0.002]
+      - [-0.42, 1.34, 1.28, 0.003]
+      - [-0.26, 1.38, 1.3, 0.004]
+      - [-0.14, 1.46, 1.26, 0.007]
+      - [-0.08, 1.7, 1.02, 0.03]
+      - [-0.01, 1.92, 0.94, 0.044]
+      - [0.05, 2.0, 1.04, 0.044]
+      - [0.1, 2.0, 1.28, 0.03]
+    neck: { r: 0.016, steps: [3, 1] }
+  vane: { type: sheet, mat: membrane, near: true, points: [[0, -0.56, 1.3], [0, -0.48, 1.6], [0, -0.42, 1.31], [0, -0.48, 1.0]] }
+  hind: { type: digitigrade, mat: hide, y: -0.03, x: 0.03, top: 1.1, knee: 0.68, ankle: 0.28, r: 0.016, swing: 0.05, not: [fly] }
+  fore: { type: pillar, mat: hide, y: 0.08, x: 0.052, top: 1.75, r: 0.012, swing: 0.05, phase: 1, not: [fly] }
+  folded-finger: { type: chain, mat: hide, mirror: true, near: true, not: [fly], sides: [4, 3], points: [[0.056, 0.085, 0.66, 0.0075], [0.078, 0.02, 1.2, 0.006], [0.076, -0.09, 1.72, 0.004], [0.066, -0.24, 1.86, 0.0018]] }
+  wings: { type: wing, mat: membrane, shoulder: [0.04, 0.08, 1.75], span: 0.98, chord: 0.17, sweep: 0.22, beat: 0.22, arm: 0.011, folded: 0.3, drop: 0.7 }
+  trailing: { type: chain, mat: hide, mirror: true, poses: [fly], near: true, sides: [4, 3], points: [[0.03, -0.05, 1.1, 0.01], [0.05, -0.14, 1.0, 0.006], [0.06, -0.22, 0.95, 0.004]] }
+  head:
+    type: head
+    mat: hide
+    sides: [10, 5]
+    thin: false
+    at:
+      stand: { y: 0.17, z: 2.5, pitch: 0.1 }
+      alert: { y: 0.16, z: 2.8, pitch: 0.0 }
+      low: { y: 0.24, reach: 0.15, clear: 0.05, pitch: 1.0 }
+      fly: { y: 0.18, z: 2.0, pitch: 0.08 }
+    rings:
+      - [-0.012, 0, 0.018, 0.026]
+      - [0.03, 0.002, 0.026, 0.034]
+      - [0.08, -0.004, 0.018, 0.024]
+      - [0.14, -0.012, 0.01, 0.014]
+      - [0.195, -0.018, 0.004, 0.006]
+  jaw: { type: tube, on: head, near: true, sides: [6, 4], rings: [[0.04, -0.028, 0.016, 0.006], [0.11, -0.026, 0.009, 0.005], [0.18, -0.024, 0.003, 0.003]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.022, 0.03, 0.014], r: 0.009 }

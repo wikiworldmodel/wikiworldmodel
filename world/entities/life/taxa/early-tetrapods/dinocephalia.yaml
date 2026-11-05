@@ -1,0 +1,44 @@
+id: life/taxa/dinocephalia
+kind: taxon
+summary: >-
+  Dinocephalians: the huge early therapsids of the middle Permian, thick-skulled plant-eaters and the great hunters that ate
+  them.
+same_as: { pbdb: "txn:38949" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dinocephalia, en: dinocephalians }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: dinocephalian
+    unsourced: >-
+      Which plan draws it: an editorial classification, from its place in the tree. The plan is a machine's reconstruction
+      of a tapinocephalid, from the life restoration of Moschops on Wikimedia Commons ("Moschops capensis.jpg") and with no
+      skeletal figure looked at.
+  length:
+    prop: body_length
+    value: { lo: 1.87, hi: 5 }
+    source:
+      - ref: src:benoit-2017-moschops
+        loc: "Material and Methods, Endocast volume, body mass and encephalization quotient"
+        quote: "using a body length of 186.7 cm as measured from the tip of premaxilla to the posterior tip of ilium"
+      - ref: src:van-valkenburgh-jenkins-2002-synapsid-predators
+        loc: "p. 273"
+        quote: "body length of Anteosaurus is estimated at more than 5 meters (Boonstra, 1954)."
+    method: expert-estimate
+    note: >-
+      From a mounted adult Moschops, measured as far as the hips and so without its short tail, to the largest Anteosaurus.
+  mass:
+    prop: body_mass
+    value: { lo: 400, hi: 989 }
+    source:
+      - ref: src:benoit-midzuk-2024-dinocephalian-brains
+        loc: "Results"
+        quote: "approaches a ton (989 kg), which is close to the"
+      - ref: src:benoit-midzuk-2024-dinocephalian-brains
+        loc: "Results"
+        quote: "about 400 kg, which is below what Bakker (1975)"
+    method: model
+    note: From sculpted 3D models of a Jonkeria, the heavier figure, and of an Anteosaurus and a Moschops, the lighter.

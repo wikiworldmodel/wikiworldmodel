@@ -1,0 +1,31 @@
+id: life/taxa/cycadophyta
+kind: taxon
+summary: >-
+  Cycads, as the database classifies them, with Mesozoic foliage such as Nilsonia, and some seed
+  ferns that it also places here.
+same_as: { pbdb: "txn:56134" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cycadophyta, en: cycads }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: cycad
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 1, hi: 3.5 }
+    source:
+      - ref: src:flora-of-north-america
+        loc: "Vol. 2, s.v. Zamia integrifolia"
+        quote: "Stem subterranean, or leaf-bearing apex exposed. Leaves 2--10 dm"
+      - ref: src:flora-of-china
+        loc: "Vol. 4, p. 5, s.v. Cycas taiwaniana"
+        quote: "Trunk cylindric, to 3.5 m"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living cycads: a Zamia with no trunk, its leaves reaching a metre at most, and a Cycas's
+      trunk. Modern relatives, not any fossil.

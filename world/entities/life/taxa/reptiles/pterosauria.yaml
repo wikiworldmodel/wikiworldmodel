@@ -1,0 +1,45 @@
+id: life/taxa/pterosauria
+kind: taxon
+summary: >-
+  The flying reptiles of the Late Triassic to the end of the Cretaceous, on wings of skin. The early
+  long-tailed kinds are the body the group starts from.
+same_as: { pbdb: "txn:38461" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Pterosauria", en: "pterosaurs" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: pterosaur
+    source:
+      ref: src:longrich-2018-late-pterosaurs
+      loc: "Introduction"
+      quote: "unlike birds, they flew on membraneous wings, supported by an elongate fourth digit, and walked or climbed on all fours"
+    note: >-
+      The plan's description follows this, and its wings Fig. 2 of Witton (2008); which plan draws
+      the group is an editorial classification, from its place in the tree. The database files most
+      pterosaurs as marine, so the atlas does not draw them yet.
+  posture:
+    prop: posture
+    value: quadruped
+    source:
+      ref: src:longrich-2018-late-pterosaurs
+      loc: "Introduction"
+      quote: "walked or climbed on all fours"
+  mass:
+    prop: body_mass
+    value: { lo: 0.04, hi: 1.24 }
+    source:
+      - ref: src:witton-2008-pterosaur-body-mass
+        loc: "p. 151, Table 4, row Anurognathus"
+        quote: "Anurognathus 0.35 2.46 0.04 0.35"
+      - ref: src:witton-2008-pterosaur-body-mass
+        loc: "p. 151, Table 4, row Dimorphodon"
+        quote: "Dimorphodon 1.01 86.43 1.24 12.18"
+    method: model
+    note: >-
+      The range of the early long-tailed pterosaurs in the table, from skeletal mass by regression;
+      the pterodactyloids have their own. No source read gives whole lengths, so the plan's shape
+      gives the length from this.

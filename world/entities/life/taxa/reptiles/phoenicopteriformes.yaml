@@ -1,0 +1,39 @@
+id: life/taxa/phoenicopteriformes
+kind: taxon
+summary: >-
+  Flamingos: very tall wading birds with thin necks and bent bills.
+same_as: { pbdb: "txn:99560" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Phoenicopteriformes", en: "flamingos" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: wader
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [4, 24] }
+      parts:
+        bill: null
+        beak: { type: tube, on: head, mat: horn, sides: [6, 4], rings: [[0.044, -0.002, 0.012, 0.014], [0.078, -0.008, 0.012, 0.014], [0.1, -0.03, 0.009, 0.01], [0.125, -0.06, 0.004, 0.005]] }
+    unsourced: "A machine's reconstruction: the bent bill on the plan's wader. The group of many is the generator's."
+  length:
+    prop: body_length
+    value: { lo: 0.8, hi: 1.6 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Phoenicopteriformes (Flamingos)\""
+      quote: "31.5–63 in (80–160 cm); 5.5–7.7 lb (2.5–3.5 kg)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 2.5, hi: 3.5 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Phoenicopteriformes (Flamingos)\""
+      quote: "31.5–63 in (80–160 cm); 5.5–7.7 lb (2.5–3.5 kg)"
+    method: compilation

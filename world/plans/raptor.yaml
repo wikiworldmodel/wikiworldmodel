@@ -1,0 +1,59 @@
+description: >-
+  A bird of prey: a deep-chested body held upright on short feathered legs with big clawed feet, broad long wings for
+  soaring, a fan of a tail and a hooked bill. Its length is from the tip of the bill to the tip of the tail.
+kind: animal
+hip: 0.2
+mass_length: 7
+behave: { group: [1, 2], habitat: air, poses: [fly], flies: [15, 300] }
+parts:
+  body:
+    type: trunk
+    mat: feather
+    sides: [10, 5]
+    not: [fly]
+    rings:
+      - [-0.42, 0.86, 0.78, 0.05]
+      - [-0.32, 1.02, 0.92, 0.056]
+      - [-0.22, 1.22, 1.06, 0.056]
+      - [-0.15, 1.46, 1.08, 0.066]
+      - [-0.09, 1.76, 0.96, 0.092]
+      - [-0.02, 2.12, 0.86, 0.122]
+      - [0.05, 2.42, 0.96, 0.126]
+      - [0.11, 2.62, 1.3, 0.1]
+      - [0.15, 2.72, 1.8, 0.062]
+    neck: { r: 0.05, steps: [3, 1] }
+  body-flying:
+    type: trunk
+    mat: feather
+    sides: [10, 5]
+    poses: [fly]
+    rings:
+      - [-0.5, 1.9, 1.84, 0.075]
+      - [-0.36, 1.94, 1.86, 0.08]
+      - [-0.24, 2.0, 1.82, 0.066]
+      - [-0.14, 2.14, 1.62, 0.08]
+      - [-0.02, 2.34, 1.44, 0.118]
+      - [0.08, 2.4, 1.5, 0.114]
+      - [0.15, 2.4, 1.76, 0.07]
+    neck: { r: 0.05, steps: [3, 1] }
+  thighs: { type: lump, mat: feather, mirror: true, not: [fly], at: [0.06, -0.05, 0.82], r: [0.036, 0.05, 0.1], sides: [8, 4], bands: [4, 2] }
+  legs: { type: digitigrade, mat: hide, y: -0.03, x: 0.054, top: 1.0, knee: 0.66, ankle: 0.3, r: 0.034, swing: 0.05, not: [fly] }
+  talons: { type: row, mat: horn, near: true, mirror: true, not: [fly, walk], n: 2, item: spike, from: [0.045, 0.0, 0.03], to: [0.07, 0.0, 0.03], r: [0.0, 0.032, -0.012], thick: 0.0045 }
+  wings: { type: wing, shoulder: [0.09, 0.08, 2.24], span: 1.02, chord: 0.36, sweep: 0.14, beat: 0.14, arm: 0.02, folded: 0.5, drop: 1.25 }
+  head:
+    type: head
+    mat: feather
+    sides: [10, 5]
+    thin: false
+    at:
+      stand: { y: 0.2, z: 3.0, pitch: 0.08 }
+      alert: { y: 0.2, z: 3.1, pitch: -0.04 }
+      low: { y: 0.3, reach: 0.18, clear: 0.05, pitch: 0.9 }
+      fly: { y: 0.27, z: 2.34, pitch: 0.06 }
+    rings:
+      - [-0.03, 0, 0.042, 0.046]
+      - [0.02, 0.006, 0.054, 0.056]
+      - [0.065, 0.004, 0.042, 0.044]
+      - [0.095, -0.002, 0.024, 0.028]
+  bill: { type: tube, on: head, mat: horn, sides: [6, 4], rings: [[0.085, 0.0, 0.02, 0.024], [0.115, 0.002, 0.016, 0.022], [0.145, -0.008, 0.01, 0.016], [0.16, -0.028, 0.004, 0.006]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.042, 0.05, 0.018], r: 0.012 }

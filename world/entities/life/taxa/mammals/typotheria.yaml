@@ -1,0 +1,47 @@
+id: life/taxa/typotheria
+kind: taxon
+summary: >-
+  Small and middling notoungulates, some like rabbits and some like marmots.
+same_as: { pbdb: "txn:57069" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Typotheria, en: "typotheres" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: small-mammal
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.2
+      mass_length: 37
+      behave: { group: [1, 6], habitat: open, poses: [stand, walk, graze, alert] }
+      parts:
+        body: { at: [0, -0.06, 0.26], r: [0.15, 0.36, 0.17], sides: [10, 5] }
+        head: { at: [0, 0.34, 0.29], r: [0.085, 0.15, 0.1], sides: [8, 4] }
+        tail: { from: [0, -0.38, 0.22], to: [0, -0.5, 0.12], r: 0.03 }
+        ears: { type: spike, zl: true, mat: fur, mirror: true, near: true, sides: [5, 4], from: [0.04, 0.27, 0.36], to: [0.06, 0.2, 0.46], r: 0.024 }
+        fore: { near: false, from: [0.09, 0.17, 0.16], to: [0.1, 0.19, 0], r: 0.034 }
+        hind: { near: false, from: [0.1, -0.22, 0.18], to: [0.11, -0.17, 0], r: 0.045 }
+    unsourced: >-
+      A machine's reconstruction, the small-mammal plan made shorter and higher as a
+      rabbit-like or marmot-like body, as these animals are generally described. No figure of
+      one was looked at.
+  mass:
+    prop: body_mass
+    value: { lo: 10, hi: 100 }
+    source:
+      - ref: src:croft-lorente-2021-sanu-limbs
+        loc: "\"Notoungulates\""
+        quote: "Larger hegetotheriids and interatheriids (i.e., ~10 kg; S3 Table)"
+      - ref: src:wikipedia-mesotherium
+        loc: "top of the article"
+        quote: "it was the largest typothere, possibly weighing up to 100 kg"
+    method: compilation
+    note: >-
+      The small end is "larger" members of the small families: the smallest were below it, and
+      no figure for them was read. The high end is from Wikipedia, as nothing better could be
+      read.

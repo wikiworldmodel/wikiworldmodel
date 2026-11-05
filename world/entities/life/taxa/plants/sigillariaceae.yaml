@@ -1,0 +1,44 @@
+id: life/taxa/sigillariaceae
+kind: taxon
+summary: >-
+  Sigillaria and its kin: scale trees that stayed tall poles, with a tuft of narrow leaves at the
+  top.
+same_as: { pbdb: "txn:125649" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Sigillariaceae }
+    unsourced: "The classification's own name."
+  body-plan:
+    prop: body_plan
+    value: scale-tree
+    source:
+      ref: src:wang-2012-wuda
+      loc: "Results"
+      quote: "the tall pole-like trees in the reconstruction"
+  form:
+    prop: body_form
+    value:
+      parts:
+        tree: { trunk: 0.02, fork_at: 0.8, spread: 0.02, forks: 1 }
+        leaves: { type: conifer, reach: 0.05, trunk: 0.004, flare: 1, tiers: 7, start: 0.8, drop: 0.04, mat: needle }
+    source:
+      ref: src:wang-2012-wuda
+      loc: "Fig. 5, caption"
+      quote: "carrying bundles of cones below their tuft of narrow leaves"
+    note: >-
+      A machine's reconstruction, after the painted forests of Figs. 4 and 5 there: a slender pole,
+      hardly forked, with a long tuft at the top. The cones are not drawn.
+  height:
+    prop: plant_height
+    value: 25
+    source:
+      ref: src:wang-2012-wuda
+      loc: "Results"
+      quote: "many attaining heights of up to 25 m or more"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Sigillaria cf. ichthyolepis in the Permian ash at Wuda, Inner Mongolia, which the paper says
+      could grow taller.

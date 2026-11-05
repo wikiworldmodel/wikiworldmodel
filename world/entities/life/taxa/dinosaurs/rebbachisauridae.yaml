@@ -1,0 +1,41 @@
+id: life/taxa/rebbachisauridae
+kind: taxon
+summary: >-
+  The rebbachisaurs: diplodocoids with wide square mouths held low to the ground, the "lawnmower
+  dinosaurs".
+same_as: { pbdb: "txn:57365" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Rebbachisauridae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      behave: { poses: [graze, graze, graze, walk, stand] }
+      parts:
+        head:
+          at:
+            stand: { y: 0.3, z: 0.86, pitch: 0.7 }
+            low: { y: 0.3, reach: 0.042, pitch: 1.2, clear: 0.04 }
+          rings:
+            - [-0.002, 0, 0.005, 0.0062]
+            - [0.008, 0.0015, 0.0056, 0.0072]
+            - [0.018, -0.001, 0.0052, 0.005]
+            - [0.03, -0.003, 0.0072, 0.0032]
+            - [0.04, -0.0042, 0.0085, 0.0022]
+    unsourced: >-
+      A machine's reconstruction: the head held low with a broad square muzzle, from the silhouette
+      "Nigersaurus Size Chart.svg" on Wikimedia Commons and the heading of the table
+      "Rebbachisaurids" in Holtz (2012).
+  length:
+    prop: body_length
+    value: { lo: 15, hi: 20 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 31, Rebbachisaurids", quote: "Demandasaurus [Sierra de la] Demanda [range] Early Cretaceous (130-120 MYA) 49.2 ft (15 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 31, Rebbachisaurids", quote: "Rebbachisaurus Ait Rebbach [Berber tribe of Early Cretaceous (112-99.6 MYA) 65.6 ft (20 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Rebbachisaurids" on that page, standing for any
+      member with no length of its own.

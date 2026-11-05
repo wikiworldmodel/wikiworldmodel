@@ -1,0 +1,39 @@
+id: life/taxa/stegosaurus
+kind: taxon
+summary: >-
+  Stegosaurus, the plated dinosaur of the Late Jurassic of western North America and Portugal.
+same_as: { pbdb: "txn:38814" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Stegosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the plan stegosaur, which was measured from this
+      genus: S. stenops in "Stegosaurus size comparison.svg" on Wikimedia Commons. Nothing here
+      differs from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 9
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 39, Stegosaurines"
+      quote: "Stegosaurus covered reptile Late Jurassic (155.7-150.8 MYA) 29.5 ft (9 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it, for the largest species.
+  length-maidment-2015:
+    prop: body_length
+    value: { lo: 5.5, hi: 6 }
+    source: { ref: src:maidment-2015-stegosaurus-stenops, loc: "Ontogeny, Sex and Death", quote: "NHMUK PV R36730 is 5.5–6 m in length" }
+    method: survey
+    rank: preferred
+    note: >-
+      An exceptionally complete skeleton of the species S. stenops, a young adult that the
+      paper says had reached sexual maturity. Preferred as the stated size of a real animal,
+      though the same sentence goes on to larger individuals.

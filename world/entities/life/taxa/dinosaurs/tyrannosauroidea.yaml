@@ -1,0 +1,56 @@
+id: life/taxa/tyrannosauroidea
+kind: taxon
+summary: >-
+  The tyrant dinosaurs and their early, smaller, longer-armed kin. This record speaks for the early
+  forms; the family proper has its own.
+same_as: { pbdb: "txn:58837" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Tyrannosauroidea }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: large-theropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.26
+      mass_length: 3.4
+      parts:
+        body:
+          rings:
+            - [-0.56, 0.62, 0.61, 0.002]
+            - [-0.44, 0.8, 0.75, 0.005]
+            - [-0.3, 0.92, 0.82, 0.009]
+            - [-0.16, 0.98, 0.78, 0.018]
+            - [-0.06, 1.01, 0.68, 0.03]
+            - [0.02, 1.02, 0.56, 0.044]
+            - [0.1, 1.0, 0.5, 0.046]
+            - [0.17, 1.0, 0.6, 0.04]
+            - [0.22, 1.04, 0.8, 0.026]
+          neck: { r: 0.02, steps: [4, 1] }
+        legs: { x: 0.042, top: 0.86, knee: 0.52, ankle: 0.26, r: 0.034 }
+        arms: { points: [[0.044, 0.17, 0.76, 0.012], [0.05, 0.16, 0.5, 0.009], [0.046, 0.22, 0.34, 0.007], [0.042, 0.26, 0.28, 0.004]] }
+        claws: { from: [0.042, 0.255, 0.285], to: [0.04, 0.285, 0.18], r: 0.0042 }
+        head:
+          at:
+            stand: { y: 0.28, z: 1.2, pitch: 0.1 }
+            alert: { y: 0.27, z: 1.34, pitch: 0.04 }
+            low: { y: 0.31, z: 0.66, pitch: 0.55 }
+    unsourced: >-
+      A machine's reconstruction: a slim long-armed body on the plan's head, from the silhouette
+      "Guanlong scale.png" on Wikimedia Commons.
+  length:
+    prop: body_length
+    value: { lo: 1.3, hi: 10 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 11, Primitive Tyrannosauroids", quote: "Santanaraptor thief of the Santana Formation Early Cretaceous? (112-99.6 MYA) 4.1 ft (1.3 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 10, Proceratosaurids", quote: "Sinotyrannus Chinese tyrant Early Cretaceous (125-120 MYA) 33 ft (10 m)?" }
+    method: compilation
+    note: >-
+      The range across the tables "Proceratosaurids", "Primitive Tyrannosauroids" (pp. 10-11) and
+      "Near Tyrannosaurids" (p. 11), standing for any member with no length of its own. The upper
+      end is the author's own doubt.

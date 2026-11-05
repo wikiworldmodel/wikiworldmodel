@@ -23,6 +23,12 @@ A living scene is made the way the city is:
   mode shows generated life in the same colour as generated housing.
 - **Start small:** one place, one moment, a handful of taxa, done properly; then widen.
 
+## Next: life anywhere
+
+The plan for the aim above is [LIVING-WORLD.md](LIVING-WORLD.md): a scene is a function of the place and the time, run in the
+browser from a sourced atlas of who lived where and a form for each node of the tree of life, written by agents over time. The
+first of it is the [seventh slice](SEVENTH-SLICE.md).
+
 ## Now: three steps
 
 Built: see [SIXTH-SLICE.md](SIXTH-SLICE.md), which says what each criterion's test is and what fell
@@ -86,7 +92,7 @@ Where each stands, what it added and what a reviewer should look at first is in
 |---|---|---|---|---|
 | 1 | Biomes through time | Phanerozoic | a field derived from evidence | built |
 | 2 | Life's great transitions (eukaryotes to grasslands) | 2 Ga–10 Ma | events tied to occurrences; an evidence-type property | built |
-| 3 | Dinosaurs from a PBDB snapshot | Mesozoic | a curated database as a snapshot, with an importer | built, for the Hell Creek |
+| 3 | Dinosaurs from a PBDB snapshot | Mesozoic | a curated database as a snapshot, with an importer | built: the Hell Creek's as records, and all the land's as rows, with forms |
 | 4 | The ice ages: LGM ice, ice-core series, sea level | last 800 kyr | Quaternary fields and series | built: series and records, and the ice sheets of the last 80 kyr on the globe, not the 36 kyr before them |
 | 5 | Hominins and their tools | 7 Ma–40 ka | `artefact` and `industry` kinds | built |
 | 6 | Dispersals and first arrivals, with ancient DNA | 300–15 ka | alternatives of whole pictures; aDNA samples | built |

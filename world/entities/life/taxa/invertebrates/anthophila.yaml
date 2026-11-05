@@ -1,0 +1,41 @@
+id: life/taxa/anthophila
+kind: taxon
+summary: >-
+  The bees: stout and hairy, with the waist hidden.
+same_as: { pbdb: "txn:255345" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Anthophila, en: "bees" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.31
+      parts:
+        waist: null
+        head: { at: [0, 0.41, 0.2], r: [0.09, 0.06, 0.085] }
+        eyes: { at: [0.07, 0.42, 0.205] }
+        thorax: { mat: fur, at: [0, 0.2, 0.205], r: [0.12, 0.16, 0.125] }
+        gaster: { mat: fur, rings: [[0, 0.07, 0.185, 0.09, 0.09], [0, -0.1, 0.17, 0.125, 0.115], [0, -0.3, 0.15, 0.105, 0.095], [0, -0.47, 0.125, 0.026, 0.024], [0, -0.48, 0.124, 0.006, 0.006]] }
+        rest-wings: { points: [[0.08, 0.24, 0.31], [0.14, 0.06, 0.295], [0.13, -0.26, 0.265], [0.07, -0.3, 0.265], [0.03, 0, 0.29]] }
+        fly-fore: { shoulder: [0.08, 0.26, 1.0] }
+        fly-hind: { shoulder: [0.08, 0.17, 0.96] }
+        antennae: { points: [[0.03, 0.46, 0.23, 0.006], [0.07, 0.52, 0.31, 0.005], [0.13, 0.64, 0.3, 0.003]] }
+        hind-legs: { points: [[0.06, 0.12, 0.12, 0.012], [0.2, 0.0, 0.2, 0.011], [0.3, -0.2, 0.05, 0.016], [0.34, -0.28, 0.004, 0.003]] }
+    unsourced: "A machine's reconstruction of the general shape of the group, from general knowledge of bees; no figure was compared with it."
+  length:
+    prop: body_length
+    value: { lo: 0.0035, hi: 0.039 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Hymenoptera Apidae\""
+        quote: "Hymenoptera Apidae 5751 3.5 27 (Arnett 2000)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Hymenoptera Megachilidae\""
+        quote: "Hymenoptera Megachilidae 4120 7 39 (Arnett 2000)/(Messer 1984)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for the families of bees, its millimetres given in metres.
+      Colletidae also begin at 3.5 mm.

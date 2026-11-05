@@ -1,0 +1,29 @@
+id: life/taxa/hypsilophodon
+kind: taxon
+summary: >-
+  Hypsilophodon, a small two-legged plant-eater of the Early Cretaceous of England.
+same_as: { pbdb: "txn:38736" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hypsilophodon }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Ornithischia, which was measured from this
+      genus: H. foxii in "Hypsilophodon Scale Chart.svg" on Wikimedia Commons. Nothing here differs
+      from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 1.8
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 42, Primitive Ornithopods"
+      quote: "Hypsilophodon Hypsilophus [old scientific name Early Cretaceous (130-125 MYA) 5.9 ft (1.8 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

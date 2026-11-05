@@ -1,0 +1,18 @@
+id: src:gale-encyclopedia-salamanders
+type: database-record
+kind: review
+citation: >-
+  "Salamanders." The Gale Encyclopedia of Science, as served by Encyclopedia.com.
+snapshot: 2026-11-05
+title: "Salamanders"
+container: "The Gale Encyclopedia of Science"
+url: https://www.encyclopedia.com/plants-and-animals/animals/vertebrate-zoology/salamanders
+reliability: >-
+  A general encyclopedia of science, with no references for the numbers cited here. It is used for
+  the extremes of living salamanders in place of the herpetological works that give them, which
+  could not be read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The page read at encyclopedia.com on the date of the snapshot; quotes checked by script
+    against its text.

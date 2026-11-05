@@ -24,6 +24,25 @@ claims:
       molecular ages conflict with the fossil record, whose oldest angiosperm pollen is
       Valanginian; the two do not contradict each other here, since a fossil only bounds the
       origin from below.
+  body-plan:
+    prop: body_plan
+    value: broadleaf
+    unsourced: "Which plan draws it and everything below it that says nothing else: an editorial classification. Flowering plants are not all trees: shrubs, herbs and water plants say otherwise for themselves."
+  height:
+    prop: plant_height
+    value: { lo: 5, hi: 30 }
+    source:
+      - ref: src:flora-of-north-america
+        loc: "Vol. 7, s.v. Salix nigra"
+        quote: "Trees, 5-20+ m."
+      - ref: src:flora-of-north-america
+        loc: "Vol. 3, s.v. Betula papyrifera"
+        quote: "Trees , to 30 m, usually 20 m or shorter"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living broad-leaved trees, standing for a flowering plant with no height of its own: modern
+      relatives, chosen by the editor. The plan draws a tree, so the range is of trees.
 relations:
   parent:
     rel: descends-from

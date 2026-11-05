@@ -1,0 +1,56 @@
+id: life/taxa/batomorphii
+kind: taxon
+summary: >-
+  Rays and guitarfishes: flat sharks' relatives with their fins grown into wings or a broad front, some in fresh water, such as Myledaphus
+  of the Late Cretaceous of western North America.
+same_as: { pbdb: "txn:111368" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Batomorphii, en: rays and guitarfishes }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.05
+      parts:
+        body:
+          rings:
+            - [-0.5, 1.1, 0.9, 0.003]
+            - [-0.3, 1.26, 0.74, 0.012]
+            - [-0.14, 1.42, 0.58, 0.026]
+            - [-0.08, 1.56, 0.44, 0.05]
+            - [0.02, 1.74, 0.26, 0.09]
+            - [0.14, 1.8, 0.2, 0.15]
+            - [0.26, 1.7, 0.3, 0.13]
+        head:
+          at:
+            stand: { y: 0.3, z: 1.0, pitch: 0 }
+          rings:
+            - [-0.02, 0, 0.1, 0.03]
+            - [0.05, 0.0, 0.08, 0.024]
+            - [0.1, 0.0, 0.05, 0.016]
+            - [0.16, 0.0, 0.024, 0.008]
+            - [0.19, 0.0, 0.006, 0.003]
+        tail: { points: [[0, -0.36, 1.0], [0, -0.42, 1.5], [0, -0.53, 1.04], [0, -0.42, 0.7]] }
+        dorsal: { points: [[0, -0.16, 1.4], [0, -0.26, 1.24], [0, -0.26, 2.1], [0, -0.2, 2.0]] }
+        dorsal2: { points: [[0, -0.28, 1.24], [0, -0.36, 1.12], [0, -0.36, 1.7], [0, -0.31, 1.66]] }
+        pectoral: { points: [[0.13, 0.2, 0.9], [0.23, 0.04, 0.9], [0.17, -0.06, 0.9], [0.08, -0.04, 0.9]] }
+        pelvic: { points: [[0.05, -0.1, 0.8], [0.12, -0.18, 0.8], [0.07, -0.2, 0.8], [0.03, -0.15, 0.8]] }
+        eyes: { at: [0.04, 0.05, 0.022], r: 0.0065 }
+    unsourced: >-
+      A machine's drawing of a guitarfish's general shape, from no figure: a flat broad front, a thick tail with two fins on it. Skates and
+      stingrays, wider and thinner in the tail, are drawn so too until someone writes theirs.
+  length:
+    prop: body_length
+    value: { lo: 0.8, hi: 1.85 }
+    source:
+      - ref: src:fishbase-freshwater-fishes
+        loc: "Rhinobatos rhinobatos, Size / Weight / Age"
+        quote: "common length : 80.0 cm TL male/unsexed"
+      - ref: src:fishbase-freshwater-fishes
+        loc: "Rhinobatos rhinobatos, Size / Weight / Age"
+        quote: "Max length : 185 cm TL male/unsexed"
+    method: compilation
+    note: A living guitarfish stands for the group; the fossil rows here are of its fresh- and brackish-water relatives.

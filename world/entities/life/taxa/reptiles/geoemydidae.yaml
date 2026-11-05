@@ -1,0 +1,24 @@
+id: life/taxa/geoemydidae
+kind: taxon
+summary: >-
+  Eurasian pond and river turtles and Neotropical wood turtles.
+same_as: { pbdb: "txn:276087" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Geoemydidae", en: "Eurasian pond and river turtles" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.12, hi: 0.8 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Vijayachelys silvatica, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "370 NA 120"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Eurasian Pond and River Turtles, and Neotropical Wood Turtles (Geoemydidae)\""
+        quote: "Up to 32 in (80 cm) carapace length and 110 lb (50 kg)"
+    method: compilation
+    note: >-
+      Straight shell length at the low end, carapace length at the high end.

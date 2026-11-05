@@ -1,0 +1,37 @@
+id: life/taxa/cygnus
+kind: taxon
+summary: >-
+  Swans: the largest waterfowl, with very long necks.
+same_as: { pbdb: "txn:83418" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Cygnus", en: "swans" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [1, 6] }
+      parts:
+        head:
+          at:
+            stand: { y: 0.3, z: 4.3, pitch: 0.16 }
+            alert: { y: 0.28, z: 4.7, pitch: 0.04 }
+            low: { y: 0.4, reach: 0.12, clear: 0.05, pitch: 1.0 }
+            fly: { y: 0.38, z: 2.6, pitch: 0.03 }
+        body: { neck: { r: 0.024, steps: [7, 2] } }
+    unsourced: "A machine's reconstruction: a much longer neck on the plan's swimming bird. No skeletal figure was looked at."
+  length:
+    prop: body_length
+    value: { lo: 1.25, hi: 1.8 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Ducks, Geese, and Swans (Anatidae)\", Mute swan"
+        quote: "49–63 in (125–160 cm); 14.6–33 lb (6.6–15.0 kg)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Ducks, Geese, and Swans (Anatidae)\""
+        quote: "which reaches a body length of 70.87 in (1.80 m)"
+    method: compilation
+    note: >-
+      The mute swan and the trumpeter swan.

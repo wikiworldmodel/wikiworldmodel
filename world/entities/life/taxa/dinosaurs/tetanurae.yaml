@@ -1,0 +1,26 @@
+id: life/taxa/tetanurae
+kind: taxon
+summary: >-
+  The stiff-tailed theropods. Its record speaks for those in no smaller group; the megalosaurs, the
+  carnosaurs and the coelurosaurs have their own.
+same_as: { pbdb: "txn:53374" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Tetanurae }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: large-theropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 5, hi: 9 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 6, Primitive Tetanurines", quote: "Valdoraptor thief of the Wealden Group Early Cretaceous (130-125 MYA) 16.4 ft (5 m)?" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 5, Primitive Tetanurines", quote: "Cruxicheiros Cross Hands [Quarry] Middle Jurassic (167.7-164.7 MYA) 29.5 ft (9 m)?" }
+    method: compilation
+    note: >-
+      The range across the named genera of the table "Primitive Tetanurines" with a figure above
+      that of Iliosuchus, which is known from a single ilium. Both ends are the author's own doubt.

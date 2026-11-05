@@ -1,0 +1,52 @@
+id: life/taxa/acreodi
+kind: taxon
+summary: >-
+  Wolf-like hoofed meat-eaters of the Paleocene and Eocene with very long heads.
+same_as: { pbdb: "txn:183657" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Acreodi, en: "mesonychids and their kin" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: carnivoran
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.36
+      parts:
+        head:
+          at:
+            stand: { y: 0.24, z: 1.2, pitch: 0.14 }
+            alert: { y: 0.24, z: 1.36, pitch: 0.0 }
+            low: { y: 0.28, reach: 0.2, pitch: 0.95 }
+          rings:
+            - [-0.012, 0.01, 0.046, 0.052]
+            - [0.05, 0.016, 0.056, 0.062]
+            - [0.115, 0.002, 0.042, 0.046]
+            - [0.17, -0.014, 0.03, 0.03]
+            - [0.21, -0.022, 0.024, 0.02]
+        ears: { from: [0.04, 0.006, 0.05], to: [0.05, -0.01, 0.082], r: 0.014 }
+        eyes: { at: [0.042, 0.1, 0.03] }
+    unsourced: >-
+      A machine's reconstruction, a carnivoran's body with a longer head: Wikipedia's list of
+      the largest animals gives half-metre skulls in the largest. No skeleton of one was
+      looked at.
+  mass:
+    prop: body_mass
+    value: { lo: 8, hi: 191 }
+    source:
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Mesonychians (Mesonychia)\""
+        quote: "which was estimated to have weighed 8 kg (18 lb)"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Mesonychians (Mesonychia)\""
+        quote: "with a mean body mass of 191 kg (421 lb)"
+    method: compilation
+    note: >-
+      From Hapalorestes to Pachyaena gigantea, from Wikipedia as nothing better could be read;
+      Triisodon, 32 to 44 kg in Toosey et al. (2024), lies within it. No length of the whole
+      animal was read: the plan makes it from the mass.

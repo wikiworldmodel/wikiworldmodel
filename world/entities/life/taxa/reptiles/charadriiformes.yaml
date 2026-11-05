@@ -1,0 +1,63 @@
+id: life/taxa/charadriiformes
+kind: taxon
+summary: >-
+  Sandpipers, plovers, gulls, terns and auks. Most of the fossils are waders, so a small long-legged
+  wader is the body it starts from.
+same_as: { pbdb: "txn:36640" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Charadriiformes", en: "shorebirds, gulls and auks" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.26
+      behave: { flies: null, group: [2, 12], habitat: wet, poses: [stand, walk, walk, graze] }
+      parts:
+        body:
+          rings:
+            - [-0.42, 1.5, 1.4, 0.02]
+            - [-0.33, 1.56, 1.36, 0.038]
+            - [-0.23, 1.62, 1.2, 0.06]
+            - [-0.12, 1.72, 1.0, 0.09]
+            - [-0.02, 1.82, 0.94, 0.1]
+            - [0.07, 1.9, 1.02, 0.086]
+            - [0.13, 1.94, 1.3, 0.056]
+          neck: { r: 0.03, steps: [3, 1] }
+        legs: { y: -0.04, x: 0.036, top: 1.05, knee: 0.74, ankle: 0.4, r: 0.03, swing: 0.1 }
+        wings: { shoulder: [0.085, 0.08, 1.7], span: 0.82, chord: 0.2, sweep: 0.3, folded: 0.46, drop: 0.3 }
+        head:
+          at:
+            stand: { y: 0.2, z: 2.3, pitch: 0.1 }
+            alert: { y: 0.2, z: 2.4, pitch: 0.0 }
+            low: { y: 0.26, reach: 0.26, clear: 0.05, pitch: 1.0 }
+            fly: { y: 0.22, z: 2.0, pitch: 0.05 }
+          rings:
+            - [-0.02, 0, 0.024, 0.028]
+            - [0.02, 0.003, 0.034, 0.038]
+            - [0.055, 0.0, 0.026, 0.028]
+            - [0.08, -0.004, 0.012, 0.014]
+        bill: { from: [0, 0.074, -0.004], to: [0, 0.27, -0.024], r: 0.011 }
+        eyes: { at: [0.026, 0.034, 0.014], r: 0.008 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Sandpipers (Scolopacidae)\""
+      quote: "Small to medium-sized waders with short to long legs; bill short to long"
+    note: >-
+      The body follows this. The rest is a machine's reconstruction; no skeletal figure was looked
+      at. The database files the order as marine, so the atlas does not draw it yet.
+  length:
+    prop: body_length
+    value: { lo: 0.12, hi: 0.81 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Sandpipers (Scolopacidae)\""
+        quote: "4.7–26 in (12–66 cm);.03–3.0 lb (14.5–1,360g)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Gulls and Terns (Laridae)\""
+        quote: "Gulls: 10–32 in (25–81 cm), 0.2–4.4 lb (100–2,000 g)"
+    method: compilation
+    note: >-
+      From the smallest sandpipers to the largest gulls.

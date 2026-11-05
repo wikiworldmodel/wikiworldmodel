@@ -1,0 +1,37 @@
+id: life/taxa/peltaspermophyta
+kind: taxon
+summary: >-
+  The database's phylum for peltasperms, umkomasians and the glossopterids, of which the last say
+  otherwise for themselves.
+same_as: { pbdb: "txn:263542" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Peltaspermophyta, en: peltasperms and glossopterids }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: seed-fern
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: 10
+    source:
+      - ref: src:anderson-2008-dicroidium-stems
+        loc: "p. 1"
+        quote: "a palmiform tree with a substantial trunk to lOm"
+      - ref: src:anderson-2008-dicroidium-stems
+        loc: "p. 1"
+        quote: "that Dicroidium ranged from shrubs to tall trees"
+      - ref: src:anderson-2008-dicroidium-stems
+        loc: "p. 1"
+        quote: "and the Family Umkomasiaceae"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Petriella's reconstruction of 1978, as Anderson et al. report it; the scan's text reads lOm,
+      and the page's image 10m. The same page says other authors have speculated on shrubs, and on
+      tall trees, so this is one reading of a plant whose habit is little known. Anderson & Anderson
+      (2003) put Dicroidium in the Umkomasiaceae, which the database puts here: the only height read
+      for this phylum's seed ferns.

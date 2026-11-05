@@ -1,0 +1,24 @@
+id: life/taxa/falco
+kind: taxon
+summary: >-
+  The true falcons and kestrels.
+same_as: { pbdb: "txn:39319" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Falco", en: "falcons" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.28, hi: 0.64 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Falcons and Caracaras (Falconidae)\", Amur falcon"
+        quote: "11.0–11.8 in (28–30 cm)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Falcons and Caracaras (Falconidae)\", Gyrfalcon"
+        quote: "female 20.1–25.2 in (51–64 cm)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the species of the genus the entry describes.

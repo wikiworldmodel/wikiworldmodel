@@ -1,0 +1,32 @@
+id: life/taxa/styracosaurus
+kind: taxon
+summary: >-
+  Styracosaurus, a centrosaurine of the Campanian of Alberta with long spikes on its frill.
+same_as: { pbdb: "txn:38860" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Styracosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        nose: { from: [0, 0.178, 0.016], to: [0, 0.25, 0.205], r: 0.019 }
+        spikes-a: { type: spike, on: head, mirror: true, tint: 60, from: [0.04, -0.108, 0.188], to: [0.075, -0.19, 0.31], r: 0.013, sides: [6, 3] }
+        spikes-b: { type: spike, on: head, mirror: true, tint: 60, from: [0.075, -0.09, 0.165], to: [0.14, -0.165, 0.28], r: 0.012, sides: [6, 3] }
+        spikes-c: { type: spike, on: head, mirror: true, tint: 60, from: [0.105, -0.067, 0.135], to: [0.185, -0.115, 0.2], r: 0.01, sides: [6, 3] }
+    unsourced: >-
+      A machine's reconstruction: a tall nose horn and three pairs of frill spikes, from the
+      silhouette "Styracosaurus Scale.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 5.5
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 51, Centrosaurines"
+      quote: "Styracosaurus spike [frill] reptile Late Cretaceous (80-72.8 MYA) 18 ft (5.5 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

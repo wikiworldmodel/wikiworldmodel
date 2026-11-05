@@ -1,0 +1,32 @@
+id: life/taxa/recumbirostra
+kind: taxon
+summary: >-
+  Recumbirostrans: small burrowing or scratching tetrapods of the Carboniferous and Permian, the so-called microsaurs that the
+  database now counts as amniotes.
+same_as: { pbdb: "txn:367478" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Recumbirostra, en: recumbirostrans }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: microsaur
+    unsourced: >-
+      Which plan draws it: an editorial classification, from what the group was called before and with no skeletal figure looked
+      at. The database places it under the amniotes, not under the lepospondyls with the rest of the plan's kind.
+  length:
+    prop: body_length
+    value: { lo: 0.15, hi: 0.25 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Microbrachis, Description"
+        quote: "about 15 centimetres (6 in) long"
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Pantylus, Description"
+        quote: "It was about 25 centimetres (10 in) long"
+    method: compilation
+    note: >-
+      Two microsaurs. Pantylus is a recumbirostran; Microbrachis is not, and stands for the small end. An encyclopedia, cited as
+      nothing better could be read.

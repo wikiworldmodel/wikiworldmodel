@@ -1,0 +1,53 @@
+id: life/taxa/alamosaurus
+kind: taxon
+summary: >-
+  Alamosaurus, the last great sauropod of North America, from the latest Cretaceous.
+same_as: { pbdb: "txn:38683" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Alamosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.175
+      parts:
+        body:
+          rings:
+            - [-0.483, 0.48, 0.47, 0.0008]
+            - [-0.414, 0.62, 0.57, 0.002]
+            - [-0.32, 0.753, 0.634, 0.005]
+            - [-0.207, 0.774, 0.634, 0.009]
+            - [-0.113, 0.946, 0.656, 0.03]
+            - [-0.019, 1.108, 0.548, 0.07]
+            - [0.075, 1.258, 0.462, 0.086]
+            - [0.141, 1.409, 0.656, 0.076]
+            - [0.197, 1.56, 1.15, 0.036]
+            - [0.263, 1.97, 1.71, 0.022]
+            - [0.329, 2.3, 2.11, 0.017]
+            - [0.37, 2.5, 2.33, 0.014]
+            - [0.395, 2.58, 2.43, 0.0125]
+          neck: { r: 0.0115, steps: [1, 1] }
+        hind: { y: -0.02, top: 0.86 }
+        fore: { y: 0.12, top: 1.02 }
+        head:
+          at:
+            stand: { y: 0.41, z: 2.53, pitch: 0.3 }
+            alert: { y: 0.412, z: 2.58, pitch: 0.08 }
+        scutes: null
+    unsourced: >-
+      A machine's reconstruction: the neck raised high as in the plan titanosaur, rather than as its
+      family holds it here, and no armour, from the holotype USNM 10846 in "Alamosaurus Scale Chart
+      Steveoc.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 30
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 36, Antarctosaurids", quote: "Alamosaurus Ojo Alamo [New Mexico] reptile Late Cretaceous (66.8-65.5 MYA) more?" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 36, Antarctosaurids", quote: "100 ft (30 m) or" }
+    method: compilation
+    note: >-
+      The row's length cell runs over two lines of the text layer: "100 ft (30 m) or more?". A
+      whole-genus figure, with no measurement behind it, and a doubtful one.

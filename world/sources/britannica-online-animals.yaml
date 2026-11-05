@@ -1,0 +1,20 @@
+id: src:britannica-online-animals
+type: database-record
+kind: review
+citation: >-
+  Encyclopaedia Britannica, online edition: articles on animals (spider, scorpion, arachnid, mite, false scorpion, daddy longlegs,
+  millipede, centipede, crayfish, isopod, branchiopod, gastropod, bivalve, arthropod, dragonfly, damselfly, Coleoptera, weevil, rove
+  beetle, Diptera, Hymenoptera, Lepidoptera, heteropteran, Orthoptera, earwig, aphid, ant, springtail).
+snapshot: 2026-11-05
+title: Britannica's articles on animals
+container: Encyclopaedia Britannica
+url: https://www.britannica.com/
+reliability: >-
+  A general encyclopedia, with no references for the numbers cited here. It is used for the sizes of groups outside the insects
+  because the works that would give them, such as the treatises on spiders and myriapods, could not be read: a last resort, and
+  better sources should replace it. Its text can change. Each locator names the article.
+verified:
+  by: machine:claude-code
+  how: >-
+    Each article opened in a browser on 2026-11-05 and its text read from the page by script. The passages cited were saved and the
+    quotes checked by script against them.

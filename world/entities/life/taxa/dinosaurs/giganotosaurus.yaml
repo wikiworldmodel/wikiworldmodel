@@ -1,0 +1,29 @@
+id: life/taxa/giganotosaurus
+kind: taxon
+summary: >-
+  Giganotosaurus, a shark-toothed giant of the Cretaceous of Patagonia.
+same_as: { pbdb: "txn:54540" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Giganotosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Carcharodontosauridae, which was measured
+      from this genus: "Giganotosaurus Scale.svg" on Wikimedia Commons. Nothing here differs from
+      it.
+  length-holtz-2012:
+    prop: body_length
+    value: 13.2
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 8, Carcharodontosaurids"
+      quote: "Giganotosaurus giant southern reptile Late Cretaceous (99.6-97 MYA) 43.3 ft (13.2 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

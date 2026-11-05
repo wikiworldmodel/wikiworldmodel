@@ -1,0 +1,29 @@
+id: life/taxa/viviparidae
+kind: taxon
+summary: >-
+  The river snails of fresh water, large and round-whorled. It takes the snails' body, with its own range of sizes.
+same_as: { pbdb: "txn:62825" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Viviparidae, en: "river snails" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [1, 5], habitat: edge, poses: [stand, walk] }
+    unsourced: "This only says how the group is laid out, in the shallows, which is no claim about the animal."
+  length:
+    prop: body_length
+    value: { lo: 0.025, hi: 0.04 }
+    source:
+      - ref: src:watson-dallwitz-nonmarine-molluscs
+        loc: "Viviparidae"
+        quote: "25–35 mm in its maximum dimension (V. viviparus)"
+      - ref: src:watson-dallwitz-nonmarine-molluscs
+        loc: "Viviparidae"
+        quote: "30–40 mm in its maximum dimension (V. contectus)"
+    method: compilation
+    note: >-
+      The two species of Britain and Ireland, the only ones read: elsewhere the family may be wider.

@@ -1,0 +1,27 @@
+id: src:deak-2025-ground-sloths
+type: publication
+kind: model
+citation: >-
+  Deak, M.D., Porter, W.P., Mathewson, P.D., Lovelace, D.M., Flores, R.J., Tripati, A.K., Eagle,
+  R.A., Schwartz, D.M. & Butcher, M.T. (2025). Metabolic skinflint or spendthrift? Insights into
+  ground sloth integument and thermophysiology revealed by biophysical modeling and clumped
+  isotope paleothermometry. Journal of Mammalian Evolution 32.
+authors:
+  - "Deak, M.D."
+  - "Porter, W.P."
+  - "Mathewson, P.D."
+  - "Lovelace, D.M."
+  - "Flores, R.J."
+  - "Tripati, A.K."
+  - "Eagle, R.A."
+  - "Schwartz, D.M."
+  - "Butcher, M.T."
+published: 2025
+title: "Metabolic skinflint or spendthrift? Insights into ground sloth integument and thermophysiology revealed by biophysical modeling and clumped isotope paleothermometry"
+container: "Journal of Mammalian Evolution 32"
+doi: 10.1007/s10914-024-09743-2
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC11732909). Quotes checked by script against the
+    text retrieved, after normalizing whitespace.

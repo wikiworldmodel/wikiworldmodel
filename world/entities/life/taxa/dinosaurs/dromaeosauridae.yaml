@@ -1,0 +1,22 @@
+id: life/taxa/dromaeosauridae
+kind: taxon
+summary: >-
+  The dromaeosaurs, sickle-clawed feathered hunters.
+same_as: { pbdb: "txn:38561" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dromaeosauridae }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 0.7, hi: 7 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 17, Microraptorines", quote: "Shanag Shanag [black hatted dancers in Early Cretaceous (145.5-125 MYA) 2.3 ft (70 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 18, Dromaeosaurines", quote: "Utahraptor Utah thief Early Cretaceous (130-125 MYA) 23 ft (7 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Microraptorines", "Saurornitholestines", "Velociraptorines" and
+      "Dromaeosaurines" (pp. 17-18), standing for any member with no length of its own, such as
+      Richardoestesia, for which the list gives none, as it is known from jaws and teeth.

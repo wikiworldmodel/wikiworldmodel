@@ -1,0 +1,21 @@
+id: life/taxa/prosaurolophus
+kind: taxon
+summary: >-
+  Prosaurolophus, a duck-bill of the Campanian of Alberta and Montana with a small crest.
+same_as: { pbdb: "txn:38767" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Prosaurolophus }
+    unsourced: The classification's own name.
+  length-holtz-2012:
+    prop: body_length
+    value: 8
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 48, Saurolophinins"
+      quote: "Prosaurolophus before Saurolophus Late Cretaceous (80-72.8 MYA) 26.2 ft (8 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

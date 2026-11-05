@@ -5,14 +5,15 @@
 //   - status: machine claims start `proposed`, others `accepted`
 //   - rank: `normal`; basis: `evidence`
 //   - `source` is one citation or a list of them (corroboration)
+import type { Form } from '../../../core/form.ts';
 import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
-import { join, relative } from 'node:path';
+import { basename, join, relative } from 'node:path';
 import { parseDocument } from 'yaml';
 import { parseRef, RefError, splitRef, type Ref } from '../../../core/refs.ts';
 import type { LagInput, TimeInput } from '../../../core/time.ts';
 import { elementKey, ohmEntities, type OhmSnapshot } from './ohm.ts';
-import { pbdbEntities, type PbdbSnapshot } from './pbdb.ts';
+import { pbdbEntities, placeInLand, type LandSnapshot, type PbdbSnapshot } from './pbdb.ts';
 import { REPO, WORLD } from './paths.ts';
 
 export type Status = 'proposed' | 'accepted' | 'disputed' | 'deprecated';
@@ -114,7 +115,7 @@ export interface DatasetFile {
 
 export interface Dataset extends Source {
   /** a snapshot of a database whose elements become records (tools/world/src/ohm.ts) */
-  import?: { as: 'ohm-site' | 'pbdb-formation'; frame: string };
+  import?: { as: 'ohm-site' | 'pbdb-formation' | 'pbdb-land'; frame?: string };
   fetch: {
     url: string;
     sha256: string;
@@ -161,7 +162,7 @@ export interface Field {
     from: string;
     file?: string;
     /** what the data is read as, where it is not elevation */
-    as?: 'climate' | 'ice-sheets' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages' | 'people';
+    as?: 'climate' | 'ice-sheets' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages' | 'people' | 'community';
     places?: string;
     /** a series of the world's own measurements: the property whose claims give its values */
     prop?: string;
@@ -228,7 +229,7 @@ export interface Kind {
 }
 
 export interface Property {
-  type: 'time' | 'point' | 'ref' | 'text' | 'string' | 'quantity' | 'color' | 'geometry' | 'form';
+  type: 'time' | 'point' | 'ref' | 'text' | 'string' | 'quantity' | 'color' | 'geometry' | 'form' | 'body-form';
   unit?: string;
   /** for strings: the values allowed, each with what it means */
   values?: Record<string, string>;
@@ -306,6 +307,10 @@ export interface World {
   snapshots: Map<string, OhmSnapshot>;
   /** snapshots of a formation's fossils, by dataset id */
   fossils: Map<string, PbdbSnapshot>;
+  /** the land's fossils, as rows, by dataset id */
+  landFossils: Map<string, LandSnapshot>;
+  /** the body plans a taxon's form starts from, by name */
+  plans: Record<string, Form>;
   source: Map<string, Source>;
   frame: Map<string, Frame>;
   alternative: Map<string, Alternative>;
@@ -498,7 +503,7 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
     const adopted = new Set<string>();
     for (const e of entities) for (const c of e.claims) if (c.prop === 'footprint') for (const k of (c.value as { elements?: string[] })?.elements ?? []) adopted.add(k);
     for (const k of [...adopted]) if (!snap.elements.some((x) => elementKey(x) === k)) loadIssues.push({ file: 'manifest.yaml', where: d.id, message: `no element ${k} in the snapshot` });
-    entities.push(...ohmEntities(snap, d.id, path, d.import.frame, adopted));
+    entities.push(...ohmEntities(snap, d.id, path, d.import.frame!, adopted));
   }
   // A formation's taxa become records too, but its occurrences stay rows of the snapshot.
   const fossils = new Map<string, PbdbSnapshot>();
@@ -509,6 +514,20 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
     fossils.set(d.id, snap);
     entities.push(...pbdbEntities(snap, d.id, path, entities));
   }
+  // The land's fossils stay rows, taxa and all: only a taxon a record adopts joins the world's tree.
+  const landFossils = new Map<string, LandSnapshot>();
+  for (const d of Object.values(manifest.datasets)) {
+    if (d.import?.as !== 'pbdb-land') continue;
+    const path = d.fetch.url.replace(/^repo:/, '');
+    const snap = JSON.parse(await readFile(join(REPO, path), 'utf8')) as LandSnapshot;
+    landFossils.set(d.id, snap);
+    placeInLand(snap, d.id, path, entities);
+  }
+  const plans: Record<string, Form> = {};
+  const planDir = from('plans');
+  for (const path of (await walk(planDir)).sort()) plans[basename(path).replace(/\.ya?ml$/, '')] = await yamlOf<Form>(path);
+  // A plan's description is its entry in the vocabulary, so that a new plan is one new file.
+  if (vocab.properties.body_plan && Object.keys(plans).length) vocab.properties.body_plan.values = Object.fromEntries(Object.entries(plans).map(([k, v]) => [k, v.description ?? k]));
   const sources: Source[] = [
     ...sourceFiles.map((f) => ({ ...(f.data as unknown as Source), file: f.file })),
     ...Object.values(manifest.datasets),
@@ -532,6 +551,8 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
     entity: new Map(entities.map((e) => [e.id, e])),
     snapshots,
     fossils,
+    landFossils,
+    plans,
     source: new Map(sources.map((s) => [s.id, s])),
     frame: new Map(frames.map((f) => [f.id, f])),
     alternative: new Map(alternatives.map((a) => [a.id, a])),

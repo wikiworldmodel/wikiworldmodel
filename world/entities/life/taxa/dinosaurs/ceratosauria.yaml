@@ -1,0 +1,26 @@
+id: life/taxa/ceratosauria
+kind: taxon
+summary: >-
+  The ceratosaurs, from swift elaphrosaurs to stump-armed abelisaurs. Its record speaks for those in
+  no smaller group; the abelisaurs and noasaurs have their own.
+same_as: { pbdb: "txn:90100" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ceratosauria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: large-theropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 2, hi: 12 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 4, Primitive Ceratosaurs", quote: "Ozraptor thief of Oz [nickname of Australia] Middle Jurassic (171.6-167.7 MYA) 6.6 ft (2 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 4, Primitive Ceratosaurs", quote: "Bahariasaurus Bahariya [Egypt] reptile Early to Late (112-93.5 MYA) 39.4 ft (12 m)?" }
+    method: compilation
+    note: >-
+      The range across the table "Primitive Ceratosaurs" on that page. The upper end is the author's
+      own doubt.

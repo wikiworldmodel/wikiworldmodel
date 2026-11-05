@@ -1,0 +1,41 @@
+id: life/taxa/crocodylomorpha
+kind: taxon
+summary: >-
+  Crocodiles and alligators and all their extinct relatives. The semi-aquatic crocodilian is the
+  body the group starts from; land-going groups have their own.
+same_as: { pbdb: "txn:53401" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Crocodylomorpha", en: "crocodiles and their extinct relatives" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: crocodilian
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  posture:
+    prop: posture
+    value: sprawling
+    source:
+      ref: src:reilly-elias-1998-alligator-locomotion
+      loc: "abstract"
+      quote: "crocodilians occasionally use a sprawling posture"
+  length:
+    prop: body_length
+    value: { lo: 0.2, hi: 4 }
+    source:
+      - ref: src:matsumoto-evans-2010-choristoderes
+        loc: "p. 262, Table 1"
+        quote: "NA Hoplosuchus kayi 0.2 m"
+      - ref: src:matsumoto-evans-2010-choristoderes
+        loc: "p. 262, Table 1"
+        quote: "NA Leidyosuchus 4 m Erickson, 1982"
+      - ref: src:godoy-2019-crocodylomorph-body-size
+        loc: "abstract"
+        quote: "many of the earliest taxa were much smaller (< 1.2 m)"
+    method: compilation
+    note: >-
+      The range of the table's freshwater and land forms, standing for any member with no length of
+      its own. Marine forms, such as Machimosaurus at 9.5 m in the same table, are not drawn on land
+      and are left out, as are a few giants such as Deinosuchus.

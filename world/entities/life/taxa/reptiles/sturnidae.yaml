@@ -1,0 +1,19 @@
+id: life/taxa/sturnidae
+kind: taxon
+summary: >-
+  Starlings and mynas.
+same_as: { pbdb: "txn:134484" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Sturnidae", en: "starlings and mynas" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.18, hi: 0.43 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Starlings and Mynas (Sturnidae)\""
+      quote: "7–17 in (18–43 cm)"
+    method: compilation

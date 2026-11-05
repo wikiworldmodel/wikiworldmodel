@@ -1,0 +1,27 @@
+id: life/taxa/ceratopsia
+kind: taxon
+summary: >-
+  The horned dinosaurs. This record speaks for the earliest, small and two-legged with a parrot
+  beak; the frilled groups have their own.
+same_as: { pbdb: "txn:38842" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ceratopsia }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: psittacosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.5, hi: 3 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 49, Chaoyangsaurids and Other Primitive Ceratopsians", quote: "Micropachycephalosaurus small Pachycephalosaurus Late Cretaceous (70.6-68.5 MYA) 1.6 ft (50 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 49, Chaoyangsaurids and Other Primitive Ceratopsians", quote: "Yinlong hidden dragon Late Jurassic (161.2-155.7 MYA) 9.8 ft (3 m)" }
+    method: compilation
+    note: >-
+      The range across the named genera of the table "Chaoyangsaurids and Other Primitive
+      Ceratopsians" on p. 49, leaving out Xuanhuaceratops, whose row gives "2 ft (60 m)", plainly a
+      misprint.

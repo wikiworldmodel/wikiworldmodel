@@ -1,0 +1,40 @@
+id: life/taxa/passeriformes
+kind: taxon
+summary: >-
+  The perching birds, or songbirds, the largest order of birds, drawn as the plan's small flying
+  bird.
+same_as: { pbdb: "txn:39441" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Passeriformes", en: "perching birds" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.076, hi: 0.69 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Old World Flycatchers (Muscicapidae)\""
+        quote: "Body length 3–9 in (7.6–23 cm)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Crows and Jays (Corvidae)\""
+        quote: "7.4–26.9 in (19–69 cm); 1.47 oz–3.66 lb (41.6 g–1.56 kg)"
+    method: compilation
+    note: >-
+      From the smaller flycatchers to the largest crows, for any passerine with no length of its
+      own. Left out on purpose are the lyrebirds, 71–107 cm (s.v. Lyrebirds (Menuridae)), most of it
+      tail: a range is drawn evenly from end to end, and the order's birds are nearly all small.
+  mass:
+    prop: body_mass
+    value: { lo: 0.004, hi: 1.7 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Long-Tailed Titmice (Aegithalidae)\""
+        quote: "3.5–6.3 in (8.9–16 cm); 0.14–0.32 oz (4–9 g)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Passeriformes (Perching Birds)\""
+        quote: "ravens (Corvus corax; weight approximately 60 oz [1,700 g]) are the largest members of the order"
+    method: compilation
+    note: >-
+      From the smaller long-tailed tits to the raven.

@@ -1,0 +1,18 @@
+id: src:rossler-noll-2007-calamitea
+type: publication
+kind: measurement
+citation: >-
+  Rößler, R. & Noll, R. (2007). Calamitea Cotta, the correct name for calamitean sphenopsids currently
+  classified as Calamodendron Brongniart. Review of Palaeobotany and Palynology 144, 157–180.
+authors:
+  - "Rößler, R."
+  - "Noll, R."
+published: 2007
+title: "Calamitea Cotta, the correct name for calamitean sphenopsids currently classified as Calamodendron Brongniart"
+container: Review of Palaeobotany and Palynology 144, 157–180
+url: https://web.natur.cuni.cz/IGP/main/staff/sakala/04-divers/permokarbon/2007-ronny-sphenopsid-02.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    The journal's PDF as posted on a Charles University staff page; the part cited was read, and quotes
+    checked by script against the text extracted from the PDF.

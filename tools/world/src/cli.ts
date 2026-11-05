@@ -1,7 +1,7 @@
 // Lightworld world tools: fetch datasets, import them, validate the world, build tile sets.
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { join } from 'node:path';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
 import { fetchAll } from './fetch.ts';
 import { fieldSource, importBlocks, importElevation, tiledField } from './importer.ts';
 import { exportSnapshot, type OhmSnapshot } from './ohm.ts';
@@ -46,6 +46,18 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
     console.log(`${snap.occurrences.length} occurrences, ${snap.collections.length} collections, ${snap.taxa.length} taxa → ${file}`);
     console.log(`In world/manifest.yaml point the dataset at repo:${file}, sha256 ${createHash('sha256').update(text).digest('hex')}, ${Buffer.byteLength(text)} bytes.`);
   },
+  // The land's fossils from the Paleobiology Database, for the atlas of who lived where, kept in world/snapshots.
+  async 'pbdb-land'() {
+    const { exportLand } = await import('./pbdb.ts');
+    const date = new Date().toISOString().slice(0, 10);
+    const file = `world/snapshots/pbdb-land-${date}.json`;
+    if (existsSync(join(REPO, file))) throw new Error(`${file} exists: one snapshot a day`);
+    const snap = await exportLand(date, console.log);
+    const text = JSON.stringify(snap);
+    writeFileSync(join(REPO, file), text);
+    console.log(`${snap.rows.length} occurrences at ${snap.sites.length} sites, ${snap.taxa.length} taxa → ${file}`);
+    console.log(`In world/manifest.yaml point the dataset at repo:${file}, sha256 ${createHash('sha256').update(text).digest('hex')}, ${Buffer.byteLength(text)} bytes.`);
+  },
   // A fresh extract of NOAA's hazard databases, kept in world/snapshots.
   async 'noaa-snapshot'() {
     const { exportHazards } = await import('./noaa.ts');
@@ -66,6 +78,33 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
     writeFileSync(join(REPO, SNAPSHOT), text);
     console.log(`${text.split('\n').filter((l) => l && !l.startsWith('#')).length - 1} cells → ${SNAPSHOT}`);
     console.log(`In world/manifest.yaml the dataset is repo:${SNAPSHOT}, sha256 ${createHash('sha256').update(text).digest('hex')}, ${Buffer.byteLength(text)} bytes.`);
+  },
+  // A sheet of a form, to look at: `npm run world -- form-sheet life/taxa/triceratops`, or `plan:ceratopsian`.
+  async 'form-sheet'([name, out]) {
+    const world = await loadWorld();
+    const { formSheet } = await import('./formsheet.ts');
+    const { FormTree, planForm } = await import('./forms.ts');
+    const tree = new FormTree(world);
+    const isPlan = name?.startsWith('plan:');
+    const form = isPlan ? planForm(world, name.slice(5)) : name ? tree.form(name) : undefined;
+    if (!form) throw new Error(`no form for "${name}": give a taxon's id, or plan:<name> (${Object.keys(world.plans).join(', ')})`);
+    const mid = (s?: { lo: number; hi: number }) => (s ? (s.lo + s.hi) / 2 : undefined);
+    const posture = isPlan ? undefined : tree.posture(name);
+    const file = out ?? join(REPO, 'dist', 'sheets', `${name.replace(/[^a-z0-9]+/gi, '-')}.png`);
+    mkdirSync(dirname(file), { recursive: true });
+    writeFileSync(file, formSheet(form, { label: name, biped: posture === 'biped', ...(isPlan ? {} : { length: mid(tree.size(name, 'body_length')), hip: mid(tree.size(name, 'hip_height')), height: mid(tree.size(name, 'plant_height')) }) }));
+    if (!isPlan) {
+      const s = tree.source(name)!;
+      console.log(`Its body: the plan "${s.plan}" from ${s.node}${s.changes.length ? `, changed by ${s.changes.map((c) => c.node).join(', ')}` : ''}. Nearest node with anything to say: ${s.from}${s.own ? ' (its own)' : ''}.`);
+    }
+    console.log(file);
+  },
+  // What most wants a form: the taxa that most often come up in the atlas with none of their own. Give a
+  // name to see only what is under it, and --missing to see what has no form at any node above it.
+  async 'forms-wanted'(args) {
+    const world = await loadWorld();
+    const { formsWanted } = await import('./formsWanted.ts');
+    console.log(formsWanted(world, args));
   },
   async validate(args) {
     const { runValidate } = await import('./validate/index.ts');

@@ -1,0 +1,21 @@
+id: life/taxa/cetiosaurus
+kind: taxon
+summary: >-
+  Cetiosaurus, the "whale reptile", a Middle Jurassic sauropod of England.
+same_as: { pbdb: "txn:38657" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cetiosaurus }
+    unsourced: The classification's own name.
+  length-holtz-2012:
+    prop: body_length
+    value: 14
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 29, Primitive Cetiosaurids"
+      quote: "Cetiosaurus whale reptile Middle Jurassic (171.6-164.7 MYA) 45.9 ft (14 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

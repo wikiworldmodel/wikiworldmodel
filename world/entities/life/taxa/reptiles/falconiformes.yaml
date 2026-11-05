@@ -1,0 +1,43 @@
+id: life/taxa/falconiformes
+kind: taxon
+summary: >-
+  Falcons and caracaras: fast birds of prey with pointed wings.
+same_as: { pbdb: "txn:39316" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Falconiformes", en: "falcons and caracaras" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: raptor
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      behave: { flies: [8, 200] }
+      parts:
+        wings: { span: 0.92, chord: 0.22, sweep: 0.42, beat: 0.24 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Falcons and Caracaras (Falconidae)\""
+      quote: "Small to medium-sized largely diurnal raptors with strong feet, usually pointed wings"
+    note: >-
+      The pointed wings follow this; the rest is the plan's.
+  length:
+    prop: body_length
+    value: { lo: 0.14, hi: 0.65 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Falcons and Caracaras (Falconidae)\""
+      quote: "5.5–25.6 in (14–65 cm); 0.06–4.6 lb (28–2,100 g)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.028, hi: 2.1 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Falcons and Caracaras (Falconidae)\""
+      quote: "5.5–25.6 in (14–65 cm); 0.06–4.6 lb (28–2,100 g)"
+    method: compilation

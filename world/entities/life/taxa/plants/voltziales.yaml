@@ -1,0 +1,22 @@
+id: life/taxa/voltziales
+kind: taxon
+summary: >-
+  Permian and Triassic conifers such as Voltzia. No height was read for them, so they take the
+  height of the node above.
+same_as: { pbdb: "txn:263774" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Voltziales, en: voltzialean conifers }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: walchian
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        tree: { reach: 0.17, tiers: 11, drop: 0.05 }
+    unsourced: "A machine's reconstruction, with no figure of the whole tree read: an early conifer's flat tiers, a little closer and more drooping."

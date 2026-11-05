@@ -1,0 +1,25 @@
+id: life/taxa/crocodylia
+kind: taxon
+summary: >-
+  Crocodiles, alligators, caimans and gharials: the crown group.
+same_as: { pbdb: "txn:36582" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Crocodylia", en: "crocodilians" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 1.2, hi: 6.1 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Alligators and Caimans (Alligatoridae)\""
+        quote: "4–20 ft (1.2–6 m) in total length"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Crocodiles and False Gharials (Crocodylidae)\""
+        quote: "5–20 ft (1.5–6.1 m) total length"
+    method: compilation
+    note: >-
+      Living species. The database files much of the group as marine, so the atlas does not yet draw
+      those of its fossils.

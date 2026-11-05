@@ -1,0 +1,21 @@
+id: life/taxa/struthiosaurus
+kind: taxon
+summary: >-
+  Struthiosaurus, a small nodosaur of the Late Cretaceous islands of Europe.
+same_as: { pbdb: "txn:38830" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Struthiosaurus }
+    unsourced: The classification's own name.
+  length-holtz-2012:
+    prop: body_length
+    value: 4
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 40, Nodosaurids"
+      quote: "Struthiosaurus ostrich reptile Late Cretaceous (83.5-65.5 MYA) 13.1 ft (4 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

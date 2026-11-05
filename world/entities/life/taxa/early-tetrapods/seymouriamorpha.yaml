@@ -1,0 +1,33 @@
+id: life/taxa/seymouriamorpha
+kind: taxon
+summary: >-
+  Seymouriamorphs, such as Seymouria and Discosauriscus: small relatives of the amniotes of the Permian, some on land, some with
+  gilled young in water.
+same_as: { pbdb: "txn:37206" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Seymouriamorpha, en: seymouriamorphs }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    rank: preferred
+    value: { lo: 0.3, hi: 1.5 }
+    source:
+      ref: src:wikipedia-early-vertebrates
+      loc: "Seymouriamorpha, Description"
+      quote: "They ranged from 30 cm (1 ft) long lizard-sized creatures to the 1.5 m (5 ft) long Enosuchus."
+    method: compilation
+    note: >-
+      An encyclopedia, cited as nothing better could be read: Williston (1911) gives only 21 inches from the snout of a Seymouria to
+      the sixth vertebra of its tail.
+  length-williston:
+    prop: body_length
+    value: 0.53
+    source:
+      ref: src:williston-1911-seymouria
+      loc: "p. 234"
+      quote: "The skeleton, to the sixth caudal vertebra, measures twenty-one inches."
+    method: survey
+    note: Twenty-one inches converted, and short of the whole length by most of the tail. It is the only measurement read.

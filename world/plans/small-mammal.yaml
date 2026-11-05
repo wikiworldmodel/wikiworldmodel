@@ -1,0 +1,13 @@
+description: >-
+  A small furry mammal: its length is the whole animal's, about two fifths of it a tail.
+kind: animal
+hip: 0.1
+# Its body, head and all, at the density of water, for its length with a long tail.
+mass_length: 14
+behave: { group: [1, 2], habitat: forest, poses: [stand, walk] }
+parts:
+  body: { type: lump, zl: true, mat: fur, at: [0, 0, 0.143], r: [0.1045, 0.24, 0.11], sides: [8, 4], bands: [5, 3] }
+  head: { type: lump, zl: true, mat: fur, at: [0, 0.26, 0.132], r: [0.0726, 0.12, 0.0682], sides: [8, 4], bands: [4, 2] }
+  tail: { type: spike, zl: true, mat: fur, near: true, sides: [4, 4], from: [0, -0.2, 0.132], to: [0, -0.6, 0.033], r: 0.02, sway: 1 }
+  fore: { type: spike, zl: true, mat: fur, near: true, mirror: true, sides: [4, 4], from: [0.077, 0.14, 0.099], to: [0.0924, 0.15, 0], r: 0.022 }
+  hind: { type: spike, zl: true, mat: fur, near: true, mirror: true, sides: [4, 4], from: [0.077, -0.14, 0.099], to: [0.0924, -0.13, 0], r: 0.022 }

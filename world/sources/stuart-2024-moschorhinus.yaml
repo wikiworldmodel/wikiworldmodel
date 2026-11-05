@@ -1,0 +1,20 @@
+id: src:stuart-2024-moschorhinus
+type: publication
+kind: measurement
+citation: >-
+  Stuart, B.P., Huttenlocker, A.K. & Botha, J. (2024). The postcranial anatomy of Moschorhinus
+  kitchingi (Therapsida: Therocephalia) from the Karoo Basin of South Africa. PeerJ 12, e17765.
+authors:
+  - "Stuart, B.P."
+  - "Huttenlocker, A.K."
+  - "Botha, J."
+published: 2024
+title: "The postcranial anatomy of Moschorhinus kitchingi (Therapsida: Therocephalia) from the Karoo Basin of South Africa"
+container: "PeerJ 12, e17765"
+doi: 10.7717/peerj.17765
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC11326434); quotes checked by script against it. The skeletal
+    reconstruction in Fig. 14 looked at.

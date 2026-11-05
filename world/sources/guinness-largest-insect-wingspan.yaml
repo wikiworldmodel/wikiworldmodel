@@ -1,0 +1,17 @@
+id: src:guinness-largest-insect-wingspan
+type: database-record
+kind: compilation
+citation: >-
+  Guinness World Records. "Largest wingspan for an insect." guinnessworldrecords.com, record 498564.
+snapshot: 2026-11-05
+title: Largest wingspan for an insect
+container: Guinness World Records
+url: https://www.guinnessworldrecords.com/world-records/498564-largest-wingspan-for-an-insect
+reliability: >-
+  A record book, giving no reference. It is the only statement of a griffinfly's body length that could be read: Cannell (2018) may
+  have more, but the journal is behind a browser check that was not to be passed. Wikipedia's figure of almost 430 mm cites Mitchell
+  & Lasswell (2005), whose pages 46 to 48, read on Google Books, give the wings but no body length. The number should be replaced
+  from Carpenter's descriptions or a modern revision.
+verified:
+  by: machine:claude-code
+  how: The page opened on 2026-11-05 and its text read by script; the quotes checked by script against the saved text.

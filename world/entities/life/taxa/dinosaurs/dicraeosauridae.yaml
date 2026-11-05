@@ -1,0 +1,72 @@
+id: life/taxa/dicraeosauridae
+kind: taxon
+summary: >-
+  The dicraeosaurs: short-necked diplodocoids with tall forked spines along the neck and back.
+same_as: { pbdb: "txn:53961" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dicraeosauridae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.21
+      mass_length: 3.7
+      parts:
+        body:
+          not: [graze, drink]
+          rings:
+            - [-0.608, 0.54, 0.53, 0.0006]
+            - [-0.49, 0.646, 0.6, 0.002]
+            - [-0.327, 0.677, 0.523, 0.007]
+            - [-0.163, 0.83, 0.5, 0.018]
+            - [-0.065, 0.985, 0.46, 0.036]
+            - [0.033, 1.04, 0.29, 0.058]
+            - [0.131, 0.96, 0.23, 0.06]
+            - [0.196, 1.0, 0.615, 0.036]
+            - [0.261, 1.14, 0.86, 0.022]
+          neck: { r: 0.012, steps: [3, 1] }
+        body-low:
+          type: trunk
+          poses: [graze, drink]
+          sides: [14, 7]
+          rings:
+            - [-0.608, 0.54, 0.53, 0.0006]
+            - [-0.49, 0.646, 0.6, 0.002]
+            - [-0.327, 0.677, 0.523, 0.007]
+            - [-0.163, 0.83, 0.5, 0.018]
+            - [-0.065, 0.985, 0.46, 0.036]
+            - [0.033, 1.04, 0.29, 0.058]
+            - [0.131, 0.96, 0.23, 0.06]
+            - [0.196, 0.92, 0.615, 0.036]
+          neck: { r: 0.012, steps: [6, 2] }
+        hind: { y: 0.0, x: 0.04, top: 0.72, r: 0.034 }
+        fore: { y: 0.163, x: 0.042, top: 0.72, r: 0.027 }
+        head:
+          at:
+            stand: { y: 0.327, z: 1.08, pitch: 0.5 }
+            alert: { y: 0.33, z: 1.24, pitch: 0.2 }
+            low: { y: 0.36, reach: 0.06, pitch: 0.95, clear: 0.06 }
+          rings:
+            - [-0.002, 0, 0.0075, 0.009]
+            - [0.014, 0.0015, 0.0085, 0.011]
+            - [0.03, -0.001, 0.0068, 0.0085]
+            - [0.048, -0.003, 0.0062, 0.005]
+            - [0.062, -0.0042, 0.0065, 0.0034]
+        eyes: { at: [0.0078, 0.014, 0.004], r: 0.0018 }
+    unsourced: >-
+      A machine's reconstruction, its outline measured from the skeletal diagram "Dicraeosaurus
+      hansemanni Skeletal Diagram.svg" on Wikimedia Commons: a short arched neck, a deep body and a
+      downturned head. The tall spines are drawn as the height of the back.
+  length:
+    prop: body_length
+    value: { lo: 10, hi: 21 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 31, Dicraeosaurids", quote: "Brachytrachelopan short-necked shepherd god Late Jurassic (155.7-150.8 MYA) 32.8 ft (10 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 31, Dicraeosaurids", quote: "Suuwassea first thunder heard in spring Late Jurassic (155.7-150.8 MYA) 68.9 ft (21 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Dicraeosaurids" on that page, standing for any
+      member with no length of its own.

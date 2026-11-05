@@ -1,0 +1,60 @@
+id: life/taxa/terrestrisuchus
+kind: taxon
+summary: >-
+  A slender, long-legged early crocodylomorph of the Late Triassic of Britain, built like a
+  greyhound.
+same_as: { pbdb: "txn:38316" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Terrestrisuchus" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: notosuchian
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.26
+      mass_length: 5
+      parts:
+        body:
+          rings:
+            - [-0.56, 0.9, 0.86, 0.002]
+            - [-0.42, 0.92, 0.84, 0.006]
+            - [-0.28, 0.96, 0.82, 0.012]
+            - [-0.16, 1.04, 0.76, 0.024]
+            - [-0.07, 1.14, 0.68, 0.04]
+            - [0.03, 1.18, 0.64, 0.046]
+            - [0.11, 1.18, 0.68, 0.04]
+            - [0.17, 1.18, 0.8, 0.028]
+          neck: { r: 0.018, steps: [3, 1] }
+        hind: { y: -0.08, x: 0.034, top: 0.96, knee: 0.58, ankle: 0.24, r: 0.024, swing: 0.1 }
+        fore: { y: 0.13, x: 0.034, top: 0.82, r: 0.012, swing: 0.1 }
+        plates: { n: 10, from: [0.008, -0.2, 1.04], to: [0.008, 0.16, 1.2], r: [0.006, 0.012, 0.004] }
+        head:
+          rings:
+            - [-0.014, 0, 0.02, 0.024]
+            - [0.03, 0.0, 0.024, 0.03]
+            - [0.08, -0.01, 0.015, 0.02]
+            - [0.13, -0.018, 0.009, 0.012]
+          at:
+            stand: { y: 0.24, z: 1.3, pitch: 0.08 }
+            alert: { y: 0.23, z: 1.42, pitch: 0.0 }
+            low: { y: 0.3, reach: 0.14, clear: 0.05, pitch: 0.8 }
+        jaw: { rings: [[0.02, -0.03, 0.02, 0.008], [0.08, -0.03, 0.012, 0.007], [0.125, -0.028, 0.006, 0.004]] }
+        eyes: { at: [0.022, 0.024, 0.014], r: 0.008 }
+    unsourced: "A machine's reconstruction, from what is known of it in general: thin upright legs, a narrow body and a pointed snout. No skeletal figure was looked at."
+  length:
+    prop: body_length
+    value: { lo: 0.49, hi: 0.76 }
+    source:
+      ref: src:wikipedia-terrestrisuchus
+      loc: "article text"
+      quote: "between 49 and 76 centimetres"
+    method: compilation
+    note: >-
+      Cited from Wikipedia because the paper giving it could not be read. It says these may be
+      juveniles, and that a grown one may have reached a metre.

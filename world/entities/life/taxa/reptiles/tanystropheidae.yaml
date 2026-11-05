@@ -1,0 +1,63 @@
+id: life/taxa/tanystropheidae
+kind: taxon
+summary: >-
+  Long-necked archosauromorphs of the Triassic, the neck of Tanystropheus longer than its body and
+  tail together.
+same_as: { pbdb: "txn:38195" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Tanystropheidae", en: "tanystropheids" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: lizard
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.07
+      mass_length: 1
+      behave: { group: [1, 2], habitat: wet, poses: [rest, stand, stand, walk] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.86, 0.72, 0.003]
+            - [-0.42, 1.0, 0.66, 0.008]
+            - [-0.34, 1.14, 0.6, 0.014]
+            - [-0.27, 1.3, 0.54, 0.024]
+            - [-0.21, 1.44, 0.5, 0.034]
+            - [-0.15, 1.56, 0.5, 0.04]
+            - [-0.09, 1.6, 0.54, 0.04]
+            - [-0.05, 1.6, 0.66, 0.03]
+          neck: { r: 0.012, steps: [8, 3] }
+        hind: { points: [[0.028, -0.22, 0.9, 0.014], [0.07, -0.21, 0.7, 0.01], [0.085, -0.24, 0.12, 0.007], [0.1, -0.21, 0.03, 0.006]] }
+        fore: { points: [[0.03, -0.07, 0.96, 0.011], [0.07, -0.08, 0.74, 0.008], [0.082, -0.05, 0.12, 0.006], [0.095, -0.02, 0.03, 0.005]] }
+        head:
+          at:
+            stand: { y: 0.42, z: 2.4, pitch: 0.05 }
+            alert: { y: 0.4, z: 4.2, pitch: 0.0 }
+            low: { y: 0.43, reach: 0.06, clear: 0.2, pitch: 0.4 }
+          rings:
+            - [-0.008, 0, 0.012, 0.012]
+            - [0.012, 0.001, 0.016, 0.014]
+            - [0.035, -0.002, 0.011, 0.01]
+            - [0.056, -0.005, 0.005, 0.005]
+        jaw: { rings: [[0.008, -0.01, 0.012, 0.004], [0.03, -0.01, 0.008, 0.003], [0.052, -0.008, 0.003, 0.002]] }
+        eyes: { at: [0.012, 0.018, 0.006], r: 0.004 }
+    unsourced: "A machine's reconstruction from what is known of Tanystropheus in general: its neck about half its whole length. Unlike the plan, its length here is the whole of the animal. No skeletal figure was looked at."
+  length:
+    prop: body_length
+    value: { lo: 1.5, hi: 6 }
+    source:
+      - ref: src:wikipedia-tanystropheus
+        loc: "article text"
+        quote: "a skeletally mature adult at a length of only 1.5 m"
+      - ref: src:wikipedia-tanystropheus
+        loc: "article text"
+        quote: "may have reached a total length of 6 meters"
+    method: compilation
+    note: >-
+      Tanystropheus, cited from Wikipedia because the papers giving it could not be read, standing
+      for the family, some of whose other members were smaller.

@@ -1,0 +1,21 @@
+id: src:rittmeyer-2012-paedophryne
+type: publication
+kind: measurement
+citation: >-
+  Rittmeyer, E.N., Allison, A., Gründler, M.C., Thompson, D.K. & Austin, C.C. (2012). Ecological
+  guild evolution and the discovery of the world's smallest vertebrate. PLoS ONE 7(1), e29797.
+authors:
+  - "Rittmeyer, E.N."
+  - "Allison, A."
+  - "Gründler, M.C."
+  - "Thompson, D.K."
+  - "Austin, C.C."
+published: 2012
+title: "Ecological guild evolution and the discovery of the world's smallest vertebrate"
+container: "PLoS ONE 7(1), e29797"
+doi: 10.1371/journal.pone.0029797
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC3256195); quotes checked by script against it.

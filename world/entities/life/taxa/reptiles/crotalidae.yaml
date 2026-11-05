@@ -1,0 +1,75 @@
+id: life/taxa/crotalidae
+kind: taxon
+summary: >-
+  Vipers and pit vipers, which the classification used here holds under this one name: stout snakes
+  with broad heads.
+same_as: { pbdb: "txn:53087" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Crotalidae", en: "vipers" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      mass_length: 1.2
+      parts:
+        body:
+          points:
+            - [0.0, -0.355, 0.0025, 0.0025]
+            - [0.0047, -0.3347, 0.0058, 0.0058]
+            - [0.0172, -0.3144, 0.0082, 0.0082]
+            - [0.0329, -0.2941, 0.0104, 0.0104]
+            - [0.0455, -0.2738, 0.0124, 0.0124]
+            - [0.0488, -0.2535, 0.0144, 0.0144]
+            - [0.0384, -0.2332, 0.0162, 0.0162]
+            - [0.0129, -0.2129, 0.018, 0.018]
+            - [-0.02, -0.1926, 0.0198, 0.0198]
+            - [-0.0493, -0.1724, 0.0215, 0.0215]
+            - [-0.0698, -0.1521, 0.0232, 0.0232]
+            - [-0.0779, -0.1318, 0.0248, 0.0248]
+            - [-0.0722, -0.1115, 0.0264, 0.0264]
+            - [-0.0536, -0.0912, 0.028, 0.028]
+            - [-0.0255, -0.0709, 0.0296, 0.0296]
+            - [0.0072, -0.0506, 0.0299, 0.0299]
+            - [0.0386, -0.0303, 0.0297, 0.0297]
+            - [0.0631, -0.01, 0.0293, 0.0293]
+            - [0.0764, 0.0103, 0.0289, 0.0289]
+            - [0.0761, 0.0306, 0.0284, 0.0284]
+            - [0.0622, 0.0509, 0.0279, 0.0279]
+            - [0.0373, 0.0712, 0.0273, 0.0273]
+            - [0.0058, 0.0915, 0.0267, 0.0267]
+            - [-0.0268, 0.1118, 0.026, 0.026]
+            - [-0.0546, 0.1321, 0.0253, 0.0253]
+            - [-0.0727, 0.1524, 0.0246, 0.0246]
+            - [-0.0779, 0.1726, 0.0238, 0.0238]
+            - [-0.0673, 0.1929, 0.023, 0.023]
+            - [-0.0412, 0.2132, 0.0222, 0.0222]
+            - [-0.0137, 0.2335, 0.0213, 0.0213]
+            - [0.0089, 0.2538, 0.0204, 0.0204]
+            - [0.0225, 0.2741, 0.0195, 0.0195]
+            - [0.0258, 0.2944, 0.0185, 0.0185]
+            - [0.0207, 0.3147, 0.0175, 0.0175]
+            - [0.0111, 0.335, 0.0165, 0.0165]
+        head:
+          rings:
+            - [-0.006, 0, 0.018, 0.012]
+            - [0.016, 0.001, 0.03, 0.016]
+            - [0.04, 0.0, 0.024, 0.014]
+            - [0.056, -0.001, 0.01, 0.008]
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Vipers and Pitvipers (Viperidae)\""
+      quote: "Small to large venomous snakes with hollow fangs"
+    note: >-
+      The stout body and broad head are a machine's reconstruction, as no skeletal figure was looked
+      at.
+  length:
+    prop: body_length
+    value: { lo: 0.3, hi: 3.6 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Vipers and Pitvipers (Viperidae)\""
+      quote: "ca. 1–11.8 ft (30–360 cm)"
+    method: compilation

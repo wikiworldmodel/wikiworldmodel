@@ -1,0 +1,43 @@
+id: life/taxa/pteranodontia
+kind: taxon
+summary: >-
+  Long-winged pterosaurs of the Cretaceous seas, Pteranodon and Nyctosaurus among them, with long
+  toothless beaks.
+same_as: { pbdb: "txn:52940" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Pteranodontia", en: "pteranodontians" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          rings:
+            - [-0.012, 0, 0.018, 0.024]
+            - [0.04, 0.002, 0.024, 0.032]
+            - [0.13, -0.006, 0.014, 0.024]
+            - [0.26, -0.016, 0.007, 0.013]
+            - [0.4, -0.024, 0.002, 0.004]
+        crest: { type: spike, on: head, mat: horn, sides: [5, 3], from: [0, 0.02, 0.01], to: [0, -0.2, 0.05], r: 0.018 }
+        wings: { span: 1.22, chord: 0.15, sweep: 0.3 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Evolution of the Reptiles\""
+      quote: "which had a long, bladelike rostrum (snout) in front of the eye and an almost equally long blade-like projection in back of the eye"
+    note: >-
+      The head follows this, of Pteranodon. The wings are from Fig. 2 of Witton (2008) and his
+      table's high aspect ratios, and the rest a machine's reconstruction.
+  mass:
+    prop: body_mass
+    value: { lo: 2.66, hi: 36.68 }
+    source:
+      - ref: src:witton-2008-pterosaur-body-mass
+        loc: "p. 151, Table 4, row Nyctosaurus"
+        quote: "Nyctosaurus 2.04 185.21 2.66 26.10"
+      - ref: src:witton-2008-pterosaur-body-mass
+        loc: "p. 151, Table 4, row Pteranodon (large)"
+        quote: "Pteranodon (large) 5.96 2553.54 36.68 359.84"
+    method: model

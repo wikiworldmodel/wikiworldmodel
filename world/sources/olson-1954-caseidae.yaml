@@ -1,0 +1,17 @@
+id: src:olson-1954-caseidae
+type: publication
+kind: measurement
+citation: >-
+  Olson, E.C. (1954). Fauna of the Vale and Choza: 7. Pelycosauria: family Caseidae. Fieldiana:
+  Geology 10(17), 193–204.
+authors:
+  - "Olson, E.C."
+published: 1954
+title: "Fauna of the Vale and Choza: Pelycosauria: family Caseidae"
+container: "Fieldiana: Geology 10(17)"
+url: https://archive.org/details/faunaofvalechoza1017olso
+verified:
+  by: machine:claude-code
+  how: >-
+    The Internet Archive's OCR text of the Field Museum's copy read; quotes checked by script
+    against it.

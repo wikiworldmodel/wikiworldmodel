@@ -1,0 +1,67 @@
+id: life/taxa/macrauchenia
+kind: taxon
+summary: >-
+  A long-necked, long-legged litoptern with its nostrils set far back on the skull, of the South
+  American Pleistocene.
+same_as: { pbdb: "txn:43497" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Macrauchenia }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.58
+      mass_length: 25
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.7, 0.66, 0.005]
+            - [-0.48, 0.84, 0.8, 0.008]
+            - [-0.455, 0.95, 0.88, 0.012]
+            - [-0.42, 1.0, 0.76, 0.034]
+            - [-0.37, 1.03, 0.64, 0.07]
+            - [-0.27, 1.06, 0.58, 0.09]
+            - [-0.14, 1.06, 0.54, 0.098]
+            - [-0.02, 1.06, 0.56, 0.094]
+            - [0.07, 1.08, 0.62, 0.074]
+            - [0.13, 1.08, 0.74, 0.05]
+          neck: { r: 0.026, steps: [6, 2] }
+        hind: { y: -0.31, x: 0.054, top: 0.84, knee: 0.58, ankle: 0.36, r: 0.05 }
+        fore: { y: 0.06, x: 0.056, top: 0.74, r: 0.024 }
+        head:
+          at:
+            stand: { y: 0.335, z: 1.58, pitch: 0.28 }
+            alert: { y: 0.335, z: 1.68, pitch: 0.12 }
+            low: { y: 0.42, reach: 0.13, pitch: 1.05 }
+          rings:
+            - [-0.012, 0.006, 0.022, 0.026]
+            - [0.03, 0.008, 0.024, 0.03]
+            - [0.075, -0.006, 0.017, 0.02]
+        nose: { type: tube, on: head, sides: [6, 4], rings: [[0.075, -0.006, 0.016, 0.019], [0.11, -0.022, 0.012, 0.014], [0.14, -0.05, 0.009, 0.01]] }
+        ears: { from: [0.018, 0.002, 0.024], to: [0.026, -0.014, 0.055], r: 0.009 }
+        eyes: { at: [0.022, 0.045, 0.014] }
+    unsourced: >-
+      A machine's reconstruction, from the photograph of the mount at the American Museum of
+      Natural History on Wikipedia's page for the genus (Macrauchenia_patachonica_AMNH.jpg). A
+      short trunk is the traditional reading of its nostrils, and is disputed.
+  length:
+    prop: body_length
+    value: 3
+    source:
+      ref: src:wikipedia-largest-prehistoric-animals
+      loc: "section \"Litopterns (Litopterna)\""
+      quote: "with a body length of around 3 m (9.8 ft)"
+    method: compilation
+    note: >-
+      From Wikipedia, as no measured skeleton could be read.
+  mass:
+    prop: body_mass
+    value: 794.4
+    source:
+      ref: src:faurby-2020-phylacine
+      loc: "Data/Traits/Trait_data.csv, row Macrauchenia_patachonica, column Mass.g (grams)"
+      quote: "Macrauchenia_patachonica,Litopterna,Macrauchenidae,Macrauchenia,patachonica,1,0,0,0,Imputed,PHYLACINE 1.2.1,794405.1"
+    method: compilation

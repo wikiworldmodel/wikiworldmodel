@@ -1,0 +1,6 @@
+description: >-
+  A cordaite: a tall, straight, bare trunk with a rounded crown of branches and long strap-shaped leaves.
+kind: plant
+behave: { layer: canopy, weight: 1, wet: 0.5 }
+parts:
+  tree: { type: broadleaf, crown: 0.2, fork: [0.56, 0.06], trunk: 0.015, limbs: 5, mat: frond }

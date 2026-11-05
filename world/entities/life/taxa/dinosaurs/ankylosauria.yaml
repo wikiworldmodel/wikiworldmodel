@@ -1,0 +1,42 @@
+id: life/taxa/ankylosauria
+kind: taxon
+summary: >-
+  The tank dinosaurs: low, wide, armoured from head to tail. This record speaks for early forms with
+  no club; the two families have their own.
+same_as: { pbdb: "txn:38816" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ankylosauria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: ankylosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        club: null
+        armour: { fall: 9, top: [0.94, 0.21] }
+    unsourced: >-
+      A machine's editorial choice: the plan with its tail club taken away, as the club belongs only
+      to the ankylosaurids, and its bands of armour drawn in so that they sit on the back.
+  posture:
+    prop: posture
+    value: quadruped
+    source:
+      ref: src:maidment-2012-ornithischian-stance
+      loc: "Introduction"
+      quote: "quadrupedality evolved within at least three lineages independently: once in the armored stegosaurs and ankylosaurs, once in the frilled ceratopsids, and once in the duck-billed hadrosaurs"
+  length:
+    prop: body_length
+    value: { lo: 2, hi: 5.5 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 39, Primitive Ankylosaurs", quote: "Dracopelta dragon shield Late Jurassic (155.7-150.8 MYA) 6.6 ft (2 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 39, Primitive Ankylosaurs", quote: "Acanthopholis spine scutes Early to Late (105-93.5 MYA) 18 ft (5.5 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Primitive Ankylosaurs" (pp. 39-40), standing for any early member
+      with no length of its own.

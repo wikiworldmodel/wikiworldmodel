@@ -1,0 +1,27 @@
+id: life/taxa/cuculiformes
+kind: taxon
+summary: >-
+  Cuckoos, anis and roadrunners.
+same_as: { pbdb: "txn:39306" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Cuculiformes", en: "cuckoos, anis and roadrunners" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.16, hi: 0.7 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Cuculiformes (Cuckoos, Anis, and Roadrunners)\""
+      quote: "6.3–27.6 in (16–70 cm); 0.03–1.11 lb (17–550 g)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.017, hi: 0.55 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Cuculiformes (Cuckoos, Anis, and Roadrunners)\""
+      quote: "6.3–27.6 in (16–70 cm); 0.03–1.11 lb (17–550 g)"
+    method: compilation

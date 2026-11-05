@@ -1,0 +1,27 @@
+id: life/taxa/temnospondyli
+kind: taxon
+summary: >-
+  Temnospondyls: the great early amphibians, from the Carboniferous into the Cretaceous, mostly flat-headed and low in the
+  water or at its edge. The database counts the living amphibians within them, and those have their own forms.
+same_as: { pbdb: "txn:36320" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Temnospondyli, en: temnospondyls }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: temnospondyl
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in
+      the tree. The plan is a machine's reconstruction, from the photograph of the AMNH's mounted Eryops (Wikimedia Commons,
+      "Eryops AMNH.jpg").
+  length:
+    prop: body_length
+    value: { lo: 0.5, hi: 3 }
+    source:
+      ref: src:mehmood-2025-temnospondyl-recovery
+      loc: "Introduction"
+      quote: "Temnospondyls were mostly from 0.5 to 3 m long, but some giants reached 6 m"
+    method: expert-estimate

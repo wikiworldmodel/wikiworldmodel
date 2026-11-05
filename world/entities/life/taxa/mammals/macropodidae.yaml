@@ -1,0 +1,55 @@
+id: life/taxa/macropodidae
+kind: taxon
+summary: >-
+  Kangaroos, wallabies and their kin, which hop on long hind feet.
+same_as: { pbdb: "txn:40140" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Macropodidae, en: "kangaroos and wallabies" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: macropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.39, hi: 2.8 }
+    source:
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Dorcopsulus vanheurni, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Dorcopsulus vanheurni 2.00 1890.36 -999.00 386.89"
+      - ref: src:animal-diversity-web
+        loc: "account of Macropus rufus, Physical Description"
+        quote: "Males range in total body length from 1,300 to 1,600 mm"
+      - ref: src:animal-diversity-web
+        loc: "account of Macropus rufus, Physical Description"
+        quote: "Tail length is from 1,000 to 1,200 mm for males"
+    method: compilation
+    note: >-
+      The low end is head and body alone, in the smallest row of the family in PanTHERIA. The
+      high end adds the longest head and body given for the red kangaroo to its longest tail.
+  mass:
+    prop: body_mass
+    value: { lo: 1.258, hi: 232 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Petrogale_burbidgei, column Mass.g (grams)"
+        quote: "Petrogale_burbidgei,Diprotodontia,Macropodidae,Petrogale,burbidgei,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,1258"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Procoptodon_goliah, column Mass.g (grams)"
+        quote: "Procoptodon_goliah,Diprotodontia,Macropodidae,Procoptodon,goliah,1,0,0,0,Imputed,PHYLACINE 1.2.1,232000"
+    method: compilation
+    note: >-
+      From the smallest rock wallaby to the largest short-faced kangaroo. Janis et al. (2014)
+      give up to 240 kg.
+  posture:
+    prop: posture
+    value: biped
+    source:
+      ref: src:janis-2014-sthenurine-locomotion
+      loc: Introduction
+      quote: "Kangaroos are famous for their style of locomotion – bipedal hopping"
+    note: >-
+      At low speed they walk on all four and the tail, which the plan draws when they feed.

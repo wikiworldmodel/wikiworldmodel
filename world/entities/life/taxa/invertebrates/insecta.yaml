@@ -1,0 +1,33 @@
+id: life/taxa/insecta
+kind: taxon
+summary: >-
+  The insects, with most of the land's described animals. A body of their own is drawn for the larger orders; any other
+  takes this generic one and this very wide range.
+same_as: { pbdb: "txn:56637" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Insecta, en: "insects" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: insect
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a generalized winged insect, from general knowledge; no figure was
+      compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.000139, hi: 0.357 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Background, p. 2"
+        quote: "the male of the mymarid wasp Dicopomorpha echmepterygis has a total body length of merely 139 μm"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Background, p. 2"
+        quote: "females of the phasmid (stick-insect) Phobaeticus chani with specimens up to 357 mm long in body length"
+    method: compilation
+    note: >-
+      The smallest and longest living adult hexapods the paper knows, standing for any insect with no size nearer to it.
+      Fossil orders outside this range are not excluded by it: a griffinfly's own claim says more.

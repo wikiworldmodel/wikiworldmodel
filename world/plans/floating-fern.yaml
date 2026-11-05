@@ -1,0 +1,6 @@
+description: >-
+  A floating water plant, in mats on still water.
+kind: plant
+behave: { layer: float, weight: 1 }
+parts:
+  plant: { type: mat, radius: 2.4 }

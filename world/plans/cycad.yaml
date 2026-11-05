@@ -1,0 +1,6 @@
+description: >-
+  A cycad: a stout, short trunk with a crown of stiff fronds.
+kind: plant
+behave: { layer: under, weight: 1, wet: -0.2 }
+parts:
+  plant: { type: fern, on_stem: 0.5, stem: 0.05, reach: 0.62, fronds: 14, across: 0.07, arch: [0.42, 0.2], steps: 4 }

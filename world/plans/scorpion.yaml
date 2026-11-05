@@ -1,0 +1,30 @@
+description: >-
+  A scorpion: a low flat body on eight legs, great pincers held forward, and a jointed tail curled up over the back, with a
+  bulb and a sting at its end. Its length is the body's and tail's, straightened, without the pincers.
+kind: animal
+hip: 0.14
+behave: { group: [1, 1], habitat: open, poses: [stand, walk] }
+parts:
+  body:
+    type: tube
+    zl: true
+    mat: chitin
+    sides: [10, 5]
+    rings:
+      - [0, 0.34, 0.085, 0.05, 0.03]
+      - [0, 0.26, 0.09, 0.085, 0.045]
+      - [0, 0.06, 0.09, 0.105, 0.05]
+      - [0, -0.1, 0.09, 0.08, 0.045]
+      - [0, -0.17, 0.095, 0.045, 0.035]
+  tail: { type: chain, zl: true, mat: chitin, sides: [6, 3], points: [[0, -0.15, 0.1, 0.034], [0, -0.28, 0.16, 0.032], [0, -0.38, 0.28, 0.03], [0, -0.37, 0.41, 0.028], [0, -0.27, 0.49, 0.027], [0, -0.13, 0.475, 0.027]] }
+  bulb: { type: lump, zl: true, mat: chitin, at: [0, -0.09, 0.455], r: [0.032, 0.05, 0.036], sides: [6, 4], bands: [3, 2] }
+  sting: { type: spike, zl: true, mat: dark, sides: [4, 3], from: [0, -0.05, 0.44], to: [0, 0.0, 0.37], r: 0.018 }
+  eyes: { type: lump, zl: true, near: true, mat: dark, mirror: true, at: [0.012, 0.27, 0.135], r: [0.008, 0.01, 0.008], sides: [5, 4], bands: [3, 2] }
+  arms: { type: chain, zl: true, mat: chitin, mirror: true, sides: [4, 3], points: [[0.06, 0.3, 0.075, 0.018], [0.2, 0.36, 0.09, 0.016], [0.25, 0.5, 0.085, 0.018]] }
+  hands: { type: lump, zl: true, mat: chitin, mirror: true, at: [0.25, 0.6, 0.08], r: [0.055, 0.1, 0.03], sides: [6, 3], bands: [3, 2] }
+  thumbs: { type: spike, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.28, 0.66, 0.08], to: [0.225, 0.82, 0.08], r: 0.022 }
+  fingers: { type: spike, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.21, 0.66, 0.08], to: [0.21, 0.82, 0.08], r: 0.02 }
+  leg-1: { type: chain, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.07, 0.2, 0.06, 0.012], [0.19, 0.28, 0.12, 0.01], [0.3, 0.33, 0.005, 0.004]] }
+  leg-2: { type: chain, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.08, 0.12, 0.06, 0.012], [0.22, 0.15, 0.12, 0.01], [0.35, 0.16, 0.005, 0.004]] }
+  leg-3: { type: chain, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.08, 0.04, 0.06, 0.012], [0.22, 0.0, 0.12, 0.01], [0.35, -0.04, 0.005, 0.004]] }
+  leg-4: { type: chain, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.07, -0.04, 0.06, 0.012], [0.2, -0.13, 0.12, 0.01], [0.31, -0.24, 0.005, 0.004]] }

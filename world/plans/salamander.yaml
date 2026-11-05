@@ -1,0 +1,38 @@
+description: >-
+  A salamander or newt: a slim, soft body of even thickness, a small blunt head, four short legs held out to the side and a long tail.
+kind: animal
+hip: 0.09
+behave: { group: [1, 4], habitat: wet, poses: [rest, stand, walk] }
+parts:
+  body:
+    type: trunk
+    sides: [10, 5]
+    rings:
+      - [-0.53, 0.82, 0.66, 0.002]
+      - [-0.42, 1.04, 0.54, 0.008]
+      - [-0.3, 1.2, 0.5, 0.014]
+      - [-0.19, 1.28, 0.5, 0.022]
+      - [-0.1, 1.36, 0.46, 0.034]
+      - [0.0, 1.42, 0.42, 0.037]
+      - [0.11, 1.42, 0.42, 0.037]
+      - [0.2, 1.36, 0.48, 0.034]
+      - [0.27, 1.28, 0.56, 0.029]
+    neck: { r: 0.027, steps: [2, 1] }
+  thigh: { type: chain, mirror: true, sides: [5, 3], points: [[0.028, -0.09, 0.8, 0.016], [0.06, -0.08, 0.8, 0.013], [0.092, -0.075, 0.62, 0.0105]] }
+  shin: { type: pillar, y: -0.075, x: 0.092, top: 0.66, r: 0.0095, swing: 0.026 }
+  arm: { type: chain, mirror: true, sides: [5, 3], points: [[0.028, 0.215, 0.8, 0.014], [0.058, 0.215, 0.8, 0.0115], [0.086, 0.22, 0.62, 0.0092]] }
+  forearm: { type: pillar, y: 0.22, x: 0.086, top: 0.66, r: 0.0085, swing: 0.024, phase: 1 }
+  head:
+    type: head
+    sides: [10, 5]
+    at:
+      stand: { y: 0.33, z: 1.0, pitch: 0.02 }
+      alert: { y: 0.33, z: 1.3, pitch: -0.12 }
+      low: { y: 0.34, reach: 0.12, pitch: 0.16 }
+    rings:
+      - [-0.008, 0.001, 0.03, 0.022]
+      - [0.03, 0.004, 0.04, 0.026]
+      - [0.075, 0.002, 0.036, 0.021]
+      - [0.115, -0.002, 0.023, 0.014]
+      - [0.14, -0.003, 0.011, 0.007]
+  eyes: { type: eyes, on: head, near: true, at: [0.033, 0.075, 0.018], r: 0.0065 }

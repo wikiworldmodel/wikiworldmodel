@@ -1,0 +1,33 @@
+id: life/taxa/poales
+kind: taxon
+summary: >-
+  Sedges, rushes and bulrushes, and the grasses, which say otherwise for themselves.
+same_as: { pbdb: "txn:182987" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Poales, en: "grasses, sedges and rushes" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: grass
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        plant: { blades: 24, spread: 0.35, wide: 0.014 }
+    unsourced: "A machine's reconstruction of a sedge: fewer, stiffer, more upright blades than a grass."
+  height:
+    prop: plant_height
+    value: { lo: 0.56, hi: 1.2 }
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 23, s.v. Schoenoplectus, key"
+      quote: "Culms 56-120 cm tall"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      A living bulrush, standing for the order: a modern relative. The cattails Typha, which the
+      database puts here, can reach 3 m.

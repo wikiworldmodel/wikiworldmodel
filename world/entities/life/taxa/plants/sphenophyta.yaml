@@ -1,0 +1,34 @@
+id: life/taxa/sphenophyta
+kind: taxon
+summary: >-
+  Sphenopsids that the database places outside its Equisetidae: mostly Calamospora, a dispersed
+  spore, and Paracalamites. They are drawn as calamites.
+same_as: { pbdb: "txn:56096" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Sphenophyta, en: sphenopsids }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: calamite
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 10, hi: 20 }
+    source:
+      - ref: src:illinois-state-museum-calamites
+        loc: "Calamites sp."
+        quote: "grew to a height of up to 10 meters (31 feet)"
+      - ref: src:arkansas-geological-survey-calamites
+        loc: "p. 1"
+        quote: "tree-sized plants reaching a height of approximately 20 m"
+      - ref: src:rossler-2012-largest-calamite
+        loc: "p. 66, section 4.1"
+        quote: "be not less than 15 m high with at least 3 orders of woody branches"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The figures for calamites, standing for this group: no height was read for anything named
+      under it.

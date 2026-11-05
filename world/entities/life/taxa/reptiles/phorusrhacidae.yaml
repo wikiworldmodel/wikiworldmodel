@@ -1,0 +1,76 @@
+id: life/taxa/phorusrhacidae
+kind: taxon
+summary: >-
+  The terror birds of South America, from turkey-sized runners to flightless giants with huge hooked
+  heads.
+same_as: { pbdb: "txn:39461" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Phorusrhacidae", en: "terror birds" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: ratite
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      mass_length: 16
+      behave: { group: [1, 2], habitat: open, poses: [stand, walk, walk, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.36, 1.12, 0.92, 0.02]
+            - [-0.31, 1.24, 0.86, 0.06]
+            - [-0.23, 1.38, 0.78, 0.1]
+            - [-0.13, 1.5, 0.72, 0.125]
+            - [-0.03, 1.56, 0.74, 0.125]
+            - [0.05, 1.6, 0.88, 0.1]
+            - [0.1, 1.7, 1.1, 0.07]
+          neck: { r: 0.05, steps: [5, 2] }
+        legs: { r: 0.06, knee: 0.74, ankle: 0.4 }
+        plumes: { points: [[0.1, 0.04, 1.4], [0.13, -0.02, 1.38], [0.135, -0.12, 1.16], [0.115, -0.1, 1.06]] }
+        head:
+          at:
+            stand: { y: 0.15, z: 2.04, pitch: 0.14 }
+            alert: { y: 0.12, z: 2.14, pitch: 0.06 }
+            low: { y: 0.3, reach: 0.25, clear: 0.05, pitch: 0.9 }
+          rings:
+            - [-0.03, -0.004, 0.036, 0.05]
+            - [0.02, 0.006, 0.044, 0.074]
+            - [0.08, 0.006, 0.04, 0.08]
+            - [0.14, -0.002, 0.03, 0.066]
+            - [0.18, -0.012, 0.022, 0.046]
+        bill: { rings: [[0.165, -0.012, 0.024, 0.052], [0.21, -0.016, 0.018, 0.042], [0.24, -0.034, 0.009, 0.022], [0.248, -0.06, 0.003, 0.007]] }
+        eyes: { at: [0.036, 0.05, 0.036], r: 0.012 }
+    unsourced: "A machine's reconstruction, from the restorations in Fig. 1 of Alvarenga & Höfling (2003): a huge deep hooked head on a thick neck, a deep body low at the rear, stout legs and small wings."
+  length:
+    prop: body_length
+    value: { lo: 0.8, hi: 2.8 }
+    source:
+      - ref: src:alvarenga-hofling-2003-phorusrhacidae
+        loc: "p. 59"
+        quote: "about 60 cm up to the back and 80 cm to the top of the head when well-raised"
+      - ref: src:alvarenga-hofling-2003-phorusrhacidae
+        loc: "p. 59"
+        quote: "could have reached around 280 cm high"
+    method: expert-estimate
+    note: >-
+      Its height with the head raised, from Psilopterus bachmanni to Brontornis burmeisteri: the
+      plan's length is its height, as the entry gives none in any other way. Worked out by the
+      authors from skeletons and limb bones.
+  mass:
+    prop: body_mass
+    value: { lo: 5, hi: 400 }
+    source:
+      - ref: src:alvarenga-hofling-2003-phorusrhacidae
+        loc: "p. 59, Psilopterus bachmanni"
+        quote: "nearly 5 kg"
+      - ref: src:alvarenga-hofling-2003-phorusrhacidae
+        loc: "p. 59"
+        quote: "or in other words 350 to 400 kg"
+    method: expert-estimate
+    note: >-
+      Psilopterus bachmanni to Brontornis burmeisteri.

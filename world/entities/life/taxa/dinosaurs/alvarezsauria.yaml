@@ -1,0 +1,61 @@
+id: life/taxa/alvarezsauria
+kind: taxon
+summary: >-
+  The alvarezsaurs: small, long-legged, thin-snouted theropods whose short strong arms ended in a
+  single large thumb claw.
+same_as: { pbdb: "txn:66689" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Alvarezsauria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: small-theropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.28
+      mass_length: 3.5
+      parts:
+        body:
+          rings:
+            - [-0.64, 1.04, 1.02, 0.002]
+            - [-0.5, 1.08, 1.02, 0.006]
+            - [-0.36, 1.08, 0.98, 0.011]
+            - [-0.2, 1.06, 0.88, 0.022]
+            - [-0.07, 1.08, 0.72, 0.036]
+            - [0.04, 1.08, 0.62, 0.042]
+            - [0.11, 1.1, 0.72, 0.034]
+          neck: { r: 0.011 }
+        legs: { x: 0.03, top: 0.92, knee: 0.6, ankle: 0.3, r: 0.028 }
+        arms: { points: [[0.036, 0.12, 0.9, 0.012], [0.04, 0.15, 0.78, 0.011], [0.038, 0.18, 0.76, 0.008]] }
+        claw: { type: spike, mirror: true, near: true, mat: horn, tint: 60, from: [0.038, 0.18, 0.76], to: [0.038, 0.22, 0.64], r: 0.006, sides: [5, 3] }
+        head:
+          at:
+            stand: { y: 0.27, z: 1.4, pitch: 0.1 }
+            low: { y: 0.3, reach: 0.09, clear: 0.06, pitch: 0.8 }
+          rings:
+            - [-0.005, 0, 0.012, 0.012]
+            - [0.016, 0.001, 0.013, 0.013]
+            - [0.04, -0.003, 0.006, 0.0065]
+            - [0.085, -0.008, 0.002, 0.002]
+        eyes: { at: [0.011, 0.018, 0.005], r: 0.0034 }
+    unsourced: >-
+      A machine's reconstruction: long legs, a thin snout and a long tail, from Mononykus and
+      Shuvuuia in the silhouette "Alvarezsaurid scale martyniuk.png" on Wikimedia Commons; its arm
+      and single claw, too small to see there, follow the heading of the tables in Holtz (2012)
+      ("Thumb-Clawed Dinosaurs").
+  length:
+    prop: body_length
+    value: { lo: 0.3, hi: 2.5 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 13, Parvicursorines", quote: "Parvicursor small runner Late Cretaceous (85.8-70.6 MYA) 12 in (30 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 13, Primitive Alvarezsaurids", quote: "Bonapartenykus Bonaparte's claw Late Cretaceous (83.5-68 MYA) 8.25 ft (2.5 m)?" }
+    method: compilation
+    note: >-
+      The range across the tables "Primitive Alvarezsauroids", "Primitive Alvarezsaurids" and
+      "Parvicursorines" (pp. 12-13), standing for any member with no length of its own. The upper
+      end is the author's own doubt.

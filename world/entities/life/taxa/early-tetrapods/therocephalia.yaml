@@ -1,0 +1,72 @@
+id: life/taxa/therocephalia
+kind: taxon
+summary: >-
+  Therocephalians: the hunters and later small plant-eaters among therapsids, the nearest relatives of cynodonts.
+same_as: { pbdb: "txn:39130" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Therocephalia, en: therocephalians }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.28
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.8, 0.72, 0.006]
+            - [-0.44, 0.88, 0.7, 0.014]
+            - [-0.36, 1.0, 0.66, 0.026]
+            - [-0.28, 1.12, 0.62, 0.046]
+            - [-0.18, 1.26, 0.54, 0.07]
+            - [-0.07, 1.36, 0.48, 0.078]
+            - [0.04, 1.4, 0.46, 0.08]
+            - [0.13, 1.38, 0.5, 0.072]
+            - [0.2, 1.3, 0.62, 0.052]
+          neck: { r: 0.036, steps: [3, 1] }
+        hind: { y: -0.22, x: 0.07, top: 0.96, r: 0.04, swing: 0.065 }
+        arm: { points: [[0.06, 0.15, 0.94, 0.034], [0.09, 0.12, 0.72, 0.028], [0.102, 0.11, 0.52, 0.021]] }
+        forearm: { y: 0.11, x: 0.102, top: 0.54, r: 0.019, swing: 0.055 }
+        head:
+          at:
+            stand: { y: 0.26, z: 1.2, pitch: 0.18 }
+            alert: { y: 0.26, z: 1.4, pitch: 0.02 }
+            low: { y: 0.29, reach: 0.2, pitch: 0.75 }
+          rings:
+            - [-0.012, 0.006, 0.044, 0.048]
+            - [0.04, 0.012, 0.054, 0.064]
+            - [0.095, 0.004, 0.044, 0.058]
+            - [0.15, -0.012, 0.03, 0.044]
+            - [0.19, -0.02, 0.018, 0.028]
+        jaw:
+          rings:
+            - [0.014, -0.05, 0.036, 0.016]
+            - [0.09, -0.056, 0.028, 0.015]
+            - [0.182, -0.044, 0.013, 0.009]
+        canines: { type: spike, on: head, near: true, mirror: true, mat: horn, tint: 200, sides: [6, 4], from: [0.02, 0.145, -0.034], to: [0.022, 0.155, -0.092], r: 0.007 }
+        eyes: { at: [0.044, 0.06, 0.038], r: 0.0095 }
+    unsourced: >-
+      A machine's reconstruction: stocky, with a short tail and a large, deep head with canines, from the skeletal
+      reconstruction of Moschorhinus in Stuart et al. (2024), Fig. 14. It is the body of the largest kind: many small ones
+      looked lighter, and no figure of them was looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.5, hi: 1.3 }
+    source:
+      - ref: src:stuart-2024-moschorhinus
+        loc: "Discussion, on the size of NMQR 3351"
+        quote: "we estimate a minimum body length of approximately 1.1 m with a maximum length likely not exceeding 1.3 m"
+      - ref: src:stuart-2024-moschorhinus
+        loc: "Discussion, on the size of NMQR 3351"
+        quote: "with NMQR 3351 at a BSL of 240 mm"
+      - ref: src:stuart-2024-moschorhinus
+        loc: "Introduction"
+        quote: "mostly small-bodied (skull lengths ≤ 100 mm)"
+    method: expert-estimate
+    basis: reconstruction
+    note: >-
+      The upper end is Moschorhinus, whose length is the paper's. The lower end is this record's arithmetic, not the paper's:
+      a skull of 100 mm, the paper's small-bodied bound, at the 240 mm to 1.1–1.3 m of Moschorhinus gives about 0.5 m. No
+      small therocephalian's whole length could be read.

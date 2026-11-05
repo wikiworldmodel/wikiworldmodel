@@ -1,0 +1,43 @@
+# Measured from the skeletal silhouette "Diplodocus size comparison.png" on Wikimedia Commons, with the tail held lower than there.
+description: >-
+  A long, low, whip-tailed sauropod, its neck held out level with a long sloping snout.
+kind: animal
+mass_length: 1.9
+hip: 0.133
+behave: { group: [2, 6], habitat: open, poses: [stand, walk, walk, graze, alert] }
+parts:
+  body:
+    type: trunk
+    sides: [14, 7]
+    rings:
+      - [-0.638, 0.76, 0.75, 0.0005]
+      - [-0.56, 0.88, 0.865, 0.001]
+      - [-0.48, 0.98, 0.955, 0.002]
+      - [-0.4, 1.04, 0.99, 0.004]
+      - [-0.32, 1.08, 0.97, 0.007]
+      - [-0.24, 1.09, 0.91, 0.012]
+      - [-0.16, 1.06, 0.8, 0.02]
+      - [-0.1, 1.03, 0.66, 0.032]
+      - [-0.06, 1.0, 0.5, 0.046]
+      - [0.0, 0.99, 0.36, 0.052]
+      - [0.06, 0.98, 0.32, 0.05]
+      - [0.1, 0.97, 0.4, 0.04]
+      - [0.14, 0.96, 0.6, 0.026]
+    neck: { r: 0.0075, steps: [8, 2] }
+  hind: { type: pillar, y: -0.065, x: 0.032, top: 0.74, r: 0.028, swing: 0.03 }
+  fore: { type: pillar, y: 0.085, x: 0.034, top: 0.76, r: 0.023, swing: 0.03, phase: 1 }
+  head:
+    type: head
+    thin: false
+    sides: [10, 5]
+    at:
+      stand: { y: 0.32, z: 1.17, pitch: 0.2 }
+      alert: { y: 0.31, z: 1.6, pitch: 0.05 }
+      low: { y: 0.33, reach: 0.042, pitch: 0.9, clear: 0.06 }
+    rings:
+      - [-0.002, 0, 0.005, 0.0062]
+      - [0.008, 0.0015, 0.0058, 0.0075]
+      - [0.018, -0.001, 0.0048, 0.0058]
+      - [0.03, -0.003, 0.0042, 0.0035]
+      - [0.041, -0.0042, 0.0045, 0.0024]
+  eyes: { type: eyes, on: head, near: true, at: [0.0052, 0.009, 0.003], r: 0.0012 }

@@ -1,0 +1,60 @@
+id: life/taxa/mamenchisauridae
+kind: taxon
+summary: >-
+  The mamenchisaurs: Chinese sauropods with extraordinarily long necks.
+same_as: { pbdb: "txn:53026" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Mamenchisauridae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.185
+      mass_length: 4.4
+      behave: { poses: [stand, stand, walk, alert] }
+      parts:
+        body:
+          not: null
+          rings:
+            - [-0.352, 0.42, 0.41, 0.001]
+            - [-0.222, 0.6, 0.44, 0.006]
+            - [-0.111, 0.84, 0.46, 0.022]
+            - [0.0, 1.0, 0.46, 0.054]
+            - [0.093, 1.04, 0.4, 0.066]
+            - [0.178, 1.24, 0.6, 0.052]
+            - [0.24, 1.66, 1.34, 0.024]
+            - [0.333, 2.1, 1.9, 0.016]
+            - [0.407, 2.47, 2.33, 0.012]
+            - [0.45, 2.67, 2.54, 0.0105]
+            - [0.475, 2.77, 2.65, 0.0095]
+          neck: { r: 0.0085, steps: [1, 1] }
+        body-low: null
+        hind: { y: 0.0, x: 0.046, top: 0.8, r: 0.034 }
+        fore: { y: 0.165, x: 0.048, top: 0.94, r: 0.028 }
+        head:
+          at:
+            stand: { y: 0.489, z: 2.76, pitch: 0.25 }
+            alert: { y: 0.49, z: 2.82, pitch: 0.06 }
+          rings:
+            - [-0.002, 0, 0.0075, 0.008]
+            - [0.012, 0.002, 0.009, 0.0105]
+            - [0.028, 0.0, 0.0075, 0.009]
+            - [0.044, -0.003, 0.006, 0.006]
+            - [0.056, -0.0045, 0.0055, 0.004]
+        eyes: { at: [0.008, 0.012, 0.004], r: 0.0016 }
+    unsourced: >-
+      A machine's reconstruction: a neck near half the length of the body and a short tail, from M.
+      youngi in the silhouette "Mamenchisaurus Species Scale Steveoc86.svg" on Wikimedia Commons.
+  length:
+    prop: body_length
+    value: { lo: 12, hi: 26 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 29, Mamenchisaurines", quote: "Tienshanosaurus Heavenly Mountains [China] Late Jurassic (161.2-155.7 MYA) 39.4 ft (12 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 29, Mamenchisaurines", quote: "Mamenchisaurus Mamenchi Ferry [China] reptile Late Jurassic (161.2-155.7 MYA) 85.3 ft (26 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Mamenchisaurines" (pp. 29-30), standing for any
+      member with no length of its own.

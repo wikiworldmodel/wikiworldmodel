@@ -1,0 +1,25 @@
+id: life/taxa/neuroptera
+kind: taxon
+summary: >-
+  The lacewings, antlions and their relatives, with large clear wings held like a roof. They take the insects' generic
+  body, with their own range of sizes.
+same_as: { pbdb: "txn:115551" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Neuroptera, en: "lacewings and antlions" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.002, hi: 0.08 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Neuroptera Coniopterygidae\""
+        quote: "Neuroptera Coniopterygidae 450 2 3 (Arnett 2000)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Neuroptera Ascalaphidae\""
+        quote: "Neuroptera Ascalaphidae 430 40 80 (Arnett 2000)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres.

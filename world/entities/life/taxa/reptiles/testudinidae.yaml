@@ -1,0 +1,54 @@
+id: life/taxa/testudinidae
+kind: taxon
+summary: >-
+  Tortoises: land turtles with high domed shells and legs like an elephant's.
+same_as: { pbdb: "txn:37739" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Testudinidae", en: "tortoises" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.24
+      mass_length: 420
+      behave: { group: [1, 3], habitat: open, poses: [stand, walk, walk, graze, rest] }
+      parts:
+        shell: { r: [0.38, 0.5, 0.36], lift: 0.11, bands: [7, 3] }
+        fore: { points: [[0.25, 0.28, 0.14, 0.085], [0.34, 0.36, 0.02, 0.07]] }
+        hind: { points: [[0.22, -0.3, 0.14, 0.09], [0.3, -0.34, 0.02, 0.085]] }
+        neck: { points: [[0, 0.42, 0.14, 0.06], [0, 0.56, 0.17, 0.052], [0, 0.65, 0.17, 0.04]] }
+        tail: { from: [0, -0.47, 0.14], to: [0, -0.58, 0.1] }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Tortoises (Testudinidae)\""
+      quote: "Terrestrial turtles with elephantine hind legs, flattened forelegs, and unwebbed toes"
+    note: >-
+      The legs follow this. The high dome is a machine's reconstruction; no skeletal figure was
+      looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.12, hi: 1.4 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Testudines (Turtles and Tortoises)\""
+        quote: "With maximum shell lengths of less than 4.7 in (12 cm), the speckled cape tortoise"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Tortoises (Testudinidae)\""
+        quote: "Up to 55 in (140 cm) carapace length and 562 lb (255 kg)"
+    method: compilation
+    note: >-
+      Living species; some fossil tortoises were larger.
+  mass:
+    prop: body_mass
+    value: { lo: 0.319, hi: 255 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Chersobius signatus, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "319 NA 80"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Tortoises (Testudinidae)\""
+        quote: "Up to 55 in (140 cm) carapace length and 562 lb (255 kg)"
+    method: compilation

@@ -1,0 +1,42 @@
+id: life/taxa/glyptodontia
+kind: taxon
+summary: >-
+  Glyptodonts and pampatheres: huge cingulates under a domed shell.
+same_as: { pbdb: "txn:53703" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Glyptodontia, en: "glyptodonts and pampatheres" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: glyptodont
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 3, hi: 4 }
+    source:
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Glyptodonts, armadillos and pampatheres (Cingulata)\""
+        quote: "reached 3–3.3 m (9.8–10.8 ft) in length"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Glyptodonts, armadillos and pampatheres (Cingulata)\""
+        quote: "at 4 m (13 ft) long, 1.5 m (4 ft 11 in) high"
+    method: compilation
+    note: >-
+      The largest species only, from Wikipedia, as no measured skeleton could be read. Smaller
+      glyptodonts and the pampatheres are shorter, and no figure for them was read.
+  mass:
+    prop: body_mass
+    value: { lo: 1061, hi: 2000 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Panochthus_tuberculatus, column Mass.g (grams)"
+        quote: "Panochthus_tuberculatus,Cingulata,CingulataFam,Panochthus,tuberculatus,1,0,0,0,Imputed,PHYLACINE 1.2.1,1061000"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Glyptodon_clavipes, column Mass.g (grams)"
+        quote: "Glyptodon_clavipes,Cingulata,CingulataFam,Glyptodon,clavipes,1,0,0,0,Imputed,PHYLACINE 1.2.1,2000000"
+    method: compilation
+    note: >-
+      The largest in PHYLACINE. Pampatheres and earlier glyptodonts were smaller.

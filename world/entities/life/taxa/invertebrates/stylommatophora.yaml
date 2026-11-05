@@ -1,0 +1,18 @@
+id: life/taxa/stylommatophora
+kind: taxon
+summary: >-
+  The land snails and slugs, with their eyes on the tips of the longer of two pairs of tentacles.
+same_as: { pbdb: "txn:62381" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Stylommatophora, en: "land snails and slugs" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [1, 3], habitat: forest, poses: [stand, walk] }
+      parts:
+        lower-tentacles: { type: spike, zl: true, near: true, mat: hide, mirror: true, sides: [3, 3], from: [0.04, 0.68, 0.1], to: [0.09, 0.8, 0.09], r: 0.01 }
+    unsourced: "A machine's reconstruction: the second pair of tentacles, from general knowledge of land snails, with no figure compared. Slugs are not drawn as such."

@@ -1,0 +1,42 @@
+id: life/taxa/folivora
+kind: taxon
+summary: >-
+  Sloths: the two living genera in the trees, and the many ground sloths of the Americas.
+same_as: { pbdb: "txn:337045" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Folivora, en: "sloths" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: ground-sloth
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.6, hi: 6 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Bradypus variegatus, Physical Description"
+        quote: "Average length is 60 cm"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Anteaters and sloths (Pilosa)\""
+        quote: "a length of up to 6 m (20 ft)"
+    method: compilation
+    note: >-
+      From a living three-toed sloth to the largest ground sloth, Eremotherium, from Wikipedia
+      as no measured skeleton could be read.
+  mass:
+    prop: body_mass
+    value: { lo: 3, hi: 6265 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Bradypus_pygmaeus, column Mass.g (grams)"
+        quote: "Bradypus_pygmaeus,Pilosa,Bradypodidae,Bradypus,pygmaeus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,3000"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Megatherium_americanum, column Mass.g (grams)"
+        quote: "Megatherium_americanum,Pilosa,Megatheriidae,Megatherium,americanum,1,0,0,0,Imputed,PHYLACINE 1.2.1,6265000"
+    method: compilation
+    note: >-
+      The high end is much disputed: Deak et al. (2025) use 3,706 kg for this species.

@@ -1,0 +1,40 @@
+id: life/taxa/nematocera
+kind: taxon
+summary: >-
+  As the database has it, the crane flies, winter gnats, phantom crane flies and a few others, left in this old group.
+  The crane flies have the longest legs of any fly.
+same_as: { pbdb: "txn:137087" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Nematocera, en: "crane flies and their relatives" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: gnat
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a slender long-legged fly, from general knowledge; no figure was
+      compared with it.
+  form:
+    prop: body_form
+    value:
+      parts:
+        fore-legs: { points: [[0.04, 0.32, 0.14, 0.006], [0.26, 0.5, 0.42, 0.004], [0.48, 0.84, 0.012, 0.002]] }
+        mid-legs: { points: [[0.045, 0.26, 0.13, 0.006], [0.36, 0.3, 0.44, 0.004], [0.66, 0.36, 0.012, 0.002]] }
+        hind-legs: { points: [[0.045, 0.2, 0.13, 0.006], [0.32, -0.02, 0.46, 0.004], [0.62, -0.38, 0.012, 0.002]] }
+    unsourced: "A machine's reconstruction of the general shape of the group, from general knowledge of crane flies; no figure was compared with it."
+  length:
+    prop: body_length
+    value: { lo: 0.003, hi: 0.06 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Diptera Trichoceridae\""
+        quote: "Diptera Trichoceridae 183 3 9 (Brown et al., 2009)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Diptera Tipulidae\""
+        quote: "Diptera Tipulidae 15770 6 60 (McAlpine et al., eds, 1981)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for the families of this group, its millimetres given in metres.

@@ -1,0 +1,21 @@
+id: src:benoit-midzuk-2024-dinocephalian-brains
+type: publication
+kind: model
+citation: >-
+  Benoit, J. & Midzuk, A.J. (2024). Estimating the endocranial volume and body mass of
+  Anteosaurus, Jonkeria, and Moschops (Dinocephalia, Therapsida) using 3D sculpting.
+  Palaeontologia Electronica 27(2), a39.
+authors:
+  - "Benoit, J."
+  - "Midzuk, A.J."
+published: 2024
+title: "Estimating the endocranial volume and body mass of Anteosaurus, Jonkeria, and Moschops (Dinocephalia, Therapsida) using 3D sculpting"
+container: "Palaeontologia Electronica 27(2), a39"
+doi: 10.26879/1377
+url: https://hdl.handle.net/10539/41929
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's PDF read from the repository of the University of the Witwatersrand; quotes
+    checked by script against its text layer, column by column.

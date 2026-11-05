@@ -1,0 +1,32 @@
+id: life/taxa/diptera
+kind: taxon
+summary: >-
+  The true flies, with one pair of working wings and the second pair reduced to knobs.
+same_as: { pbdb: "txn:70527" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Diptera, en: "true flies" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: fly
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, after Britannica's account of Diptera (one pair of wings, the second
+      reduced to knobs) and general knowledge; no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.0005, hi: 0.06 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Diptera Chyromyidae\""
+        quote: "Diptera Chyromyidae 139 0.5 4.5 (Brown et al., 2009)/ (McAlpine et al., eds, 1987)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Diptera Asilidae\""
+        quote: "Diptera Asilidae 7531 3 60 (Brown et al., 2009)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for true flies, its millimetres given in metres. Tipulidae reach
+      60 mm as well.

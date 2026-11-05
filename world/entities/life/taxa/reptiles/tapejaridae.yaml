@@ -1,0 +1,43 @@
+id: life/taxa/tapejaridae
+kind: taxon
+summary: >-
+  Crested, short-faced pterosaurs of the Cretaceous, with deep toothless beaks.
+same_as: { pbdb: "txn:95398" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Tapejaridae", en: "tapejarids" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          rings:
+            - [-0.012, 0, 0.018, 0.026]
+            - [0.03, 0.002, 0.024, 0.04]
+            - [0.09, -0.006, 0.018, 0.038]
+            - [0.17, -0.02, 0.009, 0.022]
+            - [0.24, -0.034, 0.003, 0.006]
+          at:
+            stand: { y: 0.13, z: 3.6, pitch: 0.2 }
+            alert: { y: 0.1, z: 3.9, pitch: 0.06 }
+            low: { y: 0.2, reach: 0.25, clear: 0.05, pitch: 1.0 }
+            fly: { y: 0.16, z: 2.6, pitch: 0.08 }
+        crest: { type: sheet, on: head, mat: membrane, gap: 0.002, points: [[0, 0.1, 0.02], [0, 0.02, 0.2], [0, -0.05, 0.13], [0, 0.0, 0.03]] }
+        jaw: { rings: [[0.05, -0.034, 0.014, 0.008], [0.12, -0.044, 0.008, 0.008], [0.22, -0.046, 0.003, 0.003]] }
+    unsourced: "A machine's reconstruction from what is known of the group in general: a short deep beak under a tall crest. No skeletal figure was looked at."
+  mass:
+    prop: body_mass
+    value: { lo: 0.91, hi: 1.03 }
+    source:
+      - ref: src:witton-2008-pterosaur-body-mass
+        loc: "p. 151, Table 4, row Sinopterus"
+        quote: "Sinopterus 1.14 63.23 0.91 8.91"
+      - ref: src:witton-2008-pterosaur-body-mass
+        loc: "p. 151, Table 4, row Huaxiapterus"
+        quote: "Huaxiapterus 1.43 71.63 1.03 10.09"
+    method: model
+    note: >-
+      The two tapejarids in the table: larger forms are known.

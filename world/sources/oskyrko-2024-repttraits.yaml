@@ -1,0 +1,26 @@
+id: src:oskyrko-2024-repttraits
+type: dataset
+kind: compilation
+citation: >-
+  Oskyrko, O., Mi, C., Meiri, S. & Du, W. (2024). ReptTraits: a comprehensive dataset of ecological traits in reptiles.
+  Scientific Data 11, 243. Data: ReptTraits dataset v1-2.xlsx, Figshare, version 4.
+authors:
+  - "Oskyrko, O."
+  - "Mi, C."
+  - "Meiri, S."
+  - "Du, W."
+published: 2024
+title: "ReptTraits: a comprehensive dataset of ecological traits in reptiles"
+container: Scientific Data 11, 243
+doi: 10.1038/s41597-024-03079-5
+url: https://doi.org/10.6084/m9.figshare.24572683.v4
+license: CC-BY-4.0
+reliability: >-
+  A compilation with one row per living species, in which each value has its own source. Its lengths are the largest reported
+  for the species. For lizards it holds no total length, only snout to vent, and for turtles the straight length of the shell.
+  Many of its masses are worked out from length by allometry rather than weighed.
+verified:
+  by: machine:claude-code
+  how: >-
+    The workbook read from Figshare (sheet "Data", and the trait definitions); the article read via Europe PMC (PMC10899194).
+    Rows are quoted with their cells joined by spaces, checked by script.

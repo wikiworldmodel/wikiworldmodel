@@ -1,0 +1,20 @@
+id: src:witton-2008-pterosaur-body-mass
+type: publication
+kind: model
+citation: >-
+  Witton, M.P. (2008). A new approach to determining pterosaur body mass and its implications for pterosaur flight. Zitteliana
+  B 28, 143–158.
+authors:
+  - "Witton, M.P."
+published: 2008
+title: "A new approach to determining pterosaur body mass and its implications for pterosaur flight"
+container: Zitteliana B 28, 143–158
+url: https://epub.ub.uni-muenchen.de/12010/
+verified:
+  by: machine:claude-code
+  how: >-
+    The whole PDF read from the Munich university repository, including Table 4, Fig. 2 (the wing planforms) and Fig. 5 (a
+    standing Quetzalcoatlus beside a giraffe). Quotes checked by script against its text layer, with whitespace normalized.
+    Table 4 is set sideways on the page, so its rows, quoted with their cells joined by spaces, come out whole from extractors
+    that follow the text layer's order (pypdf and PyMuPDF agree) but not from one that goes by lines on the page; the rows
+    quoted were also compared by eye with an image of the page.

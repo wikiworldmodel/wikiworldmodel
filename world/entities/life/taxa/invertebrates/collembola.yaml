@@ -1,0 +1,54 @@
+id: life/taxa/collembola
+kind: taxon
+summary: >-
+  The springtails, tiny wingless relatives of the insects, with a forked spring folded under the abdomen.
+same_as: { pbdb: "txn:133900" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Collembola, en: "springtails" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: insect
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The body starts from the generic insect's, which is the nearest written.
+  form:
+    prop: body_form
+    value:
+      hip: 0.2
+      behave: { group: [3, 12], habitat: forest, poses: [stand, walk] }
+      parts:
+        fore-wings: null
+        fly-fore: null
+        fly-hind: null
+        head: { at: [0, 0.38, 0.125], r: [0.075, 0.09, 0.075] }
+        thorax: { at: [0, 0.18, 0.13], r: [0.085, 0.13, 0.085] }
+        abdomen: { rings: [[0, 0.06, 0.125, 0.08, 0.08], [0, -0.14, 0.12, 0.085, 0.08], [0, -0.34, 0.11, 0.065, 0.06], [0, -0.48, 0.1, 0.02, 0.018]] }
+        eyes: { at: [0.06, 0.4, 0.15] }
+        antennae: { from: [0.03, 0.45, 0.16], to: [0.14, 0.72, 0.24], r: 0.009 }
+        spring: { type: spike, zl: true, near: true, mat: chitin, sides: [3, 3], from: [0, -0.44, 0.06], to: [0, -0.1, 0.03], r: 0.016 }
+        fore-legs: { points: [[0.05, 0.27, 0.07, 0.012], [0.11, 0.33, 0.08, 0.009], [0.15, 0.4, 0.004, 0.004]] }
+        mid-legs: { points: [[0.06, 0.18, 0.07, 0.012], [0.14, 0.18, 0.08, 0.009], [0.2, 0.15, 0.004, 0.004]] }
+        hind-legs: { points: [[0.06, 0.08, 0.07, 0.012], [0.14, 0.02, 0.08, 0.009], [0.2, -0.06, 0.004, 0.004]] }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. springtail"
+        quote: "a forked appendage (furcula) attached at the end of the abdomen"
+    note: >-
+      The spring is the article's, drawn as one spike. The rest is a machine's reconstruction, with no figure compared.
+  length:
+    prop: body_length
+    value: { lo: 0.0003, hi: 0.01 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Collembola Neelidae\""
+        quote: "Collembola Neelidae 33 0.3 0.7 (Arnett, 2000)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Collembola Entomobryidae\""
+        quote: "Collembola Entomobryidae 2189 1 10 (Arnett, 2000) Includes Paronellidae-"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this group, its millimetres given in metres.

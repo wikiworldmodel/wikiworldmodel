@@ -1,0 +1,37 @@
+description: >-
+  A heavy, plant-eating relative of the amniotes: a thick barrel body, a short deep head, massive sprawling legs and a short, thick tail.
+kind: animal
+hip: 0.22
+behave: { group: [1, 4], habitat: open, poses: [graze, graze, stand, walk] }
+parts:
+  body:
+    type: trunk
+    rings:
+      - [-0.51, 0.66, 0.54, 0.004]
+      - [-0.44, 0.76, 0.5, 0.014]
+      - [-0.36, 0.9, 0.46, 0.028]
+      - [-0.27, 1.06, 0.42, 0.05]
+      - [-0.19, 1.22, 0.34, 0.086]
+      - [-0.08, 1.34, 0.28, 0.114]
+      - [0.04, 1.38, 0.28, 0.118]
+      - [0.14, 1.34, 0.34, 0.098]
+      - [0.21, 1.26, 0.48, 0.068]
+    neck: { r: 0.05, steps: [2, 1] }
+  thigh: { type: chain, mirror: true, sides: [6, 3], points: [[0.07, -0.15, 0.8, 0.044], [0.13, -0.13, 0.72, 0.037], [0.175, -0.115, 0.58, 0.029]] }
+  shin: { type: pillar, y: -0.115, x: 0.175, top: 0.6, r: 0.028, swing: 0.04 }
+  arm: { type: chain, mirror: true, sides: [6, 3], points: [[0.075, 0.16, 0.84, 0.042], [0.135, 0.15, 0.76, 0.035], [0.178, 0.145, 0.58, 0.027]] }
+  forearm: { type: pillar, y: 0.145, x: 0.178, top: 0.6, r: 0.026, swing: 0.035, phase: 1 }
+  head:
+    type: head
+    at:
+      stand: { y: 0.265, z: 1.14, pitch: 0.14 }
+      alert: { y: 0.265, z: 1.3, pitch: 0 }
+      low: { y: 0.3, reach: 0.15, pitch: 0.72 }
+    rings:
+      - [-0.01, 0.004, 0.05, 0.044]
+      - [0.03, 0.01, 0.062, 0.056]
+      - [0.075, 0.002, 0.052, 0.05]
+      - [0.12, -0.012, 0.034, 0.034]
+      - [0.15, -0.02, 0.017, 0.018]
+  jaw: { type: tube, on: head, sides: [8, 4], rings: [[0.012, -0.046, 0.044, 0.014], [0.07, -0.05, 0.036, 0.013], [0.14, -0.04, 0.014, 0.007]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.052, 0.058, 0.03], r: 0.0095 }

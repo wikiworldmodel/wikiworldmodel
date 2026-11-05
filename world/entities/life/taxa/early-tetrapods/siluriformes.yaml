@@ -1,0 +1,58 @@
+id: life/taxa/siluriformes
+kind: taxon
+summary: >-
+  Catfishes: bottom-living fishes, mostly of fresh water, with flat broad heads, whiskers and no scales.
+same_as: { pbdb: "txn:35487" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Siluriformes, en: catfishes }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.42, 1.2, 0.8, 0.005]
+            - [-0.32, 1.44, 0.56, 0.014]
+            - [-0.2, 1.62, 0.4, 0.028]
+            - [-0.06, 1.72, 0.24, 0.05]
+            - [0.06, 1.68, 0.22, 0.066]
+            - [0.14, 1.56, 0.26, 0.074]
+        head:
+          at:
+            stand: { y: 0.15, z: 0.84, pitch: 0 }
+          rings:
+            - [-0.02, 0, 0.084, 0.06]
+            - [0.05, -0.002, 0.086, 0.05]
+            - [0.12, -0.006, 0.07, 0.036]
+            - [0.18, -0.01, 0.046, 0.024]
+            - [0.215, -0.012, 0.02, 0.012]
+        barbels: { type: spike, on: head, near: true, mirror: true, sides: [4, 3], from: [0.05, 0.185, -0.006], to: [0.13, 0.12, -0.03], r: 0.0035 }
+        chin-barbels: { type: spike, on: head, near: true, mirror: true, sides: [4, 3], from: [0.02, 0.17, -0.022], to: [0.05, 0.12, -0.075], r: 0.0025 }
+        tail: { points: [[0, -0.38, 1.0], [0, -0.5, 1.7], [0, -0.46, 1.0], [0, -0.5, 0.3]] }
+        dorsal: { points: [[0, 0.1, 1.68], [0, 0.03, 1.68], [0, 0.02, 2.26], [0, 0.09, 2.34], [0, 0.14, 1.6]] }
+        anal: { points: [[0, -0.2, 0.46], [0, -0.32, 0.72], [0, -0.33, 0.26], [0, -0.2, 0.04], [0, -0.12, 0.28]] }
+        pectoral: { points: [[0.07, 0.13, 0.36], [0.15, 0.04, 0.16], [0.125, 0.02, 0.28], [0.066, 0.09, 0.42]] }
+        pelvic: { points: [[0.04, -0.06, 0.26], [0.09, -0.14, 0.06], [0.07, -0.16, 0.14], [0.034, -0.1, 0.32]] }
+        adipose: { type: sheet, near: true, gap: 0.0015, points: [[0, -0.2, 1.6], [0, -0.28, 1.46], [0, -0.26, 1.78], [0, -0.18, 1.76]] }
+        eyes: { at: [0.06, 0.13, 0.024], r: 0.007 }
+    unsourced: >-
+      A machine's drawing of a living catfish's general shape, from no figure: a flat broad head, whiskers, a short dorsal fin with a
+      small fatty fin behind it, and a long anal fin.
+  length:
+    prop: body_length
+    value: { lo: 0.266, hi: 0.57 }
+    source:
+      - ref: src:fishbase-freshwater-fishes
+        loc: "Ameiurus melas, Size / Weight / Age"
+        quote: "common length : 26.6 cm TL male/unsexed"
+      - ref: src:fishbase-freshwater-fishes
+        loc: "Ictalurus punctatus, Size / Weight / Age"
+        quote: "common length : 57.0 cm SL male/unsexed"
+    method: compilation
+    note: >-
+      The common lengths of two North American catfishes, the second a standard length without the tail fin, stand for the order. Others are
+      much larger: the wels of Europe reaches 2.73 m on FishBase.

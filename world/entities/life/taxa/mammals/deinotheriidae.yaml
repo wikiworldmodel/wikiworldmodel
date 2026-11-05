@@ -1,0 +1,47 @@
+id: life/taxa/deinotheriidae
+kind: taxon
+summary: >-
+  Proboscideans with no upper tusks, and lower tusks curving down and back.
+same_as: { pbdb: "txn:43279" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Deinotheriidae, en: "deinotheres" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.5
+      parts:
+        tusks:
+          points:
+            - [0.03, 0.12, -0.11, 0.018]
+            - [0.038, 0.135, -0.17, 0.0165]
+            - [0.04, 0.115, -0.24, 0.0135]
+            - [0.036, 0.075, -0.3, 0.009]
+            - [0.03, 0.04, -0.34, 0.003]
+        nose:
+          points:
+            - [0, 0.125, -0.05, 0.04]
+            - [0, 0.17, -0.11, 0.03]
+            - [0, 0.2, -0.17, 0.022]
+            - [0, 0.21, -0.23, 0.015]
+            - [0, 0.215, -0.28, 0.009]
+    unsourced: >-
+      A machine's reconstruction, from the photograph of a mounted Deinotherium skeleton on
+      Wikipedia's page for the genus: tusks only in the lower jaw, curving down, and long
+      legs.
+  mass:
+    prop: body_mass
+    value: { lo: 1500, hi: 10500 }
+    source:
+      - ref: src:larramendi-2016-proboscideans
+        loc: "p. 555, section on deinotheres"
+        quote: "at the shoulders and about 1.5 tonnes of body mass"
+      - ref: src:larramendi-2016-proboscideans
+        loc: "Table 8, row Deinotherium proavum"
+        quote: "body mass 9.1< 9.1–12.1 (10.5) 12.2–13.4 13.5–16.8 16.9–18.6"
+    method: compilation
+    note: >-
+      From Chilgatherium to the mean of Deinotherium proavum, in Larramendi’s own estimates.

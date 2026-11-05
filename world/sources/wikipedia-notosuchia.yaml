@@ -1,0 +1,17 @@
+id: src:wikipedia-notosuchia
+type: database-record
+kind: review
+citation: >-
+  "Notosuchia." Wikipedia, the free encyclopedia (English edition).
+snapshot: 2026-11-05
+title: Notosuchia
+container: Wikipedia
+url: https://en.wikipedia.org/wiki/Notosuchia
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited for a length because nothing better could be read: a 2026 paper on the group's body size
+  (Paiva et al., Palaeontology) could not be retrieved.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-05; the quotation checked by script against its text.

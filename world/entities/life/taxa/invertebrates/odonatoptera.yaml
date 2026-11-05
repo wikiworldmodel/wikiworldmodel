@@ -1,0 +1,19 @@
+id: life/taxa/odonatoptera
+kind: taxon
+summary: >-
+  The dragonflies, damselflies and their stem groups, the griffinflies among them.
+same_as: { pbdb: "txn:174974" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Odonatoptera, en: "dragonflies and griffinflies" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: dragonfly
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, after Britannica's accounts (s.v. dragonfly: they rest with their wings
+      spread horizontally, and their huge bulging eyes occupy most of the head) and the griffinfly in Fig. 4 of Nel et
+      al. (2018), compared by eye.

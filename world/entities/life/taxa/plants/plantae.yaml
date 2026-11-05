@@ -1,0 +1,29 @@
+id: life/taxa/plantae
+kind: taxon
+summary: >-
+  Plants, as the database classifies them. Its classification hangs several thousand of the land's
+  fossil rows directly from this name: dispersed spores, pollen, seeds and leaves, whose parent
+  plants it places no lower.
+same_as: { pbdb: "txn:54311" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Plantae, en: plants }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: low-plant
+    unsourced: "A stand-in for a plant the database places no lower: a guess at a low plant, and no claim about what left these rows. An editorial classification."
+  height:
+    prop: plant_height
+    value: { lo: 0.1, hi: 0.4 }
+    source:
+      ref: src:munster-rhynie-chert-flora
+      loc: "II. The Rhynie Chert flora"
+      quote: "The vascular land plants were small, ca. 10 to 40 cm high."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The Early Devonian plants of the Rhynie chert, standing for a plant of no known kind: what
+      left these rows may have been far larger. A reviewer should look at this first.

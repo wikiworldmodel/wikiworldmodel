@@ -1,0 +1,40 @@
+id: life/taxa/enantiornithes
+kind: taxon
+summary: >-
+  The opposite birds, the most diverse birds of the Cretaceous: flyers with toothed jaws and small
+  claws on their wings, gone at its end.
+same_as: { pbdb: "txn:53286" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Enantiornithes", en: "opposite birds" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        bill: null
+        snout: { type: tube, on: head, sides: [6, 4], rings: [[0.09, -0.004, 0.026, 0.026], [0.14, -0.011, 0.016, 0.016], [0.19, -0.015, 0.007, 0.007]] }
+        wing-claws: { type: spike, mat: horn, mirror: true, near: true, not: [fly], from: [0.1, 0.12, 1.84], to: [0.112, 0.16, 1.66], r: 0.005, sides: [4, 3] }
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 21, Vescornis"
+      quote: "Like many enantiornithines, it still had small claws on its wings."
+    note: >-
+      A machine's reconstruction: the toothed snout in place of a bill, and the claws the list
+      speaks of, on the plan's flying bird. No skeletal figure was looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.07, hi: 0.5 }
+    source:
+      - ref: src:holtz-2012-dinosaur-genus-list
+        loc: "p. 20"
+        quote: "Liaoxiornis Liaoxi [China] bird Early Cretaceous (125-120 MYA) 3 in (7 cm) Sparrow China"
+      - ref: src:holtz-2012-dinosaur-genus-list
+        loc: "p. 20, row Pengornis"
+        quote: "Early Cretaceous (120-110 MYA) 1.6 ft (50 cm) Chicken China One of the largest Early Cretaceous enantiornithines."
+    method: compilation
+    note: >-
+      The range of the lengths the list gives for the genera of the group. It calls Liaoxiornis
+      possibly a juvenile. Late Cretaceous forms it gives only by wingspan, of up to 1.2 m.

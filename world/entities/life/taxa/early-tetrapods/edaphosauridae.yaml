@@ -1,0 +1,71 @@
+id: life/taxa/edaphosauridae
+kind: taxon
+summary: >-
+  Edaphosaurids: early sail-backed synapsid plant-eaters, with a tiny head, a wide barrel of ribs and knobbed spines.
+same_as: { pbdb: "txn:38910" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Edaphosauridae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.17
+      behave: { group: [1, 4], habitat: open, poses: [graze, stand, walk] }
+      parts:
+        body:
+          rings:
+            - [-0.53, 0.52, 0.44, 0.003]
+            - [-0.43, 0.58, 0.44, 0.007]
+            - [-0.33, 0.72, 0.46, 0.014]
+            - [-0.23, 0.9, 0.46, 0.024]
+            - [-0.15, 1.1, 0.42, 0.044]
+            - [-0.07, 1.28, 0.32, 0.076]
+            - [0.03, 1.44, 0.24, 0.1]
+            - [0.13, 1.46, 0.26, 0.098]
+            - [0.21, 1.34, 0.4, 0.07]
+            - [0.27, 1.18, 0.62, 0.036]
+          neck: { r: 0.024, steps: [3, 1] }
+        thigh: { points: [[0.06, -0.1, 0.84, 0.032], [0.115, -0.08, 0.76, 0.026], [0.165, -0.06, 0.64, 0.02]] }
+        shin: { y: -0.06, x: 0.165, top: 0.66, r: 0.018, swing: 0.04 }
+        hindfoot: { at: [0.175, -0.04, 0.04], r: [0.024, 0.038, 0.007] }
+        arm: { points: [[0.06, 0.18, 0.86, 0.028], [0.11, 0.17, 0.78, 0.022], [0.155, 0.165, 0.64, 0.017]] }
+        forearm: { y: 0.165, x: 0.155, top: 0.66, r: 0.0155, swing: 0.035 }
+        forefoot: { at: [0.163, 0.185, 0.04], r: [0.022, 0.032, 0.007] }
+        head:
+          at:
+            stand: { y: 0.305, z: 1.0, pitch: 0.14 }
+            alert: { y: 0.305, z: 1.2, pitch: -0.02 }
+            low: { y: 0.33, reach: 0.1, clear: 0.08, pitch: 0.8 }
+          rings:
+            - [-0.008, 0.002, 0.024, 0.026]
+            - [0.02, 0.006, 0.03, 0.032]
+            - [0.05, 0.002, 0.024, 0.027]
+            - [0.08, -0.006, 0.014, 0.017]
+            - [0.1, -0.01, 0.006, 0.007]
+        jaw:
+          rings:
+            - [0.008, -0.024, 0.02, 0.009]
+            - [0.05, -0.028, 0.016, 0.008]
+            - [0.094, -0.02, 0.006, 0.004]
+        mouth: null
+        eyes: { at: [0.022, 0.032, 0.022], r: 0.0065 }
+        sail: { type: tube, thin: false, sides: [6, 3], rings: [[0, -0.18, 1.2, 0.002, 0.08], [0, -0.1, 1.68, 0.002, 0.5], [0, -0.02, 2.14, 0.002, 0.86], [0, 0.06, 2.36, 0.002, 1.04], [0, 0.14, 2.3, 0.002, 0.98], [0, 0.21, 2.0, 0.002, 0.7], [0, 0.275, 1.5, 0.002, 0.24]] }
+        spines: { type: row, near: true, mat: horn, tint: 170, n: 15, item: spike, from: [0, -0.17, 1.2], to: [0, 0.27, 1.2], r: [0, 0.02, 0.36], thick: 0.0065, size: [0.3, 0.7, 0.95, 1, 0.92, 0.72, 0.4] }
+        crossbars: { type: row, near: true, mat: horn, tint: 170, mirror: true, n: 12, item: lump, from: [0.005, -0.12, 2.1], to: [0.005, 0.25, 2.1], r: [0.007, 0.004, 0.004] }
+    unsourced: >-
+      A machine's reconstruction: a tiny head, a wide ribcage and a sail on knobbed spines, from the photograph of the
+      AMNH's mounted Edaphosaurus (Wikimedia Commons, "Edaphosaurus boanerges AMNH.jpg").
+  length:
+    prop: body_length
+    value: { lo: 2.5, hi: 3 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Edaphosaurus, Description"
+        quote: "E. boanerges is estimated at 2.5–3 metres (8.2–9.8 ft) & 93 kg in weight."
+    method: compilation
+    note: >-
+      The species that stand for the family here. The same article gives the whole genus as 0.5 to 3.5 metres. An
+      encyclopedia, cited as nothing better could be read.

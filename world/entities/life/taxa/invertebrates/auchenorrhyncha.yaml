@@ -1,0 +1,40 @@
+id: life/taxa/auchenorrhyncha
+kind: taxon
+summary: >-
+  The cicadas, leafhoppers and froghoppers: a blunt wide head, tiny antennae and the wings held like a roof.
+same_as: { pbdb: "txn:70507" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Auchenorrhyncha, en: "cicadas and leafhoppers" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.22
+      parts:
+        body: { at: [0, -0.02, 0.13], r: [0.115, 0.42, 0.085] }
+        shield: { at: [0, 0.24, 0.17], r: [0.13, 0.12, 0.08] }
+        head: { at: [0, 0.39, 0.16], r: [0.14, 0.06, 0.07] }
+        eyes: { at: [0.135, 0.38, 0.18], r: [0.03, 0.03, 0.035] }
+        triangle: null
+        clear-wings: null
+        hard-wings: { mat: membrane, points: [[0.008, 0.24, 0.27], [0.14, 0.1, 0.12], [0.13, -0.42, 0.06], [0.035, -0.72, 0.1], [0.004, -0.2, 0.24]] }
+        beak: { from: [0, 0.42, 0.11], to: [0, 0.2, 0.05] }
+        antennae: { points: [[0.1, 0.43, 0.17, 0.004], [0.14, 0.47, 0.19, 0.002]] }
+    unsourced: "A machine's reconstruction of the general shape of the group, from general knowledge of cicadas and leafhoppers; no figure was compared with it."
+  length:
+    prop: body_length
+    value: { lo: 0.0017, hi: 0.1 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Hemiptera Cicadellidae\""
+        quote: "Hemiptera Cicadellidae 20000 1.7 28 (Evans 1966)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Hemiptera Cicadidae\""
+        quote: "Hemiptera Cicadidae 1300 10 100 (Capinera 2008)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for cicadas, leafhoppers, froghoppers and treehoppers, its
+      millimetres given in metres.

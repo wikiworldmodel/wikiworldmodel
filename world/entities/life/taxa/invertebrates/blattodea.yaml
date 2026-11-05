@@ -1,0 +1,22 @@
+id: life/taxa/blattodea
+kind: taxon
+summary: >-
+  The cockroaches and termites, in the database's classification. The fossil families in it are older cockroaches.
+same_as: { pbdb: "txn:170227" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Blattodea, en: "cockroaches and termites" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.0025, hi: 0.075 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Blattodea Blaberidae\""
+        quote: "Blattodea Blaberidae 1198 2.5 75 (Arnett, 2000)/(Hogue, 1993)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for living cockroaches, its millimetres given in metres.
+      Blaberidae hold both ends. Fossil members may lie outside it; none was read.

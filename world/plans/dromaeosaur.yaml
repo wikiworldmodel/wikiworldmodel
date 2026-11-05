@@ -1,0 +1,56 @@
+# Measured from "Deinonychus Scale.svg" on Wikimedia Commons. A row of feathers on the arm is drawn as one panel, and its tail feathers as the flattened end of the tail, so that they swing with it.
+description: >-
+  A feathered two-legged hunter with a long stiff tail, long folded arms and a raised sickle claw on each foot.
+kind: animal
+mass_length: 2.7
+hip: 0.25
+behave: { group: [1, 4], habitat: any, poses: [stand, walk, walk, alert] }
+parts:
+  body:
+    type: trunk
+    mat: fur
+    sides: [10, 5]
+    rings:
+      - [-0.6, 0.985, 0.975, 0.003]
+      - [-0.53, 0.99, 0.97, 0.018]
+      - [-0.42, 0.995, 0.95, 0.016]
+      - [-0.32, 1.0, 0.91, 0.011]
+      - [-0.2, 1.01, 0.86, 0.014]
+      - [-0.1, 1.03, 0.76, 0.024]
+      - [-0.03, 1.04, 0.58, 0.036]
+      - [0.05, 1.03, 0.48, 0.046]
+      - [0.12, 1.05, 0.52, 0.04]
+      - [0.17, 1.08, 0.72, 0.028]
+    neck: { r: 0.014, steps: [4, 1] }
+  legs: { type: digitigrade, mat: fur, y: 0.0, x: 0.038, top: 0.8, knee: 0.5, ankle: 0.26, r: 0.03, swing: 0.1 }
+  arms:
+    type: chain
+    mat: feather
+    mirror: true
+    sides: [5, 4]
+    points: [[0.04, 0.14, 0.86, 0.012], [0.05, 0.06, 0.66, 0.009], [0.046, 0.17, 0.5, 0.007], [0.042, 0.24, 0.44, 0.004]]
+  hand-claws: { type: spike, mirror: true, near: true, mat: horn, tint: 60, from: [0.042, 0.235, 0.445], to: [0.04, 0.268, 0.38], r: 0.0035, sides: [5, 3] }
+  arm-feathers:
+    type: sheet
+    mat: feather
+    mirror: true
+    near: true
+    points: [[0.052, 0.06, 0.66], [0.046, 0.17, 0.5], [0.042, 0.235, 0.44], [0.048, 0.16, 0.39], [0.052, 0.075, 0.5]]
+  sickle: { type: spike, mirror: true, near: true, not: [walk], mat: horn, tint: 60, from: [0.04, 0.02, 0.05], to: [0.04, 0.062, 0.17], r: 0.0045, sides: [5, 3] }
+  head:
+    type: head
+    mat: fur
+    sides: [10, 5]
+    thin: false
+    at:
+      stand: { y: 0.27, z: 1.3, pitch: 0.1 }
+      alert: { y: 0.25, z: 1.5, pitch: 0.02 }
+      low: { y: 0.3, reach: 0.1, clear: 0.1, pitch: 0.8 }
+    rings:
+      - [-0.006, 0, 0.016, 0.018]
+      - [0.025, 0.002, 0.02, 0.025]
+      - [0.06, -0.003, 0.015, 0.017]
+      - [0.09, -0.006, 0.01, 0.011]
+      - [0.118, -0.009, 0.006, 0.006]
+  jaw: { type: tube, on: head, near: true, sides: [6, 4], rings: [[0.02, -0.022, 0.012, 0.006], [0.07, -0.022, 0.01, 0.005], [0.114, -0.017, 0.005, 0.003]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.018, 0.024, 0.012], r: 0.005 }

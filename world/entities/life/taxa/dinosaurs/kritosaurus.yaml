@@ -1,0 +1,28 @@
+id: life/taxa/kritosaurus
+kind: taxon
+summary: >-
+  Kritosaurus, a hook-nosed duck-bill of the Campanian of New Mexico.
+same_as: { pbdb: "txn:53195" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Kritosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction: the form of Kritosaurini looked at against "Kritosaurus Scale.svg"
+      on Wikimedia Commons, and nothing changed from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 9
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 47, Gryposaurinins"
+      quote: "Kritosaurus separated reptile Late Cretaceous (80-72.8 MYA) 29.5 ft (9 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

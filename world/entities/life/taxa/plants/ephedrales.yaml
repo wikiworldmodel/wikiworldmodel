@@ -1,0 +1,30 @@
+id: life/taxa/ephedrales
+kind: taxon
+summary: >-
+  Joint firs and the pollen placed with them, Ephedripites above all.
+same_as: { pbdb: "txn:157233" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ephedrales, en: joint firs }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: wiry-shrub
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 2, s.v. Ephedraceae"
+      quote: "Shrubs or vines , erect or clambering, Equisetum -like"
+  height:
+    prop: plant_height
+    value: { lo: 0.5, hi: 1.5 }
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 4, p. 97, s.v. Ephedra, key"
+      quote: "Shrubs or subshrubs, usually 50-150 cm."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living Ephedra: a modern relative, and these are the tall ones in the key: others stand under
+      40 cm.

@@ -1,0 +1,28 @@
+id: src:dupret-2023-bothriolepis
+type: publication
+kind: measurement
+citation: >-
+  Dupret, V., Byrne, H.M., Castro, N., Hammer, Ø., Higgs, K.T., Long, J.A., Niedźwiedzki, G.,
+  Qvarnström, M., Stössel, I. & Ahlberg, P.E. (2023). The Bothriolepis (Placodermi, Antiarcha)
+  material from the Valentia Slate Formation of the Iveragh Peninsula (middle Givetian, Ireland):
+  morphology, evolutionary and ichnological implications. PLoS ONE 18(2), e0280208.
+authors:
+  - "Dupret, V."
+  - "Byrne, H.M."
+  - "Castro, N."
+  - "Hammer, Ø."
+  - "Higgs, K.T."
+  - "Long, J.A."
+  - "Niedźwiedzki, G."
+  - "Qvarnström, M."
+  - "Stössel, I."
+  - "Ahlberg, P.E."
+published: 2023
+title: "The Bothriolepis (Placodermi, Antiarcha) material from the Valentia Slate Formation of the Iveragh Peninsula (middle Givetian, Ireland)"
+container: "PLoS ONE 18(2), e0280208"
+doi: 10.1371/journal.pone.0280208
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC9949654); quotes checked by script against it.

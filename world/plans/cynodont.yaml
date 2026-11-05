@@ -1,0 +1,39 @@
+description: >-
+  A small to middle-sized mammal-like therapsid: a long low skull with wide cheeks, a slim body, a short tail and legs nearly under it.
+kind: animal
+hip: 0.21
+behave: { group: [1, 3], habitat: any, poses: [walk, walk, stand, alert, rest] }
+parts:
+  body:
+    type: trunk
+    rings:
+      - [-0.5, 0.78, 0.72, 0.002]
+      - [-0.42, 0.84, 0.74, 0.006]
+      - [-0.36, 0.92, 0.76, 0.012]
+      - [-0.29, 1.1, 0.8, 0.024]
+      - [-0.23, 1.28, 0.8, 0.045]
+      - [-0.12, 1.38, 0.7, 0.056]
+      - [-0.01, 1.42, 0.66, 0.058]
+      - [0.09, 1.42, 0.64, 0.058]
+      - [0.15, 1.4, 0.7, 0.052]
+      - [0.2, 1.34, 0.86, 0.038]
+    neck: { r: 0.028, steps: [3, 1] }
+  hind: { type: digitigrade, y: -0.22, x: 0.056, top: 1.02, knee: 0.6, ankle: 0.1, r: 0.036, swing: 0.075 }
+  arm: { type: chain, mirror: true, sides: [6, 3], points: [[0.048, 0.18, 0.92, 0.026], [0.07, 0.14, 0.72, 0.022], [0.082, 0.105, 0.52, 0.017]] }
+  forearm: { type: pillar, y: 0.105, x: 0.082, top: 0.54, r: 0.0155, swing: 0.065, phase: 1 }
+  head:
+    type: head
+    at:
+      stand: { y: 0.3, z: 1.22, pitch: 0.06 }
+      alert: { y: 0.3, z: 1.42, pitch: -0.08 }
+      low: { y: 0.31, reach: 0.2, pitch: 0.55 }
+    rings:
+      - [-0.012, 0.01, 0.034, 0.036]
+      - [0.03, 0.014, 0.058, 0.042]
+      - [0.08, 0.008, 0.054, 0.036]
+      - [0.125, -0.002, 0.03, 0.028]
+      - [0.165, -0.012, 0.023, 0.021]
+      - [0.2, -0.02, 0.013, 0.012]
+  jaw: { type: tube, on: head, sides: [8, 4], rings: [[0.02, -0.04, 0.034, 0.012], [0.1, -0.048, 0.026, 0.012], [0.19, -0.044, 0.012, 0.007]] }
+  mouth: { type: tube, on: head, near: true, mat: dark, sides: [6, 4], rings: [[0.04, -0.03, 0.03, 0.004], [0.11, -0.036, 0.024, 0.004], [0.188, -0.034, 0.012, 0.003]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.036, 0.07, 0.03], r: 0.0095 }

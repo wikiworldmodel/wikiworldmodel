@@ -1,0 +1,56 @@
+id: life/taxa/diacodexeidae
+kind: taxon
+summary: >-
+  Among the first artiodactyls, of the early Eocene: rabbit-sized, long-legged and long-tailed.
+same_as: { pbdb: "txn:135248" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Diacodexeidae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.36
+      mass_length: 10
+      behave: { group: [1, 3], habitat: forest, poses: [stand, walk, graze, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.6, 0.54, 0.006]
+            - [-0.42, 0.72, 0.66, 0.009]
+            - [-0.33, 0.88, 0.8, 0.012]
+            - [-0.27, 1.02, 0.86, 0.018]
+            - [-0.23, 1.1, 0.78, 0.04]
+            - [-0.16, 1.14, 0.62, 0.066]
+            - [-0.06, 1.1, 0.56, 0.068]
+            - [0.04, 1.02, 0.54, 0.062]
+            - [0.11, 0.98, 0.58, 0.05]
+          neck: { r: 0.026, steps: [3, 1] }
+        hind: { y: -0.19, x: 0.04, top: 0.92, knee: 0.6, ankle: 0.3, r: 0.05 }
+        fore: { y: 0.07, x: 0.04, top: 0.72, r: 0.016 }
+        head:
+          at:
+            stand: { y: 0.2, z: 1.14, pitch: 0.24 }
+            alert: { y: 0.2, z: 1.3, pitch: 0.06 }
+            low: { y: 0.24, reach: 0.17, pitch: 1.05 }
+    unsourced: >-
+      A machine's reconstruction, from Orliac et al. (2012), who say that Diacodexis has limb
+      proportions like a living chevrotain's: small, long-legged, with a long tail as
+      restored. Only compared with its sheet.
+  mass:
+    prop: body_mass
+    value: { lo: 0.554, hi: 0.935 }
+    source:
+      - ref: src:orliac-2012-diacodexis
+        loc: "Table 1, rows of Diacodexis ilicis"
+        quote: "Diacodexis ilicis 554 (a) 3.93 3.81 3.62 3.84"
+      - ref: src:orliac-2012-diacodexis
+        loc: "Table 1, rows of Diacodexis ilicis"
+        quote: "935 (b)"
+    method: compilation
+    note: >-
+      Diacodexis ilicis, standing for the family, in grams in the table: from its astragalus
+      to its skull length. No length of the whole animal was read: the plan makes it from the
+      mass.

@@ -51,7 +51,7 @@
       "properties": {
         "from": { "$ref": "defs.json#/$defs/ref" },
         "file": { "type": "string", "description": "The dataset's file, where it has several" },
-        "as": { "enum": ["climate", "ice-sheets", "borders", "hazards", "polities", "routes", "languages", "people"], "description": "What the data is read as, where it is not elevation" },
+        "as": { "enum": ["climate", "ice-sheets", "borders", "hazards", "polities", "routes", "languages", "people", "community"], "description": "What the data is read as, where it is not elevation" },
         "places": { "$ref": "defs.json#/$defs/ref", "description": "For borders: the dataset of places that goes with them" },
         "prop": { "type": "string", "description": "A series of the world's own measurements: the property whose claims give its values, each at its record's date. `from` then names the work that frames them" },
         "sheet": { "type": "string", "description": "For a workbook: the sheet the series is on" },

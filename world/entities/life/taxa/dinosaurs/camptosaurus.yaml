@@ -1,0 +1,53 @@
+id: life/taxa/camptosaurus
+kind: taxon
+summary: >-
+  Camptosaurus, a middle-sized iguanodont of the Late Jurassic of western North America.
+same_as: { pbdb: "txn:38748" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Camptosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.29
+      parts:
+        body-on-four:
+          rings:
+            - [-0.555, 0.7, 0.68, 0.002]
+            - [-0.455, 0.78, 0.67, 0.006]
+            - [-0.273, 0.9, 0.62, 0.018]
+            - [-0.145, 0.98, 0.54, 0.038]
+            - [0.0, 1.0, 0.4, 0.07]
+            - [0.09, 0.98, 0.34, 0.08]
+            - [0.18, 0.9, 0.36, 0.07]
+            - [0.236, 0.84, 0.48, 0.046]
+            - [0.27, 0.84, 0.6, 0.028]
+          neck: { r: 0.02, steps: [4, 1] }
+        head:
+          at:
+            stand: { y: 0.33, z: 0.92, pitch: 0.1 }
+            alert: { y: 0.32, z: 1.06, pitch: 0.02 }
+          rings:
+            - [-0.005, 0, 0.015, 0.02]
+            - [0.025, 0.002, 0.017, 0.023]
+            - [0.06, -0.005, 0.013, 0.015]
+            - [0.09, -0.01, 0.01, 0.009]
+            - [0.11, -0.013, 0.008, 0.005]
+        beak: { rings: [[0.1, -0.012, 0.0085, 0.005], [0.122, -0.015, 0.0045, 0.0025]] }
+        eyes: { at: [0.0155, 0.026, 0.01], r: 0.0042 }
+    unsourced: >-
+      A machine's reconstruction: a smaller head held higher and a lighter body than the plan, from
+      the silhouette "Camptosaurus Scale.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 7
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 44, Camptosaurids"
+      quote: "Camptosaurus flexible [back] reptile Late Jurassic (155.7-150.8 MYA) 23 ft (7 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

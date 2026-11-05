@@ -1,0 +1,46 @@
+# Measured from "Struthiomimus Scale.svg" and "Gallimimus Size Comparison by PaleoGeek.svg" on Wikimedia Commons.
+description: >-
+  An ostrich-like dinosaur: a small toothless beaked head on a long thin neck, long legs and long slender arms.
+kind: animal
+mass_length: 3.4
+hip: 0.36
+behave: { group: [2, 10], habitat: open, poses: [stand, walk, walk, graze, alert] }
+parts:
+  body:
+    type: trunk
+    mat: fur
+    sides: [10, 5]
+    rings:
+      - [-0.58, 0.93, 0.91, 0.002]
+      - [-0.46, 0.96, 0.92, 0.005]
+      - [-0.34, 0.99, 0.91, 0.008]
+      - [-0.22, 1.01, 0.87, 0.014]
+      - [-0.12, 1.03, 0.78, 0.026]
+      - [-0.04, 1.04, 0.64, 0.04]
+      - [0.03, 1.03, 0.57, 0.048]
+      - [0.09, 1.03, 0.62, 0.04]
+      - [0.13, 1.06, 0.76, 0.026]
+    neck: { r: 0.0095, steps: [6, 2] }
+  legs: { type: digitigrade, mat: fur, y: -0.015, x: 0.035, top: 0.85, knee: 0.56, ankle: 0.3, r: 0.034, swing: 0.11 }
+  arms:
+    type: chain
+    mat: fur
+    mirror: true
+    sides: [5, 4]
+    points: [[0.038, 0.1, 0.82, 0.01], [0.044, 0.09, 0.62, 0.0075], [0.04, 0.16, 0.5, 0.0055], [0.036, 0.22, 0.42, 0.0035]]
+  head:
+    type: head
+    mat: fur
+    sides: [8, 4]
+    thin: false
+    at:
+      stand: { y: 0.33, z: 1.4, pitch: 0.12 }
+      alert: { y: 0.3, z: 1.66, pitch: 0.02 }
+      low: { y: 0.34, reach: 0.075, clear: 0.05, pitch: 0.9 }
+    rings:
+      - [-0.004, 0, 0.0105, 0.0105]
+      - [0.016, 0.001, 0.0115, 0.0125]
+      - [0.036, -0.002, 0.008, 0.0085]
+      - [0.052, -0.004, 0.0055, 0.005]
+  beak: { type: tube, on: head, mat: horn, tint: 110, sides: [6, 4], thin: false, rings: [[0.05, -0.004, 0.0055, 0.0045], [0.074, -0.008, 0.0018, 0.0018]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.0095, 0.016, 0.004], r: 0.0034 }

@@ -1,0 +1,33 @@
+id: life/taxa/blattaria
+kind: taxon
+summary: >-
+  The extinct stem cockroaches of the database's classification, of the Palaeozoic and the Mesozoic.
+same_as: { pbdb: "txn:71359" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Blattaria, en: "stem cockroaches" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: cockroach
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a cockroach, from general knowledge; no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.012, hi: 0.05 }
+    source:
+      - ref: src:vrsansky-2008-mongolian-blattarians
+        loc: "abstract"
+        quote: "with a forewing length under 12 mm"
+      - ref: src:vrsansky-2008-mongolian-blattarians
+        loc: "p. 133, Phyloblattidae, Gen. et sp. indet., Description"
+        quote: "roaches, forewing length up to 50 mm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The source gives the length of the fore wing, which is how such fossils are known, and these are two ends of what
+      it says of Mesozoic ones. Their taking it for the length of the body is this record's reconstruction: in a roach
+      the fore wings reach about the end of the abdomen. No figure for the whole Palaeozoic group was read.

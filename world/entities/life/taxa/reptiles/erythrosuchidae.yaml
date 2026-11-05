@@ -1,0 +1,80 @@
+id: life/taxa/erythrosuchidae
+kind: taxon
+summary: >-
+  The big-headed top predators of the Early and Middle Triassic.
+same_as: { pbdb: "txn:38225" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Erythrosuchidae", en: "erythrosuchids" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: rauisuchian
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      mass_length: 11
+      parts:
+        hind: { x: 0.07, r: 0.04 }
+        fore: { y: 0.1, x: 0.07, r: 0.03 }
+        body:
+          rings:
+            - [-0.5, 0.86, 0.8, 0.003]
+            - [-0.38, 0.92, 0.78, 0.012]
+            - [-0.27, 1.0, 0.76, 0.024]
+            - [-0.17, 1.14, 0.7, 0.044]
+            - [-0.08, 1.26, 0.58, 0.07]
+            - [0.0, 1.3, 0.5, 0.08]
+            - [0.07, 1.28, 0.52, 0.072]
+            - [0.13, 1.26, 0.66, 0.05]
+          neck: { r: 0.042, steps: [2, 1] }
+        plates: { from: [0.012, -0.3, 1.02], to: [0.012, 0.1, 1.32] }
+        head:
+          at:
+            stand: { y: 0.19, z: 1.34, pitch: 0.1 }
+            alert: { y: 0.18, z: 1.46, pitch: 0.02 }
+            low: { y: 0.24, reach: 0.3, clear: 0.05, pitch: 0.7 }
+          rings:
+            - [-0.03, 0, 0.036, 0.055]
+            - [0.05, -0.004, 0.05, 0.078]
+            - [0.14, -0.02, 0.04, 0.066]
+            - [0.23, -0.036, 0.028, 0.046]
+            - [0.29, -0.046, 0.014, 0.024]
+        jaw: { rings: [[0.03, -0.08, 0.04, 0.018], [0.14, -0.082, 0.03, 0.016], [0.27, -0.072, 0.014, 0.008]] }
+        eyes: { at: [0.042, 0.05, 0.03], r: 0.014 }
+    source:
+      ref: src:maidment-2020-garjainia-postcranium
+      loc: "Introduction"
+      quote: "Large-bodied (2–5 m in length) and quadrupedal, erythrosuchids possessed large skulls relative to their body size"
+    note: >-
+      The head and the stance follow this; the rest is the plan's. Otherwise a machine's
+      reconstruction.
+  posture:
+    prop: posture
+    value: quadruped
+    source:
+      ref: src:maidment-2020-garjainia-postcranium
+      loc: "Introduction"
+      quote: "Large-bodied (2–5 m in length) and quadrupedal"
+  length:
+    prop: body_length
+    value: { lo: 2, hi: 5 }
+    source:
+      ref: src:maidment-2020-garjainia-postcranium
+      loc: "Introduction"
+      quote: "Large-bodied (2–5 m in length) and quadrupedal, erythrosuchids possessed large skulls relative to their body size"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 193.5, hi: 1452.2 }
+    source:
+      ref: src:maidment-2020-garjainia-postcranium
+      loc: "Materials and methods, body mass"
+      quote: "This resulted in body mass estimates of 193.5 and 204.4 kg for G. prima for the humerus and femur, respectively, and 1452.2 and 1171.0 kg"
+    method: model
+    note: >-
+      Garjainia prima to Erythrosuchus africanus, from one limb bone at a time; the same paper's
+      bivariate estimates differ.

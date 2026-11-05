@@ -1,0 +1,42 @@
+description: >-
+  A flying bird, small or middling: a compact feathered body on two thin legs, long wings that fold along the flank, a fan
+  of a tail and a short bill. Its length is from the tip of the bill to the tip of the tail.
+kind: animal
+hip: 0.22
+mass_length: 6
+behave: { group: [1, 6], habitat: air, poses: [fly], flies: [3, 40] }
+parts:
+  body:
+    type: trunk
+    mat: feather
+    sides: [10, 5]
+    rings:
+      - [-0.5, 1.06, 1.0, 0.03]
+      - [-0.38, 1.14, 1.07, 0.036]
+      - [-0.26, 1.24, 1.14, 0.036]
+      - [-0.18, 1.36, 1.14, 0.042]
+      - [-0.11, 1.54, 1.0, 0.072]
+      - [-0.03, 1.8, 0.74, 0.106]
+      - [0.05, 2.0, 0.66, 0.118]
+      - [0.12, 2.14, 0.8, 0.104]
+      - [0.18, 2.22, 1.2, 0.07]
+    neck: { r: 0.042, steps: [3, 1] }
+  legs: { type: digitigrade, mat: hide, y: -0.02, x: 0.05, top: 1.05, knee: 0.74, ankle: 0.42, r: 0.03, swing: 0.07, not: [fly] }
+  wings: { type: wing, shoulder: [0.09, 0.14, 1.9], span: 0.8, chord: 0.24, sweep: 0.2, beat: 0.28, arm: 0.018, folded: 0.46, drop: 0.72 }
+  head:
+    type: head
+    mat: feather
+    sides: [10, 5]
+    thin: false
+    at:
+      stand: { y: 0.25, z: 2.46, pitch: 0.06 }
+      alert: { y: 0.24, z: 2.6, pitch: -0.05 }
+      low: { y: 0.3, reach: 0.2, clear: 0.05, pitch: 0.9 }
+      fly: { y: 0.27, z: 2.2, pitch: 0.05 }
+    rings:
+      - [-0.03, 0, 0.038, 0.042]
+      - [0.02, 0.005, 0.054, 0.056]
+      - [0.07, 0.002, 0.044, 0.044]
+      - [0.105, -0.004, 0.02, 0.022]
+  bill: { type: spike, on: head, mat: horn, sides: [6, 4], from: [0, 0.095, -0.004], to: [0, 0.205, -0.012], r: 0.018 }
+  eyes: { type: eyes, on: head, near: true, at: [0.042, 0.055, 0.018], r: 0.011 }

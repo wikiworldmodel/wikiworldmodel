@@ -1,0 +1,36 @@
+id: life/taxa/testudinata
+kind: taxon
+summary: >-
+  Turtles and their shelled forebears.
+same_as: { pbdb: "txn:106739" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Testudinata", en: "turtles" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: turtle
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  posture:
+    prop: posture
+    value: sprawling
+    source:
+      ref: src:butcher-blob-2008-cooter-turtles
+      loc: "abstract"
+      quote: "their highly sprawled posture"
+  length:
+    prop: body_length
+    value: { lo: 0.12, hi: 1.4 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Testudines (Turtles and Tortoises)\""
+        quote: "With maximum shell lengths of less than 4.7 in (12 cm), the speckled cape tortoise, flattened musk turtle, and bog turtle are among the world's smallest turtles."
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Testudines (Turtles and Tortoises)\""
+        quote: "The Aldabra tortoise (55 in/140 cm; 562 lb/255 kg) is the largest living terrestrial species."
+    method: compilation
+    note: >-
+      Shell lengths of living turtles, for any member with no length of its own. The sea turtles
+      reach further, 244 cm, but are not drawn on land.

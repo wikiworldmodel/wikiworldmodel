@@ -1,0 +1,26 @@
+id: life/taxa/anguimorpha
+kind: taxon
+summary: >-
+  Monitors, Gila monsters, glass lizards, alligator lizards and their fossil relatives.
+same_as: { pbdb: "txn:53221" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Anguimorpha", en: "anguimorph lizards" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.072, hi: 0.58 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Abronia cuchumatanus, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "NA NA 72"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Pseudopus apodus, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "588.8436554 NA 580"
+    method: compilation
+    note: >-
+      From snout to vent, as the plan's length is: the living anguids, between which the Gila
+      monsters and xenosaurs lie. For any of the group with no length of its own, which is mostly
+      fossils; the monitors have theirs.

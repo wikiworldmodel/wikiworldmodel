@@ -1,0 +1,37 @@
+id: life/taxa/medullosaceae
+kind: taxon
+summary: >-
+  The medullosans, Medullosa and its relatives, the largest group of seed ferns.
+same_as: { pbdb: "txn:55197" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Medullosaceae, en: medullosan seed ferns }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: seed-fern
+    source:
+      ref: src:luthardt-2022-medullosa
+      loc: "Abstract"
+      quote: "Its architectural model is comparable to modern tree ferns or cycads"
+    note: >-
+      Said of Medullosa stellata, whose fronds were up to 3.5 m long, according to the same
+      abstract. The proportions are a machine's reconstruction, with the frond's outline from the
+      schematic in Fig. 11.
+  height:
+    prop: plant_height
+    value: { lo: 5, hi: 15 }
+    source:
+      - ref: src:luthardt-2022-medullosa
+        loc: "Introduction"
+        quote: "show up to 5 m high plants"
+      - ref: src:luthardt-2022-medullosa
+        loc: "Abstract"
+        quote: "usually not exceeding 15 m in height"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Restorations of Upper Pennsylvanian Medullosa, up to 5 m, and the limit Luthardt et al. give
+      for a plant built like M. stellata.

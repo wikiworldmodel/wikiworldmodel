@@ -1,0 +1,30 @@
+id: life/taxa/lycopodiophyta
+kind: taxon
+summary: >-
+  Clubmosses, spikemosses and quillworts, with the spores the database places among them.
+same_as: { pbdb: "txn:249949" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lycopodiophyta, en: clubmosses and quillworts }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: clubmoss
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 0.05, hi: 0.25 }
+    source:
+      - ref: src:flora-of-china
+        loc: "Vol. 2-3, s.v. Selaginella tamariscina"
+        quote: "5-15(-45) cm"
+      - ref: src:flora-of-china
+        loc: "Vol. 2-3, s.v. Lycopodiaceae, key to the genera"
+        quote: "Plants normally shorter than 25(-32) cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living spikemosses and clubmosses on the ground: modern relatives. The hanging epiphytes the
+      same key mentions can reach a metre.

@@ -1,0 +1,16 @@
+id: src:ucmp-bennettitales
+type: database-record
+kind: review
+citation: >-
+  University of California Museum of Paleontology. Introduction to the Bennettitales. Web page.
+snapshot: 2026-11-05
+title: "Introduction to the Bennettitales"
+container: University of California Museum of Paleontology
+url: https://ucmp.berkeley.edu/seedplants/bennettitales.html
+reliability: >-
+  A museum's introduction to the group, for teaching. It names no author.
+verified:
+  by: machine:claude-code
+  how: >-
+    The page read at ucmp.berkeley.edu on the date of the snapshot; quotes checked by script against
+    its text.

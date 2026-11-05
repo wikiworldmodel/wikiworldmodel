@@ -1,0 +1,21 @@
+id: life/taxa/unionida
+kind: taxon
+summary: >-
+  The freshwater mussels, with larvae that ride on fish.
+same_as: { pbdb: "txn:17171" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Unionida, en: "freshwater mussels" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.03, hi: 0.25 }
+    source:
+      - ref: src:winhold-2004-unionidae
+        loc: "Physical Description"
+        quote: "Adult unionids can range anywhere from 30 to 250 mm (Smith 2001) in length"
+    method: compilation
+    note: >-
+      Of Unionidae, the largest family of the order. The account gives Smith (2001), which was not read.

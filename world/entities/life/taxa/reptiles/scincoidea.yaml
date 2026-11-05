@@ -1,0 +1,22 @@
+id: life/taxa/scincoidea
+kind: taxon
+summary: >-
+  Skinks, girdled lizards, night lizards and their fossil relatives.
+same_as: { pbdb: "txn:57600" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Scincoidea", en: "skinks and relatives" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.023, hi: 0.49 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Skinks (Scincidae)\""
+      quote: "0.9–19.3 in (23–490 mm) in snout-vent length"
+    method: compilation
+    note: >-
+      As the plan's length is. The skinks, which take in nearly all the living diversity of the
+      group.

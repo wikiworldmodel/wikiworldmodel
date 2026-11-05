@@ -1,0 +1,30 @@
+id: life/taxa/bryophyta
+kind: taxon
+summary: >-
+  Mosses, and in the database's classification some liverworts and many dispersed spores with them.
+same_as: { pbdb: "txn:55134" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Bryophyta, en: mosses }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: moss
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 0.01, hi: 0.1 }
+    source:
+      - ref: src:flora-of-north-america
+        loc: "Vol. 28, s.v. Bryum argenteum"
+        quote: "Stems 0.2-1 cm"
+      - ref: src:flora-of-north-america
+        loc: "Vol. 27, s.v. Polytrichum commune"
+        quote: "Stems (2-)5-10(-70) cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living mosses, from a small one to the usual size of a large one, whose stems can reach 70 cm:
+      modern relatives, not any fossil.

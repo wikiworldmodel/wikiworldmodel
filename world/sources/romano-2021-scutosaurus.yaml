@@ -1,0 +1,22 @@
+id: src:romano-2021-scutosaurus
+type: publication
+kind: model
+citation: >-
+  Romano, M., Manucci, F., Rubidge, B. & Van den Brandt, M.J. (2021). Volumetric body mass
+  estimate and in vivo reconstruction of the Russian pareiasaur Scutosaurus karpinskii. Frontiers
+  in Ecology and Evolution 9, 692035.
+authors:
+  - "Romano, M."
+  - "Manucci, F."
+  - "Rubidge, B."
+  - "Van den Brandt, M.J."
+published: 2021
+title: "Volumetric body mass estimate and in vivo reconstruction of the Russian pareiasaur Scutosaurus karpinskii"
+container: "Frontiers in Ecology and Evolution 9, 692035"
+doi: 10.3389/fevo.2021.692035
+url: https://www.frontiersin.org/articles/10.3389/fevo.2021.692035/full
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    The full text read at the publisher's page; quotes checked by script against it.

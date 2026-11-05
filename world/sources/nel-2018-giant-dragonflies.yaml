@@ -1,0 +1,23 @@
+id: src:nel-2018-giant-dragonflies
+type: publication
+kind: measurement
+citation: >-
+  Nel, A., Prokop, J., Pecharová, M., Engel, M.S. & Garrouste, R. (2018). Palaeozoic giant dragonflies were hawker predators.
+  Scientific Reports 8:12141.
+authors:
+  - "Nel, A."
+  - "Prokop, J."
+  - "Pecharová, M."
+  - "Engel, M.S."
+  - "Garrouste, R."
+published: 2018
+title: Palaeozoic giant dragonflies were hawker predators
+container: Scientific Reports
+doi: 10.1038/s41598-018-30629-w
+url: https://pmc.ncbi.nlm.nih.gov/articles/PMC6092361/
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    The full text read on PubMed Central, and Fig. 4, the reconstruction of Meganeurites gracilipes, looked at. The supplementary
+    information was not read. Quotes checked by script against the text saved from that page.

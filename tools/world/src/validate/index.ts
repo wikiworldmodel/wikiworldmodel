@@ -1,6 +1,9 @@
 // Validators: CI for history (section 9.2 of WORLD-MODEL.md). Each check adds issues; any
 // error fails the run. The chronology and frame checks run on the default picture and again
 // on every alternative combined with it.
+import { canonicalForm, resolveForm } from '../../../../core/form.ts';
+import { checkForm } from '../../../../world/generators/life/forms.ts';
+import { changeProblems, FormTree } from '../forms.ts';
 import { cityKind } from '../../../../core/tileset.ts';
 import { kindScore } from '../build/featuretiles.ts';
 import { existsSync, readFileSync } from 'node:fs';
@@ -197,6 +200,10 @@ function checkValue(world: World, refs: RefChecker, c: Claim, issues: Issue[]): 
     case 'form': {
       const problem = formProblem(v);
       if (problem) bad(problem);
+      break;
+    }
+    case 'body-form': {
+      for (const problem of changeProblems(v)) bad(problem);
       break;
     }
   }
@@ -544,12 +551,44 @@ function checkProminence(world: World, issues: Issue[]): void {
   }
 }
 
+/** Every body plan can be drawn; every taxon that says anything of its body reaches a plan and can be drawn too. */
+function checkForms(world: World, issues: Issue[]): void {
+  const allowed = world.vocab.properties.body_plan?.values ?? {};
+  for (const [name, plan] of Object.entries(world.plans)) {
+    if (!allowed[name]) issues.push({ level: 'error', check: 'forms', file: `plans/${name}.yaml`, where: 'body_plan', message: `the vocabulary's body_plan has no value "${name}"` });
+    for (const message of checkForm(canonicalForm(plan))) issues.push({ level: 'error', check: 'forms', file: `plans/${name}.yaml`, where: name, message });
+  }
+  for (const name of Object.keys(allowed)) if (!world.plans[name] && Object.keys(world.plans).length) issues.push({ level: 'error', check: 'forms', file: 'schema/vocab/properties.yaml', where: 'body_plan', message: `no file in world/plans for "${name}"` });
+  if (!Object.keys(world.plans).length) return;
+  const tree = new FormTree(world);
+  // A number looked up wrongly would draw the wrong animal without a word: note any name the database does not give it.
+  const landNames = new Map<number, string>();
+  for (const snap of world.landFossils.values()) for (const t of snap.taxa) landNames.set(t[0], t[1]);
+  for (const e of world.entities) {
+    if (e.kind !== 'taxon') continue;
+    const change = e.claims.find((c) => c.prop === 'body_form');
+    if (!change && !e.claims.some((c) => c.prop === 'body_plan')) continue;
+    const c = change ?? e.claims.find((x) => x.prop === 'body_plan')!;
+    const no = /^txn:(\d+)$/.exec(String(e.same_as?.pbdb ?? ''))?.[1];
+    const dbName = no ? landNames.get(Number(no)) : undefined;
+    const names = Object.values((e.claims.find((x) => x.prop === 'name')?.value ?? {}) as Record<string, string>).map((n) => String(n).toLowerCase());
+    if (dbName && !names.includes(dbName.toLowerCase())) issues.push({ level: 'info', check: 'forms', file: c.file, where: 'same_as', message: `${e.id} adopts txn:${no}, which the land's snapshot calls ${dbName}` });
+    const source = tree.source(e.id);
+    if (!source) {
+      issues.push({ level: 'error', check: 'forms', file: c.file, where: c.where, message: `${e.id} says something of its body, but no node above it has a body_plan to start from` });
+      continue;
+    }
+    for (const message of checkForm(resolveForm(world.plans, source))) issues.push({ level: 'error', check: 'forms', file: c.file, where: c.where, message });
+  }
+}
+
 export async function validateWorld(world: World, opts: { frames?: boolean } = {}): Promise<Report> {
   const issues: Issue[] = world.loadIssues.map((e) => ({ level: 'error', check: 'load', file: e.file, where: e.where, message: e.message }));
   checkSchemas(world, issues);
   const wanted = checkRecords(world, issues);
   checkRanks(world, issues);
   checkProminence(world, issues);
+  checkForms(world, issues);
   checkDuplicates(world, issues);
   if (world.root === WORLD || existsSync(join(world.root, 'manifest.yaml'))) checkLicenses(world, issues);
   for (const w of wanted) {

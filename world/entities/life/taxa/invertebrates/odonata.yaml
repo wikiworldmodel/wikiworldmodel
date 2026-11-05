@@ -1,0 +1,24 @@
+id: life/taxa/odonata
+kind: taxon
+summary: >-
+  The living dragonflies and damselflies and their nearest fossil relatives.
+same_as: { pbdb: "txn:71353" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Odonata, en: "dragonflies and damselflies" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.015, hi: 0.12 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Odonata Isostictidae\""
+        quote: "Odonata Isostictidae 45 15 40 (Watson 1974)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Odonata Pseudostigmatidae\""
+        quote: "Odonata Pseudostigmatidae 19 80 120 (Esquivel 1997)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres.

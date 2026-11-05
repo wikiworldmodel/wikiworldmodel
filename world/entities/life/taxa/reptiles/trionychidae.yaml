@@ -1,0 +1,38 @@
+id: life/taxa/trionychidae
+kind: taxon
+summary: >-
+  Softshell turtles: flat river turtles with leathery shells, long necks and snorkel noses.
+same_as: { pbdb: "txn:37674" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Trionychidae", en: "softshell turtles" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.12
+      mass_length: 150
+      behave: { group: [1, 2], habitat: wet, poses: [rest, walk] }
+      parts:
+        shell: { mat: hide, r: [0.42, 0.5, 0.1], lift: 0.05 }
+        fore: { points: [[0.3, 0.28, 0.06, 0.05], [0.47, 0.38, 0.02, 0.045]] }
+        hind: { points: [[0.28, -0.32, 0.06, 0.05], [0.44, -0.4, 0.02, 0.05]] }
+        neck: { points: [[0, 0.44, 0.07, 0.05], [0, 0.6, 0.1, 0.042], [0, 0.72, 0.09, 0.03], [0, 0.8, 0.085, 0.012]] }
+        tail: { from: [0, -0.46, 0.06], to: [0, -0.58, 0.05] }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Softshell Turtles (Trionychidae)\""
+      quote: "Medium to very large aquatic turtles with a rounded, flattened carapace covered with leathery skin"
+    note: >-
+      The shell follows this. The neck, the snorkel and the paddles are a machine's reconstruction;
+      no skeletal figure was looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.1, hi: 1.2 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Softshell Turtles (Trionychidae)\""
+      quote: "4–47 in (10–120 cm)"
+    method: compilation

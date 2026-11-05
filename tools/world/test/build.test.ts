@@ -98,6 +98,7 @@ describe('build', () => {
       'src:paleomist-1.0',
       'src:pbdb-diversity-2026-11-04',
       'src:pbdb-hell-creek-2026-11-04',
+      'src:pbdb-land-2026-11-05',
       'src:spratt-lisiecki-2016-sea-level',
       'src:srtm-gl1-n41e012',
       'src:srtm-gl1-n42e012',
@@ -236,8 +237,8 @@ describe('build', () => {
   it('shows a taxon at its first appearance where no claim pins its origin, and unknown where nothing limits it', () => {
     const { entities } = JSON.parse(readFileSync(join(latestBuild(), 'search.json'), 'utf8')) as SearchFile;
     const start = (id: string) => entities.find((e) => e.id === id)!.time.start;
-    // Dinosaurs: no molecular date; their oldest fossil, dated by its stage, sets the origin.
-    expect(start('life/taxa/dinosauria').best).toBe(start('life/occurrences/buriolestes-buriol').best);
+    // Dinosaurs: no molecular date; their oldest fossil sets the origin, and that is at least as old as this one.
+    expect(start('life/taxa/dinosauria').best).toBeLessThanOrEqual(start('life/occurrences/buriolestes-buriol').best!);
     expect(start('life/taxa/dinosauria').derived).toBe(true);
     // Archaea: only "younger than 3.4 Ga" and no fossil, so no best estimate, only the bound.
     expect(start('life/taxa/archaea').best).toBeNull();

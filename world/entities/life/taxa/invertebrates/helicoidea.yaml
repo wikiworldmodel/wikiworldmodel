@@ -1,0 +1,33 @@
+id: life/taxa/helicoidea
+kind: taxon
+summary: >-
+  The garden and Roman snails and their relatives, with a round, low-spired shell.
+same_as: { pbdb: "txn:113646" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Helicoidea, en: "garden snails and their relatives" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        shell: { rings: [[-0.081, 0.208, 0.28, 0.23, 0.23], [-0.002, 0.227, 0.53, 0.213, 0.213], [0.084, 0.088, 0.711, 0.197, 0.197], [0.128, -0.129, 0.757, 0.182, 0.182], [0.11, -0.319, 0.671, 0.169, 0.169], [0.038, -0.404, 0.512, 0.156, 0.156], [-0.056, -0.363, 0.365, 0.145, 0.145], [-0.133, -0.234, 0.294, 0.134, 0.134], [-0.169, -0.088, 0.323, 0.124, 0.124], [-0.159, 0.009, 0.428, 0.115, 0.115], [-0.119, 0.018, 0.553, 0.106, 0.106], [-0.077, -0.051, 0.644, 0.098, 0.098], [-0.054, -0.16, 0.667, 0.091, 0.091], [-0.064, -0.255, 0.623, 0.084, 0.084], [-0.1, -0.297, 0.544, 0.078, 0.078], [-0.146, -0.277, 0.47, 0.072, 0.072], [-0.185, -0.212, 0.435, 0.067, 0.067], [-0.203, -0.139, 0.45, 0.062, 0.062], [-0.198, -0.091, 0.502, 0.057, 0.057], [-0.178, -0.086, 0.564, 0.053, 0.053], [-0.157, -0.121, 0.61, 0.049, 0.049], [-0.146, -0.175, 0.621, 0.046, 0.046], [-0.15, -0.222, 0.6, 0.042, 0.042], [-0.168, -0.244, 0.56, 0.039, 0.039], [-0.192, -0.234, 0.523, 0.036, 0.036], [-0.211, -0.201, 0.505, 0.034, 0.034], [-0.22, -0.165, 0.513, 0.031, 0.031], [-0.218, -0.141, 0.539, 0.029, 0.029], [-0.208, -0.138, 0.57, 0.027, 0.027], [-0.197, -0.156, 0.593, 0.025, 0.025], [-0.191, -0.183, 0.598, 0.023, 0.023], [-0.194, -0.206, 0.588, 0.021, 0.021]] }
+    source:
+      - ref: src:watson-dallwitz-nonmarine-molluscs
+        loc: "Helicidae"
+        quote: "about as high as wide"
+    note: >-
+      The shell's proportions are the quote's, for the larger British species. Its coils are a machine's reconstruction,
+      with no figure compared.
+  length:
+    prop: body_length
+    value: { lo: 0.005, hi: 0.05 }
+    source:
+      - ref: src:watson-dallwitz-nonmarine-molluscs
+        loc: "Helicidae"
+        quote: "(5–)6–40(–50) mm in its maximum dimension (wide)"
+    method: compilation
+    note: >-
+      The range of Helicidae in Britain and Ireland, the only family of the superfamily read: others may differ.

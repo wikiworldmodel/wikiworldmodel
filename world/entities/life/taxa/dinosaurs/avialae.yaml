@@ -1,0 +1,44 @@
+id: life/taxa/avialae
+kind: taxon
+summary: >-
+  Birds and their stem, as the database groups them outside its own Aves. It sits directly under
+  Dinosauria so that the small coelurosaurs' form and size do not stand in for birds.
+same_as: { pbdb: "txn:53211" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Avialae }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: bird
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  posture:
+    prop: posture
+    value: biped
+    unsourced: "Birds walk on their hind legs; an editorial classification."
+  length:
+    prop: body_length
+    value: { lo: 0.07, hi: 1.2 }
+    source:
+      - ref: src:holtz-2012-dinosaur-genus-list
+        loc: "p. 20"
+        quote: "Liaoxiornis Liaoxi [China] bird Early Cretaceous (125-120 MYA) 3 in (7 cm) Sparrow China"
+      - ref: src:holtz-2012-dinosaur-genus-list
+        loc: "p. 19, row Sapeornis"
+        quote: "Early Cretaceous (120-110 MYA) 3.9 ft (1.2 m) Turkey China A fairly large early bird."
+    method: compilation
+    note: >-
+      From the smallest length the list gives a Mesozoic bird to among the largest it gives a flying
+      one: a whole-genus figure for each, with no measurement behind it, standing for any member
+      with no length of its own.
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/dinosauria
+    source: { ref: src:pbdb-land-2026-11-05, loc: "taxon 53211, through its parents" }
+    note: >-
+      The database's parent is Maniraptora, which has no record here. Placed directly under
+      Dinosauria, as life/taxa/aves is, so that the form and sizes on life/taxa/coelurosauria, which
+      are of non-avian dinosaurs, do not draw a chicken as a 4 m theropod.

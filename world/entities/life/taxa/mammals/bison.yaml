@@ -1,0 +1,76 @@
+id: life/taxa/bison
+kind: taxon
+summary: >-
+  The bison of Eurasia and North America.
+same_as: { pbdb: "txn:42751" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Bison, en: "bison" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.42
+      parts:
+        body:
+          rings:
+            - [-0.47, 0.72, 0.68, 0.006]
+            - [-0.455, 0.84, 0.78, 0.01]
+            - [-0.44, 0.97, 0.84, 0.016]
+            - [-0.41, 1.04, 0.72, 0.056]
+            - [-0.35, 1.1, 0.6, 0.086]
+            - [-0.24, 1.16, 0.54, 0.102]
+            - [-0.1, 1.28, 0.52, 0.116]
+            - [0.03, 1.48, 0.52, 0.124]
+            - [0.12, 1.56, 0.6, 0.11]
+            - [0.2, 1.4, 0.66, 0.086]
+          neck: { r: 0.074, steps: [2, 1] }
+        hind: { y: -0.3, x: 0.066, top: 0.84, knee: 0.56, ankle: 0.3, r: 0.054 }
+        fore: { y: 0.11, x: 0.072, top: 0.8, r: 0.03 }
+        head:
+          at:
+            stand: { y: 0.26, z: 0.92, pitch: 0.82 }
+            alert: { y: 0.26, z: 1.04, pitch: 0.6 }
+            low: { y: 0.28, reach: 0.2, pitch: 1.2 }
+          rings:
+            - [-0.012, 0.012, 0.05, 0.06]
+            - [0.04, 0.012, 0.056, 0.066]
+            - [0.1, -0.006, 0.042, 0.048]
+            - [0.15, -0.018, 0.03, 0.03]
+            - [0.19, -0.02, 0.026, 0.02]
+        horns: { points: [[0.044, 0.012, 0.05, 0.012], [0.07, 0.008, 0.066, 0.0095], [0.082, 0.012, 0.09, 0.0065], [0.074, 0.006, 0.115, 0.002]] }
+        ears: { from: [0.05, 0.0, 0.036], to: [0.072, -0.012, 0.03], r: 0.01 }
+        eyes: { at: [0.048, 0.08, 0.018] }
+    unsourced: >-
+      A machine's reconstruction, from the account of Bison bison on the Animal Diversity Web:
+      a shoulder hump, a huge head, short horns curving up and in. Only compared with its
+      sheet.
+  length:
+    prop: body_length
+    value: { lo: 2.13, hi: 4.75 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Bison bison, Physical Description"
+        quote: "ranging in length from 3.6 m to 3.8 m in males to 2.13 m to 3.18 m in females"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Even-toed ungulates (Artiodactyla)\""
+        quote: "4.75 m (15.6 ft) in length"
+    method: compilation
+    note: >-
+      From a female American bison to Bison latifrons, from Wikipedia as nothing better could
+      be read.
+  mass:
+    prop: body_mass
+    value: { lo: 318, hi: 2000 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Bison bison, Other Physical Features"
+        quote: "Range mass 318 to 900 kg"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Even-toed ungulates (Artiodactyla)\""
+        quote: "to possibly 2,000 kg (4,400 lb)"
+    method: compilation
+    note: >-
+      From a female American bison to Bison latifrons.

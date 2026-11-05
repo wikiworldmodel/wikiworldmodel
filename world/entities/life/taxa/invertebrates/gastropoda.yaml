@@ -1,0 +1,33 @@
+id: life/taxa/gastropoda
+kind: taxon
+summary: >-
+  The snails and slugs. Those of the land and of fresh water have bodies of their own below this one.
+same_as: { pbdb: "txn:8304" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Gastropoda, en: "snails and slugs" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: snail
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, from general knowledge of snails; no figure was compared with it. Its
+      shell is coiled to the right, seen from the apex, as most are; the left-handed are not drawn.
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 0.2 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. gastropod"
+        quote: "forest-litter snails (Stenopylis, Punctum) are less than one millimetre (0.04 inch) in diameter"
+      - ref: src:britannica-online-animals
+        loc: "s.v. gastropod"
+        quote: "the largest land snail, the African Achatina achatina, forms a shell that is almost 20 centimetres (eight inches) long"
+    method: compilation
+    note: >-
+      From the smallest to the largest land snail, for the shell's greatest dimension, in an encyclopedia's numbers,
+      cited for lack of a work that could be read. The same passage says that the largest of fresh water reach nearly 10
+      cm, that the largest of the sea exceed 60 cm, and that about nine in ten adult snails are under an inch.

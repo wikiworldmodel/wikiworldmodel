@@ -23,6 +23,39 @@ claims:
       A crown-group age: the last common ancestor of the living members, which is this group’s
       origin here. The 95% interval under the clock model the paper prefers; independent rates
       give older ages.
+  body-plan:
+    prop: body_plan
+    value: primate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length-mammal-forms:
+    prop: body_length
+    value: { lo: 0.25, hi: 1.85 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Microcebus murinus, Physical Description"
+        quote: "The head and body length is 12 to 14 cm and tail length of 13 to 14.5 cm"
+      - ref: src:animal-diversity-web
+        loc: "account of Papio ursinus, Physical Description"
+        quote: "Head and body length is reportedly between 508 and 1.143 mm, with the tail adding an additional 456 to 711 mm to the total length"
+    method: compilation
+    note: >-
+      From a mouse lemur, head and body with its tail, to a chacma baboon, its longest head
+      and body with its longest tail ("1.143 mm" in the account is a slip for 1,143 mm). For
+      any primate with nothing nearer to say.
+  mass-mammal-forms:
+    prop: body_mass
+    value: { lo: 0.0275, hi: 300 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Tarsius_pumilus, column Mass.g (grams)"
+        quote: "Tarsius_pumilus,Primates,Tarsiidae,Tarsius,pumilus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,27.5"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Primates (Primates)\""
+        quote: "weighing 225–300 kg (496–661 lb)"
+    method: compilation
+    note: >-
+      From the smallest tarsier to Gigantopithecus, whose size is known only from teeth and
+      jaws.
 relations:
   parent:
     rel: descends-from

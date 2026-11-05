@@ -1,0 +1,28 @@
+id: life/taxa/saltasaurus
+kind: taxon
+summary: >-
+  Saltasaurus, a small armoured titanosaur of the latest Cretaceous of Argentina.
+same_as: { pbdb: "txn:38693" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Saltasaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Saltasauridae, which was measured from
+      this genus: "Saltasaurus size.png" on Wikimedia Commons. Nothing here differs from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 12
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 37, Saltasaurids"
+      quote: "Saltasaurus Salta Province [Argentina] reptile Late Cretaceous (72.8-66.8 MYA) 39.4 ft (12 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

@@ -1,0 +1,48 @@
+id: life/taxa/amiidae
+kind: taxon
+summary: >-
+  Bowfins: stout fishes of fresh water with a long, low fin along the back and a rounded tail, today one genus in North America
+  and in the Cretaceous and Tertiary many.
+same_as: { pbdb: "txn:56536" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Amiidae, en: bowfins }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.42, 1.2, 0.8, 0.008]
+            - [-0.32, 1.46, 0.56, 0.018]
+            - [-0.2, 1.68, 0.36, 0.034]
+            - [-0.06, 1.8, 0.24, 0.05]
+            - [0.06, 1.8, 0.24, 0.054]
+            - [0.16, 1.72, 0.3, 0.052]
+        head:
+          rings:
+            - [-0.02, 0, 0.052, 0.086]
+            - [0.05, -0.002, 0.048, 0.072]
+            - [0.12, -0.008, 0.038, 0.05]
+            - [0.18, -0.014, 0.026, 0.03]
+            - [0.215, -0.016, 0.012, 0.014]
+        tail: { points: [[0, -0.4, 1.0], [0, -0.42, 1.5], [0, -0.48, 1.56], [0, -0.53, 1.28], [0, -0.53, 0.72], [0, -0.48, 0.44], [0, -0.42, 0.5]] }
+        dorsal: { points: [[0, -0.1, 1.74], [0, -0.38, 1.3], [0, -0.38, 1.76], [0, -0.26, 2.12], [0, -0.1, 2.28], [0, 0.1, 2.14], [0, 0.11, 1.76]] }
+        anal: { points: [[0, -0.25, 0.46], [0, -0.32, 0.6], [0, -0.34, 0.16], [0, -0.26, 0.06], [0, -0.2, 0.36]] }
+    unsourced: >-
+      A machine's drawing of a living bowfin's general shape, from no figure: the long dorsal fin and the rounded tail.
+  length:
+    prop: body_length
+    value: { lo: 0.534, hi: 1.09 }
+    source:
+      - ref: src:fishbase-freshwater-fishes
+        loc: "Amia calva, Size / Weight / Age"
+        quote: "common length : 53.4 cm TL male/unsexed"
+      - ref: src:fishbase-freshwater-fishes
+        loc: "Amia calva, Size / Weight / Age"
+        quote: "Max length : 109 cm TL male/unsexed"
+    method: compilation
+    note: The living bowfin stands for the family and its fossils.

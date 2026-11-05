@@ -1,0 +1,30 @@
+id: life/taxa/lambeosaurus
+kind: taxon
+summary: >-
+  Lambeosaurus, the hatchet-crested duck-bill of the Campanian of Alberta.
+same_as: { pbdb: "txn:38763" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lambeosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        crest: { at: [0, 0.06, 0.05], r: [0.012, 0.034, 0.036] }
+        spur: { type: spike, on: head, tint_add: 18, from: [0, 0.035, 0.05], to: [0, -0.05, 0.088], r: 0.012, sides: [6, 3] }
+    unsourced: >-
+      A machine's reconstruction: a forward lobe and a backward spur, from the silhouette
+      "Lambeosaurus size comparison II-v1.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 9
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 47, Corythosaurinins"
+      quote: "Lambeosaurus [Canadian paleontologist Late Cretaceous (80-72.8 MYA) 29.5 ft (9 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

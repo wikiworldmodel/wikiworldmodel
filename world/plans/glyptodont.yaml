@@ -1,0 +1,26 @@
+description: >-
+  A glyptodont: a great domed shell of fused bone reaching nearly to the ground, short thick legs, a small blunt head under a bony cap, a thick armoured tail.
+kind: animal
+hip: 0.2
+# Its mesh, head and all, at the density of water, for its length.
+mass_length: 58
+behave: { group: [1, 3], habitat: any, poses: [stand, walk, walk, graze] }
+parts:
+  shell: { type: shell, r: [0.24, 0.32, 0.31], lift: 0.05, sides: [14, 6], bands: [6, 3] }
+  belly: { type: lump, mat: hide, zl: true, sides: [10, 5], bands: [4, 2], at: [0, 0, 0.12], r: [0.2, 0.28, 0.07] }
+  tail: { type: chain, mat: shell, zl: true, sides: [8, 4], points: [[0, -0.3, 0.12, 0.054], [0, -0.38, 0.1, 0.046], [0, -0.45, 0.075, 0.034], [0, -0.5, 0.055, 0.02]] }
+  neck: { type: chain, mat: hide, zl: true, sides: [6, 4], points: [[0, 0.24, 0.13, 0.05], [0, 0.29, 0.14, 0.04]] }
+  hind: { type: pillar, y: -0.15, x: 0.13, top: 0.8, r: 0.058, swing: 0.03 }
+  fore: { type: pillar, y: 0.15, x: 0.12, top: 0.8, r: 0.046, swing: 0.03, phase: 1 }
+  head:
+    type: head
+    at:
+      stand: { y: 0.285, z: 0.72, pitch: 0.2 }
+      low: { y: 0.3, reach: 0.11, pitch: 0.6 }
+    rings:
+      - [-0.012, 0.004, 0.044, 0.044]
+      - [0.03, 0.006, 0.052, 0.056]
+      - [0.07, -0.006, 0.042, 0.048]
+      - [0.1, -0.016, 0.03, 0.03]
+  cap: { type: lump, on: head, mat: shell, sides: [8, 4], bands: [3, 2], at: [0, 0.04, 0.04], r: [0.046, 0.058, 0.024] }
+  eyes: { type: eyes, on: head, near: true, at: [0.042, 0.05, 0.016], r: 0.006 }

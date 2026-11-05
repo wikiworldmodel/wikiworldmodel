@@ -1,0 +1,45 @@
+id: life/taxa/curculionoidea
+kind: taxon
+summary: >-
+  The weevils and their relatives, beetles with the front of the head drawn out into a snout, with the antennae on it.
+same_as: { pbdb: "txn:69421" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Curculionoidea, en: "weevils" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        jaws: null
+        head: { at: [0, 0.36, 0.135], r: [0.06, 0.06, 0.055] }
+        shield: { at: [0, 0.2, 0.165], r: [0.115, 0.115, 0.105] }
+        elytra: { at: [0, -0.17, 0.17], r: [0.165, 0.33, 0.145] }
+        suture: { points: [[0, 0.1, 0.25, 0.004], [0, -0.05, 0.3, 0.004], [0, -0.17, 0.315, 0.004], [0, -0.33, 0.295, 0.004], [0, -0.47, 0.215, 0.004]] }
+        eyes: { at: [0.052, 0.38, 0.15], r: [0.012, 0.022, 0.024] }
+        snout: { type: chain, zl: true, mat: chitin, sides: [5, 3], points: [[0, 0.4, 0.125, 0.03], [0, 0.54, 0.09, 0.022], [0, 0.68, 0.04, 0.018]] }
+        antennae: null
+        elbowed-antennae: { type: chain, near: true, zl: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.02, 0.55, 0.09, 0.005], [0.11, 0.56, 0.15, 0.004], [0.18, 0.68, 0.2, 0.007]] }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. weevil"
+        quote: "Most weevils have long, distinctly elbowed antennae that may fold into special grooves on the snout."
+    note: >-
+      The snout and the elbowed antennae are the article's. Their lengths, and the rest of the body, are a machine's
+      reconstruction; no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 0.08 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Coleoptera Curculionidae\""
+        quote: "Coleoptera Curculionidae 50615 1 55 (Parker, 1982)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Coleoptera Brentidae\""
+        quote: "Coleoptera Brentidae 4000 3 80 (Parker, 1982)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for the families of this superfamily, its millimetres given in
+      metres. Britannica says of Curculionidae that most are under 6 mm.

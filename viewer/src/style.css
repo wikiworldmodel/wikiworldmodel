@@ -193,3 +193,17 @@ body.evidence .planet-row.projection .planet-value { color: var(--procedural); }
 @media (max-height: 480px) {
   .planet, .toolbar .build { display: none; }
 }
+
+.life-here {
+  white-space: nowrap;
+}
+.inspect .see-it {
+  margin: 8px 0 2px;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--accent);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+}

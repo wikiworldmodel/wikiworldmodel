@@ -1,0 +1,24 @@
+id: src:beck-2016-orthacanthus
+type: publication
+kind: measurement
+citation: >-
+  Beck, K.G., Soler-Gijón, R., Carlucci, J.R. & Willis, R.E. (2016). Morphology and histology of
+  dorsal spines of the xenacanthid shark Orthacanthus platypternus from the Lower Permian of
+  Texas, USA: palaeobiological and palaeoenvironmental implications. Acta Palaeontologica
+  Polonica 61(1), 97–117.
+authors:
+  - "Beck, K.G."
+  - "Soler-Gijón, R."
+  - "Carlucci, J.R."
+  - "Willis, R.E."
+published: 2016
+title: "Morphology and histology of dorsal spines of the xenacanthid shark Orthacanthus platypternus from the Lower Permian of Texas, USA: palaeobiological and palaeoenvironmental implications"
+container: "Acta Palaeontologica Polonica 61(1), 97–117"
+doi: 10.4202/app.00126.2014
+url: https://app.pan.pl/archive/published/app61/app001262014.pdf
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's PDF read at the journal's site; quotes checked by script against its text layer,
+    column by column.

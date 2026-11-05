@@ -1,0 +1,33 @@
+id: life/taxa/sphaeriidae
+kind: taxon
+summary: >-
+  The pea and orb mussels of fresh water, tiny and rounded.
+same_as: { pbdb: "txn:62301" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Sphaeriidae, en: "pea and orb mussels" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.8
+      parts:
+        valve-right: { rings: [[0.08, 0.492, 0.44, 0.006, 0.02], [0.08, 0.47, 0.43, 0.03, 0.13], [0.08, 0.36, 0.42, 0.09, 0.32], [0.08, 0.16, 0.43, 0.12, 0.41], [0.08, -0.06, 0.427, 0.12, 0.412], [0.08, -0.28, 0.41, 0.1, 0.35], [0.08, -0.42, 0.41, 0.05, 0.21], [0.08, -0.492, 0.44, 0.006, 0.06]] }
+        valve-left: { rings: [[-0.08, 0.492, 0.44, 0.006, 0.02], [-0.08, 0.47, 0.43, 0.03, 0.13], [-0.08, 0.36, 0.42, 0.09, 0.32], [-0.08, 0.16, 0.43, 0.12, 0.41], [-0.08, -0.06, 0.427, 0.12, 0.412], [-0.08, -0.28, 0.41, 0.1, 0.35], [-0.08, -0.42, 0.41, 0.05, 0.21], [-0.08, -0.492, 0.44, 0.006, 0.06]] }
+        beaks: { at: [0.06, 0.05, 0.82], r: [0.04, 0.07, 0.04] }
+    unsourced: "A machine's reconstruction of a rounder shell, from general knowledge of these mussels; no figure was compared with it."
+  length:
+    prop: body_length
+    value: { lo: 0.0015, hi: 0.022 }
+    source:
+      - ref: src:watson-dallwitz-nonmarine-molluscs
+        loc: "Sphaeriidae"
+        quote: "1.5–11 mm in its maximum dimension (Pisidium)"
+      - ref: src:watson-dallwitz-nonmarine-molluscs
+        loc: "Sphaeriidae"
+        quote: "or 7–22 mm in its maximum dimension"
+    method: compilation
+    note: >-
+      The family's range in Britain and Ireland, its only range read: elsewhere it may be wider.

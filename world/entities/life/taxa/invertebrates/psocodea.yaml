@@ -1,0 +1,24 @@
+id: life/taxa/psocodea
+kind: taxon
+summary: >-
+  The booklice, barklice and true lice. They take the insects' generic body, with their own range of sizes.
+same_as: { pbdb: "txn:183858" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Psocodea, en: "booklice and lice" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.0005, hi: 0.011 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Phthiraptera Anoplura\""
+        quote: "Phthiraptera Anoplura 446 0.5 5 (Arnett 2000) includes, Echinophthiriidae, Hoplopleuridae, Linognathidae, Pedicinidae, Pediculidae, Pthiridae and Polyplacidae"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Phthiraptera Laemobothriidae\""
+        quote: "Phthiraptera Laemobothriidae 20 6.5 11 (Parker 1982)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres.

@@ -1,0 +1,20 @@
+id: src:herbst-2022-eryops-pose
+type: publication
+kind: measurement
+citation: >-
+  Herbst, E.C., Manafzadeh, A.R. & Hutchinson, J.R. (2022). Multi-joint analysis of pose
+  viability supports the possibility of salamander-like hindlimb configurations in the Permian
+  tetrapod Eryops megacephalus. Integrative and Comparative Biology 62(2), 139–151.
+authors:
+  - "Herbst, E.C."
+  - "Manafzadeh, A.R."
+  - "Hutchinson, J.R."
+published: 2022
+title: "Multi-joint analysis of pose viability supports the possibility of salamander-like hindlimb configurations in the Permian tetrapod Eryops megacephalus"
+container: "Integrative and Comparative Biology 62(2), 139–151"
+doi: 10.1093/icb/icac083
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC9405718); quotes checked by script against it.

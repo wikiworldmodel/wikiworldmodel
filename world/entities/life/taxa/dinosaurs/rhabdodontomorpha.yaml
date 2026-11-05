@@ -1,0 +1,34 @@
+id: life/taxa/rhabdodontomorpha
+kind: taxon
+summary: >-
+  The rhabdodontids and Tenontosaurus: stout iguanodonts with no thumb spike.
+same_as: { pbdb: "txn:344230" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Rhabdodontomorpha }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: iguanodont
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        thumbs-four: null
+        thumbs-up: null
+    unsourced: >-
+      A machine's editorial choice: the plan with its thumb spikes taken away, as these are early
+      iguanodonts below the group the spike defines.
+  length:
+    prop: body_length
+    value: { lo: 4.5, hi: 7 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 43, Rhabdodontids", quote: "Rhabdodon fluted tooth Late Cretaceous (70.6-65.5 MYA) 14.8 ft (4.5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 43, Primitive Iguanodontians", quote: "Tenontosaurus tendon reptile Early Cretaceous (118-110MYA) 23 ft (7 m)" }
+    method: compilation
+    note: >-
+      The range across the genera the list gives in the tables "Primitive Iguanodontians" and
+      "Rhabdodontids" on that page, standing for any member with no length of its own.

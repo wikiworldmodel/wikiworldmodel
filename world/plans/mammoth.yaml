@@ -1,0 +1,74 @@
+description: >-
+  A mammoth: a high domed head, a hump at the shoulders and a back falling away to the hips, long tusks curving out and up and in, small ears, a short tail.
+kind: animal
+hip: 0.42
+# Its mesh, head and all, at the density of water, for its length.
+mass_length: 46
+behave: { group: [2, 10], habitat: open, poses: [graze, stand, stand, walk, alert] }
+parts:
+  body:
+    type: trunk
+    rings:
+      - [-0.45, 0.72, 0.64, 0.006]
+      - [-0.44, 0.84, 0.74, 0.012]
+      - [-0.42, 0.95, 0.8, 0.02]
+      - [-0.39, 1.0, 0.68, 0.066]
+      - [-0.31, 1.08, 0.54, 0.102]
+      - [-0.18, 1.18, 0.5, 0.122]
+      - [-0.04, 1.3, 0.5, 0.13]
+      - [0.07, 1.4, 0.52, 0.122]
+      - [0.15, 1.42, 0.58, 0.1]
+      - [0.2, 1.34, 0.68, 0.08]
+    neck: { r: 0.08, steps: [2, 1] }
+  hind: { type: pillar, y: -0.24, x: 0.082, top: 0.76, r: 0.054, swing: 0.045 }
+  fore: { type: pillar, y: 0.12, x: 0.088, top: 0.8, r: 0.058, swing: 0.045, phase: 1 }
+  head:
+    type: head
+    at:
+      stand: { y: 0.24, z: 1.24, pitch: 0.42 }
+      alert: { y: 0.24, z: 1.34, pitch: 0.2 }
+      low: { y: 0.26, z: 1.08, pitch: 0.72 }
+    rings:
+      - [-0.02, 0.07, 0.044, 0.068]
+      - [0.03, 0.09, 0.07, 0.112]
+      - [0.085, 0.05, 0.072, 0.11]
+      - [0.13, -0.02, 0.05, 0.07]
+    thin: false
+  nose:
+    type: chain
+    on: head
+    sides: [8, 5]
+    points:
+      - [0, 0.125, -0.05, 0.044]
+      - [0, 0.155, -0.13, 0.036]
+      - [0, 0.17, -0.22, 0.028]
+      - [0, 0.17, -0.31, 0.021]
+      - [0, 0.18, -0.38, 0.015]
+      - [0, 0.205, -0.42, 0.009]
+  tusks:
+    type: chain
+    on: head
+    mirror: true
+    mat: horn
+    tint: 210
+    sides: [6, 4]
+    points:
+      - [0.04, 0.1, -0.05, 0.017]
+      - [0.066, 0.17, -0.13, 0.016]
+      - [0.1, 0.27, -0.18, 0.0135]
+      - [0.12, 0.38, -0.15, 0.011]
+      - [0.1, 0.46, -0.06, 0.008]
+      - [0.05, 0.46, 0.03, 0.002]
+  ears:
+    type: sheet
+    on: head
+    mirror: true
+    mat: hide
+    gap: 0.003
+    points:
+      - [0.06, 0.025, 0.05]
+      - [0.09, 0.015, 0.09]
+      - [0.104, -0.025, 0.07]
+      - [0.1, -0.05, 0.0]
+      - [0.075, -0.03, -0.05]
+  eyes: { type: eyes, on: head, near: true, at: [0.068, 0.08, 0.03], r: 0.0065 }

@@ -1,122 +1,291 @@
-// A living scene on the GPU: the build's scene file and ground, with the generators in a worker as
-// a city's are. Each taxon is one entity, dated by its record, so a taxon the time on the slider
-// does not reach is not drawn; and the plan and one cell's mesh are hashed here to match the build's.
+// A living scene on the GPU. A worker makes the ground once, and for each view which cells it needs and who to
+// draw; each kind of mesh goes up once, and everyone drawn with it is a few numbers. What it costs depends on the
+// screen. Each taxon is one entity, dated by its rows or its record, so that a taxon the time on the slider does
+// not reach is not drawn; and the ground, one cell and one mesh are hashed here, to match the build's where it has one.
 import type { CityStructure } from '../../../core/city.ts';
 import { lookup, type Scenario } from '../../../core/scenario.ts';
-import type { SceneFile, SceneTaxon } from '../../../core/scene.ts';
-import type { SiteInfo } from '../../../core/tileset.ts';
-import { cellBox } from '../../../world/generators/city/cells.ts';
+import type { LivingTaxon, SceneSpec } from '../../../core/scene.ts';
 import { GroundSampler } from '../../../world/generators/city/ground.ts';
-import { sceneTime, taxonEntity } from '../../../world/generators/life/cells.ts';
-import { getBytes, getJSON, type Build } from '../data.ts';
+import type { LivingParams } from '../../../world/generators/life/scene/v2.ts';
+import { protoParts } from '../../../world/generators/life/stream.ts';
+import { CityRenderer, type CityFrame } from '../gl/city.ts';
 import type { GL } from '../gl/context.ts';
-import { CellScene, sha256Hex } from './cellscene.ts';
+import type { V3 } from '../mat.ts';
+import { sha256Hex } from './cellscene.ts';
 import type { FromLifeWorker, ToLifeWorker } from './lifeworker.ts';
+import { Skyline } from './skyline.ts';
+import type { LocalView } from './view.ts';
 
 const TIMELESS = 2e7;
 
-export class LifeScene extends CellScene {
-  file!: SceneFile;
-  /** one name per group of animals: labels show the nearest of each */
-  private names: CityStructure[] = [];
-  /** the mesh of one cell, hashed here and in the build, to the byte */
-  cell = { expected: '', actual: null as string | null };
-  /** how many organisms of each taxon the plan has */
-  counts: Uint32Array = new Uint32Array(0);
-  count = 0;
-  private selected = 0;
+/** One renderer for all of a viewer's living scenes: a new place should not compile its shaders again. */
+const renderers = new WeakMap<GL, CityRenderer>();
+/** Which scene has the renderer now. */
+const owners = new WeakMap<CityRenderer, LifeScene>();
+function rendererFor(gl: GL, fast: boolean): CityRenderer {
+  let r = renderers.get(gl);
+  if (!r) {
+    r = new CityRenderer(gl, { fast });
+    r.wild = true;
+    renderers.set(gl, r);
+  }
+  return r;
+}
 
-  constructor(gl: GL, private build: Build, private info: SiteInfo, opts: { fast?: boolean } = {}) {
-    super(gl, opts);
-    this.renderer.wild = true;
+/** What a camera or a name stands on: the ground, or the top of the sea over it. */
+class SurfaceSampler extends GroundSampler {
+  override at(x: number, y: number): number {
+    const z = super.at(x, y);
+    return z > 0 ? z : 0;
+  }
+}
+
+export class LifeScene {
+  readonly renderer: CityRenderer;
+  ground!: GroundSampler;
+  ready = false;
+  /** the ground, a cell and a mesh, hashed here, and what the build made of them if it was there */
+  plan = { expected: '', actual: null as string | null };
+  skyline = new Skyline();
+  tops: Float32Array = new Float32Array(0);
+  private names: CityStructure[] = [];
+  /** which names are new: labels are remade only when they change */
+  labelSerial = 0;
+  spec!: SceneSpec;
+  focus: [number, number] = [0, 0];
+  toRiver: [number, number] = [0, 1];
+  waterLevel = 0;
+  onChange: () => void = () => {};
+  /** what the last view drew */
+  last = { instances: 0, triangles: 0, meshes: 0, pending: 0, ms: 0 };
+  /** how long the ground took, in ms */
+  groundMs = 0;
+  private worker: Worker | null = null;
+  private selected = 0;
+  private waiting = false;
+  private lastSent: LocalView | null = null;
+  private serial = 0;
+  private want: LocalView | null = null;
+  private active = false;
+  private wasActive = false;
+
+  constructor(gl: GL, source: SceneSpec, expected: string | null, private opts: { fast?: boolean } = {}) {
+    this.spec = source;
+    this.plan.expected = expected ?? '';
+    this.renderer = rendererFor(gl, !!opts.fast);
   }
 
   get named(): CityStructure[] {
     return this.names;
   }
 
-  protected override shaderTime(t: number): number {
-    return sceneTime(t, this.file.site.slice);
+  /** Whether the place itself lies under the water: then there is nothing to see yet. */
+  get atSea(): boolean {
+    return !!this.ground && this.waterLevel <= 0 && this.ground.at(0, 0) <= 0;
   }
 
+  get settled(): boolean {
+    return this.ready && !this.waiting && this.last.pending === 0 && !this.moved();
+  }
+
+  /** Make the ground, and be ready to take over the renderer. */
   async load(): Promise<void> {
-    const b = this.build;
-    this.file = await getJSON<SceneFile>(b.base + this.info.file);
-    this.plan.expected = this.file.generator.outputSha256;
-    this.cell.expected = this.file.generator.cell.sha256;
-    const heights = await Promise.all(this.file.ground.map(async (g) => new Int16Array(await getBytes(b.base + g.url))));
-    this.ground = new GroundSampler(this.file.ground.map((g, i) => ({ ...g, z: heights[i] })));
-    this.renderer.setGround(this.file.ground, heights);
     await new Promise<void>((resolve, reject) => {
       this.worker = new Worker(new URL('./lifeworker.ts', import.meta.url), { type: 'module' });
       this.worker.onerror = (e) => reject(new Error(`the scene's generators failed: ${e.message}`));
       this.worker.onmessage = (e: MessageEvent<FromLifeWorker>) => {
         const m = e.data;
-        if (m.type === 'plan') {
-          this.renderer.setEntities(m.entities);
-          this.renderer.setMask(m.mask, m.maskSize, m.maskBox);
-          this.renderer.setWater(m.water.vertices, m.water.indices, this.file.site.water_level);
-          this.count = m.count;
-          this.counts = m.counts;
-          const taxa = this.file.taxa;
-          this.names = m.labels.map((l) => {
-            const t = taxa[l.taxon];
-            return { id: t.id, label: t.label, kind: 'taxon', form: { type: 'generic' }, rings: [], at: l.at, base: l.base, time: t.time, basis: 'procedural', curated: true, rank: (t.length ?? 0) >= 2 ? 2 : 3 };
-          });
-          this.tops = Float32Array.from(m.labels, (l) => l.top);
-          for (const key of m.cells) this.cells.set(key, { key, box: cellBox(key), asked: [false, false], usedAt: 0 });
-          void sha256Hex(m.bytes).then((h) => {
+        if (m.type === 'ground') {
+          this.groundData = m;
+          this.groundMs = m.ms;
+          this.ground = new SurfaceSampler(m.levels);
+          this.focus = m.focus;
+          this.toRiver = m.toRiver;
+          this.waterLevel = m.waterLevel;
+          void sha256Hex(m.digest).then((h) => {
             this.plan.actual = h;
-            if (h !== this.plan.expected) console.error(`the scene generator's plan differs from the build's: ${h} vs ${this.plan.expected}`);
-            this.onChange();
-          });
-          void sha256Hex(m.cell).then((h) => {
-            this.cell.actual = h;
-            if (h !== this.cell.expected) console.error(`the scene generator's mesh differs from the build's: ${h} vs ${this.cell.expected}`);
+            if (this.plan.expected && h !== this.plan.expected) console.error(`the scene's generator made something different from the build: ${h} vs ${this.plan.expected}`);
             this.onChange();
           });
           this.ready = true;
           resolve();
           this.onChange();
-        } else this.received(m);
+        } else if (m.type === 'mask') {
+          this.maskData = m;
+          if (this.active) this.renderer.setMask(m.mask, m.maskSize, m.maskBox);
+          this.onChange();
+        } else this.selection(m);
       };
-      const msg: ToLifeWorker = { type: 'init', file: this.file, heights };
+      const msg: ToLifeWorker = { type: 'init', spec: this.spec, fast: !!this.opts.fast };
       this.worker.postMessage(msg);
     });
   }
 
+  private groundData: Extract<FromLifeWorker, { type: 'ground' }> | null = null;
+  private maskData: Extract<FromLifeWorker, { type: 'mask' }> | null = null;
+  private held: Extract<FromLifeWorker, { type: 'selection' }>[] = [];
+
+  /** This scene takes over the renderer: its ground, its colours and whatever has been made for it. */
+  activate(): void {
+    if (this.active || !this.groundData) return;
+    const r = this.renderer;
+    const before = owners.get(r);
+    if (before && before !== this) before.active = false;
+    owners.set(r, this);
+    // Whatever meshes it handed over before have gone with the last scene: it must hand them over again.
+    if (this.wasActive) {
+      const reset: ToLifeWorker = { type: 'reset' };
+      this.worker?.postMessage(reset);
+      this.lastSent = null;
+    }
+    this.wasActive = true;
+    this.active = true;
+    const g = this.groundData;
+    r.clearGround();
+    r.clearInstanced();
+    r.setGround(g.levels.map((l) => ({ ...l, url: '' })), g.levels.map((l) => l.z));
+    const mask = this.maskData ?? g;
+    r.setMask(mask.mask, mask.maskSize, mask.maskBox);
+    r.setWater(g.water.vertices, g.water.indices, g.waterLevel);
+    const params = this.spec.generator.params as unknown as LivingParams;
+    const clim = params.cover.climates[this.spec.biome.climate];
+    const cover = this.spec.biome.cover;
+    // A land before plants has none of its climate's colours: only rock.
+    const tones = params.cover.tones[cover.plants > 0 ? clim?.tones ?? 'plain' : 'barren'] ?? params.cover.tones.plain;
+    r.setLand(Float32Array.from(['soil', 'herb', 'bare', 'canopy', 'distant'].flatMap((k) => tones[k])), [Math.min(clim?.forest ?? 0, cover.forests), Math.min(clim?.herb ?? 0, cover.plants), 1 - cover.plants * (1 - (clim?.bare ?? 1))]);
+    const out = new Float32Array((this.spec.taxa.length + 1) * 4);
+    const clamp = (x: number | null | undefined, d: number) => (x === null || x === undefined || !Number.isFinite(x) ? d : Math.max(-TIMELESS, Math.min(TIMELESS, x - this.spec.site.slice)));
+    this.spec.taxa.forEach((t, i) => {
+      const k = (i + 1) * 4;
+      out[k] = clamp(t.time.start.best, -TIMELESS);
+      out[k + 1] = clamp(t.time.end.best, TIMELESS);
+      out[k + 2] = 3;
+      out[k + 3] = g.waterLevel;
+    });
+    r.setEntities(out);
+    this.selected = 0;
+    for (const s of this.held) this.apply(s);
+    this.held = [];
+  }
+
+  private selection(m: Extract<FromLifeWorker, { type: 'selection' }>): void {
+    this.waiting = false;
+    this.last = { instances: m.instances, triangles: m.triangles, meshes: m.batches.length, pending: m.pending, ms: m.ms };
+    if (this.active) this.apply(m);
+    else this.held = [m];
+    const taxa = this.spec.taxa;
+    this.names = m.groups.map((g) => {
+      const t = taxa[g.taxon];
+      return { id: t.id, label: t.label, kind: 'taxon', form: { type: 'generic' }, rings: [], at: g.at, base: g.base, time: t.time, basis: 'procedural', curated: true, rank: (t.length ?? 0) >= 2 ? 2 : 3 } as CityStructure;
+    });
+    this.tops = Float32Array.from(m.groups, (g) => g.top);
+    this.labelSerial++;
+    this.onChange();
+    this.send();
+  }
+
+  private apply(m: Extract<FromLifeWorker, { type: 'selection' }>): void {
+    for (const p of m.protos) this.renderer.addInstanced(p.proto, p.vertices, p.indices, protoParts(p.proto).detail >= 1);
+    this.renderer.setInstances(m.batches);
+  }
+
+  /** Whether the view has moved enough since the last was sent to need another. */
+  private moved(): boolean {
+    const a = this.want;
+    const b = this.lastSent;
+    if (!a) return false;
+    if (!b) return true;
+    const dx = a.eye[0] - b.eye[0];
+    const dy = a.eye[1] - b.eye[1];
+    const dz = a.eye[2] - b.eye[2];
+    const far = Math.max(3, a.clearance * 0.03);
+    if (dx * dx + dy * dy + dz * dz > far * far) return true;
+    const turn = a.forward[0] * b.forward[0] + a.forward[1] * b.forward[1] + a.forward[2] * b.forward[2];
+    return turn < 0.9995 || a.height !== b.height || a.fov !== b.fov;
+  }
+
+  private send(): void {
+    if (this.waiting || !this.worker || !this.want) return;
+    if (!this.moved() && !this.last.pending) return;
+    const v = this.want;
+    this.lastSent = v;
+    this.waiting = true;
+    const msg: ToLifeWorker = { type: 'view', serial: ++this.serial, view: { eye: [v.eye[0], v.eye[1], v.eye[2]], forward: [v.forward[0], v.forward[1], v.forward[2]], right: [v.right[0], v.right[1], v.right[2]], up: [v.up[0], v.up[1], v.up[2]], fov: v.fov, aspect: v.aspect, height: v.height, clearance: v.clearance } };
+    this.worker.postMessage(msg);
+  }
+
+  /** Draw a frame. */
+  render(v: LocalView, sun: V3, time: number, evidence: boolean, alpha: number, solid: boolean, outW: number, outH: number): void {
+    if (!this.ready) return;
+    this.activate();
+    this.want = v;
+    this.send();
+    const f: CityFrame = {
+      eye: v.gpuEye,
+      focus: v.clearance > 3000 ? [v.target[0], v.target[1], v.target[2]] : [v.eye[0] + v.forward[0] * Math.min(v.range, 700), v.eye[1] + v.forward[1] * Math.min(v.range, 700), Math.min(v.target[2], v.eye[2])],
+      view: v.view,
+      proj: v.proj,
+      farProj: v.farProj,
+      fov: v.fov,
+      aspect: v.aspect,
+      near: v.near,
+      far: v.far,
+      sun,
+      time: time - this.spec.site.slice,
+      evidence,
+      alpha,
+      solid,
+      clearance: v.clearance,
+      width: outW,
+      height: outH,
+    };
+    this.renderer.render(f, [], outW, outH);
+  }
+
   /** What is at a screen position: a taxon, or nothing. */
-  pick(x: number, y: number): { taxon?: SceneTaxon } {
+  pick(x: number, y: number): { taxon?: LivingTaxon } {
     const e = this.renderer.pick(x, y);
-    return e ? { taxon: this.file.taxa[e - 1] } : {};
+    return e ? { taxon: this.spec.taxa[e - 1] } : {};
   }
 
   /** Date the taxa as a scenario does: a competing claim for a first appearance moves them. */
   setScenario(s: Scenario): void {
-    if (!this.ready) return;
-    const clamp = (x: number | null, d: number) => (x === null || !Number.isFinite(x) ? d : Math.max(-TIMELESS, Math.min(TIMELESS, sceneTime(x, this.file.site.slice))));
-    this.file.taxa.forEach((t, i) => {
+    if (!this.active) return;
+    const clamp = (x: number | null, d: number) => (x === null || !Number.isFinite(x) ? d : Math.max(-TIMELESS, Math.min(TIMELESS, x - this.spec.site.slice)));
+    this.spec.taxa.forEach((t, i) => {
       if (!t.variants) return;
       const v = lookup(t.variants, s, t.time);
-      this.renderer.setEntityTime(taxonEntity(i), clamp(v.start.best, -TIMELESS), clamp(v.end.best, TIMELESS));
+      this.renderer.setEntityTime(i + 1, clamp(v.start.best, -TIMELESS), clamp(v.end.best, TIMELESS));
     });
   }
 
   /** Light up every one of the taxon whose record is open. */
   select(id: string | null): void {
-    if (!this.ready) return;
+    if (!this.active) return;
     if (this.selected) this.renderer.setEntityFlags(this.selected, 3);
     this.selected = 0;
     if (!id) return;
-    const i = this.file.taxa.findIndex((t) => t.id === id);
+    const i = this.spec.taxa.findIndex((t) => t.id === id);
     if (i >= 0) {
-      this.selected = taxonEntity(i);
+      this.selected = i + 1;
       this.renderer.setEntityFlags(this.selected, 3 + 8);
     }
   }
 
   /** The scene's taxon of a record, if it is drawn here. */
-  taxonOf(id: string): SceneTaxon | undefined {
-    return this.file.taxa.find((t) => t.id === id);
+  taxonOf(id: string): LivingTaxon | undefined {
+    return this.spec.taxa.find((t) => t.id === id);
+  }
+
+  stats(): { cells: number; coarse: number; fine: number; megabytes: number; instances: number; triangles: number; meshes: number } {
+    const s = this.renderer.instancedStats();
+    return { cells: 0, coarse: s.meshes, fine: 0, megabytes: 0, instances: s.instances, triangles: s.triangles, meshes: s.meshes };
+  }
+
+  /** The scene is no longer wanted. */
+  dispose(): void {
+    this.worker?.terminate();
+    this.worker = null;
+    this.active = false;
   }
 }

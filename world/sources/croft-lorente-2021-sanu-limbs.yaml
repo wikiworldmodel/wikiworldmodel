@@ -1,0 +1,18 @@
+id: src:croft-lorente-2021-sanu-limbs
+type: publication
+kind: measurement
+citation: >-
+  Croft, D.A. & Lorente, M. (2021). No evidence for parallel evolution of cursorial limb
+  adaptations among Neogene South American native ungulates (SANUs). PLoS ONE 16(8), e0256371.
+authors:
+  - "Croft, D.A."
+  - "Lorente, M."
+published: 2021
+title: "No evidence for parallel evolution of cursorial limb adaptations among Neogene South American native ungulates (SANUs)"
+container: "PLoS ONE 16(8), e0256371"
+doi: 10.1371/journal.pone.0256371
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC8370646). Quotes checked by script against the
+    text retrieved, after normalizing whitespace.

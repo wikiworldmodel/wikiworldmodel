@@ -1,0 +1,20 @@
+id: src:kalita-2022-metoposaurus
+type: publication
+kind: measurement
+citation: >-
+  Kalita, S., Teschner, E.M., Sander, P.M. & Konietzko-Meier, D. (2022). To be or not to be
+  heavier: the role of dermal bones in the buoyancy of the Late Triassic temnospondyl amphibian
+  Metoposaurus krasiejowensis. Journal of Anatomy 241(6), 1459–1476.
+authors:
+  - "Kalita, S."
+  - "Teschner, E.M."
+  - "Sander, P.M."
+  - "Konietzko-Meier, D."
+published: 2022
+title: "To be or not to be heavier: the role of dermal bones in the buoyancy of the Late Triassic temnospondyl amphibian Metoposaurus krasiejowensis"
+container: "Journal of Anatomy 241(6), 1459–1476"
+doi: 10.1111/joa.13755
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC9644956); quotes checked by script against it.

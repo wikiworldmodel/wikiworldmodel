@@ -1,0 +1,38 @@
+id: life/taxa/strepsirrhini
+kind: taxon
+summary: >-
+  Lemurs and lorises, and the Eocene adapiforms the database sets with them.
+same_as: { pbdb: "txn:89317" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Strepsirrhini, en: "lemurs, lorises and their kin" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    value: { lo: 0.25, hi: 1.5 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Microcebus murinus, Physical Description"
+        quote: "The head and body length is 12 to 14 cm and tail length of 13 to 14.5 cm"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Primates (Primates)\""
+        quote: "was a 1.5-metre-long (4.9 ft) sloth lemur"
+    method: compilation
+    note: >-
+      From a mouse lemur, head and body with the tail, to the largest subfossil lemur.
+  mass:
+    prop: body_mass
+    value: { lo: 0.0305, hi: 160 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Microcebus_berthae, column Mass.g (grams)"
+        quote: "Microcebus_berthae,Primates,Cheirogaleidae,Microcebus,berthae,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,30.5"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Archaeoindris_fontoynonti, column Mass.g (grams)"
+        quote: "Archaeoindris_fontoynonti,Primates,Palaeopropithecidae,Archaeoindris,fontoynonti,1,0,0,0,Imputed,PHYLACINE 1.2.1,160000"
+    method: compilation
+    note: >-
+      The living and subfossil members. The Eocene adapiforms the database sets here fall
+      within it.

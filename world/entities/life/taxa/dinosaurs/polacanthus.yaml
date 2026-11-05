@@ -1,0 +1,21 @@
+id: life/taxa/polacanthus
+kind: taxon
+summary: >-
+  Polacanthus, a spiny, tail-clubless ankylosaur of the Early Cretaceous of England.
+same_as: { pbdb: "txn:52784" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Polacanthus }
+    unsourced: The classification's own name.
+  length-holtz-2012:
+    prop: body_length
+    value: 4
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 40, Nodosaurids"
+      quote: "Polacanthus many spines Early Cretaceous (130-125 MYA) 13.1ft (4 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

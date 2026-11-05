@@ -1,0 +1,26 @@
+id: life/taxa/ornithomimosauria
+kind: taxon
+summary: >-
+  The ostrich dinosaurs: slender, small-headed, long-legged, mostly toothless omnivores or plant-
+  eaters.
+same_as: { pbdb: "txn:55491" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ornithomimosauria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: ornithomimid
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 1.8, hi: 12 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 12, Primitive Ornithomimosaurs", quote: "Pelecanimimus pelican mimic Early Cretaceous (130-125 MYA) 5.9 ft (1.8 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 12, Primitive Ornithomimosaurs", quote: "Deinocheirus terrible hands Late Cretaceous (70.6-68.5 MYA) 39.4 ft (12 m)?" }
+    method: compilation
+    note: >-
+      The range across the tables "Primitive Ornithomimosaurs" and "Ornithomimids" on that page,
+      standing for any member with no length of its own. The upper end is the author's own doubt.

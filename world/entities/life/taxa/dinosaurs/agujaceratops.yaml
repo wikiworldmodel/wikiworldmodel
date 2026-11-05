@@ -1,0 +1,21 @@
+id: life/taxa/agujaceratops
+kind: taxon
+summary: >-
+  Agujaceratops, a chasmosaurine of the Campanian of Texas.
+same_as: { pbdb: "txn:112568" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Agujaceratops }
+    unsourced: The classification's own name.
+  length-holtz-2012:
+    prop: body_length
+    value: 7
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 51, Chasmosaurines"
+      quote: "Agujaceratops Aguja [Formation] horned face Late Cretaceous (80-72.8 MYA) 23 ft (7 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

@@ -20,6 +20,27 @@ claims:
     note: >-
       A crown-group age: the last common ancestor of the living members, which is this group’s
       origin here. A composite of the 95% HPD intervals of the paper’s main analyses.
+  body-plan:
+    prop: body_plan
+    value: arthropod
+    unsourced: "Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a low plated many-legged body, standing for any arthropod nobody has written a body
+      for; no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.00008, hi: 2.63 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. arachnid"
+        quote: "tiny mites that measure 0.08 mm (0.003 inch)"
+      - ref: src:davies-2021-arthropleura
+        loc: "abstract"
+        quote: "up to 2.63 m in length"
+    method: compilation
+    note: >-
+      The smallest and largest found among those read, standing for any arthropod with no size nearer to it. It is a very wide range,
+      for what has no record below this: the larger groups each have their own. Arthropods of the sea may lie outside it.
 relations:
   parent:
     rel: descends-from

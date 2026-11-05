@@ -1,0 +1,21 @@
+id: src:toosey-2024-triisodon
+type: publication
+kind: measurement
+citation: >-
+  Toosey, W.J., Williamson, T.E., Shelley, S.L. & Brusatte, S.L. (2024). The osteology of
+  Triisodon crassicuspis (Cope, 1882): new insights into the enigmatic "archaic" placental mammal
+  group "Triisodontidae". PLoS ONE 19(11), e0311187.
+authors:
+  - "Toosey, W.J."
+  - "Williamson, T.E."
+  - "Shelley, S.L."
+  - "Brusatte, S.L."
+published: 2024
+title: "The osteology of Triisodon crassicuspis (Cope, 1882): new insights into the enigmatic archaic placental mammal group Triisodontidae"
+container: "PLoS ONE 19(11), e0311187"
+doi: 10.1371/journal.pone.0311187
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC11554371). Quotes checked by script against the
+    text retrieved, after normalizing whitespace.

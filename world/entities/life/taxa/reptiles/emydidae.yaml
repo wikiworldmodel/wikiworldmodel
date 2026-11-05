@@ -1,0 +1,19 @@
+id: life/taxa/emydidae
+kind: taxon
+summary: >-
+  New World pond turtles, box turtles and sliders.
+same_as: { pbdb: "txn:37714" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Emydidae", en: "New World pond turtles" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.25, hi: 0.6 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"New World Pond Turtles (Emydidae)\""
+      quote: "10–24 in (25–60 cm)"
+    method: compilation

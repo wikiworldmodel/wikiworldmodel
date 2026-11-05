@@ -1,0 +1,29 @@
+id: life/taxa/plateosaurus
+kind: taxon
+summary: >-
+  Plateosaurus, the large long-necked plant-eater of the Late Triassic of Europe, known from many
+  skeletons.
+same_as: { pbdb: "txn:38644" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Plateosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the plan prosauropod, which was measured in part from
+      this genus: "Plateosaurus Scale.svg" on Wikimedia Commons. Nothing here differs from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 8
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 25, Plateosaurids"
+      quote: "Plateosaurus broad reptile Late Triassic (228-204 MYA) 26.2 ft (8 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it, for the largest: smaller ones are common.

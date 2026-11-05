@@ -1,0 +1,58 @@
+id: life/taxa/chalicotherioidea
+kind: taxon
+summary: >-
+  Horse-headed perissodactyls with long forelimbs and claws in place of hooves.
+same_as: { pbdb: "txn:43071" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Chalicotherioidea, en: "chalicotheres" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.5
+      mass_length: 37
+      behave: { group: [1, 2], habitat: forest, poses: [stand, stand, walk, graze, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.45, 0.72, 0.66, 0.006]
+            - [-0.44, 0.84, 0.76, 0.01]
+            - [-0.42, 0.95, 0.82, 0.016]
+            - [-0.39, 1.0, 0.68, 0.06]
+            - [-0.32, 1.06, 0.56, 0.09]
+            - [-0.2, 1.14, 0.54, 0.102]
+            - [-0.07, 1.26, 0.56, 0.105]
+            - [0.05, 1.4, 0.62, 0.098]
+            - [0.14, 1.5, 0.74, 0.078]
+            - [0.2, 1.54, 0.92, 0.052]
+          neck: { r: 0.036, steps: [4, 1] }
+        hind: { y: -0.28, x: 0.056, top: 0.84, knee: 0.56, ankle: 0.22, r: 0.056 }
+        fore: { y: 0.13, x: 0.066, top: 1.12, r: 0.034 }
+        claws: { type: spike, near: true, mirror: true, not: [walk], sides: [5, 4], from: [0.07, 0.135, 0.06], to: [0.076, 0.195, 0.0], r: 0.016 }
+        head:
+          at:
+            stand: { y: 0.31, z: 1.74, pitch: 0.5 }
+            alert: { y: 0.31, z: 1.86, pitch: 0.3 }
+            low: { y: 0.36, reach: 0.2, pitch: 1.1 }
+    unsourced: >-
+      A machine's reconstruction, from the photograph of the mounted Moropus elatus on
+      Wikipedia's page for the genus: long forelegs, a back sloping steeply down to the hips,
+      a long neck.
+  mass:
+    prop: body_mass
+    value: { lo: 1179, hi: 1500 }
+    source:
+      - ref: src:wikipedia-moropus
+        loc: "top of the article"
+        quote: "One specimen had an estimated body mass of 1,179 kg (2,599 lb)"
+      - ref: src:wikipedia-chalicotherium
+        loc: "section \"Species\""
+        quote: "It weighed around 1500 kg"
+    method: compilation
+    note: >-
+      From Wikipedia, as nothing better could be read; the higher figure has no citation
+      there. Earlier chalicotheres were smaller, and no figure for them was read. No length of
+      the whole animal was read: the plan makes it from the mass.

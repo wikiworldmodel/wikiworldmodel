@@ -1,0 +1,73 @@
+id: life/taxa/ichthyostegidae
+kind: taxon
+summary: >-
+  Ichthyostega of the latest Devonian of Greenland: a limbed swimmer with a great deep ribcage, a long flat head, strong forelimbs,
+  paddles behind and a fin on its tail.
+same_as: { pbdb: "txn:36964" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ichthyostegidae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.13
+      parts:
+        body:
+          rings:
+            - [-0.52, 1.0, 0.92, 0.002]
+            - [-0.42, 1.14, 0.7, 0.008]
+            - [-0.32, 1.3, 0.56, 0.016]
+            - [-0.22, 1.42, 0.44, 0.028]
+            - [-0.12, 1.5, 0.3, 0.05]
+            - [-0.02, 1.54, 0.2, 0.078]
+            - [0.08, 1.56, 0.16, 0.086]
+            - [0.17, 1.5, 0.22, 0.08]
+            - [0.24, 1.36, 0.36, 0.068]
+          neck: { r: 0.06, steps: [2, 1] }
+        tailfin: { type: sheet, gap: 0.0015, points: [[0, -0.34, 1.0], [0, -0.2, 1.44], [0, -0.3, 1.56], [0, -0.42, 1.34], [0, -0.53, 1.0], [0, -0.42, 0.6], [0, -0.28, 0.4], [0, -0.2, 0.5]] }
+        thigh: { points: [[0.06, -0.1, 0.66, 0.026], [0.1, -0.13, 0.46, 0.022], [0.13, -0.18, 0.26, 0.022], [0.135, -0.235, 0.16, 0.014]] }
+        arm: { points: [[0.075, 0.17, 0.5, 0.034], [0.135, 0.15, 0.36, 0.028], [0.17, 0.155, 0.18, 0.022], [0.185, 0.185, 0.06, 0.02]] }
+        head:
+          at:
+            stand: { y: 0.27, z: 1.0, pitch: 0.04 }
+            alert: { y: 0.27, z: 1.26, pitch: -0.1 }
+            low: { y: 0.28, reach: 0.2, pitch: 0.14 }
+          rings:
+            - [-0.012, 0.003, 0.06, 0.036]
+            - [0.03, 0.008, 0.07, 0.042]
+            - [0.08, 0.006, 0.058, 0.032]
+            - [0.13, 0.0, 0.042, 0.022]
+            - [0.175, -0.004, 0.026, 0.014]
+            - [0.205, -0.006, 0.013, 0.008]
+        jaw:
+          rings:
+            - [0.0, -0.03, 0.058, 0.014]
+            - [0.1, -0.026, 0.044, 0.011]
+            - [0.2, -0.014, 0.014, 0.005]
+        eyes: { at: [0.03, 0.065, 0.034], r: 0.011 }
+    unsourced: >-
+      A machine's reconstruction: a deep ribcage, a long flat head with the eyes high, large forelimbs and paddles behind, from the
+      skeletal reconstruction in Ahlberg (2018), Fig. 1 (Wikimedia Commons, "Ichthyostega skeletal reconstruction 2018.png").
+  length:
+    prop: body_length
+    value: 1.5
+    source:
+      ref: src:wikipedia-early-vertebrates
+      loc: "Ichthyostega, Description"
+      quote: "was broadly built and about 1.5 m (4 ft 11 in) long"
+    method: compilation
+    note: >-
+      An encyclopedia, cited as nothing better could be read. A reviewer should look at it against the mass below, far too small for a
+      body this long: the specimens modelled there may be smaller, and their length was not stated in what could be read.
+  mass:
+    prop: body_mass
+    value: { lo: 3.66, hi: 5.08 }
+    source:
+      ref: src:strong-2025-ichthyostega
+      loc: "Results, Mass estimates"
+      quote: "yields a whole-body mass of 3.66–5.08 kg, with a mean of 4.40 kg"
+    method: model
+    note: The paper's best-estimate digital model, from a composite of specimens in Copenhagen.

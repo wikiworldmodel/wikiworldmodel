@@ -1,0 +1,40 @@
+id: life/taxa/paranthropus
+kind: taxon
+summary: >-
+  The robust australopiths of Africa.
+same_as: { pbdb: "txn:83063" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Paranthropus }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 1.1, hi: 1.613 }
+    source:
+      ref: src:will-2017-hominin-body-size
+      loc: "Table 3, row paranthropines, under stature"
+      quote: "paranthropines 9 128.81 126.00 112.28 137.23 15.41 110.00 161.30 12.0"
+    method: compilation
+    note: >-
+      Standing height in centimetres in the table.
+  mass:
+    prop: body_mass
+    value: { lo: 24, hi: 51.6 }
+    source:
+      ref: src:will-2017-hominin-body-size
+      loc: "Table 3, row paranthropines, under body mass"
+      quote: "paranthropines 21 35.04 32.40 21.41 56.92 7.70 24.00 51.60 22.0"
+    method: compilation
+relations:
+  parent:
+    rel: descends-from
+    to: life/taxa/hominini
+    source:
+      ref: src:pbdb-land-2026-11-05
+      loc: "taxon 83063: Paranthropus < Hominina (txn:96643)"
+    note: >-
+      The database keeps it in Hominina, outside its tribe Hominini, while the record of P.
+      boisei here hangs on the tribe; this one follows that record, and the papers that call
+      it a hominin.

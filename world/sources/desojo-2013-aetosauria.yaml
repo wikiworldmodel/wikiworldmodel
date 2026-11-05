@@ -1,0 +1,25 @@
+id: src:desojo-2013-aetosauria
+type: publication
+kind: review
+citation: >-
+  Desojo, J.B., Heckert, A.B., Martz, J.W., Parker, W.G., Schoch, R.R., Small, B.J. & Sulej, T. (2013). Aetosauria: a clade of
+  armoured pseudosuchians from the Upper Triassic continental beds. Geological Society, London, Special Publications 379,
+  203–239.
+authors:
+  - "Desojo, J.B."
+  - "Heckert, A.B."
+  - "Martz, J.W."
+  - "Parker, W.G."
+  - "Schoch, R.R."
+  - "Small, B.J."
+  - "Sulej, T."
+published: 2013
+title: "Aetosauria: a clade of armoured pseudosuchians from the Upper Triassic continental beds"
+container: Geological Society, London, Special Publications 379, 203–239
+doi: 10.1144/SP379.17
+via: "The abstract, in the CONICET repository's record (11336/134651) as harvested by Open Polar."
+verified:
+  by: machine:claude-code
+  how: >-
+    Only the abstract could be read, not the chapter; its text fetched from Open Polar's copy of the CONICET record. Quotes checked
+    by script against it. Metadata from Crossref.

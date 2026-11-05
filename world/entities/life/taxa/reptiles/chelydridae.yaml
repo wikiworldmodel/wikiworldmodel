@@ -1,0 +1,36 @@
+id: life/taxa/chelydridae
+kind: taxon
+summary: >-
+  Snapping turtles: heavy aquatic turtles with big heads, long tails and hooked beaks.
+same_as: { pbdb: "txn:37704" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Chelydridae", en: "snapping turtles" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.16
+      behave: { group: [1, 1], habitat: wet, poses: [rest, walk] }
+      parts:
+        tail: { from: [0, -0.46, 0.09], to: [0, -0.95, 0.04], r: 0.04 }
+        tail-ridge: { type: row, zl: true, mat: horn, near: true, n: 7, item: plate, from: [0, -0.52, 0.11], to: [0, -0.86, 0.06], r: [0, 0.05, 0.035] }
+        neck: { points: [[0, 0.42, 0.11, 0.075], [0, 0.58, 0.13, 0.075], [0, 0.72, 0.12, 0.07]] }
+        beak: { type: spike, zl: true, mat: horn, sides: [5, 3], from: [0, 0.74, 0.14], to: [0, 0.82, 0.09], r: 0.035 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Snapping Turtles (Chelydridae)\""
+      quote: "Large, vicious turtles with a long tail, a hooked beak, and a greatly reduced plastron"
+    note: >-
+      The form follows this; its proportions are a machine's reconstruction. No skeletal figure was
+      looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.18, hi: 0.8 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Snapping Turtles (Chelydridae)\""
+      quote: "7.1–31.5 in (18–80 cm); up to 249 lb (113 kg)"
+    method: compilation

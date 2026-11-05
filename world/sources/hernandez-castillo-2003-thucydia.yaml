@@ -1,0 +1,21 @@
+id: src:hernandez-castillo-2003-thucydia
+type: publication
+kind: measurement
+citation: >-
+  Hernandez-Castillo, G.R., Rothwell, G.W., Stockey, R.A. & Mapes, G. (2003). Growth architecture of
+  Thucydia mahoningensis, a model for primitive walchian conifer plants. International Journal of
+  Plant Sciences 164(3), 443–452.
+authors:
+  - "Hernandez-Castillo, G.R."
+  - "Rothwell, G.W."
+  - "Stockey, R.A."
+  - "Mapes, G."
+published: 2003
+title: "Growth architecture of Thucydia mahoningensis, a model for primitive walchian conifer plants"
+container: International Journal of Plant Sciences 164(3), 443–452
+url: https://era.library.ualberta.ca/public/view/item/uuid:7950ba49-08e5-471c-8338-30c55acac9ec/DS1/IJOPS_164_2003_443.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract only, read in the University of Alberta's repository record of the work; the full
+    text was not read. Quotes checked by script against that record's text.

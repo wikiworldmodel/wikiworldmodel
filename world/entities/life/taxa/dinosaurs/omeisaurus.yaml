@@ -1,0 +1,21 @@
+id: life/taxa/omeisaurus
+kind: taxon
+summary: >-
+  Omeisaurus, a long-necked sauropod of the Middle Jurassic of China.
+same_as: { pbdb: "txn:38702" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Omeisaurus }
+    unsourced: The classification's own name.
+  length-holtz-2012:
+    prop: body_length
+    value: 15
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 29, Mamenchisaurines"
+      quote: "Omeisaurus Mount Emei [China] reptile Middle to Late (167.7-155.7 MYA) 49.2 ft (15 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

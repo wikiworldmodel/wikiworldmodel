@@ -1,0 +1,30 @@
+id: life/taxa/iguanidae
+kind: taxon
+summary: >-
+  Iguanas and their relatives.
+same_as: { pbdb: "txn:37855" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Iguanidae", en: "iguanas" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        crest: { type: row, mat: horn, near: true, n: 14, item: spike, from: [0, -0.5, 1.0], to: [0, 0.2, 1.26], r: [0, -0.012, 0.03], thick: 0.006, size: [0.5, 1.2, 1] }
+    unsourced: "A machine's reconstruction: a low crest down the back of the plan's lizard, as in living iguanas. No skeletal figure was looked at."
+  length:
+    prop: body_length
+    value: { lo: 0.129, hi: 0.75 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Dipsosaurus catalinensis, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "93.32543 NA 129"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Cyclura nubila, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "17782.7941 NA 750"
+    method: compilation
+    note: >-
+      From snout to vent, as the plan's length is.

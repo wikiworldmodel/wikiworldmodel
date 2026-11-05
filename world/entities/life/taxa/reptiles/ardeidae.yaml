@@ -1,0 +1,37 @@
+id: life/taxa/ardeidae
+kind: taxon
+summary: >-
+  Herons, egrets and bitterns.
+same_as: { pbdb: "txn:39541" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Ardeidae", en: "herons and bitterns" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: wader
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Herons and Bitterns (Ardeidae)\""
+      quote: "Medium to very large wading birds, typically with long legs and toes, long bills, and long necks"
+    note: >-
+      The plan's description follows this; which plan draws the group is an editorial
+      classification, from its place in the tree.
+  length:
+    prop: body_length
+    value: { lo: 0.25, hi: 1.5 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Herons and Bitterns (Ardeidae)\""
+      quote: "9.7–58.5 in (25–150 cm); 0.16–9.9 lb (73 g–4.5 kg)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.073, hi: 4.5 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Herons and Bitterns (Ardeidae)\""
+      quote: "9.7–58.5 in (25–150 cm); 0.16–9.9 lb (73 g–4.5 kg)"
+    method: compilation

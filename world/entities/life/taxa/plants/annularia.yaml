@@ -1,0 +1,43 @@
+id: life/taxa/annularia
+kind: taxon
+summary: >-
+  Whorled leafy shoots of calamites, named as a genus of their own: it is drawn as the tree that
+  bore them.
+same_as: { pbdb: "txn:271024" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Annularia }
+    unsourced: "The classification's own name."
+  body-plan:
+    prop: body_plan
+    value: calamite
+    source:
+      - ref: src:rossler-noll-2007-calamitea
+        loc: "p. 176"
+        quote: "provided evidence that leafy shoots of Annularia"
+      - ref: src:rossler-noll-2007-calamitea
+        loc: "p. 177"
+        quote: "belong to pith casts of Calamites"
+    note: >-
+      The sentence runs over the page: shoots of Annularia spinulosa, with the strobili
+      Calamostachys, belong to Calamites multiramis at Commentry, France.
+  height:
+    prop: plant_height
+    value: { lo: 10, hi: 20 }
+    source:
+      - ref: src:illinois-state-museum-calamites
+        loc: "Calamites sp."
+        quote: "grew to a height of up to 10 meters (31 feet)"
+      - ref: src:arkansas-geological-survey-calamites
+        loc: "p. 1"
+        quote: "tree-sized plants reaching a height of approximately 20 m"
+      - ref: src:rossler-2012-largest-calamite
+        loc: "p. 66, section 4.1"
+        quote: "be not less than 15 m high with at least 3 orders of woody branches"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The figures for calamites, the trees that bore these leaves; none of them is for a plant named
+      here as Annularia.

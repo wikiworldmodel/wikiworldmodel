@@ -1,0 +1,19 @@
+id: src:wikipedia-largest-prehistoric-animals
+type: database-record
+kind: review
+citation: >-
+  "Largest prehistoric animals." Wikipedia, the free encyclopedia (English edition), revision 1383611024.
+snapshot: 2026-11-05
+title: Largest prehistoric animals
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Largest_prehistoric_animals&oldid=1383611024
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article that lists the largest known members of each group, with
+  references. Cited only for the upper end of a group whose primary sources could not be read, and
+  to be replaced by them.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-05, last edited 3 November 2026; the quotations checked
+    by script against its text, after normalizing whitespace.

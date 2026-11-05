@@ -1,0 +1,22 @@
+id: src:benoit-2017-moschops
+type: publication
+kind: measurement
+citation: >-
+  Benoit, J., Manger, P.R., Norton, L., Fernandez, V. & Rubidge, B.S. (2017). Synchrotron
+  scanning reveals the palaeoneurology of the head-butting Moschops capensis (Therapsida,
+  Dinocephalia). PeerJ 5, e3496.
+authors:
+  - "Benoit, J."
+  - "Manger, P.R."
+  - "Norton, L."
+  - "Fernandez, V."
+  - "Rubidge, B.S."
+published: 2017
+title: "Synchrotron scanning reveals the palaeoneurology of the head-butting Moschops capensis (Therapsida, Dinocephalia)"
+container: "PeerJ 5, e3496"
+doi: 10.7717/peerj.3496
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC5554600); quotes checked by script against it.

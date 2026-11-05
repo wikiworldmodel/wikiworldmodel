@@ -1,0 +1,51 @@
+id: life/taxa/neoceratopsia
+kind: taxon
+summary: >-
+  The frilled horned dinosaurs. This record speaks for the small early forms; the larger families
+  have their own.
+same_as: { pbdb: "txn:52774" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Neoceratopsia }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: ceratopsian
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.34
+      parts:
+        brow: null
+        nose: null
+        frill: { r: 0.16, dir: [-0.8, 0.6], across: 0.78, scallop: 0.01 }
+        head:
+          at:
+            stand: { y: 0.26, z: 0.72, pitch: 0.14 }
+            alert: { y: 0.25, z: 0.86, pitch: -0.05 }
+            low: { y: 0.28, reach: 0.27, pitch: 0.62 }
+        beak: { rings: [[0.23, -0.034, 0.019, 0.03], [0.255, -0.06, 0.01, 0.018], [0.27, -0.08, 0.002, 0.003]] }
+    unsourced: >-
+      A machine's reconstruction: no horns, a smaller frill and a deep hooked beak, from the
+      silhouette "Protoceratops scale.png" on Wikimedia Commons.
+  posture:
+    prop: posture
+    value: quadruped
+    unsourced: >-
+      An editorial choice from the figure named in the form claim: Stance in other ornithischians,
+      including non-eurypodan thyreophorans, some non-hadrosaurid ornithopods and non-ceratopsid
+      marginocephalians, is more controversial, in the words of Maidment et al. (2012, Materials and
+      Methods, Groups used in analyses).
+  length:
+    prop: body_length
+    value: { lo: 1.5, hi: 3.5 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 50, Primitive Neoceratopsians", quote: "Yamaceratops Yama [Tibetan God of the Dead] Early Cretaceous (time very uncertain) 4.9 ft (1.5 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 50, Primitive Neoceratopsians", quote: "Zuniceratops Zuni [Native American people] Late Cretaceous (93.5-89.3 MYA) 11.5 ft (3.5 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Primitive Neoceratopsians" (pp. 49-50), standing for any member
+      with no length of its own.

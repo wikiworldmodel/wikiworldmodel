@@ -51,6 +51,39 @@ claims:
       A conventional date from Tennessee, 9,410 ± 155 14C years, more than two thousand years
       younger than the youngest AMS date. The compilation scores it lower than the AMS dates (11
       against 12). No source read assesses it further.
+  body-plan:
+    prop: body_plan
+    value: sabre-cat
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        sabres: { from: [0.03, 0.13, -0.012], to: [0.036, 0.104, -0.16], r: 0.015 }
+    unsourced: >-
+      A machine's reconstruction, from the photograph of the mounted Smilodon populator on
+      Wikipedia's page for the genus: longer sabres than the plan's. The same form as the
+      record for Smilodon, as this record hangs directly on Mammalia.
+  length-mammal-forms:
+    prop: body_length
+    value: 1.75
+    source:
+      ref: src:wikipedia-smilodon
+      loc: "top of the article"
+      quote: "height of 100 cm (39 in) and body length of 175 cm (69 in)"
+    method: compilation
+    note: >-
+      From Wikipedia, as no measured skeleton could be read.
+  mass-mammal-forms:
+    prop: body_mass
+    value: { lo: 160, hi: 280 }
+    source:
+      ref: src:wikipedia-smilodon
+      loc: "top of the article"
+      quote: "S. fatalis had a weight of 160 to 280 kg"
+    method: compilation
+    note: >-
+      From Wikipedia. PHYLACINE has 219 kg.
 relations:
   parent:
     rel: descends-from

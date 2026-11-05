@@ -43,8 +43,8 @@
           "import": {
             "type": "object",
             "description": "A snapshot of a database whose elements become records",
-            "required": ["as", "frame"],
-            "properties": { "as": { "enum": ["ohm-site", "pbdb-formation"] }, "frame": { "type": "string" } },
+            "required": ["as"],
+            "properties": { "as": { "enum": ["ohm-site", "pbdb-formation", "pbdb-land"] }, "frame": { "type": "string" } },
             "additionalProperties": false
           },
           "fetch": {

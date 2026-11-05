@@ -1,0 +1,29 @@
+id: life/taxa/silesaurus
+kind: taxon
+summary: >-
+  Silesaurus, a slim four-legged early relative of the dinosaurs from the Late Triassic of Poland.
+same_as: { pbdb: "txn:81775" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Silesaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Silesauridae, which was measured from this
+      genus: the silhouette "Silesaurus Scale.svg" on Wikimedia Commons. Nothing here differs from
+      it.
+  length-holtz-2012:
+    prop: body_length
+    value: 2.3
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 1, Silesaurids"
+      quote: "Silesaurus Silesia [Poland] reptile Late Triassic (235-228 MYA) 7.5 ft (2.3 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

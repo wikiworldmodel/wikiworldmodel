@@ -1,0 +1,31 @@
+id: life/taxa/apatosaurus
+kind: taxon
+summary: >-
+  Apatosaurus, the massive thick-necked diplodocid of the Morrison Formation.
+same_as: { pbdb: "txn:38665" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Apatosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        hind: { r: 0.044 }
+        fore: { r: 0.034 }
+    unsourced: >-
+      A machine's reconstruction: thicker limbs than the Brontosaurus parvus the family's form was
+      measured from, as A. louisae and A. ajax show beside it in "Apatosaurus scale mmartyniuk
+      wiki.png" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 26
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 30, Apatosaurines"
+      quote: "Apatosaurus deceptive [chevron] reptile Late Jurassic (155.7-150.8 MYA) 85.3 ft (26 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

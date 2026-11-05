@@ -13,7 +13,7 @@ claims:
       loc: "taxon 55250"
   body-plan:
     prop: body_plan
-    value: fern
+    value: floating-fern
     unsourced: "Which kit draws it: an editorial classification, from the taxon's place in the tree."
   posture:
     prop: posture

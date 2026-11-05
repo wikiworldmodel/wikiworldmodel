@@ -1,0 +1,27 @@
+id: life/taxa/rallidae
+kind: taxon
+summary: >-
+  Rails, coots and moorhens: compact birds of wet ground, many of them flightless on islands.
+same_as: { pbdb: "txn:39513" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Rallidae", en: "rails, coots and moorhens" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.12, hi: 0.63 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Rails, Coots, and Moorhens (Rallidae)\""
+      quote: "4.7–24.8 in (12–63 cm); 0.7 oz–9.13 lb (20.41 g–4.14 kg)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.02041, hi: 4.14 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Rails, Coots, and Moorhens (Rallidae)\""
+      quote: "4.7–24.8 in (12–63 cm); 0.7 oz–9.13 lb (20.41 g–4.14 kg)"
+    method: compilation

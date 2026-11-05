@@ -1,0 +1,39 @@
+id: life/taxa/scutosaurus
+kind: taxon
+summary: >-
+  Scutosaurus karpinskii of the late Permian of Russia, a pareiasaur with a heavily bossed head and a mass of about a tonne.
+same_as: { pbdb: "txn:37565" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Scutosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        cheeks: { at: [0.082, 0.024, -0.03], r: [0.026, 0.04, 0.034] }
+        jaw-boss: { type: spike, on: head, near: true, mirror: true, mat: hide, sides: [5, 4], from: [0.03, 0.115, -0.07], to: [0.036, 0.11, -0.11], r: 0.016 }
+        jugal-boss: { type: spike, on: head, near: true, mirror: true, mat: hide, sides: [5, 4], from: [0.09, 0.03, -0.05], to: [0.114, 0.02, -0.08], r: 0.014 }
+        brow: { at: [0.046, 0.075, 0.062], r: [0.02, 0.022, 0.016] }
+    unsourced: >-
+      A machine's reconstruction: heavier bosses on the cheek and jaw than the plan's, from the photograph of the AMNH's
+      mounted Scutosaurus (Wikimedia Commons, "Scutosaurus AMNH.jpg").
+  length:
+    prop: body_length
+    value: { lo: 2.5, hi: 3 }
+    source:
+      ref: src:romano-2021-scutosaurus
+      loc: "Introduction"
+      quote: "The large and derived Scutosaurus karpinskii (2.5–3 m long)"
+    method: expert-estimate
+  mass:
+    prop: body_mass
+    value: 1160
+    source:
+      ref: src:romano-2021-scutosaurus
+      loc: "Abstract"
+      quote: "respectively, of 1,060, 1,160, and 1,330 kg, with a total range varying from a minimum of one ton to a maximum of 1.46 tons"
+    method: model
+    note: The paper's "average" 3D model of the mounted skeleton PIN 2005/1537, which it prefers.

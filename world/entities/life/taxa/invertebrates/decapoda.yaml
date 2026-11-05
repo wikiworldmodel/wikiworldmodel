@@ -1,0 +1,31 @@
+id: life/taxa/decapoda
+kind: taxon
+summary: >-
+  The crayfish, crabs, shrimps and lobsters. The body drawn is a crayfish's; a crab has not been written yet.
+same_as: { pbdb: "txn:22304" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Decapoda, en: "crayfish, crabs and shrimps" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: crayfish
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a crayfish, from general knowledge; no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.025, hi: 0.4 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. crayfish"
+        quote: "Among the smallest is the 2.5-cm-long Cambarellus diminutus of the southeastern United States."
+      - ref: src:britannica-online-animals
+        loc: "s.v. crayfish"
+        quote: "Among the largest is Astacopsis gouldi of Tasmania, which may reach 40 cm in length"
+    method: compilation
+    note: >-
+      The range of crayfish, in an encyclopedia's numbers, cited for lack of a work that could be read, standing for the
+      decapods of fresh water. Those of the sea may lie outside it.

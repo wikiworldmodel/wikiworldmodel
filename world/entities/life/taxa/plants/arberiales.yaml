@@ -1,0 +1,27 @@
+id: life/taxa/arberiales
+kind: taxon
+summary: >-
+  The glossopterids: Glossopteris and its relatives, the trees of the Permian south.
+same_as: { pbdb: "txn:157231" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Arberiales, en: glossopterids }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: glossopterid
+    unsourced: "Which plan draws it and everything below it: an editorial classification. The tapering outline is a machine's guess, as no reconstruction of a whole tree was looked at."
+  height:
+    prop: plant_height
+    value: { lo: 12, hi: 19 }
+    source:
+      ref: src:miller-2016-polar-forests
+      loc: "abstract"
+      quote: "corresponding to estimated mean maximum heights of 12 and 19 m"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Estimated from the stumps of two forests at about 75°S in Antarctica, the only figures read;
+      these are polar forests, and others may have grown taller.

@@ -1,0 +1,25 @@
+id: src:wikipedia-early-vertebrates
+type: database-record
+kind: review
+citation: >-
+  Wikipedia, the free encyclopedia (English edition): articles on early vertebrates (Acanthodes, Acanthostega, Amphibamus,
+  Bothriolepis, Cheirolepis, Chroniosuchia, Chroniosuchus, Cistecephalus, Cynognathus, Dicynodon, Diplocaulus, Dipterus, Drepanaspis,
+  Edaphosaurus, Eryops, Greererpeton, Hypsognathus, Ichthyostega, Inostrancevia, Kayentatherium, Macroleter, Megalocephalus, Microbrachis, Morganucodon, Ophiacodon,
+  Ophiderpeton, Osteostraci, Palaeoniscum, Pantylus, Phlegethontia, Pholiderpeton, Procolophon, Pteraspis, Seymouriamorpha,
+  Sinokannemeyeria, Sphenacodon, Thelodonti).
+snapshot: 2026-11-05
+title: "Articles on early vertebrates"
+container: "Wikipedia"
+url: https://en.wikipedia.org/
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia, used as a last resort for the lengths of groups and genera whose
+  monographs could not be read: mostly books and older papers behind paywalls. Many of the figures
+  cited here have no reference in the article. Better sources should replace it, and its text can
+  change. Each locator names the article.
+verified:
+  by: machine:claude-code
+  how: >-
+    Each article's rendered HTML fetched through the Wikimedia REST API on the date of the
+    snapshot and read as text, without its footnote marks; quotes checked by script against that
+    text.

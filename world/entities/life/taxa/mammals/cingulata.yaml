@@ -1,0 +1,40 @@
+id: life/taxa/cingulata
+kind: taxon
+summary: >-
+  The armoured xenarthrans: armadillos, pampatheres and glyptodonts.
+same_as: { pbdb: "txn:57076" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cingulata, en: "armadillos and glyptodonts" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: cingulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.13, hi: 0.96 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Chlamyphorus truncatus, Physical Description"
+        quote: "they have a body length of approximately 13cm"
+      - ref: src:animal-diversity-web
+        loc: "account of Priodontes maximus, Physical Description"
+        quote: "measures between 832 and 960 mm"
+    method: compilation
+    note: >-
+      The living armadillos, from the pink fairy armadillo to the giant armadillo; which of
+      the two figures includes the tail is not said. The glyptodonts have their own range.
+  mass:
+    prop: body_mass
+    value: { lo: 0.0443, hi: 45.4 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Chlamyphorus_truncatus, column Mass.g (grams)"
+        quote: "Chlamyphorus_truncatus,Cingulata,CingulataFam,Chlamyphorus,truncatus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,44.3"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Priodontes_maximus, column Mass.g (grams)"
+        quote: "Priodontes_maximus,Cingulata,CingulataFam,Priodontes,maximus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,45359.7"
+    method: compilation

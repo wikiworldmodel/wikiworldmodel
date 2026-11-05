@@ -1,0 +1,21 @@
+id: life/taxa/gekkonomorpha
+kind: taxon
+summary: >-
+  Geckos and their fossil relatives.
+same_as: { pbdb: "txn:202471" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Gekkonomorpha", en: "geckos" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.016, hi: 0.255 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Geckos and Pygopods (Gekkonidae)\""
+      quote: "0.6–10.0 in (16–255 mm) in snout-vent length"
+    method: compilation
+    note: >-
+      As the plan's length is.

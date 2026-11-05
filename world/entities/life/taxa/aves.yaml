@@ -23,6 +23,28 @@ claims:
       A crown-group age: the last common ancestor of the living members, which is this group’s
       origin here. The 95% HPD interval from the genomic data set (median 96.6 Ma); the RAG data
       set gives 106.8–79.8 Ma.
+  body-plan:
+    prop: body_plan
+    value: bird
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  posture:
+    prop: posture
+    value: biped
+    unsourced: "Birds walk on their hind legs; an editorial classification."
+  length:
+    prop: body_length
+    value: { lo: 0.05, hi: 2.75 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Hummingbirds (Trochilidae)\""
+        quote: "2–8.7 in (5–22 cm); 0.07–0.7 oz (1.9–21 g)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Ostriches (Struthionidae)\""
+        quote: "5.7–9.0 ft (175–275 cm); 139–345 lb (63–157 kg)"
+    method: compilation
+    note: >-
+      From the smallest hummingbird to the tallest ostrich, for any bird with no length of its own;
+      the major orders have theirs.
 relations:
   parent:
     rel: descends-from

@@ -1,0 +1,31 @@
+id: life/taxa/phaethontiformes
+kind: taxon
+summary: >-
+  Tropicbirds: white seabirds with long tail streamers.
+same_as: { pbdb: "txn:39654" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Phaethontiformes", en: "tropicbirds" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        bill: { from: [0, 0.09, -0.004], to: [0, 0.2, -0.014], r: 0.02 }
+        wings: { span: 0.62, chord: 0.14, sweep: 0.22 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Tropicbirds (Phaethontidae)\""
+      quote: "Medium-sized oceanic birds with pointed wings, highly elongate central tail-feathers"
+    note: >-
+      The pointed wings follow this. The rest is the plan's, whose tail stands for the streamers.
+  length:
+    prop: body_length
+    value: { lo: 0.74, hi: 1 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Tropicbirds (Phaethontidae)\""
+      quote: "29–40 in (74–100 cm); includes elongated tail streamers; wingspread 37–44 in (94–112 cm)"
+    method: compilation

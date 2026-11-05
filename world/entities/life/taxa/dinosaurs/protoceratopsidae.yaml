@@ -1,0 +1,29 @@
+id: life/taxa/protoceratopsidae
+kind: taxon
+summary: >-
+  The protoceratopsids: small, hornless Asian neoceratopsians with deep tails.
+same_as: { pbdb: "txn:38845" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Protoceratopsidae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        frill: { r: 0.2, dir: [-0.72, 0.68], across: 0.7, scallop: 0.012 }
+    unsourced: >-
+      A machine's reconstruction: a broad frill and no horns, from the silhouette "Protoceratops
+      scale.png" on Wikimedia Commons.
+  length:
+    prop: body_length
+    value: { lo: 0.6, hi: 2 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 50, Protoceratopsids", quote: "Graciliceratops slender horned face Late Cretaceous (99.6-83.5 MYA) 2 ft (60 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 50, Protoceratopsids", quote: "Protoceratops first horned face Late Cretaceous (85.8-70.6 MYA) 6.6 ft (2 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Protoceratopsids" on that page, standing for any
+      member with no length of its own.

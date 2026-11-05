@@ -1,0 +1,32 @@
+id: life/taxa/cupressaceae
+kind: taxon
+summary: >-
+  The cypress family, with the redwoods and swamp cypresses, which say otherwise for themselves.
+same_as: { pbdb: "txn:54792" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cupressaceae, en: cypresses and redwoods }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        tree: { reach: 0.1, trunk: 0.022, flare: 2.2, tiers: 14, start: 0.14, drop: 0.09 }
+    unsourced: "A machine's reconstruction: a narrow spire, foliage nearly to the ground, from the Flora of North America's description of the coast redwood's narrowly conic crown."
+  height:
+    prop: plant_height
+    value: { lo: 10, hi: 50 }
+    source:
+      - ref: src:flora-of-north-america
+        loc: "Vol. 2, s.v. Juniperus communis"
+        quote: "Shrubs or small trees dioecious, to 4 m (if trees, to 10 m)"
+      - ref: src:flora-of-north-america
+        loc: "Vol. 2, s.v. Chamaecyparis lawsoniana"
+        quote: "Trees to 50 m"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living members, from a juniper to a false cypress: modern relatives. The coast redwood, to 110
+      m, has its own record.

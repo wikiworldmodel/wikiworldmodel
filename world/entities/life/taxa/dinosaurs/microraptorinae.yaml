@@ -1,0 +1,41 @@
+id: life/taxa/microraptorinae
+kind: taxon
+summary: >-
+  The microraptorines: tiny dromaeosaurs with long feathered wings on their arms and legs.
+same_as: { pbdb: "txn:72105" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Microraptorinae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      behave: { habitat: forest, poses: [stand, stand, walk, alert] }
+      parts:
+        arms:
+          points: [[0.04, 0.14, 0.86, 0.012], [0.052, 0.06, 0.72, 0.009], [0.05, 0.17, 0.62, 0.007], [0.046, 0.27, 0.58, 0.004]]
+        arm-feathers:
+          near: false
+          points: [[0.054, 0.06, 0.72], [0.05, 0.17, 0.62], [0.046, 0.29, 0.56], [0.05, 0.2, 0.32], [0.054, 0.07, 0.42]]
+        leg-feathers:
+          type: sheet
+          mat: feather
+          mirror: true
+          not: [walk]
+          points: [[0.042, -0.01, 0.62], [0.044, 0.04, 0.5], [0.046, 0.0, 0.26], [0.044, -0.1, 0.34], [0.042, -0.1, 0.52]]
+    unsourced: >-
+      A machine's reconstruction: longer arms and feathered panels on the arms and legs, from the
+      figure "Microraptor scale.png" on Wikimedia Commons, which shows it from above with its four
+      wings spread and from the side at rest.
+  length:
+    prop: body_length
+    value: { lo: 0.7, hi: 0.9 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 17, Microraptorines", quote: "Shanag Shanag [black hatted dancers in Early Cretaceous (145.5-125 MYA) 2.3 ft (70 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 17, Microraptorines", quote: "Graciliraptor slender thief Early Cretaceous (125-120 MYA) 3 ft (90 cm)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Microraptorines" on that page, standing for any
+      member with no length of its own.

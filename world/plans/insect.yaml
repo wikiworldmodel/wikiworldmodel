@@ -1,0 +1,27 @@
+description: >-
+  A six-legged winged insect of no order in particular: head, thorax and a tapering abdomen, its two pairs of wings
+  folded roofwise over the back. Its length is the body's, without the antennae or the wings.
+kind: animal
+hip: 0.17
+behave: { group: [1, 3], habitat: any, poses: [stand, walk] }
+parts:
+  head: { type: lump, zl: true, mat: chitin, at: [0, 0.42, 0.125], r: [0.055, 0.075, 0.06], sides: [8, 4], bands: [4, 3] }
+  thorax: { type: lump, zl: true, mat: chitin, at: [0, 0.22, 0.13], r: [0.07, 0.15, 0.075], sides: [8, 4], bands: [4, 3] }
+  abdomen:
+    type: tube
+    zl: true
+    mat: chitin
+    sides: [8, 4]
+    rings:
+      - [0, 0.1, 0.125, 0.06, 0.06]
+      - [0, -0.1, 0.115, 0.066, 0.06]
+      - [0, -0.3, 0.1, 0.05, 0.045]
+      - [0, -0.46, 0.085, 0.018, 0.016]
+  eyes: { type: lump, near: true, zl: true, mat: dark, mirror: true, at: [0.05, 0.44, 0.14], r: [0.018, 0.028, 0.028], sides: [5, 4], bands: [3, 2] }
+  antennae: { type: spike, near: true, zl: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.022, 0.48, 0.16], to: [0.14, 0.8, 0.25], r: 0.005 }
+  fore-wings: { type: sheet, zl: true, mat: membrane, mirror: true, not: [fly], gap: 0.002, points: [[0.012, 0.28, 0.2], [0.075, 0.1, 0.12], [0.085, -0.3, 0.075], [0.03, -0.62, 0.09], [0.006, -0.3, 0.18]] }
+  fly-fore: { type: wing, mat: membrane, poses: [fly], shoulder: [0.03, 0.27, 1.05], span: 0.82, chord: 0.2, sweep: 0.06, beat: 0.3, arm: 0.004 }
+  fly-hind: { type: wing, mat: membrane, poses: [fly], shoulder: [0.03, 0.12, 1.0], span: 0.68, chord: 0.24, sweep: 0.12, beat: 0.3, arm: 0.003 }
+  fore-legs: { type: chain, near: true, zl: true, mat: chitin, mirror: true, not: [fly], sides: [4, 3], points: [[0.05, 0.33, 0.08, 0.012], [0.13, 0.42, 0.14, 0.009], [0.2, 0.52, 0.03, 0.006], [0.23, 0.58, 0.004, 0.003]] }
+  mid-legs: { type: chain, near: true, zl: true, mat: chitin, mirror: true, not: [fly], sides: [4, 3], points: [[0.055, 0.23, 0.07, 0.012], [0.17, 0.25, 0.15, 0.009], [0.27, 0.22, 0.03, 0.006], [0.31, 0.2, 0.004, 0.003]] }
+  hind-legs: { type: chain, near: true, zl: true, mat: chitin, mirror: true, not: [fly], sides: [4, 3], points: [[0.055, 0.12, 0.07, 0.013], [0.18, 0.03, 0.17, 0.01], [0.3, -0.1, 0.03, 0.006], [0.35, -0.16, 0.004, 0.003]] }

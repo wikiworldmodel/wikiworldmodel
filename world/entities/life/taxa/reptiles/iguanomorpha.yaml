@@ -1,0 +1,24 @@
+id: life/taxa/iguanomorpha
+kind: taxon
+summary: >-
+  Iguanas, anoles, agamas, chameleons and their fossil relatives.
+same_as: { pbdb: "txn:349718" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Iguanomorpha", en: "iguanian lizards" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.0199, hi: 0.75 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Brookesia micra, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "0.301995172 NA 19.9"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Cyclura nubila, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "17782.7941 NA 750"
+    method: compilation
+    note: >-
+      From snout to vent, as the plan's length is: the smallest chameleon to the largest iguana.

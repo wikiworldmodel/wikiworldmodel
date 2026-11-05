@@ -1,0 +1,19 @@
+id: src:van-valkenburgh-jenkins-2002-synapsid-predators
+type: publication
+kind: review
+citation: >-
+  Van Valkenburgh, B. & Jenkins, I. (2002). Evolutionary patterns in the history of
+  Permo-Triassic and Cenozoic synapsid predators. In Kowalewski, M. & Kelley, P.H. (eds), The
+  Fossil Record of Predation. Paleontological Society Papers 8, 267–288.
+authors:
+  - "Van Valkenburgh, B."
+  - "Jenkins, I."
+published: 2002
+title: "Evolutionary patterns in the history of Permo-Triassic and Cenozoic synapsid predators"
+container: "The Fossil Record of Predation, Paleontological Society Papers 8, 267–288"
+url: http://www.yale.edu/ypmip/predation/Chapter_10.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    The chapter's PDF read from the Wayback Machine's capture of 16 October 2012 of the Yale
+    Peabody Museum's page. Quotes checked by script against its text layer, column by column.

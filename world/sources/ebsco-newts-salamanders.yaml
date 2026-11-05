@@ -1,0 +1,18 @@
+id: src:ebsco-newts-salamanders
+type: database-record
+kind: review
+citation: >-
+  "Newts and salamanders." Research Starters: Zoology, EBSCO.
+snapshot: 2026-11-05
+title: "Newts and salamanders"
+container: "EBSCO Research Starters"
+url: https://www.ebsco.com/research-starters/zoology/newts-and-salamanders
+reliability: >-
+  A general reference article for students, with no references for the numbers cited here. It is
+  used because it states what is typical of salamanders, which the papers read do not: a last
+  resort.
+verified:
+  by: machine:claude-code
+  how: >-
+    The page read at ebsco.com on the date of the snapshot; quotes checked by script against its
+    text.

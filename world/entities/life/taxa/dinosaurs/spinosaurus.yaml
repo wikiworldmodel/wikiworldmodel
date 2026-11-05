@@ -1,0 +1,75 @@
+id: life/taxa/spinosaurus
+kind: taxon
+summary: >-
+  Spinosaurus, the great sail-backed, fish-eating theropod of the Cretaceous of North Africa.
+same_as: { pbdb: "txn:38598" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Spinosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.173
+      mass_length: 2.2
+      behave: { habitat: wet }
+      parts:
+        body:
+          rings:
+            - [-0.573, 0.85, 0.81, 0.002]
+            - [-0.467, 0.92, 0.755, 0.004]
+            - [-0.329, 1.0, 0.69, 0.007]
+            - [-0.2, 1.06, 0.66, 0.012]
+            - [-0.096, 1.12, 0.69, 0.024]
+            - [-0.032, 1.03, 0.69, 0.04]
+            - [0.011, 1.0, 0.66, 0.048]
+            - [0.074, 1.03, 0.57, 0.052]
+            - [0.138, 1.06, 0.66, 0.046]
+            - [0.18, 1.12, 0.85, 0.03]
+            - [0.212, 1.47, 1.27, 0.024]
+            - [0.249, 1.73, 1.55, 0.019]
+            - [0.287, 1.88, 1.72, 0.016]
+          neck: { r: 0.012, steps: [2, 1] }
+        legs: { y: 0.0, x: 0.045, top: 0.9, knee: 0.52, ankle: 0.2, r: 0.03 }
+        arms: { points: [[0.05, 0.2, 0.98, 0.013], [0.056, 0.18, 0.6, 0.011], [0.052, 0.2, 0.3, 0.008], [0.05, 0.225, 0.2, 0.005]] }
+        claws: { from: [0.05, 0.222, 0.21], to: [0.045, 0.268, 0.09], r: 0.0065 }
+        head:
+          at:
+            stand: { y: 0.33, z: 1.88, pitch: 0.3 }
+            alert: { y: 0.33, z: 1.96, pitch: 0.12 }
+            low: null
+        ridge: null
+        sail:
+          type: sheet
+          mat: hide
+          tint_add: 14
+          points: [[0, 0.05, 1.0], [0, -0.09, 1.08], [0, -0.069, 1.21], [0, -0.053, 1.64], [0, -0.032, 1.95], [0, -0.005, 2.01], [0, 0.064, 2.01], [0, 0.096, 1.98], [0, 0.143, 1.92], [0, 0.183, 1.61], [0, 0.2, 1.12]]
+    unsourced: >-
+      A machine's reconstruction, its proportions and the outline of its sail measured from the
+      digital skeleton in Figure 1A of Sereno et al. (2022), in the copy "Digital skeletal
+      reconstructions of Spinosaurus and Suchomimus.png" on Wikimedia Commons. The skin between the
+      spines is assumed.
+  length-holtz-2012:
+    prop: body_length
+    value: 16
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 7, Spinosaurids"
+      quote: "Spinosaurus spine reptile Early to Late (112-93.5 MYA) 52.5 ft (16 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.
+  length-sereno-2022:
+    prop: body_length
+    value: 13.53
+    source:
+      - { ref: src:sereno-2022-spinosaurus, loc: "Table 7, row 1", quote: "Total body length (sculling pose) 13.53" }
+      - { ref: src:sereno-2022-spinosaurus, loc: "Results, Spinosaurid skeletal models", quote: "Our skeletal reconstruction of an adult S. aegyptiacus is just under 14 m long" }
+    method: model
+    rank: preferred
+    note: >-
+      A digital flesh model of an adult, built on the neotype and referred bones. Preferred
+      over the list's figure as it was measured on a stated reconstruction; the paper says the
+      16 m estimate before it was too long.

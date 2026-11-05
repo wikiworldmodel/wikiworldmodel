@@ -1,0 +1,27 @@
+id: life/taxa/cordaitales
+kind: taxon
+summary: >-
+  Cordaites again, in the database's other branch for them: seeds, roots and wood named for
+  themselves.
+same_as: { pbdb: "txn:125749" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cordaitales, en: cordaites }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: cordaite
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: 25
+    source:
+      ref: src:wang-2012-wuda
+      loc: "Results"
+      quote: "many attaining heights of up to 25 m or more"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Cordaites in the Permian ash at Wuda, Inner Mongolia, which the paper says could grow taller.

@@ -1,0 +1,54 @@
+id: life/taxa/hystricognathi
+kind: taxon
+summary: >-
+  Guinea pigs, capybaras, chinchillas, porcupines and their relatives, with the largest rodents of
+  all.
+same_as: { pbdb: "txn:41997" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hystricognathi, en: "cavies, porcupines and their kin" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.2
+      mass_length: 37
+      behave: { group: [1, 6], habitat: any, poses: [stand, walk, graze] }
+      parts:
+        body: { at: [0, -0.06, 0.26], r: [0.15, 0.36, 0.17], sides: [10, 5] }
+        head: { at: [0, 0.34, 0.27], r: [0.09, 0.15, 0.1], sides: [8, 4] }
+        tail: null
+        fore: { near: false, from: [0.09, 0.17, 0.16], to: [0.1, 0.18, 0], r: 0.035 }
+        hind: { near: false, from: [0.1, -0.22, 0.18], to: [0.11, -0.19, 0], r: 0.045 }
+        ears: { type: lump, zl: true, mat: fur, near: true, mirror: true, sides: [5, 4], bands: [3, 2], at: [0.062, 0.29, 0.355], r: [0.012, 0.02, 0.024] }
+    unsourced: >-
+      A machine's reconstruction, from the capybara's account on the Animal Diversity Web:
+      barrel-shaped, sturdy and tailless. Only compared with its sheet, and coarse for the
+      many small members.
+  length:
+    prop: body_length
+    value: { lo: 0.2, hi: 1.34 }
+    source:
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Microcavia australis, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Microcavia australis 3.00 261.49 -999.00 200.00"
+      - ref: src:animal-diversity-web
+        loc: "account of Hydrochoerus hydrochaeris, Other Physical Features"
+        quote: "Range length 106 to 134 cm"
+    method: compilation
+    note: >-
+      The low end is head and body, without the short tail. The giant fossil dinomyids were
+      longer: no length of theirs was read.
+  mass:
+    prop: body_mass
+    value: { lo: 0.055, hi: 480 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Heterocephalus_glaber, column Mass.g (grams)"
+        quote: "Heterocephalus_glaber,Rodentia,Bathyergidae,Heterocephalus,glaber,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,55"
+      - ref: src:engelman-2022-largest-rodents
+        loc: "abstract"
+        quote: "480 kg for J. monesi"
+    method: compilation

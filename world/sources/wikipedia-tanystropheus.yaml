@@ -1,0 +1,16 @@
+id: src:wikipedia-tanystropheus
+type: database-record
+kind: review
+citation: >-
+  "Tanystropheus." Wikipedia, the free encyclopedia (English edition).
+snapshot: 2026-11-05
+title: Tanystropheus
+container: Wikipedia
+url: https://en.wikipedia.org/wiki/Tanystropheus
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited for a length because the papers giving it could not be read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-05; the quotation checked by script against its text.

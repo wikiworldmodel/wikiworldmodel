@@ -1,0 +1,76 @@
+id: life/taxa/varanidae
+kind: taxon
+summary: >-
+  Monitor lizards, Varanus and its relatives, from a few centimetres to the Komodo dragon.
+same_as: { pbdb: "txn:38035" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Varanidae", en: "monitor lizards" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      mass_length: 28
+      parts:
+        body:
+          rings:
+            - [-1.42, 0.68, 0.6, 0.004]
+            - [-1.2, 0.76, 0.56, 0.012]
+            - [-0.95, 0.86, 0.54, 0.024]
+            - [-0.7, 0.98, 0.52, 0.04]
+            - [-0.5, 1.12, 0.5, 0.058]
+            - [-0.34, 1.28, 0.48, 0.09]
+            - [-0.2, 1.42, 0.46, 0.112]
+            - [-0.08, 1.48, 0.46, 0.118]
+            - [0.03, 1.48, 0.5, 0.104]
+            - [0.11, 1.42, 0.6, 0.07]
+          neck: { r: 0.04, steps: [3, 1] }
+        hind: { points: [[0.08, -0.36, 0.8, 0.042], [0.2, -0.33, 0.64, 0.03], [0.24, -0.38, 0.1, 0.022], [0.29, -0.33, 0.03, 0.016]] }
+        fore: { points: [[0.08, 0.08, 0.9, 0.034], [0.19, 0.07, 0.66, 0.026], [0.22, 0.12, 0.1, 0.018], [0.26, 0.18, 0.03, 0.014]] }
+        head:
+          at:
+            stand: { y: 0.3, z: 1.72, pitch: 0.06 }
+            alert: { y: 0.28, z: 2.2, pitch: -0.02 }
+            low: { y: 0.33, reach: 0.2, clear: 0.1, pitch: 0.4 }
+          rings:
+            - [-0.03, 0, 0.04, 0.044]
+            - [0.03, 0.002, 0.048, 0.044]
+            - [0.1, -0.006, 0.036, 0.03]
+            - [0.17, -0.012, 0.018, 0.016]
+            - [0.21, -0.016, 0.008, 0.008]
+        jaw: { rings: [[0.03, -0.034, 0.036, 0.011], [0.12, -0.032, 0.024, 0.009], [0.19, -0.024, 0.008, 0.004]] }
+        eyes: { at: [0.034, 0.07, 0.016], r: 0.012 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Monitors, Goannas, and Earless Monitors (Varanidae)\""
+      quote: "Small to very large lizards with long necks and forked tongues"
+    note: >-
+      The neck follows this; the rest is the plan's, reshaped by a machine. No skeletal figure was
+      looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.1164, hi: 1.57 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Varanus sparnus, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "23.98833 NA 116.4"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Varanus komodoensis, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "109647.8 NA 1570"
+    method: compilation
+    note: >-
+      From snout to vent, as the plan's length is. The total length is about twice that: 230–3,100
+      mm in Grzimek's Size row.
+  mass:
+    prop: body_mass
+    value: { lo: 0.024, hi: 109.6 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Varanus sparnus, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "23.98833 NA 116.4"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Varanus komodoensis, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "109647.8 NA 1570"
+    method: compilation

@@ -1,0 +1,26 @@
+id: src:jones-2009-pantheria
+type: dataset
+kind: compilation
+citation: >-
+  Jones, K.E., Bielby, J., Cardillo, M., Fritz, S.A., O'Dell, J., Orme, C.D.L., Safi, K., Sechrest, W.,
+  Boakes, E.H., Carbone, C., Connolly, C., Cutts, M.J., Foster, J.K., Grenyer, R., Habib, M., Plaster,
+  C.A., Price, S.A., Rigby, E.A., Rist, J., Teacher, A., Bininda-Emonds, O.R.P., Gittleman, J.L., Mace,
+  G.M. & Purvis, A. (2009). PanTHERIA: a species-level database of life history, ecology, and
+  geography of extant and recently extinct mammals. Ecology 90, 2648. Ecological Archives E090-184-D1.
+authors:
+  - "Jones, K.E."
+  - "Bielby, J."
+  - "Purvis, A."
+published: 2009
+title: "PanTHERIA: a species-level database of life history, ecology, and geography of extant and recently extinct mammals"
+container: "Ecology 90, 2648"
+url: https://esapubs.org/archive/ecol/E090/184/
+reliability: >-
+  Its adult head-and-body lengths and masses are means compiled from the literature, in millimetres
+  and grams, and -999.00 means no value. A length here does not include the tail. A few rows look
+  doubtful beside other sources. The dataset is cited, and not imported into the build.
+verified:
+  by: machine:claude-code
+  how: >-
+    PanTHERIA_1-0_WR05_Aug2008.txt fetched from the journal's archive; the rows quoted checked by
+    script against it, with its tabs read as spaces. The citation is from the archive's page.

@@ -1,0 +1,69 @@
+id: life/taxa/hyaenidae
+kind: taxon
+summary: >-
+  Hyenas.
+same_as: { pbdb: "txn:41020" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hyaenidae, en: "hyenas" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.36
+      mass_length: 17
+      behave: { group: [1, 8], habitat: open, poses: [walk, walk, stand, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.47, 0.66, 0.54, 0.012]
+            - [-0.42, 0.78, 0.64, 0.02]
+            - [-0.37, 0.92, 0.76, 0.022]
+            - [-0.33, 1.0, 0.72, 0.046]
+            - [-0.25, 1.02, 0.56, 0.066]
+            - [-0.13, 1.1, 0.54, 0.072]
+            - [0.0, 1.22, 0.56, 0.076]
+            - [0.1, 1.34, 0.62, 0.072]
+            - [0.18, 1.38, 0.76, 0.058]
+          neck: { r: 0.05, steps: [3, 1] }
+        hind: { y: -0.27, x: 0.046, top: 0.78, knee: 0.54, ankle: 0.26, r: 0.046 }
+        fore: { y: 0.12, x: 0.05, top: 0.92, r: 0.03 }
+        head:
+          at:
+            stand: { y: 0.27, z: 1.34, pitch: 0.2 }
+            alert: { y: 0.27, z: 1.5, pitch: 0.05 }
+            low: { y: 0.31, reach: 0.16, pitch: 0.95 }
+          rings:
+            - [-0.012, 0.006, 0.04, 0.044]
+            - [0.03, 0.012, 0.05, 0.052]
+            - [0.075, 0.0, 0.038, 0.036]
+            - [0.12, -0.014, 0.024, 0.024]
+            - [0.155, -0.02, 0.02, 0.016]
+        ears: { type: lump, from: null, to: null, near: true, at: [0.04, 0.012, 0.058], r: [0.016, 0.008, 0.022], bands: [3, 2], sides: [6, 4] }
+        eyes: { at: [0.036, 0.07, 0.024] }
+    unsourced: >-
+      A machine's reconstruction, from the family's account on the Animal Diversity Web: a
+      large head and forequarters larger than the hindquarters. Only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.95, hi: 1.5 }
+    source:
+      ref: src:animal-diversity-web
+      loc: "account of Crocuta crocuta, Physical Description"
+      quote: "The body length from head to tail is about 95 to 150 cm"
+    method: compilation
+    note: >-
+      The spotted hyena, standing for the family: no other length was read.
+  mass:
+    prop: body_mass
+    value: { lo: 10, hi: 63 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Proteles_cristata, column Mass.g (grams)"
+        quote: "Proteles_cristata,Carnivora,Hyaenidae,Proteles,cristata,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,10000"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Crocuta_crocuta, column Mass.g (grams)"
+        quote: "Crocuta_crocuta,Carnivora,Hyaenidae,Crocuta,crocuta,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,62999.9"
+    method: compilation

@@ -1,0 +1,43 @@
+id: life/taxa/gomphotheriidae
+kind: taxon
+summary: >-
+  Proboscideans with long lower jaws, many with four tusks.
+same_as: { pbdb: "txn:43240" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Gomphotheriidae, en: "gomphotheres" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.44
+      parts:
+        jaw: { type: tube, on: head, sides: [8, 4], rings: [[0.08, -0.07, 0.042, 0.03], [0.16, -0.1, 0.036, 0.026], [0.24, -0.135, 0.028, 0.02]] }
+        nether: { type: spike, on: head, mirror: true, mat: horn, tint: 205, sides: [6, 4], from: [0.018, 0.23, -0.13], to: [0.022, 0.31, -0.155], r: 0.01 }
+        tusks:
+          points:
+            - [0.038, 0.1, -0.03, 0.013]
+            - [0.05, 0.17, -0.07, 0.012]
+            - [0.056, 0.25, -0.1, 0.0095]
+            - [0.054, 0.32, -0.1, 0.006]
+            - [0.05, 0.37, -0.09, 0.002]
+    unsourced: >-
+      A machine's reconstruction, from the photograph of the Gomphotherium mount at the
+      American Museum of Natural History on Wikipedia's page for the genus: a long lower jaw
+      with its own short tusks.
+  mass:
+    prop: body_mass
+    value: { lo: 5500, hi: 6213 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Notiomastodon_platensis, column Mass.g (grams)"
+        quote: "Notiomastodon_platensis,Proboscidea,Gomphotheriidae,Notiomastodon,platensis,1,0,0,0,Imputed,PHYLACINE 1.2.1,5500000"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Cuvieronius_hyodon, column Mass.g (grams)"
+        quote: "Cuvieronius_hyodon,Proboscidea,Gomphotheriidae,Cuvieronius,hyodon,1,0,0,0,Imputed,PHYLACINE 1.2.1,6213000"
+    method: compilation
+    note: >-
+      The two gomphotheres of the late Quaternary in PHYLACINE; earlier members may differ,
+      and no figure for them is cited here.

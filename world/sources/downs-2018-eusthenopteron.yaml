@@ -1,0 +1,20 @@
+id: src:downs-2018-eusthenopteron
+type: publication
+kind: measurement
+citation: >-
+  Downs, J.P., Daeschler, E.B., Long, A.M. & Shubin, N.H. (2018). Eusthenopteron jenkinsi sp.
+  nov. (Sarcopterygii, Tristichopteridae) from the Upper Devonian of Nunavut, Canada, and a
+  review of Eusthenopteron taxonomy. Breviora 562, 1–24.
+authors:
+  - "Downs, J.P."
+  - "Daeschler, E.B."
+  - "Long, A.M."
+  - "Shubin, N.H."
+published: 2018
+title: "Eusthenopteron jenkinsi sp. nov. (Sarcopterygii, Tristichopteridae) from the Upper Devonian of Nunavut, Canada, and a review of Eusthenopteron taxonomy"
+container: "Breviora 562, 1–24"
+url: https://archive.org/details/biostor-283282
+verified:
+  by: machine:claude-code
+  how: >-
+    The Internet Archive's OCR text read; quotes checked by script against it.

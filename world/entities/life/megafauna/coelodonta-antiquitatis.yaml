@@ -67,6 +67,52 @@ claims:
     note: >-
       The extinction in simulations of climate, people and rhinoceroses, validated against fossils
       and ancient DNA: a reconstruction, not a date on any remains.
+  body-plan:
+    prop: body_plan
+    value: heavy-ungulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.4
+      parts:
+        body:
+          mat: fur
+          rings:
+            - [-0.5, 0.6, 0.56, 0.005]
+            - [-0.485, 0.76, 0.71, 0.008]
+            - [-0.462, 0.92, 0.85, 0.012]
+            - [-0.435, 1.0, 0.72, 0.04]
+            - [-0.4, 1.03, 0.54, 0.09]
+            - [-0.32, 1.08, 0.38, 0.118]
+            - [-0.2, 1.1, 0.32, 0.134]
+            - [-0.06, 1.16, 0.3, 0.14]
+            - [0.06, 1.3, 0.32, 0.13]
+            - [0.15, 1.34, 0.4, 0.106]
+            - [0.21, 1.2, 0.5, 0.08]
+          neck: { r: 0.066, steps: [3, 1] }
+        head:
+          mat: fur
+          at:
+            stand: { y: 0.26, z: 0.8, pitch: 0.55 }
+            alert: { y: 0.26, z: 0.96, pitch: 0.34 }
+            low: { y: 0.28, reach: 0.235, pitch: 1.0 }
+        hind: { mat: fur }
+        fore: { mat: fur }
+        nasal: { type: spike, on: head, mat: horn, tint: 70, sides: [8, 4], from: [0, 0.19, 0.022], to: [0, 0.27, 0.27], r: 0.034 }
+        frontal: { type: spike, on: head, mat: horn, tint: 70, sides: [7, 4], from: [0, 0.1, 0.05], to: [0, 0.11, 0.14], r: 0.026 }
+    unsourced: >-
+      A machine's reconstruction: the form written for Rhinocerotidae, with the long front
+      horn, the hump over the shoulders, the head carried low and the shaggy coat usually
+      shown for the woolly rhinoceros; only compared with its sheet.
+  mass-mammal-forms:
+    prop: body_mass
+    value: 2692.55
+    source:
+      ref: src:faurby-2020-phylacine
+      loc: "Data/Traits/Trait_data.csv, row Coelodonta_antiquitatis, column Mass.g (grams)"
+      quote: "Coelodonta_antiquitatis,Perissodactyla,Rhinocerotidae,Coelodonta,antiquitatis,1,0,0,0,Imputed,PHYLACINE 1.2.1,2692552"
+    method: compilation
 relations:
   parent:
     rel: descends-from

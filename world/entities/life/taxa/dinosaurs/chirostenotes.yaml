@@ -1,0 +1,28 @@
+id: life/taxa/chirostenotes
+kind: taxon
+summary: >-
+  Chirostenotes, a long-legged caenagnathid of the Campanian of Alberta.
+same_as: { pbdb: "txn:38555" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Chirostenotes }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction: the plan oviraptorosaur looked at against "Chirostenotes Size
+      Comparison.svg" on Wikimedia Commons, and nothing changed from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 2
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 15, Elmisaurids"
+      quote: "Chirostenotes narrow-handed one Late Cretaceous (80-72.8 MYA) 6.6 ft (2 m)?"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

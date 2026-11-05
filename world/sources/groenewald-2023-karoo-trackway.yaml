@@ -1,0 +1,23 @@
+id: src:groenewald-2023-karoo-trackway
+type: publication
+kind: measurement
+citation: >-
+  Groenewald, D.P., Krüger, A., Day, M.O., Penn-Clarke, C.R., Hancox, P.J. & Rubidge, B.S.
+  (2023). Unique trackway on Permian Karoo shoreline provides evidence of temnospondyl locomotory
+  behaviour. PLoS ONE 18(3), e0282354.
+authors:
+  - "Groenewald, D.P."
+  - "Krüger, A."
+  - "Day, M.O."
+  - "Penn-Clarke, C.R."
+  - "Hancox, P.J."
+  - "Rubidge, B.S."
+published: 2023
+title: "Unique trackway on Permian Karoo shoreline provides evidence of temnospondyl locomotory behaviour"
+container: "PLoS ONE 18(3), e0282354"
+doi: 10.1371/journal.pone.0282354
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC10057796); quotes checked by script against it.

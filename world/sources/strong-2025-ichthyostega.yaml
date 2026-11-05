@@ -1,0 +1,20 @@
+id: src:strong-2025-ichthyostega
+type: publication
+kind: model
+citation: >-
+  Strong, C.R.C., Bishop, P.J., Hutchinson, J.R. & Pierce, S.E. (2025). Digital volumetric
+  modeling reveals unique body plan experimentation in the Devonian tetrapod Ichthyostega.
+  iScience 28(6), 112486.
+authors:
+  - "Strong, C.R.C."
+  - "Bishop, P.J."
+  - "Hutchinson, J.R."
+  - "Pierce, S.E."
+published: 2025
+title: "Digital volumetric modeling reveals unique body plan experimentation in the Devonian tetrapod Ichthyostega"
+container: "iScience 28(6), 112486"
+doi: 10.1016/j.isci.2025.112486
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read via Europe PMC (PMC12225901); quotes checked by script against it.

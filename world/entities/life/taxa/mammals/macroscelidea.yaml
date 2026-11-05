@@ -1,0 +1,53 @@
+id: life/taxa/macroscelidea
+kind: taxon
+summary: >-
+  Elephant shrews, with long flexible snouts and long legs, and the extinct groups the database
+  sets with them.
+same_as: { pbdb: "txn:40297" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Macroscelidea, en: "elephant shrews and their kin" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.13
+      parts:
+        snout: { type: spike, zl: true, mat: fur, sides: [5, 4], from: [0, 0.33, 0.16], to: [0, 0.47, 0.15], r: 0.022 }
+        ears: { type: lump, zl: true, mat: fur, near: true, mirror: true, sides: [6, 4], bands: [3, 2], at: [0.05, 0.25, 0.21], r: [0.012, 0.024, 0.04] }
+        hind: { from: [0.077, -0.16, 0.13], to: [0.0924, -0.1, 0] }
+        fore: { from: [0.077, 0.14, 0.13], to: [0.0924, 0.15, 0] }
+        body: { at: [0, 0, 0.19] }
+        head: { at: [0, 0.26, 0.18] }
+        tail: { from: [0, -0.2, 0.17], to: [0, -0.6, 0.06] }
+    unsourced: >-
+      A machine's reconstruction, from the account of elephant shrews on the Animal Diversity
+      Web: elongated flexible snouts. Only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.11, hi: 0.53 }
+    source:
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Macroscelides proboscideus, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Macroscelides proboscideus 2.00 38.64 -999.00 112.96"
+      - ref: src:animal-diversity-web
+        loc: "account of Rhynchocyon chrysopygus, Physical Description"
+        quote: "Total Length: 526mm"
+    method: compilation
+    note: >-
+      The low end is head and body without the tail; the high end is the whole animal. The
+      living elephant shrews stand for the order as the database has it, with its extinct
+      apheliscids.
+  mass:
+    prop: body_mass
+    value: { lo: 0.027, hi: 0.711 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Macroscelides_micus, column Mass.g (grams)"
+        quote: "Macroscelides_micus,Macroscelidea,Macroscelididae,Macroscelides,micus,1,0,0,0,Imputed,PHYLACINE 1.2.1,27"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Rhynchocyon_udzungwensis, column Mass.g (grams)"
+        quote: "Rhynchocyon_udzungwensis,Macroscelidea,Macroscelididae,Rhynchocyon,udzungwensis,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,711"
+    method: compilation

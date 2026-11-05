@@ -1,0 +1,22 @@
+id: life/taxa/araneae
+kind: taxon
+summary: >-
+  The spiders.
+same_as: { pbdb: "txn:57473" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Araneae, en: "spiders" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.0005, hi: 0.09 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. spider, Size range"
+        quote: "Spiders range in body length from 0.5 to about 90 mm (0.02–3.5 inches)."
+    method: compilation
+    note: >-
+      An encyclopedia's numbers, cited for lack of a work that could be read. The form's legs are its own, beyond this
+      length.

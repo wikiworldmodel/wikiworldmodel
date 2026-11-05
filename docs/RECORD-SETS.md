@@ -339,6 +339,32 @@ A reviewer should look at these first:
 - The Parthenon sculptures and the Pergamon Altar moved over years: they have ranges, and the marker jumps at the midpoint.
 - Museums' pages (British Museum, UNESCO, New York City Parks, the Met) refused direct access and were read as Wayback copies.
 
+### The first forms
+
+Written by agents, one to each branch of the tree of life, for the [seventh slice](SEVENTH-SLICE.md). All of it is `proposed`, and a form is
+a machine's reconstruction unless its claim cites a source. Most forms were drawn from published skeletal figures and silhouettes that an agent looked
+at; a few from memory, which their claims say. A reviewer should look at a form's sheet (`npm run world -- form-sheet <taxon>`) next to a skeletal drawing.
+
+- **Sizes are mostly whole-group figures.** A clade's range stands for every member with no size of its own, so one wrong end moves many taxa. Many
+  rest on a popular reference: for dinosaurs Holtz's genus list, whose lengths run high for some (*Diplodocus* 30 m, *Allosaurus* 12 m); and for much else Britannica or
+  Wikipedia, each saying so. Wikipedia is 41 of the 114 citations for early tetrapods and fish, and many of the upper ends for mammals. PanTHERIA's lengths for mammals leave out tails.
+- **What has no size, and so is not drawn or takes a range from far above:** among dinosaurs, *Nyasasaurus*, and *Richardoestesia* and *Paronychodon* take a clade's range. Among mammals, Hyopsodontidae (1,226
+  rows), Tillodontia, Apatotheria, Cimolestidae, pangolins, aardvarks and Mesozoic stems. Among plants, *Cooksonia*, liverworts, *Sphenophyllum*, Czekanowskiales, Caytoniales,
+  Voltziales and Lycopsida take the node above's. Among insects, Palaeodictyopterida, Grylloblattodea and other stem groups take Insecta's, and giant fossil scorpions have none of their own.
+  Tetrapoda and Amniota have no plan on purpose: one would draw every unwritten reptile and mammal as a stem tetrapod.
+- **Values to doubt:** Ichthyostegidae's 1.5 m looks far too long for its 4.4 kg. Therocephalia's lower end is an agent's own arithmetic, and says so. The griffinfly's 410 mm is from Guinness. Blattaria's range is of
+  forewings. Freshwater mollusc families rest on British species. Walchians borrow living small conifers' heights, peltasperms *Dicroidium*'s 10 m and other seed ferns *Medullosa*'s, and each says it is a stand-in.
+- **Spores and pollen:** 4,920 rows of them hang on Plantae, which stands in as a low plant: they say something grew, and little of what.
+- **Mass or length, not both:** multituberculates, sparassodonts, hyaenodonts and oxyaenids have mass only, and oreodonts length only. The other follows from the plan's shape.
+- **Reptiles and birds:** Squamata has no size on purpose, so that the mosasaurs filed directly under it, not all flagged marine, are not drawn on land; a lizard's size comes
+  from the groups within it, and those lengths are snout to vent, as the plan's length is. Pterosaurs have mass only. Proterochampsia, Younginiformes and Protorothyrididae had no size an agent could
+  source, and are not drawn. Some sizes rest on Wikipedia. Confuciusornithiformes hang from Avialae and not where the database files them, because Aves here is the crown group, and its dates would squeeze
+  theirs: the relation's note says so. The database flags most crocodiles and pterosaurs as marine, so a flag is now refused only for what does not keep to the air, the water's edge or wet ground.
+- **Some megafauna repeat their forms.** Eleven records in `world/entities/life/megafauna/` hang directly on Mammalia, so they could not inherit from the clade nodes written since.
+
+What agents found the form language lacks, for the next version of it: a spike that curves; a foreleg with an elbow and a wrist, a human leg and a flat foot (`digitigrade` bends at fixed places); parts that follow the neck, such as a mane;
+a row that is not straight; a forking `tuft`, a swollen foot to a stem, a liverwort's thallus; a wing given by its span, and a body that bends sideways; and a depth for what swims, as fish are listed and not drawn.
+
 ### Set 16: day length and the Moon
 
 - 21 measurements from the Moodies Group (3.22 Ga) to today, 13 with the Earth–Moon distance, as records; the series are read

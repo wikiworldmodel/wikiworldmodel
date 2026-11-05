@@ -1,0 +1,19 @@
+id: src:pott-takimoto-2025-ohaniella
+type: publication
+kind: measurement
+citation: >-
+  Pott, C. & Takimoto, H. (2025). Ohaniella gen. nov., a new whole-plant bennettite from the Oxfordian
+  (Upper Jurassic) Tochikubo Formation of Shidazawa, Fukushima, northeast Japan. Paleontological
+  Research 29, 316–331.
+authors:
+  - "Pott, C."
+  - "Takimoto, H."
+published: 2025
+title: "Ohaniella gen. nov., a new whole-plant bennettite from the Oxfordian (Upper Jurassic) Tochikubo Formation of Shidazawa, Fukushima, northeast Japan"
+container: Paleontological Research 29, 316–331
+doi: 10.2517/prpsj.250010
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from J-STAGE's HTML of the open-access article; the part cited was read, and
+    quotes checked by script against that page's text.

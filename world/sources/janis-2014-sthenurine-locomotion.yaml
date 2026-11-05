@@ -1,0 +1,19 @@
+id: src:janis-2014-sthenurine-locomotion
+type: publication
+kind: measurement
+citation: >-
+  Janis, C.M., Buttrill, K. & Figueirido, B. (2014). Locomotion in extinct giant kangaroos: were
+  sthenurines hop-less monsters? PLoS ONE 9(10), e109888.
+authors:
+  - "Janis, C.M."
+  - "Buttrill, K."
+  - "Figueirido, B."
+published: 2014
+title: "Locomotion in extinct giant kangaroos: were sthenurines hop-less monsters?"
+container: "PLoS ONE 9(10), e109888"
+doi: 10.1371/journal.pone.0109888
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC4198187). Quotes checked by script against the
+    text retrieved, after normalizing whitespace.

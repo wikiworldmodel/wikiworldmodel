@@ -1,0 +1,21 @@
+id: life/taxa/mantellisaurus
+kind: taxon
+summary: >-
+  Mantellisaurus, a lightly built iguanodont of the Early Cretaceous of England.
+same_as: { pbdb: "txn:104634" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Mantellisaurus }
+    unsourced: The classification's own name.
+  length-holtz-2012:
+    prop: body_length
+    value: 8
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 44, Primitive Styracosternans"
+      quote: "Mantellisaurus [early paleontologists Dr. Gideon & Early Cretaceous (125-120 MYA) 26.2 ft (8 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

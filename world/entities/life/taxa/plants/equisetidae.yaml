@@ -1,0 +1,26 @@
+id: life/taxa/equisetidae
+kind: taxon
+summary: >-
+  Horsetails and their relatives. Calamites and Annularia say otherwise for themselves.
+same_as: { pbdb: "txn:465746" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Equisetidae, en: horsetails }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: horsetail
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 0.2, hi: 1.5 }
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 2, s.v. Equisetum laevigatum"
+      quote: "usually unbranched, 20--150 cm"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      A living horsetail: a modern relative, not any fossil.

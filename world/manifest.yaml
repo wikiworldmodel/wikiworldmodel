@@ -304,6 +304,39 @@ datasets:
       bytes: 961866
       format: json
 
+  src:pbdb-land-2026-11-05:
+    type: dataset
+    kind: compilation
+    title: The Paleobiology Database, the fossils of the land
+    citation: >-
+      The Paleobiology Database. Regular occurrences named to a genus or better, from terrestrial environments, 541 Ma to the
+      present, and the taxa they name with all their parents, read through the data service (data1.2) on 5 November 2026.
+    version: Data service export of 2026-11-05, kept in world/snapshots with the queries in its own `query` field
+    container: The Paleobiology Database
+    url: https://paleobiodb.org/
+    credit: Fossils of the land from the Paleobiology Database
+    license: CC0-1.0
+    license_note: >-
+      The data service's datainfo header, read on 5 November 2026, states "Data License: Creative Commons CC0"
+      (https://creativecommons.org/publicdomain/zero/1.0/). Earlier downloads gave CC BY 4.0, and the panels credit it either way.
+    reliability: >-
+      A compilation of the literature by many contributors, with no claim to be complete: most places and times have no row. A
+      row's age is that of the interval its collection is assigned to. Its classification is the database's own. Its coverage
+      leans heavily to Europe and North America. Ichnotaxa and form taxa, such as most pollen, are left out by the query. The
+      primary references were not read here.
+    note: >-
+      No stable URL serves an extract of a changing database, so the snapshot is kept in the repository until there is a blob
+      store. It is by far the largest file there.
+    verified:
+      by: machine:claude-code
+      how: Exported from the data service with the queries in the snapshot, by `npm run world -- pbdb-land`.
+    import: { as: pbdb-land }
+    fetch:
+      url: repo:world/snapshots/pbdb-land-2026-11-05.json
+      sha256: 3369bbcac3693211763ca953907dd9d891c5bf413d523b0b15ae000237d8a8a1
+      bytes: 15393592
+      format: json
+
   src:ohm-rome-2026-11-01:
     type: dataset
     kind: compilation

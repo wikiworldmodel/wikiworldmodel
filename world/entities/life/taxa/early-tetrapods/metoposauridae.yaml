@@ -1,0 +1,42 @@
+id: life/taxa/metoposauridae
+kind: taxon
+summary: >-
+  Metoposaurids: stereospondyls of the Late Triassic, in great numbers in rivers and lakes, with very broad, flat heads with
+  eyes set well forward, and tiny limbs.
+same_as: { pbdb: "txn:37162" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Metoposauridae, en: metoposaurids }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          rings:
+            - [-0.014, 0.002, 0.094, 0.018]
+            - [0.04, 0.008, 0.118, 0.022]
+            - [0.11, 0.006, 0.112, 0.02]
+            - [0.18, 0.002, 0.092, 0.017]
+            - [0.235, -0.002, 0.062, 0.013]
+            - [0.265, -0.004, 0.032, 0.009]
+        jaw:
+          rings:
+            - [0.0, -0.016, 0.098, 0.008]
+            - [0.12, -0.018, 0.104, 0.007]
+            - [0.22, -0.014, 0.066, 0.006]
+            - [0.262, -0.01, 0.028, 0.004]
+        eyes: { at: [0.042, 0.175, 0.019], r: 0.01 }
+    unsourced: >-
+      A machine's reconstruction: a wider head with the eyes well forward, from the description of metoposaurids in general and
+      with no skeletal figure looked at: a reviewer should compare it with Sulej (2007)'s Metoposaurus.
+  length:
+    prop: body_length
+    value: { lo: 1.5, hi: 2.5 }
+    source:
+      ref: src:kalita-2022-metoposaurus
+      loc: "section 4.3.1, Creating a ballast"
+      quote: "the average length of metoposaurids are within 1.5–2.5 m (Dutuit, 1976)"
+    method: expert-estimate

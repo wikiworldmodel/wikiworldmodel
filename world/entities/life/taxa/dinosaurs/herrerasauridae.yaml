@@ -1,0 +1,41 @@
+id: life/taxa/herrerasauridae
+kind: taxon
+summary: >-
+  The herrerasaurs, large-headed hunters of the Late Triassic and among the earliest dinosaurs.
+same_as: { pbdb: "txn:38510" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Herrerasauridae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          at:
+            stand: { y: 0.29, z: 1.22, pitch: 0.08 }
+          rings:
+            - [-0.006, 0, 0.016, 0.022]
+            - [0.03, 0.002, 0.02, 0.029]
+            - [0.07, -0.004, 0.014, 0.021]
+            - [0.1, -0.008, 0.009, 0.012]
+            - [0.125, -0.01, 0.005, 0.005]
+        jaw: { rings: [[0.015, -0.024, 0.014, 0.008], [0.075, -0.024, 0.01, 0.006], [0.12, -0.016, 0.005, 0.003]] }
+        eyes: { at: [0.018, 0.024, 0.012], r: 0.005 }
+        arms: { points: [[0.034, 0.145, 0.8, 0.012], [0.04, 0.13, 0.54, 0.009], [0.036, 0.19, 0.4, 0.006], [0.033, 0.225, 0.34, 0.004]] }
+        claws: { from: [0.033, 0.222, 0.345], to: [0.031, 0.25, 0.24], r: 0.0036 }
+    unsourced: >-
+      A machine's reconstruction: a longer, deeper head and larger hand claws than the plan, from
+      the silhouette "Herrerasaurus scale.png" on Wikimedia Commons (specimens PVL 2566 and PVSJ
+      53).
+  length:
+    prop: body_length
+    value: { lo: 2, hi: 4 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 2, Herrerasaurs", quote: "Staurikosaurus Southern Cross reptile Late Triassic (235-228 MYA) 6.6 ft (2 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 2, Herrerasaurs", quote: "Herrerasaurus [Argentine farmer Victorino] Late Triassic (235-228 MYA) 13.1ft (4 m)" }
+    method: compilation
+    note: >-
+      The range across the genera listed there, standing for any member with no length of its own.

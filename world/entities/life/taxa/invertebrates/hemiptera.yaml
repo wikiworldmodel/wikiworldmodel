@@ -1,0 +1,32 @@
+id: life/taxa/hemiptera
+kind: taxon
+summary: >-
+  The bugs, cicadas, hoppers and aphids, with beaks for sucking. The body drawn is a true bug's; cicadas, hoppers and
+  aphids change it.
+same_as: { pbdb: "txn:94230" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hemiptera, en: "true bugs and their relatives" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: bug
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, after Britannica's account of true bugs (s.v. heteropteran: an X-shaped
+      design on the back, formed by the wings at rest) and general knowledge; no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.0006, hi: 0.11 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Hemiptera Coccoidea\""
+        quote: "Hemiptera Coccoidea 8000 0.6 35 (Arnett 2000)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Hemiptera Belostomatidae\""
+        quote: "Hemiptera Belostomatidae 150 9 110 (Schuh & Slater 1995)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this order, its millimetres given in metres.

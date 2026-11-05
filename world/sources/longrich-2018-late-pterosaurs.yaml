@@ -1,0 +1,18 @@
+id: src:longrich-2018-late-pterosaurs
+type: publication
+kind: measurement
+citation: >-
+  Longrich, N.R., Martill, D.M. & Andres, B. (2018). Late Maastrichtian pterosaurs from North Africa and mass extinction of
+  Pterosauria at the Cretaceous-Paleogene boundary. PLOS Biology 16(3), e2001663.
+authors:
+  - "Longrich, N.R."
+  - "Martill, D.M."
+  - "Andres, B."
+published: 2018
+title: "Late Maastrichtian pterosaurs from North Africa and mass extinction of Pterosauria at the Cretaceous-Paleogene boundary"
+container: PLOS Biology 16(3), e2001663
+doi: 10.1371/journal.pbio.2001663
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text (PMC5849296) read via Europe PMC (fullTextXML). Quotes checked by script against that text. Metadata from Crossref.

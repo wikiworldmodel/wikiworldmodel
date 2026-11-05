@@ -1,0 +1,22 @@
+id: life/taxa/tenontosaurus
+kind: taxon
+summary: >-
+  Tenontosaurus, a long-tailed iguanodont of the Early Cretaceous of western North America, often
+  found with Deinonychus.
+same_as: { pbdb: "txn:38741" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Tenontosaurus }
+    unsourced: The classification's own name.
+  length-holtz-2012:
+    prop: body_length
+    value: 7
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 43, Primitive Iguanodontians"
+      quote: "Tenontosaurus tendon reptile Early Cretaceous (118-110MYA) 23 ft (7 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

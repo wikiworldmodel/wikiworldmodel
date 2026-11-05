@@ -1,0 +1,40 @@
+description: >-
+  A huge-bellied early synapsid plant-eater: a barrel of ribs, a tiny head with an overhanging snout, stout sprawling legs and a long tail.
+kind: animal
+hip: 0.2
+behave: { group: [1, 4], habitat: open, poses: [graze, stand, walk, rest] }
+parts:
+  body:
+    type: trunk
+    rings:
+      - [-0.54, 0.48, 0.42, 0.003]
+      - [-0.44, 0.54, 0.42, 0.008]
+      - [-0.34, 0.64, 0.42, 0.015]
+      - [-0.25, 0.78, 0.42, 0.026]
+      - [-0.17, 0.98, 0.38, 0.044]
+      - [-0.1, 1.24, 0.26, 0.09]
+      - [-0.01, 1.46, 0.18, 0.13]
+      - [0.09, 1.5, 0.18, 0.136]
+      - [0.19, 1.38, 0.28, 0.106]
+      - [0.26, 1.2, 0.56, 0.058]
+    neck: { r: 0.03, steps: [3, 1] }
+  thigh: { type: chain, mirror: true, sides: [6, 3], points: [[0.07, -0.11, 0.8, 0.04], [0.125, -0.09, 0.72, 0.033], [0.175, -0.07, 0.62, 0.027]] }
+  shin: { type: pillar, y: -0.07, x: 0.175, top: 0.64, r: 0.025, swing: 0.035 }
+  hindfoot: { type: lump, near: true, not: [walk, fly], mirror: true, at: [0.185, -0.05, 0.04], r: [0.032, 0.05, 0.009], sides: [8, 4], bands: [3, 2] }
+  arm: { type: chain, mirror: true, sides: [6, 3], points: [[0.07, 0.2, 0.8, 0.036], [0.125, 0.19, 0.72, 0.03], [0.17, 0.185, 0.6, 0.024]] }
+  forearm: { type: pillar, y: 0.185, x: 0.17, top: 0.62, r: 0.022, swing: 0.03, phase: 1 }
+  forefoot: { type: lump, near: true, not: [walk, fly], mirror: true, at: [0.18, 0.205, 0.04], r: [0.03, 0.044, 0.009], sides: [8, 4], bands: [3, 2] }
+  head:
+    type: head
+    at:
+      stand: { y: 0.31, z: 1.08, pitch: 0.1 }
+      alert: { y: 0.31, z: 1.28, pitch: -0.05 }
+      low: { y: 0.33, reach: 0.09, clear: 0.08, pitch: 0.8 }
+    rings:
+      - [-0.008, 0.002, 0.022, 0.024]
+      - [0.018, 0.006, 0.032, 0.032]
+      - [0.05, 0.006, 0.028, 0.028]
+      - [0.075, 0.008, 0.016, 0.017]
+      - [0.092, 0.006, 0.007, 0.008]
+  jaw: { type: tube, on: head, sides: [6, 4], rings: [[0.006, -0.026, 0.019, 0.008], [0.05, -0.028, 0.016, 0.007], [0.08, -0.018, 0.008, 0.005]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.024, 0.026, 0.024], r: 0.0065 }

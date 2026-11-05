@@ -1,0 +1,36 @@
+id: life/taxa/pseudosuchia
+kind: taxon
+summary: >-
+  The archosaurs closer to crocodiles than to birds. Most of those that are not crocodilians or
+  aetosaurs were big upright predators of the Triassic, the rauisuchians, so that is the body it
+  starts from.
+same_as: { pbdb: "txn:54991" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Pseudosuchia", en: "crocodile-line archosaurs" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: rauisuchian
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  posture:
+    prop: posture
+    value: quadruped
+    unsourced: "Which its Triassic predators were; an editorial classification, and a few kinds were two-legged."
+  length:
+    prop: body_length
+    value: { lo: 2, hi: 6.1 }
+    source:
+      - ref: src:weinbaum-2011-postosuchus-skull
+        loc: "p. 19"
+        quote: "ten smaller individuals (estimated length 2–3 meters)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Evolution of the Reptiles\""
+        quote: "had a more or less upright stance and grew up to 20 ft (6.1 m) in length"
+    method: expert-estimate
+    note: >-
+      Of the rauisuchians, standing for any of the group with no length of its own. Weinbaum also
+      speaks of lengths of at least 9 m (Alcober 2000), a figure later authors have doubted, and
+      which is not used here.

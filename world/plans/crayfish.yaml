@@ -1,0 +1,39 @@
+description: >-
+  A crayfish: a long hard carapace with a pointed beak and stalked eyes, a jointed tail ending in a fan, a great pair of claws
+  in front, four pairs of walking legs and long antennae. Its length is from the beak to the tail fan, without the claws.
+kind: animal
+hip: 0.21
+behave: { group: [1, 2], habitat: edge, poses: [stand, walk] }
+parts:
+  carapace:
+    type: tube
+    zl: true
+    mat: chitin
+    sides: [8, 4]
+    rings:
+      - [0, 0.47, 0.135, 0.012, 0.012]
+      - [0, 0.38, 0.14, 0.05, 0.045]
+      - [0, 0.26, 0.145, 0.085, 0.08]
+      - [0, 0.08, 0.15, 0.1, 0.09]
+      - [0, -0.03, 0.15, 0.096, 0.085]
+  tail:
+    type: tube
+    zl: true
+    mat: chitin
+    sides: [8, 4]
+    rings:
+      - [0, -0.03, 0.145, 0.085, 0.075]
+      - [0, -0.18, 0.13, 0.08, 0.065]
+      - [0, -0.31, 0.1, 0.066, 0.05]
+      - [0, -0.42, 0.065, 0.045, 0.028]
+  fan: { type: sheet, zl: true, mat: chitin, mirror: true, gap: 0.003, points: [[0, -0.41, 0.06], [0.11, -0.47, 0.04], [0.085, -0.55, 0.03], [0, -0.53, 0.03]] }
+  eyes: { type: spike, zl: true, near: true, mat: dark, mirror: true, sides: [3, 3], from: [0.022, 0.4, 0.165], to: [0.05, 0.45, 0.18], r: 0.012 }
+  antennae: { type: spike, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.03, 0.42, 0.13], to: [0.24, 1.02, 0.2], r: 0.006 }
+  arms: { type: chain, zl: true, mat: chitin, mirror: true, sides: [4, 3], points: [[0.07, 0.26, 0.085, 0.02], [0.17, 0.33, 0.095, 0.018], [0.2, 0.45, 0.095, 0.02]] }
+  hands: { type: lump, zl: true, mat: chitin, mirror: true, at: [0.205, 0.55, 0.095], r: [0.055, 0.1, 0.028], sides: [6, 3], bands: [3, 2] }
+  thumbs: { type: spike, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.235, 0.62, 0.095], to: [0.185, 0.76, 0.095], r: 0.02 }
+  fingers: { type: spike, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.165, 0.62, 0.095], to: [0.175, 0.76, 0.095], r: 0.018 }
+  leg-1: { type: chain, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.07, 0.18, 0.08, 0.011], [0.18, 0.24, 0.11, 0.009], [0.27, 0.3, 0.004, 0.003]] }
+  leg-2: { type: chain, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.08, 0.11, 0.075, 0.011], [0.2, 0.14, 0.11, 0.009], [0.31, 0.16, 0.004, 0.003]] }
+  leg-3: { type: chain, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.08, 0.05, 0.07, 0.011], [0.2, 0.03, 0.11, 0.009], [0.31, 0.01, 0.004, 0.003]] }
+  leg-4: { type: chain, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.075, -0.01, 0.07, 0.011], [0.18, -0.07, 0.11, 0.009], [0.28, -0.13, 0.004, 0.003]] }

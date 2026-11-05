@@ -1,0 +1,39 @@
+description: >-
+  A horned, frilled, four-legged plant-eating dinosaur.
+kind: animal
+hip: 0.32
+behave: { group: [1, 5], habitat: open, poses: [graze, graze, stand, walk, alert] }
+parts:
+  body:
+    type: trunk
+    rings:
+      - [-0.52, 0.2, 0.17, 0.006]
+      - [-0.44, 0.36, 0.22, 0.026]
+      - [-0.34, 0.6, 0.28, 0.052]
+      - [-0.24, 0.87, 0.32, 0.08]
+      - [-0.14, 1.07, 0.32, 0.112]
+      - [-0.05, 1.14, 0.28, 0.14]
+      - [0.05, 1.12, 0.26, 0.15]
+      - [0.14, 1.02, 0.3, 0.135]
+      - [0.2, 0.9, 0.38, 0.105]
+    neck: { r: 0.066, steps: [3, 1] }
+  hind: { type: pillar, y: -0.11, x: 0.112, top: 0.74, r: 0.064, swing: 0.05 }
+  fore: { type: pillar, y: 0.15, x: 0.122, top: 0.62, r: 0.05, swing: 0.05, phase: 1 }
+  head:
+    type: head
+    at:
+      stand: { y: 0.25, z: 0.68, pitch: 0.16 }
+      alert: { y: 0.24, z: 0.8, pitch: -0.1 }
+      low: { y: 0.27, reach: 0.28, pitch: 0.62 }
+    rings:
+      - [-0.01, 0.0, 0.06, 0.06]
+      - [0.06, 0.012, 0.074, 0.08]
+      - [0.12, 0.0, 0.062, 0.066]
+      - [0.18, -0.02, 0.038, 0.046]
+      - [0.23, -0.034, 0.02, 0.028]
+    thin: false
+  beak: { type: tube, on: head, mat: horn, tint: 90, sides: [8, 4], thin: false, rings: [[0.23, -0.034, 0.019, 0.026], [0.27, -0.052, 0.002, 0.004]] }
+  frill: { type: fan, on: head, tint_add: 40, at: [0, 0.05], dir: [-0.62, 0.78], r: 0.2, scallop: 0.045, scallops: 18 }
+  brow: { type: spike, on: head, mirror: true, tint: 60, from: [0.036, 0.09, 0.07], to: [0.05, 0.235, 0.17], r: 0.02, sides: [7, 4] }
+  nose: { type: spike, on: head, tint: 60, from: [0, 0.185, 0.012], to: [0, 0.205, 0.066], r: 0.015, sides: [7, 4] }
+  eyes: { type: eyes, on: head, near: true, at: [0.066, 0.095, 0.036], r: 0.01 }

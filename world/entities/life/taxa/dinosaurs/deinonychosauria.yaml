@@ -1,0 +1,25 @@
+id: life/taxa/deinonychosauria
+kind: taxon
+summary: >-
+  The raptor dinosaurs: the dromaeosaurs and the troodontids, with a raised sickle claw on the foot.
+same_as: { pbdb: "txn:57260" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Deinonychosauria }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: dromaeosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.6, hi: 2.7 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 16, Primitive Dromaeosaurids", quote: "Pamparaptor thief of the pampas [the Late Cretaceous (93,5-85.8 MYA) 2 ft (60 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 16, Primitive Dromaeosaurids", quote: "Variraptor thief of Var Department [France] Late Cretaceous (72.8-66.8 MYA) 8.9 ft (2.7 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Primitive Dromaeosaurids" on p. 16, of raptors in no smaller
+      group, standing for any member of neither family below.

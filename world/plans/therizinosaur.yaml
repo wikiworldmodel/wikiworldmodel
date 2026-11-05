@@ -1,0 +1,48 @@
+# Measured from PIN 551-483 in "Therizinosaurus size.png" on Wikimedia Commons.
+description: >-
+  A pot-bellied, long-necked, two-legged plant-eater on short stout legs, with a small beaked head and long clawed arms.
+kind: animal
+mass_length: 13
+hip: 0.32
+behave: { group: [1, 3], habitat: forest, poses: [stand, stand, walk, alert] }
+parts:
+  body:
+    type: trunk
+    mat: fur
+    sides: [12, 6]
+    rings:
+      - [-0.37, 0.43, 0.38, 0.004]
+      - [-0.25, 0.61, 0.45, 0.012]
+      - [-0.146, 0.7, 0.45, 0.022]
+      - [-0.0625, 0.87, 0.44, 0.045]
+      - [0.0, 1.0, 0.42, 0.066]
+      - [0.104, 1.226, 0.36, 0.084]
+      - [0.208, 1.32, 0.39, 0.084]
+      - [0.29, 1.28, 0.7, 0.056]
+      - [0.354, 1.32, 1.04, 0.032]
+      - [0.406, 1.6, 1.36, 0.024]
+    neck: { r: 0.014, steps: [3, 1] }
+  legs: { type: digitigrade, mat: fur, y: 0.0, x: 0.058, top: 0.8, knee: 0.5, ankle: 0.2, r: 0.052, swing: 0.07 }
+  arms:
+    type: chain
+    mat: fur
+    mirror: true
+    sides: [6, 4]
+    points: [[0.075, 0.26, 1.04, 0.02], [0.088, 0.27, 0.68, 0.015], [0.086, 0.31, 0.46, 0.012], [0.084, 0.33, 0.38, 0.009]]
+  claw-long: { type: spike, mirror: true, mat: horn, tint: 60, from: [0.084, 0.33, 0.38], to: [0.084, 0.385, 0.08], r: 0.009, sides: [6, 3] }
+  claw-next: { type: spike, mirror: true, near: true, mat: horn, tint: 60, from: [0.075, 0.325, 0.38], to: [0.072, 0.365, 0.15], r: 0.0065, sides: [5, 3] }
+  head:
+    type: head
+    mat: fur
+    sides: [8, 4]
+    thin: false
+    at:
+      stand: { y: 0.49, z: 1.68, pitch: 0.2 }
+      alert: { y: 0.47, z: 1.84, pitch: 0.05 }
+    rings:
+      - [-0.004, 0, 0.012, 0.014]
+      - [0.018, 0.002, 0.0135, 0.016]
+      - [0.04, -0.004, 0.009, 0.011]
+      - [0.058, -0.009, 0.006, 0.006]
+  beak: { type: tube, on: head, mat: horn, tint: 110, sides: [6, 4], thin: false, rings: [[0.054, -0.009, 0.006, 0.005], [0.08, -0.016, 0.002, 0.002]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.011, 0.018, 0.005], r: 0.0034 }

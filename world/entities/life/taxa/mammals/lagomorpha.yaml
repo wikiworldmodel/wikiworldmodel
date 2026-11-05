@@ -1,0 +1,51 @@
+id: life/taxa/lagomorpha
+kind: taxon
+summary: >-
+  Rabbits, hares and pikas.
+same_as: { pbdb: "txn:42151" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lagomorpha, en: "rabbits, hares and pikas" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.16
+      mass_length: 30
+      behave: { group: [1, 4], habitat: open, poses: [stand, walk, graze, alert] }
+      parts:
+        body: { at: [0, -0.08, 0.23], r: [0.13, 0.32, 0.17], sides: [10, 5] }
+        head: { at: [0, 0.27, 0.31], r: [0.08, 0.14, 0.09], sides: [8, 4], bands: [5, 3] }
+        tail: null
+        scut: { type: lump, zl: true, mat: fur, near: true, sides: [6, 4], bands: [3, 2], at: [0, -0.385, 0.25], r: [0.045, 0.045, 0.05] }
+        ears: { type: spike, zl: true, mat: fur, mirror: true, sides: [5, 4], from: [0.03, 0.2, 0.37], to: [0.055, 0.1, 0.58], r: 0.03 }
+        fore: { near: false, from: [0.075, 0.16, 0.14], to: [0.08, 0.2, 0], r: 0.024 }
+        hind: { near: false, from: [0.095, -0.2, 0.2], to: [0.105, -0.06, 0], r: 0.042 }
+    unsourced: >-
+      A machine's reconstruction, from the leporids' account on the Animal Diversity Web: long
+      hind limbs and feet; the long ears and short tail are as hares are generally known. Only
+      compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.16, hi: 0.7 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Ochotona princeps, Other Physical Features"
+        quote: "Range length 162 to 216 mm"
+      - ref: src:animal-diversity-web
+        loc: "account of Lepus othus, Physical Description"
+        quote: "measuring in length from 0.5 to 0.7 m"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.074, hi: 12 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Ochotona_cansus, column Mass.g (grams)"
+        quote: "Ochotona_cansus,Lagomorpha,Ochotonidae,Ochotona,cansus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,74.5"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Rabbits, hares, and pikas (Lagomorpha)\""
+        quote: "Nuralagus rex at 12 kg (26 lb)"
+    method: compilation

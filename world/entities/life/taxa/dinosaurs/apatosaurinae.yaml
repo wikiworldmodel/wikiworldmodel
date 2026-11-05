@@ -1,0 +1,70 @@
+id: life/taxa/apatosaurinae
+kind: taxon
+summary: >-
+  The apatosaurines: massively built diplodocids with very stout necks, Apatosaurus and
+  Brontosaurus.
+same_as: { pbdb: "txn:66543" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Apatosaurinae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.2
+      mass_length: 5
+      parts:
+        body:
+          not: [graze, drink]
+          rings:
+            - [-0.64, 0.335, 0.325, 0.0006]
+            - [-0.452, 0.434, 0.366, 0.003]
+            - [-0.315, 0.552, 0.434, 0.006]
+            - [-0.178, 0.724, 0.448, 0.016]
+            - [-0.082, 0.862, 0.414, 0.034]
+            - [0.0, 0.986, 0.31, 0.064]
+            - [0.068, 1.0, 0.24, 0.074]
+            - [0.123, 0.93, 0.324, 0.062]
+            - [0.171, 0.862, 0.483, 0.04]
+            - [0.219, 0.897, 0.62, 0.028]
+            - [0.274, 0.917, 0.71, 0.02]
+            - [0.322, 0.917, 0.738, 0.0165]
+          neck: { r: 0.0115, steps: [1, 1] }
+        body-low:
+          type: trunk
+          poses: [graze, drink]
+          sides: [14, 7]
+          rings:
+            - [-0.64, 0.335, 0.325, 0.0006]
+            - [-0.452, 0.434, 0.366, 0.003]
+            - [-0.315, 0.552, 0.434, 0.006]
+            - [-0.178, 0.724, 0.448, 0.016]
+            - [-0.082, 0.862, 0.414, 0.034]
+            - [0.0, 0.986, 0.31, 0.064]
+            - [0.068, 1.0, 0.24, 0.074]
+            - [0.123, 0.93, 0.324, 0.062]
+            - [0.171, 0.862, 0.483, 0.04]
+          neck: { r: 0.0115, steps: [8, 2] }
+        hind: { y: -0.02, x: 0.05, top: 0.72, r: 0.04 }
+        fore: { y: 0.096, x: 0.05, top: 0.74, r: 0.03 }
+        head:
+          at:
+            stand: { y: 0.335, z: 0.83, pitch: 0.35 }
+            alert: { y: 0.337, z: 0.88, pitch: 0.1 }
+            low: { y: 0.36, reach: 0.042, pitch: 0.9, clear: 0.06 }
+    unsourced: >-
+      A machine's reconstruction, its outline measured from CM 563 in the silhouette "Apatosaurus
+      scale mmartyniuk wiki.png" on Wikimedia Commons: taller hips, a far deeper body and a thick,
+      level neck than the plan.
+  length:
+    prop: body_length
+    value: { lo: 21, hi: 26 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 30, Apatosaurines", quote: "Eobrontosaurus dawn thunder reptile Late Jurassic (155-7-150.8 MYA) 68.9 ft (21 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 30, Apatosaurines", quote: "Apatosaurus deceptive [chevron] reptile Late Jurassic (155.7-150.8 MYA) 85.3 ft (26 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Apatosaurines" on that page, standing for any member with no
+      length of its own.

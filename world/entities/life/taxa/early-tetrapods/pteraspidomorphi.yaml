@@ -1,0 +1,30 @@
+id: life/taxa/pteraspidomorphi
+kind: taxon
+summary: >-
+  Heterostracans and their kin: jawless armoured fishes of the Ordovician to the Devonian, with their heads in shields of bony plate and
+  no paired fins.
+same_as: { pbdb: "txn:34144" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pteraspidomorphi }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: jawless-fish
+    unsourced: >-
+      Which plan draws it: an editorial classification, from its place in the tree. The plan is a machine's reconstruction, from the photograph
+      of the AMNH's model of Pteraspis and its fossil, on Wikimedia Commons ("Pteraspis AMNH.jpg").
+  length:
+    prop: body_length
+    value: { lo: 0.1, hi: 0.3 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Drepanaspis, Description"
+        quote: "that ranged from 10 to 30 cm long in size"
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Pteraspis, Description"
+        quote: "The largest recorded specimens of Pteraspis grew to an estimated length of 27 centimetres (11 in)."
+    method: compilation
+    note: Two genera stand for the group. An encyclopedia, cited as nothing better could be read.

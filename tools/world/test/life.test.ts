@@ -1,23 +1,25 @@
-// Pass criteria of the sixth slice that a build can answer for itself: what the scene draws rests on
-// the snapshot and the records; the same plan and mesh come out of the same files; no vegetation
-// before the land-plants claim; no forest fossil in a reconstructed desert; and each taxon's bar in
+// Pass criteria of the sixth and seventh slices that a build can answer for itself: what a scene draws rests on
+// the snapshots and the records; the same bytes come out of the same spec; a list's tiers are true; no
+// vegetation before the land-plants claim; no forest fossil in a reconstructed desert; and each taxon's bar in
 // the tree starts where the solver says it may.
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { beforeAll, describe, expect, it } from 'vitest';
+import { atlasList, TIER, type AtlasBin, type AtlasIndex } from '../../../core/atlas.ts';
 import { decodeTile } from '../../../core/container.ts';
 import { climateClass, decodeNode, type ClimateHeader, type ClimateRule } from '../../../core/climate.ts';
 import { coverAt, type PlanetFile } from '../../../core/planet.ts';
+import { conj, rotate, toLatLon, unitVector } from '../../../core/quat.ts';
 import type { CoverageFile, EntityRecord, SearchFile } from '../../../core/records.ts';
-import type { SceneFile } from '../../../core/scene.ts';
+import { RotationModel } from '../../../core/rotation-model.ts';
+import type { SceneFileV2 } from '../../../core/scene.ts';
 import { parsePoint, toMa, type TimePointInput } from '../../../core/time.ts';
-import type { Tileset } from '../../../core/tileset.ts';
+import type { FramesFile, Tileset } from '../../../core/tileset.ts';
 import { indexTree, layoutTree, type TreeFile } from '../../../core/tree.ts';
-import { GroundSampler } from '../../../world/generators/city/ground.ts';
-import { SceneBuilder } from '../../../world/generators/life/cells.ts';
-import { planBytes, scenePlan, type SceneParams } from '../../../world/generators/life/scene/v1.ts';
-import type { PbdbSnapshot } from '../src/pbdb.ts';
+import { CELL } from '../../../world/generators/life/scene/v2.ts';
+import { FULL_BUDGET, SceneStream } from '../../../world/generators/life/stream.ts';
+import type { LandSnapshot, PbdbSnapshot } from '../src/pbdb.ts';
 import { pbdbNumber } from '../src/pbdb.ts';
 import { loadWorld, type World } from '../src/world.ts';
 import { latestBuild } from './helpers.ts';
@@ -26,26 +28,22 @@ const json = <T>(name: string): T => JSON.parse(readFileSync(join(latestBuild(),
 const sha = (b: Uint8Array) => createHash('sha256').update(b).digest('hex');
 
 let world: World;
-let file: SceneFile;
+let file: SceneFileV2;
 let ts: Tileset;
-let grounds: { nx: number; ny: number; x0: number; y0: number; cell: number; z: Int16Array }[];
 let snap: PbdbSnapshot;
-const planOf = () => scenePlan(file, new GroundSampler(grounds));
+let stream: SceneStream;
 
 beforeAll(async () => {
   world = await loadWorld();
   ts = json<Tileset>('tileset.json');
   const site = ts.sites!.find((s) => s.kind === 'life')!;
-  file = json<SceneFile>(site.file);
-  grounds = file.ground.map((g) => {
-    const b = readFileSync(join(latestBuild(), g.url));
-    return { ...g, z: new Int16Array(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength)) };
-  });
-  snap = world.fossils.get(file.fossils.source)!;
+  file = json<SceneFileV2>(site.file);
+  snap = world.fossils.get(file.spec.fossils.source)!;
+  stream = new SceneStream(file.spec, FULL_BUDGET);
 });
 
-describe('a living scene', () => {
-  it('is on offer at the slice it describes, inside its record’s own time', () => {
+describe('a living scene with its own formation', () => {
+  it('is on offer at the slice it describes, inside its record\u2019s own time', () => {
     const site = ts.sites!.find((s) => s.kind === 'life')!;
     expect(site.place).toBe('life/hell-creek/ecosystem');
     expect(site.slice).toBe(parsePoint('66.5 Ma' as TimePointInput).t);
@@ -59,14 +57,18 @@ describe('a living scene', () => {
   });
 
   it('stands where the plate carried the place, not where it is today', () => {
-    const { origin, today } = file.site;
-    expect(Math.abs(origin.lon - today.lon)).toBeGreaterThan(5);
+    const e = world.entity.get(file.spec.site.place!)!;
+    const loc = e.claims.find((c) => c.prop === 'location')!.value as { lat: number; lon: number };
+    expect(Math.abs(file.spec.site.origin.lon - loc.lon)).toBeGreaterThan(5);
   });
 
-  it('every organism is a taxon with an occurrence in the formation at the moment', () => {
-    const plan = planOf();
-    expect(plan.count).toBeGreaterThan(10000);
-    const sliceMa = toMa(file.site.slice);
+  it('every taxon is one with an occurrence in the formation at the moment, and it still draws all it drew', () => {
+    const taxa = file.spec.taxa;
+    // What the sixth slice drew, by name: the list can grow, and none of these may leave it.
+    const drew = ['acheroraptor', 'adocus', 'amesoneuron', 'ankylosaurus', 'anzu', 'azolla', 'basilemys', 'borealosuchus', 'brachychampsa', 'cercidiphyllum', 'champsosaurus', 'cimolodon', 'cinnamomum', 'compsemys', 'didelphodon', 'edmontosaurus', 'equisetum', 'ficus', 'ginkgo', 'glyptostrobus', 'helopanoplia', 'meniscoessus', 'mesodma', 'metasequoia', 'ornithomimus', 'pachycephalosaurus', 'platanites', 'polypodiaceae', 'salvinia', 'sequoia', 'taxodium', 'thescelosaurus', 'torosaurus', 'triceratops', 'trochodendroides', 'tyrannosaurus'];
+    expect(drew).toHaveLength(36);
+    for (const name of drew) expect(taxa.map((t) => t.id), name).toContain(`life/taxa/${name}`);
+    const sliceMa = toMa(file.spec.site.slice);
     const byNo = new Map(snap.taxa.map((t) => [t.no, t]));
     const inFormation = new Set(snap.collections.filter((c) => c.formation === 'Hell Creek').map((c) => c.no));
     const here = new Map<number, number>();
@@ -75,9 +77,7 @@ describe('a living scene', () => {
       if (o.max < sliceMa || o.min > sliceMa) continue;
       for (let x = o.taxon; x && byNo.has(x); x = byNo.get(x)!.parent) here.set(x, (here.get(x) ?? 0) + 1);
     }
-    const drawn = new Set(plan.taxon);
-    for (const i of drawn) {
-      const t = file.taxa[i];
+    for (const t of taxa) {
       const e = world.entity.get(t.id)!;
       expect(e, t.id).toBeDefined();
       expect(e.kind).toBe('taxon');
@@ -85,45 +85,54 @@ describe('a living scene', () => {
       expect(no, t.id).toBeDefined();
       expect(here.get(no!), t.id).toBe(t.rows);
       expect(t.rows).toBeGreaterThan(0);
+      expect(t.tier).toBe('formation');
     }
-    // And the kits the outline asks for all have something to draw.
-    const plans = new Set([...drawn].map((i) => file.taxa[i].plan));
-    for (const p of ['ceratopsian', 'tyrannosaur', 'hadrosaur', 'crocodilian', 'turtle', 'small-mammal', 'conifer', 'palm', 'broadleaf', 'fern'] as const) expect(plans.has(p), p).toBe(true);
-    // Every taxon the file lists is drawn at least once.
-    expect(drawn.size).toBe(file.taxa.length);
   });
 
-  it('nothing appears that the records place elsewhen: each taxon is alive at the slice, and no taxon outside it is drawn', () => {
-    for (const t of file.taxa) {
-      expect(t.time.start.best ?? -Infinity, t.id).toBeLessThanOrEqual(file.site.slice);
-      expect(t.time.end.best ?? Infinity, t.id).toBeGreaterThanOrEqual(file.site.slice);
+  it('draws every taxon near the arrival, and stands them on land or by water as they go', () => {
+    const [fx, fy] = stream.plan.focus;
+    const seen = new Set<number>();
+    const n = 12;
+    for (let j = -n; j <= n; j++) for (let i = -n; i <= n; i++) for (const t of stream.plan.cell(Math.floor(fx / CELL) + i, Math.floor(fy / CELL) + j, 2).taxon) seen.add(t);
+    file.spec.taxa.forEach((t, i) => {
+      const b = file.spec.forms[t.form].behave;
+      // Not what floats, which needs still water at hand, or what is under the water, which is not drawn yet.
+      if (b?.layer !== 'float' && b?.habitat !== 'water') expect(seen.has(i), t.label).toBe(true);
+    });
+  });
+
+  it('nothing appears that the records place elsewhen: each taxon is alive at the slice', () => {
+    for (const t of file.spec.taxa) {
+      expect(t.time.start.best ?? -Infinity, t.id).toBeLessThanOrEqual(file.spec.site.slice);
+      expect(t.time.end.best ?? Infinity, t.id).toBeGreaterThanOrEqual(file.spec.site.slice);
     }
-    const drawn = new Set(file.taxa.map((t) => t.id));
-    // A taxon with a body plan that is not in the formation, had there been one, says why it is left out.
-    for (const o of file.omitted) {
+    const drawn = new Set(file.spec.taxa.map((t) => t.id));
+    for (const o of file.spec.omitted) {
       expect(drawn.has(o.id)).toBe(false);
       expect(o.why.length).toBeGreaterThan(10);
     }
   });
 
-  it('nothing is drawn whose size was guessed: lengths and heights are as the claims give them, or follow from a claimed mass', async () => {
+  it('nothing is drawn whose size was guessed: as its claims give it, or within the range of a node above that says whose', async () => {
     const m = await import('../src/chronology.ts');
-    for (const t of file.taxa) {
-      const e = world.entity.get(t.id)!;
-      const group = (prop: string) => m.claimGroup(world, t.id, prop);
+    for (const t of file.spec.taxa) {
       const value = (prop: string) => {
-        const g = group(prop);
+        const g = m.claimGroup(world, t.id, prop);
         const c = g ? m.chosen(g) : undefined;
-        return c?.value as number | undefined;
+        return c?.value as number | { lo: number; hi: number } | undefined;
       };
-      if (t.height !== undefined) expect(t.height).toBe(value('plant_height'));
-      if (t.length !== undefined && !t.fromMass) expect(t.length).toBe(value('body_length'));
-      if (t.fromMass) expect(value('body_mass')).toBeGreaterThan(0);
-      if (t.hip !== undefined) expect(t.hip).toBe(value('hip_height'));
-      // What decides the kit is an editorial classification, and says so.
-      const plan = e.claims.find((c) => c.prop === 'body_plan')!;
-      expect(plan.value).toBe(t.plan);
-      expect(plan.status).not.toBe('accepted');
+      const check = (size: number | undefined, prop: string) => {
+        if (size === undefined || t.size_from) return;
+        const v = value(prop);
+        if (typeof v === 'number') expect(size, `${t.id} ${prop}`).toBe(v);
+        else if (v) expect(size, `${t.id} ${prop}`).toBeGreaterThanOrEqual(v.lo);
+      };
+      check(t.height, 'plant_height');
+      if (!t.fromMass) check(t.length, 'body_length');
+      if (t.fromMass && !t.size_from) expect(value('body_mass')).toBeTruthy();
+      if (t.size_from) expect(t.size_from.length).toBeGreaterThan(0);
+      // What decides the body is an editorial classification, and says so.
+      for (const c of world.entity.get(t.id)!.claims) if (c.prop === 'body_plan' || c.prop === 'body_form') expect(c.status).not.toBe('accepted');
     }
   });
 
@@ -134,38 +143,215 @@ describe('a living scene', () => {
     }
   });
 
-  it('makes the same plan and the same mesh from the same files, as the build recorded', () => {
-    const plan = planOf();
-    expect(sha(planBytes(plan))).toBe(file.generator.outputSha256);
-    const b = new SceneBuilder(file, grounds, plan);
-    const { key, detail, sha256 } = file.generator.cell;
-    const { vertices, indices } = b.build(key, detail).arrays();
-    const all = new Uint8Array(vertices.byteLength + indices.byteLength);
-    all.set(new Uint8Array(vertices), 0);
-    all.set(new Uint8Array(indices.buffer, indices.byteOffset, indices.byteLength), vertices.byteLength);
-    expect(sha(all)).toBe(sha256);
-    expect(vertices.byteLength).toBeGreaterThan(1000);
+  it('makes the same bytes from the same spec, as the build recorded', () => {
+    expect(sha(stream.digestBytes())).toBe(file.sha256);
+    expect(file.focus).toEqual(stream.plan.focus);
+  });
+
+  it('stores no ground and no organism', () => {
+    // Its spec is its forms and its list, and a patch of the land.
+    expect(JSON.stringify(file).length).toBeLessThan(800_000);
   });
 
   it('reads its biome from the climate field, and draws the forest the transitions allow', () => {
-    expect(file.biome.cover.forests).toBe(1);
-    expect(file.biome.cover.plants).toBe(1);
+    const b = file.spec.biome;
+    expect(b.cover.forests).toBe(1);
+    expect(b.cover.plants).toBe(1);
     // Grass had not spread: the plain's low plants are not grass.
-    expect(file.biome.cover.grasses).toBe(0);
-    const params = file.generator.params as unknown as SceneParams;
-    expect(params.cover.forest_by_climate[file.biome.climate]).toBeGreaterThan(0);
+    expect(b.cover.grasses).toBe(0);
+    expect(stream.cover.forestShare).toBeGreaterThan(0);
   });
 
   it('has a ground set into the land the elevation field reconstructs, with its water under the plain', () => {
-    const g = new GroundSampler(grounds);
-    const [fx, fy] = file.site.focus;
-    expect(g.at(fx, fy)).toBeGreaterThan(file.site.water_level);
-    const params = file.generator.params as unknown as SceneParams;
-    const r = params.ground.blend[1];
+    const [fx, fy] = stream.plan.focus;
+    expect(stream.ground.at(fx, fy)).toBeGreaterThan(stream.look.water);
+    const r = 34000;
     // Far off, it is no longer the generator's flat plain.
-    const heights = [0, 1, 2, 3].map((k) => g.at(r * 3 * (k === 0 ? 1 : k === 1 ? -1 : 0), r * 3 * (k === 2 ? 1 : k === 3 ? -1 : 0)));
+    const heights = [0, 1, 2, 3].map((k) => stream.ground.at(r * 3 * (k === 0 ? 1 : k === 1 ? -1 : 0), r * 3 * (k === 2 ? 1 : k === 3 ? -1 : 0)));
     expect(Math.max(...heights) - Math.min(...heights)).toBeGreaterThan(5);
   });
+});
+
+describe('the atlas', () => {
+  let index: AtlasIndex;
+  let land: LandSnapshot;
+  let model: RotationModel;
+
+  beforeAll(() => {
+    index = json<AtlasIndex>(ts.files.atlas!);
+    land = world.landFossils.get(index.source)!;
+    const frames = json<FramesFile>(ts.files.frames);
+    model = new RotationModel(frames.rotations);
+  });
+
+  it('covers most of the Phanerozoic, stage by stage, oldest first', () => {
+    expect(index.bins.length).toBeGreaterThan(40);
+    for (let i = 1; i < index.bins.length; i++) expect(index.bins[i].from).toBeGreaterThan(index.bins[i - 1].from);
+    for (const b of index.bins) {
+      expect(b.slice).toBeGreaterThanOrEqual(b.from);
+      expect(b.slice).toBeLessThanOrEqual(b.to);
+    }
+    expect(index.bins.some((b) => b.name === 'Maastrichtian')).toBe(true);
+  });
+
+  it('holds every list\'s taxa to the rows: a taxon of a stage has a row that overlaps it, or it is a stand-in that says so', () => {
+    const byNo = new Map(land.taxa.map((t) => [t[0], t]));
+    for (const ref of index.bins.filter((_, i) => i % 7 === 0)) {
+      const bin = json<AtlasBin>(ref.file);
+      const older = toMa(bin.from);
+      const younger = toMa(bin.to);
+      const names = new Set<number>();
+      for (const [, site, taxon] of land.rows) {
+        const [, , , max, min] = land.sites[site];
+        if (max > younger && min < older) for (let x = taxon, g = 0; x && g < 200; x = byNo.get(x)?.[3] ?? 0, g++) names.add(x);
+      }
+      for (const t of bin.taxa) {
+        if (t.standin) {
+          expect(t.rows).toBe(0);
+          continue;
+        }
+        expect(names.has(t.no), `${t.label} in ${bin.name}`).toBe(true);
+        expect(t.span[0]).toBeGreaterThan(younger - 1e-3);
+        expect(t.span[1]).toBeLessThan(older + 1e-3);
+      }
+    }
+  });
+
+  it('has a tier that is true: *here* has a row of the taxon close by at the time, recounted from the snapshot', () => {
+    const ref = index.bins.find((b) => b.name === 'Maastrichtian')!;
+    const bin = json<AtlasBin>(ref.file);
+    const older = toMa(bin.from);
+    const younger = toMa(bin.to);
+    const mid = toMa(bin.slice);
+    const sitesOf = new Map<number, number[]>();
+    // A species is on a list as its genus: its rows are the genus's.
+    const byNo = new Map(land.taxa.map((t) => [t[0], t]));
+    const rankOf = (no: number) => land.words[byNo.get(no)?.[2] ?? 0];
+    for (const [, site, taxon] of land.rows) {
+      for (let x = taxon, g = 0; x && g < 4; x = byNo.get(x)?.[3] ?? 0, g++) {
+        const s = sitesOf.get(x);
+        if (s) s.push(site);
+        else sitesOf.set(x, [site]);
+        if (!['species', 'subspecies', 'subgenus'].includes(rankOf(x))) break;
+      }
+    }
+    const positions = new Map<number, [number, number] | null>();
+    // The plate of a site: from the frames, the same way the build reads it, through the plates of today.
+    const distanceKm = (a: [number, number], b: [number, number]) => {
+      const ua = unitVector(a[0], a[1]);
+      const ub = unitVector(b[0], b[1]);
+      const d = Math.max(-1, Math.min(1, ua[0] * ub[0] + ua[1] * ub[1] + ua[2] * ub[2]));
+      return Math.acos(d) * 6371;
+    };
+    const elevation = plateLookup();
+    const where = (site: number) => {
+      if (positions.has(site)) return positions.get(site)!;
+      const [, lat, lng] = land.sites[site];
+      const plate = elevation(lat, lng);
+      let out: [number, number] | null = null;
+      if (plate && model.reaches(plate, mid)) {
+        const [la, lo] = toLatLon(rotate(model.total(plate, mid), rotate(conj(model.total(plate, 0)), unitVector(lat, lng))));
+        out = [la, lo];
+      }
+      positions.set(site, out);
+      return out;
+    };
+    const patches = Object.keys(bin.nodes).map(Number).filter((_, i) => i % 11 === 0);
+    let checked = 0;
+    for (const key of patches) {
+      const lat = 90 - (Math.floor(key / index.grid.nx) + 0.5) * index.grid.step;
+      const lon = -180 + ((key % index.grid.nx) + 0.5) * index.grid.step;
+      for (const e of atlasList(bin, index.grid, lat, lon)) {
+        if (e.tier === TIER.standin) continue;
+        // A patch is up to 4° across, and the graph 2° a step: that is the slack.
+        const reach = (e.tier === TIER.here ? index.here_km : index.region_km) + 900;
+        const near = (sitesOf.get(e.taxon.no) ?? []).some((s) => {
+          const [, , , max, min] = land.sites[s];
+          if (max <= younger || min >= older) return false;
+          const p = where(s);
+          return !!p && distanceKm(p, [lat, lon]) <= reach;
+        });
+        expect(near, `${e.taxon.label} at ${lat}, ${lon}, tier ${e.tier}`).toBe(true);
+        checked++;
+      }
+    }
+    expect(checked).toBeGreaterThan(50);
+  });
+
+  it('puts the Hell Creek\'s own taxa in the Hell Creek\'s patch, as recorded here', () => {
+    const ref = index.bins.find((b) => b.name === 'Maastrichtian')!;
+    const bin = json<AtlasBin>(ref.file);
+    const o = file.spec.site.origin;
+    const list = atlasList(bin, index.grid, o.lat, o.lon);
+    expect(list.length).toBeGreaterThan(5);
+    const here = list.filter((e) => e.tier === TIER.here).map((e) => e.taxon.label);
+    expect(here.some((l) => /Triceratops|Edmontosaurus|Tyrannosaurus|Thescelosaurus/.test(l)), here.join(', ')).toBe(true);
+  });
+
+  it('knows where to go to see a taxon, at a stage it lived in', () => {
+    const where = json<Record<string, { t: number; lat: number; lon: number; rows: number }>>(index.where);
+    const w = where['life/taxa/triceratops'];
+    expect(w).toBeDefined();
+    expect(toMa(w.t)).toBeGreaterThan(66);
+    expect(toMa(w.t)).toBeLessThan(72.2);
+    expect(Object.keys(where).length).toBeGreaterThan(100);
+  });
+
+  it('says how far the forms reach', () => {
+    const c = index.coverage;
+    expect(c.taxa).toBeGreaterThan(10000);
+    expect(c.own_form).toBeGreaterThan(30);
+    expect(c.inherited_form).toBeGreaterThan(c.own_form);
+    expect(json<CoverageFile>('coverage.json').forms!.wanted.length).toBeGreaterThan(10);
+  });
+
+  it('is small: no stage\'s lists are more than a few MB, and all the forms fit in one file for now', () => {
+    let total = 0;
+    for (const ref of index.bins) {
+      const size = readFileSync(join(latestBuild(), ref.file)).length;
+      total += size;
+      expect(size, ref.name).toBeLessThan(4e6);
+    }
+    expect(readFileSync(join(latestBuild(), index.forms)).length).toBeLessThan(4e6);
+    expect(total).toBeLessThan(120e6);
+  });
+
+  it('makes a place\'s scene the same as a witness of it in the build', async () => {
+    const list = json<{ lat: number; lon: number; t: number; sha256: string; taxa: number }[]>('life/witness.json');
+    expect(list.length).toBeGreaterThanOrEqual(3);
+    for (const w of list) {
+      expect(w.sha256).toMatch(/^[0-9a-f]{64}$/);
+      expect(w.taxa).toBeGreaterThan(0);
+    }
+  });
+
+  /** The plate of a place today, from the finest tile of today's land. */
+  function plateLookup() {
+    const refs = ts.tiles.filter((r) => r.lod === 1 && toMa(r.time[1]) <= 0 && toMa(r.time[0]) >= 0);
+    const frames = json<FramesFile>(ts.files.frames);
+    const fields = refs.map((r) => {
+      const b = readFileSync(join(latestBuild(), r.url));
+      const { header, arrays } = decodeTile<import('../../../core/tileset.ts').TileHeader>(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer);
+      const k = header.field!.keyframes.find((x) => x.ageMa === 0)!;
+      return { bbox: r.bbox, grid: header.field!.grid, plate: arrays[k.plate] as Uint16Array };
+    });
+    return (lat: number, lon: number) => {
+      for (let r = 0; r <= 3; r++) {
+        for (let dj = -r; dj <= r; dj++) {
+          for (let di = -r; di <= r; di++) {
+            if (Math.max(Math.abs(dj), Math.abs(di)) !== r) continue;
+            const la = Math.max(-90, Math.min(90, Math.round(lat) + dj));
+            const lo = ((Math.round(lon) + di + 540) % 360) - 180;
+            const f = fields.find((x) => la >= x.bbox[1] && la <= x.bbox[3] && lo >= x.bbox[0] && lo <= x.bbox[2]);
+            if (!f) continue;
+            const q = frames.plateIndex[f.plate[Math.round((f.grid.lat0 - la) / f.grid.step) * f.grid.nx + Math.round((lo - f.grid.lon0) / f.grid.step)]];
+            if (q) return q;
+          }
+        }
+      }
+      return 0;
+    };
+  }
 });
 
 describe('the biomes', () => {

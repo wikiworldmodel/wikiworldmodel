@@ -1,0 +1,37 @@
+id: life/taxa/cercopithecidae
+kind: taxon
+summary: >-
+  The Old World monkeys.
+same_as: { pbdb: "txn:40860" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cercopithecidae, en: "Old World monkeys" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    value: { lo: 0.36, hi: 1.85 }
+    source:
+      - ref: src:jones-2009-pantheria
+        loc: "PanTHERIA_1-0_WR05_Aug2008.txt, row Miopithecus talapoin, columns 5-1_AdultBodyMass_g, 8-1_AdultForearmLen_mm, 13-1_AdultHeadBodyLen_mm"
+        quote: "Miopithecus talapoin 3.00 1248.86 -999.00 354.99"
+      - ref: src:animal-diversity-web
+        loc: "account of Papio ursinus, Physical Description"
+        quote: "Head and body length is reportedly between 508 and 1.143 mm, with the tail adding an additional 456 to 711 mm to the total length"
+    method: compilation
+    note: >-
+      The low end is the talapoin’s head and body alone. The high end adds the longest head
+      and body of the chacma baboon to its longest tail; "1.143 mm" in the account is a slip
+      for 1,143 mm.
+  mass:
+    prop: body_mass
+    value: { lo: 1.278, hi: 72 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Miopithecus_ogouensis, column Mass.g (grams)"
+        quote: "Miopithecus_ogouensis,Primates,Cercopithecidae,Miopithecus,ogouensis,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,1278.3"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Primates (Primates)\""
+        quote: "Theropithecus oswaldi which have weighed 72 kg (159 lb)"
+    method: compilation

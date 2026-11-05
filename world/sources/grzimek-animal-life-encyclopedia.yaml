@@ -1,0 +1,22 @@
+id: src:grzimek-animal-life-encyclopedia
+type: publication
+kind: compilation
+citation: >-
+  Grzimek's Animal Life Encyclopedia, 2nd edition, vol. 7 (Reptiles) and vols. 8–11 (Birds). Gale. Entries as published at
+  Encyclopedia.com.
+authors:
+  - "Hutchins, M."
+published: 2003
+title: "Grzimek's Animal Life Encyclopedia"
+url: https://www.encyclopedia.com/
+via: "The entries at Encyclopedia.com, as environment/encyclopedias-almanacs-transcripts-and-maps/<entry>, read on 5 November 2026."
+reliability: >-
+  A standard reference, written by specialists for a general readership. The Size row at the head of a family's entry is a
+  summary with no measurement behind it, and its inches and metric figures do not always agree. Encyclopedia.com gives no
+  volume or page, so a claim's locator is the title of the entry, which its search finds. The edition and the volumes are from
+  Wikipedia's article on the encyclopedia, as the pages do not state them.
+verified:
+  by: machine:claude-code
+  how: >-
+    Each entry cited fetched from Encyclopedia.com and read as text; the quotes checked by script against the text of the entry
+    named in the locator, with whitespace normalized.

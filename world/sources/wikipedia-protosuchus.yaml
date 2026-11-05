@@ -1,0 +1,16 @@
+id: src:wikipedia-protosuchus
+type: database-record
+kind: review
+citation: >-
+  "Protosuchus." Wikipedia, the free encyclopedia (English edition).
+snapshot: 2026-11-05
+title: Protosuchus
+container: Wikipedia
+url: https://en.wikipedia.org/wiki/Protosuchus
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited for a length because nothing better could be read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-05; the quotation checked by script against its text.

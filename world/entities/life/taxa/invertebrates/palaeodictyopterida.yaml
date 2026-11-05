@@ -1,0 +1,31 @@
+id: life/taxa/palaeodictyopterida
+kind: taxon
+summary: >-
+  The extinct beaked insects of the Late Palaeozoic, many large, with their wings held out to the side and small
+  winglets on the first segment of the thorax. Nothing could be read of their body lengths, so this record gives none.
+same_as: { pbdb: "txn:174991" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Palaeodictyopterida, en: "palaeodictyopterids" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.2
+      behave: { group: [1, 2], habitat: air, poses: [fly, fly, rest], flies: [0.5, 8] }
+      parts:
+        fore-wings: { points: [[0.03, 0.3, 0.21], [0.45, 0.42, 0.22], [0.86, 0.4, 0.2], [0.84, 0.24, 0.2], [0.4, 0.18, 0.21], [0.04, 0.2, 0.21]] }
+        hind-wings: { type: sheet, zl: true, mat: membrane, mirror: true, not: [fly], gap: 0.002, points: [[0.03, 0.2, 0.21], [0.42, 0.16, 0.22], [0.74, 0.16, 0.2], [0.72, -0.04, 0.2], [0.34, -0.12, 0.21], [0.04, 0.02, 0.21]] }
+        winglets: { type: sheet, zl: true, near: true, mat: membrane, mirror: true, gap: 0.002, points: [[0.04, 0.34, 0.19], [0.13, 0.38, 0.2], [0.14, 0.3, 0.2], [0.05, 0.3, 0.19]] }
+        beak: { type: spike, zl: true, mat: chitin, sides: [4, 3], from: [0, 0.47, 0.1], to: [0, 0.54, 0.012], r: 0.014 }
+        cerci: { type: spike, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], from: [0.01, -0.46, 0.085], to: [0.1, -1.05, 0.12], r: 0.006 }
+        antennae: { from: [0.02, 0.48, 0.16], to: [0.1, 0.72, 0.24] }
+    source:
+      - ref: src:nel-2018-giant-dragonflies
+        loc: "Results"
+        quote: "any coeval “six-winged” Palaeodictyoptera"
+    note: >-
+      The six wings are the quote's. The beak, the long tail filaments and the wings held out flat are a machine's
+      reconstruction, from general knowledge of the group; no figure was compared with it.

@@ -1,0 +1,44 @@
+id: life/taxa/gruidae
+kind: taxon
+summary: >-
+  Cranes: tall long-legged birds of open wet ground.
+same_as: { pbdb: "txn:39499" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Gruidae", en: "cranes" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: wader
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        bill: { to: [0, 0.135, -0.008], r: 0.011 }
+        bustle: { type: sheet, mat: feather, mirror: true, near: true, not: [fly], points: [[0.03, -0.12, 1.3], [0.05, -0.3, 1.08], [0.03, -0.32, 0.92], [0.02, -0.16, 1.08]] }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Cranes (Gruidae)\""
+      quote: "Large birds with long neck and legs, usually gray or white plumage"
+    note: >-
+      The plan follows this. The shorter bill and the drooping plumes at the rear are a machine's
+      reconstruction.
+  length:
+    prop: body_length
+    value: { lo: 0.9, hi: 1.76 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Cranes (Gruidae)\""
+      quote: "35–70 in (90–176 cm); 4.4–26.5 lb (2–12 kg)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 2, hi: 12 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Cranes (Gruidae)\""
+      quote: "35–70 in (90–176 cm); 4.4–26.5 lb (2–12 kg)"
+    method: compilation

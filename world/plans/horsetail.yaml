@@ -1,0 +1,6 @@
+description: >-
+  A horsetail: a thin green jointed stem with whorls of thin branches at each joint.
+kind: plant
+behave: { layer: under, weight: 0.8, wet: 1.6 }
+parts:
+  plant: { type: whorled, trunk: 0.008, reach: 0.12, nodes: 9, around: 6, start: 0.2, stem_mat: frond, mat: frond }

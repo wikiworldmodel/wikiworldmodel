@@ -1,0 +1,53 @@
+id: life/taxa/castoridae
+kind: taxon
+summary: >-
+  Beavers, with the giant Castoroides of the Pleistocene.
+same_as: { pbdb: "txn:41534" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Castoridae, en: "beavers" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.12
+      mass_length: 23
+      behave: { group: [1, 4], habitat: wet, poses: [stand, walk] }
+      parts:
+        body: { at: [0, 0.03, 0.17], r: [0.135, 0.27, 0.15], sides: [10, 5] }
+        head: { at: [0, 0.33, 0.14], r: [0.08, 0.13, 0.08] }
+        tail: null
+        paddle: { type: lump, zl: true, mat: hide, sides: [8, 4], bands: [3, 2], at: [0, -0.34, 0.125], r: [0.08, 0.17, 0.022] }
+        fore: { from: [0.09, 0.17, 0.09], to: [0.1, 0.18, 0], r: 0.028 }
+        hind: { from: [0.1, -0.12, 0.1], to: [0.11, -0.1, 0], r: 0.036 }
+        ears: { type: lump, zl: true, mat: fur, near: true, mirror: true, sides: [5, 4], bands: [3, 2], at: [0.052, 0.3, 0.215], r: [0.012, 0.012, 0.014] }
+    unsourced: >-
+      A machine's reconstruction, from the beavers' account on the Animal Diversity Web: large
+      hind feet and a flattened tail. Only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.9, hi: 2 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Castor canadensis, Other Physical Features"
+        quote: "Range length 900 to 1170 mm"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Rodents (Rodentia)\""
+        quote: "It grew over 2 m in length"
+    method: compilation
+    note: >-
+      From the American beaver to Castoroides. Most fossil beavers were smaller: no figure for
+      them was read.
+  mass:
+    prop: body_mass
+    value: { lo: 19, hi: 125 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Castor_fiber, column Mass.g (grams)"
+        quote: "Castor_fiber,Rodentia,Castoridae,Castor,fiber,1,0,1,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,19000"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Rodents (Rodentia)\""
+        quote: "weighed roughly 90 to 125 kg"
+    method: compilation

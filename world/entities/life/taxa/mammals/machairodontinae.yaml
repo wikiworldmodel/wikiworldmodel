@@ -1,0 +1,30 @@
+id: life/taxa/machairodontinae
+kind: taxon
+summary: >-
+  The sabre-toothed cats.
+same_as: { pbdb: "txn:65494" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Machairodontinae, en: "sabre-toothed cats" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: sabre-cat
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  mass:
+    prop: body_mass
+    value: { lo: 189, hi: 490 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Homotherium_serum, column Mass.g (grams)"
+        quote: "Homotherium_serum,Carnivora,Felidae,Homotherium,serum,1,0,0,0,Imputed,PHYLACINE 1.2.1,189000"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Feliformia\""
+        quote: "with the males possibly reaching 350–490 kg (770–1,080 lb)"
+    method: compilation
+    note: >-
+      The late Quaternary homotheres in PHYLACINE to Amphimachairodus kabir, from Wikipedia.
+      Earlier and smaller machairodonts lie below the low end, and no figure for them was
+      read.

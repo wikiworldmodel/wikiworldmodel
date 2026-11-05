@@ -1,0 +1,6 @@
+description: >-
+  A conifer: tiers of drooping, ragged foliage round a straight trunk.
+kind: plant
+behave: { layer: canopy, weight: 0.7, wet: 2.4 }
+parts:
+  tree: { type: conifer, reach: 0.15, trunk: 0.022, flare: 2.4, tiers: 13, start: 0.24, drop: 0.075 }

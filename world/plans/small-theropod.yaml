@@ -1,0 +1,35 @@
+description: >-
+  A small or middle-sized two-legged feathered predator or omnivore.
+kind: animal
+hip: 0.33
+behave: { group: [1, 3], habitat: any, poses: [stand, walk, alert] }
+parts:
+  body:
+    type: trunk
+    mat: fur
+    sides: [10, 5]
+    rings:
+      - [-0.56, 0.92, 0.9, 0.003]
+      - [-0.44, 0.98, 0.92, 0.009]
+      - [-0.32, 1.03, 0.93, 0.016]
+      - [-0.2, 1.1, 0.88, 0.028]
+      - [-0.09, 1.19, 0.74, 0.0414]
+      - [0.02, 1.22, 0.64, 0.046]
+      - [0.09, 1.22, 0.72, 0.0368]
+    neck: { r: 0.014, steps: [4, 1] }
+  legs: { type: digitigrade, mat: fur, y: -0.03, x: 0.03, top: 1.0, knee: 0.62, ankle: 0.26, r: 0.04, swing: 0.1 }
+  arms: { type: chain, mat: fur, near: true, mirror: true, sides: [5, 4], points: [[0.03, 0.08, 1.06, 0.012], [0.05, 0.05, 0.84, 0.009], [0.042, 0.11, 0.72, 0.006]] }
+  head:
+    type: head
+    mat: fur
+    sides: [10, 5]
+    thin: false
+    at:
+      stand: { y: 0.17, z: 1.42, pitch: 0.12 }
+      low: { y: 0.24, reach: 0.0825, clear: 0.06, pitch: 0.8 }
+    rings:
+      - [-0.0075, 0, 0.018, 0.018]
+      - [0.0225, 0.0015, 0.02, 0.02]
+      - [0.05625, -0.0045, 0.011, 0.01]
+      - [0.075, -0.0075, 0.0032, 0.0032]
+  eyes: { type: eyes, on: head, near: true, at: [0.017, 0.0225, 0.007], r: 0.0036 }

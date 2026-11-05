@@ -1,0 +1,52 @@
+id: life/taxa/kannemeyeriiformes
+kind: taxon
+summary: >-
+  The large dicynodonts of the Triassic, from Kannemeyeria to the elephant-sized Lisowicia, with a higher stance, and a long,
+  high, beaked snout.
+same_as: { pbdb: "txn:171920" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Kannemeyeriiformes }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.27
+      parts:
+        hind: { y: -0.27, x: 0.095, top: 0.86, r: 0.05, swing: 0.04 }
+        arm: { points: [[0.08, 0.07, 0.96, 0.05], [0.114, 0.05, 0.76, 0.042], [0.128, 0.06, 0.52, 0.033]] }
+        forearm: { y: 0.06, x: 0.128, top: 0.54, r: 0.033, swing: 0.04 }
+        forefoot: { at: [0.136, 0.08, 0.05], r: [0.036, 0.05, 0.014] }
+        hindfoot: { at: [0.103, -0.25, 0.05], r: [0.04, 0.056, 0.014] }
+        head:
+          at:
+            stand: { y: 0.17, z: 1.24, pitch: 0.2 }
+            alert: { y: 0.17, z: 1.42, pitch: 0.04 }
+            low: { y: 0.2, reach: 0.25, clear: 0.3, pitch: 0.62 }
+          rings:
+            - [-0.016, 0.008, 0.052, 0.054]
+            - [0.035, 0.018, 0.064, 0.07]
+            - [0.09, 0.014, 0.056, 0.07]
+            - [0.15, 0.004, 0.038, 0.058]
+            - [0.2, -0.008, 0.024, 0.042]
+        beak: { rings: [[0.196, -0.008, 0.024, 0.042], [0.235, -0.024, 0.014, 0.026], [0.255, -0.042, 0.003, 0.005]] }
+        tusks: { r: 0.008, from: [0.03, 0.135, -0.036], to: [0.034, 0.15, -0.084] }
+    unsourced: >-
+      A machine's reconstruction: a higher stance and a longer, higher beaked snout than the plan's Permian dicynodont, from no
+      skeletal figure: a reviewer should compare it with one of Kannemeyeria or Placerias.
+  length:
+    prop: body_length
+    value: { lo: 1.8, hi: 4.5 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Sinokannemeyeria, Description"
+        quote: "Sinokannemeyeria was about 1.8 metres (5.9 ft) in length and 100 kilograms (220 lb) in weight."
+      - ref: src:sci-news-2018-lisowicia
+        loc: "paragraph on the size of Lisowicia"
+        quote: "Lisowicia bojani reached an estimated length of more than 14.7 feet (4.5 m), height of 8.5 feet (2.6 m), and body mass of 9 tons."
+    method: expert-estimate
+    note: >-
+      From Sinokannemeyeria to Lisowicia. An encyclopedia and a news report of the paper in Science, cited as neither that
+      paper nor the monographs could be read.

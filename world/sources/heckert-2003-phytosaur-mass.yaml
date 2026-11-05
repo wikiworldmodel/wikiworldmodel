@@ -1,0 +1,20 @@
+id: src:heckert-2003-phytosaur-mass
+type: publication
+kind: model
+citation: >-
+  Heckert, A.B., Hurlburt, G., Farlow, J.O. & Zeigler, K.E. (2003). How big was a phytosaur? Mass estimates of an extinct clade
+  of Late Triassic archosaurs based on New Mexican fossils and modern crocodiles. New Mexico Geological Society Annual Spring
+  Meeting, p. 21. Abstract.
+authors:
+  - "Heckert, A.B."
+  - "Hurlburt, G."
+  - "Farlow, J.O."
+  - "Zeigler, K.E."
+published: 2003
+title: "How big was a phytosaur? Mass estimates of an extinct clade of Late Triassic archosaurs based on New Mexican fossils and modern crocodiles"
+container: New Mexico Geological Society Annual Spring Meeting, 2003, p. 21
+url: https://nmgs.nmt.edu/meeting/abstracts/view.cfm?aid=1140
+verified:
+  by: machine:claude-code
+  how: >-
+    The conference abstract read in full on the society's page. Quotes checked by script against its text.

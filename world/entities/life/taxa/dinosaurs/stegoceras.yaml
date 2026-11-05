@@ -1,0 +1,31 @@
+id: life/taxa/stegoceras
+kind: taxon
+summary: >-
+  Stegoceras, a small dome-headed dinosaur of the Campanian of western North America.
+same_as: { pbdb: "txn:38787" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Stegoceras }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          at:
+            stand: { y: 0.24, z: 1.3, pitch: 0.16 }
+    unsourced: >-
+      A machine's reconstruction: the plan with its head held lower and further forward, from the
+      silhouette "Stegoceras Scale Diagram - Steveoc86.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 2
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 49, PachycephaIosaurids"
+      quote: "Stegoceras roof horn Late Cretaceous (80-72.8 MYA) 6.6 ft (2 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

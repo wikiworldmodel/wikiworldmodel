@@ -1,0 +1,7 @@
+description: >-
+  A giant horsetail: a woody trunk with whorls of leafy branches in a conical crown, a tree of the Late Palaeozoic.
+kind: plant
+behave: { layer: canopy, weight: 0.7, wet: 1.6 }
+parts:
+  tree: { type: whorled, trunk: 0.022, reach: 0.2, nodes: 11, around: 8, start: 0.34 }
+  crown: { type: conifer, reach: 0.15, trunk: 0.004, flare: 1, tiers: 8, start: 0.38, drop: 0.035, mat: needle }

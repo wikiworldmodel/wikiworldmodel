@@ -1,0 +1,28 @@
+id: life/taxa/ceratophyllaceae
+kind: taxon
+summary: >-
+  Hornworts, rootless plants that live under water. Nothing draws below the surface yet, so a mat on
+  it stands in.
+same_as: { pbdb: "txn:55409" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ceratophyllaceae, en: hornworts }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: floating-fern
+    unsourced: "A stand-in: they live below the surface, and a mat on the water is the nearest plan. An editorial classification."
+  height:
+    prop: plant_height
+    value: 3
+    source:
+      ref: src:flora-of-north-america
+      loc: "Vol. 3, s.v. Ceratophyllum demersum"
+      quote: "Stems to 3 m"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The length of a stem of living hornwort, wholly under water: a modern relative. It stands no
+      height above the water.

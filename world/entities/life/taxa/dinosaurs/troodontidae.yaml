@@ -1,0 +1,63 @@
+id: life/taxa/troodontidae
+kind: taxon
+summary: >-
+  The troodontids: lightly built, long-legged, big-brained raptors with large eyes and a narrow
+  head.
+same_as: { pbdb: "txn:54468" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Troodontidae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.34
+      mass_length: 3.2
+      parts:
+        body:
+          rings:
+            - [-0.58, 0.6, 0.58, 0.003]
+            - [-0.52, 0.64, 0.6, 0.016]
+            - [-0.42, 0.74, 0.68, 0.014]
+            - [-0.32, 0.84, 0.74, 0.01]
+            - [-0.2, 0.93, 0.8, 0.014]
+            - [-0.1, 1.0, 0.76, 0.024]
+            - [-0.03, 1.03, 0.62, 0.036]
+            - [0.05, 1.04, 0.52, 0.044]
+            - [0.12, 1.06, 0.56, 0.038]
+            - [0.17, 1.1, 0.74, 0.026]
+        legs: { x: 0.032, top: 0.82, knee: 0.54, ankle: 0.3, r: 0.027 }
+        arms:
+          points: [[0.036, 0.14, 0.86, 0.01], [0.044, 0.07, 0.68, 0.0075], [0.04, 0.16, 0.54, 0.006], [0.037, 0.22, 0.48, 0.0035]]
+        arm-feathers:
+          points: [[0.046, 0.07, 0.68], [0.04, 0.16, 0.54], [0.037, 0.215, 0.48], [0.042, 0.15, 0.44], [0.046, 0.075, 0.52]]
+        hand-claws: { from: [0.037, 0.215, 0.485], to: [0.035, 0.24, 0.43], r: 0.0028 }
+        sickle: { from: [0.034, 0.02, 0.05], to: [0.034, 0.05, 0.13], r: 0.0035 }
+        head:
+          at:
+            stand: { y: 0.29, z: 1.33, pitch: 0.2 }
+            alert: { y: 0.27, z: 1.46, pitch: 0.06 }
+          rings:
+            - [-0.006, 0, 0.018, 0.018]
+            - [0.022, 0.002, 0.021, 0.022]
+            - [0.05, -0.003, 0.012, 0.012]
+            - [0.08, -0.006, 0.007, 0.0075]
+            - [0.105, -0.009, 0.004, 0.004]
+        jaw: { rings: [[0.02, -0.018, 0.012, 0.005], [0.06, -0.018, 0.008, 0.004], [0.1, -0.015, 0.004, 0.0025]] }
+        eyes: { at: [0.019, 0.024, 0.009], r: 0.0075 }
+    unsourced: >-
+      A machine's reconstruction: longer legs on taller hips, a raised neck, a drooping tail, a
+      smaller sickle claw, a narrow snout and large eyes, from the silhouette "Stenonychosaurus-
+      scale.png" on Wikimedia Commons.
+  length:
+    prop: body_length
+    value: { lo: 0.7, hi: 2.4 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 18, Troodontids", quote: "Jinfengopteryx golden phoenix feather Late Jurassic or Early (exact age uncertain) 2.3 ft (70 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 18, Troodontids", quote: "Troodon wounding tooth Late Cretaceous (80-72.8 MYA) 7.9 ft (2.4 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Troodontids" on that page, standing for any member
+      with no length of its own.

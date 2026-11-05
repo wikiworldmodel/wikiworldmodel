@@ -1,0 +1,29 @@
+id: life/taxa/chilopoda
+kind: taxon
+summary: >-
+  The centipedes, flat and quick, one pair of legs to a segment.
+same_as: { pbdb: "txn:205077" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Chilopoda, en: "centipedes" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: centipede
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, after Britannica's account of centipedes (one pair of long, many-jointed
+      antennae and a pair of jawlike, venomous claws just behind the head) and general knowledge; no figure was compared
+      with it.
+  length:
+    prop: body_length
+    value: { lo: 0.004, hi: 0.3 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. Chilopoda (Centipedes), Physical characteristics"
+        quote: "Centipede adult length ranges from 0.15 to 11.8 in (4–300 mm)."
+    method: compilation
+    note: >-
+      By a specialist in a reference work. Britannica gives 280 mm for Scolopendra gigantea, the largest.

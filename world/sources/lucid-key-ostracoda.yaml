@@ -1,0 +1,14 @@
+id: src:lucid-key-ostracoda
+type: database-record
+kind: review
+citation: >-
+  "Class Ostracoda." Key to Australian Freshwater and Terrestrial Invertebrates. Lucid Central, keys.lucidcentral.org.
+snapshot: 2026-11-05
+title: Class Ostracoda
+container: Key to Australian Freshwater and Terrestrial Invertebrates
+url: https://keys.lucidcentral.org/keys/v3/TFI/start%20key/key/crustacea%20key/Media/HTML/Ostracoda.html
+license: CC-BY-NC-3.0-AU
+reliability: An identification key's overview of the group, with no references for its numbers. Only a short quote is taken from it.
+verified:
+  by: machine:claude-code
+  how: The page fetched and read on 2026-11-05; the quotes checked by script against the text saved.

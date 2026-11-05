@@ -1,0 +1,21 @@
+id: life/taxa/megalosaurus
+kind: taxon
+summary: >-
+  Megalosaurus, the first dinosaur named, a Middle Jurassic hunter of England.
+same_as: { pbdb: "txn:38583" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Megalosaurus }
+    unsourced: The classification's own name.
+  length-holtz-2012:
+    prop: body_length
+    value: 9
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 7, Megalosaurids"
+      quote: "Megalosaurus big reptile Middle Jurassic (175.6-155.7 MYA) 29.5 ft (9 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

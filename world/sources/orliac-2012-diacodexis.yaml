@@ -1,0 +1,20 @@
+id: src:orliac-2012-diacodexis
+type: publication
+kind: measurement
+citation: >-
+  Orliac, M.J., Benoit, J. & O’Leary, M.A. (2012). The inner ear of Diacodexis, the oldest
+  artiodactyl mammal. Journal of Anatomy 221(5), from p. 417.
+authors:
+  - "Orliac, M.J."
+  - "Benoit, J."
+  - "O’Leary, M.A."
+published: 2012
+title: "The inner ear of Diacodexis, the oldest artiodactyl mammal"
+container: "Journal of Anatomy 221(5)"
+doi: 10.1111/j.1469-7580.2012.01562.x
+verified:
+  by: machine:claude-code
+  how: >-
+    Read from the full text on PubMed Central (PMC3482349). Quotes checked by script against the
+    text of the page, after normalizing whitespace; cells of a table read in order, separated by
+    spaces.

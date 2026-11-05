@@ -1,0 +1,44 @@
+id: life/taxa/threskiornithidae
+kind: taxon
+summary: >-
+  Ibises and spoonbills: wading birds with long down-curved or flattened bills.
+same_as: { pbdb: "txn:58426" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Threskiornithidae", en: "ibises and spoonbills" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: wader
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        bill: null
+        beak: { type: tube, on: head, mat: horn, sides: [6, 4], rings: [[0.044, -0.002, 0.009, 0.01], [0.09, -0.012, 0.007, 0.008], [0.13, -0.03, 0.005, 0.006], [0.165, -0.06, 0.003, 0.004]] }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Ibises and Spoonbills (Threskiornithidae)\""
+      quote: "with prominent bills (dec"
+    note: >-
+      The curved bill of an ibis, on the plan's wader, is a machine's reconstruction; spoonbills are
+      not told apart.
+  length:
+    prop: body_length
+    value: { lo: 0.48, hi: 1.1 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Ibises and Spoonbills (Threskiornithidae)\""
+      quote: "19–43 in (48–110 cm): 1–5.5 lb (0.5–2.5 kg)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.5, hi: 2.5 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Ibises and Spoonbills (Threskiornithidae)\""
+      quote: "19–43 in (48–110 cm): 1–5.5 lb (0.5–2.5 kg)"
+    method: compilation

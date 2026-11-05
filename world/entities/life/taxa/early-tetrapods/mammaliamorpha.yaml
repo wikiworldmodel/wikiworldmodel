@@ -1,0 +1,29 @@
+id: life/taxa/mammaliamorpha
+kind: taxon
+summary: >-
+  The cynodonts nearest mammals, and the mammaliaforms of the Triassic and Jurassic such as Morganucodon and the docodonts:
+  tiny animals that are not yet mammals. True mammals have their own record and plans.
+same_as: { pbdb: "txn:67455" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Mammaliamorpha }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: small-mammal
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else, true mammals aside: an editorial classification, as the small
+      mammal is the nearest in shape, and no figure of a mammaliaform was looked at.
+  length:
+    prop: body_length
+    value: 0.1
+    source:
+      ref: src:wikipedia-early-vertebrates
+      loc: "Morganucodon, Description"
+      quote: "the skull was 2–3 cm in length and a presacral body length of about 10 cm"
+    method: compilation
+    note: >-
+      Morganucodon stands for them, and without its tail, so a little short of its whole length. Wikipedia quotes it from Kemp (2005), which
+      could not be read. Some docodonts were longer.

@@ -1,0 +1,33 @@
+description: >-
+  A bony fish: a spindle-shaped body, a forked tail, a fin along the back and pairs of thin fins behind the head and under the belly.
+kind: animal
+hip: 0.12
+behave: { group: [2, 12], habitat: water, poses: [stand, walk] }
+parts:
+  body:
+    type: trunk
+    sides: [12, 5]
+    rings:
+      - [-0.4, 1.06, 0.94, 0.006]
+      - [-0.32, 1.26, 0.74, 0.012]
+      - [-0.2, 1.58, 0.42, 0.03]
+      - [-0.06, 1.84, 0.16, 0.05]
+      - [0.06, 1.92, 0.08, 0.058]
+      - [0.16, 1.84, 0.14, 0.056]
+  head:
+    type: head
+    sides: [12, 5]
+    at:
+      stand: { y: 0.18, z: 1.0, pitch: 0 }
+    rings:
+      - [-0.02, 0, 0.054, 0.104]
+      - [0.05, -0.002, 0.05, 0.086]
+      - [0.12, -0.008, 0.036, 0.058]
+      - [0.18, -0.014, 0.022, 0.032]
+      - [0.215, -0.016, 0.01, 0.014]
+  tail: { type: sheet, gap: 0.0015, points: [[0, -0.38, 1.0], [0, -0.5, 2.1], [0, -0.45, 1.0], [0, -0.5, -0.1]] }
+  dorsal: { type: sheet, gap: 0.0015, points: [[0, 0.0, 1.8], [0, -0.1, 1.6], [0, -0.14, 2.3], [0, -0.06, 2.46], [0, 0.06, 1.9]] }
+  anal: { type: sheet, gap: 0.0015, points: [[0, -0.2, 0.46], [0, -0.28, 0.66], [0, -0.3, 0.02], [0, -0.22, -0.1], [0, -0.14, 0.3]] }
+  pectoral: { type: sheet, mirror: true, gap: 0.0015, points: [[0.05, 0.14, 0.6], [0.115, 0.03, 0.28], [0.095, 0.0, 0.42], [0.048, 0.09, 0.62]] }
+  pelvic: { type: sheet, mirror: true, gap: 0.0015, points: [[0.03, -0.05, 0.26], [0.07, -0.14, 0.02], [0.05, -0.15, 0.12], [0.024, -0.1, 0.34]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.036, 0.12, 0.022], r: 0.0135 }

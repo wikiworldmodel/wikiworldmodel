@@ -1,0 +1,48 @@
+id: life/taxa/nodosauridae
+kind: taxon
+summary: >-
+  The nodosaurs: tank dinosaurs with narrow heads, spiked shoulders and no tail club.
+same_as: { pbdb: "txn:38817" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Nodosauridae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        spines:
+          type: row
+          mat: horn
+          tint: 170
+          mirror: true
+          n: 5
+          from: [0.13, 0.27, 0.58]
+          to: [0.14, 0.08, 0.56]
+          item: spike
+          r: [0.05, -0.012, 0.02]
+          size: [1.1, 1.4, 1.2, 0.9, 0.7]
+          thick: 0.011
+        head:
+          rings:
+            - [-0.02, 0.008, 0.044, 0.034]
+            - [0.04, 0.004, 0.05, 0.038]
+            - [0.1, -0.012, 0.03, 0.024]
+            - [0.13, -0.018, 0.014, 0.011]
+    unsourced: >-
+      A machine's reconstruction: rows of spines along the shoulders and flanks and a narrower head
+      than the plan, from the silhouette "Edmontonia Scale.svg" on Wikimedia Commons and the heading
+      of the table "Nodosaurids" in Holtz (2012) ("Spike-Shouldered Tank Dinosaurs").
+  length:
+    prop: body_length
+    value: { lo: 2.7, hi: 7.6 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 40, Nodosaurids", quote: "Mymoorapelta Mygatt-Moore Quarry [Colorado] Late Jurassic (155.7-150.8 MYA) 8.8 ft (2.7 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 40, Nodosaurids", quote: "Sauropelta reptile shield Early Cretaceous (118-110 MYA) 24.9 ft (7.6 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Nodosaurids" on that page, standing for any member with no length
+      of its own, leaving out the 60 cm of Propanoplosaurus, which the list says is "Almost
+      certainly a juvenile".

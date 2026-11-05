@@ -1,0 +1,32 @@
+id: life/taxa/caseidae
+kind: taxon
+summary: >-
+  Caseids, such as Casea and Cotylorhynchus: early synapsid plant-eaters, from the size of a dog to the largest land animals
+  of their day, with enormous ribcages and absurdly small heads.
+same_as: { pbdb: "txn:38913" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Caseidae }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: caseid
+    unsourced: >-
+      Which plan draws it: an editorial classification, from its place in the tree. The plan is a machine's reconstruction,
+      from the photograph of the AMNH's Cotylorhynchus (Wikimedia Commons, "Cotylorhynchus AMNH.jpg").
+  length:
+    prop: body_length
+    value: { lo: 1.2, hi: 6 }
+    source:
+      - ref: src:olson-1954-caseidae
+        loc: "p. 194, Casea broilii"
+        quote: "lightly built species about four feet in length"
+      - ref: src:romano-2017-alierasaurus
+        loc: "Abstract"
+        quote: "Cotylorhynchus hancocki (up to 6 m in length)"
+    method: expert-estimate
+    note: >-
+      From the small Casea, four feet converted, to the largest American Cotylorhynchus. Alierasaurus was as large or
+      larger.

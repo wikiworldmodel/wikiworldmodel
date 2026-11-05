@@ -1,0 +1,41 @@
+id: life/taxa/calamitaceae
+kind: taxon
+summary: >-
+  The calamites: horsetails grown into trees, of the Carboniferous and Permian swamps and
+  floodplains.
+same_as: { pbdb: "txn:125725" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Calamitaceae, en: calamites }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: calamite
+    source:
+      ref: src:rossler-2012-largest-calamite
+      loc: "p. 64, abstract"
+      quote: "by a height of more than 10 m and at least three orders of axes which formed a large crown"
+    note: >-
+      The plan's proportions are a machine's reconstruction, after the reconstruction of Arthropitys
+      bistriata in Fig. 2 of that paper, a conical crown on a straight trunk.
+  height:
+    prop: plant_height
+    value: { lo: 10, hi: 20 }
+    source:
+      - ref: src:illinois-state-museum-calamites
+        loc: "Calamites sp."
+        quote: "grew to a height of up to 10 meters (31 feet)"
+      - ref: src:arkansas-geological-survey-calamites
+        loc: "p. 1"
+        quote: "tree-sized plants reaching a height of approximately 20 m"
+      - ref: src:rossler-2012-largest-calamite
+        loc: "p. 66, section 4.1"
+        quote: "be not less than 15 m high with at least 3 orders of woody branches"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      A museum's and a survey's figures, neither sourced, and Rößler et al.'s estimate for the
+      largest petrified calamite known, Arthropitys bistriata, of which more than 10 m of trunk
+      survives. Wang et al. (2012) also report a small Calamites at Wuda, with no figure.

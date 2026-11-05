@@ -1,0 +1,42 @@
+id: life/taxa/staphylinidae
+kind: taxon
+summary: >-
+  The rove beetles, long and slender, whose short wing covers leave most of the abdomen bare.
+same_as: { pbdb: "txn:69284" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Staphylinidae, en: "rove beetles" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.16
+      parts:
+        suture: null
+        elytra: { at: [0, 0.07, 0.125], r: [0.085, 0.115, 0.07] }
+        shield: { at: [0, 0.26, 0.125], r: [0.08, 0.085, 0.065] }
+        head: { at: [0, 0.4, 0.115], r: [0.08, 0.075, 0.055] }
+        eyes: { at: [0.075, 0.41, 0.125] }
+        abdomen: { type: tube, zl: true, mat: chitin, sides: [8, 4], rings: [[0, -0.03, 0.115, 0.07, 0.055], [0, -0.1, 0.11, 0.08, 0.06], [0, -0.14, 0.11, 0.07, 0.052], [0, -0.21, 0.105, 0.08, 0.058], [0, -0.25, 0.105, 0.068, 0.05], [0, -0.33, 0.098, 0.07, 0.05], [0, -0.37, 0.095, 0.058, 0.04], [0, -0.45, 0.085, 0.045, 0.03], [0, -0.5, 0.08, 0.006, 0.005]] }
+        fore-legs: { points: [[0.06, 0.28, 0.07, 0.016], [0.14, 0.34, 0.09, 0.012], [0.2, 0.43, 0.02, 0.007], [0.22, 0.48, 0.004, 0.003]] }
+        mid-legs: { points: [[0.065, 0.1, 0.06, 0.016], [0.16, 0.1, 0.09, 0.012], [0.24, 0.05, 0.02, 0.007], [0.27, 0.02, 0.004, 0.003]] }
+        hind-legs: { points: [[0.065, -0.0, 0.06, 0.016], [0.17, -0.07, 0.09, 0.012], [0.25, -0.2, 0.02, 0.007], [0.28, -0.27, 0.004, 0.003]] }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. rove beetle"
+        quote: "their usually elongated, slender bodies, their short elytra (wing covers)"
+    note: >-
+      The long body and short wing covers are the article's; their proportions are a machine's reconstruction, with no
+      figure compared.
+  length:
+    prop: body_length
+    value: { lo: 0.0005, hi: 0.05 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Coleoptera Staphylinidae\""
+        quote: "Coleoptera Staphylinidae 56000 0.5 50 (Parker, 1982)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for this family, its millimetres given in metres.

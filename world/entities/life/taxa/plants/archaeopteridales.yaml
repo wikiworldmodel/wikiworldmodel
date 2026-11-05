@@ -1,0 +1,41 @@
+id: life/taxa/archaeopteridales
+kind: taxon
+summary: >-
+  Archaeopteris and its kin: the tallest trees of the Devonian, widespread worldwide.
+same_as: { pbdb: "txn:55191" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Archaeopteridales, en: archaeopterid progymnosperms }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: conifer
+    source:
+      ref: src:stein-2020-cairo
+      loc: "Supplemental, Estimating Archaeopteris Tree Sizes at Cairo"
+      quote: "Archaeopteris trees more-or-less followed the tapered form seen today among conifers"
+    note: >-
+      Stein et al. say it is widely assumed, and rest their estimates on it.
+  form:
+    prop: body_form
+    value:
+      parts:
+        tree: { reach: 0.2, trunk: 0.022, flare: 1.8, tiers: 10, start: 0.35, drop: 0.05, mat: frond }
+    unsourced: "A machine's reconstruction: a conifer's outline with its tiers wider and flatter, and fronds for needles."
+  height:
+    prop: plant_height
+    value: { lo: 11.18, hi: 40 }
+    source:
+      - ref: src:stein-2020-cairo
+        loc: "Supplemental Table S1, tree Z17, height from its trunk base diameter"
+        quote: "Z17 8 5 18.50 24.87 18.48 22.08 11.18"
+      - ref: src:meyer-berthaud-2000-first-trees
+        loc: "abstract"
+        quote: "evolved the highest trees of the Devonian (maximum height estimated at 40 m)"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The least of Stein et al.'s estimates for the trees at Cairo, New York, which they say are
+      only approximations, and Meyer-Berthaud's estimate of the tallest.

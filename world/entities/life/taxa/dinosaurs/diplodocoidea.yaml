@@ -1,0 +1,27 @@
+id: life/taxa/diplodocoidea
+kind: taxon
+summary: >-
+  The whip-tailed sauropods: long, low bodies, long necks held out level and long snouts.
+same_as: { pbdb: "txn:57362" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Diplodocoidea }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: diplodocid
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 10, hi: 34 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 31, Dicraeosaurids", quote: "Brachytrachelopan short-necked shepherd god Late Jurassic (155.7-150.8 MYA) 32.8 ft (10 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 31, Diplodocines", quote: "Supersaurus super reptile Late Jurassic (155.7-150.8 MYA) 112 ft (34 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Primitive Diplodocoids", "Apatosaurines" (p. 30), "Diplodocines",
+      "Dicraeosaurids" and "Rebbachisaurids" (p. 31), standing for any member with no length of its
+      own, leaving out the 45 m of Amphicoelias, doubted by the author and resting on the
+      measurements of a specimen now lost.

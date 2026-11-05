@@ -128,10 +128,11 @@ test.describe('in the city', () => {
     expect((await page.evaluate(() => window.__lightworld!.state())).sel).toBe(null);
   });
 
-  test('deep time lifts the camera off a ground that is not there yet', async ({ page }) => {
+  test('a time with no ground lifts the camera off the place', async ({ page }) => {
     await page.goto(`/?b=${latestBuild()}&${OVERVIEW}&${FAST}`);
     await idle(page);
-    await page.evaluate(() => window.__lightworld!.set({ t: Math.round(1950 - 66e6) }));
+    // Before any scene of any place: a billion years ago there is no land the atlas knows of.
+    await page.evaluate(() => window.__lightworld!.set({ t: Math.round(1950 - 1e9) }));
     await idle(page);
     const state = await page.evaluate(() => window.__lightworld!.state());
     expect((state.cam.dist - 1) * 6371).toBeGreaterThan(50);

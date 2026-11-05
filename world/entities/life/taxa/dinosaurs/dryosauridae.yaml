@@ -1,0 +1,64 @@
+id: life/taxa/dryosauridae
+kind: taxon
+summary: >-
+  The dryosaurs: small, long-legged two-legged iguanodonts.
+same_as: { pbdb: "txn:38730" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Dryosauridae }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: ornithopod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.31
+      mass_length: 5.4
+      parts:
+        body:
+          rings:
+            - [-0.62, 0.82, 0.8, 0.003]
+            - [-0.48, 0.86, 0.82, 0.009]
+            - [-0.34, 0.92, 0.82, 0.016]
+            - [-0.2, 0.98, 0.76, 0.03]
+            - [-0.08, 1.01, 0.62, 0.056]
+            - [0.03, 1.0, 0.54, 0.064]
+            - [0.1, 0.96, 0.62, 0.05]
+          neck: { r: 0.018 }
+        legs: { top: 0.84, knee: 0.56, ankle: 0.26 }
+        arms: { points: [[0.03, 0.1, 0.8, 0.012], [0.05, 0.08, 0.6, 0.009], [0.042, 0.14, 0.5, 0.006]] }
+        head:
+          at:
+            stand: { y: 0.24, z: 0.98, pitch: 0.12 }
+            low: { y: 0.3, reach: 0.11, clear: 0.06, pitch: 0.8 }
+          rings:
+            - [-0.008, 0, 0.0216, 0.0216]
+            - [0.03, 0.0016, 0.025, 0.025]
+            - [0.075, -0.0048, 0.0145, 0.0135]
+            - [0.105, -0.008, 0.0042, 0.0042]
+        eyes: { at: [0.0204, 0.03, 0.0084], r: 0.0048 }
+    unsourced: >-
+      A machine's reconstruction, from the silhouette "Dryosaurus Scale.svg" on Wikimedia Commons:
+      the small two-legged plan drawn out to its full length, on longer legs, with its head held
+      level with its back.
+  posture:
+    prop: posture
+    value: biped
+    unsourced: >-
+      Not stated in what was read for this family; an editorial choice from the heading of its table
+      in Holtz (2012) and the figure named in the form claim.
+  length-holtz-2012:
+    prop: body_length
+    value: 3
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 43, Dryosaurids"
+      quote: "Dryosaurus tree reptile Late Jurassic (155.7-150.8 MYA) 9.8 ft (3 m)"
+    method: compilation
+    note: >-
+      The list gives all four genera of its table "Dryosaurids" the same length as this row,
+      standing for any member with no length of its own.

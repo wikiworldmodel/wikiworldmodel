@@ -1,0 +1,47 @@
+id: life/taxa/sphenacodontidae
+kind: taxon
+summary: >-
+  Sphenacodontids: the early synapsid hunters with stabbing front teeth, deep heads and tall spines on their backs, low in
+  Sphenacodon and a great sail in Dimetrodon.
+same_as: { pbdb: "txn:38901" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Sphenacodontidae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          rings:
+            - [-0.012, 0.006, 0.03, 0.044]
+            - [0.03, 0.014, 0.036, 0.062]
+            - [0.08, 0.006, 0.029, 0.056]
+            - [0.125, -0.012, 0.018, 0.04]
+            - [0.17, -0.02, 0.01, 0.022]
+        jaw:
+          rings:
+            - [0.012, -0.05, 0.024, 0.014]
+            - [0.09, -0.056, 0.019, 0.012]
+            - [0.165, -0.044, 0.008, 0.007]
+        mouth:
+          rings:
+            - [0.03, -0.037, 0.026, 0.004]
+            - [0.1, -0.041, 0.018, 0.004]
+            - [0.163, -0.038, 0.008, 0.003]
+        fangs: { type: spike, on: head, near: true, mirror: true, mat: horn, tint: 200, sides: [5, 4], from: [0.017, 0.105, -0.036], to: [0.018, 0.114, -0.074], r: 0.0055 }
+        sail: { type: tube, thin: false, sides: [6, 3], rings: [[0, -0.12, 1.16, 0.004, 0.12], [0, -0.04, 1.34, 0.005, 0.22], [0, 0.06, 1.46, 0.005, 0.28], [0, 0.16, 1.44, 0.005, 0.27], [0, 0.26, 1.3, 0.004, 0.18]] }
+    unsourced: >-
+      A machine's reconstruction: a deeper head with stabbing teeth and a low ridge of spines along the back, from the
+      photograph of the mounted Dimetrodon at the Royal Tyrrell Museum and with no figure of Sphenacodon looked at.
+  length:
+    prop: body_length
+    value: { lo: 2, hi: 3 }
+    source:
+      ref: src:wikipedia-early-vertebrates
+      loc: "Sphenacodon, Description"
+      quote: "Sphenacodon ferocior can be up to 40% larger in overall size (at about 3 m [9.8 ft] long) compared to Sphenacodon ferox (at about 2 m [6.6 ft])."
+    method: compilation
+    note: The two species of Sphenacodon stand for the family. An encyclopedia, cited as nothing better could be read.

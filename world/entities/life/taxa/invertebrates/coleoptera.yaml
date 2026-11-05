@@ -1,0 +1,34 @@
+id: life/taxa/coleoptera
+kind: taxon
+summary: >-
+  The beetles, whose hard fore wings cover the hind wings and most of the abdomen. They make up more rows of the land's
+  fossils than any other order.
+same_as: { pbdb: "txn:69148" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Coleoptera, en: "beetles" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: beetle
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, after Britannica's account of beetles (s.v. Coleoptera: the elytra usually
+      meet in a straight line down the back) and general knowledge; no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.0003, hi: 0.2 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Coleoptera Ptiliidae\""
+        quote: "Coleoptera Ptiliidae 650 0.3 2 (Parker, 1982)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Coleoptera Cerambycidae\""
+        quote: "Coleoptera Cerambycidae 30079 2 200 (Parker, 1982)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for beetles, its millimetres given in metres. The paper's mean of
+      the logs of length across the Holometabola is 1.80 ln mm, about 6 mm, so most beetles are far nearer the small
+      end.

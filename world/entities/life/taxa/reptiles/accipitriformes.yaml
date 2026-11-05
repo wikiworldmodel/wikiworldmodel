@@ -1,0 +1,37 @@
+id: life/taxa/accipitriformes
+kind: taxon
+summary: >-
+  Hawks, eagles and Old World vultures: soaring birds of prey.
+same_as: { pbdb: "txn:133775" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Accipitriformes", en: "hawks and eagles" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: raptor
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Hawks and Eagles (Accipitridae)\""
+      quote: "Powerful predators with broad wings, hooked beaks, strong legs and feet, sharp talons, and keen sight"
+    note: >-
+      The plan's description follows this; which plan draws the group is an editorial
+      classification, from its place in the tree.
+  length:
+    prop: body_length
+    value: { lo: 0.2, hi: 1.5 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Hawks and Eagles (Accipitridae)\""
+      quote: "7.9–59 in (20–150 cm); 2.6–441 oz (75–12,500 g)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.075, hi: 12.5 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Hawks and Eagles (Accipitridae)\""
+      quote: "7.9–59 in (20–150 cm); 2.6–441 oz (75–12,500 g)"
+    method: compilation

@@ -1,0 +1,39 @@
+id: life/taxa/cladoxylopsida
+kind: taxon
+summary: >-
+  Tree-fern-like plants of the Middle Devonian, Eospermatopteris at Gilboa among them, among the
+  first trees.
+same_as: { pbdb: "txn:55175" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cladoxylopsida, en: cladoxylopsids }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: tree-fern
+    source:
+      ref: src:stein-2007-gilboa
+      loc: "abstract"
+      quote: "a tall (at least 8 m), tree-fern-like plant with a trunk bearing large branches in longitudinal ranks"
+  form:
+    prop: body_form
+    value:
+      parts:
+        plant: { on_stem: 0.66, stem: 0.04, reach: 0.34, fronds: 18, across: 0.05, arch: [1.3, 0.4], steps: 3 }
+    unsourced: "A machine's reconstruction: a stout trunk with an upward fan of narrow branches, after the stand of Calamophyton in Fig. 2 of Berry (2019)."
+  height:
+    prop: plant_height
+    value: { lo: 2, hi: 8 }
+    source:
+      - ref: src:berry-2019-first-forests
+        loc: "Fig. 2, caption"
+        quote: "trees (2—3 m high) based on fossils from Lindlar"
+      - ref: src:stein-2007-gilboa
+        loc: "abstract"
+        quote: "a tall (at least 8 m)"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Calamophyton at Lindlar, and the Gilboa tree, whose 8 m is a least figure.

@@ -1,0 +1,24 @@
+id: life/taxa/neotheropoda
+kind: taxon
+summary: >-
+  The theropods above the very first, in the database including the coelophysoids and Dilophosaurus.
+  Its record speaks for those in no smaller group, such as Liliensternus and Zupaysaurus.
+same_as: { pbdb: "txn:56397" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Neotheropoda }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 5.2, hi: 7 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 3, Dilophosaurids and relatives", quote: "Zupaysaurus devil reptile Late Triassic (216.5-l99.6MYA) 16.9 ft (5.2 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 3, Dilophosaurids and relatives", quote: "Dilophosaurus double-crested reptile Early Jurassic (199.6-189.6 MYA) 2 3 f t (7 m)" }
+    method: compilation
+    note: >-
+      The range of the genera the database places directly in Neotheropoda that the list gives a
+      length for, in the table "Dilophosaurids and relatives" on that page. The letters of the
+      Dilophosaurus row are spaced out in the PDF's text layer, and are quoted as it gives them: 23
+      ft (7 m).

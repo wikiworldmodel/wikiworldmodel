@@ -1,0 +1,21 @@
+id: src:animal-diversity-web
+type: database-record
+kind: review
+citation: >-
+  Animal Diversity Web. Museum of Zoology, University of Michigan. Each account has its own authors
+  and date, as given on its page, under "To cite this page".
+snapshot: 2026-11-05
+title: Animal Diversity Web
+url: https://animaldiversity.org/
+license_note: >-
+  Its text is under a share-alike, non-commercial licence, so it is only cited and quoted briefly.
+reliability: >-
+  Accounts written largely by students and reviewed by their instructors, drawing on standard works
+  such as Walker's Mammals of the World. Cited where a length or a mass including the tail, or a
+  statement for a whole family, could not be read in anything better. What its "length" measures
+  differs from account to account, and is said in a claim's note when it matters.
+verified:
+  by: machine:claude-code
+  how: >-
+    The accounts cited fetched and read on 2026-11-05, in their Physical Description sections, and
+    the quotes checked by script against the text of the page after normalizing whitespace.

@@ -1,0 +1,60 @@
+id: life/taxa/gruiformes
+kind: taxon
+summary: >-
+  Rails, cranes and their relatives. Most of the group's fossils are rails, so that is the body it
+  starts from.
+same_as: { pbdb: "txn:39454" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Gruiformes", en: "rails, cranes and relatives" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.3
+      behave: { flies: null, group: [1, 4], habitat: wet, poses: [stand, walk, walk, graze, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.4, 1.66, 1.52, 0.02]
+            - [-0.33, 1.6, 1.4, 0.04]
+            - [-0.24, 1.6, 1.16, 0.06]
+            - [-0.13, 1.66, 0.9, 0.08]
+            - [-0.02, 1.72, 0.8, 0.088]
+            - [0.08, 1.76, 0.88, 0.078]
+            - [0.15, 1.8, 1.2, 0.05]
+          neck: { r: 0.03, steps: [3, 1] }
+        legs: { y: -0.05, x: 0.04, top: 1.0, knee: 0.7, ankle: 0.38, r: 0.038, swing: 0.1 }
+        wings: { shoulder: [0.08, 0.08, 1.5], span: 0.5, chord: 0.24, sweep: 0.1, folded: 0.32, drop: 0.3 }
+        head:
+          at:
+            stand: { y: 0.24, z: 2.2, pitch: 0.08 }
+            alert: { y: 0.23, z: 2.36, pitch: -0.02 }
+            low: { y: 0.3, reach: 0.2, clear: 0.05, pitch: 1.0 }
+            fly: { y: 0.27, z: 1.9, pitch: 0.05 }
+          rings:
+            - [-0.02, 0, 0.022, 0.026]
+            - [0.02, 0.003, 0.032, 0.036]
+            - [0.055, 0.0, 0.024, 0.026]
+            - [0.08, -0.005, 0.013, 0.015]
+        bill: { from: [0, 0.074, -0.004], to: [0, 0.195, -0.016], r: 0.015 }
+        eyes: { at: [0.026, 0.035, 0.012], r: 0.008 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Rails, Coots, and Moorhens (Rallidae)\""
+      quote: "Small to medium-sized birds with short and deep to long and slender bill, moderately long neck"
+    note: >-
+      The body follows this. The rest is a machine's reconstruction; no skeletal figure was looked
+      at.
+  length:
+    prop: body_length
+    value: { lo: 0.12, hi: 1.76 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Gruiformes (Cranes, Rails, and Relatives)\""
+      quote: "ranging from the diminutive 4.7 in (12 cm) American black rail (Laterallus jamaicensis) to the 5.8 ft (176 cm) Sarus crane"
+    method: compilation
+    note: >-
+      The rails and cranes have their own.

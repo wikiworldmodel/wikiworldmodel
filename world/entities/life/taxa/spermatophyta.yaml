@@ -37,6 +37,25 @@ claims:
       for reference but deprecated: its middle, about 348 Ma, is younger than the Famennian
       seeds of Elkinsia (372.2–358.9 Ma), which lie on the seed-plant stem. No molecular
       estimate for the stem’s origin was found.
+  body-plan:
+    prop: body_plan
+    value: broadleaf
+    unsourced: "What draws a seed plant with no form nearer, seeds and leaves the database places no lower: a stand-in, an editorial classification."
+  height:
+    prop: plant_height
+    value: { lo: 5, hi: 30 }
+    source:
+      - ref: src:flora-of-north-america
+        loc: "Vol. 7, s.v. Salix nigra"
+        quote: "Trees, 5-20+ m."
+      - ref: src:flora-of-north-america
+        loc: "Vol. 3, s.v. Betula papyrifera"
+        quote: "Trees , to 30 m, usually 20 m or shorter"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living broad-leaved trees, standing for a seed plant with no height of its own: modern
+      relatives, chosen by the editor, as the plan draws a tree.
 relations:
   parent:
     rel: descends-from

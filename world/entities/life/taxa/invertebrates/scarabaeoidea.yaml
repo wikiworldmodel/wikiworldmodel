@@ -1,0 +1,37 @@
+id: life/taxa/scarabaeoidea
+kind: taxon
+summary: >-
+  The scarabs, stag beetles and dung beetles, stout and domed, with clubbed antennae and strong legs.
+same_as: { pbdb: "txn:69300" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Scarabaeoidea, en: "scarabs and stag beetles" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        elytra: { at: [0, -0.12, 0.19], r: [0.2, 0.38, 0.17] }
+        suture: { points: [[0, 0.2, 0.268, 0.004], [0, 0, 0.35, 0.004], [0, -0.12, 0.36, 0.004], [0, -0.3, 0.337, 0.004], [0, -0.45, 0.258, 0.004]] }
+        shield: { at: [0, 0.24, 0.18], r: [0.18, 0.135, 0.125] }
+        head: { at: [0, 0.41, 0.135], r: [0.09, 0.07, 0.055] }
+        jaws: null
+        antennae: { from: [0.07, 0.45, 0.13], to: [0.16, 0.53, 0.16], r: 0.005 }
+        clubs: { type: lump, near: true, zl: true, mat: chitin, mirror: true, at: [0.17, 0.54, 0.165], r: [0.02, 0.03, 0.022], sides: [5, 4], bands: [3, 2] }
+        fore-legs: { points: [[0.09, 0.3, 0.08, 0.025], [0.2, 0.36, 0.1, 0.02], [0.27, 0.46, 0.02, 0.012], [0.3, 0.5, 0.004, 0.005]] }
+        mid-legs: { points: [[0.1, 0.08, 0.07, 0.025], [0.24, 0.07, 0.11, 0.02], [0.33, 0.01, 0.02, 0.012], [0.37, -0.03, 0.004, 0.005]] }
+        hind-legs: { points: [[0.1, -0.1, 0.07, 0.026], [0.25, -0.19, 0.11, 0.021], [0.33, -0.33, 0.02, 0.012], [0.36, -0.4, 0.004, 0.005]] }
+    unsourced: "A machine's reconstruction of the general shape of the group, from general knowledge of these beetles; no figure was compared with it."
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 0.16 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Coleoptera Scarabaeidae\""
+        quote: "Coleoptera Scarabaeidae 27000 1 160 (Parker, 1982)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for the families of this superfamily, its millimetres given in
+      metres.

@@ -1,0 +1,23 @@
+id: src:luthardt-2022-medullosa
+type: publication
+kind: measurement
+citation: >-
+  Luthardt, L., Merbitz, M., Fridland, E. & Rößler, R. (2022). Upside-down in volcanic ash: crown
+  reconstruction of the early Permian seed fern Medullosa stellata with attached foliated fronds.
+  PeerJ 10, e13051.
+authors:
+  - "Luthardt, L."
+  - "Merbitz, M."
+  - "Fridland, E."
+  - "Rößler, R."
+published: 2022
+title: "Upside-down in volcanic ash: crown reconstruction of the early Permian seed fern Medullosa stellata with attached foliated fronds"
+container: PeerJ 10, e13051
+doi: 10.7717/peerj.13051
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text retrieved from PubMed Central (PMC8953532); the parts cited were read, and quotes
+    checked by script against that page's text. The publisher's site stopped the download at a bot
+    check.

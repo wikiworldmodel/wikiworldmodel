@@ -1,8 +1,8 @@
 id: gen:life/scene
 type: generator
-title: A living scene on a river's floodplain
-version: 1
-code: generators/life/scene/v1.ts
+title: A living scene of any place on land
+version: 2
+code: generators/life/scene/v2.ts
 runs_in: [build, client]
 outputs: { basis: procedural }
 inputs: []
@@ -10,9 +10,10 @@ slots:
   hell-creek:
     place: The floodplain of the Hell Creek, at the slice its scene describes
     seed: life/hell-creek
-# Nothing below is a claim about the Hell Creek. The numbers say how this generator lays out a
-# floodplain and what lives on it: how wide its river is drawn, how many animals a row of the
-# snapshot stands for. Which taxa, and how big they grew, come from the records.
+# Nothing below is a claim about any place or animal. The numbers say how this generator lays out the
+# land and what lives on it: how wide a river is drawn, what colours a climate is given, how many more
+# animals are shown than a census would see. Which taxa, and how big they grew, come from the records; how
+# each kind of body keeps comes from its form.
 params:
   site:
     id: hell-creek
@@ -22,9 +23,9 @@ params:
     # About the middle of the formation's time.
     slice: 66.5 Ma
     window: [68 Ma, 65 Ma]
-  ground:
-    # Towards the seaway, on the globe's reconstruction, in degrees of bearing as radians.
+    # Towards the seaway, on the globe's reconstruction, in degrees of bearing as radians. Elsewhere a river runs downhill.
     flow: 1.75
+  ground:
     width: 86
     depth: 5.5
     wavelength: 1500
@@ -41,49 +42,95 @@ params:
     pond_radius: [30, 120]
     blend: [20000, 34000]
     lowest_water: 12
+    sea_below: 12
+    rugged: 0.7
+    swell: 0.004
+    coast: 90
   cover:
     patch: 640
     glade: 0.41
-    forest_by_climate:
-      rainforest: 1
-      savanna: 0.45
-      temperate: 0.95
-      cold: 0.8
-      steppe: 0.15
-      desert: 0
-      tundra: 0
-      ice: 0
     clearing: 150
     bare: 0.62
+    climates:
+      rainforest: { forest: 1, herb: 0.95, bare: 0, river: 1, tones: rainforest }
+      savanna: { forest: 0.45, herb: 0.9, bare: 0.1, river: 0.7, tones: savanna }
+      temperate: { forest: 0.95, herb: 0.9, bare: 0, river: 1, tones: plain }
+      cold: { forest: 0.8, herb: 0.85, bare: 0, river: 1, tones: plain }
+      steppe: { forest: 0.15, herb: 0.75, bare: 0.35, river: 0.35, tones: steppe }
+      desert: { forest: 0, herb: 0.12, bare: 0.92, river: 0.05, dunes: 7, tones: desert }
+      tundra: { forest: 0, herb: 0.6, bare: 0.35, river: 0.6, tones: tundra }
+      ice: { forest: 0, herb: 0, bare: 1, river: 0, tones: ice }
+    # Soil, low plants, bare ground, canopy and low plants from afar, each from one tone to another; and the same again for
+    # a land before plants, which has none of them. Nobody recorded these colours.
+    tones:
+      plain:
+        soil: [0.085, 0.066, 0.045, 0.17, 0.13, 0.08]
+        herb: [0.05, 0.09, 0.03, 0.125, 0.165, 0.052]
+        bare: [0.40, 0.355, 0.26, 0.27, 0.23, 0.165]
+        canopy: [0.03, 0.062, 0.026, 0.07, 0.11, 0.04]
+        distant: [0.085, 0.125, 0.05, 0.135, 0.165, 0.065]
+      rainforest:
+        soil: [0.075, 0.05, 0.035, 0.15, 0.1, 0.06]
+        herb: [0.035, 0.095, 0.03, 0.09, 0.17, 0.05]
+        bare: [0.36, 0.26, 0.19, 0.25, 0.17, 0.12]
+        canopy: [0.018, 0.058, 0.022, 0.045, 0.105, 0.035]
+        distant: [0.05, 0.115, 0.04, 0.09, 0.15, 0.055]
+      savanna:
+        soil: [0.16, 0.115, 0.07, 0.28, 0.2, 0.12]
+        herb: [0.2, 0.19, 0.075, 0.33, 0.3, 0.12]
+        bare: [0.5, 0.39, 0.25, 0.36, 0.26, 0.16]
+        canopy: [0.05, 0.08, 0.03, 0.11, 0.14, 0.05]
+        distant: [0.24, 0.23, 0.1, 0.33, 0.3, 0.14]
+      steppe:
+        soil: [0.2, 0.165, 0.11, 0.32, 0.26, 0.17]
+        herb: [0.23, 0.22, 0.11, 0.38, 0.35, 0.18]
+        bare: [0.52, 0.44, 0.32, 0.38, 0.31, 0.21]
+        canopy: [0.06, 0.08, 0.04, 0.12, 0.14, 0.06]
+        distant: [0.3, 0.28, 0.15, 0.4, 0.36, 0.2]
+      desert:
+        soil: [0.46, 0.36, 0.24, 0.62, 0.5, 0.33]
+        herb: [0.26, 0.24, 0.13, 0.36, 0.33, 0.17]
+        bare: [0.74, 0.6, 0.4, 0.56, 0.42, 0.27]
+        canopy: [0.08, 0.1, 0.05, 0.14, 0.16, 0.07]
+        distant: [0.5, 0.42, 0.27, 0.62, 0.5, 0.33]
+      tundra:
+        soil: [0.11, 0.1, 0.075, 0.2, 0.18, 0.13]
+        herb: [0.13, 0.15, 0.08, 0.23, 0.23, 0.13]
+        bare: [0.42, 0.41, 0.37, 0.28, 0.27, 0.24]
+        canopy: [0.05, 0.07, 0.04, 0.1, 0.12, 0.06]
+        distant: [0.2, 0.21, 0.13, 0.28, 0.28, 0.18]
+      ice:
+        soil: [0.8, 0.84, 0.88, 0.9, 0.93, 0.96]
+        herb: [0.8, 0.84, 0.88, 0.9, 0.93, 0.96]
+        bare: [0.88, 0.91, 0.95, 0.78, 0.83, 0.9]
+        canopy: [0.8, 0.84, 0.88, 0.9, 0.93, 0.96]
+        distant: [0.8, 0.84, 0.88, 0.9, 0.93, 0.96]
+      barren:
+        soil: [0.2, 0.16, 0.125, 0.34, 0.28, 0.22]
+        herb: [0.2, 0.16, 0.125, 0.34, 0.28, 0.22]
+        bare: [0.42, 0.34, 0.27, 0.27, 0.21, 0.17]
+        canopy: [0.2, 0.16, 0.125, 0.34, 0.28, 0.22]
+        distant: [0.34, 0.28, 0.22, 0.42, 0.34, 0.27]
   plants:
-    trees: [84, 16]
-    falloff: [900, 4200]
-    ferns: 420
-    ferns_reach: 720
-    mat_radius: 2.4
+    step: 8
+    trees: 84
+    far_share: 0.12
+    under_step: 3
+    under: 420
+    mat_step: 14
     mats: 42
-    plans:
-      conifer: { weight: 0.7, wet: 2.4 }
-      broadleaf: { weight: 1.5, wet: -0.9 }
-      palm: { weight: 1.2, wet: 0.1 }
-      fern: { weight: 1, wet: 0.4 }
   animals:
-    near_share: 0.5
+    # Damuth's rule, for a species of plant-eating mammals: log10 D = 4.23 − 0.75 log10 M, in grams and km².
+    density: 95
+    show: 12
+    predators: 0.05
+    most_in_cell: 3
     near_radius: 340
     front_length: 1.2
-    # The small-mammal kit's body, head and all, at the density of water, for its length with a long tail.
-    mass_length: { small-mammal: 14 }
-    plans:
-      ceratopsian: { per_row: 0.34, group: [1, 5], habitat: open, poses: [graze, graze, stand, walk, alert] }
-      tyrannosaur: { per_row: 0.1, group: [1, 2], habitat: any, poses: [walk, stand, alert] }
-      hadrosaur: { per_row: 0.8, group: [4, 14], habitat: open, poses: [graze, graze, walk, stand, alert] }
-      ankylosaur: { per_row: 0.5, group: [1, 1], habitat: open, poses: [graze, walk, stand] }
-      pachycephalosaur: { per_row: 0.24, group: [1, 3], habitat: any, poses: [stand, walk, graze, alert] }
-      ornithopod: { per_row: 0.5, group: [1, 4], habitat: any, poses: [stand, walk, graze, alert] }
-      small-theropod: { per_row: 0.6, group: [1, 3], habitat: any, poses: [stand, walk, alert] }
-      crocodilian: { per_row: 0.2, group: [1, 3], habitat: edge, poses: [rest, rest, stand] }
-      turtle: { per_row: 0.34, group: [1, 3], habitat: edge, poses: [rest, walk] }
-      small-mammal: { per_row: 0.5, group: [1, 2], habitat: forest, poses: [stand, walk] }
+    small_m: 0.6
+    mass_length: 20
+    defaults: { group: [1, 3], habitat: any, poses: [stand, walk, alert] }
+  reach: { full: 2500, near: 350 }
   view:
     range: 74
     turn: 0.3

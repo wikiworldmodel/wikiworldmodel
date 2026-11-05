@@ -1,0 +1,36 @@
+description: >-
+  A small, stout, land-going relative of the amniotes: a deep flat-topped skull, a thick body, strong sprawling legs and a tail of middling length.
+kind: animal
+hip: 0.16
+behave: { group: [1, 2], habitat: any, poses: [stand, walk, rest] }
+parts:
+  body:
+    type: trunk
+    rings:
+      - [-0.52, 0.6, 0.5, 0.003]
+      - [-0.43, 0.68, 0.48, 0.009]
+      - [-0.34, 0.8, 0.46, 0.017]
+      - [-0.25, 0.96, 0.46, 0.03]
+      - [-0.17, 1.12, 0.42, 0.054]
+      - [-0.07, 1.26, 0.34, 0.074]
+      - [0.04, 1.3, 0.34, 0.078]
+      - [0.13, 1.26, 0.4, 0.068]
+      - [0.2, 1.18, 0.52, 0.05]
+    neck: { r: 0.038, steps: [2, 1] }
+  thigh: { type: chain, mirror: true, sides: [6, 3], points: [[0.05, -0.12, 0.8, 0.03], [0.1, -0.1, 0.76, 0.025], [0.15, -0.085, 0.66, 0.019]] }
+  shin: { type: pillar, y: -0.085, x: 0.15, top: 0.68, r: 0.018, swing: 0.05 }
+  arm: { type: chain, mirror: true, sides: [6, 3], points: [[0.05, 0.155, 0.82, 0.027], [0.095, 0.15, 0.78, 0.022], [0.14, 0.145, 0.66, 0.017]] }
+  forearm: { type: pillar, y: 0.145, x: 0.14, top: 0.68, r: 0.016, swing: 0.045, phase: 1 }
+  head:
+    type: head
+    at:
+      stand: { y: 0.255, z: 1.04, pitch: 0.06 }
+      alert: { y: 0.255, z: 1.28, pitch: -0.08 }
+      low: { y: 0.27, reach: 0.19, pitch: 0.36 }
+    rings:
+      - [-0.012, 0.004, 0.044, 0.034]
+      - [0.03, 0.01, 0.054, 0.042]
+      - [0.08, 0.004, 0.048, 0.036]
+      - [0.13, -0.004, 0.032, 0.025]
+      - [0.175, -0.01, 0.015, 0.013]
+  eyes: { type: eyes, on: head, near: true, at: [0.042, 0.07, 0.026], r: 0.0105 }

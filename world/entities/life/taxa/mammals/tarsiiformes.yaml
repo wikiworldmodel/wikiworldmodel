@@ -1,0 +1,39 @@
+id: life/taxa/tarsiiformes
+kind: taxon
+summary: >-
+  Tarsiers and the small Eocene omomyids.
+same_as: { pbdb: "txn:40792" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Tarsiiformes, en: "tarsiers and omomyids" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    value: { lo: 0.085, hi: 0.41 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Tarsius syrichta, Physical Description"
+        quote: "Body size is approximately 85 to 160 mm, with weights between 80 and 165 g"
+      - ref: src:animal-diversity-web
+        loc: "account of Tarsius syrichta, Physical Description"
+        quote: "They have a 25 cm long tail that is tufted at the end"
+    method: compilation
+    note: >-
+      The Philippine tarsier: its head and body at the low end, with its tail at the high end.
+      The omomyids of the Eocene are not measured here, and some were heavier.
+  mass:
+    prop: body_mass
+    value: { lo: 0.0275, hi: 2 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Tarsius_pumilus, column Mass.g (grams)"
+        quote: "Tarsius_pumilus,Primates,Tarsiidae,Tarsius,pumilus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,27.5"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Primates (Primates)\""
+        quote: "Both reached 1.5–2 kg (3.3–4.4 lb) in weight"
+    method: compilation
+    note: >-
+      From the smallest tarsier to the largest omomyids, from Wikipedia as nothing better
+      could be read.

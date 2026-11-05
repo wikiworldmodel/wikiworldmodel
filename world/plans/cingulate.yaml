@@ -1,0 +1,27 @@
+description: >-
+  An armadillo or one of its kin: a bony shell in bands over a low body, short legs, a narrow head under a shield and a tapering tail.
+kind: animal
+hip: 0.17
+# Its mesh, head and all, at the density of water, for its length.
+mass_length: 19
+behave: { group: [1, 2], habitat: any, poses: [stand, walk, walk, graze] }
+parts:
+  shell: { type: shell, mat: shell, r: [0.15, 0.27, 0.19], lift: 0.045, sides: [14, 6], bands: [6, 3] }
+  belly: { type: lump, mat: hide, zl: true, sides: [10, 5], bands: [4, 2], at: [0, 0, 0.09], r: [0.12, 0.24, 0.05] }
+  tail: { type: chain, mat: shell, zl: true, sides: [7, 4], points: [[0, -0.24, 0.1, 0.035], [0, -0.33, 0.085, 0.027], [0, -0.42, 0.06, 0.017], [0, -0.5, 0.03, 0.007]] }
+  hind: { type: pillar, y: -0.15, x: 0.09, top: 0.6, r: 0.036, swing: 0.04 }
+  fore: { type: pillar, y: 0.16, x: 0.09, top: 0.6, r: 0.028, swing: 0.04, phase: 1 }
+  head:
+    type: head
+    at:
+      stand: { y: 0.215, z: 0.62, pitch: 0.2 }
+      low: { y: 0.23, reach: 0.15, pitch: 0.6 }
+    rings:
+      - [-0.012, 0.004, 0.032, 0.03]
+      - [0.03, 0.006, 0.034, 0.034]
+      - [0.09, -0.008, 0.02, 0.02]
+      - [0.15, -0.02, 0.012, 0.012]
+      - [0.185, -0.026, 0.008, 0.008]
+  shield: { type: lump, on: head, mat: shell, sides: [8, 4], bands: [3, 2], at: [0, 0.05, 0.022], r: [0.03, 0.07, 0.016] }
+  ears: { type: spike, on: head, mat: hide, mirror: true, sides: [5, 4], from: [0.024, -0.002, 0.016], to: [0.04, -0.03, 0.06], r: 0.01 }
+  eyes: { type: eyes, on: head, near: true, at: [0.026, 0.06, 0.008], r: 0.0045 }

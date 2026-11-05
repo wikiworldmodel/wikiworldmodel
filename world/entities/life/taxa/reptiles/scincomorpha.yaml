@@ -1,0 +1,26 @@
+id: life/taxa/scincomorpha
+kind: taxon
+summary: >-
+  In this classification mostly the Cretaceous polyglyphanodontians, extinct relatives of the
+  whiptails.
+same_as: { pbdb: "txn:57293" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Scincomorpha", en: "scincomorph lizards" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.023, hi: 0.614 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Skinks (Scincidae)\""
+        quote: "0.9–19.3 in (23–490 mm) in snout-vent length"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Salvator rufescens, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "8317.638 NA 614"
+    method: compilation
+    note: >-
+      From snout to vent, as the plan's length is: the living skinks and whiptails, standing for the
+      fossil members, of which no length could be read.

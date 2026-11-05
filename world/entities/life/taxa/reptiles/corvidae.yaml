@@ -1,0 +1,38 @@
+id: life/taxa/corvidae
+kind: taxon
+summary: >-
+  Crows, ravens, magpies and jays: large passerines with stout bills.
+same_as: { pbdb: "txn:39445" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Corvidae", en: "crows and jays" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        bill: { from: [0, 0.09, -0.002], to: [0, 0.215, -0.018], r: 0.03 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Crows and Jays (Corvidae)\""
+      quote: "Medium to large-sized birds with large heads and stout, usually slightly hooked beaks"
+    note: >-
+      The heavier bill; the rest is the plan's. Otherwise a machine's reconstruction.
+  length:
+    prop: body_length
+    value: { lo: 0.19, hi: 0.69 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Crows and Jays (Corvidae)\""
+      quote: "7.4–26.9 in (19–69 cm); 1.47 oz–3.66 lb (41.6 g–1.56 kg)"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 0.0416, hi: 1.56 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Crows and Jays (Corvidae)\""
+      quote: "7.4–26.9 in (19–69 cm); 1.47 oz–3.66 lb (41.6 g–1.56 kg)"
+    method: compilation

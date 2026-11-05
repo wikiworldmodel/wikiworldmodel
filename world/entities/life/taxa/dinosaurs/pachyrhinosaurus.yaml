@@ -1,0 +1,33 @@
+id: life/taxa/pachyrhinosaurus
+kind: taxon
+summary: >-
+  Pachyrhinosaurus, a centrosaurine of the Late Cretaceous of Alberta and Alaska with a great boss
+  of bone in place of a nose horn.
+same_as: { pbdb: "txn:38858" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pachyrhinosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        nose: null
+        brow: null
+        boss: { type: lump, on: head, mat: horn, tint: 150, at: [0, 0.16, 0.05], r: [0.038, 0.06, 0.032], sides: [8, 4], bands: [5, 3] }
+        spike: { type: spike, on: head, tint: 60, from: [0.02, -0.11, 0.19], to: [0.03, -0.14, 0.27], r: 0.012, mirror: true, sides: [6, 3] }
+    unsourced: >-
+      A machine's reconstruction: a boss over the snout and brows and a pair of frill spikes, from
+      the silhouette "Pachyrhinosaurus Scale 2.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 8
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 51, Centrosaurines"
+      quote: "Pachyrhinosaurus thick-nosed reptile Late Cretaceous (80-66.8 MYA) 26.2 ft (8 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

@@ -1,0 +1,46 @@
+id: life/taxa/aetosauria
+kind: taxon
+summary: >-
+  The armoured plant-eating archosaurs of the Late Triassic, with small heads and upturned snouts.
+same_as: { pbdb: "txn:38267" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Aetosauria", en: "aetosaurs" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: aetosaur
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Evolution of the Reptiles\""
+      quote: "The head was small in relation to the body and narrowed into a short rostrum anterior to the teeth"
+    note: >-
+      The plan's description follows this; which plan draws the group is an editorial
+      classification, from its place in the tree.
+  posture:
+    prop: posture
+    value: quadruped
+    source:
+      ref: src:desojo-2013-aetosauria
+      loc: "abstract"
+      quote: "obligately quadrupedal, heavily armoured pseudosuchians"
+  length:
+    prop: body_length
+    value: { lo: 1, hi: 6 }
+    source:
+      ref: src:desojo-2013-aetosauria
+      loc: "abstract"
+      quote: "ranging from 1 to 6 m in length, and with a body mass ranging from less than 10 to more than 500 kg"
+    method: compilation
+  mass:
+    prop: body_mass
+    value: { lo: 10, hi: 500 }
+    source:
+      ref: src:desojo-2013-aetosauria
+      loc: "abstract"
+      quote: "ranging from 1 to 6 m in length, and with a body mass ranging from less than 10 to more than 500 kg"
+    method: compilation
+    note: >-
+      Stated as less than 10 to more than 500 kg.

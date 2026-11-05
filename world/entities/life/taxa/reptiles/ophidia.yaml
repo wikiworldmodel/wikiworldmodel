@@ -1,0 +1,29 @@
+id: life/taxa/ophidia
+kind: taxon
+summary: >-
+  Snakes and their fossil stem relatives.
+same_as: { pbdb: "txn:54232" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Ophidia", en: "snakes" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: snake
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.101, hi: 6 }
+    source:
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Amerotyphlops yonenagae, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "0.245447624 101 NA"
+      - ref: src:oskyrko-2024-repttraits
+        loc: "sheet \"Data\", row Malayopython reticulatus, columns \"Maximum body mass (g)\", \"Maximum total length\", \"Maximum length\""
+        quote: "246603.9337 6000 NA"
+    method: compilation
+    note: >-
+      Total length: the smallest threadsnake and the largest python in the dataset, for any snake
+      with no length of its own. Giants of the past, such as Titanoboa, could not be read.

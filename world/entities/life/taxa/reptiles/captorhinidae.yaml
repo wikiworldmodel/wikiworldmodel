@@ -1,0 +1,67 @@
+id: life/taxa/captorhinidae
+kind: taxon
+summary: >-
+  Stocky, short-limbed early reptiles of the Carboniferous and Permian, with broad heads and rows of
+  teeth.
+same_as: { pbdb: "txn:37495" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Captorhinidae", en: "captorhinids" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: lizard
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-1.02, 0.66, 0.6, 0.006]
+            - [-0.84, 0.76, 0.56, 0.018]
+            - [-0.66, 0.9, 0.52, 0.034]
+            - [-0.48, 1.08, 0.48, 0.06]
+            - [-0.32, 1.26, 0.46, 0.098]
+            - [-0.18, 1.38, 0.44, 0.125]
+            - [-0.04, 1.42, 0.44, 0.135]
+            - [0.08, 1.38, 0.5, 0.12]
+            - [0.17, 1.3, 0.6, 0.085]
+          neck: { r: 0.08, steps: [1, 1] }
+        head:
+          at:
+            stand: { y: 0.24, z: 1.26, pitch: 0.08 }
+            alert: { y: 0.24, z: 1.5, pitch: 0.0 }
+            low: { y: 0.27, reach: 0.22, clear: 0.1, pitch: 0.35 }
+          rings:
+            - [-0.04, 0, 0.08, 0.06]
+            - [0.03, 0.002, 0.09, 0.066]
+            - [0.11, -0.006, 0.07, 0.05]
+            - [0.19, -0.014, 0.038, 0.03]
+            - [0.235, -0.024, 0.016, 0.014]
+        jaw: { rings: [[0.03, -0.05, 0.07, 0.014], [0.12, -0.05, 0.05, 0.012], [0.21, -0.04, 0.016, 0.006]] }
+        eyes: { at: [0.062, 0.07, 0.024], r: 0.015 }
+    source:
+      ref: src:leblanc-2015-captorhinids-bally-mountain
+      loc: "p. 35"
+      quote: "Captorhinids in general are characterized by a stocky body and short limbs"
+    note: >-
+      The body follows this; the broad head and the rest are a machine's reconstruction. No skeletal
+      figure was looked at.
+  posture:
+    prop: posture
+    value: sprawling
+    unsourced: "No work read states its stance; an editorial choice, from the plan."
+  length:
+    prop: body_length
+    value: { lo: 0.15, hi: 0.7 }
+    source:
+      ref: src:leblanc-2015-captorhinids-bally-mountain
+      loc: "p. 35"
+      quote: "snout-vent lengths between 15‒70 cm"
+    method: compilation
+    note: >-
+      From snout to vent, as the plan's length is: the early carnivorous and omnivorous members. The
+      later plant-eating giants have their own.

@@ -1,0 +1,49 @@
+id: life/taxa/caprimulgiformes
+kind: taxon
+summary: >-
+  Nightjars, swifts and hummingbirds: small birds with short bills, in this classification one
+  order.
+same_as: { pbdb: "txn:39410" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Caprimulgiformes", en: "nightjars, swifts and hummingbirds" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        bill: { from: [0, 0.095, -0.004], to: [0, 0.14, -0.01], r: 0.012 }
+        wings: { span: 0.95, chord: 0.15, sweep: 0.5, beat: 0.2, folded: 0.6, drop: 0.5 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Swifts (Apodidae)\""
+      quote: "Small to medium-sized, fast flying birds with narrow swept-back wings"
+    note: >-
+      The wings follow this. The tiny bill is a machine's reconstruction, and does not tell a
+      hummingbird's apart.
+  length:
+    prop: body_length
+    value: { lo: 0.05, hi: 0.4 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Hummingbirds (Trochilidae)\""
+        quote: "2–8.7 in (5–22 cm); 0.07–0.7 oz (1.9–21 g)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Nightjars (Caprimulgidae)\""
+        quote: "6–16 in (15–40 cm); 0.7–6.6 oz (20–188 g)"
+    method: compilation
+    note: >-
+      From the smallest hummingbirds to the largest nightjars; swifts, 9–25 cm, lie within it.
+  mass:
+    prop: body_mass
+    value: { lo: 0.0019, hi: 0.205 }
+    source:
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Hummingbirds (Trochilidae)\""
+        quote: "2–8.7 in (5–22 cm); 0.07–0.7 oz (1.9–21 g)"
+      - ref: src:grzimek-animal-life-encyclopedia
+        loc: "s.v. \"Swifts (Apodidae)\""
+        quote: "3.4–9.6 in (9–25 cm); 0.2–7.6 oz (5–205 g)"
+    method: compilation

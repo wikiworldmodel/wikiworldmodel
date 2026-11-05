@@ -1,0 +1,20 @@
+id: src:rossler-2012-largest-calamite
+type: publication
+kind: measurement
+citation: >-
+  Rößler, R., Feng, Z. & Noll, R. (2012). The largest calamite and its growth architecture:
+  Arthropitys bistriata from the Early Permian Petrified Forest of Chemnitz. Review of Palaeobotany
+  and Palynology 185, 64–78.
+authors:
+  - "Rößler, R."
+  - "Feng, Z."
+  - "Noll, R."
+published: 2012
+title: "The largest calamite and its growth architecture: Arthropitys bistriata from the Early Permian Petrified Forest of Chemnitz"
+container: Review of Palaeobotany and Palynology 185, 64–78
+url: https://web.natur.cuni.cz/IGP/main/staff/sakala/04-divers/permokarbon/2012-ronny-sphenopsid-04.pdf
+verified:
+  by: machine:claude-code
+  how: >-
+    The journal's PDF as posted on a Charles University staff page; the parts cited were read, and
+    quotes checked by script against the text extracted from the PDF.

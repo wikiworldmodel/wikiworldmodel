@@ -1,0 +1,17 @@
+id: src:munster-rhynie-chert-flora
+type: database-record
+kind: review
+citation: >-
+  Palaeobotanical Research Group, University of Münster. The Rhynie Chert and its Flora, part II:
+  The Rhynie Chert flora. Web page, kept in the Botany online archive of the University of Hamburg.
+snapshot: 2026-11-05
+title: "The Rhynie Chert and its Flora: II. The Rhynie Chert flora"
+container: Palaeobotanical Research Group, University of Münster
+url: https://www-archiv.fdm.uni-hamburg.de/b-online/kerp/rhynneu2.htm
+reliability: >-
+  A research group's own summary of the flora, as a web page. It names no individual author.
+verified:
+  by: machine:claude-code
+  how: >-
+    The page read in the Hamburg archive on the date of the snapshot; quotes checked by script
+    against its text.

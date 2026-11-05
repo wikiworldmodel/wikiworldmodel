@@ -1,0 +1,28 @@
+description: >-
+  A long, low, four-legged semi-aquatic reptile with an armoured back and a long tail.
+kind: animal
+hip: 0.1
+behave: { group: [1, 3], habitat: edge, poses: [rest, rest, stand] }
+parts:
+  body:
+    type: trunk
+    sides: [12, 5]
+    rings:
+      - [-0.5, 0.6, 0.5, 0.003]
+      - [-0.4, 0.82, 0.42, 0.008]
+      - [-0.28, 1.0, 0.42, 0.018]
+      - [-0.16, 1.14, 0.44, 0.034]
+      - [-0.06, 1.24, 0.34, 0.058]
+      - [0.04, 1.26, 0.3, 0.07]
+      - [0.13, 1.2, 0.34, 0.05]
+      - [0.2, 1.12, 0.46, 0.036]
+      - [0.25, 1.08, 0.5, 0.034]
+      - [0.31, 1.12, 0.62, 0.044]
+      - [0.37, 1.0, 0.62, 0.03]
+      - [0.44, 0.9, 0.62, 0.016]
+      - [0.5, 0.82, 0.62, 0.012]
+  hind: { type: chain, mirror: true, sides: [5, 3], points: [[0.05, -0.09, 0.72, 0.016], [0.1, -0.075, 0.6, 0.0115], [0.13, -0.075, 0.02, 0.0096]] }
+  fore: { type: chain, mirror: true, sides: [5, 3], points: [[0.05, 0.13, 0.72, 0.012], [0.1, 0.145, 0.6, 0.0086], [0.13, 0.145, 0.02, 0.0072]] }
+  plates-back: { type: row, near: true, tint: 40, mirror: true, n: 7, item: lump, from: [0.014, -0.36, 0.9], to: [0.014, -0.132, 1.16], r: [0.007, 0.012, 0.006] }
+  plates-neck: { type: row, near: true, tint: 40, mirror: true, n: 9, item: lump, from: [0.014, -0.094, 1.22], to: [0.014, 0.21, 1.1], r: [0.007, 0.012, 0.006] }
+  eyes: { type: lump, near: true, mat: dark, mirror: true, at: [0.03, 0.32, 1.1], r: [0.005, 0.006, 0.005], sides: [6, 4], bands: [3, 2] }

@@ -1,0 +1,6 @@
+description: >-
+  A fern: a low rosette of arching fronds.
+kind: plant
+behave: { layer: under, weight: 1, wet: 0.4 }
+parts:
+  plant: { type: fern, reach: 0.95, fronds: 7, across: 0.07, arch: [0.72, 0.4], steps: 4 }

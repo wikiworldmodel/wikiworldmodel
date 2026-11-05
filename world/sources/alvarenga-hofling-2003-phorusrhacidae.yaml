@@ -1,0 +1,19 @@
+id: src:alvarenga-hofling-2003-phorusrhacidae
+type: publication
+kind: measurement
+citation: >-
+  Alvarenga, H.M.F. & Höfling, E. (2003). Systematic revision of the Phorusrhacidae (Aves: Ralliformes). Papéis Avulsos de
+  Zoologia 43(4), 55–91.
+authors:
+  - "Alvarenga, H.M.F."
+  - "Höfling, E."
+published: 2003
+title: "Systematic revision of the Phorusrhacidae (Aves: Ralliformes)"
+container: Papéis Avulsos de Zoologia 43(4), 55–91
+doi: 10.1590/S0031-10492003000400001
+url: https://revistas.usp.br/paz/article/view/33623
+verified:
+  by: machine:claude-code
+  how: >-
+    The whole PDF read from the journal's page, including Fig. 1, the restorations of eight species to scale with a man. Quotes
+    checked by script against its text layer, with whitespace normalized and two spaces read as one.

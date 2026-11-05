@@ -1,0 +1,29 @@
+id: life/taxa/tarbosaurus
+kind: taxon
+summary: >-
+  Tarbosaurus, the great tyrant dinosaur of latest Cretaceous Mongolia.
+same_as: { pbdb: "txn:53224" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Tarbosaurus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        arms: { points: [[0.058, 0.13, 0.8, 0.011], [0.064, 0.14, 0.73, 0.007], [0.056, 0.17, 0.7, 0.004]] }
+    unsourced: >-
+      A machine's reconstruction: the plan with arms a little shorter still, from the silhouette
+      "Tarbosaurus Scale.svg" on Wikimedia Commons.
+  length-holtz-2012:
+    prop: body_length
+    value: 10
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 11, Tyrannosaurines"
+      quote: "Tarbosaurus dreadful reptile Late Cretaceous (70.6-68.5 MYA) 32.8 ft (10 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

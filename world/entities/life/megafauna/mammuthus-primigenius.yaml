@@ -76,6 +76,23 @@ claims:
       younger sediment, and Seeber et al. (2024, eLife 12, RP89992) find mammoth DNA in lake
       sediments only centuries old. Wang et al. reply in the same issue that they see no evidence of
       this in their samples.
+  body-plan:
+    prop: body_plan
+    value: mammoth
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  mass-mammal-forms:
+    prop: body_mass
+    value: { lo: 3900, hi: 6900 }
+    source:
+      - ref: src:larramendi-2016-proboscideans
+        loc: "Table 8, row Mammuthus primigenius ♂ (North Siberian form)"
+        quote: "(North Siberian form) body mass 3.9 < 3.9–5.2 (4.5) 5.2–5.7 5.8–7.1 7.2–8.0"
+      - ref: src:larramendi-2016-proboscideans
+        loc: "Table 8, row Mammuthus primigenius ♂ (European form)"
+        quote: "(European form) body mass 5.2 < 5.2–6.9 (6) 7.0–7.5 7.6–9.5 9.6–10.6"
+    method: model
+    note: >-
+      The two average grades for full-grown males, in tonnes in the table.
 relations:
   parent:
     rel: descends-from

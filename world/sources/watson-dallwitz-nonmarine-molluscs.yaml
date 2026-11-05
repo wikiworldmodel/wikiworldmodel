@@ -1,0 +1,19 @@
+id: src:watson-dallwitz-nonmarine-molluscs
+type: database-record
+kind: compilation
+citation: >-
+  Watson, L. & Dallwitz, M.J. 2005 onwards. The families of non-marine molluscs of Britain and Ireland (slugs, snails and mussels).
+  Version: 5th August 2019. delta-intkey.com.
+authors:
+  - "Watson, L."
+  - "Dallwitz, M.J."
+published: 2005
+snapshot: 2026-11-05
+title: The families of non-marine molluscs of Britain and Ireland
+url: https://www.delta-intkey.com/britmo/index.htm
+reliability: >-
+  Descriptions generated from a database of the characters of each family, for the species of Britain and Ireland only: a family's
+  range elsewhere may be wider.
+verified:
+  by: machine:claude-code
+  how: Each family's page fetched and read on 2026-11-05; quotes checked by script against the text saved.

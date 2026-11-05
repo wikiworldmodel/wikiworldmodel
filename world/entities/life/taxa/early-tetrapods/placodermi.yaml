@@ -1,0 +1,31 @@
+id: life/taxa/placodermi
+kind: taxon
+summary: >-
+  Placoderms: the armoured jawed fishes of the Silurian and Devonian, their heads and chests in boxes of bony plate. This atlas holds no
+  seas yet, so the giants of the sea do not come into it.
+same_as: { pbdb: "txn:34249" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Placodermi, en: placoderms }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: placoderm
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in the tree. The plan
+      is a machine's reconstruction of a small arthrodire, from the figure of Coccosteus on Wikimedia Commons ("Coccosteus reconstruction.png").
+  length:
+    prop: body_length
+    value: { lo: 0.394, hi: 1 }
+    source:
+      - ref: src:engelman-2023-dunkleosteus-mouths
+        loc: "Results"
+        quote: "The actual total length of 39.4 cm"
+      - ref: src:engelman-2023-dunkleosteus-mouths
+        loc: "Introduction"
+        quote: "the largest being less than 1 m in length (Jobbins et al., 2022)"
+    method: expert-estimate
+    note: >-
+      From a complete Coccosteus to the largest of the arthrodires that paper compares. The sea's Dunkleosteus was several times longer.

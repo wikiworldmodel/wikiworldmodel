@@ -1,0 +1,37 @@
+id: life/taxa/diadectomorpha
+kind: taxon
+summary: >-
+  Diadectomorphs, such as Diadectes and Orobates: heavy relatives of the amniotes, among the first land vertebrates to eat tough
+  plants.
+same_as: { pbdb: "txn:95313" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Diadectomorpha, en: diadectomorphs }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: diadectid
+    unsourced: >-
+      Which plan draws it: an editorial classification, from its place in the tree. The plan is a machine's reconstruction, from the
+      restoration of a Diadectes skeleton in Case (1907), as reprinted in Popular Science Monthly 73 (Wikimedia Commons, "PSM V73 D570
+      Restoration of a diadectes skeleton.png").
+  length:
+    prop: body_length
+    value: { lo: 0.85, hi: 1.42 }
+    source:
+      - ref: src:nyakatura-2015-orobates
+        loc: "Results"
+        quote: "The digital skeleton assembled as described above has a total length of 85.14 cm"
+      - ref: src:case-1907-diadectes
+        loc: "p. 556"
+        quote: "was not far from three feet, six inches in length"
+      - ref: src:case-1907-diadectes
+        loc: "p. 556"
+        quote: "another specimen known to the writer is nearly one-third larger"
+    method: survey
+    note: >-
+      From the digital skeleton of a small Orobates to the larger Diadectes Case knew: 1.07 m, three feet six inches converted, and
+      one third on top of that. Wikipedia has Diadectes up to 3 m long, with a citation that could not be read. No mass is given:
+      the only one read is 3.98 kg, for the small Orobates (Nyakatura et al. 2015), and would not do for the group.

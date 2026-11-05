@@ -1,0 +1,16 @@
+id: src:vrsansky-2008-mongolian-blattarians
+type: publication
+kind: measurement
+citation: >-
+  Vršanský, P. (2008). New blattarians and a review of dictyopteran assemblages from the Lower Cretaceous of Mongolia. Acta
+  Palaeontologica Polonica 53(1), 129–136.
+authors:
+  - "Vršanský, P."
+published: 2008
+title: New blattarians and a review of dictyopteran assemblages from the Lower Cretaceous of Mongolia
+container: Acta Palaeontologica Polonica
+doi: 10.4202/app.2008.0109
+url: https://www.app.pan.pl/article/item/app53-129.html
+verified:
+  by: machine:claude-code
+  how: The journal's PDF read whole; quotes checked by script against its text layer, in which a line-end hyphen is the sign −.

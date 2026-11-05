@@ -1,0 +1,37 @@
+id: life/taxa/unenlagiinae
+kind: taxon
+summary: >-
+  The unenlagiines: long-snouted, small-armed southern dromaeosaurs.
+same_as: { pbdb: "txn:68206" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Unenlagiinae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts:
+        head:
+          rings:
+            - [-0.006, 0, 0.014, 0.016]
+            - [0.025, 0.002, 0.016, 0.02]
+            - [0.06, -0.003, 0.0095, 0.011]
+            - [0.1, -0.005, 0.006, 0.0065]
+            - [0.14, -0.008, 0.0035, 0.0035]
+        jaw: { rings: [[0.02, -0.018, 0.01, 0.005], [0.08, -0.015, 0.0065, 0.0035], [0.135, -0.013, 0.003, 0.002]] }
+    unsourced: >-
+      A machine's reconstruction: a longer, thinner snout than the plan, from the heading of the
+      table "Unenlagiines" in Holtz (2012) ("Long-Snouted Southern Raptor Dinosaurs"); no skeletal
+      figure of them was looked at.
+  length:
+    prop: body_length
+    value: { lo: 0.7, hi: 6 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 17, Unenlagiines", quote: "Rahonavis menace-from-the-cloud bird Late Cretaceous (70.6-65.5 MYA) 2.3 ft (70 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 16, Unenlagiines", quote: "Austroraptor southern thief Late Cretaceous (78-65.5 MYA) 19.7 ft (6 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Unenlagiines" (pp. 16-17), standing for any member
+      with no length of its own.

@@ -33,8 +33,13 @@ layout(location = 1) in vec4 aNormal;
 layout(location = 2) in vec2 aUv;
 layout(location = 3) in uvec2 aMat;
 layout(location = 4) in uint aEntity;
+// One mesh drawn many times: each one's place, its size, the way it faces, its entity and how its colour shifts.
+layout(location = 5) in vec4 iPlace;
+layout(location = 6) in vec2 iFace;
+layout(location = 7) in uvec2 iMeta;
 uniform mat4 uViewProj;
 uniform vec3 uEye;
+uniform float uInstanced;
 ${DROP}
 ${ENTITY}
 out vec3 vPos;
@@ -46,24 +51,34 @@ flat out float vTint;
 flat out float vFlags;
 flat out int vEntity;
 void main() {
-  vec4 e = entityOf(int(aEntity));
+  bool many = uInstanced > 0.5;
+  int entity = many ? int(iMeta.x) : int(aEntity);
+  vec4 e = entityOf(entity);
   float up = standing(e);
   if (up <= 0.0) {
     gl_Position = vec4(2.0, 2.0, 2.0, 1.0);
     return;
   }
   vec3 p = aPos;
+  vec3 n = aNormal.xyz * 2.0 - 1.0;
+  float tint = float(aMat.y) / 255.0;
+  if (many) {
+    // +y of the mesh goes to (fx, fy), and +x to (fy, −fx). A horn, an eye or a trunk's bark stays its colour.
+    p = iPlace.xyz + vec3(aPos.x * iFace.y + aPos.y * iFace.x, -aPos.x * iFace.x + aPos.y * iFace.y, aPos.z) * iPlace.w;
+    n = vec3(n.x * iFace.y + n.y * iFace.x, -n.x * iFace.x + n.y * iFace.y, n.z);
+    if (aMat.x != 32u && aMat.x != 10u && aMat.x != 37u) tint = fract(tint + float(iMeta.y) / 255.0);
+  }
   // A structure rises from the ground it stands on.
   if (up < 1.0) p.z = e.w + (p.z - e.w) * up;
   vPos = p;
   p.z -= drop(p.xy);
-  vN = aNormal.xyz * 2.0 - 1.0;
+  vN = n;
   vLight = aNormal.w;
   vUv = aUv;
   vMaterial = int(aMat.x);
-  vTint = float(aMat.y) / 255.0;
+  vTint = tint;
   vFlags = e.z;
-  vEntity = int(aEntity);
+  vEntity = entity;
   gl_Position = uViewProj * vec4(p - uEye, 1.0);
   // Paving, roads and sand lie on the ground: they win over it at any distance.
   if (aMat.x == 11u || aMat.x == 12u || aMat.x == 13u || aMat.x == 18u) gl_Position.z -= 1.4e-4 * gl_Position.w;
@@ -211,7 +226,7 @@ uniform float uEvidence;
 out vec4 o;
 ${LIGHTING}
 
-const int MARBLE=1, TRAVERTINE=2, BRICK=3, PLASTER=4, TILE=5, GILT=6, BRONZE=7, GRANITE=8, WOOD=9, DARK=10, PAVING=11, BASALT=12, SAND=13, CONCRETE=14, LEAD=15, LEAF=16, TRUNK=17, GRASS=18, SHAFT=19, FACADE=20, STATUE=21, EARTH=22, SEATS=23, AWNING=24, SPIRAL=25, CLOTH=26, SKIN=27, DENTIL=28, FRIEZE=29, POOL=30, HIDE=31, HORN=32, SHELL=33, FUR=34, NEEDLE=35, FROND=36, BARK=37, BROAD=38;
+const int MARBLE=1, TRAVERTINE=2, BRICK=3, PLASTER=4, TILE=5, GILT=6, BRONZE=7, GRANITE=8, WOOD=9, DARK=10, PAVING=11, BASALT=12, SAND=13, CONCRETE=14, LEAD=15, LEAF=16, TRUNK=17, GRASS=18, SHAFT=19, FACADE=20, STATUE=21, EARTH=22, SEATS=23, AWNING=24, SPIRAL=25, CLOTH=26, SKIN=27, DENTIL=28, FRIEZE=29, POOL=30, HIDE=31, HORN=32, SHELL=33, FUR=34, NEEDLE=35, FROND=36, BARK=37, BROAD=38, FEATHER=39, MEMBRANE=40, CHITIN=41;
 
 float hash(vec2 p) {
   vec3 q = fract(vec3(p.xyx) * 0.1031);
@@ -479,6 +494,28 @@ Surface surface(int m, vec3 p, vec2 uv, float tint, vec3 n, float fw, out vec3 b
     float belly = smoothstep(-0.1, -0.8, n.z);
     s.albedo = mix(mix(base, base * 0.6, back), vec3(0.56, 0.50, 0.40), belly * 0.7) * (0.74 + 0.5 * noiseS(p, vec3(0.03, 0.03, 0.14)));
     s.rough = 0.95;
+  } else if (m == FEATHER) {
+    // Vanes in long strokes, darker on the back and paler beneath. Their colours are nobody's record: the generator's.
+    float k = tint * 4.0;
+    vec3 a = vec3(0.13, 0.12, 0.10);
+    vec3 b = vec3(0.30, 0.24, 0.14);
+    vec3 c = vec3(0.10, 0.14, 0.18);
+    vec3 d = vec3(0.36, 0.33, 0.27);
+    vec3 base = k < 1.0 ? mix(a, b, k) : k < 2.0 ? mix(b, c, k - 1.0) : k < 3.0 ? mix(c, d, k - 2.0) : mix(d, a, k - 3.0);
+    float back = smoothstep(0.2, 0.9, n.z);
+    float belly = smoothstep(-0.1, -0.8, n.z);
+    s.albedo = mix(mix(base, base * 0.7, back), vec3(0.62, 0.58, 0.50), belly * 0.6) * (0.78 + 0.44 * noiseS(p, vec3(0.018, 0.09, 0.018)));
+    s.rough = 0.82;
+  } else if (m == MEMBRANE) {
+    // A wing's skin: thin, leathery and a little see-through against the light.
+    vec3 base = mix(vec3(0.26, 0.17, 0.11), vec3(0.42, 0.29, 0.17), tint);
+    s.albedo = base * (0.8 + 0.34 * noiseS(p, vec3(0.3, 0.04, 0.3)));
+    s.rough = 0.62;
+  } else if (m == CHITIN) {
+    // A hard, glossy shell of plates.
+    vec3 base = mix(vec3(0.05, 0.035, 0.025), vec3(0.20, 0.13, 0.06), tint);
+    s.albedo = base * (0.8 + 0.4 * noiseM(p, 0.02));
+    s.rough = 0.32;
   } else if (m == NEEDLE) {
     // Soft sprays of needles, in streaks falling away from the trunk.
     vec3 dark = mix(vec3(0.03, 0.064, 0.032), vec3(0.05, 0.085, 0.036), tint);
@@ -695,6 +732,7 @@ uniform mat4 uViewProj;
 uniform vec3 uEye;
 uniform vec2 uCenter;
 uniform float uCell;
+uniform float uSeaSurface;
 ${DROP}
 ${GROUND}
 out vec3 vPos;
@@ -708,7 +746,9 @@ void main() {
   vec2 p = uCenter + g * uCell;
   float z = groundAt(p);
   vPos = vec3(p, z);
-  gl_Position = uViewProj * vec4(vec3(p, z - drop(p)) - uEye, 1.0);
+  // Where the sea is what is seen, it is drawn at its surface; the depth under it only colours it.
+  float shown = uSeaSurface > 0.5 ? max(z, 0.0) : z;
+  gl_Position = uViewProj * vec4(vec3(p, shown - drop(p)) - uEye, 1.0);
 }`;
 
 export const TERRAIN_FS = /* glsl */ `#version 300 es
@@ -730,6 +770,8 @@ uniform float uUseAO;
 uniform float uEvidence;
 uniform float uWater;
 uniform float uWild;
+uniform vec3 uTone[10];
+uniform vec3 uShare;
 uniform vec4 uGrid[3];
 uniform vec2 uGridSize[3];
 out vec4 o;
@@ -792,16 +834,17 @@ vec3 countryside(vec3 p, vec3 n, float dist) {
   return c * (0.82 + 0.36 * fbmM(p, 60.0));
 }
 // Land nobody has farmed. The mask says what covers it: R canopy, G low plants, B bare sediment, A water.
+// Its colours and shares are the place's climate's: soil, low plants, bare ground, canopy and low plants from afar, each from one tone to another.
 vec3 wilderness(vec3 p, vec3 n, float dist, out float water) {
   vec2 muv = (p.xy - uMaskBox.xy) / uMaskBox.zw;
   float inside = step(0.0, muv.x) * step(0.0, muv.y) * step(muv.x, 1.0) * step(muv.y, 1.0);
   // Beyond the plan's map, forest and glade by noise of about the same size, growing with distance so
   // that it never shows as a repeating grain from high up.
   float away = smoothstep(30000.0, 400000.0, dist);
-  float patchy = smoothstep(0.42, 0.54, mix(fbmM(p, 110.0), fbmM(p, 5000.0), away));
+  float patchy = smoothstep(0.42, 0.54, mix(fbmM(p, 110.0), fbmM(p, 5000.0), away)) * uShare.x;
   // And from high up it melts into one tone.
   float melt = smoothstep(60000.0, 500000.0, dist);
-  vec4 beyond = mix(vec4(patchy, 1.0 - patchy, 0.0, 0.0), vec4(0.6, 0.4, 0.0, 0.0), melt);
+  vec4 beyond = mix(vec4(patchy, (1.0 - patchy) * (1.0 - uShare.z), uShare.z, 0.0), vec4(0.6 * uShare.x, (1.0 - 0.6 * uShare.x) * (1.0 - uShare.z), uShare.z, 0.0), melt);
   vec4 mask = beyond;
   if (inside > 0.5) {
     vec2 e = min(muv, 1.0 - muv);
@@ -811,25 +854,25 @@ vec3 wilderness(vec3 p, vec3 n, float dist, out float water) {
   float slope = 1.0 - n.z;
   float nearby = 1.0 - smoothstep(40.0, 600.0, dist);
   // Leaf litter under the trees, and earth.
-  vec3 soil = mix(vec3(0.085, 0.066, 0.045), vec3(0.17, 0.13, 0.08), fbmM(p, 2.4));
+  vec3 soil = mix(uTone[0], uTone[1], fbmM(p, 2.4));
   soil = mix(soil, soil * (0.68 + 0.64 * noiseM(p, 0.16)), nearby);
-  // Ferns and low broad-leaved plants, in patches with bare earth between: no grass, which has not spread yet.
-  vec3 herb = mix(vec3(0.05, 0.09, 0.03), vec3(0.125, 0.165, 0.052), fbmM(p, 1.1));
+  // Low plants in patches with bare earth between. What they are is not said: no grass, until grass has spread.
+  vec3 herb = mix(uTone[2], uTone[3], fbmM(p, 1.1));
   herb = mix(herb, herb * (0.5 + 1.0 * noiseM(p, 0.09)), nearby);
   float thin = smoothstep(0.42, 0.62, fbmM(p, 2.6) * 0.6 + noiseM(p, 0.6) * 0.4);
   herb = mix(herb, soil, thin * 0.8);
-  vec3 bare = mix(vec3(0.40, 0.355, 0.26), vec3(0.27, 0.23, 0.165), fbmM(p, 3.0));
+  vec3 bare = mix(uTone[4], uTone[5], fbmM(p, 3.0));
   bare = mix(bare, bare * (0.8 + 0.4 * noiseM(p, 0.06)), nearby);
-  vec3 under = mix(soil, herb, 0.35 + 0.65 * smoothstep(0.34, 0.6, fbmM(p, 9.0)));
+  vec3 under = mix(soil, herb, (0.35 + 0.65 * smoothstep(0.34, 0.6, fbmM(p, 9.0))) * uShare.y);
   vec3 c = mix(under, herb, mask.g);
   c = mix(c, bare, mask.b);
   // From afar the canopy hides all that, and at the plain's edge no trees are drawn at all.
   float grain = 1.0 - smoothstep(3000.0, 40000.0, dist);
-  vec3 canopy = mix(vec3(0.03, 0.062, 0.026), vec3(0.07, 0.11, 0.04), mix(0.5, fbmM(p, 55.0), grain)) * mix(1.0, 0.8 + 0.4 * noiseM(p, 7.0), grain);
+  vec3 canopy = mix(uTone[6], uTone[7], mix(0.5, fbmM(p, 55.0), grain)) * mix(1.0, 0.8 + 0.4 * noiseM(p, 7.0), grain);
   // In the trees' reach the ground shows between them close by, and the canopy further off; beyond it there is only canopy.
   float far = max(smoothstep(500.0, 2400.0, dist), 1.0 - inside);
   c = mix(c, canopy, mask.r * far);
-  vec3 distantHerb = mix(vec3(0.085, 0.125, 0.05), vec3(0.135, 0.165, 0.065), mix(0.5, fbmM(p, 90.0), grain));
+  vec3 distantHerb = mix(uTone[8], uTone[9], mix(0.5, fbmM(p, 90.0), grain));
   c = mix(c, distantHerb, mask.g * smoothstep(900.0, 5000.0, dist));
   // The high ground: rock, and then what stays on top.
   c = mix(c, vec3(0.25, 0.24, 0.18), smoothstep(900.0, 1700.0, p.z + (fbmM(p, 400.0) - 0.5) * 500.0));

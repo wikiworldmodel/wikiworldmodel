@@ -1,0 +1,16 @@
+id: life/taxa/lycopsida
+kind: taxon
+summary: >-
+  Lycopsids that the database places under its Pteridophyta, mostly dispersed spores. No height was
+  read for them, so they take the height of the node above.
+same_as: { pbdb: "txn:54754" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lycopsida, en: lycopsids }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: clubmoss
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."

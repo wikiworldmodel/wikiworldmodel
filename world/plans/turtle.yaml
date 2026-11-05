@@ -1,0 +1,12 @@
+description: >-
+  A shelled reptile: its length is its shell's.
+kind: animal
+hip: 0.2
+mass_length: 300
+behave: { group: [1, 3], habitat: edge, poses: [rest, walk] }
+parts:
+  fore: { type: chain, zl: true, mirror: true, sides: [6, 3], points: [[0.224, 0.3, 0.1, 0.07], [0.4, 0.4, 0.015, 0.0504]] }
+  hind: { type: chain, zl: true, mirror: true, sides: [6, 3], points: [[0.21, -0.3, 0.1, 0.055], [0.375, -0.36, 0.015, 0.0396]] }
+  neck: { type: chain, zl: true, sides: [8, 4], points: [[0, 0.42, 0.12, 0.06], [0, 0.6, 0.16, 0.05], [0, 0.69, 0.16, 0.035]] }
+  tail: { type: spike, zl: true, mat: hide, sides: [4, 4], from: [0, -0.45, 0.1], to: [0, -0.6, 0.07], r: 0.03 }
+  shell: { type: shell, r: [0.4, 0.5, 0.24], lift: 0.07, sides: [14, 6], bands: [6, 3] }

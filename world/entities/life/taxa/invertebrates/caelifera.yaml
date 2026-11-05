@@ -1,0 +1,31 @@
+id: life/taxa/caelifera
+kind: taxon
+summary: >-
+  The grasshoppers and locusts, with short antennae.
+same_as: { pbdb: "txn:119748" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Caelifera, en: "grasshoppers" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        antennae: { points: [[0.03, 0.48, 0.25, 0.006], [0.08, 0.6, 0.32, 0.005], [0.11, 0.7, 0.33, 0.003]] }
+    unsourced: "A machine's reconstruction of the general shape of the group, from general knowledge of grasshoppers; no figure was compared with it."
+  length:
+    prop: body_length
+    value: { lo: 0.004, hi: 0.165 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Orthoptera Tridactylidae\""
+        quote: "Orthoptera Tridactylidae 201 4 15 (Naskrecki 2001) Includes Rhipipterygidae"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Orthoptera Proscopiidae\""
+        quote: "Orthoptera Proscopiidae 214 25 165 (Parker 1982)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for the families of this suborder, its millimetres given in
+      metres.

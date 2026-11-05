@@ -38,3 +38,33 @@ claims:
       The skeleton AMNH 981, measured as mounted, 1500 mm (the text layer reads the 1 as I),
       collected on Hell Creek itself. Brown calls it an immature animal, so a grown one was
       longer: the adult type has an extreme skull length of 404.5 mm against 344.4 mm.
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.6, 0.5, 0.003]
+            - [-0.4, 0.82, 0.42, 0.008]
+            - [-0.28, 1.0, 0.42, 0.018]
+            - [-0.16, 1.14, 0.44, 0.034]
+            - [-0.06, 1.24, 0.34, 0.058]
+            - [0.03, 1.26, 0.3, 0.07]
+            - [0.11, 1.2, 0.34, 0.05]
+            - [0.17, 1.12, 0.46, 0.036]
+            - [0.21, 1.08, 0.52, 0.032]
+            - [0.255, 1.1, 0.62, 0.036]
+            - [0.3, 0.96, 0.66, 0.019]
+            - [0.36, 0.84, 0.68, 0.009]
+            - [0.43, 0.8, 0.68, 0.0075]
+            - [0.475, 0.82, 0.66, 0.0115]
+            - [0.5, 0.78, 0.66, 0.009]
+        eyes: { at: [0.03, 0.262, 1.1] }
+        plates-neck: { to: [0.014, 0.17, 1.1] }
+    source:
+      ref: src:matsumoto-evans-2010-choristoderes
+      loc: "p. 254"
+      quote: "gavialiform reptiles with cordiform skulls, long rostra, and short necks"
+    note: >-
+      The long slender snout of a neochoristodere follows this, on the plan this record already has;
+      Fig. 1 of the same paper was looked at. The rest is the plan's.

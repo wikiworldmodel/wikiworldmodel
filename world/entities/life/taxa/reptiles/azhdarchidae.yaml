@@ -1,0 +1,68 @@
+id: life/taxa/azhdarchidae
+kind: taxon
+summary: >-
+  The giant long-necked pterosaurs of the Cretaceous, among them the largest flying animals known,
+  drawn on foot as terrestrial stalkers.
+same_as: { pbdb: "txn:81005" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Azhdarchidae", en: "azhdarchids" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      hip: 0.24
+      mass_length: 1.2
+      behave: { flies: null, group: [1, 3], habitat: open, poses: [stand, walk, walk, graze, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.51, 1.14, 0.98, 0.004]
+            - [-0.48, 1.24, 0.96, 0.02]
+            - [-0.43, 1.42, 1.02, 0.036]
+            - [-0.37, 1.72, 1.24, 0.042]
+            - [-0.32, 1.92, 1.5, 0.03]
+          neck: { r: 0.015, steps: [8, 3] }
+        hind: { y: -0.47, x: 0.035, top: 1.05, knee: 0.66, ankle: 0.3, r: 0.02, swing: 0.05 }
+        fore: { y: -0.33, x: 0.055, top: 1.72, r: 0.014, swing: 0.05 }
+        folded-finger: { points: [[0.06, -0.33, 0.62, 0.009], [0.08, -0.37, 1.3, 0.008], [0.08, -0.44, 1.96, 0.005], [0.07, -0.55, 2.2, 0.002]] }
+        wings: { shoulder: [0.035, -0.33, 1.72], span: 0.78, chord: 0.24, sweep: 0.1, beat: 0.14, arm: 0.012, folded: 0.2, drop: 0.7 }
+        trailing: { points: [[0.03, -0.47, 1.2, 0.012], [0.05, -0.53, 1.14, 0.008], [0.06, -0.6, 1.1, 0.005]] }
+        head:
+          at:
+            stand: { y: -0.13, z: 3.26, pitch: 0.42 }
+            alert: { y: -0.17, z: 3.5, pitch: 0.2 }
+            low: { y: 0.02, reach: 0.42, clear: 0.05, pitch: 1.15 }
+            fly: { y: 0.08, z: 2.1, pitch: 0.08 }
+          rings:
+            - [-0.02, 0, 0.018, 0.03]
+            - [0.05, 0.004, 0.024, 0.046]
+            - [0.14, -0.006, 0.016, 0.04]
+            - [0.28, -0.02, 0.008, 0.024]
+            - [0.42, -0.034, 0.003, 0.006]
+        jaw: { rings: [[0.05, -0.04, 0.014, 0.007], [0.22, -0.046, 0.008, 0.006], [0.4, -0.04, 0.003, 0.003]] }
+        eyes: { at: [0.02, 0.03, 0.022], r: 0.009 }
+    source:
+      ref: src:witton-naish-2008-azhdarchids
+      loc: "Discussion, Terrestrial stalkers"
+      quote: "they appear to have been stork- or ground hornbill-like terrestrial stalkers"
+    note: >-
+      Which is why it is drawn on foot, and not in the air. The form is a machine's reconstruction
+      from Fig. 5 of Witton (2008), a Quetzalcoatlus standing to scale, with a skull as long as the
+      neck and a small body.
+  mass:
+    prop: body_mass
+    value: { lo: 9.29, hi: 259.06 }
+    source:
+      - ref: src:witton-2008-pterosaur-body-mass
+        loc: "p. 151, Table 4, row Zhejiangopterus"
+        quote: "Zhejiangopterus 2.90 646.60 9.29 91.12"
+      - ref: src:witton-2008-pterosaur-body-mass
+        loc: "p. 151, Table 4, row Quetzalcoatlus"
+        quote: "Quetzalcoatlus 9.64 18034.65 259.06 2541.40"
+    method: model
+    note: >-
+      From skeletal mass by regression. No source read gives a length from snout to tail, so the
+      plan's shape gives it from this; a shoulder 2.5 m high in Witton's Fig. 5 fits the shape.

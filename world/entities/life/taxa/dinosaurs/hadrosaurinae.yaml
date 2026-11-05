@@ -1,0 +1,23 @@
+id: life/taxa/hadrosaurinae
+kind: taxon
+summary: >-
+  The flat-headed or solid-crested duck-bills: Edmontosaurus, Saurolophus, Gryposaurus and their
+  kin. The database's name for what others call Saurolophinae.
+same_as: { pbdb: "txn:53382" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hadrosaurinae }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 8, hi: 16.6 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 48, Saurolophinins", quote: "Prosaurolophus before Saurolophus Late Cretaceous (80-72.8 MYA) 26.2 ft (8 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 47, Primitive Saurolophines", quote: "Zhuchengosaurus Zhucheng City [China] reptile Late Cretaceous (83.5-70.6 MYA) 54.5 ft (16.6 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Primitive Saurolophines", "Gryposaurinins" (p. 47),
+      "Brachylophosaurinins", "Saurolophinins" and "Edmontosaurinins" (p. 48), standing for any
+      member with no length of its own.

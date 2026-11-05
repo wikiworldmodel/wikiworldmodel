@@ -1,0 +1,21 @@
+id: src:canoville-2026-dimetrodon-life-history
+type: publication
+kind: measurement
+citation: >-
+  Canoville, A., Knaus, P.L., Marchetti, L. & Fröbisch, J. (2026). Contrasting life history in
+  the diminutive Dimetrodon species from North America and Germany. Scientific Reports 16, 16279.
+authors:
+  - "Canoville, A."
+  - "Knaus, P.L."
+  - "Marchetti, L."
+  - "Fröbisch, J."
+published: 2026
+title: "Contrasting life history in the diminutive Dimetrodon species from North America and Germany"
+container: "Scientific Reports 16, 16279"
+doi: 10.1038/s41598-026-52199-y
+url: https://edoc.hu-berlin.de/bitstreams/a085327a-6bff-4d6b-8d28-9a87c54bf912/download
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's PDF read from the repository of the Humboldt University of Berlin; quotes
+    checked by script against its text layer.

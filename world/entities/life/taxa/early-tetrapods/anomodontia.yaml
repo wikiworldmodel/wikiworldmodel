@@ -1,0 +1,34 @@
+id: life/taxa/anomodontia
+kind: taxon
+summary: >-
+  Anomodonts, above all the dicynodonts: therapsid plant-eaters with horny beaks, usually two tusks and nothing much else in
+  the way of teeth, by far the commonest large land animals of the later Permian and the Triassic.
+same_as: { pbdb: "txn:56649" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Anomodontia, en: anomodonts }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: dicynodont
+    unsourced: >-
+      Which plan draws it: an editorial classification, from its place in the tree. The plan is a machine's reconstruction,
+      from the life restoration of Lystrosaurus murrayi on Wikimedia Commons ("Lystr murr1DB.jpg"). A dicynodont stands for
+      the few earlier anomodonts here.
+  length:
+    prop: body_length
+    value: { lo: 0.6, hi: 1.2 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Cistecephalus, Description"
+        quote: "Cistecephalus could reach up to 60 centimetres (24 in) in length."
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Dicynodon, Description"
+        quote: "It had an average length of 1.2 metres (3.9 ft), although size differed among species."
+    method: compilation
+    note: >-
+      A digging genus and a middle-sized one stand for the small and middling dicynodonts of the Permian. An encyclopedia,
+      cited as nothing better could be read: no length of a whole skeleton was found in the dicynodont papers read, which
+      give skulls and femora. The large Triassic ones have their own range below.

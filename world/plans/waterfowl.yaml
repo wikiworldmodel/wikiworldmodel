@@ -1,0 +1,42 @@
+description: >-
+  A swimming bird: a long boat-shaped body on short legs set well back, webbed for paddling, a raised neck and a broad
+  flat bill. Its length is from the tip of the bill to the tip of the tail.
+kind: animal
+hip: 0.15
+mass_length: 6
+behave: { group: [2, 12], habitat: wet, poses: [rest, stand, walk] }
+parts:
+  body:
+    type: trunk
+    mat: feather
+    sides: [10, 5]
+    rings:
+      - [-0.5, 1.72, 1.62, 0.024]
+      - [-0.43, 1.76, 1.5, 0.05]
+      - [-0.34, 1.86, 1.2, 0.08]
+      - [-0.23, 1.96, 0.86, 0.108]
+      - [-0.11, 2.02, 0.7, 0.122]
+      - [0.01, 2.06, 0.7, 0.122]
+      - [0.1, 2.04, 0.84, 0.106]
+      - [0.16, 2.06, 1.14, 0.07]
+    neck: { r: 0.036, steps: [4, 1] }
+  legs: { type: digitigrade, mat: hide, y: -0.13, x: 0.056, top: 1.1, knee: 0.74, ankle: 0.36, r: 0.03, swing: 0.05, not: [fly] }
+  webs: { type: sheet, mat: hide, mirror: true, near: true, not: [fly, walk], points: [[0.05, -0.128, 0.03], [0.09, -0.07, 0.03], [0.056, -0.055, 0.03], [0.022, -0.07, 0.03]] }
+  wings: { type: wing, shoulder: [0.1, 0.12, 1.86], span: 0.74, chord: 0.2, sweep: 0.2, beat: 0.3, arm: 0.018, folded: 0.44, drop: 0.3 }
+  head:
+    type: head
+    mat: feather
+    sides: [10, 5]
+    thin: false
+    at:
+      stand: { y: 0.26, z: 3.1, pitch: 0.06 }
+      alert: { y: 0.25, z: 3.3, pitch: 0.0 }
+      low: { y: 0.34, reach: 0.15, clear: 0.05, pitch: 0.9 }
+      fly: { y: 0.3, z: 2.4, pitch: 0.03 }
+    rings:
+      - [-0.022, 0, 0.032, 0.036]
+      - [0.015, 0.004, 0.042, 0.046]
+      - [0.055, 0.002, 0.036, 0.038]
+      - [0.085, -0.004, 0.024, 0.024]
+  bill: { type: tube, on: head, mat: horn, sides: [8, 4], rings: [[0.075, -0.006, 0.024, 0.022], [0.11, -0.012, 0.03, 0.013], [0.15, -0.016, 0.034, 0.009], [0.178, -0.017, 0.026, 0.006]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.033, 0.04, 0.016], r: 0.009 }

@@ -1,0 +1,19 @@
+id: life/taxa/muscicapidae
+kind: taxon
+summary: >-
+  Old World flycatchers: small perching birds.
+same_as: { pbdb: "txn:133794" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Muscicapidae", en: "Old World flycatchers" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.076, hi: 0.23 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"Old World Flycatchers (Muscicapidae)\""
+      quote: "Body length 3–9 in (7.6–23 cm)"
+    method: compilation

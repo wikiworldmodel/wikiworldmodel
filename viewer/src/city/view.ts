@@ -152,9 +152,9 @@ export function autoTilt(range: number): number {
   return 66 * (1 - smooth(Math.log(4000), Math.log(420000), Math.log(Math.max(range, 1))));
 }
 
-/** Where the sun is at an hour of a late spring day, at a site's latitude: a direction, x east, y north, z up. */
+/** Where the sun is at an hour of a late spring day in its hemisphere, at a site's latitude: a direction, x east, y north, z up. */
 export function sunAt(hour: number, lat: number): V3 {
-  const decl = 16 * RAD;
+  const decl = (lat < 0 ? -16 : 16) * RAD;
   const phi = lat * RAD;
   const ha = ((hour - 12) / 12) * Math.PI;
   const sinEl = Math.sin(phi) * Math.sin(decl) + Math.cos(phi) * Math.cos(decl) * Math.cos(ha);

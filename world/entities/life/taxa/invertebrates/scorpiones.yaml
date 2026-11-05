@@ -1,0 +1,32 @@
+id: life/taxa/scorpiones
+kind: taxon
+summary: >-
+  The scorpions, with pincers and a sting on a tail held over the back.
+same_as: { pbdb: "txn:243100" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Scorpiones, en: "scorpions" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: scorpion
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, after Britannica's account of scorpions and general knowledge; no figure
+      was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.012, hi: 0.21 }
+    source:
+      - ref: src:britannica-online-animals
+        loc: "s.v. scorpion"
+        quote: "The length of the smallest scorpions, the Caribbean Microtityus fundorai, is 12 mm (0.5 inch)."
+      - ref: src:britannica-online-animals
+        loc: "s.v. scorpion"
+        quote: "The longest scorpion in the world is the rock scorpion (Hadogenes troglodytes) of South Africa; females attain a length of 21 cm (8.3 inches)."
+    method: compilation
+    note: >-
+      Living scorpions, in an encyclopedia's numbers, cited for lack of a work that could be read. The same article has
+      fossil ones of 35 cm to a metre or more: they would want a record of their own.

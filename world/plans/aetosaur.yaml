@@ -1,0 +1,44 @@
+description: >-
+  An aetosaur: a low, broad, plant-eating armoured archosaur on stout upright legs, with a small head, a blunt upturned
+  snout, a thick tail and rows of bony plates over its back, sides and tail.
+kind: animal
+hip: 0.2
+mass_length: 16
+behave: { group: [1, 4], habitat: any, poses: [stand, walk, graze, alert] }
+parts:
+  body:
+    type: trunk
+    sides: [12, 5]
+    rings:
+      - [-0.5, 0.56, 0.48, 0.006]
+      - [-0.4, 0.74, 0.46, 0.02]
+      - [-0.28, 0.98, 0.46, 0.04]
+      - [-0.16, 1.2, 0.5, 0.07]
+      - [-0.06, 1.34, 0.46, 0.11]
+      - [0.04, 1.32, 0.4, 0.118]
+      - [0.13, 1.22, 0.44, 0.1]
+      - [0.2, 1.08, 0.52, 0.07]
+      - [0.26, 0.98, 0.6, 0.042]
+    neck: { r: 0.03, steps: [2, 1] }
+  hind: { type: pillar, y: -0.1, x: 0.085, top: 0.92, r: 0.034, swing: 0.05 }
+  fore: { type: pillar, y: 0.17, x: 0.082, top: 0.8, r: 0.025, swing: 0.05, phase: 1 }
+  armour-back: { type: row, mat: horn, near: true, mirror: true, n: 8, item: lump, from: [0.026, -0.17, 1.2], to: [0.026, 0.1, 1.32], r: [0.022, 0.018, 0.007] }
+  armour-flank: { type: row, mat: horn, near: true, mirror: true, n: 8, item: lump, from: [0.07, -0.15, 0.98], to: [0.086, 0.1, 1.08], r: [0.018, 0.018, 0.009] }
+  armour-neck: { type: row, mat: horn, near: true, mirror: true, n: 4, item: lump, from: [0.02, 0.14, 1.2], to: [0.012, 0.26, 1.02], r: [0.014, 0.015, 0.006] }
+  armour-tail: { type: row, mat: horn, near: true, mirror: true, n: 8, item: lump, from: [0.005, -0.46, 0.62], to: [0.02, -0.2, 1.1], r: [0.008, 0.018, 0.005], size: [0.5, 1.2] }
+  head:
+    type: head
+    sides: [10, 5]
+    thin: false
+    at:
+      stand: { y: 0.3, z: 0.92, pitch: 0.14 }
+      alert: { y: 0.3, z: 1.04, pitch: 0.04 }
+      low: { y: 0.33, reach: 0.13, clear: 0.05, pitch: 0.75 }
+    rings:
+      - [-0.012, 0, 0.026, 0.032]
+      - [0.025, 0.004, 0.034, 0.036]
+      - [0.065, -0.004, 0.024, 0.024]
+      - [0.095, -0.01, 0.014, 0.015]
+      - [0.118, -0.006, 0.016, 0.016]
+      - [0.132, -0.002, 0.012, 0.012]
+  eyes: { type: eyes, on: head, near: true, at: [0.027, 0.03, 0.012], r: 0.008 }

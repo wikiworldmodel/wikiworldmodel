@@ -1,0 +1,21 @@
+id: life/taxa/plateosauridae
+kind: taxon
+summary: >-
+  The plateosaurs, large two-legged long-necked plant-eaters of the Late Triassic.
+same_as: { pbdb: "txn:54157" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Plateosauridae }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 2.5, hi: 8 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 25, Plateosaurids", quote: "Jaklapallisaurus Jaklapalli [Town] reptile Late Triassic (210-202 MYA) 8.2 ft (2.5 m)?" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 25, Plateosaurids", quote: "Plateosaurus broad reptile Late Triassic (228-204 MYA) 26.2 ft (8 m)" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Plateosaurids" on that page, standing for any member
+      with no length of its own. The lower end is the author's own doubt.

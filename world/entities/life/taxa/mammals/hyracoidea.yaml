@@ -1,0 +1,52 @@
+id: life/taxa/hyracoidea
+kind: taxon
+summary: >-
+  Hyraxes: small, stout and tailless today, some of the Paleogene as big as a tapir or larger.
+same_as: { pbdb: "txn:43292" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Hyracoidea, en: "hyraxes" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      hip: 0.2
+      mass_length: 37
+      behave: { group: [2, 12], habitat: any, poses: [stand, walk, graze] }
+      parts:
+        body: { at: [0, -0.06, 0.26], r: [0.15, 0.36, 0.17], sides: [10, 5] }
+        head: { at: [0, 0.34, 0.27], r: [0.085, 0.15, 0.1], sides: [8, 4] }
+        tail: null
+        fore: { near: false, from: [0.09, 0.17, 0.16], to: [0.1, 0.18, 0], r: 0.035 }
+        hind: { near: false, from: [0.1, -0.22, 0.18], to: [0.11, -0.19, 0], r: 0.045 }
+        ears: { type: lump, zl: true, mat: fur, near: true, mirror: true, sides: [5, 4], bands: [3, 2], at: [0.058, 0.29, 0.35], r: [0.01, 0.018, 0.02] }
+    unsourced: >-
+      A machine's reconstruction, from the rock hyrax's account on the Animal Diversity Web:
+      similar in appearance to a woodchuck, here without a tail. Only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 0.305, hi: 0.55 }
+    source:
+      ref: src:animal-diversity-web
+      loc: "account of Procavia capensis, Other Physical Features"
+      quote: "Range length 305 to 550 mm"
+    method: compilation
+    note: >-
+      The rock hyrax, standing for the order. The large fossil members were longer, and no
+      length of theirs was read: a member with its own mass can be drawn from it.
+  mass:
+    prop: body_mass
+    value: { lo: 2.43, hi: 1300 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Dendrohyrax_validus, column Mass.g (grams)"
+        quote: "Dendrohyrax_validus,Hyracoidea,Procaviidae,Dendrohyrax,validus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,2430"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Hyraxes (Hyracoidea)\""
+        quote: "With the mass estimation in rage of 600 kg (1,300 lb) to over 1,300 kg (2,900 lb)"
+    method: compilation
+    note: >-
+      From a living tree hyrax to Titanohyrax ultimus, from Wikipedia as nothing better could
+      be read.

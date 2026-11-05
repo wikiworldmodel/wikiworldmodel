@@ -1,0 +1,54 @@
+id: life/taxa/sifrhippus
+kind: taxon
+summary: >-
+  One of the first horses, the size of a small dog, of the Paleocene–Eocene boundary in North
+  America.
+same_as: { pbdb: "txn:223567" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Sifrhippus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.46
+      mass_length: 15
+      behave: { group: [1, 4], habitat: forest, poses: [stand, walk, graze, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.5, 0.86, 0.78, 0.008]
+            - [-0.44, 0.92, 0.84, 0.012]
+            - [-0.38, 1.0, 0.88, 0.018]
+            - [-0.33, 1.06, 0.8, 0.044]
+            - [-0.26, 1.1, 0.66, 0.072]
+            - [-0.15, 1.08, 0.6, 0.08]
+            - [-0.03, 1.02, 0.56, 0.08]
+            - [0.08, 0.98, 0.56, 0.072]
+            - [0.15, 0.98, 0.64, 0.056]
+          neck: { r: 0.028, steps: [3, 1] }
+        hind: { y: -0.26, x: 0.046, top: 0.86, knee: 0.56, ankle: 0.3, r: 0.05 }
+        fore: { y: 0.1, x: 0.046, top: 0.7, r: 0.018 }
+        head:
+          at:
+            stand: { y: 0.25, z: 1.14, pitch: 0.42 }
+            alert: { y: 0.25, z: 1.28, pitch: 0.2 }
+            low: { y: 0.29, reach: 0.2, pitch: 1.1 }
+        mane: null
+    unsourced: >-
+      A machine's reconstruction, from the photograph of the Hyracotherium mount at the Field
+      Museum on Wikipedia's page for that genus (FMNH_Hyracotherium.jpg), a close relative: an
+      arched back, a long tail, no mane.
+  mass:
+    prop: body_mass
+    value: { lo: 3.9, hi: 5.4 }
+    source:
+      ref: src:wikipedia-sifrhippus
+      loc: "section \"Description\""
+      quote: "Individuals likely weighed between 8.5–12 pounds (3.9–5.4 kg)"
+    method: compilation
+    note: >-
+      From Wikipedia. Secord et al. (2012), its likely source, could not be read. No length
+      was read: the plan makes it from the mass.

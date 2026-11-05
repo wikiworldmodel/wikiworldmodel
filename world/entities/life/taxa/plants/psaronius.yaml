@@ -1,0 +1,38 @@
+id: life/taxa/psaronius
+kind: taxon
+summary: >-
+  The tree fern of the Late Palaeozoic.
+same_as: { pbdb: "txn:408441" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Psaronius }
+    unsourced: "The classification's own name."
+  body-plan:
+    prop: body_plan
+    value: tree-fern
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      parts:
+        plant: { on_stem: 0.78, stem: 0.035, reach: 0.3, fronds: 14, across: 0.14, arch: [0.4, 0.3] }
+    source:
+      ref: src:wang-2012-wuda
+      loc: "Fig. 5, caption"
+      quote: "characterized by a brown root mantle in the lower part of the stem"
+    note: >-
+      A machine's reconstruction, after the painted forests of Figs. 4 and 5 there: a stout trunk
+      and a large crown. The form cannot draw the swollen foot, or the dead fronds that hang down.
+  height:
+    prop: plant_height
+    value: { lo: 10, hi: 15 }
+    source:
+      ref: src:wang-2012-wuda
+      loc: "Results"
+      quote: "Marattialean tree ferns reached heights of up to 10–15 m and formed an actual canopy."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The marattialean tree ferns of the Permian forest at Wuda, which formed its canopy.

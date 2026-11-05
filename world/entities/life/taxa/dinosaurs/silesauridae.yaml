@@ -1,0 +1,60 @@
+id: life/taxa/silesauridae
+kind: taxon
+summary: >-
+  The silesaurids, slim long-necked four-legged relatives of the first dinosaurs, or among the first
+  ornithischians. The database places them in Ornithischia.
+same_as: { pbdb: "txn:163003" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Silesauridae }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      hip: 0.25
+      parts:
+        body:
+          rings:
+            - [-0.56, 0.74, 0.73, 0.002]
+            - [-0.42, 0.84, 0.8, 0.006]
+            - [-0.28, 0.94, 0.84, 0.011]
+            - [-0.14, 1.0, 0.82, 0.02]
+            - [-0.04, 1.02, 0.7, 0.034]
+            - [0.06, 0.98, 0.62, 0.042]
+            - [0.15, 0.92, 0.6, 0.04]
+            - [0.22, 0.88, 0.68, 0.026]
+          neck: { r: 0.012, steps: [5, 2] }
+        legs: { y: -0.03, x: 0.03, top: 0.88, knee: 0.56, ankle: 0.28, r: 0.024 }
+        arms: null
+        fore: { type: digitigrade, y: 0.17, x: 0.03, top: 0.68, knee: 0.42, ankle: 0.14, r: 0.016, swing: 0.08, phase: 1, toes: false }
+        head:
+          at:
+            stand: { y: 0.37, z: 1.04, pitch: 0.18 }
+            low: { y: 0.4, reach: 0.08, clear: 0.06, pitch: 0.8 }
+          rings:
+            - [-0.004, 0, 0.012, 0.014]
+            - [0.022, 0.002, 0.014, 0.018]
+            - [0.05, -0.003, 0.0095, 0.011]
+            - [0.075, -0.006, 0.0045, 0.0045]
+        eyes: { at: [0.012, 0.024, 0.008], r: 0.004 }
+    unsourced: >-
+      A machine's reconstruction: slim, on four long thin legs, with a long neck, from the
+      silhouette "Silesaurus Scale.svg" on Wikimedia Commons.
+  posture:
+    prop: posture
+    value: quadruped
+    unsourced: >-
+      Not stated in what was read; an editorial choice from the figure named in the form claim, in
+      which Silesaurus walks on all fours.
+  length:
+    prop: body_length
+    value: { lo: 1, hi: 3 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 1, Silesaurids", quote: "Technosaurus Texas Tech University reptile Late Triassic (235-228 MYA) 3.3 ft (1 m)?" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 1, Silesaurids", quote: "Eucoelophysis true Coelophysis Late Triassic (235-228 MYA) 9.8 ft (3 m)" }
+    method: compilation
+    note: >-
+      The range across the table "Silesaurids" on that page, standing for any member with no length
+      of its own. The lower end is the author's own doubt.

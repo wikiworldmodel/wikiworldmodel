@@ -1,0 +1,40 @@
+id: life/taxa/procreodi
+kind: taxon
+summary: >-
+  Omnivorous mammals of the Paleocene and Eocene, from coati-sized to larger, flat-footed and
+  long-tailed.
+same_as: { pbdb: "txn:80645" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Procreodi, en: "arctocyonids" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: carnivoran
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: 1
+    source:
+      ref: src:wikipedia-chriacus
+      loc: "section \"Climbing adaptations\""
+      quote: "it would have measured around 1 metre (3.3 ft) long, including a long, robust tail"
+    method: compilation
+    note: >-
+      Chriacus, standing for the order, from Wikipedia as nothing better could be read.
+  mass:
+    prop: body_mass
+    value: { lo: 5, hi: 44 }
+    source:
+      - ref: src:wikipedia-arctocyonidae
+        loc: "section \"Description\""
+        quote: "Chriacus likely weighed 5–10 kg"
+      - ref: src:wikipedia-arctocyonidae
+        loc: "section \"Description\""
+        quote: "Arctocyon primaevus may have weighed up to 44 kg"
+    method: compilation
+    note: >-
+      From Wikipedia, as nothing better could be read. It adds that A. mumak was larger, and
+      that most of the family is too fragmentary to size.

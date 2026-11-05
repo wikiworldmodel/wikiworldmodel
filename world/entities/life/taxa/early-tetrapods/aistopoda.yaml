@@ -1,0 +1,30 @@
+id: life/taxa/aistopoda
+kind: taxon
+summary: >-
+  Aistopods: limbless, snake-like early tetrapods of the Carboniferous and early Permian.
+same_as: { pbdb: "txn:37251" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Aistopoda, en: aistopods }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: snake
+    unsourced: >-
+      Which plan draws it: an editorial choice for a long limbless body, as no skeletal figure of an aistopod was looked at. A snake's
+      plan says nothing of their relationship. Aistopods had many more vertebrae and small heads; a reviewer should compare it with Baird
+      (1964).
+  length:
+    prop: body_length
+    value: { lo: 0.7, hi: 1 }
+    source:
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Ophiderpeton, Description"
+        quote: "Its body was about 70 centimetres (28 in) long, with 230 vertebrae."
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Phlegethontia, Description"
+        quote: "It was about 1 metre (3.3 ft) long"
+    method: compilation
+    note: Two genera. An encyclopedia, cited as nothing better could be read.

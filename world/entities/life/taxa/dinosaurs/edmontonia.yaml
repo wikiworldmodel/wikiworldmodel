@@ -1,0 +1,28 @@
+id: life/taxa/edmontonia
+kind: taxon
+summary: >-
+  Edmontonia, a heavy nodosaur of the Late Cretaceous of western North America.
+same_as: { pbdb: "txn:63919" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Edmontonia }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the form of Nodosauridae, which was measured from this
+      genus: "Edmontonia Scale.svg" on Wikimedia Commons. Nothing here differs from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 7
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 40, Nodosaurids"
+      quote: "Edmontonia from the Edmonton Formation Late Cretaceous (80-65.5 MYA) 23 ft (7 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

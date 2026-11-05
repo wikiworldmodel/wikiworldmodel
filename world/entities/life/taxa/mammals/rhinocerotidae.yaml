@@ -1,0 +1,51 @@
+id: life/taxa/rhinocerotidae
+kind: taxon
+summary: >-
+  The rhinoceroses proper.
+same_as: { pbdb: "txn:43187" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Rhinocerotidae, en: "rhinoceroses" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  form:
+    prop: body_form
+    value:
+      behave: { group: [1, 3], habitat: open, poses: [graze, graze, stand, walk, alert] }
+      parts:
+        head:
+          at:
+            stand: { y: 0.26, z: 0.86, pitch: 0.42 }
+            alert: { y: 0.26, z: 1.0, pitch: 0.22 }
+            low: { y: 0.28, reach: 0.235, pitch: 0.95 }
+        nasal: { type: spike, on: head, mat: horn, tint: 70, sides: [8, 4], from: [0, 0.19, 0.022], to: [0, 0.225, 0.17], r: 0.03 }
+        frontal: { type: spike, on: head, mat: horn, tint: 70, sides: [7, 4], from: [0, 0.11, 0.05], to: [0, 0.12, 0.115], r: 0.024 }
+    unsourced: >-
+      A machine's reconstruction, from the family's account on the Animal Diversity Web: a
+      massive body and a large head with one or two horns. Only compared with its sheet.
+  length:
+    prop: body_length
+    value: { lo: 3, hi: 5.2 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Diceros bicornis, Other Physical Features"
+        quote: "Range length 3.0 to 3.75 m"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Odd-toed ungulates (Perissodactyla)\""
+        quote: "reached up to 5–5.2 m (16–17 ft) long"
+    method: compilation
+    note: >-
+      From the black rhinoceros to Elasmotherium, from Wikipedia as nothing better could be
+      read.
+  mass:
+    prop: body_mass
+    value: { lo: 1180, hi: 4100 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Diceros_bicornis, column Mass.g (grams)"
+        quote: "Diceros_bicornis,Perissodactyla,Rhinocerotidae,Diceros,bicornis,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,1180510.9"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Elasmotherium_sibiricum, column Mass.g (grams)"
+        quote: "Elasmotherium_sibiricum,Perissodactyla,Rhinocerotidae,Elasmotherium,sibiricum,1,0,0,0,Imputed,PHYLACINE 1.2.1,4100000"
+    method: compilation

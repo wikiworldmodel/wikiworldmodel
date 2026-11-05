@@ -1,0 +1,23 @@
+id: src:sole-2015-kerberos
+type: publication
+kind: measurement
+citation: >-
+  Solé, F., Amson, E., Borths, M., Vidalenc, D., Morlo, M. & Bastl, K. (2015). A new large
+  hyainailourine from the Bartonian of Europe and its bearings on the evolution and ecology of
+  massive hyaenodonts (Mammalia). PLoS ONE 10(9), e0135698.
+authors:
+  - "Solé, F."
+  - "Amson, E."
+  - "Borths, M."
+  - "Vidalenc, D."
+  - "Morlo, M."
+  - "Bastl, K."
+published: 2015
+title: "A new large hyainailourine from the Bartonian of Europe and its bearings on the evolution and ecology of massive hyaenodonts (Mammalia)"
+container: "PLoS ONE 10(9), e0135698"
+doi: 10.1371/journal.pone.0135698
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC4580617). Quotes checked by script against the
+    text retrieved, after normalizing whitespace.

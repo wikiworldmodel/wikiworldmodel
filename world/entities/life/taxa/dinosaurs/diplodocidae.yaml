@@ -1,0 +1,21 @@
+id: life/taxa/diplodocidae
+kind: taxon
+summary: >-
+  The diplodocids proper: Diplodocus, Barosaurus, Apatosaurus and their kin.
+same_as: { pbdb: "txn:38664" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Diplodocidae }
+    unsourced: The classification's own name.
+  length:
+    prop: body_length
+    value: { lo: 21, hi: 34 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 30, Apatosaurines", quote: "Eobrontosaurus dawn thunder reptile Late Jurassic (155-7-150.8 MYA) 68.9 ft (21 m)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 31, Diplodocines", quote: "Supersaurus super reptile Late Jurassic (155.7-150.8 MYA) 112 ft (34 m)" }
+    method: compilation
+    note: >-
+      The range across the tables "Apatosaurines" (p. 30) and "Diplodocines" (p. 31), standing for
+      any member with no length of its own.

@@ -1,0 +1,19 @@
+id: life/taxa/kinosternidae
+kind: taxon
+summary: >-
+  American mud and musk turtles: small aquatic turtles.
+same_as: { pbdb: "txn:360987" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: "Kinosternidae", en: "mud and musk turtles" }
+    unsourced: "The classification's own name, with an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.1, hi: 0.38 }
+    source:
+      ref: src:grzimek-animal-life-encyclopedia
+      loc: "s.v. \"American Mud and Musk Turtles (Kinosternidae)\""
+      quote: "4–15 in (10–38 cm)"
+    method: compilation

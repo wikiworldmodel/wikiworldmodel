@@ -1,0 +1,32 @@
+id: life/taxa/bibionomorpha
+kind: taxon
+summary: >-
+  The fungus gnats, gall midges, march flies and their relatives: slender flies with long antennae.
+same_as: { pbdb: "txn:176379" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Bibionomorpha, en: "gnats and march flies" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: gnat
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a slender long-legged fly, from general knowledge; no figure was
+      compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 0.018 }
+    source:
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Diptera Cecidomyiidae\""
+        quote: "Diptera Cecidomyiidae 6296 1 8 (McAlpine et al., eds, 1981)"
+      - ref: src:rainford-2016-hexapod-body-size
+        loc: "Additional file 1, Table S1, row \"Diptera Anisopodidae\""
+        quote: "Diptera Anisopodidae 196 2 18 (McAlpine et al., eds, 1981)"
+    method: compilation
+    note: >-
+      The smallest and the largest of the table's rows for the families of this group, its millimetres given in metres.
+      Sciaridae also begin at 1 mm.

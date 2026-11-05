@@ -1,0 +1,31 @@
+id: life/taxa/podocarpaceae
+kind: taxon
+summary: >-
+  The podocarps, and the winged pollen the database places with them.
+same_as: { pbdb: "txn:54795" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Podocarpaceae, en: podocarps }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        tree: { reach: 0.2, trunk: 0.02, flare: 1.5, tiers: 10, start: 0.3, drop: 0.07 }
+    unsourced: "A machine's reconstruction: a broader crown than the general conifer's. No figure of one was read."
+  height:
+    prop: plant_height
+    value: { lo: 15, hi: 30 }
+    source:
+      - ref: src:flora-of-china
+        loc: "Vol. 4, p. 81, s.v. Podocarpus, key"
+        quote: "Trees 15-25 m."
+      - ref: src:flora-of-china
+        loc: "Vol. 4, p. 78, s.v. Dacrydium pectinatum"
+        quote: "Trees to 30 m tall"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living members: modern relatives.

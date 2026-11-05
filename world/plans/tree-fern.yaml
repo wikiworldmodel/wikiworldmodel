@@ -1,0 +1,6 @@
+description: >-
+  A tree fern: a slender unbranched trunk with a crown of long arching fronds.
+kind: plant
+behave: { layer: canopy, weight: 1, wet: 0.6 }
+parts:
+  plant: { type: fern, on_stem: 0.8, stem: 0.022, reach: 0.34, fronds: 11, across: 0.1, arch: [0.35, 0.2], steps: 5 }

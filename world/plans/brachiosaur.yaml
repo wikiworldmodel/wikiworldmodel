@@ -1,0 +1,45 @@
+# Measured from the silhouette "Brachiosaurus scale 1.svg" on Wikimedia Commons.
+description: >-
+  A sauropod built like a giraffe: long arms, high shoulders, a neck reaching up and a short tail.
+kind: animal
+mass_length: 5
+hip: 0.198
+behave: { group: [1, 5], habitat: any, poses: [stand, stand, walk, alert] }
+parts:
+  body:
+    type: trunk
+    sides: [14, 7]
+    rings:
+      - [-0.491, 0.567, 0.556, 0.001]
+      - [-0.4, 0.55, 0.506, 0.003]
+      - [-0.311, 0.618, 0.489, 0.006]
+      - [-0.244, 0.747, 0.534, 0.012]
+      - [-0.189, 0.87, 0.55, 0.022]
+      - [-0.133, 1.017, 0.478, 0.045]
+      - [-0.078, 1.152, 0.433, 0.06]
+      - [-0.022, 1.264, 0.455, 0.065]
+      - [0.033, 1.365, 0.59, 0.06]
+      - [0.089, 1.393, 0.831, 0.045]
+      - [0.133, 1.433, 1.056, 0.03]
+      - [0.2, 1.534, 1.169, 0.024]
+      - [0.267, 1.663, 1.337, 0.019]
+      - [0.344, 1.815, 1.6, 0.015]
+      - [0.392, 1.89, 1.7, 0.0135]
+      - [0.422, 1.93, 1.76, 0.0125]
+    neck: { r: 0.012, steps: [1, 1] }
+  hind: { type: pillar, y: -0.128, x: 0.042, top: 0.85, r: 0.028, swing: 0.03 }
+  fore: { type: pillar, y: 0.056, x: 0.038, top: 1.05, r: 0.026, swing: 0.03, phase: 1 }
+  head:
+    type: head
+    thin: false
+    sides: [10, 5]
+    at:
+      stand: { y: 0.44, z: 1.88, pitch: 0.36 }
+      alert: { y: 0.442, z: 1.94, pitch: 0.08 }
+    rings:
+      - [-0.002, 0, 0.011, 0.012]
+      - [0.012, 0.004, 0.012, 0.016]
+      - [0.026, 0.002, 0.0105, 0.013]
+      - [0.04, -0.003, 0.009, 0.008]
+      - [0.051, -0.005, 0.0085, 0.006]
+  eyes: { type: eyes, on: head, near: true, at: [0.0105, 0.014, 0.006], r: 0.002 }

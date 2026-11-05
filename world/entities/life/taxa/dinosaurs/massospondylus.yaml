@@ -1,0 +1,29 @@
+id: life/taxa/massospondylus
+kind: taxon
+summary: >-
+  Massospondylus, a long-necked plant-eater of the Early Jurassic of southern Africa.
+same_as: { pbdb: "txn:38642" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Massospondylus }
+    unsourced: The classification's own name.
+  form:
+    prop: body_form
+    value:
+      parts: {}
+    unsourced: >-
+      A machine's reconstruction, the same as the plan prosauropod, which was measured from this
+      genus: the silhouette "Massospondylus scale SW.svg" on Wikimedia Commons. Nothing here differs
+      from it.
+  length-holtz-2012:
+    prop: body_length
+    value: 4
+    source:
+      ref: src:holtz-2012-dinosaur-genus-list
+      loc: "p. 25, Massospondylids"
+      quote: "Massospondylus elongated vertebrae Early Jurassic (199.6-183 MYA) 13.1 ft (4 m)"
+    method: compilation
+    note: >-
+      A whole-genus figure, with no measurement behind it.

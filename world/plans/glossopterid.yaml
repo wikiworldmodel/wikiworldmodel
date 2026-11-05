@@ -1,0 +1,6 @@
+description: >-
+  A glossopterid: a tall tree of the Permian south, tapering, with broad tongue-shaped leaves.
+kind: plant
+behave: { layer: canopy, weight: 1.2, wet: 0.8 }
+parts:
+  tree: { type: conifer, reach: 0.17, trunk: 0.016, flare: 1.6, tiers: 9, start: 0.3, drop: 0.09, mat: broad }

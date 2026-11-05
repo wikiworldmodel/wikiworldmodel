@@ -3,7 +3,7 @@
 A detailed, sourced history of Earth, life and civilization in four dimensions, and a viewer
 for flying through it. The design is in [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md).
 
-Six slices are built:
+Seven slices are built:
 
 - **Cambrian to today** runs through every layer of the design: plates, terrain and
   coastlines from 540 Ma to the present, with sourced entities, the geologic periods and an
@@ -32,6 +32,12 @@ Six slices are built:
   groups light up their fossils; and lets you fly down into the Hell Creek at 66.5 Ma, a generated
   floodplain where every animal and plant is a taxon with a fossil in the formation, sized from
   the literature, and marked as placed by a generator ([docs/SIXTH-SLICE.md](docs/SIXTH-SLICE.md)).
+- **Life anywhere** lets you scroll down over any land at any time since the Cambrian, and the browser
+  makes what lived there: the land and its climate, and plants and animals from an atlas of the
+  Paleobiology Database's fossils, each saying whether it is recorded here, inferred from nearby or a
+  stand-in. Every taxon is drawn from a form on the tree of life, its own or its nearest node's, as data
+  that agents write ([docs/SEVENTH-SLICE.md](docs/SEVENTH-SLICE.md), and the plan in
+  [docs/LIVING-WORLD.md](docs/LIVING-WORLD.md)).
 
 Each document says what its slice contains, how it follows the design, the decisions behind
 it and its limitations. Hand-written example records for every record type, and the gaps

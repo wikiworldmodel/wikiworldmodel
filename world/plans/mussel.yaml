@@ -1,0 +1,21 @@
+description: >-
+  A freshwater mussel: two like oblong valves hinged along the top, standing in the mud with a little of the foot showing. Its
+  length is the shell's.
+kind: animal
+hip: 0.5
+behave: { group: [1, 6], habitat: edge, poses: [rest] }
+parts:
+  valve-right:
+    type: tube
+    zl: true
+    mat: shell
+    sides: [8, 4]
+    rings: [[0.055, 0.495, 0.3, 0.006, 0.02], [0.055, 0.47, 0.29, 0.03, 0.11], [0.055, 0.4, 0.29, 0.065, 0.19], [0.055, 0.28, 0.293, 0.082, 0.253], [0.055, 0.1, 0.29, 0.09, 0.275], [0.055, -0.1, 0.285, 0.09, 0.27], [0.055, -0.28, 0.283, 0.08, 0.243], [0.055, -0.4, 0.28, 0.06, 0.195], [0.055, -0.47, 0.29, 0.03, 0.12], [0.055, -0.497, 0.3, 0.005, 0.03]]
+  valve-left:
+    type: tube
+    zl: true
+    mat: shell
+    sides: [8, 4]
+    rings: [[-0.055, 0.495, 0.3, 0.006, 0.02], [-0.055, 0.47, 0.29, 0.03, 0.11], [-0.055, 0.4, 0.29, 0.065, 0.19], [-0.055, 0.28, 0.293, 0.082, 0.253], [-0.055, 0.1, 0.29, 0.09, 0.275], [-0.055, -0.1, 0.285, 0.09, 0.27], [-0.055, -0.28, 0.283, 0.08, 0.243], [-0.055, -0.4, 0.28, 0.06, 0.195], [-0.055, -0.47, 0.29, 0.03, 0.12], [-0.055, -0.497, 0.3, 0.005, 0.03]]
+  beaks: { type: lump, zl: true, near: true, mat: shell, mirror: true, at: [0.05, 0.22, 0.545], r: [0.035, 0.06, 0.03], sides: [6, 4], bands: [3, 2] }
+  foot: { type: lump, zl: true, near: true, mat: hide, at: [0, 0.16, 0.03], r: [0.035, 0.16, 0.03], sides: [6, 4], bands: [3, 2] }

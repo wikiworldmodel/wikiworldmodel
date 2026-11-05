@@ -1,0 +1,32 @@
+id: life/taxa/pecopteris
+kind: taxon
+summary: >-
+  A form genus of fern-like foliage, much of it from marattioid tree ferns, and drawn as one.
+same_as: { pbdb: "txn:157283" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Pecopteris }
+    unsourced: "The classification's own name."
+  body-plan:
+    prop: body_plan
+    value: tree-fern
+    source:
+      ref: src:wang-2012-wuda
+      loc: "Results"
+      quote: "normally considered to be a marattialean tree fern"
+    note: >-
+      Said there of Pecopteris lativenosa. The genus is a form of foliage: not everything named so
+      grew on a tree fern, and the database also keeps Alethopteris under it.
+  height:
+    prop: plant_height
+    value: { lo: 10, hi: 15 }
+    source:
+      ref: src:wang-2012-wuda
+      loc: "Results"
+      quote: "Marattialean tree ferns reached heights of up to 10–15 m and formed an actual canopy."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The marattialean tree ferns of the Permian forest at Wuda, which formed its canopy.

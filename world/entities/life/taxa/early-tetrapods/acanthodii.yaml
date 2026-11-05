@@ -1,0 +1,64 @@
+id: life/taxa/acanthodii
+kind: taxon
+summary: >-
+  Acanthodians, the spiny sharks: small early jawed fishes of the Silurian to the Permian, many in fresh water, with a stout spine before
+  every fin but the tail.
+same_as: { pbdb: "txn:34849" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Acanthodii, en: acanthodians }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: fish
+    unsourced: >-
+      Which plan it starts from: an editorial classification, as the plan of a bony fish is the nearest in shape. Nothing here says they are
+      related.
+  form:
+    prop: body_form
+    value:
+      parts:
+        body:
+          rings:
+            - [-0.53, 1.62, 1.54, 0.002]
+            - [-0.44, 1.46, 1.2, 0.006]
+            - [-0.32, 1.46, 0.76, 0.018]
+            - [-0.2, 1.62, 0.46, 0.032]
+            - [-0.06, 1.72, 0.3, 0.044]
+            - [0.06, 1.74, 0.26, 0.05]
+            - [0.16, 1.68, 0.32, 0.048]
+        tail: { points: [[0, -0.36, 1.1], [0, -0.42, 1.38], [0, -0.53, 1.62], [0, -0.46, 0.86], [0, -0.47, 0.34], [0, -0.36, 0.66]] }
+        head:
+          rings:
+            - [-0.02, 0, 0.05, 0.08]
+            - [0.05, -0.002, 0.048, 0.07]
+            - [0.11, -0.006, 0.038, 0.05]
+            - [0.16, -0.012, 0.024, 0.03]
+            - [0.19, -0.014, 0.01, 0.012]
+        dorsal: { points: [[0, -0.22, 1.6], [0, -0.32, 1.46], [0, -0.36, 1.72], [0, -0.22, 2.2]] }
+        dorsal-spine: { type: spike, mat: horn, tint: 170, sides: [5, 4], from: [0, -0.18, 1.62], to: [0, -0.24, 2.36], r: 0.008 }
+        anal: { points: [[0, -0.2, 0.5], [0, -0.3, 0.62], [0, -0.33, 0.14], [0, -0.21, -0.04]] }
+        anal-spine: { type: spike, mat: horn, tint: 170, sides: [5, 4], from: [0, -0.16, 0.42], to: [0, -0.23, -0.14], r: 0.007 }
+        pectoral: { points: [[0.05, 0.13, 0.5], [0.11, 0.0, 0.06], [0.08, -0.04, 0.3], [0.046, 0.07, 0.52]] }
+        pectoral-spine: { type: spike, mirror: true, mat: horn, tint: 170, sides: [5, 4], from: [0.052, 0.14, 0.5], to: [0.115, 0.0, 0.0], r: 0.0075 }
+        pelvic: { points: [[0.03, -0.04, 0.3], [0.066, -0.13, -0.06], [0.05, -0.16, 0.14], [0.024, -0.1, 0.34]] }
+        pelvic-spine: { type: spike, mirror: true, mat: horn, tint: 170, sides: [5, 4], from: [0.032, -0.03, 0.3], to: [0.07, -0.135, -0.12], r: 0.0055 }
+        eyes: { at: [0.038, 0.11, 0.024], r: 0.018 }
+    unsourced: >-
+      A machine's reconstruction: a slim body with a spine before each fin, one fin far back on the top, a blunt head and a large eye, from the
+      restoration of Acanthodes on Wikimedia Commons ("Acanthodes lopatini.png").
+  length:
+    prop: body_length
+    value: { lo: 0.052, hi: 0.8 }
+    source:
+      - ref: src:chevrinais-2017-triazeugacanthus
+        loc: "Abstract"
+        quote: "ranging from 4 to 52 mm in total length"
+      - ref: src:wikipedia-early-vertebrates
+        loc: "Acanthodes, Description"
+        quote: "grew to lengths of at least 80 centimetres (31 in)"
+    method: expert-estimate
+    note: >-
+      From a grown Triazeugacanthus to the largest Acanthodes, by an encyclopedia, which cites Heidtke; his revision could not be opened.

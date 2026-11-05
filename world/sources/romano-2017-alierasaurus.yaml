@@ -1,0 +1,21 @@
+id: src:romano-2017-alierasaurus
+type: publication
+kind: measurement
+citation: >-
+  Romano, M., Ronchi, A., Maganuco, S. & Nicosia, U. (2017). New material of Alierasaurus ronchii
+  (Synapsida, Caseidae) from the Permian of Sardinia (Italy), and its phylogenetic affinities.
+  Palaeontologia Electronica 20.2.26A, 1–27.
+authors:
+  - "Romano, M."
+  - "Ronchi, A."
+  - "Maganuco, S."
+  - "Nicosia, U."
+published: 2017
+title: "New material of Alierasaurus ronchii (Synapsida, Caseidae) from the Permian of Sardinia (Italy), and its phylogenetic affinities"
+container: "Palaeontologia Electronica 20.2.26A"
+doi: 10.26879/684
+url: https://palaeo-electronica.org/content/2017/1889-new-material-of-alierasaurus
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's page read at palaeo-electronica.org; quotes checked by script against its text.

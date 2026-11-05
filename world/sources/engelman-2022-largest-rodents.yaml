@@ -1,0 +1,17 @@
+id: src:engelman-2022-largest-rodents
+type: publication
+kind: model
+citation: >-
+  Engelman, R.K. (2022). Resizing the largest known extinct rodents (Caviomorpha: Dinomyidae,
+  Neoepiblemidae) using occipital condyle width. Royal Society Open Science 9(6), 220370.
+authors:
+  - "Engelman, R.K."
+published: 2022
+title: "Resizing the largest known extinct rodents (Caviomorpha: Dinomyidae, Neoepiblemidae) using occipital condyle width"
+container: "Royal Society Open Science 9(6), 220370"
+doi: 10.1098/rsos.220370
+verified:
+  by: machine:claude-code
+  how: >-
+    Read as full text XML from Europe PMC (PMC9198521). Quotes checked by script against the
+    text retrieved, after normalizing whitespace.

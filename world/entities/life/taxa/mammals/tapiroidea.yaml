@@ -1,0 +1,76 @@
+id: life/taxa/tapiroidea
+kind: taxon
+summary: >-
+  Tapirs and their extinct relatives.
+same_as: { pbdb: "txn:43104" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Tapiroidea, en: "tapirs and their kin" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: heavy-ungulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.46
+      mass_length: 26
+      behave: { group: [1, 2], habitat: forest, poses: [graze, stand, walk, alert] }
+      parts:
+        body:
+          rings:
+            - [-0.47, 0.72, 0.68, 0.005]
+            - [-0.455, 0.82, 0.76, 0.008]
+            - [-0.44, 0.94, 0.82, 0.014]
+            - [-0.415, 1.02, 0.7, 0.05]
+            - [-0.36, 1.08, 0.56, 0.086]
+            - [-0.24, 1.08, 0.46, 0.1]
+            - [-0.1, 1.02, 0.42, 0.106]
+            - [0.03, 1.0, 0.44, 0.098]
+            - [0.12, 1.02, 0.52, 0.08]
+            - [0.18, 1.02, 0.62, 0.062]
+          neck: { r: 0.052, steps: [3, 1] }
+        hind: { y: -0.3, x: 0.066, top: 0.74, r: 0.038 }
+        fore: { y: 0.1, x: 0.066, top: 0.68, r: 0.032 }
+        head:
+          at:
+            stand: { y: 0.245, z: 0.92, pitch: 0.42 }
+            alert: { y: 0.245, z: 1.06, pitch: 0.2 }
+            low: { y: 0.27, reach: 0.22, pitch: 0.9 }
+          rings:
+            - [-0.012, 0.006, 0.04, 0.05]
+            - [0.05, 0.012, 0.044, 0.056]
+            - [0.11, 0.0, 0.034, 0.04]
+            - [0.16, -0.014, 0.026, 0.026]
+        nose: { type: tube, on: head, sides: [7, 4], rings: [[0.16, -0.014, 0.025, 0.024], [0.2, -0.026, 0.02, 0.018], [0.235, -0.05, 0.014, 0.012]] }
+        ears: { from: [0.03, 0.002, 0.044], to: [0.052, -0.02, 0.085], r: 0.016 }
+        eyes: { at: [0.038, 0.075, 0.02] }
+    unsourced: >-
+      A machine's reconstruction, from the family's account on the Animal Diversity Web: a
+      short fleshy proboscis, a body rounded behind and tapering in front. Only compared with
+      its sheet.
+  length:
+    prop: body_length
+    value: { lo: 1.8, hi: 2.5 }
+    source:
+      ref: src:animal-diversity-web
+      loc: "account of Tapirus bairdii, Physical Description"
+      quote: "head and body length - 180 to 250 cm"
+    method: compilation
+    note: >-
+      Baird’s tapir, standing for the group. Its Eocene members were smaller, and no figure
+      for them was read.
+  mass:
+    prop: body_mass
+    value: { lo: 149, hi: 575 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Tapirus_pinchaque, column Mass.g (grams)"
+        quote: "Tapirus_pinchaque,Perissodactyla,Tapiridae,Tapirus,pinchaque,1,0,1,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,148949.8"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Tapirus_augustus, column Mass.g (grams)"
+        quote: "Tapirus_augustus,Perissodactyla,Tapiridae,Tapirus,augustus,1,0,1,0,Imputed,PHYLACINE 1.2.1,575439.9"
+    method: compilation

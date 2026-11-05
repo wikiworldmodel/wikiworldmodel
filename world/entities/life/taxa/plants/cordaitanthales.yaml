@@ -1,0 +1,32 @@
+id: life/taxa/cordaitanthales
+kind: taxon
+summary: >-
+  Cordaites, the tall trees with long strap-shaped leaves of the Late Palaeozoic.
+same_as: { pbdb: "txn:157248" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cordaitanthales, en: cordaites }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: cordaite
+    source:
+      ref: src:wang-2012-wuda
+      loc: "Results"
+      quote: "trees that were early coniferophytes with a generally modern growth habit, except for the large strap-shaped leaves with parallel venation"
+    note: >-
+      The rounded crown on a tall bare trunk is a machine's reconstruction, after the distant trees
+      of Fig. 4 of that paper.
+  height:
+    prop: plant_height
+    value: 25
+    source:
+      ref: src:wang-2012-wuda
+      loc: "Results"
+      quote: "many attaining heights of up to 25 m or more"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Cordaites in the Permian ash at Wuda, Inner Mongolia, which the paper says could grow taller.

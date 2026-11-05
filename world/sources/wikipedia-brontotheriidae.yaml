@@ -1,0 +1,18 @@
+id: src:wikipedia-brontotheriidae
+type: database-record
+kind: review
+citation: >-
+  "Brontotheriidae." Wikipedia, the free encyclopedia (English edition), revision 1383012894.
+snapshot: 2026-11-05
+title: Brontotheriidae
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Brontotheriidae&oldid=1383012894
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for the low end of the family's mass: its likely
+  source, Sanisidro et al. (2023), could not be read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched and read on 2026-11-05, last edited 31 October 2026; the quotations checked
+    by script against its text, after normalizing whitespace.

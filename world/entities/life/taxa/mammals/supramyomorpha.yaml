@@ -1,0 +1,36 @@
+id: life/taxa/supramyomorpha
+kind: taxon
+summary: >-
+  The mouse-like rodents as the database groups them, with the pocket gophers and beavers.
+same_as: { pbdb: "txn:522151" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Supramyomorpha, en: "mice, rats, voles and their kin" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  length:
+    prop: body_length
+    value: { lo: 0.105, hi: 0.62 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Micromys minutus, Physical Description"
+        quote: "ranging in size from 55 to 75 mm long, with a tail that is usually 50 to 75 mm long"
+      - ref: src:animal-diversity-web
+        loc: "account of Ondatra zibethicus, Other Physical Features"
+        quote: "Range length 410.0 to 620.0 mm"
+    method: compilation
+    note: >-
+      From the harvest mouse to the muskrat, as stand-ins for the mice, voles and rats. The
+      beavers have their own.
+  mass:
+    prop: body_mass
+    value: { lo: 0.004, hi: 2.25 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Gerbillus_nancillus, column Mass.g (grams)"
+        quote: "Gerbillus_nancillus,Rodentia,Muridae,Gerbillus,nancillus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,4.1"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Phloeomys_pallidus, column Mass.g (grams)"
+        quote: "Phloeomys_pallidus,Rodentia,Muridae,Phloeomys,pallidus,1,0,0,0,Reported,IUCN. 2016. IUCN red list of threatened species. Version 2016-3.,2250"
+    method: compilation

@@ -1,0 +1,80 @@
+id: life/taxa/vombatiformes
+kind: taxon
+summary: >-
+  Wombats, koalas and the extinct diprotodonts and marsupial lions: heavy, short-legged marsupials
+  up to the size of a rhinoceros.
+same_as: { pbdb: "txn:99551" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Vombatiformes, en: "wombats, koalas and diprotodonts" }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: heavy-ungulate
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  form:
+    prop: body_form
+    value:
+      hip: 0.4
+      behave: { group: [1, 4], habitat: any, poses: [graze, graze, stand, walk] }
+      parts:
+        body:
+          mat: fur
+          rings:
+            - [-0.45, 0.8, 0.74, 0.006]
+            - [-0.44, 0.92, 0.84, 0.01]
+            - [-0.425, 1.0, 0.82, 0.03]
+            - [-0.38, 1.06, 0.6, 0.09]
+            - [-0.28, 1.1, 0.44, 0.126]
+            - [-0.14, 1.12, 0.36, 0.142]
+            - [0.0, 1.16, 0.36, 0.14]
+            - [0.11, 1.2, 0.42, 0.124]
+            - [0.18, 1.14, 0.52, 0.1]
+          neck: { r: 0.08, steps: [2, 1] }
+        hind: { mat: fur, y: -0.26, x: 0.09, top: 0.74, r: 0.052 }
+        fore: { mat: fur, y: 0.1, x: 0.09, top: 0.74, r: 0.05 }
+        head:
+          mat: fur
+          at:
+            stand: { y: 0.24, z: 0.9, pitch: 0.24 }
+            alert: { y: 0.24, z: 1.04, pitch: 0.06 }
+            low: { y: 0.26, reach: 0.24, pitch: 0.85 }
+          rings:
+            - [-0.016, 0.014, 0.068, 0.07]
+            - [0.05, 0.02, 0.08, 0.08]
+            - [0.12, 0.004, 0.066, 0.062]
+            - [0.18, -0.014, 0.05, 0.04]
+            - [0.225, -0.022, 0.044, 0.026]
+        ears: { mat: fur, from: [0.052, 0.006, 0.066], to: [0.072, -0.012, 0.1], r: 0.016 }
+        eyes: { at: [0.054, 0.09, 0.03] }
+    unsourced: >-
+      A machine's reconstruction, from the photograph of a mounted Diprotodon skeleton on
+      Wikimedia Commons (Diprotodon_australis_skeleton_1.JPG) and the wombat's account on the
+      Animal Diversity Web: a great head, a heavy body, no hooves.
+  length:
+    prop: body_length
+    value: { lo: 0.7, hi: 3.0 }
+    source:
+      - ref: src:animal-diversity-web
+        loc: "account of Vombatus ursinus, Other Physical Features"
+        quote: "Range length 700 to 1100 mm"
+      - ref: src:wikipedia-largest-prehistoric-animals
+        loc: "section \"Marsupials (Marsupialia)\""
+        quote: "about 3 m (9.8 ft) long, standing 2 m (6 ft 7 in) tall"
+    method: compilation
+    note: >-
+      From the common wombat to Diprotodon, which Wikipedia is cited for because no measured
+      length of a skeleton could be read.
+  mass:
+    prop: body_mass
+    value: { lo: 10, hi: 2700 }
+    source:
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Warendja_wakefieldi, column Mass.g (grams)"
+        quote: "Warendja_wakefieldi,Diprotodontia,Vombatidae,Warendja,wakefieldi,1,0,0,0,Imputed,PHYLACINE 1.2.1,10000"
+      - ref: src:faurby-2020-phylacine
+        loc: "Data/Traits/Trait_data.csv, row Diprotodon_optatum, column Mass.g (grams)"
+        quote: "Diprotodon_optatum,Diprotodontia,Diprotodontidae,Diprotodon,optatum,1,0,0,0,Imputed,PHYLACINE 1.2.1,2700000"
+    method: compilation

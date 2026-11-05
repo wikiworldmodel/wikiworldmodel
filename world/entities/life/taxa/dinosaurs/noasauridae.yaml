@@ -1,0 +1,25 @@
+id: life/taxa/noasauridae
+kind: taxon
+summary: >-
+  The noasaurs: small, slender ceratosaurs of the southern continents.
+same_as: { pbdb: "txn:54535" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Noasauridae }
+    unsourced: The classification's own name.
+  body-plan:
+    prop: body_plan
+    value: basal-theropod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  length:
+    prop: body_length
+    value: { lo: 0.7, hi: 3 }
+    source:
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 4, Noasaurids", quote: "Ligabueino [Italian dinosaur hunter Giancarlo] Early Cretaceous (130-120 MYA) 2.3 ft (70 cm)" }
+      - { ref: src:holtz-2012-dinosaur-genus-list, loc: "p. 4, Noasaurids", quote: "Genusaurus knee reptile Early Cretaceous (112-99.6 MYA) 9.8 ft (3 m)?" }
+    method: compilation
+    note: >-
+      The range across the genera of the table "Noasaurids" on that page. The upper end is the
+      author's own doubt.

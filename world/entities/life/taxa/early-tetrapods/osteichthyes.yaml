@@ -1,0 +1,32 @@
+id: life/taxa/osteichthyes
+kind: taxon
+summary: >-
+  Bony fishes: ray-finned fishes, lobe-finned fishes and, by descent, the land vertebrates. As a body it stands for any bony fish
+  of fresh water with no form below it; the tree of life here keeps tetrapods apart from it.
+same_as: { pbdb: "txn:34881" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Osteichthyes, en: bony fishes }
+    unsourced: The classification's own name, with an editorial gloss in English.
+  body-plan:
+    prop: body_plan
+    value: fish
+    unsourced: >-
+      Which plan draws it and everything below it that says nothing else: an editorial classification, from its place in the tree.
+      The plan is a machine's drawing of the general shape of a ray-finned fish, from no figure.
+  length:
+    prop: body_length
+    value: { lo: 0.07, hi: 0.4 }
+    source:
+      - ref: src:fishbase-freshwater-fishes
+        loc: "Phoxinus phoxinus, Size / Weight / Age"
+        quote: "common length : 7.0 cm TL male/unsexed"
+      - ref: src:fishbase-freshwater-fishes
+        loc: "Esox lucius, Size / Weight / Age"
+        quote: "common length : 40.0 cm TL male/unsexed"
+    method: compilation
+    note: >-
+      The common lengths of a minnow and a pike, two living fishes of fresh water, stand for a typical bony fish. It says nothing of
+      the extremes, and fossils in the rows are often of larger ones.

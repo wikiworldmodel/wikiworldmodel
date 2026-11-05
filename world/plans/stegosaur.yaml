@@ -1,0 +1,65 @@
+# Measured from S. stenops in "Stegosaurus size comparison.svg" on Wikimedia Commons.
+# The whole body stands forward of y = -0.14: behind that a tail swings to the side, and a spike's base does
+# not swing with it, so the thagomizer would come away from the tail.
+description: >-
+  A four-legged plant-eating dinosaur with a small low head, plates along its back and spikes on its tail.
+kind: animal
+mass_length: 11
+hip: 0.34
+behave: { group: [1, 5], habitat: any, poses: [graze, graze, stand, walk, alert] }
+parts:
+  body:
+    type: trunk
+    sides: [14, 7]
+    rings:
+      - [-0.139, 0.72, 0.70, 0.003]
+      - [-0.02, 0.81, 0.72, 0.008]
+      - [0.08, 0.90, 0.72, 0.016]
+      - [0.18, 0.98, 0.72, 0.024]
+      - [0.27, 1.01, 0.64, 0.04]
+      - [0.35, 1.02, 0.54, 0.07]
+      - [0.42, 1.0, 0.47, 0.085]
+      - [0.49, 0.96, 0.45, 0.095]
+      - [0.56, 0.88, 0.45, 0.095]
+      - [0.62, 0.78, 0.5, 0.08]
+      - [0.67, 0.72, 0.56, 0.05]
+      - [0.71, 0.68, 0.58, 0.03]
+    neck: { r: 0.022, steps: [3, 1] }
+  hind: { type: pillar, y: 0.42, x: 0.062, top: 0.76, r: 0.047, swing: 0.05 }
+  fore: { type: pillar, y: 0.62, x: 0.066, top: 0.6, r: 0.033, swing: 0.05, phase: 1 }
+  head:
+    type: head
+    sides: [10, 5]
+    thin: false
+    at:
+      stand: { y: 0.755, z: 0.6, pitch: 0.14 }
+      alert: { y: 0.75, z: 0.74, pitch: 0.0 }
+      low: { y: 0.785, z: 0.3, pitch: 0.7 }
+    rings:
+      - [-0.004, 0, 0.018, 0.018]
+      - [0.02, 0.002, 0.02, 0.022]
+      - [0.045, -0.004, 0.015, 0.015]
+      - [0.065, -0.008, 0.01, 0.009]
+      - [0.08, -0.011, 0.006, 0.005]
+  beak: { type: tube, on: head, near: true, mat: horn, tint: 90, sides: [6, 4], rings: [[0.068, -0.01, 0.009, 0.007], [0.086, -0.013, 0.003, 0.003]] }
+  eyes: { type: eyes, on: head, near: true, at: [0.018, 0.018, 0.008], r: 0.0035 }
+  plates-left:
+    type: row
+    tint_add: 30
+    n: 9
+    from: [-0.008, 0.06, 0.8]
+    to: [-0.008, 0.70, 0.66]
+    item: plate
+    r: [0, 0.075, 0.13]
+    size: [0.22, 0.5, 0.85, 1.1, 1.15, 1.02, 0.72, 0.42, 0.22]
+  plates-right:
+    type: row
+    tint_add: 30
+    n: 8
+    from: [0.008, 0.1, 0.84]
+    to: [0.008, 0.665, 0.70]
+    item: plate
+    r: [0, 0.075, 0.13]
+    size: [0.35, 0.72, 1.02, 1.18, 1.1, 0.88, 0.56, 0.3]
+  spikes-back: { type: spike, mirror: true, tint: 170, from: [0.006, -0.11, 0.72], to: [0.052, -0.2, 0.86], r: 0.0075, sides: [6, 4] }
+  spikes-front: { type: spike, mirror: true, tint: 170, from: [0.007, -0.055, 0.76], to: [0.056, -0.14, 0.93], r: 0.0075, sides: [6, 4] }

@@ -1,0 +1,28 @@
+id: life/taxa/monocots
+kind: taxon
+summary: >-
+  Monocots in one of the database's branches for them. Palms and grasses say otherwise for
+  themselves, and what is left is drawn as a leafy herb.
+same_as: { pbdb: "txn:307280" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Monocots, en: monocots }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: herb
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+  height:
+    prop: plant_height
+    value: { lo: 0.5, hi: 1 }
+    source:
+      ref: src:flora-of-china
+      loc: "Vol. 24, p. 325, s.v. Zingiber officinale"
+      quote: "Pseudostems 50--100 cm."
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Living ginger, standing for a monocot with no height of its own: a modern relative, chosen by
+      the editor.
