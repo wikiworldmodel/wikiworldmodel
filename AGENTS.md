@@ -273,6 +273,41 @@ day, such as OpenHistoricalMap or the PBDB, is kept as a dated snapshot in
 (`npm run world -- ohm-snapshot`, `npm run world -- pbdb-snapshot "Hell Creek"`). A taxon written by
 hand adopts the database's by its number: `same_as: { pbdb: "txn:38862" }`.
 
+### A model
+
+A model fills the space between the evidence: code that turns records, datasets and fields into a
+field or another derived value. Its record, in [world/models/](world/models/), says what it reads,
+what it makes, where each parameter of what it makes comes from, and what it is checked against.
+The values stay in the field; the model says only where they come from.
+
+```yaml
+# world/models/earth/coastline.yaml
+id: model:earth/coastline
+type: model
+title: The coastline, from the elevation
+description: >-
+  The coast is where the elevation field crosses an isoline near sea level.
+author: machine:claude-code
+code: viewer/src/gl/globe.ts
+inputs:
+  - field:earth/elevation
+outputs: [field:earth/coastline]
+params:
+  isoline_m: { choice: "Where the coast sits between the 0 m class and the first class of land." }
+uncertainty: { kind: none, note: "A line with no width." }
+```
+
+- A parameter has a `source` (a work and a locator, as a claim's), `follows` a claim of the world, or
+  is a `choice` that says what it means. Never call a choice a source.
+- `checks` name a test and the test's name as written; the validator finds it. A check holds the model
+  to evidence it does not read.
+- `disagrees` lists evidence the model contradicts. Write it down rather than tune the model to hide it.
+- A generator lists its `inputs` the same way, as records, or as `{ prop: … }`, `{ rel: … }` or
+  `{ kind: … }` for every claim, relation or record of that term. Empty only if it reads nothing.
+
+`npm run validate -- --verbose` notes each model and field that no evidence of the world reaches. A
+check against the world's own evidence there is among the most useful work there is.
+
 ### A new term
 
 A kind, property, method or relation type that isn't in the vocabulary is added in the same pull

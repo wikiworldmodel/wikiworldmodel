@@ -1,5 +1,5 @@
 // References (section 4.1 of WORLD-MODEL.md). Entities are referenced by bare id; other
-// record types by prefixed id (src:, frame:, field:, gen:, tour:, alt:); external ids name
+// record types by prefixed id (src:, frame:, field:, model:, gen:, tour:, alt:); external ids name
 // their scheme (wikidata:Q10285). Parts of an entity are addressed inside it: id@phase is a
 // phase and id#key a claim or relation. Inside an entity's own file, @phase and #key are
 // shorthand for that entity's parts.
@@ -7,13 +7,13 @@
 // Ids carry no meaning: this module splits a reference into the record it names and the
 // part, and nothing reads anything into the id itself.
 
-export const RECORD_PREFIXES = ['src', 'frame', 'field', 'gen', 'tour', 'alt'] as const;
+export const RECORD_PREFIXES = ['src', 'frame', 'field', 'model', 'gen', 'tour', 'alt'] as const;
 export type RecordType = (typeof RECORD_PREFIXES)[number];
 
 /** An entity id: lowercase words joined by "/", at least two of them. */
 export const ENTITY_ID = /^[a-z0-9][a-z0-9.-]*(\/[a-z0-9][a-z0-9.-]*)+$/;
 /** A prefixed record id, e.g. src:renne-2013 or frame:paleomap/plate-201. */
-export const RECORD_ID = /^(src|frame|field|gen|tour|alt):[a-z0-9][a-z0-9.-]*(\/[a-z0-9][a-z0-9.-]*)*$/;
+export const RECORD_ID = /^(src|frame|field|model|gen|tour|alt):[a-z0-9][a-z0-9.-]*(\/[a-z0-9][a-z0-9.-]*)*$/;
 const PART = /^[a-z0-9][a-z0-9-]*$/;
 
 export type Ref =

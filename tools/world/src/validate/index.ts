@@ -16,8 +16,8 @@ import { conflictChanged, conflictIn, type Constraint, type Conflict, type Solut
 import { parseLag, parseTime, TimeError, toMa } from '../../../../core/time.ts';
 import { available, buildNetwork, chosen, pictureNetwork, claimGroup, claimGroups, conflictInScenario, pictures, pointOf, scenariosOf, solveScenario, type Scenario } from '../chronology.ts';
 import { resolvePoints } from '../importer.ts';
-import { WORLD } from '../paths.ts';
-import { kindIs, loadWorld, schemaDir, type Claim, type Entity, type Relation, type World } from '../world.ts';
+import { REPO, WORLD } from '../paths.ts';
+import { kindIs, loadWorld, schemaDir, type Claim, type Entity, type Field, type Input, type Model, type Relation, type World } from '../world.ts';
 
 export interface Issue {
   level: 'error' | 'warning' | 'info';
@@ -39,7 +39,7 @@ export interface Report {
 }
 
 const SCHEMA = 'https://wikiworldmodel.invalid/schema/';
-const SCHEMAS = ['defs', 'entity', 'source', 'frame', 'field', 'generator', 'alternative', 'manifest'];
+const SCHEMAS = ['defs', 'entity', 'source', 'frame', 'field', 'model', 'generator', 'alternative', 'manifest'];
 
 function ajvFor(root: string) {
   const dir = schemaDir(root);
@@ -84,6 +84,7 @@ function registry(world: World, issues: Issue[]): Map<string, { type: string; fi
   for (const s of world.sources) add(s.id, 'src', s.file === 'manifest.yaml' ? `manifest.yaml (${s.id})` : s.file);
   for (const f of world.frames) add(f.id, 'frame', f.file);
   for (const f of world.fields) add(f.id, 'field', f.file);
+  for (const m of world.models) add(m.id, 'model', m.file);
   for (const g of world.generators) add(g.id, 'gen', g.file);
   for (const a of world.alternatives) add(a.id, 'alt', a.file);
   return out;
@@ -318,8 +319,17 @@ function checkRecords(world: World, issues: Issue[]): Wanted[] {
     for (const [i, x] of (f.from ?? []).entries()) refs.check(x, f.file, `from[${i}]`, { types: ['field'] });
     for (const [i, s] of (f.data?.scenarios ?? []).entries()) if (s.alt) refs.check(s.alt, f.file, `data.scenarios[${i}].alt`, { types: ['alt'] });
   }
+  for (const m of world.models) {
+    for (const [i, x] of m.inputs.entries()) checkInput(world, refs, x, m.file, `inputs[${i}]`, issues);
+    for (const [i, x] of (m.outputs ?? []).entries()) refs.check(x, m.file, `outputs[${i}]`, { types: ['field'] });
+    for (const [k, p] of Object.entries(m.params ?? {})) {
+      if ('source' in p) refs.check(p.source.ref, m.file, `params.${k}.source.ref`, { types: ['src'] });
+      if ('follows' in p) refs.check(p.follows, m.file, `params.${k}.follows`);
+    }
+    for (const [i, d] of (m.disagrees ?? []).entries()) refs.check(d.with, m.file, `disagrees[${i}].with`);
+  }
   for (const g of world.generators) {
-    for (const [i, x] of (g.inputs ?? []).entries()) refs.check(x, g.file, `inputs[${i}]`);
+    for (const [i, x] of (g.inputs ?? []).entries()) checkInput(world, refs, x, g.file, `inputs[${i}]`, issues);
     if (!existsSync(join(world.root === WORLD ? WORLD : world.root, g.code)) && !existsSync(join(WORLD, g.code))) {
       issues.push({ level: 'error', check: 'refs', file: g.file, where: 'code', message: `no code at ${g.code}` });
     }
@@ -339,6 +349,89 @@ function checkRecords(world: World, issues: Issue[]): Wanted[] {
     }
   }
   return [...refs.wanted.values()].sort((a, b) => (a.ref < b.ref ? -1 : 1));
+}
+
+/** An input of a model or a generator: a record that resolves, or terms the vocabularies declare. */
+function checkInput(world: World, refs: RefChecker, x: Input, file: string, where: string, issues: Issue[]): void {
+  if (typeof x === 'string' || 'ref' in x) {
+    refs.check(typeof x === 'string' ? x : x.ref, file, where);
+    return;
+  }
+  if ('prop' in x && !world.vocab.properties[x.prop]) issues.push({ level: 'error', check: 'vocab', file, where: `${where}.prop`, message: `unknown property "${x.prop}"` });
+  if ('rel' in x && !world.vocab.relations[x.rel]) issues.push({ level: 'error', check: 'vocab', file, where: `${where}.rel`, message: `unknown relation type "${x.rel}"` });
+  if ('kind' in x && x.kind !== undefined && !Object.keys(world.vocab.kinds).some((k) => kindIs(k, x.kind!))) {
+    issues.push({ level: 'error', check: 'vocab', file, where: `${where}.kind`, message: `unknown kind "${x.kind}"` });
+  }
+}
+
+/** The names of a field's parameters a model must say the origin of. A series' `band` says what its band is, and is not one. */
+function paramNames(f: Field): string[] {
+  return [...Object.keys(f.params ?? {}).filter((k) => k !== 'band'), ...(f.isoline_m !== undefined ? ['isoline_m'] : [])];
+}
+
+/**
+ * Models (section 4.10): each field is made by one model at most, and every derived field by one;
+ * a model says where every parameter of what it makes comes from; its code and its checks exist.
+ * Then a note for each model, and each field read from a model run elsewhere, that no evidence of
+ * the world reaches.
+ */
+function checkModels(world: World, issues: Issue[]): void {
+  const field = new Map(world.fields.map((f) => [f.id, f]));
+  const madeBy = new Map<string, Model>();
+  for (const m of world.models) {
+    if (!existsSync(join(REPO, m.code))) issues.push({ level: 'error', check: 'models', file: m.file, where: 'code', message: `no code at ${m.code}` });
+    for (const out of m.outputs ?? []) {
+      const prev = madeBy.get(out);
+      if (prev) issues.push({ level: 'error', check: 'models', file: m.file, where: 'outputs', message: `${out} is made by ${prev.id} already` });
+      else madeBy.set(out, m);
+    }
+    const names = new Set((m.outputs ?? []).flatMap((o) => (field.get(o) ? paramNames(field.get(o)!) : [])));
+    for (const n of names) {
+      if (!m.params?.[n]) issues.push({ level: 'error', check: 'models', file: m.file, where: 'params', message: `say where "${n}" comes from: a source, a claim it follows, or a choice` });
+    }
+    for (const n of Object.keys(m.params ?? {})) {
+      if (!names.has(n)) issues.push({ level: 'error', check: 'models', file: m.file, where: `params.${n}`, message: `no output of this model has a parameter "${n}"` });
+    }
+    for (const [i, c] of (m.checks ?? []).entries()) {
+      const path = join(REPO, c.test);
+      if (!existsSync(path)) {
+        issues.push({ level: 'error', check: 'models', file: m.file, where: `checks[${i}].test`, message: `no test file ${c.test}` });
+      } else if (!readFileSync(path, 'utf8').replace(/\\'/g, "'").includes(c.holds)) {
+        issues.push({ level: 'error', check: 'models', file: m.file, where: `checks[${i}].holds`, message: `no test in ${c.test} is named "${c.holds}"` });
+      }
+    }
+  }
+  for (const f of world.fields) {
+    if (f.derived && !madeBy.has(f.id)) issues.push({ level: 'warning', check: 'models', file: f.file, message: `a derived field is made by a model: write one in models/ that lists ${f.id} among its outputs` });
+  }
+
+  // Does any evidence of the world reach it? The world's records and claims are evidence, and so are
+  // works that are not models; a field rests on what makes it.
+  const seen = new Map<string, boolean>();
+  const sourceIsEvidence = (id: string) => world.source.get(id)?.kind !== 'model';
+  const fieldRests = (f: Field): boolean => {
+    if (seen.has(f.id)) return seen.get(f.id)!;
+    seen.set(f.id, false);
+    const m = madeBy.get(f.id);
+    const r = m ? modelRests(m) : f.data ? !!f.data.prop || sourceIsEvidence(f.data.from) : (f.from ?? []).some((x) => !!field.get(x) && fieldRests(field.get(x)!));
+    seen.set(f.id, r);
+    return r;
+  };
+  const inputRests = (x: Input): boolean => {
+    if (typeof x !== 'string' && !('ref' in x)) return true;
+    const ref = typeof x === 'string' ? x : x.ref;
+    if (ref.startsWith('field:')) return !!field.get(ref) && fieldRests(field.get(ref)!);
+    if (ref.startsWith('src:')) return sourceIsEvidence(ref);
+    return !ref.includes(':');
+  };
+  const modelRests = (m: Model): boolean => m.inputs.some(inputRests);
+  for (const m of world.models) {
+    if (!modelRests(m)) issues.push({ level: 'info', check: 'models', file: m.file, message: `${m.id} rests on no evidence of the world: only on models run elsewhere` });
+  }
+  for (const f of world.fields) {
+    if (madeBy.has(f.id) || !f.data || f.data.prop || sourceIsEvidence(f.data.from)) continue;
+    issues.push({ level: 'info', check: 'models', file: f.file, message: `${f.id} is a model's output, run elsewhere (${f.data.from}): no evidence of the world feeds it` });
+  }
 }
 
 function checkDataset(world: World, refs: RefChecker, id: string, file: string, where: string, member: string | undefined, issues: Issue[]): void {
@@ -589,6 +682,7 @@ export async function validateWorld(world: World, opts: { frames?: boolean } = {
   checkRanks(world, issues);
   checkProminence(world, issues);
   checkForms(world, issues);
+  checkModels(world, issues);
   checkDuplicates(world, issues);
   if (world.root === WORLD || existsSync(join(world.root, 'manifest.yaml'))) checkLicenses(world, issues);
   for (const w of wanted) {

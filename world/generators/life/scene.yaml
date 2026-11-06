@@ -5,7 +5,23 @@ version: 2
 code: generators/life/scene/v2.ts
 runs_in: [build, client]
 outputs: { basis: procedural }
-inputs: []
+# What it reads from the world: who may stand where and how big each grew, the ground and the climate
+# of the time, and, for the Hell Creek's slot, the formation's own fossils and record.
+inputs:
+  - { ref: field:life/community, note: "who may stand at a place and a time, and how sure" }
+  - { ref: field:earth/elevation, note: "the ground, at the field's heights" }
+  - { ref: field:earth/coastline, note: "where the water is" }
+  - { ref: field:earth/climate, note: "the cover and the tones of the place" }
+  - { ref: field:earth/biome, note: "the thresholds that class the climate" }
+  - { prop: cover, note: "no forest or grass before the transitions allow it" }
+  - { prop: body_plan, note: "each taxon's body" }
+  - { prop: body_form, note: "each taxon's body" }
+  - { prop: body_length, note: "how big each is drawn" }
+  - { prop: hip_height, note: "how big each is drawn" }
+  - { prop: plant_height, note: "how big each is drawn" }
+  - { prop: body_mass, note: "how big each is drawn, and how many" }
+  - { ref: src:pbdb-hell-creek-2026-11-04, note: "the Hell Creek slot: its taxa" }
+  - { ref: life/hell-creek/ecosystem, note: "the Hell Creek slot: where it was, and on which plate" }
 slots:
   hell-creek:
     place: The floodplain of the Hell Creek, at the slice its scene describes

@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wikiworldmodel.invalid/schema/model.json",
+  "title": "Model",
+  "description": "A model run here: code that fills the space between the evidence, from the world's records, datasets and fields, into a field or another derived value. It says what it reads and what it makes, where each parameter of what it makes comes from, how uncertain its output is, what evidence it is checked against and what evidence it is known to disagree with. The parameters' values stay where the build reads them, in the fields it makes: this record says where they come from, and never repeats them.",
+  "type": "object",
+  "required": ["id", "type", "title", "description", "code", "inputs", "uncertainty"],
+  "properties": {
+    "id": { "type": "string", "$ref": "defs.json#/$defs/record_id", "pattern": "^model:" },
+    "type": { "const": "model" },
+    "title": { "type": "string" },
+    "description": { "type": "string" },
+    "author": { "$ref": "defs.json#/$defs/author" },
+    "code": { "type": "string", "description": "Where it runs: a file in the repository" },
+    "inputs": { "type": "array", "minItems": 1, "items": { "$ref": "defs.json#/$defs/input" } },
+    "outputs": {
+      "type": "array",
+      "minItems": 1,
+      "description": "The fields it makes. Each field is made by one model at most",
+      "items": { "$ref": "defs.json#/$defs/ref" }
+    },
+    "derives": { "type": "string", "description": "What it derives that is not a field, such as the dates of every record" },
+    "params": {
+      "type": "object",
+      "description": "Where each parameter of its outputs comes from, by the parameter's name in the field: every one, and no other",
+      "propertyNames": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+      "additionalProperties": {
+        "oneOf": [
+          {
+            "description": "Read from a work",
+            "type": "object",
+            "required": ["source"],
+            "properties": { "source": { "$ref": "defs.json#/$defs/citation" }, "note": { "type": "string" } },
+            "additionalProperties": false
+          },
+          {
+            "description": "Follows a claim of the world, which should become what the build reads in its place",
+            "type": "object",
+            "required": ["follows"],
+            "properties": { "follows": { "$ref": "defs.json#/$defs/ref" }, "note": { "type": "string" } },
+            "additionalProperties": false
+          },
+          {
+            "description": "A choice, and what it means: no work gives it",
+            "type": "object",
+            "required": ["choice"],
+            "properties": { "choice": { "type": "string", "minLength": 1 } },
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "required": ["kind", "note"],
+      "properties": {
+        "kind": {
+          "enum": ["none", "interval", "band", "ensemble", "alternatives", "tiers"],
+          "description": "How its output carries uncertainty: none, an interval on each value, a band around a series, an ensemble of runs, alternatives a reader switches between, or tiers of how near the evidence is"
+        },
+        "note": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "checks": {
+      "type": "array",
+      "description": "Evidence it is tested against, kept out of what it derives (section 9.1): the test file, and the name of the test as it is written there",
+      "items": {
+        "type": "object",
+        "required": ["test", "holds"],
+        "properties": { "test": { "type": "string" }, "holds": { "type": "string" } },
+        "additionalProperties": false
+      }
+    },
+    "disagrees": {
+      "type": "array",
+      "description": "Evidence of the world it is known to disagree with, and nothing yet resolves",
+      "items": {
+        "type": "object",
+        "required": ["with", "note"],
+        "properties": { "with": { "$ref": "defs.json#/$defs/ref" }, "note": { "type": "string" } },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false,
+  "anyOf": [{ "required": ["outputs"] }, { "required": ["derives"] }]
+}

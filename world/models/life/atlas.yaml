@@ -1,0 +1,54 @@
+# A model run here (section 4.10 of the design). The values of its parameters stay in the field.
+id: model:life/atlas
+type: model
+title: Who lived where, from the fossils
+description: >-
+  Reduces the Paleobiology Database's land fossils to a list of taxa for each stage and each patch of
+  land, in tiers: here, where a row of the taxon lies within a few hundred km at the time; region, where
+  one can be reached overland in a like climate; and stand-in, where nothing of a kind is near and the
+  nearest clade that has it stands for it. Distance is over the land of the time, with the sea costing
+  far more. It is a simple distribution model, and its lists partly show where people have dug: the
+  record leans heavily to Europe and North America.
+author: machine:claude-code
+code: tools/world/src/build/atlas.ts
+inputs:
+  - { ref: src:pbdb-land-2026-11-05, note: "the rows: who was found where, and when" }
+  - { kind: period/stage, note: "the bins it lists by" }
+  - { kind: taxon, note: "taxa the world adopts by their PBDB number, which keep their own place on a list" }
+  - { ref: field:earth/elevation, note: "the plates and the land of each time, which carry the rows and set the distances" }
+  - { ref: field:earth/coastline, note: "what is land and what is sea" }
+  - { ref: field:earth/climate, note: "how alike two places are" }
+  - { ref: field:earth/biome, note: "the thresholds that class a climate" }
+  - { prop: body_plan, note: "to sort taxa by habit" }
+  - { prop: body_form, note: "to sort taxa by habit" }
+  - { prop: body_length, note: "to sort taxa by size" }
+  - { prop: hip_height, note: "to sort taxa by size" }
+  - { prop: plant_height, note: "to sort taxa by size" }
+  - { prop: body_mass, note: "to sort taxa by size" }
+outputs: [field:life/community]
+params:
+  grid_deg: { choice: "The size of a patch of land the lists are kept for." }
+  graph_deg: { choice: "The spacing of the overland graph distances are measured on." }
+  here_km: { choice: "How near a row must be for its taxon to be \"here\"." }
+  region_km: { choice: "How far overland a row may be for its taxon to be in the region." }
+  kernel_km: { choice: "How fast a row's weight falls with distance." }
+  shallow_cost: { choice: "How many km of land one km of shallow sea counts as." }
+  deep_cost: { choice: "How many km of land one km of deep sea counts as." }
+  shallow_m: { choice: "How deep the sea may be and still count as shallow." }
+  longest_span: { choice: "A row dated only to a span longer than this says too little of any one stage, and is left out." }
+  tight_span: { choice: "A row dated to a span this short or shorter is well dated, and keeps out the loose rows of its taxon." }
+  longest_bin: { choice: "The longest a bin may be before it is split." }
+  shortest_bin: { choice: "The shortest a bin may be before it is merged." }
+  quotas: { choice: "How many taxa of each size and habit a list holds." }
+  standins: { choice: "How many stand-ins of each size and habit a list holds where nothing of a kind is near." }
+  big_m: { choice: "The body length above which an animal is big." }
+  small_m: { choice: "The body length below which an animal is small." }
+  tiny_m: { choice: "The body length below which an animal is tiny." }
+uncertainty:
+  kind: tiers
+  note: >-
+    Each taxon on a list says how near its evidence is: here, region or stand-in. Within a tier there is
+    no measure, and the distances that set the tiers are choices.
+checks:
+  - { test: tools/world/test/life.test.ts, holds: "has a tier that is true: *here* has a row of the taxon close by at the time, recounted from the snapshot" }
+  - { test: tools/world/test/life.test.ts, holds: "puts the Hell Creek's own taxa in the Hell Creek's patch, as recorded here" }

@@ -11,7 +11,7 @@
     "record_id": {
       "description": "A prefixed record id, e.g. src:renne-2013 or frame:paleomap/plate-201",
       "type": "string",
-      "pattern": "^(src|frame|field|gen|tour|alt):[a-z0-9][a-z0-9.-]*(/[a-z0-9][a-z0-9.-]*)*$"
+      "pattern": "^(src|frame|field|model|gen|tour|alt):[a-z0-9][a-z0-9.-]*(/[a-z0-9][a-z0-9.-]*)*$"
     },
     "ref": {
       "description": "A reference: an entity id (with @phase or #key), local @phase or #key, a prefixed record id, or scheme:id",
@@ -101,6 +101,36 @@
         "quote": { "type": "string", "minLength": 1, "maxLength": 400 }
       },
       "additionalProperties": false
+    },
+    "input": {
+      "description": "What a model or a generator reads from the world: a record (a field, a dataset, an entity or a claim of one), or every claim of one property or relation of one type, or every record of one kind; a property's claims may be narrowed to records of one kind",
+      "oneOf": [
+        { "$ref": "#/$defs/ref" },
+        {
+          "type": "object",
+          "required": ["ref"],
+          "properties": { "ref": { "$ref": "#/$defs/ref" }, "note": { "type": "string" } },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["prop"],
+          "properties": { "prop": { "type": "string" }, "kind": { "type": "string" }, "note": { "type": "string" } },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["rel"],
+          "properties": { "rel": { "type": "string" }, "note": { "type": "string" } },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind"],
+          "properties": { "kind": { "type": "string" }, "note": { "type": "string" } },
+          "additionalProperties": false
+        }
+      ]
     },
     "author": {
       "description": "An account, or machine:<tool> for machine-made content",

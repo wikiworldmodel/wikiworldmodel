@@ -10,7 +10,17 @@ version: 1
 code: generators/rome/fabric/v1.ts
 runs_in: [build, client]
 outputs: { basis: procedural }
-inputs: []
+inputs:
+  - { ref: src:ohm-rome-2026-11-01, note: "the mapped structures it must not stand on" }
+  - { prop: footprint, note: "the outlines of the structures the world records" }
+  - { kind: open/region, note: "the fourteen regions, where each one's housing goes" }
+  - { prop: insulae, kind: open/region, note: "how many apartment blocks the Regionary Catalogues count in a region" }
+  - { prop: domus, kind: open/region, note: "how many houses the Regionary Catalogues count in a region" }
+  - { ref: src:tinitaly-1.1-w46075, note: "the ground in the city" }
+  - { ref: src:srtm-gl1-n41e012, note: "the ground on the hills around it" }
+  - { ref: src:srtm-gl1-n42e012, note: "the ground on the hills around it" }
+  - { ref: src:etopo-2022-n45e000, note: "the ground of the region" }
+  - { ref: src:etopo-2022-n45e015, note: "the ground of the region" }
 slots:
   rome:
     place: Rome, inside the Aurelian walls and along the roads out of it

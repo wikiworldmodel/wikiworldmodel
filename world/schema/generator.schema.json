@@ -18,7 +18,7 @@
       "properties": { "basis": { "const": "procedural" } },
       "additionalProperties": false
     },
-    "inputs": { "type": "array", "items": { "$ref": "defs.json#/$defs/ref" } },
+    "inputs": { "type": "array", "description": "What it reads from the world as constraints. Empty only where it takes nothing from the world", "items": { "$ref": "defs.json#/$defs/input" } },
     "slots": {
       "type": "object",
       "minProperties": 1,

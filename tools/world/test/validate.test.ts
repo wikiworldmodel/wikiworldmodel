@@ -177,3 +177,53 @@ describe('validators', () => {
     expect(issues).toEqual([]);
   });
 });
+
+describe('models', () => {
+  const coast = `id: field:test/coast\ntype: field\ntitle: Coast\nderived: true\nfrom: [field:test/height]\nrule: isoline\nisoline_m: 20\n`;
+  const model = (body: string) => `id: model:test/coast\ntype: model\ntitle: Coast\ndescription: A model written for the test.\ncode: tools/world/src/chronology.ts\nuncertainty: { kind: none, note: None. }\n${body}`;
+  const of = (issues: Issue[]) => issues.filter((i) => i.check === 'models');
+
+  it('want every derived field made by one', async () => {
+    const issues = await check({ 'fields/coast.yaml': coast });
+    expect(of(issues)).toEqual([expect.objectContaining({ level: 'warning', message: expect.stringContaining('field:test/coast among its outputs') })]);
+  });
+
+  it('say where each parameter of what it makes comes from, and name no other', async () => {
+    const missing = await check({ 'fields/coast.yaml': coast, 'models/coast.yaml': model('inputs: [src:test/report]\noutputs: [field:test/coast]\n') });
+    expect(errors(missing).map((i) => i.message)).toEqual(['say where "isoline_m" comes from: a source, a claim it follows, or a choice']);
+    const extra = await check({
+      'fields/coast.yaml': coast,
+      'models/coast.yaml': model('inputs: [src:test/report]\noutputs: [field:test/coast]\nparams:\n  isoline_m: { choice: Where the coast sits. }\n  depth: { source: { ref: src:test/report, loc: p. 2 } }\n'),
+    });
+    expect(errors(extra).map((i) => i.message)).toEqual(['no output of this model has a parameter "depth"']);
+  });
+
+  it('make each field once', async () => {
+    const issues = await check({
+      'fields/coast.yaml': coast,
+      'models/coast.yaml': model('inputs: [src:test/report]\noutputs: [field:test/coast]\nparams: { isoline_m: { choice: Where the coast sits. } }\n'),
+      'models/again.yaml': model('inputs: [src:test/report]\noutputs: [field:test/coast]\nparams: { isoline_m: { choice: Where the coast sits. } }\n').replace('model:test/coast', 'model:test/again'),
+    });
+    expect(errors(issues).map((i) => i.message)).toEqual(['field:test/coast is made by model:test/again already']);
+  });
+
+  it('name checks that exist, by the name of their test', async () => {
+    const good = await check({ 'models/dates.yaml': model('inputs: [{ prop: date }]\nderives: Dates.\nchecks:\n  - { test: tools/world/test/stn.test.ts, holds: derives the tightest bounds }\n') });
+    expect(errors(good)).toEqual([]);
+    const bad = await check({ 'models/dates.yaml': model('inputs: [{ prop: date }]\nderives: Dates.\nchecks:\n  - { test: tools/world/test/stn.test.ts, holds: never fails }\n') });
+    expect(errors(bad).map((i) => i.message)).toEqual(['no test in tools/world/test/stn.test.ts is named "never fails"']);
+  });
+
+  it('read only terms the vocabularies declare', async () => {
+    const issues = await check({ 'models/dates.yaml': model('inputs: [{ prop: when }, { rel: near }, { prop: date, kind: volcano }]\nderives: Dates.\n') });
+    expect(errors(issues).map((i) => i.message)).toEqual(['unknown property "when"', 'unknown relation type "near"', 'unknown kind "volcano"']);
+  });
+
+  it('note a model no evidence of the world reaches, and not one it does', async () => {
+    const run = `id: src:test/run\ntype: publication\nkind: model\ncitation: A fixture model, not a real publication.\n`;
+    const issues = await check({ 'sources/run.yaml': run, 'models/dates.yaml': model('inputs: [src:test/run]\nderives: Dates.\n') });
+    expect(of(issues)).toEqual([expect.objectContaining({ level: 'info', message: 'model:test/coast rests on no evidence of the world: only on models run elsewhere' })]);
+    const fed = await check({ 'sources/run.yaml': run, 'models/dates.yaml': model('inputs: [src:test/run, { prop: date }]\nderives: Dates.\n') });
+    expect(of(fed)).toEqual([]);
+  });
+});

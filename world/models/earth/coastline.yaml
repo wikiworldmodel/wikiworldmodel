@@ -1,0 +1,22 @@
+# A model run here (section 4.10 of the design). The value of its parameter stays in the field.
+id: model:earth/coastline
+type: model
+title: The coastline, from the elevation
+description: >-
+  The coast is where the elevation field crosses an isoline near sea level, drawn by the renderer from
+  the blended elevation of the time, so it always agrees with the terrain under it.
+author: machine:claude-code
+code: viewer/src/gl/globe.ts
+inputs:
+  - field:earth/elevation
+outputs: [field:earth/coastline]
+params:
+  isoline_m:
+    choice: >-
+      Where the coast sits between the elevation field's 0 m class and its first class of land. The
+      field's note says this reproduces today's land fraction of 29%; no test checks that yet.
+uncertainty:
+  kind: none
+  note: >-
+    A line with no width: the elevation field's 1° nodes and 40 m steps are the real limit, and nothing
+    is drawn of them.

@@ -45,7 +45,7 @@ Four requirements follow:
  sources ──► WORLD (canonical, versioned) ──► build ──► 4D tile set ──► VIEWER (primary)
  papers,      entities · phases · claims       validate   space × time      free flight, scrub time,
  excavations, relations · frames · fields      solve      × LOD             inspect, evidence mode
- maps,        sources · generators             derive     + index           │
+ maps,        sources · models · generators    derive     + index           │
  datasets                                      pin                          ├─ tours (authored paths)
                                                                             └─ film (scripted path,
                                                                                rendered offline)
@@ -126,8 +126,8 @@ visual diffs and shareable views reproducible.
 ## 4. Data model
 
 The world is made of a few record types: **entities** (with their
-**phases**), **claims**, **relations**, **frames**, **fields**, **sources**
-and **generators**. Vocabularies define the terms they use. Two rules run
+**phases**), **claims**, **relations**, **frames**, **fields**, **sources**,
+**models** and **generators**. Vocabularies define the terms they use. Two rules run
 through all of them:
 
 - **Every fact is a claim.** Dates, positions, names, frames, relations and
@@ -372,6 +372,45 @@ records: the Flavian period through the reigns of its emperors, the end of
 the Cretaceous through the impact layer. A period may also be contested or
 deprecated.
 
+### 4.10 Models
+
+Every view is made of three kinds of content, and each needs different work:
+
+| Kind | What it is | Record |
+|---|---|---|
+| **Evidence** | sparse, sourced points in space and time | claims, sources, pinned datasets |
+| **Models** | fill the space between the evidence | `model:` records, and the fields they make |
+| **Generators** | make plausible detail finer than the evidence | `gen:` records (section 4.8) |
+
+A **model** is code that turns the world's records, datasets and fields into a
+field or another derived value: the biome from the climate, who lived where
+from the fossils, the dates of everything from the evidence about time. Its
+record says:
+
+- **inputs:** the records it reads, or every claim of a property, relation of
+  a type or record of a kind;
+- **outputs:** the fields it makes, each made by one model at most, or what
+  else it `derives`;
+- **params:** where each parameter of its outputs comes from: a cited work, a
+  claim of the world it `follows`, or a stated `choice`. The values stay in
+  the field, where the build reads them, so they are never written twice;
+- **uncertainty:** how its output carries it: none, intervals, a band, an
+  ensemble, alternatives, or tiers of how near the evidence is;
+- **checks:** the tests that hold it to evidence it does not read
+  (section 9.1), each named as it is written in the test file;
+- **disagrees:** evidence of the world it is known to contradict and nothing
+  yet resolves.
+
+A model run elsewhere, such as a climate simulation or a plate
+reconstruction, comes in as a dataset whose source is of kind `model`, and its
+field is read as it is. The validator says which models and fields no
+evidence of the world reaches: those are the places where the world only
+repeats someone else's model, and where checks against its own evidence would
+do most.
+
+Generators declare their inputs the same way, so that what a generated tree or
+house rests on can be traced to the models and evidence beneath it.
+
 ## 5. Time
 
 **Axis.** Time is stored as a float64 *decimal astronomical year* (year 0 =
@@ -555,6 +594,7 @@ time, see what is missing or wrong, and open an editor right there.
 | Claims with citations | historians, scientists, careful readers | inspect panel → "add claim"; the citation is required |
 | Geometry tracing | mappers | editor over georeferenced historical maps, in place in the viewer; the backdrop sheet is recorded as the source |
 | 3D models | modelers | glTF linked to the evidence for each part, previewed in the viewer at its place and time |
+| Models | scientists, programmers | a `model:` record with sourced or stated parameters and checks against evidence it does not read |
 | Generators | programmers | typology rules (insula, domus, field system) with tests and render diffs |
 | Review | domain stewards | accept, rank or dispute claims; approve merges |
 
@@ -694,6 +734,7 @@ world/
     earth/  life/  people/  places/italy/rome/…  space/  periods/
   generators/          procedural rules (code + tests), shared by build and viewer
   fields/              field definitions; arrays live in the blob store
+  models/              models run here: inputs, outputs, where their parameters come from, checks
   tours/               authored camera-and-time paths with captions, each pinned to a build when published (the film is one)
 core/                  runtime code shared by build and viewer (time, frames, tile format)
 tools/world/           validators, solver, importers, build

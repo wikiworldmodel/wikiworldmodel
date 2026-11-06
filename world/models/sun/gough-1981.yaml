@@ -1,0 +1,26 @@
+# A model run here (section 4.10 of the design). The value of its parameter stays in the field.
+id: model:sun/gough-1981
+type: model
+title: The Sun's brightness through time
+description: >-
+  Evaluates Gough's (1981) fit to stellar-evolution models over the Sun's time on the main sequence: a
+  reconstruction before the present and a projection after it. It reads no evidence of its own; the
+  fit is another work's model.
+author: machine:claude-code
+code: tools/world/src/build/series.ts
+inputs:
+  - { ref: src:gough-1981-solar-luminosity, note: "the fit, eq. (1)" }
+outputs: [field:sun/luminosity]
+params:
+  sun_age:
+    follows: space/events/solar-system-formation#date-connelly-2012
+    note: >-
+      The field's 4.567 Gyr is this claim's 4567.30 Ma, rounded and copied. The build should read the
+      claim instead, so that the two cannot drift apart.
+uncertainty:
+  kind: none
+  note: >-
+    The fit gives no error. It is less good in the Sun's first ~0.2 Gyr on the main sequence, so the
+    series starts at 4.3 Ga.
+checks:
+  - { test: tools/world/test/build.test.ts, holds: "computes the Sun's brightness from its rule, as a projection after the present" }

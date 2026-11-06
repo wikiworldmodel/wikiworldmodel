@@ -1,0 +1,35 @@
+# A model run here (section 4.10 of the design). The values of its parameters stay in the field.
+id: model:earth/ice-equivalent-sea-level
+type: model
+title: The ice sheets, as sea level
+description: >-
+  Adds up the ice on the globe at each keyframe, takes its volume above today's, and spreads it as water
+  over today's ocean: how far sea level would have fallen to make the ice. It is set against the
+  sea-level stack, which was reached in another way, as a check of the two.
+author: machine:claude-code
+code: tools/world/src/build/ice.ts
+inputs:
+  - field:earth/ice-sheets
+outputs: [field:earth/ice-sheet-sea-level]
+params:
+  ocean_area_km2:
+    source:
+      ref: src:paleomist-1.0
+      loc: "readme.txt, under ice_reconstruction_files/"
+      quote: equivalent sea level (assuming the modern ocean area of 361x10^6 km^2 and an ice density of 910 kg/m^3)
+  ice_density:
+    source:
+      ref: src:paleomist-1.0
+      loc: "readme.txt, under ice_reconstruction_files/"
+      quote: equivalent sea level (assuming the modern ocean area of 361x10^6 km^2 and an ice density of 910 kg/m^3)
+  water_density: { choice: "Fresh water's density. The readme's sentence names an ice density and no water density." }
+uncertainty:
+  kind: band
+  note: Between the dataset's two scenarios, which differ in North America in Marine Isotope Stage 3.
+checks:
+  - { test: tools/world/test/build.test.ts, holds: "agrees with the sea-level stack in sign and rough size, and the disagreement is what the field says it is" }
+disagrees:
+  - with: field:earth/sea-level-stack
+    note: >-
+      In Marine Isotope Stage 3 it reads tens of metres higher than the stack, up to about 54 m. The
+      reconstruction's authors raise that themselves against δ18O stacks like this one.

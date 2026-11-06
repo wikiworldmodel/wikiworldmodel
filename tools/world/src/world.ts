@@ -193,6 +193,12 @@ export interface Field {
   file: string;
 }
 
+/**
+ * What a model or a generator reads: a record, every claim of a property (on records of a kind, if
+ * given), every relation of a type, or every record of a kind.
+ */
+export type Input = string | { ref: string; note?: string } | { prop: string; kind?: string; note?: string } | { rel: string; note?: string } | { kind: string; note?: string };
+
 export interface Generator {
   id: string;
   title: string;
@@ -200,9 +206,32 @@ export interface Generator {
   code: string;
   runs_in: string[];
   outputs: { basis: Basis };
-  inputs: unknown[];
+  inputs: Input[];
   slots: Record<string, { place: string; seed: string }>;
   params: Record<string, unknown>;
+  file: string;
+}
+
+/** Where a parameter of a model's output comes from: a work, a claim of the world, or a choice. */
+export type Provenance = { source: Citation; note?: string } | { follows: string; note?: string } | { choice: string };
+
+/**
+ * A model run here (section 4.10): what it reads, what it makes, where its outputs' parameters
+ * come from, how uncertain they are, and what they are checked against.
+ */
+export interface Model {
+  id: string;
+  title: string;
+  description: string;
+  author?: string;
+  code: string;
+  inputs: Input[];
+  outputs?: string[];
+  derives?: string;
+  params?: Record<string, Provenance>;
+  uncertainty: { kind: 'none' | 'interval' | 'band' | 'ensemble' | 'alternatives' | 'tiers'; note: string };
+  checks?: { test: string; holds: string }[];
+  disagrees?: { with: string; note: string }[];
   file: string;
 }
 
@@ -278,7 +307,7 @@ export interface ProminenceRule {
 /** A record as it appears in its file, before normalization, for schema validation. */
 export interface RawRecord {
   file: string;
-  type: 'entity' | 'source' | 'frame' | 'field' | 'generator' | 'alternative' | 'manifest';
+  type: 'entity' | 'source' | 'frame' | 'field' | 'model' | 'generator' | 'alternative' | 'manifest';
   data: Record<string, unknown>;
 }
 
@@ -294,6 +323,7 @@ export interface World {
   sources: Source[];
   frames: Frame[];
   fields: Field[];
+  models: Model[];
   generators: Generator[];
   alternatives: Alternative[];
   manifest: Manifest;
@@ -482,6 +512,7 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
   const sourceFiles = await read(root, 'sources', 'source');
   const frameFiles = await read(root, 'frames', 'frame');
   const fieldFiles = await read(root, 'fields', 'field');
+  const modelFiles = await read(root, 'models', 'model');
   const generatorFiles = await read(root, 'generators', 'generator');
   const alternativeFiles = await read(root, 'alternatives', 'alternative');
 
@@ -534,6 +565,7 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
   ];
   const frames = frameFiles.map((f) => ({ ...(f.data as unknown as Frame), file: f.file }));
   const fields = fieldFiles.map((f) => ({ ...(f.data as unknown as Field), file: f.file }));
+  const models = modelFiles.map((f) => ({ ...(f.data as unknown as Model), file: f.file }));
   const generators = generatorFiles.map((f) => ({ ...(f.data as unknown as Generator), file: f.file }));
   const alternatives = alternativeFiles.map((f) => ({ ...(f.data as unknown as Alternative), file: f.file }));
   return {
@@ -542,6 +574,7 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
     sources,
     frames,
     fields,
+    models,
     generators,
     alternatives,
     manifest,

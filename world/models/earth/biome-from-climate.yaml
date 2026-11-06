@@ -1,0 +1,46 @@
+# A model run here (section 4.10 of the design): what it reads, what it makes, and where each of its
+# output's parameters comes from. The values stay in the field, where the build reads them.
+id: model:earth/biome-from-climate
+type: model
+title: What covered the land, from the climate
+description: >-
+  Reads each spot's climate as a Köppen–Geiger class and draws the cover that class takes, allowed only
+  once the world's transitions say that cover had come to exist: nothing green before the land plants,
+  no forest before the first forests. Ice comes from the ice-sheet field where it has the time, and reefs
+  from the depth of the shelf. It is a reading of one climate model through fixed thresholds, not a map
+  of what grew there.
+author: machine:claude-code
+code: core/climate.ts
+inputs:
+  - { ref: field:earth/climate, note: "the class of each spot, from its warmest and coldest month and its aridity" }
+  - { prop: cover, note: "the transitions that brought each cover to the land or the shallow seas, and when" }
+  - { ref: field:earth/ice-sheets, note: "where it has the time, ice is drawn from it alone" }
+  - { ref: field:earth/elevation, note: "the depth of the shelf, for reefs" }
+outputs: [field:earth/biome]
+params:
+  polar: { source: { ref: src:peel-2007-koppen, loc: Table 1 } }
+  frost: { source: { ref: src:peel-2007-koppen, loc: Table 1 } }
+  tropical: { source: { ref: src:peel-2007-koppen, loc: Table 1 } }
+  cold: { source: { ref: src:peel-2007-koppen, loc: Table 1 } }
+  arid: { source: { ref: src:peel-2007-koppen, loc: Table 1 } }
+  desert: { source: { ref: src:peel-2007-koppen, loc: Table 1 } }
+  spread_myr:
+    choice: >-
+      How long a cover takes to spread once it has appeared, where its transition gives no end. No work
+      gives it; it keeps a new cover from appearing everywhere at once.
+  reef_depth: { choice: "How shallow a shelf must be for a reef to be drawn on it. No work gives it." }
+  reef_latitude: { choice: "How far from the equator a reef may be drawn. No work gives it." }
+uncertainty:
+  kind: none
+  note: >-
+    One climate run, read through fixed thresholds: each spot gets one cover, with nothing to say how
+    sure it is. A spot near a threshold could as well be the class beside it.
+checks:
+  - { test: tools/world/test/life.test.ts, holds: "hold: no forest fossil falls in a reconstructed desert" }
+  - { test: tools/world/test/planet.test.ts, holds: "is nothing before the transition that allows it: no vegetation before the land-plants claim" }
+disagrees:
+  - with: life/hell-creek/ecosystem#formation
+    note: >-
+      Through its climate input. The climate field has the coldest month below freezing at the Hell Creek
+      (Köppen D), where fossil leaves give mean annual temperatures of about 12–20 °C (Wilf et al. 2003,
+      cited on this claim). The scene follows the field.

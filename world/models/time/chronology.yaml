@@ -1,0 +1,32 @@
+# A model run here (section 4.10 of the design). It makes no field: what it derives is dates.
+id: model:time/chronology
+type: model
+title: The dates of everything, from the evidence about time
+description: >-
+  Solves the world's evidence about time as a simple temporal network (section 5 of the design): each
+  date, bound and relation with a direction in time is a constraint, and the solver finds the tightest
+  bounds they allow together, or the smallest set of claims that contradict each other. It runs on the
+  default picture and on every alternative combined with it.
+author: machine:claude-code
+code: tools/world/src/chronology.ts
+inputs:
+  - { prop: date }
+  - { prop: start }
+  - { prop: end }
+  - { prop: earlier_than }
+  - { prop: later_than }
+  - { rel: before }
+  - { rel: after }
+  - { rel: during }
+  - { rel: part-of }
+  - { rel: member-of }
+  - { rel: descends-from }
+  - { rel: caused-by }
+  - { rel: held-office }
+derives: The dates of every record and phase, as the tightest bounds the evidence allows.
+uncertainty:
+  kind: interval
+  note: Each date is solved as an interval, as wide as the evidence leaves it.
+checks:
+  - { test: tools/world/test/stn.test.ts, holds: "reports a minimal conflict: exactly the constraints on the negative cycle" }
+  - { test: tools/world/test/contradiction.test.ts, holds: "has a chronology conflict made of exactly the three clashing constraints" }
