@@ -506,6 +506,17 @@ function checkModels(world: World, issues: Issue[]): void {
   for (const f of world.fields) {
     if (f.derived && !madeBy.has(f.id)) issues.push({ level: 'warning', check: 'models', file: f.file, message: `a derived field is made by a model: write one in models/ that lists ${f.id} among its outputs` });
   }
+  // A model that reads a spread carries it on (docs/STRUCTURE.md section 3.2): run once per member, not once.
+  for (const m of world.models) {
+    if (m.uncertainty.kind !== 'none') continue;
+    for (const x of m.inputs) {
+      const ref = typeof x === 'string' ? x : 'ref' in x ? x.ref : undefined;
+      const f = ref ? field.get(ref) : undefined;
+      if (f?.spread && ['band', 'alternatives', 'ensemble'].includes(f.spread)) {
+        issues.push({ level: 'warning', check: 'models', file: m.file, where: 'uncertainty', message: `reads ${f.id}, which carries ${({ band: 'a band', alternatives: 'alternatives', ensemble: 'an ensemble' } as Record<string, string>)[f.spread]}, and says its output carries none: run it once per member (core/samples.ts) and carry the spread on` });
+      }
+    }
+  }
 
   // Does any evidence of the world reach it? The world's records and claims are evidence, and so are
   // works that are not models; a field rests on what makes it.

@@ -11,6 +11,8 @@ data:
   from: src:glottolog-5.3
   as: languages
 basis: evidence
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
 # Its rows are claims (docs/STRUCTURE.md section 3.1), keyed by the catalogue's Glottocode.
 rows:
   kind: language

@@ -275,6 +275,11 @@ day, such as OpenHistoricalMap or the PBDB, is kept as a dated snapshot in
 (`npm run world -- ohm-snapshot`, `npm run world -- pbdb-snapshot "Hell Creek"`). A taxon written by
 hand adopts the database's by its number: `same_as: { pbdb: "txn:38862" }`.
 
+The field that reads a dataset says how its uncertainty is carried, as `spread:`: `band` (a low and a
+high around each value), `alternatives` (readings, each its own picture), `ensemble` (members, such as
+runs of a model), `claims`, `tiers`, or `unknown` when the source gives one value and no spread. Say
+`unknown` rather than leave it out: no spread is not the same as exact.
+
 ### A row of a dataset
 
 A dataset read as rows (the PBDB's fossils, Cliopatria's states, NOAA's hazards, Glottolog's
@@ -336,6 +341,10 @@ uncertainty: { kind: none, note: "A line with no width." }
 - `checks` name a test and the test's name as written; the validator finds it. A check holds the model
   to evidence it does not read.
 - `disagrees` lists evidence the model contradicts. Write it down rather than tune the model to hide it.
+- `uncertainty` says how its output carries uncertainty. Uncertainty travels as samples
+  ([core/samples.ts](core/samples.ts)): a member is a joint sample of the whole world, member 0 the
+  central value. A model that reads a field with a band, alternatives or an ensemble runs once per
+  member and carries the spread on; the validator warns at one that says its output carries none.
 - A generator lists its `inputs` the same way, as records, or as `{ prop: … }`, `{ rel: … }` or
   `{ kind: … }` for every claim, relation or record of that term. Empty only if it reads nothing.
 

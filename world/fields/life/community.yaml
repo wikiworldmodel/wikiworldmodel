@@ -17,6 +17,8 @@ data:
   from: src:pbdb-land-2026-11-05
   as: community
 basis: reconstruction
+# How sure each list is: here, in the region, or a stand-in.
+spread: tiers
 interp: step
 # The snapshot's rows are claims (docs/STRUCTURE.md section 3.1), one an occurrence, keyed by the database's
 # occurrence number: the name it was identified as, its formation, its collection's place today and its ages.

@@ -275,6 +275,7 @@ grid: { kind: rows }
 time: { lo: 3000 BCE, hi: 1950 CE }
 data: { from: src:test/states, as: polities }
 basis: reconstruction
+spread: unknown
 rows:
   kind: polity
   key: "{Name}@{FromYear}"
@@ -331,5 +332,24 @@ rows:
   it('refuse a row written otherwise than the build writes it', async () => {
     const issues = await checkRows({ 'overlays/carthage.yaml': overlay('same_as: test/carthage\n', 'src:test/states#Carthage%40-500') });
     expect(rows(issues)).toEqual(['error: write the row as src:test/states#Carthage@-500']);
+  });
+});
+
+describe('spreads (docs/STRUCTURE.md section 3.2)', () => {
+  const field = (id: string, spread: string) => `id: field:test/${id}\ntype: field\ntitle: ${id}\ngrid: { kind: series }\ntime: { lo: 1 Ma, hi: 0 Ma }\ndata: { from: src:test/report, prop: date }\nbasis: reconstruction\n${spread ? `spread: ${spread}\n` : ''}`;
+  const model = (kind: string) => `id: model:test/m\ntype: model\ntitle: M\ndescription: A fixture model.\ncode: tools/world/src/world.ts\ninputs: [field:test/runs]\nderives: Nothing.\nuncertainty: { kind: ${kind}, note: A fixture. }\n`;
+  const models = (issues: Issue[]) => issues.filter((i) => i.check === 'models' && i.level !== 'info').map((i) => `${i.level}: ${i.message}`);
+
+  it('want every field read from a source to say how its uncertainty is carried', async () => {
+    const issues = await check({ 'fields/a.yaml': field('runs', '') });
+    expect(errors(issues).map((i) => i.message)).toContain("must have required property 'spread'");
+  });
+
+  it('note a model that reads a spread and carries none on', async () => {
+    expect(models(await check({ 'fields/a.yaml': field('runs', 'ensemble'), 'models/m.yaml': model('none') }))).toEqual([
+      'warning: reads field:test/runs, which carries an ensemble, and says its output carries none: run it once per member (core/samples.ts) and carry the spread on',
+    ]);
+    expect(models(await check({ 'fields/a.yaml': field('runs', 'ensemble'), 'models/m.yaml': model('ensemble') }))).toEqual([]);
+    expect(models(await check({ 'fields/a.yaml': field('runs', 'unknown'), 'models/m.yaml': model('none') }))).toEqual([]);
   });
 });

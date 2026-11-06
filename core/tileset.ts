@@ -7,6 +7,7 @@
 // smaller cells with shorter spans, so the amount of data per tile stays bounded.
 
 import type { Fingerprint } from './fingerprint.ts';
+import type { FieldSpread } from './samples.ts';
 
 /** Interval of a feature, in astronomical years. `null` end = still exists. */
 export interface Estimate {
@@ -191,6 +192,8 @@ export interface FieldInfo {
   projection?: { method: 'hold'; until: number; note?: string };
   /** the coastline derived from it, for an elevation field */
   coastline?: { id: string; title: string; isolineM: number };
+  /** how its uncertainty is carried (core/samples.ts) */
+  spread?: FieldSpread;
 }
 
 export interface Tileset {
@@ -204,7 +207,7 @@ export interface Tileset {
   tiles: TileRef[];
   files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string; overlays?: string; people?: string; atlas?: string; features: string };
   /** the climate field the land is painted from, and the derived field that paints it */
-  climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown> };
+  climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown>; spread?: FieldSpread };
   /** the ice sheets drawn over the land, where a field has them, instead of a claimed latitude */
   ice?: IceInfo;
   /** attribution the viewer must show for the data it displays */

@@ -11,6 +11,8 @@ data:
   from: src:itinere-2024
   as: routes
 basis: reconstruction
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
 # Its rows are claims (docs/STRUCTURE.md section 3.1). The dataset gives its roads no ids, so a road is keyed by
 # its place in the pinned file. Most have no dates: 9999 is the dataset's way of saying so.
 rows:

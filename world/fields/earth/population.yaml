@@ -20,6 +20,8 @@ data:
   from: src:hyde-3.2.1-population-grid
   as: people
 basis: reconstruction
+# A band either way of each value, as wide as the authors' range for its time (params.range).
+spread: band
 interp: linear
 params:
   # Where the viewer's colours start and end, in people per km² of land: a choice of how to show it, not a fact.

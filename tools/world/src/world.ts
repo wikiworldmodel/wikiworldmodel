@@ -7,6 +7,7 @@
 //   - `source` is one citation or a list of them (corroboration)
 import type { Form } from '../../../core/form.ts';
 import type { CheckStep } from '../../../core/ladder.ts';
+import type { FieldSpread } from '../../../core/samples.ts';
 import type { RowsSpec } from './tables.ts';
 import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
@@ -196,6 +197,8 @@ export interface Field {
   uncertainty?: string;
   /** for a dataset read as rows: how a row is keyed, and which column is which property (tools/world/src/tables.ts) */
   rows?: RowsSpec;
+  /** how its uncertainty is carried (core/samples.ts); a derived field's is its model's */
+  spread?: FieldSpread;
   file: string;
 }
 

@@ -18,4 +18,6 @@ data:
   time_unit: Ma
   band: the uncertainty range the table gives
 basis: reconstruction
+# A low and a high around each value, as the dataset gives them.
+spread: band
 interp: linear

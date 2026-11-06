@@ -33,6 +33,8 @@ data:
       alt: alt:laurentide-mis3/hudson-bay-ice-free
       span: { lo: 55 ka, hi: 37.5 ka }
 basis: reconstruction
+# Each scenario of the dataset is its own picture, which an alternative may draw.
+spread: alternatives
 # Each keyframe moves with its plates, as the elevation does. Over this span they carry it about 1 km, and at most about 5 km.
 interp: plate-warp
 moves_with: src:paleomap-plate-model

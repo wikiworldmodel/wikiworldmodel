@@ -2,6 +2,7 @@
 // each keyframe. The grids are on today's coordinates at every keyframe. Each node gets the plate it
 // rides today, so that the globe can move it from there, as it moves everything else. The thickness is
 // what the dataset gives; how far a node is from the margin is worked out here.
+import { BETWEEN, perMember, spread } from '../../../../core/samples.ts';
 import { EARTH_RADIUS } from '../../../../core/city.ts';
 import { encodeTile } from '../../../../core/container.ts';
 import { encodeMargin, encodeThickness, MARGIN_KM_PER_STEP, THICKNESS_TOP, type IceHeader, type IceKeyframe, type IceScenario } from '../../../../core/ice.ts';
@@ -218,11 +219,14 @@ export async function iceSeaLevel(world: World, f: Field): Promise<{ points: Ser
   await g.close();
   const youngest = g.agesMa.indexOf(Math.min(...g.agesMa));
   const level = (v: number[], i: number) => -((v[i] - v[youngest]) * p.ice_density) / p.water_density / p.ocean_area_km2 * 1e3;
+  // The scenarios are alternatives, each its own picture (docs/STRUCTURE.md section 3.2): the model runs once per
+  // member, and its band is the whole range between them, as none is more likely than another.
   const pointsOf = (scenario: number): SeriesRecord['points'] =>
     g.agesMa
       .map((a, i): SeriesRecord['points'][number] => {
-        const all = volumes.map((v) => level(v, i));
-        return [Math.round(PRESENT_YEAR - a * 1e6), sig(all[scenario]), sig(Math.min(...all)), sig(Math.max(...all))];
+        const all = perMember(volumes.length, (m) => level(volumes[m], i));
+        const s = spread(all, BETWEEN);
+        return [Math.round(PRESENT_YEAR - a * 1e6), sig(all[scenario]), sig(s.lo), sig(s.hi)];
       })
       .sort((a, b) => a[0] - b[0]);
   const variants: NonNullable<SeriesRecord['variants']> = {};

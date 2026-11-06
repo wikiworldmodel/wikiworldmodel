@@ -1396,6 +1396,7 @@ async function start(root: HTMLElement): Promise<void> {
       source: fi.sourceRecord,
       fieldTitle: fi.title,
       fieldDescription: fi.description,
+      fieldSpread: fi.spread,
       coastline: fi.coastline?.title,
       datum: fi.datum,
       state: stateOf(frameLook),

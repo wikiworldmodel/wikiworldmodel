@@ -21,4 +21,6 @@ data:
   time_unit: ka
   band: 95% confidence interval, from bootstrapping
 basis: reconstruction
+# A low and a high around each value, as the dataset gives them.
+spread: band
 interp: linear

@@ -31,10 +31,12 @@ params:
   reef_depth: { choice: "How shallow a shelf must be for a reef to be drawn on it. No work gives it." }
   reef_latitude: { choice: "How far from the equator a reef may be drawn. No work gives it." }
 uncertainty:
-  kind: none
+  kind: alternatives
   note: >-
-    One climate run, read through fixed thresholds: each spot gets one cover, with nothing to say how
-    sure it is. A spot near a threshold could as well be the class beside it.
+    Under the ice sheets of the last 80,000 years, the cover follows whichever of the ice-sheet field's
+    scenarios the reader draws, each its own picture. Elsewhere it is one climate run, read through fixed
+    thresholds: each spot gets one cover, with nothing to say how sure it is, and a spot near a threshold
+    could as well be the class beside it.
 checks:
   - { test: tools/world/test/life.test.ts, holds: "hold: no forest fossil falls in a reconstructed desert" }
   - { test: tools/world/test/planet.test.ts, holds: "is nothing before the transition that allows it: no vegetation before the land-plants claim" }

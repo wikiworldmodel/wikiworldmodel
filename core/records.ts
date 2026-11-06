@@ -2,6 +2,7 @@
 // periods (periods.json) and for coverage (coverage.json): everything the viewer's inspect
 // panel needs, already resolved.
 import type { CheckStep, Level } from './ladder.ts';
+import type { FieldSpread } from './samples.ts';
 import type { Basis, FeatureBasis, FeatureName, FeatureTime } from './tileset.ts';
 
 export interface SourceRecord {
@@ -175,6 +176,8 @@ export interface SeriesRecord {
   refines?: string;
   /** what the lo–hi band is */
   band?: string;
+  /** how its uncertainty is carried (core/samples.ts); a computed series' is its model's */
+  spread?: FieldSpread;
   /** [year, value, lo, hi], oldest first; lo and hi are null where there is no band */
   points: [number, number, number | null, number | null][];
   /** by alternative: the points that picture reads instead, for a series that follows one */

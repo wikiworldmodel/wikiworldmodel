@@ -16,4 +16,6 @@ data:
   time_unit: Ma
   band: 68% interval
 basis: reconstruction
+# A low and a high around each value, as the dataset gives them.
+spread: band
 interp: linear

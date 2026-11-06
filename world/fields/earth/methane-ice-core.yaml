@@ -14,4 +14,6 @@ data:
   columns: { time: "3", value: "4" }
   time_unit: ka-b2k
 basis: evidence
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
 interp: linear

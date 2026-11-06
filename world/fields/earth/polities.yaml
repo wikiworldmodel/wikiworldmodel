@@ -11,6 +11,8 @@ data:
   from: src:cliopatria-0.2.1
   as: polities
 basis: reconstruction
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
 # Its rows are claims (docs/STRUCTURE.md section 3.1): a polity's name and the years its outline holds. The
 # dataset gives no ids, so a row is keyed by its name and its first year, which together are unique in it.
 rows:

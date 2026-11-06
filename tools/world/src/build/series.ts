@@ -1,6 +1,7 @@
 // Global series (section 4.7): one value for the whole planet at each time, such as mean
 // surface temperature or the Sun's brightness. A series is read from a dataset's table, or
 // computed with a published rule; either way it is never stored in git.
+import type { FieldSpread } from '../../../../core/samples.ts';
 import { readFile } from 'node:fs/promises';
 import { strFromU8, unzipSync } from 'fflate';
 import type { SeriesRecord } from '../../../../core/records.ts';
@@ -161,6 +162,12 @@ async function tabled(world: World, f: Field): Promise<SeriesRecord['points']> {
   return pts.sort((a, b) => a[0] - b[0]);
 }
 
+/** A computed series carries its uncertainty as the model that makes it says. */
+function spreadOfModel(world: World, field: string): FieldSpread | undefined {
+  const kind = world.models.find((m) => m.outputs?.includes(field))?.uncertainty.kind;
+  return kind === 'none' ? 'unknown' : kind === 'interval' ? 'band' : kind;
+}
+
 export async function series(world: World): Promise<SeriesRecord[]> {
   const out: SeriesRecord[] = [];
   for (const f of world.fields) {
@@ -181,6 +188,7 @@ export async function series(world: World): Promise<SeriesRecord[]> {
       interpolation: f.interp ?? 'linear',
       refines: f.refines,
       band: f.data?.band ?? (f.params?.band as string | undefined),
+      spread: f.spread ?? spreadOfModel(world, f.id),
       points,
       variants: ice?.variants,
       source,
