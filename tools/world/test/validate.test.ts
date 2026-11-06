@@ -353,3 +353,19 @@ describe('spreads (docs/STRUCTURE.md section 3.2)', () => {
     expect(models(await check({ 'fields/a.yaml': field('runs', 'unknown'), 'models/m.yaml': model('none') }))).toEqual([]);
   });
 });
+
+describe('generators sample models (docs/STRUCTURE.md section 3.4)', () => {
+  const gen = (extra: string) => `id: gen:test/g\ntype: generator\ntitle: G\nversion: 1\ncode: generators/earth/clouds/v1.ts\nruns_in: [build]\noutputs: { basis: procedural }\ninputs: [{ prop: date }]\nslots: { s: { place: here, seed: s } }\nparams: {}\n${extra}`;
+  const found = (issues: Issue[]) => issues.filter((i) => i.check === 'generators').map((i) => `${i.level}: ${i.message}`);
+
+  it('want one that samples the world to name a test of what it makes, in aggregate', async () => {
+    expect(found(await check({ 'generators/g.yaml': gen('') }))).toEqual(['warning: it samples fields or claims of the world: name a test that holds what it makes, in aggregate, to them']);
+  });
+
+  it('accept a check that names a test that exists, and refuse one that does not', async () => {
+    const ok = `checks: [{ test: world/generators/life/scene/v2.test.ts, holds: "has a desert mostly bare, with no forest" }]\n`;
+    expect(found(await check({ 'generators/g.yaml': gen(ok) }))).toEqual([]);
+    const bad = `checks: [{ test: world/generators/life/scene/v2.test.ts, holds: "makes unicorns" }]\n`;
+    expect(found(await check({ 'generators/g.yaml': gen(bad) }))).toEqual(['error: no test in world/generators/life/scene/v2.test.ts is named "makes unicorns"']);
+  });
+});

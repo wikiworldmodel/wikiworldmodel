@@ -16,6 +16,7 @@ import type { Basis, Feature, FieldInfo, FieldKeyframe, FramesFile, GeneratorCon
 import { GENERATOR as BIOME_TEXTURE, VERSION as BIOME_TEXTURE_VERSION, generateBiomeTexture, type BiomeTextureParams } from '../../../../world/generators/earth/biome/v1.ts';
 import { GENERATOR as CLOUDS, VERSION as CLOUDS_VERSION, generateClouds, type CloudParams } from '../../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, VERSION as SURFACE_VERSION, generateSurface, type SurfaceParams } from '../../../../world/generators/earth/surface/v1.ts';
+import { GENERATOR as GENERIC_LAND, VERSION as GENERIC_LAND_VERSION, generateGenericLand, genericLandAt, type GenericLandParams } from '../../../../world/generators/earth/generic-land/v1.ts';
 import { claimGroups, solveScenario, solveVariants } from '../chronology.ts';
 import { fieldAgesMa, fieldSource, importBlocks, importElevation, PLATE_MODEL, tiledField } from '../importer.ts';
 import { datasetFile } from '../manifest.ts';
@@ -25,6 +26,9 @@ import { formatIssue, validateWorld } from '../validate/index.ts';
 import { loadWorld, type World } from '../world.ts';
 import { ClaimIndex } from '../claimindex.ts';
 import { correctLand } from '../tables.ts';
+import { gridPlaces, lifeTierOf, tierCounts, TIER_SPANS, type ResolveWorld } from '../../../../core/resolve.ts';
+import { insideRow, politiesAt, type PolitiesFile } from '../../../../core/layers.ts';
+import type { AtlasBin } from '../../../../core/atlas.ts';
 import { fieldFor, fieldLods, loadBlocks, loadSnapshots, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
 import { buildCity } from './city.ts';
 import { climateGrid, climateKeyframes, encodeClimate, forestChecks, type ClimateKeyframe } from './climate.ts';
@@ -100,6 +104,41 @@ function worldSpan(periods: PeriodRecord[], found: SearchFile, grids: GridField[
   for (const g of grids) times.push(fromMa(g.coverMa[0]), fromMa(g.coverMa[1]));
   for (const s of series) times.push(s.points[0][0], s.points.at(-1)![0]);
   return [Math.min(...times), Math.max(...times)];
+}
+
+/** What resolve reads, from what the build has made (core/resolve.ts). */
+export function resolveWorldOf(
+  world: World,
+  solved: Solved,
+  grids: GridField[],
+  climateKeys: ClimateKeyframe[],
+  ice: IceBuilt | undefined,
+  people: { header: { steps: number[] } } | undefined,
+  polities: PolitiesFile | undefined,
+  atlas: ReturnType<typeof buildAtlas>,
+): ResolveWorld {
+  const land = world.generators.find((g) => g.id === GENERIC_LAND);
+  const landParams = land?.params as unknown as GenericLandParams | undefined;
+  const mask = land ? generateGenericLand(land.slots.globe.seed, landParams!) : undefined;
+  const bins = new Map<number, AtlasBin>();
+  const ages = climateKeys.map((k) => k.ageMa);
+  return {
+    planet: buildPlanet(solved),
+    geography: grids.map((g) => ({ title: g.field.title, mode: g.mode, coverage: [fromMa(g.coverMa[0]), fromMa(g.coverMa[1])] })),
+    climate: ages.length ? [fromMa(Math.max(...ages)), fromMa(Math.min(...ages))] : undefined,
+    ice: ice?.coverage,
+    people: people ? [people.header.steps[0], people.header.steps.at(-1)!] : undefined,
+    polities: polities?.rows.length ? [Math.min(...polities.rows.map((r) => r.from)), Math.max(...polities.rows.map((r) => r.to))] : undefined,
+    polity: polities ? (lat, lon, t) => politiesAt(polities, t).find((r) => insideRow(r, lon, lat))?.name : undefined,
+    life: atlas
+      ? (lat, lon, t) =>
+          lifeTierOf(atlas.index.bins, atlas.index.grid, (i) => {
+            if (!bins.has(i)) bins.set(i, JSON.parse(atlas.files.get(atlas.index.bins[i].file)!) as AtlasBin);
+            return bins.get(i);
+          }, lat, lon, t)
+      : undefined,
+    genericLand: mask && landParams ? (lat, lon) => genericLandAt(mask, landParams, lat, lon) : undefined,
+  };
 }
 
 /** What the overlays say of each row they name, with what the row itself says, as the inspect panel shows it. */
@@ -268,6 +307,7 @@ export async function runBuild(args: string[]): Promise<number> {
     { id: CLOUDS, version: CLOUDS_VERSION, run: (seed: string, p: unknown) => generateClouds(seed, p as CloudParams) },
     { id: SURFACE, version: SURFACE_VERSION, run: (seed: string, p: unknown) => generateSurface(seed, p as SurfaceParams) },
     { id: BIOME_TEXTURE, version: BIOME_TEXTURE_VERSION, run: (seed: string, p: unknown) => generateBiomeTexture(seed, p as BiomeTextureParams) },
+    { id: GENERIC_LAND, version: GENERIC_LAND_VERSION, run: (seed: string, p: unknown) => generateGenericLand(seed, p as GenericLandParams) },
   ];
   const generators: GeneratorConstraint[] = [];
   for (const c of code) {
@@ -414,6 +454,7 @@ export async function runBuild(args: string[]): Promise<number> {
   // The living scene, on the land and climate above.
   const sites: SiteInfo[] = [];
   let atlasFile: string | undefined;
+  let lifeAtlas: ReturnType<typeof buildAtlas> = undefined;
   if (city) {
     const v = (world.generators.find((g) => g.id === 'gen:rome/fabric')!.params as unknown as { site: Pick<SiteInfo, 'near' | 'window' | 'view'> }).site;
     sites.push({ kind: 'city', id: city.file.site.id, label: city.file.site.label, file: `city/${city.file.site.id}.json`, place: 'places/rome', origin: city.file.site.origin, span: city.file.site.span, slice: city.file.site.slice, near: v.near, window: v.window, view: v.view });
@@ -438,9 +479,17 @@ export async function runBuild(args: string[]): Promise<number> {
       put('life/witness.json', stableStringify(seen));
       atlasFile = 'life/atlas.json';
       coverageFile.forms = { ...atlas.index.coverage, wanted: atlas.wanted.slice(0, 200) };
-      put('coverage.json', stableStringify(coverageFile));
+      lifeAtlas = atlas;
     }
   }
+
+  // Every layer answers everywhere, in a tier (docs/STRUCTURE.md section 3.3): how much of the world each tier holds.
+  const resolveWorld = resolveWorldOf(world, solved, grids, climateKeys, ice, people, polities, lifeAtlas);
+  coverageFile.tiers = TIER_SPANS.map((sp) => {
+    const times = Array.from({ length: 8 }, (_, i) => fromMa(sp.olderMa + ((sp.youngerMa - sp.olderMa) * (i + 0.5)) / 8));
+    return { span: sp.label, layers: tierCounts(resolveWorld, gridPlaces(10), times) };
+  });
+  put('coverage.json', stableStringify(coverageFile));
 
   // 9. Index and identity.
   const tileset: Omit<Tileset, 'build'> = {

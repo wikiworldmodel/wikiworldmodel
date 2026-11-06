@@ -363,6 +363,7 @@ function checkRecords(world: World, issues: Issue[], tables: Map<string, Table> 
   }
   for (const g of world.generators) {
     for (const [i, x] of (g.inputs ?? []).entries()) checkInput(world, refs, x, g.file, `inputs[${i}]`, issues);
+    checkTests(g.checks, g.file, 'generators', issues);
     if (!existsSync(join(world.root === WORLD ? WORLD : world.root, g.code)) && !existsSync(join(WORLD, g.code))) {
       issues.push({ level: 'error', check: 'refs', file: g.file, where: 'code', message: `no code at ${g.code}` });
     }
@@ -453,6 +454,27 @@ export async function overlayTables(world: World): Promise<Map<string, Table>> {
   return out;
 }
 
+/** Checks named by a model or a generator: each a test file that exists, with a test of that name in it. */
+function checkTests(checks: { test: string; holds: string }[] | undefined, file: string, check: string, issues: Issue[]): void {
+  for (const [i, c] of (checks ?? []).entries()) {
+    const path = join(REPO, c.test);
+    if (!existsSync(path)) issues.push({ level: 'error', check, file, where: `checks[${i}].test`, message: `no test file ${c.test}` });
+    else if (!readFileSync(path, 'utf8').replace(/\\'/g, "'").includes(c.holds)) issues.push({ level: 'error', check, file, where: `checks[${i}].holds`, message: `no test in ${c.test} is named "${c.holds}"` });
+  }
+}
+
+/**
+ * A generator samples the models it reads (docs/STRUCTURE.md section 3.4): one that reads a model's output, or the
+ * world's claims, names a test that holds what it makes, in aggregate, to them.
+ */
+function checkGeneratorSamples(world: World, issues: Issue[]): void {
+  const madeByModel = new Set(world.models.flatMap((m) => m.outputs ?? []));
+  for (const g of world.generators) {
+    const samples = (g.inputs ?? []).some((x) => (typeof x === 'string' ? madeByModel.has(x) || x.startsWith('field:') : 'ref' in x ? madeByModel.has(x.ref) || x.ref.startsWith('field:') : 'prop' in x));
+    if (samples && !g.checks?.length) issues.push({ level: 'warning', check: 'generators', file: g.file, where: 'checks', message: 'it samples fields or claims of the world: name a test that holds what it makes, in aggregate, to them' });
+  }
+}
+
 /** An input of a model or a generator: a record that resolves, or terms the vocabularies declare. */
 function checkInput(world: World, refs: RefChecker, x: Input, file: string, where: string, issues: Issue[]): void {
   if (typeof x === 'string' || 'ref' in x) {
@@ -494,14 +516,7 @@ function checkModels(world: World, issues: Issue[]): void {
     for (const n of Object.keys(m.params ?? {})) {
       if (!names.has(n)) issues.push({ level: 'error', check: 'models', file: m.file, where: `params.${n}`, message: `no output of this model has a parameter "${n}"` });
     }
-    for (const [i, c] of (m.checks ?? []).entries()) {
-      const path = join(REPO, c.test);
-      if (!existsSync(path)) {
-        issues.push({ level: 'error', check: 'models', file: m.file, where: `checks[${i}].test`, message: `no test file ${c.test}` });
-      } else if (!readFileSync(path, 'utf8').replace(/\\'/g, "'").includes(c.holds)) {
-        issues.push({ level: 'error', check: 'models', file: m.file, where: `checks[${i}].holds`, message: `no test in ${c.test} is named "${c.holds}"` });
-      }
-    }
+    checkTests(m.checks, m.file, 'models', issues);
   }
   for (const f of world.fields) {
     if (f.derived && !madeBy.has(f.id)) issues.push({ level: 'warning', check: 'models', file: f.file, message: `a derived field is made by a model: write one in models/ that lists ${f.id} among its outputs` });
@@ -796,6 +811,7 @@ export async function validateWorld(world: World, opts: { frames?: boolean; tabl
   checkProminence(world, issues);
   checkForms(world, issues);
   checkModels(world, issues);
+  checkGeneratorSamples(world, issues);
   checkDuplicates(world, issues);
   if (world.root === WORLD || existsSync(join(world.root, 'manifest.yaml'))) checkLicenses(world, issues);
   for (const w of wanted) {

@@ -243,12 +243,22 @@ test('Earth\'s states: nothing before it formed, a magma ocean after the Moon-fo
   await idle(page);
   await expect(panel.locator('h2')).toHaveText('Earth');
   await expect(panel.locator('.phases')).toContainText('Proto-Earth');
-  // 2 Ga: an ocean world, its land not drawn because nothing says where it was.
+  // 2 Ga: an ocean world, and nothing says where its land was, so generic land stands in for it, flat and muted.
   await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1950 - 2e9, sel: null }));
   await idle(page);
   await expect(page.locator('.planet-phase')).toContainText('Oceans');
+  const here = await page.evaluate(() => window.__wikiworldmodel!.resolve(10, 20, 'geography'));
+  expect(here.tier).toBe('generic');
   const [r2, , b2] = await canvasPatch(page, 0.5, 0.5);
-  expect(b2).toBeGreaterThan(r2 + 20);
+  if (here.value === 'sea') expect(b2).toBeGreaterThan(r2 + 20);
+  else expect(Math.abs(r2 - b2)).toBeLessThan(25);
+  const made = await page.evaluate(() => window.__wikiworldmodel!.genericLand);
+  expect(made.actual).not.toBeNull();
+  expect(made.problems).toEqual([]);
+  // A click says the land is generic.
+  await page.mouse.click(640, 300);
+  await expect(panel.locator('h2')).toHaveText('Geography unknown');
+  await expect(panel).toContainText('generic land is drawn');
 });
 
 test('Snowball Earth: the Sturtian ice reaches the equator, unless a claim that leaves open water is picked', async ({ page }) => {

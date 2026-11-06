@@ -4,6 +4,7 @@
 import { GENERATOR as BIOME_TEXTURE, generateBiomeTexture, type BiomeTextureParams } from '../../../world/generators/earth/biome/v1.ts';
 import { GENERATOR as CLOUDS, generateClouds, type CloudParams } from '../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
+import { GENERATOR as GENERIC_LAND, generateGenericLand, type GenericLandParams } from '../../../world/generators/earth/generic-land/v1.ts';
 
 export interface ToGlobeWorker {
   id: number;
@@ -18,6 +19,7 @@ const RUN: Record<string, (seed: string, params: Record<string, unknown>) => Uin
   [CLOUDS]: (seed, p) => generateClouds(seed, p as unknown as CloudParams),
   [SURFACE]: (seed, p) => generateSurface(seed, p as unknown as SurfaceParams),
   [BIOME_TEXTURE]: (seed, p) => generateBiomeTexture(seed, p as unknown as BiomeTextureParams),
+  [GENERIC_LAND]: (seed, p) => generateGenericLand(seed, p as unknown as GenericLandParams),
 };
 
 const post = (m: FromGlobeWorker, transfer: Transferable[] = []) => (self as unknown as { postMessage(m: unknown, t: Transferable[]): void }).postMessage(m, transfer);

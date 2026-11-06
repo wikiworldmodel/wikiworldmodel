@@ -18,6 +18,8 @@ import { formatTime, fromMa, historical, PRESENT_YEAR, toMa } from '../../core/t
 import { GENERATOR as BIOME_TEXTURE, type BiomeTextureParams } from '../../world/generators/earth/biome/v1.ts';
 import { GENERATOR as CLOUDS, type CloudParams } from '../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, type SurfaceParams } from '../../world/generators/earth/surface/v1.ts';
+import { GENERATOR as GENERIC_LAND, genericLandAt, type GenericLandParams } from '../../world/generators/earth/generic-land/v1.ts';
+import { resolve as resolveLayer, type Answer, type LayerId, type ResolveWorld } from '../../core/resolve.ts';
 import type { FromGlobeWorker, ToGlobeWorker } from './gl/globeworker.ts';
 import { EARTH_RADIUS, fromLocal, toLocal, type CityStructure } from '../../core/city.ts';
 import type { AtlasWhere } from '../../core/atlas.ts';
@@ -64,6 +66,9 @@ export interface WikiWorldModelHandle {
   clouds: PrintCheck;
   surface: PrintCheck;
   biomeTexture: PrintCheck;
+  genericLand: PrintCheck;
+  /** what a layer has at a place, at the time shown, and which tier answered (core/resolve.ts) */
+  resolve(lat: number, lon: number, layer: LayerId): Answer;
   /** the land's climate and cover at a place on the globe at the time shown, if the field reaches there */
   biomeAt(lat: number, lon: number): { climate: ClimateClass; cover: Cover } | null;
   /** the numbers the climate field holds there, as the globe reads them */
@@ -184,6 +189,11 @@ async function start(root: HTMLElement): Promise<void> {
   let biomeSpec: GeneratorConstraint | null = null;
   const biomeTexture = printCheck();
   let biomeTexReady = false;
+  // Generic land, for where no map covers the time (docs/STRUCTURE.md section 3.3).
+  let genericSpec: GeneratorConstraint | null = null;
+  const genericLand = printCheck();
+  let genericReady = false;
+  let genericMask: { mask: Uint8Array; params: GenericLandParams } | null = null;
   const earth = build.planet.planet;
 
   // The climate field, behind the first globe: until it comes the land is drawn from its height.
@@ -611,6 +621,14 @@ async function start(root: HTMLElement): Promise<void> {
         surfaceReady = true;
       });
     }
+    if (!genericSpec && t.header.generators.length) {
+      genericSpec = t.header.generators.find((g) => g.generator === GENERIC_LAND) ?? null;
+      if (genericSpec) void makeGenericLand(genericSpec).catch((e) => {
+        console.error(`the generic land generator failed: ${(e as Error).message}`);
+        genericReady = true;
+      });
+      else genericReady = true;
+    }
     if (!biomeSpec && t.header.generators.length) {
       biomeSpec = t.header.generators.find((g) => g.generator === BIOME_TEXTURE) ?? null;
       if (biomeSpec) void makeBiomeTexture(biomeSpec).catch((e) => {
@@ -681,6 +699,33 @@ async function start(root: HTMLElement): Promise<void> {
     if (problems.length) console.error(`the biome texture generator's output differs from the build's: ${problems.join('; ')}`);
     biomeTexReady = true;
     dirty = true;
+  }
+
+  async function makeGenericLand(spec: GeneratorConstraint): Promise<void> {
+    const p = spec.params as unknown as GenericLandParams;
+    const mask = await generate(spec);
+    genericMask = { mask, params: p };
+    globe.setGenericLand(p.width, p.height, mask);
+    genericLand.expected = spec.output;
+    const problems = settlePrint(genericLand, bytesPrint('pixels', mask));
+    if (problems.length) console.error(`the generic land generator's output differs from the build's: ${problems.join('; ')}`);
+    genericReady = true;
+    dirty = true;
+  }
+
+  /** What resolve reads in the viewer: what has loaded so far (core/resolve.ts). */
+  function resolveWorld(): ResolveWorld {
+    const ages = climateAges;
+    return {
+      planet: build.planet,
+      geography: ts.fields.map((f) => ({ title: f.title, mode: f.mode, coverage: f.coverage })),
+      climate: ages.length ? [fromMa(Math.max(...ages)), fromMa(Math.min(...ages))] : undefined,
+      ice: ts.ice?.coverage,
+      people: people.file ? [people.file.steps[0], people.file.steps.at(-1)!] : undefined,
+      polities: polities.file?.rows.length ? [Math.min(...polities.file.rows.map((r) => r.from)), Math.max(...polities.file.rows.map((r) => r.to))] : undefined,
+      polity: polities.file ? (lat, lon) => polities.at(lon, lat)?.name : undefined,
+      genericLand: genericMask ? (lat, lon) => genericLandAt(genericMask!.mask, genericMask!.params, lat, lon) : undefined,
+    };
   }
 
   /** The planet's phases and episodes along the time control, each coloured by how it looks. */
@@ -1379,7 +1424,7 @@ async function start(root: HTMLElement): Promise<void> {
       here = { entity, source: inside.at.claim.source, info: { t: state.t, name, from, to, area } };
       return setState({ sel: entity });
     }
-    if (!fi) return inspect.showUnknown(state.t, unknownWhy(state.t), stateOf(frameLook));
+    if (!fi) return inspect.showUnknown(state.t, unknownWhy(state.t), stateOf(frameLook), resolveLayer(resolveWorld(), 'geography', hit.lat, hit.lon, state.t, scenario()));
     const [e0, e1, p0] = field.sample(hit.point);
     const elevation = e0 + (e1 - e0) * frameMix;
     const plate = build.frames.plateIndex[Math.round(p0)] || null;
@@ -1638,7 +1683,7 @@ async function start(root: HTMLElement): Promise<void> {
   history.replaceState(null, '', toSearch(build.id, state));
   window.__wikiworldmodel = {
     build: build.id,
-    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && (!state.langs || !!languages.file || !ts.files.languages) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
+    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && (!state.langs || !!languages.file || !ts.files.languages) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && genericReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
     state: () => state,
     url: () => toSearch(build.id, state),
     requests: fetchLog,
@@ -1675,6 +1720,8 @@ async function start(root: HTMLElement): Promise<void> {
       return { people: c.people, land: c.land, level: c.land > 0 ? levelOf(c.people / c.land, f.scale) : 0, x: at.x, y: at.y, visible: at.visible };
     } }),
     fabric: () => (city ? city.plan : null),
+    genericLand,
+    resolve: (lat, lon, layer) => resolveLayer(resolveWorld(), layer, lat, lon, state.t, scenario()),
     cityStats: () => (city ? city.stats() : null),
     structureAt: (id) => {
       const s = city?.named.find((x) => x.id === id);

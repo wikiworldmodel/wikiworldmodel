@@ -50,7 +50,7 @@ export class Toolbar {
         <div><span class="sw evidence"></span>Rings on the globe: eruptions, earthquakes and tsunamis of about the time shown, from NOAA's databases</div>
         <div><span class="sw reconstruction"></span>Reconstruction: PaleoDEM terrain, the plate model's blocks; ringed markers are placed by the plate model</div>
         <div><span class="sw reconstruction"></span>The glow of the People button: how many lived where, as HYDE reconstructs it, drawn smooth across its cells</div>
-        <div><span class="sw procedural"></span>Procedural: generated clouds, and the patterns the planet's states are drawn with (magma, ice, oceans where the map is unknown); projection: values after the present</div>
+        <div><span class="sw procedural"></span>Procedural: generated clouds, the patterns the planet's states are drawn with (magma, ice, oceans where the map is unknown), and generic land, a placeholder where nothing records where the land was; projection: values after the present</div>
         <div><span class="sw derived"></span>Dashed: dates derived by the solver</div>
         <div><span class="sw unknown"></span>Plain globe: no geography and no state of the planet known at this time</div>
       </div>`;

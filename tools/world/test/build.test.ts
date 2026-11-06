@@ -15,6 +15,7 @@ import { territoriesAt, type TerritoryFile } from '../../../core/territory.ts';
 import type { CoverageFile, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../core/records.ts';
 import { GENERATOR, generateClouds, type CloudParams } from '../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
+import { GENERATOR as GENERIC_LAND, generateGenericLand, type GenericLandParams } from '../../../world/generators/earth/generic-land/v1.ts';
 import { latestBuild } from './helpers.ts';
 
 /** A file's bytes as an ArrayBuffer of their own (small files share Node's buffer pool). */
@@ -59,6 +60,41 @@ describe('build', () => {
     expect(lod0[0].time[0]).toBe(ts.timeRange[0]);
     expect(lod0.at(-1)!.time[1]).toBe(ts.timeRange[1]);
     for (let i = 1; i < lod0.length; i++) expect(lod0[i].time[0]).toBe(lod0[i - 1].time[1]);
+  });
+
+  it('answers every layer everywhere in a tier, and draws generic land only where no map covers the time', () => {
+    const c = JSON.parse(readFileSync(join(latestBuild(), 'coverage.json'), 'utf8')) as CoverageFile;
+    const spans = Object.fromEntries((c.tiers ?? []).map((s) => [s.span, s.layers]));
+    expect(Object.keys(spans).length).toBe(8);
+    // A grid of 10° cells at eight times through each span: every answer has a tier.
+    for (const [span, layers] of Object.entries(spans)) {
+      for (const [layer, counts] of Object.entries(layers)) expect(Object.values(counts).reduce((a, b) => a + b, 0), `${layer} in ${span}`).toBe(648 * 8);
+    }
+    expect(spans['4600–1000 Ma'].geography.generic).toBeGreaterThan(0);
+    expect(spans['100–10 Ma'].geography).toEqual({ evidence: 0, model: 648 * 8, generic: 0, unknown: 0 });
+    // The land's life is recorded somewhere in the Phanerozoic, and nowhere before it.
+    expect(spans['100–10 Ma'].life.evidence).toBeGreaterThan(0);
+    expect(spans['4600–1000 Ma'].life.evidence).toBe(0);
+  });
+
+  it('records generic land that its generator reproduces, at its share of the planet', () => {
+    const dir = latestBuild();
+    const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
+    const { header } = decodeTile<TileHeader>(bytes(join(dir, ts.tiles[0].url)));
+    const g = header.generators.find((x) => x.generator === GENERIC_LAND)!;
+    const p = g.params as unknown as GenericLandParams;
+    const mask = generateGenericLand(g.seed, p);
+    expect(fingerprintProblems(g.output, bytesPrint('pixels', mask))).toEqual([]);
+    let land = 0;
+    let total = 0;
+    for (let j = 0; j < p.height; j++) {
+      const area = Math.cos(Math.PI / 2 - ((j + 0.5) / p.height) * Math.PI);
+      for (let i = 0; i < p.width; i++) {
+        total += area;
+        if (mask[j * p.width + i] > 128) land += area;
+      }
+    }
+    expect(land / total).toBeCloseTo(p.land_share, 2);
   });
 
   it('records generator output that the generator reproduces', () => {

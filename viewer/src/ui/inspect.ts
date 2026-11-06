@@ -7,6 +7,7 @@ import type { LivingTaxon, SceneSpec } from '../../../core/scene.ts';
 import type { CitationRecord, ClaimRecord, EntityRecord, OverlaysFile, SeriesRecord, SourceRecord } from '../../../core/records.ts';
 import { LEVEL_LABEL } from '../../../core/ladder.ts';
 import { SPREAD_TEXT, type FieldSpread } from '../../../core/samples.ts';
+import type { Answer } from '../../../core/resolve.ts';
 import { splitRef } from '../../../core/refs.ts';
 import { lookup, scenarioKey, type Scenario } from '../../../core/scenario.ts';
 import type { Estimate, FeatureTime } from '../../../core/tileset.ts';
@@ -559,13 +560,16 @@ export class InspectPanel {
   }
 
   /** The globe where no field covers the time shown: what is not known, and why; and the planet's state, if it has one. */
-  showUnknown(t: number, why: string, state?: PlanetStateInfo): void {
-    const note = state
-      ? 'Where the land was is not known, so none is drawn. What covers the planet, and any ice, follows its states; the patterns they are drawn with are procedural.'
-      : 'The globe is drawn plain on purpose: nothing here rests on evidence, a reconstruction or a projection.';
+  showUnknown(t: number, why: string, state?: PlanetStateInfo, here?: Answer): void {
+    const generic = here?.tier === 'generic' && (here.value === 'land' || here.value === 'sea');
+    const note = generic
+      ? `Nothing records where the land was, so generic land is drawn: a placeholder, flat and muted under a graticule. Where it stands and its shape are invented, and how much of the planet it covers is a stated placeholder, not a reconstruction. Here it is ${here!.value === 'land' ? 'generic land' : 'generic sea'}. What covers the planet, and any ice, follows its states; the patterns they are drawn with are procedural.`
+      : state
+        ? 'Where the land was is not known, so none is drawn. What covers the planet, and any ice, follows its states; the patterns they are drawn with are procedural.'
+        : 'The globe is drawn plain on purpose: nothing here rests on evidence, a reconstruction or a projection.';
     this.frame(
       'Geography unknown',
-      `<section><h3>At ${esc(formatTime(t, 1e4))}</h3><p>${esc(why)}</p>
+      `${generic ? '<div class="meta"><span class="kind">Generic land</span><span class="badge basis-procedural">generic</span></div>' : ''}<section><h3>At ${esc(formatTime(t, 1e4))}</h3><p>${esc(why)}</p>
       <p class="note">${esc(note)}</p></section>${this.stateSection(state)}`,
     );
   }

@@ -21,6 +21,10 @@ inputs:
   - { ref: src:srtm-gl1-n42e012, note: "the ground on the hills around it" }
   - { ref: src:etopo-2022-n45e000, note: "the ground of the region" }
   - { ref: src:etopo-2022-n45e015, note: "the ground of the region" }
+# What it makes, held in aggregate to what it samples (docs/STRUCTURE.md section 3.4).
+checks:
+  - { test: tools/world/test/city.test.ts, holds: "is as dense in each region as the catalogues say" }
+  - { test: tools/world/test/city.test.ts, holds: "builds on nothing real: no monument standing at its date, no garden, no river, no street" }
 slots:
   rome:
     place: Rome, inside the Aurelian walls and along the roads out of it

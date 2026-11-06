@@ -233,6 +233,10 @@ export interface Generator {
   inputs: Input[];
   slots: Record<string, { place: string; seed: string }>;
   params: Record<string, unknown>;
+  /** tests that hold what it makes, in aggregate, to what it samples */
+  checks?: { test: string; holds: string }[];
+  /** where what it makes is known not to follow what it samples */
+  limits?: { with?: string; note: string }[];
   file: string;
 }
 

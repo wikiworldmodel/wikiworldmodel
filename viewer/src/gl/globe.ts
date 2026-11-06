@@ -10,6 +10,9 @@
 // crust over magma, an atmosphere of rock vapour or steam, the ice of a glaciation, and,
 // where the map is unknown, the oceans or bare rock of the time. The states are claims; how
 // they look here, and the surface generator's pattern they are drawn with, is procedural.
+// Where the map is unknown and the planet has oceans, generic land stands in for the land
+// nothing records (gen:earth/generic-land, docs/STRUCTURE.md section 3.3): flat, muted and
+// under a graticule, so that it reads as a placeholder and never as a map.
 //
 // Where a field has the ice sheets of the time, they take the place of a claimed latitude of ice: their
 // edge is the field's, and it moves between its keyframes.
@@ -79,6 +82,9 @@ uniform float uIceMix;
 uniform float uIceTop;
 // Where people lived: how dense they are, from 0 to 1 on the viewer's scale.
 uniform highp sampler2D uPeople;
+// Generic land, where no map covers the time: 128 is the coast.
+uniform highp sampler2D uGenericLand;
+uniform float uGenericOn;
 uniform float uPeopleOn;
 in vec3 vN;
 out vec4 o;
@@ -298,8 +304,11 @@ void main() {
     float diffuse = max(dot(n, uSun), 0.0);
     vec3 c = unknownSurface(n);
     if (uSurface == 1) {
-      c = vec3(0.035, 0.15, 0.30) * (0.22 + 0.85 * diffuse);
-      c += vec3(0.55, 0.65, 0.75) * pow(max(dot(reflect(-uSun, n), view), 0.0), 60.0) * 0.35;
+      float land = uGenericOn > 0.5 ? smoothstep(0.49, 0.53, texture(uGenericLand, mapUv(n)).r) : 0.0;
+      vec3 sea = vec3(0.035, 0.15, 0.30) * (0.22 + 0.85 * diffuse);
+      sea += vec3(0.55, 0.65, 0.75) * pow(max(dot(reflect(-uSun, n), view), 0.0), 60.0) * 0.35;
+      vec3 ground = vec3(0.34, 0.33, 0.31) * (0.85 + 0.3 * p.a) * (0.22 + 0.85 * diffuse);
+      c = mix(sea, ground, land);
       c += vec3(0.32, 0.38, 0.50) * graticule(n) * 0.12;
     } else if (uSurface == 4) {
       c = vec3(0.46, 0.38, 0.30) * (0.75 + 0.5 * p.a) * (0.22 + 0.85 * diffuse);
@@ -569,6 +578,8 @@ export class GlobeRenderer {
   private patternTex: WebGLTexture;
   private territoryTex: WebGLTexture;
   private biomeTex: WebGLTexture;
+  private genericLandTex: WebGLTexture;
+  private genericOn = 0;
   private peopleTex: WebGLTexture;
   private peopleSize: [number, number] = [1, 1];
   private emptyVao: WebGLVertexArrayObject;
@@ -603,6 +614,15 @@ export class GlobeRenderer {
     this.territoryTex = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0, 0, 0, 255]), filter: gl.LINEAR, wrapS: gl.REPEAT });
     this.biomeTex = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([128, 128, 128, 128]), filter: gl.LINEAR, wrapS: gl.REPEAT });
     this.peopleTex = texture2D(gl, { width: 1, height: 1, internal: gl.R8, format: gl.RED, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0]), filter: gl.LINEAR, wrapS: gl.REPEAT });
+    this.genericLandTex = texture2D(gl, { width: 1, height: 1, internal: gl.R8, format: gl.RED, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0]), filter: gl.LINEAR, wrapS: gl.REPEAT });
+  }
+
+  /** Generic land, for where no map covers the time: an equirectangular mask, row 0 at the north, 128 at the coast. */
+  setGenericLand(width: number, height: number, mask: Uint8Array): void {
+    const gl = this.gl;
+    gl.deleteTexture(this.genericLandTex);
+    this.genericLandTex = texture2D(gl, { width, height, internal: gl.R8, format: gl.RED, type: gl.UNSIGNED_BYTE, data: mask, filter: gl.LINEAR, wrapS: gl.REPEAT });
+    this.genericOn = 1;
   }
 
   /** The generator's texture of the land's cover: a tile that repeats both ways. */
@@ -695,7 +715,10 @@ export class GlobeRenderer {
     gl.bindTexture(gl.TEXTURE_CUBE_MAP, iceCube ?? this.fieldCube);
     gl.activeTexture(gl.TEXTURE7);
     gl.bindTexture(gl.TEXTURE_2D, this.peopleTex);
-    setUniforms(gl, this.surface, { uField: 0, uPattern: 1, uTerritory: 2, uBiomeTex: 3, uClimate0: 4, uClimate1: 5, uIce: 6, uPeople: 7 }, ['uField', 'uPattern', 'uTerritory', 'uBiomeTex', 'uClimate0', 'uClimate1', 'uIce', 'uPeople']);
+    gl.activeTexture(gl.TEXTURE8);
+    gl.bindTexture(gl.TEXTURE_2D, this.genericLandTex);
+    setUniforms(gl, this.surface, { uField: 0, uPattern: 1, uTerritory: 2, uBiomeTex: 3, uClimate0: 4, uClimate1: 5, uIce: 6, uPeople: 7, uGenericLand: 8 }, ['uField', 'uPattern', 'uTerritory', 'uBiomeTex', 'uClimate0', 'uClimate1', 'uIce', 'uPeople', 'uGenericLand']);
+    setUniforms(gl, this.surface, { uGenericOn: this.genericOn });
     setUniforms(gl, this.surface, { uIceOn: iceCube ? 1 : 0, uIceMix: f.ice?.mix ?? 0, uIceTop: THICKNESS_TOP });
     const r = f.climate?.rule;
     const cv = look.cover;

@@ -209,6 +209,8 @@ export interface CoverageFile {
   forms?: { taxa: number; own_form: number; inherited_form: number; no_form: number; rows_drawable: number; rows_total: number; wanted: { no: number; name: string; rows: number; node: string | null }[] };
   /** fossil forests against the climate reconstructed for their place and time; none should be in a desert */
   forests?: { id: string; ageMa: number; keyframeMa: number; lat: number; lon: number; climate: string | null; label: string }[];
+  /** which tier answers each layer, over a grid of places at times through each span (core/resolve.ts) */
+  tiers?: { span: string; layers: Record<string, Record<string, number>> }[];
   /** how much of each area and era rests on each basis: features per tile, by basis */
   tiles: { tile: string; bbox: [number, number, number, number]; time: [number, number]; features: Partial<Record<Basis, number>> }[];
 }

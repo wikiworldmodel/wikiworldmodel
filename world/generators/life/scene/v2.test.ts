@@ -192,6 +192,19 @@ describe('what stands in it', () => {
     });
   });
 
+  it("draws each taxon as often as the atlas's weight and the density rule say, in aggregate, below a cell's cap", () => {
+    // Two animals alike but for how much the atlas weighs them: the model's density (densityOf) says how many more of one.
+    // Small animals reach the most a cell holds (animals.most_in_cell), where the weight no longer tells; these do not.
+    const taxa = [taxon('common', 'ornithopod', 3, { weight: 0.9 }), taxon('rare', 'ornithopod', 3, { weight: 0.1 }), taxon('cypress', 'conifer', 30)];
+    const s = new SceneStream(specOf({ taxa, seed: 'life/aggregate' }));
+    const counts = [0, 0, 0];
+    for (const c of cellsOf(s, 2, 2000)) for (const t of c.taxon) counts[t]++;
+    const want = densityOf(taxa[0], plans.ornithopod, PARAMS.animals, 1) / densityOf(taxa[1], plans.ornithopod, PARAMS.animals, 1);
+    expect(counts[1]).toBeGreaterThan(20);
+    expect(counts[0] / counts[1]).toBeGreaterThan(want * 0.7);
+    expect(counts[0] / counts[1]).toBeLessThan(want * 1.4);
+  });
+
   it('never puts a land animal in the water, and keeps the water animals by it', () => {
     const level = stream.look.water;
     for (const c of cellsOf(stream, 1)) {

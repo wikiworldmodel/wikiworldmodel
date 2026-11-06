@@ -347,6 +347,12 @@ uncertainty: { kind: none, note: "A line with no width." }
   member and carries the spread on; the validator warns at one that says its output carries none.
 - A generator lists its `inputs` the same way, as records, or as `{ prop: … }`, `{ rel: … }` or
   `{ kind: … }` for every claim, relation or record of that term. Empty only if it reads nothing.
+- **A model or a generator?** A model turns evidence into a distribution: its output is a claim about
+  the world at its resolution, which can be tested against a piece of evidence at a place. A generator
+  draws samples from a model's distribution, finer than anything known: no single output is a claim,
+  only its statistics. One that samples fields or claims names `checks`, tests that hold what it
+  makes in aggregate to them (generated density to the model's, the mix of taxa to the atlas's), and
+  `limits` where it is known not to follow them.
 
 `npm run validate -- --verbose` notes each model and field that no evidence of the world reaches. A
 check against the world's own evidence there is among the most useful work there is.
@@ -414,6 +420,10 @@ write its document in the same form, and make every criterion a test.
   (full quality). Golden images change only with a change
   that should change them: regenerate them with `--update-snapshots`, look at every diff, and
   say in the pull request why each changed.
+- **Every layer answers everywhere.** Asked at any place and time, a layer says what it has and which
+  tier answered: evidence, model, generic or unknown ([core/resolve.ts](core/resolve.ts)). A new layer
+  adds its case there; `coverage.json` counts the tiers and the build's tests ask every layer across
+  the whole span. Unknown is a fine answer; drawn, it is the generic prior, plainly, never a hole.
 - Builds are reproducible in meaning: two builds of the same commit have the same files, records,
   ids and words, and the same numbers within a tolerance (`npm run test:reproducible`). Keep it so.
 
