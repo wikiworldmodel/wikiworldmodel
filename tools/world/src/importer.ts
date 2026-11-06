@@ -16,7 +16,7 @@ const REQUIREMENTS = join(REPO, 'tools/world/importers/requirements.txt');
 export const PLATE_MODEL = 'src:paleomap-plate-model';
 
 export function python(): string {
-  if (process.env.LIGHTWORLD_PYTHON) return process.env.LIGHTWORLD_PYTHON;
+  if (process.env.WIKIWORLDMODEL_PYTHON) return process.env.WIKIWORLDMODEL_PYTHON;
   const venv = join(REPO, '.venv/bin/python');
   return existsSync(venv) ? venv : 'python3';
 }

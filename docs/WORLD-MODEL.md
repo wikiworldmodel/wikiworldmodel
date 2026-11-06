@@ -1,4 +1,4 @@
-# Lightworld world model — design overview
+# WikiWorldModel — design overview
 
 Status: draft proposal. Seven slices are built: Cambrian to today, the whole
 span from the Hadean to the far future, Earth's states (a magma ocean, oceans,
@@ -16,7 +16,7 @@ consumer: a scripted flight through the same world, rendered offline.
 
 ## 1. Goal
 
-Lightworld should grow into a detailed, accurate and openly contributable
+WikiWorldModel should grow into a detailed, accurate and openly contributable
 history of Earth, life and civilization in four dimensions, continuing into
 its possible futures. It should work at every scale, from the whole planet
 over billions of years down to a single city decade by decade, for example
@@ -667,7 +667,7 @@ on the default picture and again on every alternative combined with it
   - the ICS chronostratigraphic chart for geologic periods
   - PeriodO for historical periods
   - Pleiades and Wikidata for places and entities
-  - Lightworld vocabularies for kinds, properties and relations (section 4.9)
+  - WikiWorldModel vocabularies for kinds, properties and relations (section 4.9)
 - **Neutral presentation of contested history.** Borders, names and readings
   are attributed alternatives (section 4.4) that the viewer can switch
   between, not silently resolved. Which one a build shows by default is a
@@ -763,7 +763,7 @@ With these in place, moving to Postgres or PostGIS later is an import script.
 - **Federate, don't fork.** Link OpenHistoricalMap, Wikidata, Pleiades and
   the Paleobiology Database by ID, import from them, and send corrections
   upstream where possible. OpenHistoricalMap already provides a dated 2D map
-  of history with a community behind it. Lightworld's own value is:
+  of history with a community behind it. WikiWorldModel's own value is:
   - the synthesis across scales
   - 3D reconstruction
   - the deep-time Earth state

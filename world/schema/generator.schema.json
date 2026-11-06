@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lightworld.invalid/schema/generator.json",
+  "$id": "https://wikiworldmodel.invalid/schema/generator.json",
   "title": "Generator",
   "description": "Versioned code plus parameters plus a seed, run identically by the build and the client.",
   "type": "object",

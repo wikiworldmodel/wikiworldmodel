@@ -27,7 +27,7 @@ import h5py
 import numpy as np
 
 ARCHIVE = "https://hs.pangaea.de/Maps/Global_Ice_Sheets/Gowan_ice_reconstruction.zip"
-USER_AGENT = "lightworld-research/0.1"
+USER_AGENT = "wikiworldmodel-research/0.1"
 MEMBERS = {
     "ice_thickness_minimal": "ice_reconstruction/global_grid/reconstruction_1_degree.nc",
     "ice_thickness_maximal": "ice_reconstruction/global_grid/reconstruction_a1_1_degree.nc",

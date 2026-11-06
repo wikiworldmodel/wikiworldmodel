@@ -20,7 +20,7 @@ async function download(url: string, dest: string): Promise<void> {
   if (url.startsWith('repo:')) buf = new Uint8Array(await readFile(join(REPO, url.slice('repo:'.length))));
   else {
     // Some hosts refuse a client with no name of its own.
-    const res = await fetch(url, { headers: { 'User-Agent': 'lightworld-world-tools' } });
+    const res = await fetch(url, { headers: { 'User-Agent': 'wikiworldmodel-world-tools' } });
     if (!res.ok) throw new Error(`GET ${url}: HTTP ${res.status}`);
     buf = new Uint8Array(await res.arrayBuffer());
   }

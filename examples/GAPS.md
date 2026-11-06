@@ -38,7 +38,7 @@ alternatives), so they no longer match the doc exactly.
 | fields | 11 | sea level, CO₂, temperature, elevation, ice, plate polygons, coastline (derived), population, land use, territory, fossil density |
 | sources | 20 | ancient texts, papers, a map sheet, a lab report, a survey, a law, museum records, an editor registry |
 | generators | 7 | insula, round temple, garden lake, planet sphere, clouds, skeleton pose, field system |
-| periods | 5 | ICS (Cretaceous, Maastrichtian, rejected Anthropocene), PeriodO (Flavian), Lightworld (machine era) |
+| periods | 5 | ICS (Cretaceous, Maastrichtian, rejected Anthropocene), PeriodO (Flavian), WikiWorldModel (machine era) |
 | tours | 2 | the film opening (4.5 Ga → +5 Gyr) and a Rome walk-through |
 | datasets | 12 | in `manifest.yaml` |
 | vocabularies | 3 | kinds, properties (with interpolation), relations (with inverses) |

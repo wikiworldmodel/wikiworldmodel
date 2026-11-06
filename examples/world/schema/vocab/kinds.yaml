@@ -1,4 +1,4 @@
-# Lightworld `kind` vocabulary (section 9.3). Hierarchical: a record of kind
+# WikiWorldModel `kind` vocabulary (section 9.3). Hierarchical: a record of kind
 # building/temple also matches building.
 # GAP-30: the doc names the vocabulary but not its shape, whether kinds carry
 # rules (e.g. "events must have a duration"), or who may extend it.

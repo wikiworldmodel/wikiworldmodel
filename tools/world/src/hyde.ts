@@ -237,7 +237,7 @@ export function inflate64(input: Uint8Array, size: number): Uint8Array {
 async function range(url: string, from: number, length: number): Promise<Uint8Array> {
   for (let attempt = 1; ; attempt++) {
     try {
-      const res = await fetch(url, { headers: { 'User-Agent': 'lightworld-world-tools', Range: `bytes=${from}-${from + length - 1}` } });
+      const res = await fetch(url, { headers: { 'User-Agent': 'wikiworldmodel-world-tools', Range: `bytes=${from}-${from + length - 1}` } });
       if (res.status !== 206) throw new Error(`GET ${url}: HTTP ${res.status}`);
       const buf = new Uint8Array(await res.arrayBuffer());
       if (buf.length !== length) throw new Error(`GET ${url}: ${buf.length} bytes where ${length} were asked for`);

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lightworld.invalid/schema/entity.json",
+  "$id": "https://wikiworldmodel.invalid/schema/entity.json",
   "title": "Entity",
   "description": "Anything with identity over time, with its phases, claims and relations. One entity per file; claims and relations live in their subject's file.",
   "type": "object",

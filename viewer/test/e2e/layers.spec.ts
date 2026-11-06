@@ -8,7 +8,7 @@ import { buildFile, canvasPatch, idle, latestBuild, markerPositions, settledUrl 
 
 const layers = (page: import('@playwright/test').Page) =>
   page.evaluate(() => {
-    const l = window.__lightworld!.layers();
+    const l = window.__wikiworldmodel!.layers();
     return { present: l.present, holds: l.holds, hazards: l.hazards, places: l.hazardPlaces };
   });
 
@@ -22,7 +22,7 @@ test('today’s map is drawn for about now, and not at other times', async ({ pa
   expect(now.holds).toBe(true);
   expect(now.present.lines).toBeGreaterThan(300);
   expect(now.present.names).toBeGreaterThan(5);
-  await page.evaluate(() => window.__lightworld!.set({ t: 1900 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1900 }));
   await idle(page);
   const then = await layers(page);
   expect(then.holds).toBe(false);
@@ -33,7 +33,7 @@ test('a click on a city says what the map says of it', async ({ page }) => {
   await page.goto(`/?b=${latestBuild()}&lat=45&lon=10&d=1.6`);
   await idle(page);
   const name = (await page.evaluate(() => {
-    const l = window.__lightworld!.layers();
+    const l = window.__wikiworldmodel!.layers();
     // Not one under a marker, a record's, which takes the click: Rome's, or Paris's obelisk.
     return ['Paris', 'Milan', 'Berlin', 'Madrid', 'Vienna', 'London', 'Warsaw', 'Lisbon'].find((n) => {
       const at = l.placeAt(n);
@@ -41,7 +41,7 @@ test('a click on a city says what the map says of it', async ({ page }) => {
     });
   }))!;
   expect(name).toBeTruthy();
-  const at = (await page.evaluate((n) => window.__lightworld!.layers().placeAt(n), name))!;
+  const at = (await page.evaluate((n) => window.__wikiworldmodel!.layers().placeAt(n), name))!;
   await page.mouse.click(at.x, at.y);
   await idle(page);
   const panel = page.locator('.inspect');
@@ -69,7 +69,7 @@ test('the hazards of a time show around it: Krakatau in 1883, and a click says w
   await expect(panel).toContainText('August 1883');
   await expect(panel).toContainText('Volcanic Eruptions Database');
   // Long before the databases start, nothing.
-  await page.evaluate(() => window.__lightworld!.set({ t: -8000, window: [-9000, -7000] }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: -8000, window: [-9000, -7000] }));
   await idle(page);
   expect((await layers(page)).hazards).toBe(0);
 });
@@ -97,18 +97,18 @@ test('the planet panel has one row for a quantity, the finest with a value, and 
   await expect(row('field:earth/co2-ice-core')).toBeHidden();
   await expect(row('field:earth/sea-level-stack')).toBeHidden();
   // The Last Glacial Maximum: the ice cores and the stack, not the curves of millions of years.
-  await page.evaluate((t) => window.__lightworld!.set({ t }), 1950 - 21000);
+  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), 1950 - 21000);
   await idle(page);
   await expect(row('field:earth/co2-ice-core')).toBeVisible();
   await expect(row('field:earth/co2')).toBeHidden();
   await expect(row('field:earth/sea-level-stack')).toContainText('-1');
   await expect(row('field:earth/sea-level')).toBeHidden();
   // How many people there were, in words a reader can take in.
-  await page.evaluate(() => window.__lightworld!.set({ t: 1 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1 }));
   await idle(page);
   await expect(row('field:earth/world-population')).toContainText('232 million people');
   // Today the stack, scaled only as far as 5 ka, gives way to the long curve.
-  await page.evaluate(() => window.__lightworld!.set({ t: 1950 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1950 }));
   await idle(page);
   await expect(row('field:earth/sea-level')).toContainText('0 m');
   await expect(row('field:earth/sea-level-stack')).toBeHidden();
@@ -175,7 +175,7 @@ test('the world’s states are drawn at the time shown, each a row of the datase
   await page.goto(`/?b=${latestBuild()}&t=120&lat=34&lon=58&d=1.8`);
   await idle(page);
   const stats = await page.evaluate(() => {
-    const l = window.__lightworld!.layers();
+    const l = window.__wikiworldmodel!.layers();
     return { polities: l.polities, here: l.polityAt(58, 34), inRome: l.polityAt(12.5, 41.9) };
   });
   expect(stats.polities.rows).toBeGreaterThan(5);
@@ -190,33 +190,33 @@ test('the world’s states are drawn at the time shown, each a row of the datase
   await expect(panel.locator('.polity')).toContainText('Parthian Empire');
   await expect(panel.locator('.polity')).toContainText('not a record of ours');
   // A thousand years before, another map; and at the present, none: today's map takes over.
-  await page.evaluate(() => window.__lightworld!.set({ t: -880 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: -880 }));
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.layers().polityAt(58, 34))).not.toBe('Parthian Empire');
-  await page.evaluate(() => window.__lightworld!.set({ t: 1950 }));
+  expect(await page.evaluate(() => window.__wikiworldmodel!.layers().polityAt(58, 34))).not.toBe('Parthian Empire');
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1950 }));
   await idle(page);
-  expect((await page.evaluate(() => window.__lightworld!.layers().polities)).rows).toBe(0);
+  expect((await page.evaluate(() => window.__wikiworldmodel!.layers().polities)).rows).toBe(0);
 });
 
 test('the roads of the Roman Empire are drawn for the years they are known from', async ({ page }) => {
   await page.goto(`/?b=${latestBuild()}&t=200&lat=42&lon=12&d=1.6`);
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.layers().routes)).toBeGreaterThan(1000);
+  expect(await page.evaluate(() => window.__wikiworldmodel!.layers().routes)).toBeGreaterThan(1000);
   // Long after: only what the dataset itself dates so late, and that is little.
-  await page.evaluate(() => window.__lightworld!.set({ t: 1300 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1300 }));
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.layers().routes)).toBe(0);
+  expect(await page.evaluate(() => window.__wikiworldmodel!.layers().routes)).toBe(0);
 });
 
 test('the world’s languages are drawn when asked for, at the present, and a click says what the catalogue says', async ({ page }) => {
   await page.goto(`/?b=${latestBuild()}&lat=47&lon=2&d=1.5`);
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.layers().languages)).toBe(0);
+  expect(await page.evaluate(() => window.__wikiworldmodel!.layers().languages)).toBe(0);
   await page.locator('.tg-langs').click();
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.layers().languages)).toBeGreaterThan(50);
-  await page.waitForFunction(() => window.__lightworld!.url().includes('langs=1'));
-  const at = (await page.evaluate(() => window.__lightworld!.layers().languageAt('Basque')))!;
+  expect(await page.evaluate(() => window.__wikiworldmodel!.layers().languages)).toBeGreaterThan(50);
+  await page.waitForFunction(() => window.__wikiworldmodel!.url().includes('langs=1'));
+  const at = (await page.evaluate(() => window.__wikiworldmodel!.layers().languageAt('Basque')))!;
   expect(at).toBeTruthy();
   await page.mouse.click(at.x, at.y);
   await idle(page);
@@ -225,9 +225,9 @@ test('the world’s languages are drawn when asked for, at the present, and a cl
   await expect(panel).toContainText('Glottocode basq1248');
   await expect(panel).toContainText('Glottolog');
   // They are where they are today, not where they were: not drawn in the past.
-  await page.evaluate(() => window.__lightworld!.set({ t: 1200 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1200 }));
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.layers().languages)).toBe(0);
+  expect(await page.evaluate(() => window.__wikiworldmodel!.layers().languages)).toBe(0);
 });
 
 test('where people lived is drawn when asked for: the Nile reads as populated at 1 CE, the Sahara does not, and neither does the sea change', async ({ page }) => {
@@ -236,20 +236,20 @@ test('where people lived is drawn when asked for: the Nile reads as populated at
   const SEA = [34, 34];
   await page.goto(`/?b=${latestBuild()}&t=1&lat=27&lon=25&d=1.7&cl=0`);
   await idle(page);
-  const spot = (at: number[]) => page.evaluate(([lon, lat]) => window.__lightworld!.layers().peopleAt(lon, lat), at);
+  const spot = (at: number[]) => page.evaluate(([lon, lat]) => window.__wikiworldmodel!.layers().peopleAt(lon, lat), at);
   const patch = async (at: number[]) => {
     const c = (await spot(at))!;
     const box = (await page.locator('canvas.globe').boundingBox())!;
     return canvasPatch(page, c.x / box.width, c.y / box.height, 5);
   };
   // Until it is asked for it is not drawn or loaded, and the globe is as it always was.
-  expect((await page.evaluate(() => window.__lightworld!.layers().people)).drawn).toBe(false);
-  expect(await page.evaluate(() => window.__lightworld!.requests.some((r) => r.endsWith('people.lwt')))).toBe(false);
+  expect((await page.evaluate(() => window.__wikiworldmodel!.layers().people)).drawn).toBe(false);
+  expect(await page.evaluate(() => window.__wikiworldmodel!.requests.some((r) => r.endsWith('people.lwt')))).toBe(false);
   await expect(page.locator('.people-legend')).toBeHidden();
   await page.locator('.tg-people').click();
   await idle(page);
-  await page.waitForFunction(() => window.__lightworld!.url().includes('people=1'));
-  const on = await page.evaluate(() => window.__lightworld!.layers().people);
+  await page.waitForFunction(() => window.__wikiworldmodel!.url().includes('people=1'));
+  const on = await page.evaluate(() => window.__wikiworldmodel!.layers().people);
   expect(on.drawn).toBe(true);
   expect(on.lit).toBeGreaterThan(5000);
   // The numbers tell them apart…
@@ -270,7 +270,7 @@ test('where people lived is drawn when asked for: the Nile reads as populated at
   // With it off again the Sahara is brighter than it was under the layer, and the sea has not changed.
   await page.locator('.tg-people').click();
   await idle(page);
-  expect((await page.evaluate(() => window.__lightworld!.layers().people)).drawn).toBe(false);
+  expect((await page.evaluate(() => window.__wikiworldmodel!.layers().people)).drawn).toBe(false);
   await expect(page.locator('.people-legend')).toBeHidden();
   const offSahara = await patch(SAHARA);
   const offSea = await patch(SEA);
@@ -296,27 +296,27 @@ test('the cells of the people drawn come to the world’s series, and it says it
   await expect(legend).toContainText('Klein Goldewijk');
   await expect(legend.locator('.pl-ticks')).toContainText('1,000');
   for (const t of [-5000, 1, 1450, 1955, 2012, 2015]) {
-    await page.evaluate((x) => window.__lightworld!.set({ t: x }), t);
+    await page.evaluate((x) => window.__wikiworldmodel!.set({ t: x }), t);
     await idle(page);
-    const p = await page.evaluate(() => window.__lightworld!.layers().people);
+    const p = await page.evaluate(() => window.__wikiworldmodel!.layers().people);
     expect(p.drawn, `at ${t}`).toBe(true);
     expect(Math.abs(p.total - value(t)) / value(t), `at ${t}: ${p.total} against ${value(t)}`).toBeLessThan(5e-5);
   }
   // More of the world shows as time goes on, on a scale that does not move.
-  await page.evaluate(() => window.__lightworld!.set({ t: -5000 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: -5000 }));
   await idle(page);
-  const early = await page.evaluate(() => window.__lightworld!.layers().people.lit);
-  await page.evaluate(() => window.__lightworld!.set({ t: 2015 }));
+  const early = await page.evaluate(() => window.__wikiworldmodel!.layers().people.lit);
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 2015 }));
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.layers().people.lit)).toBeGreaterThan(early);
+  expect(await page.evaluate(() => window.__wikiworldmodel!.layers().people.lit)).toBeGreaterThan(early);
   // Past its last step, and before its first, nothing is drawn, and the legend says why.
-  await page.evaluate(() => window.__lightworld!.set({ t: 2020 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 2020 }));
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.layers().people.drawn)).toBe(false);
+  expect(await page.evaluate(() => window.__wikiworldmodel!.layers().people.drawn)).toBe(false);
   await expect(legend).toContainText('nothing is drawn at this time');
-  await page.evaluate(() => window.__lightworld!.set({ t: -20000 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: -20000 }));
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.layers().people.drawn)).toBe(false);
+  expect(await page.evaluate(() => window.__wikiworldmodel!.layers().people.drawn)).toBe(false);
   await expect(legend).toContainText('10,000 BC to 2015 AD');
 });
 
@@ -327,13 +327,13 @@ test('a click says what the dataset gives for that cell, and how far to trust it
   await idle(page);
   let place = places[0];
   for (const p of places) {
-    await page.evaluate(([lat, lon]) => window.__lightworld!.set({ cam: { lat, lon, dist: 1.6 } }), p);
+    await page.evaluate(([lat, lon]) => window.__wikiworldmodel!.set({ cam: { lat, lon, dist: 1.6 } }), p);
     await idle(page);
     place = p;
-    const at = (await page.evaluate(([lat, lon]) => window.__lightworld!.layers().peopleAt(lon, lat), p))!;
+    const at = (await page.evaluate(([lat, lon]) => window.__wikiworldmodel!.layers().peopleAt(lon, lat), p))!;
     if (await page.evaluate(({ x, y }) => document.elementFromPoint(x, y)?.tagName === 'CANVAS', at)) break;
   }
-  const cell = (await page.evaluate(([lat, lon]) => window.__lightworld!.layers().peopleAt(lon, lat), place))!;
+  const cell = (await page.evaluate(([lat, lon]) => window.__wikiworldmodel!.layers().peopleAt(lon, lat), place))!;
   const middle = { x: cell.x, y: cell.y };
   await page.mouse.click(middle.x, middle.y);
   await idle(page);
@@ -354,7 +354,7 @@ test('a click says what the dataset gives for that cell, and how far to trust it
   await expect(panel).toContainText('general, globally applicable HYDE allocation rules');
   await expect(panel).toContainText('Klein Goldewijk');
   // At a later time the range narrows, as they say it does.
-  await page.evaluate(() => window.__lightworld!.set({ t: 1900 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1900 }));
   await idle(page);
   await page.mouse.click(middle.x, middle.y);
   await idle(page);
@@ -373,7 +373,7 @@ test('a click says what the dataset gives for that cell, and how far to trust it
 test('a thing that moved is where it was at the time shown: the obelisk leaves Heliopolis for Rome', async ({ page }) => {
   const id = 'people/objects/flaminian-obelisk';
   const at = async (t: number) => {
-    await page.evaluate((x) => window.__lightworld!.set({ t: x }), t);
+    await page.evaluate((x) => window.__wikiworldmodel!.set({ t: x }), t);
     await idle(page);
     return (await markerPositions(page))[id];
   };

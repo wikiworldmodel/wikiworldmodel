@@ -11,9 +11,9 @@ export function latestBuild(): string {
 
 /** Wait until the viewer has loaded what the view needs and drawn it, twice in a row. */
 export async function idle(page: Page): Promise<void> {
-  await page.waitForFunction(() => window.__lightworld?.idle(), null, { polling: 100 });
+  await page.waitForFunction(() => window.__wikiworldmodel?.idle(), null, { polling: 100 });
   await page.waitForTimeout(250);
-  await page.waitForFunction(() => window.__lightworld?.idle(), null, { polling: 100 });
+  await page.waitForFunction(() => window.__wikiworldmodel?.idle(), null, { polling: 100 });
 }
 
 /** The WebGL canvas's own pixels as PNG bytes (no HTML overlays, no fonts). */
@@ -24,7 +24,7 @@ export async function canvasPng(page: Page): Promise<Buffer> {
 
 /** The URL bar, once the viewer has written the current state into it. */
 export async function settledUrl(page: Page): Promise<string> {
-  await page.waitForFunction(() => location.search === window.__lightworld!.url(), null, { polling: 100 });
+  await page.waitForFunction(() => location.search === window.__wikiworldmodel!.url(), null, { polling: 100 });
   return page.url();
 }
 

@@ -105,7 +105,7 @@ export const OVERPASS = 'https://overpass-api.openhistoricalmap.org/api/interpre
 
 /** Ask the map's database for a fresh extract of a snapshot's box, and make a snapshot of it. */
 export async function exportSnapshot(bbox: OhmSnapshot['bbox'], date: string): Promise<OhmSnapshot> {
-  const res = await fetch(OVERPASS, { method: 'POST', body: new URLSearchParams({ data: snapshotQuery(bbox) }), headers: { 'User-Agent': 'lightworld-world-tools' } });
+  const res = await fetch(OVERPASS, { method: 'POST', body: new URLSearchParams({ data: snapshotQuery(bbox) }), headers: { 'User-Agent': 'wikiworldmodel-world-tools' } });
   if (!res.ok) throw new Error(`POST ${OVERPASS}: HTTP ${res.status}`);
   return snapshotFrom((await res.json()) as { elements: Record<string, unknown>[] }, date, bbox);
 }

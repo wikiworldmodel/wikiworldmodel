@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for helping. World Model Zero (working title; the repository is `lightworld`) is a
+Thank you for helping. WikiWorldModel (the repository is `lightworld`) is a
 sourced history of Earth, life and civilization, and every fact in it is a claim with a source.
 
 - **Rules and how-to:** [AGENTS.md](AGENTS.md). It is written for AI agents, and the same rules

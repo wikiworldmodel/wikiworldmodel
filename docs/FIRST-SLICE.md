@@ -38,7 +38,7 @@ npm run build:viewer && npm run test:e2e   # browser tests in headless Chromium 
 `npm run validate -- --verbose` also lists the notes: wanted records, and competing claims
 that contradict the world. The build uses pyGPlates, through a Python importer, to
 partition the elevation grids by plate and to check plate frames. Point
-`LIGHTWORLD_PYTHON` at an interpreter if you don't use `.venv`. Everything else is
+`WIKIWORLDMODEL_PYTHON` at an interpreter if you don't use `.venv`. Everything else is
 TypeScript on Node 22.19+ or 24+.
 
 ## Pass criteria
@@ -335,7 +335,7 @@ The slice does not exercise these parts of the design:
   the further back they go, most of all in the early Paleozoic, yet the build gives them all
   the same basis, reconstruction. Nothing records yet how their uncertainty grows with age.
 - **Uncompressed tiles.** They should be served with gzip or brotli.
-- **Data licence.** None has been chosen for Lightworld itself (section 13 of the design).
+- **Data licence.** None has been chosen for WikiWorldModel itself (section 13 of the design).
   The datasets used are CC BY 4.0 as stated by their distributors; confirm upstream terms
   before publishing a build.
 

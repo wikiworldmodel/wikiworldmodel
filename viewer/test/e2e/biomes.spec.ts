@@ -22,7 +22,7 @@ test('a build with biomes hands the globe its climate, and generates the texture
   expect(ts.files.climate).toBeTruthy();
   await page.goto(`/?b=${latestBuild()}&t=${year(100)}&lat=30&lon=0&d=3`);
   await idle(page);
-  const made = await page.evaluate(() => window.__lightworld!.biomeTexture);
+  const made = await page.evaluate(() => window.__wikiworldmodel!.biomeTexture);
   expect(made.actual).toBe(made.expected);
   expect(made.expected.length).toBe(64);
 });
@@ -32,15 +32,15 @@ test('no vegetation before the land-plants claim: not in what the globe is told,
   const before = Math.round(plants - 2e7);
   await page.goto(`/?b=${latestBuild()}&t=${before}&lat=-30&lon=20&d=2.6`);
   await idle(page);
-  const here = await page.evaluate(() => window.__lightworld!.biomeAt(-30, 20));
+  const here = await page.evaluate(() => window.__wikiworldmodel!.biomeAt(-30, 20));
   expect(here).not.toBeNull();
   expect(here!.cover.plants).toBe(0);
   expect(here!.cover.forests).toBe(0);
   expect(here!.cover.grasses).toBe(0);
   // After them, and after the forests, the same call says otherwise.
-  await page.evaluate((t) => window.__lightworld!.set({ t }), startOf('forests') + 1e8);
+  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), startOf('forests') + 1e8);
   await idle(page);
-  const later = await page.evaluate(() => window.__lightworld!.biomeAt(-30, 20));
+  const later = await page.evaluate(() => window.__wikiworldmodel!.biomeAt(-30, 20));
   expect(later!.cover.plants).toBe(1);
   expect(later!.cover.forests).toBe(1);
 });
@@ -60,7 +60,7 @@ test('a click on the land says what covers it, and which transitions it rests on
   await expect(panel.locator('.biome')).toContainText('grasslands');
   await panel.locator('.biome a.open', { hasText: 'First land plants' }).click();
   await idle(page);
-  expect((await page.evaluate(() => window.__lightworld!.state())).sel).toBe('life/transitions/land-plants');
+  expect((await page.evaluate(() => window.__wikiworldmodel!.state())).sel).toBe('life/transitions/land-plants');
 });
 
 test('the land greens as the transitions allow: the same land, before and after', async ({ page }) => {
@@ -69,7 +69,7 @@ test('the land greens as the transitions allow: the same land, before and after'
     const [lat, lon] = onAfrica((1950 - t) / 1e6);
     await page.goto(`/?b=${latestBuild()}&t=${t}&lat=${lat}&lon=${lon}&d=1.8`);
     await idle(page);
-    await page.evaluate(() => window.__lightworld!.set({ clouds: false }));
+    await page.evaluate(() => window.__wikiworldmodel!.set({ clouds: false }));
     await idle(page);
     const [r, g, b] = await canvasPatch(page, 0.5, 0.44, 15);
     return g - (r + b) / 2;
@@ -89,11 +89,11 @@ test('a climate’s border moves with the plates', async ({ page }) => {
   const [lat1, lon1] = place(b);
   await page.goto(`/?b=${latestBuild()}&t=${year(a)}&lat=${lat0}&lon=${lon0}&d=2.4`);
   await idle(page);
-  const onPlate0 = await page.evaluate(([x, y]) => window.__lightworld!.climateAt(x, y), [lat0, lon0]);
-  await page.evaluate((t) => window.__lightworld!.set({ t }), year(b));
+  const onPlate0 = await page.evaluate(([x, y]) => window.__wikiworldmodel!.climateAt(x, y), [lat0, lon0]);
+  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), year(b));
   await idle(page);
-  const onPlate1 = await page.evaluate(([x, y]) => window.__lightworld!.climateAt(x, y), [lat1, lon1]);
-  const sameSpot1 = await page.evaluate(([x, y]) => window.__lightworld!.climateAt(x, y), [lat0, lon0]);
+  const onPlate1 = await page.evaluate(([x, y]) => window.__wikiworldmodel!.climateAt(x, y), [lat1, lon1]);
+  const sameSpot1 = await page.evaluate(([x, y]) => window.__wikiworldmodel!.climateAt(x, y), [lat0, lon0]);
   expect(onPlate0).not.toBeNull();
   expect(onPlate1).not.toBeNull();
   expect(sameSpot1).not.toBeNull();

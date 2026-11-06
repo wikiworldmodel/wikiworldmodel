@@ -1,4 +1,4 @@
-// Lightworld world tools: fetch datasets, import them, validate the world, build tile sets.
+// WikiWorldModel world tools: fetch datasets, import them, validate the world, build tile sets.
 import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';

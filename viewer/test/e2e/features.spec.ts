@@ -9,7 +9,7 @@ import { idle, latestBuild } from './helpers.ts';
 
 const dir = () => join('dist/builds', latestBuild());
 const index = () => JSON.parse(readFileSync(join(dir(), 'features/index.json'), 'utf8')) as FeatureIndex;
-const fetched = (page: import('@playwright/test').Page) => page.evaluate(() => window.__lightworld!.requests.filter((u) => u.includes('/features/t')));
+const fetched = (page: import('@playwright/test').Page) => page.evaluate(() => window.__wikiworldmodel!.requests.filter((u) => u.includes('/features/t')));
 
 test('from orbit it fetches a few of the feature tiles, and no dates of other pictures', async ({ page }) => {
   const i = index();
@@ -18,13 +18,13 @@ test('from orbit it fetches a few of the feature tiles, and no dates of other pi
   const urls = await fetched(page);
   expect(urls.length).toBeGreaterThan(0);
   expect(urls.length).toBeLessThan(i.tiles.length / 2);
-  expect(await page.evaluate(() => window.__lightworld!.requests.some((u) => u.endsWith('features/variants.json')))).toBe(false);
+  expect(await page.evaluate(() => window.__wikiworldmodel!.requests.some((u) => u.endsWith('features/variants.json')))).toBe(false);
 });
 
 test('the dates of other pictures come when another picture is asked for', async ({ page }) => {
   await page.goto(`/?b=${latestBuild()}&t=0Ma&lat=12&lon=-28&d=3.3&alt=${encodeURIComponent(firstAlternative())}`);
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.requests.some((u) => u.endsWith('features/variants.json')))).toBe(true);
+  expect(await page.evaluate(() => window.__wikiworldmodel!.requests.some((u) => u.endsWith('features/variants.json')))).toBe(true);
 });
 
 test('a tile below the root comes only when its cell is in view, and then its markers show', async ({ page }) => {

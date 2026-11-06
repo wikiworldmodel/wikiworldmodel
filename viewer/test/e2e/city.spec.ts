@@ -29,25 +29,25 @@ test.describe('in the city', () => {
   test('a link lands in the city, and the browser makes the fabric the build recorded, to the byte', async ({ page, context }) => {
     await page.goto(`/?b=${latestBuild()}&${OVERVIEW}&${FAST}`);
     await idle(page);
-    const fabric = await page.evaluate(() => window.__lightworld!.fabric());
+    const fabric = await page.evaluate(() => window.__wikiworldmodel!.fabric());
     expect(fabric!.actual).toBe(fabric!.expected);
-    const stats = await page.evaluate(() => window.__lightworld!.cityStats());
+    const stats = await page.evaluate(() => window.__wikiworldmodel!.cityStats());
     expect(stats!.cells).toBeGreaterThan(100);
     expect(stats!.coarse).toBeGreaterThan(50);
     // A step on the ground, an hour later: all of it stays in the link.
-    await page.evaluate(() => window.__lightworld!.set({ hour: 11 }));
+    await page.evaluate(() => window.__wikiworldmodel!.set({ hour: 11 }));
     await idle(page);
     const url = await settledUrl(page);
     expect(url).toContain('hour=11');
     expect(url).toContain(FAST);
     expect(url).toContain('h=302');
     expect(url).toContain('v=66');
-    const state = await page.evaluate(() => window.__lightworld!.state());
+    const state = await page.evaluate(() => window.__wikiworldmodel!.state());
     const pixels = await canvasPng(page);
     const other = await context.newPage();
     await other.goto(url);
     await idle(other);
-    expect(await other.evaluate(() => window.__lightworld!.state())).toEqual(state);
+    expect(await other.evaluate(() => window.__wikiworldmodel!.state())).toEqual(state);
     expect((await canvasPng(other)).equals(pixels)).toBe(true);
   });
 
@@ -55,7 +55,7 @@ test.describe('in the city', () => {
     await page.goto(`/?b=${latestBuild()}&t=315&lat=41.9&lon=12.49&d=1.4&${FAST}`);
     await idle(page);
     await expect(page.locator('.city-enter')).toHaveText('Fly down into Rome, 315 CE');
-    const height = async () => ((await page.evaluate(() => window.__lightworld!.state())).cam.dist - 1) * 6371;
+    const height = async () => ((await page.evaluate(() => window.__wikiworldmodel!.state())).cam.dist - 1) * 6371;
     await page.mouse.move(320, 190);
     const heights: number[] = [await height()];
     for (let i = 0; i < 14; i++) {
@@ -67,7 +67,7 @@ test.describe('in the city', () => {
     const low = heights[heights.length - 1];
     expect(low).toBeLessThan(600);
     await idle(page);
-    expect(await page.evaluate(() => window.__lightworld!.cityStats()))!.not.toBeNull();
+    expect(await page.evaluate(() => window.__wikiworldmodel!.cityStats()))!.not.toBeNull();
     for (let i = 0; i < 14; i++) {
       await page.mouse.wheel(0, 1000);
       await page.waitForTimeout(60);
@@ -80,9 +80,9 @@ test.describe('in the city', () => {
     await idle(page);
     await page.locator('.city-enter').click();
     await idle(page);
-    const state = await page.evaluate(() => window.__lightworld!.state());
+    const state = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect((state.cam.dist - 1) * 6371000).toBeLessThan(3000);
-    const stats = await page.evaluate(() => window.__lightworld!.cityStats());
+    const stats = await page.evaluate(() => window.__wikiworldmodel!.cityStats());
     expect(stats!.coarse).toBeGreaterThan(50);
     await expect(page.locator('.city-enter')).toBeHidden();
   });
@@ -94,18 +94,18 @@ test.describe('in the city', () => {
     await idle(page);
     expect(await labelled(page, arch)).toBe(true);
     // A click where it stands opens it.
-    const spot = (await page.evaluate((id) => window.__lightworld!.structureAt(id), arch))!;
+    const spot = (await page.evaluate((id) => window.__wikiworldmodel!.structureAt(id), arch))!;
     await page.mouse.click(spot.x, spot.y);
     await idle(page);
-    expect((await page.evaluate(() => window.__lightworld!.state())).sel).toBe(arch);
+    expect((await page.evaluate(() => window.__wikiworldmodel!.state())).sel).toBe(arch);
     await expect(page.locator('.inspect h2')).toContainText('Arch of Constantine');
     await page.keyboard.press('Escape');
-    await page.evaluate(() => window.__lightworld!.set({ sel: null, t: 290 }));
+    await page.evaluate(() => window.__wikiworldmodel!.set({ sel: null, t: 290 }));
     await idle(page);
     expect(await labelled(page, arch)).toBe(false);
     await page.mouse.click(spot.x, spot.y);
     await idle(page);
-    expect((await page.evaluate(() => window.__lightworld!.state())).sel).not.toBe(arch);
+    expect((await page.evaluate(() => window.__wikiworldmodel!.state())).sel).not.toBe(arch);
   });
 
   test('a click on an ordinary house says the generator placed it, and that nothing is known of it', async ({ page }) => {
@@ -125,22 +125,22 @@ test.describe('in the city', () => {
     expect(found).toBe(true);
     await expect(panel.locator('.badge.basis-procedural')).toBeVisible();
     await expect(panel).toContainText('Nothing is known of this building');
-    expect((await page.evaluate(() => window.__lightworld!.state())).sel).toBe(null);
+    expect((await page.evaluate(() => window.__wikiworldmodel!.state())).sel).toBe(null);
   });
 
   test('a time with no ground lifts the camera off the place', async ({ page }) => {
     await page.goto(`/?b=${latestBuild()}&${OVERVIEW}&${FAST}`);
     await idle(page);
     // Before any scene of any place: a billion years ago there is no land the atlas knows of.
-    await page.evaluate(() => window.__lightworld!.set({ t: Math.round(1950 - 1e9) }));
+    await page.evaluate(() => window.__wikiworldmodel!.set({ t: Math.round(1950 - 1e9) }));
     await idle(page);
-    const state = await page.evaluate(() => window.__lightworld!.state());
+    const state = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect((state.cam.dist - 1) * 6371).toBeGreaterThan(50);
     await expect(page.locator('.city-label:visible')).toHaveCount(0);
     // Coming back in time does not drop the camera back into the streets.
-    await page.evaluate(() => window.__lightworld!.set({ t: 315.5 }));
+    await page.evaluate(() => window.__wikiworldmodel!.set({ t: 315.5 }));
     await idle(page);
-    const back = await page.evaluate(() => window.__lightworld!.state());
+    const back = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect(back.cam.dist).toBe(state.cam.dist);
   });
 

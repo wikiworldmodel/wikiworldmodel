@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lightworld.invalid/schema/defs.json",
+  "$id": "https://wikiworldmodel.invalid/schema/defs.json",
   "title": "Shared definitions",
   "$defs": {
     "entity_id": {

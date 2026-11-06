@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lightworld.invalid/schema/alternative.json",
+  "$id": "https://wikiworldmodel.invalid/schema/alternative.json",
   "title": "Alternative or group",
   "description": "An alternative is a named set of claims that stand or fall together: a hypothesis, perspective, scenario or reading. Members of a group exclude each other; groups combine freely.",
   "type": "object",

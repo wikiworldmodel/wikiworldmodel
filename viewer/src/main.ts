@@ -1,4 +1,4 @@
-// The Lightworld viewer: fly around the globe and through time, click anything to see what
+// The WikiWorldModel viewer: fly around the globe and through time, click anything to see what
 // it is and how we know. Everything shown comes from one build of the world.
 import './style.css';
 import { CLIMATE_LABEL, climateClass, decodeNode, type ClimateClass, type ClimateHeader, type ClimateNode, type ClimateRule } from '../../core/climate.ts';
@@ -47,12 +47,12 @@ import { Toolbar } from './ui/toolbar.ts';
 
 declare global {
   interface Window {
-    __lightworld?: LightworldHandle;
+    __wikiworldmodel?: WikiWorldModelHandle;
   }
 }
 
 /** What tests and the console can see. */
-export interface LightworldHandle {
+export interface WikiWorldModelHandle {
   build: string;
   idle(): boolean;
   state(): ViewState;
@@ -123,11 +123,13 @@ async function sha256Hex(data: Uint8Array): Promise<string> {
 }
 
 function fail(root: HTMLElement, message: string): void {
-  root.innerHTML = `<div class="fatal"><h1>Lightworld</h1><p>${message.replace(/</g, '&lt;')}</p></div>`;
+  root.innerHTML = `<div class="fatal"><h1>WikiWorldModel</h1><p>${message.replace(/</g, '&lt;')}</p></div>`;
 }
 
 async function start(root: HTMLElement): Promise<void> {
-  const buildId = buildOf(location.search) ?? (await latestBuild(ROOT));
+  const linked = buildOf(location.search);
+  const newest = await latestBuild(ROOT).catch(() => linked ?? '');
+  const buildId = linked ?? newest;
   const build: Build = await loadBuild(ROOT, buildId);
   const ts = build.tileset;
   const dataRange: [number, number] = ts.timeRange;
@@ -335,7 +337,8 @@ async function start(root: HTMLElement): Promise<void> {
   const sites: SiteInfo[] = ts.sites ?? [];
   const scenes = new Map<string, CityScene | LifeScene>();
   const loadingScenes = new Set<string>();
-  const failedScenes = new Set<string>();
+  /** Scenes that could not be made, and why, said while the camera is at them. */
+  const failedScenes = new Map<string, string>();
   let site: SiteInfo | undefined;
   let city: CityScene | LifeScene | null = null;
   let labelledSite: string | null = null;
@@ -401,7 +404,7 @@ async function start(root: HTMLElement): Promise<void> {
   // Named for the span the build covers: the finest named period at its start, to its end.
   const named = (t: number) => ['period', 'era', 'eon'].map((rank) => build.periods.periods.find((p) => p.rank === rank && p.start <= t && t <= p.end)).find(Boolean);
   const until = dataRange[1] > PRESENT_YEAR ? formatTime(dataRange[1]) : 'today';
-  brand.innerHTML = `<strong>Lightworld</strong><span>${named(dataRange[0])?.name ?? formatTime(dataRange[0])} to ${until}</span>`;
+  brand.innerHTML = `<strong>WikiWorldModel</strong><span>${named(dataRange[0])?.name ?? formatTime(dataRange[0])} to ${until}</span>`;
   const search = new Search(build.search, build.periods.periods, kindLabel);
   const toolbar = new Toolbar(build.id, ts.alternatives);
   top.append(brand, search.el, toolbar.el);
@@ -435,6 +438,20 @@ async function start(root: HTMLElement): Promise<void> {
   notice.className = 'notice';
   notice.hidden = true;
   stage.appendChild(notice);
+  // A link keeps the build it was made in, which this viewer may have outgrown: say so, and offer the newest.
+  if (newest && newest !== build.id) {
+    const older = document.createElement('div');
+    older.className = 'older-build';
+    const go = document.createElement('a');
+    go.href = '#';
+    go.textContent = 'Open this view in the newest build';
+    go.onclick = (e) => {
+      e.preventDefault();
+      location.search = toSearch(newest, state);
+    };
+    older.append(`This link is to an older build, ${build.id}, and this viewer may not draw all of it. `, go);
+    stage.appendChild(older);
+  }
 
   // State.
   let dirty = true;
@@ -753,7 +770,7 @@ async function start(root: HTMLElement): Promise<void> {
       }
     }
     frameLook = look;
-    const why = !look.formed ? beforeWhy() : fi ? '' : unknownWhy(state.t);
+    const why = (site && failedScenes.get(site.id)) || (!look.formed ? beforeWhy() : fi ? '' : unknownWhy(state.t));
     if (notice.textContent !== why) notice.textContent = why;
     notice.hidden = !why;
 
@@ -1099,6 +1116,7 @@ async function start(root: HTMLElement): Promise<void> {
       const fast = state.quality === 'fast';
       const scene = s.kind === 'life' ? await (async () => {
         const f = await getJSON<SceneFileV2>(build.base + s.file);
+        if (f.format !== 'lightworld-scene-file@2') throw new Error(`its file is in a format this viewer does not read (${f.format ?? 'none'}): the build is older than the viewer`);
         return new LifeScene(gl!, f.spec, f.sha256, { fast });
       })() : new CityScene(gl!, build, s.file, { fast });
       scene.onChange = () => (dirty = true);
@@ -1109,9 +1127,7 @@ async function start(root: HTMLElement): Promise<void> {
     } catch (err) {
       // The globe still works without the scene.
       console.error(`${s.id}: ${err instanceof Error ? err.message : String(err)}`.slice(0, 900));
-      failedScenes.add(s.id);
-      notice.textContent = `${s.label} could not be drawn here: ${err instanceof Error ? err.message.split('\n')[0] : err}`;
-      notice.hidden = false;
+      failedScenes.set(s.id, `${s.label} could not be drawn: ${err instanceof Error ? err.message.split('\n')[0] : err}`);
     }
     loadingScenes.delete(s.id);
     dirty = true;
@@ -1574,6 +1590,7 @@ async function start(root: HTMLElement): Promise<void> {
   const cityWanted = () => {
     const range = (state.cam.dist - 1) * EARTH_RADIUS;
     if (lifeLoading || arriving) return true;
+    if (site && failedScenes.has(site.id)) return false;
     const made = site === lifeSite && !!lifeSite;
     // A scene is wanted here and has not come, or has not settled.
     if (!made && lifeAtlas && range < LIFE_TOP * 1.4 && canDrawLife(state.t, state.cam) && !(site && distanceFrom(site, state.cam.lat, state.cam.lon) < 15e3)) {
@@ -1582,7 +1599,7 @@ async function start(root: HTMLElement): Promise<void> {
     return !!site && siteOpen(state.t) && range < (made ? LIFE_TOP : CITY_TOP) * 1.4 && siteDistance(state.cam.lat, state.cam.lon) < 1.6e6 && !(city?.settled && city.plan.actual);
   };
   history.replaceState(null, '', toSearch(build.id, state));
-  window.__lightworld = {
+  window.__wikiworldmodel = {
     build: build.id,
     idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && (!state.langs || !!languages.file || !ts.files.languages) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
     state: () => state,

@@ -15,14 +15,14 @@ test('a shared link reproduces the same view', async ({ page, context }) => {
   await page.mouse.up();
   await page.locator('.tb-canvas').hover({ position: { x: 900, y: 50 } });
   await page.mouse.wheel(0, -500);
-  await page.evaluate(() => window.__lightworld!.set({ t: Math.round(1950 - 66.1e6) }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: Math.round(1950 - 66.1e6) }));
   for (let i = 0; i < 5; i++) await page.keyboard.press('ArrowRight');
   await page.keyboard.press('e');
   await page.fill('.search input', 'deccan');
   await page.keyboard.press('Enter');
   await idle(page);
   const url = await settledUrl(page);
-  const state = await page.evaluate(() => window.__lightworld!.state());
+  const state = await page.evaluate(() => window.__wikiworldmodel!.state());
   const pixels = await canvasPng(page);
   const markers = await markerPositions(page);
   expect(state.sel).toBe('earth/lips/deccan-traps');
@@ -31,7 +31,7 @@ test('a shared link reproduces the same view', async ({ page, context }) => {
   const other = await context.newPage();
   await other.goto(url);
   await idle(other);
-  expect(await other.evaluate(() => window.__lightworld!.state())).toEqual(state);
+  expect(await other.evaluate(() => window.__wikiworldmodel!.state())).toEqual(state);
   expect(await markerPositions(other)).toEqual(markers);
   // Same build, time, camera and choices: the same pixels, exactly.
   expect((await canvasPng(other)).equals(pixels)).toBe(true);
@@ -41,13 +41,13 @@ test('a shared link reproduces the same view', async ({ page, context }) => {
 test('scrubbing inside a tile span fetches nothing', async ({ page }) => {
   await page.goto(`/?b=${latestBuild()}&t=70Ma&lat=10&lon=-30&d=3.3`);
   await idle(page);
-  const before = await page.evaluate(() => window.__lightworld!.requests.slice());
+  const before = await page.evaluate(() => window.__wikiworldmodel!.requests.slice());
   // Tiles for 70 Ma cover 80–60 Ma (fine level) and 80–40 Ma (coarse level).
   for (const ma of [61, 64.5, 68, 72.25, 79.9, 75]) {
-    await page.evaluate((t) => window.__lightworld!.set({ t }), year(ma));
+    await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), year(ma));
     await idle(page);
   }
-  const after = await page.evaluate(() => window.__lightworld!.requests.slice());
+  const after = await page.evaluate(() => window.__wikiworldmodel!.requests.slice());
   expect(after).toEqual(before);
 });
 
@@ -117,7 +117,7 @@ test('the browser runs the cloud and surface generators to the same bytes as the
   await page.goto(`/?b=${latestBuild()}`);
   await idle(page);
   for (const name of ['clouds', 'surface'] as const) {
-    const out = await page.evaluate((n) => window.__lightworld![n], name);
+    const out = await page.evaluate((n) => window.__wikiworldmodel![n], name);
     expect(out.actual).toBe(out.expected);
     expect(out.expected).toMatch(/^[0-9a-f]{64}$/);
   }
@@ -130,7 +130,7 @@ test('the Mesosaurus localities sit together in the Artinskian', async ({ page }
   const ids = Object.keys(m).filter((id) => id.startsWith('life/mesosaurus/'));
   expect(ids.sort()).toEqual(['life/mesosaurus/arroyo-de-la-mina', 'life/mesosaurus/calvinia', 'life/mesosaurus/kabus', 'life/mesosaurus/sao-mateus-do-sul']);
   // Today they are on opposite sides of the Atlantic and not shown (they are Permian).
-  await page.evaluate(() => window.__lightworld!.set({ t: 1950 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1950 }));
   await idle(page);
   const now = await markerPositions(page);
   expect(Object.keys(now).filter((id) => id.startsWith('life/mesosaurus/'))).toEqual([]);
@@ -205,7 +205,7 @@ test('the future: today\'s map is held for 10 kyr, and the Sun\'s brightness is 
   await idle(page);
   await expect(page.locator('.tb-readout')).toContainText('2100 CE');
   await expect(page.locator('.notice')).toBeHidden();
-  await page.evaluate(() => window.__lightworld!.set({ t: 1950 + 1e9 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1950 + 1e9 }));
   await idle(page);
   await expect(page.locator('.tb-readout')).toContainText('1 Gyr from now');
   await expect(page.locator('.notice')).toContainText('held only to 10 kyr from now');
@@ -229,7 +229,7 @@ test('Earth\'s states: nothing before it formed, a magma ocean after the Moon-fo
   await expect(page.locator('.planet-phase')).toContainText('not formed yet');
   expect(Math.max(...(await canvasPatch(page, 0.5, 0.5)))).toBeLessThan(30);
   // The magma ocean, seen without its steam: molten rock glows red.
-  await page.evaluate((t) => window.__lightworld!.set({ t }), middle('magma-ocean'));
+  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), middle('magma-ocean'));
   await idle(page);
   await expect(page.locator('.planet-phase')).toContainText('Magma ocean under steam');
   const [r, , b] = await canvasPatch(page, 0.5, 0.5, 61);
@@ -243,7 +243,7 @@ test('Earth\'s states: nothing before it formed, a magma ocean after the Moon-fo
   await expect(panel.locator('h2')).toHaveText('Earth');
   await expect(panel.locator('.phases')).toContainText('Proto-Earth');
   // 2 Ga: an ocean world, its land not drawn because nothing says where it was.
-  await page.evaluate(() => window.__lightworld!.set({ t: 1950 - 2e9, sel: null }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1950 - 2e9, sel: null }));
   await idle(page);
   await expect(page.locator('.planet-phase')).toContainText('Oceans');
   const [r2, , b2] = await canvasPatch(page, 0.5, 0.5);
@@ -275,7 +275,7 @@ test('the band under the track names the planet\'s states, and opens their recor
   await page.goto(`/?b=${latestBuild()}&t=2000Ma`);
   await idle(page);
   const box = (await page.locator('.tb-canvas').boundingBox())!;
-  const { window: win } = await page.evaluate(() => window.__lightworld!.state());
+  const { window: win } = await page.evaluate(() => window.__wikiworldmodel!.state());
   await page.mouse.move(box.x + xOf(1950 - 690e6, win, box.width), box.y + box.height - 6);
   await expect(page.locator('.tb-tip')).toContainText('Sturtian glaciation: ice to the equator');
   await page.mouse.down();
@@ -283,7 +283,7 @@ test('the band under the track names the planet\'s states, and opens their recor
   await idle(page);
   await expect(page.locator('.inspect h2')).toHaveText('Sturtian glaciation');
   // The time moved into the glaciation.
-  const { t } = await page.evaluate(() => window.__lightworld!.state());
+  const { t } = await page.evaluate(() => window.__wikiworldmodel!.state());
   expect(t).toBeGreaterThan(1950 - 717e6);
   expect(t).toBeLessThan(1950 - 658e6);
 });
@@ -295,7 +295,7 @@ test('the time control spans the Hadean to the far future, and its track opens r
   // Point at the Chicxulub impact's time on the track: the record nearest the pointer is
   // named in a tip, and a click opens it.
   const box = (await page.locator('.tb-canvas').boundingBox())!;
-  const { window: win } = await page.evaluate(() => window.__lightworld!.state());
+  const { window: win } = await page.evaluate(() => window.__wikiworldmodel!.state());
   await page.mouse.move(box.x + xOf(1950 - 66.038e6, win, box.width), box.y + box.height - 12);
   const tip = page.locator('.tb-tip');
   await expect(tip).toBeVisible();
@@ -322,16 +322,16 @@ test('Rome: its territory at the time shown, drawn from its dataset, and a click
   await expect(panel.locator('.here')).toContainText('117 CE – 126 CE: the row named “Roman Empire”');
   await expect(panel.locator('.phases')).toContainText('Republic');
   // Before the founding there is no territory to tint the land.
-  await page.evaluate(() => window.__lightworld!.set({ t: -900, sel: null }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: -900, sel: null }));
   await idle(page);
   await expect(page.locator('.territory-labels')).toBeHidden();
   const [r0, g0] = await canvasPatch(page, 0.5, 0.5, 15);
   expect(r1 - g1).toBeGreaterThan(r0 - g0 + 10);
   // Two courts in 420, and nothing left of either after Constantinople fell.
-  await page.evaluate(() => window.__lightworld!.set({ t: 420 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 420 }));
   await idle(page);
   await expect(page.locator('.territory-label', { hasText: 'Western Roman Empire' })).toBeVisible();
-  await page.evaluate(() => window.__lightworld!.set({ t: 1460 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1460 }));
   await idle(page);
   await expect(page.locator('.territory-labels')).toBeHidden();
 });
@@ -351,7 +351,7 @@ test('the time control zooms to a few years, reads the day, and keeps it in the 
   await page.locator('.tb-canvas').hover({ position: { x: 600, y: 50 } });
   for (let i = 0; i < 6; i++) await page.mouse.wheel(0, -800);
   await idle(page);
-  const { window: win } = await page.evaluate(() => window.__lightworld!.state());
+  const { window: win } = await page.evaluate(() => window.__wikiworldmodel!.state());
   expect(win[1] - win[0]).toBeGreaterThan(3.9);
   expect(win[1] - win[0]).toBeLessThan(4.1);
 });
@@ -360,12 +360,12 @@ test('the whole strip gives recent history room: years to the pixel, and its mom
   await page.goto(`/?b=${latestBuild()}`);
   await idle(page);
   const box = (await page.locator('.tb-canvas').boundingBox())!;
-  const { window: win } = await page.evaluate(() => window.__lightworld!.state());
+  const { window: win } = await page.evaluate(() => window.__wikiworldmodel!.state());
   // Scrubbing to Rome reads a year, and lands within a few years of it.
   await page.mouse.click(box.x + xOf(120, win, box.width), box.y + 60);
   await idle(page);
   await expect(page.locator('.tb-readout strong')).toHaveText(/^\d+ CE$/);
-  const { t } = await page.evaluate(() => window.__lightworld!.state());
+  const { t } = await page.evaluate(() => window.__wikiworldmodel!.state());
   expect(Math.abs(t - 120)).toBeLessThan(10);
   // The track tells Actium from the fall of Constantinople, without zooming.
   const tip = page.locator('.tb-tip');
@@ -374,7 +374,7 @@ test('the whole strip gives recent history room: years to the pixel, and its mom
   await page.mouse.move(box.x + xOf(1453.4, win, box.width), box.y + box.height - 12);
   await expect(tip).toContainText('Constantinople');
   // A moment 315 kyr old is far from today now.
-  await page.evaluate(() => window.__lightworld!.set({ t: 1950 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1950 }));
   await idle(page);
   await expect(page.locator('.marker[data-entity="life/occurrences/homo-sapiens-jebel-irhoud"]')).toHaveCount(0);
 });
@@ -384,10 +384,10 @@ test('a city is labelled by the name it had at the time shown', async ({ page })
   await idle(page);
   const city = page.locator('.marker[data-entity="places/constantinople"] .label');
   await expect(city).toHaveText('Byzantium');
-  await page.evaluate(() => window.__lightworld!.set({ t: 400 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 400 }));
   await idle(page);
   await expect(city).toHaveText('Constantinople');
-  await page.evaluate(() => window.__lightworld!.set({ t: 1950 }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ t: 1950 }));
   await idle(page);
   await expect(city).toHaveText('Istanbul');
 });
@@ -398,7 +398,7 @@ test('opening a record of the last few thousand years fits the time control to i
   await page.fill('.search input', 'Western Roman');
   await page.keyboard.press('Enter');
   await idle(page);
-  const s = await page.evaluate(() => window.__lightworld!.state());
+  const s = await page.evaluate(() => window.__wikiworldmodel!.state());
   expect(s.sel).toBe('people/polities/western-roman-empire');
   expect(s.window[1] - s.window[0]).toBeLessThan(500);
   // Its start: the death of Theodosius, 17 January 395.

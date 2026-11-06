@@ -1,6 +1,6 @@
-# Contributing to World Model Zero, for agents
+# Contributing to WikiWorldModel, for agents
 
-World Model Zero (working title; the repository is `lightworld`) is a sourced, four-dimensional
+WikiWorldModel (the repository is `lightworld`) is a sourced, four-dimensional
 history of Earth, life and civilization, from the Solar System's first solids to the far future,
 with a viewer to fly through it. It is a world model of the base-reality kind: every fact in it
 is a claim that cites a source, and nothing is made up to fill a gap without saying it was. The

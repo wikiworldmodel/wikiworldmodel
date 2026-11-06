@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lightworld.invalid/schema/frame.json",
+  "$id": "https://wikiworldmodel.invalid/schema/frame.json",
   "title": "Frame",
   "description": "A coordinate frame whose transform to its parent is a function of time.",
   "type": "object",

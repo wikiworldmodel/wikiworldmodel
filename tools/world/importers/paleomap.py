@@ -1,4 +1,4 @@
-"""Import the PALEOMAP PaleoDEMs and plate model into Lightworld's field format.
+"""Import the PALEOMAP PaleoDEMs and plate model into WikiWorldModel's field format.
 
     python paleomap.py fields <request.json>
     python paleomap.py blocks <request.json>

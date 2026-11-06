@@ -66,7 +66,7 @@ export interface PbdbSnapshot {
 type Row = Record<string, string | number | undefined>;
 
 async function service(url: string): Promise<{ records: Row[]; data_license?: string }> {
-  const res = await fetch(url, { headers: { 'User-Agent': 'lightworld-world-tools' } });
+  const res = await fetch(url, { headers: { 'User-Agent': 'wikiworldmodel-world-tools' } });
   if (!res.ok) throw new Error(`GET ${url}: HTTP ${res.status}`);
   return (await res.json()) as { records: Row[]; data_license?: string };
 }
@@ -200,7 +200,7 @@ export async function exportLand(date: string, log: (m: string) => void, range: 
   const occUrl = `${SERVICE}/occs/list.csv?max_ma=${range.max}&min_ma=${range.min}&envtype=terrestrial&pres=regular&idreso=genus&show=coords,strat&vocab=pbdb&limit=all&datainfo`;
   const taxUrl = `${SERVICE}/taxa/list.json?id={ids}&rel=all_parents&show=app,ecospace&vocab=pbdb&limit=all`;
   log(`asking for the occurrences: ${occUrl}`);
-  const res = await fetch(occUrl, { headers: { 'User-Agent': 'lightworld-world-tools' } });
+  const res = await fetch(occUrl, { headers: { 'User-Agent': 'wikiworldmodel-world-tools' } });
   if (!res.ok) throw new Error(`GET ${occUrl}: HTTP ${res.status}`);
   const text = await res.text();
   const lines = text.split('\n');

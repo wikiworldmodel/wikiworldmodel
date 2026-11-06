@@ -34,7 +34,7 @@ function iceFile() {
 
 /** Fly to a place at a time, without clouds, and read the colour of the patch under the camera. */
 async function colourAt(page: Page, lat: number, lon: number) {
-  await page.evaluate((cam) => window.__lightworld!.set({ cam: { ...cam, dist: 1.5 }, clouds: false }), { lat, lon });
+  await page.evaluate((cam) => window.__wikiworldmodel!.set({ cam: { ...cam, dist: 1.5 }, clouds: false }), { lat, lon });
   await idle(page);
   return canvasPatch(page, 0.5, 0.5, 11);
 }
@@ -68,7 +68,7 @@ test.describe('at the Last Glacial Maximum', () => {
     // Every fourth degree, leaving out nodes right at the margin: the globe's cube samples between nodes.
     const places: [number, number][] = [];
     for (let lat = -84; lat <= 84; lat += 4) for (let lon = -180; lon < 180; lon += 4) if (Math.abs(at(20, lat, lon).km) > 80) places.push([lat, lon]);
-    const seen = await page.evaluate((list) => list.map(([a, o]) => window.__lightworld!.iceAt(a, o)!.drawn), places);
+    const seen = await page.evaluate((list) => list.map(([a, o]) => window.__wikiworldmodel!.iceAt(a, o)!.drawn), places);
     const wrong = places.filter(([a, o], i) => seen[i] !== at(20, a, o).km > 0);
     expect(wrong).toEqual([]);
     expect(seen.filter(Boolean).length).toBeGreaterThan(200);
@@ -113,7 +113,7 @@ test.describe('at the Last Glacial Maximum', () => {
     const t = Math.round((lgm.time.start.best! + lgm.time.end.best!) / 2);
     await page.goto(`/?b=${latestBuild()}&t=${t}&lat=60&lon=-90&d=2.6`);
     await idle(page);
-    const read = (lat: number, lon: number) => page.evaluate(([a, o]) => window.__lightworld!.iceAt(a, o), [lat, lon]);
+    const read = (lat: number, lon: number) => page.evaluate(([a, o]) => window.__wikiworldmodel!.iceAt(a, o), [lat, lon]);
     expect((await read(60, -85))!.drawn).toBe(true);
     expect((await read(60, -85))!.thickness).toBeGreaterThan(1000);
     expect((await read(59, 18))!.drawn).toBe(true);
@@ -129,9 +129,9 @@ test('the ice grows and shrinks between keyframes, its edge moving evenly from o
   expect(place).toBeDefined();
   const [lat, lon] = place!;
   const read = async (ka: number) => {
-    await page.evaluate((t) => window.__lightworld!.set({ t }), year(ka));
+    await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), year(ka));
     await idle(page);
-    return (await page.evaluate(([a, o]) => window.__lightworld!.iceAt(a, o), [lat, lon]))!;
+    return (await page.evaluate(([a, o]) => window.__wikiworldmodel!.iceAt(a, o), [lat, lon]))!;
   };
   await page.goto(`/?b=${latestBuild()}&t=${year(17.5)}&lat=${lat}&lon=${lon}&d=2.6`);
   await idle(page);
@@ -150,17 +150,17 @@ test('outside the dataset\'s span ice falls back to what it was', async ({ page 
   const before = year(85);
   await page.goto(`/?b=${latestBuild()}&t=${before}&lat=60&lon=-90&d=2.6`);
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.iceAt(60, -85))).toBeNull();
+  expect(await page.evaluate(() => window.__wikiworldmodel!.iceAt(60, -85))).toBeNull();
   await expect(page.locator('.planet-ice')).toBeHidden();
   // The Sturtian's claim still draws its ice to the equator.
-  await page.evaluate((t) => window.__lightworld!.set({ t }), 1950 - 690e6);
+  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), 1950 - 690e6);
   await idle(page);
   await expect(page.locator('.planet-ice')).toContainText('to the equator');
-  expect(await page.evaluate(() => window.__lightworld!.iceAt(60, -85))).toBeNull();
+  expect(await page.evaluate(() => window.__wikiworldmodel!.iceAt(60, -85))).toBeNull();
   // Inside the span it is the field's.
-  await page.evaluate((t) => window.__lightworld!.set({ t }), year(79));
+  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), year(79));
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.iceAt(60, -85))).not.toBeNull();
+  expect(await page.evaluate(() => window.__wikiworldmodel!.iceAt(60, -85))).not.toBeNull();
 });
 
 test('inside the span ice is the field\'s alone: the climate\'s own reading of ice gives way to it, and comes back outside', async ({ page }) => {
@@ -170,9 +170,9 @@ test('inside the span ice is the field\'s alone: the climate\'s own reading of i
   expect(at(42.5, lat, lon).km).toBeLessThan(0);
   await page.goto(`/?b=${latestBuild()}&t=${year(42.5)}&lat=${lat}&lon=${lon}&d=1.5&cl=0`);
   await idle(page);
-  expect((await page.evaluate(([a, o]) => window.__lightworld!.biomeAt(a, o), [lat, lon]))!.climate).toBe('ice');
+  expect((await page.evaluate(([a, o]) => window.__wikiworldmodel!.biomeAt(a, o), [lat, lon]))!.climate).toBe('ice');
   const inside = bright(await canvasPatch(page, 0.5, 0.5, 11));
-  await page.evaluate((t) => window.__lightworld!.set({ t }), year(85));
+  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), year(85));
   await idle(page);
   const outside = bright(await canvasPatch(page, 0.5, 0.5, 11));
   expect(outside).toBeGreaterThan(inside + 40);
@@ -182,16 +182,16 @@ test('after the present the field holds today\'s ice, as the elevation holds tod
   const ts = buildFile<Tileset>('tileset.json');
   await page.goto(`/?b=${latestBuild()}&t=0Ma&lat=72&lon=-40&d=2.6`);
   await idle(page);
-  const today = await page.evaluate(() => window.__lightworld!.iceAt(72, -40));
+  const today = await page.evaluate(() => window.__wikiworldmodel!.iceAt(72, -40));
   expect(today!.drawn).toBe(true);
-  await page.evaluate((t) => window.__lightworld!.set({ t }), 1950 + 5000);
+  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), 1950 + 5000);
   await idle(page);
-  const held = await page.evaluate(() => window.__lightworld!.iceAt(72, -40));
+  const held = await page.evaluate(() => window.__wikiworldmodel!.iceAt(72, -40));
   expect(held!.drawn).toBe(true);
   expect(held!.marginKm).toBeCloseTo(today!.marginKm, 0);
-  await page.evaluate((t) => window.__lightworld!.set({ t }), ts.ice!.coverage[1] + 1000);
+  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), ts.ice!.coverage[1] + 1000);
   await idle(page);
-  expect(await page.evaluate(() => window.__lightworld!.iceAt(72, -40))).toBeNull();
+  expect(await page.evaluate(() => window.__wikiworldmodel!.iceAt(72, -40))).toBeNull();
 });
 
 test('it moves with what the plates do at that scale: a few km over the whole span, on the same plates as the land', async ({ page }) => {
@@ -216,7 +216,7 @@ test('it moves with what the plates do at that scale: a few km over the whole sp
   await idle(page);
   const node = [61, -75] as const;
   const carried = moved(node[0], node[1]);
-  const seen = (await page.evaluate(([a, o]) => window.__lightworld!.iceAt(a, o), [carried.la, carried.lo]))!;
+  const seen = (await page.evaluate(([a, o]) => window.__wikiworldmodel!.iceAt(a, o), [carried.la, carried.lo]))!;
   expect(Math.abs(seen.marginKm - at(80, node[0], node[1]).km)).toBeLessThan(24);
 });
 
@@ -242,7 +242,7 @@ test('a click says what the dataset gives and how uncertain it is', async ({ pag
   // Under the ice the land's cover is not what it says.
   await expect(panel.locator('.biome')).toHaveCount(0);
   // Beyond the ice nothing of it is said.
-  await page.evaluate(() => window.__lightworld!.set({ cam: { lat: 20, lon: 15, dist: 2.2 } }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ cam: { lat: 20, lon: 15, dist: 2.2 } }));
   await idle(page);
   await clickCentre(page);
   await idle(page);
@@ -272,7 +272,7 @@ test('its two scenarios: the alternative frees Hudson Bay of ice for a short tim
   expect(at(42.5, lat, lon, [alt]).km).toBeLessThan(-50);
   await page.goto(`/?b=${latestBuild()}&t=${year(42.5)}&lat=${lat}&lon=${lon}&d=2.2&cl=0`);
   await idle(page);
-  const drawn = () => page.evaluate(([a, o]) => window.__lightworld!.iceAt(a, o)!.drawn, [lat, lon]);
+  const drawn = () => page.evaluate(([a, o]) => window.__wikiworldmodel!.iceAt(a, o)!.drawn, [lat, lon]);
   expect(await drawn()).toBe(true);
   const white = bright(await canvasPatch(page, 0.5, 0.5, 11));
   await clickCentre(page);
@@ -296,7 +296,7 @@ test('its two scenarios: the alternative frees Hudson Bay of ice for a short tim
   await page.selectOption('select[data-group="alt:laurentide-mis3"]', alt);
   await idle(page);
   // Away from that time the two are drawn alike.
-  await page.evaluate((t) => window.__lightworld!.set({ t }), year(20));
+  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), year(20));
   await idle(page);
   expect(await drawn()).toBe(true);
 });

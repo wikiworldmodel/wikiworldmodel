@@ -63,7 +63,7 @@ async function allOf(kind: HazardKind): Promise<HazardSource[]> {
   const out: HazardSource[] = [];
   for (let page = 1; ; page++) {
     const url = `${SERVICE}/${ENDPOINT[kind]}?itemsPerPage=${PAGE}&page=${page}`;
-    const res = await fetch(url, { headers: { 'User-Agent': 'lightworld-world-tools' } });
+    const res = await fetch(url, { headers: { 'User-Agent': 'wikiworldmodel-world-tools' } });
     if (!res.ok) throw new Error(`GET ${url}: HTTP ${res.status}`);
     const d = (await res.json()) as { items: Item[]; totalPages: number };
     for (const it of d.items) {

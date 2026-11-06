@@ -28,7 +28,7 @@ test.describe('the Hell Creek', () => {
     const s = site();
     await page.goto(`/?b=${latestBuild()}&${arrival(s)}&${FAST}`);
     await idle(page);
-    const scene = await page.evaluate(() => window.__lightworld!.scene());
+    const scene = await page.evaluate(() => window.__wikiworldmodel!.scene());
     expect(scene).not.toBeNull();
     expect(scene!.plan.actual).toBe(scene!.plan.expected);
     const file = buildFile<SceneFileV2>(s.file);
@@ -36,7 +36,7 @@ test.describe('the Hell Creek', () => {
     expect(scene!.instances).toBeGreaterThan(50);
     // Every taxon it draws is in the build's list.
     expect(scene!.taxa.map((t) => t.id).sort()).toEqual(file.spec.taxa.map((t) => t.id).sort());
-    const stats = await page.evaluate(() => window.__lightworld!.cityStats());
+    const stats = await page.evaluate(() => window.__wikiworldmodel!.cityStats());
     expect(stats!.coarse).toBeGreaterThan(5);
     // All of it stays in the link, to the pixel.
     const url = await settledUrl(page);
@@ -54,10 +54,10 @@ test.describe('the Hell Creek', () => {
     await expect(page.locator('.city-enter')).toHaveText('Fly down into the Hell Creek, 66.5 Ma');
     await page.locator('.city-enter').click();
     await idle(page);
-    const state = await page.evaluate(() => window.__lightworld!.state());
+    const state = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect((state.cam.dist - 1) * 6371000).toBeLessThan(s.view.range * 3);
     await expect(page.locator('.city-enter')).toBeHidden();
-    expect((await page.evaluate(() => window.__lightworld!.scene()))!.site).toBe(s.id);
+    expect((await page.evaluate(() => window.__wikiworldmodel!.scene()))!.site).toBe(s.id);
   });
 
   test('the record of the place flies down too, from anywhere and any time', async ({ page }) => {
@@ -67,7 +67,7 @@ test.describe('the Hell Creek', () => {
     await page.locator('.search input').fill('Hell Creek ecosystem');
     await page.locator('.search input').press('Enter');
     await idle(page);
-    const state = await page.evaluate(() => window.__lightworld!.state());
+    const state = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect(state.sel).toBe(s.place);
     expect(state.t).toBe(s.slice);
     expect((state.cam.dist - 1) * 6371000).toBeLessThan(s.view.range * 3);
@@ -82,18 +82,18 @@ test.describe('the Hell Creek', () => {
     // Look down on the nearest big group, and click where it stands.
     const found = await page.evaluate((ids) => {
       for (const id of ids) {
-        const p = window.__lightworld!.organismPlaces(id)[0];
+        const p = window.__wikiworldmodel!.organismPlaces(id)[0];
         if (p) return { id, ...p };
       }
       return null;
     }, big);
     expect(found).not.toBeNull();
-    await page.evaluate((f) => window.__lightworld!.set({ cam: { lat: f.lat, lon: f.lon, dist: 1 + 40 / 6371000, heading: 0, tilt: 0 } }), found!);
+    await page.evaluate((f) => window.__wikiworldmodel!.set({ cam: { lat: f.lat, lon: f.lon, dist: 1 + 40 / 6371000, heading: 0, tilt: 0 } }), found!);
     await idle(page);
-    const spot = (await page.evaluate((id) => window.__lightworld!.structureAt(id), found!.id))!;
+    const spot = (await page.evaluate((id) => window.__wikiworldmodel!.structureAt(id), found!.id))!;
     await page.mouse.click(spot.x, spot.y);
     await idle(page);
-    const state = await page.evaluate(() => window.__lightworld!.state());
+    const state = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect(file.spec.taxa.some((t) => t.id === state.sel)).toBe(true);
     const panel = page.locator('.inspect');
     await expect(panel.locator('.organism')).toContainText('Recorded:');
@@ -137,12 +137,12 @@ test.describe('the Hell Creek', () => {
     await page.goto(`/?b=${latestBuild()}&${arrival(s)}&${FAST}`);
     await idle(page);
     await expect(page.locator('.city-label:visible').first()).toBeVisible();
-    const before = await page.evaluate(() => window.__lightworld!.state());
+    const before = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect((before.cam.dist - 1) * 6371).toBeLessThan(5);
     // Before there was any land life the atlas knows of.
-    await page.evaluate((t) => window.__lightworld!.set({ t }), atlas().bins[0].from - 2e8);
+    await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), atlas().bins[0].from - 2e8);
     await idle(page);
-    const after = await page.evaluate(() => window.__lightworld!.state());
+    const after = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect((after.cam.dist - 1) * 6371).toBeGreaterThan(50);
     await expect(page.locator('.city-label:visible')).toHaveCount(0);
   });
@@ -151,13 +151,13 @@ test.describe('the Hell Creek', () => {
     const s = site();
     await page.goto(`/?b=${latestBuild()}&${arrival(s)}&${FAST}`);
     await idle(page);
-    expect((await page.evaluate(() => window.__lightworld!.scene()))!.site).toBe(s.id);
+    expect((await page.evaluate(() => window.__wikiworldmodel!.scene()))!.site).toBe(s.id);
     // Off to Rome, in its own time.
     await page.goto(`/?b=${latestBuild()}&t=315&lat=41.9&lon=12.49&d=1.4&${FAST}`);
     await idle(page);
     await expect(page.locator('.city-enter')).toHaveText('Fly down into Rome, 315 CE');
-    expect(await page.evaluate(() => window.__lightworld!.scene())).toBeNull();
-    const fabric = await page.evaluate(() => window.__lightworld!.fabric());
+    expect(await page.evaluate(() => window.__wikiworldmodel!.scene())).toBeNull();
+    const fabric = await page.evaluate(() => window.__wikiworldmodel!.fabric());
     expect(fabric!.actual).toBe(fabric!.expected);
   });
 });
@@ -169,14 +169,14 @@ test.describe('anywhere else', () => {
     const w = witnesses()[0];
     await page.goto(`/?b=${latestBuild()}&${lowOver(w.lat, w.lon, w.t)}&${FAST}`);
     await idle(page);
-    const scene = (await page.evaluate(() => window.__lightworld!.scene()))!;
+    const scene = (await page.evaluate(() => window.__wikiworldmodel!.scene()))!;
     expect(scene).not.toBeNull();
     expect(scene.taxa.length).toBeGreaterThan(0);
     expect(scene.instances).toBeGreaterThan(0);
     expect(scene.instances).toBeLessThanOrEqual(FAST_BUDGET.instances);
     expect(scene.triangles).toBeLessThanOrEqual(FAST_BUDGET.triangles);
     // What it fetched for this: the stage's lists, the forms and the land's tiles, and no ground of its own.
-    const urls = await page.evaluate(() => window.__lightworld!.requests);
+    const urls = await page.evaluate(() => window.__wikiworldmodel!.requests);
     expect(urls.some((u) => /life\/bins\/\d+\.json/.test(u))).toBe(true);
     expect(urls.some((u) => u.includes('life/forms.json'))).toBe(true);
     expect(urls.some((u) => /ground-\d\.bin/.test(u))).toBe(false);
@@ -192,7 +192,7 @@ test.describe('anywhere else', () => {
     await page.goto(`/?b=${latestBuild()}&${FAST}`);
     await idle(page);
     for (const w of witnesses()) {
-      const made = await page.evaluate((x) => window.__lightworld!.lifeDigest(x.lat, x.lon, x.t), w);
+      const made = await page.evaluate((x) => window.__wikiworldmodel!.lifeDigest(x.lat, x.lon, x.t), w);
       expect(made, `${w.lat}, ${w.lon} at ${w.t}`).toBe(w.sha256);
     }
   });
@@ -213,16 +213,16 @@ test.describe('anywhere else', () => {
     const w = witnesses()[0];
     await page.goto(`/?b=${latestBuild()}&${lowOver(w.lat, w.lon, w.t, 300)}&${FAST}`);
     await idle(page);
-    const scene = (await page.evaluate(() => window.__lightworld!.scene()))!;
+    const scene = (await page.evaluate(() => window.__wikiworldmodel!.scene()))!;
     // Down to where something of each stands, and then over the nearest group to it, staying in the same place's scene.
     const [fx, fy] = scene.focus;
     const toLatLon = (x: number, y: number) => ({ lat: scene.origin.lat + y / 6371000 / RAD, lon: scene.origin.lon + x / (6371000 * Math.cos(scene.origin.lat * RAD)) / RAD });
-    await page.evaluate((c) => window.__lightworld!.set({ cam: { lat: c.lat, lon: c.lon, dist: 1 + 200 / 6371000, heading: 0, tilt: 0 } }), toLatLon(fx, fy));
+    await page.evaluate((c) => window.__wikiworldmodel!.set({ cam: { lat: c.lat, lon: c.lon, dist: 1 + 200 / 6371000, heading: 0, tilt: 0 } }), toLatLon(fx, fy));
     await idle(page);
     const found = await page.evaluate(([ids, x, y]) => {
       let best: { id: string; lat: number; lon: number; d: number } | null = null;
       for (const id of ids as string[]) {
-        for (const p of window.__lightworld!.organismPlaces(id)) {
+        for (const p of window.__wikiworldmodel!.organismPlaces(id)) {
           const d = Math.hypot(p.x - (x as number), p.y - (y as number));
           if (!best || d < best.d) best = { id, lat: p.lat, lon: p.lon, d };
         }
@@ -230,9 +230,9 @@ test.describe('anywhere else', () => {
       return best;
     }, [scene.taxa.map((t) => t.id), fx, fy] as const);
     expect(found, `${scene.taxa.length} taxa`).not.toBeNull();
-    await page.evaluate((f) => window.__lightworld!.set({ cam: { lat: f.lat, lon: f.lon, dist: 1 + 30 / 6371000, heading: 0, tilt: 0 } }), found!);
+    await page.evaluate((f) => window.__wikiworldmodel!.set({ cam: { lat: f.lat, lon: f.lon, dist: 1 + 30 / 6371000, heading: 0, tilt: 0 } }), found!);
     await idle(page);
-    const spot = await page.evaluate((id) => window.__lightworld!.organismsAt(id).sort((a, b) => a.depth - b.depth)[0], found!.id);
+    const spot = await page.evaluate((id) => window.__wikiworldmodel!.organismsAt(id).sort((a, b) => a.depth - b.depth)[0], found!.id);
     await page.mouse.click(spot?.x ?? 320, spot?.y ?? 190);
     await idle(page);
     const panel = page.locator('.inspect');
@@ -265,20 +265,20 @@ test.describe('anywhere else', () => {
     await expect(see).toContainText('See it where it lived');
     await see.click();
     await idle(page);
-    const state = await page.evaluate(() => window.__lightworld!.state());
+    const state = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect((state.cam.dist - 1) * 6371000).toBeLessThan(500);
-    const scene = (await page.evaluate(() => window.__lightworld!.scene()))!;
+    const scene = (await page.evaluate(() => window.__wikiworldmodel!.scene()))!;
     expect(scene.stage).toBe('Maastrichtian');
     expect(scene.taxa.some((t) => t.id === 'life/taxa/triceratops')).toBe(true);
     expect(state.sel).toBe('life/taxa/triceratops');
     // And on from the ground there to another place and time, without being left over the sea.
-    await page.evaluate(() => window.__lightworld!.set({ sel: 'life/taxa/mammuthus-primigenius' }));
+    await page.evaluate(() => window.__wikiworldmodel!.set({ sel: 'life/taxa/mammuthus-primigenius' }));
     await idle(page);
     await see.click();
     await idle(page);
-    const next = await page.evaluate(() => window.__lightworld!.state());
+    const next = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect((next.cam.dist - 1) * 6371000).toBeLessThan(500);
-    const there = (await page.evaluate(() => window.__lightworld!.scene()))!;
+    const there = (await page.evaluate(() => window.__wikiworldmodel!.scene()))!;
     expect(there.stage).not.toBe('Maastrichtian');
     expect(there.taxa.some((t) => t.id === 'life/taxa/mammuthus-primigenius')).toBe(true);
     expect(next.sel).toBe('life/taxa/mammuthus-primigenius');
@@ -299,9 +299,9 @@ test.describe('anywhere else', () => {
     const bin = atlas().bins[atlas().bins.length - 1];
     await page.goto(`/?b=${latestBuild()}&t=${bin.slice}&lat=0&lon=-160&d=1.4&${FAST}`);
     await idle(page);
-    await page.evaluate(() => window.__lightworld!.set({ cam: { lat: 0, lon: -160, dist: 1 + 200 / 6371000 } }));
+    await page.evaluate(() => window.__wikiworldmodel!.set({ cam: { lat: 0, lon: -160, dist: 1 + 200 / 6371000 } }));
     await idle(page);
-    const state = await page.evaluate(() => window.__lightworld!.state());
+    const state = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect((state.cam.dist - 1) * 6371).toBeGreaterThan(50);
   });
 });

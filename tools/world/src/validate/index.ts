@@ -38,7 +38,7 @@ export interface Report {
   wanted: Wanted[];
 }
 
-const SCHEMA = 'https://lightworld.invalid/schema/';
+const SCHEMA = 'https://wikiworldmodel.invalid/schema/';
 const SCHEMAS = ['defs', 'entity', 'source', 'frame', 'field', 'generator', 'alternative', 'manifest'];
 
 function ajvFor(root: string) {

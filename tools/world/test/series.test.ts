@@ -39,7 +39,7 @@ describe('time units', () => {
 
 describe('a series of the world’s own measurements', () => {
   it('reads each record’s claim of a property at the record’s date, with the band it gives', async () => {
-    const root = mkdtempSync(join(tmpdir(), 'lightworld-fixture-'));
+    const root = mkdtempSync(join(tmpdir(), 'wikiworldmodel-fixture-'));
     const cite = 'source: { ref: src:test/report, loc: p. 1 }';
     const entity = (id: string, body: string) => `id: ${id}\nkind: occurrence\nauthor: fixture\nclaims:\n${body}`;
     const files: Record<string, string> = {

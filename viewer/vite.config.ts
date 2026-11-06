@@ -22,7 +22,7 @@ function builds(): Plugin {
     createReadStream(path).pipe(res);
   };
   return {
-    name: 'lightworld-builds',
+    name: 'wikiworldmodel-builds',
     configureServer: (s) => void s.middlewares.use(serve),
     configurePreviewServer: (s) => void s.middlewares.use(serve),
   };

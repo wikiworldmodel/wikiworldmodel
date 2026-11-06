@@ -1,4 +1,4 @@
-# Lightworld in public: plan for an open project and a public site
+# WikiWorldModel in public: plan for an open project and a public site
 
 Status: proposal. It turns [WORLD-MODEL.md](WORLD-MODEL.md)'s sections on contribution
 (8.2), process (9.3), serving (11), storage (12) and licensing (13) into a plan that can be
@@ -69,7 +69,7 @@ What is missing:
 | What | Recommendation | Why | Alternative |
 |---|---|---|---|
 | Code (`core/`, `tools/`, `viewer/`, generators) | **Apache-2.0** | permissive, with a patent grant; generators run in other people's apps | MIT (simpler, no patent clause) |
-| Lightworld's own records, vocabularies and docs | **CC0-1.0** | the same as Wikidata and OpenHistoricalMap, so facts can flow upstream and back; no attribution stacking for reusers | CC BY 4.0: credit to contributors, but records could not be copied into Wikidata |
+| WikiWorldModel's own records, vocabularies and docs | **CC0-1.0** | the same as Wikidata and OpenHistoricalMap, so facts can flow upstream and back; no attribution stacking for reusers | CC BY 4.0: credit to contributors, but records could not be copied into Wikidata |
 | Quotes inside records | stay under their works' terms | they are short quotations (the schema caps them at 400 characters) used as evidence; CC0 cannot relicense them | — |
 | Generated output (clouds, the city fabric, renders) | CC0-1.0 | it is made by our code from our records | — |
 | Builds | mixed, with credits | the license filter admits only CC0, CC BY and public domain; each build ships `ATTRIBUTION.md` and the viewer shows the credits (it already does) | — |
@@ -217,7 +217,7 @@ The 6,445 proposed claims are the backlog. They need two things:
   site.
 
 Imported records (`machine:ohm-import`) are reviewed upstream: a mapper fixes the element in
-OpenHistoricalMap and the snapshot is refreshed. Lightworld reviews only the claims it adds,
+OpenHistoricalMap and the snapshot is refreshed. WikiWorldModel reviews only the claims it adds,
 such as adopting an element under a written record.
 
 ### Contributor tooling (Phase 1)
@@ -493,7 +493,7 @@ request:
     grants.
   - Digital-humanities and open-science grants fund specific slices.
   - Running costs are small enough not to need sponsors.
-- **Partnerships.** Upstream projects gain from Lightworld's validators finding errors in
+- **Partnerships.** Upstream projects gain from WikiWorldModel's validators finding errors in
   their data. Report what is found, and credit them prominently in the viewer.
 
 ## 11. Roadmap

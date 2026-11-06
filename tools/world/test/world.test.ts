@@ -82,7 +82,7 @@ describe('the world', async () => {
   });
 
   describe('ids carry no meaning', () => {
-    const copy = mkdtempSync(join(tmpdir(), 'lightworld-'));
+    const copy = mkdtempSync(join(tmpdir(), 'wikiworldmodel-'));
     afterAll(() => rmSync(copy, { recursive: true, force: true }));
     it('so moving a file changes nothing', async () => {
       cpSync(WORLD, copy, { recursive: true });

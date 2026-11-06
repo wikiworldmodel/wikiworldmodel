@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lightworld.invalid/schema/source.json",
+  "$id": "https://wikiworldmodel.invalid/schema/source.json",
   "title": "Source",
   "description": "A work: a publication, dataset version, database record, chart, text or inscription. One record per work; claims cite it with a locator.",
   "type": "object",

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lightworld.invalid/schema/manifest.json",
+  "$id": "https://wikiworldmodel.invalid/schema/manifest.json",
   "title": "Manifest",
   "description": "External datasets, pinned by checksum. Each dataset version is also a source.",
   "type": "object",

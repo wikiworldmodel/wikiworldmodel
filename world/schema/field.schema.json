@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://lightworld.invalid/schema/field.json",
+  "$id": "https://wikiworldmodel.invalid/schema/field.json",
   "title": "Field",
   "description": "A continuous quantity over space and time: a grid on a frame, or a series with one value for the whole planet at each time. Its arrays live outside git. A derived field is declared, never stored.",
   "type": "object",

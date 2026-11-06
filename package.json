@@ -1,5 +1,5 @@
 {
-  "name": "lightworld",
+  "name": "wikiworldmodel",
   "private": true,
   "type": "module",
   "description": "A 4D world model of Earth, life and civilization, and a viewer for flying through it.",

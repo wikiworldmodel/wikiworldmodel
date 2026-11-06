@@ -20,7 +20,7 @@ const cite = `source: { ref: src:test/report, loc: p. 1 }`;
 const entity = (id: string, kind: string, body: string) => `id: ${id}\nkind: ${kind}\nauthor: fixture\n${body}`;
 
 async function world(files: Record<string, string>) {
-  const root = mkdtempSync(join(tmpdir(), 'lightworld-fixture-'));
+  const root = mkdtempSync(join(tmpdir(), 'wikiworldmodel-fixture-'));
   dirs.push(root);
   for (const [path, text] of Object.entries({ 'sources/report.yaml': SOURCE, ...files })) {
     mkdirSync(dirname(join(root, path)), { recursive: true });

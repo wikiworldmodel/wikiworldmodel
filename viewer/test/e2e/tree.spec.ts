@@ -7,11 +7,11 @@ import { buildFile, idle, latestBuild } from './helpers.ts';
 
 const year = (ma: number) => Math.round(1950 - ma * 1e6);
 
-const rows = (page: import('@playwright/test').Page) => page.evaluate(() => window.__lightworld!.tree()!.rows);
+const rows = (page: import('@playwright/test').Page) => page.evaluate(() => window.__wikiworldmodel!.tree()!.rows);
 const open = async (page: import('@playwright/test').Page, query: string) => {
   await page.goto(`/?b=${latestBuild()}&tree=1&${query}`);
   await idle(page);
-  await page.waitForFunction(() => window.__lightworld!.tree());
+  await page.waitForFunction(() => window.__wikiworldmodel!.tree());
   await idle(page);
 };
 
@@ -22,8 +22,8 @@ test('T opens the panel, the link keeps it open, and its close button shuts it',
   await page.keyboard.press('t');
   await idle(page);
   await expect(page.locator('.tree-panel')).toBeVisible();
-  expect((await page.evaluate(() => window.__lightworld!.state())).tree).toBe(true);
-  await page.waitForFunction(() => window.__lightworld!.url().includes('tree=1'));
+  expect((await page.evaluate(() => window.__wikiworldmodel!.state())).tree).toBe(true);
+  await page.waitForFunction(() => window.__wikiworldmodel!.url().includes('tree=1'));
   await page.locator('.tree-panel .close').click();
   await expect(page.locator('.tree-panel')).toBeHidden();
 });
@@ -33,7 +33,7 @@ test('the panel and the globe agree at every time, by the same rule', async ({ p
   const f = buildFile<TreeFile>('tree.json');
   const byId = new Map(f.nodes.map((n) => [n.id, n]));
   for (const ma of [3000, 500, 300, 230, 150, 66.5, 60, 1]) {
-    await page.evaluate((t) => window.__lightworld!.set({ t }), year(ma));
+    await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), year(ma));
     await idle(page);
     const t = year(ma);
     for (const r of await rows(page)) {
@@ -73,7 +73,7 @@ test('a taxon’s bar starts within the solver’s bounds, in the picture chosen
   if (withVariant) {
     const [key, variant] = Object.entries(withVariant.variants!).find(([, v]) => v.start.best !== withVariant.time.start.best)!;
     const scenario = key.includes('#') ? { picks: key.split('+') } : { alt: key.split('+') };
-    await page.evaluate((s) => window.__lightworld!.set(s), scenario);
+    await page.evaluate((s) => window.__wikiworldmodel!.set(s), scenario);
     await idle(page);
     const moved = (await rows(page)).find((r) => r.id === withVariant.id)!;
     expect(moved.start).toBe(variant.start.best);
@@ -82,22 +82,22 @@ test('a taxon’s bar starts within the solver’s bounds, in the picture chosen
 
 test('choosing a group lights up its fossils on the globe and along the time control', async ({ page }) => {
   await open(page, `t=${year(66.5)}&lat=50&lon=-85&d=2.6`);
-  await page.evaluate(() => window.__lightworld!.set({ sel: 'life/taxa/dinosauria' }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ sel: 'life/taxa/dinosauria' }));
   await idle(page);
-  const lit = await page.evaluate(() => window.__lightworld!.tree()!);
+  const lit = await page.evaluate(() => window.__wikiworldmodel!.tree()!);
   expect(lit.litRows).toBeGreaterThan(100);
   // Clearing it puts them out.
-  await page.evaluate(() => window.__lightworld!.set({ sel: null }));
+  await page.evaluate(() => window.__wikiworldmodel!.set({ sel: null }));
   await idle(page);
-  expect((await page.evaluate(() => window.__lightworld!.tree()!)).litRows).toBe(0);
+  expect((await page.evaluate(() => window.__wikiworldmodel!.tree()!)).litRows).toBe(0);
   // A row of the panel chooses its taxon.
   const f = buildFile<TreeFile>('tree.json');
   const marked = f.members.map((m) => f.nodes[m.taxon].id);
   expect(marked.length).toBeGreaterThan(5);
   const fromMarker = marked[0];
-  await page.evaluate((id) => window.__lightworld!.set({ sel: id }), fromMarker);
+  await page.evaluate((id) => window.__wikiworldmodel!.set({ sel: id }), fromMarker);
   await idle(page);
-  const again = await page.evaluate(() => window.__lightworld!.tree()!);
+  const again = await page.evaluate(() => window.__wikiworldmodel!.tree()!);
   expect(again.litMarkers.length).toBeGreaterThan(0);
   for (const id of again.litMarkers) expect(f.members.some((m) => m.entity === id)).toBe(true);
   // The marker it lights is shown as lit, wherever its time is.

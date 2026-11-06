@@ -15,7 +15,7 @@ const SOURCE = `id: src:test/report\ntype: publication\nkind: measurement\ncitat
 
 /** A world of a source plus the given files, validated without the plate-model check. */
 async function check(files: Record<string, string>): Promise<Issue[]> {
-  const root = mkdtempSync(join(tmpdir(), 'lightworld-fixture-'));
+  const root = mkdtempSync(join(tmpdir(), 'wikiworldmodel-fixture-'));
   dirs.push(root);
   for (const [path, text] of Object.entries({ 'sources/report.yaml': SOURCE, ...files })) {
     mkdirSync(dirname(join(root, path)), { recursive: true });
