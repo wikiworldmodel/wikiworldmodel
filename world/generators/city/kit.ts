@@ -2,6 +2,7 @@
 // written in its own coordinates (its front towards +y), and the parts everything is made of.
 // Each vertex carries a material and an entity: the shader draws the one and looks up when the
 // other stood, so a building can rise and fall without any geometry being rebuilt.
+import type { Part } from '../../../core/fingerprint.ts';
 import { bearingVector, ccw, clamp, dcos, dsin, inPoly, minBox, PI, triangulate, TAU, type Obb, type Poly } from './math.ts';
 
 export const MAT = {
@@ -163,6 +164,36 @@ export class Mesh {
   arrays(): { vertices: ArrayBuffer; indices: Uint32Array } {
     return { vertices: this.buf.slice(0, this.verts * STRIDE), indices: this.i.slice(0, this.count) };
   }
+}
+
+/**
+ * A mesh's vertices and indices as parts of a fingerprint (core/fingerprint.ts): positions, normals, light and
+ * texture coordinates within the tolerance; materials, tints, entities and the indices exactly.
+ */
+export function meshParts(vertices: ArrayBuffer, indices: ArrayLike<number>, prefix = 'mesh'): Part[] {
+  const n = vertices.byteLength / STRIDE;
+  const f = new Float32Array(vertices);
+  const b = new Uint8Array(vertices);
+  const s = new Uint16Array(vertices);
+  const pos = new Float32Array(n * 3);
+  const uv = new Float32Array(n * 2);
+  const shade = new Uint8Array(n * 4);
+  const which = new Uint32Array(n * 3);
+  for (let i = 0; i < n; i++) {
+    pos.set(f.subarray(i * 7, i * 7 + 3), i * 3);
+    uv.set(f.subarray(i * 7 + 4, i * 7 + 6), i * 2);
+    shade.set(b.subarray(i * STRIDE + 12, i * STRIDE + 16), i * 4);
+    which[i * 3] = b[i * STRIDE + 24];
+    which[i * 3 + 1] = b[i * STRIDE + 25];
+    which[i * 3 + 2] = s[i * 14 + 13];
+  }
+  return [
+    { name: `${prefix}.position`, values: pos },
+    { name: `${prefix}.uv`, values: uv },
+    { name: `${prefix}.shade`, values: shade },
+    { name: `${prefix}.material`, values: which, identity: true },
+    { name: `${prefix}.indices`, values: indices, identity: true },
+  ];
 }
 
 // ——— Flat parts ———

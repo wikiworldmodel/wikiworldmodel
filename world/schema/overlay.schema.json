@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://wikiworldmodel.invalid/schema/overlay.json",
+  "title": "Overlay",
+  "description": "Claims about a row of a dataset (docs/STRUCTURE.md section 3.1). A record cannot be written into a dataset, so an overlay names a row as its subject, src:<dataset>#<key>, and corrects it (a competing claim ranked preferred, with a note saying why), corroborates it (the same value from another source), or ties it to the entity it is (same_as). The row stays as the dataset gives it. One file per row.",
+  "type": "object",
+  "required": ["row"],
+  "properties": {
+    "row": { "type": "string", "pattern": "^src:[a-z0-9][a-z0-9.-]*(/[a-z0-9][a-z0-9.-]*)*#\\S+$", "description": "The row: its dataset and its key, as the inspect panel gives it" },
+    "author": { "$ref": "defs.json#/$defs/author", "description": "The author of this file's claims, unless a claim says otherwise" },
+    "same_as": { "$ref": "defs.json#/$defs/entity_id", "description": "The entity this row is a row of: a record that adopts it" },
+    "claims": {
+      "type": "object",
+      "propertyNames": { "$ref": "defs.json#/$defs/key" },
+      "additionalProperties": { "$ref": "entity.json#/$defs/claim" }
+    },
+    "note": { "type": "string" }
+  },
+  "additionalProperties": false,
+  "anyOf": [{ "required": ["claims"] }, { "required": ["same_as"] }]
+}

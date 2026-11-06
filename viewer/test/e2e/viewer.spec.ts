@@ -113,13 +113,14 @@ test('evidence mode marks reconstruction and procedural content', async ({ page 
   expect((await canvasPng(page)).equals(plain)).toBe(false);
 });
 
-test('the browser runs the cloud and surface generators to the same bytes as the build', async ({ page }) => {
+test('the browser runs the cloud and surface generators to what the build made, within the tolerance', async ({ page }) => {
   await page.goto(`/?b=${latestBuild()}`);
   await idle(page);
   for (const name of ['clouds', 'surface'] as const) {
     const out = await page.evaluate((n) => window.__wikiworldmodel![n], name);
-    expect(out.actual).toBe(out.expected);
-    expect(out.expected).toMatch(/^[0-9a-f]{64}$/);
+    expect(out.expected?.pixels?.n, name).toBeGreaterThan(0);
+    expect(out.actual, name).not.toBeNull();
+    expect(out.problems, name).toEqual([]);
   }
 });
 

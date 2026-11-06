@@ -106,6 +106,33 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
     const { formsWanted } = await import('./formsWanted.ts');
     console.log(formsWanted(world, args));
   },
+  // The first step of checking a claim: its quote found in the text its source was read in. Records the step on
+  // each claim whose quote is found: `npm run world -- quote-check src:… <text file> [--by machine:<tool>] [--dry-run]`.
+  async 'quote-check'(args) {
+    const { runQuoteCheck } = await import('./quotecheck.ts');
+    return runQuoteCheck(await loadWorld(), args);
+  },
+  // Every claim about a subject, a record or a row of a dataset, with where each comes from and which the default
+  // picture shows (*): `npm run world -- claims src:noaa-hazards-2026-11-04#eruption:5238`, or an entity's id.
+  async claims([ref]) {
+    if (!ref) throw new Error('usage: world claims <entity id | src:<dataset>#<row key>>');
+    const world = await loadWorld();
+    const { ClaimIndex } = await import('./claimindex.ts');
+    const { parseRef } = await import('../../../core/refs.ts');
+    const r = parseRef(ref);
+    const index = await ClaimIndex.of(world, r.type === 'row' ? [r.id] : []);
+    if (r.type === 'row' && !index.tables.has(r.id)) console.log(`${r.id} is not read as rows here: fetch it, or give its field a rows: section`);
+    const cs = index.of(ref);
+    if (!cs.length) {
+      console.log(`no claims about ${ref}`);
+      return 1;
+    }
+    for (const c of cs) {
+      const pick = index.chosen(c.subject, c.prop);
+      const shown = pick && pick.origin === c.origin && pick.where === c.where && JSON.stringify(pick.value) === JSON.stringify(c.value) ? '*' : ' ';
+      console.log(`${shown} ${c.prop.padEnd(14)} ${JSON.stringify(c.value)}\n    ${c.origin}, ${c.rank}, ${c.status}, ${c.level}; ${c.author}; ${c.where}${c.note ? `\n    ${c.note}` : ''}`);
+    }
+  },
   async validate(args) {
     const { runValidate } = await import('./validate/index.ts');
     return runValidate(args);

@@ -1,10 +1,10 @@
 // Pass criteria: the tile set is complete, and holds what the world says. They read the build that
 // `npm run build:world` made; that building it again gives the same bytes is reproducible.test.ts.
-import { createHash } from 'node:crypto';
 import { readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { decodeTile } from '../../../core/container.ts';
+import { bytesPrint, fingerprintProblems } from '../../../core/fingerprint.ts';
 import { fromMa, PRESENT_YEAR, toMa } from '../../../core/time.ts';
 import { featureTileUrl, type FeatureIndex } from '../../../core/featuretiles.ts';
 import { cityKind, type Feature, type TileHeader, type Tileset } from '../../../core/tileset.ts';
@@ -68,10 +68,10 @@ describe('build', () => {
     const g = header.generators.find((x) => x.generator === GENERATOR)!;
     expect([g.slot, g.seed]).toEqual(['globe', 'earth/clouds']);
     const out = generateClouds(g.seed, g.params as unknown as CloudParams);
-    expect(createHash('sha256').update(out).digest('hex')).toBe(g.outputSha256);
+    expect(fingerprintProblems(g.output, bytesPrint('pixels', out))).toEqual([]);
     const sg = header.generators.find((x) => x.generator === SURFACE)!;
     expect([sg.slot, sg.seed]).toEqual(['globe', 'earth/surface']);
-    expect(createHash('sha256').update(generateSurface(sg.seed, sg.params as unknown as SurfaceParams)).digest('hex')).toBe(sg.outputSha256);
+    expect(fingerprintProblems(sg.output, bytesPrint('pixels', generateSurface(sg.seed, sg.params as unknown as SurfaceParams)))).toEqual([]);
   });
 
   it('records what it was made from: commit, datasets, generators, alternatives shown, license filter', () => {

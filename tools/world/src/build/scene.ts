@@ -5,6 +5,7 @@
 // can be held to them. No ground and no organism is stored for either.
 import { atlasHasLand, atlasList, type AtlasBin, type AtlasIndex } from '../../../../core/atlas.ts';
 import { climateClass, CLIMATE_LABEL, decodeNode, type ClimateRule } from '../../../../core/climate.ts';
+import type { Fingerprint } from '../../../../core/fingerprint.ts';
 import { canonicalForm, type Form } from '../../../../core/form.ts';
 import { coverAt, type PlanetFile } from '../../../../core/planet.ts';
 import { rotate, toLatLon, conj, unitVector } from '../../../../core/quat.ts';
@@ -218,7 +219,7 @@ export function buildScene(s: Solved, elevation: Snapshot[], climate: ClimateKey
     generator: { generator: gen.id, version: gen.version, seed: seedText, basis: 'procedural', params: { ...rest, ground: { ...params.ground, flow: site.flow } } as unknown as Record<string, unknown> },
   };
   const stream = new SceneStream(spec, FULL_BUDGET);
-  const file: SceneFileV2 = { format: 'lightworld-scene-file@2', spec, sha256: sha256(stream.digestBytes()), focus: stream.plan.focus, to_river: stream.plan.toRiver, water_level: stream.look.water };
+  const file: SceneFileV2 = { format: 'lightworld-scene-file@2', spec, print: stream.print(), focus: stream.plan.focus, to_river: stream.plan.toRiver, water_level: stream.look.water };
   log(`scene   ${site.id}: ${taxa.length} taxa drawn and ${omitted.length} left out; water at ${stream.look.water} m; ${climateNow}; at ${place.lat}, ${place.lon}`);
   return { file };
 }
@@ -260,11 +261,12 @@ export interface Witness {
   lat: number;
   lon: number;
   t: number;
-  sha256: string;
+  /** what the browser's scene of this place must agree with, within the tolerance */
+  print: Fingerprint;
   taxa: number;
 }
 
-/** A few places the browser is held to: the same scene, to the byte, as the build makes here. */
+/** A few places the browser is held to: the same scene, within the tolerance of core/fingerprint.ts, as the build makes here. */
 export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, string>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, log: (m: string) => void): Witness[] {
   const forms = JSON.parse(files.get(index.forms)!) as Record<string, Form>;
   const out: Witness[] = [];
@@ -288,7 +290,7 @@ export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, strin
       const spec = placeSpec(pw, lat, lon, toMa(bin.slice));
       if (!spec) continue;
       const stream = new SceneStream(spec, FULL_BUDGET);
-      out.push({ lat, lon, t: bin.slice, sha256: sha256(stream.digestBytes()), taxa: spec.taxa.length });
+      out.push({ lat, lon, t: bin.slice, print: stream.print(), taxa: spec.taxa.length });
       log(`witness ${ref.name}: ${spec.taxa.length} taxa at ${lat}, ${lon}, ${spec.biome.climate}, water ${stream.look.water} m`);
     }
   });

@@ -18,6 +18,16 @@ data:
   as: community
 basis: reconstruction
 interp: step
+# The snapshot's rows are claims (docs/STRUCTURE.md section 3.1), one an occurrence, keyed by the database's
+# occurrence number: the name it was identified as, its formation, its collection's place today and its ages.
+rows:
+  kind: occurrence
+  key: "occ:{occurrence}"
+  claims:
+    identified_as: { column: taxon_name }
+    formation: { column: formation }
+    location: { column: [lat, lng], as: point, method: compilation }
+    date: { column: [max_ma, min_ma], as: ma-range, method: stratigraphic }
 params:
   grid_deg: 4
   graph_deg: 2

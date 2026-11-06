@@ -8,6 +8,7 @@
 // then split into lots. Everything is seeded by place, not by order, and uses only exact
 // arithmetic, so editing one temple changes only the blocks that touch it.
 import type { CityFile, CityStructure } from '../../../../core/city.ts';
+import { fingerprint, type Fingerprint } from '../../../../core/fingerprint.ts';
 import type { GroundSampler } from '../../city/ground.ts';
 import { MAT, Mesh, hip, ridged } from '../../city/kit.ts';
 import { area, centroid, ccw, clamp, clipHalf, convexHull, hash2, hashString, inPoly, minBox, Rng, smoothstep, type Poly } from '../../city/math.ts';
@@ -52,16 +53,22 @@ export interface FabricPlan {
   domain: Poly;
 }
 
-/** The plan as bytes: what the build and the browser must agree on. */
-export function planBytes(p: FabricPlan): Uint8Array {
-  const parts: Uint8Array[] = [p.offset, p.points, p.base, p.top, p.type, p.region, p.style, p.trees, p.treeType].map((a) => new Uint8Array(a.buffer, a.byteOffset, a.byteLength));
-  const out = new Uint8Array(parts.reduce((n, x) => n + x.length, 0));
-  let o = 0;
-  for (const x of parts) {
-    out.set(x, o);
-    o += x.length;
-  }
-  return out;
+/**
+ * What the build and the browser must agree on: which lots there are and what stands on them, exactly, and
+ * where and how tall, within the tolerance (core/fingerprint.ts).
+ */
+export function planPrint(p: FabricPlan): Fingerprint {
+  return fingerprint([
+    { name: 'offset', values: p.offset, identity: true },
+    { name: 'points', values: p.points },
+    { name: 'base', values: p.base },
+    { name: 'top', values: p.top },
+    { name: 'type', values: p.type, identity: true },
+    { name: 'region', values: p.region, identity: true },
+    { name: 'style', values: p.style, identity: true },
+    { name: 'trees', values: p.trees },
+    { name: 'tree_type', values: p.treeType, identity: true },
+  ]);
 }
 
 const alive = (s: CityStructure, y: number) => (s.time.start.best ?? -Infinity) <= y && y <= (s.time.end.best ?? Infinity);

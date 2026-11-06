@@ -2,12 +2,12 @@
 // the snapshots and the records; the same bytes come out of the same spec; a list's tiers are true; no
 // vegetation before the land-plants claim; no forest fossil in a reconstructed desert; and each taxon's bar in
 // the tree starts where the solver says it may.
-import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { beforeAll, describe, expect, it } from 'vitest';
 import { atlasList, TIER, type AtlasBin, type AtlasIndex } from '../../../core/atlas.ts';
 import { decodeTile } from '../../../core/container.ts';
+import { fingerprintProblems, type Fingerprint } from '../../../core/fingerprint.ts';
 import { climateClass, decodeNode, type ClimateHeader, type ClimateRule } from '../../../core/climate.ts';
 import { coverAt, type PlanetFile } from '../../../core/planet.ts';
 import { conj, rotate, toLatLon, unitVector } from '../../../core/quat.ts';
@@ -25,7 +25,6 @@ import { loadWorld, type World } from '../src/world.ts';
 import { latestBuild } from './helpers.ts';
 
 const json = <T>(name: string): T => JSON.parse(readFileSync(join(latestBuild(), name), 'utf8')) as T;
-const sha = (b: Uint8Array) => createHash('sha256').update(b).digest('hex');
 
 let world: World;
 let file: SceneFileV2;
@@ -143,8 +142,8 @@ describe('a living scene with its own formation', () => {
     }
   });
 
-  it('makes the same bytes from the same spec, as the build recorded', () => {
-    expect(sha(stream.digestBytes())).toBe(file.sha256);
+  it('makes the same scene from the same spec, as the build recorded, within the tolerance', () => {
+    expect(fingerprintProblems(file.print, stream.print())).toEqual([]);
     expect(file.focus).toEqual(stream.plan.focus);
   });
 
@@ -317,10 +316,12 @@ describe('the atlas', () => {
   });
 
   it('makes a place\'s scene the same as a witness of it in the build', async () => {
-    const list = json<{ lat: number; lon: number; t: number; sha256: string; taxa: number }[]>('life/witness.json');
+    const list = json<{ lat: number; lon: number; t: number; print: Fingerprint; taxa: number }[]>('life/witness.json');
     expect(list.length).toBeGreaterThanOrEqual(3);
     for (const w of list) {
-      expect(w.sha256).toMatch(/^[0-9a-f]{64}$/);
+      // Who stands in the cell it arrives at, exactly, and the ground and a mesh within the tolerance.
+      expect(w.print['cell.taxon']?.hash).toMatch(/^[0-9a-f]{8}$/);
+      expect(w.print['ground.0']?.n).toBeGreaterThan(0);
       expect(w.taxa).toBeGreaterThan(0);
     }
   });

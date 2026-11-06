@@ -6,7 +6,8 @@ import { cellBox, structureEntity } from '../../../world/generators/city/cells.t
 import { GroundSampler } from '../../../world/generators/city/ground.ts';
 import { getBytes, getJSON, type Build } from '../data.ts';
 import type { GL } from '../gl/context.ts';
-import { CellScene, sha256Hex } from './cellscene.ts';
+import { settlePrint } from '../../../core/fingerprint.ts';
+import { CellScene } from './cellscene.ts';
 import { Skyline } from './skyline.ts';
 import type { FromWorker, ToWorker } from './worker.ts';
 
@@ -32,7 +33,7 @@ export class CityScene extends CellScene {
   async load(): Promise<void> {
     const b = this.build;
     this.file = await getJSON<CityFile>(b.base + this.path);
-    this.plan.expected = this.file.fabric.outputSha256;
+    this.plan.expected = this.file.fabric.output;
     const heights = await Promise.all(this.file.ground.map(async (g) => new Int16Array(await getBytes(b.base + g.url))));
     this.ground = new GroundSampler(this.file.ground.map((g, i) => ({ ...g, z: heights[i] })));
     this.renderer.setGround(this.file.ground, heights);
@@ -55,10 +56,8 @@ export class CityScene extends CellScene {
           this.tops = m.tops;
           this.skyline = Skyline.of(this.file.structures, m.tops, { offset: m.lotOffset, points: m.lotPoints, top: m.lotTop, valid });
           for (const key of m.cells) this.cells.set(key, { key, box: cellBox(key), asked: [false, false], usedAt: 0 });
-          void sha256Hex(m.bytes).then((h) => {
-            this.plan.actual = h;
-            if (h !== this.plan.expected) console.error(`the fabric generator's plan differs from the build's: ${h} vs ${this.plan.expected}`);
-          });
+          const problems = settlePrint(this.plan, m.print);
+          if (problems.length) console.error(`the fabric generator's plan differs from the build's: ${problems.join('; ')}`);
           this.ready = true;
           resolve();
           this.onChange();

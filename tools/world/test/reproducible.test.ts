@@ -1,30 +1,16 @@
-// Pass criterion: builds are reproducible, so building the same commit again makes the same bytes.
+// Pass criterion: builds are reproducible in meaning (docs/STRUCTURE.md section 3.5). Building the same
+// commit again makes the same files, with the same records, ids and words, and the same numbers within a
+// tolerance; generators may use any arithmetic, so their bytes may differ in the last bits of a float.
 // It builds the world once more and compares with the build `npm run build:world` made, which takes
 // minutes, so it runs nightly (.github/workflows/nightly.yml), not on every change.
-import { createHash } from 'node:crypto';
-import { readdirSync, readFileSync, statSync } from 'node:fs';
-import { join, relative } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { runBuild } from '../src/build/index.ts';
 import { latestBuild } from './helpers.ts';
-
-function digest(dir: string): Map<string, string> {
-  const out = new Map<string, string>();
-  const walk = (d: string) => {
-    for (const name of readdirSync(d).sort()) {
-      const p = join(d, name);
-      if (statSync(p).isDirectory()) walk(p);
-      else out.set(relative(dir, p), createHash('sha256').update(readFileSync(p)).digest('hex'));
-    }
-  };
-  walk(dir);
-  return out;
-}
+import { meaningOf, meaningProblems } from './meaning.ts';
 
 describe('build', () => {
-  it('is reproducible: building again makes the same bytes', async () => {
-    const first = latestBuild();
-    const before = digest(first);
+  it('is reproducible: building again makes a build that means the same', async () => {
+    const before = meaningOf(latestBuild());
     const quiet = console.log;
     console.log = () => {};
     try {
@@ -32,7 +18,6 @@ describe('build', () => {
     } finally {
       console.log = quiet;
     }
-    expect(latestBuild()).toBe(first);
-    expect(digest(first)).toEqual(before);
+    expect(meaningProblems(before, meaningOf(latestBuild()))).toEqual([]);
   }, 1_800_000);
 });

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://wikiworldmodel.invalid/schema/generator.json",
   "title": "Generator",
-  "description": "Versioned code plus parameters plus a seed, run identically by the build and the client.",
+  "description": "Versioned code plus parameters plus a seed, run by the build and the client, whose outputs agree within the tolerance of core/fingerprint.ts.",
   "type": "object",
   "required": ["id", "type", "title", "version", "code", "runs_in", "outputs", "inputs", "slots", "params"],
   "properties": {

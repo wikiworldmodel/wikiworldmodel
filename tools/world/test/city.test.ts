@@ -15,7 +15,8 @@ import { raise, type FormContext } from '../../../world/generators/city/forms.ts
 import { GroundSampler } from '../../../world/generators/city/ground.ts';
 import { Mesh, STRIDE } from '../../../world/generators/city/kit.ts';
 import { area, centroid, clipHalf, convexHull, dcos, dsin, hash2, minBox, triangulate } from '../../../world/generators/city/math.ts';
-import { fabricPlan, lotPoly, planBytes } from '../../../world/generators/rome/fabric/v1.ts';
+import { fingerprintProblems } from '../../../core/fingerprint.ts';
+import { fabricPlan, lotPoly, planPrint } from '../../../world/generators/rome/fabric/v1.ts';
 import { Skyline } from '../../../viewer/src/city/skyline.ts';
 import { autoTilt, groundHit, localView, projectLocal, rayOf, sunAt } from '../../../viewer/src/city/view.ts';
 import { fromSearch, quantize, toSearch, type ViewState } from '../../../viewer/src/state.ts';
@@ -544,7 +545,7 @@ function smallCity(extra: CityStructure[] = []): CityFile {
         { id: 'x/west', label: 'West', at: [-450, 0], insulae: 4000, domus: 100 },
         { id: 'x/east', label: 'East', at: [450, 0], insulae: 1000, domus: 100 },
       ],
-      outputSha256: '',
+      output: {},
     },
   };
 }
@@ -552,8 +553,8 @@ function smallCity(extra: CityStructure[] = []): CityFile {
 describe('the generated fabric', () => {
   const ground = flatGround();
 
-  it('is the same every time, to the byte', () => {
-    expect(planBytes(fabricPlan(smallCity(), ground))).toEqual(planBytes(fabricPlan(smallCity(), ground)));
+  it('is the same every time: the same lots exactly, and the same places within the tolerance', () => {
+    expect(fingerprintProblems(planPrint(fabricPlan(smallCity(), ground)), planPrint(fabricPlan(smallCity(), ground)))).toEqual([]);
   });
 
   it('builds on nothing real: no monument standing at its date, no garden, no river, no street', () => {
@@ -600,7 +601,7 @@ describe('the generated fabric', () => {
     // A change of height changes nothing.
     const taller = smallCity();
     taller.structures.find((s) => s.id === 'x/temple')!.height = 40;
-    expect(planBytes(fabricPlan(taller, ground))).toEqual(planBytes(a));
+    expect(planPrint(fabricPlan(taller, ground))).toEqual(planPrint(a));
     // Adding a temple changes what is near it, and leaves the far side of the city as it was.
     const edited = fabricPlan(smallCity([structure('x/new', 'building/temple', { type: 'temple' }, [rect(-400, -300, 30, 40)])]), ground);
     const key = (p: typeof a, i: number) => lotPoly(p, i).join();

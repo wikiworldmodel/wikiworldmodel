@@ -2,8 +2,9 @@
 // looked at: each 400 m cell makes what stands in it from hashes of where it is, so the scene has no edge
 // to speak of, and what a far view shows is the top of the same list a near view shows in full. The records
 // say which taxa could be here and how big they grew; this says where each stands, how many there are,
-// what it is doing and what colour it is, all invented and marked so. Only + − × ÷, square roots and integer
-// operations, so that the build and every browser make the same bytes.
+// what it is doing and what colour it is, all invented and marked so. Written with only + − × ÷, square roots and
+// integer operations; the build and every browser are held to agree within the tolerance of core/fingerprint.ts.
+import type { Part } from '../../../../core/fingerprint.ts';
 import type { Form, Pose } from '../../../../core/form.ts';
 import type { LivingTaxon, ReliefPatch, SceneSpec } from '../../../../core/scene.ts';
 import { GroundSampler, type GroundGridData } from '../../city/ground.ts';
@@ -439,7 +440,7 @@ export function densityOf(t: LivingTaxon, form: Form, a: LivingParams['animals']
   const L = t.length ?? 1;
   const mass = t.mass ?? L * L * L * (form.mass_length ?? a.mass_length);
   const m = mass < 0.001 ? 0.001 : mass;
-  // Mass to the −¾, by square roots: it must be the same to the byte everywhere.
+  // Mass to the −¾, by square roots.
   const root = Math.sqrt(Math.sqrt(m));
   const rule = a.density / (root * root * root);
   const prey = /carnivor|insectiv|piscivor/.test(t.diet ?? '') ? a.predators : 1;
@@ -712,15 +713,16 @@ export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook
 }
 
 /** A cell's rows as bytes: what the build and the browser hash. */
-export function cellBytes(c: CellRows): Uint8Array {
-  const parts: Uint8Array[] = [c.place, c.taxon, c.pose, c.shade, c.phase, c.rank].map((a) => new Uint8Array(a.buffer, a.byteOffset, a.byteLength));
-  const out = new Uint8Array(parts.reduce((n, x) => n + x.length, 0));
-  let o = 0;
-  for (const x of parts) {
-    out.set(x, o);
-    o += x.length;
-  }
-  return out;
+/** A cell as parts of a fingerprint: who stands in it exactly, and where and how big within the tolerance. */
+export function cellParts(c: CellRows, prefix = 'cell'): Part[] {
+  return [
+    { name: `${prefix}.place`, values: c.place },
+    { name: `${prefix}.taxon`, values: c.taxon, identity: true },
+    { name: `${prefix}.pose`, values: c.pose, identity: true },
+    { name: `${prefix}.shade`, values: c.shade },
+    { name: `${prefix}.phase`, values: c.phase },
+    { name: `${prefix}.rank`, values: c.rank, identity: true },
+  ];
 }
 
 /** The water of a plain, as a sheet at its level: the ground stands above it except where it is cut. The sea needs none. */

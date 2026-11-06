@@ -1,6 +1,7 @@
 // A city as the build writes it and the viewer draws it: its site, its ground, and every
 // structure with the footprint, height and form its records give. Positions are metres on a
 // local grid: x east and y north of the site's origin, z above sea level.
+import type { Fingerprint } from './fingerprint.ts';
 import type { Basis, FeatureTime } from './tileset.ts';
 
 /** What can be said of a building's architecture, and so what its form claim may hold. Unknown parts are the generator's guess. */
@@ -158,7 +159,7 @@ export interface CityFile {
   /** the river, as rings */
   water: number[][];
   islands: number[][];
-  /** the generated housing's constraints and the hash of its plan */
+  /** the generated housing's constraints and the fingerprint of its plan */
   fabric: {
     generator: string;
     version: number;
@@ -166,7 +167,7 @@ export interface CityFile {
     basis: 'procedural';
     params: Record<string, unknown>;
     regions: { id: string; label: string; at: [number, number]; insulae?: number; domus?: number; source?: string }[];
-    outputSha256: string;
+    output: Fingerprint;
   };
 }
 

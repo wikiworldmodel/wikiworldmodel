@@ -4,6 +4,10 @@
 // phase and id#key a claim or relation. Inside an entity's own file, @phase and #key are
 // shorthand for that entity's parts.
 //
+// A row of a dataset is addressed inside its dataset: src:<dataset>#<key>, the key as the dataset's
+// field makes it, its characters percent-encoded where a reference would misread them
+// (docs/STRUCTURE.md section 3.1).
+//
 // Ids carry no meaning: this module splits a reference into the record it names and the
 // part, and nothing reads anything into the id itself.
 
@@ -19,7 +23,17 @@ const PART = /^[a-z0-9][a-z0-9-]*$/;
 export type Ref =
   | { type: 'entity'; id: string; phase?: string; part?: string }
   | { type: RecordType; id: string }
+  | { type: 'row'; id: string; key: string }
   | { type: 'external'; scheme: string; id: string };
+
+/** A row of a dataset: src:<dataset>#<key>. */
+export const ROW_REF = /^(src:[a-z0-9][a-z0-9.-]*(?:\/[a-z0-9][a-z0-9.-]*)*)#(\S+)$/;
+
+/** A row's key as it is written in a reference: only what a reference would misread is percent-encoded. */
+export const encodeRowKey = (key: string) => key.replace(/[%#\s]/g, (c) => encodeURIComponent(c));
+
+/** A row's address: its dataset and its key. */
+export const rowRef = (dataset: string, key: string) => `${dataset}#${encodeRowKey(key)}`;
 
 export class RefError extends Error {}
 
@@ -34,6 +48,16 @@ export function parseRef(s: string, self?: string): Ref {
   if (colon > 0) {
     const scheme = s.slice(0, colon);
     if ((RECORD_PREFIXES as readonly string[]).includes(scheme)) {
+      const row = scheme === 'src' ? ROW_REF.exec(s) : null;
+      if (row) {
+        let key: string;
+        try {
+          key = decodeURIComponent(row[2]);
+        } catch {
+          throw new RefError(`malformed row key in "${s}"`);
+        }
+        return { type: 'row', id: row[1], key };
+      }
       if (!RECORD_ID.test(s)) throw new RefError(`malformed ${scheme}: reference "${s}"`);
       return { type: scheme as RecordType, id: s };
     }

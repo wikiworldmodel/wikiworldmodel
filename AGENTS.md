@@ -81,9 +81,11 @@ Figshare, PANGAEA, CEDA, publishers' sites, NOAA, OpenTopography, INGV. If some 
    [Research](#research)). Note each fact with its source, locator and verbatim quote as you go.
 3. **Write the records** in [world/](world/): one entity per file, claims and relations in their
    subject's file, sources one per work.
-4. **Check quotes against the texts** you retrieved, by script, not by eye: every `quote` must be
-   a substring of the source text (after normalizing whitespace). Record what you checked in
-   the source's `verified:` note.
+4. **Check quotes against the texts** you retrieved, by script, not by eye: save the text you read
+   and run `npm run world -- quote-check src:… <text file>`. Every `quote` must be found in it
+   (after normalizing whitespace and typography); the command lists any that are not, and records
+   the `quoted` step on each claim whose quote it finds (see [Checking](#how-far-a-claim-has-been-checked)).
+   Say what you checked in the source's `verified:` note too.
 5. **Validate.** `npm run validate -- --verbose`. Fix every error and warning; read the notes
    (wanted records, and competing claims that contradict the rest of the world).
 6. **Build and look**, if you can: `npm run build:world`, then open the place and time in the
@@ -273,6 +275,38 @@ day, such as OpenHistoricalMap or the PBDB, is kept as a dated snapshot in
 (`npm run world -- ohm-snapshot`, `npm run world -- pbdb-snapshot "Hell Creek"`). A taxon written by
 hand adopts the database's by its number: `same_as: { pbdb: "txn:38862" }`.
 
+### A row of a dataset
+
+A dataset read as rows (the PBDB's fossils, Cliopatria's states, NOAA's hazards, Glottolog's
+languages, Itiner-e's roads) is a source whose rows are claims. Its field's `rows:` section says
+how a row is keyed and which column gives which property ([tools/world/src/tables.ts](tools/world/src/tables.ts)).
+A row's address is `src:<dataset>#<key>`: the inspect panel shows it, and
+`npm run world -- claims <address>` lists what the row says.
+
+A record can't be written into a dataset, so an **overlay**, one file per row in
+[world/overlays/](world/overlays/), names the row and does one of three things:
+
+- **corrects it:** a claim of the same property, `rank: preferred`, with a `note` saying why the
+  row is wrong and a source for the right value;
+- **corroborates it:** the same value, from another source;
+- **ties it to a record:** `same_as: <entity id>`, the entity it is a row of.
+
+```yaml
+# world/overlays/noaa-hazards/eruption-5238.yaml: the shape of one, not a real correction
+row: src:noaa-hazards-2026-11-04#eruption:5238
+author: machine:claude-code
+claims:
+  date:
+    prop: date
+    value: …
+    source: { ref: src:…, loc: …, quote: … }
+    rank: preferred
+    note: Why the row's year is wrong, in a sentence.
+```
+
+The row stays as the dataset gives it, and the build reads it with the correction applied. Write
+an overlay only for a row you have something to say about; never copy rows into records.
+
 ### A model
 
 A model fills the space between the evidence: code that turns records, datasets and fields into a
@@ -308,6 +342,27 @@ uncertainty: { kind: none, note: "A line with no width." }
 `npm run validate -- --verbose` notes each model and field that no evidence of the world reaches. A
 check against the world's own evidence there is among the most useful work there is.
 
+### How far a claim has been checked
+
+A claim's `status` says whether a person has accepted it. Its `checked:` steps say what has been
+done short of that, each with who did it and how ([core/ladder.ts](core/ladder.ts)):
+
+```yaml
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in renne-2013.txt (sha256 …).", on: "2026-11-06" }
+      - { step: re-read, by: machine:claude-code@reread, how: "Read Table 2 again on its own; same value." }
+```
+
+- **quoted**: the quote was found in the text the source was read in, by script. `quote-check`
+  writes it; don't write it by hand.
+- **re-read**: a second reader read the source on its own and reached the same value. The reader is
+  not the claim's author: a second agent names itself apart, as `machine:claude-code@reread`.
+- **audited**: a person checked it, as part of a sample. Never a machine.
+- **accepted** is the claim's status, set only by a person.
+
+Each step stands on the one below it, and the inspect panel and `coverage.json` show the level a
+claim has reached. Record only steps that were taken.
+
 ### A new term
 
 A kind, property, method or relation type that isn't in the vocabulary is added in the same pull
@@ -337,16 +392,21 @@ write its document in the same form, and make every criterion a test.
   its names, its idioms.
 - **No facts in code.** The renderer, the viewer and the generators read every fact from
   records; a number about the world in code is a bug.
-- **Generators are deterministic.** They are seeded by stable ids and use only + − × ÷, square
-  roots and integer operations, so the build and every browser make the same bytes. A change to
-  a generator's output is a new version, not an edit.
+- **Generators are seeded, not exact.** A generator is seeded by stable slot ids and may use any
+  arithmetic: `Math.*`, libraries, WebAssembly, the GPU. What it makes is compared by its
+  fingerprint ([core/fingerprint.ts](core/fingerprint.ts)): which things there are, exactly, and
+  where and how big, within a tolerance. An individual's identity comes from its slot and seed,
+  never from a computed position, so a link, a click and a promotion keep working when two machines
+  differ in the last bits of a float. A change to a generator's output beyond the tolerance is a
+  new version, not an edit. In the viewer, generators run in a worker, off the page.
 - **Tests.** Unit tests with `npm test`; they run on every pull request, so keep them fast and
   free of builds. Tests of a build go in the `build` group (`vitest.config.ts`). Browser tests
   in three groups, run nightly: `globe`, `city` (drawn with `quality=fast`) and `city-views`
   (full quality). Golden images change only with a change
   that should change them: regenerate them with `--update-snapshots`, look at every diff, and
   say in the pull request why each changed.
-- Builds are reproducible: two builds of the same commit are byte-identical. Keep it so.
+- Builds are reproducible in meaning: two builds of the same commit have the same files, records,
+  ids and words, and the same numbers within a tolerance (`npm run test:reproducible`). Keep it so.
 
 ## Pull requests
 
@@ -376,6 +436,7 @@ Note at the end which agent made the change, and who ran it if a person did.
 
 - Don't cite a source you haven't read, or a page number you didn't see.
 - Don't paraphrase a quote; copy it.
+- Don't record a check you did not make.
 - Don't mark anything `accepted`, or change a claim's rank without saying why.
 - Don't store a date, position or geometry the build can derive.
 - Don't import share-alike, non-commercial or unlicensed data.

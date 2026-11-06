@@ -1,8 +1,8 @@
 // Forms into meshes: what core/form.ts holds as data, drawn on the city's mesh. Each body is written
 // in its own frame, its front towards +y and the ground at z = 0. Lengths along and across the body are
 // shares of its length L, and heights shares of its hip height H unless a part says `zl`; in a head's
-// frame everything is a share of L. Only + − × ÷, square roots and integers, as for every generator, so
-// that the build and the browser make the same bytes. Which parts there are, and the numbers in them,
+// frame everything is a share of L. Written with only + − × ÷, square roots and integers; the build and the
+// browser are held to agree within the tolerance of core/fingerprint.ts. Which parts there are, and the numbers in them,
 // are data: what a taxon looks like is never in this file.
 import type { Form, Part, Pose } from '../../../core/form.ts';
 import { MAT, Mesh, limb } from '../city/kit.ts';

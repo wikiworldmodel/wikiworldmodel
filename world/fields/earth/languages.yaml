@@ -11,3 +11,10 @@ data:
   from: src:glottolog-5.3
   as: languages
 basis: evidence
+# Its rows are claims (docs/STRUCTURE.md section 3.1), keyed by the catalogue's Glottocode.
+rows:
+  kind: language
+  key: "{Glottocode}"
+  claims:
+    name: { column: Name, as: text }
+    location: { column: [Latitude, Longitude], as: point, method: compilation }

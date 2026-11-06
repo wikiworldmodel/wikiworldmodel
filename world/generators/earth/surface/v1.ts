@@ -8,7 +8,8 @@
 //   A  fine texture, for ice and bare rock
 // The output depends only on the seed and the parameters. Like the clouds, the code uses
 // only + − × ÷, floor, Math.sqrt (which ECMAScript requires to be correctly rounded) and
-// 32-bit integer operations, so every JavaScript engine produces the same bytes.
+// 32-bit integer operations; the build and the browser are held to agree within the tolerance of
+// core/fingerprint.ts.
 import { fbm, hash3, hashString, sinCosDeg } from '../clouds/v1.ts';
 
 /** The record this code implements (world/generators/earth/surface.yaml). */

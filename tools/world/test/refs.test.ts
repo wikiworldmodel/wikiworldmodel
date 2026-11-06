@@ -21,3 +21,14 @@ describe('references', () => {
     for (const bad of ['Deccan Traps', 'deccan', 'earth/lips/deccan-traps@main#c1', 'src:', 'src:Bad Id', 'a/b@']) expect(() => parseRef(bad)).toThrow();
   });
 });
+
+describe('rows of datasets (docs/STRUCTURE.md section 3.1)', () => {
+  it('are addressed inside their dataset, with only what a reference would misread encoded', async () => {
+    const { encodeRowKey, rowRef } = await import('../../../core/refs.ts');
+    expect(parseRef('src:pbdb-land-2026-11-05#occ:820351')).toEqual({ type: 'row', id: 'src:pbdb-land-2026-11-05', key: 'occ:820351' });
+    expect(rowRef('src:cliopatria-0.2.1', 'Roman Empire@-27')).toBe('src:cliopatria-0.2.1#Roman%20Empire@-27');
+    expect(parseRef(rowRef('src:cliopatria-0.2.1', 'Roman Empire@-27'))).toEqual({ type: 'row', id: 'src:cliopatria-0.2.1', key: 'Roman Empire@-27' });
+    expect(encodeRowKey('a#b%c')).toBe('a%23b%25c');
+    expect(() => parseRef('src:x#%E0%A4%A')).toThrow(/malformed row key/);
+  });
+});

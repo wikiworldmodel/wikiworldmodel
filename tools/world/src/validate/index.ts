@@ -11,12 +11,14 @@ import { join, resolve } from 'node:path';
 import { Ajv2020 } from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import { formProblem } from '../../../../core/city.ts';
+import { ladderCounts, LEVELS, STEPS } from '../../../../core/ladder.ts';
 import { parseRef, RefError, splitRef } from '../../../../core/refs.ts';
 import { conflictChanged, conflictIn, type Constraint, type Conflict, type Solution } from '../../../../core/stn.ts';
 import { parseLag, parseTime, TimeError, toMa } from '../../../../core/time.ts';
 import { available, buildNetwork, chosen, pictureNetwork, claimGroup, claimGroups, conflictInScenario, pictures, pointOf, scenariosOf, solveScenario, type Scenario } from '../chronology.ts';
 import { resolvePoints } from '../importer.ts';
 import { REPO, WORLD } from '../paths.ts';
+import { readTable, rowClaims, type Table } from '../tables.ts';
 import { kindIs, loadWorld, schemaDir, type Claim, type Entity, type Field, type Input, type Model, type Relation, type World } from '../world.ts';
 
 export interface Issue {
@@ -39,7 +41,7 @@ export interface Report {
 }
 
 const SCHEMA = 'https://wikiworldmodel.invalid/schema/';
-const SCHEMAS = ['defs', 'entity', 'source', 'frame', 'field', 'model', 'generator', 'alternative', 'manifest'];
+const SCHEMAS = ['defs', 'entity', 'source', 'frame', 'field', 'model', 'generator', 'alternative', 'overlay', 'manifest'];
 
 function ajvFor(root: string) {
   const dir = schemaDir(root);
@@ -96,6 +98,8 @@ class RefChecker {
     private world: World,
     private ids: Map<string, { type: string; file: string }>,
     private issues: Issue[],
+    /** the datasets read as tables of rows, for references to their rows */
+    private tables: Map<string, Table> = new Map(),
   ) {}
 
   /**
@@ -119,6 +123,15 @@ class RefChecker {
       return undefined;
     }
     if (r.type === 'external') return undefined;
+    if (r.type === 'row') {
+      if (!this.ids.has(r.id)) {
+        this.issues.push({ level: 'error', check: 'refs', file, where, message: `${s} is a row of ${r.id}, which is not a dataset of the world` });
+        return undefined;
+      }
+      const table = this.tables.get(r.id);
+      if (table && !table.rows.has(r.key)) this.issues.push({ level: 'error', check: 'refs', file, where, message: `${r.id} has no row "${r.key}"` });
+      return undefined;
+    }
     if (!this.ids.has(r.id)) {
       const w = this.wanted.get(r.id) ?? { ref: r.id, from: [] };
       w.from.push({ file, where });
@@ -232,11 +245,31 @@ function checkClaimCommon(world: World, refs: RefChecker, c: Claim | Relation, i
   if (c.author.startsWith('machine:') && c.status === 'accepted') {
     issues.push({ level: 'error', check: 'review', ...at(''), message: `made by ${c.author} but marked accepted; a person has to accept it` });
   }
+  checkLadder(c, issues);
 }
 
-function checkRecords(world: World, issues: Issue[]): Wanted[] {
+/**
+ * How far a claim has been checked (core/ladder.ts): each step once; a quote found only where there is one;
+ * a re-reading by someone other than its author; an audit by a person. A step above a missing one is noted.
+ */
+function checkLadder(c: Claim | Relation, issues: Issue[]): void {
+  const seen = new Set<string>();
+  c.checked.forEach((s, i) => {
+    const at = { file: c.file, where: `${c.where}.checked[${i}]` };
+    if (seen.has(s.step)) issues.push({ level: 'error', check: 'review', ...at, message: `"${s.step}" is recorded twice` });
+    seen.add(s.step);
+    if (s.step === 'quoted' && !c.sources.some((x) => x.quote)) issues.push({ level: 'error', check: 'review', ...at, message: 'marked quoted, but none of its sources has a quote to find' });
+    if (s.step === 're-read' && s.by === c.author) issues.push({ level: 'error', check: 'review', ...at, message: `re-read by ${s.by}, who wrote it: a second reader re-reads` });
+    if (s.step === 'audited' && s.by.startsWith('machine:')) issues.push({ level: 'error', check: 'review', ...at, message: `audited by ${s.by}: an audit is a person's` });
+  });
+  for (const [i, s] of STEPS.entries()) {
+    if (i && seen.has(s) && !seen.has(STEPS[i - 1])) issues.push({ level: 'warning', check: 'review', file: c.file, where: `${c.where}.checked`, message: `${s} but not ${STEPS[i - 1]}: each step stands on the one below it` });
+  }
+}
+
+function checkRecords(world: World, issues: Issue[], tables: Map<string, Table> = new Map()): Wanted[] {
   const ids = registry(world, issues);
-  const refs = new RefChecker(world, ids, issues);
+  const refs = new RefChecker(world, ids, issues, tables);
   for (const e of world.entities) {
     const kind = world.vocab.kinds[e.kind];
     if (!kind) issues.push({ level: 'error', check: 'vocab', file: e.file, where: 'kind', message: `unknown kind "${e.kind}"` });
@@ -348,7 +381,76 @@ function checkRecords(world: World, issues: Issue[]): Wanted[] {
       if (a.default && !a.show?.includes(a.default)) issues.push({ level: 'error', check: 'refs', file: a.file, where: 'default', message: 'the default must be one of the members shown' });
     }
   }
+  checkRowSpecs(world, issues);
+  checkOverlays(world, refs, tables, issues);
   return [...refs.wanted.values()].sort((a, b) => (a.ref < b.ref ? -1 : 1));
+}
+
+/** A field that reads its dataset as rows says what a row is, and every property it maps applies to that. */
+function checkRowSpecs(world: World, issues: Issue[]): void {
+  for (const f of world.fields) {
+    if (!f.rows) continue;
+    const at = (where: string) => ({ file: f.file, where: `rows${where}` });
+    if (!f.data || f.derived) issues.push({ level: 'error', check: 'rows', ...at(''), message: 'only a field read from a dataset has rows' });
+    if (!world.vocab.kinds[f.rows.kind]) issues.push({ level: 'error', check: 'vocab', ...at('.kind'), message: `unknown kind "${f.rows.kind}"` });
+    if (!/\{[^}]+\}/.test(f.rows.key)) issues.push({ level: 'error', check: 'rows', ...at('.key'), message: 'a key template names a column, {Column}, or the row\'s place, {#}' });
+    for (const [prop, map] of Object.entries(f.rows.claims)) {
+      const p = world.vocab.properties[prop];
+      if (!p) issues.push({ level: 'error', check: 'vocab', ...at(`.claims.${prop}`), message: `unknown property "${prop}"` });
+      else if (world.vocab.kinds[f.rows.kind] && !applies(world, p.applies_to, f.rows.kind)) issues.push({ level: 'error', check: 'fit', ...at(`.claims.${prop}`), message: `"${prop}" does not apply to ${article(f.rows.kind)} (it applies to ${p.applies_to!.join(', ')})` });
+      if (map.method && !world.vocab.methods[map.method]) issues.push({ level: 'error', check: 'vocab', ...at(`.claims.${prop}.method`), message: `unknown method "${map.method}"` });
+      if ((map.as === 'point' || map.as === 'ma-range') !== Array.isArray(map.column)) issues.push({ level: 'error', check: 'rows', ...at(`.claims.${prop}.column`), message: 'a point reads two columns, latitude and longitude, and a range of ages two, older and younger; anything else reads one' });
+    }
+  }
+}
+
+/**
+ * Overlays (docs/STRUCTURE.md section 3.1): one file per row, of a dataset some field reads as rows, and of a
+ * row it has. Each claim is a claim, of a property the rows give. A claim that differs from the row is a
+ * correction, ranked preferred with a note saying why; one that agrees corroborates it, from another source.
+ */
+function checkOverlays(world: World, refs: RefChecker, tables: Map<string, Table>, issues: Issue[]): void {
+  const seen = new Map<string, string>();
+  for (const o of world.overlays) {
+    if (seen.has(o.row)) issues.push({ level: 'error', check: 'ids', file: o.file, where: 'row', message: `${o.row} has an overlay already, in ${seen.get(o.row)}: one file per row` });
+    seen.set(o.row, o.file);
+    const field = world.fields.find((f) => f.rows && f.data?.from === o.dataset);
+    if (!field) {
+      issues.push({ level: 'error', check: 'rows', file: o.file, where: 'row', message: `no field reads ${o.dataset} as rows: give its field a rows: section first` });
+      continue;
+    }
+    refs.check(o.row, o.file, 'row');
+    if (o.same_as) refs.check(o.same_as, o.file, 'same_as', { types: ['entity'] });
+    const table = tables.get(o.dataset);
+    if (!table) issues.push({ level: 'info', check: 'rows', file: o.file, where: 'row', message: `${o.dataset} is not fetched here, so its row could not be checked` });
+    const given = table ? rowClaims(table, o.key) : [];
+    for (const c of o.claims) {
+      checkClaimCommon(world, refs, c, issues);
+      const map = field.rows!.claims[c.prop];
+      if (!map) {
+        issues.push({ level: 'error', check: 'rows', file: o.file, where: c.where, message: `the rows of ${o.dataset} give no "${c.prop}": they give ${Object.keys(field.rows!.claims).join(', ')}` });
+        continue;
+      }
+      if (c.method && !world.vocab.methods[c.method]) issues.push({ level: 'error', check: 'vocab', file: o.file, where: `${c.where}.method`, message: `unknown method "${c.method}"` });
+      if (world.vocab.properties[c.prop]) checkValue(world, refs, c, issues);
+      const row = given.find((x) => x.prop === c.prop);
+      if (!row) continue;
+      const agrees = JSON.stringify(row.value) === JSON.stringify(c.value);
+      if (agrees && c.sources.every((s) => s.ref === o.dataset)) issues.push({ level: 'warning', check: 'rows', file: o.file, where: c.where, message: `restates the row's ${c.prop}; to corroborate it, cite another source` });
+      if (!agrees && (c.rank !== 'preferred' || !c.note)) issues.push({ level: 'error', check: 'rows', file: o.file, where: c.where, message: `differs from the row's ${c.prop} (${JSON.stringify(row.value)}): a correction is ranked preferred, with a note saying why the row is wrong` });
+    }
+  }
+}
+
+/** The tables the overlays need, read where their datasets are here. */
+export async function overlayTables(world: World): Promise<Map<string, Table>> {
+  const out = new Map<string, Table>();
+  for (const id of new Set(world.overlays.map((o) => o.dataset))) {
+    const field = world.fields.find((f) => f.rows && f.data?.from === id);
+    const t = field ? await readTable(world, field) : undefined;
+    if (t) out.set(id, t);
+  }
+  return out;
 }
 
 /** An input of a model or a generator: a record that resolves, or terms the vocabularies declare. */
@@ -675,10 +777,10 @@ function checkForms(world: World, issues: Issue[]): void {
   }
 }
 
-export async function validateWorld(world: World, opts: { frames?: boolean } = {}): Promise<Report> {
+export async function validateWorld(world: World, opts: { frames?: boolean; tables?: Map<string, Table> } = {}): Promise<Report> {
   const issues: Issue[] = world.loadIssues.map((e) => ({ level: 'error', check: 'load', file: e.file, where: e.where, message: e.message }));
   checkSchemas(world, issues);
-  const wanted = checkRecords(world, issues);
+  const wanted = checkRecords(world, issues, opts.tables ?? (await overlayTables(world)));
   checkRanks(world, issues);
   checkProminence(world, issues);
   checkForms(world, issues);
@@ -707,10 +809,13 @@ export async function runValidate(args: string[]): Promise<number> {
   for (const i of issues) if (i.level !== 'info' || args.includes('--verbose')) console.log(formatIssue(i));
   const n = (l: Issue['level']) => issues.filter((i) => i.level === l).length;
   const claims = world.entities.flatMap((e) => e.claims);
-  const unsourced = [...claims, ...world.entities.flatMap((e) => e.relations)].filter((c) => c.unsourced).length;
+  const all = [...claims, ...world.entities.flatMap((e) => e.relations)];
+  const unsourced = all.filter((c) => c.unsourced).length;
+  const ladder = ladderCounts(all);
   console.log(
     `${world.entities.length} entities, ${claims.length} claims, ${world.sources.length} sources: ${n('error')} errors, ${n('warning')} warnings; ` +
-      `${unsourced} unsourced claims, ${wanted.length} wanted records${n('info') && !args.includes('--verbose') ? ` (--verbose lists ${n('info')} notes)` : ''}`,
+      `${unsourced} unsourced claims, ${wanted.length} wanted records${n('info') && !args.includes('--verbose') ? ` (--verbose lists ${n('info')} notes)` : ''}\n` +
+      `checked: ${LEVELS.map((l) => `${ladder[l]} ${l}`).join(', ')}`,
   );
   return n('error') ? 1 : 0;
 }

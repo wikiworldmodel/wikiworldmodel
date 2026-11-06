@@ -207,6 +207,7 @@ export function ohmEntities(snap: OhmSnapshot, dataset: string, file: string, fr
         author: IMPORT_AUTHOR,
         status: 'proposed',
         rank: 'normal',
+        checked: [],
         file,
         where: `${key} ${k}`,
         prop,

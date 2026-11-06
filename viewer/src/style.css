@@ -125,6 +125,11 @@ body.evidence .inspect { top: 184px; }
 .badge.basis-reconstruction { color: var(--reconstruction); border-color: var(--reconstruction); }
 .badge.basis-procedural { color: var(--procedural); border-color: var(--procedural); }
 .badge.status-proposed { color: #ffd36b; border-color: rgba(255, 211, 107, 0.5); }
+.badge.ladder { color: #9fd3a8; border-color: rgba(159, 211, 168, 0.5); }
+.badge.corrected { color: #ffb36b; border-color: rgba(255, 179, 107, 0.5); }
+.row-claims { padding-left: 0; list-style: none; }
+.row-claims li { margin: 4px 0; }
+.row code { word-break: break-all; }
 .claim { padding: 6px 8px; margin: 4px 0; border-radius: 6px; background: rgba(255, 255, 255, 0.03); }
 .claim label { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
 .claim .value { font-weight: 600; }

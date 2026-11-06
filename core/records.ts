@@ -1,6 +1,7 @@
 // What the build writes for each entity (records/<id>.json), for search (search.json), for
 // periods (periods.json) and for coverage (coverage.json): everything the viewer's inspect
 // panel needs, already resolved.
+import type { CheckStep, Level } from './ladder.ts';
 import type { Basis, FeatureBasis, FeatureName, FeatureTime } from './tileset.ts';
 
 export interface SourceRecord {
@@ -50,6 +51,9 @@ interface ClaimCommon {
   author: string;
   status: string;
   rank: string;
+  /** how far it has been checked against its source, and the level that comes to (core/ladder.ts) */
+  checked?: CheckStep[];
+  level: Level;
   note?: string;
 }
 
@@ -194,6 +198,8 @@ export interface CoverageFile {
     disputed: string[];
     proposed: number;
     withoutLocator: number;
+    /** how many claims stand at each step of checking (core/ladder.ts) */
+    ladder: Record<Level, number>;
   };
   wanted: { ref: string; from: string[] }[];
   /** how far the world's forms reach, and what most wants one */
@@ -202,6 +208,23 @@ export interface CoverageFile {
   forests?: { id: string; ageMa: number; keyframeMa: number; lat: number; lon: number; climate: string | null; label: string }[];
   /** how much of each area and era rests on each basis: features per tile, by basis */
   tiles: { tile: string; bbox: [number, number, number, number]; time: [number, number]; features: Partial<Record<Basis, number>> }[];
+}
+
+/** What overlays say of the rows of datasets they name (docs/STRUCTURE.md section 3.1), by row: src:<dataset>#<key>. */
+export interface OverlaysFile {
+  format: 'lightworld-overlays@1';
+  rows: Record<
+    string,
+    {
+      dataset: string;
+      key: string;
+      /** the entity this row is a row of */
+      same_as?: string;
+      note?: string;
+      /** the row's own claims and the overlay's, in that order */
+      claims: { prop: string; value: unknown; origin: 'record' | 'row' | 'overlay'; rank: string; status: string; level: Level; author: string; sources: { ref: string; loc?: string; quote?: string }[]; note?: string }[];
+    }
+  >;
 }
 
 export interface BuildIndex {

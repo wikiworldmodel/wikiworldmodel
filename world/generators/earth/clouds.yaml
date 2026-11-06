@@ -1,6 +1,7 @@
 # A generator: versioned code plus parameters plus a seed. It makes plausible filler where
-# there is no evidence (nobody observed the weather of 66 Ma), the same bytes in the build
-# and in the browser. Changing its output is a new version, not an edit.
+# there is no evidence (nobody observed the weather of 66 Ma), in the build and in the browser,
+# which agree within the tolerance of core/fingerprint.ts. Changing its output is a new version,
+# not an edit.
 id: gen:earth/clouds
 type: generator
 title: Cloud cover

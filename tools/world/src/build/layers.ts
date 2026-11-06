@@ -12,6 +12,8 @@ import { sha256, stableStringify } from '../util.ts';
 import type { HazardSnapshot, HazardSource } from '../noaa.ts';
 import type { Field, World } from '../world.ts';
 import { parseTable } from './series.ts';
+import { rowRef } from '../../../../core/refs.ts';
+import { correctRows, type Fix } from '../tables.ts';
 import { sourceRecord } from './records.ts';
 
 interface Geo {
@@ -100,19 +102,28 @@ export function hazardOf(r: HazardSource): HazardRow {
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-export async function hazardLayer(w: World): Promise<HazardFile | undefined> {
+export async function hazardLayer(w: World, fixes: Map<string, Fix[]> = new Map()): Promise<HazardFile | undefined> {
   const f: Field | undefined = w.fields.find((x) => x.data?.as === 'hazards');
   if (!f) return undefined;
   const id = f.data!.from;
   const snap = JSON.parse(await readFile(datasetFile(id, w.manifest.datasets[id]), 'utf8')) as HazardSnapshot;
   const s = w.source.get(id);
+  // Each row with its address, and what the overlays correct in it.
+  const raw = snap.rows as unknown as Record<string, unknown>[];
+  const fixed = f.rows ? correctRows(f.rows, raw, fixes) : undefined;
+  const rows = (fixed?.rows ?? raw).map((r, i) => {
+    const row = hazardOf(r as unknown as HazardSource);
+    if (!fixed) return row;
+    const changed = fixed.changed.get(i);
+    return { ...row, row: rowRef(id, fixed.keys[i]), ...(changed ? { corrected: changed } : {}) };
+  });
   return {
     format: 'lightworld-hazards@1',
     title: f.title,
     description: f.description,
     source: id,
     sourceRecord: s ? sourceRecord(s) : undefined,
-    rows: snap.rows.map(hazardOf).sort((a, b) => a.t - b.t),
+    rows: rows.sort((a, b) => a.t - b.t),
   };
 }
 
@@ -197,20 +208,29 @@ export function polityRow(f: PolityFeature, tolerance: number): PolityRow | unde
 }
 
 /** The states of the world as rows, thinned for the globe; those a record draws as its own territory are left to it. */
-export async function polityLayer(w: World, claimed: ReadonlySet<string>): Promise<PolitiesFile | undefined> {
+export async function polityLayer(w: World, claimed: ReadonlySet<string>, fixes: Map<string, Fix[]> = new Map()): Promise<PolitiesFile | undefined> {
   const f = w.fields.find((x) => x.data?.as === 'polities');
   if (!f) return undefined;
   const id = f.data!.from;
   const d = w.manifest.datasets[id];
   const tolerance = (f.params as { tolerance_deg: number }).tolerance_deg;
-  const key = sha256(stableStringify({ dataset: d.fetch.sha256, tolerance, reader: 1 })).slice(0, 16);
+  // The overlays' corrections are part of what is cached: a new one makes the rows again.
+  const key = sha256(stableStringify({ dataset: d.fetch.sha256, tolerance, rows: f.rows ?? null, fixes: [...fixes].sort(([a], [b]) => (a < b ? -1 : 1)), reader: 2 })).slice(0, 16);
   const cached = join(CACHE, 'import', `polities@${key}.json`);
   let rows: PolityRow[];
   if (existsSync(cached)) rows = JSON.parse(await readFile(cached, 'utf8'));
   else {
     const member = f.data!.file ?? Object.keys(d.fetch.files ?? {})[0];
     const doc = JSON.parse(await readFile(datasetFile(id, d, member), 'utf8')) as { features: PolityFeature[] };
-    rows = doc.features.map((x) => polityRow(x, tolerance)).filter((x): x is PolityRow => !!x);
+    const fixed = f.rows ? correctRows(f.rows, doc.features.map((x) => x.properties as unknown as Record<string, unknown>), fixes) : undefined;
+    rows = doc.features
+      .map((x, i) => {
+        const r = polityRow(fixed ? { ...x, properties: fixed.rows[i] as unknown as PolityFeature['properties'] } : x, tolerance);
+        if (!r || !fixed) return r;
+        const changed = fixed.changed.get(i);
+        return { ...r, row: rowRef(id, fixed.keys[i]), ...(changed ? { corrected: changed } : {}) };
+      })
+      .filter((x): x is PolityRow => !!x);
     await mkdir(join(CACHE, 'import'), { recursive: true });
     await writeFile(cached, JSON.stringify(rows));
   }
@@ -265,20 +285,21 @@ export function routeRows(f: RoadFeature, tolerance: number, span: [number, numb
   return out;
 }
 
-export async function routesLayer(w: World): Promise<RoutesFile | undefined> {
+export async function routesLayer(w: World, fixes: Map<string, Fix[]> = new Map()): Promise<RoutesFile | undefined> {
   const f = w.fields.find((x) => x.data?.as === 'routes');
   if (!f) return undefined;
   const id = f.data!.from;
   const d = w.manifest.datasets[id];
   const tolerance = (f.params as { tolerance_deg: number }).tolerance_deg;
   const span: [number, number] = [parsePoint(f.time!.lo as TimePointInput).t, parsePoint(f.time!.hi as TimePointInput).t];
-  const key = sha256(stableStringify({ dataset: d.fetch.sha256, tolerance, span, reader: 1 })).slice(0, 16);
+  const key = sha256(stableStringify({ dataset: d.fetch.sha256, tolerance, span, fixes: [...fixes].sort(([a], [b]) => (a < b ? -1 : 1)), reader: 1 })).slice(0, 16);
   const cached = join(CACHE, 'import', `routes@${key}.json`);
   let routes: RouteRow[];
   if (existsSync(cached)) routes = JSON.parse(await readFile(cached, 'utf8'));
   else {
     const doc = JSON.parse(await readFile(datasetFile(id, d), 'utf8')) as { features: RoadFeature[] };
-    routes = doc.features.flatMap((x) => routeRows(x, tolerance, span));
+    const fixed = f.rows && fixes.size ? correctRows(f.rows, doc.features.map((x) => x.properties as unknown as Record<string, unknown>), fixes).rows : undefined;
+    routes = doc.features.flatMap((x, i) => routeRows(fixed ? { ...x, properties: fixed[i] as unknown as RoadFeature['properties'] } : x, tolerance, span));
     await mkdir(join(CACHE, 'import'), { recursive: true });
     await writeFile(cached, JSON.stringify(routes));
   }
@@ -297,18 +318,22 @@ export function languageRows(rows: Record<string, string>[]): LanguageRow[] {
   return out.sort((a, b) => (a.code < b.code ? -1 : 1));
 }
 
-export async function languagesLayer(w: World): Promise<LanguagesFile | undefined> {
+export async function languagesLayer(w: World, fixes: Map<string, Fix[]> = new Map()): Promise<LanguagesFile | undefined> {
   const f = w.fields.find((x) => x.data?.as === 'languages');
   if (!f) return undefined;
   const id = f.data!.from;
   const s = w.source.get(id);
+  const table = parseTable(await readFile(datasetFile(id, w.manifest.datasets[id]), 'utf8'));
+  const fixed = f.rows && fixes.size ? correctRows(f.rows, table, fixes) : undefined;
+  const corrected = new Map([...(fixed?.changed ?? [])].map(([i, props]) => [table[i].Glottocode, props]));
+  const rows = languageRows(fixed?.rows ?? table).map((r) => (corrected.has(r.code) ? { ...r, corrected: corrected.get(r.code) } : r));
   return {
     format: 'lightworld-languages@1',
     title: f.title,
     description: f.description,
     source: id,
     sourceRecord: s ? sourceRecord(s) : undefined,
-    rows: languageRows(parseTable(await readFile(datasetFile(id, w.manifest.datasets[id]), 'utf8'))),
+    rows,
   };
 }
 

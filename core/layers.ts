@@ -48,6 +48,10 @@ export interface HazardRow {
   size?: number;
   /** deaths, where it gives a number */
   deaths?: number;
+  /** its address in the dataset, src:<dataset>#<key>: what an overlay names to correct it */
+  row?: string;
+  /** what overlays changed, by property, if any did */
+  corrected?: string[];
 }
 
 export interface HazardFile {
@@ -88,6 +92,10 @@ export interface PolityRow {
   /** rings, outer and inner alike, each [lon0, lat0, lon1, lat1, …] in hundredths of a degree; filled even-odd */
   rings: number[][];
   wikipedia?: string;
+  /** its address in the dataset, src:<dataset>#<key>: what an overlay names to correct it */
+  row?: string;
+  /** what overlays changed, by property, if any did */
+  corrected?: string[];
 }
 
 export interface PolitiesFile {
@@ -148,6 +156,8 @@ export interface LanguageRow {
   lon: number;
   /** the catalogue's id for it */
   code: string;
+  /** what overlays changed, by property, if any did */
+  corrected?: string[];
 }
 
 export interface LanguagesFile {

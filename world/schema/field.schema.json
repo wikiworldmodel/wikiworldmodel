@@ -107,7 +107,34 @@
     "isoline_m": { "type": "number" },
     "params": { "type": "object", "description": "The rule's parameters, or for a grid read by the build what it needs besides its data" },
     "source": { "$ref": "defs.json#/$defs/citation", "description": "Where the rule or those parameters come from" },
-    "uncertainty": { "type": "string", "description": "What a click says of how far to trust a value of it, where a grid has no error bars" }
+    "uncertainty": { "type": "string", "description": "What a click says of how far to trust a value of it, where a grid has no error bars" },
+    "rows": {
+      "description": "For a dataset read as rows: the rows are claims (docs/STRUCTURE.md section 3.1). How a row's key is made from its columns, what kind of thing a row is, and which column gives which property",
+      "type": "object",
+      "required": ["kind", "key", "claims"],
+      "properties": {
+        "kind": { "type": "string", "description": "What a row is, from the vocabulary of kinds" },
+        "key": { "type": "string", "minLength": 3, "description": "A template: {Column} for a column's value, {#} for the row's place in the file" },
+        "claims": {
+          "type": "object",
+          "minProperties": 1,
+          "description": "By property: the column it comes from, and how it is read",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["column"],
+            "properties": {
+              "column": { "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" }, "minItems": 2, "maxItems": 2 }] },
+              "as": { "enum": ["string", "number", "text", "year", "year-end", "ma", "ma-range", "point"], "description": "string, number, text (in English), year (a year as the dataset counts it, with no year 0), year-end (the same, holding to the end of the year), ma (millions of years ago), ma-range (an older and a younger age column, in Ma), point (latitude and longitude columns, measured on today's Earth)" },
+              "none": { "type": "array", "items": { "type": ["string", "number"] }, "description": "Values that mean the dataset gives none" },
+              "method": { "type": "string" },
+              "basis": { "$ref": "defs.json#/$defs/basis" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
   },
   "additionalProperties": false,
   "allOf": [

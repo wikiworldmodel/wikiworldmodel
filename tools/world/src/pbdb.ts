@@ -290,7 +290,7 @@ export function placeInLand(snap: LandSnapshot, dataset: string, file: string, e
     if (!t) continue;
     // What a written record does not say of its rank and dates comes from the database, as for a formation's taxa.
     const has = (prop: string) => e.claims.some((c) => c.prop === prop);
-    const claim = (key: string, prop: string, value: unknown, note?: string): Claim => ({ key, entity: e.id, ref: `${e.id}#${key}`, subject: e.id, sources: [{ ref: dataset, loc: `taxon ${no}` }], basis: 'evidence', author: IMPORT_AUTHOR, status: 'proposed', rank: 'normal', note, file, where: `taxon ${no} ${key}`, prop, value, method: 'compilation' });
+    const claim = (key: string, prop: string, value: unknown, note?: string): Claim => ({ key, entity: e.id, ref: `${e.id}#${key}`, subject: e.id, sources: [{ ref: dataset, loc: `taxon ${no}` }], basis: 'evidence', author: IMPORT_AUTHOR, status: 'proposed', rank: 'normal', checked: [], note, file, where: `taxon ${no} ${key}`, prop, value, method: 'compilation' });
     const rank = snap.words[t[2]];
     if (rank && !has('taxon_rank')) e.claims.push(claim('rank-land', 'taxon_rank', rank));
     if (t[5] !== null && t[6] !== null && !has('start') && LOW_RANKS.has(rank)) e.claims.push(claim('start-land', 'start', range(t[5], t[6]), 'The interval of its oldest record in the whole database: its origin may be older.'));
@@ -299,7 +299,7 @@ export function placeInLand(snap: LandSnapshot, dataset: string, file: string, e
     for (let x = t[3], guard = 0; x && byNo.has(x) && guard < 200; x = byNo.get(x)![3], guard++) {
       const up = adopted.get(x);
       if (!up || up === e) continue;
-      e.relations.push({ key: 'parent-pbdb', entity: e.id, ref: `${e.id}#parent-pbdb`, subject: e.id, sources: [{ ref: dataset, loc: `taxon ${no}` }], basis: 'evidence', author: IMPORT_AUTHOR, status: 'proposed', rank: 'normal', file, where: `taxon ${no} parent`, rel: 'descends-from', to: up.id });
+      e.relations.push({ key: 'parent-pbdb', entity: e.id, ref: `${e.id}#parent-pbdb`, subject: e.id, sources: [{ ref: dataset, loc: `taxon ${no}` }], basis: 'evidence', author: IMPORT_AUTHOR, status: 'proposed', rank: 'normal', checked: [], file, where: `taxon ${no} parent`, rel: 'descends-from', to: up.id });
       break;
     }
   }
@@ -356,6 +356,7 @@ export function pbdbEntities(snap: PbdbSnapshot, dataset: string, file: string, 
       author: IMPORT_AUTHOR,
       status: 'proposed',
       rank: 'normal',
+      checked: [],
       note,
       file,
       where: `taxon ${no} ${key}`,

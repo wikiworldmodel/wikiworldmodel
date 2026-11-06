@@ -227,3 +227,109 @@ describe('models', () => {
     expect(of(fed)).toEqual([]);
   });
 });
+
+describe('the ladder of checking (docs/STRUCTURE.md section 3.7)', () => {
+  const quoted = `source: { ref: src:test/report, loc: p. 1, quote: "seventy million years ago" }`;
+  const claim = (extra: string, src = quoted) => ({ 'entities/a.yaml': `id: test/flow\nkind: large-igneous-province\nauthor: machine:test\nclaims:\n  start:\n    prop: start\n    value: 70 Ma\n    ${src}\n${extra}` });
+  const step = (s: string, by: string) => `      - { step: ${s}, by: ${by}, how: "A fixture step." }\n`;
+  const review = (issues: Issue[]) => issues.filter((i) => i.check === 'review').map((i) => `${i.level}: ${i.message}`);
+
+  it('accept the steps in order, each by someone who may take it', async () => {
+    const issues = await check(claim(`    checked:\n${step('quoted', 'machine:quote-check')}${step('re-read', 'machine:other-reader')}${step('audited', 'kvh')}`));
+    expect(review(issues)).toEqual([]);
+  });
+
+  it('refuse a quote found where there is none, a re-reading by its own author, an audit by a machine, and a step twice', async () => {
+    const none = await check(claim(`    checked:\n${step('quoted', 'machine:quote-check')}`, cite));
+    expect(review(none)).toEqual(['error: marked quoted, but none of its sources has a quote to find']);
+    const own = await check(claim(`    checked:\n${step('quoted', 'machine:quote-check')}${step('re-read', 'machine:test')}`));
+    expect(review(own)).toEqual(['error: re-read by machine:test, who wrote it: a second reader re-reads']);
+    const machine = await check(claim(`    checked:\n${step('quoted', 'machine:q')}${step('re-read', 'machine:r')}${step('audited', 'machine:auditor')}`));
+    expect(review(machine)).toEqual(['error: audited by machine:auditor: an audit is a person\'s']);
+    const twice = await check(claim(`    checked:\n${step('quoted', 'machine:q')}${step('quoted', 'machine:q')}`));
+    expect(review(twice)).toEqual(['error: "quoted" is recorded twice']);
+  });
+
+  it('note a step above a missing one', async () => {
+    const issues = await check(claim(`    checked:\n${step('re-read', 'machine:other-reader')}`));
+    expect(review(issues)).toEqual(['warning: re-read but not quoted: each step stands on the one below it']);
+  });
+});
+
+describe('overlays: claims about rows of datasets (docs/STRUCTURE.md section 3.1)', () => {
+  const DATASET = `publish: { licenses: [CC0-1.0] }
+datasets:
+  src:test/states:
+    type: dataset
+    kind: compilation
+    citation: A fixture dataset of states, not a real one.
+    license: CC0-1.0
+    credit: Fixture
+    version: "1"
+    fetch: { url: "https://example.invalid/states.json", sha256: "0000000000000000000000000000000000000000000000000000000000000000", bytes: 1, format: json }
+`;
+  const FIELD = `id: field:test/states
+type: field
+title: States
+grid: { kind: rows }
+time: { lo: 3000 BCE, hi: 1950 CE }
+data: { from: src:test/states, as: polities }
+basis: reconstruction
+rows:
+  kind: polity
+  key: "{Name}@{FromYear}"
+  claims:
+    name: { column: Name, as: text }
+    start: { column: FromYear, as: year }
+    end: { column: ToYear, as: year-end }
+`;
+  const spec = { kind: 'polity', key: '{Name}@{FromYear}', claims: { name: { column: 'Name', as: 'text' as const }, start: { column: 'FromYear', as: 'year' as const }, end: { column: 'ToYear', as: 'year-end' as const } } };
+  const tables = new Map([['src:test/states', { dataset: 'src:test/states', field: 'field:test/states', spec, rows: new Map([['Carthage@-500', { Name: 'Carthage', FromYear: -500, ToYear: -146 }]]) }]]);
+  const overlay = (body: string, row = 'src:test/states#Carthage@-500') => `row: ${row}\nauthor: machine:test\n${body}`;
+  async function checkRows(files: Record<string, string>, withTables = true): Promise<Issue[]> {
+    const root = mkdtempSync(join(tmpdir(), 'wikiworldmodel-fixture-'));
+    dirs.push(root);
+    for (const [path, text] of Object.entries({ 'sources/report.yaml': SOURCE, 'manifest.yaml': DATASET, 'fields/states.yaml': FIELD, ...files })) {
+      mkdirSync(dirname(join(root, path)), { recursive: true });
+      writeFileSync(join(root, path), text);
+    }
+    return (await validateWorld(await loadWorld(root), { frames: false, tables: withTables ? tables : new Map() })).issues;
+  }
+  const rows = (issues: Issue[]) => issues.filter((i) => ['rows', 'refs', 'ids', 'load'].includes(i.check)).map((i) => `${i.level}: ${i.message}`);
+
+  it('accept a correction, ranked preferred with a note, citing what it rests on', async () => {
+    const issues = await checkRows({ 'overlays/carthage.yaml': overlay(`claims:\n  end:\n    prop: end\n    value: -145\n    rank: preferred\n    note: The row ends a year early.\n    ${cite}\n`) });
+    expect(rows(issues)).toEqual([]);
+    expect(errors(issues)).toEqual([]);
+  });
+
+  it('refuse a correction that is not ranked preferred or says not why', async () => {
+    const issues = await checkRows({ 'overlays/carthage.yaml': overlay(`claims:\n  end: { prop: end, value: -145, ${cite} }\n`) });
+    expect(rows(issues)).toEqual(['error: differs from the row\'s end (-144): a correction is ranked preferred, with a note saying why the row is wrong']);
+  });
+
+  it('note a claim that only restates the row, from the dataset itself', async () => {
+    // Its last year, -146 as the dataset counts years, holds to its end: -144 on the axis.
+    const issues = await checkRows({ 'overlays/carthage.yaml': overlay(`claims:\n  end: { prop: end, value: -144, source: { ref: src:test/states, loc: row } }\n`) });
+    expect(rows(issues)).toEqual(["warning: restates the row's end; to corroborate it, cite another source"]);
+  });
+
+  it('refuse a row the dataset does not have, a property its rows do not give, and two files for one row', async () => {
+    const missing = await checkRows({ 'overlays/rome.yaml': overlay(`same_as: test/rome\n`, 'src:test/states#Rome@-27') });
+    expect(rows(missing)).toEqual(['error: src:test/states has no row "Rome@-27"']);
+    const prop = await checkRows({ 'overlays/carthage.yaml': overlay(`claims:\n  area: { prop: area, value: 3, ${cite} }\n`) });
+    expect(rows(prop)).toEqual(['error: the rows of src:test/states give no "area": they give name, start, end']);
+    const twice = await checkRows({ 'overlays/a.yaml': overlay('same_as: test/carthage\n'), 'overlays/b.yaml': overlay('same_as: test/carthage\n') });
+    expect(rows(twice)).toContain('error: src:test/states#Carthage@-500 has an overlay already, in overlays/a.yaml: one file per row');
+  });
+
+  it('say so when the dataset is not here to check the row against', async () => {
+    const issues = await checkRows({ 'overlays/carthage.yaml': overlay('same_as: test/carthage\n') }, false);
+    expect(rows(issues)).toEqual(['info: src:test/states is not fetched here, so its row could not be checked']);
+  });
+
+  it('refuse a row written otherwise than the build writes it', async () => {
+    const issues = await checkRows({ 'overlays/carthage.yaml': overlay('same_as: test/carthage\n', 'src:test/states#Carthage%40-500') });
+    expect(rows(issues)).toEqual(['error: write the row as src:test/states#Carthage@-500']);
+  });
+});

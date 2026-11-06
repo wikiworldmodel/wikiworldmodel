@@ -4,10 +4,11 @@
 import type { Form } from '../../../core/form.ts';
 import type { LivingTaxon, SceneSpec } from '../../../core/scene.ts';
 import { GroundSampler, type GroundGridData } from '../city/ground.ts';
-import { Mesh } from '../city/kit.ts';
+import { fingerprint, type Fingerprint, type Part } from '../../../core/fingerprint.ts';
+import { Mesh, meshParts } from '../city/kit.ts';
 import { hashString } from '../city/math.ts';
 import { drawAnimal, drawPlant, POSE, type Detail, type Stance } from './forms.ts';
-import { CELL, CELLS, cellBytes, cellKey, coverMask, EXTENT, groundGrids, LandCover, makePlan, placeLook, waterSheet, watersFor, type CellRows, type LivingParams, type LivingPlan, type PlaceLook } from './scene/v2.ts';
+import { CELL, CELLS, cellParts, cellKey, coverMask, EXTENT, groundGrids, LandCover, makePlan, placeLook, waterSheet, watersFor, type CellRows, type LivingParams, type LivingPlan, type PlaceLook } from './scene/v2.ts';
 
 export const INSTANCE_STRIDE = 28;
 
@@ -114,7 +115,7 @@ export class SceneStream {
     return c;
   }
 
-  /** A mesh of one kind of body or plant: the same to the byte everywhere. */
+  /** A mesh of one kind of body or plant: the same everywhere, within the tolerance. */
   mesh(proto: number): ProtoMesh {
     const { taxon, variant, detail } = protoParts(proto);
     const t = this.spec.taxa[taxon];
@@ -279,24 +280,20 @@ export class SceneStream {
     return { batches, protos, instances, triangles, pending, groups: groups.slice(0, 64) };
   }
 
-  /** The bytes that prove a scene is the same scene: its ground, the cell it is arrived at, and a mesh of its first taxon. */
-  digestBytes(): Uint8Array {
-    const parts: Uint8Array[] = this.levels.map((l) => new Uint8Array(l.z.buffer, l.z.byteOffset, l.z.byteLength));
+  /**
+   * What proves a scene is the same scene: its ground, who stands in the cell it is arrived at, and a mesh of its
+   * first taxon. Who and which are matched exactly; where, how high and how big within the tolerance.
+   */
+  print(): Fingerprint {
+    const parts: Part[] = this.levels.map((l, i) => ({ name: `ground.${i}`, values: l.z }));
     const [fx, fy] = this.plan.focus;
-    const c = this.cell(Math.floor(fx / CELL), Math.floor(fy / CELL), 2);
-    parts.push(cellBytes(c));
+    parts.push(...cellParts(this.cell(Math.floor(fx / CELL), Math.floor(fy / CELL), 2)));
     if (this.spec.taxa.length) {
       const t = this.spec.forms[this.spec.taxa[0].form];
       const m = this.mesh(protoOf(0, t.kind === 'plant' ? 0 : POSE.stand << 3, 2));
-      parts.push(new Uint8Array(m.vertices), new Uint8Array(m.indices.buffer, m.indices.byteOffset, m.indices.byteLength));
+      parts.push(...meshParts(m.vertices, m.indices));
     }
-    const out = new Uint8Array(parts.reduce((n, x) => n + x.length, 0));
-    let o = 0;
-    for (const x of parts) {
-      out.set(x, o);
-      o += x.length;
-    }
-    return out;
+    return fingerprint(parts);
   }
 }
 

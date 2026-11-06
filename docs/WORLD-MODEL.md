@@ -108,8 +108,10 @@ The viewer is why several choices in this document matter:
 - **Generators run in the client.** Generated filler, such as apartment
   blocks or field patterns, is not shipped as geometry. The client runs the
   same versioned, seeded generators as the build, from compact constraints
-  in the tile. This keeps tiles small and output identical everywhere. Heavy
-  generators can be pre-baked instead.
+  in the tile, in a worker off the page. This keeps tiles small. The client's
+  output agrees with the build's fingerprint of it within a tolerance, not to
+  the byte, so a generator may use any arithmetic (`core/fingerprint.ts`).
+  Heavy generators can be pre-baked instead.
 - **Latency budgets.** The first globe should appear within a few seconds,
   and the viewer should hold 60 fps while flying. Progressive refinement
   always shows the coarser level while finer tiles load.
@@ -119,9 +121,9 @@ The viewer is why several choices in this document matter:
 The film's Earth renderer is the starting point for the viewer's planet
 level: the atmosphere, clouds, climate-driven surface and lights. Below some
 altitude, a local scene renderer for terrain, buildings and objects takes
-over and blends with the globe. The renderer is deterministic, so the same
-build, time and camera produce the same pixels. That is what makes films,
-visual diffs and shareable views reproducible.
+over and blends with the globe. The same build, time and camera produce the
+same picture, within the tolerance the golden images allow. That is what
+makes films, visual diffs and shareable views reproducible.
 
 ## 4. Data model
 
@@ -348,8 +350,9 @@ The build turns fields into multi-resolution pyramids for streaming.
   short quoted span, enough to verify the claim without copying the work.
 - A **generator** is versioned code plus parameters plus a seed. It produces
   plausible content where no evidence exists, such as a Roman insula, a field
-  system or a cloud pattern, reproducibly in the build and in the client. It
-  declares its inputs (claims and fields as constraints, other generators'
+  system or a cloud pattern, in the build and in the client. The two agree on
+  what was made, which things exactly and where within a tolerance, not on its
+  bytes. It declares its inputs (claims and fields as constraints, other generators'
   output) and the kinds, places and eras it applies to. Each item it
   produces has a stable slot ID derived from the generator and place, so a
   generated building can be referenced, reviewed and promoted (section 7).
@@ -545,7 +548,8 @@ Rules:
   everything that isn't evidence.
 - **Generators are seeded by stable IDs, places and time bins, not by build
   order.** This way, editing one temple doesn't reshuffle the generated
-  houses around it, and every client generates the same city. Time bins
+  houses around it, and every client generates the same city: the same
+  houses exactly, in the same places within a tolerance. Time bins
   follow the level of detail, so deep time needs no more seeds than a
   decade does.
 - **Promotion.** When someone finds evidence for a generated building, it
@@ -718,8 +722,9 @@ on the default picture and again on every alternative combined with it
   - generator versions and seeds
   - the alternatives shown and the license filter applied
 
-  The same inputs produce the same tiles, the same view for a given link, and
-  the same film frame for frame.
+  The same inputs produce tiles that mean the same (the same records, ids and
+  words, and the same numbers within a tolerance), the same view for a given
+  link, and the same film frame for frame.
 
 ## 10. Repository layout and formats
 

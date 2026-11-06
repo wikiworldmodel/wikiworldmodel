@@ -7,7 +7,9 @@ import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import type { ClimateRule } from '../../../../core/climate.ts';
 import { encodeTile } from '../../../../core/container.ts';
-import type { CoverageFile, PeriodRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../../core/records.ts';
+import { bytesPrint } from '../../../../core/fingerprint.ts';
+import { ladderCounts } from '../../../../core/ladder.ts';
+import type { CoverageFile, OverlaysFile, PeriodRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../../core/records.ts';
 import { bakeRotationModel, parseRot, RotationModel } from '../../../../core/rotation-model.ts';
 import { fromMa, parsePoint, PRESENT_YEAR, toMa, type TimePointInput } from '../../../../core/time.ts';
 import type { Basis, Feature, FieldInfo, FieldKeyframe, FramesFile, GeneratorConstraint, SiteInfo, TileHeader, TileRef, Tileset } from '../../../../core/tileset.ts';
@@ -21,6 +23,8 @@ import { BUILDS, REPO } from '../paths.ts';
 import { sha256, stableStringify } from '../util.ts';
 import { formatIssue, validateWorld } from '../validate/index.ts';
 import { loadWorld, type World } from '../world.ts';
+import { ClaimIndex } from '../claimindex.ts';
+import { correctLand } from '../tables.ts';
 import { fieldFor, fieldLods, loadBlocks, loadSnapshots, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
 import { buildCity } from './city.ts';
 import { climateGrid, climateKeyframes, encodeClimate, forestChecks, type ClimateKeyframe } from './climate.ts';
@@ -98,9 +102,25 @@ function worldSpan(periods: PeriodRecord[], found: SearchFile, grids: GridField[
   return [Math.min(...times), Math.max(...times)];
 }
 
+/** What the overlays say of each row they name, with what the row itself says, as the inspect panel shows it. */
+function overlayFile(world: World, index: ClaimIndex): OverlaysFile | undefined {
+  if (!world.overlays.length) return undefined;
+  const rows: OverlaysFile['rows'] = {};
+  for (const o of [...world.overlays].sort((a, b) => (a.row < b.row ? -1 : 1))) {
+    rows[o.row] = {
+      dataset: o.dataset,
+      key: o.key,
+      same_as: o.same_as,
+      note: o.note,
+      claims: index.of(o.row).map((c) => ({ prop: c.prop, value: c.value, origin: c.origin, rank: c.rank, status: c.status, level: c.level, author: c.author, sources: c.sources, note: c.note })),
+    };
+  }
+  return { format: 'lightworld-overlays@1', rows };
+}
+
 /** Claims and wanted records, and how much of each tile's area and era rests on each basis. */
 function coverage(world: World, wanted: { ref: string; from: { file: string; where: string }[] }[], feats: Feature[], tiles: TileRef[]): CoverageFile {
-  const all = world.entities.flatMap((e) => [...e.claims, ...e.relations]);
+  const all = [...world.entities.flatMap((e) => [...e.claims, ...e.relations]), ...world.overlays.flatMap((o) => o.claims)];
   const byBasis: Record<string, number> = {};
   for (const c of all) byBasis[c.basis] = (byBasis[c.basis] ?? 0) + 1;
   const visible = (f: Feature, span: [number, number]) => {
@@ -116,6 +136,7 @@ function coverage(world: World, wanted: { ref: string; from: { file: string; whe
       disputed: all.filter((c) => c.status === 'disputed').map((c) => c.ref),
       proposed: all.filter((c) => c.status === 'proposed').length,
       withoutLocator: all.filter((c) => c.sources.some((s) => !s.loc)).length,
+      ladder: ladderCounts(all),
     },
     wanted: wanted.map((w) => ({ ref: w.ref, from: w.from.map((f) => `${f.file} ${f.where}`) })),
     tiles: tiles.map((t) => {
@@ -173,6 +194,21 @@ export async function runBuild(args: string[]): Promise<number> {
   const rot = await readFile(datasetFile(PLATE_MODEL, pm, 'rotations'), 'latin1');
   const baked = bakeRotationModel(parseRot(rot));
   const model = new RotationModel(baked);
+
+  // Rows are claims (docs/STRUCTURE.md section 3.1): the overlays' corrections of the rows they name, which the
+  // layers and the atlas read the rows with. The land's fossils are corrected here, before anything reads them.
+  const claims = await ClaimIndex.of(world, world.overlays.map((o) => o.dataset));
+  const fixesOf = (as: string) => {
+    const f = world.fields.find((x) => x.data?.as === as);
+    return f ? claims.corrections(f.data!.from) : new Map();
+  };
+  for (const f of world.fields.filter((x) => x.data?.as === 'community' && x.rows)) {
+    const snap = world.landFossils.get(f.data!.from);
+    if (!snap) continue;
+    const { snap: corrected, unapplied } = correctLand(snap, f.rows!, claims.corrections(f.data!.from));
+    world.landFossils.set(f.data!.from, corrected);
+    for (const u of unapplied) log(`warning rows        ${f.data!.from} ${u}`);
+  }
 
   // 3. Chronology: the default picture, the alternatives the build shows, and each picture
   // with one competing claim picked.
@@ -247,7 +283,7 @@ export async function runBuild(args: string[]): Promise<number> {
         seed: s.seed,
         basis: gen.outputs.basis as 'procedural',
         params: gen.params,
-        outputSha256: sha256(c.run(s.seed, gen.params)),
+        output: bytesPrint('pixels', c.run(s.seed, gen.params)),
       });
     }
   }
@@ -360,13 +396,16 @@ export async function runBuild(args: string[]): Promise<number> {
   // What is drawn over the globe as rows of a dataset: today's map, and the hazards.
   const present = await presentLayer(world);
   if (present) put('present.json', stableStringify(present));
-  const hazards = await hazardLayer(world);
+  const hazards = await hazardLayer(world, fixesOf('hazards'));
   if (hazards) put('hazards.json', stableStringify(hazards));
-  const polities = await polityLayer(world, new Set(territoryFile.territories.flatMap((t) => t.claims.flatMap((c) => c.rows.map((r) => r.name)))));
+  const polities = await polityLayer(world, new Set(territoryFile.territories.flatMap((t) => t.claims.flatMap((c) => c.rows.map((r) => r.name)))), fixesOf('polities'));
   if (polities) put('polities.json', stableStringify(polities));
-  const routes = await routesLayer(world);
+  const routes = await routesLayer(world, fixesOf('routes'));
   if (routes) put('routes.json', stableStringify(routes));
-  const languages = await languagesLayer(world);
+  const languages = await languagesLayer(world, fixesOf('languages'));
+  // What the overlays say of the rows they name, for the inspect panel.
+  const overlays = overlayFile(world, claims);
+  if (overlays) put('overlays.json', stableStringify(overlays));
   if (languages) put('languages.json', stableStringify(languages));
   // Where people lived: a grid, drawn as a picture of the surface, and so a file of numbers rather than of rows.
   const people = await peopleLayer(world);
@@ -409,7 +448,7 @@ export async function runBuild(args: string[]): Promise<number> {
     timeRange: span,
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
-    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(routes ? { routes: 'routes.json' } : {}), ...(languages ? { languages: 'languages.json' } : {}), ...(people ? { people: 'people.lwt' } : {}), ...(atlasFile ? { atlas: atlasFile } : {}), features: FEATURE_INDEX },
+    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(routes ? { routes: 'routes.json' } : {}), ...(languages ? { languages: 'languages.json' } : {}), ...(overlays ? { overlays: 'overlays.json' } : {}), ...(people ? { people: 'people.lwt' } : {}), ...(atlasFile ? { atlas: atlasFile } : {}), features: FEATURE_INDEX },
     climate: climateField && biomeField && climateKeys.length ? { field: climateField.id, title: climateField.title, description: climateField.description, biomeTitle: biomeField.title, biomeDescription: biomeField.description, source: climateField.data!.from, sourceRecord: sourceRecord(world.source.get(climateField.data!.from)!), params: biomeField.params ?? {} } : undefined,
     ice: iceField && ice ? { field: iceField.id, title: iceField.title, description: iceField.description, uncertainty: iceField.uncertainty, basis: iceField.basis!, source: iceField.data!.from, sourceRecord: sourceRecord(world.source.get(iceField.data!.from)!), coverage: ice.coverage, keyframesMa: ice.keyframesMa, projection: iceField.projection ? { method: iceField.projection.method, until: parsePoint(iceField.projection.until as TimePointInput).t, note: iceField.projection.note } : undefined, marginM: ice.marginM, scenarios: ice.scenarios } : undefined,
     credits: credits(world),
