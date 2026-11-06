@@ -4,130 +4,42 @@
   "title": "Generator",
   "description": "Versioned code plus parameters plus a seed, run by the build and the client, whose outputs agree within the tolerance of core/fingerprint.ts.",
   "type": "object",
-  "required": [
-    "id",
-    "type",
-    "title",
-    "version",
-    "code",
-    "runs_in",
-    "outputs",
-    "inputs",
-    "slots",
-    "params"
-  ],
+  "required": ["id", "type", "title", "version", "code", "runs_in", "outputs", "inputs", "slots", "params"],
   "properties": {
-    "id": {
-      "type": "string",
-      "$ref": "defs.json#/$defs/record_id",
-      "pattern": "^gen:"
-    },
-    "type": {
-      "const": "generator"
-    },
-    "title": {
-      "type": "string"
-    },
-    "version": {
-      "type": "integer",
-      "minimum": 1
-    },
-    "code": {
-      "type": "string"
-    },
-    "runs_in": {
-      "type": "array",
-      "items": {
-        "enum": [
-          "build",
-          "client"
-        ]
-      }
-    },
+    "id": { "type": "string", "$ref": "defs.json#/$defs/record_id", "pattern": "^gen:" },
+    "type": { "const": "generator" },
+    "title": { "type": "string" },
+    "version": { "type": "integer", "minimum": 1 },
+    "code": { "type": "string" },
+    "runs_in": { "type": "array", "items": { "enum": ["build", "client"] } },
     "outputs": {
       "type": "object",
-      "required": [
-        "basis"
-      ],
-      "properties": {
-        "basis": {
-          "const": "procedural"
-        }
-      },
+      "required": ["basis"],
+      "properties": { "basis": { "const": "procedural" } },
       "additionalProperties": false
     },
-    "inputs": {
-      "type": "array",
-      "description": "What it reads from the world as constraints. Empty only where it takes nothing from the world",
-      "items": {
-        "$ref": "defs.json#/$defs/input"
-      }
-    },
+    "inputs": { "type": "array", "description": "What it reads from the world as constraints. Empty only where it takes nothing from the world", "items": { "$ref": "defs.json#/$defs/input" } },
     "slots": {
       "type": "object",
       "minProperties": 1,
-      "propertyNames": {
-        "$ref": "defs.json#/$defs/key"
-      },
+      "propertyNames": { "$ref": "defs.json#/$defs/key" },
       "additionalProperties": {
         "type": "object",
-        "required": [
-          "place",
-          "seed"
-        ],
-        "properties": {
-          "place": {
-            "type": "string"
-          },
-          "seed": {
-            "type": "string",
-            "minLength": 1
-          }
-        },
+        "required": ["place", "seed"],
+        "properties": { "place": { "type": "string" }, "seed": { "type": "string", "minLength": 1 } },
         "additionalProperties": false
       }
     },
-    "params": {
-      "type": "object"
-    },
+    "params": { "type": "object" },
     "checks": {
       "type": "array",
       "description": "Tests that hold what it makes, in aggregate, to the models and claims it samples (docs/STRUCTURE.md section 3.4): the test file, and the name of the test as it is written there",
-      "items": {
-        "type": "object",
-        "required": [
-          "test",
-          "holds"
-        ],
-        "properties": {
-          "test": {
-            "type": "string"
-          },
-          "holds": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      }
+      "items": { "type": "object", "required": ["test", "holds"], "properties": { "test": { "type": "string" }, "holds": { "type": "string" } }, "additionalProperties": false }
     },
     "limits": {
       "type": "array",
       "description": "Where what it makes is known not to follow what it samples, and why",
-      "items": {
-        "type": "object",
-        "required": [
-          "note"
-        ],
-        "properties": {
-          "with": {
-            "type": "string"
-          },
-          "note": {
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      }
+      "items": { "type": "object", "required": ["note"], "properties": { "with": { "type": "string" }, "note": { "type": "string" } }, "additionalProperties": false }
     }
   },
   "additionalProperties": false
