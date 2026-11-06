@@ -1,7 +1,8 @@
 // Today's borders and cities, and the hazards of the time shown, over the globe. They are rows of a
 // dataset, thousands of them, so they are drawn on a canvas and need no element each; a click finds
 // the nearest one drawn. At these times the plates have not moved enough to matter.
-import { cellAt, gridSize, hazardsNear, insideRow, levelOf, peopleAt, politiesAt, rangeAt, stepsAround, type HazardFile, type HazardRow, type LanguageRow, type LanguagesFile, type PeopleFile, type PolitiesFile, type PolityRow, type PresentFile, type PresentPlace, type RoutesFile } from '../../../core/layers.ts';
+import { cellAt, gridSize, hazardsNear, insideRow, levelOf, peopleAt, politiesAt, rangeAt, stepsAround, type HazardFile, type HazardRow, type PeopleFile, type PolitiesFile, type PolityRow, type PresentFile, type PresentPlace } from '../../../core/layers.ts';
+import { hueOf } from '../../../core/fieldlayers.ts';
 import { unitVector } from '../../../core/quat.ts';
 import { PRESENT_YEAR } from '../../../core/time.ts';
 import type { Camera } from '../camera.ts';
@@ -182,12 +183,6 @@ export class HazardLayer {
   }
 }
 
-/** A colour for a state: chosen from its name, and so a choice of the viewer's, not a fact. */
-function hueOf(name: string): number {
-  let h = 0;
-  for (let i = 0; i < name.length; i++) h = (Math.imul(h, 31) + name.charCodeAt(i)) | 0;
-  return ((h % 360) + 360) % 360;
-}
 
 /** The states of the world at the time shown, from a borders dataset, tinted and outlined, the largest named. */
 export class PolityLayer {
@@ -277,121 +272,6 @@ export class PolityLayer {
     let best: PolityRow | undefined;
     for (const r of this.now) if ((!best || r.area < best.area) && insideRow(r, lon, lat)) best = r;
     return best;
-  }
-}
-
-/** Roads and routes at the time shown: the surer they are, the firmer they are drawn. */
-export class RouteLayer {
-  readonly el: HTMLCanvasElement;
-  file: RoutesFile | null = null;
-  /** how many stretches were drawn in the last frame */
-  count = 0;
-
-  constructor() {
-    this.el = document.createElement('canvas');
-    this.el.className = 'row-layer';
-    this.el.hidden = true;
-  }
-
-  update(camera: Camera, t: number, width: number, height: number): void {
-    this.count = 0;
-    const now = this.file ? this.file.routes.filter((r) => r.from <= t && t <= r.to) : [];
-    this.el.hidden = !now.length;
-    if (!now.length) return;
-    const g = fit(this.el, width, height);
-    for (const r of now) {
-      g.beginPath();
-      let open = false;
-      let any = false;
-      for (let k = 0; k + 1 < r.line.length; k += 2) {
-        const s = camera.project(unitVector(r.line[k + 1] / 100, r.line[k] / 100) as V3);
-        if (!s.visible) {
-          open = false;
-          continue;
-        }
-        any = true;
-        if (open) g.lineTo(s.x, s.y);
-        else g.moveTo(s.x, s.y);
-        open = true;
-      }
-      if (!any) continue;
-      this.count++;
-      const firm = r.certainty === 'certain' ? 1 : r.certainty === 'conjectured' ? 0.72 : 0.42;
-      g.strokeStyle = `rgba(255, 226, 170, ${(r.main ? 0.78 : 0.46) * firm})`;
-      g.lineWidth = r.main ? 0.9 : 0.55;
-      g.setLineDash(r.certainty === 'hypothetical' ? [2, 2] : []);
-      g.stroke();
-    }
-    g.setLineDash([]);
-  }
-}
-
-/** The world's languages, each at the place the catalogue puts it today, tinted by family. */
-export class LanguageLayer {
-  readonly el: HTMLCanvasElement;
-  file: LanguagesFile | null = null;
-  private shown: { r: LanguageRow; x: number; y: number }[] = [];
-
-  constructor() {
-    this.el = document.createElement('canvas');
-    this.el.className = 'row-layer';
-    this.el.hidden = true;
-  }
-
-  get count(): number {
-    return this.shown.length;
-  }
-
-  update(camera: Camera, on: boolean, dist: number, width: number, height: number): void {
-    this.shown = [];
-    this.el.hidden = !on || !this.file;
-    if (this.el.hidden) return;
-    const g = fit(this.el, width, height);
-    for (const r of this.file!.rows) {
-      const s = camera.project(unitVector(r.lat, r.lon) as V3);
-      if (!s.visible) continue;
-      this.shown.push({ r, x: s.x, y: s.y });
-      g.fillStyle = `hsla(${hueOf(r.family)}, 78%, 68%, 0.85)`;
-      g.beginPath();
-      g.arc(s.x, s.y, dist < 1.3 ? 2.6 : 1.5, 0, 2 * Math.PI);
-      g.fill();
-    }
-    // Close by there is room to name them, without one on another.
-    if (dist >= 1.25) return;
-    const boxes: [number, number, number, number][] = [];
-    g.font = '10.5px system-ui, sans-serif';
-    g.textBaseline = 'middle';
-    for (const { r, x, y } of this.shown) {
-      if (boxes.length > 120) break;
-      const w = g.measureText(r.name).width;
-      const box: [number, number, number, number] = [x - 3, y - 7, x + 7 + w, y + 7];
-      if (x < 0 || y < 0 || x > width || y > height || boxes.some((b) => b[0] < box[2] && box[0] < b[2] && b[1] < box[3] && box[1] < b[3])) continue;
-      boxes.push(box);
-      g.lineWidth = 3;
-      g.strokeStyle = 'rgba(8, 12, 20, 0.7)';
-      g.strokeText(r.name, x + 5, y);
-      g.fillStyle = 'rgba(255, 248, 232, 0.92)';
-      g.fillText(r.name, x + 5, y);
-    }
-  }
-
-  pick(x: number, y: number): LanguageRow | undefined {
-    let best: LanguageRow | undefined;
-    let d = PICK * PICK;
-    for (const s of this.shown) {
-      const v = (s.x - x) * (s.x - x) + (s.y - y) * (s.y - y);
-      if (v < d) {
-        d = v;
-        best = s.r;
-      }
-    }
-    return best;
-  }
-
-  /** The screen position of a language, for tests. */
-  positionOf(name: string): { x: number; y: number } | undefined {
-    const s = this.shown.find((q) => q.r.name === name);
-    return s && { x: s.x, y: s.y };
   }
 }
 

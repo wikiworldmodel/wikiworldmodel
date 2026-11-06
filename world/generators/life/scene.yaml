@@ -22,6 +22,18 @@ inputs:
   - { prop: body_mass, note: "how big each is drawn, and how many" }
   - { ref: src:pbdb-hell-creek-2026-11-04, note: "the Hell Creek slot: its taxa" }
   - { ref: life/hell-creek/ecosystem, note: "the Hell Creek slot: where it was, and on which plate" }
+# What it makes, held in aggregate to what it samples (docs/STRUCTURE.md section 3.4).
+checks:
+  - { test: world/generators/life/scene/v2.test.ts, holds: "is only the taxa it is given, each near the arrival at least once" }
+  - { test: world/generators/life/scene/v2.test.ts, holds: "draws each taxon as often as the atlas's weight and the density rule say, in aggregate, below a cell's cap" }
+  - { test: world/generators/life/scene/v2.test.ts, holds: "has no forest before forests, only the few set by the arrival" }
+  - { test: world/generators/life/scene/v2.test.ts, holds: "has bare ground and no low plants at all before land plants" }
+  - { test: world/generators/life/scene/v2.test.ts, holds: "has a desert mostly bare, with no forest" }
+limits:
+  - with: field:life/community
+    note: >-
+      Small animals reach the most a cell holds (params.animals.most_in_cell), and past it the atlas's weight no
+      longer sets how many are drawn: two small mammals the atlas weighs nine to one come out about as many.
 slots:
   hell-creek:
     place: The floodplain of the Hell Creek, at the slice its scene describes

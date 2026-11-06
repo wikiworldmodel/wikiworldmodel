@@ -1,8 +1,10 @@
-// Pass criteria for living scenes: a link lands in one and the browser makes the bytes the build recorded; the
+// Pass criteria for living scenes: a link lands in one and the browser makes what the build recorded, within the
+// tolerance of core/fingerprint.ts; the
 // way down from the globe; a scene of any place on land, from what is fetched; what a click says is recorded,
 // inferred and generated; generated life shows in evidence mode; and the time each is drawn for.
 import { expect, test } from '@playwright/test';
 import type { AtlasIndex } from '../../../core/atlas.ts';
+import { fingerprintProblems, type Fingerprint } from '../../../core/fingerprint.ts';
 import type { SceneFileV2 } from '../../../core/scene.ts';
 import type { SiteInfo, Tileset } from '../../../core/tileset.ts';
 import { FAST_BUDGET } from '../../../world/generators/life/stream.ts';
@@ -17,22 +19,23 @@ const arrival = (s: SiteInfo, metres = s.view.range) => {
   const { lat, lon } = place(s, s.view.x, s.view.y);
   return `t=${s.slice}&lat=${lat}&lon=${lon}&d=${1 + metres / 6371000}&h=${s.view.heading}&v=${s.view.tilt}`;
 };
-const witnesses = () => buildFile<{ lat: number; lon: number; t: number; sha256: string; taxa: number }[]>('life/witness.json');
+const witnesses = () => buildFile<{ lat: number; lon: number; t: number; print: Fingerprint; taxa: number }[]>('life/witness.json');
 const atlas = () => buildFile<AtlasIndex>('life/atlas.json');
 const lowOver = (lat: number, lon: number, t: number, metres = 200) => `t=${t}&lat=${lat}&lon=${lon}&d=${1 + metres / 6371000}&h=30&v=75`;
 
 test.describe('the Hell Creek', () => {
   test.use(small);
 
-  test('a link lands in it, and the browser makes the bytes the build recorded', async ({ page, context }) => {
+  test('a link lands in it, and the browser makes what the build recorded, within the tolerance', async ({ page, context }) => {
     const s = site();
     await page.goto(`/?b=${latestBuild()}&${arrival(s)}&${FAST}`);
     await idle(page);
     const scene = await page.evaluate(() => window.__wikiworldmodel!.scene());
     expect(scene).not.toBeNull();
-    expect(scene!.plan.actual).toBe(scene!.plan.expected);
+    expect(scene!.plan.actual).not.toBeNull();
+    expect(scene!.plan.problems).toEqual([]);
     const file = buildFile<SceneFileV2>(s.file);
-    expect(scene!.plan.expected).toBe(file.sha256);
+    expect(scene!.plan.expected).toEqual(file.print);
     expect(scene!.instances).toBeGreaterThan(50);
     // Every taxon it draws is in the build's list.
     expect(scene!.taxa.map((t) => t.id).sort()).toEqual(file.spec.taxa.map((t) => t.id).sort());
@@ -158,7 +161,8 @@ test.describe('the Hell Creek', () => {
     await expect(page.locator('.city-enter')).toHaveText('Fly down into Rome, 315 CE');
     expect(await page.evaluate(() => window.__wikiworldmodel!.scene())).toBeNull();
     const fabric = await page.evaluate(() => window.__wikiworldmodel!.fabric());
-    expect(fabric!.actual).toBe(fabric!.expected);
+    expect(fabric!.actual).not.toBeNull();
+    expect(fabric!.problems).toEqual([]);
   });
 });
 
@@ -188,12 +192,13 @@ test.describe('anywhere else', () => {
     expect(bytes).toBeLessThan(6e6);
   });
 
-  test('a browser makes the same scene as the build does of the same place, to the byte', async ({ page }) => {
+  test('a browser makes the same scene as the build does of the same place, within the tolerance', async ({ page }) => {
     await page.goto(`/?b=${latestBuild()}&${FAST}`);
     await idle(page);
     for (const w of witnesses()) {
-      const made = await page.evaluate((x) => window.__wikiworldmodel!.lifeDigest(x.lat, x.lon, x.t), w);
-      expect(made, `${w.lat}, ${w.lon} at ${w.t}`).toBe(w.sha256);
+      const made = await page.evaluate((x) => window.__wikiworldmodel!.lifePrint(x.lat, x.lon, x.t), w);
+      expect(made, `${w.lat}, ${w.lon} at ${w.t}`).not.toBeNull();
+      expect(fingerprintProblems(w.print, made!), `${w.lat}, ${w.lon} at ${w.t}`).toEqual([]);
     }
   });
 

@@ -14,4 +14,6 @@ data:
   columns: { time: "Age model [ka]", value: "delta T [°C]" }
   time_unit: ka
 basis: reconstruction
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
 interp: linear

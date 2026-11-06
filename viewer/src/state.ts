@@ -22,8 +22,8 @@ export interface ViewState {
   hour: number;
   /** the tree of life is open */
   tree?: boolean;
-  /** the world's languages are drawn */
-  langs?: boolean;
+  /** the fields drawn over the globe that wait for a toggle, by their keys (core/fieldlayers.ts) */
+  layers?: string[];
   /** where people lived is drawn */
   people?: boolean;
   /**
@@ -76,7 +76,7 @@ export function toSearch(build: string, s: ViewState): string {
   if (s.picks.length) p.set('pick', [...s.picks].sort().join(','));
   if (s.sel) p.set('sel', s.sel);
   if (s.tree) p.set('tree', '1');
-  if (s.langs) p.set('langs', '1');
+  if (s.layers?.length) p.set('ly', [...s.layers].sort().join(','));
   if (s.people) p.set('people', '1');
   if (s.quality) p.set('quality', s.quality);
   return `?${p.toString()}`;
@@ -103,6 +103,8 @@ export function fromSearch(search: string, defaults: ViewState): { build?: strin
     if (a !== undefined && b !== undefined && a < b) window = [a, b];
   }
   const list = (k: string) => [...new Set((p.get(k) ?? '').split(',').filter(Boolean))].sort();
+  // A link from before the toggles were the fields' own still draws the languages.
+  const toggled = [...new Set([...list('ly'), ...(p.get('langs') === '1' ? ['langs'] : [])])].sort();
   const state = quantize({
     t,
     cam: { lat: num('lat', defaults.cam.lat), lon: num('lon', defaults.cam.lon), dist: num('d', defaults.cam.dist), heading: num('h', 0), tilt: num('v', 0) },
@@ -114,7 +116,7 @@ export function fromSearch(search: string, defaults: ViewState): { build?: strin
     sel: p.get('sel'),
     hour: num('hour', defaults.hour),
     tree: p.get('tree') === '1' || undefined,
-    langs: p.get('langs') === '1' || undefined,
+    layers: toggled.length ? toggled : undefined,
     people: p.get('people') === '1' || undefined,
     quality: p.get('quality') === 'fast' ? 'fast' : undefined,
   });

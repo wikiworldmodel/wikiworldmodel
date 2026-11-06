@@ -1,10 +1,10 @@
 // Pass criteria: the tile set is complete, and holds what the world says. They read the build that
 // `npm run build:world` made; that building it again gives the same bytes is reproducible.test.ts.
-import { createHash } from 'node:crypto';
 import { readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { decodeTile } from '../../../core/container.ts';
+import { bytesPrint, fingerprintProblems } from '../../../core/fingerprint.ts';
 import { fromMa, PRESENT_YEAR, toMa } from '../../../core/time.ts';
 import { featureTileUrl, type FeatureIndex } from '../../../core/featuretiles.ts';
 import { cityKind, type Feature, type TileHeader, type Tileset } from '../../../core/tileset.ts';
@@ -15,6 +15,7 @@ import { territoriesAt, type TerritoryFile } from '../../../core/territory.ts';
 import type { CoverageFile, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../core/records.ts';
 import { GENERATOR, generateClouds, type CloudParams } from '../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
+import { GENERATOR as GENERIC_LAND, generateGenericLand, type GenericLandParams } from '../../../world/generators/earth/generic-land/v1.ts';
 import { latestBuild } from './helpers.ts';
 
 /** A file's bytes as an ArrayBuffer of their own (small files share Node's buffer pool). */
@@ -61,6 +62,41 @@ describe('build', () => {
     for (let i = 1; i < lod0.length; i++) expect(lod0[i].time[0]).toBe(lod0[i - 1].time[1]);
   });
 
+  it('answers every layer everywhere in a tier, and draws generic land only where no map covers the time', () => {
+    const c = JSON.parse(readFileSync(join(latestBuild(), 'coverage.json'), 'utf8')) as CoverageFile;
+    const spans = Object.fromEntries((c.tiers ?? []).map((s) => [s.span, s.layers]));
+    expect(Object.keys(spans).length).toBe(8);
+    // A grid of 10° cells at eight times through each span: every answer has a tier.
+    for (const [span, layers] of Object.entries(spans)) {
+      for (const [layer, counts] of Object.entries(layers)) expect(Object.values(counts).reduce((a, b) => a + b, 0), `${layer} in ${span}`).toBe(648 * 8);
+    }
+    expect(spans['4600–1000 Ma'].geography.generic).toBeGreaterThan(0);
+    expect(spans['100–10 Ma'].geography).toEqual({ evidence: 0, model: 648 * 8, generic: 0, unknown: 0 });
+    // The land's life is recorded somewhere in the Phanerozoic, and nowhere before it.
+    expect(spans['100–10 Ma'].life.evidence).toBeGreaterThan(0);
+    expect(spans['4600–1000 Ma'].life.evidence).toBe(0);
+  });
+
+  it('records generic land that its generator reproduces, at its share of the planet', () => {
+    const dir = latestBuild();
+    const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
+    const { header } = decodeTile<TileHeader>(bytes(join(dir, ts.tiles[0].url)));
+    const g = header.generators.find((x) => x.generator === GENERIC_LAND)!;
+    const p = g.params as unknown as GenericLandParams;
+    const mask = generateGenericLand(g.seed, p);
+    expect(fingerprintProblems(g.output, bytesPrint('pixels', mask))).toEqual([]);
+    let land = 0;
+    let total = 0;
+    for (let j = 0; j < p.height; j++) {
+      const area = Math.cos(Math.PI / 2 - ((j + 0.5) / p.height) * Math.PI);
+      for (let i = 0; i < p.width; i++) {
+        total += area;
+        if (mask[j * p.width + i] > 128) land += area;
+      }
+    }
+    expect(land / total).toBeCloseTo(p.land_share, 2);
+  });
+
   it('records generator output that the generator reproduces', () => {
     const dir = latestBuild();
     const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
@@ -68,10 +104,10 @@ describe('build', () => {
     const g = header.generators.find((x) => x.generator === GENERATOR)!;
     expect([g.slot, g.seed]).toEqual(['globe', 'earth/clouds']);
     const out = generateClouds(g.seed, g.params as unknown as CloudParams);
-    expect(createHash('sha256').update(out).digest('hex')).toBe(g.outputSha256);
+    expect(fingerprintProblems(g.output, bytesPrint('pixels', out))).toEqual([]);
     const sg = header.generators.find((x) => x.generator === SURFACE)!;
     expect([sg.slot, sg.seed]).toEqual(['globe', 'earth/surface']);
-    expect(createHash('sha256').update(generateSurface(sg.seed, sg.params as unknown as SurfaceParams)).digest('hex')).toBe(sg.outputSha256);
+    expect(fingerprintProblems(sg.output, bytesPrint('pixels', generateSurface(sg.seed, sg.params as unknown as SurfaceParams)))).toEqual([]);
   });
 
   it('records what it was made from: commit, datasets, generators, alternatives shown, license filter', () => {

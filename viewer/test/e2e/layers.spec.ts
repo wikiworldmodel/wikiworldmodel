@@ -215,7 +215,7 @@ test('the world’s languages are drawn when asked for, at the present, and a cl
   await page.locator('.tg-langs').click();
   await idle(page);
   expect(await page.evaluate(() => window.__wikiworldmodel!.layers().languages)).toBeGreaterThan(50);
-  await page.waitForFunction(() => window.__wikiworldmodel!.url().includes('langs=1'));
+  await page.waitForFunction(() => window.__wikiworldmodel!.url().includes('ly=langs'));
   const at = (await page.evaluate(() => window.__wikiworldmodel!.layers().languageAt('Basque')))!;
   expect(at).toBeTruthy();
   await page.mouse.click(at.x, at.y);

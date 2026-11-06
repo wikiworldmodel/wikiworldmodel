@@ -13,3 +13,5 @@ data:
   as: borders
   places: src:natural-earth-places-5.1.2
 basis: evidence
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown

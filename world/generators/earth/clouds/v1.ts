@@ -1,7 +1,8 @@
 // Procedural cloud cover, version 1 of gen:earth/clouds; its parameters and seed are in
 // the generator's record. The output depends only on the seed and the parameters, and the
 // code uses only + − × ÷, floor and 32-bit integer operations, so every JavaScript engine
-// produces the same bytes. That is what lets the build and the browser run it and agree.
+// happens to produce the same bytes; the build and the browser are held to agree within the
+// tolerance of core/fingerprint.ts.
 
 /** The record this code implements (world/generators/earth/clouds.yaml). */
 export const GENERATOR = 'gen:earth/clouds';

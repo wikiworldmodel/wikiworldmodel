@@ -17,14 +17,15 @@ function onAfrica(ageMa: number): [number, number] {
 }
 const startOf = (cover: string) => buildFile<PlanetFile>('planet.json').covers!.find((c) => c.values.cover?.some((v) => v.value === cover))!.time.start.best!;
 
-test('a build with biomes hands the globe its climate, and generates the texture the build recorded', async ({ page }) => {
+test('a build with biomes hands the globe its climate, and generates the texture the build recorded, within the tolerance', async ({ page }) => {
   const ts = buildFile<Tileset>('tileset.json');
   expect(ts.files.climate).toBeTruthy();
   await page.goto(`/?b=${latestBuild()}&t=${year(100)}&lat=30&lon=0&d=3`);
   await idle(page);
   const made = await page.evaluate(() => window.__wikiworldmodel!.biomeTexture);
-  expect(made.actual).toBe(made.expected);
-  expect(made.expected.length).toBe(64);
+  expect(made.expected?.pixels?.n).toBeGreaterThan(0);
+  expect(made.actual).not.toBeNull();
+  expect(made.problems).toEqual([]);
 });
 
 test('no vegetation before the land-plants claim: not in what the globe is told, nor in what the panel says', async ({ page }) => {

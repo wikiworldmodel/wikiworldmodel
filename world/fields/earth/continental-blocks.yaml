@@ -15,5 +15,7 @@ time: { lo: 1100 Ma, hi: 540 Ma, step: 10 Myr }
 # rotations do not reach at an age is left out.
 data: { from: src:paleomap-plate-model, file: polygons }
 basis: reconstruction
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
 interp: plate-warp
 moves_with: src:paleomap-plate-model

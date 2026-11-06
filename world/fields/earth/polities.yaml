@@ -11,6 +11,17 @@ data:
   from: src:cliopatria-0.2.1
   as: polities
 basis: reconstruction
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
+# Its rows are claims (docs/STRUCTURE.md section 3.1): a polity's name and the years its outline holds. The
+# dataset gives no ids, so a row is keyed by its name and its first year, which together are unique in it.
+rows:
+  kind: polity
+  key: "{Name}@{FromYear}"
+  claims:
+    name: { column: Name, as: text }
+    start: { column: FromYear, as: year, method: compilation, basis: reconstruction }
+    end: { column: ToYear, as: year-end, method: compilation, basis: reconstruction }
 params:
   # How far an outline may stray from the dataset's, in degrees: about seventeen kilometres, a pixel or
   # two on the globe as close as it goes, and it keeps the file under 18 MB.

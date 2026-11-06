@@ -1,16 +1,16 @@
 // A generator's output is part of the world: changing it is a new version, not an edit. These check a scene
 // without a build: a made-up place with a handful of made-up taxa, which say nothing of any real animal.
-import { createHash } from 'node:crypto';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'yaml';
 import { beforeAll, describe, expect, it } from 'vitest';
+import { fingerprint, fingerprintProblems } from '../../../../core/fingerprint.ts';
 import { canonicalForm, type Form } from '../../../../core/form.ts';
 import type { LivingTaxon, ReliefPatch, SceneCover, SceneSpec } from '../../../../core/scene.ts';
 import type { FeatureTime } from '../../../../core/tileset.ts';
 import { cubeRoot, latticeOf, sizeWithin } from '../spec.ts';
 import { FAST_BUDGET, FULL_BUDGET, INSTANCE_STRIDE, protoParts, SceneStream, type LifeView } from '../stream.ts';
-import { CELL, cellBytes, densityOf, EXTENT, GENERATOR, VERSION, type CellRows, type LivingParams } from './v2.ts';
+import { CELL, cellParts, densityOf, EXTENT, GENERATOR, VERSION, type CellRows, type LivingParams } from './v2.ts';
 
 const ROOT = join(import.meta.dirname, '../../..');
 const record = parse(readFileSync(join(ROOT, 'generators/life/scene.yaml'), 'utf8'));
@@ -70,7 +70,6 @@ function specOf(opts: { climate?: SceneSpec['biome']['climate']; cover?: SceneCo
   };
 }
 
-const sha = (b: Uint8Array) => createHash('sha256').update(b).digest('hex');
 
 const viewAt = (x: number, y: number, up: number, stream: SceneStream, height = 760): LifeView => {
   const z = stream.ground.at(x, y) + up;
@@ -97,14 +96,14 @@ beforeAll(() => {
 });
 
 describe('a scene', () => {
-  it('is the same to the byte from the same spec', () => {
+  it('is the same scene from the same spec, within the tolerance', () => {
     const other = new SceneStream(specOf());
-    expect(sha(other.digestBytes())).toBe(sha(stream.digestBytes()));
+    expect(fingerprintProblems(stream.print(), other.print())).toEqual([]);
   });
 
   it('is not the same from another seed', () => {
     const other = new SceneStream(specOf({ seed: 'life/other' }));
-    expect(sha(other.digestBytes())).not.toBe(sha(stream.digestBytes()));
+    expect(fingerprintProblems(stream.print(), other.print())).not.toEqual([]);
   });
 
   it('makes a cell the same whatever was made before it, or whichever order', () => {
@@ -115,7 +114,7 @@ describe('a scene', () => {
     const j = Math.floor(fy / CELL);
     a.plan.cell(i + 3, j - 2, 2);
     a.plan.cell(i - 5, j + 1, 1);
-    expect(sha(cellBytes(a.plan.cell(i, j, 2)))).toBe(sha(cellBytes(b.plan.cell(i, j, 2))));
+    expect(fingerprintProblems(fingerprint(cellParts(a.plan.cell(i, j, 2))), fingerprint(cellParts(b.plan.cell(i, j, 2))))).toEqual([]);
   });
 
   it('uses only what every engine computes alike', () => {
@@ -191,6 +190,19 @@ describe('what stands in it', () => {
     TAXA.forEach((t, i) => {
       if (t.form !== 'floating-fern') expect(seen.has(i), t.label).toBe(true);
     });
+  });
+
+  it("draws each taxon as often as the atlas's weight and the density rule say, in aggregate, below a cell's cap", () => {
+    // Two animals alike but for how much the atlas weighs them: the model's density (densityOf) says how many more of one.
+    // Small animals reach the most a cell holds (animals.most_in_cell), where the weight no longer tells; these do not.
+    const taxa = [taxon('common', 'ornithopod', 3, { weight: 0.9 }), taxon('rare', 'ornithopod', 3, { weight: 0.1 }), taxon('cypress', 'conifer', 30)];
+    const s = new SceneStream(specOf({ taxa, seed: 'life/aggregate' }));
+    const counts = [0, 0, 0];
+    for (const c of cellsOf(s, 2, 2000)) for (const t of c.taxon) counts[t]++;
+    const want = densityOf(taxa[0], plans.ornithopod, PARAMS.animals, 1) / densityOf(taxa[1], plans.ornithopod, PARAMS.animals, 1);
+    expect(counts[1]).toBeGreaterThan(20);
+    expect(counts[0] / counts[1]).toBeGreaterThan(want * 0.7);
+    expect(counts[0] / counts[1]).toBeLessThan(want * 1.4);
   });
 
   it('never puts a land animal in the water, and keeps the water animals by it', () => {

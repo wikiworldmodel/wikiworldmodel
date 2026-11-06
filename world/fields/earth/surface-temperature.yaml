@@ -20,4 +20,6 @@ data:
   time_unit: Ma
   band: the range van der Meer et al. (2022) give around the curve
 basis: reconstruction
+# A low and a high around each value, as the dataset gives them.
+spread: band
 interp: linear

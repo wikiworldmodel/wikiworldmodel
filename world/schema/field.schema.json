@@ -107,14 +107,87 @@
     "isoline_m": { "type": "number" },
     "params": { "type": "object", "description": "The rule's parameters, or for a grid read by the build what it needs besides its data" },
     "source": { "$ref": "defs.json#/$defs/citation", "description": "Where the rule or those parameters come from" },
-    "uncertainty": { "type": "string", "description": "What a click says of how far to trust a value of it, where a grid has no error bars" }
+    "uncertainty": { "type": "string", "description": "What a click says of how far to trust a value of it, where a grid has no error bars" },
+    "spread": {
+      "description": "How its uncertainty is carried (docs/STRUCTURE.md section 3.2, core/samples.ts): unknown, a single value whose uncertainty nobody gave; band, a low and a high around each value; alternatives, readings each its own picture; ensemble, members, such as runs of a model; claims, each value the world's own claim, with that claim's uncertainty; tiers, how near the evidence is",
+      "enum": ["unknown", "band", "alternatives", "ensemble", "claims", "tiers"]
+    },
+    "kind": { "enum": ["raster", "categorical", "points", "lines", "areas", "series"], "description": "What kind of field it is (docs/STRUCTURE.md section 3.6): a continuous or a categorical raster, points, lines or areas over the globe, or a series" },
+    "layer": {
+      "description": "How a field of points, lines or areas is drawn over the globe: data, read by one renderer (core/fieldlayers.ts)",
+      "type": "object",
+      "required": ["color", "describe"],
+      "properties": {
+        "toggle": { "type": "object", "required": ["key", "label", "title"], "properties": { "key": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" }, "label": { "type": "string" }, "title": { "type": "string" } }, "additionalProperties": false, "description": "A toolbar button that draws it; without one it is drawn whenever its time holds" },
+        "where": { "type": "object", "additionalProperties": { "type": "string" }, "description": "Only rows whose columns have these values" },
+        "crs": { "enum": ["world-mercator"], "description": "The coordinates the dataset's geometry is in, where not latitude and longitude" },
+        "thin": { "type": "number", "exclusiveMinimum": 0, "description": "How far a line or an outline may stray from the dataset's, in degrees" },
+        "group": {
+          "type": "object",
+          "required": ["column", "word"],
+          "properties": { "column": { "type": "string" }, "word": { "type": "string" }, "name": { "type": "object", "required": ["key", "column"], "properties": { "key": { "type": "string" }, "column": { "type": "string" } }, "additionalProperties": false } },
+          "additionalProperties": false,
+          "description": "What a row belongs to, which tints it: a column, what the panel calls it, and where the group's own row gives its name"
+        },
+        "color": {
+          "oneOf": [
+            { "type": "object", "required": ["value"], "properties": { "value": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" } }, "additionalProperties": false },
+            { "type": "object", "required": ["by", "saturation", "lightness"], "properties": { "by": { "const": "group" }, "saturation": { "type": "number" }, "lightness": { "type": "number" } }, "additionalProperties": false }
+          ]
+        },
+        "size": { "type": "object", "required": ["far", "near"], "properties": { "far": { "type": "number" }, "near": { "type": "number" } }, "additionalProperties": false },
+        "width": { "$ref": "#/$defs/by_value" },
+        "opacity": { "$ref": "#/$defs/by_value" },
+        "labels": { "type": "object", "required": ["near", "most"], "properties": { "near": { "type": "number" }, "most": { "type": "integer" } }, "additionalProperties": false },
+        "pick": { "type": "boolean", "description": "Whether a click picks its rows; by default it does" },
+        "describe": { "type": "string", "description": "What the panel calls a row" },
+        "key_label": { "type": "string", "description": "What the panel calls a row's key, if it shows it" }
+      },
+      "additionalProperties": false
+    },
+    "rows": {
+      "description": "For a dataset read as rows: the rows are claims (docs/STRUCTURE.md section 3.1). How a row's key is made from its columns, what kind of thing a row is, and which column gives which property",
+      "type": "object",
+      "required": ["kind", "key", "claims"],
+      "properties": {
+        "kind": { "type": "string", "description": "What a row is, from the vocabulary of kinds" },
+        "key": { "type": "string", "minLength": 3, "description": "A template: {Column} for a column's value, {#} for the row's place in the file" },
+        "claims": {
+          "type": "object",
+          "minProperties": 1,
+          "description": "By property: the column it comes from, and how it is read",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["column"],
+            "properties": {
+              "column": { "oneOf": [{ "type": "string" }, { "type": "array", "items": { "type": "string" }, "minItems": 2, "maxItems": 2 }] },
+              "as": { "enum": ["string", "number", "text", "year", "year-end", "ma", "ma-range", "point"], "description": "string, number, text (in English), year (a year as the dataset counts it, with no year 0), year-end (the same, holding to the end of the year), ma (millions of years ago), ma-range (an older and a younger age column, in Ma), point (latitude and longitude columns, measured on today's Earth)" },
+              "none": { "type": "array", "items": { "type": ["string", "number"] }, "description": "Values that mean the dataset gives none" },
+              "method": { "type": "string" },
+              "basis": { "$ref": "defs.json#/$defs/basis" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
   },
   "additionalProperties": false,
+  "$defs": {
+    "by_value": {
+      "description": "A number for every row, or set by a column's value",
+      "oneOf": [
+        { "type": "number" },
+        { "type": "object", "required": ["by", "values", "otherwise"], "properties": { "by": { "type": "string" }, "values": { "type": "object", "additionalProperties": { "type": "number" } }, "otherwise": { "type": "number" } }, "additionalProperties": false }
+      ]
+    }
+  },
   "allOf": [
     {
       "if": { "required": ["derived"] },
       "then": { "required": ["rule"], "not": { "anyOf": [{ "required": ["data"] }, { "required": ["basis"] }] } },
-      "else": { "required": ["data", "basis", "grid", "time"] }
+      "else": { "required": ["data", "basis", "grid", "time", "spread"] }
     },
     { "if": { "required": ["rule"], "properties": { "rule": { "const": "isoline" } } }, "then": { "required": ["from"] } },
     { "if": { "required": ["rule"], "properties": { "rule": { "enum": ["gough-1981", "ice-equivalent-sea-level"] } } }, "then": { "required": ["grid", "time", "params", "source"] } },

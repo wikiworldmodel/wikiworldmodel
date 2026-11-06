@@ -1,6 +1,7 @@
 // A site on the GPU, drawn in cells: it keeps each cell's mesh at the detail its distance calls for,
 // nearest first, asking a worker to make them. What the cells hold is the subclass's: a city's
 // buildings, or a living scene's animals and plants.
+import { printCheck, type PrintCheck } from '../../../core/fingerprint.ts';
 import type { CityStructure } from '../../../core/city.ts';
 import type { Scenario } from '../../../core/scenario.ts';
 import { CELL } from '../../../world/generators/city/cells.ts';
@@ -27,11 +28,6 @@ export interface Cell {
   usedAt: number;
 }
 
-export async function sha256Hex(data: Uint8Array): Promise<string> {
-  const d = await crypto.subtle.digest('SHA-256', data as unknown as ArrayBuffer);
-  return [...new Uint8Array(d)].map((b) => b.toString(16).padStart(2, '0')).join('');
-}
-
 export interface CellMessage {
   type: 'cell';
   key: number;
@@ -47,7 +43,8 @@ export abstract class CellScene {
   ground!: GroundSampler;
   ready = false;
   /** the plan's hash here and in the build, which must agree */
-  plan = { expected: '', actual: null as string | null };
+  /** the generated plan's fingerprint here and in the build, and how they differ */
+  plan: PrintCheck = printCheck();
   /** what stands in the way of an eye */
   skyline = new Skyline();
   /** how high each named thing stands, above sea level */

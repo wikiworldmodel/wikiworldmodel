@@ -1,4 +1,5 @@
 // Entity records for the inspect panel, features for tiles, periods, and the search index.
+import { levelOf } from '../../../../core/ladder.ts';
 import type { FormSpec } from '../../../../core/city.ts';
 import type { CitationRecord, ClaimRecord, EntityRecord, InverseRecord, PeriodRecord, RelationRecord, SearchFile, SourceRecord, VariantRecord } from '../../../../core/records.ts';
 import { conj, rotate, toLatLon, unitVector } from '../../../../core/quat.ts';
@@ -178,6 +179,8 @@ export interface Placement {
   plate?: number;
   location: { lat: number; lon: number };
   basis: FeatureBasis;
+  /** in a placeholder frame: drawn where it is today, because nothing says where it was */
+  unplaced?: true;
 }
 
 /**
@@ -198,12 +201,14 @@ export function placement(s: Solved, e: Entity, subject: string = e.id): Placeme
     const [lat, lon] = toLatLon(rotate(conj(s.model.total(plate, 0)), unitVector(p.lat, p.lon)));
     location = { lat, lon };
   }
-  const frameBasis: Basis = plate !== undefined ? 'reconstruction' : 'evidence';
+  // A placeholder frame draws a place where it is today because nothing says where it was: a stand-in.
+  const frameBasis: Basis = frame.kind === 'placeholder' ? 'procedural' : plate !== undefined ? 'reconstruction' : 'evidence';
   return {
     frame: frame.id,
     plate,
     location,
     basis: { time: 'evidence', place: weakest([loc.basis, fr.basis, frameBasis]), placeNow: loc.basis },
+    ...(frame.kind === 'placeholder' ? { unplaced: true as const } : {}),
   };
 }
 
@@ -301,6 +306,7 @@ export function features(s: Solved): Feature[] {
       frame: pl.frame,
       plate: pl.plate,
       location: pl.location,
+      ...(pl.unplaced ? { unplaced: true as const } : {}),
       ...(moves.length ? { moves } : {}),
       time,
       variants: Object.keys(variants).length ? variants : undefined,
@@ -446,6 +452,8 @@ export function records(s: Solved): EntityRecord[] {
       author: c.author,
       status: c.status,
       rank: c.rank,
+      checked: c.checked.length ? c.checked : undefined,
+      level: levelOf(c.checked, c.status),
       note: c.note,
     });
     const claims: ClaimRecord[] = e.claims.map((c) => {

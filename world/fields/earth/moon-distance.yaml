@@ -14,4 +14,6 @@ data:
   prop: moon_distance
   band: the uncertainty or the bounds each study gives
 basis: evidence
+# Each value is a claim of the world, with that claim's uncertainty.
+spread: claims
 interp: linear

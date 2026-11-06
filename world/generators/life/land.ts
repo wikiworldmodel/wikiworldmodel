@@ -1,5 +1,6 @@
 // The land under a living scene: noise, a river's course and its old bends, and the height of the plain they cut.
-// Only + − × ÷, square roots and integer operations, so that the build and every browser agree to the byte.
+// Written with only + − × ÷, square roots and integer operations, as generators were before any arithmetic was
+// allowed; what the build and a browser make is now held to agree within the tolerance of core/fingerprint.ts.
 import { dcos, dsin, hash2, Rng, TAU } from '../city/math.ts';
 
 /** How a river and its plain are drawn. Nothing here is a claim about any river. */

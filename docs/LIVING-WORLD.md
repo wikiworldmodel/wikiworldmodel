@@ -7,7 +7,7 @@ animals of that place and moment, and honest about which is which.
 ## The idea
 
 **A scene is a function, not a file.** `scene(place, time, seed)` runs in the browser and makes the same
-bytes everywhere. What it reads is small and sourced: an atlas of who lived where and when, and a form
+scene everywhere: the same individuals exactly, in the same places within a tolerance. What it reads is small and sourced: an atlas of who lived where and when, and a form
 for each kind of living thing. What it makes, the ground and every plant and animal on it, is never
 stored. So the world can grow without the build growing with it, and the cost of a frame depends on the
 pixels on the screen and not on the size of the Earth.

@@ -281,10 +281,13 @@ properties:
     type: geometry
     interp: step
     applies_to: [polity]
+    # An area may be written in the claim itself, as a GeoJSON Polygon or MultiPolygon with the frame its
+    # coordinates were measured in, for an outline no dataset gives (docs/STRUCTURE.md section 5).
+    inline: true
     description: >-
-      The land a polity held, as polygons, from a dataset of borders through time. The claim
-      names the dataset's rows that are this polity; each row holds for the years it gives,
-      within the polity's lifetime.
+      The land a polity held, as polygons: the rows of a dataset of borders through time that are
+      this polity, each holding for the years it gives, within the polity's lifetime; or an outline
+      written in the claim, holding for the claim's `valid` time or the polity's lifetime.
   footprint:
     type: geometry
     interp: step

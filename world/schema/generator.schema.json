@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://wikiworldmodel.invalid/schema/generator.json",
   "title": "Generator",
-  "description": "Versioned code plus parameters plus a seed, run identically by the build and the client.",
+  "description": "Versioned code plus parameters plus a seed, run by the build and the client, whose outputs agree within the tolerance of core/fingerprint.ts.",
   "type": "object",
   "required": ["id", "type", "title", "version", "code", "runs_in", "outputs", "inputs", "slots", "params"],
   "properties": {
@@ -30,7 +30,17 @@
         "additionalProperties": false
       }
     },
-    "params": { "type": "object" }
+    "params": { "type": "object" },
+    "checks": {
+      "type": "array",
+      "description": "Tests that hold what it makes, in aggregate, to the models and claims it samples (docs/STRUCTURE.md section 3.4): the test file, and the name of the test as it is written there",
+      "items": { "type": "object", "required": ["test", "holds"], "properties": { "test": { "type": "string" }, "holds": { "type": "string" } }, "additionalProperties": false }
+    },
+    "limits": {
+      "type": "array",
+      "description": "Where what it makes is known not to follow what it samples, and why",
+      "items": { "type": "object", "required": ["note"], "properties": { "with": { "type": "string" }, "note": { "type": "string" } }, "additionalProperties": false }
+    }
   },
   "additionalProperties": false
 }

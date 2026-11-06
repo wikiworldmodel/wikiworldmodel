@@ -10,7 +10,10 @@ and life anywhere (forms on the tree of life, an atlas of who lived where, a sce
 [THIRD-SLICE.md](THIRD-SLICE.md), [FOURTH-SLICE.md](FOURTH-SLICE.md),
 [FIFTH-SLICE.md](FIFTH-SLICE.md), [SIXTH-SLICE.md](SIXTH-SLICE.md) and
 [SEVENTH-SLICE.md](SEVENTH-SLICE.md) say what they
-test and where they depart from this document. It covers the world model and its main consumer, an
+test and where they depart from this document. [STRUCTURE.md](STRUCTURE.md)
+sets the structure the world grows in (rows as claims, uncertainty as samples,
+every layer answering in a tier, field kinds, a ladder of checking), and says
+what of it is built. It covers the world model and its main consumer, an
 interactive viewer for flying through space and time. The film is a second
 consumer: a scripted flight through the same world, rendered offline.
 
@@ -108,8 +111,10 @@ The viewer is why several choices in this document matter:
 - **Generators run in the client.** Generated filler, such as apartment
   blocks or field patterns, is not shipped as geometry. The client runs the
   same versioned, seeded generators as the build, from compact constraints
-  in the tile. This keeps tiles small and output identical everywhere. Heavy
-  generators can be pre-baked instead.
+  in the tile, in a worker off the page. This keeps tiles small. The client's
+  output agrees with the build's fingerprint of it within a tolerance, not to
+  the byte, so a generator may use any arithmetic (`core/fingerprint.ts`).
+  Heavy generators can be pre-baked instead.
 - **Latency budgets.** The first globe should appear within a few seconds,
   and the viewer should hold 60 fps while flying. Progressive refinement
   always shows the coarser level while finer tiles load.
@@ -119,9 +124,9 @@ The viewer is why several choices in this document matter:
 The film's Earth renderer is the starting point for the viewer's planet
 level: the atmosphere, clouds, climate-driven surface and lights. Below some
 altitude, a local scene renderer for terrain, buildings and objects takes
-over and blends with the globe. The renderer is deterministic, so the same
-build, time and camera produce the same pixels. That is what makes films,
-visual diffs and shareable views reproducible.
+over and blends with the globe. The same build, time and camera produce the
+same picture, within the tolerance the golden images allow. That is what
+makes films, visual diffs and shareable views reproducible.
 
 ## 4. Data model
 
@@ -146,7 +151,9 @@ through all of them:
   types have a prefix (`src:`, `frame:`, `field:`, `gen:`, `tour:`), and
   external IDs name their scheme (`wikidata:Q10285`). Parts of a record are
   addressed inside it: `rome/colosseum@flavian` is a phase and
-  `rome/colosseum#c2` is a claim or relation.
+  `rome/colosseum#c2` is a claim or relation. A row of a dataset is
+  addressed inside its dataset: `src:pbdb-land-2026-11-05#occ:820351`
+  (section 4.7).
 - **Wanted records.** A reference to a record that doesn't exist yet is
   allowed. It is reported as *wanted*, and wanted records appear on the
   coverage map (section 8.4).
@@ -214,6 +221,14 @@ A claim has:
   `proposed`, human ones as `accepted`
 - rank (`preferred`, `normal` or `deprecated`, default `normal`), which picks
   the value the viewer shows by default
+- how far it has been checked against its source, short of acceptance: its
+  `checked` steps, each with who and how. `quoted`: its quote was found in
+  the text the source was read in, by script (`npm run world -- quote-check`).
+  `re-read`: a second reader reached the same value on their own. `audited`:
+  a person checked it, in a sample that measures how often machines are
+  wrong. A claim's level is the highest step it has reached with every step
+  below it, or `accepted` (`core/ladder.ts`); the panel and the coverage
+  report show it
 
 Claims live in their subject's file. A claim with no source says so
 explicitly and counts against coverage. When a second source supports the
@@ -311,9 +326,16 @@ object → building → site grid → tectonic plate → planet → Sun → gala
   present-day latitude and longitude, a site grid or a georeferenced map.
   The build carries them into the record's frame.
 
-Rigid plates approximate deforming regions. Local change in the ground, such
-as Rome's street level rising several metres since antiquity, belongs in
-fields. The viewer's scene graph follows the same chain, so flying to a site
+- **A placeholder frame** (`frame:earth/unplaced`) holds a place that no
+  reconstruction can follow back to its time: drawn where it is today, and
+  marked as unplaced. A plate-framed record at a time before its plate's
+  rotations reach is drawn the same way, rather than hidden.
+
+Rigid plates approximate deforming regions. A frame of kind `deforming` is
+reserved for a region whose shape changes within its plate, such as a growing
+mountain belt; the build refuses one until it can carry coordinates through
+it. Local change in the ground, such as Rome's street level rising several
+metres since antiquity, belongs in fields. The viewer's scene graph follows the same chain, so flying to a site
 250 million years ago lands where that site was on its plate at the time.
 
 ### 4.7 Fields
@@ -324,9 +346,27 @@ sea level, ice thickness, temperature, precipitation, CO₂, population density,
 land use. A field may also be a single global time series (mean sea level)
 or a vector layer (plate outlines).
 
-- **Uncertainty and alternatives** work as for claims: bands, ensembles, or
-  alternative versions, such as a dataset's low and high estimates or one
-  field per future scenario.
+- **Uncertainty** travels as samples (`core/samples.ts`). A member is a joint
+  sample of the whole world: member m of every uncertain value is drawn with
+  the same m, so two fields of N members cost N runs of a model, not N².
+  Member 0 is the central value. A parametric spread (a range, a mean and sd)
+  is drawn from a seed when needed; only true ensembles store members. Every
+  field says how it carries its uncertainty, as its `spread`: `band`,
+  `alternatives`, `ensemble`, `claims`, `tiers`, or `unknown` where its
+  source gives one value and no spread, which is not the same as exact.
+- **Kinds.** A field is a continuous or categorical raster, points, lines,
+  areas or a series (`kind`). Points, lines and areas over the globe say how
+  they look as data (`layer:`: colours, sizes, widths, names, a toggle), and
+  the build and one renderer in the viewer take every such field the same
+  way (`core/fieldlayers.ts`), so a new one needs no viewer code.
+- **Rows are claims.** A dataset read as rows is a source whose rows are
+  claims, stored in bulk: its field's `rows:` says how a row is keyed and
+  which column gives which property. A record cannot be written into a
+  dataset, so an **overlay** (`world/overlays/`, one file per row) names a
+  row to correct it (a competing claim, ranked preferred, with a note), to
+  corroborate it from another source, or to tie it to the entity it is a
+  row of. The build reads rows with their corrections applied, and one claim
+  index (`tools/world/src/claimindex.ts`) answers for records and rows alike.
 - **Stitched provenance.** A field can be assembled from several sources,
   each covering part of its span, and keeps provenance for each part.
 - **Local detail.** A finer field over a site replaces the coarse one there.
@@ -348,8 +388,9 @@ The build turns fields into multi-resolution pyramids for streaming.
   short quoted span, enough to verify the claim without copying the work.
 - A **generator** is versioned code plus parameters plus a seed. It produces
   plausible content where no evidence exists, such as a Roman insula, a field
-  system or a cloud pattern, reproducibly in the build and in the client. It
-  declares its inputs (claims and fields as constraints, other generators'
+  system or a cloud pattern, in the build and in the client. The two agree on
+  what was made, which things exactly and where within a tolerance, not on its
+  bytes. It declares its inputs (claims and fields as constraints, other generators'
   output) and the kinds, places and eras it applies to. Each item it
   produces has a stable slot ID derived from the generator and place, so a
   generated building can be referenced, reviewed and promoted (section 7).
@@ -408,8 +449,19 @@ evidence of the world reaches: those are the places where the world only
 repeats someone else's model, and where checks against its own evidence would
 do most.
 
-Generators declare their inputs the same way, so that what a generated tree or
-house rests on can be traced to the models and evidence beneath it.
+A model that reads a field with a band, alternatives or an ensemble runs once
+per member and carries the spread on (`core/samples.ts`); the validator warns
+at one that says its output carries none.
+
+**Model or generator?** A model turns evidence into a distribution: its output
+is a claim about the world at its resolution, which can be tested against a
+piece of evidence at a place. A generator draws samples from a model's
+distribution, finer than anything known: no single output is a claim, only its
+statistics. Generators declare their inputs the same way, so that what a
+generated tree or house rests on can be traced to the models and evidence
+beneath it, and one that samples fields or claims names `checks`, tests that
+hold what it makes in aggregate to them (the mix of a scene's animals to the
+atlas's weights), and `limits`, where it is known not to follow them.
 
 ## 5. Time
 
@@ -522,7 +574,16 @@ Every level has a fallback:
 | Building, the Colosseum | surviving fabric, plan, coin depictions | lost statues and fittings |
 
 Wherever the user flies, something plausible is on screen, and evidence
-gradually replaces generated content. Rome Reborn split its model the same
+gradually replaces generated content. That is a contract, not a hope
+(`core/resolve.ts`): every layer, asked at any place and time, says what it
+has there and which tier answered: **evidence** (records or rows put it
+here), **model** (a field or a model covers it), **generic** (nothing does, so
+a generic prior stands in, plainly, and says so) or **unknown** (nothing is
+known, and nothing stands in). A layer never answers nothing, and the build's
+tests ask every layer across the whole span. Where nothing records where the
+land was, generic land (`gen:earth/generic-land`) is drawn: flat, muted and
+under a graticule, at a stated placeholder share of the planet, so that a
+blank looks generic, never broken. Rome Reborn split its model the same
 way: monuments hand-built where the evidence is good, procedural buildings
 elsewhere.
 
@@ -545,7 +606,8 @@ Rules:
   everything that isn't evidence.
 - **Generators are seeded by stable IDs, places and time bins, not by build
   order.** This way, editing one temple doesn't reshuffle the generated
-  houses around it, and every client generates the same city. Time bins
+  houses around it, and every client generates the same city: the same
+  houses exactly, in the same places within a tolerance. Time bins
   follow the level of detail, so deep time needs no more seeds than a
   decade does.
 - **Promotion.** When someone finds evidence for a generated building, it
@@ -621,8 +683,10 @@ Three signals set priorities:
 - **Tours and films.** Authored paths declare what they show (region, time
   span, LOD).
 - **Coverage.** Every build produces a coverage map: how much of each area
-  and era rests on each basis, which claims are disputed or unsourced, and
-  which records are wanted (referenced but not yet written).
+  and era rests on each basis, which tier answers each layer through each
+  span of time, how many claims stand at each step of checking, which claims
+  are disputed or unsourced, and which records are wanted (referenced but not
+  yet written).
 
 The viewer can show the coverage map as an overlay. That overlay is the
 project's to-do list.
@@ -687,6 +751,16 @@ on the default picture and again on every alternative combined with it
   the field is rebalanced around it, and the difference is reported.
 - **Duplicates:** a claim restating another's value with a new source
   becomes a corroboration.
+- **Rows and overlays:** an overlay names a row its dataset has, with
+  properties its rows give; a correction is ranked preferred with a note, and
+  a corroboration cites another source.
+- **The ladder:** each step of checking once, a quote found only where there
+  is one, a re-reading by someone other than the author, an audit by a
+  person.
+- **Spreads, models and generators:** every field says how it carries its
+  uncertainty; a model that reads a spread carries it on; a generator that
+  samples the world names the tests that hold it, in aggregate, to what it
+  samples.
 - **Model vs evidence:** sample derived fields against independent evidence,
   recorded as checks.
   - climate vs lithologic indicators (coals = wet, evaporites = arid,
@@ -718,8 +792,9 @@ on the default picture and again on every alternative combined with it
   - generator versions and seeds
   - the alternatives shown and the license filter applied
 
-  The same inputs produce the same tiles, the same view for a given link, and
-  the same film frame for frame.
+  The same inputs produce tiles that mean the same (the same records, ids and
+  words, and the same numbers within a tolerance), the same view for a given
+  link, and the same film frame for frame.
 
 ## 10. Repository layout and formats
 
@@ -735,6 +810,7 @@ world/
   generators/          procedural rules (code + tests), shared by build and viewer
   fields/              field definitions; arrays live in the blob store
   models/              models run here: inputs, outputs, where their parameters come from, checks
+  overlays/            claims about rows of datasets: corrections, corroborations, adoptions, one file per row
   tours/               authored camera-and-time paths with captions, each pinned to a build when published (the film is one)
 core/                  runtime code shared by build and viewer (time, frames, tile format)
 tools/world/           validators, solver, importers, build

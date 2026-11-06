@@ -90,6 +90,9 @@ canvas.globe.in-city { cursor: grab; }
 .marker.development .dot { background: #7bdff2; }
 .marker.person .dot { background: #f7a1c4; }
 .marker.quiet .label { display: none; }
+/* Drawn where it is today, as a placeholder: no reconstruction places it at the time shown. */
+.marker.unplaced .dot { box-shadow: 0 0 0 1.5px rgba(255,255,255,0.75); border-style: dashed; opacity: 0.7; }
+.marker.unplaced .label { font-style: italic; }
 .marker.quiet .dot { width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; opacity: 0.85; }
 .marker.quiet:hover, .marker.quiet:focus-visible { z-index: 5; }
 .marker.quiet:hover .label, .marker.quiet:focus-visible .label { display: block; }
@@ -125,6 +128,11 @@ body.evidence .inspect { top: 184px; }
 .badge.basis-reconstruction { color: var(--reconstruction); border-color: var(--reconstruction); }
 .badge.basis-procedural { color: var(--procedural); border-color: var(--procedural); }
 .badge.status-proposed { color: #ffd36b; border-color: rgba(255, 211, 107, 0.5); }
+.badge.ladder { color: #9fd3a8; border-color: rgba(159, 211, 168, 0.5); }
+.badge.corrected { color: #ffb36b; border-color: rgba(255, 179, 107, 0.5); }
+.row-claims { padding-left: 0; list-style: none; }
+.row-claims li { margin: 4px 0; }
+.row code { word-break: break-all; }
 .claim { padding: 6px 8px; margin: 4px 0; border-radius: 6px; background: rgba(255, 255, 255, 0.03); }
 .claim label { display: flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; }
 .claim .value { font-weight: 600; }

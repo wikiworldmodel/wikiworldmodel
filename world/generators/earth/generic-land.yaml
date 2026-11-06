@@ -1,0 +1,30 @@
+# A generator: versioned code plus parameters plus a seed. It makes the generic prior for where land was
+# (docs/STRUCTURE.md section 3.3): where nothing records it, before the plate model reaches and after today's
+# map stops being held, the globe draws a plausible scatter of cratons rather than an empty ocean, and says
+# it is generic. Where they are and what shape is invented; how much land they make is a placeholder. It
+# takes nothing from the world, so it has no inputs. Changing its output is a new version, not an edit.
+id: gen:earth/generic-land
+type: generator
+title: Generic land
+version: 1
+code: generators/earth/generic-land/v1.ts
+runs_in: [build, client]
+outputs: { basis: procedural }
+inputs: []
+# What it makes, held to the share of the planet its record states (docs/STRUCTURE.md section 3.4).
+checks:
+  - { test: tools/world/test/build.test.ts, holds: "records generic land that its generator reproduces, at its share of the planet" }
+slots:
+  globe:
+    place: the whole globe, wherever no geography covers the time
+    seed: earth/generic-land
+params:
+  width: 512
+  height: 256
+  # A placeholder, not a reconstruction: about half of today's land share (29%, as the elevation field
+  # gives it), so that generic land looks neither like today's continents nor like none. No work gives it.
+  land_share: 0.15
+  # A few broad cratons, with roughened coasts.
+  scale: 1.6
+  octaves: 4
+  shore: 0.04

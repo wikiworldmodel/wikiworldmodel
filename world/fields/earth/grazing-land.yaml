@@ -21,4 +21,6 @@ data:
   columns: { time: year, value: grazing_km2 }
   time_unit: CE
 basis: reconstruction
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
 interp: linear

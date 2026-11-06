@@ -195,8 +195,8 @@ function inView(r: FeatureTileRef, view: FeatureView): boolean {
   const cap = capOf(r.q);
   const reach = Math.cos((Math.min(180, cap.radius + view.sees) * Math.PI) / 180);
   for (const plate of r.plates) {
-    if (plate && !view.placed(plate)) continue;
-    const c = plate ? rotate(view.rotation(plate), cap.centre as [number, number, number]) : cap.centre;
+    // A plate the model does not reach at this time leaves what rides it where it is today, a placeholder.
+    const c = plate && view.placed(plate) ? rotate(view.rotation(plate), cap.centre as [number, number, number]) : cap.centre;
     if (c[0] * view.dir[0] + c[1] * view.dir[1] + c[2] * view.dir[2] >= reach) return true;
   }
   return false;

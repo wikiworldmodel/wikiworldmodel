@@ -5,7 +5,8 @@
 import { existsSync } from 'node:fs';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { formatTime } from '../../../../core/time.ts';
+import { EARTH_RADIUS } from '../../../../core/city.ts';
+import { formatTime, parseTime } from '../../../../core/time.ts';
 import { TERRITORY_SCALE, type Territory, type TerritoryClaim, type TerritoryFile, type TerritoryRow } from '../../../../core/territory.ts';
 import { datasetFile, type Dataset } from '../manifest.ts';
 import { CACHE } from '../paths.ts';
@@ -99,6 +100,20 @@ function labelPoint(rs: number[][]): [number, number] {
   return [Math.round(cx / a) / TERRITORY_SCALE, Math.round(cy / a) / TERRITORY_SCALE];
 }
 
+/** About how many km² rings cover, on the sphere: their area on the sinusoidal projection, which keeps areas, in degrees. */
+export function areaKm2(rs: number[][]): number {
+  const x = (r: number[], i: number) => (r[i] / TERRITORY_SCALE) * Math.cos(((r[i + 1] / TERRITORY_SCALE) * Math.PI) / 180);
+  const y = (r: number[], i: number) => r[i + 1] / TERRITORY_SCALE;
+  let total = 0;
+  for (const r of rs) {
+    let a = 0;
+    for (let i = 0, j = r.length - 2; i < r.length; j = i, i += 2) a += x(r, j) * y(r, i) - x(r, i) * y(r, j);
+    total += a / 2;
+  }
+  const km = (2 * Math.PI * EARTH_RADIUS) / 360 / 1000;
+  return Math.abs(total) * km * km;
+}
+
 /** The earliest start and the latest end a subject has in any scenario, at best estimates. */
 function lifetime(t: Pick<Territory, 'time' | 'variants'>): [number, number] {
   const all = [t.time, ...Object.values(t.variants ?? {})];
@@ -112,11 +127,26 @@ export async function territory(s: Solved, log: (line: string) => void = console
   for (const e of w.entities) {
     for (const c of e.claims) {
       if (c.prop !== 'territory' || c.status === 'deprecated') continue;
+      let t = bySubject.get(c.subject);
+      // An outline written in the claim itself: one row, for the claim's valid time or the polity's lifetime.
+      if ((c.value as { type?: string }).type) {
+        if (!t) {
+          t = { subject: c.subject, label: labelOf(c.subject), ...subjectTime(s, c.subject), claims: [] };
+          bySubject.set(c.subject, t);
+        }
+        const [born, gone] = lifetime(t);
+        const valid = c.valid !== undefined ? (parseTime(c.valid as never) as { lo?: number; hi?: number; t?: number }) : undefined;
+        const from = valid?.lo ?? valid?.t ?? born;
+        const to = valid?.hi ?? (valid?.t !== undefined ? valid.t + 1 : gone);
+        const rs = rings(c.value as Polygon);
+        const rows: TerritoryRow[] = rs.length ? [{ name: labelOf(c.subject), from, to, area: Math.round(areaKm2(rs)), at: labelPoint(rs), rings: rs }] : [];
+        t.claims.push({ claim: c.ref, value: 'an outline written in the claim', rank: c.rank, alt: c.alt, basis: c.basis, source: c.sources[0]?.ref ?? '', rows });
+        continue;
+      }
       const v = c.value as GeometryValue;
       const d = w.manifest.datasets[v.from];
       const found = await datasetRows(v.from, d, v.file, v.names);
       for (const name of v.names) if (!found.some((r) => r.name === name)) throw new Error(`${c.ref}: ${v.from} has no rows named "${name}"`);
-      let t = bySubject.get(c.subject);
       if (!t) {
         t = { subject: c.subject, label: labelOf(c.subject), ...subjectTime(s, c.subject), claims: [] };
         if (c.subject === e.id && e.phases.length) t.phases = e.phases.map((p) => ({ label: p.label ?? p.id, ...subjectTime(s, `${e.id}@${p.id}`) }));

@@ -15,4 +15,6 @@ data:
   columns: { time: max_ma, time_to: min_ma, value: sampled_in_bin }
   time_unit: Ma
 basis: evidence
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
 interp: linear

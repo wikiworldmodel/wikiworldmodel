@@ -87,6 +87,12 @@ kinds:
           loosely, and often from one side: a coin or a tree ring gives a time after which it went down. What it
           carried and where it was bound are claims of their own.
         moment: true
+      hazard:
+        label: Natural hazard
+        moment: true
+        description: >-
+          An eruption, an earthquake or a tsunami, dated to when it happened and placed where it struck. The rows of a
+          hazards database are of this kind (docs/STRUCTURE.md section 3.1).
   building:
     label: Building
     description: A roofed or walled structure at a place, with its own dates.
@@ -217,6 +223,11 @@ kinds:
         description: >-
           A planet, from the start of its accretion on. Its phases are the states of its
           surface and atmosphere, such as a magma ocean or oceans of water.
+  language:
+    label: Language
+    description: >-
+      A language, placed where a catalogue of languages puts it today. The rows of a language catalogue are of this
+      kind (docs/STRUCTURE.md section 3.1).
   polity:
     label: Polity
     description: >-

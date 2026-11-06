@@ -6,6 +6,10 @@
 // generators. Coarse levels cover the whole globe with long time spans; finer levels cover
 // smaller cells with shorter spans, so the amount of data per tile stays bounded.
 
+import type { Fingerprint } from './fingerprint.ts';
+import type { FieldSpread } from './samples.ts';
+import type { LayerInfo } from './fieldlayers.ts';
+
 /** Interval of a feature, in astronomical years. `null` end = still exists. */
 export interface Estimate {
   /** best estimate used for display */
@@ -62,6 +66,8 @@ export interface Feature {
   plate?: number;
   /** in the feature's own frame (plate-local), carried there from where it was measured */
   location: { lat: number; lon: number };
+  /** in a placeholder frame: drawn where it is today, because nothing says where it was then */
+  unplaced?: true;
   /** a thing that moved: where it was in each of its phases, oldest first */
   moves?: FeatureMove[];
   time: FeatureTime;
@@ -120,8 +126,8 @@ export interface GeneratorConstraint {
   seed: string;
   basis: 'procedural';
   params: Record<string, unknown>;
-  /** sha256 of the generator's output for these constraints, as computed by the build */
-  outputSha256: string;
+  /** what the generator made here, as the build made it: a browser's must agree within the tolerance (core/fingerprint.ts) */
+  output: Fingerprint;
 }
 
 export interface TileHeader {
@@ -189,6 +195,8 @@ export interface FieldInfo {
   projection?: { method: 'hold'; until: number; note?: string };
   /** the coastline derived from it, for an elevation field */
   coastline?: { id: string; title: string; isolineM: number };
+  /** how its uncertainty is carried (core/samples.ts) */
+  spread?: FieldSpread;
 }
 
 export interface Tileset {
@@ -200,9 +208,11 @@ export interface Tileset {
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string; people?: string; atlas?: string; features: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; overlays?: string; people?: string; atlas?: string; features: string };
   /** the climate field the land is painted from, and the derived field that paints it */
-  climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown> };
+  /** fields of points, lines and areas drawn over the globe, one renderer for all (core/fieldlayers.ts) */
+  layers?: LayerInfo[];
+  climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown>; spread?: FieldSpread };
   /** the ice sheets drawn over the land, where a field has them, instead of a claimed latitude */
   ice?: IceInfo;
   /** attribution the viewer must show for the data it displays */

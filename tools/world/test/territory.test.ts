@@ -58,3 +58,14 @@ describe('territory', () => {
     expect(territoriesAt(file, 1455, { picks: ['x/rome#end-late'] })[0].rows.map((r) => r.name)).toEqual(['B']);
   });
 });
+
+describe('an outline written in a claim (docs/STRUCTURE.md section 5)', () => {
+  it('covers about the area it encloses on the sphere', async () => {
+    const { areaKm2 } = await import('../src/build/territory.ts');
+    const { TERRITORY_SCALE } = await import('../../../core/territory.ts');
+    const square = (lat: number) => [[0, lat, 1, lat, 1, lat + 1, 0, lat + 1].map((x) => x * TERRITORY_SCALE)];
+    // A degree square is about 111 km on a side at the equator, and half as wide at 60°.
+    expect(areaKm2(square(0))).toBeCloseTo(12392, -2);
+    expect(areaKm2(square(60)) / areaKm2(square(0))).toBeCloseTo(0.49, 1);
+  });
+});

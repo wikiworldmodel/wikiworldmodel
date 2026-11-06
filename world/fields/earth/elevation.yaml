@@ -13,6 +13,8 @@ grid: { kind: lonlat, res_deg: 1 }
 time: { lo: 540 Ma, hi: 0 Ma, step: 5 Myr }
 data: { from: src:paleodem-v2 }
 basis: reconstruction
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
 # Between snapshots, each snapshot is moved with the plate under each node (the same
 # rotation model that moves every entity), and the two moved snapshots are blended.
 interp: plate-warp

@@ -8,7 +8,7 @@
   "properties": {
     "id": { "type": "string", "$ref": "defs.json#/$defs/record_id", "pattern": "^frame:" },
     "type": { "const": "frame" },
-    "kind": { "enum": ["body-fixed", "snapshot", "plate", "site-grid"] },
+    "kind": { "enum": ["body-fixed", "snapshot", "plate", "site-grid", "placeholder", "deforming"], "description": "placeholder: a place no reconstruction can follow back to its time, drawn where it is today and marked so; deforming: a region whose shape changes within its plate, such as a growing mountain belt, which the build cannot carry coordinates through yet (docs/STRUCTURE.md section 5)" },
     "title": { "type": "string" },
     "description": { "type": "string" },
     "note": { "type": "string" },

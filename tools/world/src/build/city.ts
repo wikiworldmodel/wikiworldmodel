@@ -7,7 +7,7 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { formProblem, toLocal, type CityFile, type CityStructure, type FormSpec, type FormType } from '../../../../core/city.ts';
 import type { Basis, FeatureTime } from '../../../../core/tileset.ts';
-import { fabricPlan, planBytes, VERSION as FABRIC_VERSION, type FabricParams } from '../../../../world/generators/rome/fabric/v1.ts';
+import { fabricPlan, planPrint, VERSION as FABRIC_VERSION, type FabricParams } from '../../../../world/generators/rome/fabric/v1.ts';
 import { GroundSampler } from '../../../../world/generators/city/ground.ts';
 import { elementKey, type LatLon, type OhmElement, type OhmSnapshot } from '../ohm.ts';
 import { CACHE } from '../paths.ts';
@@ -185,11 +185,11 @@ export async function buildCity(s: Solved, log: (m: string) => void): Promise<Ci
     structures,
     water,
     islands,
-    fabric: { generator: gen.id, version: gen.version, seed, basis: 'procedural', params: gen.params, regions, outputSha256: '' },
+    fabric: { generator: gen.id, version: gen.version, seed, basis: 'procedural', params: gen.params, regions, output: {} },
   };
   if (gen.version !== FABRIC_VERSION) throw new Error(`${FABRIC}: the record is version ${gen.version}, the code version ${FABRIC_VERSION}`);
   const plan = fabricPlan(file, sampler);
-  file.fabric.outputSha256 = sha256(planBytes(plan));
+  file.fabric.output = planPrint(plan);
   log(`city    ${site.id}: ${structures.length} structures, ${structures.filter((x) => x.curated).length} written by hand; ${plan.lots} generated buildings, ${plan.treeCount} trees`);
   return { file, blobs };
 }

@@ -4,7 +4,10 @@
 import type { ClimateClass } from '../../../core/climate.ts';
 import type { Cover } from '../../../core/planet.ts';
 import type { LivingTaxon, SceneSpec } from '../../../core/scene.ts';
-import type { CitationRecord, ClaimRecord, EntityRecord, SeriesRecord, SourceRecord } from '../../../core/records.ts';
+import type { CitationRecord, ClaimRecord, EntityRecord, OverlaysFile, SeriesRecord, SourceRecord } from '../../../core/records.ts';
+import { LEVEL_LABEL } from '../../../core/ladder.ts';
+import { SPREAD_TEXT, type FieldSpread } from '../../../core/samples.ts';
+import type { Answer } from '../../../core/resolve.ts';
 import { splitRef } from '../../../core/refs.ts';
 import { lookup, scenarioKey, type Scenario } from '../../../core/scenario.ts';
 import type { Estimate, FeatureTime } from '../../../core/tileset.ts';
@@ -109,13 +112,15 @@ export interface TerrainInfo {
   source: SourceRecord | undefined;
   fieldTitle: string;
   fieldDescription?: string;
+  /** how the field carries its uncertainty */
+  fieldSpread?: FieldSpread;
   coastline?: string;
   datum?: string;
   state?: PlanetStateInfo;
   /** what covers the land here: the class the climate field gives, and which transitions have happened */
   biome?: BiomeHere;
   /** the state a borders dataset draws here, at this time */
-  polity?: { name: string; from: number; to: number; area: number; wikipedia?: string; source?: SourceRecord };
+  polity?: { name: string; from: number; to: number; area: number; wikipedia?: string; source?: SourceRecord; row?: RowInfo };
   /** what a grid of people gives for the cell here, at this time, if it is drawn */
   people?: PeopleHere;
   /** what the ice-sheet field gives here, where it has any ice near */
@@ -237,6 +242,28 @@ export const fmtValue = (x: number): string => {
   return size >= 1e9 ? `${three(x / 1e9)} billion` : size >= 1e6 ? `${three(x / 1e6)} million` : three(x);
 };
 
+/** A row of a dataset, as a click finds it (docs/STRUCTURE.md section 3.1): its address, and what overlays say of it. */
+export interface RowInfo {
+  ref?: string;
+  /** what overlays changed in it, by property */
+  corrected?: string[];
+  overlay?: OverlaysFile['rows'][string];
+}
+
+/** A row's address, for an overlay to name, and the overlay's claims on it beside the row's own. */
+function rowSection(row: RowInfo | undefined): string {
+  if (!row?.ref) return '';
+  const claims = (row.overlay?.claims ?? [])
+    .map((c) => `<li><span class="badge">${esc(c.origin === 'row' ? 'the row' : 'overlay')}</span> ${esc(words(c.prop))}: ${esc(typeof c.value === 'object' ? JSON.stringify(c.value) : String(c.value))}${c.rank !== 'normal' ? ` <span class="badge rank">${esc(c.rank)}</span>` : ''}${c.origin === 'overlay' ? ` <span class="author">${esc(c.author)}</span>` : ''}${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}${c.origin === 'overlay' ? c.sources.filter((x) => x.quote).map((x) => `<blockquote>${esc(x.quote!)}</blockquote>`).join('') : ''}</li>`)
+    .join('');
+  return `<section class="row"><h3>The row</h3><p class="method">Its address in the dataset, which an overlay names to correct it or tie it to a record: <code>${esc(row.ref)}</code></p>${row.corrected ? `<p class="note">An overlay corrects its ${esc(row.corrected.map(words).join(', '))}.</p>` : ''}${row.overlay?.same_as ? `<p class="method">It is a row of ${esc(row.overlay.same_as)}.</p>` : ''}${claims ? `<ul class="row-claims">${claims}</ul>` : ''}</section>`;
+}
+
+/** What a claim's checking badge says on hover: its level, then each step with who did it and how. */
+function checkedTitle(c: ClaimRecord): string {
+  return [LEVEL_LABEL[c.level], ...(c.checked ?? []).map((s) => `${s.step} by ${s.by}${s.on ? ` on ${s.on}` : ''}: ${s.how}`)].join('\n');
+}
+
 export class InspectPanel {
   readonly el: HTMLElement;
 
@@ -325,7 +352,7 @@ export class InspectPanel {
         const conf = c.confidence !== undefined ? `confidence: ${typeof c.confidence === 'number' ? c.confidence : `${c.confidence}${c.confidenceRange ? ` (${c.confidenceRange[0]}–${c.confidenceRange[1]})` : ''}`}` : '';
         claims += `<div class="claim rank-${esc(c.rank)}${inconsistent ? ' inconsistent' : ''}" data-claim="${esc(c.ref)}">
           <label>${radio}<span class="value">${esc(c.valueText)}</span>${this.cites(r, c.sources, c.unsourced)}</label>
-          <div class="claim-meta"><span class="badge rank">${esc(c.rank)}</span><span class="badge status-${esc(c.status)}">${esc(c.status)}</span>${c.basis !== 'evidence' ? `<span class="badge basis-${esc(c.basis)}">${esc(c.basis)}</span>` : ''}${c.alt ? `<span class="badge alt">${esc(this.cb.altTitle(c.alt))}</span>` : ''}${conf ? `<span class="badge">${esc(conf)}</span>` : ''}${c.methodLabel ? `<span class="badge">${esc(c.methodLabel)}</span>` : ''}<span class="author">${esc(c.author)}</span></div>
+          <div class="claim-meta"><span class="badge rank">${esc(c.rank)}</span><span class="badge status-${esc(c.status)}">${esc(c.status)}</span>${c.level && c.level !== 'unchecked' && c.level !== 'accepted' ? `<span class="badge ladder" title="${esc(checkedTitle(c))}">checked: ${esc(c.level)}</span>` : ''}${c.basis !== 'evidence' ? `<span class="badge basis-${esc(c.basis)}">${esc(c.basis)}</span>` : ''}${c.alt ? `<span class="badge alt">${esc(this.cb.altTitle(c.alt))}</span>` : ''}${conf ? `<span class="badge">${esc(conf)}</span>` : ''}${c.methodLabel ? `<span class="badge">${esc(c.methodLabel)}</span>` : ''}<span class="author">${esc(c.author)}</span></div>
           ${c.validText ? `<p class="method">Holds: ${esc(c.validText)}</p>` : ''}
           ${c.sources.filter((s) => s.quote).map((s) => `<blockquote>${esc(s.quote)}</blockquote>`).join('')}
           ${c.note ? `<p class="note">${esc(c.note)}</p>` : ''}
@@ -476,7 +503,7 @@ export class InspectPanel {
       ${info.ice && !underIce ? this.iceSection(info.ice) : ''}
       ${info.polity && info.elevation >= 0 ? this.politySection(info.polity) : ''}
       ${info.biome && info.elevation >= 0 && !underIce ? this.biomeSection(info.biome) : ''}
-      <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time. The ${esc((info.coastline ?? 'coastline').toLowerCase())} is derived, not stored: the ${esc(info.datum === 'contemporaneous-sea-level' ? '0 m' : 'sea-level')} isoline of this field.</p></section>${this.stateSection(info.state)}${source}`,
+      <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time. The ${esc((info.coastline ?? 'coastline').toLowerCase())} is derived, not stored: the ${esc(info.datum === 'contemporaneous-sea-level' ? '0 m' : 'sea-level')} isoline of this field.${info.fieldSpread ? ` ${esc(SPREAD_TEXT[info.fieldSpread])}` : ''}</p></section>${this.stateSection(info.state)}${source}`,
     );
   }
 
@@ -521,7 +548,7 @@ export class InspectPanel {
   private politySection(p: NonNullable<TerrainInfo['polity']>): string {
     return `<div class="polity"><h3>Held by</h3><p class="big">${esc(p.name)}</p>
       <p>As drawn for ${esc(formatTime(p.from))} to ${esc(formatTime(p.to - 1))}, at about ${p.area.toLocaleString('en-US')} km².${p.wikipedia ? ` <span class="muted">Wikipedia: ${esc(p.wikipedia)}.</span>` : ''}</p>
-      <p class="method">A row of ${esc(short(p.source, 'the borders dataset'))}, not a record of ours: its name, its years and its outline are as that dataset gives them, thinned for the globe.</p></div>`;
+      <p class="method">A row of ${esc(short(p.source, 'the borders dataset'))}, not a record of ours: its name, its years and its outline are as that dataset gives them, thinned for the globe${p.row?.corrected ? ', except where an overlay corrects them' : ''}.</p>${rowSection(p.row)}</div>`;
   }
 
   /** What covers the land here: the climate field's class, what the transitions allow by now, and what is generated. */
@@ -533,13 +560,16 @@ export class InspectPanel {
   }
 
   /** The globe where no field covers the time shown: what is not known, and why; and the planet's state, if it has one. */
-  showUnknown(t: number, why: string, state?: PlanetStateInfo): void {
-    const note = state
-      ? 'Where the land was is not known, so none is drawn. What covers the planet, and any ice, follows its states; the patterns they are drawn with are procedural.'
-      : 'The globe is drawn plain on purpose: nothing here rests on evidence, a reconstruction or a projection.';
+  showUnknown(t: number, why: string, state?: PlanetStateInfo, here?: Answer): void {
+    const generic = here?.tier === 'generic' && (here.value === 'land' || here.value === 'sea');
+    const note = generic
+      ? `Nothing records where the land was, so generic land is drawn: a placeholder, flat and muted under a graticule. Where it stands and its shape are invented, and how much of the planet it covers is a stated placeholder, not a reconstruction. Here it is ${here!.value === 'land' ? 'generic land' : 'generic sea'}. What covers the planet, and any ice, follows its states; the patterns they are drawn with are procedural.`
+      : state
+        ? 'Where the land was is not known, so none is drawn. What covers the planet, and any ice, follows its states; the patterns they are drawn with are procedural.'
+        : 'The globe is drawn plain on purpose: nothing here rests on evidence, a reconstruction or a projection.';
     this.frame(
       'Geography unknown',
-      `<section><h3>At ${esc(formatTime(t, 1e4))}</h3><p>${esc(why)}</p>
+      `${generic ? '<div class="meta"><span class="kind">Generic land</span><span class="badge basis-procedural">generic</span></div>' : ''}<section><h3>At ${esc(formatTime(t, 1e4))}</h3><p>${esc(why)}</p>
       <p class="note">${esc(note)}</p></section>${this.stateSection(state)}`,
     );
   }
@@ -547,10 +577,10 @@ export class InspectPanel {
   /** A global series: its value at a time, how it is known, and its source. */
   /** Something generated rather than recorded: what it is, and what it is made to fit. */
   /** A row of a dataset drawn on the globe: what it says, and the dataset it comes from. */
-  showRow(title: string, kind: string, lines: string[], src: SourceRecord | undefined, note?: string): void {
+  showRow(title: string, kind: string, lines: string[], src: SourceRecord | undefined, note?: string, row?: RowInfo): void {
     const source = `<section><h3>Source</h3><ol class="sources"><li><p>${esc(src?.citation ?? '')}</p>${src?.doi ? `<a href="https://doi.org/${encodeURI(src.doi)}" target="_blank" rel="noopener">doi:${esc(src.doi)}</a>` : ''}</li></ol></section>`;
-    this.frame(title, `<div class="meta"><span class="kind">${esc(kind)}</span><span class="badge basis-evidence">evidence</span></div>
-      <section>${lines.map((l) => `<p>${esc(l)}</p>`).join('')}${note ? `<p class="note">${esc(note)}</p>` : ''}</section>${source}`);
+    this.frame(title, `<div class="meta"><span class="kind">${esc(kind)}</span><span class="badge basis-evidence">evidence</span>${row?.corrected ? '<span class="badge corrected">corrected</span>' : ''}</div>
+      <section>${lines.map((l) => `<p>${esc(l)}</p>`).join('')}${note ? `<p class="note">${esc(note)}</p>` : ''}</section>${rowSection(row)}${source}`);
   }
 
   showGenerated(title: string, kind: string, text: string, why: string): void {
@@ -574,7 +604,7 @@ export class InspectPanel {
       `<div class="meta"><span class="kind">${esc(s.quantity ?? 'Global series')}</span><span class="badge basis-${esc(basis)}">${esc(basis)}</span></div>
       ${s.description ? `<p class="summary">${esc(s.description)}</p>` : ''}
       <section><h3>At ${esc(formatTime(t, 1e4))}</h3>
-      <p class="big">${v ? `${fmtValue(v.value)} ${esc(s.unit ?? '')}` : '<span class="muted">No value at this time</span>'}</p>${band}
+      <p class="big">${v ? `${fmtValue(v.value)} ${esc(s.unit ?? '')}` : '<span class="muted">No value at this time</span>'}</p>${band}${s.spread && s.spread !== 'band' ? `<p class="method">${esc(SPREAD_TEXT[s.spread])}</p>` : ''}
       <p class="method">${s.rule ? `Computed with ${esc(s.rule.name)}${Object.keys(s.rule.params).length ? ` (${Object.entries(s.rule.params).map(([k, x]) => `${esc(k)} ${esc(String(x))}`).join(', ')})` : ''}, every step from ${esc(span)}` : `Read from the dataset's table, from ${esc(span)}`}; between its ${s.points.length.toLocaleString('en-US')} points the value is interpolated (${esc(s.interpolation)}).${projected ? ' After the present it is a projection.' : ''}</p></section>
       <section><h3>Source</h3><ol class="sources"><li><p>${esc(src?.citation ?? s.source.ref)}${s.source.loc ? `, ${esc(s.source.loc)}` : ''}</p>${src?.doi ? `<a href="https://doi.org/${encodeURI(src.doi)}" target="_blank" rel="noopener">doi:${esc(src.doi)}</a>` : ''}${src?.reliability ? `<p class="note">${esc(src.reliability)}</p>` : ''}${src?.verified ? `<p class="verified">Checked: ${esc(src.verified.how)}</p>` : ''}</li></ol></section>`,
     );

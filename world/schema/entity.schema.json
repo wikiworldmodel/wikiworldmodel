@@ -52,7 +52,7 @@
         "value": {},
         "method": { "type": "string" },
         "subject": true, "valid": true, "source": true, "unsourced": true, "confidence": true, "basis": true,
-        "alt": true, "author": true, "status": true, "rank": true, "note": true
+        "alt": true, "author": true, "status": true, "rank": true, "checked": true, "note": true
       },
       "additionalProperties": false
     },
@@ -65,7 +65,7 @@
         "to": { "$ref": "defs.json#/$defs/ref" },
         "lag": { "$ref": "defs.json#/$defs/lag" },
         "subject": true, "valid": true, "source": true, "unsourced": true, "confidence": true, "basis": true,
-        "alt": true, "author": true, "status": true, "rank": true, "note": true
+        "alt": true, "author": true, "status": true, "rank": true, "checked": true, "note": true
       },
       "additionalProperties": false
     }

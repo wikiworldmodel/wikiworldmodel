@@ -6,8 +6,30 @@ description: >-
   that catalogue, not records of ours. A point is not an area, and it says nothing of where a language was
   spoken before now.
 grid: { kind: rows }
+# Points over the globe, drawn by the viewer's one renderer as this says (docs/STRUCTURE.md section 3.6). How they look
+# is a choice of the viewer's, not a fact: a family's hue comes from its name.
+kind: points
+layer:
+  toggle: { key: langs, label: Languages, title: "Languages: the world's languages today, from Glottolog, at the present on the time control" }
+  where: { Level: language }
+  group: { column: Family_ID, word: Family, name: { key: ID, column: Name } }
+  color: { by: group, saturation: 78, lightness: 68 }
+  size: { far: 1.5, near: 2.6 }
+  opacity: 0.85
+  labels: { near: 1.25, most: 120 }
+  describe: Language, at the place the catalogue puts it today
+  key_label: Glottocode
 time: { lo: 1950 CE, hi: 2100 CE }
 data:
   from: src:glottolog-5.3
   as: languages
 basis: evidence
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
+# Its rows are claims (docs/STRUCTURE.md section 3.1), keyed by the catalogue's Glottocode.
+rows:
+  kind: language
+  key: "{Glottocode}"
+  claims:
+    name: { column: Name, as: text }
+    location: { column: [Latitude, Longitude], as: point, method: compilation }

@@ -1,5 +1,5 @@
 // Pass criteria for the city: a link lands in it and the browser's generated fabric matches the
-// build's to the byte; the wheel comes down from the globe without a seam; what stands depends on
+// build's within the tolerance of core/fingerprint.ts; the wheel comes down from the globe without a seam; what stands depends on
 // the time shown; a click opens a monument's record, or says a house is the generator's; and deep
 // time lifts the camera off a ground that isn't there yet. The views it is drawn in are checked in
 // city-views.spec.ts.
@@ -26,11 +26,12 @@ const labelled = (page: import('@playwright/test').Page, id: string) => page.eva
 test.describe('in the city', () => {
   test.use(small);
 
-  test('a link lands in the city, and the browser makes the fabric the build recorded, to the byte', async ({ page, context }) => {
+  test('a link lands in the city, and the browser makes the fabric the build recorded, within the tolerance', async ({ page, context }) => {
     await page.goto(`/?b=${latestBuild()}&${OVERVIEW}&${FAST}`);
     await idle(page);
     const fabric = await page.evaluate(() => window.__wikiworldmodel!.fabric());
-    expect(fabric!.actual).toBe(fabric!.expected);
+    expect(fabric!.actual).not.toBeNull();
+    expect(fabric!.problems).toEqual([]);
     const stats = await page.evaluate(() => window.__wikiworldmodel!.cityStats());
     expect(stats!.cells).toBeGreaterThan(100);
     expect(stats!.coarse).toBeGreaterThan(50);

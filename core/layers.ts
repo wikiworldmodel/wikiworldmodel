@@ -48,6 +48,10 @@ export interface HazardRow {
   size?: number;
   /** deaths, where it gives a number */
   deaths?: number;
+  /** its address in the dataset, src:<dataset>#<key>: what an overlay names to correct it */
+  row?: string;
+  /** what overlays changed, by property, if any did */
+  corrected?: string[];
 }
 
 export interface HazardFile {
@@ -88,6 +92,10 @@ export interface PolityRow {
   /** rings, outer and inner alike, each [lon0, lat0, lon1, lat1, …] in hundredths of a degree; filled even-odd */
   rings: number[][];
   wikipedia?: string;
+  /** its address in the dataset, src:<dataset>#<key>: what an overlay names to correct it */
+  row?: string;
+  /** what overlays changed, by property, if any did */
+  corrected?: string[];
 }
 
 export interface PolitiesFile {
@@ -116,47 +124,6 @@ export function insideRow(r: PolityRow, lon: number, lat: number): boolean {
     }
   }
   return inside;
-}
-
-/** A stretch of road or route, as a dataset draws it. */
-export interface RouteRow {
-  /** flat [lon, lat, lon, lat, …] in hundredths of a degree */
-  line: number[];
-  main: boolean;
-  /** how sure the dataset is of where it ran */
-  certainty: 'certain' | 'conjectured' | 'hypothetical';
-  /** the years it is drawn for, on the world's axis */
-  from: number;
-  to: number;
-}
-
-export interface RoutesFile {
-  format: 'lightworld-routes@1';
-  title: string;
-  description?: string;
-  source: string;
-  sourceRecord?: import('./records.ts').SourceRecord;
-  routes: RouteRow[];
-}
-
-/** A language at the place a catalogue puts it today. */
-export interface LanguageRow {
-  name: string;
-  /** the family it is classified in, or its own name if it stands alone */
-  family: string;
-  lat: number;
-  lon: number;
-  /** the catalogue's id for it */
-  code: string;
-}
-
-export interface LanguagesFile {
-  format: 'lightworld-languages@1';
-  title: string;
-  description?: string;
-  source: string;
-  sourceRecord?: import('./records.ts').SourceRecord;
-  rows: LanguageRow[];
 }
 
 /**

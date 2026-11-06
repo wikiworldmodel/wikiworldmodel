@@ -6,11 +6,15 @@
 //   - rank: `normal`; basis: `evidence`
 //   - `source` is one citation or a list of them (corroboration)
 import type { Form } from '../../../core/form.ts';
+import type { CheckStep } from '../../../core/ladder.ts';
+import type { FieldSpread } from '../../../core/samples.ts';
+import type { FieldKind, LayerStyle } from '../../../core/fieldlayers.ts';
+import type { RowsSpec } from './tables.ts';
 import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
 import { basename, join, relative } from 'node:path';
 import { parseDocument } from 'yaml';
-import { parseRef, RefError, splitRef, type Ref } from '../../../core/refs.ts';
+import { parseRef, RefError, rowRef, splitRef, type Ref } from '../../../core/refs.ts';
 import type { LagInput, TimeInput } from '../../../core/time.ts';
 import { elementKey, ohmEntities, type OhmSnapshot } from './ohm.ts';
 import { pbdbEntities, placeInLand, type LandSnapshot, type PbdbSnapshot } from './pbdb.ts';
@@ -45,6 +49,8 @@ interface ClaimBase {
   author: string;
   status: Status;
   rank: Rank;
+  /** how far it has been checked against its source, short of acceptance (core/ladder.ts) */
+  checked: CheckStep[];
   note?: string;
   file: string;
   /** where in the file, e.g. claims.date */
@@ -190,6 +196,28 @@ export interface Field {
   source?: Citation;
   /** what a click says of how far to trust a value of it, where a grid has no error bars */
   uncertainty?: string;
+  /** for a dataset read as rows: how a row is keyed, and which column is which property (tools/world/src/tables.ts) */
+  rows?: RowsSpec;
+  /** how its uncertainty is carried (core/samples.ts); a derived field's is its model's */
+  spread?: FieldSpread;
+  /** what kind of field it is, and for rows over the globe how they are drawn (core/fieldlayers.ts) */
+  kind?: FieldKind;
+  layer?: LayerStyle;
+  file: string;
+}
+
+/**
+ * Claims about a row of a dataset (docs/STRUCTURE.md section 3.1): a correction, ranked preferred; a
+ * corroboration from another source; or a tie to the entity the row is a row of.
+ */
+export interface Overlay {
+  /** the row: src:<dataset>#<key> */
+  row: string;
+  dataset: string;
+  key: string;
+  same_as?: string;
+  claims: Claim[];
+  note?: string;
   file: string;
 }
 
@@ -209,6 +237,10 @@ export interface Generator {
   inputs: Input[];
   slots: Record<string, { place: string; seed: string }>;
   params: Record<string, unknown>;
+  /** tests that hold what it makes, in aggregate, to what it samples */
+  checks?: { test: string; holds: string }[];
+  /** where what it makes is known not to follow what it samples */
+  limits?: { with?: string; note: string }[];
   file: string;
 }
 
@@ -267,6 +299,8 @@ export interface Property {
   applies_to?: string[];
   ref_types?: string[];
   inverse?: string;
+  /** for a geometry: it may be written in the claim, as a GeoJSON polygon with its frame */
+  inline?: boolean;
   description: string;
 }
 
@@ -307,7 +341,7 @@ export interface ProminenceRule {
 /** A record as it appears in its file, before normalization, for schema validation. */
 export interface RawRecord {
   file: string;
-  type: 'entity' | 'source' | 'frame' | 'field' | 'model' | 'generator' | 'alternative' | 'manifest';
+  type: 'entity' | 'source' | 'frame' | 'field' | 'model' | 'generator' | 'alternative' | 'overlay' | 'manifest';
   data: Record<string, unknown>;
 }
 
@@ -326,6 +360,8 @@ export interface World {
   models: Model[];
   generators: Generator[];
   alternatives: Alternative[];
+  /** claims about rows of datasets, one file per row */
+  overlays: Overlay[];
   manifest: Manifest;
   vocab: Vocab;
   raw: RawRecord[];
@@ -422,6 +458,7 @@ function resolve(s: unknown, self: string, issues: LoadIssue[], file: string, wh
 export function refString(r: Ref): string {
   if (r.type === 'entity') return r.phase ? `${r.id}@${r.phase}` : r.part ? `${r.id}#${r.part}` : r.id;
   if (r.type === 'external') return `${r.scheme}:${r.id}`;
+  if (r.type === 'row') return rowRef(r.id, r.key);
   return r.id;
 }
 
@@ -447,6 +484,7 @@ function normalizeEntity(file: string, d: Record<string, unknown>, issues: LoadI
       author,
       status: (c.status as Status) ?? defaultStatus(author),
       rank: (c.rank as Rank) ?? 'normal',
+      checked: (c.checked as CheckStep[] | undefined) ?? [],
       note: c.note as string | undefined,
       file,
       where,
@@ -474,6 +512,26 @@ function normalizeEntity(file: string, d: Record<string, unknown>, issues: LoadI
     relations,
     file,
   };
+}
+
+/** An overlay's claims, normalized as an entity's are, with the row as their subject. */
+function normalizeOverlay(file: string, d: Record<string, unknown>, issues: LoadIssue[]): Overlay {
+  const row = String(d.row);
+  let dataset = row;
+  let key = '';
+  try {
+    const r = parseRef(row);
+    if (r.type !== 'row') throw new RefError(`"${row}" is not a row of a dataset: src:<dataset>#<key>`);
+    dataset = r.id;
+    key = r.key;
+    if (row !== rowRef(dataset, key)) issues.push({ file, where: 'row', message: `write the row as ${rowRef(dataset, key)}` });
+  } catch (e) {
+    issues.push({ file, where: 'row', message: (e as RefError).message });
+  }
+  // Read as an entity's file, then given the row as the subject of every claim.
+  const shell = normalizeEntity(file, { id: 'overlay/row', kind: 'overlay', author: d.author, claims: d.claims ?? {} }, issues);
+  const claims = shell.claims.map((c) => ({ ...c, entity: row, ref: `${row}/${c.key}`, subject: row }));
+  return { row, dataset, key, same_as: d.same_as as string | undefined, claims, note: d.note as string | undefined, file };
 }
 
 /**
@@ -515,6 +573,7 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
   const modelFiles = await read(root, 'models', 'model');
   const generatorFiles = await read(root, 'generators', 'generator');
   const alternativeFiles = await read(root, 'alternatives', 'alternative');
+  const overlayFiles = await read(root, 'overlays', 'overlay');
 
   const manifestRaw = existsSync(join(root, 'manifest.yaml')) ? await yamlOf<Manifest>(join(root, 'manifest.yaml')) : { publish: { licenses: [] }, datasets: {} };
   if (existsSync(join(root, 'manifest.yaml'))) raw.push({ file: 'manifest.yaml', type: 'manifest', data: manifestRaw as unknown as Record<string, unknown> });
@@ -568,6 +627,7 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
   const models = modelFiles.map((f) => ({ ...(f.data as unknown as Model), file: f.file }));
   const generators = generatorFiles.map((f) => ({ ...(f.data as unknown as Generator), file: f.file }));
   const alternatives = alternativeFiles.map((f) => ({ ...(f.data as unknown as Alternative), file: f.file }));
+  const overlays = overlayFiles.map((f) => normalizeOverlay(f.file, f.data, loadIssues));
   return {
     root,
     entities,
@@ -577,6 +637,7 @@ export async function loadWorld(root: string = WORLD): Promise<World> {
     models,
     generators,
     alternatives,
+    overlays,
     manifest,
     vocab,
     raw,

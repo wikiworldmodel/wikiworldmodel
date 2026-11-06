@@ -5,7 +5,8 @@
 //   B  a smooth field that makes the edge between two covers ragged
 //   A  fine speckle, for rock, low plants and reefs
 // The output depends only on the seed and the parameters, and the code uses only + − × ÷, floor
-// and 32-bit integer operations, so every JavaScript engine produces the same bytes.
+// and 32-bit integer operations; the build and the browser are held to agree within the tolerance
+// of core/fingerprint.ts.
 import { hash3, hashString } from '../clouds/v1.ts';
 
 /** The record this code implements (world/generators/earth/biome.yaml). */

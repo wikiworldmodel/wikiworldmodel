@@ -7,13 +7,16 @@ import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import type { ClimateRule } from '../../../../core/climate.ts';
 import { encodeTile } from '../../../../core/container.ts';
-import type { CoverageFile, PeriodRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../../core/records.ts';
+import { bytesPrint } from '../../../../core/fingerprint.ts';
+import { ladderCounts } from '../../../../core/ladder.ts';
+import type { CoverageFile, OverlaysFile, PeriodRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../../core/records.ts';
 import { bakeRotationModel, parseRot, RotationModel } from '../../../../core/rotation-model.ts';
 import { fromMa, parsePoint, PRESENT_YEAR, toMa, type TimePointInput } from '../../../../core/time.ts';
 import type { Basis, Feature, FieldInfo, FieldKeyframe, FramesFile, GeneratorConstraint, SiteInfo, TileHeader, TileRef, Tileset } from '../../../../core/tileset.ts';
 import { GENERATOR as BIOME_TEXTURE, VERSION as BIOME_TEXTURE_VERSION, generateBiomeTexture, type BiomeTextureParams } from '../../../../world/generators/earth/biome/v1.ts';
 import { GENERATOR as CLOUDS, VERSION as CLOUDS_VERSION, generateClouds, type CloudParams } from '../../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, VERSION as SURFACE_VERSION, generateSurface, type SurfaceParams } from '../../../../world/generators/earth/surface/v1.ts';
+import { GENERATOR as GENERIC_LAND, VERSION as GENERIC_LAND_VERSION, generateGenericLand, genericLandAt, type GenericLandParams } from '../../../../world/generators/earth/generic-land/v1.ts';
 import { claimGroups, solveScenario, solveVariants } from '../chronology.ts';
 import { fieldAgesMa, fieldSource, importBlocks, importElevation, PLATE_MODEL, tiledField } from '../importer.ts';
 import { datasetFile } from '../manifest.ts';
@@ -21,13 +24,19 @@ import { BUILDS, REPO } from '../paths.ts';
 import { sha256, stableStringify } from '../util.ts';
 import { formatIssue, validateWorld } from '../validate/index.ts';
 import { loadWorld, type World } from '../world.ts';
+import { ClaimIndex } from '../claimindex.ts';
+import { correctLand } from '../tables.ts';
+import { gridPlaces, lifeTierOf, tierCounts, TIER_SPANS, type ResolveWorld } from '../../../../core/resolve.ts';
+import { insideRow, politiesAt, type PolitiesFile } from '../../../../core/layers.ts';
+import type { AtlasBin } from '../../../../core/atlas.ts';
 import { fieldFor, fieldLods, loadBlocks, loadSnapshots, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
 import { buildCity } from './city.ts';
 import { climateGrid, climateKeyframes, encodeClimate, forestChecks, type ClimateKeyframe } from './climate.ts';
 import { FEATURE_INDEX } from '../../../../core/featuretiles.ts';
 import { prominenceOf, tileFeatures } from './featuretiles.ts';
 import { buildIce, type IceBuilt } from './ice.ts';
-import { hazardLayer, languagesLayer, peopleLayer, polityLayer, presentLayer, routesLayer } from './layers.ts';
+import { hazardLayer, peopleLayer, polityLayer, presentLayer } from './layers.ts';
+import { fieldLayers } from './fieldlayers.ts';
 import { buildAtlas } from './atlas.ts';
 import { buildScene, witnesses } from './scene.ts';
 import { features as buildFeatures, periods as buildPeriods, records as buildRecords, search as buildSearch, sourceRecord, type Solved } from './records.ts';
@@ -98,9 +107,60 @@ function worldSpan(periods: PeriodRecord[], found: SearchFile, grids: GridField[
   return [Math.min(...times), Math.max(...times)];
 }
 
+/** What resolve reads, from what the build has made (core/resolve.ts). */
+export function resolveWorldOf(
+  world: World,
+  solved: Solved,
+  grids: GridField[],
+  climateKeys: ClimateKeyframe[],
+  ice: IceBuilt | undefined,
+  people: { header: { steps: number[] } } | undefined,
+  polities: PolitiesFile | undefined,
+  atlas: ReturnType<typeof buildAtlas>,
+): ResolveWorld {
+  const land = world.generators.find((g) => g.id === GENERIC_LAND);
+  const landParams = land?.params as unknown as GenericLandParams | undefined;
+  const mask = land ? generateGenericLand(land.slots.globe.seed, landParams!) : undefined;
+  const bins = new Map<number, AtlasBin>();
+  const ages = climateKeys.map((k) => k.ageMa);
+  return {
+    planet: buildPlanet(solved),
+    geography: grids.map((g) => ({ title: g.field.title, mode: g.mode, coverage: [fromMa(g.coverMa[0]), fromMa(g.coverMa[1])] })),
+    climate: ages.length ? [fromMa(Math.max(...ages)), fromMa(Math.min(...ages))] : undefined,
+    ice: ice?.coverage,
+    people: people ? [people.header.steps[0], people.header.steps.at(-1)!] : undefined,
+    polities: polities?.rows.length ? [Math.min(...polities.rows.map((r) => r.from)), Math.max(...polities.rows.map((r) => r.to))] : undefined,
+    polity: polities ? (lat, lon, t) => politiesAt(polities, t).find((r) => insideRow(r, lon, lat))?.name : undefined,
+    life: atlas
+      ? (lat, lon, t) =>
+          lifeTierOf(atlas.index.bins, atlas.index.grid, (i) => {
+            if (!bins.has(i)) bins.set(i, JSON.parse(atlas.files.get(atlas.index.bins[i].file)!) as AtlasBin);
+            return bins.get(i);
+          }, lat, lon, t)
+      : undefined,
+    genericLand: mask && landParams ? (lat, lon) => genericLandAt(mask, landParams, lat, lon) : undefined,
+  };
+}
+
+/** What the overlays say of each row they name, with what the row itself says, as the inspect panel shows it. */
+function overlayFile(world: World, index: ClaimIndex): OverlaysFile | undefined {
+  if (!world.overlays.length) return undefined;
+  const rows: OverlaysFile['rows'] = {};
+  for (const o of [...world.overlays].sort((a, b) => (a.row < b.row ? -1 : 1))) {
+    rows[o.row] = {
+      dataset: o.dataset,
+      key: o.key,
+      same_as: o.same_as,
+      note: o.note,
+      claims: index.of(o.row).map((c) => ({ prop: c.prop, value: c.value, origin: c.origin, rank: c.rank, status: c.status, level: c.level, author: c.author, sources: c.sources, note: c.note })),
+    };
+  }
+  return { format: 'lightworld-overlays@1', rows };
+}
+
 /** Claims and wanted records, and how much of each tile's area and era rests on each basis. */
 function coverage(world: World, wanted: { ref: string; from: { file: string; where: string }[] }[], feats: Feature[], tiles: TileRef[]): CoverageFile {
-  const all = world.entities.flatMap((e) => [...e.claims, ...e.relations]);
+  const all = [...world.entities.flatMap((e) => [...e.claims, ...e.relations]), ...world.overlays.flatMap((o) => o.claims)];
   const byBasis: Record<string, number> = {};
   for (const c of all) byBasis[c.basis] = (byBasis[c.basis] ?? 0) + 1;
   const visible = (f: Feature, span: [number, number]) => {
@@ -116,6 +176,7 @@ function coverage(world: World, wanted: { ref: string; from: { file: string; whe
       disputed: all.filter((c) => c.status === 'disputed').map((c) => c.ref),
       proposed: all.filter((c) => c.status === 'proposed').length,
       withoutLocator: all.filter((c) => c.sources.some((s) => !s.loc)).length,
+      ladder: ladderCounts(all),
     },
     wanted: wanted.map((w) => ({ ref: w.ref, from: w.from.map((f) => `${f.file} ${f.where}`) })),
     tiles: tiles.map((t) => {
@@ -151,6 +212,7 @@ function fieldInfo(world: World, g: GridField): FieldInfo {
     keyframesMa: g.snapshots.map((s) => s.ageMa),
     projection: f.projection ? { method: f.projection.method, until: parsePoint(f.projection.until as TimePointInput).t, note: f.projection.note } : undefined,
     coastline: coastline ? { id: coastline.id, title: coastline.title, isolineM: coastline.isoline_m ?? 0 } : undefined,
+    spread: f.spread,
   };
 }
 
@@ -173,6 +235,21 @@ export async function runBuild(args: string[]): Promise<number> {
   const rot = await readFile(datasetFile(PLATE_MODEL, pm, 'rotations'), 'latin1');
   const baked = bakeRotationModel(parseRot(rot));
   const model = new RotationModel(baked);
+
+  // Rows are claims (docs/STRUCTURE.md section 3.1): the overlays' corrections of the rows they name, which the
+  // layers and the atlas read the rows with. The land's fossils are corrected here, before anything reads them.
+  const claims = await ClaimIndex.of(world, world.overlays.map((o) => o.dataset));
+  const fixesOf = (as: string) => {
+    const f = world.fields.find((x) => x.data?.as === as);
+    return f ? claims.corrections(f.data!.from) : new Map();
+  };
+  for (const f of world.fields.filter((x) => x.data?.as === 'community' && x.rows)) {
+    const snap = world.landFossils.get(f.data!.from);
+    if (!snap) continue;
+    const { snap: corrected, unapplied } = correctLand(snap, f.rows!, claims.corrections(f.data!.from));
+    world.landFossils.set(f.data!.from, corrected);
+    for (const u of unapplied) log(`warning rows        ${f.data!.from} ${u}`);
+  }
 
   // 3. Chronology: the default picture, the alternatives the build shows, and each picture
   // with one competing claim picked.
@@ -231,6 +308,7 @@ export async function runBuild(args: string[]): Promise<number> {
     { id: CLOUDS, version: CLOUDS_VERSION, run: (seed: string, p: unknown) => generateClouds(seed, p as CloudParams) },
     { id: SURFACE, version: SURFACE_VERSION, run: (seed: string, p: unknown) => generateSurface(seed, p as SurfaceParams) },
     { id: BIOME_TEXTURE, version: BIOME_TEXTURE_VERSION, run: (seed: string, p: unknown) => generateBiomeTexture(seed, p as BiomeTextureParams) },
+    { id: GENERIC_LAND, version: GENERIC_LAND_VERSION, run: (seed: string, p: unknown) => generateGenericLand(seed, p as GenericLandParams) },
   ];
   const generators: GeneratorConstraint[] = [];
   for (const c of code) {
@@ -247,7 +325,7 @@ export async function runBuild(args: string[]): Promise<number> {
         seed: s.seed,
         basis: gen.outputs.basis as 'procedural',
         params: gen.params,
-        outputSha256: sha256(c.run(s.seed, gen.params)),
+        output: bytesPrint('pixels', c.run(s.seed, gen.params)),
       });
     }
   }
@@ -360,20 +438,23 @@ export async function runBuild(args: string[]): Promise<number> {
   // What is drawn over the globe as rows of a dataset: today's map, and the hazards.
   const present = await presentLayer(world);
   if (present) put('present.json', stableStringify(present));
-  const hazards = await hazardLayer(world);
+  const hazards = await hazardLayer(world, fixesOf('hazards'));
   if (hazards) put('hazards.json', stableStringify(hazards));
-  const polities = await polityLayer(world, new Set(territoryFile.territories.flatMap((t) => t.claims.flatMap((c) => c.rows.map((r) => r.name)))));
+  const polities = await polityLayer(world, new Set(territoryFile.territories.flatMap((t) => t.claims.flatMap((c) => c.rows.map((r) => r.name)))), fixesOf('polities'));
   if (polities) put('polities.json', stableStringify(polities));
-  const routes = await routesLayer(world);
-  if (routes) put('routes.json', stableStringify(routes));
-  const languages = await languagesLayer(world);
-  if (languages) put('languages.json', stableStringify(languages));
+  // Fields of points, lines and areas, the one way (docs/STRUCTURE.md section 3.6): the languages and the roads.
+  const layers = await fieldLayers(world, claims);
+  for (const [path, content] of layers.files) put(path, content);
+  // What the overlays say of the rows they name, for the inspect panel.
+  const overlays = overlayFile(world, claims);
+  if (overlays) put('overlays.json', stableStringify(overlays));
   // Where people lived: a grid, drawn as a picture of the surface, and so a file of numbers rather than of rows.
   const people = await peopleLayer(world);
   if (people) put('people.lwt', encodeTile(people.header as unknown as Record<string, unknown>, people.arrays, stableStringify));
   // The living scene, on the land and climate above.
   const sites: SiteInfo[] = [];
   let atlasFile: string | undefined;
+  let lifeAtlas: ReturnType<typeof buildAtlas> = undefined;
   if (city) {
     const v = (world.generators.find((g) => g.id === 'gen:rome/fabric')!.params as unknown as { site: Pick<SiteInfo, 'near' | 'window' | 'view'> }).site;
     sites.push({ kind: 'city', id: city.file.site.id, label: city.file.site.label, file: `city/${city.file.site.id}.json`, place: 'places/rome', origin: city.file.site.origin, span: city.file.site.span, slice: city.file.site.slice, near: v.near, window: v.window, view: v.view });
@@ -398,9 +479,17 @@ export async function runBuild(args: string[]): Promise<number> {
       put('life/witness.json', stableStringify(seen));
       atlasFile = 'life/atlas.json';
       coverageFile.forms = { ...atlas.index.coverage, wanted: atlas.wanted.slice(0, 200) };
-      put('coverage.json', stableStringify(coverageFile));
+      lifeAtlas = atlas;
     }
   }
+
+  // Every layer answers everywhere, in a tier (docs/STRUCTURE.md section 3.3): how much of the world each tier holds.
+  const resolveWorld = resolveWorldOf(world, solved, grids, climateKeys, ice, people, polities, lifeAtlas);
+  coverageFile.tiers = TIER_SPANS.map((sp) => {
+    const times = Array.from({ length: 8 }, (_, i) => fromMa(sp.olderMa + ((sp.youngerMa - sp.olderMa) * (i + 0.5)) / 8));
+    return { span: sp.label, layers: tierCounts(resolveWorld, gridPlaces(10), times) };
+  });
+  put('coverage.json', stableStringify(coverageFile));
 
   // 9. Index and identity.
   const tileset: Omit<Tileset, 'build'> = {
@@ -409,9 +498,10 @@ export async function runBuild(args: string[]): Promise<number> {
     timeRange: span,
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
-    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(routes ? { routes: 'routes.json' } : {}), ...(languages ? { languages: 'languages.json' } : {}), ...(people ? { people: 'people.lwt' } : {}), ...(atlasFile ? { atlas: atlasFile } : {}), features: FEATURE_INDEX },
-    climate: climateField && biomeField && climateKeys.length ? { field: climateField.id, title: climateField.title, description: climateField.description, biomeTitle: biomeField.title, biomeDescription: biomeField.description, source: climateField.data!.from, sourceRecord: sourceRecord(world.source.get(climateField.data!.from)!), params: biomeField.params ?? {} } : undefined,
+    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(overlays ? { overlays: 'overlays.json' } : {}), ...(people ? { people: 'people.lwt' } : {}), ...(atlasFile ? { atlas: atlasFile } : {}), features: FEATURE_INDEX },
+    climate: climateField && biomeField && climateKeys.length ? { field: climateField.id, title: climateField.title, description: climateField.description, biomeTitle: biomeField.title, biomeDescription: biomeField.description, source: climateField.data!.from, sourceRecord: sourceRecord(world.source.get(climateField.data!.from)!), params: biomeField.params ?? {}, spread: climateField.spread } : undefined,
     ice: iceField && ice ? { field: iceField.id, title: iceField.title, description: iceField.description, uncertainty: iceField.uncertainty, basis: iceField.basis!, source: iceField.data!.from, sourceRecord: sourceRecord(world.source.get(iceField.data!.from)!), coverage: ice.coverage, keyframesMa: ice.keyframesMa, projection: iceField.projection ? { method: iceField.projection.method, until: parsePoint(iceField.projection.until as TimePointInput).t, note: iceField.projection.note } : undefined, marginM: ice.marginM, scenarios: ice.scenarios } : undefined,
+    layers: layers.infos.length ? layers.infos : undefined,
     credits: credits(world),
     alternatives,
     kinds: Object.fromEntries(Object.entries(world.vocab.kinds).map(([k, v]) => [k, v.label])),

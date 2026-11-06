@@ -3,6 +3,7 @@
 // screen. Each taxon is one entity, dated by its rows or its record, so that a taxon the time on the slider does
 // not reach is not drawn; and the ground, one cell and one mesh are hashed here, to match the build's where it has one.
 import type { CityStructure } from '../../../core/city.ts';
+import { printCheck, settlePrint, type Fingerprint, type PrintCheck } from '../../../core/fingerprint.ts';
 import { lookup, type Scenario } from '../../../core/scenario.ts';
 import type { LivingTaxon, SceneSpec } from '../../../core/scene.ts';
 import { GroundSampler } from '../../../world/generators/city/ground.ts';
@@ -11,7 +12,6 @@ import { protoParts } from '../../../world/generators/life/stream.ts';
 import { CityRenderer, type CityFrame } from '../gl/city.ts';
 import type { GL } from '../gl/context.ts';
 import type { V3 } from '../mat.ts';
-import { sha256Hex } from './cellscene.ts';
 import type { FromLifeWorker, ToLifeWorker } from './lifeworker.ts';
 import { Skyline } from './skyline.ts';
 import type { LocalView } from './view.ts';
@@ -44,8 +44,8 @@ export class LifeScene {
   readonly renderer: CityRenderer;
   ground!: GroundSampler;
   ready = false;
-  /** the ground, a cell and a mesh, hashed here, and what the build made of them if it was there */
-  plan = { expected: '', actual: null as string | null };
+  /** the ground, a cell and a mesh, as fingerprints made here and by the build if it was there */
+  plan: PrintCheck = printCheck();
   skyline = new Skyline();
   tops: Float32Array = new Float32Array(0);
   private names: CityStructure[] = [];
@@ -69,9 +69,9 @@ export class LifeScene {
   private active = false;
   private wasActive = false;
 
-  constructor(gl: GL, source: SceneSpec, expected: string | null, private opts: { fast?: boolean } = {}) {
+  constructor(gl: GL, source: SceneSpec, expected: Fingerprint | null, private opts: { fast?: boolean } = {}) {
     this.spec = source;
-    this.plan.expected = expected ?? '';
+    this.plan.expected = expected;
     this.renderer = rendererFor(gl, !!opts.fast);
   }
 
@@ -102,11 +102,8 @@ export class LifeScene {
           this.focus = m.focus;
           this.toRiver = m.toRiver;
           this.waterLevel = m.waterLevel;
-          void sha256Hex(m.digest).then((h) => {
-            this.plan.actual = h;
-            if (this.plan.expected && h !== this.plan.expected) console.error(`the scene's generator made something different from the build: ${h} vs ${this.plan.expected}`);
-            this.onChange();
-          });
+          const problems = settlePrint(this.plan, m.print);
+          if (problems.length) console.error(`the scene's generator made something different from the build: ${problems.join('; ')}`);
           this.ready = true;
           resolve();
           this.onChange();

@@ -4,6 +4,7 @@
 // big and when come from the records; where each animal and plant stands, how many, what it is doing and what
 // colour it is come from the generator.
 import type { ClimateClass, ClimateNode } from './climate.ts';
+import type { Fingerprint } from './fingerprint.ts';
 import type { Form } from './form.ts';
 import type { FeatureTime } from './tileset.ts';
 
@@ -68,7 +69,7 @@ export interface ReliefPatch {
   z: number[];
 }
 
-/** Everything a scene is made from: nothing else about the world goes in, and the same spec makes the same bytes. */
+/** Everything a scene is made from: nothing else about the world goes in, and the same spec makes the same scene. */
 export interface SceneSpec {
   format: 'lightworld-scene@2';
   site: {
@@ -100,8 +101,8 @@ export interface SceneSpec {
 export interface SceneFileV2 {
   format: 'lightworld-scene-file@2';
   spec: SceneSpec;
-  /** the hash of its ground, the cell it is arrived at and one mesh */
-  sha256: string;
+  /** the fingerprint of its ground, the cell it is arrived at and one mesh */
+  print: Fingerprint;
   focus: [number, number];
   to_river: [number, number];
   water_level: number;

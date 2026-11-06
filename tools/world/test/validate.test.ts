@@ -227,3 +227,188 @@ describe('models', () => {
     expect(of(fed)).toEqual([]);
   });
 });
+
+describe('the ladder of checking (docs/STRUCTURE.md section 3.7)', () => {
+  const quoted = `source: { ref: src:test/report, loc: p. 1, quote: "seventy million years ago" }`;
+  const claim = (extra: string, src = quoted) => ({ 'entities/a.yaml': `id: test/flow\nkind: large-igneous-province\nauthor: machine:test\nclaims:\n  start:\n    prop: start\n    value: 70 Ma\n    ${src}\n${extra}` });
+  const step = (s: string, by: string) => `      - { step: ${s}, by: ${by}, how: "A fixture step." }\n`;
+  const review = (issues: Issue[]) => issues.filter((i) => i.check === 'review').map((i) => `${i.level}: ${i.message}`);
+
+  it('accept the steps in order, each by someone who may take it', async () => {
+    const issues = await check(claim(`    checked:\n${step('quoted', 'machine:quote-check')}${step('re-read', 'machine:other-reader')}${step('audited', 'kvh')}`));
+    expect(review(issues)).toEqual([]);
+  });
+
+  it('refuse a quote found where there is none, a re-reading by its own author, an audit by a machine, and a step twice', async () => {
+    const none = await check(claim(`    checked:\n${step('quoted', 'machine:quote-check')}`, cite));
+    expect(review(none)).toEqual(['error: marked quoted, but none of its sources has a quote to find']);
+    const own = await check(claim(`    checked:\n${step('quoted', 'machine:quote-check')}${step('re-read', 'machine:test')}`));
+    expect(review(own)).toEqual(['error: re-read by machine:test, who wrote it: a second reader re-reads']);
+    const machine = await check(claim(`    checked:\n${step('quoted', 'machine:q')}${step('re-read', 'machine:r')}${step('audited', 'machine:auditor')}`));
+    expect(review(machine)).toEqual(['error: audited by machine:auditor: an audit is a person\'s']);
+    const twice = await check(claim(`    checked:\n${step('quoted', 'machine:q')}${step('quoted', 'machine:q')}`));
+    expect(review(twice)).toEqual(['error: "quoted" is recorded twice']);
+  });
+
+  it('note a step above a missing one', async () => {
+    const issues = await check(claim(`    checked:\n${step('re-read', 'machine:other-reader')}`));
+    expect(review(issues)).toEqual(['warning: re-read but not quoted: each step stands on the one below it']);
+  });
+});
+
+describe('overlays: claims about rows of datasets (docs/STRUCTURE.md section 3.1)', () => {
+  const DATASET = `publish: { licenses: [CC0-1.0] }
+datasets:
+  src:test/states:
+    type: dataset
+    kind: compilation
+    citation: A fixture dataset of states, not a real one.
+    license: CC0-1.0
+    credit: Fixture
+    version: "1"
+    fetch: { url: "https://example.invalid/states.json", sha256: "0000000000000000000000000000000000000000000000000000000000000000", bytes: 1, format: json }
+`;
+  const FIELD = `id: field:test/states
+type: field
+title: States
+grid: { kind: rows }
+time: { lo: 3000 BCE, hi: 1950 CE }
+data: { from: src:test/states, as: polities }
+basis: reconstruction
+spread: unknown
+rows:
+  kind: polity
+  key: "{Name}@{FromYear}"
+  claims:
+    name: { column: Name, as: text }
+    start: { column: FromYear, as: year }
+    end: { column: ToYear, as: year-end }
+`;
+  const spec = { kind: 'polity', key: '{Name}@{FromYear}', claims: { name: { column: 'Name', as: 'text' as const }, start: { column: 'FromYear', as: 'year' as const }, end: { column: 'ToYear', as: 'year-end' as const } } };
+  const tables = new Map([['src:test/states', { dataset: 'src:test/states', field: 'field:test/states', spec, rows: new Map([['Carthage@-500', { Name: 'Carthage', FromYear: -500, ToYear: -146 }]]) }]]);
+  const overlay = (body: string, row = 'src:test/states#Carthage@-500') => `row: ${row}\nauthor: machine:test\n${body}`;
+  async function checkRows(files: Record<string, string>, withTables = true): Promise<Issue[]> {
+    const root = mkdtempSync(join(tmpdir(), 'wikiworldmodel-fixture-'));
+    dirs.push(root);
+    for (const [path, text] of Object.entries({ 'sources/report.yaml': SOURCE, 'manifest.yaml': DATASET, 'fields/states.yaml': FIELD, ...files })) {
+      mkdirSync(dirname(join(root, path)), { recursive: true });
+      writeFileSync(join(root, path), text);
+    }
+    return (await validateWorld(await loadWorld(root), { frames: false, tables: withTables ? tables : new Map() })).issues;
+  }
+  const rows = (issues: Issue[]) => issues.filter((i) => ['rows', 'refs', 'ids', 'load'].includes(i.check)).map((i) => `${i.level}: ${i.message}`);
+
+  it('accept a correction, ranked preferred with a note, citing what it rests on', async () => {
+    const issues = await checkRows({ 'overlays/carthage.yaml': overlay(`claims:\n  end:\n    prop: end\n    value: -145\n    rank: preferred\n    note: The row ends a year early.\n    ${cite}\n`) });
+    expect(rows(issues)).toEqual([]);
+    expect(errors(issues)).toEqual([]);
+  });
+
+  it('refuse a correction that is not ranked preferred or says not why', async () => {
+    const issues = await checkRows({ 'overlays/carthage.yaml': overlay(`claims:\n  end: { prop: end, value: -145, ${cite} }\n`) });
+    expect(rows(issues)).toEqual(['error: differs from the row\'s end (-144): a correction is ranked preferred, with a note saying why the row is wrong']);
+  });
+
+  it('note a claim that only restates the row, from the dataset itself', async () => {
+    // Its last year, -146 as the dataset counts years, holds to its end: -144 on the axis.
+    const issues = await checkRows({ 'overlays/carthage.yaml': overlay(`claims:\n  end: { prop: end, value: -144, source: { ref: src:test/states, loc: row } }\n`) });
+    expect(rows(issues)).toEqual(["warning: restates the row's end; to corroborate it, cite another source"]);
+  });
+
+  it('refuse a row the dataset does not have, a property its rows do not give, and two files for one row', async () => {
+    const missing = await checkRows({ 'overlays/rome.yaml': overlay(`same_as: test/rome\n`, 'src:test/states#Rome@-27') });
+    expect(rows(missing)).toEqual(['error: src:test/states has no row "Rome@-27"']);
+    const prop = await checkRows({ 'overlays/carthage.yaml': overlay(`claims:\n  area: { prop: area, value: 3, ${cite} }\n`) });
+    expect(rows(prop)).toEqual(['error: the rows of src:test/states give no "area": they give name, start, end']);
+    const twice = await checkRows({ 'overlays/a.yaml': overlay('same_as: test/carthage\n'), 'overlays/b.yaml': overlay('same_as: test/carthage\n') });
+    expect(rows(twice)).toContain('error: src:test/states#Carthage@-500 has an overlay already, in overlays/a.yaml: one file per row');
+  });
+
+  it('say so when the dataset is not here to check the row against', async () => {
+    const issues = await checkRows({ 'overlays/carthage.yaml': overlay('same_as: test/carthage\n') }, false);
+    expect(rows(issues)).toEqual(['info: src:test/states is not fetched here, so its row could not be checked']);
+  });
+
+  it('refuse a row written otherwise than the build writes it', async () => {
+    const issues = await checkRows({ 'overlays/carthage.yaml': overlay('same_as: test/carthage\n', 'src:test/states#Carthage%40-500') });
+    expect(rows(issues)).toEqual(['error: write the row as src:test/states#Carthage@-500']);
+  });
+});
+
+describe('spreads (docs/STRUCTURE.md section 3.2)', () => {
+  const field = (id: string, spread: string) => `id: field:test/${id}\ntype: field\ntitle: ${id}\ngrid: { kind: series }\ntime: { lo: 1 Ma, hi: 0 Ma }\ndata: { from: src:test/report, prop: date }\nbasis: reconstruction\n${spread ? `spread: ${spread}\n` : ''}`;
+  const model = (kind: string) => `id: model:test/m\ntype: model\ntitle: M\ndescription: A fixture model.\ncode: tools/world/src/world.ts\ninputs: [field:test/runs]\nderives: Nothing.\nuncertainty: { kind: ${kind}, note: A fixture. }\n`;
+  const models = (issues: Issue[]) => issues.filter((i) => i.check === 'models' && i.level !== 'info').map((i) => `${i.level}: ${i.message}`);
+
+  it('want every field read from a source to say how its uncertainty is carried', async () => {
+    const issues = await check({ 'fields/a.yaml': field('runs', '') });
+    expect(errors(issues).map((i) => i.message)).toContain("must have required property 'spread'");
+  });
+
+  it('note a model that reads a spread and carries none on', async () => {
+    expect(models(await check({ 'fields/a.yaml': field('runs', 'ensemble'), 'models/m.yaml': model('none') }))).toEqual([
+      'warning: reads field:test/runs, which carries an ensemble, and says its output carries none: run it once per member (core/samples.ts) and carry the spread on',
+    ]);
+    expect(models(await check({ 'fields/a.yaml': field('runs', 'ensemble'), 'models/m.yaml': model('ensemble') }))).toEqual([]);
+    expect(models(await check({ 'fields/a.yaml': field('runs', 'unknown'), 'models/m.yaml': model('none') }))).toEqual([]);
+  });
+});
+
+describe('generators sample models (docs/STRUCTURE.md section 3.4)', () => {
+  const gen = (extra: string) => `id: gen:test/g\ntype: generator\ntitle: G\nversion: 1\ncode: generators/earth/clouds/v1.ts\nruns_in: [build]\noutputs: { basis: procedural }\ninputs: [{ prop: date }]\nslots: { s: { place: here, seed: s } }\nparams: {}\n${extra}`;
+  const found = (issues: Issue[]) => issues.filter((i) => i.check === 'generators').map((i) => `${i.level}: ${i.message}`);
+
+  it('want one that samples the world to name a test of what it makes, in aggregate', async () => {
+    expect(found(await check({ 'generators/g.yaml': gen('') }))).toEqual(['warning: it samples fields or claims of the world: name a test that holds what it makes, in aggregate, to them']);
+  });
+
+  it('accept a check that names a test that exists, and refuse one that does not', async () => {
+    const ok = `checks: [{ test: world/generators/life/scene/v2.test.ts, holds: "has a desert mostly bare, with no forest" }]\n`;
+    expect(found(await check({ 'generators/g.yaml': gen(ok) }))).toEqual([]);
+    const bad = `checks: [{ test: world/generators/life/scene/v2.test.ts, holds: "makes unicorns" }]\n`;
+    expect(found(await check({ 'generators/g.yaml': gen(bad) }))).toEqual(['error: no test in world/generators/life/scene/v2.test.ts is named "makes unicorns"']);
+  });
+});
+
+describe('areas written in claims, and frames in deep time (docs/STRUCTURE.md section 5)', () => {
+  const FRAMES = {
+    'frames/geographic.yaml': 'id: frame:earth/geographic\ntype: frame\nkind: body-fixed\ntitle: Geographic\n',
+    'frames/present-day.yaml': 'id: frame:earth/present-day\ntype: frame\nkind: snapshot\ntitle: Present day\nparent: frame:earth/geographic\n',
+    'frames/unplaced.yaml': 'id: frame:earth/unplaced\ntype: frame\nkind: placeholder\ntitle: Unplaced\nparent: frame:earth/present-day\n',
+    'frames/andes.yaml': 'id: frame:test/andes\ntype: frame\nkind: deforming\ntitle: A deforming belt\nparent: frame:earth/geographic\n',
+  };
+  const ring = (closed = true) => `[[[10, 10], [20, 10], [20, 20], [10, 20]${closed ? ', [10, 10]' : ''}]]`;
+  const polity = (value: string, prop = 'territory', kind = 'polity') => ({ 'entities/a.yaml': entity('test/realm', kind, `claims:\n  t: { prop: ${prop}, value: ${value}, ${cite} }\n`) });
+  const located = (frame: string) => ({
+    ...FRAMES,
+    'entities/a.yaml': entity('test/site', 'occurrence', `claims:\n  date: { prop: date, value: 2000 Ma, ${cite} }\n  location: { prop: location, value: { lat: -1.6, lon: 13.5, frame: frame:earth/present-day }, ${cite} }\n  frame: { prop: frame, value: ${frame}, ${cite} }\n`),
+  });
+  async function checkWithFrames(files: Record<string, string>): Promise<Issue[]> {
+    const root = mkdtempSync(join(tmpdir(), 'wikiworldmodel-fixture-'));
+    dirs.push(root);
+    for (const [path, text] of Object.entries({ 'sources/report.yaml': SOURCE, ...files })) {
+      mkdirSync(dirname(join(root, path)), { recursive: true });
+      writeFileSync(join(root, path), text);
+    }
+    return (await validateWorld(await loadWorld(root))).issues;
+  }
+
+  it("accept a polity's outline written in its claim, closed and on the globe, in a frame", async () => {
+    expect(errors(await check({ ...FRAMES, ...polity(`{ type: Polygon, coordinates: ${ring()}, frame: frame:earth/present-day }`) }))).toEqual([]);
+  });
+
+  it("refuse an outline that does not close, or one where the property takes only a dataset's rows", async () => {
+    const open = await check({ ...FRAMES, ...polity(`{ type: Polygon, coordinates: ${ring(false)}, frame: frame:earth/present-day }`) });
+    expect(errors(open).map((i) => i.message)).toEqual(['ring 0 of polygon 0 does not close: its last point is not its first']);
+    const foot = await check({ ...FRAMES, ...polity(`{ type: Polygon, coordinates: ${ring()}, frame: frame:earth/present-day }`, 'footprint', 'building/temple') });
+    expect(errors(foot).map((i) => i.message)).toEqual(['"footprint" takes rows or elements of a dataset, not an outline written in the claim']);
+  });
+
+  it('hold a place no reconstruction can follow in the placeholder frame, where it is today', async () => {
+    expect(errors(await checkWithFrames(located('frame:earth/unplaced')))).toEqual([]);
+  });
+
+  it('refuse to carry coordinates through a deforming frame, which the build cannot do yet', async () => {
+    expect(errors(await checkWithFrames(located('frame:test/andes'))).map((i) => i.message)).toEqual(['the build cannot yet carry coordinates through a deforming frame (frame:test/andes)']);
+  });
+});
