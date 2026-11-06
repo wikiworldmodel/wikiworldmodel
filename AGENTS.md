@@ -94,6 +94,11 @@ Figshare, PANGAEA, CEDA, publishers' sites, NOAA, OpenTopography, INGV. If some 
 
 ## Finding work
 
+- **The coverage page** (`npm run dev`, then http://localhost:5173/coverage.html): every layer of the
+  world along the whole span of time, coloured by what answers it (evidence, a model, a generic
+  stand-in, or nothing), with what answers each layer when and how finely. A stretch that is
+  generic or unknown where you know a source is work; so is a layer whose finest grid is coarser
+  than the evidence allows.
 - **[docs/RECORD-SETS.md](docs/RECORD-SETS.md)**: the roadmap's record sets, what is left of them, and
   the doubts their first drafts left behind: a person or an agent with a source can settle one.
 - **[docs/DATA-OUTLINE.md](docs/DATA-OUTLINE.md)**: everything a complete history needs, by

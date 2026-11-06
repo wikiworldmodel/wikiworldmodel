@@ -1,11 +1,11 @@
 // The time control: a strip that zooms like a map, along a scale that gives the recent past far
-// more room than the deep past (see timescale.ts). A window is a stretch of that scale, so
+// more room than the deep past (see core/timescale.ts). A window is a stretch of that scale, so
 // zooming and panning are even along it, and a narrow window is close to linear. Bands show the
 // named periods, and a track below them shows the world's dated records.
 import type { PeriodRecord, SearchEntry } from '../../../core/records.ts';
 import { lookup, type Scenario } from '../../../core/scenario.ts';
 import { formatTime, historical, PRESENT_YEAR } from '../../../core/time.ts';
-import { positionOf, timeAt } from './timescale.ts';
+import { positionOf, timeAt } from '../../../core/timescale.ts';
 
 type Win = [number, number];
 

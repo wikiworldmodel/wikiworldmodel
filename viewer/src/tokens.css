@@ -1,0 +1,14 @@
+/* The viewer's colours and type, shared by its pages. */
+:root {
+  --bg: #05070d;
+  --panel: rgba(14, 19, 30, 0.94);
+  --panel-border: rgba(140, 160, 200, 0.18);
+  --text: #e6ebf5;
+  --muted: #9aa6bd;
+  --accent: #ffd36b;
+  --evidence: #7fd1ff;
+  --reconstruction: #f2a63a;
+  --procedural: #ea44bf;
+  --font: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: dark;
+}

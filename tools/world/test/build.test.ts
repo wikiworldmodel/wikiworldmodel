@@ -13,6 +13,8 @@ import { chosenClaim, type PlanetFile } from '../../../core/planet.ts';
 import { peopleAt, type PeopleFile, type PeopleHeader } from '../../../core/layers.ts';
 import { territoriesAt, type TerritoryFile } from '../../../core/territory.ts';
 import type { CoverageFile, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../core/records.ts';
+import { decodeRuns } from '../../../core/coverage.ts';
+import { LAYERS, TIERS } from '../../../core/resolve.ts';
 import { GENERATOR, generateClouds, type CloudParams } from '../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
 import { GENERATOR as GENERIC_LAND, generateGenericLand, type GenericLandParams } from '../../../world/generators/earth/generic-land/v1.ts';
@@ -75,6 +77,37 @@ describe('build', () => {
     // The land's life is recorded somewhere in the Phanerozoic, and nowhere before it.
     expect(spans['100–10 Ma'].life.evidence).toBeGreaterThan(0);
     expect(spans['4600–1000 Ma'].life.evidence).toBe(0);
+  });
+
+  it('charts every layer in every column of the time scale, and what it says answers a layer does answer it', () => {
+    const c = JSON.parse(readFileSync(join(latestBuild(), 'coverage.json'), 'utf8')) as CoverageFile;
+    const m = c.matrix!;
+    const ts = JSON.parse(readFileSync(join(latestBuild(), 'tileset.json'), 'utf8')) as Tileset;
+    const places = (180 / m.step) * (360 / m.step);
+    expect(m.layers.map((l) => l.layer)).toEqual([...LAYERS]);
+    expect(m.columns[0][0]).toBe(ts.timeRange[0]);
+    expect(m.columns.at(-1)![1]).toBe(ts.timeRange[1]);
+    for (let i = 1; i < m.columns.length; i++) expect(m.columns[i][0]).toBe(m.columns[i - 1][1]);
+    for (const { layer, cells } of m.layers) {
+      expect(cells.length).toBe(m.columns.length);
+      cells.forEach((cell, i) => {
+        expect(cell.share.reduce((a, b) => a + b, 0), `${layer} in column ${i}`).toBeCloseTo(1, 3);
+        expect(cell.why.reduce((a, [, x]) => a + x, 0), `${layer} in column ${i}`).toBeCloseTo(1, 3);
+        expect(decodeRuns(cell.map).length).toBe(places);
+      });
+    }
+    // Each thing the chart draws under a layer answers that layer in its tier, somewhere within its span.
+    for (const s of m.sources) {
+      expect(s.span.every(Number.isFinite), s.id).toBe(true);
+      const inside = m.columns.map((col, i) => [col, i] as const).filter(([col]) => col[0] >= s.span[0] && col[1] <= s.span[1]);
+      if (!inside.length) continue;
+      const cells = m.layers.find((l) => l.layer === s.layer)!.cells;
+      const k = TIERS.indexOf(s.tier);
+      expect(Math.max(...inside.map(([, i]) => cells[i].share[k])), `${s.id} answers ${s.layer} in ${s.tier}`).toBeGreaterThan(0);
+    }
+    // Where a map covers the time, the land and sea are a model's everywhere.
+    const k66 = m.columns.findIndex(([a, b]) => a <= fromMa(66) && fromMa(66) < b);
+    expect(m.layers.find((l) => l.layer === 'geography')!.cells[k66].share[TIERS.indexOf('model')]).toBe(1);
   });
 
   it('records generic land that its generator reproduces, at its share of the planet', () => {

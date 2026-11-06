@@ -1,0 +1,143 @@
+@import '../tokens.css';
+
+/* The tiers, one hue each, in the viewer's own: evidence blue, models orange, generic stand-ins magenta, and the
+   unknown a recessive slate. Steps of the viewer's hues darkened into the band a dark chart reads evenly in. */
+:root {
+  --tier-evidence: #259ed6;
+  --tier-model: #d27908;
+  --tier-generic: #d446a1;
+  --tier-unknown: #222a3a;
+  --surface: #0b0f18;
+  --line: rgba(140, 160, 200, 0.14);
+  --label-w: 236px;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.45 var(--font); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+button { font: inherit; color: inherit; }
+.cov-loading, .cov-fatal { margin: 20vh auto; color: var(--muted); text-align: center; max-width: 36rem; padding: 1rem; }
+
+.cov-page { max-width: 1680px; margin: 0 auto; padding: 16px 16px 48px; }
+
+.cov-head { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }
+.cov-head h1 { margin: 0; font-size: 18px; letter-spacing: 0.01em; }
+.cov-head h1 span { color: var(--muted); font-weight: 400; }
+.cov-head .meta { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.cov-lede { margin: 0 0 14px; color: var(--muted); max-width: 72rem; }
+
+/* Numbers at the top: what the world rests on, as a whole. */
+.cov-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 16px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.stat h3 { margin: 0 0 6px; font-size: 11px; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+.stat .big { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stat .sub { color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+.stat .shares { display: flex; height: 10px; border-radius: 4px; overflow: hidden; margin: 6px 0; gap: 2px; background: var(--surface); }
+.stat .shares i { display: block; height: 100%; }
+.stat dl { display: grid; grid-template-columns: auto 1fr; gap: 1px 10px; margin: 0; font-size: 12px; }
+.stat dt { font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; }
+.stat dd { margin: 0; color: var(--muted); }
+
+.cov-controls { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; margin-bottom: 8px; }
+.seg { display: inline-flex; border: 1px solid var(--panel-border); border-radius: 8px; overflow: hidden; }
+.seg button { padding: 5px 11px; background: var(--surface); border: 0; cursor: pointer; color: var(--muted); }
+.seg button + button { border-left: 1px solid var(--panel-border); }
+.seg button[aria-pressed='true'] { color: var(--text); background: #1a2232; }
+.cov-controls .plain { padding: 5px 10px; border-radius: 8px; border: 1px solid var(--panel-border); background: var(--surface); cursor: pointer; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--muted); font-size: 12px; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; flex: none; }
+.sw.evidence { background: var(--tier-evidence); }
+.sw.model { background: var(--tier-model); }
+.sw.generic { background: var(--tier-generic); }
+.sw.unknown { background: var(--tier-unknown); outline: 1px solid #3a4560; outline-offset: -1px; }
+
+.cov-main { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 16px; align-items: start; }
+@media (max-width: 1100px) { .cov-main { grid-template-columns: minmax(0, 1fr); } :root { --label-w: 168px; } }
+@media (max-width: 600px) { :root { --label-w: 112px; } .row .label small { display: none; } .cov-chart { padding: 0 6px 8px; } }
+
+/* The chart: a column of labels, and tracks that all share one time axis. */
+.cov-chart { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 0 12px 12px; }
+.axis { position: sticky; top: 0; z-index: 3; display: grid; grid-template-columns: var(--label-w) 1fr; background: var(--surface); padding-top: 8px; border-bottom: 1px solid var(--line); }
+.axis .ruler { position: relative; height: 40px; overflow: hidden; }
+.axis .eras { position: absolute; left: 0; right: 0; bottom: 0; height: 12px; }
+.axis .era { position: absolute; top: 0; bottom: 0; overflow: hidden; white-space: nowrap; font-size: 9px; line-height: 12px; padding-left: 3px; color: rgba(0, 0, 0, 0.75); border-right: 1px solid var(--surface); }
+.axis .tick { position: absolute; top: 2px; font-size: 11px; color: var(--muted); transform: translateX(-50%); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.axis .tick::after { content: ''; position: absolute; left: 50%; top: 16px; height: 6px; border-left: 1px solid var(--line); }
+.axis .tick.first { transform: none; }
+.axis .tick.last { transform: translateX(-100%); }
+.axis .tick.first::after, .axis .tick.last::after { display: none; }
+.axis .now { position: absolute; top: 0; bottom: 12px; border-left: 1px dashed rgba(255, 211, 107, 0.6); }
+.axis .now span { position: absolute; top: 18px; left: 4px; font-size: 10px; color: var(--accent); white-space: nowrap; }
+
+.group { margin-top: 14px; }
+.group > h2 { margin: 0 0 4px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.group > p { margin: -2px 0 6px; font-size: 12px; color: var(--muted); max-width: 60rem; }
+
+.row { display: grid; grid-template-columns: var(--label-w) 1fr; align-items: stretch; min-height: 22px; }
+.row + .row { margin-top: 2px; }
+.row .label { display: flex; flex-direction: column; justify-content: center; padding: 2px 10px 2px 0; min-width: 0; text-align: left; background: none; border: 0; }
+.row .label .name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row .label small { color: var(--muted); font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-variant-numeric: tabular-nums; }
+.row .track { position: relative; min-width: 0; }
+.row .track canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+
+.row.layer { height: 40px; margin-top: 5px; }
+.row.layer .label { cursor: pointer; }
+.row.layer .label .name::before { content: '▸'; display: inline-block; width: 14px; color: var(--muted); transition: transform 0.12s; }
+.row.layer .label[aria-expanded='true'] .name::before { transform: rotate(90deg); }
+.row.layer .label:hover .name, .row.layer .label:focus-visible .name { color: var(--accent); }
+.row.layer .label:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 4px; }
+.row.layer .track { cursor: crosshair; border-radius: 3px; overflow: hidden; }
+.row.records { height: 18px; min-height: 18px; }
+.row.records .track { cursor: crosshair; }
+
+.lanes { margin: 2px 0 6px; }
+.row.lane { min-height: 20px; }
+.row.lane .label { padding-left: 14px; font-size: 12px; }
+.bar { position: absolute; top: 3px; bottom: 3px; min-width: 2px; border-radius: 3px; overflow: hidden; white-space: nowrap; font-size: 11px; line-height: 14px; padding: 0 5px; color: #0b0f18; cursor: default; }
+.bar.evidence { background: var(--tier-evidence); }
+.bar.model { background: var(--tier-model); }
+.bar.generic { background: var(--tier-generic); }
+.bar.unknown { background: var(--tier-unknown); color: var(--muted); }
+.bar.site { background: transparent; border: 1.5px solid var(--accent); color: var(--accent); line-height: 11px; }
+.bar.narrow { padding: 0; }
+.bar:hover { filter: brightness(1.2); }
+.lane-track { border-bottom: 1px solid var(--line); }
+
+/* What the pointer is over, across every track at once, and what was picked. */
+.crosshair { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px solid rgba(230, 235, 245, 0.55); pointer-events: none; z-index: 2; }
+.picked { position: absolute; top: 0; bottom: 0; outline: 2px solid var(--accent); outline-offset: -1px; pointer-events: none; z-index: 2; border-radius: 2px; }
+
+.tip { position: fixed; z-index: 10; max-width: 340px; padding: 8px 10px; background: #0f1522; border: 1px solid var(--panel-border); border-radius: 8px; pointer-events: none; font-size: 12px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45); }
+.tip h4 { margin: 0 0 4px; font-size: 12px; font-weight: 500; color: var(--muted); }
+.tip .vals { display: grid; grid-template-columns: auto auto 1fr; gap: 1px 8px; align-items: center; }
+.tip .vals b { font-variant-numeric: tabular-nums; text-align: right; }
+.tip .vals .key { width: 12px; height: 2px; border-radius: 1px; }
+.tip p { margin: 4px 0 0; color: var(--muted); }
+
+/* The panel of what was picked. */
+.cov-detail { position: sticky; top: 12px; max-height: calc(100vh - 24px); overflow: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+.cov-detail h3 { margin: 0 0 2px; font-size: 14px; }
+.cov-detail .when { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+.cov-detail h4 { margin: 12px 0 4px; font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); }
+.cov-detail .empty { color: var(--muted); }
+.cov-detail canvas.map { display: block; width: 100%; image-rendering: pixelated; border-radius: 4px; cursor: pointer; background: var(--tier-unknown); }
+.cov-detail .maphint { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.cov-detail ul { list-style: none; margin: 0; padding: 0; }
+.cov-detail li { padding: 2px 0; display: flex; gap: 8px; align-items: baseline; }
+.cov-detail li .n { font-variant-numeric: tabular-nums; font-weight: 600; min-width: 3.2em; text-align: right; flex: none; }
+.cov-detail li .s { color: var(--muted); font-size: 12px; }
+.cov-detail li .sw { align-self: center; }
+.cov-detail .open { display: inline-block; margin-top: 10px; }
+.cov-detail .more { color: var(--muted); font-size: 12px; }
+
+.cov-table { margin-top: 16px; }
+.cov-table summary { cursor: pointer; color: var(--muted); }
+.cov-table .scroll { overflow-x: auto; }
+.cov-table table { border-collapse: collapse; margin-top: 8px; font-size: 12px; font-variant-numeric: tabular-nums; }
+.cov-table th, .cov-table td { padding: 3px 10px; border-bottom: 1px solid var(--line); text-align: right; }
+.cov-table th:first-child, .cov-table td:first-child { text-align: left; }
+.cov-table th { color: var(--muted); font-weight: 500; }

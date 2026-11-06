@@ -85,6 +85,13 @@ In the viewer:
   city. There, drag to pan, right-drag or Shift-drag to turn and tilt, `W` `A` `S` `D` to walk,
   and move the Light slider or press `L` to change the hour. Click a monument to open its record.
 
+The coverage page (`coverage` under the title, or http://localhost:5173/coverage.html) shows how much of
+the world each layer knows: each layer is a strip along the time strip's own scale, coloured by the
+share of the globe that evidence, a model or a generic stand-in answers, or where nothing is known.
+Expand a layer to see what answers it when, with its grid; switch to *Finest grid* to see the scale;
+pick a cell to map it, and click the map to open the globe there and then. Below the layers are the
+fields drawn over the globe, the whole-planet series and the records, by kind.
+
 ## Checks
 
 ```sh

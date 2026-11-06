@@ -10,7 +10,7 @@
 // of the world. Unknown is a fine answer; looking broken is not, so the viewer draws each tier as designed, and the
 // generic prior plainly.
 import { atlasKey, atlasList, TIER, type AtlasBin, type AtlasGrid } from './atlas.ts';
-import { lookAt, type PlanetFile } from './planet.ts';
+import { lookAt, type Look, type PlanetFile } from './planet.ts';
 import type { Scenario } from './scenario.ts';
 
 export type Tier = 'evidence' | 'model' | 'generic' | 'unknown';
@@ -48,8 +48,8 @@ export interface ResolveWorld {
 
 const within = (span: [number, number] | undefined, t: number) => !!span && t >= span[0] && t <= span[1];
 
-export function resolve(w: ResolveWorld, layer: LayerId, lat: number, lon: number, t: number, s: Scenario = {}): Answer {
-  const look = lookAt(w.planet, t, s);
+/** `look` is the planet at t under s, for a caller that asks many places at one time. */
+export function resolve(w: ResolveWorld, layer: LayerId, lat: number, lon: number, t: number, s: Scenario = {}, look: Look = lookAt(w.planet, t, s)): Answer {
   const a = (tier: Tier, value: Answer['value'], why: string): Answer => ({ layer, tier, value, why });
   if (!look.formed) return a('unknown', null, 'The Earth had not formed, or is gone.');
   switch (layer) {

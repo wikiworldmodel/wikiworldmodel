@@ -33,5 +33,11 @@ export default defineConfig({
   base: './',
   plugins: [builds()],
   server: { fs: { allow: [resolve(__dirname, '..')] } },
-  build: { outDir: resolve(__dirname, '../dist/site'), emptyOutDir: true, target: 'es2022' },
+  build: {
+    outDir: resolve(__dirname, '../dist/site'),
+    emptyOutDir: true,
+    target: 'es2022',
+    // Two pages: the globe, and the coverage of the world (viewer/src/coverage).
+    rollupOptions: { input: { main: resolve(__dirname, 'index.html'), coverage: resolve(__dirname, 'coverage.html') } },
+  },
 });

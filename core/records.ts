@@ -1,6 +1,7 @@
 // What the build writes for each entity (records/<id>.json), for search (search.json), for
 // periods (periods.json) and for coverage (coverage.json): everything the viewer's inspect
 // panel needs, already resolved.
+import type { CoverageMatrix } from './coverage.ts';
 import type { CheckStep, Level } from './ladder.ts';
 import type { FieldSpread } from './samples.ts';
 import type { Basis, FeatureBasis, FeatureName, FeatureTime } from './tileset.ts';
@@ -211,6 +212,8 @@ export interface CoverageFile {
   forests?: { id: string; ageMa: number; keyframeMa: number; lat: number; lon: number; climate: string | null; label: string }[];
   /** which tier answers each layer, over a grid of places at times through each span (core/resolve.ts) */
   tiers?: { span: string; layers: Record<string, Record<string, number>> }[];
+  /** the same, finely, with what answers each layer when: what the coverage page draws (core/coverage.ts) */
+  matrix?: CoverageMatrix;
   /** how much of each area and era rests on each basis: features per tile, by basis */
   tiles: { tile: string; bbox: [number, number, number, number]; time: [number, number]; features: Partial<Record<Basis, number>> }[];
 }

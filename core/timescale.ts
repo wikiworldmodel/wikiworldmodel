@@ -1,8 +1,9 @@
 // The time control's scale: one fixed map from time to a position along the strip, as a map
 // projection is for the globe. Each era below is given the share of the whole strip it is
 // worth looking at, and a smooth curve runs through them, so the scale has no corners where
-// eras meet. To change how much room an era gets, change its stop.
-import { fromMa, PRESENT_YEAR } from '../../../core/time.ts';
+// eras meet. To change how much room an era gets, change its stop. The coverage chart is drawn
+// on the same scale, so an era takes the same room there.
+import { fromMa, PRESENT_YEAR } from './time.ts';
 
 /** Where each era starts along the whole strip, in hundredths of it. */
 const STOPS: [year: number, position: number][] = [

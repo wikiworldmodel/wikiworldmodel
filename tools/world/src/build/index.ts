@@ -11,7 +11,7 @@ import { bytesPrint } from '../../../../core/fingerprint.ts';
 import { ladderCounts } from '../../../../core/ladder.ts';
 import type { CoverageFile, OverlaysFile, PeriodRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../../core/records.ts';
 import { bakeRotationModel, parseRot, RotationModel } from '../../../../core/rotation-model.ts';
-import { fromMa, parsePoint, PRESENT_YEAR, toMa, type TimePointInput } from '../../../../core/time.ts';
+import { fromMa, parseDuration, parsePoint, PRESENT_YEAR, toMa, type TimePointInput } from '../../../../core/time.ts';
 import type { Basis, Feature, FieldInfo, FieldKeyframe, FramesFile, GeneratorConstraint, SiteInfo, TileHeader, TileRef, Tileset } from '../../../../core/tileset.ts';
 import { GENERATOR as BIOME_TEXTURE, VERSION as BIOME_TEXTURE_VERSION, generateBiomeTexture, type BiomeTextureParams } from '../../../../world/generators/earth/biome/v1.ts';
 import { GENERATOR as CLOUDS, VERSION as CLOUDS_VERSION, generateClouds, type CloudParams } from '../../../../world/generators/earth/clouds/v1.ts';
@@ -23,10 +23,12 @@ import { datasetFile } from '../manifest.ts';
 import { BUILDS, REPO } from '../paths.ts';
 import { sha256, stableStringify } from '../util.ts';
 import { formatIssue, validateWorld } from '../validate/index.ts';
-import { loadWorld, type World } from '../world.ts';
+import { loadWorld, type Field, type World } from '../world.ts';
 import { ClaimIndex } from '../claimindex.ts';
 import { correctLand } from '../tables.ts';
 import { gridPlaces, lifeTierOf, tierCounts, TIER_SPANS, type ResolveWorld } from '../../../../core/resolve.ts';
+import { coverageMatrix, type CoverageSource } from '../../../../core/coverage.ts';
+import { spanOf, type PlanetFile } from '../../../../core/planet.ts';
 import { insideRow, politiesAt, type PolitiesFile } from '../../../../core/layers.ts';
 import type { AtlasBin } from '../../../../core/atlas.ts';
 import { fieldFor, fieldLods, loadBlocks, loadSnapshots, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
@@ -107,6 +109,9 @@ function worldSpan(periods: PeriodRecord[], found: SearchFile, grids: GridField[
   return [Math.min(...times), Math.max(...times)];
 }
 
+/** How finely the coverage chart asks the layers: columns along the time control's scale, the grid in degrees, and times per column. */
+const COVERAGE = { columns: 160, step: 5, samples: 3 };
+
 /** What resolve reads, from what the build has made (core/resolve.ts). */
 export function resolveWorldOf(
   world: World,
@@ -123,6 +128,16 @@ export function resolveWorldOf(
   const mask = land ? generateGenericLand(land.slots.globe.seed, landParams!) : undefined;
   const bins = new Map<number, AtlasBin>();
   const ages = climateKeys.map((k) => k.ageMa);
+  // The states of the last time asked: a grid of places is asked at one time after another.
+  let rowsT = NaN;
+  let rows: ReturnType<typeof politiesAt> = [];
+  const rowsAt = (t: number) => {
+    if (t !== rowsT && polities) {
+      rows = politiesAt(polities, t);
+      rowsT = t;
+    }
+    return rows;
+  };
   return {
     planet: buildPlanet(solved),
     geography: grids.map((g) => ({ title: g.field.title, mode: g.mode, coverage: [fromMa(g.coverMa[0]), fromMa(g.coverMa[1])] })),
@@ -130,7 +145,7 @@ export function resolveWorldOf(
     ice: ice?.coverage,
     people: people ? [people.header.steps[0], people.header.steps.at(-1)!] : undefined,
     polities: polities?.rows.length ? [Math.min(...polities.rows.map((r) => r.from)), Math.max(...polities.rows.map((r) => r.to))] : undefined,
-    polity: polities ? (lat, lon, t) => politiesAt(polities, t).find((r) => insideRow(r, lon, lat))?.name : undefined,
+    polity: polities ? (lat, lon, t) => rowsAt(t).find((r) => insideRow(r, lon, lat))?.name : undefined,
     life: atlas
       ? (lat, lon, t) =>
           lifeTierOf(atlas.index.bins, atlas.index.grid, (i) => {
@@ -140,6 +155,66 @@ export function resolveWorldOf(
       : undefined,
     genericLand: mask && landParams ? (lat, lon) => genericLandAt(mask, landParams, lat, lon) : undefined,
   };
+}
+
+/**
+ * What answers each layer, and when (core/coverage.ts): the same things resolveWorldOf hands to resolve, each with its
+ * span, its tier, and the grain of its grid and its keyframes where it has them. The coverage chart draws them under
+ * their layer's row.
+ */
+export function coverageSources(
+  world: World,
+  range: [number, number],
+  planet: PlanetFile,
+  grids: GridField[],
+  climate: { field: Field; keys: ClimateKeyframe[] } | undefined,
+  ice: { field: Field; built: IceBuilt } | undefined,
+  people: { header: { steps: number[]; res: number; source: string; title: string } } | undefined,
+  polities: { field: Field; file: PolitiesFile } | undefined,
+  atlas: ReturnType<typeof buildAtlas>,
+): CoverageSource[] {
+  const out: CoverageSource[] = [];
+  // A span that runs on to the end of time stops where the world does: JSON has no infinity.
+  const clip = ([a, b]: [number, number]): [number, number] => [Math.max(a, range[0]), Math.min(b, range[1])];
+  const grain = (f: Field) => ({
+    ...(f.grid?.kind === 'lonlat' ? { res_deg: f.grid.res_deg } : {}),
+    ...(f.time?.step ? { step_yr: parseDuration(f.time.step) } : {}),
+  });
+  for (const ph of planet.planet?.phases ?? []) out.push({ layer: 'planet', id: ph.subject, title: ph.label, tier: 'evidence', span: clip(spanOf(ph, {})), lane: 'phases' });
+  for (const g of grids) out.push({ layer: 'geography', id: g.field.id, title: g.field.title, tier: 'model', span: [fromMa(g.coverMa[0]), fromMa(g.coverMa[1])], ...grain(g.field) });
+  // Generic land stands in wherever no grid covers the time and the planet has oceans.
+  const land = world.generators.find((g) => g.id === GENERIC_LAND);
+  if (land && planet.planet) {
+    const covered = grids.map((g) => [fromMa(g.coverMa[0]), fromMa(g.coverMa[1])] as [number, number]).sort((a, b) => a[0] - b[0]);
+    const [born, gone] = spanOf(planet.planet, {});
+    let from = Math.max(born, range[0]);
+    for (const [a, b] of [...covered, [Math.min(gone, range[1]), Math.min(gone, range[1])] as [number, number]]) {
+      if (a > from) out.push({ layer: 'geography', id: land.id, title: land.title, tier: 'generic', span: [from, a], lane: 'generic-land' });
+      from = Math.max(from, b);
+    }
+  }
+  if (climate?.keys.length) {
+    const ages = climate.keys.map((k) => k.ageMa);
+    out.push({ layer: 'climate', id: climate.field.id, title: climate.field.title, tier: 'model', span: [fromMa(Math.max(...ages)), fromMa(Math.min(...ages))], ...grain(climate.field) });
+  }
+  if (ice) out.push({ layer: 'ice', id: ice.field.id, title: ice.field.title, tier: 'model', span: ice.built.coverage, ...grain(ice.field) });
+  for (const ep of planet.episodes) out.push({ layer: 'ice', id: ep.subject, title: ep.label, tier: 'evidence', span: clip(spanOf(ep, {})), lane: 'glaciations' });
+  if (atlas) {
+    const bins = atlas.index.bins;
+    const span: [number, number] = [Math.min(...bins.map((b) => b.from)), Math.max(...bins.map((b) => b.to))];
+    const field = world.fields.find((f) => f.data?.as === 'community');
+    out.push({ layer: 'life', id: atlas.index.source, title: world.source.get(atlas.index.source)?.title ?? atlas.index.source, tier: 'evidence', span });
+    if (field) out.push({ layer: 'life', id: field.id, title: field.title, tier: 'model', span, res_deg: atlas.index.grid.step });
+  }
+  if (people) {
+    const field = world.fields.find((f) => f.data?.as === 'people');
+    out.push({ layer: 'people', id: field?.id ?? people.header.source, title: people.header.title, tier: 'model', span: [people.header.steps[0], people.header.steps.at(-1)!], res_deg: people.header.res });
+  }
+  if (polities?.file.rows.length) {
+    const rows = polities.file.rows;
+    out.push({ layer: 'polity', id: polities.field.id, title: polities.field.title, tier: 'evidence', span: [Math.min(...rows.map((r) => r.from)), Math.max(...rows.map((r) => r.to))] });
+  }
+  return out.map((s) => ({ ...s, span: clip(s.span) })).filter((s) => s.span[1] > s.span[0]);
 }
 
 /** What the overlays say of each row they name, with what the row itself says, as the inspect panel shows it. */
@@ -489,6 +564,22 @@ export async function runBuild(args: string[]): Promise<number> {
     const times = Array.from({ length: 8 }, (_, i) => fromMa(sp.olderMa + ((sp.youngerMa - sp.olderMa) * (i + 0.5)) / 8));
     return { span: sp.label, layers: tierCounts(resolveWorld, gridPlaces(10), times) };
   });
+  // The same, finely: every layer across a 5° grid at three times in each of 160 steps of the time control's scale,
+  // with what answers each layer when, for the coverage chart.
+  const started = Date.now();
+  const sources = coverageSources(
+    world,
+    span,
+    resolveWorld.planet,
+    grids,
+    climateField && climateKeys.length ? { field: climateField, keys: climateKeys } : undefined,
+    iceField && ice ? { field: iceField, built: ice } : undefined,
+    people,
+    polities ? { field: world.fields.find((f) => f.data?.as === 'polities')!, file: polities } : undefined,
+    lifeAtlas,
+  );
+  coverageFile.matrix = coverageMatrix(resolveWorld, span, COVERAGE.columns, COVERAGE.step, COVERAGE.samples, sources);
+  log(`coverage  ${COVERAGE.columns} columns × ${coverageFile.matrix.layers.length} layers over a ${COVERAGE.step}° grid in ${((Date.now() - started) / 1000).toFixed(1)} s`);
   put('coverage.json', stableStringify(coverageFile));
 
   // 9. Index and identity.

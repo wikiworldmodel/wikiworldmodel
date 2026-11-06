@@ -5,7 +5,7 @@
 import { formatTime, PRESENT_YEAR } from '../../../core/time.ts';
 import type { Scenario } from '../../../core/scenario.ts';
 import { aliveAt, ancestors, indexTree, layoutTree, subtree, timeOfNode, type TreeFile, type TreeIndex, type TreeRow } from '../../../core/tree.ts';
-import { positionOf, timeAt as timeAtPosition } from './timescale.ts';
+import { positionOf, timeAt as timeAtPosition } from '../../../core/timescale.ts';
 
 const GUTTER = 14;
 const AXIS = 22;

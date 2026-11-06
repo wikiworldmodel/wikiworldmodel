@@ -413,7 +413,8 @@ async function start(root: HTMLElement): Promise<void> {
   // Named for the span the build covers: the finest named period at its start, to its end.
   const named = (t: number) => ['period', 'era', 'eon'].map((rank) => build.periods.periods.find((p) => p.rank === rank && p.start <= t && t <= p.end)).find(Boolean);
   const until = dataRange[1] > PRESENT_YEAR ? formatTime(dataRange[1]) : 'today';
-  brand.innerHTML = `<strong>WikiWorldModel</strong><span>${named(dataRange[0])?.name ?? formatTime(dataRange[0])} to ${until}</span>`;
+  brand.innerHTML = `<strong>WikiWorldModel</strong><span>${named(dataRange[0])?.name ?? formatTime(dataRange[0])} to ${until}</span><a class="coverage-link" title="How much of the world each layer knows, across time and the globe">How much is known →</a>`;
+  brand.querySelector<HTMLAnchorElement>('.coverage-link')!.href = `./coverage.html?b=${encodeURIComponent(build.id)}`;
   const search = new Search(build.search, build.periods.periods, kindLabel);
   const toolbar = new Toolbar(build.id, ts.alternatives, ts.layers ?? []);
   top.append(brand, search.el, toolbar.el);
