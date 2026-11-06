@@ -55,13 +55,15 @@ export class FieldLayer {
     return this.shown.length;
   }
 
-  /** Whether its time holds, and every file it needs for a time is here. */
+  /** Whether its time holds. */
   holds(t: number): boolean {
     return t >= this.info.span[0] && t <= this.info.span[1];
   }
 
-  ready(t: number): boolean {
-    return binsAt(this.info, t).every((b) => this.loaded.has(b.file));
+  /** Whether a file it asked for has yet to come: a layer that is not drawn asks for none. */
+  get busy(): boolean {
+    for (const f of this.loading) if (!this.loaded.has(f)) return true;
+    return false;
   }
 
   private want(t: number): LayerRow[] {

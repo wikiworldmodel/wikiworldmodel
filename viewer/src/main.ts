@@ -1679,7 +1679,7 @@ async function start(root: HTMLElement): Promise<void> {
   history.replaceState(null, '', toSearch(build.id, state));
   window.__wikiworldmodel = {
     build: build.id,
-    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && fieldLayers.every((fl) => !fieldOn(fl) || !fl.holds(state.t) || fl.ready(state.t)) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && genericReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
+    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && !fieldLayers.some((fl) => fl.busy) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && genericReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
     state: () => state,
     url: () => toSearch(build.id, state),
     requests: fetchLog,
