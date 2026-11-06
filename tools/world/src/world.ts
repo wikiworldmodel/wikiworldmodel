@@ -8,6 +8,7 @@
 import type { Form } from '../../../core/form.ts';
 import type { CheckStep } from '../../../core/ladder.ts';
 import type { FieldSpread } from '../../../core/samples.ts';
+import type { FieldKind, LayerStyle } from '../../../core/fieldlayers.ts';
 import type { RowsSpec } from './tables.ts';
 import { existsSync } from 'node:fs';
 import { readdir, readFile } from 'node:fs/promises';
@@ -199,6 +200,9 @@ export interface Field {
   rows?: RowsSpec;
   /** how its uncertainty is carried (core/samples.ts); a derived field's is its model's */
   spread?: FieldSpread;
+  /** what kind of field it is, and for rows over the globe how they are drawn (core/fieldlayers.ts) */
+  kind?: FieldKind;
+  layer?: LayerStyle;
   file: string;
 }
 
@@ -295,6 +299,8 @@ export interface Property {
   applies_to?: string[];
   ref_types?: string[];
   inverse?: string;
+  /** for a geometry: it may be written in the claim, as a GeoJSON polygon with its frame */
+  inline?: boolean;
   description: string;
 }
 

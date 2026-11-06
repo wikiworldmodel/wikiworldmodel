@@ -5,7 +5,7 @@ import { CLIMATE_LABEL, climateClass, decodeNode, type ClimateClass, type Climat
 import { decodeTile, type TypedArray } from '../../core/container.ts';
 import { bytesPrint, printCheck, settlePrint, type Fingerprint, type PrintCheck } from '../../core/fingerprint.ts';
 import { decodeMargin, decodeThickness, iceFrame, iceKeysAt, iceScenario, sampleGrid, type IceHeader, type IceKeyframe, type IceScenario } from '../../core/ice.ts';
-import { levelOf, type HazardFile, type HazardRow, type LanguagesFile, type PeopleFile, type PeopleHeader, type PolitiesFile, type PresentFile, type RoutesFile } from '../../core/layers.ts';
+import { levelOf, type HazardFile, type HazardRow, type PeopleFile, type PeopleHeader, type PolitiesFile, type PresentFile } from '../../core/layers.ts';
 import { coverAt, lookAt, spanOf, valueOf, type Cover, type Look } from '../../core/planet.ts';
 import { conj, mul, rotate, toLatLon, unitVector, type Quat } from '../../core/quat.ts';
 import type { EntityRecord, OverlaysFile } from '../../core/records.ts';
@@ -44,7 +44,8 @@ import { PlanetPanel, valueAt } from './ui/planet.ts';
 import { Search } from './ui/search.ts';
 import { TERRITORY_COLORS, TerritoryLayer } from './ui/territory.ts';
 import { FossilLayer } from './ui/fossils.ts';
-import { HazardLayer, LanguageLayer, PeopleLayer, PolityLayer, PresentLayer, RouteLayer } from './ui/layers.ts';
+import { HazardLayer, PeopleLayer, PolityLayer, PresentLayer } from './ui/layers.ts';
+import { FieldLayer } from './ui/fieldlayer.ts';
 import { TreePanel } from './ui/tree.ts';
 import { clampWindow, fitWindow, Timebar, xOf, type StateBand } from './ui/timebar.ts';
 import { Toolbar } from './ui/toolbar.ts';
@@ -152,7 +153,7 @@ async function start(root: HTMLElement): Promise<void> {
     sel: null,
     hour: DEFAULT_HOUR,
     tree: undefined,
-    langs: undefined,
+    layers: undefined,
     people: undefined,
   };
   const parsed = fromSearch(location.search, defaults);
@@ -253,18 +254,12 @@ async function start(root: HTMLElement): Promise<void> {
   const present = new PresentLayer();
   const hazards = new HazardLayer();
   const polities = new PolityLayer();
-  const routes = new RouteLayer();
-  const languages = new LanguageLayer();
-  stage.append(polities.el, routes.el, present.el, languages.el, hazards.el);
-  let languagesLoading = false;
-  const wantLanguages = () => {
-    if (languagesLoading || !ts.files.languages) return;
-    languagesLoading = true;
-    void getJSON<LanguagesFile>(build.base + ts.files.languages).then((f) => {
-      languages.file = f;
-      dirty = true;
-    });
-  };
+  // Fields of points, lines and areas: one renderer for all, as their records say (docs/STRUCTURE.md section 3.6).
+  const fieldLayers = (ts.layers ?? []).map((info) => new FieldLayer(info, build.base));
+  for (const fl of fieldLayers) fl.onLoad = () => (dirty = true);
+  const fieldOn = (fl: FieldLayer) => !fl.info.style.toggle || !!state.layers?.includes(fl.info.style.toggle.key);
+  const fieldLayer = (id: string) => fieldLayers.find((fl) => fl.info.field === id);
+  stage.append(polities.el, ...fieldLayers.filter((fl) => fl.info.kind !== 'points').map((fl) => fl.el), present.el, ...fieldLayers.filter((fl) => fl.info.kind === 'points').map((fl) => fl.el), hazards.el);
   // Where people lived goes to the globe's shader, and loads when it is first asked for.
   const people = new PeopleLayer();
   let peopleLoading = false;
@@ -282,9 +277,8 @@ async function start(root: HTMLElement): Promise<void> {
   let politiesReady = !ts.files.polities;
   const wantPolities = () => {
     if (politiesLoading || !ts.files.polities) return;
-    politiesLoading = Promise.all([getJSON<PolitiesFile>(build.base + ts.files.polities), ts.files.routes ? getJSON<RoutesFile>(build.base + ts.files.routes) : null]).then(([f, r]) => {
+    politiesLoading = getJSON<PolitiesFile>(build.base + ts.files.polities).then((f) => {
       polities.file = f;
-      routes.file = r;
       politiesReady = true;
       dirty = true;
     });
@@ -421,7 +415,7 @@ async function start(root: HTMLElement): Promise<void> {
   const until = dataRange[1] > PRESENT_YEAR ? formatTime(dataRange[1]) : 'today';
   brand.innerHTML = `<strong>WikiWorldModel</strong><span>${named(dataRange[0])?.name ?? formatTime(dataRange[0])} to ${until}</span>`;
   const search = new Search(build.search, build.periods.periods, kindLabel);
-  const toolbar = new Toolbar(build.id, ts.alternatives);
+  const toolbar = new Toolbar(build.id, ts.alternatives, ts.layers ?? []);
   top.append(brand, search.el, toolbar.el);
   root.appendChild(top);
 
@@ -948,14 +942,15 @@ async function start(root: HTMLElement): Promise<void> {
     fossils.el.hidden = inCity && range < 1.2e5;
     if (!fossils.el.hidden) fossils.update(camera, state.t, stage.clientWidth, stage.clientHeight, plateNow, (plate) => !!fi && build.model.reaches(plate, age));
     const hide = inCity && range < 1.2e5;
-    if (hide) present.el.hidden = hazards.el.hidden = polities.el.hidden = routes.el.hidden = languages.el.hidden = true;
+    if (hide) {
+      present.el.hidden = hazards.el.hidden = polities.el.hidden = true;
+      for (const fl of fieldLayers) fl.el.hidden = true;
+    }
     else {
       if (state.t < PRESENT_YEAR) wantPolities();
       // Over the people drawn, states are their outlines only.
       polities.update(camera, state.t, state.cam.dist, stage.clientWidth, stage.clientHeight, !peopleDrawn);
-      routes.update(camera, state.t, stage.clientWidth, stage.clientHeight);
-      if (state.langs) wantLanguages();
-      languages.update(camera, !!state.langs && present.holds(state.t), state.cam.dist, stage.clientWidth, stage.clientHeight);
+      for (const fl of fieldLayers) fl.update(camera, fieldOn(fl), state.t, state.cam.dist, stage.clientWidth, stage.clientHeight);
       present.update(camera, state.t, state.cam.dist, stage.clientWidth, stage.clientHeight);
       hazards.update(camera, state.t, Math.max(timebar.yearsPerPixels(state.t, 8), 0.5), stage.clientWidth, stage.clientHeight);
     }
@@ -978,7 +973,7 @@ async function start(root: HTMLElement): Promise<void> {
     if (showTerritory) territory.place(camera, state.t, scenario(), state.sel);
     timebar.set(state.t, state.window, playing);
     planet.update(state.t, look, state.alt);
-    toolbar.set({ evidence: state.evidence, clouds: state.clouds, alt: state.alt, tree: !!state.tree, langs: !!state.langs, people: !!state.people });
+    toolbar.set({ evidence: state.evidence, clouds: state.clouds, alt: state.alt, tree: !!state.tree, layers: state.layers ?? [], people: !!state.people });
     document.body.classList.toggle('evidence', state.evidence);
   }
 
@@ -1393,11 +1388,12 @@ async function start(root: HTMLElement): Promise<void> {
       shownRecord = null;
       return inspect.showRow(row.name, HAZARD_WORDS[row.kind], [`${row.when}`, ...(row.size !== undefined ? [`${HAZARD_SIZE[row.kind]} ${row.size}`] : []), ...(row.deaths !== undefined ? [`${row.deaths.toLocaleString('en-US')} deaths, as the database counts them`] : [])], hazards.file!.sourceRecord, hazards.file!.description, rowInfo(row));
     }
-    const speech = languages.pick(x, y);
-    if (speech) {
+    for (const fl of fieldLayers) {
+      const r = fl.pick(x, y);
+      if (!r) continue;
       setState({ sel: null });
       shownRecord = null;
-      return inspect.showRow(speech.name, 'Language, at the place the catalogue puts it today', [speech.family === speech.name ? 'In no larger family in the catalogue' : `In the ${speech.family} family`, `Glottocode ${speech.code}`], languages.file!.sourceRecord, languages.file!.description, rowInfo(speech, languages.file!.source, speech.code));
+      return inspect.showRow(r.label ?? fl.info.title, fl.info.style.describe, r.says, fl.info.sourceRecord, fl.info.description, rowInfo(r));
     }
     const town = present.pick(x, y);
     if (town) {
@@ -1683,7 +1679,7 @@ async function start(root: HTMLElement): Promise<void> {
   history.replaceState(null, '', toSearch(build.id, state));
   window.__wikiworldmodel = {
     build: build.id,
-    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && (!state.langs || !!languages.file || !ts.files.languages) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && genericReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
+    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && fieldLayers.every((fl) => !fieldOn(fl) || !fl.holds(state.t) || fl.ready(state.t)) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && genericReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
     state: () => state,
     url: () => toSearch(build.id, state),
     requests: fetchLog,
@@ -1712,7 +1708,7 @@ async function start(root: HTMLElement): Promise<void> {
       const marginKm = decodeMargin(v[0] + (v[1] - v[0]) * frameIce.mix);
       return { drawn: marginKm > 0, marginKm, thickness: decodeThickness(v[2]) * (1 - frameIce.mix) + decodeThickness(v[3]) * frameIce.mix };
     },
-    layers: () => ({ present: present.stats, holds: present.holds(state.t), hazards: hazards.count, hazardPlaces: hazards.positions(), placeAt: (name: string) => present.placeAt(name), polities: polities.stats, polityAt: (lon: number, lat: number) => polities.at(lon, lat)?.name, routes: routes.count, languages: languages.count, languageAt: (name: string) => languages.positionOf(name), people: { drawn: peopleDrawn, holds: people.holds(state.t), ...people.stats }, peopleAt: (lon: number, lat: number) => {
+    layers: () => ({ present: present.stats, holds: present.holds(state.t), hazards: hazards.count, hazardPlaces: hazards.positions(), placeAt: (name: string) => present.placeAt(name), polities: polities.stats, polityAt: (lon: number, lat: number) => polities.at(lon, lat)?.name, routes: fieldLayer('field:earth/roman-roads')?.count ?? 0, languages: fieldLayer('field:earth/languages')?.count ?? 0, languageAt: (name: string) => fieldLayer('field:earth/languages')?.positionOf(name), people: { drawn: peopleDrawn, holds: people.holds(state.t), ...people.stats }, peopleAt: (lon: number, lat: number) => {
       const c = people.here(lon, lat, state.t);
       const f = people.file;
       if (!c || !f) return undefined;

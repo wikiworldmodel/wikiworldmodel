@@ -1,0 +1,12 @@
+# A placeholder for where something was, when nothing can say (docs/STRUCTURE.md section 5).
+id: frame:earth/unplaced
+type: frame
+kind: placeholder
+title: Unplaced, drawn where it is today
+description: >-
+  For a place no reconstruction can follow back to its time: its plate's polygon does not reach
+  then, or no plate model reaches so far back. It holds today's latitude and longitude, as a
+  placeholder: the globe draws it there and marks it as unplaced, and the panel says where it
+  was then is not known. A record moves out of it as soon as a reconstruction can place it.
+parent: frame:earth/present-day
+transform: { snapshot_of: frame:earth/geographic, at: 0 Ma }

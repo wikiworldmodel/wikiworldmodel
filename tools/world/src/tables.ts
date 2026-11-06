@@ -150,8 +150,11 @@ export function rowClaims(table: Table, key: string, columns = table.rows.get(ke
   return out;
 }
 
+/** The column a GeoJSON feature's geometry is kept in. */
+export const GEOMETRY = '__geometry';
+
 /** The raw rows of a dataset, as columns, by how the field reads it. */
-async function rawRows(world: World, field: Field): Promise<Record<string, unknown>[] | undefined> {
+export async function rawRows(world: World, field: Field): Promise<Record<string, unknown>[] | undefined> {
   const id = field.data!.from;
   const d = world.manifest.datasets[id];
   if (!d) return undefined;
@@ -164,8 +167,9 @@ async function rawRows(world: World, field: Field): Promise<Record<string, unkno
   if (!existsSync(path)) return undefined;
   const text = await readFile(path, 'utf8');
   if (d.fetch.format === 'csv' || d.fetch.format === 'tsv') return parseTable(text);
-  const doc = JSON.parse(text) as { features?: { properties: Record<string, unknown> }[]; rows?: Record<string, unknown>[] };
-  if (doc.features) return doc.features.map((f) => f.properties);
+  const doc = JSON.parse(text) as { features?: { properties: Record<string, unknown>; geometry?: unknown }[]; rows?: Record<string, unknown>[] };
+  // A feature's geometry rides along as a column of its own, for what draws it; no property reads it.
+  if (doc.features) return doc.features.map((f) => ({ ...f.properties, [GEOMETRY]: f.geometry ?? null }));
   return doc.rows;
 }
 

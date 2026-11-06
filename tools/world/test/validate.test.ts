@@ -369,3 +369,46 @@ describe('generators sample models (docs/STRUCTURE.md section 3.4)', () => {
     expect(found(await check({ 'generators/g.yaml': gen(bad) }))).toEqual(['error: no test in world/generators/life/scene/v2.test.ts is named "makes unicorns"']);
   });
 });
+
+describe('areas written in claims, and frames in deep time (docs/STRUCTURE.md section 5)', () => {
+  const FRAMES = {
+    'frames/geographic.yaml': 'id: frame:earth/geographic\ntype: frame\nkind: body-fixed\ntitle: Geographic\n',
+    'frames/present-day.yaml': 'id: frame:earth/present-day\ntype: frame\nkind: snapshot\ntitle: Present day\nparent: frame:earth/geographic\n',
+    'frames/unplaced.yaml': 'id: frame:earth/unplaced\ntype: frame\nkind: placeholder\ntitle: Unplaced\nparent: frame:earth/present-day\n',
+    'frames/andes.yaml': 'id: frame:test/andes\ntype: frame\nkind: deforming\ntitle: A deforming belt\nparent: frame:earth/geographic\n',
+  };
+  const ring = (closed = true) => `[[[10, 10], [20, 10], [20, 20], [10, 20]${closed ? ', [10, 10]' : ''}]]`;
+  const polity = (value: string, prop = 'territory', kind = 'polity') => ({ 'entities/a.yaml': entity('test/realm', kind, `claims:\n  t: { prop: ${prop}, value: ${value}, ${cite} }\n`) });
+  const located = (frame: string) => ({
+    ...FRAMES,
+    'entities/a.yaml': entity('test/site', 'occurrence', `claims:\n  date: { prop: date, value: 2000 Ma, ${cite} }\n  location: { prop: location, value: { lat: -1.6, lon: 13.5, frame: frame:earth/present-day }, ${cite} }\n  frame: { prop: frame, value: ${frame}, ${cite} }\n`),
+  });
+  async function checkWithFrames(files: Record<string, string>): Promise<Issue[]> {
+    const root = mkdtempSync(join(tmpdir(), 'wikiworldmodel-fixture-'));
+    dirs.push(root);
+    for (const [path, text] of Object.entries({ 'sources/report.yaml': SOURCE, ...files })) {
+      mkdirSync(dirname(join(root, path)), { recursive: true });
+      writeFileSync(join(root, path), text);
+    }
+    return (await validateWorld(await loadWorld(root))).issues;
+  }
+
+  it("accept a polity's outline written in its claim, closed and on the globe, in a frame", async () => {
+    expect(errors(await check({ ...FRAMES, ...polity(`{ type: Polygon, coordinates: ${ring()}, frame: frame:earth/present-day }`) }))).toEqual([]);
+  });
+
+  it("refuse an outline that does not close, or one where the property takes only a dataset's rows", async () => {
+    const open = await check({ ...FRAMES, ...polity(`{ type: Polygon, coordinates: ${ring(false)}, frame: frame:earth/present-day }`) });
+    expect(errors(open).map((i) => i.message)).toEqual(['ring 0 of polygon 0 does not close: its last point is not its first']);
+    const foot = await check({ ...FRAMES, ...polity(`{ type: Polygon, coordinates: ${ring()}, frame: frame:earth/present-day }`, 'footprint', 'building/temple') });
+    expect(errors(foot).map((i) => i.message)).toEqual(['"footprint" takes rows or elements of a dataset, not an outline written in the claim']);
+  });
+
+  it('hold a place no reconstruction can follow in the placeholder frame, where it is today', async () => {
+    expect(errors(await checkWithFrames(located('frame:earth/unplaced')))).toEqual([]);
+  });
+
+  it('refuse to carry coordinates through a deforming frame, which the build cannot do yet', async () => {
+    expect(errors(await checkWithFrames(located('frame:test/andes'))).map((i) => i.message)).toEqual(['the build cannot yet carry coordinates through a deforming frame (frame:test/andes)']);
+  });
+});

@@ -90,6 +90,9 @@ canvas.globe.in-city { cursor: grab; }
 .marker.development .dot { background: #7bdff2; }
 .marker.person .dot { background: #f7a1c4; }
 .marker.quiet .label { display: none; }
+/* Drawn where it is today, as a placeholder: no reconstruction places it at the time shown. */
+.marker.unplaced .dot { box-shadow: 0 0 0 1.5px rgba(255,255,255,0.75); border-style: dashed; opacity: 0.7; }
+.marker.unplaced .label { font-style: italic; }
 .marker.quiet .dot { width: 9px; height: 9px; margin: -4.5px 0 0 -4.5px; opacity: 0.85; }
 .marker.quiet:hover, .marker.quiet:focus-visible { z-index: 5; }
 .marker.quiet:hover .label, .marker.quiet:focus-visible .label { display: block; }

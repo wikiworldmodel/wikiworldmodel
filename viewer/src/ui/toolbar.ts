@@ -1,4 +1,5 @@
 // Display toggles, the alternatives the build shows, and the evidence legend.
+import type { LayerInfo } from '../../../core/fieldlayers.ts';
 import type { AlternativeGroupInfo } from '../../../core/tileset.ts';
 
 export interface ToolbarState {
@@ -8,8 +9,8 @@ export interface ToolbarState {
   alt: string[];
   /** the tree of life is open */
   tree: boolean;
-  /** the world's languages are drawn */
-  langs: boolean;
+  /** the fields drawn over the globe that wait for a toggle, by their keys */
+  layers: string[];
   /** where people lived is drawn */
   people: boolean;
 }
@@ -20,8 +21,10 @@ export class Toolbar {
   readonly el: HTMLElement;
   onChange: (s: Partial<ToolbarState>) => void = () => {};
   private alt: string[] = [];
+  private layers: string[] = [];
 
-  constructor(buildId: string, private groups: AlternativeGroupInfo[]) {
+  constructor(buildId: string, private groups: AlternativeGroupInfo[], fields: LayerInfo[] = []) {
+    const toggles = fields.flatMap((f) => (f.style.toggle ? [f.style.toggle] : []));
     this.el = document.createElement('div');
     this.el.className = 'toolbar';
     const selects = groups
@@ -34,7 +37,7 @@ export class Toolbar {
       <button class="tg-evidence" aria-pressed="false" title="Evidence mode (E): tint what is reconstructed or generated">Evidence</button>
       <button class="tg-clouds" aria-pressed="true" title="Clouds (C)">Clouds</button>
       <button class="tg-tree" aria-pressed="false" title="Tree of life (T): the lineages alive at the time shown">Tree</button>
-      <button class="tg-langs" aria-pressed="false" title="Languages: the world's languages today, from Glottolog, at the present on the time control">Languages</button>
+      ${toggles.map((t) => `<button class="tg-${esc(t.key)} tg-layer" data-layer="${esc(t.key)}" aria-pressed="false" title="${esc(t.title)}">${esc(t.label)}</button>`).join('')}
       <button class="tg-people" aria-pressed="false" title="People (P): where people lived, for the times HYDE reconstructs it; a reconstruction on today's land, not a count">People</button>
       ${groups.length ? '<button class="tg-alts" aria-pressed="false" aria-expanded="false" title="Other whole pictures of the world: hypotheses, readings and scenarios, each its own consistent world">Alternatives</button>' : ''}
       <div class="build" title="Data version: the build this view shows">build ${buildId}</div>
@@ -57,7 +60,10 @@ export class Toolbar {
     this.el.querySelector<HTMLButtonElement>('.tg-evidence')!.onclick = () => this.onChange({ evidence: !this.is('.tg-evidence') });
     this.el.querySelector<HTMLButtonElement>('.tg-clouds')!.onclick = () => this.onChange({ clouds: !this.is('.tg-clouds') });
     this.el.querySelector<HTMLButtonElement>('.tg-tree')!.onclick = () => this.onChange({ tree: !this.is('.tg-tree') });
-    this.el.querySelector<HTMLButtonElement>('.tg-langs')!.onclick = () => this.onChange({ langs: !this.is('.tg-langs') });
+    for (const b of this.el.querySelectorAll<HTMLButtonElement>('.tg-layer')) {
+      const key = b.dataset.layer!;
+      b.onclick = () => this.onChange({ layers: (this.layers.includes(key) ? this.layers.filter((k) => k !== key) : [...this.layers, key]).sort() });
+    }
     this.el.querySelector<HTMLButtonElement>('.tg-people')!.onclick = () => this.onChange({ people: !this.is('.tg-people') });
     const alts = this.el.querySelector<HTMLButtonElement>('.tg-alts');
     if (alts) alts.onclick = () => {
@@ -93,7 +99,8 @@ export class Toolbar {
     this.el.querySelector('.tg-evidence')!.setAttribute('aria-pressed', String(s.evidence));
     this.el.querySelector('.tg-clouds')!.setAttribute('aria-pressed', String(s.clouds));
     this.el.querySelector('.tg-tree')!.setAttribute('aria-pressed', String(s.tree));
-    this.el.querySelector('.tg-langs')!.setAttribute('aria-pressed', String(s.langs));
+    this.layers = s.layers;
+    for (const b of this.el.querySelectorAll<HTMLButtonElement>('.tg-layer')) b.setAttribute('aria-pressed', String(s.layers.includes(b.dataset.layer!)));
     this.el.querySelector('.tg-people')!.setAttribute('aria-pressed', String(s.people));
     this.el.querySelector<HTMLElement>('.legend')!.hidden = !s.evidence;
     for (const sel of this.el.querySelectorAll<HTMLSelectElement>('select[data-group]')) {

@@ -28,14 +28,14 @@ claims:
     note: The PBDB's eight Liang Bua collections share this point.
   frame:
     prop: frame
-    value: frame:earth/present-day
+    value: frame:earth/unplaced
     source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml, plate 679; PALEOMAP_PlateModel.rot, plate 679" }
     method: editorial
     basis: reconstruction
     note: >-
       Flores lies in the polygon of plate 679, which the plate model makes valid only at 0 Ma, so no
-      plate frame can hold this place at the time of the fossils. It stays at its present-day
-      coordinates. The plate model fixes plate 679 to plate 620 with no rotation.
+      plate frame can hold this place at the time of the fossils. It is drawn where it is today,
+      in the placeholder frame, and marked as unplaced. The plate model fixes plate 679 to plate 620 with no rotation.
   date-sutikna-2016:
     prop: date
     value: { lo: 100 ka, hi: 60 ka }

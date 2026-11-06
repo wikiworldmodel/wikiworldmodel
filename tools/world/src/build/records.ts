@@ -179,6 +179,8 @@ export interface Placement {
   plate?: number;
   location: { lat: number; lon: number };
   basis: FeatureBasis;
+  /** in a placeholder frame: drawn where it is today, because nothing says where it was */
+  unplaced?: true;
 }
 
 /**
@@ -199,12 +201,14 @@ export function placement(s: Solved, e: Entity, subject: string = e.id): Placeme
     const [lat, lon] = toLatLon(rotate(conj(s.model.total(plate, 0)), unitVector(p.lat, p.lon)));
     location = { lat, lon };
   }
-  const frameBasis: Basis = plate !== undefined ? 'reconstruction' : 'evidence';
+  // A placeholder frame draws a place where it is today because nothing says where it was: a stand-in.
+  const frameBasis: Basis = frame.kind === 'placeholder' ? 'procedural' : plate !== undefined ? 'reconstruction' : 'evidence';
   return {
     frame: frame.id,
     plate,
     location,
     basis: { time: 'evidence', place: weakest([loc.basis, fr.basis, frameBasis]), placeNow: loc.basis },
+    ...(frame.kind === 'placeholder' ? { unplaced: true as const } : {}),
   };
 }
 
@@ -302,6 +306,7 @@ export function features(s: Solved): Feature[] {
       frame: pl.frame,
       plate: pl.plate,
       location: pl.location,
+      ...(pl.unplaced ? { unplaced: true as const } : {}),
       ...(moves.length ? { moves } : {}),
       time,
       variants: Object.keys(variants).length ? variants : undefined,

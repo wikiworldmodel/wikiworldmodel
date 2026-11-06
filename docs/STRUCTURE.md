@@ -1,9 +1,9 @@
 # Structure: what to settle before the world grows
 
-Status: proposal, November 2026. Nothing in it is built yet, except where it says so. It comes from comparing the
-repository with a first-principles view of the project. It names the structural choices that are cheap to make now and
-expensive once many agents have written against them. It goes with the `model:` records being drafted for
-[WORLD-MODEL.md](WORLD-MODEL.md) section 4.10, and it revises one rule of [AGENTS.md](../AGENTS.md): generators no
+Status: built, November 2026, as section 8 says, with what is left of each part. It came from comparing the
+repository with a first-principles view of the project, and names the structural choices that are cheap to make now
+and expensive once many agents have written against them. It goes with the `model:` records of
+[WORLD-MODEL.md](WORLD-MODEL.md) section 4.10, and it revised one rule of [AGENTS.md](../AGENTS.md): generators no
 longer need to be byte-identical (section 3.5).
 
 ## 1. The aim, restated
@@ -262,3 +262,21 @@ complete a record is; this one is about how far it has been checked, and the two
   plainly it looks broken.
 - **Sandboxing cost.** Can a Worker-sandboxed generator hold the frame budgets of [LIVING-WORLD.md](LIVING-WORLD.md)
   section 4?
+
+## 8. What is built, and what is left
+
+Each part is in the code, tested, and described where an agent reads first ([AGENTS.md](../AGENTS.md)) and in
+[WORLD-MODEL.md](WORLD-MODEL.md). What each did not reach is listed with it.
+
+| Part | Built | Left |
+|---|---|---|
+| 3.1 Rows are claims | A field's `rows:` keys its dataset's rows and maps columns to properties (`tools/world/src/tables.ts`); rows are addressed `src:<dataset>#<key>`; overlays in `world/overlays/` correct, corroborate or adopt a row, checked by the validator against it; the build applies corrections to the hazards, states, roads, languages and the land's fossils; one claim index answers for records and rows (`npm run world -- claims <ref>`); a clicked row shows its address and any overlay. | The pinned files are read as they are, not stored as Parquet. The date solver and search do not read rows. No overlay has been written yet. |
+| 3.2 Uncertainty as samples | `core/samples.ts`: every form of uncertainty read as samples, member 0 central, joint members, runs per member, bands. Every field says its `spread`, and says `unknown` rather than nothing; the panel says so. The validator warns at a model that drops its inputs' spread, which caught the biome model. The ice model runs once per scenario. | No field holds a stored ensemble yet, and evidence mode draws no spread on the globe: bands show in series and panels only. |
+| 3.3 `resolve` and tiers | `core/resolve.ts` answers seven layers (the planet, geography, climate, ice, life, people, states) in a tier everywhere; the build counts the tiers into `coverage.json` and its tests ask every layer across the whole span; where nothing records where the land was, generic land (`gen:earth/generic-land`) is drawn and the panel says it is generic. | Only geography has a generic prior drawn on the globe; the other layers' tiers show in the panel and coverage, not in a look of their own. |
+| 3.4 Models and generators | Generators name `checks` and `limits`; the validator holds checks to tests that exist and warns at a generator that samples the world with none. A new test holds a scene's mix of animals to the atlas's weights, and found that small animals reach a cell's cap, where the weights no longer tell; that is a recorded limit. | Generated tree density is not yet held to a model's. |
+| 3.5 Generators | No byte-identical rule: outputs are compared by fingerprint (`core/fingerprint.ts`), which items exactly and where within a tolerance; builds are compared in meaning; the globe's generators run in a worker, as the city's and the scenes' do. | A worker keeps a generator off the page, but is not a sandbox: it can still reach the network. |
+| 3.6 Field kinds | Fields have a `kind` and, for points, lines and areas, a `layer:` style; one build path (`tools/world/src/build/fieldlayers.ts`) and one renderer (`viewer/src/ui/fieldlayer.ts`) take them; the languages and the Roman roads moved onto it, and their own code is gone. | The hazards (points that fade around their year), the states (areas a polity's record may claim), today's map and the rasters (people, climate, ice, elevation) still have their own paths. |
+| 3.7 The ladder | `checked:` steps on claims (`core/ladder.ts`), held to their rules by the validator, counted in `coverage.json` and shown in the panel; `npm run world -- quote-check` finds quotes in a source's text and records the quoted step. | No claim has a step yet: the texts sources were read in were not kept, so quote-check needs them read again. |
+| 5 Areas and frames | A territory may be an outline written in its claim, validated and drawn; `frame:earth/unplaced` holds what no reconstruction can follow, and two records moved into it; a record on a plate the rotations do not reach at the time shown is drawn where it is today, marked unplaced, rather than hidden; a `deforming` frame kind is reserved and refused by the build. | Only territory takes an inline area. No region deforms yet. |
+| 4 Federated layers | Deferred, as decided. | Everything. |
+

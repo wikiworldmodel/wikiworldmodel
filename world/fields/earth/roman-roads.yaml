@@ -6,6 +6,19 @@ description: >-
   Most of their courses are conjectured, and they are drawn faintly for it; hardly any have dates of
   their own, so most are drawn for the whole of the span the dataset describes.
 grid: { kind: rows }
+# Lines over the globe, drawn by the viewer's one renderer as this says (docs/STRUCTURE.md section 3.6): fainter the
+# less sure the dataset is of a road's course. How they look is a choice of the viewer's, not a fact.
+kind: lines
+layer:
+  crs: world-mercator
+  # How far a road may stray from the dataset's line, in degrees: about two kilometres.
+  thin: 0.02
+  color: { value: "#ffe2aa" }
+  width: { by: Type, values: { Main Road: 0.9 }, otherwise: 0.55 }
+  opacity: { by: Segment_s, values: { Certain: 0.62, Conjectured: 0.45, Hypothetical: 0.26 }, otherwise: 0.45 }
+  # Dense over the land and the states drawn under them: a click goes through them, to what is beneath.
+  pick: false
+  describe: Road of the Roman Empire, as Itiner-e maps it
 time: { lo: 300 BCE, hi: 300 CE }
 data:
   from: src:itinere-2024
@@ -22,6 +35,3 @@ rows:
     name: { column: Name, as: text }
     start: { column: Lower_Date, as: year, none: [9999], method: compilation, basis: reconstruction }
     end: { column: Upper_Date, as: year-end, none: [9999], method: compilation, basis: reconstruction }
-params:
-  # How far a road may stray from the dataset's line, in degrees: about two kilometres.
-  tolerance_deg: 0.02

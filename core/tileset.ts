@@ -8,6 +8,7 @@
 
 import type { Fingerprint } from './fingerprint.ts';
 import type { FieldSpread } from './samples.ts';
+import type { LayerInfo } from './fieldlayers.ts';
 
 /** Interval of a feature, in astronomical years. `null` end = still exists. */
 export interface Estimate {
@@ -65,6 +66,8 @@ export interface Feature {
   plate?: number;
   /** in the feature's own frame (plate-local), carried there from where it was measured */
   location: { lat: number; lon: number };
+  /** in a placeholder frame: drawn where it is today, because nothing says where it was then */
+  unplaced?: true;
   /** a thing that moved: where it was in each of its phases, oldest first */
   moves?: FeatureMove[];
   time: FeatureTime;
@@ -205,8 +208,10 @@ export interface Tileset {
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; routes?: string; languages?: string; overlays?: string; people?: string; atlas?: string; features: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; overlays?: string; people?: string; atlas?: string; features: string };
   /** the climate field the land is painted from, and the derived field that paints it */
+  /** fields of points, lines and areas drawn over the globe, one renderer for all (core/fieldlayers.ts) */
+  layers?: LayerInfo[];
   climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown>; spread?: FieldSpread };
   /** the ice sheets drawn over the land, where a field has them, instead of a claimed latitude */
   ice?: IceInfo;

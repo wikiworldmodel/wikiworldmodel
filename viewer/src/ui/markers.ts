@@ -113,7 +113,7 @@ export class Markers {
 
   update(features: Feature[], camera: Camera, ctx: MarkerContext): void {
     const seen = new Set<string>();
-    const all: { f: Feature; x: number; y: number; vis: number; t: FeatureTime }[] = [];
+    const all: { f: Feature; x: number; y: number; vis: number; t: FeatureTime; unplaced: boolean }[] = [];
     for (const f of features) {
       const time = timeFor(f, ctx.scenario);
       const lit = !!ctx.lit?.has(f.id);
@@ -121,12 +121,13 @@ export class Markers {
       if (vis <= 0.01) continue;
       // A thing that moved is where it was at the time shown.
       const here = placeAt(f, ctx.t, (m) => lookup(m.variants, ctx.scenario, m.time));
-      if (here.plate && !ctx.placed(here.plate)) continue;
-      const q = here.plate ? ctx.plateRotation(here.plate) : ([1, 0, 0, 0] as Quat);
+      // Where no plate model reaches, or its frame is a placeholder, a thing is drawn where it is today and marked so.
+      const unplaced = !!f.unplaced || (!!here.plate && !ctx.placed(here.plate));
+      const q = here.plate && !unplaced ? ctx.plateRotation(here.plate) : ([1, 0, 0, 0] as Quat);
       const p = rotate(q, unitVector(here.location.lat, here.location.lon)) as V3;
       const s = camera.project(p);
       if (!s.visible) continue;
-      all.push({ f, x: s.x, y: s.y, vis, t: time });
+      all.push({ f, x: s.x, y: s.y, vis, t: time, unplaced });
     }
     const placed = ctx.closest ? all : mostProminent(all, MOST_MARKERS, (id) => id === ctx.selected || !!ctx.lit?.has(id));
     // Dots that land on top of each other (an event and the structure it made) fan out downwards,
@@ -171,7 +172,9 @@ export class Markers {
       const label = node.querySelector<HTMLElement>('.label')!;
       const text = labelAt(m.f, ctx.t);
       if (label.textContent !== text) label.textContent = text;
-      node.setAttribute('aria-label', `${text} (${m.f.kind})`);
+      node.setAttribute('aria-label', `${text} (${m.f.kind})${m.unplaced ? ', drawn where it is today' : ''}`);
+      node.classList.toggle('unplaced', m.unplaced);
+      node.title = m.unplaced ? `${text}: drawn where it is today, because nothing can say where it was at this time` : '';
       const dy = nudge.get(m.f.id) ?? null;
       node.classList.toggle('quiet', dy === null);
       label.style.transform = dy ? `translateY(${dy}px)` : '';

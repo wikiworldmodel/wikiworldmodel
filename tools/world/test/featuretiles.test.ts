@@ -193,9 +193,14 @@ describe('feature tiles', () => {
     expect(seen).toContain(url);
   });
 
-  it('skips cells on plates the frames do not place', () => {
-    const v = { ...view(41, 12, PRESENT_YEAR - 100, 0), placed: () => false };
-    for (const r of tilesFor(index, v)) expect(r.q).toBe('');
+  it('finds what rides a plate the frames do not place where it is today, as a placeholder (docs/STRUCTURE.md section 5)', () => {
+    // The same half-turn, but the frames do not reach plate 3 at this time: its things stay where they are today.
+    const half: Quat = [0, 0, 0, 1];
+    const f = all.find((x) => x.plate === 3 && x.location.lat > 30 && x.location.lat < 50 && index.tiles[index.where[x.id]].q.length > 0)!;
+    const t = f.time.start.best!;
+    const url = featureTileUrl(index.tiles[index.where[f.id]]);
+    const v = { ...view(f.location.lat, f.location.lon, t, 0, (p: number) => (p === 3 ? half : identity)), placed: (p: number) => p !== 3 };
+    expect(tilesFor(index, v).map(featureTileUrl)).toContain(url);
   });
 
   it('past the markers a screen can hold, keeps the most prominent, and what must stay', () => {

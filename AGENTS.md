@@ -275,6 +275,12 @@ day, such as OpenHistoricalMap or the PBDB, is kept as a dated snapshot in
 (`npm run world -- ohm-snapshot`, `npm run world -- pbdb-snapshot "Hell Creek"`). A taxon written by
 hand adopts the database's by its number: `same_as: { pbdb: "txn:38862" }`.
 
+A dataset of points, lines or areas over the globe needs no code in the viewer: its field says
+its `kind` (points, lines or areas), maps its columns in `rows:`, and says how it looks in `layer:`
+(a colour, or a hue for each group; sizes, widths and opacity, fixed or by a column; names; a
+toolbar toggle), and one renderer draws it ([core/fieldlayers.ts](core/fieldlayers.ts)). The
+languages and the Roman roads are drawn so; copy one of theirs.
+
 The field that reads a dataset says how its uncertainty is carried, as `spread:`: `band` (a low and a
 high around each value), `alternatives` (readings, each its own picture), `ensemble` (members, such as
 runs of a model), `claims`, `tiers`, or `unknown` when the source gives one value and no spread. Say

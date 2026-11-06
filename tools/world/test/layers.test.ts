@@ -1,7 +1,7 @@
 // Rows of a dataset drawn over the globe: today's map, and the hazards of NOAA's databases.
 import { describe, expect, it } from 'vitest';
 import { hazardsNear, insideRow, politiesAt, type HazardFile, type PolitiesFile } from '../../../core/layers.ts';
-import { fromWorldMercator, hazardOf, languageRows, linesOf, placeOf, polityRow, routeRows, thin } from '../src/build/layers.ts';
+import { fromWorldMercator, hazardOf, linesOf, placeOf, polityRow, thin } from '../src/build/layers.ts';
 import { hazardRow } from '../src/noaa.ts';
 
 describe('a row of NOAA’s hazard databases', () => {
@@ -95,34 +95,5 @@ describe('the roads of a dataset', () => {
     expect(fromWorldMercator(111319.49079327358, 0)[1]).toBeCloseTo(1, 9);
     const [lat] = fromWorldMercator(0, 8362698.5);
     expect(lat).toBeCloseTo(60, 2);
-  });
-
-  it('take their years from the dataset where it gives them, and the span where it writes 9999', () => {
-    const f = (Lower_Date: number, Upper_Date: number) => ({ properties: { Type: 'Main Road', Segment_s: 'Certain', Lower_Date, Upper_Date }, geometry: { type: 'MultiLineString' as const, coordinates: [[[0, 0, 1], [111319.49, 0, 1], [222638.98, 0, 1]]] } });
-    const [dated] = routeRows(f(-100, 200), 0.01, [-299, 300]);
-    expect(dated.from).toBe(-99);
-    expect(dated.to).toBe(200);
-    expect(dated.main).toBe(true);
-    expect(dated.certainty).toBe('certain');
-    // A straight road keeps its two ends.
-    expect(dated.line).toEqual([0, 0, 200, 0]);
-    const [undated] = routeRows(f(9999, 9999), 0.01, [-299, 300]);
-    expect([undated.from, undated.to]).toEqual([-299, 300]);
-    expect(routeRows({ properties: {}, geometry: null }, 0.01, [0, 1])).toEqual([]);
-  });
-});
-
-describe('the catalogue of languages', () => {
-  it('keeps languages with a place, naming their family', () => {
-    const rows = languageRows([
-      { ID: 'indo1319', Name: 'Indo-European', Level: 'family', Latitude: '', Longitude: '', Family_ID: '', Glottocode: 'indo1319' },
-      { ID: 'stan1293', Name: 'English', Level: 'language', Latitude: '53.0', Longitude: '-1.0', Family_ID: 'indo1319', Glottocode: 'stan1293' },
-      { ID: 'basq1248', Name: 'Basque', Level: 'language', Latitude: '43.27', Longitude: '-2.75', Family_ID: '', Glottocode: 'basq1248' },
-      { ID: 'nowh1234', Name: 'Nowhere', Level: 'language', Latitude: '', Longitude: '', Family_ID: '', Glottocode: 'nowh1234' },
-      { ID: 'dial1234', Name: 'A dialect', Level: 'dialect', Latitude: '1', Longitude: '1', Family_ID: 'indo1319', Glottocode: 'dial1234' },
-    ]);
-    expect(rows.map((r) => r.name)).toEqual(['Basque', 'English']);
-    expect(rows[1].family).toBe('Indo-European');
-    expect(rows[0].family).toBe('Basque');
   });
 });

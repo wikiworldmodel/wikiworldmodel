@@ -112,6 +112,39 @@
       "description": "How its uncertainty is carried (docs/STRUCTURE.md section 3.2, core/samples.ts): unknown, a single value whose uncertainty nobody gave; band, a low and a high around each value; alternatives, readings each its own picture; ensemble, members, such as runs of a model; claims, each value the world's own claim, with that claim's uncertainty; tiers, how near the evidence is",
       "enum": ["unknown", "band", "alternatives", "ensemble", "claims", "tiers"]
     },
+    "kind": { "enum": ["raster", "categorical", "points", "lines", "areas", "series"], "description": "What kind of field it is (docs/STRUCTURE.md section 3.6): a continuous or a categorical raster, points, lines or areas over the globe, or a series" },
+    "layer": {
+      "description": "How a field of points, lines or areas is drawn over the globe: data, read by one renderer (core/fieldlayers.ts)",
+      "type": "object",
+      "required": ["color", "describe"],
+      "properties": {
+        "toggle": { "type": "object", "required": ["key", "label", "title"], "properties": { "key": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" }, "label": { "type": "string" }, "title": { "type": "string" } }, "additionalProperties": false, "description": "A toolbar button that draws it; without one it is drawn whenever its time holds" },
+        "where": { "type": "object", "additionalProperties": { "type": "string" }, "description": "Only rows whose columns have these values" },
+        "crs": { "enum": ["world-mercator"], "description": "The coordinates the dataset's geometry is in, where not latitude and longitude" },
+        "thin": { "type": "number", "exclusiveMinimum": 0, "description": "How far a line or an outline may stray from the dataset's, in degrees" },
+        "group": {
+          "type": "object",
+          "required": ["column", "word"],
+          "properties": { "column": { "type": "string" }, "word": { "type": "string" }, "name": { "type": "object", "required": ["key", "column"], "properties": { "key": { "type": "string" }, "column": { "type": "string" } }, "additionalProperties": false } },
+          "additionalProperties": false,
+          "description": "What a row belongs to, which tints it: a column, what the panel calls it, and where the group's own row gives its name"
+        },
+        "color": {
+          "oneOf": [
+            { "type": "object", "required": ["value"], "properties": { "value": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" } }, "additionalProperties": false },
+            { "type": "object", "required": ["by", "saturation", "lightness"], "properties": { "by": { "const": "group" }, "saturation": { "type": "number" }, "lightness": { "type": "number" } }, "additionalProperties": false }
+          ]
+        },
+        "size": { "type": "object", "required": ["far", "near"], "properties": { "far": { "type": "number" }, "near": { "type": "number" } }, "additionalProperties": false },
+        "width": { "$ref": "#/$defs/by_value" },
+        "opacity": { "$ref": "#/$defs/by_value" },
+        "labels": { "type": "object", "required": ["near", "most"], "properties": { "near": { "type": "number" }, "most": { "type": "integer" } }, "additionalProperties": false },
+        "pick": { "type": "boolean", "description": "Whether a click picks its rows; by default it does" },
+        "describe": { "type": "string", "description": "What the panel calls a row" },
+        "key_label": { "type": "string", "description": "What the panel calls a row's key, if it shows it" }
+      },
+      "additionalProperties": false
+    },
     "rows": {
       "description": "For a dataset read as rows: the rows are claims (docs/STRUCTURE.md section 3.1). How a row's key is made from its columns, what kind of thing a row is, and which column gives which property",
       "type": "object",
@@ -141,6 +174,15 @@
     }
   },
   "additionalProperties": false,
+  "$defs": {
+    "by_value": {
+      "description": "A number for every row, or set by a column's value",
+      "oneOf": [
+        { "type": "number" },
+        { "type": "object", "required": ["by", "values", "otherwise"], "properties": { "by": { "type": "string" }, "values": { "type": "object", "additionalProperties": { "type": "number" } }, "otherwise": { "type": "number" } }, "additionalProperties": false }
+      ]
+    }
+  },
   "allOf": [
     {
       "if": { "required": ["derived"] },

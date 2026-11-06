@@ -203,6 +203,16 @@ function checkValue(world: World, refs: RefChecker, c: Claim, issues: Issue[]): 
       if (typeof v !== 'string' || !/^#[0-9A-F]{6}$/.test(v)) bad('a colour is #RRGGBB');
       break;
     case 'geometry': {
+      // An area written in the claim itself, where the property allows one: rings closed, on the globe, in a frame.
+      if (v && typeof v === 'object' && 'type' in (v as object)) {
+        if (!prop.inline) {
+          bad(`"${c.prop}" takes rows or elements of a dataset, not an outline written in the claim`);
+          break;
+        }
+        for (const problem of areaProblems(v)) bad(problem);
+        refs.check((v as { frame?: unknown }).frame, c.file, `${c.where}.value.frame`, { types: ['frame'] });
+        break;
+      }
       const g = v as { from?: unknown; names?: unknown; elements?: unknown };
       const list = g?.names ?? g?.elements;
       const snap = typeof g?.from === 'string' ? world.snapshots.get(g.from) : undefined;
@@ -221,6 +231,26 @@ function checkValue(world: World, refs: RefChecker, c: Claim, issues: Issue[]): 
       break;
     }
   }
+}
+
+/** What is wrong with an area written in a claim: a GeoJSON Polygon or MultiPolygon of closed rings on the globe. */
+export function areaProblems(v: unknown): string[] {
+  const g = v as { type?: unknown; coordinates?: unknown; frame?: unknown };
+  if (g.type !== 'Polygon' && g.type !== 'MultiPolygon') return ['an area is a GeoJSON Polygon or MultiPolygon'];
+  if (typeof g.frame !== 'string') return ['an area names the frame its coordinates were measured in'];
+  const polys = (g.type === 'Polygon' ? [g.coordinates] : g.coordinates) as unknown[];
+  if (!Array.isArray(polys) || !polys.length) return ['an area has at least one ring'];
+  const out: string[] = [];
+  polys.forEach((poly, i) => {
+    if (!Array.isArray(poly) || !poly.length) return out.push(`polygon ${i} has no rings`);
+    poly.forEach((ring: unknown, j: number) => {
+      const r = ring as number[][];
+      if (!Array.isArray(r) || r.length < 4) return out.push(`ring ${j} of polygon ${i} has fewer than four points`);
+      if (!r.every((p) => Array.isArray(p) && p.length >= 2 && Math.abs(p[0]) <= 180 && Math.abs(p[1]) <= 90)) return out.push(`ring ${j} of polygon ${i} has a point that is not [lon, lat] on the globe`);
+      if (r[0][0] !== r.at(-1)![0] || r[0][1] !== r.at(-1)![1]) out.push(`ring ${j} of polygon ${i} does not close: its last point is not its first`);
+    });
+  });
+  return out;
 }
 
 /** Claims and relations: what they share (section 4.3). */
@@ -390,6 +420,14 @@ function checkRecords(world: World, issues: Issue[], tables: Map<string, Table> 
 /** A field that reads its dataset as rows says what a row is, and every property it maps applies to that. */
 function checkRowSpecs(world: World, issues: Issue[]): void {
   for (const f of world.fields) {
+    // A field drawn over the globe is points, lines or areas, read as rows; points need a place to stand.
+    if (f.layer) {
+      if (!['points', 'lines', 'areas'].includes(f.kind ?? '')) issues.push({ level: 'error', check: 'rows', file: f.file, where: 'kind', message: 'a field drawn over the globe by its layer: style is of kind points, lines or areas' });
+      if (!f.rows) issues.push({ level: 'error', check: 'rows', file: f.file, where: 'layer', message: 'a field drawn by its layer: style reads its dataset as rows: give it a rows: section' });
+      else if (f.kind === 'points' && !f.rows.claims.location) issues.push({ level: 'error', check: 'rows', file: f.file, where: 'rows.claims', message: 'points stand where their location says: map a column to location' });
+      const keys = world.fields.filter((x) => x.layer?.toggle?.key === f.layer!.toggle?.key && x.layer?.toggle);
+      if (keys.length > 1 && keys[0] === f) issues.push({ level: 'error', check: 'rows', file: f.file, where: 'layer.toggle.key', message: `the toggle "${f.layer.toggle!.key}" is used by ${keys.length} fields` });
+    }
     if (!f.rows) continue;
     const at = (where: string) => ({ file: f.file, where: `rows${where}` });
     if (!f.data || f.derived) issues.push({ level: 'error', check: 'rows', ...at(''), message: 'only a field read from a dataset has rows' });
@@ -721,6 +759,12 @@ async function checkFrames(world: World, issues: Issue[]): Promise<void> {
     const p = loc.value as { lat: number; lon: number; frame: string };
     const frame = world.frame.get(fr.value as string);
     if (!frame) continue; // wanted
+    // A placeholder holds the coordinates measured in its parent as they are: nothing to carry, nothing to check.
+    if (frame.kind === 'placeholder' && p.frame === frame.parent) continue;
+    if (frame.kind === 'deforming') {
+      issues.push({ level: 'error', check: 'frames', file: e.file, where: fr.where, message: `the build cannot yet carry coordinates through a deforming frame (${frame.id})` });
+      continue;
+    }
     if (p.frame !== 'frame:earth/present-day' || frame.kind !== 'plate' || !frame.extent) {
       if (p.frame !== frame.id) issues.push({ level: 'error', check: 'frames', file: e.file, where: loc.where, message: `the build cannot yet carry coordinates from ${p.frame} into ${frame.id}` });
       continue;

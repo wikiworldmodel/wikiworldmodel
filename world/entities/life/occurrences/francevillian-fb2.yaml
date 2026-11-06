@@ -48,14 +48,14 @@ claims:
       "Near Franceville". El Albani et al. (2014) mark the quarry on a map and give no coordinates.
   frame:
     prop: frame
-    value: frame:earth/present-day
+    value: frame:earth/unplaced
     source: { ref: src:paleomap-plate-model, loc: "PALEOMAP_PlatePolygons.gpml, plates 701 and 779" }
     method: plate-polygon
     basis: reconstruction
     note: >-
       Franceville lies in the polygon of plate 701, which the plate model makes valid only from 600 Ma, and before that in
       the polygon of plate 779, which does not reach the present. No plate frame can hold this place at the time of the
-      fossils, so it stays at its present-day coordinates.
+      fossils, so it is drawn where it is today, in the placeholder frame, and marked as unplaced.
   formation:
     prop: formation
     value: Francevillian B Formation

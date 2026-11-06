@@ -4,14 +4,13 @@ import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { gridSize, type HazardFile, type HazardRow, type LanguageRow, type LanguagesFile, type PeopleHeader, type PolitiesFile, type PolityRow, type PresentFile, type PresentPlace, type RouteRow, type RoutesFile } from '../../../../core/layers.ts';
+import { gridSize, type HazardFile, type HazardRow, type PeopleHeader, type PolitiesFile, type PolityRow, type PresentFile, type PresentPlace } from '../../../../core/layers.ts';
 import { formatTime, parsePoint, type TimePointInput } from '../../../../core/time.ts';
 import { datasetFile } from '../manifest.ts';
 import { CACHE } from '../paths.ts';
 import { sha256, stableStringify } from '../util.ts';
 import type { HazardSnapshot, HazardSource } from '../noaa.ts';
 import type { Field, World } from '../world.ts';
-import { parseTable } from './series.ts';
 import { rowRef } from '../../../../core/refs.ts';
 import { correctRows, type Fix } from '../tables.ts';
 import { sourceRecord } from './records.ts';
@@ -256,85 +255,6 @@ export function fromWorldMercator(x: number, y: number): [lat: number, lon: numb
     phi = Math.PI / 2 - 2 * Math.atan(t * ((1 - s) / (1 + s)) ** (e / 2));
   }
   return [(phi * 180) / Math.PI, (x / a) * (180 / Math.PI)];
-}
-
-interface RoadFeature {
-  properties: { Type?: string; Segment_s?: string; Lower_Date?: number | null; Upper_Date?: number | null };
-  geometry: { type: 'MultiLineString' | 'LineString'; coordinates: unknown } | null;
-}
-
-/** A date the dataset gives, or nothing: it writes 9999 for none. */
-const knownYear = (y: number | null | undefined) => (y === null || y === undefined || y === 9999 ? undefined : y < 0 ? y + 1 : y);
-
-/** The stretches of one road of Itiner-e, thinned. */
-export function routeRows(f: RoadFeature, tolerance: number, span: [number, number]): RouteRow[] {
-  if (!f.geometry) return [];
-  const lists = (f.geometry.type === 'LineString' ? [f.geometry.coordinates] : f.geometry.coordinates) as number[][][];
-  const certainty = (f.properties.Segment_s ?? 'conjectured').toLowerCase() as RouteRow['certainty'];
-  const out: RouteRow[] = [];
-  for (const l of lists) {
-    const flat: number[] = [];
-    for (const [x, y] of l) {
-      const [lat, lon] = fromWorldMercator(x, y);
-      flat.push(Math.round(lon * 100), Math.round(lat * 100));
-    }
-    const line = thin(flat, tolerance * 100);
-    if (line.length < 4 || (line.length === 4 && line[0] === line[2] && line[1] === line[3])) continue;
-    out.push({ line, main: f.properties.Type === 'Main Road', certainty, from: knownYear(f.properties.Lower_Date) ?? span[0], to: knownYear(f.properties.Upper_Date) ?? span[1] });
-  }
-  return out;
-}
-
-export async function routesLayer(w: World, fixes: Map<string, Fix[]> = new Map()): Promise<RoutesFile | undefined> {
-  const f = w.fields.find((x) => x.data?.as === 'routes');
-  if (!f) return undefined;
-  const id = f.data!.from;
-  const d = w.manifest.datasets[id];
-  const tolerance = (f.params as { tolerance_deg: number }).tolerance_deg;
-  const span: [number, number] = [parsePoint(f.time!.lo as TimePointInput).t, parsePoint(f.time!.hi as TimePointInput).t];
-  const key = sha256(stableStringify({ dataset: d.fetch.sha256, tolerance, span, fixes: [...fixes].sort(([a], [b]) => (a < b ? -1 : 1)), reader: 1 })).slice(0, 16);
-  const cached = join(CACHE, 'import', `routes@${key}.json`);
-  let routes: RouteRow[];
-  if (existsSync(cached)) routes = JSON.parse(await readFile(cached, 'utf8'));
-  else {
-    const doc = JSON.parse(await readFile(datasetFile(id, d), 'utf8')) as { features: RoadFeature[] };
-    const fixed = f.rows && fixes.size ? correctRows(f.rows, doc.features.map((x) => x.properties as unknown as Record<string, unknown>), fixes).rows : undefined;
-    routes = doc.features.flatMap((x, i) => routeRows(fixed ? { ...x, properties: fixed[i] as unknown as RoadFeature['properties'] } : x, tolerance, span));
-    await mkdir(join(CACHE, 'import'), { recursive: true });
-    await writeFile(cached, JSON.stringify(routes));
-  }
-  const s = w.source.get(id);
-  return { format: 'lightworld-routes@1', title: f.title, description: f.description, source: id, sourceRecord: s ? sourceRecord(s) : undefined, routes };
-}
-
-/** Glottolog's languages with a place, from its table of languoids; a family's name for a language in one. */
-export function languageRows(rows: Record<string, string>[]): LanguageRow[] {
-  const names = new Map(rows.map((r) => [r.ID, r.Name]));
-  const out: LanguageRow[] = [];
-  for (const r of rows) {
-    if (r.Level !== 'language' || !r.Latitude || !r.Longitude) continue;
-    out.push({ name: r.Name, family: names.get(r.Family_ID) ?? r.Name, lat: Math.round(Number(r.Latitude) * 1000) / 1000, lon: Math.round(Number(r.Longitude) * 1000) / 1000, code: r.Glottocode });
-  }
-  return out.sort((a, b) => (a.code < b.code ? -1 : 1));
-}
-
-export async function languagesLayer(w: World, fixes: Map<string, Fix[]> = new Map()): Promise<LanguagesFile | undefined> {
-  const f = w.fields.find((x) => x.data?.as === 'languages');
-  if (!f) return undefined;
-  const id = f.data!.from;
-  const s = w.source.get(id);
-  const table = parseTable(await readFile(datasetFile(id, w.manifest.datasets[id]), 'utf8'));
-  const fixed = f.rows && fixes.size ? correctRows(f.rows, table, fixes) : undefined;
-  const corrected = new Map([...(fixed?.changed ?? [])].map(([i, props]) => [table[i].Glottocode, props]));
-  const rows = languageRows(fixed?.rows ?? table).map((r) => (corrected.has(r.code) ? { ...r, corrected: corrected.get(r.code) } : r));
-  return {
-    format: 'lightworld-languages@1',
-    title: f.title,
-    description: f.description,
-    source: id,
-    sourceRecord: s ? sourceRecord(s) : undefined,
-    rows,
-  };
 }
 
 /** A snapshot's table of people on a grid: its steps, and for each cell that ever holds anyone, where it is, its land, and how many at each step. */
