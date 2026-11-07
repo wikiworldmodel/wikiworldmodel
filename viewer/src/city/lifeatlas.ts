@@ -16,6 +16,8 @@ import type { FieldInfo, TileHeader, TileRef } from '../../../core/tileset.ts';
 import { latticeOf, placeSpec, reliefBox, type PlaceWorld } from '../../../world/generators/life/spec.ts';
 import { getBytes, getJSON, type Build } from '../data.ts';
 import { Rivers } from '../rivers.ts';
+import { MonthTiles } from '../months.ts';
+import { monthsPlace, placeMonths } from '../../../world/generators/life/climate.ts';
 import type { SceneWater } from '../../../core/scene.ts';
 import { sceneWater } from '../../../world/generators/life/water.ts';
 
@@ -38,9 +40,12 @@ export class LifeAtlas {
   private fields = new Map<string, Promise<LoadedField | undefined>>();
   /** the rivers a place's scene is given: its own loader, as the globe's layer has its own */
   private rivers: Rivers;
+  /** the climate's months at a height, for the place a scene is of */
+  private months: MonthTiles;
 
   constructor(private build: Build, readonly index: AtlasIndex, private climate: () => { data: ClimateData; rule: ClimateRule } | null, private generator: { id: string; version: number; params: Record<string, unknown> }, private planet: PlanetFile, private model: RotationModel, private coastAt: (field: FieldInfo, t: number) => number) {
     this.rivers = new Rivers(build);
+    this.months = new MonthTiles(build);
   }
 
   /** The stage a time is in, if the atlas covers it. */
@@ -88,7 +93,7 @@ export class LifeAtlas {
   }
 
   /** A scene's spec for a place and time: nothing if there is no land there, or no list. */
-  async spec(lat: number, lon: number, t: number, s: Scenario): Promise<SceneSpec | null> {
+  async spec(lat: number, lon: number, t: number, s: Scenario, month?: number): Promise<SceneSpec | null> {
     const ref = this.binAt(t);
     const clim = this.climate();
     if (!ref || !clim) return null;
@@ -172,6 +177,11 @@ export class LifeAtlas {
       isoline: this.coastAt(field, when),
       generator: this.generator,
     };
+    // The months of the finest climate that covers the time, at the node the place stood on then.
+    const mInfo = this.months.info;
+    const where = mInfo && monthsPlace(mInfo, pw, lat, lon, ageMa);
+    const tiles = where ? await this.months.near(where.set, where.lat, where.lon) : [];
+    if (mInfo && where && tiles.length) pw.months = placeMonths(mInfo, where, tiles, month);
     const spec = placeSpec(pw, lat, lon, ageMa);
     if (!spec) return null;
     const water = await this.waterOf(spec, when, ageMa, pw.isoline);

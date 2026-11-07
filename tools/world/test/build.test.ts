@@ -18,6 +18,8 @@ import { decodeRuns } from '../../../core/coverage.ts';
 import { seaLevelAt } from '../../../core/sealevel.ts';
 import { RiverNet, riverKeys, riverWidths, type RiversKeysHeader, type RiversNetworkHeader, type RiverWidthsHeader } from '../../../core/rivers.ts';
 import { LAYERS, TIERS } from '../../../core/resolve.ts';
+import { classAtHeight, monthsKeyframe, MonthsTile, nearestNode, snowLine, tilesNear, type MonthsTileHeader } from '../../../core/months.ts';
+import type { ClimateRule } from '../../../core/climate.ts';
 import { GENERATOR, generateClouds, type CloudParams } from '../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
 import { GENERATOR as GENERIC_LAND, generateGenericLand, type GenericLandParams } from '../../../world/generators/earth/generic-land/v1.ts';
@@ -676,5 +678,53 @@ describe('rivers', () => {
     expect(shelf).toBeGreaterThan(5);
     const today = keyAt(0);
     for (let j = 0; j < net.nodes.length; j += 7) if (net.wet(j, today)) expect(net.z[j]).toBeGreaterThan(today.seaLevel);
+  });
+});
+
+describe('the climate at a height', () => {
+  const dir = latestBuild();
+  const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
+  const info = ts.months!;
+  const rule = ts.climate!.params as unknown as ClimateRule;
+  const recent = info.sets.find((x) => x.field === 'field:earth/climate-late-quaternary')!;
+  /** The months at a place today, and the height they stand for, from the tile a browser would fetch. */
+  const today = (lat: number, lon: number) => {
+    const tiles = tilesNear(lat, lon, recent).filter((k) => recent.tiles[k]).map((k) => {
+      const { header, arrays } = decodeTile<MonthsTileHeader>(bytes(join(dir, recent.tiles[k])));
+      return new MonthsTile(header, arrays as unknown as ArrayLike<number>[]);
+    });
+    return nearestNode(tiles, 0, lat, lon)!;
+  };
+
+  it('has months for every keyframe of each climate, finest first, in tiles a scene can fetch', () => {
+    expect(info.sets.map((x) => x.field)).toEqual(['field:earth/climate-late-quaternary', 'field:earth/climate']);
+    expect(recent.keyframesMa).toHaveLength(72);
+    expect(recent.frameMa).toBe(0);
+    for (const set of info.sets) for (const file of Object.values(set.tiles)) expect(statSync(join(dir, file)).size).toBeLessThan(4e5);
+    expect(monthsKeyframe(info, 0.0211)!.set.field).toBe('field:earth/climate-late-quaternary');
+    expect(monthsKeyframe(info, 66)!.set.field).toBe('field:earth/climate');
+  });
+
+  // Today's months are the climate observed in 1901–1930, as the field corrects them to be; these hold them, and the
+  // lapse rate, to places whose climate everyone has seen.
+  it('paints the Amazon a rain forest today, and the Sahara a desert', () => {
+    const amazon = today(-3, -60);
+    expect(classAtHeight(amazon.months, 0, info.lapse, rule)).toBe('rainforest');
+    expect(classAtHeight(today(23, 10).months, 0, info.lapse, rule)).toBe('desert');
+  });
+
+  it("has ice on Kilimanjaro's top, 5,895 m up, and none at its foot", () => {
+    const k = today(-3.07, 37.35);
+    expect(classAtHeight(k.months, 5895 - k.height, info.lapse, rule)).toBe('ice');
+    expect(['tundra', 'ice']).not.toContain(classAtHeight(k.months, 1000 - k.height, info.lapse, rule));
+  });
+
+  it('lays the snow of the Alps far lower in January than in July', () => {
+    const a = today(46.5, 10);
+    const jan = snowLine(a.months, 1, a.lat, a.height, info.water, info.lapse, 10, -a.height, 4800 - a.height, 25) + a.height;
+    const jul = snowLine(a.months, 7, a.lat, a.height, info.water, info.lapse, 10, -a.height, 4800 - a.height, 25) + a.height;
+    expect(jan).toBeLessThan(1500);
+    expect(jul).toBeGreaterThan(2500);
+    expect(jul - jan).toBeGreaterThan(1500);
   });
 });

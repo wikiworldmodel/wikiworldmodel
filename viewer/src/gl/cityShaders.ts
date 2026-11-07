@@ -772,6 +772,8 @@ uniform float uWater;
 uniform float uWild;
 uniform vec3 uTone[10];
 uniform vec3 uShare;
+// Where snow lies: the height it starts at, the height over which it thickens, and the slope it slips off.
+uniform vec3 uSnow;
 uniform vec4 uGrid[3];
 uniform vec2 uGridSize[3];
 out vec4 o;
@@ -874,10 +876,10 @@ vec3 wilderness(vec3 p, vec3 n, float dist, out float water) {
   c = mix(c, canopy, mask.r * far);
   vec3 distantHerb = mix(uTone[8], uTone[9], mix(0.5, fbmM(p, 90.0), grain));
   c = mix(c, distantHerb, mask.g * smoothstep(900.0, 5000.0, dist));
-  // The high ground: rock, and then what stays on top.
-  c = mix(c, vec3(0.25, 0.24, 0.18), smoothstep(900.0, 1700.0, p.z + (fbmM(p, 400.0) - 0.5) * 500.0));
+  // Rock on the steep slopes, and snow where the month's climate lays it, off the steepest.
   c = mix(c, vec3(0.36, 0.33, 0.28), smoothstep(0.28, 0.5, slope));
-  c = mix(c, vec3(0.86, 0.88, 0.9), smoothstep(3000.0, 3400.0, p.z));
+  float snow = smoothstep(uSnow.x, uSnow.x + uSnow.y, p.z + (fbmM(p, 400.0) - 0.5) * uSnow.y) * (1.0 - smoothstep(uSnow.z - 0.1, uSnow.z + 0.1, slope));
+  c = mix(c, vec3(0.86, 0.88, 0.9), snow);
   return c;
 }
 void main() {

@@ -1,0 +1,20 @@
+id: src:jiao-2025-tibet-lapse-rates
+type: publication
+kind: measurement
+citation: >-
+  Jiao, Y., Tseten, Y., Yang, Q. & Bai, L. (2025). Spatiotemporal variability of near-surface air temperature lapse
+  rates in the Qinghai–Tibet plateau using high-density meteorological observations. Scientific Reports 15, 20702.
+authors:
+  - "Jiao, Y."
+  - "Tseten, Y."
+  - "Yang, Q."
+  - "Bai, L."
+published: 2025
+title: "Spatiotemporal variability of near-surface air temperature lapse rates in the Qinghai–Tibet plateau using high-density meteorological observations"
+container: "Scientific Reports 15, 20702"
+doi: 10.1038/s41598-025-06204-5
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full in the open-access text Europe PMC serves (PMC12214924, as JATS XML, its tags stripped). The quote
+    checked by script against that text.

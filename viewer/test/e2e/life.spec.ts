@@ -321,4 +321,20 @@ test.describe('anywhere else', () => {
     for (const v of [...scene.focus, ...scene.toRiver]) expect(Number.isFinite(v)).toBe(true);
     expect(Math.hypot(...scene.toRiver)).toBeCloseTo(1, 2);
   });
+
+  test('a scene reads the finest climate of its time, and draws its month: snow low in January, high in July', async ({ page }) => {
+    // The Cascades, today, east of Mount Rainier. (Not the Alps: no wild scene is drawn within reach of Rome's.)
+    await page.goto(`/?b=${latestBuild()}&${lowOver(47.0, -121.5, 1950, 6000)}&mo=1&${FAST}`);
+    await idle(page);
+    await expect.poll(async () => (await page.evaluate(() => window.__wikiworldmodel!.scene()))?.month, { timeout: 60_000 }).toBe(1);
+    const jan = (await page.evaluate(() => window.__wikiworldmodel!.scene()))!;
+    expect(jan.climateField).toBe('field:earth/climate-late-quaternary');
+    await expect(page.locator('.life-month')).toBeVisible();
+    await page.locator('.life-month select').selectOption('7');
+    await expect.poll(async () => (await page.evaluate(() => window.__wikiworldmodel!.scene()))?.month, { timeout: 60_000 }).toBe(7);
+    const jul = (await page.evaluate(() => window.__wikiworldmodel!.scene()))!;
+    expect(page.url()).toContain('mo=7');
+    expect(jan.snow).not.toBeNull();
+    expect(jul.snow === null || jul.snow > jan.snow! + 1000).toBe(true);
+  });
 });

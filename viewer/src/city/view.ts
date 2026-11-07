@@ -152,9 +152,12 @@ export function autoTilt(range: number): number {
   return 66 * (1 - smooth(Math.log(4000), Math.log(420000), Math.log(Math.max(range, 1))));
 }
 
-/** Where the sun is at an hour of a late spring day in its hemisphere, at a site's latitude: a direction, x east, y north, z up. */
-export function sunAt(hour: number, lat: number): V3 {
-  const decl = (lat < 0 ? -16 : 16) * RAD;
+/**
+ * Where the sun is at an hour at a site's latitude: a direction, x east, y north, z up. The sun's declination is the
+ * day's, in radians, where a scene has a day; a late spring day in the site's hemisphere where it does not.
+ */
+export function sunAt(hour: number, lat: number, declination?: number): V3 {
+  const decl = declination ?? (lat < 0 ? -16 : 16) * RAD;
   const phi = lat * RAD;
   const ha = ((hour - 12) / 12) * Math.PI;
   const sinEl = Math.sin(phi) * Math.sin(decl) + Math.cos(phi) * Math.cos(decl) * Math.cos(ha);

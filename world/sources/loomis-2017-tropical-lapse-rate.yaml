@@ -1,0 +1,27 @@
+id: src:loomis-2017-tropical-lapse-rate
+type: publication
+kind: measurement
+citation: >-
+  Loomis, S.E., Russell, J.M., Verschuren, D., Morrill, C., De Cort, G., Sinninghe Damsté, J.S., Olago, D.,
+  Eggermont, H., Street-Perrott, F.A. & Kelly, M.A. (2017). The tropical lapse rate steepened during the Last Glacial
+  Maximum. Science Advances 3(1), e1600815.
+authors:
+  - "Loomis, S.E."
+  - "Russell, J.M."
+  - "Verschuren, D."
+  - "Morrill, C."
+  - "De Cort, G."
+  - "Sinninghe Damsté, J.S."
+  - "Olago, D."
+  - "Eggermont, H."
+  - "Street-Perrott, F.A."
+  - "Kelly, M.A."
+published: 2017
+title: "The tropical lapse rate steepened during the Last Glacial Maximum"
+container: "Science Advances 3(1), e1600815"
+doi: 10.1126/sciadv.1600815
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full in the open-access text Europe PMC serves (PMC5271593, as JATS XML, its tags stripped), as the
+    publisher's page refused automated reads. The quotes checked by script against that text.

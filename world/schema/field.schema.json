@@ -117,7 +117,7 @@
     },
     "derived": { "const": true },
     "from": { "type": "array", "minItems": 1, "items": { "$ref": "defs.json#/$defs/ref" }, "description": "The fields it is derived from. For an isoline: the field it is drawn on, and for a field on a fixed datum a series of sea level, relative to today's, that the isoline rises and falls with" },
-    "rule": { "enum": ["isoline", "gough-1981", "biome-from-climate", "ice-equivalent-sea-level", "water-balance", "drainage"] },
+    "rule": { "enum": ["isoline", "gough-1981", "biome-from-climate", "ice-equivalent-sea-level", "water-balance", "drainage", "lapse-rate"] },
     "isoline_m": { "type": "number" },
     "params": { "type": "object", "description": "The rule's parameters, or for a grid read by the build what it needs besides its data" },
     "source": { "$ref": "defs.json#/$defs/citation", "description": "Where the rule or those parameters come from" },

@@ -8,6 +8,8 @@ import { lookup, type Scenario } from '../../../core/scenario.ts';
 import type { LivingTaxon, SceneSpec } from '../../../core/scene.ts';
 import { GroundSampler } from '../../../world/generators/city/ground.ts';
 import type { LivingParams } from '../../../world/generators/life/scene/v3.ts';
+import { snowOf } from '../../../world/generators/life/climate.ts';
+import { declination, MID_DAY } from '../../../core/water.ts';
 import { protoParts } from '../../../world/generators/life/stream.ts';
 import { CityRenderer, type CityFrame } from '../gl/city.ts';
 import type { GL } from '../gl/context.ts';
@@ -52,6 +54,11 @@ export class LifeScene {
   /** which names are new: labels are remade only when they change */
   labelSerial = 0;
   spec!: SceneSpec;
+  /** the sun's declination in the scene's month, radians, where it has one */
+  get declination(): number | undefined {
+    const c = this.spec?.climate;
+    return c ? declination(MID_DAY[c.month - 1], c.water) : undefined;
+  }
   focus: [number, number] = [0, 0];
   toRiver: [number, number] = [0, 1];
   waterLevel = 0;
@@ -150,7 +157,7 @@ export class LifeScene {
     const tones = params.cover.tones[cover.plants > 0 ? clim?.tones ?? 'plain' : 'barren'] ?? params.cover.tones.plain;
     // Where the world gives the rivers their water falls downstream, and no one level bands the banks.
     r.setWater(g.water.vertices, g.water.indices, this.spec.water ? -1e4 : g.waterLevel, g.water.flow, tones.water);
-    r.setLand(Float32Array.from(['soil', 'herb', 'bare', 'canopy', 'distant'].flatMap((k) => tones[k])), [Math.min(clim?.forest ?? 0, cover.forests), Math.min(clim?.herb ?? 0, cover.plants), 1 - cover.plants * (1 - (clim?.bare ?? 1))]);
+    r.setLand(Float32Array.from(['soil', 'herb', 'bare', 'canopy', 'distant'].flatMap((k) => tones[k])), [Math.min(clim?.forest ?? 0, cover.forests), Math.min(clim?.herb ?? 0, cover.plants), 1 - cover.plants * (1 - (clim?.bare ?? 1))], snowOf(this.spec));
     const out = new Float32Array((this.spec.taxa.length + 1) * 4);
     const clamp = (x: number | null | undefined, d: number) => (x === null || x === undefined || !Number.isFinite(x) ? d : Math.max(-TIMELESS, Math.min(TIMELESS, x - this.spec.site.slice)));
     this.spec.taxa.forEach((t, i) => {

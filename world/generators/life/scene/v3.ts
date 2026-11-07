@@ -8,7 +8,9 @@
 // agree within the tolerance of core/fingerprint.ts.
 import type { Part } from '../../../../core/fingerprint.ts';
 import type { Form, Pose } from '../../../../core/form.ts';
-import type { LivingTaxon, ReliefPatch, SceneSpec } from '../../../../core/scene.ts';
+import type { LivingTaxon, ReliefPatch, SceneCover, SceneSpec } from '../../../../core/scene.ts';
+import { classAtHeight } from '../../../../core/months.ts';
+import type { ClimateChoices } from '../climate.ts';
 import { GroundSampler, type GroundGridData } from '../../city/ground.ts';
 import { dcos, dsin, hash2, hash3, hashString, PI, Rng, TAU } from '../../city/math.ts';
 import { POSE } from '../forms.ts';
@@ -100,6 +102,8 @@ export interface LivingParams {
     mass_length: number;
     defaults: { group: [number, number]; habitat: string; poses: Pose[] };
   };
+  /** how the climate is brought to the scene's heights, where the world gives the climate at a height */
+  climate: ClimateChoices;
   /** how a river the world gives is drawn: the generator's choices, beside the laws its spec carries */
   rivers: RiverChoices;
   /** how far off each kind of cell is made, in metres from the eye */
@@ -108,6 +112,53 @@ export interface LivingParams {
 }
 
 const clamp01 = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x);
+
+/** What a share of the land grows, as the cover's table has it for a class, where the world allows it. */
+interface Growth {
+  forest: number;
+  herb: number;
+  bare: number;
+}
+
+function growthOf(cl: { forest: number; herb: number; bare: number } | undefined, cover: SceneCover): Growth {
+  const c = cl ?? { forest: 0, herb: 0, bare: 1 };
+  // What may grow is what the climate bears and what has come to exist by now.
+  return { forest: Math.min(c.forest, cover.forests), herb: Math.min(c.herb, cover.plants), bare: 1 - cover.plants * (1 - c.bare) };
+}
+
+/**
+ * What grows at each height of a scene, where the world gives its climate at a height (field:earth/climate-at-height):
+ * the class of the climate brought there by the lapse rate, read every `step_m`, and what the cover's table says that
+ * class bears. Heights are in metres above the coast, as the scene's ground is.
+ */
+export class Heights {
+  private rows = new Map<number, Growth>();
+  private c: NonNullable<SceneSpec['climate']>;
+  private table: LivingParams['cover']['climates'];
+  readonly band: number;
+  readonly step: number;
+  constructor(spec: SceneSpec) {
+    const p = spec.generator.params as unknown as LivingParams;
+    this.c = spec.climate!;
+    this.table = p.cover.climates;
+    this.cover = spec.biome.cover;
+    this.band = (p.climate.band_c / this.c.lapse) * 1000;
+    this.step = p.climate.step_m;
+  }
+  private cover: SceneCover;
+  /** What grows at a height above the coast. */
+  at(z: number): Growth {
+    const k = Math.round((z - this.c.height) / this.step);
+    let g = this.rows.get(k);
+    if (!g) {
+      const cls = classAtHeight(this.c.months, k * this.step, this.c.lapse, this.c.rule);
+      g = growthOf(this.table[cls], this.cover);
+      this.rows.set(k, g);
+    }
+    return g;
+  }
+}
+
 const smooth = (a: number, b: number, x: number) => {
   const t = clamp01((x - a) / (b - a));
   return t * t * (3 - 2 * t);
@@ -594,15 +645,16 @@ export class LandCover {
   private fx: number;
   private fy: number;
   private seed: number;
+  /** what grows at each height, where the world gives the climate at a height; the one class everywhere if not */
+  private heights?: Heights;
   constructor(spec: SceneSpec, private ground: GroundSampler, private level: number, focus: [number, number], private levelAt?: (x: number, y: number) => number) {
     const p = spec.generator.params as unknown as LivingParams;
     this.c = p.cover;
-    const cl = p.cover.climates[spec.biome.climate] ?? { forest: 0, herb: 0, bare: 1, river: 0, tones: 'barren' };
-    const cover = spec.biome.cover;
-    // What may grow is what the climate bears and what has come to exist by now.
-    this.forest = Math.min(cl.forest, cover.forests);
-    this.herb = Math.min(cl.herb, cover.plants);
-    this.baren = 1 - cover.plants * (1 - cl.bare);
+    const g = growthOf(p.cover.climates[spec.biome.climate], spec.biome.cover);
+    this.forest = g.forest;
+    this.herb = g.herb;
+    this.baren = g.bare;
+    if (spec.climate && p.climate) this.heights = new Heights(spec);
     this.seed = hashString(spec.generator.seed);
     this.fx = focus[0];
     this.fy = focus[1];
@@ -611,7 +663,8 @@ export class LandCover {
     return this.forest;
   }
   at(x: number, y: number): this {
-    const above = this.ground.at(x, y) - (this.levelAt ? this.levelAt(x, y) : this.level);
+    const z = this.ground.at(x, y);
+    const above = z - (this.levelAt ? this.levelAt(x, y) : this.level);
     this.above = above;
     if (above < 0) {
       this.water = 1;
@@ -622,19 +675,30 @@ export class LandCover {
     }
     this.water = 0;
     const c = this.c;
+    let forest = this.forest;
+    let herb = this.herb;
+    let baren = this.baren;
+    if (this.heights) {
+      // The height's own climate, its edge wandering over the band.
+      const h = this.heights;
+      const g = h.at(z + (fbm(x / 900, y / 900, this.seed + 34) - 0.5) * 2 * h.band);
+      forest = g.forest;
+      herb = g.herb;
+      baren = g.bare;
+    }
     const wob = noise(x / 34, y / 34, this.seed + 31);
     const shore = smooth(c.bare * 1.5, c.bare * 0.5, above + (wob - 0.5) * c.bare * 0.9);
     const patchy = fbm(x / c.patch, y / c.patch, this.seed + 32);
     // Bare ground in patches, as much as the climate leaves; all of it where nothing grows yet.
-    const dry = this.baren >= 1 ? 1 : smooth(1 - this.baren - 0.12, 1 - this.baren + 0.12, 0.5 * patchy + 0.5 * noise(x / 260, y / 260, this.seed + 33));
+    const dry = baren >= 1 ? 1 : smooth(1 - baren - 0.12, 1 - baren + 0.12, 0.5 * patchy + 0.5 * noise(x / 260, y / 260, this.seed + 33));
     this.bare = shore > dry ? shore : dry;
     let canopy = smooth(c.glade - 0.05, c.glade + 0.07, patchy);
     const dx = x - this.fx;
     const dy = y - this.fy;
     const r = Math.sqrt(dx * dx + dy * dy);
     canopy *= smooth(c.clearing, c.clearing * 1.5, r + (wob - 0.5) * c.clearing * 0.7);
-    this.canopy = canopy * this.forest * (1 - this.bare);
-    this.low = this.herb * (1 - this.canopy) * (1 - this.bare);
+    this.canopy = canopy * forest * (1 - this.bare);
+    this.low = herb * (1 - this.canopy) * (1 - this.bare);
     return this;
   }
 }

@@ -268,7 +268,7 @@ export interface Witness {
 }
 
 /** A few places the browser is held to: the same scene, within the tolerance of core/fingerprint.ts, as the build makes here. */
-export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, string>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, log: (m: string) => void, water?: (t: number, ageMa: number, at: { lat: number; lon: number }, isoline: number) => SceneWater | undefined): Witness[] {
+export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, string>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, log: (m: string) => void, water?: (t: number, ageMa: number, at: { lat: number; lon: number }, isoline: number) => SceneWater | undefined, months?: (pw: PlaceWorld, lat: number, lon: number, ageMa: number) => PlaceWorld['months']): Witness[] {
   const forms = JSON.parse(files.get(index.forms)!) as Record<string, Form>;
   const out: Witness[] = [];
   // A stage from each part of the chart that has rows, at the patch with the longest list; and from the middle one, the
@@ -288,6 +288,8 @@ export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, strin
       places.push(patchPlace(edge));
     }
     for (const [lat, lon] of places) {
+      // Its climate at its heights as a browser gives it, from the same files.
+      pw.months = months?.(pw, lat, lon, toMa(bin.slice));
       const spec = placeSpec(pw, lat, lon, toMa(bin.slice));
       if (!spec) continue;
       // Its rivers as a browser gives them, from the same files.
@@ -295,7 +297,7 @@ export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, strin
       if (w) spec.water = w;
       const stream = new SceneStream(spec, FULL_BUDGET);
       out.push({ lat, lon, t: bin.slice, print: stream.print(), taxa: spec.taxa.length });
-      log(`witness ${ref.name}: ${spec.taxa.length} taxa at ${lat}, ${lon}, ${spec.biome.climate}, water ${stream.look.water} m, ${spec.water ? `${spec.water.rivers.length} rivers (${spec.water.tier})` : 'an invented river'}`);
+      log(`witness ${ref.name}: ${spec.taxa.length} taxa at ${lat}, ${lon}, ${spec.biome.climate}${spec.climate ? ` (${spec.climate.field.replace('field:earth/', '')} at ${spec.climate.ageMa} Ma, month ${spec.climate.month})` : ''}, water ${stream.look.water} m, ${spec.water ? `${spec.water.rivers.length} rivers (${spec.water.tier})` : 'an invented river'}`);
     }
   });
   return out;

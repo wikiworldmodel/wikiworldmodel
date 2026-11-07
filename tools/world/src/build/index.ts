@@ -41,7 +41,10 @@ import { insideRow, politiesAt, type PolitiesFile } from '../../../../core/layer
 import type { AtlasBin } from '../../../../core/atlas.ts';
 import { fieldFor, fieldLods, loadBlocks, loadRelief, loadSnapshots, paleoElevation, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
 import { buildCity } from './city.ts';
-import { climateGrid, climateKeyframes, encodeClimate, forestChecks, heightOn, monthsKeyframes, waterParamsOf, type ClimateKeyframe, type WaterOptions } from './climate.ts';
+import { climateGrid, climateKeyframes, encodeClimate, forestChecks, heightOn, monthsFiles, monthsKeyframes, waterParamsOf, type ClimateKeyframe, type WaterOptions } from './climate.ts';
+import { MonthsTile, tilesNear, type MonthsInfo, type MonthsSet, type MonthsTileHeader } from '../../../../core/months.ts';
+import { monthsPlace, placeMonths } from '../../../../world/generators/life/climate.ts';
+import type { PlaceWorld } from '../../../../world/generators/life/spec.ts';
 import { FEATURE_INDEX } from '../../../../core/featuretiles.ts';
 import { prominenceOf, tileFeatures } from './featuretiles.ts';
 import { buildIce, type IceBuilt } from './ice.ts';
@@ -121,6 +124,8 @@ function worldSpan(periods: PeriodRecord[], found: SearchFile, grids: GridField[
 
 /** How many keyframes a file of a climate finer in time holds: each file shares its last with the next file's first. */
 const CLIMATE_CHUNK = 12;
+/** How many degrees a tile of the months (field:earth/climate-at-height) is square: one a scene fetches. */
+const MONTHS_TILE_DEG = 10;
 
 /** How finely the coverage chart asks the layers: columns along the time control's scale, the grid in degrees, and times per column. */
 const COVERAGE = { columns: 160, step: 5, samples: 3 };
@@ -594,9 +599,58 @@ export async function runBuild(args: string[]): Promise<number> {
   const paleo = paleoElevation(grids);
   const nearestSnapshot = (ageMa: number) => paleo!.snapshots.reduce((a, b) => (Math.abs(b.ageMa - ageMa) < Math.abs(a.ageMa - ageMa) ? b : a));
   const waterOptions: WaterOptions | undefined = runoffField && paleo ? { params: waterParamsOf(runoffField.params ?? {}), height: (ageMa) => heightOn(nearestSnapshot(ageMa)) } : undefined;
+  // Each climate's months at a height (field:earth/climate-at-height), which a scene brings to its own ground.
+  const heightField = world.fields.find((f) => f.rule === 'lapse-rate');
+  const heightParams = heightField?.params as { lapse_c_per_km: number; g0: number } | undefined;
+  // The land of a cell of the last 120,000 years' climate at a time: the mean of today's ground on the relief's grid
+  // within it, none of it below the sea of the time.
+  const cellHeight = (() => {
+    const relief = grids.find((g) => g.drain && g.seaLevel);
+    if (!relief) return undefined;
+    const snap = relief.snapshots[0];
+    const { width, height, step } = snap.src!;
+    const stack = seriesList.find((x) => x.id === relief.seaLevel)?.points as unknown as [number, number][] | undefined;
+    if (!stack) return undefined;
+    return (ageMa: number) => {
+      const sea = seaLevelAt(stack, fromMa(ageMa));
+      return (lat: number, lon: number, half: number) => {
+        const j0 = Math.max(0, Math.ceil((90 - lat - half) / step - 1e-9));
+        const j1 = Math.min(height - 1, Math.floor((90 - lat + half) / step - 1e-9));
+        const i0 = Math.ceil((lon + 180 - half) / step - 1e-9);
+        const i1 = Math.floor((lon + 180 + half) / step - 1e-9);
+        let sum = 0;
+        let n = 0;
+        for (let j = j0; j <= j1; j++) {
+          for (let i = i0; i <= i1; i++) {
+            const z = snap.elev[j * width + (((i % width) + width) % width)];
+            sum += z > sea ? z : sea;
+            n++;
+          }
+        }
+        return n ? sum / n : sea;
+      };
+    };
+  })();
+  const monthsSets: MonthsSet[] = [];
+  // The months' files as written, which a witness scene reads as a browser would.
+  const monthBytes = new Map<string, Uint8Array>();
+  const putMonth = (path: string, bytes: Uint8Array) => {
+    monthBytes.set(path, bytes);
+    put(path, bytes);
+  };
+  const putMonths = (f: Field, keys: ClimateKeyframe[]) => {
+    const grid = climateGrid((f.grid as { res_deg: number }).res_deg);
+    const slug = f.id.replace(/^field:/, '').replace(/\//g, '-');
+    const out = monthsFiles(f.id, `months/${slug}`, grid, keys, MONTHS_TILE_DEG);
+    for (const [path, bytes] of out.files) putMonth(path, bytes);
+    const frames = new Set(keys.map((k) => k.frameMa ?? k.ageMa));
+    monthsSets.push({ field: f.id, title: f.title, keyframesMa: keys.map((k) => k.ageMa).sort((a, b) => a - b), ...(frames.size === 1 ? { frameMa: [...frames][0] } : {}), step: grid.step, tile_deg: MONTHS_TILE_DEG, tiles: out.tiles });
+    // What is written is all a scene needs of them; the rest of the build reads only the nodes and the water.
+    for (const k of keys) delete k.months;
+  };
   if (climateField && biomeField) {
     const elevation = paleoElevation(grids)!;
-    climateKeys = await climateKeyframes(world, climateField, elevation.snapshots, plateIndex, log, waterOptions);
+    climateKeys = await climateKeyframes(world, climateField, elevation.snapshots, plateIndex, log, waterOptions, heightParams ? { g0: heightParams.g0 } : undefined);
     put('climate.lwt', encodeClimate(climateGrid((climateField.grid as { res_deg: number }).res_deg), climateKeys, biomeField.params as unknown as ClimateRule));
   }
   // Climates finer in time than the deep past's runs, read as months, on today's coordinates and the plates under them
@@ -606,7 +660,7 @@ export async function runBuild(args: string[]): Promise<number> {
     for (const f of world.fields.filter((x) => fieldSource(x) === 'climate' && x.data?.variables)) {
       const dir = await importMonths(f, f.data!.variables!, log);
       imports[f.id] = dir.split('/').pop()!;
-      const keys = await monthsKeyframes(f, dir, paleoElevation(grids)!.snapshots.find((x) => x.ageMa === 0)!, plateIndex, log, waterOptions);
+      const keys = await monthsKeyframes(f, dir, paleoElevation(grids)!.snapshots.find((x) => x.ageMa === 0)!, plateIndex, log, waterOptions, heightParams && cellHeight ? { height: cellHeight } : undefined);
       const grid = climateGrid((f.grid as { res_deg: number }).res_deg);
       const slug = f.id.replace(/^field:/, '').replace(/\//g, '-');
       const chunks: { file: string; keyframesMa: number[] }[] = [];
@@ -618,8 +672,12 @@ export async function runBuild(args: string[]): Promise<number> {
         if (i + CLIMATE_CHUNK >= keys.length) break;
       }
       recentClimates.push({ field: f, keys, chunks });
+      if (heightParams) putMonths(f, keys);
     }
   }
+  if (heightParams && climateField && climateKeys.length) putMonths(climateField, climateKeys);
+  const monthsInfo: MonthsInfo | undefined = heightField && heightParams && monthsSets.length && waterOptions ? { water: waterOptions.params, field: heightField.id, title: heightField.title, model: 'model:earth/lapse-rate', lapse: heightParams.lapse_c_per_km, sets: monthsSets } : undefined;
+  if (monthsInfo) log(`months  ${monthsSets.map((x) => `${x.field}: ${x.keyframesMa.length} keyframes in ${Object.keys(x.tiles).length} tiles`).join('; ')}`);
   // The rivers and lakes of every time (model:earth/drainage): today's ground at the sea of each time for the glacial
   // cycles, with the water of the climate of the last 120,000 years, and before that each PaleoDEM with its run's.
   const riversField = world.fields.find((f) => f.rule === 'drainage' && f.kind === 'lines');
@@ -799,7 +857,26 @@ export async function runBuild(args: string[]): Promise<number> {
     const atlas = buildAtlas(solved, periodList, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, log);
     if (atlas) {
       for (const [path, content] of atlas.files) put(path, content);
-      const seen = witnesses(solved, atlas.index, atlas.files, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, buildPlanet(solved), log, waterAt);
+      // A scene's months, from their files as written, as a browser reads them (world/generators/life/climate.ts).
+      const monthTiles = new Map<string, MonthsTile>();
+      const monthsAt = monthsInfo
+        ? (pw: PlaceWorld, lat: number, lon: number, ageMa: number) => {
+            const where = monthsPlace(monthsInfo, pw, lat, lon, ageMa);
+            if (!where) return undefined;
+            const tiles: MonthsTile[] = [];
+            for (const key of tilesNear(where.lat, where.lon, where.set)) {
+              const file = where.set.tiles[key];
+              if (!file) continue;
+              if (!monthTiles.has(file)) {
+                const { header, arrays } = decodeTile<MonthsTileHeader>(monthBytes.get(file)!.slice().buffer as ArrayBuffer);
+                monthTiles.set(file, new MonthsTile(header, arrays as unknown as ArrayLike<number>[]));
+              }
+              tiles.push(monthTiles.get(file)!);
+            }
+            return tiles.length ? placeMonths(monthsInfo, where, tiles) : undefined;
+          }
+        : undefined;
+      const seen = witnesses(solved, atlas.index, atlas.files, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, buildPlanet(solved), log, waterAt, monthsAt);
       put('life/witness.json', stableStringify(seen));
       atlasFile = 'life/atlas.json';
       coverageFile.forms = { ...atlas.index.coverage, wanted: atlas.wanted.slice(0, 200) };
@@ -855,6 +932,7 @@ export async function runBuild(args: string[]): Promise<number> {
     tiles,
     files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(overlays ? { overlays: 'overlays.json' } : {}), ...(people ? { people: 'people.lwt' } : {}), ...(atlasFile ? { atlas: atlasFile } : {}), ...(seaAtlas ? { sea: 'life/sea.json' } : {}), features: FEATURE_INDEX },
     rivers: riversInfo,
+    months: monthsInfo,
     climates: recentClimates.length
       ? recentClimates.map(({ field: f, keys, chunks }) => ({
           field: f.id,

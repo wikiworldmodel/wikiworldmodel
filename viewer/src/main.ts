@@ -15,7 +15,9 @@ import { lookup, scenarioKey, type Scenario } from '../../core/scenario.ts';
 import type { TerritoryFile } from '../../core/territory.ts';
 import { indexTree, subtree, type TreeFile } from '../../core/tree.ts';
 import { cityKind, placeAt, type FeatureTime, type FieldInfo, type GeneratorConstraint, type SiteInfo } from '../../core/tileset.ts';
-import { formatTime, fromMa, historical, PRESENT_YEAR, toMa } from '../../core/time.ts';
+import { formatTime, fromMa, historical, MONTH_NAMES, PRESENT_YEAR, toMa } from '../../core/time.ts';
+import { warmestMonth } from '../../core/months.ts';
+import { snowOf } from '../../world/generators/life/climate.ts';
 import { GENERATOR as BIOME_TEXTURE, type BiomeTextureParams } from '../../world/generators/earth/biome/v1.ts';
 import { GENERATOR as CLOUDS, type CloudParams } from '../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, type SurfaceParams } from '../../world/generators/earth/surface/v1.ts';
@@ -95,7 +97,7 @@ export interface WikiWorldModelHandle {
   /** where a structure's label would be on the screen, for tests */
   structureAt(id: string): { x: number; y: number } | undefined;
   /** the living scene as the viewer has it, if one is loaded */
-  scene(): { site: string; plan: PrintCheck; taxa: { id: string; label: string; form: string; own: boolean; tier: string; km?: number; rows: number; drawn: boolean }[]; instances: number; triangles: number; meshes: number; groundMs: number; stage?: string; climate: string; focus: [number, number]; toRiver: [number, number]; origin: { lat: number; lon: number }; water: { tier: string; rivers: { key: string; from: string }[] } | null } | null;
+  scene(): { site: string; plan: PrintCheck; taxa: { id: string; label: string; form: string; own: boolean; tier: string; km?: number; rows: number; drawn: boolean }[]; instances: number; triangles: number; meshes: number; groundMs: number; stage?: string; climate: string; climateField: string; month: number | null; snow: number | null; focus: [number, number]; toRiver: [number, number]; origin: { lat: number; lon: number }; water: { tier: string; rivers: { key: string; from: string }[] } | null } | null;
   /** a browser's fingerprint of the scene of a place and a time, as a witness in the build has it */
   lifePrint(lat: number, lon: number, t: number): Promise<Fingerprint | null>;
   /** how far the atlas reaches, as the build says */
@@ -399,7 +401,7 @@ async function start(root: HTMLElement): Promise<void> {
   const cityBar = document.createElement('div');
   cityBar.className = 'citybar';
   cityBar.hidden = true;
-  cityBar.innerHTML = `<label title="The hour of the day">Light <input type="range" min="${HOURS[0]}" max="${HOURS[1]}" step="0.05" aria-label="Hour of the day" /></label><button class="life-here" hidden title="What the records say lived here, and how sure that is"></button><button class="life-go" hidden title="Go down to where something of each is standing">Go and see</button><button class="to-globe" title="Back out to the whole Earth">Globe</button><span class="city-help" title="Drag to move over the ground. Right-drag or shift-drag to turn and tilt. Scroll to go towards what the pointer is on. W, A, S and D to walk. L for the light. Click anything to see how we know.">?</span>`;
+  cityBar.innerHTML = `<label title="The hour of the day">Light <input type="range" min="${HOURS[0]}" max="${HOURS[1]}" step="0.05" aria-label="Hour of the day" /></label><label class="life-month" hidden title="The month the land is drawn in: its snow and the sun's height. Unless one is chosen, the place's warmest month">Month <select aria-label="Month of the year"><option value="">warmest</option>${MONTH_NAMES.map((m, i) => `<option value="${i + 1}">${m}</option>`).join('')}</select></label><button class="life-here" hidden title="What the records say lived here, and how sure that is"></button><button class="life-go" hidden title="Go down to where something of each is standing">Go and see</button><button class="to-globe" title="Back out to the whole Earth">Globe</button><span class="city-help" title="Drag to move over the ground. Right-drag or shift-drag to turn and tilt. Scroll to go towards what the pointer is on. W, A, S and D to walk. L for the light. Click anything to see how we know.">?</span>`;
   stage.appendChild(cityBar);
   const cityEnter = document.createElement('button');
   cityEnter.className = 'city-enter';
@@ -932,7 +934,7 @@ async function start(root: HTMLElement): Promise<void> {
       const t0 = 1 - Math.max(0, Math.min(1, (range - solidAt) / (top - solidAt)));
       const alpha = t0 * t0 * (3 - 2 * t0);
       city!.select(state.sel);
-      city!.render(v, sunAt(state.hour, site!.origin.lat), state.t, state.evidence, alpha, globeHidden, w, h);
+      city!.render(v, sunAt(state.hour, site!.origin.lat, city instanceof LifeScene ? city.declination : undefined), state.t, state.evidence, alpha, globeHidden, w, h);
       const labelKey = `${site!.id}|${city instanceof LifeScene ? city.labelSerial : 0}`;
       if (labelledSite !== labelKey) {
         labels.setStructures(city!.named, city!.tops, site!.label, (s) => s.label);
@@ -948,6 +950,15 @@ async function start(root: HTMLElement): Promise<void> {
     if (state.people) people.legend(state.t);
     canvas.classList.toggle('in-city', inCity);
     if (inCity) cityBar.querySelector<HTMLInputElement>('input')!.value = String(state.hour);
+    // A scene whose climate is known at its heights has a month.
+    const monthLabel = cityBar.querySelector<HTMLLabelElement>('.life-month')!;
+    monthLabel.hidden = !(inCity && city instanceof LifeScene && city.spec.climate);
+    if (!monthLabel.hidden) {
+      const sel = monthLabel.querySelector('select')!;
+      const want = state.month ? String(state.month) : '';
+      if (sel.value !== want) sel.value = want;
+      sel.options[0].textContent = `warmest (${MONTH_NAMES[warmestMonth((city as LifeScene).spec.climate!.months) - 1]})`;
+    }
     // What lives here, and how sure that is, where a scene is of a place with no formation of its own.
     const showHere = inCity && city instanceof LifeScene && !city.spec.site.place;
     lifeHere.hidden = !showHere;
@@ -1254,7 +1265,8 @@ async function start(root: HTMLElement): Promise<void> {
   /** The key of the scene a place and time would have. */
   const lifeKeyAt = (t: number, at: { lat: number; lon: number }): string => {
     const { lat, lon } = latticeOf(at.lat, at.lon);
-    return `${lifeAtlas?.binAt(t)?.from}|${lat.toFixed(2)}|${lon.toFixed(2)}`;
+    // A month is a different scene: its snow and its sun.
+    return `${lifeAtlas?.binAt(t)?.from}|${lat.toFixed(2)}|${lon.toFixed(2)}|${state.month ?? ''}`;
   };
 
   /** The scene of wherever the camera is, or is flying down to: made once it has come to rest over a new place, and shown once it is ready. */
@@ -1294,7 +1306,7 @@ async function start(root: HTMLElement): Promise<void> {
 
   async function makeLife(key: string, lat: number, lon: number, t: number): Promise<void> {
     try {
-      const spec = await lifeAtlas!.spec(lat, lon, t, scenario());
+      const spec = await lifeAtlas!.spec(lat, lon, t, scenario(), state.month);
       if (!spec) {
         lifeEmpty.add(key);
         return;
@@ -1336,6 +1348,7 @@ async function start(root: HTMLElement): Promise<void> {
   }
   cityEnter.onclick = () => enterSite();
   cityBar.querySelector<HTMLInputElement>('input')!.oninput = (e) => setState({ hour: Number((e.target as HTMLInputElement).value) });
+  cityBar.querySelector<HTMLSelectElement>('.life-month select')!.onchange = (e) => setState({ month: Number((e.target as HTMLSelectElement).value) || undefined });
   cityBar.querySelector<HTMLButtonElement>('.to-globe')!.onclick = () => flyTo({ lat: state.cam.lat, lon: state.cam.lon, dist: 2.6 }, 4200);
   const lifeGo = cityBar.querySelector<HTMLButtonElement>('.life-go')!;
   lifeGo.onclick = () => {
@@ -1782,7 +1795,7 @@ async function start(root: HTMLElement): Promise<void> {
       const c = city instanceof LifeScene ? city : [...scenes.values()].find((x): x is LifeScene => x instanceof LifeScene);
       if (!c) return null;
       const drawn = new Set(c.named.map((x) => x.id));
-      return { site: c.spec.site.id, plan: c.plan, taxa: c.spec.taxa.map((t) => ({ id: t.id, label: t.label, form: t.form_label, own: t.own, tier: t.tier, km: t.km, rows: t.rows, drawn: drawn.has(t.id) })), instances: c.last.instances, triangles: c.last.triangles, meshes: c.last.meshes, groundMs: c.groundMs, stage: c.spec.site.stage, climate: c.spec.biome.climate, focus: c.focus, toRiver: c.toRiver, origin: c.spec.site.origin, water: c.spec.water ? { tier: c.spec.water.tier, rivers: c.spec.water.rivers.map((r) => ({ key: r.key, from: r.from })) } : null };
+      return { site: c.spec.site.id, plan: c.plan, taxa: c.spec.taxa.map((t) => ({ id: t.id, label: t.label, form: t.form_label, own: t.own, tier: t.tier, km: t.km, rows: t.rows, drawn: drawn.has(t.id) })), instances: c.last.instances, triangles: c.last.triangles, meshes: c.last.meshes, groundMs: c.groundMs, stage: c.spec.site.stage, climate: c.spec.biome.climate, climateField: c.spec.biome.field, month: c.spec.climate?.month ?? null, snow: Number.isFinite(snowOf(c.spec).line) ? snowOf(c.spec).line : null, focus: c.focus, toRiver: c.toRiver, origin: c.spec.site.origin, water: c.spec.water ? { tier: c.spec.water.tier, rivers: c.spec.water.rivers.map((r) => ({ key: r.key, from: r.from })) } : null };
     },
     lifePrint: async (lat, lon, t) => {
       const spec = await lifeAtlas?.spec(lat, lon, t, {});

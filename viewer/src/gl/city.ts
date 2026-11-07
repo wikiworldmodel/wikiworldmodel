@@ -159,6 +159,8 @@ export class CityRenderer {
   /** what the wild land's colours are, ten tones in threes; and its shares of forest, low plants and bare ground */
   private tones: Float32Array = new Float32Array(30);
   private shares: V3 = [1, 1, 0];
+  /** where snow lies on the wild land: from a height, thickening over a height, off slopes steeper than a share */
+  private snow: V3 = [1e6, 1, 1];
   /** everything drawn by instancing, by what mesh it is */
   private instanced = new Map<number, InstancedGPU>();
 
@@ -381,9 +383,10 @@ void main() {
   }
 
   /** The colours and shares of the land, as a place's climate gives them. */
-  setLand(tones: Float32Array, shares: V3): void {
+  setLand(tones: Float32Array, shares: V3, snow?: { line: number; band: number; slope: number }): void {
     this.tones = tones;
     this.shares = shares;
+    this.snow = snow && Number.isFinite(snow.line) ? [snow.line, snow.band, snow.slope] : [1e6, 1, 1];
   }
 
   /** A mesh that will be drawn by instancing. */
@@ -758,6 +761,8 @@ void main() {
     if (tone) gl.uniform3fv(tone, this.tones);
     const share = p.uniforms.get('uShare');
     if (share) gl.uniform3fv(share, this.shares);
+    const snow = p.uniforms.get('uSnow');
+    if (snow) gl.uniform3fv(snow, this.snow);
     const m = p.uniforms.get('uShadowM');
     if (m) gl.uniformMatrix4fv(m, false, this.shadowM);
   }
