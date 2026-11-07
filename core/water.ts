@@ -36,12 +36,19 @@ export interface WaterYear {
 }
 
 const DAYS = [31, 28.25, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-const MID = DAYS.map((d, m) => DAYS.slice(0, m).reduce((a, b) => a + b, 0) + d / 2);
+/** The middle day of each month of the year, January first. */
+export const MID_DAY = DAYS.map((d, m) => DAYS.slice(0, m).reduce((a, b) => a + b, 0) + d / 2);
+const MID = MID_DAY;
 const RAD = Math.PI / 180;
+
+/** The sun's declination on a day of the year, in radians: north of the equator positive. */
+export function declination(day: number, w: Pick<WaterParams, 'obliquity_deg' | 'equinox_day'>): number {
+  return Math.asin(Math.sin(w.obliquity_deg * RAD) * Math.sin((2 * Math.PI * (day - w.equinox_day)) / 365.25));
+}
 
 /** The hours of daylight at a latitude on a day of the year, in units of 12 hours: 0 in the polar night, 2 in the polar day. */
 export function daylight(latDeg: number, day: number, w: Pick<WaterParams, 'obliquity_deg' | 'equinox_day'>): number {
-  const decl = Math.asin(Math.sin(w.obliquity_deg * RAD) * Math.sin((2 * Math.PI * (day - w.equinox_day)) / 365.25));
+  const decl = declination(day, w);
   const x = -Math.tan(Math.min(89.9, Math.max(-89.9, latDeg)) * RAD) * Math.tan(decl);
   if (x <= -1) return 2;
   if (x >= 1) return 0;
@@ -56,9 +63,10 @@ export function hamon(t: number, days: number, D: number, w: Pick<WaterParams, '
 
 /**
  * A year's water at a place from its twelve months: temperature in °C and precipitation in mm, January first. The
- * place's latitude sets its daylight, and its height which snow threshold holds.
+ * place's latitude sets its daylight, and its height which snow threshold holds. Given `snow`, the snow lying at the end
+ * of each month of the last year is written into it, mm of water.
  */
-export function waterYear(t: ArrayLike<number>, p: ArrayLike<number>, latDeg: number, elevation: number, w: WaterParams, years = 5): WaterYear {
+export function waterYear(t: ArrayLike<number>, p: ArrayLike<number>, latDeg: number, elevation: number, w: WaterParams, years = 5, snowOut?: number[]): WaterYear {
   const tSnow = elevation > w.high_m ? w.t_snow_high : w.t_snow;
   const D = MID.map((d) => daylight(latDeg, d, w));
   let soil = w.soil_mm;
@@ -78,6 +86,7 @@ export function waterYear(t: ArrayLike<number>, p: ArrayLike<number>, latDeg: nu
       snow += pSnow;
       const melted = snow * (T <= tSnow ? 0 : Math.min(w.melt_max, ((T - tSnow) / (w.t_rain - tSnow)) * w.melt_max));
       snow -= melted;
+      if (snowOut && y === years - 1) snowOut[m] = snow;
       const total = pRain - direct + melted;
       const pet = hamon(T, DAYS[m], D[m], w);
       let aet: number;

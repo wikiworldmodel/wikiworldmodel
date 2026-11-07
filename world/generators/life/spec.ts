@@ -2,7 +2,9 @@
 // the atlas's list for a place, the land and the climate there, and the forms. A taxon whose size is a clade's
 // range takes a size within it, by its own number, so that it is always the same size.
 import { TIER, type AtlasEntry, type AtlasIndex, type AtlasSize } from '../../../core/atlas.ts';
-import { climateClass, CLIMATE_LABEL, type ClimateNode, type ClimateRule } from '../../../core/climate.ts';
+import { climateClass, CLIMATE_LABEL, reduceMonths, type ClimateNode, type ClimateRule } from '../../../core/climate.ts';
+import { warmestMonth, type Months } from '../../../core/months.ts';
+import type { WaterParams } from '../../../core/water.ts';
 import type { Form } from '../../../core/form.ts';
 import type { LivingTaxon, ReliefPatch, SceneCover, SceneSpec, SceneTier } from '../../../core/scene.ts';
 import { fromMa } from '../../../core/time.ts';
@@ -188,10 +190,26 @@ export interface PlaceWorld {
   climateField: string;
   cover: SceneCover;
   isoline: number;
+  /**
+   * The climate at a height, where the world has it (field:earth/climate-at-height): the finest climate's keyframe
+   * nearest the time, its node nearest a place in that keyframe's coordinates, and what brings it to other heights.
+   */
+  months?: {
+    field: string;
+    ageMa: number;
+    /** the age whose coordinates its nodes are on */
+    frameMa: number;
+    at: (lat: number, lon: number) => { months: Months; height: number; lat: number; lon: number } | undefined;
+    lapse: number;
+    water: WaterParams;
+    /** the month to draw, 1–12; the place's warmest if not said */
+    month?: number;
+  };
   generator: { id: string; version: number; params: Record<string, unknown> };
 }
 
 const round5 = (x: number) => Math.floor(x * 1e5 + 0.5) / 1e5;
+const round2 = (x: number) => Math.round(x * 100) / 100;
 
 /** The scene of a place at an age, on the lattice: undefined if the atlas has no land there. A land with an empty list has a scene, of bare ground. */
 export function placeSpec(w: PlaceWorld, lat: number, lon: number, ageMa: number): SceneSpec | undefined {
@@ -201,11 +219,21 @@ export function placeSpec(w: PlaceWorld, lat: number, lon: number, ageMa: number
   const relief_at = { lat: round5(rl), lon: round5(ro) };
   const list = w.list(origin.lat, origin.lon);
   if (!list) return undefined;
+  // The months of the finest climate where there are some, and the deep past's runs' numbers where not.
+  const m = w.months;
+  const [ml, mo] = m && plate ? w.carry(plate, origin.lat, origin.lon, ageMa, m.frameMa) : [origin.lat, origin.lon];
+  const here = m?.at(ml, mo);
   const [cl, co] = plate ? w.carry(plate, origin.lat, origin.lon, ageMa, w.climateAge) : [origin.lat, origin.lon];
-  const node = w.climate(cl, co);
+  const node = here ? reduceMonths(here.months.t, here.months.p) : w.climate(cl, co);
   if (!node) return undefined;
   const relief = reliefPatch(relief_at.lat, relief_at.lon, w.elevation, w.isoline, w.step);
-  const spec = specFor({ atlas: w.atlas, bin: w.bin, origin: { lat: round5(origin.lat), lon: round5(origin.lon) }, list, forms: w.forms, relief, node, rule: w.rule, climateField: w.climateField, climateAge: w.climateAge, cover: w.cover, generator: w.generator });
+  const field = here ? m!.field : w.climateField;
+  const age = here ? m!.ageMa : w.climateAge;
+  const spec = specFor({ atlas: w.atlas, bin: w.bin, origin: { lat: round5(origin.lat), lon: round5(origin.lon) }, list, forms: w.forms, relief, node, rule: w.rule, climateField: field, climateAge: age, cover: w.cover, generator: w.generator });
   spec.site.relief_at = relief_at;
+  if (here) {
+    const months: Months = { t: here.months.t.map(round2), p: here.months.p.map(round2) };
+    spec.climate = { field, ageMa: age, months, height: Math.round(here.height - w.isoline), coast: Math.round(w.isoline), lapse: m!.lapse, rule: w.rule, water: m!.water, month: m!.month ?? warmestMonth(months), lat: round5(here.lat) };
+  }
   return spec;
 }

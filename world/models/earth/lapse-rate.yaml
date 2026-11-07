@@ -1,0 +1,47 @@
+# A model run here (section 4.10 of the design). The values of its parameters stay in the field.
+id: model:earth/lapse-rate
+type: model
+title: The climate of a cell, at the heights within it
+description: >-
+  A climate model's months stand for the ground of its cell: for the deep past's runs, the model's own surface (its
+  surface geopotential, as a height), and for the last 120,000 years, which were corrected to the climate observed on a
+  half-degree grid, the mean height of the land in the cell. At another height within the cell the air is taken to be
+  colder by one lapse rate, the same in every month and everywhere, with the same rain. The months at a height then
+  give the Köppen–Geiger class there, and the water balance the snow lying in each month. A real lapse rate changes
+  with the season, the hour, the moisture of the air and the slope's aspect, and inversions fill valleys in winter;
+  none of that is here.
+author: machine:claude-code
+code: core/months.ts
+inputs:
+  - { ref: field:earth/climate-late-quaternary, note: "the months of the last 120,000 years" }
+  - { ref: field:earth/climate, note: "the months of the deep past's runs, and the model's surface under them" }
+  - { ref: field:earth/relief, note: "the land of each cell, whose mean height the last 120,000 years' months stand for" }
+  - { ref: field:earth/runoff, note: "the water balance's rules, by which snow falls and melts" }
+  - { ref: field:earth/biome, note: "the thresholds that class the climate at a height" }
+outputs: [field:earth/climate-at-height]
+params:
+  lapse_c_per_km:
+    source:
+      ref: src:loomis-2017-tropical-lapse-rate
+      loc: Results
+      quote: significantly steeper than the modern East African lapse rate of −5.8 ± 0.1°C/km
+  g0:
+    choice: >-
+      Standard gravity, 9.80665 m s⁻², which turns the deep past's runs' surface geopotential (m² s⁻²) into a height:
+      the defined value, not a measurement of the place.
+uncertainty:
+  kind: none
+  note: >-
+    One rate for every place, month and time. The air cools upward by about 5.5–6.5 °C a kilometre in most places and
+    seasons; on the Tibetan Plateau the mean of 2015 was 5.89 ± 2.42 °C/km, spring the steepest and autumn the
+    shallowest (Jiao et al. 2025).
+disagrees:
+  - with: src:loomis-2017-tropical-lapse-rate
+    note: >-
+      In tropical East Africa the lapse rate was steeper at the Last Glacial Maximum, about 6.7 °C/km, than today's
+      5.8 (Loomis et al. 2017, Results). The model uses today's rate at every time, so a glacial mountain's heights
+      come out a little warm.
+checks:
+  - { test: core/months.test.ts, holds: "cools the months up a mountain by the lapse rate, with the same rain" }
+  - { test: core/months.test.ts, holds: "brings a tropical mountain to tundra and then ice where the Köppen thresholds say" }
+  - { test: core/months.test.ts, holds: "lays snow lower in winter than in summer" }

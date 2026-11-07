@@ -3,7 +3,9 @@
 // and y north of the site's origin, which is where the place stood then, not where it is today. Which taxa, how
 // big and when come from the records; where each animal and plant stands, how many, what it is doing and what
 // colour it is come from the generator.
-import type { ClimateClass, ClimateNode } from './climate.ts';
+import type { ClimateClass, ClimateNode, ClimateRule } from './climate.ts';
+import type { Months } from './months.ts';
+import type { WaterParams } from './water.ts';
 import type { Fingerprint } from './fingerprint.ts';
 import type { Form } from './form.ts';
 import type { FeatureTime } from './tileset.ts';
@@ -107,6 +109,31 @@ export interface SceneWater {
   from: string[];
 }
 
+/**
+ * The climate a scene stands in, at its own heights (field:earth/climate-at-height): the months of the node it stands
+ * on, of the finest climate that covers its time, the height they stand for, and what brings them to any other height
+ * and month.
+ */
+export interface SceneClimate {
+  /** the climate field read, and its keyframe */
+  field: string;
+  ageMa: number;
+  /** the node's twelve months, January first: °C and mm */
+  months: Months;
+  /** the height those months stand for, m above the coast the scene's relief is measured from, and that coast above the sea */
+  height: number;
+  coast: number;
+  /** how fast the air cools upward, °C a kilometre */
+  lapse: number;
+  /** the thresholds that class the climate at a height */
+  rule: ClimateRule;
+  /** the water balance's rules, by which snow falls, lies and melts */
+  water: WaterParams;
+  /** the month drawn, 1–12, and the latitude of the node then, which sets its daylight */
+  month: number;
+  lat: number;
+}
+
 /** Everything a scene is made from: nothing else about the world goes in, and the same spec makes the same scene. */
 export interface SceneSpec {
   format: 'lightworld-scene@2';
@@ -129,6 +156,8 @@ export interface SceneSpec {
   /** where the world says the rivers run; without it a scene invents its river */
   water?: SceneWater;
   biome: { climate: ClimateClass; label: string; field: string; ageMa: number; cover: SceneCover; node: ClimateNode };
+  /** the climate at its heights and in its month; without it, the one class of the biome holds everywhere */
+  climate?: SceneClimate;
   taxa: LivingTaxon[];
   omitted: SceneOmission[];
   forms: Record<string, Form>;

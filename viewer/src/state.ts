@@ -20,6 +20,8 @@ export interface ViewState {
   sel: string | null;
   /** the hour of the day, in a city's light */
   hour: number;
+  /** the month a scene of the land is drawn in, 1–12: its place's warmest month if not said */
+  month?: number;
   /** the tree of life is open */
   tree?: boolean;
   /** the fields drawn over the globe that wait for a toggle, by their keys (core/fieldlayers.ts) */
@@ -56,6 +58,7 @@ export function quantize(s: ViewState): ViewState {
     cam,
     window: [quantizeTime(s.window[0]), quantizeTime(s.window[1])],
     hour: Math.max(HOURS[0], Math.min(HOURS[1], s.hour)),
+    month: s.month && s.month >= 1 && s.month <= 12 ? Math.round(s.month) : undefined,
   };
 }
 
@@ -70,6 +73,7 @@ export function toSearch(build: string, s: ViewState): string {
   if (s.cam.heading) p.set('h', String(s.cam.heading));
   if (s.cam.tilt) p.set('v', String(s.cam.tilt));
   if (s.hour !== DEFAULT_HOUR) p.set('hour', String(s.hour));
+  if (s.month) p.set('mo', String(s.month));
   if (s.evidence) p.set('ev', '1');
   if (!s.clouds) p.set('cl', '0');
   if (s.alt.length) p.set('alt', [...s.alt].sort().join(','));
@@ -115,6 +119,7 @@ export function fromSearch(search: string, defaults: ViewState): { build?: strin
     picks: list('pick'),
     sel: p.get('sel'),
     hour: num('hour', defaults.hour),
+    month: num('mo', 0) || undefined,
     tree: p.get('tree') === '1' || undefined,
     layers: toggled.length ? toggled : undefined,
     people: p.get('people') === '1' || undefined,

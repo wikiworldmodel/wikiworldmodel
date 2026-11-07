@@ -8,6 +8,7 @@ import { climateClass, CLIMATE_LABEL, type ClimateClass } from '../../../../core
 import { conj, rotate, toLatLon, unitVector } from '../../../../core/quat.ts';
 import { toMa } from '../../../../core/time.ts';
 import { waterYear, type WaterParams } from '../../../../core/water.ts';
+import { encodeRain, T_OFFSET, T_SCALE, tileKey, type MonthsTileHeader } from '../../../../core/months.ts';
 import type { FieldGrid } from '../../../../core/tileset.ts';
 import { claimOf, subjectTime, type Solved } from './records.ts';
 import { datasetFile } from '../manifest.ts';
@@ -37,6 +38,116 @@ export interface ClimateKeyframe {
   nodes: Float32Array;
   /** what its months give the rivers at each node (field:earth/runoff), where the water balance was asked for */
   water?: { runoff: Float32Array; loss: Float32Array };
+  /** its months at each node with land, and the height they stand for (field:earth/climate-at-height), where asked for */
+  months?: NodeMonths;
+}
+
+/** A keyframe's months at each node where the model has land: the land cells averaged into it, as the tiles keep them. */
+export interface NodeMonths {
+  /** the nodes, as indices into the grid */
+  node: Uint32Array;
+  /** per node, twelve months: temperature and precipitation, as the tiles keep them (core/months.ts) */
+  t: Uint8Array;
+  p: Uint8Array;
+  /** per node, the height above the sea the months stand for, m: the mean of the land cells' */
+  z: Int16Array;
+}
+
+/**
+ * The months of one run at each node: its land cells' months and heights averaged into the node they fall in, as
+ * nodesOfRun averages their classes. `height` is the height of a cell, by its row and column in the run's grid.
+ */
+export function monthsOfRun(grid: FieldGrid, lat: ArrayLike<number>, lon: ArrayLike<number>, land: ArrayLike<number>, t: ArrayLike<number>, p: ArrayLike<number>, height: (j: number, i: number) => number): NodeMonths {
+  const nlat = lat.length;
+  const nlon = lon.length;
+  const n = grid.nx * grid.ny;
+  const sum = new Float64Array(n * 25);
+  const count = new Float64Array(n);
+  for (let j = 0; j < nlat; j++) {
+    const row = Math.round((grid.lat0 - lat[j]) / grid.step);
+    if (row < 0 || row >= grid.ny) continue;
+    for (let i = 0; i < nlon; i++) {
+      if (land[j * nlon + i] < 0.5) continue;
+      const lo = ((lon[i] + 180) % 360) - 180;
+      const col = ((Math.round((lo - grid.lon0) / grid.step) % grid.nx) + grid.nx) % grid.nx;
+      const k = row * grid.nx + col;
+      for (let m = 0; m < 12; m++) {
+        const at = (m * nlat + j) * nlon + i;
+        sum[k * 25 + m] += t[at];
+        sum[k * 25 + 12 + m] += p[at];
+      }
+      sum[k * 25 + 24] += height(j, i);
+      count[k]++;
+    }
+  }
+  const nodes: number[] = [];
+  for (let k = 0; k < n; k++) if (count[k]) nodes.push(k);
+  const out: NodeMonths = { node: Uint32Array.from(nodes), t: new Uint8Array(nodes.length * 12), p: new Uint8Array(nodes.length * 12), z: new Int16Array(nodes.length) };
+  nodes.forEach((k, q) => {
+    const c = count[k];
+    for (let m = 0; m < 12; m++) {
+      out.t[q * 12 + m] = Math.max(0, Math.min(255, Math.round((sum[k * 25 + m] / c) * T_SCALE) + T_OFFSET));
+      out.p[q * 12 + m] = encodeRain(sum[k * 25 + 12 + m] / c);
+    }
+    out.z[q] = Math.max(-32768, Math.min(32767, Math.round(sum[k * 25 + 24] / c)));
+  });
+  return out;
+}
+
+/** A climate field's months in tiles of `deg` degrees, each with every keyframe's land nodes in it (core/months.ts tileKey). */
+export function monthsFiles(field: string, base: string, grid: FieldGrid, keys: ClimateKeyframe[], deg: number): { files: Map<string, Uint8Array>; tiles: Record<string, string> } {
+  const across = Math.round(deg / grid.step);
+  const tiles = new Map<string, { i: number; j: number; parts: Map<number, number[]> }>();
+  const box = (i: number, j: number) => ({ lat0: 90 - j * deg, lon0: -180 + i * deg, nx: across, ny: across + 1 });
+  keys.forEach((k, kf) => {
+    const m = k.months;
+    if (!m) return;
+    m.node.forEach((node, q) => {
+      const la = grid.lat0 - Math.floor(node / grid.nx) * grid.step;
+      const lo = grid.lon0 + (node % grid.nx) * grid.step;
+      const key = tileKey(lo, la, deg);
+      const [i, j] = key.split('_').map(Number);
+      const b = box(i, j);
+      let tile = tiles.get(key);
+      if (!tile) tiles.set(key, (tile = { i, j, parts: new Map() }));
+      let part = tile.parts.get(kf);
+      if (!part) tile.parts.set(kf, (part = []));
+      part.push(q, Math.round((b.lat0 - la) / grid.step) * b.nx + Math.round(((((lo - b.lon0) % 360) + 360) % 360) / grid.step));
+    });
+  });
+  const files = new Map<string, Uint8Array>();
+  const index: Record<string, string> = {};
+  for (const key of [...tiles.keys()].sort()) {
+    const tile = tiles.get(key)!;
+    const arrays: (Uint8Array | Uint16Array | Int16Array)[] = [];
+    const keyframes: MonthsTileHeader['keyframes'] = [];
+    keys.forEach((k, kf) => {
+      const part = tile.parts.get(kf);
+      if (!part) return;
+      const m = k.months!;
+      const count = part.length / 2;
+      const node = new Uint16Array(count);
+      const t = new Uint8Array(count * 12);
+      const p = new Uint8Array(count * 12);
+      const z = new Int16Array(count);
+      for (let e = 0; e < count; e++) {
+        const q = part[e * 2];
+        node[e] = part[e * 2 + 1];
+        t.set(m.t.subarray(q * 12, q * 12 + 12), e * 12);
+        p.set(m.p.subarray(q * 12, q * 12 + 12), e * 12);
+        z[e] = m.z[q];
+      }
+      arrays.push(node, t, p, z);
+      const at = arrays.length - 4;
+      keyframes.push({ ageMa: k.ageMa, frameMa: k.frameMa ?? k.ageMa, node: at, t: at + 1, p: at + 2, z: at + 3 });
+    });
+    const b = box(tile.i, tile.j);
+    const header: MonthsTileHeader = { format: 'lightworld-months@1', field, grid: { lat0: b.lat0, lon0: b.lon0, step: grid.step, nx: b.nx, ny: b.ny }, keyframes };
+    const file = `${base}/${key}.lwt`;
+    files.set(file, encodeTile(header as unknown as Record<string, unknown>, arrays, stableStringify));
+    index[key] = file;
+  }
+  return { files, tiles: index };
 }
 
 /** The water balance's parameters (field:earth/runoff), and the height of a place at an age, which sets its snow threshold. */
@@ -191,7 +302,7 @@ export function spreadOverSea(grid: FieldGrid, nodes: Float32Array, rings: numbe
 }
 
 /** Every keyframe of a climate field, oldest run first in the dataset, youngest first here. */
-export async function climateKeyframes(world: World, f: Field, snapshots: Snapshot[], plateIndex: Map<number, number>, log: (s: string) => void, water?: WaterOptions): Promise<ClimateKeyframe[]> {
+export async function climateKeyframes(world: World, f: Field, snapshots: Snapshot[], plateIndex: Map<number, number>, log: (s: string) => void, water?: WaterOptions, months?: { g0: number }): Promise<ClimateKeyframe[]> {
   const d = world.manifest.datasets[f.data!.from];
   const nc = await openNetcdf(datasetFile(d.id, d));
   const grid = climateGrid((f.grid as { res_deg: number }).res_deg);
@@ -224,7 +335,14 @@ export async function climateKeyframes(world: World, f: Field, snapshots: Snapsh
       const at = (90 - la) * SRC_W + (((lo + 180) % 360) + 360) % 360;
       plate[k] = (plateIndex.get(snap.plate[at]) ?? 0) | (Number.isNaN(raw[k * 4]) ? 0 : LAND_BIT);
     }
-    out.push({ ageMa, values, plate, nodes, ...(water ? { water: waterOfRun(grid, lat, lon, land, t, p, water.params, water.height(ageMa)) } : {}) });
+    let nodeMonths: NodeMonths | undefined;
+    if (months) {
+      // The months stand for the model's own ground: its surface geopotential, as a height.
+      const phis = await nc.read('PHIS', run, 1);
+      const nlon = lon.length;
+      nodeMonths = monthsOfRun(grid, lat, lon, land, t, p, (j, i) => phis[j * nlon + i] / months.g0);
+    }
+    out.push({ ageMa, values, plate, nodes, ...(water ? { water: waterOfRun(grid, lat, lon, land, t, p, water.params, water.height(ageMa)) } : {}), ...(nodeMonths ? { months: nodeMonths } : {}) });
   }
   await nc.close();
   log(`climate: ${out.length} keyframes on a ${grid.step}° grid, from ${d.id}`);
@@ -253,7 +371,7 @@ interface MonthsMeta {
  * coordinates, carried by the plates under them today. Its nodes beyond the latitudes the runs reach are left without a
  * climate, as nodes far from any land are, rather than given the nearest land's.
  */
-export async function monthsKeyframes(f: Field, dir: string, present: Snapshot, plateIndex: Map<number, number>, log: (s: string) => void, water?: WaterOptions): Promise<ClimateKeyframe[]> {
+export async function monthsKeyframes(f: Field, dir: string, present: Snapshot, plateIndex: Map<number, number>, log: (s: string) => void, water?: WaterOptions, months?: { height: (ageMa: number) => (lat: number, lon: number, half: number) => number }): Promise<ClimateKeyframe[]> {
   const meta = JSON.parse(await readFile(join(dir, 'meta.json'), 'utf8')) as MonthsMeta;
   if (meta.units.temperature !== 'degrees celsius' || meta.units.precipitation !== 'millimetres per month' || meta.units.time !== 'years since present') throw new Error(`${f.id}: units ${JSON.stringify(meta.units)} are not read`);
   const grid = climateGrid((f.grid as { res_deg: number }).res_deg);
@@ -300,7 +418,14 @@ export async function monthsKeyframes(f: Field, dir: string, present: Snapshot, 
     }
     // Years before the present, as the file counts them.
     const ageMa = Math.round(-sl.time) / 1e6;
-    out.push({ ageMa, frameMa: 0, values, plate, nodes, ...(water ? { water: waterOfRun(grid, lat, lon, mask, t, p, water.params, water.height(ageMa)) } : {}) });
+    let nodeMonths: NodeMonths | undefined;
+    if (months) {
+      // The months stand for the land of each cell, as the observed climate they were corrected to does.
+      const h = months.height(ageMa);
+      const half = Math.abs(lat[1] - lat[0]) / 2;
+      nodeMonths = monthsOfRun(grid, lat, lon, mask, t, p, (j, i) => h(lat[j], ((lon[i] + 180) % 360) - 180, half));
+    }
+    out.push({ ageMa, frameMa: 0, values, plate, nodes, ...(water ? { water: waterOfRun(grid, lat, lon, mask, t, p, water.params, water.height(ageMa)) } : {}), ...(nodeMonths ? { months: nodeMonths } : {}) });
   }
   out.sort((a, b) => a.ageMa - b.ageMa);
   log(`climate: ${out.length} keyframes on a ${grid.step}° grid, from ${f.data!.from}, ${(out.at(-1)!.ageMa * 1e3).toFixed(0)} ka to the present`);

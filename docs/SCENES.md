@@ -83,6 +83,32 @@ that makes it, at a scale a worker can afford:
 - **Dunes** from the wind of the climate runs, **glacial forms** from the ice's history, and **coasts**
   from the sea level's history: terraces, beaches and drowned valleys.
 
+## The climate at a scene's heights
+
+A climate model's months stand for the ground of its cell. For the deep past's runs (Li et al. 2022), that is the
+model's own surface, its surface geopotential as a height. For the last 120,000 years (Beyer et al. 2020), which were
+corrected to the climate observed on a half-degree grid, it is the mean height of the cell's land. The build keeps every
+keyframe's twelve months at each node with land, with that height, in tiles of 10° (field:earth/climate-at-height). A
+scene fetches the tile its place stood in at the keyframe nearest its time, of the finest climate that covers it.
+
+At any height of the scene, the air is colder by one lapse rate, 5.8 °C a kilometre (model:earth/lapse-rate, from
+Loomis et al. 2017), with the same rain. So:
+
+- **What grows changes up a mountain.** Each height takes the Köppen–Geiger class of its own months and grows what the
+  cover's table gives that class. The treeline falls where the warmest month drops below 10 °C, and permanent ice where
+  it drops below 0 °C. The edge between two classes wanders over the height that 1.5 °C of cooling makes.
+- **A scene has a month.** The viewer's Month control (and `mo=` in a link) picks it, and the place's warmest month is
+  drawn if none is picked. Snow lies wherever the water balance (model:earth/water-balance) holds at least 10 mm of it,
+  in a month colder than its threshold for rain. The sun stands at the month's declination.
+
+Limits:
+- One lapse rate for every place, month and time, with no inversions. Glacial mountains come out a little warm, as the
+  rate was steeper then (about 6.7 °C/km in East Africa).
+- No rain shadows: the rain of a cell is the same at all its heights and on both sides of its hills.
+- No leaf or grass seasons: a deciduous forest is drawn in leaf in January. Its phenology wants a source.
+- Snow lies on the ground's colour only. Trees stay green under it, and lakes and rivers do not freeze.
+- The node is the nearest of a 1° grid, so a scene near a coast can read a node of a model's coast that is not its own.
+
 ## What it costs
 
 What is stored grows with the evidence, not with the Earth's area. Global fields are kept at the
@@ -95,11 +121,12 @@ Each step has a budget, and a test.
 1. **Water,** in the eighth slice: a water balance, routing over the land of any time, today's rivers
    as evidence, and channels drawn from their discharge.
 2. **Scenes at the time shown,** with the finest relief and climate. The eighth slice draws a scene at the time
-   shown, within its stage, on the 0.1° relief where it covers the time; the climate of the last 120,000 years is next,
-   as a scene still reads the deep past's runs.
+   shown, within its stage, on the 0.1° relief where it covers the time. A scene now reads its climate from the finest
+   field that covers the time too, as months at its own heights (below).
 3. **The rock record's environments** for deep-time scenes: the PBDB's collection environments read
    into the atlas, and a scene that draws the one its fossils name.
 4. **Relief below the field,** by erosion, and today's ground from finer tiles of evidence.
 5. **Cover and substrate today:** land cover, soils and geology, licence by licence.
-6. **Season and weather** from the monthly climate.
+6. **Season and weather** from the monthly climate. The month's snow and sun are done (above); leaf, grass, a river's
+   season, the weather and the sky remain.
 7. **Seamless ground,** keyed in the world's coordinates, which the rivers' keying begins.

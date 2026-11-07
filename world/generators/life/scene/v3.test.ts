@@ -12,6 +12,7 @@ import { cubeRoot, latticeOf, sizeWithin } from '../spec.ts';
 import { FAST_BUDGET, FULL_BUDGET, INSTANCE_STRIDE, protoParts, SceneStream, type LifeView } from '../stream.ts';
 import { CELL, cellParts, densityOf, EXTENT, GENERATOR, placeLook, VERSION, watersFor, type CellRows, type LivingParams } from './v3.ts';
 import type { ChannelLaws } from '../../../../core/scene.ts';
+import { snowOf } from '../climate.ts';
 
 const ROOT = join(import.meta.dirname, '../../..');
 const record = parse(readFileSync(join(ROOT, 'generators/life/scene.yaml'), 'utf8'));
@@ -56,9 +57,21 @@ const flat = (height: number): ReliefPatch => {
   return { lat0: 46, lon0: -6, step: 1, nx, ny, z: new Array(nx * ny).fill(height) };
 };
 
-function specOf(opts: { climate?: SceneSpec['biome']['climate']; cover?: SceneCover; relief?: ReliefPatch; seed?: string; taxa?: LivingTaxon[] } = {}): SceneSpec {
+// The rules of the climate at a height: the values of the records (climate-at-height.yaml, biome.yaml and runoff.yaml).
+const AT_HEIGHT = {
+  lapse: 5.8,
+  rule: { polar: 10, frost: 0, tropical: 18, cold: 0, arid: 1, desert: 0.5 },
+  water: { hamon: { a: 13.97, b: 4.95, c: 0.062 }, t_rain: 3.3, t_snow: -10, t_snow_high: -1, high_m: 1000, melt_max: 0.5, direct: 0.05, soil_mm: 150, rfactor: 0.5, obliquity_deg: 23.44, equinox_day: 80 },
+};
+// Made-up months for a made-up place: a wet equatorial lowland, and a temperate one with cold winters.
+const TROPICS = { t: [26, 26.5, 27, 26.5, 26, 25.5, 25, 25.5, 26, 26.5, 26.5, 26], p: Array(12).fill(220) };
+const TEMPERATE = { t: [-2, -1, 3, 8, 13, 17, 19, 18, 14, 9, 4, 0], p: Array(12).fill(80) };
+const climateOf = (months: { t: number[]; p: number[] }, height: number, month: number): NonNullable<SceneSpec['climate']> => ({ field: 'field:test', ageMa: 0, months, height, coast: 0, month, lat: 0, ...AT_HEIGHT });
+
+function specOf(opts: { climate?: SceneSpec['biome']['climate']; cover?: SceneCover; relief?: ReliefPatch; seed?: string; taxa?: LivingTaxon[]; atHeight?: SceneSpec['climate'] } = {}): SceneSpec {
   const taxa = opts.taxa ?? TAXA;
   return {
+    ...(opts.atHeight ? { climate: opts.atHeight } : {}),
     format: 'lightworld-scene@2',
     site: { id: 'test', label: 'a test', origin: { lat: 40, lon: 0 }, span: [-1e6, 1e6], slice: 0 },
     relief: opts.relief ?? flat(300),
@@ -309,6 +322,32 @@ describe('what the land allows', () => {
     expect(s.look.water).toBe(0);
     expect(s.ground.at(-60000, 0)).toBeLessThan(0);
     expect(s.ground.at(60000, 0)).toBeGreaterThan(0);
+  });
+
+  it('grows what the climate of each height bears: forest below the treeline, none above it', () => {
+    // The same equatorial months, standing for a lowland at 300 m: a rain forest there, and above the height where the
+    // warmest month falls below 10 °C, 17 / 5.8 km up, tundra.
+    const low = new SceneStream(specOf({ climate: 'rainforest', relief: flat(300), atHeight: climateOf(TROPICS, 300, 3) }));
+    const high = new SceneStream(specOf({ climate: 'rainforest', relief: flat(3800), atHeight: climateOf(TROPICS, 300, 3) }));
+    let lowCanopy = 0;
+    for (let k = 0; k < 100; k++) {
+      const [x, y] = [k * 137 - 6000, k * 91 - 4000];
+      low.cover.at(x, y);
+      high.cover.at(x, y);
+      lowCanopy += low.cover.canopy;
+      expect(high.cover.canopy).toBe(0);
+    }
+    expect(lowCanopy / 100).toBeGreaterThan(0.3);
+    expect(trees(high)).toBeLessThan(trees(low) / 10);
+  });
+
+  it('lays snow down to where the month holds it: low in winter, high or not at all in summer', () => {
+    const jan = snowOf(specOf({ relief: flat(300), atHeight: climateOf(TEMPERATE, 300, 1) }));
+    const jul = snowOf(specOf({ relief: flat(300), atHeight: climateOf(TEMPERATE, 300, 7) }));
+    expect(jan.line).toBeLessThanOrEqual(300);
+    expect(jul.line).toBeGreaterThan(2000);
+    expect(snowOf(specOf({ relief: flat(300), atHeight: climateOf(TROPICS, 300, 1) })).line).toBe(Infinity);
+    expect(snowOf(specOf({ relief: flat(300) })).line).toBe(Infinity);
   });
 
   it('rises with the land: a place in the hills has its water up there', () => {

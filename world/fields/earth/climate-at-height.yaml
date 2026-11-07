@@ -1,0 +1,21 @@
+# The months of each climate at every node with land, and the height they stand for, which a scene brings to the heights
+# of its own ground (model:earth/lapse-rate). It is not drawn on the globe: a scene reads it at the place it shows.
+id: field:earth/climate-at-height
+type: field
+title: Climate of the land, at a height
+quantity: monthly temperature and precipitation, and the height they stand for
+unit: °C, mm a month, m
+description: >-
+  The twelve months of the climate that paints the land, at each node where its model has land: the climate of the
+  last 120,000 years where it covers the time, and the deep past's runs before it. Each node keeps the height its months
+  stand for, and at any other height the air is colder by the lapse rate, with the same rain. So within a scene the
+  climate changes up a mountain: its class, where the trees stop and the ice begins, and how much snow lies in each
+  month. It is a model's answer twice over, the climate model's and then a single lapse rate's.
+kind: raster
+derived: true
+from: [field:earth/climate-late-quaternary, field:earth/climate, field:earth/relief]
+rule: lapse-rate
+spread: unknown
+params:
+  lapse_c_per_km: 5.8
+  g0: 9.80665

@@ -26,7 +26,8 @@ export const fromMa = (ma: number): number => PRESENT_YEAR - ma * 1e6;
 export const toMa = (year: number): number => (PRESENT_YEAR - year) / 1e6;
 export const fromKa = (ka: number): number => PRESENT_YEAR - ka * 1e3;
 
-const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+export const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const MONTHS = MONTH_NAMES;
 /** Day number of 15 October 1582, the first day of the Gregorian calendar. */
 const REFORM = 2299161;
 /** The earliest year (astronomical) dates are read and written for: day numbers start in 4713 BCE. */
