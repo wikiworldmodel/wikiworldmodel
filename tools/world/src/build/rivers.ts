@@ -70,7 +70,29 @@ export interface RiverNetwork {
   plate?: (k: number) => number;
   /** today's lakes, as nodes, where the network is today's ground: a lake that spills is drawn only where they are */
   today?: Uint8Array;
-  keyframes: { ageMa: number; seaLevel: number; flow: Flow }[];
+  /** each time's water, as what is written of it: the flow at each reach's last dry node, and the lakes drawn */
+  keyframes: RiverKeyframe[];
+}
+
+/** A keyframe as kept: a whole grid's flow is reduced to its reaches as soon as it is made. */
+export interface RiverKeyframe {
+  ageMa: number;
+  seaLevel: number;
+  /** per reach: the mean flow where its water is when it ends, m³/s */
+  q: Float32Array;
+  lakes: Lake[];
+}
+
+/** What a keyframe keeps of a flow over the whole grid (see `drawn` and `lastDry`). */
+function keyframeOf(reaches: Reach[], today: Uint8Array | undefined, ageMa: number, seaLevel: number, f: Flow, p: DrainageParams): RiverKeyframe {
+  const lakes = drawn(today, f, p);
+  const under = new Set<number>();
+  for (const l of lakes) for (const k of l.nodes) under.add(k);
+  const q = Float32Array.from(reaches, (x) => {
+    const k = lastDry(x, f, under);
+    return k < 0 ? 0 : f.q[k];
+  });
+  return { ageMa, seaLevel, q, lakes };
 }
 
 const zeros = (n: number) => new Float32Array(n);
@@ -95,7 +117,7 @@ export function recentRivers(z: Float32Array, ocean: Uint8Array, g: NodeGrid, st
     const seaLevel = seaLevelAt(stack, fromMa(ageMa));
     const sea = seaAt(z, g, ocean, seaLevel);
     const f = flow(z, g, r, h, regrid(water.runoff, water.grid, g), regrid(water.loss, water.grid, g), sea);
-    return { ageMa, seaLevel, flow: f };
+    return keyframeOf(rs, today, ageMa, seaLevel, f, p);
   });
   return { grid: g, frameMa: 0, reaches: rs, km2, z, plate, today, keyframes };
 }
@@ -110,7 +132,7 @@ export function deepRivers(z: ArrayLike<number>, g: NodeGrid, isoline: number, a
   const h = hollowsOf(z, g, r);
   const { reaches: rs, km2 } = networkOf(z, g, r, h, p.deep_min_km2);
   const f = flow(z, g, r, h, regrid(water.runoff, water.grid, g), regrid(water.loss, water.grid, g), sea);
-  return { grid: g, frameMa: ageMa, reaches: rs, km2, z, plate, keyframes: [{ ageMa, seaLevel: isoline, flow: f }] };
+  return { grid: g, frameMa: ageMa, reaches: rs, km2, z, plate, keyframes: [keyframeOf(rs, undefined, ageMa, isoline, f, p)] };
 }
 
 /**
@@ -118,13 +140,13 @@ export function deepRivers(z: ArrayLike<number>, g: NodeGrid, isoline: number, a
  * averages dam a narrow gorge, and would otherwise hold a lake behind it that never stood there; a lake that does not
  * spill is the climate's, and is drawn wherever it stands.
  */
-function drawn(net: RiverNetwork, f: Flow, p: DrainageParams): Lake[] {
+function drawn(today: Uint8Array | undefined, f: Flow, p: DrainageParams): Lake[] {
   return f.lakes.filter((l) => {
     if (l.km2 < p.min_lake_km2) return false;
     if (!l.spills) return true;
-    if (!net.today) return false;
+    if (!today) return false;
     let n = 0;
-    for (const k of l.nodes) if (net.today[k]) n++;
+    for (const k of l.nodes) if (today[k]) n++;
     return n >= p.spill_overlap * l.nodes.length;
   });
 }
@@ -177,17 +199,11 @@ export function encodeNetwork(net: RiverNetwork): Uint8Array {
 }
 
 /** A span of a network's keyframes as one file: each reach's flow, and the lakes drawn. */
-export function encodeKeyframes(net: RiverNetwork, keys: RiverNetwork['keyframes'], p: DrainageParams): Uint8Array {
+export function encodeKeyframes(keys: RiverKeyframe[]): Uint8Array {
   const arrays: Arr[] = [];
   const add = (a: Arr) => arrays.push(a) - 1;
   const keyframes: RiversKeyframe[] = keys.map((kf) => {
-    const lakes = drawn(net, kf.flow, p);
-    const under = new Set<number>();
-    for (const l of lakes) for (const k of l.nodes) under.add(k);
-    const q = Float32Array.from(net.reaches, (x) => {
-      const k = lastDry(x, kf.flow, under);
-      return k < 0 ? 0 : kf.flow.q[k];
-    });
+    const { lakes, q } = kf;
     const lakeStart = new Uint32Array(lakes.length + 1);
     lakes.forEach((l, i) => (lakeStart[i + 1] = lakeStart[i] + l.nodes.length));
     const lakeNodes = new Int32Array(lakeStart[lakes.length]);
@@ -207,14 +223,14 @@ export function encodeKeyframes(net: RiverNetwork, keys: RiverNetwork['keyframes
 }
 
 /** A network's files: the network, then its keyframes a span at a time. */
-export function riverFiles(net: RiverNetwork, base: string, p: DrainageParams, span: [number, number], today = false, chunk = 12): { files: Map<string, Uint8Array>; set: RiversSet } {
+export function riverFiles(net: RiverNetwork, base: string, span: [number, number], today = false, chunk = 12): { files: Map<string, Uint8Array>; set: RiversSet } {
   const files = new Map<string, Uint8Array>();
   files.set(`${base}/network.lwt`, encodeNetwork(net));
   const chunks: RiversSet['chunks'] = [];
   for (let i = 0; i < net.keyframes.length; i += chunk) {
     const part = net.keyframes.slice(i, i + chunk);
     const file = `${base}/${chunks.length}.lwt`;
-    files.set(file, encodeKeyframes(net, part, p));
+    files.set(file, encodeKeyframes(part));
     chunks.push({ file, keyframesMa: part.map((k) => k.ageMa) });
   }
   return { files, set: { network: `${base}/network.lwt`, ...(today ? { today } : {}), chunks, frameMa: net.frameMa, span, reaches: net.reaches.length } };

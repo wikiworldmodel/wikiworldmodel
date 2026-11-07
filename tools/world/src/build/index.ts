@@ -657,7 +657,7 @@ export async function runBuild(args: string[]): Promise<number> {
       const g = { nx: snap.src!.width, ny: snap.src!.height, step: relief.res };
       const net = recentRivers(relief.drain!.z, relief.drain!.ocean, g, stack, times, p, (k) => snap.plate[k], relief.drain!.lakes);
       recentFrom = fromMa(relief.coverMa[0]);
-      const out = riverFiles(net, 'rivers/recent', p, [recentFrom, fromMa(relief.coverMa[1])], true);
+      const out = riverFiles(net, 'rivers/recent', [recentFrom, fromMa(relief.coverMa[1])], true);
       for (const [path, bytes] of out.files) putRiver(path, bytes);
       sets.push(out.set);
       log(`rivers  ${net.reaches.length} reaches of today's ground, ${net.keyframes.length} keyframes back to ${relief.coverMa[0]} Ma`);
@@ -672,7 +672,7 @@ export async function runBuild(args: string[]): Promise<number> {
       const span: [number, number] = [fromMa(k.ageMa + half), Math.min(fromMa(Math.max(0, k.ageMa - half)), recentFrom)];
       if (span[1] <= span[0]) continue;
       const net = deepRivers(snap.elev, { nx: 360, ny: 181, step: 1 }, coast, k.ageMa, { ageMa: k.ageMa, grid: cg, runoff: k.water!.runoff, loss: k.water!.loss }, p, (n) => snap.plate[n]);
-      const out = riverFiles(net, `rivers/deep/${k.ageMa}`, p, span);
+      const out = riverFiles(net, `rivers/deep/${k.ageMa}`, span);
       for (const [path, bytes] of out.files) putRiver(path, bytes);
       sets.push(out.set);
     }
