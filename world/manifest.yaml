@@ -674,8 +674,9 @@ datasets:
       by: machine:claude-code
       how: >-
         Citation and DOI from the product page and DataCite; the datum and how the 30 and 60 arc-second
-        grids were made from the ETOPO 2022 User Guide (version 1.2), sections 2.1 and 2.2. The file's
-        own tags read: 21600 × 10800 cells of 32-bit floats, deflated in tiles of 256.
+        grids were made from the ETOPO 2022 User Guide (NCEI's PDF "1.2 ETOPO 2022 User Guide.pdf"),
+        sections 2.1 and 2.2, and the quote from section 2.1 found in the guide's text by script. The
+        file's own tags read: 21600 × 10800 cells of 32-bit floats, deflated in tiles of 256.
     fetch:
       url: https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO2022/data/60s/60s_surface_elev_gtif/ETOPO_2022_v1_60s_N90W180_surface.tif
       sha256: 9d27d4b8ea8e76977e2988bca667d7c8fa68b927355feffcddd6b4875a7fd08e

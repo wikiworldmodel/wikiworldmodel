@@ -1,6 +1,7 @@
 // Every layer answers everywhere, in a tier (docs/STRUCTURE.md section 3.3): evidence, model, generic or unknown,
 // never nothing; and generic land stands in where nothing records where the land was.
 import { describe, expect, it } from 'vitest';
+import type { SeaBin } from './atlas.ts';
 import type { PlanetFile } from './planet.ts';
 import { LAYERS, resolve, seaTierOf, tierCounts, TIERS, type ResolveWorld } from './resolve.ts';
 import type { FeatureTime } from './tileset.ts';
@@ -56,7 +57,7 @@ describe('resolve', () => {
     // Two stages of one sea: the first with a genus recorded in the north-west patch, one stood in for in the north-east and
     // nothing at all in the south-west; the second with no list anywhere.
     const taxon = { no: 1, label: 'Atrypa', rank: 'genus', group: 'Rhynchonellata', rows: 3, span: [390, 385] as [number, number] };
-    const bins = [
+    const bins: SeaBin[] = [
       { format: 'lightworld-sea-bin@1' as const, from: GA(0.4), to: GA(0.38), slice: GA(0.39), name: 'a', taxa: [taxon, { ...taxon, standin: true }], nodes: { 0: [0, 255, 0, 12], 1: [1, 255, 2, 500], 4: [] } },
       { format: 'lightworld-sea-bin@1' as const, from: GA(0.38), to: GA(0.36), slice: GA(0.37), name: 'b', taxa: [], nodes: {} },
     ];

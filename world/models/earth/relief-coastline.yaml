@@ -19,7 +19,7 @@ params:
   isoline_m:
     source:
       ref: src:etopo-2022-60s
-      loc: "ETOPO 2022 User Guide, version 1.2, section 2.1, p. 3"
+      loc: "ETOPO 2022 User Guide, section 2.1, p. 2"
       quote: For most purposes, EGM2008 is an adequate approximation of mean sea level.
 uncertainty:
   kind: band
