@@ -17,7 +17,7 @@ import type { SceneFileV2 } from '../../../core/scene.ts';
 import { parsePoint, toMa, type TimePointInput } from '../../../core/time.ts';
 import type { FramesFile, Tileset } from '../../../core/tileset.ts';
 import { indexTree, layoutTree, type TreeFile } from '../../../core/tree.ts';
-import { CELL } from '../../../world/generators/life/scene/v2.ts';
+import { CELL } from '../../../world/generators/life/scene/v3.ts';
 import { FULL_BUDGET, SceneStream } from '../../../world/generators/life/stream.ts';
 import type { LandSnapshot, PbdbSnapshot } from '../src/pbdb.ts';
 import { pbdbNumber } from '../src/pbdb.ts';

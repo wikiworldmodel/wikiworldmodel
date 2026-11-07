@@ -14,7 +14,7 @@ import { getJSON, latestBuild } from '../data.ts';
 import { rulerTicks } from '../ui/timebar.ts';
 import './coverage.css';
 
-const LAYER_LABEL: Record<LayerId, string> = { planet: 'The planet', geography: 'Land and sea', climate: 'Climate', ice: 'Ice', life: 'Life', people: 'People', polity: 'States' };
+const LAYER_LABEL: Record<LayerId, string> = { planet: 'The planet', geography: 'Land and sea', climate: 'Climate', ice: 'Ice', water: 'Rivers and lakes', life: 'Life', people: 'People', polity: 'States' };
 const TIER_LABEL: Record<Tier, string> = { evidence: 'Evidence', model: 'Model', generic: 'Generic', unknown: 'Unknown' };
 const TIER_SAY: Record<Tier, string> = {
   evidence: 'records or rows put it there',

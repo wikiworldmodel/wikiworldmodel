@@ -1,0 +1,31 @@
+# What the land gives its rivers, from the months of each climate (model:earth/water-balance). It is not drawn: the
+# rivers and lakes are routed from it.
+id: field:earth/runoff
+type: field
+title: Runoff, and what a lake loses
+quantity: what the land gives its rivers in a year, and what a lake's surface loses to the air beyond the rain on it
+unit: mm a year
+description: >-
+  How much of each year's rain and snow runs off the land, from the months of the climate that paints the land: the
+  climate of the last 120,000 years where it covers the time, and the deep past's runs before it. It is a model's
+  answer twice over, the climate model's and then the water balance's.
+kind: raster
+derived: true
+from: [field:earth/climate-late-quaternary, field:earth/climate]
+rule: water-balance
+spread: unknown
+params:
+  hamon_a: 13.97
+  hamon_b: 4.95
+  hamon_c: 0.062
+  t_rain: 3.3
+  t_snow: -10
+  t_snow_high: -1
+  high_m: 1000
+  melt_max: 0.5
+  direct: 0.05
+  soil_mm: 150
+  rfactor: 0.5
+  obliquity_deg: 23.44
+  equinox_day: 80
+  lake_factor: 1

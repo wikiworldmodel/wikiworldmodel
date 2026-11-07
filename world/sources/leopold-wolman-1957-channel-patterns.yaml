@@ -1,0 +1,21 @@
+id: src:leopold-wolman-1957-channel-patterns
+type: publication
+kind: measurement
+citation: >-
+  Leopold, L.B. & Wolman, M.G. (1957). River channel patterns: braided, meandering and straight. U.S.
+  Geological Survey Professional Paper 282-B.
+authors:
+  - "Leopold, L.B."
+  - "Wolman, M.G."
+published: 1957
+title: "River channel patterns: braided, meandering and straight"
+container: "U.S. Geological Survey Professional Paper 282-B"
+url: https://pubs.usgs.gov/pp/0282b/report.pdf
+license: public-domain
+license_note: A work of the United States government.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read from the USGS scan (sha256 9958776842f33d4a9c551bb3b8986e38e42315f711877b53f301dad5b9541ae4), whose
+    text layer is an OCR with errors. Its equation (1), on p. 60, is not in the text layer and was read from an
+    image of the page; quotes checked by script against the text layer. Page numbers are the printed ones.

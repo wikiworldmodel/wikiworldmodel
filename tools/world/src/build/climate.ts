@@ -7,6 +7,7 @@ import { encodeNode, LAND_BIT, reduceMonths, type ClimateHeader, type ClimateNod
 import { climateClass, CLIMATE_LABEL, type ClimateClass } from '../../../../core/climate.ts';
 import { conj, rotate, toLatLon, unitVector } from '../../../../core/quat.ts';
 import { toMa } from '../../../../core/time.ts';
+import { waterYear, type WaterParams } from '../../../../core/water.ts';
 import type { FieldGrid } from '../../../../core/tileset.ts';
 import { claimOf, subjectTime, type Solved } from './records.ts';
 import { datasetFile } from '../manifest.ts';
@@ -34,6 +35,91 @@ export interface ClimateKeyframe {
   plate: Uint16Array;
   /** the same nodes as numbers, for the build's checks; NaN where the model has no land near */
   nodes: Float32Array;
+  /** what its months give the rivers at each node (field:earth/runoff), where the water balance was asked for */
+  water?: { runoff: Float32Array; loss: Float32Array };
+}
+
+/** The water balance's parameters (field:earth/runoff), and the height of a place at an age, which sets its snow threshold. */
+export interface WaterOptions {
+  params: WaterParams & { lake_factor: number };
+  height: (ageMa: number) => (lat: number, lon: number) => number;
+}
+
+/**
+ * What a run's months give the rivers at each node: the runoff of its land, and what a lake's surface would lose to
+ * evaporation beyond the rain on it, mm in a year (model:earth/water-balance). Each land cell of the run is balanced
+ * on its own and the cells averaged into each node, then spread out over the sea as the climate is.
+ */
+export function waterOfRun(grid: FieldGrid, lat: ArrayLike<number>, lon: ArrayLike<number>, land: ArrayLike<number>, t: ArrayLike<number>, p: ArrayLike<number>, w: WaterOptions['params'], height: (lat: number, lon: number) => number): { runoff: Float32Array; loss: Float32Array } {
+  const nlat = lat.length;
+  const nlon = lon.length;
+  const n = grid.nx * grid.ny;
+  const sum = new Float64Array(n * 2);
+  const count = new Float64Array(n);
+  const months = new Float64Array(12);
+  const rains = new Float64Array(12);
+  for (let j = 0; j < nlat; j++) {
+    const row = Math.round((grid.lat0 - lat[j]) / grid.step);
+    if (row < 0 || row >= grid.ny) continue;
+    for (let i = 0; i < nlon; i++) {
+      if (land[j * nlon + i] < 0.5) continue;
+      for (let m = 0; m < 12; m++) {
+        const at = (m * nlat + j) * nlon + i;
+        months[m] = t[at];
+        rains[m] = p[at];
+      }
+      const lo = ((lon[i] + 180) % 360) - 180;
+      const y = waterYear(months, rains, lat[j], height(lat[j], lo), w);
+      const col = ((Math.round((lo - grid.lon0) / grid.step) % grid.nx) + grid.nx) % grid.nx;
+      const k = row * grid.nx + col;
+      sum[k * 2] += y.runoff;
+      sum[k * 2 + 1] += w.lake_factor * y.pet - y.precip;
+      count[k]++;
+    }
+  }
+  const packed = new Float32Array(n * 4).fill(NaN);
+  for (let k = 0; k < n; k++) {
+    if (!count[k]) continue;
+    packed[k * 4] = sum[k * 2] / count[k];
+    packed[k * 4 + 1] = sum[k * 2 + 1] / count[k];
+    packed[k * 4 + 2] = 0;
+    packed[k * 4 + 3] = 0;
+  }
+  const spread = spreadOverSea(grid, packed, 16);
+  const runoff = new Float32Array(n);
+  const loss = new Float32Array(n);
+  for (let k = 0; k < n; k++) {
+    runoff[k] = Number.isNaN(spread[k * 4]) ? 0 : spread[k * 4];
+    loss[k] = Number.isNaN(spread[k * 4 + 1]) ? 0 : spread[k * 4 + 1];
+  }
+  return { runoff, loss };
+}
+
+/** The water balance's parameters as field:earth/runoff writes them, one per value so each can say where it comes from. */
+export function waterParamsOf(p: Record<string, unknown>): WaterOptions['params'] {
+  const n = (k: string) => {
+    if (typeof p[k] !== 'number') throw new Error(`field:earth/runoff: params.${k} is not a number`);
+    return p[k] as number;
+  };
+  return {
+    hamon: { a: n('hamon_a'), b: n('hamon_b'), c: n('hamon_c') },
+    t_rain: n('t_rain'),
+    t_snow: n('t_snow'),
+    t_snow_high: n('t_snow_high'),
+    high_m: n('high_m'),
+    melt_max: n('melt_max'),
+    direct: n('direct'),
+    soil_mm: n('soil_mm'),
+    rfactor: n('rfactor'),
+    obliquity_deg: n('obliquity_deg'),
+    equinox_day: n('equinox_day'),
+    lake_factor: n('lake_factor'),
+  };
+}
+
+/** The height of a place on a 1° snapshot, in metres. */
+export function heightOn(s: Snapshot): (lat: number, lon: number) => number {
+  return (la, lo) => s.elev[(90 - Math.round(la)) * SRC_W + ((((Math.round(lo) + 180) % 360) + 360) % 360)];
 }
 
 /** The nodes of one run: land cells of the model averaged into each node, then spread out over the sea. */
@@ -105,7 +191,7 @@ export function spreadOverSea(grid: FieldGrid, nodes: Float32Array, rings: numbe
 }
 
 /** Every keyframe of a climate field, oldest run first in the dataset, youngest first here. */
-export async function climateKeyframes(world: World, f: Field, snapshots: Snapshot[], plateIndex: Map<number, number>, log: (s: string) => void): Promise<ClimateKeyframe[]> {
+export async function climateKeyframes(world: World, f: Field, snapshots: Snapshot[], plateIndex: Map<number, number>, log: (s: string) => void, water?: WaterOptions): Promise<ClimateKeyframe[]> {
   const d = world.manifest.datasets[f.data!.from];
   const nc = await openNetcdf(datasetFile(d.id, d));
   const grid = climateGrid((f.grid as { res_deg: number }).res_deg);
@@ -138,7 +224,7 @@ export async function climateKeyframes(world: World, f: Field, snapshots: Snapsh
       const at = (90 - la) * SRC_W + (((lo + 180) % 360) + 360) % 360;
       plate[k] = (plateIndex.get(snap.plate[at]) ?? 0) | (Number.isNaN(raw[k * 4]) ? 0 : LAND_BIT);
     }
-    out.push({ ageMa, values, plate, nodes });
+    out.push({ ageMa, values, plate, nodes, ...(water ? { water: waterOfRun(grid, lat, lon, land, t, p, water.params, water.height(ageMa)) } : {}) });
   }
   await nc.close();
   log(`climate: ${out.length} keyframes on a ${grid.step}° grid, from ${d.id}`);
@@ -167,7 +253,7 @@ interface MonthsMeta {
  * coordinates, carried by the plates under them today. Its nodes beyond the latitudes the runs reach are left without a
  * climate, as nodes far from any land are, rather than given the nearest land's.
  */
-export async function monthsKeyframes(f: Field, dir: string, present: Snapshot, plateIndex: Map<number, number>, log: (s: string) => void): Promise<ClimateKeyframe[]> {
+export async function monthsKeyframes(f: Field, dir: string, present: Snapshot, plateIndex: Map<number, number>, log: (s: string) => void, water?: WaterOptions): Promise<ClimateKeyframe[]> {
   const meta = JSON.parse(await readFile(join(dir, 'meta.json'), 'utf8')) as MonthsMeta;
   if (meta.units.temperature !== 'degrees celsius' || meta.units.precipitation !== 'millimetres per month' || meta.units.time !== 'years since present') throw new Error(`${f.id}: units ${JSON.stringify(meta.units)} are not read`);
   const grid = climateGrid((f.grid as { res_deg: number }).res_deg);
@@ -213,7 +299,8 @@ export async function monthsKeyframes(f: Field, dir: string, present: Snapshot, 
       plate[k] = (plateIndex.get(present.plate[at]) ?? 0) | (Number.isNaN(raw[k * 4]) ? 0 : LAND_BIT);
     }
     // Years before the present, as the file counts them.
-    out.push({ ageMa: Math.round(-sl.time) / 1e6, frameMa: 0, values, plate, nodes });
+    const ageMa = Math.round(-sl.time) / 1e6;
+    out.push({ ageMa, frameMa: 0, values, plate, nodes, ...(water ? { water: waterOfRun(grid, lat, lon, mask, t, p, water.params, water.height(ageMa)) } : {}) });
   }
   out.sort((a, b) => a.ageMa - b.ageMa);
   log(`climate: ${out.length} keyframes on a ${grid.step}° grid, from ${f.data!.from}, ${(out.at(-1)!.ageMa * 1e3).toFixed(0)} ka to the present`);

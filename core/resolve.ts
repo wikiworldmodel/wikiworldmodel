@@ -16,7 +16,7 @@ import type { Scenario } from './scenario.ts';
 export type Tier = 'evidence' | 'model' | 'generic' | 'unknown';
 export const TIERS: readonly Tier[] = ['evidence', 'model', 'generic', 'unknown'];
 
-export const LAYERS = ['planet', 'geography', 'climate', 'ice', 'life', 'people', 'polity'] as const;
+export const LAYERS = ['planet', 'geography', 'climate', 'ice', 'water', 'life', 'people', 'polity'] as const;
 export type LayerId = (typeof LAYERS)[number];
 
 export interface Answer {
@@ -43,6 +43,8 @@ export interface ResolveWorld {
   ice?: [number, number];
   people?: [number, number];
   polities?: [number, number];
+  /** the rivers: where a dataset saw them and when it is evidence for, and the spans the drainage model routes */
+  water?: { observed?: { span: [number, number]; at: (lat: number, lon: number) => boolean }; model: [number, number][] };
   life?: (lat: number, lon: number, t: number) => LifeTier | null;
   polity?: (lat: number, lon: number, t: number) => string | undefined;
   /** where the generic prior puts land */
@@ -73,6 +75,12 @@ export function resolve(w: ResolveWorld, layer: LayerId, lat: number, lon: numbe
       if (within(w.ice, t)) return a('model', 'ice-sheet field', 'A reconstruction of the ice sheets covers this time.');
       if (look.ice) return a('evidence', look.iceReach, 'A glaciation\'s records say how far its ice reached.');
       return a('generic', 'none', 'No ice is drawn: nothing records ice here then, which does not mean there was none.');
+    case 'water': {
+      const o = w.water?.observed;
+      if (o && within(o.span, t) && o.at(lat, lon)) return a('evidence', 'observed rivers', 'Rivers wider than 30 m were seen here from space, and how wide.');
+      if (w.water?.model.some((m) => within(m, t))) return a('model', 'drainage', 'The water of the climate, routed over the ground of the time, says where rivers ran and how much they carried.');
+      return a('generic', 'invented', 'Nothing routes water here then: a scene invents its river.');
+    }
     case 'life': {
       const tier = w.life?.(lat, lon, t) ?? null;
       if (tier === null) return a('unknown', null, 'The atlases of who lived where reach only the Phanerozoic.');

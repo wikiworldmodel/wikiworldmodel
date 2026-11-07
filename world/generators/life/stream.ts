@@ -8,7 +8,8 @@ import { fingerprint, type Fingerprint, type Part } from '../../../core/fingerpr
 import { Mesh, meshParts } from '../city/kit.ts';
 import { hashString } from '../city/math.ts';
 import { drawAnimal, drawPlant, POSE, type Detail, type Stance } from './forms.ts';
-import { CELL, CELLS, cellParts, cellKey, coverMask, EXTENT, groundGrids, LandCover, makePlan, placeLook, waterSheet, watersFor, type CellRows, type LivingParams, type LivingPlan, type PlaceLook } from './scene/v2.ts';
+import { CELL, CELLS, cellParts, cellKey, coverMask, EXTENT, groundGrids, LandCover, makePlan, placeLook, waterLevels, waterRibbons, waterSheet, watersFor, type CellRows, type LivingParams, type LivingPlan, type PlaceLook } from './scene/v3.ts';
+import type { Waters } from './land.ts';
 
 export const INSTANCE_STRIDE = 28;
 
@@ -70,6 +71,7 @@ const WALKING = new Set<number>([POSE.walk, POSE.fly]);
 
 export class SceneStream {
   readonly look: PlaceLook;
+  private waters: Waters;
   readonly levels: GroundGridData[];
   readonly ground: GroundSampler;
   readonly plan: LivingPlan;
@@ -87,10 +89,13 @@ export class SceneStream {
     this.params = spec.generator.params as unknown as LivingParams;
     this.look = placeLook(spec);
     const waters = watersFor(spec, this.look);
+    this.waters = waters;
     this.levels = groundGrids(spec, this.look, waters);
     this.ground = new GroundSampler(this.levels);
-    this.plan = makePlan(spec, this.ground, this.look, waters);
-    this.cover = new LandCover(spec, this.ground, this.look.water, this.plan.focus);
+    // Where the world gives the rivers, the water's level varies over the scene; otherwise it is the place's one level.
+    const levelAt = waters.paths ? waterLevels(waters) : undefined;
+    this.plan = makePlan(spec, this.ground, this.look, waters, levelAt);
+    this.cover = new LandCover(spec, this.ground, this.look.water, this.plan.focus, levelAt);
     this.tones = spec.taxa.map((t) => hashString(t.id) & 255);
     this.fullReach = this.params.reach.full;
     this.nearReach = this.params.reach.near;
@@ -101,8 +106,11 @@ export class SceneStream {
     return { data: coverMask(this.cover, size, EXTENT), box: [-EXTENT, -EXTENT, EXTENT, EXTENT] };
   }
 
-  water(): { vertices: Float32Array; indices: Uint32Array } {
-    return waterSheet(this.spec, this.look);
+  /** The water: ribbons along the world's rivers, or the place's one sheet; with each vertex's flow and depth. */
+  water(): { vertices: Float32Array; indices: Uint32Array; flow: Float32Array } {
+    if (this.waters.paths) return waterRibbons(this.waters);
+    const sheet = waterSheet(this.spec, this.look);
+    return { ...sheet, flow: new Float32Array((sheet.vertices.length / 3) * 3) };
   }
 
   /** A cell's rows, made at least to this tier. */

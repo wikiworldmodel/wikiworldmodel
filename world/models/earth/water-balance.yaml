@@ -1,0 +1,60 @@
+# A model run here (section 4.10 of the design). The values of its parameters stay in the field.
+id: model:earth/water-balance
+type: model
+title: The water of a year, from its months
+description: >-
+  McCabe and Markstrom's monthly water balance, after Thornthwaite, run on the months of each climate keyframe at every
+  land cell of its grid. Each month's precipitation falls as rain or snow by the temperature; a share of the rain runs
+  straight off; the snow melts at a rate the temperature sets; potential evapotranspiration is Hamon's, from the
+  temperature and the hours of daylight; the soil holds what is not taken up, to its capacity, and gives some back in a
+  dry month; and a share of what it cannot hold runs off. The year is run until the soil and the snow come round, and
+  the last year is summed. A lake's surface is taken to lose its potential evapotranspiration less the rain on it. It
+  was made for the United States' gauged basins, and is used here for any land and any climate, which is a stretch.
+author: machine:claude-code
+code: core/water.ts
+inputs:
+  - { ref: field:earth/climate-late-quaternary, note: "the months of the last 120,000 years" }
+  - { ref: field:earth/climate, note: "the months of the deep past's runs" }
+  - { ref: field:earth/elevation, note: "the height of each place, which sets its snow's threshold" }
+outputs: [field:earth/runoff]
+params:
+  hamon_a:
+    source: { ref: src:mccabe-markstrom-2007-water-balance, loc: "p. 3, eq. (7)", quote: "PETHamon = 13.97 × d × D2 × Wt" }
+  hamon_b:
+    source: { ref: src:mccabe-markstrom-2007-water-balance, loc: "p. 3, eq. (8)", quote: "4.95 × e0.062×T" }
+  hamon_c:
+    source: { ref: src:mccabe-markstrom-2007-water-balance, loc: "p. 3, eq. (8)", quote: "4.95 × e0.062×T" }
+  t_rain:
+    source: { ref: src:mccabe-markstrom-2007-water-balance, loc: "p. 1", quote: "a useful value for Train is 3.3°C" }
+  t_snow:
+    source: { ref: src:mccabe-markstrom-2007-water-balance, loc: "p. 1", quote: "For elevations below 1,000 m, Tsnow = -10°C seems to work best" }
+  t_snow_high:
+    source: { ref: src:mccabe-markstrom-2007-water-balance, loc: "p. 1", quote: "for locations above 1,000 m Tsnow = -1°C is more appropriate" }
+  high_m:
+    source: { ref: src:mccabe-markstrom-2007-water-balance, loc: "p. 1", quote: "for locations above 1,000 m Tsnow = -1°C is more appropriate" }
+  melt_max:
+    source: { ref: src:mccabe-markstrom-2007-water-balance, loc: "p. 2", quote: "meltmax is often set to 0.5" }
+  direct:
+    source: { ref: src:mccabe-markstrom-2007-water-balance, loc: "p. 2", quote: "5 percent is a typical value to use" }
+  soil_mm:
+    source: { ref: src:mccabe-markstrom-2007-water-balance, loc: "p. 3", quote: "An STC of 150 mm works for most locations" }
+  rfactor:
+    source: { ref: src:mccabe-markstrom-2007-water-balance, loc: "p. 3", quote: "An rfactor value of 0.5 is commonly used" }
+  obliquity_deg:
+    source: { ref: src:nasa-earth-fact-sheet, loc: "Orbital parameters", quote: "Obliquity to orbit (deg) 23.44" }
+  equinox_day:
+    choice: >-
+      Where the months fall against the seasons: the March equinox on about the 80th day of the year, and each month's
+      daylight that of its middle day. The report says only that day length comes from the latitude.
+  lake_factor:
+    choice: >-
+      How much a lake's surface evaporates, as a share of the potential evapotranspiration: all of it. Open water
+      evaporates at least as much as wet ground, and in a dry climate more, so a lake in a desert is drawn too big.
+uncertainty:
+  kind: none
+  note: >-
+    The climates it reads give no spread, and its own error is not measured here. Its parameters were fitted to basins
+    of the conterminous United States, and are used everywhere and for any climate.
+checks:
+  - { test: core/water.test.ts, holds: "adds up, once the soil has settled: what falls is what is taken up and what runs off" }
+  - { test: core/water.test.ts, holds: "runs a wet tropical year off in rivers, and a desert year hardly at all" }

@@ -1,0 +1,16 @@
+id: src:nasa-earth-fact-sheet
+type: database-record
+kind: compilation
+citation: >-
+  NASA Space Science Data Coordinated Archive. Earth Fact Sheet. Last updated 15 November 2024.
+snapshot: "2026-11-06"
+title: "Earth Fact Sheet"
+container: "NASA Goddard Space Flight Center, NSSDCA"
+url: https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html
+license: public-domain
+license_note: A work of the United States government.
+verified:
+  by: machine:claude-code
+  how: >-
+    The page read in full (sha256 1b06e3ec31249d063d40d1b38837fac89ddcd2f4b25268b38e8a6d5f413e70ef), and its
+    quote checked by script against a text copy of it.

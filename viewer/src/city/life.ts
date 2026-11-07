@@ -7,7 +7,7 @@ import { printCheck, settlePrint, type Fingerprint, type PrintCheck } from '../.
 import { lookup, type Scenario } from '../../../core/scenario.ts';
 import type { LivingTaxon, SceneSpec } from '../../../core/scene.ts';
 import { GroundSampler } from '../../../world/generators/city/ground.ts';
-import type { LivingParams } from '../../../world/generators/life/scene/v2.ts';
+import type { LivingParams } from '../../../world/generators/life/scene/v3.ts';
 import { protoParts } from '../../../world/generators/life/stream.ts';
 import { CityRenderer, type CityFrame } from '../gl/city.ts';
 import type { GL } from '../gl/context.ts';
@@ -92,7 +92,7 @@ export class LifeScene {
   async load(): Promise<void> {
     await new Promise<void>((resolve, reject) => {
       this.worker = new Worker(new URL('./lifeworker.ts', import.meta.url), { type: 'module' });
-      this.worker.onerror = (e) => reject(new Error(`the scene's generators failed: ${e.message}`));
+      this.worker.onerror = (e) => reject(new Error(`the scene's generators failed: ${e.message} (${e.filename}:${e.lineno})`));
       this.worker.onmessage = (e: MessageEvent<FromLifeWorker>) => {
         const m = e.data;
         if (m.type === 'ground') {
@@ -143,12 +143,13 @@ export class LifeScene {
     r.setGround(g.levels.map((l) => ({ ...l, url: '' })), g.levels.map((l) => l.z));
     const mask = this.maskData ?? g;
     r.setMask(mask.mask, mask.maskSize, mask.maskBox);
-    r.setWater(g.water.vertices, g.water.indices, g.waterLevel);
     const params = this.spec.generator.params as unknown as LivingParams;
     const clim = params.cover.climates[this.spec.biome.climate];
     const cover = this.spec.biome.cover;
     // A land before plants has none of its climate's colours: only rock.
     const tones = params.cover.tones[cover.plants > 0 ? clim?.tones ?? 'plain' : 'barren'] ?? params.cover.tones.plain;
+    // Where the world gives the rivers their water falls downstream, and no one level bands the banks.
+    r.setWater(g.water.vertices, g.water.indices, this.spec.water ? -1e4 : g.waterLevel, g.water.flow, tones.water);
     r.setLand(Float32Array.from(['soil', 'herb', 'bare', 'canopy', 'distant'].flatMap((k) => tones[k])), [Math.min(clim?.forest ?? 0, cover.forests), Math.min(clim?.herb ?? 0, cover.plants), 1 - cover.plants * (1 - (clim?.bare ?? 1))]);
     const out = new Float32Array((this.spec.taxa.length + 1) * 4);
     const clamp = (x: number | null | undefined, d: number) => (x === null || x === undefined || !Number.isFinite(x) ? d : Math.max(-TIMELESS, Math.min(TIMELESS, x - this.spec.site.slice)));

@@ -1,0 +1,19 @@
+# Where water stands on the land of each time (model:earth/drainage).
+id: field:earth/lakes
+type: field
+title: Lakes
+quantity: where water stands in the hollows of the land, and at what level
+unit: m
+description: >-
+  Water standing in the hollows of the land of each time: filled to its pass and spilling where more flows in than
+  its surface can evaporate, and otherwise only as high as evaporates what comes in. So the Caspian holds a lake
+  that does not spill, and in a wetter climate the hollows of a dry land fill. Only lakes of a size the grid can hold
+  are kept, and a lake the grid's heights do not show as a hollow is not found.
+kind: areas
+derived: true
+from: [field:earth/runoff, field:earth/relief, field:earth/elevation]
+rule: drainage
+spread: unknown
+params:
+  min_lake_km2: 500
+  spill_overlap: 0.25

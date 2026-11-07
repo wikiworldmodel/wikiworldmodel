@@ -1,0 +1,22 @@
+id: src:mccabe-markstrom-2007-water-balance
+type: publication
+kind: model
+citation: >-
+  McCabe, G.J. & Markstrom, S.L. (2007). A monthly water-balance model driven by a graphical user
+  interface. U.S. Geological Survey Open-File Report 2007-1088.
+authors:
+  - "McCabe, G.J."
+  - "Markstrom, S.L."
+published: 2007
+title: "A monthly water-balance model driven by a graphical user interface"
+container: "U.S. Geological Survey Open-File Report 2007-1088"
+url: https://pubs.usgs.gov/of/2007/1088/pdf/of07-1088_508.pdf
+license: public-domain
+license_note: A work of the United States government.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in full from the USGS PDF (sha256 f5f75fe7c0e92ead46ac10b90e9fcfcaad042952366211f39bb4c05f3cd2f8df).
+    Its text layer is born digital, but flattens the equations, so equations (1) to (9) were also read from
+    images of the pages. Quotes checked by script against the text layer. Page numbers are the printed ones:
+    the model's description is on pp. 1–3.

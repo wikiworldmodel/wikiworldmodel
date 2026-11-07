@@ -89,6 +89,8 @@ export interface GridField {
   seaLevel?: string;
   /** for a field that moves with a plate model other than the first: what its plates are written plus (PLATE_OFFSET) */
   plateOffset?: number;
+  /** for today's relief: the ground as measured, with its hollows, and today's ocean, which the drainage routes over */
+  drain?: { z: Float32Array; ocean: Uint8Array; lakes: Uint8Array };
 }
 
 /** The gridded field covering a span, if any: the first whose cover overlaps the span's inside. */

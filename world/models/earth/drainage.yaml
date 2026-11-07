@@ -1,0 +1,97 @@
+# A model run here (section 4.10 of the design). The values of its parameters stay in the fields.
+id: model:earth/drainage
+type: model
+title: Rivers and lakes, routed over the land of each time
+description: >-
+  Routes the runoff of each climate over the ground of its time. The flood starts at the sea and climbs the land in
+  order of height, so each place drains to the place it was reached from: down every slope, across flats toward their
+  outlet, and out of every hollow over its lowest pass. Each hollow then holds a lake: filled to its pass and spilling
+  if more flows into it than its surface can evaporate when full, and otherwise only as high as evaporates what comes
+  in. For the glacial cycles the ground is today's, on a grid of a tenth of a degree, routed once to the lowest sea of
+  the stack; each keyframe has the sea of its time, where its rivers end, and before the climate of the last 120,000
+  years begins, the water of the keyframe of it whose sea stood nearest. Before the glacial cycles it is each PaleoDEM.
+  A river's channel is drawn by laws of rivers in general: its width and depth from its flow, the length and radius of
+  its bends from its width, and whether it braids from its slope and its flow.
+author: machine:claude-code
+code: tools/world/src/build/drainage.ts
+inputs:
+  - { ref: field:earth/runoff, note: "what each place gives its rivers, and what a lake's surface loses" }
+  - { ref: field:earth/relief, note: "today's ground, with its hollows, for the glacial cycles" }
+  - { ref: field:earth/sea-level-stack, note: "the sea of each time, where the rivers end" }
+  - { ref: field:earth/elevation, note: "the ground of each time before the glacial cycles" }
+  - { ref: field:earth/coastline, note: "the PaleoDEMs' sea" }
+outputs: [field:earth/rivers, field:earth/lakes]
+params:
+  min_km2:
+    choice: >-
+      A river is kept where at least 2,000 km² drains through it on the relief's grid: about sixteen of its cells at the
+      equator, so that a river is more than the noise of the grid. Smaller rivers are a scene's to invent.
+  deep_min_km2:
+    choice: >-
+      A river of the deep past is kept where at least 50,000 km² drains through it on the PaleoDEMs' grid of a degree:
+      about four of its cells, as their heights are a degree's average.
+  older_step_yr:
+    choice: >-
+      A keyframe every 10,000 years before the climate of the last 120,000 years begins: rivers change at their mouths as
+      the sea moves, and that is about as fast as the stack's sea moves through a glacial cycle.
+  min_lake_km2:
+    choice: "A lake is kept where it covers at least 500 km²: about four cells of the relief's grid."
+  spill_overlap:
+    choice: >-
+      A lake that spills is drawn only where today's lakes cover at least a quarter of it, and in the deep past not at
+      all. The averages of a grid dam a gorge narrower than a cell, and would hold a lake behind it that never stood
+      there; a lake that does not spill is the climate's, and is drawn wherever it stands.
+  width:
+    source:
+      ref: src:andreadis-2013-river-width-depth
+      loc: "p. 7165, eq. (2a), as printed: w = 7.2Q^0.50"
+      quote: "developed regressions (Power law relationships) between river width and depth and discharge"
+  depth:
+    source:
+      ref: src:andreadis-2013-river-width-depth
+      loc: "p. 7165, eq. (2b), as printed: d = 0.27Q^0.30"
+      quote: "developed regressions (Power law relationships) between river width and depth and discharge"
+  bankfull_ratio:
+    choice: >-
+      The laws of width and depth are for a river at bankfull flow, which is more than the mean flow the routing gives.
+      The mean is read as it is, so a channel is drawn about as wide as the water of its usual flow, and its banks no wider.
+  wavelength_widths:
+    source:
+      ref: src:leopold-wolman-1957-channel-patterns
+      loc: "p. 39"
+      quote: "is from 7 to 12 times the channel width"
+  radius_widths:
+    source:
+      ref: src:bagnold-1960-meander-shape
+      loc: "p. 135"
+      quote: "the bends of rivers of all sizes to a curvature ratio between 2 and 3"
+  braided_cfs:
+    source:
+      ref: src:leopold-wolman-1957-channel-patterns
+      loc: "p. 60, eq. (1), as printed: s = 0.06 Q^-.44, with Q in cubic feet a second"
+      quote: "studied the braided channels are separated from the"
+  sinuosity_least:
+    source:
+      ref: src:leopold-wolman-1957-channel-patterns
+      loc: "p. 60"
+      quote: "the sinuosity, the ratio of thalweg length to valley length, is equal to or greater than 1.5"
+  sinuosity_most:
+    choice: "The most a meandering river is drawn winding, as a ratio of its length to its valley's: short of where its bends would touch."
+  deflection_most:
+    source:
+      ref: src:langbein-leopold-1966-meanders
+      loc: "p. H3"
+      quote: "is 2.2 radians, for at this angle meander limbs intersect"
+uncertainty:
+  kind: band
+  note: >-
+    The stack's sea level has a band, mostly 10 to 20 m either side, which would move a river's mouth across a flat
+    shelf by tens of kilometres; only the central level is routed. A river's course is only as good as the grid's heights, a tenth of a degree for the glacial cycles and a degree before
+    them; its flow is the water balance's, read with the climate's and the routing's errors, none of which is measured
+    here. A channel's width and its bends are laws fitted to many rivers, and any one river departs from them.
+checks:
+  - { test: tools/world/test/build.test.ts, holds: "routes today's great rivers where Landsat saw great rivers" }
+  - { test: tools/world/test/build.test.ts, holds: "holds the Caspian as a lake that does not spill, where Natural Earth has a lake" }
+  - { test: tools/world/test/build.test.ts, holds: "ends its rivers at the sea of the time: across the Sunda shelf at the Last Glacial Maximum, and at today's coast today" }
+  - { test: tools/world/test/drainage.test.ts, holds: "holds a lake in a hollow that evaporates what comes in, and spills it when the climate is wet" }
+  - { test: tools/world/test/drainage.test.ts, holds: "neither makes nor loses water where nothing evaporates" }
