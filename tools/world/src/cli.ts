@@ -58,6 +58,27 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
     console.log(`${snap.rows.length} occurrences at ${snap.sites.length} sites, ${snap.taxa.length} taxa → ${file}`);
     console.log(`In world/manifest.yaml point the dataset at repo:${file}, sha256 ${createHash('sha256').update(text).digest('hex')}, ${Buffer.byteLength(text)} bytes.`);
   },
+  // The sea's fossils from the Paleobiology Database, for the atlas of who lived in the sea: too many to ask for at once,
+  // so a period at a time, and zipped in world/snapshots.
+  async 'pbdb-sea'() {
+    const { exportFossils } = await import('./pbdb.ts');
+    const { zipSync, strToU8 } = await import('fflate');
+    const date = new Date().toISOString().slice(0, 10);
+    const name = `pbdb-sea-${date}`;
+    const file = `world/snapshots/${name}.zip`;
+    if (existsSync(join(REPO, file))) throw new Error(`${file} exists: one snapshot a day`);
+    // Spans to ask for one at a time, about a period long each, over the same 541 Myr as the land's: where they fall does
+    // not matter, as an occurrence the service gives for two of them is kept once.
+    const edges = [541, 485, 444, 419, 359, 299, 252, 201, 145, 66, 23, 0];
+    const snap = await exportFossils('marine', date, console.log, edges.slice(1).map((min, i) => ({ max: edges[i], min })));
+    const json = strToU8(JSON.stringify(snap));
+    const member = `${name}.json`;
+    // A fixed time on the member, so that the same rows make the same bytes.
+    const zip = zipSync({ [member]: [json, { level: 9, mtime: new Date('2000-01-01T00:00:00Z') }] });
+    writeFileSync(join(REPO, file), zip);
+    console.log(`${snap.rows.length} occurrences at ${snap.sites.length} sites, ${snap.taxa.length} taxa → ${file}`);
+    console.log(`In world/manifest.yaml point the dataset at repo:${file}, sha256 ${createHash('sha256').update(zip).digest('hex')}, ${zip.length} bytes; its member ${member}, sha256 ${createHash('sha256').update(json).digest('hex')}.`);
+  },
   // A fresh extract of NOAA's hazard databases, kept in world/snapshots.
   async 'noaa-snapshot'() {
     const { exportHazards } = await import('./noaa.ts');

@@ -10,6 +10,8 @@ import { sha256, stableStringify } from './util.ts';
 import type { Field } from './world.ts';
 
 const IMPORTER = join(REPO, 'tools/world/importers/paleomap.py');
+/** Reads the months of a climate model's run from NetCDF-4, which the build cannot read itself. */
+const MONTHS = join(REPO, 'tools/world/importers/months.py');
 const REQUIREMENTS = join(REPO, 'tools/world/importers/requirements.txt');
 
 /** The plate model frames and gridded fields move with. */
@@ -30,10 +32,12 @@ export function fieldAgesMa(f: Field): { maxAgeMa: number; minAgeMa: number; ste
 
 /**
  * What a gridded field is made from: elevation grids (a dataset of snapshots, partitioned by
- * the plate model's polygons), or the plate model's polygons alone (where its continental
- * blocks are). Those two are carried by the tiles; the climate, the ice sheets and the people have files of their own.
+ * the plate model's polygons), the plate model's polygons alone (where its continental
+ * blocks are), or today's relief on a fixed datum, which a coastline reads at the sea level of
+ * each time. Those three are carried by the tiles; the climate, the ice sheets and the people have files of their own.
  */
-export function fieldSource(f: Field): 'elevation' | 'blocks' | 'climate' | 'ice' | 'people' {
+export function fieldSource(f: Field): 'elevation' | 'blocks' | 'relief' | 'climate' | 'ice' | 'people' {
+  if (f.data?.as === 'relief') return 'relief';
   if (f.data?.as === 'climate') return 'climate';
   if (f.data?.as === 'ice-sheets') return 'ice';
   if (f.data?.as === 'people') return 'people';
@@ -41,10 +45,10 @@ export function fieldSource(f: Field): 'elevation' | 'blocks' | 'climate' | 'ice
 }
 
 /** A gridded field the tiles carry, which the importer makes. */
-export const tiledField = (f: Field): boolean => !f.derived && f.grid?.kind === 'lonlat' && (fieldSource(f) === 'elevation' || fieldSource(f) === 'blocks');
+export const tiledField = (f: Field): boolean => !f.derived && f.grid?.kind === 'lonlat' && ['elevation', 'blocks', 'relief'].includes(fieldSource(f));
 
-async function importKey(parts: unknown): Promise<string> {
-  const code = await readFile(IMPORTER, 'utf8');
+async function importKey(parts: unknown, script: string = IMPORTER): Promise<string> {
+  const code = await readFile(script, 'utf8');
   const reqs = await readFile(REQUIREMENTS, 'utf8');
   return sha256(stableStringify({ code: sha256(code), reqs: sha256(reqs), parts })).slice(0, 16);
 }
@@ -53,25 +57,27 @@ async function plateModel(id: string = PLATE_MODEL) {
   const manifest = await loadManifest();
   const pm = manifest.datasets[id];
   if (!pm) throw new Error(`${id} is not a dataset in the manifest`);
-  return { manifest, rotations: datasetFile(id, pm, 'rotations'), polygons: datasetFile(id, pm, 'polygons'), sha256: pm.fetch.sha256 };
+  // A model may keep its deepest rotations in a file of their own; pyGPlates reads them together.
+  const rotations = pm.fetch.files?.rotations_deep ? [datasetFile(id, pm, 'rotations'), datasetFile(id, pm, 'rotations_deep')] : datasetFile(id, pm, 'rotations');
+  return { manifest, rotations, polygons: datasetFile(id, pm, 'polygons'), sha256: pm.fetch.sha256 };
 }
 
 /** Run the importer once per distinct request; returns the output directory. */
-async function run(command: string, name: string, key: string, request: Record<string, unknown>, log: (s: string) => void): Promise<string> {
+async function run(command: string, name: string, key: string, request: Record<string, unknown>, log: (s: string) => void, script: string = IMPORTER): Promise<string> {
   const out = join(CACHE, 'import', `${name}@${key}`);
   if (existsSync(join(out, 'meta.json'))) {
     log(`${name}: cached (${key})`);
     return out;
   }
-  for (const p of Object.values(request)) {
+  for (const p of Object.values(request).flat()) {
     if (typeof p === 'string' && p.startsWith('/') && !existsSync(p)) throw new Error(`missing ${p}; run \`npm run fetch\` first`);
   }
   await rm(out, { recursive: true, force: true });
   await mkdir(out, { recursive: true });
   const reqPath = join(out, 'request.json');
   await writeFile(reqPath, JSON.stringify({ ...request, out }, null, 1));
-  log(`${name}: importing with pyGPlates (${key})`);
-  execFileSync(python(), [IMPORTER, command, reqPath], { stdio: 'inherit' });
+  log(`${name}: importing with ${script === IMPORTER ? 'pyGPlates' : 'Python'} (${key})`);
+  execFileSync(python(), script === IMPORTER ? [IMPORTER, command, reqPath] : [script, reqPath], { stdio: 'inherit' });
   return out;
 }
 
@@ -95,7 +101,28 @@ export async function importBlocks(field: Field, log: (s: string) => void = cons
   for (let a = minAgeMa; a <= maxAgeMa + 1e-9; a += stepMyr) agesMa.push(Math.round(a * 1e6) / 1e6);
   const request = { rotations: pm.rotations, polygons: pm.polygons, agesMa };
   const key = await importKey({ checksums: { [field.moves_with!]: pm.sha256 }, agesMa });
-  return run('blocks', 'paleomap-blocks', key, request, log);
+  // The first model's blocks keep the name they have always had in the cache.
+  return run('blocks', field.moves_with === PLATE_MODEL ? 'paleomap-blocks' : `blocks-${field.moves_with!.replace(/^src:/, '')}`, key, request, log);
+}
+
+/** Per-node plate ids at the present, on the finer grid of a field of today's relief. */
+export async function importReliefPlates(field: Field, log: (s: string) => void = console.log): Promise<string> {
+  const pm = await plateModel(field.moves_with);
+  const step = (field.grid as { res_deg: number }).res_deg;
+  const request = { rotations: pm.rotations, polygons: pm.polygons, ageMa: 0, step };
+  const key = await importKey({ checksums: { [field.moves_with!]: pm.sha256 }, ageMa: 0, step });
+  return run('plates', 'paleomap-plates', key, request, log);
+}
+
+/** The months of a climate field's runs, from a NetCDF-4 file: the cells with a value in each slice, and their twelve months. */
+export async function importMonths(field: Field, variables: Record<'temperature' | 'precipitation' | 'time' | 'latitude' | 'longitude', string>, log: (s: string) => void = console.log): Promise<string> {
+  const manifest = await loadManifest();
+  const id = field.data!.from;
+  const d = manifest.datasets[id];
+  if (!d) throw new Error(`${field.id}: ${id} is not a dataset in the manifest`);
+  const request = { file: datasetFile(id, d), ...variables };
+  const key = await importKey({ checksums: { [id]: d.fetch.sha256 }, variables }, MONTHS);
+  return run('months', 'months', key, request, log, MONTHS);
 }
 
 export interface PointQuery {

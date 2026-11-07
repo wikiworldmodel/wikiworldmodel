@@ -181,3 +181,38 @@ export class RotationModel {
     this.treeAge = age;
   }
 }
+
+/** A plate of the second plate model is written as its number plus this, of the third plus twice this, and so on. */
+export const PLATE_OFFSET = 10_000_000;
+
+/**
+ * Several plate models as one: a plate written at or above PLATE_OFFSET is a plate of the model whose offset it falls
+ * in, and its number there is what is left; any other is a plate of the first.
+ */
+export class PlateModels {
+  constructor(
+    readonly main: RotationModel,
+    readonly others: { source: string; offset: number; model: RotationModel }[] = [],
+  ) {}
+
+  /** The model a plate is of, and its own number there. */
+  of(plate: number): { model: RotationModel; plate: number; source?: string } {
+    for (const o of this.others) if (plate >= o.offset && plate < o.offset + PLATE_OFFSET) return { model: o.model, plate: plate - o.offset, source: o.source };
+    return { model: this.main, plate };
+  }
+
+  total(plate: number, ageMa: number): Quat {
+    const m = this.of(plate);
+    return m.model.total(m.plate, ageMa);
+  }
+
+  reaches(plate: number, ageMa: number): boolean {
+    const m = this.of(plate);
+    return m.model.reaches(m.plate, ageMa);
+  }
+
+  label(plate: number): string | undefined {
+    const m = this.of(plate);
+    return m.model.label(m.plate);
+  }
+}

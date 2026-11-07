@@ -2,6 +2,7 @@
 
     python paleomap.py fields <request.json>
     python paleomap.py blocks <request.json>
+    python paleomap.py plates <request.json>
     python paleomap.py points <request.json>
 
 `fields` normalizes each PaleoDEM snapshot in the requested age range onto one grid
@@ -14,7 +15,10 @@ plate id), little-endian, row-major from the north-west corner, plus `meta.json`
 `blocks` does the partition alone, on the same grid, at the requested ages: where the plate
 model puts its continental blocks when there is no elevation grid. A polygon whose plate
 has no rotation at an age is left out at that age, since the model does not say where it
-was. It writes `plate/<age>.u16` and `meta.json`.
+was. It writes `plate/<age>.u32` (some models number their plates past 65535) and `meta.json`.
+
+`plates` does the partition at one age on a grid finer than 1 degree, for a field measured on
+today's Earth at that grain: it writes `plate/<age>.u16` and `meta.json`.
 
 `points` resolves present-day points to the plate polygon that contains them, and reports
 whether that polygon exists over the requested ages.
@@ -88,7 +92,8 @@ def load_snapshot(pf, index, rg):
 
 def partition(polygons, rotations, age):
     part = pygplates.PlatePartitioner(polygons, rotations, float(age))
-    plates = np.zeros((HEIGHT, WIDTH), dtype=np.uint16)
+    # Some models number their plates past 65535.
+    plates = np.zeros((HEIGHT, WIDTH), dtype=np.uint32)
     for i in range(HEIGHT):
         lat = 90.0 - i
         cols = [0] if i in (0, HEIGHT - 1) else range(WIDTH)
@@ -158,21 +163,70 @@ def blocks(req):
                                                              use_identity_for_missing_plate_ids=False) is not None]
         plates = partition(placed, rotations, age)
         inside = plates > 0
-        plates.astype('<u2').tofile(os.path.join(out, 'plate', f'{age}.u16'))
+        plates.astype('<u4').tofile(os.path.join(out, 'plate', f'{age}.u32'))
         snapshots.append({'ageMa': age, 'polygons': len(placed), 'polygons_without_rotation': len(alive) - len(placed),
                           'nodes_on_plates': round(float(inside.mean()), 6), 'plates': sorted(int(p) for p in np.unique(plates) if p)})
         print(f'  {age:4d} Ma: {len(placed)} polygons ({len(alive) - len(placed)} without a rotation), nodes on plates {inside.mean():.3f}', flush=True)
     doc = {
-        'format': 'lightworld-blocks-import@1',
+        'format': 'lightworld-blocks-import@2',
         'grid': {'width': WIDTH, 'height': HEIGHT, 'lon0': -180, 'lat0': 90, 'step': 1,
                  'order': 'row-major from (90N, 180W), longitude fastest'},
-        'arrays': {'plate': 'uint16 little-endian plate id, plate/<age>.u16'},
+        'arrays': {'plate': 'uint32 little-endian plate id, plate/<age>.u32'},
         'pygplates': pygplates.__version__,
         'snapshots': snapshots,
     }
     with open(os.path.join(out, 'meta.json'), 'w') as f:
         json.dump(doc, f, indent=1, sort_keys=True)
         f.write('\n')
+
+
+def plates(req):
+    """Plate ids on a grid finer than 1 degree, at one age: the 1-degree partition, refined node by node only inside the
+    1-degree cells whose four corners lie on different plates. A polygon smaller than a cell and touching none of its
+    corners is missed, as it is on the 1-degree grid."""
+    out = req['out']
+    os.makedirs(os.path.join(out, 'plate'), exist_ok=True)
+    rotations = pygplates.RotationModel(req['rotations'])
+    polygons = pygplates.FeatureCollection(req['polygons'])
+    age = req['ageMa']
+    n = int(round(1 / req['step']))
+    if abs(n * req['step'] - 1) > 1e-9:
+        raise ValueError(f'step {req["step"]} does not divide a degree')
+    coarse = partition(polygons, rotations, age)
+    part = pygplates.PlatePartitioner(polygons, rotations, float(age))
+    nx, ny = WIDTH * n, (HEIGHT - 1) * n + 1
+    fine = np.zeros((ny, nx), dtype=np.uint16)
+    refined = 0
+    for i in range(HEIGHT - 1):
+        for j in range(WIDTH):
+            jj = (j + 1) % WIDTH
+            corners = {int(coarse[i, j]), int(coarse[i, jj]), int(coarse[i + 1, j]), int(coarse[i + 1, jj])}
+            if len(corners) == 1:
+                fine[i * n:(i + 1) * n + 1, j * n:(j + 1) * n] = corners.pop()
+                continue
+            refined += 1
+            for r in range(i * n, (i + 1) * n + 1):
+                lat = 90.0 - r / n
+                for c in range(j * n, (j + 1) * n):
+                    hit = part.partition_point(pygplates.PointOnSphere(lat, c / n - 180.0))
+                    fine[r, c] = hit.get_feature().get_reconstruction_plate_id() if hit is not None else 0
+    fine[0, :] = coarse[0, 0]
+    fine[-1, :] = coarse[-1, 0]
+    fine.astype('<u2').tofile(os.path.join(out, 'plate', f'{age}.u16'))
+    doc = {
+        'format': 'lightworld-plates-import@1',
+        'grid': {'width': nx, 'height': ny, 'lon0': -180, 'lat0': 90, 'step': req['step'],
+                 'order': 'row-major from (90N, 180W), longitude fastest'},
+        'arrays': {'plate': 'uint16 little-endian plate id, plate/<age>.u16'},
+        'pygplates': pygplates.__version__,
+        'ageMa': age,
+        'cells_refined': refined,
+        'plates': sorted(int(p) for p in np.unique(fine) if p),
+    }
+    with open(os.path.join(out, 'meta.json'), 'w') as f:
+        json.dump(doc, f, indent=1, sort_keys=True)
+        f.write('\n')
+    print(f'  {age} Ma: {refined} one-degree cells refined to {req["step"]} degrees', flush=True)
 
 
 def points(req):
@@ -201,4 +255,4 @@ if __name__ == '__main__':
     command, request_path = sys.argv[1], sys.argv[2]
     with open(request_path) as f:
         request = json.load(f)
-    {'fields': fields, 'blocks': blocks, 'points': points}[command](request)
+    {'fields': fields, 'blocks': blocks, 'plates': plates, 'points': points}[command](request)

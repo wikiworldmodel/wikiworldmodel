@@ -183,7 +183,7 @@ test('a record shows the relations others make to it, and leads into the tree of
 test('before the plate model reaches, the globe shows no geography and says why', async ({ page }) => {
   await page.goto(`/?b=${latestBuild()}&t=2400Ma&lat=-10&lon=40&d=3.3`);
   await idle(page);
-  await expect(page.locator('.notice')).toContainText('the plate model reaches back to 1100 Ma');
+  await expect(page.locator('.notice')).toContainText('the oldest plate model reaches back to 1800 Ma');
   await expect(page.locator('.tb-readout')).toContainText('Siderian');
   await page.mouse.click(640, 300);
   await expect(page.locator('.inspect h2')).toHaveText('Geography unknown');

@@ -8,9 +8,12 @@ Seven slices are built:
 - **Cambrian to today** runs through every layer of the design: plates, terrain and
   coastlines from 540 Ma to the present, with sourced entities, the geologic periods and an
   alternative time scale you can inspect and switch
-  ([docs/FIRST-SLICE.md](docs/FIRST-SLICE.md)).
+  ([docs/FIRST-SLICE.md](docs/FIRST-SLICE.md)). For the last 798,000 years the coast is today's
+  relief, at a tenth of a degree, under the sea level of each time, so the land bridges of
+  the ice ages open and close; and the last 120,000 years have a climate of their own, every
+  1,000 to 2,000 years.
 - **The whole span** covers all of Earth's history and its far future, coarsely: the
-  Precambrian time scale, the plate model's continental blocks back to 1,100 Ma, global
+  Precambrian time scale, continental blocks back to 1,800 Ma from two plate models, global
   series such as the Sun's brightness and surface temperature, 24 sourced milestones from
   the Solar System's oldest solids to the Sun's red-giant phase, and a basic tree of life
   ([docs/SECOND-SLICE.md](docs/SECOND-SLICE.md)).
@@ -37,7 +40,8 @@ Seven slices are built:
   Paleobiology Database's fossils, each saying whether it is recorded here, inferred from nearby or a
   stand-in. Every taxon is drawn from a form on the tree of life, its own or its nearest node's, as data
   that agents write ([docs/SEVENTH-SLICE.md](docs/SEVENTH-SLICE.md), and the plan in
-  [docs/LIVING-WORLD.md](docs/LIVING-WORLD.md)).
+  [docs/LIVING-WORLD.md](docs/LIVING-WORLD.md)). The sea has an atlas of its own, of the database's
+  marine genera in the same tiers, which says what lived where but draws nothing yet.
 
 Each document says what its slice contains, how it follows the design, the decisions behind
 it and its limitations. Hand-written example records for every record type, and the gaps

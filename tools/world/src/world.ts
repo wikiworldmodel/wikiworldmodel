@@ -168,8 +168,12 @@ export interface Field {
     from: string;
     file?: string;
     /** what the data is read as, where it is not elevation */
-    as?: 'climate' | 'ice-sheets' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages' | 'people' | 'community';
+    as?: 'climate' | 'ice-sheets' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages' | 'people' | 'community' | 'community-sea' | 'relief';
     places?: string;
+    /** for a climate read as months from NetCDF-4: the file's variables */
+    variables?: Record<'temperature' | 'precipitation' | 'time' | 'latitude' | 'longitude', string>;
+    /** for relief: today's ocean and lakes, as areas */
+    water?: { ocean: string; lakes: string };
     /** a series of the world's own measurements: the property whose claims give its values */
     prop?: string;
     /** for a series read from a table: column names, or a workbook's column letters */

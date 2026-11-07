@@ -51,8 +51,22 @@
       "properties": {
         "from": { "$ref": "defs.json#/$defs/ref" },
         "file": { "type": "string", "description": "The dataset's file, where it has several" },
-        "as": { "enum": ["climate", "ice-sheets", "borders", "hazards", "polities", "routes", "languages", "people", "community"], "description": "What the data is read as, where it is not elevation" },
+        "as": { "enum": ["climate", "ice-sheets", "borders", "hazards", "polities", "routes", "languages", "people", "community", "community-sea", "relief"], "description": "What the data is read as, where it is not elevation of each time: relief is today's ground on a fixed datum, held through the times the field covers, which a coastline reads at the sea level of each time" },
         "places": { "$ref": "defs.json#/$defs/ref", "description": "For borders: the dataset of places that goes with them" },
+        "variables": {
+          "type": "object",
+          "description": "For a climate read as months from NetCDF-4: the file's variables of temperature and precipitation, each by time, month, latitude and longitude, and of those dimensions",
+          "required": ["temperature", "precipitation", "time", "latitude", "longitude"],
+          "properties": { "temperature": { "type": "string" }, "precipitation": { "type": "string" }, "time": { "type": "string" }, "latitude": { "type": "string" }, "longitude": { "type": "string" } },
+          "additionalProperties": false
+        },
+        "water": {
+          "type": "object",
+          "description": "For relief: today's ocean and lakes, as areas. The sea of each time floods only what today's ocean reaches; the ocean is the largest of its areas, and any other is an inland sea, held as a lake",
+          "required": ["ocean", "lakes"],
+          "properties": { "ocean": { "$ref": "defs.json#/$defs/ref" }, "lakes": { "$ref": "defs.json#/$defs/ref" } },
+          "additionalProperties": false
+        },
         "prop": { "type": "string", "description": "A series of the world's own measurements: the property whose claims give its values, each at its record's date. `from` then names the work that frames them" },
         "sheet": { "type": "string", "description": "For a workbook: the sheet the series is on" },
         "first_row": { "type": "integer", "minimum": 1, "description": "For a workbook: the first row of data" },
@@ -102,7 +116,7 @@
       "additionalProperties": false
     },
     "derived": { "const": true },
-    "from": { "type": "array", "minItems": 1, "items": { "$ref": "defs.json#/$defs/ref" } },
+    "from": { "type": "array", "minItems": 1, "items": { "$ref": "defs.json#/$defs/ref" }, "description": "The fields it is derived from. For an isoline: the field it is drawn on, and for a field on a fixed datum a series of sea level, relative to today's, that the isoline rises and falls with" },
     "rule": { "enum": ["isoline", "gough-1981", "biome-from-climate", "ice-equivalent-sea-level"] },
     "isoline_m": { "type": "number" },
     "params": { "type": "object", "description": "The rule's parameters, or for a grid read by the build what it needs besides its data" },

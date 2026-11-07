@@ -2,7 +2,7 @@
 // never nothing; and generic land stands in where nothing records where the land was.
 import { describe, expect, it } from 'vitest';
 import type { PlanetFile } from './planet.ts';
-import { LAYERS, resolve, tierCounts, TIERS, type ResolveWorld } from './resolve.ts';
+import { LAYERS, resolve, seaTierOf, tierCounts, TIERS, type ResolveWorld } from './resolve.ts';
 import type { FeatureTime } from './tileset.ts';
 
 const span = (a: number, b: number): FeatureTime => ({ start: { best: a, lo: a, hi: a, derived: false }, end: { best: b, lo: b, hi: b, derived: false }, instant: false });
@@ -49,6 +49,23 @@ describe('resolve', () => {
     const t = GA(0.05);
     expect([40, 10, -10, -40].map((lat) => resolve(WORLD, 'life', lat, 0, t).tier)).toEqual(['evidence', 'model', 'generic', 'unknown']);
     expect(resolve(WORLD, 'life', 40, 0, GA(3)).tier).toBe('unknown');
+  });
+
+  it("reads the sea's atlas as the land's, where the land's has no land", () => {
+    const grid = { step: 90, nx: 4, ny: 2 };
+    // Two stages of one sea: the first with a genus recorded in the north-west patch, one stood in for in the north-east and
+    // nothing at all in the south-west; the second with no list anywhere.
+    const taxon = { no: 1, label: 'Atrypa', rank: 'genus', group: 'Rhynchonellata', rows: 3, span: [390, 385] as [number, number] };
+    const bins = [
+      { format: 'lightworld-sea-bin@1' as const, from: GA(0.4), to: GA(0.38), slice: GA(0.39), name: 'a', taxa: [taxon, { ...taxon, standin: true }], nodes: { 0: [0, 255, 0, 12], 1: [1, 255, 2, 500], 4: [] } },
+      { format: 'lightworld-sea-bin@1' as const, from: GA(0.38), to: GA(0.36), slice: GA(0.37), name: 'b', taxa: [], nodes: {} },
+    ];
+    const tier = (lat: number, lon: number, t: number) => seaTierOf(bins, grid, (i) => bins[i], lat, lon, t);
+    expect([tier(45, -135, GA(0.39)), tier(45, -45, GA(0.39)), tier(-45, -135, GA(0.39)), tier(-45, 45, GA(0.39)), tier(45, -135, GA(0.37)), tier(45, -135, GA(0.5))]).toEqual(['sea-here', 'sea-standin', 'sea-nothing', null, null, null]);
+    const world: ResolveWorld = { ...WORLD, life: () => 'sea-region' };
+    expect(resolve(world, 'life', 0, 0, GA(0.05))).toMatchObject({ tier: 'model', value: 'sea-region' });
+    expect(resolve({ ...WORLD, life: () => 'sea-here' }, 'life', 0, 0, GA(0.05)).tier).toBe('evidence');
+    expect(resolve({ ...WORLD, life: () => 'sea-standin' }, 'life', 0, 0, GA(0.05)).tier).toBe('generic');
   });
 
   it('counts the tiers each layer answers in', () => {

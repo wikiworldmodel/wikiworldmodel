@@ -10,6 +10,7 @@ import { coverAt, lookAt, spanOf, valueOf, type Cover, type Look } from '../../c
 import { conj, mul, rotate, toLatLon, unitVector, type Quat } from '../../core/quat.ts';
 import type { EntityRecord, OverlaysFile } from '../../core/records.ts';
 import { encodeRowKey, splitRef } from '../../core/refs.ts';
+import { seaLevelAt } from '../../core/sealevel.ts';
 import { lookup, scenarioKey, type Scenario } from '../../core/scenario.ts';
 import type { TerritoryFile } from '../../core/territory.ts';
 import { indexTree, subtree, type TreeFile } from '../../core/tree.ts';
@@ -27,6 +28,7 @@ import type { SceneFileV2 } from '../../core/scene.ts';
 import { latticeOf } from '../../world/generators/life/spec.ts';
 import { Camera, MAX_DIST, MIN_DIST } from './camera.ts';
 import { LifeAtlas, type ClimateData } from './city/lifeatlas.ts';
+import { Climates, type ClimateAt } from './climates.ts';
 import { LifeScene } from './city/life.ts';
 import { CityScene } from './city/scene.ts';
 import { autoTilt, groundHit, localView, projectLocal, rayOf, sunAt, type LocalView } from './city/view.ts';
@@ -74,6 +76,10 @@ export interface WikiWorldModelHandle {
   biomeAt(lat: number, lon: number): { climate: ClimateClass; cover: Cover } | null;
   /** the numbers the climate field holds there, as the globe reads them */
   climateAt(lat: number, lon: number): ClimateNode | null;
+  /** the climate field the land is painted from at the time shown, while it is */
+  climateField(): string | null;
+  /** the ground's height above the sea of the time shown at a place, as the globe holds it */
+  groundAt(lat: number, lon: number): number | null;
   /** what the globe has of the ice sheets at a place, at the time shown: null where the field does not reach the time */
   iceAt(lat: number, lon: number): { drawn: boolean; marginKm: number; thickness: number } | null;
   /** the tree of life as the panel has it: its rows, and how many fossil rows the group chosen lights up */
@@ -142,6 +148,10 @@ async function start(root: HTMLElement): Promise<void> {
   const limits: [number, number] = [dataRange[0] - pad(dataRange[0]), dataRange[1] + pad(dataRange[1])];
   /** The gridded field that covers a time, if any: the first listed where two meet. */
   const fieldAt = (t: number): FieldInfo | undefined => ts.fields.find((f) => f.coverage[0] <= t && t <= f.coverage[1]);
+  /** For a field of today's ground, the sea level of a time relative to today's, from the series its coastline reads; else none. */
+  const seaLevelOf = (f: FieldInfo | undefined, t: number): number => (f?.coastline?.seaLevel ? seaLevelAt(build.series.series.find((x) => x.id === f.coastline!.seaLevel)?.points ?? [], t) : 0);
+  /** Where a field's coast is drawn at a time: its isoline, risen or fallen with the sea. */
+  const coastOf = (f: FieldInfo | undefined, t: number): number => (f?.coastline?.isolineM ?? 0) + seaLevelOf(f, t);
   const defaults: ViewState = {
     t: PRESENT_YEAR,
     cam: { lat: 12, lon: -28, dist: 3.3 },
@@ -171,7 +181,8 @@ async function start(root: HTMLElement): Promise<void> {
   const gl = canvas.getContext('webgl2', { antialias: true, preserveDrawingBuffer: true, powerPreference: 'high-performance' });
   if (!gl) return fail(root, 'This viewer needs WebGL2.');
 
-  const field = new FieldRenderer(gl, build.frames.plateIndex.length);
+  // A cube fine enough for the finest level of the tiles: twice the texels where a field is finer than 1°.
+  const field = new FieldRenderer(gl, build.frames.plateIndex.length, ts.lods.some((l) => l.step < 1) ? 1024 : 512);
   const globe = new GlobeRenderer(gl, field.cube.texture, field.cube.size);
   const camera = new Camera();
   const tiles = new TileManager(build);
@@ -197,18 +208,21 @@ async function start(root: HTMLElement): Promise<void> {
   let genericMask: { mask: Uint8Array; params: GenericLandParams } | null = null;
   const earth = build.planet.planet;
 
-  // The climate field, behind the first globe: until it comes the land is drawn from its height.
-  let climateAges: number[] = [];
+  // The climate fields, behind the first globe: until the deep past's runs come the land is drawn from its height, and
+  // the finer climates of the recent past come a span of keyframes at a time, as the time shown reaches them.
   let climateRule: (ClimateRule & { reef_depth: number; reef_latitude: number }) | null = null;
   let climateReady = !ts.files.climate;
   let climateData: ClimateData | null = null;
+  const climates = new Climates(build, field, () => {
+    cubeKey = '';
+    dirty = true;
+  });
   if (ts.files.climate) {
     void getBytes(build.base + ts.files.climate).then((data) => {
       const { header, arrays } = decodeTile<ClimateHeader>(data);
       climateData = { header, arrays };
-      field.setClimate(header.grid, header.keyframes.map((k) => ({ ageMa: k.ageMa, values: arrays[k.values] as Uint8Array, plate: arrays[k.plate] as Uint16Array })));
+      climates.setDeep(ts.climate?.field ?? 'field:earth/climate', ts.climate?.title ?? 'Climate', header, arrays);
       globe.climateCubes = [field.climateCubes![0].texture, field.climateCubes![1].texture];
-      climateAges = header.keyframes.map((k) => k.ageMa).sort((a, b) => a - b);
       climateRule = header.rule as ClimateRule & { reef_depth: number; reef_latitude: number };
       climateReady = true;
       cubeKey = '';
@@ -352,7 +366,7 @@ async function start(root: HTMLElement): Promise<void> {
   let city: CityScene | LifeScene | null = null;
   let labelledSite: string | null = null;
   // Anywhere else on land, at any time the atlas covers: a scene the browser makes as it is wanted.
-  const lifeAtlas = build.atlas ? new LifeAtlas(build, build.atlas, () => (climateData && climateRule ? { data: climateData, rule: climateRule } : null), build.atlas.generator, build.planet, build.model, ts.fields.find((f) => f.mode === 'elevation')?.coastline?.isolineM ?? 20) : null;
+  const lifeAtlas = build.atlas ? new LifeAtlas(build, build.atlas, () => (climateData && climateRule ? { data: climateData, rule: climateRule } : null), build.atlas.generator, build.planet, build.model, coastOf) : null;
   /** the scene of the place the camera is over, and the one being made to take its place */
   let lifeSite: SiteInfo | null = null;
   let lifeLoading: string | null = null;
@@ -710,11 +724,11 @@ async function start(root: HTMLElement): Promise<void> {
 
   /** What resolve reads in the viewer: what has loaded so far (core/resolve.ts). */
   function resolveWorld(): ResolveWorld {
-    const ages = climateAges;
+    const span = climates.spanMa();
     return {
       planet: build.planet,
       geography: ts.fields.map((f) => ({ title: f.title, mode: f.mode, coverage: f.coverage })),
-      climate: ages.length ? [fromMa(Math.max(...ages)), fromMa(Math.min(...ages))] : undefined,
+      climate: span ? [fromMa(span[0]), fromMa(span[1])] : undefined,
       ice: ts.ice?.coverage,
       people: people.file ? [people.file.steps[0], people.file.steps.at(-1)!] : undefined,
       polities: polities.file?.rows.length ? [Math.min(...polities.file.rows.map((r) => r.from)), Math.max(...polities.file.rows.map((r) => r.to))] : undefined,
@@ -745,7 +759,7 @@ async function start(root: HTMLElement): Promise<void> {
   const totalsAt = (ageMa: number): Quat[] => {
     let q = keyTotals.get(ageMa);
     if (!q) {
-      q = plateIds.map((id) => (id === 0 ? ([1, 0, 0, 0] as Quat) : build.model.total(id, ageMa)));
+      q = plateIds.map((id) => (id === 0 ? ([1, 0, 0, 0] as Quat) : build.plates.total(id, ageMa)));
       keyTotals.set(ageMa, q);
     }
     return q;
@@ -763,20 +777,13 @@ async function start(root: HTMLElement): Promise<void> {
   let frameField: FieldInfo | undefined;
   /** the climate's mix between the keyframes drawn, while the land is painted from it */
   let frameClimateMix: number | null = null;
+  /** which climate the land is painted from, while it is */
+  let frameClimate: ClimateAt | null = null;
   /** the keyframes of the ice sheets drawn and the mix between them, and the age they are moved to, where a field has them */
   let frameIce: { younger: number; older: number; mix: number; ageMa: number } | null = null;
   /** where people lived was drawn in the frame */
   let peopleDrawn = false;
 
-  /** The keyframes of the climate around an age, and how far between them it is. */
-  function climateKeysAt(age: number): { k0: number; k1: number; mix: number } | null {
-    if (!climateAges.length) return null;
-    const a = Math.max(age, climateAges[0]);
-    if (a > climateAges[climateAges.length - 1]) return null;
-    const k1 = climateAges.find((k) => k >= a)!;
-    const k0 = [...climateAges].reverse().find((k) => k <= a)!;
-    return { k0, k1, mix: k1 === k0 ? 0 : (a - k0) / (k1 - k0) };
-  }
 
   function render(): void {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -811,17 +818,19 @@ async function start(root: HTMLElement): Promise<void> {
       mix = k1 === k0 ? 0 : (age - k0) / (k1 - k0);
       frameKeys = [k0, k1];
       const drawn = loaded.filter((l) => l.header.field?.id === fi.id).map((l) => gpuTiles.get(l.ref.id)).filter((g): g is FieldTileGPU => !!g);
-      const key = `${state.t}|${fi.id}|${drawn.map((d) => d.id).join(',')}`;
+      const c = fi.mode === 'elevation' ? climates.at(age) : null;
+      const key = `${state.t}|${fi.id}|${drawn.map((d) => d.id).join(',')}|${c ? `${c.k0.key},${c.k1.key}` : ''}`;
       if (key !== cubeKey && drawn.length) {
         const now = totalsAt(age);
         field.render(k0, k1, deltas(now, totalsAt(k0)), deltas(now, totalsAt(k1)), drawn);
-        const c = fi.mode === 'elevation' ? climateKeysAt(age) : null;
-        if (c) field.renderClimate(c.k0, c.k1, deltas(now, totalsAt(c.k0)), deltas(now, totalsAt(c.k1)));
+        // Each keyframe of the climate moves from the coordinates its nodes are on: its own age's, or today's.
+        if (c) field.renderClimate(c.k0.key, c.k1.key, deltas(now, totalsAt(c.k0.frameMa)), deltas(now, totalsAt(c.k1.frameMa)));
         cubeKey = key;
       }
     } else cubeKey = `${state.t}|none`;
-    const climateNow = fi?.mode === 'elevation' ? climateKeysAt(age) : null;
+    const climateNow = fi?.mode === 'elevation' ? climates.at(age) : null;
     frameClimateMix = climateNow?.mix ?? null;
+    frameClimate = climateNow;
     frameMix = mix;
     frameField = fi;
     const look = lookAt(build.planet, state.t, scenario());
@@ -871,8 +880,9 @@ async function start(root: HTMLElement): Promise<void> {
         sun,
         mix,
         evidence: state.evidence ? 1 : 0,
-        coast: fi?.coastline?.isolineM ?? 0,
+        coast: coastOf(fi, state.t),
         mode: !fi ? 2 : fi.mode === 'blocks' ? 1 : 0,
+        res: fi?.res_deg ?? 1,
         look: globeLook(look, (surfaceSpec?.params as unknown as SurfaceParams | undefined)?.draw, coverAt(build.planet, state.t, scenario())),
         showClouds: state.clouds && cloudsReady,
         territory: { on: showTerritory, colors: TERRITORY_COLORS, selected: territory.channelOf(state.sel) },
@@ -1423,15 +1433,17 @@ async function start(root: HTMLElement): Promise<void> {
     }
     if (!fi) return inspect.showUnknown(state.t, unknownWhy(state.t), stateOf(frameLook), resolveLayer(resolveWorld(), 'geography', hit.lat, hit.lon, state.t, scenario()));
     const [e0, e1, p0] = field.sample(hit.point);
-    const elevation = e0 + (e1 - e0) * frameMix;
+    // On today's ground, the height above the sea of the time.
+    const level = seaLevelOf(fi, state.t);
+    const elevation = e0 + (e1 - e0) * frameMix - level;
     const plate = build.frames.plateIndex[Math.round(p0)] || null;
     inspect.showTerrain({
       mode: fi.mode,
       lat: hit.lat,
       lon: hit.lon,
       elevation,
-      plate,
-      plateLabel: plate ? build.model.label(plate) : undefined,
+      plate: plate ? build.plates.of(plate).plate : null,
+      plateLabel: plate ? build.plates.label(plate) : undefined,
       keyframes: frameKeys,
       mix: frameMix,
       t: state.t,
@@ -1441,6 +1453,7 @@ async function start(root: HTMLElement): Promise<void> {
       fieldSpread: fi.spread,
       coastline: fi.coastline?.title,
       datum: fi.datum,
+      seaLevel: fi.coastline?.seaLevel ? { m: level, title: build.series.series.find((x) => x.id === fi.coastline!.seaLevel)?.title ?? fi.coastline.seaLevel } : undefined,
       state: stateOf(frameLook),
       biome: biomeHere(hit.point),
       polity: polityHere(hit.lon, hit.lat),
@@ -1504,16 +1517,18 @@ async function start(root: HTMLElement): Promise<void> {
     });
     // Reef builders are the sea's: what is on land is what the land's cover follows.
     const land = covers.filter((c) => c.kind !== 'reefs').sort((x, y) => x.a - y.a);
+    // The finer climate of the recent past, where it is the one drawn.
+    const finer = ts.climates?.find((c) => c.field === frameClimate?.field);
     return {
       climate,
       label: CLIMATE_LABEL[climate],
       cover: coverAt(build.planet, state.t, scenario()),
       sheets: !!frameIce,
-      title: info.title,
+      title: finer?.title ?? info.title,
       transitions: land.filter((c) => c.a <= state.t),
       next: land.find((c) => c.a > state.t),
       rule: info.biomeDescription ?? info.biomeTitle,
-      ruleSource: info.sourceRecord,
+      ruleSource: finer?.sourceRecord ?? info.sourceRecord,
     };
   }
 
@@ -1537,7 +1552,7 @@ async function start(root: HTMLElement): Promise<void> {
   function unknownWhy(t: number): string {
     const oldest = Math.min(...ts.fields.map((f) => f.coverage[0]));
     const furthest = Math.max(...ts.fields.map((f) => f.coverage[1]));
-    if (t < oldest) return `Geography unknown: the plate model reaches back to ${formatTime(oldest)}.`;
+    if (t < oldest) return `Geography unknown: the oldest plate model reaches back to ${formatTime(oldest)}.`;
     if (t > furthest) return `Geography unknown: today's map is held only to ${formatTime(furthest)}, and nothing models it after.`;
     return '';
   }
@@ -1680,7 +1695,7 @@ async function start(root: HTMLElement): Promise<void> {
   history.replaceState(null, '', toSearch(build.id, state));
   window.__wikiworldmodel = {
     build: build.id,
-    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && !fieldLayers.some((fl) => fl.busy) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && genericReady && climateReady && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
+    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && !fieldLayers.some((fl) => fl.busy) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && genericReady && climateReady && !climates.busy && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
     state: () => state,
     url: () => toSearch(build.id, state),
     requests: fetchLog,
@@ -1701,6 +1716,14 @@ async function start(root: HTMLElement): Promise<void> {
       const lo = lon * RAD;
       const v = field.sampleClimate([Math.cos(la) * Math.cos(lo), Math.cos(la) * Math.sin(lo), Math.sin(la)], frameClimateMix);
       return v ? decodeNode(v) : null;
+    },
+    climateField: () => frameClimate?.field ?? null,
+    groundAt: (lat, lon) => {
+      if (!frameField || frameField.mode !== 'elevation') return null;
+      const la = lat * RAD;
+      const lo = lon * RAD;
+      const [e0, e1] = field.sample([Math.cos(la) * Math.cos(lo), Math.cos(la) * Math.sin(lo), Math.sin(la)]);
+      return e0 + (e1 - e0) * frameMix - seaLevelOf(frameField, state.t);
     },
     iceAt: (lat, lon) => {
       if (!frameIce) return null;

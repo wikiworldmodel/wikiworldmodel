@@ -1,7 +1,9 @@
 // Download every dataset in world/manifest.yaml into .cache/, verifying checksums.
-import { existsSync } from 'node:fs';
+import { createWriteStream, existsSync } from 'node:fs';
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
+import { Readable } from 'node:stream';
+import { pipeline } from 'node:stream/promises';
 import { unzipSync } from 'fflate';
 import { datasetDir, datasetPath, loadManifest, type Dataset } from './manifest.ts';
 import { REPO } from './paths.ts';
@@ -15,18 +17,17 @@ if (process.env.HTTPS_PROXY || process.env.https_proxy) {
 }
 
 async function download(url: string, dest: string): Promise<void> {
+  await mkdir(dirname(dest), { recursive: true });
+  const tmp = `${dest}.part`;
   // A snapshot of a changing database is kept in the repository until there is a blob store.
-  let buf: Uint8Array;
-  if (url.startsWith('repo:')) buf = new Uint8Array(await readFile(join(REPO, url.slice('repo:'.length))));
+  if (url.startsWith('repo:')) await writeFile(tmp, new Uint8Array(await readFile(join(REPO, url.slice('repo:'.length)))));
   else {
     // Some hosts refuse a client with no name of its own.
     const res = await fetch(url, { headers: { 'User-Agent': 'wikiworldmodel-world-tools' } });
-    if (!res.ok) throw new Error(`GET ${url}: HTTP ${res.status}`);
-    buf = new Uint8Array(await res.arrayBuffer());
+    if (!res.ok || !res.body) throw new Error(`GET ${url}: HTTP ${res.status}`);
+    // Written as it comes, since some datasets are larger than is wise to hold in memory.
+    await pipeline(Readable.fromWeb(res.body as import('node:stream/web').ReadableStream), createWriteStream(tmp));
   }
-  await mkdir(dirname(dest), { recursive: true });
-  const tmp = `${dest}.part`;
-  await writeFile(tmp, buf);
   await rename(tmp, dest);
 }
 

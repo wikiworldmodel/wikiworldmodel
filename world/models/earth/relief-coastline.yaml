@@ -1,0 +1,32 @@
+# A model run here (section 4.10 of the design). The value of its parameter stays in the field.
+id: model:earth/relief-coastline
+type: model
+title: The coastline of the glacial cycles, from today's relief and the sea level
+description: >-
+  Lays the sea of each time over today's ground: the coast is where today's relief crosses the sea level of the time,
+  read from a stack of sea-level reconstructions and drawn by the renderer, so that it moves with every row of the stack
+  and agrees with the ground under it. It holds the ground as it is today, moved with its plates: it leaves out the crust
+  that sank under the ice sheets and rose again after them, the sediment laid down and the reefs grown since, and any
+  fault or volcano that moved the ground. Far from the ice sheets that matters little to where the coast was; near them,
+  and on deltas, it can matter a great deal.
+author: machine:claude-code
+code: viewer/src/gl/globe.ts
+inputs:
+  - { ref: field:earth/relief, note: "the ground, as it is today" }
+  - { ref: field:earth/sea-level-stack, note: "the sea level of each time, relative to today's" }
+outputs: [field:earth/relief-coastline]
+params:
+  isoline_m:
+    source:
+      ref: src:etopo-2022-60s
+      loc: "ETOPO 2022 User Guide, version 1.2, section 2.1, p. 3"
+      quote: For most purposes, EGM2008 is an adequate approximation of mean sea level.
+uncertainty:
+  kind: band
+  note: >-
+    The stack's 95% interval, mostly 10 to 20 m either side, would move the coast between where those two levels put
+    it; only the central level is drawn. Where the shelf is flat, as across the Sunda Shelf or the North Sea, a few metres
+    move the coast by tens of kilometres.
+checks:
+  - { test: tools/world/test/build.test.ts, holds: "draws the land bridges of the Last Glacial Maximum, and parts them today" }
+  - { test: tools/world/test/build.test.ts, holds: "keeps the sea of the Last Glacial Maximum within what the world's claims give for it" }

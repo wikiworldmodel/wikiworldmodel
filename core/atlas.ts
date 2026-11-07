@@ -135,3 +135,53 @@ export function atlasList(bin: AtlasBin, grid: AtlasGrid, lat: number, lon: numb
   for (let i = 0; i + 3 < flat.length; i += 4) out.push({ taxon: bin.taxa[flat[i]], weight: flat[i + 1], tier: flat[i + 2] as Tier, km: flat[i + 3] * 10 });
   return out;
 }
+
+// The sea's atlas (tools/world/src/build/sea.ts): the same stages, patches and tiers over the sea, of genera with no
+// forms, since the sea's great groups have none in the world yet. Its lists say what lived where; they draw nothing.
+
+/** A genus on a list of the sea, and the class or phylum the database puts it in. */
+export interface SeaTaxon {
+  no: number;
+  label: string;
+  rank: string;
+  group: string;
+  /** the rows of this stage that name it or a taxon below it, worldwide */
+  rows: number;
+  /** the oldest and youngest ages those rows allow, in Ma */
+  span: [number, number];
+  /** listed because nothing is recorded near: the stage's commonest of a like belt of latitude */
+  standin?: boolean;
+}
+
+/** One stage of the sea: `nodes` maps a patch of sea to flat fours, as the land's do. */
+export interface SeaBin {
+  format: 'lightworld-sea-bin@1';
+  from: number;
+  to: number;
+  slice: number;
+  name: string;
+  taxa: SeaTaxon[];
+  nodes: Record<string, number[]>;
+}
+
+export interface SeaIndex {
+  format: 'lightworld-sea-atlas@1';
+  title: string;
+  description?: string;
+  source: string;
+  sourceRecord?: import('./records.ts').SourceRecord;
+  grid: AtlasGrid;
+  /** how the tiers are drawn: the distances, in km over the sea */
+  here_km: number;
+  region_km: number;
+  bins: AtlasBinRef[];
+}
+
+/** The list for a place of the sea in a stage; undefined where the stage has no sea there. */
+export function seaList(bin: SeaBin, grid: AtlasGrid, lat: number, lon: number): { taxon: SeaTaxon; weight: number; tier: Tier; km: number }[] | undefined {
+  const flat = bin.nodes[String(atlasKey(grid, lat, lon))];
+  if (!flat) return undefined;
+  const out: { taxon: SeaTaxon; weight: number; tier: Tier; km: number }[] = [];
+  for (let i = 0; i + 3 < flat.length; i += 4) out.push({ taxon: bin.taxa[flat[i]], weight: flat[i + 1], tier: flat[i + 2] as Tier, km: flat[i + 3] * 10 });
+  return out;
+}

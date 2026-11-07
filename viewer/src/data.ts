@@ -2,7 +2,7 @@
 // own directory, so a link that names a build keeps showing that build.
 import type { PlanetFile } from '../../core/planet.ts';
 import type { BuildIndex, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../core/records.ts';
-import { RotationModel } from '../../core/rotation-model.ts';
+import { PlateModels, RotationModel } from '../../core/rotation-model.ts';
 import { PRESENT_YEAR } from '../../core/time.ts';
 import type { AtlasIndex } from '../../core/atlas.ts';
 import type { FeatureIndex } from '../../core/featuretiles.ts';
@@ -13,7 +13,10 @@ export interface Build {
   base: string;
   tileset: Tileset;
   frames: FramesFile;
+  /** the plate model the records' frames move with */
   model: RotationModel;
+  /** every plate model a field moves with, by the plate numbers the tiles carry */
+  plates: PlateModels;
   periods: PeriodsFile;
   search: SearchFile;
   series: SeriesFile;
@@ -61,7 +64,9 @@ export async function loadBuild(root: string, id: string): Promise<Build> {
     p.end ??= PRESENT_YEAR;
     for (const v of Object.values(p.variants ?? {})) v.end ??= PRESENT_YEAR;
   }
-  return { id, base, tileset, frames, model: new RotationModel(frames.rotations), periods, search, series, planet, features, atlas };
+  const model = new RotationModel(frames.rotations);
+  const plates = new PlateModels(model, (frames.models ?? []).map((m) => ({ source: m.source, offset: m.offset, model: new RotationModel(m.rotations) })));
+  return { id, base, tileset, frames, model, plates, periods, search, series, planet, features, atlas };
 }
 
 const records = new Map<string, Promise<EntityRecord>>();
