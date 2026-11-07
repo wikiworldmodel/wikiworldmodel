@@ -11,6 +11,8 @@ import type { FieldGrid } from '../../../../core/tileset.ts';
 import { claimOf, subjectTime, type Solved } from './records.ts';
 import { datasetFile } from '../manifest.ts';
 import { openNetcdf } from '../netcdf.ts';
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { stableStringify } from '../util.ts';
 import type { Field, World } from '../world.ts';
 import type { Snapshot } from './fields.ts';
@@ -24,6 +26,8 @@ export function climateGrid(step: number): FieldGrid {
 
 export interface ClimateKeyframe {
   ageMa: number;
+  /** the age whose coordinates its nodes are on, if not its own: 0 for a field measured on today's Earth */
+  frameMa?: number;
   /** four bytes per node */
   values: Uint8Array;
   /** the plate's index, with LAND_BIT where the model has land */
@@ -145,10 +149,75 @@ export function encodeClimate(grid: FieldGrid, keys: ClimateKeyframe[], rule: Cl
   const arrays: (Uint8Array | Uint16Array)[] = [];
   const keyframes = keys.map((k) => {
     arrays.push(k.values, k.plate);
-    return { ageMa: k.ageMa, values: arrays.length - 2, plate: arrays.length - 1 };
+    return { ageMa: k.ageMa, values: arrays.length - 2, plate: arrays.length - 1, ...(k.frameMa !== undefined ? { frameMa: k.frameMa } : {}) };
   });
   const header: ClimateHeader = { format: 'lightworld-climate@1', grid, keyframes, rule };
   return encodeTile(header as unknown as Record<string, unknown>, arrays, stableStringify);
+}
+
+/** What the months importer (tools/world/importers/months.py) writes beside its arrays. */
+interface MonthsMeta {
+  grid: { latitudes: number[]; longitudes: number[] };
+  units: { temperature: string; precipitation: string; time: string };
+  slices: { index: number; time: number; cells: number }[];
+}
+
+/**
+ * Every keyframe of a climate field read as months (importMonths): a run of a model at each of its times, on today's
+ * coordinates, carried by the plates under them today. Its nodes beyond the latitudes the runs reach are left without a
+ * climate, as nodes far from any land are, rather than given the nearest land's.
+ */
+export async function monthsKeyframes(f: Field, dir: string, present: Snapshot, plateIndex: Map<number, number>, log: (s: string) => void): Promise<ClimateKeyframe[]> {
+  const meta = JSON.parse(await readFile(join(dir, 'meta.json'), 'utf8')) as MonthsMeta;
+  if (meta.units.temperature !== 'degrees celsius' || meta.units.precipitation !== 'millimetres per month' || meta.units.time !== 'years since present') throw new Error(`${f.id}: units ${JSON.stringify(meta.units)} are not read`);
+  const grid = climateGrid((f.grid as { res_deg: number }).res_deg);
+  const lat = meta.grid.latitudes;
+  const lon = meta.grid.longitudes;
+  const nlat = lat.length;
+  const nlon = lon.length;
+  const cells = nlat * nlon;
+  const [south, north] = [Math.min(...lat), Math.max(...lat)];
+  const read = async <T>(path: string, C: { new (b: ArrayBuffer): T }) => {
+    const b = await readFile(join(dir, path));
+    return new C(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer);
+  };
+  const out: ClimateKeyframe[] = [];
+  for (const sl of meta.slices) {
+    const land = await read(`land/${sl.index}.u32`, Uint32Array);
+    const t10 = await read(`t/${sl.index}.i16`, Int16Array);
+    const p10 = await read(`p/${sl.index}.u16`, Uint16Array);
+    // The months on the file's whole grid, as nodesOfRun reads them: month by month, row by row.
+    const mask = new Float32Array(cells);
+    const t = new Float32Array(12 * cells);
+    const p = new Float32Array(12 * cells);
+    land.forEach((c, i) => {
+      mask[c] = 1;
+      for (let m = 0; m < 12; m++) {
+        t[m * cells + c] = t10[i * 12 + m] / 10;
+        p[m * cells + c] = p10[i * 12 + m] / 10;
+      }
+    });
+    const raw = nodesOfRun(grid, lat, lon, mask, t, p);
+    const nodes = spreadOverSea(grid, raw, 16);
+    const n = grid.nx * grid.ny;
+    const values = new Uint8Array(n * 4);
+    const plate = new Uint16Array(n);
+    for (let k = 0; k < n; k++) {
+      const row = Math.floor(k / grid.nx);
+      const la = grid.lat0 - row * grid.step;
+      if (la < south - grid.step / 2 || la > north + grid.step / 2) nodes.fill(NaN, k * 4, k * 4 + 4);
+      const c: ClimateNode = Number.isNaN(nodes[k * 4]) ? { hot: 0, cold: 0, aridity: 1, margin: 0 } : { hot: nodes[k * 4], cold: nodes[k * 4 + 1], aridity: nodes[k * 4 + 2], margin: nodes[k * 4 + 3] };
+      values.set(encodeNode(c), k * 4);
+      const lo = grid.lon0 + (k % grid.nx) * grid.step;
+      const at = (90 - la) * SRC_W + ((((lo + 180) % 360) + 360) % 360);
+      plate[k] = (plateIndex.get(present.plate[at]) ?? 0) | (Number.isNaN(raw[k * 4]) ? 0 : LAND_BIT);
+    }
+    // Years before the present, as the file counts them.
+    out.push({ ageMa: Math.round(-sl.time) / 1e6, frameMa: 0, values, plate, nodes });
+  }
+  out.sort((a, b) => a.ageMa - b.ageMa);
+  log(`climate: ${out.length} keyframes on a ${grid.step}° grid, from ${f.data!.from}, ${(out.at(-1)!.ageMa * 1e3).toFixed(0)} ka to the present`);
+  return out;
 }
 
 /** A fossil forest, against the climate the field gives its place at its time. */

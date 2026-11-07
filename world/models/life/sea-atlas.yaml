@@ -1,0 +1,43 @@
+# A model run here (section 4.10 of the design). The values of its parameters stay in the field.
+id: model:life/sea-atlas
+type: model
+title: Who lived in the sea, from the fossils
+description: >-
+  Reduces the Paleobiology Database's marine fossils to a list of genera for each stage and each patch of sea, in tiers:
+  here, where a row of the genus lies within a few hundred km by sea at the time; region, where one can be reached by sea
+  in a like belt of latitude; and stand-in, where nothing is near and the stage's commonest genera of that belt stand for
+  them. Distance is over the sea of the time, the shelf cheapest, the open ocean dearer, and the land dearest. It is a
+  simple distribution model, on the land atlas's stages and patches, and its lists partly show where people have
+  collected: the record leans to Europe and North America, and to the shelves.
+author: machine:claude-code
+code: tools/world/src/build/sea.ts
+inputs:
+  - { ref: src:pbdb-sea-2026-11-06, note: "the rows: which genera were found where, and when" }
+  - { kind: period/stage, note: "the bins it lists by" }
+  - { ref: field:earth/elevation, note: "the plates and the sea of each time, which carry the rows and set the distances" }
+  - { ref: field:earth/coastline, note: "what is land and what is sea" }
+outputs: [field:life/community-sea]
+params:
+  grid_deg: { choice: "The size of a patch of sea the lists are kept for: the land atlas's, so that a stage's lists of land and sea meet." }
+  graph_deg: { choice: "The spacing of the graph distances are measured on: the land atlas's." }
+  here_km: { choice: "How near a row must be for its genus to be \"here\": the land atlas's distance." }
+  region_km: { choice: "How far by sea a row may be for its genus to be in the region: the land atlas's distance." }
+  kernel_km: { choice: "How fast a row's weight falls with distance: the land atlas's." }
+  land_cost: { choice: "How many km of shelf one km of land counts as: the land atlas's cost of deep sea, turned round." }
+  deep_cost: { choice: "How many km of shelf one km of open ocean counts as, so that a shelf's animals spread along shelves first." }
+  shallow_m: { choice: "How deep the sea may be and still count as shelf: the land atlas's." }
+  longest_span: { choice: "A row dated only to a span longer than this says too little of any one stage, and is left out: the land atlas's." }
+  tight_span: { choice: "A row dated to a span this short or shorter is well dated, and keeps out the loose rows of its genus: the land atlas's." }
+  longest_bin: { choice: "The longest a bin may be before it is split: the land atlas's, so their stages are the same." }
+  shortest_bin: { choice: "The shortest a bin may be before it is merged: the land atlas's." }
+  list_size: { choice: "How many genera a list holds." }
+  standins: { choice: "How many genera stand in where nothing is recorded within reach." }
+  belts: { choice: "Where the belts of latitude that stand for a like sea meet: a stand-in for sea temperature, which no field here gives for the sea." }
+  other_belt: { choice: "How much a row of another belt of latitude counts, against one of the same belt." }
+uncertainty:
+  kind: tiers
+  note: >-
+    Each genus on a list says how near its evidence is: here, region or stand-in. Within a tier there is no measure, and
+    the distances that set the tiers, and the belts that stand for a like sea, are choices.
+checks:
+  - { test: tools/world/test/life.test.ts, holds: "lists who lived in the sea: a genus recorded here has a row of it within reach at the time, recounted from the snapshot" }

@@ -69,7 +69,7 @@ export function bucketOf(form: Form, lengthM: number | undefined, p: Pick<AtlasP
 }
 
 /** Min-heap of [cost, node], for walking the land. */
-class Heap {
+export class Heap {
   private c: number[] = [];
   private n: number[] = [];
   get size(): number {
@@ -114,14 +114,17 @@ class Heap {
   }
 }
 
-/** The land of a moment as a graph: each node's cost per km to cross, on a lat/lon grid. */
-class LandGraph {
+/**
+ * The land of a moment as a graph: each node's cost per km to cross, on a lat/lon grid. The land's walkers cross the land
+ * for a km a km and the sea dearly; `costOf` turns that round for the sea's (sea.ts).
+ */
+export class LandGraph {
   readonly nx: number;
   readonly ny: number;
   readonly cost: Float32Array;
   readonly land: Uint8Array;
   private cosines: Float64Array;
-  constructor(readonly step: number, snap: Snapshot, isoline: number, p: AtlasParams) {
+  constructor(readonly step: number, snap: Snapshot, isoline: number, p: Pick<AtlasParams, 'shallow_m' | 'shallow_cost' | 'deep_cost'>, costOf?: (elevation: number) => number) {
     this.nx = Math.round(360 / step);
     this.ny = Math.round(180 / step) + 1;
     const n = this.nx * this.ny;
@@ -136,7 +139,7 @@ class LandGraph {
         const e = snap.elev[(90 - lat) * SRC_W + (lon + 180)];
         const k = j * this.nx + i;
         this.land[k] = e >= isoline ? 1 : 0;
-        this.cost[k] = e >= isoline ? 1 : e >= isoline - p.shallow_m ? p.shallow_cost : p.deep_cost;
+        this.cost[k] = costOf ? costOf(e) : e >= isoline ? 1 : e >= isoline - p.shallow_m ? p.shallow_cost : p.deep_cost;
       }
     }
   }
@@ -145,8 +148,8 @@ class LandGraph {
     const i = ((Math.round((lon + 180) / this.step) % this.nx) + this.nx) % this.nx;
     return j * this.nx + i;
   }
-  /** Cost in km over land from some nodes, out to a limit. */
-  walk(sources: number[], limit: number, out: Float32Array): void {
+  /** Cost in km over land from some nodes, out to a limit; the nodes reached go in `reached`, if given. */
+  walk(sources: number[], limit: number, out: Float32Array, reached?: number[]): void {
     out.fill(Infinity);
     const heap = new Heap();
     for (const s of sources) {
@@ -161,6 +164,7 @@ class LandGraph {
       const [d, k] = heap.pop();
       if (done[k]) continue;
       done[k] = 1;
+      reached?.push(k);
       const j = Math.floor(k / nx);
       const i = k - j * nx;
       for (let dj = -1; dj <= 1; dj++) {
@@ -636,7 +640,8 @@ export function classify(w: World, snap: LandSnapshot, p: Pick<AtlasParams, 'big
       results.set(no, null);
       return null;
     }
-    // Something on land or in fresh water: this atlas holds no seas yet. Its rows are all from the land, so what the
+    // Something on land or in fresh water: this atlas holds no seas, whose genera have lists of their own (sea.ts), with no
+    // forms yet. Its rows are all from the land, so what the
     // database calls marine only counts against what would have to swim: a pterosaur over the coast or a crocodile at the
     // water's edge is not left out for it.
     const env = word(t[9]);

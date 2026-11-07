@@ -378,6 +378,7 @@ function checkRecords(world: World, issues: Issue[], tables: Map<string, Table> 
     if (f.data?.prop) refs.check(f.data.from, f.file, 'data.from', { types: ['src'] });
     else if (f.data) checkDataset(world, refs, f.data.from, f.file, 'data.from', f.data.file, issues);
     if (f.moves_with) checkDataset(world, refs, f.moves_with, f.file, 'moves_with', undefined, issues);
+    for (const k of ['ocean', 'lakes'] as const) if (f.data?.water) checkDataset(world, refs, f.data.water[k], f.file, `data.water.${k}`, undefined, issues);
     if (f.source) refs.check(f.source.ref, f.file, 'source.ref', { types: ['src'] });
     for (const [i, x] of (f.from ?? []).entries()) refs.check(x, f.file, `from[${i}]`, { types: ['field'] });
     for (const [i, s] of (f.data?.scenarios ?? []).entries()) if (s.alt) refs.check(s.alt, f.file, `data.scenarios[${i}].alt`, { types: ['alt'] });

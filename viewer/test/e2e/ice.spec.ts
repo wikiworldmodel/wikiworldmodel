@@ -172,7 +172,9 @@ test('inside the span ice is the field\'s alone: the climate\'s own reading of i
   await idle(page);
   expect((await page.evaluate(([a, o]) => window.__wikiworldmodel!.biomeAt(a, o), [lat, lon]))!.climate).toBe('ice');
   const inside = bright(await canvasPatch(page, 0.5, 0.5, 11));
-  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), year(85));
+  // Before both the field and the climate of the last 120,000 years, which has it only just frozen: the deep past's
+  // runs have it never thawing.
+  await page.evaluate((t) => window.__wikiworldmodel!.set({ t }), year(125));
   await idle(page);
   const outside = bright(await canvasPatch(page, 0.5, 0.5, 11));
   expect(outside).toBeGreaterThan(inside + 40);

@@ -1,0 +1,42 @@
+# Today's relief, read back through the glacial cycles: the ground is held as it is today, moved with its plates, and
+# the sea rises and falls over it (field:earth/relief-coastline). Where it covers a time, the globe draws it in place of
+# the PaleoDEMs, whose keyframes are 5 Myr apart and on a coarser grid.
+id: field:earth/relief
+type: field
+title: Today's relief, through the glacial cycles
+quantity: elevation
+unit: m
+description: >-
+  The height of today's land and the depth of today's sea floor, with the top of today's ice sheets, from a compilation
+  of surveys, averaged onto a grid of a tenth of a degree. Ground below today's sea level that today's ocean does not
+  reach, such as the Dead Sea's valley or the Qattara Depression, is held at the height of the pass it would spill over,
+  so that only the ocean floods it; today's lakes keep their depth. Measured for the present only: before it, the ground is held
+  as it is today, moved with its plates, and the sea of each time is laid over it. How the ground itself changed in that
+  time is left out: the crust that sank under the ice sheets and rose again, the sediment of rivers and deltas, reefs,
+  faults and volcanoes, and the ice sheets of the past, which the ice-sheet field draws.
+# Heights are above the EGM2008 geoid, today's mean sea level near enough; a coastline on this field moves with a
+# series of sea level (core/sealevel.ts).
+datum: present-day-sea-level
+frame: frame:earth/present-day
+grid: { kind: lonlat, res_deg: 0.1 }
+# As far back as the sea-level series its coastline reads.
+time: { lo: 798 ka, hi: 0 ka }
+data:
+  from: src:etopo-2022-60s
+  as: relief
+  # The sea of each time floods only what today's ocean reaches: a hollow below today's sea level that the ocean does not
+  # reach, the Dead Sea's or the Qattara Depression's, is held at the pass it would spill over.
+  water: { ocean: src:natural-earth-ocean-5.1.2, lakes: src:natural-earth-lakes-5.1.2 }
+# Measured today; a reconstruction for every time before, by the assumption that the ground stood as it stands now.
+basis: reconstruction
+# A single value at each place: the survey gives no uncertainty at this grain (docs/STRUCTURE.md section 3.2).
+spread: unknown
+# Every node moves with the plate under it today, as the ice sheets' do.
+interp: plate-warp
+moves_with: src:paleomap-plate-model
+projection:
+  method: hold
+  until: 10 kyr from now
+  note: >-
+    Today's ground, held for the near future as the elevation is. Sea level and ice will not stay as they are, and no
+    scenario for them is modelled yet.

@@ -49,6 +49,8 @@ uniform vec3 uEye;
 uniform float uEvidence;
 uniform float uCoast;
 uniform float uTexel;
+// How far apart the field's nodes are, in radians: its isolines are smoothed over about a third of that.
+uniform float uSmooth;
 uniform int uMode;
 // The planet's state: surface 0 as the mode draws it, 1 oceans, 2 magma, 3 crust over
 // magma, 4 bare rock; air 0 today's sky, 1 rock vapour.
@@ -94,8 +96,8 @@ float elev(vec3 n) {
   return mix(f.r, f.g, uMix);
 }
 
-// A tent filter about one source cell wide: the source grid is 1°, and its isolines are
-// rounder after smoothing at that scale than straight off the triangulated grid.
+// A tent filter about a third of a source cell wide: isolines are rounder after smoothing at
+// that scale than straight off the triangulated grid.
 float smoothElev(vec3 n, vec3 t1, vec3 t2, float h) {
   float s = 4.0 * elev(n);
   s += 2.0 * (elev(normalize(n + t1 * h)) + elev(normalize(n - t1 * h)) + elev(normalize(n + t2 * h)) + elev(normalize(n - t2 * h)));
@@ -323,7 +325,7 @@ void main() {
   vec3 ref = abs(n.z) < 0.99 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);
   vec3 t1 = normalize(cross(ref, n));
   vec3 t2 = cross(n, t1);
-  float e = smoothElev(n, t1, t2, 0.006) - uCoast;
+  float e = smoothElev(n, t1, t2, uSmooth) - uCoast;
   float h = uTexel;
   float ex = elev(normalize(n + t1 * h)) - elev(normalize(n - t1 * h));
   float ey = elev(normalize(n + t2 * h)) - elev(normalize(n - t2 * h));
@@ -557,6 +559,8 @@ export interface GlobeFrame {
   coast: number;
   /** 0: elevation, 1: continental blocks, 2: no geography known */
   mode: number;
+  /** the spacing of the field's grid, in degrees */
+  res: number;
   look: GlobeLook;
   showClouds: boolean;
   territory?: GlobeTerritory;
@@ -741,6 +745,8 @@ export class GlobeRenderer {
       uEvidence: f.evidence,
       uCoast: f.coast,
       uTexel: 1.5 / this.cubeSize,
+      // About a third of a node of the field, and never less than a texel of the cube it is read from.
+      uSmooth: Math.max((f.res * Math.PI) / 180 / 2.9, 1 / this.cubeSize),
       uCrust: look.crust,
       uIceReach: look.iceReach,
       uIceEdge: look.iceEdge,

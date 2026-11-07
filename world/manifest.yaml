@@ -58,6 +58,66 @@ datasets:
         The copy shipped with the rgplates R package (gplates/rgplates, inst/extdata), which
         repackages the "PALEOMAP Global Plate Model" folder of Scotese_Paleoatlas_v3.zip.
 
+  src:cao-2024-plate-model:
+    type: dataset
+    kind: model
+    title: "Earth's tectonic and plate boundary evolution over 1.8 billion years: the plate model"
+    citation: >-
+      Cao, X., Collins, A., Pisarevsky, S., Flament, N., Li, S., Hasterok, D. & Müller, D. (2024). Earth's tectonic and
+      plate boundary evolution over 1.8 billion years [dataset], version 2.4. Zenodo, doi:10.5281/zenodo.13628813. The model
+      of: Cao, X., Collins, A.S., Pisarevsky, S., Flament, N., Li, S., Hasterok, D. & Müller, R.D. (2024). Earth's tectonic
+      and plate boundary evolution over 1.8 billion years. Geoscience Frontiers 15(6), 101922.
+    authors:
+      - "Cao, X."
+      - "Collins, A."
+      - "Pisarevsky, S."
+      - "Flament, N."
+      - "Li, S."
+      - "Hasterok, D."
+      - "Müller, D."
+    published: 2024
+    version: Zenodo version 2.4 of 2 September 2024, the archive 1.8Ga_model_GSF.zip
+    container: Zenodo
+    doi: 10.5281/zenodo.13628813
+    url: https://zenodo.org/records/13628813
+    credit: Plates before 1.1 Ga from Cao et al. (2024)
+    license: CC-BY-4.0
+    license_note: >-
+      The Zenodo record's licence is CC BY 4.0, read through its API. The article it goes with is under CC BY-NC-ND 4.0, by
+      its Crossref record, and contributes no data here.
+    reliability: >-
+      A plate reconstruction, not a measurement: where the continents were is the authors' fit to the evidence they used,
+      and it differs from other reconstructions of the same times. It is a full-plate model from 1.8 Ga to the present; its
+      rotations before 1 Ga are in a file of their own, whose lines cite, among others, Pisarevsky et al. (2014), Mulder et
+      al. (2018), Condie et al. (2021) and Merdith et al. (2021) as the work they build on or modify. Its continental
+      polygons are present-day pieces of continent, each from the time the model says it existed: 159 at 1.8 Ga, 185 at
+      1.1 Ga, 870 today.
+    note: >-
+      Its plate numbers are its own, and many are the same numbers as the PALEOMAP model's, for different rotations: the
+      build keeps them apart. The archive's plate boundaries, palaeomagnetic poles and point data are not read.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence, version, description and the archive's md5 from the Zenodo API; the md5 of the archive downloaded matches.
+        The article's title, authors, volume and licence from Crossref; its text could not be reached (the publisher's site
+        refuses automated reads), so nothing here rests on it. The rotation files' comments, and the continental polygons
+        alive and placed at each age, read with pyGPlates.
+    fetch:
+      url: https://zenodo.org/api/records/13628813/files/1.8Ga_model_GSF.zip/content
+      sha256: 4ae9158a29c597b46f687f8c3f0f5a4a55df5ab69bde18e24257a17d358d8592
+      bytes: 20669287
+      format: zip
+      files:
+        rotations:
+          path: 1.8Ga_model_GSF/1000_0_rotfile.rot
+          sha256: e13c16ef5b2f8f116f598635e42a126b016b2c615358b499bcc3433f4a3c735c
+        rotations_deep:
+          path: 1.8Ga_model_GSF/1800_1000_rotfile.rot
+          sha256: db2a57a8b7c7a08891c19840b6334ffb9c279b6a991a2c2eed099edb23445785
+        polygons:
+          path: 1.8Ga_model_GSF/shapes_continents.gpmlz
+          sha256: 6e30de73967f81a403f46370295dec5c0d7ed3ffd80c73d47df926461d949616
+
   src:paleodem-v2:
     type: dataset
     kind: model
@@ -270,6 +330,52 @@ datasets:
       bytes: 754246176
       format: netcdf
 
+  src:beyer-2020-late-quaternary:
+    type: dataset
+    kind: model
+    title: Late Quaternary climate, bioclimate and vegetation
+    citation: >-
+      Beyer, R.M., Krapp, M. & Manica, A. (2020). High-resolution terrestrial climate, bioclimate and vegetation for the
+      last 120,000 years. Scientific Data 7, 236. Data: Beyer, R., Krapp, M. & Manica, A. (2020). Late Quaternary climate,
+      bioclimate and vegetation. Figshare, doi:10.6084/m9.figshare.12293345, version 4.
+    authors:
+      - "Beyer, R.M."
+      - "Krapp, M."
+      - "Manica, A."
+    published: 2020
+    version: Figshare version 4, the file LateQuaternary_Environment.nc (Late Quaternary Environment v1.0, written 23 April 2020)
+    container: Scientific Data 7, 236
+    doi: 10.1038/s41597-020-0552-1
+    url: https://doi.org/10.6084/m9.figshare.12293345
+    credit: Climate of the last 120,000 years (Beyer, Krapp & Manica 2020)
+    license: CC-BY-4.0
+    license_note: Stated on the Figshare record, read through its API, and on the article, from Crossref.
+    reliability: >-
+      Runs of a climate model, not measurements. Monthly climate of the HadCM3 model at 72 times, every 2,000 years from
+      120,000 to 22,000 years ago and every 1,000 years after, each the average of 30 years of a run. These are brought to a
+      finer grid with runs of a finer model (HadAM3H) for the last 21,000 years, chosen for each time by how near its CO₂
+      was, and then corrected by the difference between the modern run and observed climate of 1901–1930, so the present is
+      the observations by construction and every other time keeps the observations' local pattern. The land of each time
+      comes from a sea-level stack and today's relief, with lakes below sea level kept. It has nothing south of 59.75°S, and
+      so no Antarctica. The article finds it agrees with pollen and other reconstructions of the mid-Holocene, the Last
+      Glacial Maximum and the Last Interglacial about as well as other models' snapshots do.
+    note: >-
+      Its extension to 800,000 years (Krapp et al. 2021, Scientific Data 8, 228; OSF 8n43x, CC BY 4.0) would cover the whole
+      span of the sea-level stack, but its monthly temperature and precipitation are about 4 GB, against this file's 1.3 GB
+      for every variable. The addendum of 2021 (doi:10.1038/s41597-021-01051-1) only adds monthly net primary production, in
+      another file.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence, files and their md5 from the Figshare API; the md5 of the file downloaded matches it. Citation and licence
+        of the article from Crossref; its Methods and Data Records read in full through Europe PMC (PMC7360617), and its
+        addendum (PMC8481252). Variables, units, dimensions and times read from the file itself.
+    fetch:
+      url: https://ndownloader.figshare.com/files/22659026
+      sha256: 7312280854bab9e95f8721c80050c0889b29ad3087a00bd264e7500d33d19857
+      bytes: 1333236636
+      format: netcdf
+
   src:pbdb-hell-creek-2026-11-04:
     type: dataset
     kind: compilation
@@ -336,6 +442,44 @@ datasets:
       sha256: 3369bbcac3693211763ca953907dd9d891c5bf413d523b0b15ae000237d8a8a1
       bytes: 15393592
       format: json
+
+  src:pbdb-sea-2026-11-06:
+    type: dataset
+    kind: compilation
+    title: The Paleobiology Database, the fossils of the sea
+    citation: >-
+      The Paleobiology Database. Regular occurrences named to a genus or better, from marine environments, 541 Ma to the
+      present, and the taxa they name with all their parents, read through the data service (data1.2) on 6 November 2026.
+    version: Data service export of 2026-11-06, kept zipped in world/snapshots with the queries in its own `query` field
+    container: The Paleobiology Database
+    url: https://paleobiodb.org/
+    credit: Fossils of the sea from the Paleobiology Database
+    license: CC0-1.0
+    license_note: >-
+      The data service's datainfo header, read on 6 November 2026 with every span of the export, states "Data License:
+      Creative Commons CC0" (https://creativecommons.org/publicdomain/zero/1.0/).
+    reliability: >-
+      A compilation of the literature by many contributors, with no claim to be complete: most places and times have no row.
+      A row's age is that of the interval its collection is assigned to, and its classification is the database's own. Almost
+      all of it is from the shelves and the seas over continents, since the ocean floor of most of the past has gone down the
+      trenches, and it leans heavily to Europe and North America. Ichnotaxa and form taxa are left out by the query. The
+      primary references were not read here.
+    note: >-
+      Asked for in eleven spans of time, as the service would not give all 1.47 million rows at once; an occurrence given for
+      two spans is kept once. No stable URL serves an extract of a changing database, so the snapshot is kept in the
+      repository, zipped, until there is a blob store. It is six times the land's in rows.
+    verified:
+      by: machine:claude-code
+      how: Exported from the data service with the queries in the snapshot, by `npm run world -- pbdb-sea`.
+    fetch:
+      url: repo:world/snapshots/pbdb-sea-2026-11-06.zip
+      sha256: 3718d5c6b0c1987a24ad38cba6632ddd506eb17d0faeeb7736ae3190c9158259
+      bytes: 14271624
+      format: zip
+      files:
+        snapshot:
+          path: pbdb-sea-2026-11-06.json
+          sha256: 06910b4f50b2be3e666904cdc610db7628a096b20819e1fd1642abdff360addb
 
   src:ohm-rome-2026-11-01:
     type: dataset
@@ -504,6 +648,41 @@ datasets:
       bytes: 24525720
       format: tif
 
+  src:etopo-2022-60s:
+    type: dataset
+    kind: compilation
+    title: ETOPO 2022, 60 arc-second global relief, ice surface
+    citation: >-
+      NOAA National Centers for Environmental Information (2022). ETOPO 2022 15 Arc-Second Global
+      Relief Model. https://doi.org/10.25921/fd45-gt74. Its single global grid at 60 arc-seconds, ice
+      surface.
+    published: 2022
+    version: ETOPO 2022 v1, 60 arc-second, ice surface, the one global tile N90W180
+    container: NOAA NCEI
+    doi: 10.25921/fd45-gt74
+    url: https://www.ncei.noaa.gov/products/etopo-global-relief-model
+    credit: Today's relief from ETOPO 2022 (NOAA)
+    license: public-domain
+    license_note: A work of the United States government, like the 15 arc-second tiles.
+    reliability: >-
+      A compilation of land and sea-floor surveys, with the top of the Greenland and Antarctic ice
+      sheets rather than the rock under them. Heights are in metres above the EGM2008 geoid, which its
+      user guide calls an adequate approximation of mean sea level for most purposes. The 60 arc-second
+      grid was downsampled from the 15 arc-second tiles, so it has no grid of which survey each cell
+      comes from. The coast is today's.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Citation and DOI from the product page and DataCite; the datum and how the 30 and 60 arc-second
+        grids were made from the ETOPO 2022 User Guide (NCEI's PDF "1.2 ETOPO 2022 User Guide.pdf"),
+        sections 2.1 and 2.2, and the quote from section 2.1 found in the guide's text by script. The
+        file's own tags read: 21600 × 10800 cells of 32-bit floats, deflated in tiles of 256.
+    fetch:
+      url: https://www.ngdc.noaa.gov/mgg/global/relief/ETOPO2022/data/60s/60s_surface_elev_gtif/ETOPO_2022_v1_60s_N90W180_surface.tif
+      sha256: 9d27d4b8ea8e76977e2988bca667d7c8fa68b927355feffcddd6b4875a7fd08e
+      bytes: 465969062
+      format: tif
+
   src:pbdb-diversity-2026-11-04:
     type: dataset
     kind: compilation
@@ -612,6 +791,60 @@ datasets:
       url: https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_50m_populated_places_simple.geojson
       sha256: 8e70756b39fae9bcdc1e332bfc510c024c5edd3a13203ffd20092ee37b61d978
       bytes: 850767
+      format: json
+
+  src:natural-earth-ocean-5.1.2:
+    type: dataset
+    kind: compilation
+    title: Natural Earth, 1:50m ocean
+    citation: >-
+      Natural Earth. Ocean, 1:50m, version 5.1.2, in the GeoJSON of the project's repository
+      (nvkelso/natural-earth-vector).
+    version: 5.1.2
+    url: https://www.naturalearthdata.com/
+    credit: Today's ocean and lakes from Natural Earth
+    license: public-domain
+    license_note: >-
+      The project's terms of use say that all versions of its map data "are in the public domain".
+    reliability: >-
+      A small-scale map of today's sea, drawn to be legible rather than exact: straits narrower than a few
+      kilometres may be widened or closed. It is one multipolygon of two parts, the world ocean with every
+      sea joined to it, and the Caspian Sea on its own.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence from the terms of use on the project's site; the file's two polygons read from the file,
+        and points of the Black Sea, the Bosporus, the Baltic, the Caspian, the Dead Sea and Death Valley
+        tested against them.
+    fetch:
+      url: https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_50m_ocean.geojson
+      sha256: 5b810162af4b20805838cfd766ef1a445c350cf6aafc8b589515daef30033adf
+      bytes: 1383426
+      format: json
+
+  src:natural-earth-lakes-5.1.2:
+    type: dataset
+    kind: compilation
+    title: Natural Earth, 1:50m lakes
+    citation: >-
+      Natural Earth. Lakes and reservoirs, 1:50m, version 5.1.2, in the GeoJSON of the project's repository
+      (nvkelso/natural-earth-vector).
+    version: 5.1.2
+    url: https://www.naturalearthdata.com/
+    credit: Today's ocean and lakes from Natural Earth
+    license: public-domain
+    license_note: >-
+      The project's terms of use say that all versions of its map data "are in the public domain".
+    reliability: >-
+      A selection of today's larger lakes and reservoirs, at their usual extent, drawn to be legible at a
+      small scale. Lakes that come and go, such as Lake Eyre, are drawn full.
+    verified:
+      by: machine:claude-code
+      how: Licence from the terms of use on the project's site; the file's fields and the larger lakes' names read from the file.
+    fetch:
+      url: https://raw.githubusercontent.com/nvkelso/natural-earth-vector/v5.1.2/geojson/ne_50m_lakes.geojson
+      sha256: d350b75978b26fe839b797c2c529b2fb8f47fb3983c03f4964e36d5df9378a52
+      bytes: 876018
       format: json
 
   src:itinere-2024:

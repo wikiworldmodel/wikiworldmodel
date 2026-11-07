@@ -193,10 +193,15 @@ export interface FieldInfo {
   keyframesMa: number[];
   /** after its youngest keyframe, the field holds that keyframe as a projection until `until` */
   projection?: { method: 'hold'; until: number; note?: string };
-  /** the coastline derived from it, for an elevation field */
-  coastline?: { id: string; title: string; isolineM: number };
+  /**
+   * the coastline derived from it, for an elevation field: its isoline, and for a field on a fixed datum the series of
+   * sea level the isoline rises and falls with (core/sealevel.ts)
+   */
+  coastline?: { id: string; title: string; isolineM: number; seaLevel?: string };
   /** how its uncertainty is carried (core/samples.ts) */
   spread?: FieldSpread;
+  /** the spacing of its grid, in degrees */
+  res_deg?: number;
 }
 
 export interface Tileset {
@@ -208,11 +213,13 @@ export interface Tileset {
   timeRange: [number, number];
   lods: LodInfo[];
   tiles: TileRef[];
-  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; overlays?: string; people?: string; atlas?: string; features: string };
+  files: { frames: string; periods: string; search: string; records: string; coverage: string; series: string; planet: string; territory: string; city?: string; climate?: string; ice?: string; tree?: string; present?: string; hazards?: string; polities?: string; overlays?: string; people?: string; atlas?: string; sea?: string; features: string };
   /** the climate field the land is painted from, and the derived field that paints it */
   /** fields of points, lines and areas drawn over the globe, one renderer for all (core/fieldlayers.ts) */
   layers?: LayerInfo[];
   climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown>; spread?: FieldSpread };
+  /** climates finer in time than `climate`, which the land is painted from where they cover the time, finest first */
+  climates?: ClimateInfo[];
   /** the ice sheets drawn over the land, where a field has them, instead of a claimed latitude */
   ice?: IceInfo;
   /** attribution the viewer must show for the data it displays */
@@ -223,6 +230,23 @@ export interface Tileset {
   kinds: Record<string, string>;
   /** the places the viewer can fly down into */
   sites?: SiteInfo[];
+}
+
+/**
+ * A climate finer in time than the deep past's runs, in files of a span of its keyframes each (core/climate.ts): each
+ * file shares its last keyframe with the next one's first, so a time between two keyframes needs one file.
+ */
+export interface ClimateInfo {
+  field: string;
+  title: string;
+  description?: string;
+  source: string;
+  sourceRecord?: import('./records.ts').SourceRecord;
+  spread?: FieldSpread;
+  res_deg: number;
+  /** [older, younger] astronomical years */
+  coverage: [number, number];
+  chunks: { file: string; keyframesMa: number[] }[];
 }
 
 /** What the viewer needs to know of the ice-sheet field: what it is, when it covers, and how far to trust it. */
@@ -268,6 +292,11 @@ export interface SiteInfo {
 /** The plate index maps the plate ids used in field tiles to dense indices for the GPU. */
 export interface FramesFile {
   rotations: import('./rotation-model.ts').BakedRotationModel;
+  /**
+   * Other plate models a field moves with, each its plates' rotations: a plate of one of them is written in the plate
+   * index as its own number plus the model's offset, so that no two models' plates share a number
+   */
+  models?: { source: string; offset: number; rotations: import('./rotation-model.ts').BakedRotationModel }[];
   plateIndex: number[];
   /** the frames records use: plate frames name their plate and the entity that defines them */
   frames: { id: string; title: string; kind: string; plate?: number; entity?: string }[];

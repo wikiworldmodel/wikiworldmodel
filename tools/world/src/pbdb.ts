@@ -197,21 +197,16 @@ export function csvLine(line: string): string[] {
 
 /** The land's fossils, from the service. `log` says how far it has got: it takes some minutes. */
 export async function exportLand(date: string, log: (m: string) => void, range: { max: number; min: number } = { max: 541, min: 0 }): Promise<LandSnapshot> {
-  const occUrl = `${SERVICE}/occs/list.csv?max_ma=${range.max}&min_ma=${range.min}&envtype=terrestrial&pres=regular&idreso=genus&show=coords,strat&vocab=pbdb&limit=all&datainfo`;
+  return exportFossils('terrestrial', date, log, [range]);
+}
+
+/**
+ * The fossils of an environment, from the service, asked for a span of time at a time (the sea's are too many to ask for
+ * at once): every regular occurrence named to a genus or better. An occurrence the service gives for two spans is kept once.
+ */
+export async function exportFossils(envtype: 'terrestrial' | 'marine', date: string, log: (m: string) => void, ranges: { max: number; min: number }[]): Promise<LandSnapshot> {
+  const occUrls = ranges.map((range) => `${SERVICE}/occs/list.csv?max_ma=${range.max}&min_ma=${range.min}&envtype=${envtype}&pres=regular&idreso=genus&show=coords,strat&vocab=pbdb&limit=all&datainfo`);
   const taxUrl = `${SERVICE}/taxa/list.json?id={ids}&rel=all_parents&show=app,ecospace&vocab=pbdb&limit=all`;
-  log(`asking for the occurrences: ${occUrl}`);
-  const res = await fetch(occUrl, { headers: { 'User-Agent': 'wikiworldmodel-world-tools' } });
-  if (!res.ok) throw new Error(`GET ${occUrl}: HTTP ${res.status}`);
-  const text = await res.text();
-  const lines = text.split('\n');
-  let license = 'unknown';
-  let at = 0;
-  for (; at < lines.length; at++) {
-    if (lines[at].startsWith('"Data License"')) license = csvLine(lines[at])[1];
-    if (lines[at].startsWith('"Records:"')) break;
-  }
-  const head = csvLine(lines[at + 1]);
-  const col = Object.fromEntries(head.map((h, i) => [h, i]));
   const words = new Map<string, number>([['', 0]]);
   const word = (w: string | undefined) => {
     const key = w ?? '';
@@ -225,24 +220,42 @@ export async function exportLand(date: string, log: (m: string) => void, range: 
   const siteOf = new Map<string, number>();
   const sites: LandSite[] = [];
   const rows: [number, number, number][] = [];
-  for (let i = at + 2; i < lines.length; i++) {
-    if (!lines[i]) continue;
-    const r = csvLine(lines[i]);
-    const taxon = Number(r[col.accepted_no]);
-    if (!taxon) continue;
-    const lat = Number(r[col.lat]);
-    const lng = Number(r[col.lng]);
-    if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
-    const key = `${r[col.collection_no]}|${r[col.max_ma]}|${r[col.min_ma]}`;
-    let s = siteOf.get(key);
-    if (s === undefined) {
-      s = sites.length;
-      siteOf.set(key, s);
-      sites.push([Number(r[col.collection_no]), lat, lng, Number(r[col.max_ma]), Number(r[col.min_ma]), word(r[col.formation])]);
+  const seenRows = new Set<number>();
+  let license = 'unknown';
+  for (const occUrl of occUrls) {
+    log(`asking for the occurrences: ${occUrl}`);
+    const res = await fetch(occUrl, { headers: { 'User-Agent': 'wikiworldmodel-world-tools' } });
+    if (!res.ok) throw new Error(`GET ${occUrl}: HTTP ${res.status}`);
+    const lines = (await res.text()).split('\n');
+    let at = 0;
+    for (; at < lines.length; at++) {
+      if (lines[at].startsWith('"Data License"')) license = csvLine(lines[at])[1];
+      if (lines[at].startsWith('"Records:"')) break;
     }
-    rows.push([Number(r[col.occurrence_no]), s, taxon]);
+    const head = csvLine(lines[at + 1]);
+    const col = Object.fromEntries(head.map((h, i) => [h, i]));
+    for (let i = at + 2; i < lines.length; i++) {
+      if (!lines[i]) continue;
+      const r = csvLine(lines[i]);
+      const taxon = Number(r[col.accepted_no]);
+      if (!taxon) continue;
+      const lat = Number(r[col.lat]);
+      const lng = Number(r[col.lng]);
+      if (!Number.isFinite(lat) || !Number.isFinite(lng)) continue;
+      const occ = Number(r[col.occurrence_no]);
+      if (seenRows.has(occ)) continue;
+      seenRows.add(occ);
+      const key = `${r[col.collection_no]}|${r[col.max_ma]}|${r[col.min_ma]}`;
+      let s = siteOf.get(key);
+      if (s === undefined) {
+        s = sites.length;
+        siteOf.set(key, s);
+        sites.push([Number(r[col.collection_no]), lat, lng, Number(r[col.max_ma]), Number(r[col.min_ma]), word(r[col.formation])]);
+      }
+      rows.push([occ, s, taxon]);
+    }
+    log(`${rows.length} occurrences at ${sites.length} sites so far; ${license}`);
   }
-  log(`${rows.length} occurrences at ${sites.length} sites; ${license}`);
   const names = [...new Set(rows.map((x) => x[2]))].sort((a, b) => a - b);
   const seen = new Map<number, LandTaxon>();
   const wanted = new Set(names);
@@ -264,7 +277,7 @@ export async function exportLand(date: string, log: (m: string) => void, range: 
     format: 'lightworld-pbdb-land@1',
     snapshot: date,
     license,
-    query: { occurrences: occUrl, taxa: taxUrl },
+    query: { occurrences: occUrls.join(' '), taxa: taxUrl },
     words: [...words.keys()],
     taxa: [...seen.values()].sort((a, b) => a[0] - b[0]),
     sites,

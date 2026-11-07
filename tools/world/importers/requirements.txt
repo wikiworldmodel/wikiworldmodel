@@ -2,3 +2,4 @@
 numpy==2.5.4
 pyarrow==26.0.0
 pygplates==1.0.0
+h5py==3.16.0

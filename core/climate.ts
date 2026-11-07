@@ -106,7 +106,7 @@ export const LAND_BIT = 0x8000;
 export interface ClimateHeader {
   format: 'lightworld-climate@1';
   grid: FieldGrid;
-  /** youngest first; `values` and `plate` are buffer indices */
-  keyframes: { ageMa: number; values: number; plate: number }[];
+  /** youngest first; `values` and `plate` are buffer indices; `frameMa` the age whose coordinates the nodes are on, if not their own */
+  keyframes: { ageMa: number; values: number; plate: number; frameMa?: number }[];
   rule: ClimateRule;
 }

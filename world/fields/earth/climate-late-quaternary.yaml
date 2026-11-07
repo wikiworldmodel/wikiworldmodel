@@ -1,0 +1,28 @@
+# The climate of the last glacial cycle, finer in time and space than the deep past's runs, which are 10 Myr apart:
+# where it covers a time, the globe paints the land from it instead (core/climate.ts reads both the same way).
+id: field:earth/climate-late-quaternary
+type: field
+title: Climate of the land, last 120,000 years
+quantity: warmest and coldest month, aridity, and the rains of the driest month
+unit: as the Köppen–Geiger classes read them (core/climate.ts)
+description: >-
+  A climate model's months of temperature and rain on the land of each time, every 2,000 years from 120,000 to 22,000
+  years ago and every 1,000 years after, brought to half a degree and corrected towards the climate observed in
+  1901–1930, so that its present is that observed climate. Its land is the land of each time, shelves and all. It is a
+  model's answer, not a measurement, read through the same Köppen–Geiger classes as the deep past's climate. It has
+  nothing south of 60°S, where the land is drawn frozen.
+# The runs are on today's coordinates at every time, as the ice sheets' are; kept here at 1°.
+frame: frame:earth/present-day
+grid: { kind: lonlat, res_deg: 1 }
+time: { lo: 120 ka, hi: 0 ka }
+data:
+  from: src:beyer-2020-late-quaternary
+  as: climate
+  # Read by tools/world/importers/months.py, since the build does not read NetCDF-4.
+  variables: { temperature: temperature, precipitation: precipitation, time: time, latitude: latitude, longitude: longitude }
+basis: reconstruction
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
+# Each keyframe moves with its plates from today's coordinates, as the ice sheets do.
+interp: plate-warp
+moves_with: src:paleomap-plate-model

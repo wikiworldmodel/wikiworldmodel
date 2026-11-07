@@ -99,11 +99,12 @@ What every other domain leans on.
 | Need | Here | Sources | License | As |
 |---|---|---|---|---|
 | Plate motions 0–540 Ma | ✓ | PALEOMAP | ✓ | D |
-| Plate motions 0.54–1 Ga and before | ◐ blocks to 1,100 Ma | Merdith et al. 2021; literature for older cratons | ✓ (check) | D |
+| Plate motions 0.54–1 Ga and before | ◐ blocks to 1,100 Ma from PALEOMAP, and to 1,800 Ma from Cao et al. 2024, each moved with its own model's rotations; not yet each model as the other's alternative where both reach | Cao et al. 2024 (CC BY 4.0, Zenodo 13628813); Merdith et al. 2021; Li et al. 2023 (2000–540 Ma); literature for older cratons | ✓ Cao, Merdith, Li | D |
 | Deforming continents (Andes, Himalaya, the Mediterranean) | ○ | Müller et al. 2019 deforming model | ✓ (check) | D |
 | Paleogeography (elevation, bathymetry) 0–540 Ma | ✓ | PaleoDEMs (Scotese & Wright 2018) | ✓ | F |
+| Paleogeography of the glacial cycles (0–798 ka) | ◐ today's relief at 0.1°, its hollows filled from today's ocean, under the sea level of the stack: the land bridges of each lowstand; not the crust's sinking and rebound under the ice, nor sediment, reefs and faults | ETOPO 2022; Spratt & Lisiecki 2016; Natural Earth's ocean and lakes; GIA models (ICE-6G_C, not licensed as read) | ✓ PD, CC BY | F (model) |
 | Paleogeography before 540 Ma | ○ | reconstructions in literature; generated from the plate model where none exists | — | F/G |
-| Present-day relief, global | ◐ two tiles | ETOPO 2022; GEBCO | ✓ PD; ? GEBCO | F |
+| Present-day relief, global | ✓ at 0.1°, from ETOPO 2022's 60″ grid; two 15″ tiles around Rome | ETOPO 2022; GEBCO | ✓ PD; ? GEBCO | F |
 | Present-day relief, fine (30 m) | ◐ Rome | SRTM GL1; Copernicus GLO-30; national DEMs (TINITALY…) | ✓ SRTM; ? Copernicus | F |
 | Ocean-floor age and spreading | ○ | Seton et al. 2020 age grids | ? | F |
 | Geologic map units with ages and lithology | ○ | Macrostrat | ✓ CC BY (check) | D |
@@ -132,7 +133,7 @@ What every other domain leans on.
 | Temperature, Holocene | ○ | Kaufman et al. 2020 (Temp12k) | ? | F |
 | Temperature, last 2,000 years | ○ | PAGES 2k | ✓ CC BY | F |
 | Temperature, instrumental | ○ | HadCRUT5; Berkeley Earth | ? HadCRUT (Open Government Licence); ✓ Berkeley (CC BY, check) | F |
-| Climate fields for past times (precipitation, seasons) | ◐ one model, Cambrian to the pre-industrial, every 10 Myr: Li et al. 2022 | Li et al. 2022 (CESM); Pohl et al. 2022; HadCM3 "BRIDGE" runs (Valdes et al.); PMIP4 and CMIP6 | ✓ Li, Pohl; ? BRIDGE; ✓ CMIP6 (mostly CC BY 4.0) | F |
+| Climate fields for past times (precipitation, seasons) | ◐ one model, Cambrian to the pre-industrial, every 10 Myr: Li et al. 2022; and the last 120 kyr every 1–2 kyr at 1°: Beyer et al. 2020 | Li et al. 2022 (CESM); Beyer et al. 2020 and Krapp et al. 2021 (HadCM3 downscaled, 120 kyr and 800 kyr); Pohl et al. 2022; HadCM3 "BRIDGE" runs (Valdes et al.); PMIP4 and CMIP6 | ✓ Li, Beyer, Krapp, Pohl; ? BRIDGE; ✓ CMIP6 (mostly CC BY 4.0) | F |
 | Ice sheets, last glacial cycle | ◐ the last 80 kyr, on the globe: PaleoMIST 1.0, with its two scenarios; not the 36 kyr before | PaleoMIST 1.0; NADI-1; DATED-1; ICE-6G_C, ICE-7G_NA; GLAC-1D; Batchelor et al. 2019 | ✓ PaleoMIST, NADI-1, DATED-1; ✗ ICE-6G_C, ICE-7G_NA, GLAC-1D, Batchelor et al. 2019: no license stated, as read (see [RECORD-SETS](RECORD-SETS.md)) | F + C |
 | Ice sheets, deep time (Snowball, Karoo, Antarctic onset) | ◐ Snowball glaciations | literature | — | R + F |
 | Sea ice | ○ | modern: NSIDC; past: model output | ? | F |
@@ -150,7 +151,7 @@ What every other domain leans on.
 |---|---|---|---|---|
 | Tree of life: topology | ◐ 26 clades from cellular organisms to Homo sapiens, the Hell Creek's taxa with their parents from the PBDB, and every taxon that has a form, with a panel; the land's 104,000 taxa as rows | Open Tree of Life synthetic tree; PBDB | ✓ (check) | D |
 | Tree of life: divergence times | ◐ | TimeTree; fossil calibrations (Benton et al. 2015) | ? TimeTree | D/R |
-| Fossil occurrences with paleo-coordinates | ◐ 26 written, 16 fossil forests, a snapshot of the Hell Creek's 5,277 rows, and of the land's 245,000 over the Phanerozoic; no seas | Paleobiology Database | ✓ CC0 by the service's notice of November 2026 (earlier CC BY) | D (snapshot) |
+| Fossil occurrences with paleo-coordinates | ◐ 26 written, 16 fossil forests, a snapshot of the Hell Creek's 5,277 rows, of the land's 245,000 and of the sea's 1.4 million over the Phanerozoic; the sea's listed by genus with no forms, so none is drawn | Paleobiology Database | ✓ CC0 by the service's notice of November 2026 (earlier CC BY) | D (snapshot) |
 | Quaternary fossils and pollen | ○ | Neotoma | ✓ CC BY | D |
 | Present-day species occurrences | ○ | GBIF (licensed per dataset: keep CC0 and CC BY) | ◐ | D |
 | Species ranges through time | ○ | derived from occurrences (alpha hulls), as the design proposes | — | F (derived) |
@@ -311,7 +312,9 @@ design):
   fall in a desert or a tropical sea.
 - **Biomes against fossils.** A forest fossil should not fall in a reconstructed desert.
 - **Shorelines against sea level.** Ostia was on the shore; ancient harbours were at the
-  water's edge.
+  water's edge. Written for the land bridges of the Last Glacial Maximum, in `build.test.ts`: Beringia,
+  Doggerland, the Sunda Shelf and the Torres Strait are dry at the lowstand and sea today, and the
+  stack's lowstand lies within the range the world's claims give it.
 - **Ice volume against sea level.** Their budgets must agree. Written for the last 80 kyr, in `build.test.ts`: they agree in sign and from 20 to 5 ka,
   and differ by tens of metres in MIS 3, which [RECORD-SETS](RECORD-SETS.md) states.
 - **City populations against regional population.** A city should not hold more people than

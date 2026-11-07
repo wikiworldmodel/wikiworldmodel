@@ -1,0 +1,22 @@
+# Before the PALEOMAP model's oldest blocks, another plate model reaches further back: where its continental blocks were,
+# from 1.8 Ga. Its plates and their rotations are its own (frames.json keeps them apart from PALEOMAP's), and like the
+# blocks after it, this is where pieces of today's continents were, not the coastlines of the time.
+id: field:earth/continental-blocks-deep
+type: field
+title: Continental blocks before 1.1 Ga
+quantity: inside a continental block
+description: >-
+  Where a full-plate model of the last 1.8 billion years puts its continental blocks, before the PALEOMAP model's oldest:
+  each block a present-day piece of continent, moved to its place at the time. These are not the coastlines of the time.
+  The shapes are today's, how much of each block stood above the sea is not known here, and other reconstructions of the
+  same times put the blocks elsewhere.
+frame: frame:earth/geographic
+grid: { kind: lonlat, res_deg: 1 }
+time: { lo: 1800 Ma, hi: 1100 Ma, step: 10 Myr }
+# The model's continental polygons, partitioned on the grid at each age.
+data: { from: src:cao-2024-plate-model, file: polygons }
+basis: reconstruction
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
+interp: plate-warp
+moves_with: src:cao-2024-plate-model

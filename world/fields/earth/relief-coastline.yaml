@@ -1,0 +1,11 @@
+# A derived field: declared, never stored (section 9.1). The renderer draws it from today's relief at the sea level
+# of the time shown, so it always agrees with the ground under it.
+id: field:earth/relief-coastline
+type: field
+title: Coastline of the glacial cycles
+derived: true
+# The isoline of the first, risen or fallen by the second: a series of sea level relative to today's (core/sealevel.ts).
+from: [field:earth/relief, field:earth/sea-level-stack]
+rule: isoline
+# Today's sea level, the relief's datum.
+isoline_m: 0

@@ -12,7 +12,7 @@ import type { RotationModel } from '../../../core/rotation-model.ts';
 import type { Scenario } from '../../../core/scenario.ts';
 import type { SceneSpec } from '../../../core/scene.ts';
 import { toMa } from '../../../core/time.ts';
-import type { TileHeader, TileRef } from '../../../core/tileset.ts';
+import type { FieldInfo, TileHeader, TileRef } from '../../../core/tileset.ts';
 import { latticeOf, placeSpec, reliefBox, type PlaceWorld } from '../../../world/generators/life/spec.ts';
 import { getBytes, getJSON, type Build } from '../data.ts';
 
@@ -32,9 +32,9 @@ export class LifeAtlas {
   private bins = new Map<string, Promise<AtlasBin>>();
   private loadedBins = new Map<string, AtlasBin>();
   private forms: Promise<Record<string, Form>> | null = null;
-  private fields = new Map<string, Promise<LoadedField>>();
+  private fields = new Map<string, Promise<LoadedField | undefined>>();
 
-  constructor(private build: Build, readonly index: AtlasIndex, private climate: () => { data: ClimateData; rule: ClimateRule } | null, private generator: { id: string; version: number; params: Record<string, unknown> }, private planet: PlanetFile, private model: RotationModel, private isoline: number) {}
+  constructor(private build: Build, readonly index: AtlasIndex, private climate: () => { data: ClimateData; rule: ClimateRule } | null, private generator: { id: string; version: number; params: Record<string, unknown> }, private planet: PlanetFile, private model: RotationModel, private coastAt: (field: FieldInfo, t: number) => number) {}
 
   /** The stage a time is in, if the atlas covers it. */
   binAt(t: number) {
@@ -66,14 +66,14 @@ export class LifeAtlas {
   }
 
   /** The tile of the land that holds a place at a keyframe: the finer level, as the tiles are the land's only copy. */
-  private fieldOf(ref: TileRef, ageMa: number): Promise<LoadedField> {
+  private fieldOf(ref: TileRef, ageMa: number): Promise<LoadedField | undefined> {
     const key = `${ref.id}|${ageMa}`;
     let p = this.fields.get(key);
     if (!p) {
       p = getBytes(this.build.base + ref.url).then((buf) => {
         const { header, arrays } = decodeTile<TileHeader>(buf);
-        const k = header.field!.keyframes.find((x) => x.ageMa === ageMa)!;
-        return { grid: header.field!.grid, bbox: ref.bbox, elev: arrays[k.elev] as Int16Array, plate: arrays[k.plate] as Uint16Array };
+        const k = header.field?.keyframes.find((x) => x.ageMa === ageMa);
+        return k ? { grid: header.field!.grid, bbox: ref.bbox, elev: arrays[k.elev] as Int16Array, plate: arrays[k.plate] as Uint16Array } : undefined;
       });
       this.fields.set(key, p);
     }
@@ -87,7 +87,9 @@ export class LifeAtlas {
     if (!ref || !clim) return null;
     const [bin, forms] = await Promise.all([this.load(ref.file), (this.forms ??= getJSON<Record<string, Form>>(this.build.base + this.index.forms))]);
     const ageMa = toMa(bin.slice);
-    const field = this.build.tileset.fields.find((f) => f.mode === 'elevation');
+    // The elevation of the stage's time: today's ground for a stage of the glacial cycles, the deep past's grids before.
+    const elevations = this.build.tileset.fields.filter((f) => f.mode === 'elevation');
+    const field = elevations.find((f) => f.coverage[0] <= bin.slice && bin.slice <= f.coverage[1]) ?? elevations[0];
     if (!field) return null;
     const keyAge = [...field.keyframesMa].sort((a, b) => Math.abs(a - ageMa) - Math.abs(b - ageMa))[0];
     const ck = [...clim.data.header.keyframes].sort((a, b) => Math.abs(a.ageMa - ageMa) - Math.abs(b.ageMa - ageMa))[0];
@@ -96,7 +98,8 @@ export class LifeAtlas {
     // The land's tiles around it, at the finer level.
     const origin = latticeOf(lat, lon);
     const box = reliefBox(origin.lat, origin.lon);
-    const inTime = this.build.tileset.tiles.filter((r) => r.lod === 1 && toMa(r.time[0]) >= keyAge && toMa(r.time[1]) <= keyAge);
+    // The tiles of the stage's time, which carry the keyframes on either side of it.
+    const inTime = this.build.tileset.tiles.filter((r) => r.lod === 1 && r.time[0] <= bin.slice && bin.slice <= r.time[1]);
     // Every tile any point of the patch could fall in, with a margin for how far its plate has carried it.
     const wanted = new Set<TileRef>();
     for (let la = Math.max(-90, box.lat1 - 6); ; la = Math.min(90, la + 5)) {
@@ -107,7 +110,7 @@ export class LifeAtlas {
       }
       if (la >= Math.min(90, box.lat0 + 6)) break;
     }
-    const fields = await Promise.all([...wanted].map((r) => this.fieldOf(r, keyAge)));
+    const fields = (await Promise.all([...wanted].map((r) => this.fieldOf(r, keyAge)))).filter((f): f is LoadedField => !!f);
     const at = (la: number, lo: number): LoadedField | undefined => fields.find((f) => la >= f.bbox[1] && la <= f.bbox[3] && lo >= f.bbox[0] && lo <= f.bbox[2]);
     const read = (f: LoadedField, arr: ArrayLike<number>, la: number, lo: number) => {
       const j = Math.round((f.grid.lat0 - la) / f.grid.step);
@@ -151,7 +154,7 @@ export class LifeAtlas {
         const c = coverAt(this.planet, bin.slice, s);
         return { plants: c.plants, forests: c.forests, grasses: c.grasses };
       })(),
-      isoline: this.isoline,
+      isoline: this.coastAt(field, bin.slice),
       generator: this.generator,
     };
     return placeSpec(pw, lat, lon, ageMa) ?? null;

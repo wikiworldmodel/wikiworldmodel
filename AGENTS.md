@@ -51,7 +51,7 @@ These are not style preferences. A pull request that breaks one is closed.
 ```sh
 npm install
 python3 -m venv .venv && .venv/bin/pip install -r tools/world/importers/requirements.txt
-npm run fetch          # the pinned datasets → .cache/datasets (about 1.2 GB)
+npm run fetch          # the pinned datasets → .cache/datasets (about 3 GB)
 npm run validate       # schema, references, vocabularies, review, chronology, plate frames
 npm test               # unit tests (they need only the plate model)
 npm run build:world    # → dist/builds/<id>/

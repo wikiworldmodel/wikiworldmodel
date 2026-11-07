@@ -1,0 +1,58 @@
+id: field:life/community-sea
+type: field
+title: Who lived in the sea
+quantity: genera on each patch of sea in each stage, with how sure each is
+unit: genera
+description: >-
+  What lived in the sea at a place and a time: for each stage of the chart and each 4° patch of sea, a list of genera
+  from the marine fossils of the Paleobiology Database, reduced by the build on the same stages and patches as the land's.
+  A genus with a row within a few hundred km by sea at that time is recorded here. One that can be reached by sea, in a
+  like belt of latitude, is in the region: its being here is an inference. Where nothing is recorded within reach, the
+  stage's commonest genera of that belt stand in, a guess at what sort of thing lived here. The land costs far more to
+  cross than the sea, and the open ocean more than the shelf, on the sea of that time. Almost all of the record is from
+  the shelves and the seas over continents: the ocean floor of most of the past has gone down the trenches, so the open
+  ocean's lists are mostly stand-ins. These are genera, not forms: none of them is drawn.
+frame: frame:earth/present-day
+grid: { kind: rows }
+time: { lo: 541 Ma, hi: 0 Ma }
+data:
+  from: src:pbdb-sea-2026-11-06
+  file: snapshot
+  as: community-sea
+basis: reconstruction
+# How sure each list is: here, in the region, or a stand-in.
+spread: tiers
+interp: step
+# The snapshot's rows are claims (docs/STRUCTURE.md section 3.1), one an occurrence, keyed by the database's
+# occurrence number, as the land's are.
+rows:
+  kind: occurrence
+  key: "occ:{occurrence}"
+  claims:
+    identified_as: { column: taxon_name }
+    formation: { column: formation }
+    location: { column: [lat, lng], as: point, method: compilation }
+    date: { column: [max_ma, min_ma], as: ma-range, method: stratigraphic }
+params:
+  grid_deg: 4
+  graph_deg: 2
+  here_km: 350
+  region_km: 2200
+  kernel_km: 900
+  # A km of land, and of open ocean, is as far as this many of shelf.
+  land_cost: 14
+  deep_cost: 3
+  shallow_m: 220
+  longest_span: 30
+  tight_span: 10
+  longest_bin: 8
+  shortest_bin: 0.5
+  list_size: 12
+  standins: 4
+  # The edges of the belts of latitude, low, middle and high, in degrees from the equator; and how much a row of
+  # another belt counts.
+  belts: [30, 60]
+  other_belt: 0.3
+source:
+  ref: src:pbdb-sea-2026-11-06
+  loc: rows of the snapshot

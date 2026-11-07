@@ -15,8 +15,11 @@ export interface LoadedTile {
   lastUsed: number;
 }
 
-/** Below this camera distance (Earth radii) the finer level is used for visible cells. */
-export const LOD1_DISTANCE = 5;
+/**
+ * Below these camera distances (Earth radii) each finer level is used for the visible cells, where a field has it:
+ * 1° from well out, and the levels of today's relief, 0.25° and 0.1°, as the camera comes in.
+ */
+export const LOD_DISTANCE: Record<number, number> = { 1: 5, 2: 3.4, 3: 1.5 };
 const MAX_CONCURRENT = 4;
 const CACHE_BYTES = 160e6;
 
@@ -49,8 +52,9 @@ export class TileManager {
     const [w, s, e, n] = ref.bbox;
     const d = Math.hypot(...eye);
     const dir = eye.map((c) => c / d);
-    // Cells move a few degrees between keyframes, so test with a margin past the horizon.
-    const horizon = 1 / d - 0.15;
+    // Cells move a few degrees between keyframes, so test with a margin past the horizon. The finer levels are of
+    // today's ground, which its plates move a few kilometres in the times it covers: a narrow margin will do.
+    const horizon = 1 / d - (ref.lod >= 2 ? 0.03 : 0.15);
     for (const lat of [s, (s + n) / 2, n]) {
       for (const lon of [w, (w + e) / 2, e]) {
         const p = unitVector(Math.max(-89.9, Math.min(89.9, lat)), lon);
@@ -70,12 +74,13 @@ export class TileManager {
     const lod0 = this.spanOf(0, t);
     want.push(...lod0);
     const dist = Math.hypot(...eye);
-    if (dist < LOD1_DISTANCE) want.push(...this.spanOf(1, t).filter((r) => this.visible(r, eye)));
+    const levels = [1, 2, 3].filter((lod) => dist < LOD_DISTANCE[lod]);
+    for (const lod of levels) want.push(...this.spanOf(lod, t).filter((r) => this.visible(r, eye)));
     // Prefetch: neighbouring spans in time, at the levels in use, nearest first.
     const dir = Number.isNaN(this.lastT) || t === this.lastT ? 0 : Math.sign(t - this.lastT);
     this.lastT = t;
     const prefetch: TileRef[] = [];
-    for (const lod of dist < LOD1_DISTANCE ? [0, 1] : [0]) {
+    for (const lod of [0, ...levels]) {
       const bins = this.bins(lod);
       const i = bins.findIndex((b) => b[0] <= t && t <= b[1]);
       const order = dir >= 0 ? [i + 1, i - 1] : [i - 1, i + 1];

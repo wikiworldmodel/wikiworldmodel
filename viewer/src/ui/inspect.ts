@@ -116,6 +116,8 @@ export interface TerrainInfo {
   fieldSpread?: FieldSpread;
   coastline?: string;
   datum?: string;
+  /** for a field of today's ground: the sea level of the time, relative to today's, and the series it is read from */
+  seaLevel?: { m: number; title: string };
   state?: PlanetStateInfo;
   /** what covers the land here: the class the climate field gives, and which transitions have happened */
   biome?: BiomeHere;
@@ -503,8 +505,15 @@ export class InspectPanel {
       ${info.ice && !underIce ? this.iceSection(info.ice) : ''}
       ${info.polity && info.elevation >= 0 ? this.politySection(info.polity) : ''}
       ${info.biome && info.elevation >= 0 && !underIce ? this.biomeSection(info.biome) : ''}
-      <p class="method">Interpolated between ${esc(blend)}, each moved with its plates to this time. The ${esc((info.coastline ?? 'coastline').toLowerCase())} is derived, not stored: the ${esc(info.datum === 'contemporaneous-sea-level' ? '0 m' : 'sea-level')} isoline of this field.${info.fieldSpread ? ` ${esc(SPREAD_TEXT[info.fieldSpread])}` : ''}</p></section>${this.stateSection(info.state)}${source}`,
+      <p class="method">${info.seaLevel ? this.seaLevelMethod(info.seaLevel, info.coastline) : `Interpolated between ${esc(blend)}, each moved with its plates to this time. The ${esc((info.coastline ?? 'coastline').toLowerCase())} is derived, not stored: the ${esc(info.datum === 'contemporaneous-sea-level' ? '0 m' : 'sea-level')} isoline of this field.`}${info.fieldSpread ? ` ${esc(SPREAD_TEXT[info.fieldSpread])}` : ''}</p></section>${this.stateSection(info.state)}${source}`,
     );
+  }
+
+  /** How a coast is drawn on today's ground: where it meets the sea level of the time. */
+  private seaLevelMethod(level: { m: number; title: string }, coastline: string | undefined): string {
+    const m = Math.round(level.m);
+    const where = m === 0 ? 'at today\'s' : `${Math.abs(m).toLocaleString('en-US')} m ${m < 0 ? 'below' : 'above'} today's`;
+    return `Today's ground, moved with its plates to this time, under the sea of the time: ${where}, as ${esc(level.title.toLowerCase())} has it. The ${esc((coastline ?? 'coastline').toLowerCase())} is derived, not stored: where today's ground meets that level.`;
   }
 
   /** What the ice-sheet field gives here, in the dataset's own terms, and how far to trust it. */

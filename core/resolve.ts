@@ -9,7 +9,7 @@
 // A layer never answers nothing: a fall-through is a bug, and the build's tests ask every layer across the whole span
 // of the world. Unknown is a fine answer; looking broken is not, so the viewer draws each tier as designed, and the
 // generic prior plainly.
-import { atlasKey, atlasList, TIER, type AtlasBin, type AtlasGrid } from './atlas.ts';
+import { atlasKey, atlasList, seaList, TIER, type AtlasBin, type AtlasGrid, type SeaBin } from './atlas.ts';
 import { lookAt, type Look, type PlanetFile } from './planet.ts';
 import type { Scenario } from './scenario.ts';
 
@@ -28,8 +28,11 @@ export interface Answer {
   why: string;
 }
 
-/** Who lived at a place and time, as the atlas has it: its tier, or null where the atlas does not reach the time. */
-export type LifeTier = 'here' | 'region' | 'standin' | 'nothing' | 'sea';
+/**
+ * Who lived at a place and time, as the atlases have it: its tier on the land's list, or on the sea's (`sea-…`); `sea`
+ * where the land's atlas has no land there and the sea's no list; null where neither reaches the time.
+ */
+export type LifeTier = 'here' | 'region' | 'standin' | 'nothing' | 'sea' | 'sea-here' | 'sea-region' | 'sea-standin' | 'sea-nothing';
 
 /** What resolve reads: the build and the viewer each give it what they have loaded. */
 export interface ResolveWorld {
@@ -72,11 +75,14 @@ export function resolve(w: ResolveWorld, layer: LayerId, lat: number, lon: numbe
       return a('generic', 'none', 'No ice is drawn: nothing records ice here then, which does not mean there was none.');
     case 'life': {
       const tier = w.life?.(lat, lon, t) ?? null;
-      if (tier === null) return a('unknown', null, 'The atlas of who lived where reaches only the land of the Phanerozoic.');
+      if (tier === null) return a('unknown', null, 'The atlases of who lived where reach only the Phanerozoic.');
       if (tier === 'here') return a('evidence', tier, 'Fossils put its taxa near here, then.');
       if (tier === 'region') return a('model', tier, 'Fossils of the region, reachable overland in a like climate, are inferred to have lived here.');
       if (tier === 'standin') return a('generic', tier, 'Nothing of a kind is known near: the nearest clade that has it stands in.');
-      return a('unknown', tier, tier === 'sea' ? 'The atlas has no seas yet.' : 'No record of life of this kind here then.');
+      if (tier === 'sea-here') return a('evidence', tier, 'Fossils of the sea put its genera near here, then.');
+      if (tier === 'sea-region') return a('model', tier, 'Fossils of the sea of the region, reachable by sea in a like belt of latitude, are inferred to have lived here.');
+      if (tier === 'sea-standin') return a('generic', tier, 'Nothing is recorded in the sea near here: the commonest genera of the stage in a like belt of latitude stand in.');
+      return a('unknown', tier, tier === 'sea' ? 'Neither atlas has a list for this sea then.' : 'No record of life here then.');
     }
     case 'people':
       if (within(w.people, t)) return a('model', 'population grid', 'A reconstruction of where people lived covers this time.');
@@ -106,6 +112,19 @@ export function lifeTierOf(bins: { from: number; to: number }[], grid: AtlasGrid
   if (!list.length) return b.nodes[String(atlasKey(grid, lat, lon))] ? 'nothing' : 'sea';
   const best = Math.min(...list.map((e) => e.tier));
   return best === TIER.here ? 'here' : best === TIER.region ? 'region' : 'standin';
+}
+
+/** The sea's atlas's tier at a place and time, from its stages: the best tier on the place's list, or null where it has none. */
+export function seaTierOf(bins: { from: number; to: number }[], grid: AtlasGrid, bin: (i: number) => SeaBin | undefined, lat: number, lon: number, t: number): LifeTier | null {
+  const i = bins.findIndex((b) => b.from <= t && t < b.to);
+  if (i < 0) return null;
+  const b = bin(i);
+  if (!b) return null;
+  const list = seaList(b, grid, lat, lon);
+  if (!list) return null;
+  if (!list.length) return 'sea-nothing';
+  const best = Math.min(...list.map((e) => e.tier));
+  return best === TIER.here ? 'sea-here' : best === TIER.region ? 'sea-region' : 'sea-standin';
 }
 
 /** Places to ask at: the centre of every cell of a grid this many degrees across. */

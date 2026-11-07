@@ -7,13 +7,15 @@ import { decodeTile } from '../../../core/container.ts';
 import { bytesPrint, fingerprintProblems } from '../../../core/fingerprint.ts';
 import { fromMa, PRESENT_YEAR, toMa } from '../../../core/time.ts';
 import { featureTileUrl, type FeatureIndex } from '../../../core/featuretiles.ts';
-import { cityKind, type Feature, type TileHeader, type Tileset } from '../../../core/tileset.ts';
+import { cityKind, type Feature, type FramesFile, type TileHeader, type Tileset } from '../../../core/tileset.ts';
+import { PLATE_OFFSET, PlateModels, RotationModel } from '../../../core/rotation-model.ts';
 import type { IceHeader } from '../../../core/ice.ts';
 import { chosenClaim, type PlanetFile } from '../../../core/planet.ts';
 import { peopleAt, type PeopleFile, type PeopleHeader } from '../../../core/layers.ts';
 import { territoriesAt, type TerritoryFile } from '../../../core/territory.ts';
 import type { CoverageFile, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../core/records.ts';
 import { decodeRuns } from '../../../core/coverage.ts';
+import { seaLevelAt } from '../../../core/sealevel.ts';
 import { LAYERS, TIERS } from '../../../core/resolve.ts';
 import { GENERATOR, generateClouds, type CloudParams } from '../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
@@ -43,7 +45,8 @@ describe('build', () => {
       const ages = header.field.keyframes.map((k) => k.ageMa);
       // The nearest keyframe at or before the span's start, and at or after its end (none
       // after the youngest: a projection holds it).
-      const older = keys.filter((k) => fromMa(k) <= ref.time[0])[0];
+      // A field of one moment, held over the times it covers, has that keyframe for all of them.
+      const older = keys.filter((k) => fromMa(k) <= ref.time[0])[0] ?? keys.at(-1);
       const younger = keys.filter((k) => fromMa(k) >= ref.time[1]).at(-1);
       expect(ages).toContain(older);
       if (younger !== undefined) expect(ages).toContain(younger);
@@ -147,7 +150,10 @@ describe('build', () => {
     const b = JSON.parse(readFileSync(join(latestBuild(), 'build.json'), 'utf8'));
     expect(Object.keys(b.datasets)).toEqual([
       'src:ar6-wg1-fig2-4',
+      'src:beyer-2020-late-quaternary',
+      'src:cao-2024-plate-model',
       'src:cliopatria-0.2.1',
+      'src:etopo-2022-60s',
       'src:etopo-2022-n45e000',
       'src:etopo-2022-n45e015',
       'src:foster-2017-co2',
@@ -159,6 +165,8 @@ describe('build', () => {
       'src:jouzel-2007-epica-dome-c',
       'src:li-2022-phanerozoic-climate',
       'src:natural-earth-boundaries-5.1.2',
+      'src:natural-earth-lakes-5.1.2',
+      'src:natural-earth-ocean-5.1.2',
       'src:natural-earth-places-5.1.2',
       'src:noaa-hazards-2026-11-04',
       'src:ohm-rome-2026-11-01',
@@ -168,6 +176,7 @@ describe('build', () => {
       'src:pbdb-diversity-2026-11-04',
       'src:pbdb-hell-creek-2026-11-04',
       'src:pbdb-land-2026-11-05',
+      'src:pbdb-sea-2026-11-06',
       'src:spratt-lisiecki-2016-sea-level',
       'src:srtm-gl1-n41e012',
       'src:srtm-gl1-n42e012',
@@ -246,14 +255,99 @@ describe('build', () => {
     expect(ts.timeRange[1]).toBeGreaterThan(PRESENT_YEAR + 1e9);
   });
 
-  it('covers each time with one field at most: elevation held into the near future, the plate model\'s blocks before it', () => {
+  it('prefers at each time the finest field that covers it: today\'s relief through the glacial cycles, elevation held into the near future, the plate models\' blocks before it', () => {
     const ts = JSON.parse(readFileSync(join(latestBuild(), 'tileset.json'), 'utf8')) as Tileset;
-    const [elevation, blocks] = ts.fields;
-    expect([elevation.id, elevation.mode, blocks.id, blocks.mode]).toEqual(['field:earth/elevation', 'elevation', 'field:earth/continental-blocks', 'blocks']);
+    const [relief, elevation, blocks, deep] = ts.fields;
+    expect([relief.id, relief.mode, elevation.id, elevation.mode, blocks.id, blocks.mode, deep.id, deep.mode]).toEqual(['field:earth/relief', 'elevation', 'field:earth/elevation', 'elevation', 'field:earth/continental-blocks', 'blocks', 'field:earth/continental-blocks-deep', 'blocks']);
+    expect(deep.coverage.map(toMa)).toEqual([1800, 1100]);
+    expect(deep.keyframesMa[0]).toBe(1100);
+    expect(relief.coverage.map(toMa)).toEqual([0.798, -0.01]);
+    expect(relief.keyframesMa).toEqual([0]);
+    expect([relief.res_deg, relief.coastline?.isolineM, relief.coastline?.seaLevel]).toEqual([0.1, 0, 'field:earth/sea-level-stack']);
     expect(elevation.coverage.map(toMa)).toEqual([540, -0.01]);
     expect(elevation.projection).toMatchObject({ method: 'hold', until: PRESENT_YEAR + 1e4 });
     expect(blocks.coverage.map(toMa)).toEqual([1100, 540]);
     expect(blocks.keyframesMa[0]).toBe(540);
+  });
+
+  describe('the coastline of the glacial cycles', () => {
+    const dir = () => latestBuild();
+    const series = () => (JSON.parse(readFileSync(join(dir(), 'series.json'), 'utf8')) as SeriesFile).series;
+    const stack = () => series().find((x) => x.id === 'field:earth/sea-level-stack')!;
+    const lgm = () => JSON.parse(readFileSync(join(dir(), 'records/earth/ice-ages/last-glacial-maximum.json'), 'utf8')) as EntityRecord;
+    /** Today's ground at a place, as the finest tiles of the relief carry it: in today's coordinates, which the plates move little in this span. */
+    const ground = (lat: number, lon: number): number => {
+      const ts = JSON.parse(readFileSync(join(dir(), 'tileset.json'), 'utf8')) as Tileset;
+      const ref = ts.tiles.find((r) => r.lod === 3 && r.time[1] === PRESENT_YEAR && lon >= r.bbox[0] && lon < r.bbox[2] && lat >= r.bbox[1] && lat < r.bbox[3])!;
+      const { header, arrays } = decodeTile<TileHeader>(bytes(join(dir(), ref.url)));
+      expect(header.field?.id).toBe('field:earth/relief');
+      const g = header.field!.grid;
+      return arrays[header.field!.keyframes[0].elev][Math.round((g.lat0 - lat) / g.step) * g.nx + Math.round((lon - g.lon0) / g.step)];
+    };
+
+    it('draws the land bridges of the Last Glacial Maximum, and parts them today', () => {
+      // The middle of the Last Glacial Maximum, as the world dates it, and the sea level the stack gives then.
+      const t = (lgm().time.start.best! + lgm().time.end.best!) / 2;
+      const low = seaLevelAt(stack().points, t);
+      expect(low).toBeLessThan(-100);
+      // Beringia, which the first Americans crossed; Doggerland; the Sunda Shelf; and the Torres Strait, which joined
+      // New Guinea to Australia in Sahul. Each is sea today and dry land at the lowstand.
+      for (const [name, lat, lon] of [['Bering Strait', 65.9, -169], ['Dogger Bank', 54.7, 2.5], ['Java Sea', -5, 110], ['Torres Strait', -10, 142.5]] as const) {
+        const z = ground(lat, lon);
+        expect(z, `${name} today`).toBeLessThan(0);
+        expect(z, `${name} at the Last Glacial Maximum`).toBeGreaterThan(low);
+      }
+      // The Strait of Gibraltar stays open: the Mediterranean was never cut off in these cycles.
+      expect(ground(35.95, -5.6)).toBeLessThan(low);
+      // Ground below sea level that the ocean does not reach stays dry at every sea level the stack gives.
+      const highest = Math.max(...stack().points.map((p) => p[1]));
+      for (const [name, lat, lon] of [['the Qattara Depression', 29.5, 27], ['the Turfan Depression', 42.7, 89.3], ['the Caspian lowland', 46.5, 49]] as const) expect(ground(lat, lon), name).toBeGreaterThan(Math.max(highest, 0));
+    });
+
+    it('keeps the sea of the Last Glacial Maximum within what the world\'s claims give for it', () => {
+      const claims = lgm().claims.filter((c) => c.prop === 'sea_level');
+      expect(claims.length).toBeGreaterThan(2);
+      // The stack's lowest within the span the world gives the LGM is within the range of the claim the world prefers.
+      const { start, end } = lgm().time;
+      const inside = stack().points.filter((p) => p[0] >= start.best! && p[0] <= end.best!);
+      const lowest = Math.min(...inside.map((p) => p[1]));
+      const preferred = claims.find((c) => c.chosen)!.value as { lo: number; hi: number };
+      expect(lowest).toBeGreaterThanOrEqual(preferred.lo);
+      expect(lowest).toBeLessThanOrEqual(preferred.hi);
+      // And every claim dated within it falls in the stack's 95% band at its date.
+      for (const c of claims.filter((x) => typeof x.valid === 'string')) {
+        const t = PRESENT_YEAR - Number(/([\d.]+) ka/.exec(c.valid as string)![1]) * 1000;
+        const row = stack().points.reduce((a, b) => (Math.abs(b[0] - t) < Math.abs(a[0] - t) ? b : a));
+        const v = c.value as number | { lo: number; hi: number };
+        const [lo, hi] = typeof v === 'number' ? [v, v] : [v.lo, v.hi];
+        expect(hi, c.key).toBeGreaterThanOrEqual(row[2]!);
+        expect(lo, c.key).toBeLessThanOrEqual(row[3]!);
+      }
+    });
+  });
+
+  it('moves each plate model\'s blocks with that model\'s own rotations, its plates kept apart from the first model\'s', () => {
+    const dir = latestBuild();
+    const frames = JSON.parse(readFileSync(join(dir, 'frames.json'), 'utf8')) as FramesFile;
+    expect(frames.models?.map((m) => [m.source, m.offset])).toEqual([['src:cao-2024-plate-model', PLATE_OFFSET]]);
+    const plates = new PlateModels(new RotationModel(frames.rotations), frames.models!.map((m) => ({ source: m.source, offset: m.offset, model: new RotationModel(m.rotations) })));
+    const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
+    const ref = ts.tiles.find((r) => r.lod === 0 && toMa(r.time[0]) >= 1800 - 1e-6 && toMa(r.time[1]) < 1800 && toMa(r.time[1]) >= 1100)!;
+    const { header, arrays } = decodeTile<TileHeader>(bytes(join(dir, ref.url)));
+    expect(header.field?.id).toBe('field:earth/continental-blocks-deep');
+    const k = header.field!.keyframes.find((x) => x.ageMa === 1800)!;
+    const used = new Set([...(arrays[k.plate] as Uint16Array)].filter((i) => i).map((i) => frames.plateIndex[i]));
+    expect(used.size).toBeGreaterThan(20);
+    // Every plate under a block at 1.8 Ga is the second model's, and that model says where it was then.
+    for (const p of used) {
+      expect(p).toBeGreaterThanOrEqual(PLATE_OFFSET);
+      expect(plates.reaches(p, 1800), `plate ${p}`).toBe(true);
+    }
+    // Some of the globe is inside a block: the cratons the model places at 1.8 Ga, far fewer than today's continents.
+    const n = header.field!.grid.nx * header.field!.grid.ny;
+    const inside = [...(arrays[k.elev] as Int16Array)].filter((v) => v > 0).length / n;
+    expect(inside).toBeGreaterThan(0.05);
+    expect(inside).toBeLessThan(0.4);
   });
 
   it('computes the Sun\'s brightness from its rule, as a projection after the present', () => {

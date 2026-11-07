@@ -20,7 +20,7 @@ uniform vec3 uGrid;
 uniform vec3 uFx;
 uniform vec3 uFy;
 uniform vec3 uFw;
-uniform float uLodBias;
+uniform float uLod;
 out float vElev;
 flat out float vPlate;
 void main() {
@@ -37,7 +37,9 @@ void main() {
   float e = float(kv.r);
   vElev = e;
   vPlate = float(kv.g);
-  float d = clamp(0.25 - e / 50000.0, 0.01, 0.49) + uLodBias;
+  // A quarter of the depth range for each level, the finest nearest, so a finer tile always wins where it overlaps a
+  // coarser one; within a level, higher ground wins where the warp folds it.
+  float d = clamp(0.25 - e / 50000.0, 0.01, 0.49) * 0.5 + (3.0 - min(uLod, 3.0)) * 0.25;
   float w = dot(uFw, p);
   gl_Position = vec4(dot(uFx, p), dot(uFy, p), (2.0 * d - 1.0) * w, w);
 }`;
@@ -106,6 +108,8 @@ void main() { o = vV; }`;
 export interface ClimateKeyGPU {
   values: WebGLTexture;
   plate: WebGLTexture;
+  /** the grid its nodes are on */
+  grid: FieldGrid;
 }
 
 // The ice pass: the same warp again, of two bytes per node, into the channels of one cube, the two
@@ -156,8 +160,8 @@ export class FieldRenderer {
   private climateRot: WebGLTexture | null = null;
   /** the climate at the two keyframes around the time shown, each moved with its plates to it */
   climateCubes: [CubeTarget, CubeTarget] | null = null;
-  private climateKeys = new Map<number, ClimateKeyGPU>();
-  private climateGrid: FieldGrid | null = null;
+  /** every keyframe of every climate field taken to the GPU, by a key of the caller's */
+  private climateKeys = new Map<string, ClimateKeyGPU>();
   private iceProg: Program | null = null;
   private iceRot: WebGLTexture | null = null;
   private iceGrid: FieldGrid | null = null;
@@ -279,7 +283,7 @@ export class FieldRenderer {
           gl.activeTexture(gl.TEXTURE0);
           gl.bindTexture(gl.TEXTURE_2D, tex);
           setUniforms(gl, this.prog, { uKey: 0, uNx: t.grid.nx }, ['uKey', 'uNx']);
-          setUniforms(gl, this.prog, { uGrid: [t.grid.lon0, t.grid.lat0, t.grid.step], uLodBias: t.lod === 0 ? 0.5 : 0 });
+          setUniforms(gl, this.prog, { uGrid: [t.grid.lon0, t.grid.lat0, t.grid.step], uLod: t.lod });
           gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, m.index);
           gl.drawElements(gl.TRIANGLES, m.count, gl.UNSIGNED_INT, 0);
         }
@@ -290,18 +294,20 @@ export class FieldRenderer {
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
   }
 
-  /** Take the climate field's keyframes to the GPU. */
-  setClimate(grid: FieldGrid, keyframes: { ageMa: number; values: Uint8Array; plate: Uint16Array }[], size = 256): void {
+  /** Take keyframes of a climate field to the GPU, each by a key of the caller's; the first call sets up the climate pass. */
+  addClimate(grid: FieldGrid, keyframes: { key: string; values: Uint8Array; plate: Uint16Array }[], size = 256): void {
     const gl = this.gl;
-    this.climateProg = program(gl, 'climate', CLIMATE_VS, CLIMATE_FS);
-    this.climateGrid = grid;
-    this.climateCubes = [cubeTarget(gl, size, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE), cubeTarget(gl, size, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE)];
-    this.climateRot = gl.createTexture()!;
-    gl.bindTexture(gl.TEXTURE_2D, this.climateRot);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, this.plateCount, 2, 0, gl.RGBA, gl.FLOAT, null);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    if (!this.climateProg) {
+      this.climateProg = program(gl, 'climate', CLIMATE_VS, CLIMATE_FS);
+      this.climateCubes = [cubeTarget(gl, size, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE), cubeTarget(gl, size, gl.RGBA8, gl.RGBA, gl.UNSIGNED_BYTE)];
+      this.climateRot = gl.createTexture()!;
+      gl.bindTexture(gl.TEXTURE_2D, this.climateRot);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32F, this.plateCount, 2, 0, gl.RGBA, gl.FLOAT, null);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+    }
     for (const k of keyframes) {
+      if (this.climateKeys.has(k.key)) continue;
       gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
       const values = gl.createTexture()!;
       gl.bindTexture(gl.TEXTURE_2D, values);
@@ -313,15 +319,22 @@ export class FieldRenderer {
       gl.texImage2D(gl.TEXTURE_2D, 0, gl.R16UI, grid.nx, grid.ny, 0, gl.RED_INTEGER, gl.UNSIGNED_SHORT, k.plate);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
       gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
-      this.climateKeys.set(k.ageMa, { values, plate });
+      this.climateKeys.set(k.key, { values, plate, grid });
     }
   }
 
-  /** Warp the climate's keyframes k0 and k1 to the current time, as `render` does the elevation. */
-  renderClimate(k0: number, k1: number, rotK0: Float32Array, rotK1: Float32Array): void {
+  /** Whether a keyframe of a climate field is on the GPU. */
+  hasClimate(key: string): boolean {
+    return this.climateKeys.has(key);
+  }
+
+  /**
+   * Warp the climate's keyframes k0 and k1 (keys given to addClimate) to the current time, as `render` does the
+   * elevation: `rotK0` and `rotK1` take each from the coordinates its nodes are on to now.
+   */
+  renderClimate(k0: string, k1: string, rotK0: Float32Array, rotK1: Float32Array): void {
     const gl = this.gl;
-    if (!this.climateProg || !this.climateCubes || !this.climateGrid) return;
-    const grid = this.climateGrid;
+    if (!this.climateProg || !this.climateCubes) return;
     gl.bindTexture(gl.TEXTURE_2D, this.climateRot);
     gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, this.plateCount, 1, gl.RGBA, gl.FLOAT, rotK0);
     gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 1, this.plateCount, 1, gl.RGBA, gl.FLOAT, rotK1);
@@ -335,13 +348,15 @@ export class FieldRenderer {
     gl.disable(gl.BLEND);
     gl.activeTexture(gl.TEXTURE2);
     gl.bindTexture(gl.TEXTURE_2D, this.climateRot);
-    setUniforms(gl, this.climateProg, { uVal: 0, uPlate: 1, uRot: 2, uNx: grid.nx }, ['uVal', 'uPlate', 'uRot', 'uNx']);
-    setUniforms(gl, this.climateProg, { uGrid: [grid.lon0, grid.lat0, grid.step] });
-    const m = this.mesh(grid);
-    gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, m.index);
-    for (const [row, age] of [[0, k0], [1, k1]] as const) {
-      const key = this.climateKeys.get(age);
+    setUniforms(gl, this.climateProg, { uVal: 0, uPlate: 1, uRot: 2 }, ['uVal', 'uPlate', 'uRot']);
+    for (const [row, k] of [[0, k0], [1, k1]] as const) {
+      const key = this.climateKeys.get(k);
       if (!key) continue;
+      const grid = key.grid;
+      setUniforms(gl, this.climateProg, { uNx: grid.nx }, ['uNx']);
+      setUniforms(gl, this.climateProg, { uGrid: [grid.lon0, grid.lat0, grid.step] });
+      const m = this.mesh(grid);
+      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, m.index);
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, key.values);
       gl.activeTexture(gl.TEXTURE1);

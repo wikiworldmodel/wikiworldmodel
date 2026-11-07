@@ -13,6 +13,7 @@ author: machine:claude-code
 code: core/climate.ts
 inputs:
   - { ref: field:earth/climate, note: "the class of each spot, from its warmest and coldest month and its aridity" }
+  - { ref: field:earth/climate-late-quaternary, note: "the same, for the last 120,000 years, where it covers the time" }
   - { prop: cover, note: "the transitions that brought each cover to the land or the shallow seas, and when" }
   - { ref: field:earth/ice-sheets, note: "where it has the time, ice is drawn from it alone" }
   - { ref: field:earth/elevation, note: "the depth of the shelf, for reefs" }

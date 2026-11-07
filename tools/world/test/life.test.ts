@@ -5,7 +5,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { beforeAll, describe, expect, it } from 'vitest';
-import { atlasList, TIER, type AtlasBin, type AtlasIndex } from '../../../core/atlas.ts';
+import { atlasList, seaList, TIER, type AtlasBin, type AtlasIndex, type SeaBin, type SeaIndex } from '../../../core/atlas.ts';
 import { decodeTile } from '../../../core/container.ts';
 import { fingerprintProblems, type Fingerprint } from '../../../core/fingerprint.ts';
 import { climateClass, decodeNode, type ClimateHeader, type ClimateRule } from '../../../core/climate.ts';
@@ -22,6 +22,7 @@ import { FULL_BUDGET, SceneStream } from '../../../world/generators/life/stream.
 import type { LandSnapshot, PbdbSnapshot } from '../src/pbdb.ts';
 import { pbdbNumber } from '../src/pbdb.ts';
 import { loadWorld, type World } from '../src/world.ts';
+import { datasetFile } from '../src/manifest.ts';
 import { latestBuild } from './helpers.ts';
 
 const json = <T>(name: string): T => JSON.parse(readFileSync(join(latestBuild(), name), 'utf8')) as T;
@@ -328,6 +329,13 @@ describe('the atlas', () => {
 
   /** The plate of a place today, from the finest tile of today's land. */
   function plateLookup() {
+    return plateOfToday();
+  }
+});
+
+/** The plate under a place today, as the tiles of the present carry it, searching out a few degrees for one. */
+function plateOfToday() {
+  {
     const refs = ts.tiles.filter((r) => r.lod === 1 && toMa(r.time[1]) <= 0 && toMa(r.time[0]) >= 0);
     const frames = json<FramesFile>(ts.files.frames);
     const fields = refs.map((r) => {
@@ -353,6 +361,91 @@ describe('the atlas', () => {
       return 0;
     };
   }
+}
+
+describe('the sea\'s atlas', () => {
+  it('lists who lived in the sea: a genus recorded here has a row of it within reach at the time, recounted from the snapshot', () => {
+    const sea = json<SeaIndex>(ts.files.sea!);
+    const atlas = json<AtlasIndex>(ts.files.atlas!);
+    // The same stages and patches as the land's.
+    expect(sea.bins.map((b) => [b.from, b.to])).toEqual(atlas.bins.map((b) => [b.from, b.to]));
+    expect(sea.grid).toEqual(atlas.grid);
+    const d = world.manifest.datasets[sea.source];
+    const field = world.fields.find((f) => f.data?.as === 'community-sea')!;
+    const snapSea = JSON.parse(readFileSync(datasetFile(sea.source, d, field.data!.file), 'utf8')) as LandSnapshot;
+    const model = new RotationModel(json<FramesFile>(ts.files.frames).rotations);
+    // The stage with the most rows.
+    const ref = [...sea.bins].sort((a, b) => b.rows - a.rows)[0];
+    const bin = json<SeaBin>(ref.file);
+    const older = toMa(bin.from);
+    const younger = toMa(bin.to);
+    const mid = toMa(bin.slice);
+    const byNo = new Map(snapSea.taxa.map((t) => [t[0], t]));
+    const rankOf = (no: number) => snapSea.words[byNo.get(no)?.[2] ?? 0];
+    const sitesOf = new Map<number, number[]>();
+    for (const [, site, taxon] of snapSea.rows) {
+      for (let x = taxon, g = 0; x && g < 4; x = byNo.get(x)?.[3] ?? 0, g++) {
+        const l = sitesOf.get(x);
+        if (l) l.push(site);
+        else sitesOf.set(x, [site]);
+        if (!['species', 'subspecies', 'subgenus'].includes(rankOf(x))) break;
+      }
+    }
+    const plate = plateOfToday();
+    const where = new Map<number, [number, number] | null>();
+    const at = (site: number) => {
+      if (where.has(site)) return where.get(site)!;
+      const [, lat, lng] = snapSea.sites[site];
+      const p = plate(lat, lng);
+      const out: [number, number] | null = p && model.reaches(p, mid) ? (toLatLon(rotate(model.total(p, mid), rotate(conj(model.total(p, 0)), unitVector(lat, lng)))) as [number, number]) : null;
+      where.set(site, out);
+      return out;
+    };
+    const km = (a: [number, number], b: [number, number]) => {
+      const ua = unitVector(a[0], a[1]);
+      const ub = unitVector(b[0], b[1]);
+      return Math.acos(Math.max(-1, Math.min(1, ua[0] * ub[0] + ua[1] * ub[1] + ua[2] * ub[2]))) * 6371;
+    };
+    let checked = 0;
+    let standins = 0;
+    for (const key of Object.keys(bin.nodes).map(Number).filter((_, i) => i % 7 === 0)) {
+      const lat = 90 - (Math.floor(key / sea.grid.nx) + 0.5) * sea.grid.step;
+      const lon = -180 + ((key % sea.grid.nx) + 0.5) * sea.grid.step;
+      for (const e of seaList(bin, sea.grid, lat, lon) ?? []) {
+        if (e.tier === TIER.standin) {
+          expect(e.taxon.standin).toBe(true);
+          standins++;
+          continue;
+        }
+        // By sea is never shorter than straight, and a patch is up to 4° across, the graph 2° a step: that is the slack.
+        const reach = (e.tier === TIER.here ? sea.here_km : sea.region_km) + 900;
+        const near = (sitesOf.get(e.taxon.no) ?? []).some((site) => {
+          const [, , , max, min] = snapSea.sites[site];
+          if (max <= younger || min >= older) return false;
+          const p = at(site);
+          return !!p && km(p, [lat, lon]) <= reach;
+        });
+        expect(near, `${e.taxon.label} at ${lat}, ${lon}, tier ${e.tier}`).toBe(true);
+        checked++;
+      }
+    }
+    expect(checked).toBeGreaterThan(100);
+    expect(standins).toBeGreaterThan(0);
+  });
+
+  it('answers the life layer in the sea, where the land\'s atlas has no land', () => {
+    const c = json<CoverageFile>('coverage.json');
+    const m = c.matrix!;
+    const life = m.layers.find((l) => l.layer === 'life')!;
+    const why = (text: string) => m.whys.indexOf(text);
+    const recorded = why('Fossils of the sea put its genera near here, then.');
+    expect(recorded).toBeGreaterThanOrEqual(0);
+    // In the Phanerozoic's columns some of the sea is recorded, and no column says the sea has no atlas.
+    const phanerozoic = m.columns.map((col, i) => [col, i] as const).filter(([col]) => col[1] < 1950 - 1e6 && col[0] > 1950 - 540e6);
+    expect(phanerozoic.some(([, i]) => life.cells[i].why.some(([k, share]) => k === recorded && share > 0.01))).toBe(true);
+    const none = why('The atlas has no seas yet.');
+    expect(none).toBe(-1);
+  });
 });
 
 describe('the biomes', () => {
