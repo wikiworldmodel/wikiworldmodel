@@ -69,6 +69,15 @@ describe('resolve', () => {
     expect(resolve({ ...WORLD, life: () => 'sea-standin' }, 'life', 0, 0, GA(0.05)).tier).toBe('generic');
   });
 
+  it('reads the rivers where a dataset saw them, then the drainage where it routes them, and a scene\'s invention before', () => {
+    const world: ResolveWorld = { ...WORLD, water: { observed: { span: [1950, 2100], at: (lat) => lat > 0 }, model: [[GA(0.000798), 2100], [GA(0.545), GA(0.000798)]] } };
+    expect(resolve(world, 'water', 10, 0, 2000).tier).toBe('evidence');
+    expect(resolve(world, 'water', -10, 0, 2000).tier).toBe('model');
+    expect(resolve(world, 'water', 10, 0, GA(0.0001)).tier).toBe('model');
+    expect(resolve(world, 'water', 10, 0, GA(0.3)).tier).toBe('model');
+    expect(resolve(world, 'water', 10, 0, GA(0.6)).tier).toBe('generic');
+  });
+
   it('counts the tiers each layer answers in', () => {
     const counts = tierCounts(WORLD, [[60, 0], [10, 0]], [GA(3), GA(0.05)]);
     for (const layer of LAYERS) expect(Object.values(counts[layer]).reduce((a, b) => a + b, 0)).toBe(4);

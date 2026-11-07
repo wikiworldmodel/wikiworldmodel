@@ -51,7 +51,7 @@
       "properties": {
         "from": { "$ref": "defs.json#/$defs/ref" },
         "file": { "type": "string", "description": "The dataset's file, where it has several" },
-        "as": { "enum": ["climate", "ice-sheets", "borders", "hazards", "polities", "routes", "languages", "people", "community", "community-sea", "relief"], "description": "What the data is read as, where it is not elevation of each time: relief is today's ground on a fixed datum, held through the times the field covers, which a coastline reads at the sea level of each time" },
+        "as": { "enum": ["climate", "ice-sheets", "borders", "hazards", "polities", "routes", "languages", "people", "community", "community-sea", "relief", "river-widths"], "description": "What the data is read as, where it is not elevation of each time: relief is today's ground on a fixed datum, held through the times the field covers, which a coastline reads at the sea level of each time" },
         "places": { "$ref": "defs.json#/$defs/ref", "description": "For borders: the dataset of places that goes with them" },
         "variables": {
           "type": "object",
@@ -117,7 +117,7 @@
     },
     "derived": { "const": true },
     "from": { "type": "array", "minItems": 1, "items": { "$ref": "defs.json#/$defs/ref" }, "description": "The fields it is derived from. For an isoline: the field it is drawn on, and for a field on a fixed datum a series of sea level, relative to today's, that the isoline rises and falls with" },
-    "rule": { "enum": ["isoline", "gough-1981", "biome-from-climate", "ice-equivalent-sea-level"] },
+    "rule": { "enum": ["isoline", "gough-1981", "biome-from-climate", "ice-equivalent-sea-level", "water-balance", "drainage"] },
     "isoline_m": { "type": "number" },
     "params": { "type": "object", "description": "The rule's parameters, or for a grid read by the build what it needs besides its data" },
     "source": { "$ref": "defs.json#/$defs/citation", "description": "Where the rule or those parameters come from" },

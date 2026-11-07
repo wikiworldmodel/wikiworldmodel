@@ -108,6 +108,7 @@ What every other domain leans on.
 | Present-day relief, fine (30 m) | ◐ Rome | SRTM GL1; Copernicus GLO-30; national DEMs (TINITALY…) | ✓ SRTM; ? Copernicus | F |
 | Ocean-floor age and spreading | ○ | Seton et al. 2020 age grids | ? | F |
 | Geologic map units with ages and lithology | ○ | Macrostrat | ✓ CC BY (check) | D |
+| A fossil site's setting: channel, floodplain, lake, delta, dune, reef | ○ the scene of a site should draw it ([SCENES.md](SCENES.md)) | the Paleobiology Database's collection environments | ✓ CC0 | D |
 | Large igneous provinces with dated phases | ◐ Deccan, Siberia, CAMP | LIP Commission records; literature | — | R |
 | Volcanoes and eruptions, Holocene | ◐ NOAA's significant eruptions, as a layer | Smithsonian Global Volcanism Program; NOAA NCEI | ? GVP; ✓ PD NOAA | D |
 | Big eruptions in the ice cores (VEI 6+) | ○ | eVolv2k (Toohey & Sigl 2017) | ? | D |
@@ -134,6 +135,10 @@ What every other domain leans on.
 | Temperature, last 2,000 years | ○ | PAGES 2k | ✓ CC BY | F |
 | Temperature, instrumental | ○ | HadCRUT5; Berkeley Earth | ? HadCRUT (Open Government Licence); ✓ Berkeley (CC BY, check) | F |
 | Climate fields for past times (precipitation, seasons) | ◐ one model, Cambrian to the pre-industrial, every 10 Myr: Li et al. 2022; and the last 120 kyr every 1–2 kyr at 1°: Beyer et al. 2020 | Li et al. 2022 (CESM); Beyer et al. 2020 and Krapp et al. 2021 (HadCM3 downscaled, 120 kyr and 800 kyr); Pohl et al. 2022; HadCM3 "BRIDGE" runs (Valdes et al.); PMIP4 and CMIP6 | ✓ Li, Beyer, Krapp, Pohl; ? BRIDGE; ✓ CMIP6 (mostly CC BY 4.0) | F |
+| Runoff and evaporation | ◐ each climate keyframe's months through a monthly water balance; not measured anywhere here | the model here (McCabe & Markstrom 2007, Hamon's equation); GRDC gauged flows for checks | ✓; ? GRDC | F (model) |
+| Rivers and lakes, past | ◐ that runoff routed over the land of its time: today's ground at 0.1° with the sea of each time for 800 kyr, the PaleoDEMs at 1° before; lakes that spill or close by the climate; not the ice sheets, nor water lost along a river | the model here; paleolake shorelines (Bonneville, Mega-Chad) and paleochannels on the shelves for checks | ✓ | F (model) |
+| Rivers today, with their widths | ◐ every river at least 30 m wide, segment by segment, with its width at mean flow; held back through the glacial cycles on today's ground | GRWL (Allen & Pavelsky 2018); HydroRIVERS and HydroSHEDS (✗: WWF's licence agreement, no stand-alone distribution); TDX-Hydro (✗ CC BY-SA); Hydrography90m (✗ CC BY-NC); MERIT Hydro (✗ non-commercial or ODbL) | ✓ GRWL, CC BY 4.0 | D |
+| Lakes today | ◐ Natural Earth's at 1:50m, as the relief's mask; the drainage's own, closed or spilling | HydroLAKES (CC BY 4.0, asking not to be redistributed whole in its original format) | ✓ | D |
 | Ice sheets, last glacial cycle | ◐ the last 80 kyr, on the globe: PaleoMIST 1.0, with its two scenarios; not the 36 kyr before | PaleoMIST 1.0; NADI-1; DATED-1; ICE-6G_C, ICE-7G_NA; GLAC-1D; Batchelor et al. 2019 | ✓ PaleoMIST, NADI-1, DATED-1; ✗ ICE-6G_C, ICE-7G_NA, GLAC-1D, Batchelor et al. 2019: no license stated, as read (see [RECORD-SETS](RECORD-SETS.md)) | F + C |
 | Ice sheets, deep time (Snowball, Karoo, Antarctic onset) | ◐ Snowball glaciations | literature | — | R + F |
 | Sea ice | ○ | modern: NSIDC; past: model output | ? | F |

@@ -16,6 +16,7 @@ import { territoriesAt, type TerritoryFile } from '../../../core/territory.ts';
 import type { CoverageFile, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../core/records.ts';
 import { decodeRuns } from '../../../core/coverage.ts';
 import { seaLevelAt } from '../../../core/sealevel.ts';
+import { RiverNet, riverKeys, riverWidths, type RiversKeysHeader, type RiversNetworkHeader, type RiverWidthsHeader } from '../../../core/rivers.ts';
 import { LAYERS, TIERS } from '../../../core/resolve.ts';
 import { GENERATOR, generateClouds, type CloudParams } from '../../../world/generators/earth/clouds/v1.ts';
 import { GENERATOR as SURFACE, generateSurface, type SurfaceParams } from '../../../world/generators/earth/surface/v1.ts';
@@ -158,6 +159,7 @@ describe('build', () => {
       'src:etopo-2022-n45e015',
       'src:foster-2017-co2',
       'src:glottolog-5.3',
+      'src:grwl-summary-v01.02',
       'src:hyde-3.2.1-population-grid',
       'src:hyde-3.2.1-world-land-use',
       'src:hyde-3.2.1-world-population',
@@ -597,5 +599,82 @@ describe('build', () => {
     expect(toMa(start('life/occurrences/dickinsonia-zimnie-gory').best!)).toBeCloseTo(555.3, 6);
     // The India–Asia collision: its preferred date is tighter than its one-sided bound.
     expect(toMa(start('earth/events/india-asia-collision').best!)).toBeCloseTo(59, 6);
+  });
+});
+
+describe('rivers', () => {
+  const dir = latestBuild();
+  const ts = JSON.parse(readFileSync(join(dir, 'tileset.json'), 'utf8')) as Tileset;
+  const info = ts.rivers!;
+  const recent = info.sets.find((x) => x.frameMa === 0)!;
+  const read = <H>(file: string) => decodeTile<H>(bytes(join(dir, file)));
+  const n = read<RiversNetworkHeader>(recent.network);
+  const net = new RiverNet(n.header, n.arrays);
+  const keyAt = (ageMa: number) => {
+    const chunk = recent.chunks.reduce((a, b) => (Math.min(...b.keyframesMa.map((k) => Math.abs(k - ageMa))) < Math.min(...a.keyframesMa.map((k) => Math.abs(k - ageMa))) ? b : a));
+    const k = read<RiversKeysHeader>(chunk.file);
+    return riverKeys(k.header, k.arrays).reduce((a, b) => (Math.abs(b.ageMa - ageMa) < Math.abs(a.ageMa - ageMa) ? b : a));
+  };
+  const km = (a: [number, number], b: [number, number]) => {
+    const dLat = ((b[0] - a[0]) * Math.PI) / 180;
+    const dLon = ((b[1] - a[1]) * Math.PI) / 180;
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos((a[0] * Math.PI) / 180) * Math.cos((b[0] * Math.PI) / 180) * Math.sin(dLon / 2) ** 2;
+    return 2 * 6371 * Math.asin(Math.sqrt(h));
+  };
+
+  it('routes today\'s great rivers where Landsat saw great rivers', () => {
+    const today = keyAt(0);
+    // The model's nodes of rivers carrying at least 500 m³/s, by 1° cell.
+    const cells = new Map<string, [number, number][]>();
+    for (let i = 0; i < net.count; i++) {
+      if (today.q[i] < 500) continue;
+      for (let j = net.start[i]; j < net.start[i + 1]; j++) {
+        if (net.q(i, j, today) < 500 || !net.wet(j, today)) continue;
+        const p = net.latLon(net.nodes[j]);
+        const c = `${Math.floor(p[0])},${Math.floor(p[1])}`;
+        cells.set(c, [...(cells.get(c) ?? []), p]);
+      }
+    }
+    const near = (p: [number, number], within: number) => {
+      for (let a = Math.floor(p[0]) - 1; a <= Math.floor(p[0]) + 1; a++) for (let b = Math.floor(p[1]) - 1; b <= Math.floor(p[1]) + 1; b++) for (const q of cells.get(`${a},${((b + 180 + 360) % 360) - 180}`) ?? []) if (km(p, q) <= within) return true;
+      return false;
+    };
+    // Every river Landsat saw at least 1 km wide, away from the tides and the lakes: a model river within 30 km of its middle.
+    const g = read<RiverWidthsHeader>(info.observed!.globe);
+    const w = riverWidths(g.header, g.arrays);
+    let wide = 0;
+    let found = 0;
+    for (let i = 0; i + 1 < w.start.length; i++) {
+      if (w.flag[i] !== 0 || !(w.width[i] >= 1000)) continue;
+      const m = (w.start[i] + w.start[i + 1]) >> 1;
+      wide++;
+      if (near([w.xy[m * 2 + 1], w.xy[m * 2]], 30)) found++;
+    }
+    expect(wide).toBeGreaterThan(100);
+    expect(found / wide).toBeGreaterThan(0.75);
+  });
+
+  it('holds the Caspian as a lake that does not spill, where Natural Earth has a lake', () => {
+    const today = keyAt(0);
+    const node = Math.round((90 - 42) / 0.1) * net.grid.nx + Math.round((51 + 180) / 0.1);
+    const lake = net.lakes(today).get(node);
+    expect(lake).toBeDefined();
+    expect(today.lakeSpills[lake!]).toBe(0);
+  });
+
+  it('ends its rivers at the sea of the time: across the Sunda shelf at the Last Glacial Maximum, and at today\'s coast today', () => {
+    const lgm = keyAt(0.021);
+    expect(lgm.seaLevel).toBeLessThan(-100);
+    let shelf = 0;
+    for (let i = 0; i < net.count; i++) {
+      if (!lgm.q[i]) continue;
+      for (let j = net.start[i]; j < net.start[i + 1]; j++) {
+        const [la, lo] = net.latLon(net.nodes[j]);
+        if (la > 2 && la < 8 && lo > 104 && lo < 110 && net.z[j] < -40 && net.wet(j, lgm)) shelf++;
+      }
+    }
+    expect(shelf).toBeGreaterThan(5);
+    const today = keyAt(0);
+    for (let j = 0; j < net.nodes.length; j += 7) if (net.wet(j, today)) expect(net.z[j]).toBeGreaterThan(today.seaLevel);
   });
 });

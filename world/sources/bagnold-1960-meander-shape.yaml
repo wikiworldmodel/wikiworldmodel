@@ -1,0 +1,19 @@
+id: src:bagnold-1960-meander-shape
+type: publication
+kind: measurement
+citation: >-
+  Bagnold, R.A. (1960). Some aspects of the shape of river meanders. U.S. Geological Survey Professional
+  Paper 282-E.
+authors:
+  - "Bagnold, R.A."
+published: 1960
+title: "Some aspects of the shape of river meanders"
+container: "U.S. Geological Survey Professional Paper 282-E"
+url: https://pubs.usgs.gov/pp/0282e/report.pdf
+license: public-domain
+license_note: A work of the United States government.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read from the USGS scan (sha256 be562cd7957440cbda0a82072dd6ff7401d34cd92d80c4c98fdca0bbb4c2606c); quote
+    checked by script against its text layer.

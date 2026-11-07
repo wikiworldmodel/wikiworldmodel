@@ -6,7 +6,7 @@ import { existsSync } from 'node:fs';
 import { mkdir, readFile, rename, rm, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import type { ClimateRule } from '../../../../core/climate.ts';
-import { encodeTile } from '../../../../core/container.ts';
+import { decodeTile, encodeTile } from '../../../../core/container.ts';
 import { bytesPrint } from '../../../../core/fingerprint.ts';
 import { ladderCounts } from '../../../../core/ladder.ts';
 import type { CoverageFile, OverlaysFile, PeriodRecord, PeriodsFile, SearchFile, SeriesFile } from '../../../../core/records.ts';
@@ -20,7 +20,13 @@ import { GENERATOR as GENERIC_LAND, VERSION as GENERIC_LAND_VERSION, generateGen
 import { claimGroups, solveScenario, solveVariants } from '../chronology.ts';
 import { fieldAgesMa, fieldSource, importBlocks, importElevation, importMonths, importReliefPlates, PLATE_MODEL, tiledField } from '../importer.ts';
 import { meanGrid } from '../tiff.ts';
-import { fillFromOcean, waterMask, type Areas } from './relief.ts';
+import { fillFromOcean, WATER, waterMask, type Areas } from './relief.ts';
+import { deepRivers, recentRivers, riverFiles, type DrainageParams, type Water } from './rivers.ts';
+import { encodeSegments, grwlSegments, thin, tiles as segmentTiles } from './grwl.ts';
+import { RiverNet, riverKeys, riverWidths, type RiverKey, type RiversInfo, type RiversKeysHeader, type RiversNetworkHeader, type RiversSet, type RiverWidths, type RiverWidthsHeader } from '../../../../core/rivers.ts';
+import type { SceneWater } from '../../../../core/scene.ts';
+import { keyFile, observedFiles, sceneWater } from '../../../../world/generators/life/water.ts';
+import { seaLevelAt } from '../../../../core/sealevel.ts';
 import { datasetFile } from '../manifest.ts';
 import { BUILDS, REPO } from '../paths.ts';
 import { sha256, stableStringify } from '../util.ts';
@@ -35,7 +41,7 @@ import { insideRow, politiesAt, type PolitiesFile } from '../../../../core/layer
 import type { AtlasBin } from '../../../../core/atlas.ts';
 import { fieldFor, fieldLods, loadBlocks, loadRelief, loadSnapshots, paleoElevation, sliceField, tileGrid, timeBins, type GridField } from './fields.ts';
 import { buildCity } from './city.ts';
-import { climateGrid, climateKeyframes, encodeClimate, forestChecks, monthsKeyframes, type ClimateKeyframe } from './climate.ts';
+import { climateGrid, climateKeyframes, encodeClimate, forestChecks, heightOn, monthsKeyframes, waterParamsOf, type ClimateKeyframe, type WaterOptions } from './climate.ts';
 import { FEATURE_INDEX } from '../../../../core/featuretiles.ts';
 import { prominenceOf, tileFeatures } from './featuretiles.ts';
 import { buildIce, type IceBuilt } from './ice.ts';
@@ -130,6 +136,7 @@ export function resolveWorldOf(
   polities: PolitiesFile | undefined,
   atlas: ReturnType<typeof buildAtlas>,
   sea?: SeaOut,
+  rivers?: { info: RiversInfo; seen?: Uint8Array },
 ): ResolveWorld {
   const land = world.generators.find((g) => g.id === GENERIC_LAND);
   const landParams = land?.params as unknown as GenericLandParams | undefined;
@@ -166,8 +173,17 @@ export function resolveWorldOf(
         }
       : undefined,
     genericLand: mask && landParams ? (lat, lon) => genericLandAt(mask, landParams, lat, lon) : undefined,
+    water: rivers
+      ? {
+          observed: rivers.info.observed && rivers.seen ? { span: rivers.info.observed.span, at: (lat, lon) => !!rivers.seen![seenCell(lat, lon)] } : undefined,
+          model: rivers.info.sets.map((x) => x.span),
+        }
+      : undefined,
   };
 }
+
+/** The 1° cell of a grid of where rivers were seen that a place falls in. */
+const seenCell = (lat: number, lon: number) => Math.min(179, Math.floor(90 - lat)) * 360 + Math.min(359, Math.floor(lon + 180));
 
 /**
  * What answers each layer, and when (core/coverage.ts): the same things resolveWorldOf hands to resolve, each with its
@@ -186,6 +202,7 @@ export function coverageSources(
   atlas: ReturnType<typeof buildAtlas>,
   series: SeriesFile['series'] = [],
   sea?: SeaOut,
+  rivers?: RiversInfo,
 ): CoverageSource[] {
   const out: CoverageSource[] = [];
   // A span that runs on to the end of time stops where the world does: JSON has no infinity.
@@ -221,6 +238,17 @@ export function coverageSources(
   }
   if (ice) out.push({ layer: 'ice', id: ice.field.id, title: ice.field.title, tier: 'model', span: ice.built.coverage, ...grain(ice.field) });
   for (const ep of planet.episodes) out.push({ layer: 'ice', id: ep.subject, title: ep.label, tier: 'evidence', span: clip(spanOf(ep, {})), lane: 'glaciations' });
+  if (rivers) {
+    // The drainage on today's ground for the glacial cycles, and on each PaleoDEM before; the rivers Landsat saw today.
+    for (const today of [true, false]) {
+      const sets = rivers.sets.filter((x) => (x.frameMa === 0) === today);
+      if (!sets.length) continue;
+      const keys = sets.flatMap((x) => x.chunks.flatMap((c) => c.keyframesMa)).sort((a, b) => a - b);
+      const steps = keys.slice(1).map((a, i) => Math.round((a - keys[i]) * 1e6)).sort((a, b) => a - b);
+      out.push({ layer: 'water', id: rivers.field, title: rivers.title, tier: 'model', span: [Math.min(...sets.map((x) => x.span[0])), Math.max(...sets.map((x) => x.span[1]))], res_deg: today ? 0.1 : 1, ...(steps.length ? { step_yr: steps[steps.length >> 1] } : {}) });
+    }
+    if (rivers.observed) out.push({ layer: 'water', id: rivers.observed.field, title: rivers.observed.title, tier: 'evidence', span: rivers.observed.span });
+  }
   if (atlas) {
     const bins = atlas.index.bins;
     const span: [number, number] = [Math.min(...bins.map((b) => b.from)), Math.max(...bins.map((b) => b.to))];
@@ -388,14 +416,15 @@ export async function runBuild(args: string[]): Promise<number> {
       // Hollows today's ocean does not reach are held at the pass they would spill over, so that only the ocean floods.
       const water = f.data!.water;
       const areas = async (id: string) => JSON.parse(await readFile(datasetFile(id, world.manifest.datasets[id]), 'utf8')) as Areas;
-      const ground = water
-        ? fillFromOcean(relief.data, waterMask(await areas(water.ocean), await areas(water.lakes), relief.nx, relief.ny, res), relief.nx, relief.ny)
-        : Int16Array.from(relief.data, (v) => Math.max(-32768, Math.min(32767, Math.round(v))));
+      const mask = water ? waterMask(await areas(water.ocean), await areas(water.lakes), relief.nx, relief.ny, res) : undefined;
+      const ground = mask ? fillFromOcean(relief.data, mask, relief.nx, relief.ny) : Int16Array.from(relief.data, (v) => Math.max(-32768, Math.min(32767, Math.round(v))));
       const snap = await loadRelief(dir, relief, ground);
       const coast = world.fields.find((c) => c.derived && c.rule === 'isoline' && c.from?.[0] === f.id);
       const oldest = toMa(parsePoint(f.time!.lo as TimePointInput).t);
       const until = f.projection ? toMa(parsePoint(f.projection.until as TimePointInput).t) : 0;
-      grids.push({ field: f, mode: 'elevation', snapshots: [snap], coverMa: [oldest, until], res, seaLevel: coast?.from?.[1] });
+      // The drainage routes over each cell's lowest ground, so that a gorge narrower than a cell stays open.
+      const drain = mask ? { z: relief.low, ocean: Uint8Array.from(mask, (v) => (v === WATER.ocean ? 1 : 0)), lakes: Uint8Array.from(mask, (v) => (v === WATER.lake ? 1 : 0)) } : undefined;
+      grids.push({ field: f, mode: 'elevation', snapshots: [snap], coverMa: [oldest, until], res, seaLevel: coast?.from?.[1], drain });
       log(`relief  ${f.id}: ${snap.src!.width} × ${snap.src!.height} nodes at ${res}° from ${d.id} in ${((Date.now() - started) / 1000).toFixed(1)} s${coast?.from?.[1] ? `; its coast at the sea level of ${coast.from[1]}` : ''}`);
       continue;
     }
@@ -560,9 +589,14 @@ export async function runBuild(args: string[]): Promise<number> {
   const climateField = world.fields.find((f) => fieldSource(f) === 'climate' && !f.data?.variables);
   const biomeField = world.fields.find((f) => f.rule === 'biome-from-climate');
   let climateKeys: ClimateKeyframe[] = [];
+  // The water balance of each climate's months (field:earth/runoff), which the rivers are routed from.
+  const runoffField = world.fields.find((f) => f.rule === 'water-balance');
+  const paleo = paleoElevation(grids);
+  const nearestSnapshot = (ageMa: number) => paleo!.snapshots.reduce((a, b) => (Math.abs(b.ageMa - ageMa) < Math.abs(a.ageMa - ageMa) ? b : a));
+  const waterOptions: WaterOptions | undefined = runoffField && paleo ? { params: waterParamsOf(runoffField.params ?? {}), height: (ageMa) => heightOn(nearestSnapshot(ageMa)) } : undefined;
   if (climateField && biomeField) {
     const elevation = paleoElevation(grids)!;
-    climateKeys = await climateKeyframes(world, climateField, elevation.snapshots, plateIndex, log);
+    climateKeys = await climateKeyframes(world, climateField, elevation.snapshots, plateIndex, log, waterOptions);
     put('climate.lwt', encodeClimate(climateGrid((climateField.grid as { res_deg: number }).res_deg), climateKeys, biomeField.params as unknown as ClimateRule));
   }
   // Climates finer in time than the deep past's runs, read as months, on today's coordinates and the plates under them
@@ -572,7 +606,7 @@ export async function runBuild(args: string[]): Promise<number> {
     for (const f of world.fields.filter((x) => fieldSource(x) === 'climate' && x.data?.variables)) {
       const dir = await importMonths(f, f.data!.variables!, log);
       imports[f.id] = dir.split('/').pop()!;
-      const keys = await monthsKeyframes(f, dir, paleoElevation(grids)!.snapshots.find((x) => x.ageMa === 0)!, plateIndex, log);
+      const keys = await monthsKeyframes(f, dir, paleoElevation(grids)!.snapshots.find((x) => x.ageMa === 0)!, plateIndex, log, waterOptions);
       const grid = climateGrid((f.grid as { res_deg: number }).res_deg);
       const slug = f.id.replace(/^field:/, '').replace(/\//g, '-');
       const chunks: { file: string; keyframesMa: number[] }[] = [];
@@ -586,6 +620,122 @@ export async function runBuild(args: string[]): Promise<number> {
       recentClimates.push({ field: f, keys, chunks });
     }
   }
+  // The rivers and lakes of every time (model:earth/drainage): today's ground at the sea of each time for the glacial
+  // cycles, with the water of the climate of the last 120,000 years, and before that each PaleoDEM with its run's.
+  const riversField = world.fields.find((f) => f.rule === 'drainage' && f.kind === 'lines');
+  const lakesField = world.fields.find((f) => f.rule === 'drainage' && f.kind === 'areas');
+  let riversInfo: RiversInfo | undefined;
+  let riversSeen: Uint8Array | undefined;
+  // The rivers' files as written, which a witness scene reads as a browser would.
+  const riverBytes = new Map<string, Uint8Array>();
+  const putRiver = (path: string, bytes: Uint8Array) => {
+    riverBytes.set(path, bytes);
+    put(path, bytes);
+  };
+  if (riversField && lakesField && waterOptions) {
+    const started = Date.now();
+    const p = { ...(riversField.params as unknown as DrainageParams), ...(lakesField.params as { min_lake_km2: number; spill_overlap: number }) };
+    const sets: RiversSet[] = [];
+    const relief = grids.find((g) => g.drain && g.seaLevel);
+    const recent = recentClimates.find((c) => c.keys.every((k) => k.water));
+    let recentFrom = Infinity;
+    if (relief && recent) {
+      const stack = seriesList.find((x) => x.id === relief.seaLevel)!.points as unknown as [number, number][];
+      const rg = climateGrid((recent.field.grid as { res_deg: number }).res_deg);
+      const waterOf = (k: ClimateKeyframe): Water => ({ ageMa: k.ageMa, grid: rg, runoff: k.water!.runoff, loss: k.water!.loss });
+      const times = recent.keys.map((k) => ({ ageMa: k.ageMa, water: waterOf(k) }));
+      // Before the climate begins, the keyframe of it whose sea stood nearest: a glacial for a glacial, an interglacial for an interglacial.
+      const levelOf = (ageMa: number) => seaLevelAt(stack, fromMa(ageMa));
+      const step = p.older_step_yr / 1e6;
+      const youngest = Math.max(...recent.keys.map((k) => k.ageMa));
+      for (let a = Math.ceil(youngest / step) * step + step; a <= relief.coverMa[0] + 1e-9; a += step) {
+        const s = levelOf(a);
+        const like = recent.keys.reduce((x, y) => (Math.abs(levelOf(y.ageMa) - s) < Math.abs(levelOf(x.ageMa) - s) ? y : x));
+        times.push({ ageMa: Math.round(a * 1e6) / 1e6, water: waterOf(like) });
+      }
+      const snap = relief.snapshots[0];
+      const g = { nx: snap.src!.width, ny: snap.src!.height, step: relief.res };
+      const net = recentRivers(relief.drain!.z, relief.drain!.ocean, g, stack, times, p, (k) => snap.plate[k], relief.drain!.lakes);
+      recentFrom = fromMa(relief.coverMa[0]);
+      const out = riverFiles(net, 'rivers/recent', [recentFrom, fromMa(relief.coverMa[1])], true);
+      for (const [path, bytes] of out.files) putRiver(path, bytes);
+      sets.push(out.set);
+      log(`rivers  ${net.reaches.length} reaches of today's ground, ${net.keyframes.length} keyframes back to ${relief.coverMa[0]} Ma`);
+    }
+    const coast = world.fields.find((f) => f.id === 'field:earth/coastline')?.isoline_m ?? 20;
+    const deep = climateKeys.filter((k) => k.water).sort((a, b) => a.ageMa - b.ageMa);
+    const half = deep.length > 1 ? (deep[1].ageMa - deep[0].ageMa) / 2 : 5;
+    const cg = climateField ? climateGrid((climateField.grid as { res_deg: number }).res_deg) : undefined;
+    for (const k of deep) {
+      const snap = paleo!.snapshots.find((x) => x.ageMa === k.ageMa);
+      if (!snap || !cg) continue;
+      const span: [number, number] = [fromMa(k.ageMa + half), Math.min(fromMa(Math.max(0, k.ageMa - half)), recentFrom)];
+      if (span[1] <= span[0]) continue;
+      const net = deepRivers(snap.elev, { nx: 360, ny: 181, step: 1 }, coast, k.ageMa, { ageMa: k.ageMa, grid: cg, runoff: k.water!.runoff, loss: k.water!.loss }, p, (n) => snap.plate[n]);
+      const out = riverFiles(net, `rivers/deep/${k.ageMa}`, span);
+      for (const [path, bytes] of out.files) putRiver(path, bytes);
+      sets.push(out.set);
+    }
+    // Rivers wider than 30 m as Landsat saw them: tiles of 10° for scenes, and one thinned file for the globe.
+    const widthsField = world.fields.find((f) => f.data?.as === 'river-widths');
+    let observed: RiversInfo['observed'];
+    if (widthsField) {
+      const id = widthsField.data!.from;
+      const d = world.manifest.datasets[id];
+      const segs = grwlSegments(await readFile(datasetFile(id, d, 'shp')), await readFile(datasetFile(id, d, 'dbf')));
+      riversSeen = new Uint8Array(360 * 180);
+      for (const x of segs) if (x.flag !== 1) for (let i = 0; i < x.xy.length; i += 2) riversSeen[seenCell(x.xy[i + 1], x.xy[i])] = 1;
+      const step = 10;
+      const byTile: Record<string, string> = {};
+      for (const [key, part] of [...segmentTiles(segs, step)].sort(([a], [b]) => a.localeCompare(b))) {
+        const [i, j] = key.split('_').map(Number);
+        const file = `rivers/observed/${key}.lwt`;
+        putRiver(file, encodeSegments(part, [-180 + i * step, 90 - (j + 1) * step, -180 + (i + 1) * step, 90 - j * step]));
+        byTile[key] = file;
+      }
+      put('rivers/observed/globe.lwt', encodeSegments(segs.map((x) => ({ ...x, xy: thin(x.xy, 0.02) })), [-180, -90, 180, 90]));
+      const t = widthsField.time!;
+      observed = { field: widthsField.id, title: widthsField.title, source: id, credit: d.credit, span: [parsePoint(t.lo as TimePointInput).t, parsePoint(t.hi as TimePointInput).t], step, tiles: byTile, globe: 'rivers/observed/globe.lwt' };
+      log(`rivers  ${segs.length} observed segments in ${Object.keys(byTile).length} tiles of ${step}°`);
+    }
+    riversInfo = { field: riversField.id, title: riversField.title, description: riversField.description, lakes: { field: lakesField.id, title: lakesField.title }, model: 'model:earth/drainage', params: riversField.params ?? {}, sets, ...(observed ? { observed } : {}) };
+    log(`rivers  ${sets.length} sets in ${((Date.now() - started) / 1000).toFixed(1)} s`);
+  }
+  // A scene's water, from the rivers' files as written, as a browser reads them (world/generators/life/water.ts).
+  const decoded = <H>(f: string) => {
+    const b = riverBytes.get(f)!;
+    return decodeTile<H>(b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer);
+  };
+  const nets = new Map<string, RiverNet>();
+  const keySets = new Map<string, RiverKey[]>();
+  const tilesRead = new Map<string, RiverWidths>();
+  const waterAt = riversInfo
+    ? (t: number, ageMa: number, at: { lat: number; lon: number }, isoline: number): SceneWater | undefined => {
+        const info = riversInfo!;
+        const set = info.sets.find((x) => x.span[0] <= t && t < x.span[1]);
+        const kf = set && keyFile(set, ageMa);
+        if (!set || !kf) return undefined;
+        if (!nets.has(set.network)) {
+          const { header, arrays } = decoded<RiversNetworkHeader>(set.network);
+          nets.set(set.network, new RiverNet(header, arrays));
+        }
+        if (!keySets.has(kf.file)) {
+          const { header, arrays } = decoded<RiversKeysHeader>(kf.file);
+          keySets.set(kf.file, riverKeys(header, arrays));
+        }
+        const observed =
+          set.today && info.observed
+            ? observedFiles(info.observed, at.lat, at.lon).map((f) => {
+                if (!tilesRead.has(f)) {
+                  const { header, arrays } = decoded<RiverWidthsHeader>(f);
+                  tilesRead.set(f, riverWidths(header, arrays));
+                }
+                return tilesRead.get(f)!;
+              })
+            : [];
+        return sceneWater(info, set, nets.get(set.network)!, keySets.get(kf.file)![kf.i], observed, at, isoline);
+      }
+    : undefined;
   // The ice sheets, on the plates of the present.
   const iceField = world.fields.find((f) => fieldSource(f) === 'ice');
   let ice: IceBuilt | undefined;
@@ -649,7 +799,7 @@ export async function runBuild(args: string[]): Promise<number> {
     const atlas = buildAtlas(solved, periodList, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, log);
     if (atlas) {
       for (const [path, content] of atlas.files) put(path, content);
-      const seen = witnesses(solved, atlas.index, atlas.files, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, buildPlanet(solved), log);
+      const seen = witnesses(solved, atlas.index, atlas.files, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, buildPlanet(solved), log, waterAt);
       put('life/witness.json', stableStringify(seen));
       atlasFile = 'life/atlas.json';
       coverageFile.forms = { ...atlas.index.coverage, wanted: atlas.wanted.slice(0, 200) };
@@ -670,7 +820,7 @@ export async function runBuild(args: string[]): Promise<number> {
   }
 
   // Every layer answers everywhere, in a tier (docs/STRUCTURE.md section 3.3): how much of the world each tier holds.
-  const resolveWorld = resolveWorldOf(world, solved, grids, climateKeys, ice, people, polities, lifeAtlas, seaAtlas);
+  const resolveWorld = resolveWorldOf(world, solved, grids, climateKeys, ice, people, polities, lifeAtlas, seaAtlas, riversInfo ? { info: riversInfo, seen: riversSeen } : undefined);
   coverageFile.tiers = TIER_SPANS.map((sp) => {
     const times = Array.from({ length: 8 }, (_, i) => fromMa(sp.olderMa + ((sp.youngerMa - sp.olderMa) * (i + 0.5)) / 8));
     return { span: sp.label, layers: tierCounts(resolveWorld, gridPlaces(10), times) };
@@ -690,6 +840,7 @@ export async function runBuild(args: string[]): Promise<number> {
     lifeAtlas,
     seriesList,
     seaAtlas,
+    riversInfo,
   );
   coverageFile.matrix = coverageMatrix(resolveWorld, span, COVERAGE.columns, COVERAGE.step, COVERAGE.samples, sources);
   log(`coverage  ${COVERAGE.columns} columns × ${coverageFile.matrix.layers.length} layers over a ${COVERAGE.step}° grid in ${((Date.now() - started) / 1000).toFixed(1)} s`);
@@ -703,6 +854,7 @@ export async function runBuild(args: string[]): Promise<number> {
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
     files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(overlays ? { overlays: 'overlays.json' } : {}), ...(people ? { people: 'people.lwt' } : {}), ...(atlasFile ? { atlas: atlasFile } : {}), ...(seaAtlas ? { sea: 'life/sea.json' } : {}), features: FEATURE_INDEX },
+    rivers: riversInfo,
     climates: recentClimates.length
       ? recentClimates.map(({ field: f, keys, chunks }) => ({
           field: f.id,

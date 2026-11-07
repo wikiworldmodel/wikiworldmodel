@@ -1,0 +1,21 @@
+# Rivers wider than 30 m as Landsat saw them, segment by segment. A scene draws a river where this has one, and the
+# drainage model's only where it has none.
+id: field:earth/river-widths
+type: field
+title: Rivers wider than 30 m, as Landsat saw them
+quantity: where rivers at least 30 m wide run, and how wide each is at its mean flow
+unit: m
+description: >-
+  The centrelines of rivers at least 30 m wide, from Landsat images of the months when rivers are near their mean flow,
+  each from one tributary junction to the next with the median of its widths. A map of about the turn of this century,
+  drawn for the time axis's present and after; on today's ground a scene holds it back through the glacial cycles, as a
+  model, where the sea of the time has not covered it.
+grid: { kind: rows }
+time: { lo: 1950 CE, hi: 2100 CE }
+data:
+  from: src:grwl-summary-v01.02
+  as: river-widths
+  file: shp
+basis: evidence
+spread: unknown
+kind: lines

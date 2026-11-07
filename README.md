@@ -42,6 +42,11 @@ Seven slices are built:
   that agents write ([docs/SEVENTH-SLICE.md](docs/SEVENTH-SLICE.md), and the plan in
   [docs/LIVING-WORLD.md](docs/LIVING-WORLD.md)). The sea has an atlas of its own, of the database's
   marine genera in the same tiers, which says what lived where but draws nothing yet.
+- **Water** routes each climate's runoff over the land of its time, into rivers and lakes from today
+  back through the glacial cycles and the Phanerozoic, and takes today's rivers wider than 30 m from what
+  Landsat saw. A scene's rivers are the world's, drawn with the channels their flow gives them
+  ([docs/EIGHTH-SLICE.md](docs/EIGHTH-SLICE.md)); [docs/SCENES.md](docs/SCENES.md) is the design for
+  every layer of a natural scene.
 
 Each document says what its slice contains, how it follows the design, the decisions behind
 it and its limitations. Hand-written example records for every record type, and the gaps

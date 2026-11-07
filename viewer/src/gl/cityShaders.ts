@@ -962,13 +962,22 @@ void main() {
 export const WATER_VS = /* glsl */ `#version 300 es
 precision highp float;
 layout(location = 0) in vec3 aPos;
+// Where it flows: its velocity, m/s, and its depth, m.
+layout(location = 1) in vec3 aFlow;
 uniform mat4 uViewProj;
 uniform vec3 uEye;
+// How far toward the eye the water is drawn, as a share of its distance.
+uniform float uWaterBias;
 ${DROP}
 out vec3 vPos;
+out vec3 vFlow;
 void main() {
   vPos = aPos;
-  gl_Position = uViewProj * vec4(vec3(aPos.xy, aPos.z - drop(aPos.xy)) - uEye, 1.0);
+  vFlow = aFlow;
+  // A little toward the eye: where the ground's coarser rings cannot follow a channel, between their corners the ground
+  // stands above the water, and the water is still seen in its channel, out to its banks.
+  vec3 q = (vec3(aPos.xy, aPos.z - drop(aPos.xy)) - uEye) * (1.0 - uWaterBias);
+  gl_Position = uViewProj * vec4(q, 1.0);
 }`;
 
 export const WATER_FS = /* glsl */ `#version 300 es
@@ -976,25 +985,40 @@ precision highp float;
 precision highp sampler3D;
 precision highp sampler2DArrayShadow;
 in vec3 vPos;
+in vec3 vFlow;
 uniform vec3 uEye;
 uniform highp sampler2D uAO;
 uniform vec2 uAOSize;
+// The shallows' colour, then the depths', where a scene gives them.
+uniform float uWaterTone[6];
+uniform float uToned;
 out vec4 o;
 ${LIGHTING}
 void main() {
   vec3 p = vPos;
   float dist = distance(p, uEye);
-  // Ripples, stilled with distance, before they could break up into glitter.
-  float amp = mix(0.05, 0.004, smoothstep(15.0, 320.0, dist));
-  vec3 d1 = vec3(texture(uNoise, vec3(p.xy / 96.0, 0.2)).r, texture(uNoise, vec3(p.xy / 96.0, 0.7)).g, 0.5) - 0.5;
-  vec3 d2 = vec3(texture(uNoise, vec3(p.xy / 19.0, 0.4)).b, texture(uNoise, vec3(p.xy / 19.0, 0.9)).r, 0.5) - 0.5;
-  vec3 n = normalize(vec3((d1.xy + d2.xy * 0.6) * amp * 3.0, 1.0));
+  // Ripples, stilled with distance, before they could break up into glitter; drawn out along the current where it flows.
+  float speed = length(vFlow.xy);
+  vec2 along = speed > 0.01 ? vFlow.xy / speed : vec2(1.0, 0.0);
+  vec2 q = vec2(dot(p.xy, along), dot(p.xy, vec2(-along.y, along.x)));
+  float stretch = 1.0 + 2.5 * smoothstep(0.05, 1.5, speed);
+  q.x /= stretch;
+  float amp = mix(0.05, 0.004, smoothstep(15.0, 320.0, dist)) * (1.0 + 0.8 * smoothstep(0.05, 2.0, speed));
+  vec3 d1 = vec3(texture(uNoise, vec3(q / 96.0, 0.2)).r, texture(uNoise, vec3(q / 96.0, 0.7)).g, 0.5) - 0.5;
+  vec3 d2 = vec3(texture(uNoise, vec3(q / 19.0, 0.4)).b, texture(uNoise, vec3(q / 19.0, 0.9)).r, 0.5) - 0.5;
+  vec2 dq = (d1.xy + d2.xy * 0.6) * amp * 3.0;
+  vec3 n = normalize(vec3(along * dq.x + vec2(-along.y, along.x) * dq.y, 1.0));
   vec3 v = normalize(uEye - p);
   float sh = shadowAt(p, vec3(0.0, 0.0, 1.0), dist * 0.002);
   vec3 r = reflect(-v, n);
   float fres = 0.03 + 0.97 * pow(1.0 - max(dot(n, v), 0.0), 5.0);
-  // The Tiber is silty: green-brown, not blue.
+  // The Tiber is silty: green-brown, not blue. A scene's water is its climate's: lighter in the shallows, darker deep.
   vec3 body = vec3(0.145, 0.15, 0.085);
+  if (uToned > 0.5) {
+    vec3 shallow = vec3(uWaterTone[0], uWaterTone[1], uWaterTone[2]);
+    vec3 deep = vec3(uWaterTone[3], uWaterTone[4], uWaterTone[5]);
+    body = mix(shallow, deep, smoothstep(0.3, 3.0, vFlow.z));
+  }
   vec3 c = body * (uSunColor * max(uSun.z, 0.0) * sh * 0.8 + uSkyTop * 0.6);
   c = mix(c, skyColor(normalize(vec3(r.xy, abs(r.z)))), fres * 0.8);
   c += uSunColor * pow(max(dot(r, uSun), 0.0), 360.0) * 1.4 * sh;

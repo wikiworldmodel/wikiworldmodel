@@ -1,0 +1,21 @@
+id: src:langbein-leopold-1966-meanders
+type: publication
+kind: model
+citation: >-
+  Langbein, W.B. & Leopold, L.B. (1966). River meanders: theory of minimum variance. U.S. Geological
+  Survey Professional Paper 422-H.
+authors:
+  - "Langbein, W.B."
+  - "Leopold, L.B."
+published: 1966
+title: "River meanders: theory of minimum variance"
+container: "U.S. Geological Survey Professional Paper 422-H"
+url: https://pubs.usgs.gov/pp/0422h/report.pdf
+license: public-domain
+license_note: A work of the United States government.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read from the USGS scan (sha256 80d3965623d69a569e86744bcc46dff4ae0e45e4d95359af2f44291f66a98a5f). Its OCR
+    misreads Greek letters, so the sine-generated curve (eq. 10, p. H3) and the relations on p. H5 were read
+    from images of the pages; quotes checked by script against the text layer.

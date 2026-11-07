@@ -15,6 +15,9 @@ import { toMa } from '../../../core/time.ts';
 import type { FieldInfo, TileHeader, TileRef } from '../../../core/tileset.ts';
 import { latticeOf, placeSpec, reliefBox, type PlaceWorld } from '../../../world/generators/life/spec.ts';
 import { getBytes, getJSON, type Build } from '../data.ts';
+import { Rivers } from '../rivers.ts';
+import type { SceneWater } from '../../../core/scene.ts';
+import { sceneWater } from '../../../world/generators/life/water.ts';
 
 interface LoadedField {
   grid: { lon0: number; lat0: number; step: number; nx: number; ny: number };
@@ -33,8 +36,12 @@ export class LifeAtlas {
   private loadedBins = new Map<string, AtlasBin>();
   private forms: Promise<Record<string, Form>> | null = null;
   private fields = new Map<string, Promise<LoadedField | undefined>>();
+  /** the rivers a place's scene is given: its own loader, as the globe's layer has its own */
+  private rivers: Rivers;
 
-  constructor(private build: Build, readonly index: AtlasIndex, private climate: () => { data: ClimateData; rule: ClimateRule } | null, private generator: { id: string; version: number; params: Record<string, unknown> }, private planet: PlanetFile, private model: RotationModel, private coastAt: (field: FieldInfo, t: number) => number) {}
+  constructor(private build: Build, readonly index: AtlasIndex, private climate: () => { data: ClimateData; rule: ClimateRule } | null, private generator: { id: string; version: number; params: Record<string, unknown> }, private planet: PlanetFile, private model: RotationModel, private coastAt: (field: FieldInfo, t: number) => number) {
+    this.rivers = new Rivers(build);
+  }
 
   /** The stage a time is in, if the atlas covers it. */
   binAt(t: number) {
@@ -86,7 +93,9 @@ export class LifeAtlas {
     const clim = this.climate();
     if (!ref || !clim) return null;
     const [bin, forms] = await Promise.all([this.load(ref.file), (this.forms ??= getJSON<Record<string, Form>>(this.build.base + this.index.forms))]);
-    const ageMa = toMa(bin.slice);
+    // Its taxa are its stage's; its ground, its sea and its rivers are those of the time shown, within the stage.
+    const when = Math.min(bin.to, Math.max(bin.from, t));
+    const ageMa = toMa(when);
     // The elevation of the stage's time: today's ground for a stage of the glacial cycles, the deep past's grids before.
     const elevations = this.build.tileset.fields.filter((f) => f.mode === 'elevation');
     const field = elevations.find((f) => f.coverage[0] <= bin.slice && bin.slice <= f.coverage[1]) ?? elevations[0];
@@ -98,8 +107,12 @@ export class LifeAtlas {
     // The land's tiles around it, at the finer level.
     const origin = latticeOf(lat, lon);
     const box = reliefBox(origin.lat, origin.lon);
-    // The tiles of the stage's time, which carry the keyframes on either side of it.
-    const inTime = this.build.tileset.tiles.filter((r) => r.lod === 1 && r.time[0] <= bin.slice && bin.slice <= r.time[1]);
+    // The finest tiles of the time, which carry the keyframes on either side of it: a tenth of a degree where the
+    // field has them, a degree before.
+    const finest = (field.res_deg ?? 1) < 1 && this.build.tileset.tiles.some((r) => r.lod === 3 && r.time[0] <= when && when <= r.time[1]);
+    const lod = finest ? 3 : 1;
+    const step = finest ? field.res_deg! : 1;
+    const inTime = this.build.tileset.tiles.filter((r) => r.lod === lod && r.time[0] <= when && when <= r.time[1]);
     // Every tile any point of the patch could fall in, with a margin for how far its plate has carried it.
     const wanted = new Set<TileRef>();
     for (let la = Math.max(-90, box.lat1 - 6); ; la = Math.min(90, la + 5)) {
@@ -117,22 +130,24 @@ export class LifeAtlas {
       const i = Math.round((lo - f.grid.lon0) / f.grid.step);
       return arr[j * f.grid.nx + i];
     };
-    const norm = (lo: number) => ((Math.round(lo) + 540) % 360) - 180;
+    const snap = (v: number) => Math.round(Math.round(v / step) * step * 1e6) / 1e6;
+    const norm = (lo: number) => ((snap(lo) + 540) % 360) - 180;
     const pw: PlaceWorld = {
       atlas: this.index,
       bin,
       list: (la, lo) => (atlasHasLand(bin, this.index.grid, la, lo) ? atlasList(bin, this.index.grid, la, lo) : undefined),
       forms,
       keyAge,
+      step,
       elevation: (la, lo) => {
         const q = norm(lo);
-        const r = Math.round(la);
+        const r = snap(la);
         const f = at(r, q);
         return f ? read(f, f.elev, r, q) : -4000;
       },
       plate: (la, lo) => {
         const q = norm(lo);
-        const r = Math.round(la);
+        const r = snap(la);
         const f = at(r, q);
         return f ? this.build.frames.plateIndex[read(f, f.plate, r, q)] ?? 0 : 0;
       },
@@ -154,9 +169,30 @@ export class LifeAtlas {
         const c = coverAt(this.planet, bin.slice, s);
         return { plants: c.plants, forests: c.forests, grasses: c.grasses };
       })(),
-      isoline: this.coastAt(field, bin.slice),
+      isoline: this.coastAt(field, when),
       generator: this.generator,
     };
-    return placeSpec(pw, lat, lon, ageMa) ?? null;
+    const spec = placeSpec(pw, lat, lon, ageMa);
+    if (!spec) return null;
+    const water = await this.waterOf(spec, when, ageMa, pw.isoline);
+    if (water) spec.water = water;
+    return spec;
+  }
+
+  /**
+   * The rivers the world gives a place at a time (world/generators/life/water.ts), once their files have come.
+   * Undefined where the world has no rivers for the time, and a scene invents its own.
+   */
+  private async waterOf(spec: SceneSpec, t: number, ageMa: number, isoline: number): Promise<SceneWater | undefined> {
+    const info = this.rivers.info;
+    const set = this.rivers.setAt(t);
+    if (!info || !set) return undefined;
+    const at = spec.site.relief_at ?? spec.site.origin;
+    await this.rivers.ready(t, ageMa, at.lat, at.lon);
+    const net = this.rivers.net(set);
+    const key = this.rivers.key(set, ageMa);
+    if (!net || !key) return undefined;
+    const observed = set.today && info.observed ? await this.rivers.observedNear(at.lat, at.lon) : [];
+    return sceneWater(info, set, net, key, observed, at, isoline);
   }
 }

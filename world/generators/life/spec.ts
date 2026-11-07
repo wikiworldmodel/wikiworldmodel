@@ -117,14 +117,14 @@ export function reliefBox(lat: number, lon: number): { lat0: number; lat1: numbe
   return { lat0: Math.min(90, Math.ceil(lat + dLat)), lat1: Math.max(-90, Math.floor(lat - dLat)), lon0: Math.floor(lon - dLon), lon1: Math.ceil(lon + dLon) };
 }
 
-/** The patch of the field a scene wants, read from anything that can say a height at a whole degree. */
-export function reliefPatch(lat: number, lon: number, at: (lat: number, lon: number) => number, isoline: number): ReliefPatch {
+/** The patch of the field a scene wants, read from anything that can say a height at every `step` degrees. */
+export function reliefPatch(lat: number, lon: number, at: (lat: number, lon: number) => number, isoline: number, step = 1): ReliefPatch {
   const box = reliefBox(lat, lon);
-  const nx = box.lon1 - box.lon0 + 1;
-  const ny = box.lat0 - box.lat1 + 1;
+  const nx = Math.round((box.lon1 - box.lon0) / step) + 1;
+  const ny = Math.round((box.lat0 - box.lat1) / step) + 1;
   const z = new Array<number>(nx * ny);
-  for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) z[j * nx + i] = at(box.lat0 - j, ((box.lon0 + i + 540) % 360) - 180) - isoline;
-  return { lat0: box.lat0, lon0: box.lon0, step: 1, nx, ny, z };
+  for (let j = 0; j < ny; j++) for (let i = 0; i < nx; i++) z[j * nx + i] = at(box.lat0 - j * step, ((box.lon0 + i * step + 540) % 360) - 180) - isoline;
+  return { lat0: box.lat0, lon0: box.lon0, step, nx, ny, z };
 }
 
 export interface SpecInput {
@@ -174,8 +174,9 @@ export interface PlaceWorld {
   /** the list for a place; undefined if there is no land there */
   list: (lat: number, lon: number) => AtlasEntry[] | undefined;
   forms: Record<string, Form>;
-  /** the keyframe of the elevation nearest the time, its height at a whole degree, and its plate at a place */
+  /** the keyframe of the elevation nearest the time, its height every `step` degrees (a whole degree if not said), and its plate at a place */
   keyAge: number;
+  step?: number;
   elevation: (lat: number, lon: number) => number;
   plate: (lat: number, lon: number) => number;
   /** carry a point on a plate from one age to another */
@@ -203,7 +204,7 @@ export function placeSpec(w: PlaceWorld, lat: number, lon: number, ageMa: number
   const [cl, co] = plate ? w.carry(plate, origin.lat, origin.lon, ageMa, w.climateAge) : [origin.lat, origin.lon];
   const node = w.climate(cl, co);
   if (!node) return undefined;
-  const relief = reliefPatch(relief_at.lat, relief_at.lon, w.elevation, w.isoline);
+  const relief = reliefPatch(relief_at.lat, relief_at.lon, w.elevation, w.isoline, w.step);
   const spec = specFor({ atlas: w.atlas, bin: w.bin, origin: { lat: round5(origin.lat), lon: round5(origin.lon) }, list, forms: w.forms, relief, node, rule: w.rule, climateField: w.climateField, climateAge: w.climateAge, cover: w.cover, generator: w.generator });
   spec.site.relief_at = relief_at;
   return spec;

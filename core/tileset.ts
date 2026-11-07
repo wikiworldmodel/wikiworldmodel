@@ -9,6 +9,7 @@
 import type { Fingerprint } from './fingerprint.ts';
 import type { FieldSpread } from './samples.ts';
 import type { LayerInfo } from './fieldlayers.ts';
+import type { RiversInfo } from './rivers.ts';
 
 /** Interval of a feature, in astronomical years. `null` end = still exists. */
 export interface Estimate {
@@ -217,6 +218,8 @@ export interface Tileset {
   /** the climate field the land is painted from, and the derived field that paints it */
   /** fields of points, lines and areas drawn over the globe, one renderer for all (core/fieldlayers.ts) */
   layers?: LayerInfo[];
+  /** the rivers and lakes of every time, as networks and their keyframes (core/rivers.ts) */
+  rivers?: RiversInfo;
   climate?: { field: string; title: string; description?: string; biomeTitle: string; biomeDescription?: string; source: string; sourceRecord?: import('./records.ts').SourceRecord; params: Record<string, unknown>; spread?: FieldSpread };
   /** climates finer in time than `climate`, which the land is painted from where they cover the time, finest first */
   climates?: ClimateInfo[];

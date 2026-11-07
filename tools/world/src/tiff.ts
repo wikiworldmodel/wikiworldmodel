@@ -133,16 +133,17 @@ export async function readTiff(path: string): Promise<Raster> {
 
 /**
  * A global raster averaged onto a grid of nodes `step` degrees apart, from 90°N and 180°W, wrapping east: each node the
- * mean of the pixels whose centres are nearer to it than to any other node. Read a block at a time, so a raster too
- * large to hold decoded is never held whole. Pixels of no data are left out, and a node with none is NaN.
+ * mean of the pixels whose centres are nearer to it than to any other node, and their lowest. Read a block at a time, so
+ * a raster too large to hold decoded is never held whole. Pixels of no data are left out, and a node with none is NaN.
  */
-export async function meanGrid(path: string, step: number): Promise<{ nx: number; ny: number; step: number; data: Float32Array }> {
+export async function meanGrid(path: string, step: number): Promise<{ nx: number; ny: number; step: number; data: Float32Array; low: Float32Array }> {
   const d = decoder(await readFile(path), path);
   const nx = Math.round(360 / step);
   const ny = Math.round(180 / step) + 1;
   if (Math.abs(d.x0 + 180) > d.dx / 2 || Math.abs(d.y0 - 90) > d.dy / 2 || Math.abs(d.width * d.dx - 360) > d.dx || Math.abs(d.height * d.dy - 180) > d.dy) throw new Error(`${path}: not a global grid from 90°N and 180°W`);
   const sum = new Float64Array(nx * ny);
   const count = new Uint32Array(nx * ny);
+  const low = new Float32Array(nx * ny).fill(Infinity);
   const col = Int32Array.from({ length: d.width }, (_, x) => ((Math.round((x + 0.5) * d.dx / step) % nx) + nx) % nx);
   d.rows((y, x0, values) => {
     const row = Math.min(ny - 1, Math.round(((y + 0.5) * d.dy) / step)) * nx;
@@ -152,11 +153,15 @@ export async function meanGrid(path: string, step: number): Promise<{ nx: number
       const k = row + col[x0 + i];
       sum[k] += v;
       count[k]++;
+      if (v < low[k]) low[k] = v;
     }
   });
   const data = new Float32Array(nx * ny);
-  for (let k = 0; k < data.length; k++) data[k] = count[k] ? sum[k] / count[k] : NaN;
-  return { nx, ny, step, data };
+  for (let k = 0; k < data.length; k++) {
+    data[k] = count[k] ? sum[k] / count[k] : NaN;
+    if (!count[k]) low[k] = NaN;
+  }
+  return { nx, ny, step, data, low };
 }
 
 /** A raster's value at map coordinates, bilinear; undefined outside it or on missing data. */

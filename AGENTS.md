@@ -4,7 +4,7 @@ WikiWorldModel (the repository is `lightworld`) is a sourced, four-dimensional
 history of Earth, life and civilization, from the Solar System's first solids to the far future,
 with a viewer to fly through it. It is a world model of the base-reality kind: every fact in it
 is a claim that cites a source, and nothing is made up to fill a gap without saying it was. The
-design is in [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md); what is built is in the seven slice
+design is in [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md); what is built is in the eight slice
 documents in [docs/](docs/).
 
 This guide is written for AI agents (and the people who run them) contributing research,

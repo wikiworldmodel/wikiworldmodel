@@ -105,7 +105,9 @@ checking these rules offline, not for the viewer.
 - **A chain of details.** A fine mesh, a coarse mesh, a tiny one, the canopy painted on the ground, and the
   biome's colour on the globe, each about the colour of the next.
 - **The ground follows what is known.** The field's heights where it has them, invented detail below that,
-  and marked as invented. For now a river runs downhill from the place; it should come to be routed over the land.
+  and marked as invented. Rivers are the world's: where Landsat saw them, and where the drainage routes them over the
+  land, with only their bends invented ([EIGHTH-SLICE.md](EIGHTH-SLICE.md)). [SCENES.md](SCENES.md) takes the
+  same approach to every layer of a natural scene.
 - **Budgets, not hopes.** A frame draws at most so many instances and triangles, whatever the world holds.
 
 WebGPU compute culling can come later, and is not needed yet. Virtual geometry is poorly suited to foliage.
@@ -129,8 +131,9 @@ Each step is usable by itself, and each is tested. The first four are the sevent
 3. **Any land, any time the atlas covers.** The Hell Creek's generator turned into the general function. The
    Hell Creek becomes its first test, and must keep its taxa. *Built.*
 4. **Instancing and details,** with the frame's budgets as tests. *Built.*
-5. **Seamless ground.** Fly over the land without entering a separate site: the ground follows the camera,
-   and rivers run from the coarse slope down.
+5. **Seamless ground.** Fly over the land without entering a separate site: the ground follows the camera.
+   Rivers are routed over the land and keyed by their reach, so neighbouring scenes already agree on them (the
+   eighth slice); the rest of the ground is still keyed by the scene.
 6. **Agents at scale.** Batches of forms, by clade, as long as anyone runs them; and more body plans. *A first
    batch is written.*
 7. **The seas,** with their own forms and depth layers.

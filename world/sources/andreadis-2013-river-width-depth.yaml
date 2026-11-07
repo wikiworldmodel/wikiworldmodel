@@ -1,0 +1,21 @@
+id: src:andreadis-2013-river-width-depth
+type: publication
+kind: compilation
+citation: >-
+  Andreadis, K.M., Schumann, G.J.-P. & Pavelsky, T. (2013). A simple global river bankfull width and
+  depth database. Water Resources Research 49, 7164–7168.
+authors:
+  - "Andreadis, K.M."
+  - "Schumann, G.J.-P."
+  - "Pavelsky, T."
+published: 2013
+title: "A simple global river bankfull width and depth database"
+container: "Water Resources Research 49, 7164–7168"
+doi: 10.1002/wrcr.20440
+verified:
+  by: machine:claude-code
+  how: >-
+    Read in the publisher's version kept by the University of North Carolina's Carolina Digital Repository
+    (doi:10.17615/xzvt-ky90), as the publisher's page refused automated reads. Its equations (2a) and (2b)
+    do not survive in the text layer and were read from an image of p. 7165; the quote on them is the
+    sentence that introduces them, checked by script against the text layer.

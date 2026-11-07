@@ -150,6 +150,10 @@ export class CityRenderer {
   private waterBuffers: WebGLBuffer[] = [];
   private waterCount = 0;
   private waterLevel = 7;
+  /** the shallows' and the depths' colours, where a scene gives them */
+  private waterTone: number[] | null = null;
+  /** how far toward the eye water that follows its channels is drawn, as a share of its distance */
+  private waterBias = 0;
   /** the ground is land nobody has farmed: what the mask says of it is a wild place's */
   wild = false;
   /** what the wild land's colours are, ten tones in threes; and its shares of forest, low plants and bare ground */
@@ -495,9 +499,14 @@ void main() {
     this.maskBox = box;
   }
 
-  setWater(vertices: Float32Array, indices: Uint32Array, level: number): void {
+  /**
+   * The water: its mesh, the level its banks are wetted at, and, where it flows, each vertex's flow (x, y in m/s) and
+   * depth, and the colours of its shallows and its depths. Without them it is the Tiber's still, silty green.
+   */
+  setWater(vertices: Float32Array, indices: Uint32Array, level: number, flow?: Float32Array, tone?: number[]): void {
     const gl = this.gl;
     this.waterLevel = level;
+    this.waterTone = tone && tone.length >= 6 ? tone.slice(0, 6) : null;
     if (this.waterVao) gl.deleteVertexArray(this.waterVao);
     for (const b of this.waterBuffers) gl.deleteBuffer(b);
     this.waterVao = gl.createVertexArray()!;
@@ -507,10 +516,23 @@ void main() {
     gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
     gl.enableVertexAttribArray(0);
     gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 0, 0);
+    this.waterBuffers = [vb];
+    this.waterBias = flow && flow.length === vertices.length ? 0.01 : 0;
+    if (flow && flow.length === vertices.length) {
+      const fb = gl.createBuffer()!;
+      gl.bindBuffer(gl.ARRAY_BUFFER, fb);
+      gl.bufferData(gl.ARRAY_BUFFER, flow, gl.STATIC_DRAW);
+      gl.enableVertexAttribArray(1);
+      gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 0, 0);
+      this.waterBuffers.push(fb);
+    } else {
+      gl.disableVertexAttribArray(1);
+      gl.vertexAttrib3f(1, 0, 0, 0);
+    }
     const ib = gl.createBuffer()!;
     gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ib);
     gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, indices, gl.STATIC_DRAW);
-    this.waterBuffers = [vb, ib];
+    this.waterBuffers.push(ib);
     gl.bindVertexArray(null);
     this.waterCount = indices.length;
   }
@@ -970,6 +992,7 @@ void main() {
     gl.depthFunc(gl.LESS);
     if (this.waterVao && this.waterCount) {
       this.useLit(this.waterP, f, vp);
+      setUniforms(gl, this.waterP, { uWaterTone: this.waterTone ?? [0, 0, 0, 0, 0, 0], uToned: this.waterTone ? 1 : 0, uWaterBias: this.waterBias });
       gl.bindVertexArray(this.waterVao);
       gl.drawElements(gl.TRIANGLES, this.waterCount, gl.UNSIGNED_INT, 0);
     }

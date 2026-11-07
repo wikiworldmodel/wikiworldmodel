@@ -105,7 +105,7 @@ test.describe('the Hell Creek', () => {
     await expect(panel.locator('.organism')).toContainText('Its body:');
     await expect(panel.locator('.organism')).toContainText('Generated:');
     await expect(panel.locator('.organism')).toContainText('where each stands');
-    await expect(panel.locator('.organism')).toContainText('gen:life/scene, version 2');
+    await expect(panel.locator('.organism')).toContainText('gen:life/scene, version 3');
   });
 
   test('a click on the ground says it is generated, and where it rests on the world', async ({ page }) => {
@@ -308,5 +308,17 @@ test.describe('anywhere else', () => {
     await idle(page);
     const state = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect((state.cam.dist - 1) * 6371).toBeGreaterThan(50);
+  });
+
+  test('a scene by a river Landsat saw draws that river, and arrives beside it', async ({ page }) => {
+    // The Mississippi near Greenville, today.
+    await page.goto(`/?b=${latestBuild()}&${lowOver(33.4, -91.1, 1950, 1500)}&${FAST}`);
+    await idle(page);
+    await expect.poll(async () => (await page.evaluate(() => window.__wikiworldmodel!.scene()))?.water?.tier, { timeout: 60_000 }).toBe('evidence');
+    const scene = (await page.evaluate(() => window.__wikiworldmodel!.scene()))!;
+    expect(scene.water!.rivers.some((r) => r.from === 'observed')).toBe(true);
+    // A visitor arrives at a real place, facing a river.
+    for (const v of [...scene.focus, ...scene.toRiver]) expect(Number.isFinite(v)).toBe(true);
+    expect(Math.hypot(...scene.toRiver)).toBeCloseTo(1, 2);
   });
 });

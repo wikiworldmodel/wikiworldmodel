@@ -48,6 +48,8 @@ import { TERRITORY_COLORS, TerritoryLayer } from './ui/territory.ts';
 import { FossilLayer } from './ui/fossils.ts';
 import { HazardLayer, PeopleLayer, PolityLayer, PresentLayer } from './ui/layers.ts';
 import { FieldLayer } from './ui/fieldlayer.ts';
+import { Rivers } from './rivers.ts';
+import { RIVERS_TOGGLE, RiversLayer, type RiverNear, type RiversDrawn } from './ui/riverslayer.ts';
 import { TreePanel } from './ui/tree.ts';
 import { clampWindow, fitWindow, Timebar, xOf, type StateBand } from './ui/timebar.ts';
 import { Toolbar } from './ui/toolbar.ts';
@@ -93,11 +95,13 @@ export interface WikiWorldModelHandle {
   /** where a structure's label would be on the screen, for tests */
   structureAt(id: string): { x: number; y: number } | undefined;
   /** the living scene as the viewer has it, if one is loaded */
-  scene(): { site: string; plan: PrintCheck; taxa: { id: string; label: string; form: string; own: boolean; tier: string; km?: number; rows: number; drawn: boolean }[]; instances: number; triangles: number; meshes: number; groundMs: number; stage?: string; climate: string; focus: [number, number]; toRiver: [number, number]; origin: { lat: number; lon: number } } | null;
+  scene(): { site: string; plan: PrintCheck; taxa: { id: string; label: string; form: string; own: boolean; tier: string; km?: number; rows: number; drawn: boolean }[]; instances: number; triangles: number; meshes: number; groundMs: number; stage?: string; climate: string; focus: [number, number]; toRiver: [number, number]; origin: { lat: number; lon: number }; water: { tier: string; rivers: { key: string; from: string }[] } | null } | null;
   /** a browser's fingerprint of the scene of a place and a time, as a witness in the build has it */
   lifePrint(lat: number, lon: number, t: number): Promise<Fingerprint | null>;
   /** how far the atlas reaches, as the build says */
   atlas(): { bins: number; coverage: unknown } | null;
+  /** what the rivers layer drew in the last frame; of it, the reaches that pass near a place, and the lake over one */
+  rivers(): RiversDrawn & { near(lat: number, lon: number, deg: number): RiverNear[]; lakeAt(lat: number, lon: number): { level: number; spills: boolean; cells: number } | null };
   /** where each group of a taxon stands: on the screen, and on the globe, for tests */
   organismsAt(id: string): { x: number; y: number; depth: number }[];
   organismPlaces(id: string): { lat: number; lon: number; x: number; y: number }[];
@@ -273,7 +277,11 @@ async function start(root: HTMLElement): Promise<void> {
   for (const fl of fieldLayers) fl.onLoad = () => (dirty = true);
   const fieldOn = (fl: FieldLayer) => !fl.info.style.toggle || !!state.layers?.includes(fl.info.style.toggle.key);
   const fieldLayer = (id: string) => fieldLayers.find((fl) => fl.info.field === id);
-  stage.append(polities.el, ...fieldLayers.filter((fl) => fl.info.kind !== 'points').map((fl) => fl.el), present.el, ...fieldLayers.filter((fl) => fl.info.kind === 'points').map((fl) => fl.el), hazards.el);
+  // The rivers and lakes of the time shown, when asked for: over the states' colours, under the roads and today's map.
+  const rivers = ts.rivers ? new Rivers(build, () => (dirty = true)) : null;
+  const riversLayer = rivers ? new RiversLayer(rivers, build.model) : null;
+  const riversOn = () => !!state.layers?.includes(RIVERS_TOGGLE.key);
+  stage.append(polities.el, ...(riversLayer ? [riversLayer.el] : []), ...fieldLayers.filter((fl) => fl.info.kind !== 'points').map((fl) => fl.el), present.el, ...fieldLayers.filter((fl) => fl.info.kind === 'points').map((fl) => fl.el), hazards.el);
   // Where people lived goes to the globe's shader, and loads when it is first asked for.
   const people = new PeopleLayer();
   let peopleLoading = false;
@@ -431,6 +439,21 @@ async function start(root: HTMLElement): Promise<void> {
   brand.querySelector<HTMLAnchorElement>('.coverage-link')!.href = `./coverage.html?b=${encodeURIComponent(build.id)}`;
   const search = new Search(build.search, build.periods.periods, kindLabel);
   const toolbar = new Toolbar(build.id, ts.alternatives, ts.layers ?? []);
+  // The rivers' toggle sits with the fields' and is kept as theirs are, by its key in the link's `ly=`: the toolbar
+  // lights it with them.
+  if (riversLayer) {
+    const b = document.createElement('button');
+    b.className = `tg-${RIVERS_TOGGLE.key} tg-layer`;
+    b.dataset.layer = RIVERS_TOGGLE.key;
+    b.setAttribute('aria-pressed', 'false');
+    b.title = riversLayer.title;
+    b.textContent = RIVERS_TOGGLE.label;
+    b.onclick = () => {
+      const layers = state.layers ?? [];
+      setState({ layers: (riversOn() ? layers.filter((k) => k !== RIVERS_TOGGLE.key) : [...layers, RIVERS_TOGGLE.key]).sort() });
+    };
+    toolbar.el.querySelector('.tg-people')!.before(b);
+  }
   top.append(brand, search.el, toolbar.el);
   root.appendChild(top);
 
@@ -734,6 +757,12 @@ async function start(root: HTMLElement): Promise<void> {
       polities: polities.file?.rows.length ? [Math.min(...polities.file.rows.map((r) => r.from)), Math.max(...polities.file.rows.map((r) => r.to))] : undefined,
       polity: polities.file ? (lat, lon) => polities.at(lon, lat)?.name : undefined,
       genericLand: genericMask ? (lat, lon) => genericLandAt(genericMask!.mask, genericMask!.params, lat, lon) : undefined,
+      water: ts.rivers && rivers
+        ? {
+            observed: ts.rivers.observed ? { span: ts.rivers.observed.span, at: (lat, lon) => rivers.seenAt(lat, lon) } : undefined,
+            model: ts.rivers.sets.map((x) => x.span),
+          }
+        : undefined,
     };
   }
 
@@ -965,6 +994,8 @@ async function start(root: HTMLElement): Promise<void> {
       present.update(camera, state.t, state.cam.dist, stage.clientWidth, stage.clientHeight);
       hazards.update(camera, state.t, Math.max(timebar.yearsPerPixels(state.t, 8), 0.5), stage.clientWidth, stage.clientHeight);
     }
+    // Carried to the age the land is drawn at.
+    riversLayer?.update(camera, riversOn() && !hide, state.t, age, state.cam.dist, stage.clientWidth, stage.clientHeight);
     if (scenarioKey(scenario())) features.wantVariants();
     const onGlobe = features.update({ t: state.t, halo: halo(state.t), ...camera.reach(), rotation: plateNow, placed: (plate) => !!fi && build.model.reaches(plate, age) }, litMarkers, state.sel);
     markers.el.hidden = inCity && range < 1.2e5;
@@ -1695,7 +1726,7 @@ async function start(root: HTMLElement): Promise<void> {
   history.replaceState(null, '', toSearch(build.id, state));
   window.__wikiworldmodel = {
     build: build.id,
-    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && !fieldLayers.some((fl) => fl.busy) && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && genericReady && climateReady && !climates.busy && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
+    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && !fieldLayers.some((fl) => fl.busy) && !rivers?.busy && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && genericReady && climateReady && !climates.busy && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
     state: () => state,
     url: () => toSearch(build.id, state),
     requests: fetchLog,
@@ -1751,7 +1782,7 @@ async function start(root: HTMLElement): Promise<void> {
       const c = city instanceof LifeScene ? city : [...scenes.values()].find((x): x is LifeScene => x instanceof LifeScene);
       if (!c) return null;
       const drawn = new Set(c.named.map((x) => x.id));
-      return { site: c.spec.site.id, plan: c.plan, taxa: c.spec.taxa.map((t) => ({ id: t.id, label: t.label, form: t.form_label, own: t.own, tier: t.tier, km: t.km, rows: t.rows, drawn: drawn.has(t.id) })), instances: c.last.instances, triangles: c.last.triangles, meshes: c.last.meshes, groundMs: c.groundMs, stage: c.spec.site.stage, climate: c.spec.biome.climate, focus: c.focus, toRiver: c.toRiver, origin: c.spec.site.origin };
+      return { site: c.spec.site.id, plan: c.plan, taxa: c.spec.taxa.map((t) => ({ id: t.id, label: t.label, form: t.form_label, own: t.own, tier: t.tier, km: t.km, rows: t.rows, drawn: drawn.has(t.id) })), instances: c.last.instances, triangles: c.last.triangles, meshes: c.last.meshes, groundMs: c.groundMs, stage: c.spec.site.stage, climate: c.spec.biome.climate, focus: c.focus, toRiver: c.toRiver, origin: c.spec.site.origin, water: c.spec.water ? { tier: c.spec.water.tier, rivers: c.spec.water.rivers.map((r) => ({ key: r.key, from: r.from })) } : null };
     },
     lifePrint: async (lat, lon, t) => {
       const spec = await lifeAtlas?.spec(lat, lon, t, {});
@@ -1763,6 +1794,7 @@ async function start(root: HTMLElement): Promise<void> {
       return scene.plan.actual;
     },
     atlas: () => (build.atlas ? { bins: build.atlas.bins.length, coverage: build.atlas.coverage } : null),
+    rivers: () => ({ ...(riversLayer?.last ?? { drawn: 0, lakes: 0, observed: 0, ms: 0 }), near: (lat, lon, deg) => riversLayer?.near(lat, lon, deg) ?? [], lakeAt: (lat, lon) => riversLayer?.lakeAt(lat, lon) ?? null }),
     organismPlaces: (id) => {
       if (!(city instanceof LifeScene)) return [];
       const o = city.spec.site.origin;

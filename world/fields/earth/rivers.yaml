@@ -1,0 +1,30 @@
+# Where water runs off the land of each time, and how much (model:earth/drainage). A scene draws its channels from
+# it, with the laws its parameters give.
+id: field:earth/rivers
+type: field
+title: Rivers
+quantity: where rivers run and how much they carry
+unit: m³/s
+description: >-
+  The water of each climate routed over the ground of its time, down every slope and out of every hollow over its
+  lowest pass. For the glacial cycles it is today's ground at the sea level of each time, on a grid of a tenth of a
+  degree, so that the rivers cross the shelves the sea left dry; before them each PaleoDEM, on its grid of a degree.
+  It is a model's answer: no river in it is a measured one, and below its grid a river's course is not known.
+kind: lines
+derived: true
+from: [field:earth/runoff, field:earth/relief, field:earth/sea-level-stack, field:earth/elevation]
+rule: drainage
+spread: unknown
+params:
+  min_km2: 2000
+  deep_min_km2: 50000
+  older_step_yr: 10000
+  width: [7.2, 0.5]
+  depth: [0.27, 0.3]
+  bankfull_ratio: 1
+  wavelength_widths: [7, 12]
+  radius_widths: [2, 3]
+  braided_cfs: [0.06, -0.44]
+  sinuosity_least: 1.5
+  sinuosity_most: 2.2
+  deflection_most: 2.2

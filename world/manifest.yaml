@@ -847,6 +847,54 @@ datasets:
       bytes: 876018
       format: json
 
+  src:grwl-summary-v01.02:
+    type: dataset
+    kind: measurement
+    title: Global River Widths from Landsat (GRWL), the simplified vector product
+    citation: >-
+      Allen, G.H. & Pavelsky, T.M. (2018). Global extent of rivers and streams. Science 361(6402), 585,
+      doi:10.1126/science.aat0636. Data: Allen, G.H. & Pavelsky, T.M., Global River Widths from Landsat (GRWL) Database,
+      V01.01, Zenodo, doi:10.5281/zenodo.18624542, its summary statistics file of version V01.02.
+    authors:
+      - "Allen, G.H."
+      - "Pavelsky, T.M."
+    published: 2018
+    version: Zenodo record 18624542 of 12 February 2026, the file GRWL_summaryStats_V01.02.zip
+    container: Zenodo
+    doi: 10.5281/zenodo.18624542
+    url: https://zenodo.org/records/18624542
+    credit: Rivers wider than 30 m from GRWL (Allen & Pavelsky 2018)
+    license: CC-BY-4.0
+    license_note: The Zenodo record's licence is CC BY 4.0, read through its API.
+    reliability: >-
+      Rivers at least 30 m wide, mapped from Landsat images of months when rivers are commonly near their mean discharge:
+      centrelines from one tributary junction to the next, each with the median of the widths measured along it. The
+      authors find its widths most accurate where a river is wider than about three Landsat pixels, 90 m. The simplified
+      product's lake flags are of lower quality than the full product's, and some are not whole numbers. 231 segments
+      have no width.
+    note: >-
+      The full vector product, with a width every 30 m, is 3.1 GB and is not read; this is its summary, segment by
+      segment. The record does not say what changed in V01.02 of this file; its metadata's one step of that date
+      recomputes the segments' lengths.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence, files and md5 from the Zenodo API; the md5 of the file downloaded matches. The fields' meanings from the
+        record's description, and two segments' medians recomputed from a tile of the full product. The paper's methods
+        read from the publisher's version kept by the University of North Carolina's Carolina Digital Repository.
+    fetch:
+      url: https://zenodo.org/api/records/18624542/files/GRWL_summaryStats_V01.02.zip/content
+      sha256: 78aa43a7104d24b1696e9b1547347eec13ba5d660aa990c1e7cea98e7ae70e4a
+      bytes: 43282861
+      format: zip
+      files:
+        shp:
+          path: GRWL_summaryStats.shp
+          sha256: 121b1537050f26fff555478f608821980e188787a5f31c18ead2f24fd18dd7fa
+        dbf:
+          path: GRWL_summaryStats.dbf
+          sha256: f5990abfb9f0f168847ad7d72ddbaa0b6f1e047d07a3c538e18feaf44acc6d43
+
   src:itinere-2024:
     type: dataset
     kind: compilation

@@ -12,8 +12,9 @@ import { rotate, toLatLon, conj, unitVector } from '../../../../core/quat.ts';
 import type { LivingTaxon, SceneFileV2, SceneOmission, SceneSpec } from '../../../../core/scene.ts';
 import { parsePoint, toMa, type TimePointInput } from '../../../../core/time.ts';
 import { cubeRoot, placeSpec, reliefPatch, sizeWithin, type PlaceWorld } from '../../../../world/generators/life/spec.ts';
+import type { SceneWater } from '../../../../core/scene.ts';
 import { FULL_BUDGET, SceneStream } from '../../../../world/generators/life/stream.ts';
-import { VERSION, type LivingParams } from '../../../../world/generators/life/scene/v2.ts';
+import { VERSION, type LivingParams } from '../../../../world/generators/life/scene/v3.ts';
 import { FormTree } from '../forms.ts';
 import { pbdbNumber } from '../pbdb.ts';
 import { sha256, stableStringify } from '../util.ts';
@@ -267,7 +268,7 @@ export interface Witness {
 }
 
 /** A few places the browser is held to: the same scene, within the tolerance of core/fingerprint.ts, as the build makes here. */
-export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, string>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, log: (m: string) => void): Witness[] {
+export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, string>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, log: (m: string) => void, water?: (t: number, ageMa: number, at: { lat: number; lon: number }, isoline: number) => SceneWater | undefined): Witness[] {
   const forms = JSON.parse(files.get(index.forms)!) as Record<string, Form>;
   const out: Witness[] = [];
   // A stage from each part of the chart that has rows, at the patch with the longest list; and from the middle one, the
@@ -289,9 +290,12 @@ export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, strin
     for (const [lat, lon] of places) {
       const spec = placeSpec(pw, lat, lon, toMa(bin.slice));
       if (!spec) continue;
+      // Its rivers as a browser gives them, from the same files.
+      const w = water?.(bin.slice, toMa(bin.slice), spec.site.relief_at ?? spec.site.origin, pw.isoline);
+      if (w) spec.water = w;
       const stream = new SceneStream(spec, FULL_BUDGET);
       out.push({ lat, lon, t: bin.slice, print: stream.print(), taxa: spec.taxa.length });
-      log(`witness ${ref.name}: ${spec.taxa.length} taxa at ${lat}, ${lon}, ${spec.biome.climate}, water ${stream.look.water} m`);
+      log(`witness ${ref.name}: ${spec.taxa.length} taxa at ${lat}, ${lon}, ${spec.biome.climate}, water ${stream.look.water} m, ${spec.water ? `${spec.water.rivers.length} rivers (${spec.water.tier})` : 'an invented river'}`);
     }
   });
   return out;

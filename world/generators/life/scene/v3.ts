@@ -1,19 +1,22 @@
-// A living scene, version 2: any place on land at any moment, from a spec. Nothing is laid out until it is
-// looked at: each 400 m cell makes what stands in it from hashes of where it is, so the scene has no edge
-// to speak of, and what a far view shows is the top of the same list a near view shows in full. The records
-// say which taxa could be here and how big they grew; this says where each stands, how many there are,
-// what it is doing and what colour it is, all invented and marked so. Written with only + − × ÷, square roots and
-// integer operations; the build and every browser are held to agree within the tolerance of core/fingerprint.ts.
+// A living scene, version 3: any place on land at any moment, from a spec. Nothing is laid out until it is looked at:
+// each 400 m cell makes what stands in it from hashes of where it is, so the scene has no edge to speak of, and what a
+// far view shows is the top of the same list a near view shows in full. The records say which taxa could be here and how
+// big they grew; this says where each stands, how many there are, what it is doing and what colour it is, all invented
+// and marked so. Since version 3 its rivers are the world's where the world has them (docs/EIGHTH-SLICE.md): a measured
+// centreline or a reach of the drainage model, drawn with the channel its flow gives it, its water falling downstream,
+// and its floodplain and valley following it rather than the scene's middle. The build and every browser are held to
+// agree within the tolerance of core/fingerprint.ts.
 import type { Part } from '../../../../core/fingerprint.ts';
 import type { Form, Pose } from '../../../../core/form.ts';
 import type { LivingTaxon, ReliefPatch, SceneSpec } from '../../../../core/scene.ts';
 import { GroundSampler, type GroundGridData } from '../../city/ground.ts';
 import { dcos, dsin, hash2, hash3, hashString, PI, Rng, TAU } from '../../city/math.ts';
 import { POSE } from '../forms.ts';
-import { arrival, fbm, noise, plainGrid, watersOf, type GridSpec, type PlainParams, type Waters } from '../land.ts';
+import { arrival, distanceField, fbm, noise, plainGrid, watersOf, type GridSpec, type PlainParams, type Waters } from '../land.ts';
+import { drawRiver, meet, type Oxbow, type RiverChoices, type RiverPath } from '../rivers.ts';
 
 export const GENERATOR = 'gen:life/scene';
-export const VERSION = 2;
+export const VERSION = 3;
 
 /** The side of a cell of the ground, in metres. */
 export const CELL = 400;
@@ -49,11 +52,13 @@ export interface LivingParams {
     lowest_water: number;
     /** below this height at the place, in metres, its water is the sea */
     sea_below: number;
-    /** how much invented relief the land has beyond the plain, as a share of its height above the coast */
+    /** how much invented relief the land has beyond the plain, as a share of its height above the coast, for a field a
+     * degree across: a finer field's by the square root of its spacing, as it draws more of the hills itself */
     rugged: number;
     /** how rough the plain gets for each metre the land around it varies by */
     swell: number;
-    /** a shore: how far the land's height wanders with noise, in metres, to make a coast of a 1° grid */
+    /** a shore: how far the land's height wanders with noise, in metres, within the cells of a 1° grid the coast crosses;
+     * a finer grid's in proportion to its spacing */
     coast: number;
   };
   cover: {
@@ -95,6 +100,8 @@ export interface LivingParams {
     mass_length: number;
     defaults: { group: [number, number]; habitat: string; poses: Pose[] };
   };
+  /** how a river the world gives is drawn: the generator's choices, beside the laws its spec carries */
+  rivers: RiverChoices;
   /** how far off each kind of cell is made, in metres from the eye */
   reach: { full: number; near: number };
   view: { range: number; turn: number; tilt: number };
@@ -113,6 +120,21 @@ export class Relief {
   private kx: number;
   constructor(private p: ReliefPatch, private origin: { lat: number; lon: number }) {
     this.kx = 1 / (EARTH * dcos(origin.lat * DEG) * DEG);
+  }
+  /** the spacing of the field, in degrees */
+  get step(): number {
+    return this.p.step;
+  }
+  /** Whether the cell of the field a point is in has the coast through it: land at one of its corners and sea at another. */
+  coastal(x: number, y: number): boolean {
+    const { p } = this;
+    const lat = this.origin.lat + y / (EARTH * DEG);
+    const lon = this.origin.lon + x * this.kx;
+    const cy = Math.min(p.ny - 1.001, Math.max(0, (p.lat0 - lat) / p.step));
+    const cx = Math.min(p.nx - 1.001, Math.max(0, (lon - p.lon0) / p.step));
+    const at = Math.floor(cy) * p.nx + Math.floor(cx);
+    const c = [p.z[at], p.z[at + 1], p.z[at + p.nx], p.z[at + p.nx + 1]];
+    return Math.min(...c) <= 0 && Math.max(...c) > 0;
   }
   at(x: number, y: number): number {
     const { p } = this;
@@ -178,7 +200,8 @@ export function placeLook(spec: SceneSpec): PlaceLook {
   }
   const sea = e0 < g.sea_below;
   const clim = params.cover.climates[spec.biome.climate];
-  const rivers = (clim?.river ?? 0) * Math.min(1, spec.biome.cover.plants + 0.5) > hash2(3, 3, seed);
+  // Where the world says where the rivers run, they are its; where it says nothing, a weighted coin.
+  const rivers = spec.water ? spec.water.rivers.length > 0 : (clim?.river ?? 0) * Math.min(1, spec.biome.cover.plants + 0.5) > hash2(3, 3, seed);
   return { water: sea ? 0 : Math.round(e0 < g.lowest_water ? g.lowest_water : e0), sea, flow: g.flow ?? downhill(r, seed), rivers, relief: hi - lo, seed };
 }
 
@@ -192,7 +215,251 @@ function plainOf(spec: SceneSpec, look: PlaceLook): LivingParams['ground'] & Pla
 const NO_WATERS: Waters = { river: [], oxbows: [], ponds: [] };
 
 /** The waters of a place, worked out once. */
-export const watersFor = (spec: SceneSpec, look: PlaceLook): Waters => (look.rivers ? watersOf(plainOf(spec, look), look.seed, 6000) : NO_WATERS);
+export const watersFor = (spec: SceneSpec, look: PlaceLook): Waters => (spec.water ? riversFor(spec) : look.rivers ? watersOf(plainOf(spec, look), look.seed, 6000) : NO_WATERS);
+
+// ——— The rivers the world gives ———
+
+/** How far from the middle a scene draws the rivers it is given: a little beyond its middle grid. */
+export const REACH = 34000;
+
+/** The waters of a place whose spec says where its rivers run: each drawn, and the one nearest the middle to arrive by. */
+function riversFor(spec: SceneSpec): Waters {
+  const p = spec.generator.params as unknown as LivingParams;
+  const w = spec.water!;
+  const rel = new Relief(spec.relief, spec.site.relief_at ?? spec.site.origin);
+  const paths: RiverPath[] = [];
+  const oxbowList: Oxbow[] = [];
+  for (const r of w.rivers) {
+    const drawn = drawRiver(r, w.laws, p.rivers, (x, y) => rel.at(x, y), REACH);
+    if (drawn.path.xy.length < 4) continue;
+    paths.push(drawn.path);
+    oxbowList.push(...drawn.oxbows);
+  }
+  meet(paths, p.rivers.smooth);
+  let main: RiverPath | undefined;
+  let best = Infinity;
+  for (const pa of paths) {
+    for (let i = 0; i < pa.xy.length; i += 2) {
+      const d = pa.xy[i] * pa.xy[i] + pa.xy[i + 1] * pa.xy[i + 1];
+      if (d < best) {
+        best = d;
+        main = pa;
+      }
+    }
+  }
+  return { river: main ? Array.from(main.xy) : [], oxbows: [], ponds: [], paths, oxbowList };
+}
+
+/**
+ * For each node of a grid, the nearest point of any river's course: which river, which of its segments and how far
+ * along it, and how far away. Each segment is tried at the nodes around it, then every node is offered its neighbours'
+ * segments in two sweeps across the grid; the distance is always worked out afresh, so it is exact wherever the nearest
+ * segment reached it. Beyond `limit` no river is nearest.
+ */
+export function nearestCourse(gs: GridSpec, paths: RiverPath[], limit: number): { d: Float32Array; path: Int16Array; seg: Int32Array; t: Float32Array } {
+  const { nx, ny, x0, y0, cell } = gs;
+  const n = nx * ny;
+  const d = new Float32Array(n).fill(Infinity);
+  const path = new Int16Array(n).fill(-1);
+  const seg = new Int32Array(n).fill(-1);
+  const along = new Float32Array(n);
+  const test = (at: number, p: number, k: number) => {
+    const xy = paths[p].xy;
+    const x = x0 + (at % nx) * cell;
+    const y = y0 + Math.floor(at / nx) * cell;
+    const ax = xy[k * 2];
+    const ay = xy[k * 2 + 1];
+    const ex = xy[k * 2 + 2] - ax;
+    const ey = xy[k * 2 + 3] - ay;
+    const q = ex * ex + ey * ey || 1e-9;
+    let t = ((x - ax) * ex + (y - ay) * ey) / q;
+    t = t < 0 ? 0 : t > 1 ? 1 : t;
+    const dist = Math.sqrt((x - ax - ex * t) ** 2 + (y - ay - ey * t) ** 2);
+    if (dist < d[at]) {
+      d[at] = dist;
+      path[at] = p;
+      seg[at] = k;
+      along[at] = t;
+    }
+  };
+  paths.forEach((pa, p) => {
+    const xy = pa.xy;
+    for (let k = 0; k + 3 < xy.length; k += 2) {
+      const i0 = Math.max(0, Math.floor((Math.min(xy[k], xy[k + 2]) - x0) / cell) - 1);
+      const i1 = Math.min(nx - 1, Math.ceil((Math.max(xy[k], xy[k + 2]) - x0) / cell) + 1);
+      const j0 = Math.max(0, Math.floor((Math.min(xy[k + 1], xy[k + 3]) - y0) / cell) - 1);
+      const j1 = Math.min(ny - 1, Math.ceil((Math.max(xy[k + 1], xy[k + 3]) - y0) / cell) + 1);
+      for (let j = j0; j <= j1; j++) for (let i = i0; i <= i1; i++) test(j * nx + i, p, k / 2);
+    }
+  });
+  const offer = (at: number, from: number) => {
+    if (path[from] >= 0) test(at, path[from], seg[from]);
+  };
+  for (let j = 0; j < ny; j++) {
+    for (let i = 0; i < nx; i++) {
+      const at = j * nx + i;
+      if (i > 0) offer(at, at - 1);
+      if (j > 0) {
+        offer(at, at - nx);
+        if (i > 0) offer(at, at - nx - 1);
+        if (i < nx - 1) offer(at, at - nx + 1);
+      }
+    }
+  }
+  for (let j = ny - 1; j >= 0; j--) {
+    for (let i = nx - 1; i >= 0; i--) {
+      const at = j * nx + i;
+      if (i < nx - 1) offer(at, at + 1);
+      if (j < ny - 1) {
+        offer(at, at + nx);
+        if (i < nx - 1) offer(at, at + nx + 1);
+        if (i > 0) offer(at, at + nx - 1);
+      }
+    }
+  }
+  for (let k = 0; k < n; k++) if (d[k] > limit) path[k] = -1;
+  return { d, path, seg, t: along };
+}
+
+/**
+ * The height of the ground over a grid where the world gives the rivers: each river's bed, banks and floodplain at the
+ * height of its water there, and beyond its floodplain the land, never lower than the plain, so that a valley's walls
+ * rise from it. The old bends hold water at the river's level.
+ */
+function riverGround(gs: GridSpec, w: Waters, g: LivingParams['ground'], c: RiverChoices, land: (x: number, y: number) => number, seed: number): Float32Array {
+  const paths = w.paths!;
+  const limit = Math.max(0, ...paths.map((p) => p.plain)) + c.wall;
+  const near = nearestCourse(gs, paths, limit);
+  const oxbows = w.oxbowList ?? [];
+  const ox = oxbows.length ? distanceField(gs.nx, gs.ny, gs.x0, gs.y0, gs.cell, oxbows.map((o) => Array.from(o.xy)), 400) : null;
+  const z = new Float32Array(gs.nx * gs.ny);
+  for (let j = 0; j < gs.ny; j++) {
+    const y = gs.y0 + j * gs.cell;
+    for (let i = 0; i < gs.nx; i++) {
+      const x = gs.x0 + i * gs.cell;
+      const at = j * gs.nx + i;
+      const ground = land(x, y);
+      const p = near.path[at];
+      if (p < 0) {
+        z[at] = ground;
+        continue;
+      }
+      const pa = paths[p];
+      const k = near.seg[at];
+      const t = near.t[at];
+      const lerp = (a: Float32Array) => a[k] + (a[Math.min(a.length - 1, k + 1)] - a[k]) * t;
+      const zw = lerp(pa.z);
+      const half = Math.max(lerp(pa.half), gs.cell * 0.7);
+      const depth = lerp(pa.depth);
+      const d = near.d[at];
+      // The plain: low swells, and back swamps where it sags; a mountain stream has hardly any.
+      const swell = fbm(x / g.size, y / g.size, seed + 21);
+      const sag = smooth(0.58, 0.74, noise(x / (g.size * 3.1), y / (g.size * 3.1), seed + 22));
+      const rise = pa.pattern === 'steep' ? depth : g.rise;
+      let plain = zw + rise + (swell - 0.5) * 2 * g.roughness * (pa.pattern === 'steep' ? 0.3 : 1) - sag * rise * 0.72;
+      const off = d - half;
+      if (pa.pattern === 'meandering') {
+        const lk = off / g.levee[1];
+        plain += g.levee[0] / (1 + lk * lk);
+      }
+      let h: number;
+      if (off < 0) {
+        const f = d / half;
+        h = zw - depth * (1 - f * f);
+      } else {
+        const bank = g.bank[0] + (g.bank[1] - g.bank[0]) * smooth(0.36, 0.72, noise(x / 620, y / 620, seed + 24));
+        const tb = clamp01(off / bank);
+        h = zw + (plain - zw) * (tb * tb * (3 - 2 * tb));
+      }
+      // Beyond its floodplain the land, never lower than the plain: the valley's walls.
+      const wall = smooth(pa.plain, pa.plain + c.wall, d);
+      h += (Math.max(ground, plain) - h) * wall;
+      if (ox) {
+        const oxHalf = Math.max(half * 0.8, gs.cell * 0.8);
+        const dx = ox[at];
+        if (dx < oxHalf + 90) {
+          const level = zw - 0.4;
+          const off2 = dx - oxHalf;
+          if (off2 < 0) {
+            const f = dx / oxHalf;
+            h = Math.min(h, level - 2.2 * (1 - f * f));
+          } else {
+            const tb = clamp01(off2 / 60);
+            h = Math.min(h, level + (h - level) * (tb * tb * (3 - 2 * tb)));
+          }
+        }
+      }
+      z[at] = h;
+    }
+  }
+  return z;
+}
+
+/**
+ * Where water stands, over the scene: the level of the nearest river within its floodplain, of its old bends, and
+ * of the sea; a point lower than it is under water. Read from a grid of 100 m.
+ */
+export function waterLevels(w: Waters): (x: number, y: number) => number {
+  const paths = w.paths ?? [];
+  const gs: GridSpec = { nx: 681, ny: 681, x0: -34000, y0: -34000, cell: 100 };
+  const level = new Float32Array(gs.nx * gs.ny).fill(0);
+  if (paths.length) {
+    const near = nearestCourse(gs, paths, Math.max(...paths.map((p) => p.plain)));
+    for (let k = 0; k < level.length; k++) {
+      const p = near.path[k];
+      if (p < 0) continue;
+      const pa = paths[p];
+      const s = near.seg[k];
+      const zw = pa.z[s] + (pa.z[Math.min(pa.z.length - 1, s + 1)] - pa.z[s]) * near.t[k];
+      if (near.d[k] <= pa.plain) level[k] = Math.max(0, zw);
+    }
+  }
+  return (x, y) => {
+    const i = Math.round((x - gs.x0) / gs.cell);
+    const j = Math.round((y - gs.y0) / gs.cell);
+    if (i < 0 || j < 0 || i >= gs.nx || j >= gs.ny) return 0;
+    return level[j * gs.nx + i];
+  };
+}
+
+/** The water of a scene whose rivers the world gives: a ribbon along each river and old bend, with its flow and depth. */
+export function waterRibbons(w: Waters): { vertices: Float32Array; flow: Float32Array; indices: Uint32Array } {
+  const verts: number[] = [];
+  const flow: number[] = [];
+  const idx: number[] = [];
+  const ribbon = (xy: Float64Array, z: (i: number) => number, half: (i: number) => number, depth: (i: number) => number, speed: (i: number) => number, upTo = xy.length / 2) => {
+    const n = upTo;
+    if (n < 2) return;
+    const base = verts.length / 3;
+    for (let i = 0; i < n; i++) {
+      const a = Math.max(0, i - 1);
+      const b = Math.min(n - 1, i + 1);
+      let tx = xy[b * 2] - xy[a * 2];
+      let ty = xy[b * 2 + 1] - xy[a * 2 + 1];
+      const len = Math.sqrt(tx * tx + ty * ty) || 1;
+      tx /= len;
+      ty /= len;
+      // To its banks: drawn a little toward the eye, it is seen in its channel however coarsely the ground is drawn.
+      const h = half(i);
+      const zz = z(i) + 0.03;
+      const sp = speed(i);
+      const x = xy[i * 2];
+      const y = xy[i * 2 + 1];
+      verts.push(x - ty * h, y + tx * h, zz, x, y, zz, x + ty * h, y - tx * h, zz);
+      flow.push(tx * sp, ty * sp, 0, tx * sp, ty * sp, depth(i), tx * sp, ty * sp, 0);
+    }
+    for (let i = 0; i + 1 < n; i++) {
+      const a = base + i * 3;
+      const b = a + 3;
+      idx.push(a, b, a + 1, a + 1, b, b + 1, a + 1, b + 1, a + 2, a + 2, b + 1, b + 2);
+    }
+  };
+  for (const p of w.paths ?? []) {
+    ribbon(p.xy, (i) => p.z[i], (i) => p.half[i], (i) => p.depth[i], (i) => p.q[i] / Math.max(1, p.half[i] * 2 * p.depth[i]), p.end);
+  }
+  for (const o of w.oxbowList ?? []) ribbon(o.xy, () => o.z, () => o.half, () => 2.2, () => 0);
+  return { vertices: Float32Array.from(verts), flow: Float32Array.from(flow), indices: Uint32Array.from(idx) };
+}
 
 /** Far from a plain, the land's own lie, with ridges made up in proportion to its height. */
 function landAt(rel: Relief, g: LivingParams['ground'], x: number, y: number, seed: number): number {
@@ -200,9 +467,12 @@ function landAt(rel: Relief, g: LivingParams['ground'], x: number, y: number, se
   const n1 = fbm(x / 26000, y / 26000, seed + 71) - 0.5;
   const n2 = fbm(x / 6200, y / 6200, seed + 72) - 0.5;
   const high = b > 80 ? b - 80 : 0;
-  // A coast of a coarse grid wanders, and hills stand in proportion to what is under them.
-  const near = 1 - smooth(0, g.coast * 3, b < 0 ? -b : b);
-  return b + near * g.coast * (n1 + n2) * 2 + high * g.rugged * (n1 * 1.4 + n2 * 0.6);
+  // A coast wanders within the cells of the field it crosses, as far as a cell lets it; and hills stand in proportion
+  // to what is under them, the less the finer the field already draws them. The parameters are a degree's.
+  const cell = Math.min(1, rel.step);
+  const wander = g.coast * cell;
+  const near = rel.coastal(x, y) ? 1 - smooth(0, wander * 3, b < 0 ? -b : b) : 0;
+  return b + near * wander * (n1 + n2) * 2 + high * g.rugged * Math.sqrt(cell) * (n1 * 1.4 + n2 * 0.6);
 }
 
 /** The ground's three grids, in metres above the coast: what a browser makes for itself. */
@@ -229,6 +499,17 @@ export function groundGrids(spec: SceneSpec, look: PlaceLook, waters: Waters, si
   const fine = sizes.fine;
   const mid = sizes.mid;
   const far = sizes.far;
+  if (waters.paths) {
+    const params = spec.generator.params as unknown as LivingParams;
+    const land = (x: number, y: number) => withDunes(x, y, landAt(rel, g, x, y, seed));
+    const grids = [fine, mid, far].map((gs) => riverGround(gs, waters, g, params.rivers, land, seed));
+    blurFar(grids[2], far);
+    return [
+      { ...fine, z: encode(grids[0]) },
+      { ...mid, z: encode(grids[1]) },
+      { ...far, z: encode(grids[2]) },
+    ];
+  }
   const z0 = plainGrid(fine, g, water, seed, waters);
   for (let j = 0; j < fine.ny; j++) {
     for (let i = 0; i < fine.nx; i++) {
@@ -255,7 +536,16 @@ export function groundGrids(spec: SceneSpec, look: PlaceLook, waters: Waters, si
       z2[j * far.nx + i] = mixed(x, y, water + g.rise);
     }
   }
-  // A small blur of a coarse grid, with fixed weights: the grid is a degree's, and has no business with corners.
+  blurFar(z2, far);
+  return [
+    { ...fine, z: encode(z0) },
+    { ...mid, z: encode(z1) },
+    { ...far, z: encode(z2) },
+  ];
+}
+
+/** A small blur of the far grid, with fixed weights: the field under it is a degree's, and has no business with corners. */
+function blurFar(z2: Float32Array, far: GridSpec): void {
   const blurred = new Float32Array(z2.length);
   const W = [1, 4, 6, 4, 1];
   const line = (from: Float32Array, to: Float32Array, n: number, count: number, at: (l: number, k: number) => number) => {
@@ -269,11 +559,6 @@ export function groundGrids(spec: SceneSpec, look: PlaceLook, waters: Waters, si
   };
   line(z2, blurred, far.nx, far.ny, (l, k) => l * far.nx + k);
   line(blurred, z2, far.ny, far.nx, (l, k) => k * far.nx + l);
-  return [
-    { ...fine, z: encode(z0) },
-    { ...mid, z: encode(z1) },
-    { ...far, z: encode(z2) },
-  ];
 }
 
 /** Heights to decimetres: what the renderer's textures hold. */
@@ -309,7 +594,7 @@ export class LandCover {
   private fx: number;
   private fy: number;
   private seed: number;
-  constructor(spec: SceneSpec, private ground: GroundSampler, private level: number, focus: [number, number]) {
+  constructor(spec: SceneSpec, private ground: GroundSampler, private level: number, focus: [number, number], private levelAt?: (x: number, y: number) => number) {
     const p = spec.generator.params as unknown as LivingParams;
     this.c = p.cover;
     const cl = p.cover.climates[spec.biome.climate] ?? { forest: 0, herb: 0, bare: 1, river: 0, tones: 'barren' };
@@ -326,7 +611,7 @@ export class LandCover {
     return this.forest;
   }
   at(x: number, y: number): this {
-    const above = this.ground.at(x, y) - this.level;
+    const above = this.ground.at(x, y) - (this.levelAt ? this.levelAt(x, y) : this.level);
     this.above = above;
     if (above < 0) {
       this.water = 1;
@@ -447,7 +732,7 @@ export function densityOf(t: LivingTaxon, form: Form, a: LivingParams['animals']
   return rule * prey * a.show * (0.25 + 1.5 * t.weight) * productivity;
 }
 
-export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook, waters: Waters): LivingPlan {
+export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook, waters: Waters, levelAt?: (x: number, y: number) => number): LivingPlan {
   const params = spec.generator.params as unknown as LivingParams;
   const seed = look.seed;
   const level = look.water;
@@ -457,7 +742,7 @@ export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook
   const arrive = waters.river.length ? arrival(waters, 2600, params.cover.clearing * 0.72) : { at: [Math.round(hash2(4, 1, seed) * 800 - 400), Math.round(hash2(4, 2, seed) * 800 - 400)] as [number, number], toRiver: [0, 1] as [number, number] };
   const focus: [number, number] = [Math.round(arrive.at[0]), Math.round(arrive.at[1])];
   const toRiver: [number, number] = [Math.round(arrive.toRiver[0] * 1000) / 1000, Math.round(arrive.toRiver[1] * 1000) / 1000];
-  const land = new LandCover(spec, ground, level, focus);
+  const land = new LandCover(spec, ground, level, focus, levelAt);
   const productivity = 0.2 + 0.8 * (land.forestShare > 0.5 ? 1 : land.forestShare + 0.3);
   const layouts: TaxonLayout[] = spec.taxa.map((t, index) => {
     const form = spec.forms[t.form];
@@ -553,7 +838,8 @@ export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook
       if (a.habitat === 'edge' || a.habitat === 'wet') {
         const H = (a.t.hip ?? L * (a.form.hip ?? 0.2)) * scale;
         // Afloat where it is deep enough: with the water at the middle of its body.
-        if (gz < level) z = Math.max(gz, level - H * 0.9);
+        const lv = levelAt ? levelAt(x, y) : level;
+        if (gz < lv) z = Math.max(gz, lv - H * 0.9);
       }
       if (a.flies) {
         pose = POSE.fly;

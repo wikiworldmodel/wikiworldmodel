@@ -2,6 +2,7 @@
 // Written with only + − × ÷, square roots and integer operations, as generators were before any arithmetic was
 // allowed; what the build and a browser make is now held to agree within the tolerance of core/fingerprint.ts.
 import { dcos, dsin, hash2, Rng, TAU } from '../city/math.ts';
+import type { Oxbow, RiverPath } from './rivers.ts';
 
 /** How a river and its plain are drawn. Nothing here is a claim about any river. */
 export interface PlainParams {
@@ -151,6 +152,9 @@ export interface Waters {
   oxbows: number[][];
   /** ponds: x, y, radius across, radius along, in fours */
   ponds: number[];
+  /** where the world says where the rivers run: each drawn, and the oxbows of their older courses */
+  paths?: RiverPath[];
+  oxbowList?: Oxbow[];
 }
 
 /** Everywhere there is water on the plain, away from the river. */
@@ -298,6 +302,22 @@ export function arrival(w: Waters, reach: number, inset: number): { at: [number,
       best = k;
       bestK = i;
     }
+  }
+  if (best < 0) {
+    // No bend near the middle: the river's nearest point, come to from the middle.
+    let near = 0;
+    let d = Infinity;
+    for (let k = 0; k < n; k++) {
+      const e = r[k * 2] * r[k * 2] + r[k * 2 + 1] * r[k * 2 + 1];
+      if (e < d) {
+        d = e;
+        near = k;
+      }
+    }
+    const x = r[near * 2];
+    const y = r[near * 2 + 1];
+    const l = Math.sqrt(d) || 1;
+    return { at: [x - (x / l) * inset, y - (y / l) * inset], toRiver: [x / l, y / l] };
   }
   const i = bestK;
   const x = r[i * 2];

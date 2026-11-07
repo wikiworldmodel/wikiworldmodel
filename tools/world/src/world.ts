@@ -168,7 +168,7 @@ export interface Field {
     from: string;
     file?: string;
     /** what the data is read as, where it is not elevation */
-    as?: 'climate' | 'ice-sheets' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages' | 'people' | 'community' | 'community-sea' | 'relief';
+    as?: 'climate' | 'ice-sheets' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages' | 'people' | 'community' | 'community-sea' | 'relief' | 'river-widths';
     places?: string;
     /** for a climate read as months from NetCDF-4: the file's variables */
     variables?: Record<'temperature' | 'precipitation' | 'time' | 'latitude' | 'longitude', string>;

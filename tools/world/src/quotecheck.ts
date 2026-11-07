@@ -19,7 +19,7 @@ import type { Claim, Relation, World } from './world.ts';
 export function normalizeText(s: string): string {
   return s
     .normalize('NFKC')
-    .replace(/­/g, '')
+    .replace(/­\s*/g, '')
     .replace(/[‘’‚‛′]/g, "'")
     .replace(/[“”„‟″]/g, '"')
     .replace(/[‐-―−]/g, '-')

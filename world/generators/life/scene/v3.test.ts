@@ -10,7 +10,8 @@ import type { LivingTaxon, ReliefPatch, SceneCover, SceneSpec } from '../../../.
 import type { FeatureTime } from '../../../../core/tileset.ts';
 import { cubeRoot, latticeOf, sizeWithin } from '../spec.ts';
 import { FAST_BUDGET, FULL_BUDGET, INSTANCE_STRIDE, protoParts, SceneStream, type LifeView } from '../stream.ts';
-import { CELL, cellParts, densityOf, EXTENT, GENERATOR, VERSION, type CellRows, type LivingParams } from './v2.ts';
+import { CELL, cellParts, densityOf, EXTENT, GENERATOR, placeLook, VERSION, watersFor, type CellRows, type LivingParams } from './v3.ts';
+import type { ChannelLaws } from '../../../../core/scene.ts';
 
 const ROOT = join(import.meta.dirname, '../../..');
 const record = parse(readFileSync(join(ROOT, 'generators/life/scene.yaml'), 'utf8'));
@@ -115,11 +116,6 @@ describe('a scene', () => {
     a.plan.cell(i + 3, j - 2, 2);
     a.plan.cell(i - 5, j + 1, 1);
     expect(fingerprintProblems(fingerprint(cellParts(a.plan.cell(i, j, 2))), fingerprint(cellParts(b.plan.cell(i, j, 2))))).toEqual([]);
-  });
-
-  it('uses only what every engine computes alike', () => {
-    const code = readFileSync(join(import.meta.dirname, 'v2.ts'), 'utf8') + readFileSync(join(import.meta.dirname, '../land.ts'), 'utf8') + readFileSync(join(import.meta.dirname, '../forms.ts'), 'utf8');
-    for (const fn of ['sin', 'cos', 'tan', 'atan', 'atan2', 'exp', 'log', 'pow', 'cbrt', 'random']) expect(code.includes(`Math.${fn}(`), fn).toBe(false);
   });
 
   it('has a cube root it can trust', () => {
@@ -411,5 +407,56 @@ describe('what a view draws', () => {
       const f = new Float32Array(b.data);
       for (let i = 0; i < b.count; i++) expect(Math.abs(f[i * 7 + 1])).toBeLessThanOrEqual(EXTENT + 200);
     }
+  });
+});
+
+describe('where the world gives the rivers', () => {
+  const fields = parse(readFileSync(join(ROOT, 'fields/earth/rivers.yaml'), 'utf8'));
+  const laws = fields.params as ChannelLaws;
+  // A made-up river of the drainage model, from the north-west to the south-east, falling 10 m across the scene.
+  const course = [-40000, 6000, 0, 800, 40000, -5000];
+  const spec = { ...specOf({ seed: 'life/rivers' }), water: { rivers: [{ key: 'test#river', from: 'model' as const, xy: course, s0: 0, q: [240, 250, 260], z: [20, 15, 10] }], laws, tier: 'model' as const, from: ['field:earth/rivers'] } };
+  const toGuide = (x: number, y: number) => {
+    // Distance to the made-up course, and how far along it.
+    let best = Infinity;
+    for (let i = 0; i + 3 < course.length; i += 2) {
+      const [ax, ay, bx, by] = course.slice(i, i + 4);
+      const t = Math.max(0, Math.min(1, ((x - ax) * (bx - ax) + (y - ay) * (by - ay)) / ((bx - ax) ** 2 + (by - ay) ** 2)));
+      best = Math.min(best, Math.hypot(x - ax - t * (bx - ax), y - ay - t * (by - ay)));
+    }
+    return best;
+  };
+
+  it('runs its rivers where the world says, with the water falling downstream', () => {
+    const waters = watersFor(spec, placeLook(spec));
+    const path = waters.paths![0];
+    expect(path.pattern).toBe('meandering');
+    // Within its floodplain of the course it was given, and as wide as its flow says.
+    for (let i = 0; i < path.xy.length; i += 2) expect(toGuide(path.xy[i], path.xy[i + 1])).toBeLessThan(path.plain);
+    expect(path.half[path.half.length >> 1] * 2).toBeCloseTo(laws.width[0] * Math.sqrt(path.q[path.q.length >> 1]), 0);
+    for (let i = 1; i < path.z.length; i++) expect(path.z[i]).toBeLessThanOrEqual(path.z[i - 1]);
+    const s = new SceneStream(spec);
+    // The ground under it is cut below its water, near the middle where the ground is finest.
+    let checked = 0;
+    for (let i = 0; i < path.xy.length; i += 2) {
+      const [x, y] = [path.xy[i], path.xy[i + 1]];
+      if (Math.hypot(x, y) > 5000) continue;
+      expect(s.ground.at(x, y)).toBeLessThan(path.z[i / 2]);
+      checked++;
+    }
+    expect(checked).toBeGreaterThan(20);
+    // Its water flows downstream, south-east.
+    const w = s.water();
+    let down = 0;
+    let all = 0;
+    for (let k = 0; k < w.flow.length; k += 3) {
+      if (!w.flow[k] && !w.flow[k + 1]) continue;
+      all++;
+      if (w.flow[k] * 80000 - w.flow[k + 1] * 11000 > 0) down++;
+    }
+    expect(down / all).toBeGreaterThan(0.6);
+    // A visitor arrives by it.
+    const [fx, fy] = s.plan.focus;
+    expect(toGuide(fx, fy)).toBeLessThan(path.plain);
   });
 });

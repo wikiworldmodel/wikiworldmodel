@@ -69,6 +69,44 @@ export interface ReliefPatch {
   z: number[];
 }
 
+/** A river as a scene's spec gives it: its course in local metres, upstream first (world/generators/life/rivers.ts draws it). */
+export interface SceneRiver {
+  /** what names it: its set and reach, or its dataset's row; what is invented of it is keyed by this */
+  key: string;
+  from: 'observed' | 'model';
+  /** flat [x, y, …], upstream first */
+  xy: number[];
+  /** the distance along it to its first point from where its reach begins, m */
+  s0: number;
+  /** its mean flow at each point, m³/s; or its measured width at each point, m */
+  q?: number[];
+  width?: number[];
+  /** the height of its water at each point, m above the coast, where the world gives it */
+  z?: number[];
+}
+
+/** The laws a channel is drawn by: the rivers field's parameters (field:earth/rivers). */
+export interface ChannelLaws {
+  width: [number, number];
+  depth: [number, number];
+  wavelength_widths: [number, number];
+  radius_widths: [number, number];
+  braided_cfs: [number, number];
+  sinuosity_least: number;
+  sinuosity_most: number;
+  deflection_most: number;
+}
+
+/** The water the world gives a place: its rivers, the laws their channels are drawn by, and what they rest on. */
+export interface SceneWater {
+  rivers: SceneRiver[];
+  laws: ChannelLaws;
+  /** evidence where a dataset measured a river here, model where only the drainage routes one */
+  tier: 'evidence' | 'model';
+  /** the fields its rivers come from */
+  from: string[];
+}
+
 /** Everything a scene is made from: nothing else about the world goes in, and the same spec makes the same scene. */
 export interface SceneSpec {
   format: 'lightworld-scene@2';
@@ -88,6 +126,8 @@ export interface SceneSpec {
     stage?: string;
   };
   relief: ReliefPatch;
+  /** where the world says the rivers run; without it a scene invents its river */
+  water?: SceneWater;
   biome: { climate: ClimateClass; label: string; field: string; ageMa: number; cover: SceneCover; node: ClimateNode };
   taxa: LivingTaxon[];
   omitted: SceneOmission[];

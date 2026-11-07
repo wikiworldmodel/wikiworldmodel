@@ -40,6 +40,10 @@ describe('quotes against a text', () => {
     expect(quoteIn('at 66.039 ± 0.049 Ma', text)).toBe(false);
   });
 
+  it('join a word an OCR broke at a soft hyphen and the end of a line', () => {
+    expect(quoteIn('increase downstream with discharge', normalizeText('increase downstream with dis\u00ad \ncharge in the form'))).toBe(true);
+  });
+
   it('find a quote with an ellipsis when its pieces come in order, and not out of order', () => {
     const text = normalizeText('First the ash fell. Much later the iridium settled.');
     expect(quoteIn('First the ash … the iridium settled', text)).toBe(true);
