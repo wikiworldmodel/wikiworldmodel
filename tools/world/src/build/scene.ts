@@ -3,7 +3,7 @@
 // elsewhen, or with no form or size, is left out and says why. Anywhere else, the browser makes the scene
 // itself from the atlas: witness places here are made the same way, and their hashes kept so that a browser
 // can be held to them. No ground and no organism is stored for either.
-import { atlasHasLand, atlasList, type AtlasBin, type AtlasIndex } from '../../../../core/atlas.ts';
+import { atlasHasLand, atlasList, seaDrawList, type AtlasBin, type AtlasGrid, type AtlasIndex, type SeaBin } from '../../../../core/atlas.ts';
 import { climateClass, CLIMATE_LABEL, decodeNode, type ClimateRule } from '../../../../core/climate.ts';
 import type { Fingerprint } from '../../../../core/fingerprint.ts';
 import { canonicalForm, type Form } from '../../../../core/form.ts';
@@ -14,11 +14,12 @@ import { parsePoint, toMa, type TimePointInput } from '../../../../core/time.ts'
 import { cubeRoot, placeSpec, reliefPatch, sizeWithin, type PlaceWorld } from '../../../../world/generators/life/spec.ts';
 import type { SceneWater } from '../../../../core/scene.ts';
 import { FULL_BUDGET, SceneStream } from '../../../../world/generators/life/stream.ts';
-import { VERSION, type LivingParams } from '../../../../world/generators/life/scene/v4.ts';
+import { VERSION, type LivingParams } from '../../../../world/generators/life/scene/v5.ts';
 import { FormTree } from '../forms.ts';
 import { pbdbNumber } from '../pbdb.ts';
 import { sha256, stableStringify } from '../util.ts';
 import type { ClimateKeyframe } from './climate.ts';
+import type { SeaOut } from './sea.ts';
 import { SRC_W, type Snapshot } from './fields.ts';
 import { claimOf, labeller, subjectTime, type Solved } from './records.ts';
 
@@ -226,7 +227,7 @@ export function buildScene(s: Solved, elevation: Snapshot[], climate: ClimateKey
 }
 
 /** The questions a place's spec asks, answered from the build's files. */
-export function placeWorld(s: Solved, index: AtlasIndex, bin: AtlasBin, forms: Record<string, Form>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile): PlaceWorld {
+export function placeWorld(s: Solved, index: AtlasIndex, bin: AtlasBin, forms: Record<string, Form>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, sea?: { bin: SeaBin; grid: AtlasGrid }): PlaceWorld {
   const w = s.world;
   const gen = w.generators.find((g) => g.id === SCENE)!;
   const { site: _site, ...rest } = gen.params as unknown as LivingParams & { site: unknown };
@@ -239,6 +240,7 @@ export function placeWorld(s: Solved, index: AtlasIndex, bin: AtlasBin, forms: R
     atlas: index,
     bin,
     list: (lat, lon) => (atlasHasLand(bin, index.grid, lat, lon) ? atlasList(bin, index.grid, lat, lon) : undefined),
+    seaList: sea ? (lat, lon) => seaDrawList(sea.bin, sea.grid, lat, lon) : undefined,
     forms,
     keyAge: key.ageMa,
     elevation: elevationOf(key),
@@ -268,8 +270,10 @@ export interface Witness {
 }
 
 /** A few places the browser is held to: the same scene, within the tolerance of core/fingerprint.ts, as the build makes here. */
-export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, string>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, log: (m: string) => void, water?: (t: number, ageMa: number, at: { lat: number; lon: number }, isoline: number) => SceneWater | undefined, months?: (pw: PlaceWorld, lat: number, lon: number, ageMa: number) => PlaceWorld['months']): Witness[] {
-  const forms = JSON.parse(files.get(index.forms)!) as Record<string, Form>;
+export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, string>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, log: (m: string) => void, water?: (t: number, ageMa: number, at: { lat: number; lon: number }, isoline: number) => SceneWater | undefined, months?: (pw: PlaceWorld, lat: number, lon: number, ageMa: number) => PlaceWorld['months'], sea?: SeaOut): Witness[] {
+  // The land's forms and the sea's, keyed by what they are, so they never clash.
+  const seaForms = sea?.index.forms ? (JSON.parse(sea.files.get(sea.index.forms)!) as Record<string, Form>) : {};
+  const forms = { ...seaForms, ...(JSON.parse(files.get(index.forms)!) as Record<string, Form>) };
   const out: Witness[] = [];
   // A stage from each part of the chart that has rows, at the patch with the longest list; and from the middle one, the
   // places a mistake would hide: as far toward a pole as it has land, and by the line where longitude wraps.
@@ -278,7 +282,9 @@ export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, strin
   const patchPlace = (key: number): [number, number] => [90 - (Math.floor(key / index.grid.nx) + 0.5) * index.grid.step, -180 + ((key % index.grid.nx) + 0.5) * index.grid.step];
   chosen.forEach((ref, order) => {
     const bin = JSON.parse(files.get(ref.file)!) as AtlasBin;
-    const pw = placeWorld(s, index, bin, forms, elevation, climate, climateGridInfo, rule, planet);
+    // The sea's stage of the same span, if its atlas has one.
+    const seaBin = sea?.bins.find((b) => b.from === bin.from && b.to === bin.to);
+    const pw = placeWorld(s, index, bin, forms, elevation, climate, climateGridInfo, rule, planet, seaBin && sea ? { bin: seaBin, grid: sea.index.grid } : undefined);
     const keys = Object.keys(bin.nodes).map(Number);
     const places: [number, number][] = [patchPlace(keys.sort((a, b) => bin.nodes[String(b)].length - bin.nodes[String(a)].length || a - b)[0])];
     if (order === 1) {
@@ -286,6 +292,13 @@ export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, strin
       places.push(patchPlace(polar));
       const edge = [...keys].sort((a, b) => Math.abs(patchPlace(b)[1]) - Math.abs(patchPlace(a)[1]) || a - b)[0];
       places.push(patchPlace(edge));
+      // And a place in the sea: the patch of sea, with no land on the land's list, whose list draws the most genera.
+      if (seaBin && sea) {
+        const drawn = (k: number) => seaDrawList(seaBin, sea.index.grid, ...patchPlace(k))?.length ?? 0;
+        const seaKeys = Object.keys(seaBin.nodes).map(Number).filter((k) => !bin.nodes[String(k)] && drawn(k) > 0);
+        const best = seaKeys.sort((a, b) => drawn(b) - drawn(a) || a - b)[0];
+        if (best !== undefined) places.push(patchPlace(best));
+      }
     }
     for (const [lat, lon] of places) {
       // Its climate at its heights as a browser gives it, from the same files.

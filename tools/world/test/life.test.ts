@@ -5,7 +5,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { beforeAll, describe, expect, it } from 'vitest';
-import { atlasList, seaList, TIER, type AtlasBin, type AtlasIndex, type SeaBin, type SeaIndex } from '../../../core/atlas.ts';
+import { atlasKey as atlasKeyOf, atlasList, seaList, TIER, type AtlasBin, type AtlasIndex, type SeaBin, type SeaIndex } from '../../../core/atlas.ts';
 import { decodeTile } from '../../../core/container.ts';
 import { fingerprintProblems, type Fingerprint } from '../../../core/fingerprint.ts';
 import { climateClass, decodeNode, type ClimateHeader, type ClimateRule } from '../../../core/climate.ts';
@@ -17,7 +17,7 @@ import type { SceneFileV2 } from '../../../core/scene.ts';
 import { parsePoint, toMa, type TimePointInput } from '../../../core/time.ts';
 import type { FramesFile, Tileset } from '../../../core/tileset.ts';
 import { indexTree, layoutTree, type TreeFile } from '../../../core/tree.ts';
-import { CELL } from '../../../world/generators/life/scene/v4.ts';
+import { CELL } from '../../../world/generators/life/scene/v5.ts';
 import { FULL_BUDGET, SceneStream } from '../../../world/generators/life/stream.ts';
 import type { LandSnapshot, PbdbSnapshot } from '../src/pbdb.ts';
 import { pbdbNumber } from '../src/pbdb.ts';
@@ -364,6 +364,58 @@ function plateOfToday() {
 }
 
 describe('the sea\'s atlas', () => {
+  it('lists, after its most recorded genera, those a scene can draw with a body that lives in the sea, no more than a few of a class', () => {
+    const index = json<SeaIndex>('life/sea.json');
+    const forms = json<Record<string, import('../../../core/form.ts').Form>>(index.forms!);
+    const p = world.fields.find((f) => f.data?.as === 'community-sea')!.params as { list_size: number; standins: number; drawn_size: number; per_class: number };
+    let drawnLists = 0;
+    let lists = 0;
+    for (const ref of index.bins) {
+      const bin = json<SeaBin>(ref.file);
+      for (const key of Object.keys(bin.nodes)) {
+        const flat = bin.nodes[key];
+        const taxa = Array.from({ length: flat.length / 4 }, (_, i) => bin.taxa[flat[i * 4]]);
+        lists++;
+        const first = taxa[0]?.standin ? p.standins : p.list_size;
+        expect(taxa.length).toBeLessThanOrEqual(first + p.drawn_size);
+        const drawn = taxa.filter((t) => t.draw);
+        if (drawn.length) drawnLists++;
+        // The most recorded are kept whatever their class; those added to be drawn keep to the limit.
+        const perClass = new Map<string, number>();
+        for (const t of drawn) perClass.set(t.group, (perClass.get(t.group) ?? 0) + 1);
+        for (const t of taxa.slice(first)) {
+          expect(t.draw, `${ref.name} ${key} ${t.label}`).toBeDefined();
+          const kept = taxa.slice(0, first).filter((u) => u.draw && u.group === t.group).length;
+          expect(perClass.get(t.group)!, `${ref.name} ${key} ${t.group}`).toBeLessThanOrEqual(Math.max(p.per_class, kept));
+        }
+        for (const t of drawn) {
+          const f = forms[t.draw!.form];
+          expect(f, t.label).toBeDefined();
+          expect(f.kind).toBe('animal');
+          expect(['water', 'floor', 'any', 'edge', 'air']).toContain(f.behave?.habitat);
+          expect(t.draw!.length ?? t.draw!.mass, t.label).toBeDefined();
+        }
+      }
+    }
+    // Some of the sea's lists can be drawn: how many is how far the sea's forms reach.
+    expect(drawnLists).toBeGreaterThan(0);
+    expect(drawnLists).toBeLessThanOrEqual(lists);
+  });
+
+  it('holds a place in the sea to its witness, as a place on land', () => {
+    const list = json<{ lat: number; lon: number; t: number; taxa: number }[]>('life/witness.json');
+    const index = json<SeaIndex>('life/sea.json');
+    const land = json<AtlasIndex>('life/atlas.json');
+    const atSea = list.filter((w) => {
+      const ref = land.bins.find((b) => w.t >= b.from && w.t <= b.to)!;
+      const bin = json<AtlasBin>(ref.file);
+      const seaRef = index.bins.find((b) => b.from === ref.from && b.to === ref.to);
+      return !bin.nodes[String(atlasKeyOf(land.grid, w.lat, w.lon))] && !!seaRef && seaList(json<SeaBin>(seaRef.file), index.grid, w.lat, w.lon) !== undefined;
+    });
+    expect(atSea.length).toBeGreaterThan(0);
+    for (const w of atSea) expect(w.taxa).toBeGreaterThan(0);
+  });
+
   it('lists who lived in the sea: a genus recorded here has a row of it within reach at the time, recounted from the snapshot', () => {
     const sea = json<SeaIndex>(ts.files.sea!);
     const atlas = json<AtlasIndex>(ts.files.atlas!);

@@ -175,6 +175,8 @@ export interface PlaceWorld {
   bin: { from: number; to: number; slice: number; name: string };
   /** the list for a place; undefined if there is no land there */
   list: (lat: number, lon: number) => AtlasEntry[] | undefined;
+  /** where there is no land, the sea's list for the place: the genera it can draw, as the land's atlas lists a taxon; undefined if there is no sea there either */
+  seaList?: (lat: number, lon: number) => AtlasEntry[] | undefined;
   forms: Record<string, Form>;
   /** the keyframe of the elevation nearest the time, its height every `step` degrees (a whole degree if not said), and its plate at a place */
   keyAge: number;
@@ -211,13 +213,16 @@ export interface PlaceWorld {
 const round5 = (x: number) => Math.floor(x * 1e5 + 0.5) / 1e5;
 const round2 = (x: number) => Math.round(x * 100) / 100;
 
-/** The scene of a place at an age, on the lattice: undefined if the atlas has no land there. A land with an empty list has a scene, of bare ground. */
+/**
+ * The scene of a place at an age, on the lattice: undefined if neither atlas has a list there. A land with an empty list
+ * has a scene, of bare ground; a sea with nothing it can draw, of an empty sea.
+ */
 export function placeSpec(w: PlaceWorld, lat: number, lon: number, ageMa: number): SceneSpec | undefined {
   const origin = latticeOf(lat, lon);
   const plate = w.plate(origin.lat, origin.lon);
   const [rl, ro] = plate ? w.carry(plate, origin.lat, origin.lon, ageMa, w.keyAge) : [origin.lat, origin.lon];
   const relief_at = { lat: round5(rl), lon: round5(ro) };
-  const list = w.list(origin.lat, origin.lon);
+  const list = w.list(origin.lat, origin.lon) ?? w.seaList?.(origin.lat, origin.lon);
   if (!list) return undefined;
   // The months of the finest climate where there are some, and the deep past's runs' numbers where not.
   const m = w.months;

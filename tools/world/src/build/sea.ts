@@ -10,7 +10,7 @@ import type { PeriodRecord } from '../../../../core/records.ts';
 import { fromMa, toMa } from '../../../../core/time.ts';
 import type { LandSnapshot } from '../pbdb.ts';
 import { stableStringify } from '../util.ts';
-import { atlasBins, LandGraph } from './atlas.ts';
+import { atlasBins, classify, LandGraph, type AtlasParams } from './atlas.ts';
 import { SRC_W, type Snapshot } from './fields.ts';
 import { sourceRecord, type Solved } from './records.ts';
 
@@ -37,6 +37,9 @@ export interface SeaParams {
   /** how many genera a list holds, and how many stand in where nothing is near */
   list_size: number;
   standins: number;
+  /** besides those, how many of the genera a scene can draw a list keeps, the most recorded first; and at most how many of one class */
+  drawn_size: number;
+  per_class: number;
   /** the edges of the belts of latitude, in degrees from the equator; and how much a row of another belt counts */
   belts: number[];
   other_belt: number;
@@ -94,6 +97,11 @@ export function buildSeaAtlas(s: Solved, periods: PeriodRecord[], elevation: Sna
   const field = w.fields.find((f) => f.data?.from === dataset)!;
   const byNo = new Map(snap.taxa.map((t) => [t[0], t]));
   const genus = genusOf(snap, byNo);
+  // How each genus is drawn, where a node above it has a body for the sea: the land's atlas's classification, in the sea.
+  const sizes = w.fields.find((f) => f.data?.as === 'community')?.params as unknown as Pick<AtlasParams, 'big_m' | 'small_m' | 'tiny_m'> | undefined;
+  const known = classify(w, snap, sizes ?? { big_m: 3, small_m: 0.5, tiny_m: 0.1 }, 'sea');
+  const usedForms = new Set<string>();
+  let drawnRows = 0;
 
   // Where each site was: its plate, from the plates of today's land, as the land's atlas finds it.
   const now = [...elevation].sort((a, b) => a.ageMa - b.ageMa)[0];
@@ -255,7 +263,35 @@ export function buildSeaAtlas(s: Solved, periods: PeriodRecord[], elevation: Sna
     const taxonOf = (t: number): SeaTaxon => {
       const x = byNo.get(t)!;
       const q = spanOf.get(t)!;
-      return { no: t, label: x[1], rank: snap.words[x[2]] ?? '', group: groupOf(snap, byNo, t), rows: q[2], span: [round(q[0]), round(q[1])] };
+      const k = known.get(t);
+      if (k) usedForms.add(k.taxon.form);
+      // Its label, number and rank are the database's, as on any list; the rest is how it is drawn.
+      const draw = k ? (({ no: _no, label: _label, rank: _rank, ...rest }) => rest)(k.taxon) : undefined;
+      return { no: t, label: x[1], rank: snap.words[x[2]] ?? '', group: groupOf(snap, byNo, t), rows: q[2], span: [round(q[0]), round(q[1])], ...(draw ? { draw } : {}) };
+    };
+    /**
+     * After the most recorded, the genera a scene can draw: the most recorded of those first, and no more than `per_class`
+     * of one class among all a list draws, so that a scene shows the variety of a sea and not its commonest class many times.
+     */
+    const drawable = <T extends { t: number }>(ranked: T[], kept: T[]): T[] => {
+      const perClass = new Map<string, number>();
+      const count = (t: number) => {
+        const g = groupOf(snap, byNo, t);
+        perClass.set(g, (perClass.get(g) ?? 0) + 1);
+      };
+      for (const e of kept) if (known.has(e.t)) count(e.t);
+      const have = new Set(kept.map((e) => e.t));
+      const out: T[] = [];
+      let drawn = kept.filter((e) => known.has(e.t)).length;
+      for (const e of ranked) {
+        if (drawn >= p.drawn_size) break;
+        if (have.has(e.t) || !known.has(e.t)) continue;
+        if ((perClass.get(groupOf(snap, byNo, e.t)) ?? 0) >= p.per_class) continue;
+        count(e.t);
+        out.push(e);
+        drawn++;
+      }
+      return out;
     };
     const nodes: Record<string, number[]> = {};
     for (const [patch, k] of patches) {
@@ -274,7 +310,9 @@ export function buildSeaAtlas(s: Solved, periods: PeriodRecord[], elevation: Sna
         }
       }
       const flat: number[] = [];
-      const list = [...score].map(([t, v]) => ({ t, ...v })).sort((a, b) => b.s - a.s || a.t - b.t).slice(0, p.list_size);
+      const ranked = [...score].map(([t, v]) => ({ t, ...v })).sort((a, b) => b.s - a.s || a.t - b.t);
+      const most = ranked.slice(0, p.list_size);
+      const list = [...most, ...drawable(ranked, most)];
       if (list.length) {
         const top = list[0].s;
         for (const { t, s: sc, km } of list) flat.push(entry(`t${t}`, () => taxonOf(t)), Math.max(1, Math.round((sc / top) * 255)), km <= p.here_km ? TIER.here : TIER.region, Math.round(Math.min(65535, km / 10)));
@@ -282,7 +320,9 @@ export function buildSeaAtlas(s: Solved, periods: PeriodRecord[], elevation: Sna
         // Nothing within reach: the stage's commonest genera of this belt, or of any, stand in.
         const pool = widespread.get(belt) ?? [...widespread.values()][0];
         if (pool) {
-          const best = [...pool].sort((a, b) => b[1] - a[1] || a[0] - b[0]).slice(0, p.standins);
+          const pooled = [...pool].sort((a, b) => b[1] - a[1] || a[0] - b[0]).map(([t, n]) => ({ t, n }));
+          const most = pooled.slice(0, p.standins);
+          const best = [...most, ...drawable(pooled, most)].map((e) => [e.t, e.n] as [number, number]);
           const top = best.length ? best[0][1] : 1;
           const far = Math.round(Math.min(65535, (nearest[k] === Infinity ? 20000 : nearest[k]) / 10));
           for (const [t, n] of best) flat.push(entry(`s${t}`, () => ({ ...taxonOf(t), standin: true })), Math.max(1, Math.round((n / top) * 255)), TIER.standin, far);
@@ -291,6 +331,7 @@ export function buildSeaAtlas(s: Solved, periods: PeriodRecord[], elevation: Sna
       // An empty list is a sea with no record of life in the stage, anywhere.
       nodes[String(patch)] = flat;
     }
+    for (const t of taxa) if (t.draw) drawnRows += t.rows;
     const file = `life/sea/${binIndex}.json`;
     const b: SeaBin = { format: 'lightworld-sea-bin@1', from: bin.from, to: bin.to, slice, name: bin.name, taxa, nodes };
     files.set(file, stableStringify(b));
@@ -308,8 +349,11 @@ export function buildSeaAtlas(s: Solved, periods: PeriodRecord[], elevation: Sna
     here_km: p.here_km,
     region_km: p.region_km,
     bins: refs,
+    forms: 'life/sea-forms.json',
   };
   files.set('life/sea.json', stableStringify(index));
-  log(`sea     ${refs.length} stages, from ${snap.rows.length} rows of ${dataset}`);
+  // The whole forms the sea's lists draw with, by key, as the land's atlas writes its own.
+  files.set('life/sea-forms.json', stableStringify(Object.fromEntries([...usedForms].sort().map((k) => [k, known.forms.get(k)!]))));
+  log(`sea     ${refs.length} stages, from ${snap.rows.length} rows of ${dataset}; ${usedForms.size} forms draw the genera listed, which have ${drawnRows} of the stages' rows`);
   return { index, files, bins: out };
 }

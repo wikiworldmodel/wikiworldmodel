@@ -1,14 +1,16 @@
 // What most wants a form: the list an agent starts from. Taxa are ranked by how many of the land's fossil
-// rows name them or anything below them, as that is how often they come up on the atlas's lists.
+// rows name them or anything below them, as that is how often they come up on the atlas's lists; or, given the sea's
+// snapshot, the sea's rows, for bodies that live in the sea.
 import { classify, type AtlasParams } from './build/atlas.ts';
+import type { LandSnapshot } from './pbdb.ts';
 import type { World } from './world.ts';
 
-export function formsWanted(world: World, args: string[]): string {
+export function formsWanted(world: World, args: string[], sea?: LandSnapshot): string {
   const field = world.fields.find((f) => f.data?.as === 'community');
-  const snap = field ? world.landFossils.get(field.data!.from as string) : undefined;
+  const snap = sea ?? (field ? world.landFossils.get(field.data!.from as string) : undefined);
   if (!field || !snap) return 'no snapshot of the land’s fossils is loaded';
   const p = field.params as unknown as AtlasParams;
-  const known = classify(world, snap, p);
+  const known = classify(world, snap, p, sea ? 'sea' : 'land');
   const n = Number(args[args.indexOf('--n') + 1]) || 40;
   const missing = args.includes('--missing');
   const name = args.find((a, i) => !a.startsWith('--') && args[i - 1] !== '--n');
@@ -40,7 +42,7 @@ export function formsWanted(world: World, args: string[]): string {
     else c.none++;
     if (k) c.rowsDrawable += count;
   }
-  out.push(`${name ?? 'All the land'}: ${c.own} taxa with rows have their own form, ${c.inherited} inherit one and ${c.none} have none; ${c.rowsAll ? Math.round((c.rowsDrawable / c.rowsAll) * 100) : 0}% of ${c.rowsAll} rows can be drawn.`, '');
+  out.push(`${name ?? (sea ? 'All the sea' : 'All the land')}: ${c.own} taxa with rows have their own form, ${c.inherited} inherit one and ${c.none} have none; ${c.rowsAll ? Math.round((c.rowsDrawable / c.rowsAll) * 100) : 0}% of ${c.rowsAll} rows can be drawn.`, '');
   if (missing) {
     // The biggest groups with no form at any node above them, in the ranks a plan is usually put at.
     const list = snap.taxa

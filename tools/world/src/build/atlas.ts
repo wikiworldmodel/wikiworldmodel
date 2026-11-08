@@ -592,8 +592,19 @@ export function buildAtlas(s: Solved, periods: PeriodRecord[], elevation: Snapsh
   return { index, files, wanted: [...wanted.values()].sort((a, b) => b.rows - a.rows || a.no - b.no) };
 }
 
-/** What the snapshot's taxa are, to the atlas: only those that can be drawn, because some node above them has a plan. */
-export function classify(w: World, snap: LandSnapshot, p: Pick<AtlasParams, 'big_m' | 'small_m' | 'tiny_m'>): Map<number, Known> & { forms: Map<string, Form> } {
+/**
+ * Where a body may be drawn in the sea, as its plan says outright: swimming, on the floor, anywhere, at the water's edge
+ * (drawn on the floor, as a bivalve or a crab), or in the air above it. Never a body whose plan says nothing, nor a land
+ * animal's, nor a plant's.
+ */
+const SEA_HABITATS = new Set(['water', 'floor', 'any', 'edge', 'air']);
+
+/**
+ * What the snapshot's taxa are, to the atlas: only those that can be drawn, because some node above them has a plan. For
+ * the land's atlas, nothing the database calls marine that would have to swim; for the sea's (`sea`), only what can be
+ * drawn in the sea.
+ */
+export function classify(w: World, snap: LandSnapshot, p: Pick<AtlasParams, 'big_m' | 'small_m' | 'tiny_m'>, mode: 'land' | 'sea' = 'land'): Map<number, Known> & { forms: Map<string, Form> } {
   const tree = new FormTree(w);
   const adopted = new Map<number, string>();
   for (const e of w.entities) {
@@ -646,7 +657,7 @@ export function classify(w: World, snap: LandSnapshot, p: Pick<AtlasParams, 'big
     // water's edge is not left out for it.
     const env = word(t[9]);
     const habitat = form.behave?.habitat;
-    if (env === 'marine' && habitat !== 'air' && habitat !== 'edge' && habitat !== 'wet') {
+    if (mode === 'land' ? env === 'marine' && habitat !== 'air' && habitat !== 'edge' && habitat !== 'wet' : form.kind !== 'animal' || !SEA_HABITATS.has(habitat ?? '')) {
       results.set(no, null);
       return null;
     }

@@ -1,14 +1,15 @@
 id: gen:life/scene
 type: generator
-title: A living scene of any place on land
-version: 4
-code: generators/life/scene/v4.ts
+title: A living scene of any place, on land or in the sea
+version: 5
+code: generators/life/scene/v5.ts
 runs_in: [build, client]
 outputs: { basis: procedural }
 # What it reads from the world: who may stand where and how big each grew, the ground and the climate
 # of the time, and, for the Hell Creek's slot, the formation's own fossils and record.
 inputs:
   - { ref: field:life/community, note: "who may stand at a place and a time, and how sure" }
+  - { ref: field:life/community-sea, note: "who may live at a place in the sea and a time, and how sure: the genera it can draw" }
   - { ref: field:earth/elevation, note: "the ground, at the field's heights" }
   - { ref: field:earth/relief, note: "today's ground, for the glacial cycles" }
   - { ref: field:earth/rivers, note: "where the drainage routes rivers, how much they carry, and the laws their channels are drawn by" }
@@ -30,22 +31,27 @@ inputs:
   - { ref: life/hell-creek/ecosystem, note: "the Hell Creek slot: where it was, and on which plate" }
 # What it makes, held in aggregate to what it samples (docs/STRUCTURE.md section 3.4).
 checks:
-  - { test: world/generators/life/scene/v4.test.ts, holds: "is only the taxa it is given, each near the arrival at least once" }
-  - { test: world/generators/life/scene/v4.test.ts, holds: "draws each taxon as often as the atlas's weight and the density rule say, in aggregate, below a cell's cap" }
-  - { test: world/generators/life/scene/v4.test.ts, holds: "has no forest before forests, only the few set by the arrival" }
-  - { test: world/generators/life/scene/v4.test.ts, holds: "has bare ground and no low plants at all before land plants" }
-  - { test: world/generators/life/scene/v4.test.ts, holds: "has a desert mostly bare, with no forest" }
-  - { test: world/generators/life/scene/v4.test.ts, holds: "grows what the climate of each height bears: forest below the treeline, none above it" }
-  - { test: world/generators/life/scene/v4.test.ts, holds: "lays snow down to where the month holds it: low in winter, high or not at all in summer" }
+  - { test: world/generators/life/scene/v5.test.ts, holds: "is only the taxa it is given, each near the arrival at least once" }
+  - { test: world/generators/life/scene/v5.test.ts, holds: "draws each taxon as often as the atlas's weight and the density rule say, in aggregate, below a cell's cap" }
+  - { test: world/generators/life/scene/v5.test.ts, holds: "has no forest before forests, only the few set by the arrival" }
+  - { test: world/generators/life/scene/v5.test.ts, holds: "has bare ground and no low plants at all before land plants" }
+  - { test: world/generators/life/scene/v5.test.ts, holds: "has a desert mostly bare, with no forest" }
+  - { test: world/generators/life/scene/v5.test.ts, holds: "grows what the climate of each height bears: forest below the treeline, none above it" }
+  - { test: world/generators/life/scene/v5.test.ts, holds: "lays snow down to where the month holds it: low in winter, high or not at all in summer" }
   - { test: world/generators/life/rivers.test.ts, holds: "winds by the sine-generated curve, as long as its sinuosity says" }
   - { test: world/generators/life/rivers.test.ts, holds: "draws its channel by the laws, and braids, winds or runs straight as its slope and flow say" }
-  - { test: world/generators/life/scene/v4.test.ts, holds: "runs its rivers where the world says, with the water falling downstream" }
+  - { test: world/generators/life/scene/v5.test.ts, holds: "runs its rivers where the world says, with the water falling downstream" }
+  - { test: world/generators/life/scene/v5.test.ts, holds: "puts what lives on the sea floor on it, and what swims in the water over it, never on land" }
   - { test: world/generators/life/rivers.test.ts, holds: "brings a river that runs into another to the other's water, and draws it only to the other's bank" }
 limits:
   - with: field:life/community
     note: >-
       Small animals reach the most a cell holds (params.animals.most_in_cell), and past it the atlas's weight no
       longer sets how many are drawn: two small mammals the atlas weighs nine to one come out about as many.
+  - with: field:life/community-sea
+    note: >-
+      How many of each kind live on a sea's floor follows the land's density rule, which no work gives for the sea: a
+      bed of brachiopods or a reef is far denser than a herd. What swims is kept near the floor, where a visitor looks.
 slots:
   hell-creek:
     place: The floodplain of the Hell Creek, at the slice its scene describes
@@ -197,6 +203,10 @@ params:
   # wide; two older courses, half of whose cut-off loops are left as oxbows, cut where a neck narrows to 1.5 widths
   # and swung to 0.93 of the most a bend can; each bend up to a quarter bigger or smaller; a little squaring of its apex;
   # and its water's height smoothed over 2 km, as the ground under it is a tenth of a degree's.
+  # The sea, where a place lies in it: what swims is drawn at most this far above the floor, in metres, so that a visitor
+  # at the floor sees it; the sea's whole depth is no claim about where anything swam.
+  sea:
+    swim_m: 40
   rivers:
     step: [8, 4]
     detail: 3

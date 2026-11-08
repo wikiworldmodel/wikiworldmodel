@@ -4,7 +4,7 @@ import type { PlanetFile } from '../../core/planet.ts';
 import type { BuildIndex, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../core/records.ts';
 import { PlateModels, RotationModel } from '../../core/rotation-model.ts';
 import { PRESENT_YEAR } from '../../core/time.ts';
-import type { AtlasIndex } from '../../core/atlas.ts';
+import type { AtlasIndex, SeaIndex } from '../../core/atlas.ts';
 import type { FeatureIndex } from '../../core/featuretiles.ts';
 import type { FramesFile, Tileset } from '../../core/tileset.ts';
 
@@ -24,6 +24,8 @@ export interface Build {
   features: FeatureIndex;
   /** who lived where, if this build has it */
   atlas?: AtlasIndex;
+  /** the sea's atlas: what lived in the sea, and the genera a scene of it can draw */
+  sea?: SeaIndex;
 }
 
 /** Every URL the viewer fetched, in order; tests read it to check what scrubbing loads. */
@@ -50,7 +52,7 @@ export async function latestBuild(root: string): Promise<string> {
 export async function loadBuild(root: string, id: string): Promise<Build> {
   const base = `${root}builds/${id}/`;
   const tileset = await getJSON<Tileset>(`${base}tileset.json`);
-  const [frames, periods, search, series, planet, features, atlas] = await Promise.all([
+  const [frames, periods, search, series, planet, features, atlas, sea] = await Promise.all([
     getJSON<FramesFile>(base + tileset.files.frames),
     getJSON<PeriodsFile>(base + tileset.files.periods),
     getJSON<SearchFile>(base + tileset.files.search),
@@ -58,6 +60,7 @@ export async function loadBuild(root: string, id: string): Promise<Build> {
     getJSON<PlanetFile>(base + tileset.files.planet),
     getJSON<FeatureIndex>(base + tileset.files.features),
     tileset.files.atlas ? getJSON<AtlasIndex>(base + tileset.files.atlas) : Promise.resolve(undefined),
+    tileset.files.sea ? getJSON<SeaIndex>(base + tileset.files.sea) : Promise.resolve(undefined),
   ]);
   // A period that still holds has no end; on the time axis it runs to the present.
   for (const p of periods.periods) {
@@ -66,7 +69,7 @@ export async function loadBuild(root: string, id: string): Promise<Build> {
   }
   const model = new RotationModel(frames.rotations);
   const plates = new PlateModels(model, (frames.models ?? []).map((m) => ({ source: m.source, offset: m.offset, model: new RotationModel(m.rotations) })));
-  return { id, base, tileset, frames, model, plates, periods, search, series, planet, features, atlas };
+  return { id, base, tileset, frames, model, plates, periods, search, series, planet, features, atlas, sea };
 }
 
 const records = new Map<string, Promise<EntityRecord>>();

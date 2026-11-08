@@ -864,6 +864,19 @@ export async function runBuild(args: string[]): Promise<number> {
       const heading = (Math.atan2(f.to_river[0], f.to_river[1]) * 180) / Math.PI + lp.view.turn * (180 / Math.PI);
       sites.push({ kind: 'life', id: spec.site.id, label: spec.site.label, file: `scene/${spec.site.id}.json`, place: spec.site.place, origin: spec.site.origin, span: spec.site.span, slice: spec.site.slice, near: spec.site.span, window: lp.site.window.map((p) => parsePoint(p as TimePointInput).t) as [number, number], view: { x: f.focus[0], y: f.focus[1], range: lp.view.range, heading: Math.round(((heading % 360) + 360) % 360), tilt: lp.view.tilt } });
     }
+    // Who lived in the sea, on the same stages and patches, and the genera a scene of it can draw: before the witnesses,
+    // which hold a scene of the sea to the browser's too.
+    const seaField = world.fields.find((f) => f.data?.as === 'community-sea');
+    if (seaField) {
+      const id = seaField.data!.from;
+      const d = world.manifest.datasets[id];
+      const snap = JSON.parse(await readFile(datasetFile(id, d, seaField.data!.file), 'utf8')) as LandSnapshot;
+      const isoline = world.fields.find((f) => f.id === 'field:earth/coastline')?.isoline_m ?? 20;
+      const started = Date.now();
+      seaAtlas = buildSeaAtlas(solved, periodList, elevation.snapshots, snap, id, seaField.params as unknown as SeaParams, isoline, log);
+      for (const [path, content] of seaAtlas.files) put(path, content);
+      log(`sea     built in ${((Date.now() - started) / 1000).toFixed(1)} s`);
+    }
     // Who lived where, for a scene of any place on land.
     const atlas = buildAtlas(solved, periodList, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, log);
     if (atlas) {
@@ -887,23 +900,11 @@ export async function runBuild(args: string[]): Promise<number> {
             return tiles.length ? placeMonths(monthsInfo, where, tiles) : undefined;
           }
         : undefined;
-      const seen = witnesses(solved, atlas.index, atlas.files, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, buildPlanet(solved), log, waterAt, monthsAt);
+      const seen = witnesses(solved, atlas.index, atlas.files, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, buildPlanet(solved), log, waterAt, monthsAt, seaAtlas);
       put('life/witness.json', stableStringify(seen));
       atlasFile = 'life/atlas.json';
       coverageFile.forms = { ...atlas.index.coverage, wanted: atlas.wanted.slice(0, 200) };
       lifeAtlas = atlas;
-    }
-    // Who lived in the sea, on the same stages and patches: genera, with no forms.
-    const seaField = world.fields.find((f) => f.data?.as === 'community-sea');
-    if (seaField) {
-      const id = seaField.data!.from;
-      const d = world.manifest.datasets[id];
-      const snap = JSON.parse(await readFile(datasetFile(id, d, seaField.data!.file), 'utf8')) as LandSnapshot;
-      const isoline = world.fields.find((f) => f.id === 'field:earth/coastline')?.isoline_m ?? 20;
-      const started = Date.now();
-      seaAtlas = buildSeaAtlas(solved, periodList, elevation.snapshots, snap, id, seaField.params as unknown as SeaParams, isoline, log);
-      for (const [path, content] of seaAtlas.files) put(path, content);
-      log(`sea     built in ${((Date.now() - started) / 1000).toFixed(1)} s`);
     }
   }
 
