@@ -1,8 +1,8 @@
 // The public site, put together for Cloudflare Pages: the landing page (site/) at /, the viewer
 // (dist/site) at /world/, and the latest world build at /world/builds/, where the viewer looks for
-// it. Pages refuses a deployment with a file over 25 MiB or more than 20,000 files, so both are
+// it, with the build's ATTRIBUTION.md at /ATTRIBUTION.md. Pages refuses a deployment with a file over 25 MiB or more than 20,000 files, so both are
 // checked here, where the error can say which file.
-import { cpSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
 export const PAGES_MAX_FILE = 25 * 1024 * 1024;
@@ -34,6 +34,10 @@ export function assembleSite({ landing, viewer, builds, out }: SiteOptions): { b
   cpSync(landing, out, { recursive: true, filter: (p) => relative(landing, p) !== 'README.md' });
   cpSync(viewer, join(out, 'world'), { recursive: true });
   cpSync(join(builds, build), join(out, 'world/builds', build), { recursive: true });
+  // The site shows the build's data, so it carries the build's credits.
+  const attribution = join(builds, build, 'ATTRIBUTION.md');
+  if (!existsSync(attribution)) throw new Error(`build ${build} has no ATTRIBUTION.md: build the world again`);
+  cpSync(attribution, join(out, 'ATTRIBUTION.md'));
   // Only the latest build is published, so the index lists only it.
   writeFileSync(join(out, 'world/builds/index.json'), JSON.stringify({ builds: [entry], latest: build }, null, 1) + '\n');
 

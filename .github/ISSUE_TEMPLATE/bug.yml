@@ -1,0 +1,22 @@
+name: A bug in the viewer, the build or the tools
+description: Something does not work as it should: the viewer breaks or draws wrongly, a command fails.
+title: "Bug: "
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what happened instead. Include any error, from the browser's console or the command's output.
+    validations:
+      required: true
+  - type: input
+    id: link
+    attributes:
+      label: Link or command
+      description: The viewer's address, or the command you ran.
+  - type: input
+    id: setup
+    attributes:
+      label: Browser, device and GPU, or Node and Python versions
+      description: For the viewer, the browser, the device, and whether adding `quality=fast` to the link helps.

@@ -1,4 +1,4 @@
-// The water a scene is given (docs/EIGHTH-SLICE.md): the rivers Landsat saw near a place, joined end to end, and the
+// The water a scene is given (docs/slices/EIGHTH-SLICE.md): the rivers Landsat saw near a place, joined end to end, and the
 // drainage's reaches where it saw none, each in the scene's metres about where its relief is read and its water's
 // height above the coast. One function, so that a browser and the build make the same scene from the same files.
 import { tileKey, type ObservedRivers, type RiverKey, type RiverNet, type RiversInfo, type RiversSet, type RiverWidths } from '../../../core/rivers.ts';

@@ -1,4 +1,4 @@
-import { mkdirSync, mkdtempSync, readFileSync, existsSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, existsSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
@@ -18,6 +18,7 @@ function fixture() {
   put('builds/b-old/build.json');
   put('builds/b-new/build.json');
   put('builds/b-new/tiles/0.lwt');
+  put('builds/b-new/ATTRIBUTION.md', '# Attribution');
   put('builds/index.json', JSON.stringify({ builds: [{ id: 'b-new', commit: 'c2' }, { id: 'b-old', commit: 'c1' }], latest: 'b-new' }));
   const opts = { landing: join(root, 'site'), viewer: join(root, 'viewer'), builds: join(root, 'builds'), out: join(root, 'out') };
   return { root, opts, put };
@@ -36,7 +37,14 @@ describe('the public site', () => {
     expect(existsSync(join(out, 'world/assets/main.js'))).toBe(true);
     expect(existsSync(join(out, 'world/builds/b-new/tiles/0.lwt'))).toBe(true);
     expect(existsSync(join(out, 'world/builds/b-old'))).toBe(false);
+    expect(readFileSync(join(out, 'ATTRIBUTION.md'), 'utf8')).toBe('# Attribution');
     expect(JSON.parse(readFileSync(join(out, 'world/builds/index.json'), 'utf8'))).toEqual({ builds: [{ id: 'b-new', commit: 'c2' }], latest: 'b-new' });
+  });
+
+  it('refuses a build without its ATTRIBUTION.md, since the site must credit its data', () => {
+    const { root, opts } = fixture();
+    rmSync(join(root, 'builds/b-new/ATTRIBUTION.md'));
+    expect(() => assembleSite(opts)).toThrow(/ATTRIBUTION\.md/);
   });
 
   it('refuses a file larger than Cloudflare Pages serves', () => {

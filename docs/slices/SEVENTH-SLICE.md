@@ -1,16 +1,16 @@
 # Seventh slice: life anywhere
 
-Status: built and passing its tests. The plan it comes from is [LIVING-WORLD.md](LIVING-WORLD.md). It takes the first living
+Status: built and passing its tests. The plan it comes from is [LIVING-WORLD.md](../LIVING-WORLD.md). It takes the first living
 scene, one place and one moment written largely by hand, and makes it a function of any place on land and any stage of the
 Phanerozoic. Scroll down anywhere on land, at any time since the Cambrian, and the browser makes what lived there.
 
 It adds:
 
-- **Forms on the tree of life.** Body plans are data now, in [world/plans](../world/plans). A child inherits its parent's body
+- **Forms on the tree of life.** Body plans are data now, in [world/plans](../../world/plans). A child inherits its parent's body
   and says what differs, part by part. A taxon with no form of its own is drawn as the nearest node above it that has one, and
   says so.
 - **An agents' line for forms.** A list of what most needs one, a drawing to check it by, a validator that compiles every form,
-  and a brief, [FORMS.md](FORMS.md). The first batch was written by agents, by branch of the tree.
+  and a brief, [FORMS.md](../FORMS.md). The first batch was written by agents, by branch of the tree.
 - **An atlas of who lived where.** The Paleobiology Database's land fossils as one pinned snapshot, reduced by the build to a
   list for each 4° patch of land in each stage, each taxon with its tier: recorded here, recorded in the region, or a stand-in.
 - **Scenes anywhere.** The generator is stateless now: each 400 m cell makes what stands in it from hashes of where it is. It
@@ -20,7 +20,7 @@ It adds:
 
 ## Running it
 
-As for the other slices (see the [README](../README.md)). The build reads the snapshot in `world/snapshots`; it needs nothing new
+As for the other slices (see the [README](../../README.md)). The build reads the snapshot in `world/snapshots`; it needs nothing new
 fetched.
 
 - **Anywhere:** go to any time since the Cambrian, and scroll down over any land. The globe gives way to the place at about 300 km
@@ -33,7 +33,7 @@ fetched.
 - **Try:** the Morrison at 149 Ma (36°N, 62°W on the globe of that time), Patagonia at 69 Ma (44°S, 54°W), Mongolia at 69 Ma (40°N,
   90°E). The Hell Creek is still at 66.5 Ma.
 
-For someone writing forms: `npm run world -- forms-wanted`, `npm run world -- form-sheet <taxon>`, and [FORMS.md](FORMS.md).
+For someone writing forms: `npm run world -- forms-wanted`, `npm run world -- form-sheet <taxon>`, and [FORMS.md](../FORMS.md).
 
 ## Pass criteria
 
@@ -64,13 +64,13 @@ Every criterion is a test, and every test named here passes.
 
 ### Forms
 
-[core/form.ts](../core/form.ts) says what a form is and how a child's changes merge into its parent's.
-[world/generators/life/forms.ts](../world/generators/life/forms.ts) draws them, on the city's mesh, and holds the first kit's
-drawing code with every number about a body taken out into [world/plans](../world/plans). A plan is a few dozen lines of named
+[core/form.ts](../../core/form.ts) says what a form is and how a child's changes merge into its parent's.
+[world/generators/life/forms.ts](../../world/generators/life/forms.ts) draws them, on the city's mesh, and holds the first kit's
+drawing code with every number about a body taken out into [world/plans](../../world/plans). A plan is a few dozen lines of named
 parts: a trunk through rings, a head with where its joint goes in each pose, legs, spikes, a frill, a wing. It says how the body keeps too
 (`behave`): in groups of how many, on what ground and in what poses.
 
-[tools/world/src/forms.ts](../tools/world/src/forms.ts) walks up the tree from a taxon to the nearest `body_plan`, and merges every
+[tools/world/src/forms.ts](../../tools/world/src/forms.ts) walks up the tree from a taxon to the nearest `body_plan`, and merges every
 `body_form` on the way down. Sizes are inherited the same way, one claim at a time: a clade's `body_length` is a range for its members,
 and a member with no size of its own takes a place in it by its own number, evenly in proportion, so that most of a wide range is near its
 small end. A taxon with no size at any node above it is not drawn: a size is inherited, and never guessed.
@@ -88,7 +88,7 @@ every taxon that says anything of its body.
 environment, and every taxon they name with all its parents. It keeps them as tables, in `world/snapshots`. Taxa are rows too: a taxon
 joins the world's tree only if a record adopts its number, and takes its parent from the database.
 
-[tools/world/src/build/atlas.ts](../tools/world/src/build/atlas.ts) cuts the chart's stages to at most 8 Myr, carries each site to the
+[tools/world/src/build/atlas.ts](../../tools/world/src/build/atlas.ts) cuts the chart's stages to at most 8 Myr, carries each site to the
 stage's middle by the plate model, and walks a 2° graph of the land of the elevation keyframe nearest it, with a km of shallow sea
 costing 4 of land and a km of deep sea 14. A row counts for less the further it is and the less like the climate there, and each kind of
 thing on a list (canopy, understory, floating, big, middle, small, in the air, tiny) has a quota, so that what is many and small does not
@@ -102,8 +102,8 @@ of its well-dated rows: where a record's button takes you.
 
 ### The scene
 
-[world/generators/life/scene/v2.ts](../world/generators/life/scene/v2.ts) makes it all from a spec
-([core/scene.ts](../core/scene.ts)), which [spec.ts](../world/generators/life/spec.ts) puts together the same way in the build and the
+`world/generators/life/scene/v2.ts` (since replaced by later versions in [world/generators/life/scene/](../../world/generators/life/scene/)) makes it all from a spec
+([core/scene.ts](../../core/scene.ts)), which [spec.ts](../../world/generators/life/spec.ts) puts together the same way in the build and the
 browser. **The land:** the field's heights around the place, with a plain and its river laid over them near the middle, running downhill,
 and ridges made up in proportion to the height beyond. A place at the coast has a shore where the field goes under the sea. **The cover:**
 how much is forest, low plants and bare ground comes from the climate class and from what the transitions allow by then, so before land plants
@@ -111,7 +111,7 @@ it is all rock. **Who stands where:** every tree is a node of a sowing grid with
 rule says for its mass, times a stated factor for how many more are shown than a census would see, and fewer of what eats others. Something
 of each is set near the place a visitor arrives.
 
-[world/generators/life/stream.ts](../world/generators/life/stream.ts) is what a view costs: it asks for the cells in view, at the detail
+[world/generators/life/stream.ts](../../world/generators/life/stream.ts) is what a view costs: it asks for the cells in view, at the detail
 their distance calls for, and sorts everyone into meshes. It runs in a worker. A mesh is made once for each taxon, pose and detail, and
 goes up once.
 
@@ -180,7 +180,7 @@ The atlas takes about 30 s of a build of about 3.5 minutes. On a laptop's GPU a 
 - **Forms are coarse.** Kits of tubes and lumps, not reconstructions, and most taxa inherit. Colours are invented, and vary by taxon only so
   that a viewer can tell them apart. Nothing moves.
 - **Sizes rest on what agents could read,** many as whole-clade ranges from encyclopedias, each saying so in its note. Nothing has been reviewed
-  by a person. See the report in [RECORD-SETS.md](RECORD-SETS.md).
+  by a person. See the report in [RECORD-SETS.md](../RECORD-SETS.md).
 - **Density is a rule, not a census,** and the factor of 12 is for a visitor's sake. Trophic levels are only that predators are fewer.
 - **No seas.** Marine taxa are left out, and over the sea nothing is drawn. Fish are on the lists and are not drawn, because the water is opaque.
 - **Today is thin.** The snapshot has only fossils. The last stage is the Pleistocene and Holocene's subfossils, not the living world.
@@ -190,5 +190,5 @@ The atlas takes about 30 s of a build of about 3.5 minutes. On a laptop's GPU a 
 
 ## Next
 
-See [LIVING-WORLD.md](LIVING-WORLD.md): a ground that follows the camera, with rivers routed over the land; agents at scale, by clade, as long
+See [LIVING-WORLD.md](../LIVING-WORLD.md): a ground that follows the camera, with rivers routed over the land; agents at scale, by clade, as long
 as anyone runs them; the seas; and today, with GBIF and others, licence by licence.

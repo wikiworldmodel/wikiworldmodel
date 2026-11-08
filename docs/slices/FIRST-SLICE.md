@@ -1,7 +1,7 @@
 # First slice: Cambrian to today
 
-Status: built and passing its tests, conformed to the revised [WORLD-MODEL.md](WORLD-MODEL.md)
-and to the decisions in [examples/GAPS.md](../examples/GAPS.md). It is the first
+Status: built and passing its tests, conformed to the revised [WORLD-MODEL.md](../WORLD-MODEL.md)
+and to the decisions in [docs/archive/examples/GAPS.md](../archive/examples/GAPS.md). It is the first
 end-to-end run of the design: a thin slice through every layer, from pinned datasets and
 sourced records through validation, chronology solving and a versioned 4D tile set to the
 viewer. It began at 300 Ma, with Pangaea; it now begins at 540 Ma, the age of the oldest

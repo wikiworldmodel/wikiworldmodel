@@ -2,7 +2,7 @@
 
 Status: a plan, November 2026. It is written to be handed to an agent run where the datasets'
 hosts can be reached; every source it names is a candidate until that run has read it, checked
-its license and pinned it (see [AGENTS.md](../AGENTS.md)).
+its license and pinned it (see [AGENTS.md](../../AGENTS.md)).
 
 ## The aim
 
@@ -25,13 +25,13 @@ A living scene is made the way the city is:
 
 ## Next: life anywhere
 
-The plan for the aim above is [LIVING-WORLD.md](LIVING-WORLD.md): a scene is a function of the place and the time, run in the
+The plan for the aim above is [LIVING-WORLD.md](../LIVING-WORLD.md): a scene is a function of the place and the time, run in the
 browser from a sourced atlas of who lived where and a form for each node of the tree of life, written by agents over time. The
-first of it is the [seventh slice](SEVENTH-SLICE.md).
+first of it is the [seventh slice](../slices/SEVENTH-SLICE.md).
 
 ## Now: three steps
 
-Built: see [SIXTH-SLICE.md](SIXTH-SLICE.md), which says what each criterion's test is and what fell
+Built: see [SIXTH-SLICE.md](../slices/SIXTH-SLICE.md), which says what each criterion's test is and what fell
 short. The lithologic indicators were not imported, and the scene follows the climate field's reading
 of the place, which fossil leaves disagree with.
 
@@ -86,7 +86,7 @@ In roughly this order, for breadth across time, life and civilization. Each is o
 bounded pull requests. The three steps above come out of sets 1–3.
 
 Where each stands, what it added and what a reviewer should look at first is in
-[RECORD-SETS.md](RECORD-SETS.md). All of it is proposed: nothing has been reviewed by a person.
+[RECORD-SETS.md](../RECORD-SETS.md). All of it is proposed: nothing has been reviewed by a person.
 
 | # | Set | When | Adds | Stands |
 |---|---|---|---|---|

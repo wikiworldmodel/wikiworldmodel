@@ -32,6 +32,7 @@ import { BUILDS, REPO } from '../paths.ts';
 import { sha256, stableStringify } from '../util.ts';
 import { formatIssue, validateWorld } from '../validate/index.ts';
 import { loadWorld, type Field, type World } from '../world.ts';
+import { attributionMarkdown, credits } from '../attribution.ts';
 import { ClaimIndex } from '../claimindex.ts';
 import { correctLand } from '../tables.ts';
 import { gridPlaces, lifeTierOf, seaTierOf, tierCounts, TIER_SPANS, type ResolveWorld } from '../../../../core/resolve.ts';
@@ -80,22 +81,6 @@ function dataCommit(): { commit: string; dirty: boolean } {
 }
 
 /** Does a feature's interval (in any scenario) come near a tile's time span? */
-/** Attribution for what the build shows: its datasets, and the databases its records cite. */
-function credits(world: World): Tileset['credits'] {
-  const out: Tileset['credits'] = [];
-  // Tiles of one dataset share a credit.
-  for (const d of Object.values(world.manifest.datasets)) if (!out.some((c) => c.label === d.credit)) out.push({ label: d.credit!, license: d.license! });
-  const cited = new Set(world.entities.flatMap((e) => [...e.claims, ...e.relations].flatMap((c) => c.sources.map((s) => s.ref))));
-  // A database may have changed its licence between the snapshots read: credit each one.
-  const databases = new Map<string, Set<string>>();
-  for (const id of cited) {
-    const s = world.source.get(id);
-    if (s?.type === 'database-record' && s.license && s.container) databases.set(s.container, (databases.get(s.container) ?? new Set()).add(s.license));
-  }
-  for (const [label, licenses] of [...databases].sort(([a], [b]) => (a < b ? -1 : 1))) out.push({ label, license: [...licenses].sort().join(' and ') });
-  return out;
-}
-
 /** The alternatives this build shows: a steward decision recorded in each group. */
 function shownAlternatives(world: World): Tileset['alternatives'] {
   return world.alternatives
@@ -954,6 +939,7 @@ export async function runBuild(args: string[]): Promise<number> {
     kinds: Object.fromEntries(Object.entries(world.vocab.kinds).map(([k, v]) => [k, v.label])),
     sites: sites.length ? sites : undefined,
   };
+  put('ATTRIBUTION.md', attributionMarkdown(world));
   const contentHash = sha256([...out.entries()].sort(([a], [b]) => (a < b ? -1 : 1)).map(([p, c]) => `${p} ${sha256(c)}`).join('\n') + stableStringify(tileset));
   const buildId = contentHash.slice(0, 16);
   put('tileset.json', stableStringify({ ...tileset, build: buildId }));

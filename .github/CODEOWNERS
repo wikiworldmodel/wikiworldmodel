@@ -1,0 +1,27 @@
+# Who reviews what. For now the maintainer owns everything. The paths listed below it stay a
+# maintainer's when stewards come to own areas of records (docs/plans/PUBLIC-PROJECT.md, section 5):
+# they are code, what runs in visitors' browsers, and the foundations every record rests on.
+
+*                       @kvh
+
+# Code, and what runs in visitors' browsers.
+/core/                  @kvh
+/tools/                 @kvh
+/viewer/                @kvh
+/site/                  @kvh
+/world/generators/      @kvh
+
+# The foundations every record rests on.
+/world/schema/          @kvh
+/world/manifest.yaml    @kvh
+/world/frames/          @kvh
+/world/fields/          @kvh
+/world/models/          @kvh
+
+# The rules, CI and the licenses.
+/.github/               @kvh
+/AGENTS.md              @kvh
+/CONTRIBUTING.md        @kvh
+/docs/RECORDS.md        @kvh
+/LICENSE                @kvh
+/LICENSE-DATA           @kvh

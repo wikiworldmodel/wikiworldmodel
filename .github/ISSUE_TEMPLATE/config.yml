@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: A question or a proposal
+    url: https://github.com/kvh/lightworld/discussions
+    about: Ask, or propose a slice or a larger change, in Discussions.
+  - name: A security problem
+    url: https://github.com/kvh/lightworld/security/advisories/new
+    about: Report it privately, not in an issue (SECURITY.md).

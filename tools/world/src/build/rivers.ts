@@ -1,4 +1,4 @@
-// The rivers and lakes of every time (field:earth/rivers, model:earth/drainage; docs/EIGHTH-SLICE.md): the water
+// The rivers and lakes of every time (field:earth/rivers, model:earth/drainage; docs/slices/EIGHTH-SLICE.md): the water
 // balance of each climate routed over the land of its time. For the glacial cycles that land is today's ground on the
 // relief's grid, routed once down to the lowest sea of the span; each keyframe then has its own sea, which ends the
 // rivers where it stands, and its own climate, which sets how much they carry and where lakes stand. Before them it is

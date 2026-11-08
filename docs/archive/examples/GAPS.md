@@ -43,7 +43,7 @@ alternatives), so they no longer match the doc exactly.
 | datasets | 12 | in `manifest.yaml` |
 | vocabularies | 3 | kinds, properties (with interpolation), relations (with inverses) |
 
-`python3 examples/check.py` reports 0 errors and 49 warnings. 30 of them
+`python3 docs/archive/examples/check.py` reports 0 errors and 49 warnings. 30 of them
 are refs to 27 records left unwritten on purpose (GAP-02); the other 19 are
 real findings, listed under "What the checker found".
 

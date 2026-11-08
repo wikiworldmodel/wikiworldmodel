@@ -4,7 +4,7 @@
 Not the real validator (section 9.2 of WORLD-MODEL.md). It checks what the
 examples can check without a schema: refs resolve, vocabularies are used,
 time values use a known form, and each entity's phases are ordered and
-contiguous. Usage: python3 examples/check.py [world_dir]
+contiguous. Usage: python3 docs/archive/examples/check.py [world_dir]
 """
 import re
 import sys

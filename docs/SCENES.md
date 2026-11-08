@@ -1,7 +1,7 @@
 # Natural scenes: any place, any time
 
 Status: the design, November 2026. Water is the first layer built this way, in the
-[eighth slice](EIGHTH-SLICE.md). It extends [LIVING-WORLD.md](LIVING-WORLD.md), which says who lives in a
+[eighth slice](slices/EIGHTH-SLICE.md). It extends [LIVING-WORLD.md](LIVING-WORLD.md), which says who lives in a
 scene and how they are drawn, to everything they stand on: the ground, the water, the soil, the cover and
 the weather.
 

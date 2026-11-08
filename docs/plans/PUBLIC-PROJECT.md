@@ -1,6 +1,6 @@
 # WikiWorldModel in public: plan for an open project and a public site
 
-Status: proposal. It turns [WORLD-MODEL.md](WORLD-MODEL.md)'s sections on contribution
+Status: proposal. It turns [WORLD-MODEL.md](../WORLD-MODEL.md)'s sections on contribution
 (8.2), process (9.3), serving (11), storage (12) and licensing (13) into a plan that can be
 carried out. It covers what has to be decided, built and written before anyone outside can
 contribute, and before anyone at all can open the site.
@@ -17,9 +17,18 @@ contribute, and before anyone at all can open the site.
 - **Everything is open.** Code, records, builds and the decisions behind them are public,
   licensed for reuse, and reproducible from the repository.
 
-## 2. Where it stands
+## 2. Where it stood
 
-Master (`db3dbf9`) has five slices, from the Hadean to Rome in 315 CE, and the backbone an
+This section describes the repository when the plan was written. Since then: the licenses are
+chosen and in place (Apache-2.0 for code, CC0 for records and documents, the DCO for
+contributions; section 4), each build writes its `ATTRIBUTION.md`, CI is green and runs in
+tiers, master is published to `worldmodelzero.com` on Cloudflare Pages, and
+[CONTRIBUTING.md](../../CONTRIBUTING.md), a code of conduct, a security policy, templates and
+`CODEOWNERS` exist. Still open: no claim has been reviewed by a person, the datasets still come
+from third parties, there are no policies, releases or previews, and only the latest build is
+served, so a link pinned to an older one stops working. Section 11 tracks the rest.
+
+Master (`db3dbf9`) had five slices, from the Hadean to Rome in 315 CE, and the backbone an
 open-data project needs:
 
 | Have | Notes |
@@ -294,7 +303,7 @@ GitHub ── merge to main ──► CI: validate, build (content-hashed), test
 
 | URL | What |
 |---|---|
-| `/` | the landing page ([site/](../site/)): a still from the viewer with a way in, what the world holds, and how to contribute |
+| `/` | the landing page ([site/](../../site/)): a still from the viewer with a way in, what the world holds, and how to contribute |
 | `/world/` | the viewer, on the latest stable build |
 | `/world/?b=<build>&t=…&sel=…` | a pinned view, as today |
 | `/w/<entity id>` | a record's page: name, kind, when, where, claims with sources, reviews, and "open in 3D" |
@@ -502,9 +511,9 @@ request:
 
 - [x] Make CI green on `main`, and quick: checks on every pull request, the build when
       the code that makes it changes, the renders nightly (section 10).
-- [ ] Choose and add the licenses (section 4): `LICENSE` (code), `LICENSE-DATA` (records),
+- [x] Choose and add the licenses (section 4): `LICENSE` (code), `LICENSE-DATA` (records),
       the DCO check, `ATTRIBUTION.md` written by the build.
-- [ ] `README` for newcomers, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`,
+- [x] `README` for newcomers, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`,
       issue and pull-request templates, `CODEOWNERS`.
 - [ ] Policies: sourcing, contested history, people and remains, machine contributions,
       takedown.
@@ -563,9 +572,8 @@ queue without leaving the site.
 
 ## 12. Decisions needed
 
-1. **Licenses:** code (Apache-2.0 or MIT) and records (CC0 or CC BY 4.0). Section 4
-   recommends Apache-2.0 and CC0.
-2. **Contributor terms:** DCO (recommended) or a CLA.
+1. **Licenses:** decided: Apache-2.0 for code, CC0 for records and documents.
+2. **Contributor terms:** decided: the DCO.
 3. **Domain and hosting account:** Cloudflare recommended. The project's name also needs
    checking.
 4. **Governance at the start:** the founder as maintainer and steward, with stewards

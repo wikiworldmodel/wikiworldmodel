@@ -29,7 +29,7 @@ It adds:
 
 ## Running it
 
-As for the other slices (see the [README](../README.md)). `npm run fetch` now also downloads
+As for the other slices (see the [README](../../README.md)). `npm run fetch` now also downloads
 Cliopatria (46 MB). The build reads the rows it needs once and caches them in `.cache/import/`.
 
 ## Pass criteria
@@ -165,7 +165,7 @@ The viewer loads `territory.json` (1.9 MB) behind the first globe:
    of the cursor, so it can be found at any zoom. This slice first hid history's moments
    until a dozen pixels spanned under a thousand years, because the strip then gave all of
    history a pixel or two. The time control's scale has since given it room (see
-   [`timescale.ts`](../viewer/src/ui/timescale.ts)), so at 120 CE a dozen pixels are about 150
+   [`timescale.ts`](../../core/timescale.ts)), so at 120 CE a dozen pixels are about 150
    years, even zoomed right out, and that rule is gone. Lasting things, such as the cities,
    show as before.
 8. **A name that ended at an unknown time** is shown up to the present, where today's name

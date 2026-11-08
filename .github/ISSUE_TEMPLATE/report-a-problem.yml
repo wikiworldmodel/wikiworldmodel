@@ -1,0 +1,38 @@
+name: Report a problem
+description: Something in the world is wrong, missing or misplaced (a date, a place, a source, a picture).
+title: "Problem: "
+labels: [problem]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Every fact in the world is a claim with a source, so the most useful report says which claim, and what a source says instead.
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: A link to the view (the viewer's address bar keeps the place, time and build), or the record's id, or the row's address (`src:<dataset>#<key>`), as the inspect panel shows it.
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong
+      description: What the world shows or says, and what you think is right.
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Your source
+      description: The work that says otherwise, and where in it (a page, a table row, a record id). A short quote helps. If you have none, say so; the report is still useful.
+  - type: checkboxes
+    id: kind
+    attributes:
+      label: What kind of problem
+      options:
+        - label: A fact (a date, a number, a name)
+        - label: A place or a shape on the map
+        - label: A source (missing, misquoted, or not saying what is claimed)
+        - label: Something generated that looks wrong
+        - label: Something missing

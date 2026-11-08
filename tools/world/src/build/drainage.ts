@@ -1,4 +1,4 @@
-// Water routed over a grid of the land (model:earth/drainage, docs/EIGHTH-SLICE.md): where each node drains to,
+// Water routed over a grid of the land (model:earth/drainage, docs/slices/EIGHTH-SLICE.md): where each node drains to,
 // how much water passes it in a year, and where water stands as lakes because the climate cannot carry it away.
 //
 // The flood starts at the sea and climbs the land in order of height (priority-flood, with a plain queue for the

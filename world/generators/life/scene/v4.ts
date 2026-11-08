@@ -2,7 +2,7 @@
 // each 400 m cell makes what stands in it from hashes of where it is, so the scene has no edge to speak of, and what a
 // far view shows is the top of the same list a near view shows in full. The records say which taxa could be here and how
 // big they grew; this says where each stands, how many there are, what it is doing and what colour it is, all invented
-// and marked so. Since version 3 its rivers are the world's where the world has them (docs/EIGHTH-SLICE.md): a measured
+// and marked so. Since version 3 its rivers are the world's where the world has them (docs/slices/EIGHTH-SLICE.md): a measured
 // centreline or a reach of the drainage model, drawn with the channel its flow gives it, its water falling downstream,
 // and its floodplain and valley following it rather than the scene's middle. Since version 4 each height grows what its
 // own climate bears and snow lies where the scene's month holds it (docs/SCENES.md), from the twelve months at the

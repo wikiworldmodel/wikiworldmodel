@@ -4,7 +4,7 @@ Status: a working outline, to be kept up to date as data comes in. It lists what
 Zero needs to hold a complete history of Earth, life and civilization, at every scale from the
 planet to a street, and where that could come from. It is the menu for contributors, human and
 machine: pick a row marked *missing* in an area you can research well (see
-[AGENTS.md](../AGENTS.md)).
+[CONTRIBUTING.md](../CONTRIBUTING.md)).
 
 ## How to read it
 

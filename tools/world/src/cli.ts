@@ -162,6 +162,12 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
     const { runBuild } = await import('./build/index.ts');
     return runBuild(args);
   },
+  // ATTRIBUTION.md at the top of the repository, from the manifest and the sources the records cite.
+  async attribution([out = 'ATTRIBUTION.md']) {
+    const { attributionMarkdown } = await import('./attribution.ts');
+    writeFileSync(join(REPO, out), attributionMarkdown(await loadWorld()));
+    console.log(`attribution → ${out}`);
+  },
   // The public site for Cloudflare Pages, from site/, the built viewer and the latest build.
   async site([out = 'dist/public']) {
     const { assembleSite } = await import('./site.ts');

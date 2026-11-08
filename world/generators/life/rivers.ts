@@ -1,4 +1,4 @@
-// A scene's rivers, from the courses the world gives (docs/EIGHTH-SLICE.md): a measured centreline, or a reach of the
+// A scene's rivers, from the courses the world gives (docs/slices/EIGHTH-SLICE.md): a measured centreline, or a reach of the
 // drainage model, drawn with the channel the laws of rivers give it, and with the detail finer than its course is known
 // to: the bends of a meandering river (Langbein & Leopold's sine-generated curve, a wavelength of 7 to 12 widths), the
 // loops of its older courses left as oxbow lakes, the threads of a braided one. Every invented thing is keyed by the

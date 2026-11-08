@@ -12,3 +12,6 @@
 /world/builds/index.json
   Cache-Control: no-cache
   Access-Control-Allow-Origin: *
+
+/ATTRIBUTION.md
+  Content-Type: text/plain; charset=utf-8
