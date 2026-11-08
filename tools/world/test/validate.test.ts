@@ -363,10 +363,10 @@ describe('generators sample models (docs/STRUCTURE.md section 3.4)', () => {
   });
 
   it('accept a check that names a test that exists, and refuse one that does not', async () => {
-    const ok = `checks: [{ test: world/generators/life/scene/v3.test.ts, holds: "has a desert mostly bare, with no forest" }]\n`;
+    const ok = `checks: [{ test: world/generators/life/scene/v4.test.ts, holds: "has a desert mostly bare, with no forest" }]\n`;
     expect(found(await check({ 'generators/g.yaml': gen(ok) }))).toEqual([]);
-    const bad = `checks: [{ test: world/generators/life/scene/v3.test.ts, holds: "makes unicorns" }]\n`;
-    expect(found(await check({ 'generators/g.yaml': gen(bad) }))).toEqual(['error: no test in world/generators/life/scene/v3.test.ts is named "makes unicorns"']);
+    const bad = `checks: [{ test: world/generators/life/scene/v4.test.ts, holds: "makes unicorns" }]\n`;
+    expect(found(await check({ 'generators/g.yaml': gen(bad) }))).toEqual(['error: no test in world/generators/life/scene/v4.test.ts is named "makes unicorns"']);
   });
 });
 

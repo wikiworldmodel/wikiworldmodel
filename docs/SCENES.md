@@ -89,7 +89,7 @@ A climate model's months stand for the ground of its cell. For the deep past's r
 model's own surface, its surface geopotential as a height. For the last 120,000 years (Beyer et al. 2020), which were
 corrected to the climate observed on a half-degree grid, it is the mean height of the cell's land. The build keeps every
 keyframe's twelve months at each node with land, with that height, in tiles of 10° (field:earth/climate-at-height). A
-scene fetches the tile its place stood in at the keyframe nearest its time, of the finest climate that covers it.
+scene fetches the tile its place stood in at the keyframe nearest its time, of the finest climate that covers it. Scenes draw so from `gen:life/scene` version 4.
 
 At any height of the scene, the air is colder by one lapse rate, 5.8 °C a kilometre (model:earth/lapse-rate, from
 Loomis et al. 2017), with the same rain. So:

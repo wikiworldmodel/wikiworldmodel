@@ -14,7 +14,7 @@ import { parsePoint, toMa, type TimePointInput } from '../../../../core/time.ts'
 import { cubeRoot, placeSpec, reliefPatch, sizeWithin, type PlaceWorld } from '../../../../world/generators/life/spec.ts';
 import type { SceneWater } from '../../../../core/scene.ts';
 import { FULL_BUDGET, SceneStream } from '../../../../world/generators/life/stream.ts';
-import { VERSION, type LivingParams } from '../../../../world/generators/life/scene/v3.ts';
+import { VERSION, type LivingParams } from '../../../../world/generators/life/scene/v4.ts';
 import { FormTree } from '../forms.ts';
 import { pbdbNumber } from '../pbdb.ts';
 import { sha256, stableStringify } from '../util.ts';

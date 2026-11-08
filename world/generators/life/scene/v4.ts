@@ -1,11 +1,12 @@
-// A living scene, version 3: any place on land at any moment, from a spec. Nothing is laid out until it is looked at:
+// A living scene, version 4: any place on land at any moment, from a spec. Nothing is laid out until it is looked at:
 // each 400 m cell makes what stands in it from hashes of where it is, so the scene has no edge to speak of, and what a
 // far view shows is the top of the same list a near view shows in full. The records say which taxa could be here and how
 // big they grew; this says where each stands, how many there are, what it is doing and what colour it is, all invented
 // and marked so. Since version 3 its rivers are the world's where the world has them (docs/EIGHTH-SLICE.md): a measured
 // centreline or a reach of the drainage model, drawn with the channel its flow gives it, its water falling downstream,
-// and its floodplain and valley following it rather than the scene's middle. The build and every browser are held to
-// agree within the tolerance of core/fingerprint.ts.
+// and its floodplain and valley following it rather than the scene's middle. Since version 4 each height grows what its
+// own climate bears and snow lies where the scene's month holds it (docs/SCENES.md), from the twelve months at the
+// scene's place. The build and every browser are held to agree within the tolerance of core/fingerprint.ts.
 import type { Part } from '../../../../core/fingerprint.ts';
 import type { Form, Pose } from '../../../../core/form.ts';
 import type { LivingTaxon, ReliefPatch, SceneCover, SceneSpec } from '../../../../core/scene.ts';
@@ -18,7 +19,7 @@ import { arrival, distanceField, fbm, noise, plainGrid, watersOf, type GridSpec,
 import { drawRiver, meet, type Oxbow, type RiverChoices, type RiverPath } from '../rivers.ts';
 
 export const GENERATOR = 'gen:life/scene';
-export const VERSION = 3;
+export const VERSION = 4;
 
 /** The side of a cell of the ground, in metres. */
 export const CELL = 400;

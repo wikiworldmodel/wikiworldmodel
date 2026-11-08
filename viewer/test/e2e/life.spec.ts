@@ -105,7 +105,7 @@ test.describe('the Hell Creek', () => {
     await expect(panel.locator('.organism')).toContainText('Its body:');
     await expect(panel.locator('.organism')).toContainText('Generated:');
     await expect(panel.locator('.organism')).toContainText('where each stands');
-    await expect(panel.locator('.organism')).toContainText('gen:life/scene, version 3');
+    await expect(panel.locator('.organism')).toContainText('gen:life/scene, version 4');
   });
 
   test('a click on the ground says it is generated, and where it rests on the world', async ({ page }) => {

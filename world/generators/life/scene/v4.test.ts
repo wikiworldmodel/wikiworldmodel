@@ -10,7 +10,7 @@ import type { LivingTaxon, ReliefPatch, SceneCover, SceneSpec } from '../../../.
 import type { FeatureTime } from '../../../../core/tileset.ts';
 import { cubeRoot, latticeOf, sizeWithin } from '../spec.ts';
 import { FAST_BUDGET, FULL_BUDGET, INSTANCE_STRIDE, protoParts, SceneStream, type LifeView } from '../stream.ts';
-import { CELL, cellParts, densityOf, EXTENT, GENERATOR, placeLook, VERSION, watersFor, type CellRows, type LivingParams } from './v3.ts';
+import { CELL, cellParts, densityOf, EXTENT, GENERATOR, placeLook, VERSION, watersFor, type CellRows, type LivingParams } from './v4.ts';
 import type { ChannelLaws } from '../../../../core/scene.ts';
 import { snowOf } from '../climate.ts';
 

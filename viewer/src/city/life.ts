@@ -7,7 +7,7 @@ import { printCheck, settlePrint, type Fingerprint, type PrintCheck } from '../.
 import { lookup, type Scenario } from '../../../core/scenario.ts';
 import type { LivingTaxon, SceneSpec } from '../../../core/scene.ts';
 import { GroundSampler } from '../../../world/generators/city/ground.ts';
-import type { LivingParams } from '../../../world/generators/life/scene/v3.ts';
+import type { LivingParams } from '../../../world/generators/life/scene/v4.ts';
 import { snowOf } from '../../../world/generators/life/climate.ts';
 import { declination, MID_DAY } from '../../../core/water.ts';
 import { protoParts } from '../../../world/generators/life/stream.ts';

@@ -44,7 +44,7 @@ close to the ground today, the rivers Landsat saw. To stand by the Mississippi:
 | 7 | A channel is as wide as its flow says, and braids, winds or runs straight as its slope and flow say. | `world/generators/life/rivers.test.ts` |
 | 8 | Bends follow the sine-generated curve with the sinuosity asked for, a wavelength apart, and two scenes that see the same reach draw the same river. | `rivers.test.ts` |
 | 9 | Oxbows lie on the floodplain, off the channel. | `rivers.test.ts` |
-| 10 | A scene runs its rivers where the world says, within their floodplains, its water falling downstream, the ground under them cut below it, its water flowing downstream, and a visitor arriving by one. | `world/generators/life/scene/v3.test.ts` |
+| 10 | A scene runs its rivers where the world says, within their floodplains, its water falling downstream, the ground under them cut below it, its water flowing downstream, and a visitor arriving by one. | `world/generators/life/scene/v4.test.ts` |
 | 11 | A river's water falls gently and never rises, where the coarse ground under it steps; a river running into another meets its water and is not drawn inside its channel. | `rivers.test.ts` |
 | 12 | The water layer answers evidence where Landsat saw rivers, model where the drainage covers the time, and generic before. | `core/resolve.test.ts` |
 | 13 | The globe draws the great rivers from far off and the Amazon to its estuary; at the Last Glacial Maximum its rivers cross the Sunda shelf; the Caspian is a lake that spills nowhere. | `viewer/test/e2e/foundations.spec.ts` |
@@ -88,7 +88,7 @@ steeper than 1 in 50, a braided river where Leopold and Wolman's line says so, a
 its course is too coarse to show its bends, it is wound into Langbein and Leopold's sine-generated curve, 7 to 12
 widths to a wavelength, each bend's size varied by a hash of the reach and the bend's number; so the bends are the same
 wherever a scene meets the reach. Loops of its older courses, swung to the point of cutting off, are left as oxbows
-beyond the belt it winds in now. [scene/v3.ts](../world/generators/life/scene/v3.ts) lays the ground from the rivers:
+beyond the belt it winds in now. [scene/v4.ts](../world/generators/life/scene/v4.ts) lays the ground from the rivers:
 each one's bed, banks, levees and floodplain at the height of its water there, and beyond the floodplain the land,
 never lower than the plain, so that a valley's walls rise from it. The water is a ribbon along each river and oxbow,
 carrying its flow and depth, so the water shader draws ripples drawn out along the current and a colour from the
