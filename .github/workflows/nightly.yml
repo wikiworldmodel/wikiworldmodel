@@ -1,9 +1,11 @@
 # What takes too long for every change, nightly and by hand, never on a pull request:
+# - world: the world and the viewer, built once and handed to every job below. A night on which
+#   master has not changed since the last nightly that passed builds nothing and runs nothing.
 # - render: the viewer, drawn in Chromium and compared with its golden images: the globe, the city
 #   drawn the fast way, and the city at full quality. Drawing in software takes minutes a view. A
 #   failure means a picture changed: look at the diffs it uploads, and update the goldens if the
 #   change was meant.
-# - reproducible: the world built twice, to the same bytes.
+# - reproducible: the world built again, on another machine, and compared with the one the jobs drew.
 name: Nightly
 
 on:
@@ -16,13 +18,33 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  render:
+  # Whether tonight has anything new: a scheduled night on the commit the last passing nightly
+  # tested has not. Run by hand, it always has.
+  changed:
     runs-on: ubuntu-24.04
-    timeout-minutes: 150
-    strategy:
-      fail-fast: false
-      matrix:
-        project: [globe, city, city-views]
+    timeout-minutes: 5
+    permissions:
+      actions: read
+    outputs:
+      run: ${{ steps.last.outputs.run }}
+    steps:
+      - id: last
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          last=$(gh run list -R "$GITHUB_REPOSITORY" --workflow nightly.yml --branch "$GITHUB_REF_NAME" --status success --limit 1 --json headSha -q '.[0].headSha')
+          if [ "$GITHUB_EVENT_NAME" = schedule ] && [ "$last" = "$GITHUB_SHA" ]; then
+            echo "::notice::Nothing has changed since the last nightly that passed ($last): nothing to run."
+            echo run=false >> "$GITHUB_OUTPUT"
+          else
+            echo run=true >> "$GITHUB_OUTPUT"
+          fi
+
+  world:
+    needs: changed
+    if: needs.changed.outputs.run == 'true'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v7
 
@@ -58,6 +80,40 @@ jobs:
           npm run build:world
           npm run build:viewer
 
+      # Everything the jobs below read of it: the build, and the viewer that draws it.
+      - uses: actions/upload-artifact@v7
+        with:
+          name: world
+          path: |
+            dist/builds
+            dist/site
+          retention-days: 1
+          compression-level: 0
+
+  render:
+    needs: world
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [globe, city, city-views]
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - uses: actions/download-artifact@v8
+        with:
+          name: world
+          path: dist
+
       - name: Draw and compare (${{ matrix.project }})
         run: |
           npx playwright install --with-deps chromium
@@ -71,6 +127,7 @@ jobs:
           retention-days: 7
 
   reproducible:
+    needs: world
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     steps:
@@ -102,8 +159,30 @@ jobs:
           path: .cache/import
           key: import-${{ hashFiles('world/manifest.yaml', 'world/snapshots/**', 'tools/world/importers/**', 'tools/world/src/**', 'world/generators/**') }}
 
-      - name: Build the world, then again, and compare
+      # The build the render jobs drew, made on another machine: building it again here and
+      # comparing checks it does not depend on where it was made.
+      - uses: actions/download-artifact@v8
+        with:
+          name: world
+          path: dist
+
+      - name: Build the world again, and compare
         run: |
           npm run fetch
-          npm run build:world
           npm run test:reproducible
+
+  # The shared build is large: once every job that reads it has finished, it goes.
+  clean:
+    needs: [world, render, reproducible]
+    if: always() && needs.world.result == 'success'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      actions: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for id in $(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID/artifacts" -q '.artifacts[] | select(.name == "world") | .id'); do
+            gh api -X DELETE "repos/$GITHUB_REPOSITORY/actions/artifacts/$id"
+          done
