@@ -21,6 +21,8 @@ claims:
     note: >-
       The bracket given by U–Pb ages from Laurentia, Oman and South China; the table's
       errors are 2σ.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC5677351.txt (sha256 3d1d8d9bd72830a8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }
   start-rooney-2015:
     prop: start
     value: 717 Ma
@@ -40,6 +42,8 @@ claims:
     method: compilation
     rank: preferred
     note: The deglaciation, marked by the cap carbonate; the table's errors are 2σ.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC5677351.txt (sha256 3d1d8d9bd72830a8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }
   end-rooney-2015:
     prop: end
     value: 660 Ma
@@ -68,6 +72,8 @@ claims:
       Glacial deposits laid down at sea level at low paleomagnetic latitudes; in the Snowball
       Earth the paper reviews, sea ice covered the whole ocean as well. The abstract's 58-Myr
       glaciation is the Sturtian.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC5677351.txt (sha256 3d1d8d9bd72830a8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }
   ice-reach-abbot-2011:
     prop: ice_reach
     value: 10
@@ -86,3 +92,5 @@ claims:
       abstract gives no latitude for the ice's edge; Hoffman et al. (2017), citing it, put the
       sea-ice margin at 5° to 15°, recorded here as the middle, 10°. Ice sheets could still
       grow on high ground near the equator.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC5677351.txt (sha256 3d1d8d9bd72830a8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }

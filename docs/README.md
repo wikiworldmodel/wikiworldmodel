@@ -35,7 +35,7 @@ yet, they say so.
 
 ## Slices
 
-[slices/](slices/README.md): one document for each of the eight slices built so far, each a thin
+[slices/](slices/README.md): one document for each of the slices built so far, each a thin
 piece of the world taken through every layer, with its pass criteria and where each is tested,
 its decisions, its limitations and what it left for later. They are the record of how the world
 came to be as it is. Where a later slice changed something, the later document describes the

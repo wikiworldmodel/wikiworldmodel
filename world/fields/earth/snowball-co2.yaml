@@ -1,0 +1,39 @@
+# Computed, not stored: the build runs the energy-balance model over the span (section 9.1).
+id: field:earth/snowball-co2
+type: field
+title: CO₂ below which the Earth freezes over (energy-balance model)
+quantity: partial pressure of CO₂ below which an unfrozen Earth freezes over under the Sun of the time
+unit: bar
+description: >-
+  The least CO₂ that keeps an Earth that is not already frozen from icing over to the equator, under the Sun of each
+  time, in the textbook energy-balance model of Budyko and Sellers: below it, the ice-albedo feedback runs the ice to
+  the equator. As the Sun brightened, less CO₂ was needed. It is what the model asks of the CO₂ of a time, not what the
+  CO₂ was: set it beside the CO₂ the evidence gives, and beside the glaciations that reached the equator. The model
+  knows no methane, no continents and no clouds of its own, and its rule for CO₂ was fitted to small changes around
+  today's climate, so it asks too much CO₂ where tens of doublings are needed.
+grid: { kind: series }
+time: { lo: 4.3 Ga, hi: 0 Ma, step: 10 Myr }
+derived: true
+rule: energy-balance-freeze
+# The model's parameters, for every output of it (world/models/earth/energy-balance.yaml says where each comes from).
+params:
+  olr_a: 210
+  olr_b: 2
+  diffusivity: 0.55
+  albedo_0: 0.3
+  albedo_2: 0.078
+  albedo_ice: 0.62
+  ice_below: -10
+  solar_constant: 1365.2
+  eccentricity: 0.017236
+  perihelion: 281.37
+  obliquity: 23.446
+  co2_per_doubling: 4
+  co2_ref: 0.00028
+  bands: 90
+  start_0: 12
+  start_2: -40
+  start_frozen: -50
+  co2_max: 10
+source: { ref: src:rose-climate-laboratory, loc: "albedo-snowball.ipynb, sections 2–4" }
+interp: linear

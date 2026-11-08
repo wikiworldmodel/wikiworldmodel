@@ -239,7 +239,8 @@ export interface SeriesValue {
 
 /** A number to three significant figures, as people write it. */
 export const fmtValue = (x: number): string => {
-  const three = (v: number) => Number(v.toPrecision(3)).toLocaleString('en-US');
+  // Three significant figures however small: a pressure of 0.0000113 bar is not 0.
+  const three = (v: number) => Number(v.toPrecision(3)).toLocaleString('en-US', { maximumFractionDigits: 20 });
   const size = Math.abs(x);
   return size >= 1e9 ? `${three(x / 1e9)} billion` : size >= 1e6 ? `${three(x / 1e6)} million` : three(x);
 };

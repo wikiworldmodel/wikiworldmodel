@@ -8,6 +8,7 @@ import type { SeriesRecord } from '../../../../core/records.ts';
 import { centre, fromKa, fromMa, parseDuration, parsePoint, parseTime, PRESENT_YEAR, type TimePointInput } from '../../../../core/time.ts';
 import { chosen, claimGroup } from '../chronology.ts';
 import { datasetFile } from '../manifest.ts';
+import { energyBalanceSeries, RULES as ENERGY_BALANCE } from './energybalance.ts';
 import { iceSeaLevel } from './ice.ts';
 import type { Field, World } from '../world.ts';
 import { sourceRecord } from './records.ts';
@@ -170,10 +171,20 @@ function spreadOfModel(world: World, field: string): FieldSpread | undefined {
 
 export async function series(world: World): Promise<SeriesRecord[]> {
   const out: SeriesRecord[] = [];
-  for (const f of world.fields) {
-    if (f.grid?.kind !== 'series') continue;
+  const modelled = new Set<string>(Object.values(ENERGY_BALANCE));
+  // The energy-balance model's series read the others (the Sun's brightness, CO₂), so they come last.
+  const fields = world.fields.filter((f) => f.grid?.kind === 'series');
+  for (const f of [...fields.filter((x) => !modelled.has(x.rule ?? '')), ...fields.filter((x) => modelled.has(x.rule ?? ''))]) {
     const ice = f.rule === 'ice-equivalent-sea-level' ? await iceSeaLevel(world, f) : null;
-    const points = ice ? ice.points : f.derived ? computed(f) : f.data?.prop ? claimedPoints(world, f.data.prop) : await tabled(world, f);
+    const points = ice
+      ? ice.points
+      : modelled.has(f.rule ?? '')
+        ? energyBalanceSeries(world, f, out)
+        : f.derived
+          ? computed(f)
+          : f.data?.prop
+            ? claimedPoints(world, f.data.prop)
+            : await tabled(world, f);
     const source = f.derived ? f.source! : { ref: f.data!.from };
     const src = world.source.get(source.ref);
     out.push({

@@ -749,6 +749,12 @@ async function start(root: HTMLElement): Promise<void> {
     dirty = true;
   }
 
+  /** The energy-balance model's answer for the climate where no climate model's run covers the time: its freezing threshold. */
+  const freezing = build.series.series.find((x) => x.rule?.name === 'energy-balance-freeze');
+  const energyBalance: ResolveWorld['climateModel'] = freezing?.points.length
+    ? { span: [freezing.points[0][0], freezing.points.at(-1)![0]], freezeBelow: (t) => valueAt(freezing, t)?.value ?? null }
+    : undefined;
+
   /** What resolve reads in the viewer: what has loaded so far (core/resolve.ts). */
   function resolveWorld(): ResolveWorld {
     const span = climates.spanMa();
@@ -756,6 +762,7 @@ async function start(root: HTMLElement): Promise<void> {
       planet: build.planet,
       geography: ts.fields.map((f) => ({ title: f.title, mode: f.mode, coverage: f.coverage })),
       climate: span ? [fromMa(span[0]), fromMa(span[1])] : undefined,
+      climateModel: energyBalance,
       ice: ts.ice?.coverage,
       people: people.file ? [people.file.steps[0], people.file.steps.at(-1)!] : undefined,
       polities: polities.file?.rows.length ? [Math.min(...polities.file.rows.map((r) => r.from)), Math.max(...polities.file.rows.map((r) => r.to))] : undefined,

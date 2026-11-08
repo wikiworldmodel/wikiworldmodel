@@ -58,6 +58,7 @@ import { buildScene, witnesses } from './scene.ts';
 import { features as buildFeatures, periods as buildPeriods, records as buildRecords, search as buildSearch, sourceRecord, type Solved } from './records.ts';
 import { planet as buildPlanet } from './planet.ts';
 import { series as buildSeries } from './series.ts';
+import { energyBalanceReport, RULES as ENERGY_BALANCE, seriesAt } from './energybalance.ts';
 import { territory as buildTerritory } from './territory.ts';
 import { tree as buildTree } from './tree.ts';
 
@@ -127,6 +128,7 @@ export function resolveWorldOf(
   atlas: ReturnType<typeof buildAtlas>,
   sea?: SeaOut,
   rivers?: { info: RiversInfo; seen?: Uint8Array },
+  series: SeriesFile['series'] = [],
 ): ResolveWorld {
   const land = world.generators.find((g) => g.id === GENERIC_LAND);
   const landParams = land?.params as unknown as GenericLandParams | undefined;
@@ -147,6 +149,7 @@ export function resolveWorldOf(
     planet: buildPlanet(solved),
     geography: grids.map((g) => ({ title: g.field.title, mode: g.mode, coverage: [fromMa(g.coverMa[0]), fromMa(g.coverMa[1])] })),
     climate: ages.length ? [fromMa(Math.max(...ages)), fromMa(Math.min(...ages))] : undefined,
+    climateModel: energyBalanceOf(world, series),
     ice: ice?.coverage,
     people: people ? [people.header.steps[0], people.header.steps.at(-1)!] : undefined,
     polities: polities?.rows.length ? [Math.min(...polities.rows.map((r) => r.from)), Math.max(...polities.rows.map((r) => r.to))] : undefined,
@@ -170,6 +173,14 @@ export function resolveWorldOf(
         }
       : undefined,
   };
+}
+
+/** The energy-balance model's answer for the climate (core/resolve.ts): the span of its freezing threshold, and its value. */
+export function energyBalanceOf(world: World, series: SeriesFile['series']): ResolveWorld['climateModel'] {
+  const field = world.fields.find((f) => f.rule === ENERGY_BALANCE.freeze);
+  const freeze = field && series.find((x) => x.id === field.id);
+  if (!freeze?.points.length) return undefined;
+  return { span: [freeze.points[0][0], freeze.points.at(-1)![0]], freezeBelow: (t) => seriesAt(freeze.points, t) };
 }
 
 /** The 1° cell of a grid of where rivers were seen that a place falls in. */
@@ -226,6 +237,10 @@ export function coverageSources(
     const steps = ages.slice(1).map((a, i) => Math.round((a - ages[i]) * 1e6)).sort((a, b) => a - b);
     out.push({ layer: 'climate', id: c.field.id, title: c.field.title, tier: 'model', span: [fromMa(ages.at(-1)!), fromMa(ages[0])], ...(steps.length ? { step_yr: steps[steps.length >> 1] } : {}), ...grain(c.field) });
   }
+  // The energy-balance model answers the climate where no climate model's run does, as the CO₂ it would take to freeze.
+  const ebm = world.fields.find((f) => f.rule === ENERGY_BALANCE.freeze);
+  const ebmSeries = ebm && series.find((x) => x.id === ebm.id);
+  if (ebm && ebmSeries?.points.length) out.push({ layer: 'climate', id: ebm.id, title: ebm.title, tier: 'model', span: [ebmSeries.points[0][0], ebmSeries.points.at(-1)![0]], lane: 'energy-balance', ...grain(ebm) });
   if (ice) out.push({ layer: 'ice', id: ice.field.id, title: ice.field.title, tier: 'model', span: ice.built.coverage, ...grain(ice.field) });
   for (const ep of planet.episodes) out.push({ layer: 'ice', id: ep.subject, title: ep.label, tier: 'evidence', span: clip(spanOf(ep, {})), lane: 'glaciations' });
   if (rivers) {
@@ -794,6 +809,17 @@ export async function runBuild(args: string[]): Promise<number> {
   }
   // The outline's check of the biomes, and how much of the world rests on what.
   const coverageFile = coverage(world, wanted, allFeatures, tiles);
+  // The energy-balance model against the evidence it does not read: soils, Snowballs, today, the Phanerozoic.
+  const balance = energyBalanceReport(world, buildPlanet(solved), seriesList);
+  if (balance) {
+    coverageFile.energyBalance = balance;
+    for (const e of balance.evidence) log(`climate  energy balance at ${e.id} (${e.ageMa} Ma, ${e.co2.join('–')} bar): freezes below ${e.freezeBelow} bar; ${e.frozen} of ${e.members} runs frozen`);
+    for (const g of balance.glaciations) log(`climate  energy balance for ${g.id}: freezes below ${g.freezeBelowAtStart} bar at its start, thaws ${g.thawAboveAtEnd === null ? 'only above the model\'s limit' : `above ${g.thawAboveAtEnd} bar`} at its end${g.co2AtEnd ? `; the rocks give ${[...new Set(g.co2AtEnd.value)].join('–')} bar` : ''}`);
+    if (balance.phanerozoic) {
+      const d = balance.phanerozoic.meanDifference;
+      log(`climate  energy balance over the Phanerozoic against ${balance.phanerozoic.against}: ${Math.abs(d)} °C ${d < 0 ? 'colder' : 'warmer'} on average, r = ${balance.phanerozoic.correlation}`);
+    }
+  }
   if (climateKeys.length && biomeField) {
     const forests = forestChecks(solved, climateKeys, climateGrid((climateField!.grid as { res_deg: number }).res_deg), biomeField.params as unknown as ClimateRule);
     coverageFile.forests = forests;
@@ -882,7 +908,7 @@ export async function runBuild(args: string[]): Promise<number> {
   }
 
   // Every layer answers everywhere, in a tier (docs/STRUCTURE.md section 3.3): how much of the world each tier holds.
-  const resolveWorld = resolveWorldOf(world, solved, grids, climateKeys, ice, people, polities, lifeAtlas, seaAtlas, riversInfo ? { info: riversInfo, seen: riversSeen } : undefined);
+  const resolveWorld = resolveWorldOf(world, solved, grids, climateKeys, ice, people, polities, lifeAtlas, seaAtlas, riversInfo ? { info: riversInfo, seen: riversSeen } : undefined, seriesList);
   coverageFile.tiers = TIER_SPANS.map((sp) => {
     const times = Array.from({ length: 8 }, (_, i) => fromMa(sp.olderMa + ((sp.youngerMa - sp.olderMa) * (i + 0.5)) / 8));
     return { span: sp.label, layers: tierCounts(resolveWorld, gridPlaces(10), times) };

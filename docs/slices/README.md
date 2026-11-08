@@ -21,3 +21,4 @@ and [STRUCTURE.md](../STRUCTURE.md).
 | 6 | [Life at a place and a time](SIXTH-SLICE.md) | biomes through time, a tree of life, a living scene in the Hell Creek |
 | 7 | [Life anywhere](SEVENTH-SLICE.md) | forms on the tree of life, an atlas of who lived where, a scene of any place on land |
 | 8 | [Water](EIGHTH-SLICE.md) | runoff, drainage, rivers and lakes through time, and a scene's rivers from them |
+| 9 | [The faint Sun and the ice](NINTH-SLICE.md) | an energy-balance model under the Sun of each time: the CO₂ at which the Earth froze over and thawed, held to the Archean's soils and the Snowballs |

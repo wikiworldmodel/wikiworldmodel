@@ -1,0 +1,115 @@
+# A model run here (section 4.10 of the design). The values of its parameters stay in the fields.
+id: model:earth/energy-balance
+type: model
+title: The energy balance of each latitude, under the Sun of each time
+description: >-
+  The one-dimensional energy-balance model of Budyko and Sellers, as Rose's open textbook writes it and with the
+  parameters it gives: each band of latitude absorbs the year's sunlight less what its albedo reflects, gives off
+  A + B·T to space, and passes heat down the gradient of temperature to its neighbours; a band colder than −10 °C is
+  ice, which reflects more. That feedback runs the ice to the equator once it reaches far enough, and keeps a frozen
+  Earth frozen until far more warmth melts it. Run under the Sun of each time, it gives the CO₂ below which an
+  unfrozen Earth freezes over and above which a frozen one thaws; run on the CO₂ the world's evidence gives, the
+  climate it settles into. It knows only the Sun, CO₂ and the ice: no continents, no ocean currents, no clouds of its
+  own, no methane, no change in the length of the day, and an orbit held at today's.
+author: machine:claude-code
+code: core/ebm.ts
+inputs:
+  - { ref: field:sun/luminosity, note: "the Sun's brightness at each time, relative to today's" }
+  - { ref: field:earth/co2, note: "CO₂ over the last 420 million years, for the temperature: each member a draw from its band" }
+  - { prop: co2_pressure, note: "CO₂ a sample or a glaciation records, run as members across its range, for the checks in coverage.json" }
+outputs: [field:earth/snowball-co2, field:earth/thaw-co2, field:earth/temperature-energy-balance]
+params:
+  olr_a:
+    source:
+      ref: src:rose-climate-laboratory
+      loc: "albedo-snowball.ipynb, section 3, the parameter dictionary ('A')"
+    note: Tuned in the book to the outgoing radiation and surface temperature of the NCEP reanalysis (one-dim-ebm.ipynb, section 5).
+  olr_b: { source: { ref: src:rose-climate-laboratory, loc: "albedo-snowball.ipynb, section 3, the parameter dictionary ('B')" } }
+  diffusivity: { source: { ref: src:rose-climate-laboratory, loc: "albedo-snowball.ipynb, section 3, the parameter dictionary ('D')" } }
+  albedo_0: { source: { ref: src:rose-climate-laboratory, loc: "albedo-snowball.ipynb, section 3, the parameter dictionary ('a0')" } }
+  albedo_2: { source: { ref: src:rose-climate-laboratory, loc: "albedo-snowball.ipynb, section 3, the parameter dictionary ('a2')" } }
+  albedo_ice: { source: { ref: src:rose-climate-laboratory, loc: "albedo-snowball.ipynb, section 3, the parameter dictionary ('ai')" } }
+  ice_below:
+    source:
+      ref: src:rose-climate-laboratory
+      loc: "albedo-snowball.ipynb, section 2, Temperature-dependent ice line"
+    note: The book takes −10 °C after Budyko (1969).
+  solar_constant:
+    source:
+      ref: src:rose-climate-laboratory
+      loc: "albedo-snowball.ipynb, section 6, set back to its present-day value; insolation.ipynb, section 2"
+  eccentricity: { source: { ref: src:rose-climate-laboratory, loc: "insolation.ipynb, section 2, the signature of daily_insolation ('ecc')" } }
+  perihelion: { source: { ref: src:rose-climate-laboratory, loc: "insolation.ipynb, section 2, the signature of daily_insolation ('long_peri')" } }
+  obliquity:
+    source:
+      ref: src:rose-climate-laboratory
+      loc: "insolation.ipynb, section 2, the signature of daily_insolation ('obliquity')"
+    note: Today's. The obliquity of the deep past is held at it, which the model's description says.
+  co2_per_doubling:
+    source:
+      ref: src:rose-climate-laboratory
+      loc: "albedo-snowball.ipynb, section 4, Add a small radiative forcing"
+    note: >-
+      The book gives δA = 4 W m⁻² as "something like" a doubling of CO₂, for a small change around today. Applied
+      here to every doubling, as many as the past asks; real CO₂ keeps more heat than that rule at tens of doublings.
+  co2_ref:
+    source:
+      ref: src:feulner-2012-faint-young-sun
+      loc: "section 5.3, Carbon Dioxide"
+    note: >-
+      The pre-industrial partial pressure of CO₂ Feulner gives, 0.00028 bar. The book tunes A to today's climate
+      without saying its CO₂; the reanalysis years had more than the pre-industrial level, so taking A as the
+      pre-industrial climate's puts the reference a fraction of a doubling too low.
+  bands:
+    choice: >-
+      Ninety bands of 2°, the grid of the book's first runs and climlab's default. The book runs 180 and 360 for its
+      hysteresis; the tests run those too.
+  start_0:
+    source:
+      ref: src:rose-climate-laboratory
+      loc: "one-dim-ebm.ipynb, section 3, the initial temperature 12 − 40 P₂(sin φ)"
+    note: Where a warm run starts, as the book's runs do; the climate it settles into can depend on it, since several ice edges balance.
+  start_2: { source: { ref: src:rose-climate-laboratory, loc: "one-dim-ebm.ipynb, section 3, the initial temperature 12 − 40 P₂(sin φ)" } }
+  start_frozen:
+    choice: >-
+      Where a frozen run starts: any temperature below the ice threshold everywhere, since a frozen Earth has one
+      balance whatever its start.
+  co2_max:
+    choice: >-
+      The most CO₂, in bar, a threshold is sought up to: ten times today's whole atmosphere. Beyond it the rule for CO₂
+      and the straight line of the outgoing radiation say nothing, and a time whose thaw would need more has no value.
+  members:
+    choice: The members the temperature is run for, the default of core/samples.ts, enough to show a spread.
+  atmosphere_bar:
+    choice: >-
+      The total pressure at which the CO₂ series' mixing ratios are read as partial pressures: 1 bar, as Feulner's
+      0.00028 bar for the pre-industrial 280 ppm reads them.
+uncertainty:
+  kind: ensemble
+  note: >-
+    The temperature runs once for each member of the CO₂ series, which carries a band; the band shown is the members'
+    5th to 95th percentile. The thresholds have no spread: no work gives the uncertainty of the book's parameters, and
+    the Sun's brightness has none. The model's own error is not in either.
+checks:
+  - { test: core/ebm.test.ts, holds: "puts the ice edge at 70° with today's Sun, as the book's run does, among the edges that balance" }
+  - { test: core/ebm.test.ts, holds: "thaws a Snowball only between 1830 and 1840 W m⁻², to a global mean of about 58 °C" }
+  - { test: tools/world/test/energybalance.test.ts, holds: "gives today's climate within the band the temperature series gives for the present" }
+  - { test: tools/world/test/energybalance.test.ts, holds: "keeps the Earth unfrozen at the CO₂ of the Mt. Roe, Bird and Pronto paleosols, which weathered under rain" }
+disagrees:
+  - with: earth/samples/alpine-lake-paleosol#co2
+    note: >-
+      The soil weathered under rain, but under the Sun of its time the model freezes over within its range of CO₂,
+      so most runs on it are frozen. Its estimate is the lowest of the four, and the review that compiles it says
+      such mass-balance estimates could be too low; the model also has no methane, which the same review credits
+      with 10 to 15 K of Archean warming at 10³ to 10⁴ ppmv. coverage.json's energyBalance gives the numbers.
+  - with: earth/events/marinoan-glaciation#co2-end-hoffman-2017
+    note: >-
+      The model needs far more CO₂ to thaw a Snowball than the rocks record at the Marinoan's end. Its ice has one
+      albedo everywhere, with no dust on it and no bare sea ice, its rule for CO₂ is for small changes, and its
+      thaw comes from radiation alone; Hoffman et al. (2017) review dust on the ice, which lowers the CO₂ a thaw needs.
+  - with: field:earth/surface-temperature
+    note: >-
+      Over the last 420 million years, on the CO₂ series alone, the model is colder than the temperature the rocks
+      give, by several degrees on average, and follows its rises and falls only loosely: the hothouses the rocks
+      record are warmer than CO₂ and the Sun make this model. coverage.json gives the mean difference and the
+      correlation.
