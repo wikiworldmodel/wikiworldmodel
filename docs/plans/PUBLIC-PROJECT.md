@@ -22,7 +22,7 @@ contribute, and before anyone at all can open the site.
 This section describes the repository when the plan was written. Since then: the licenses are
 chosen and in place (Apache-2.0 for code, CC0 for records and documents, the DCO for
 contributions; section 4), each build writes its `ATTRIBUTION.md`, CI is green and runs in
-tiers, master is published to `worldmodelzero.com` on Cloudflare Pages, and
+tiers, master is published to `wikiworldmodel.org` on Cloudflare Pages, and
 [CONTRIBUTING.md](../../CONTRIBUTING.md), a code of conduct, a security policy, templates and
 `CODEOWNERS` exist. Still open: no claim has been reviewed by a person, the datasets still come
 from third parties, there are no policies, releases or previews, and only the latest build is
@@ -90,7 +90,7 @@ for the OHM snapshot; public domain for SRTM and ETOPO. Their credits stay in th
 
 Also:
 
-- **Domain.** `worldmodelzero.com`, registered.
+- **Domain.** `wikiworldmodel.org`, registered.
 - **Name.** Check the name for trademark conflicts before launch.
 
 ## 5. Governance
@@ -295,10 +295,10 @@ GitHub ── merge to main ──► CI: validate, build (content-hashed), test
                               │
                               ├─► object store:  builds/<build id>/…       immutable, kept by policy
                               │                  releases.json             channels: stable, next
-                              ├─► static host:   worldmodelzero.com        the landing page; the viewer at /world/
-                              │                  next.worldmodelzero.com   the viewer, next channel
+                              ├─► static host:   wikiworldmodel.org        the landing page; the viewer at /world/
+                              │                  next.wikiworldmodel.org   the viewer, next channel
                               │                  pr-<n>.preview…           per pull request
-                              └─► entity pages:  worldmodelzero.com/w/<id> static HTML per record
+                              └─► entity pages:  wikiworldmodel.org/w/<id> static HTML per record
 ```
 
 | URL | What |
@@ -335,7 +335,7 @@ GitHub ── merge to main ──► CI: validate, build (content-hashed), test
   which matters for a viewer that streams tiles (section 12). Cloudflare Pages serves the
   landing page, the viewer and the entity pages.
 - **Today.** The Build workflow publishes `master` to Cloudflare Pages at
-  worldmodelzero.com once the build's checks pass, and any branch it is run on by hand to a
+  wikiworldmodel.org once the build's checks pass, and any branch it is run on by hand to a
   preview address on `worldmodelzero.pages.dev`.
   Each deployment carries the landing page, the viewer and the latest build, put together by
   `npm run build:site` (`tools/world/src/site.ts`). That is enough while a build is tens of
@@ -530,7 +530,7 @@ request:
 - [ ] Privacy-respecting page analytics and error reporting.
 
 Done when a stranger can clone, build and get a green pull request within an hour, and
-`worldmodelzero.com` serves the stable build.
+`wikiworldmodel.org` serves the stable build.
 
 ### Phase 1: contributions by pull request (1–3 months after)
 

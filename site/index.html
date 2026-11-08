@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>WikiWorldModel</title>
 <meta name="description" content="A sourced, four-dimensional history of Earth, life and civilization, with a viewer to fly through it. Every fact in it is a claim that cites its source.">
-<link rel="canonical" href="https://worldmodelzero.com/">
+<link rel="canonical" href="https://wikiworldmodel.org/">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://worldmodelzero.com/">
-<meta property="og:image" content="https://worldmodelzero.com/img/earth-today.jpg">
+<meta property="og:url" content="https://wikiworldmodel.org/">
+<meta property="og:image" content="https://wikiworldmodel.org/img/earth-today.jpg">
 <meta property="og:title" content="WikiWorldModel">
 <meta property="og:description" content="A sourced, four-dimensional history of Earth, life and civilization, with a viewer to fly through it.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='12' fill='none' stroke='%23161D1B' stroke-width='3'/%3E%3Cpath d='M4 16h24' stroke='%23161D1B' stroke-width='2'/%3E%3C/svg%3E">
@@ -324,7 +324,7 @@ footer { border-top: 1px solid var(--rule); }
     <nav aria-label="Site">
       <a class="wide-only" href="world/">Viewer</a>
       <a href="#contribute">Contribute</a>
-      <a href="https://github.com/kvh/lightworld">GitHub</a>
+      <a href="https://github.com/wikiworldmodel/wikiworldmodel">GitHub</a>
     </nav>
   </div>
 </header>
@@ -518,11 +518,11 @@ footer { border-top: 1px solid var(--rule); }
       <ol class="steps">
         <li>
           <h3>Give it the guide</h3>
-          <p><a href="https://github.com/kvh/lightworld/blob/master/AGENTS.md">AGENTS.md</a> is where an agent starts: it leads to the rules, how to research, and how to write records. Many coding agents read it on their own; Claude Code reaches it through CLAUDE.md.</p>
+          <p><a href="https://github.com/wikiworldmodel/wikiworldmodel/blob/master/AGENTS.md">AGENTS.md</a> is where an agent starts: it leads to the rules, how to research, and how to write records. Many coding agents read it on their own; Claude Code reaches it through CLAUDE.md.</p>
         </li>
         <li>
           <h3>Pick one bounded task</h3>
-          <p><a href="https://github.com/kvh/lightworld/blob/master/docs/DATA-OUTLINE.md">The data outline</a> lists what a complete history needs, domain by domain, with candidate sources and their licenses. Good tasks can be checked, such as the reigns of the Julio-Claudian emperors from Suetonius.</p>
+          <p><a href="https://github.com/wikiworldmodel/wikiworldmodel/blob/master/docs/DATA-OUTLINE.md">The data outline</a> lists what a complete history needs, domain by domain, with candidate sources and their licenses. Good tasks can be checked, such as the reigns of the Julio-Claudian emperors from Suetonius.</p>
         </li>
         <li>
           <h3>Let it research and write</h3>
@@ -540,7 +540,7 @@ footer { border-top: 1px solid var(--rule); }
             <span id="prompt-label">A prompt to start with</span>
             <button type="button" id="copy-prompt" data-copy="prompt-text" aria-describedby="prompt-label">Copy</button>
           </div>
-          <pre id="prompt-text">Read AGENTS.md in https://github.com/kvh/lightworld. Then pick one row marked missing in docs/DATA-OUTLINE.md that you can research from sources you can actually read. Write the records it needs, check every quote against the retrieved text by script, run `npm run validate -- --verbose` until it is clean, and open a pull request using the template in AGENTS.md.</pre>
+          <pre id="prompt-text">Read AGENTS.md in https://github.com/wikiworldmodel/wikiworldmodel. Then pick one row marked missing in docs/DATA-OUTLINE.md that you can research from sources you can actually read. Write the records it needs, check every quote against the retrieved text by script, run `npm run validate -- --verbose` until it is clean, and open a pull request using the repository's template.</pre>
         </div>
         <div class="rules">
           <h3>The rules, briefly</h3>
@@ -571,15 +571,15 @@ footer { border-top: 1px solid var(--rule); }
         WikiWorldModel
       </a>
       <nav aria-label="Project">
-        <a href="https://github.com/kvh/lightworld">GitHub</a>
-        <a href="https://github.com/kvh/lightworld/blob/master/AGENTS.md">AGENTS.md</a>
-        <a href="https://github.com/kvh/lightworld/blob/master/docs/DATA-OUTLINE.md">Data outline</a>
-        <a href="https://github.com/kvh/lightworld/blob/master/docs/WORLD-MODEL.md">Design</a>
+        <a href="https://github.com/wikiworldmodel/wikiworldmodel">GitHub</a>
+        <a href="https://github.com/wikiworldmodel/wikiworldmodel/blob/master/AGENTS.md">AGENTS.md</a>
+        <a href="https://github.com/wikiworldmodel/wikiworldmodel/blob/master/docs/DATA-OUTLINE.md">Data outline</a>
+        <a href="https://github.com/wikiworldmodel/wikiworldmodel/blob/master/docs/WORLD-MODEL.md">Design</a>
       </nav>
     </div>
     <div>
-      <p>The repository is still named lightworld. Its datasets come from the PALEOMAP plate model and PaleoDEMs, Cliopatria, OpenHistoricalMap, SRTM, ETOPO 2022, TINITALY and others, each CC0, CC BY or public domain; the viewer shows their credits.</p>
-      <p>Licenses for the code and the records are still to be chosen; Apache-2.0 and CC0 are proposed. Set in Newsreader and IBM Plex, under the SIL Open Font License.</p>
+      <p>Its datasets come from the PALEOMAP plate model and PaleoDEMs, Cliopatria, OpenHistoricalMap, SRTM, ETOPO 2022, TINITALY and others, each CC0, CC BY or public domain; the viewer shows their credits.</p>
+      <p>The code is under <a href="https://github.com/wikiworldmodel/wikiworldmodel/blob/master/LICENSE">Apache-2.0</a> and the records under <a href="https://github.com/wikiworldmodel/wikiworldmodel/blob/master/LICENSE-DATA">CC0</a>; every dataset is credited in <a href="/ATTRIBUTION.md">ATTRIBUTION.md</a>. Set in Newsreader and IBM Plex, under the SIL Open Font License.</p>
     </div>
   </div>
 </footer>

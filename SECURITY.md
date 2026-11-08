@@ -4,7 +4,7 @@
 
 Please report a security problem privately, not in a public issue: use **Report a vulnerability**
 on the repository's Security tab (GitHub's private vulnerability reporting), or write to
-security@worldmodelzero.com. Say what you found, how to reproduce it, and what it could affect.
+security@wikiworldmodel.org. Say what you found, how to reproduce it, and what it could affect.
 You should hear back within a week. Once a fix is out, the advisory credits you unless you would
 rather it didn't.
 
@@ -28,4 +28,4 @@ issue form, as [CONTRIBUTING.md](CONTRIBUTING.md) says.
 
 ## Supported versions
 
-Only what `master` builds, and what worldmodelzero.com serves, is supported.
+Only what `master` builds, and what wikiworldmodel.org serves, is supported.
