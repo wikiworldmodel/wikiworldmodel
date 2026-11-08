@@ -66,6 +66,8 @@ declare global {
 export interface WikiWorldModelHandle {
   build: string;
   idle(): boolean;
+  /** what the view is still waiting on before it is idle, by name */
+  waiting(): string[];
   state(): ViewState;
   url(): string;
   requests: string[];
@@ -1736,10 +1738,23 @@ async function start(root: HTMLElement): Promise<void> {
     }
     return !!site && siteOpen(state.t) && range < (made ? LIFE_TOP : CITY_TOP) * 1.4 && siteDistance(state.cam.lat, state.cam.lon) < 1.6e6 && !(city?.settled && city.plan.actual);
   };
+  /** What the view is still waiting on before it is idle, by name: nothing, once it is. */
+  const waiting = (): string[] => {
+    const w: [string, boolean][] = [
+      ['tiles', tiles.busy], ['features', features.busy], ['frame', dirty], ['layers', !layersReady],
+      ['polities', !politiesReady && !!politiesLoading], ['field layers', fieldLayers.some((fl) => fl.busy)], ['rivers', !!rivers?.busy],
+      ['people', !!state.people && !people.file && !!ts.files.people], ['clouds', !cloudsReady], ['surface', !surfaceReady],
+      ['biome texture', !biomeTexReady], ['generic land', !genericReady], ['climate', !climateReady || climates.busy], ['ice', !iceReady],
+      ['territory', !territoryReady], ['tree', !!treeLoading], ['cube', !cubeKey.startsWith(`${state.t}|`)],
+      ['selection', !!state.sel && shownRecord !== state.sel], ['flight', !!flight], ['city', cityWanted()],
+    ];
+    return w.filter(([, x]) => x).map(([n]) => n);
+  };
   history.replaceState(null, '', toSearch(build.id, state));
   window.__wikiworldmodel = {
     build: build.id,
-    idle: () => !tiles.busy && !features.busy && !dirty && layersReady && (politiesReady || !politiesLoading) && !fieldLayers.some((fl) => fl.busy) && !rivers?.busy && (!state.people || !!people.file || !ts.files.people) && cloudsReady && surfaceReady && biomeTexReady && genericReady && climateReady && !climates.busy && iceReady && territoryReady && !treeLoading && cubeKey.startsWith(`${state.t}|`) && (!state.sel || shownRecord === state.sel) && !flight && !cityWanted() ,
+    idle: () => waiting().length === 0,
+    waiting,
     state: () => state,
     url: () => toSearch(build.id, state),
     requests: fetchLog,

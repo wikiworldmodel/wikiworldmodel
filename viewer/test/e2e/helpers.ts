@@ -9,11 +9,23 @@ export function latestBuild(): string {
   return JSON.parse(readFileSync(join(REPO, 'dist/builds/index.json'), 'utf8')).latest;
 }
 
+/** How long one wait for the view to settle may take before it says what it is still waiting on. */
+const IDLE_MS = 100_000;
+
 /** Wait until the viewer has loaded what the view needs and drawn it, twice in a row. */
 export async function idle(page: Page): Promise<void> {
-  await page.waitForFunction(() => window.__wikiworldmodel?.idle(), null, { polling: 100 });
+  await settle(page);
   await page.waitForTimeout(250);
-  await page.waitForFunction(() => window.__wikiworldmodel?.idle(), null, { polling: 100 });
+  await settle(page);
+}
+
+async function settle(page: Page): Promise<void> {
+  try {
+    await page.waitForFunction(() => window.__wikiworldmodel?.idle(), null, { polling: 100, timeout: IDLE_MS });
+  } catch (e) {
+    const waiting = await page.evaluate(() => window.__wikiworldmodel?.waiting() ?? ['the page']).catch(() => ['the page']);
+    throw new Error(`the view did not settle in ${IDLE_MS / 1000} s: still waiting on ${waiting.join(', ')}`, { cause: e });
+  }
 }
 
 /** The WebGL canvas's own pixels as PNG bytes (no HTML overlays, no fonts). */
