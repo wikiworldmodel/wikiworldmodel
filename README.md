@@ -1,13 +1,9 @@
 # WikiWorldModel
 
-A detailed, sourced history of Earth, life and civilization in four dimensions, from the Solar
-System's first solids to the far future, and a viewer for flying through it. Every fact in it is
-a claim that cites a source, with a locator and a quote, and anything a generator fills in is
-marked as generated. Fly through it at [worldmodelzero.com](https://worldmodelzero.com).
+WikiWorldModel's goal is to create as complete and accurate a simulation of the entire history of Earth, life, and civilization as possible, using a combination of data, modeling, and simulation. Given any _(time, place, scale)_ query, WikiWorldModel returns the best-guess reality of what existed at that place at that time, from the Solar
+System's first solids to the precambrian explosion to the height of the roman empire and into the far future. You can explore it here [wikiworldmodel.org](https://wikiworldmodel.org).
 
-All of it so far was drafted by machines from the sources it cites, and is marked `proposed`
-until a person checks it. Checking claims is the most useful thing a newcomer can do: see
-[CONTRIBUTING.md](CONTRIBUTING.md).
+It is expected that the project is mainly built and maintained by AI agents working at vast scale, under human supervision.
 
 - **Design:** [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md), and [docs/README.md](docs/README.md) for
   a map of every document.
@@ -16,61 +12,6 @@ until a person checks it. Checking claims is the most useful thing a newcomer ca
   world still lacks in [docs/DATA-OUTLINE.md](docs/DATA-OUTLINE.md).
 - **Licenses:** code under [Apache-2.0](LICENSE), records and documentation under
   [CC0 1.0](LICENSE-DATA), datasets under their own terms ([ATTRIBUTION.md](ATTRIBUTION.md)).
-
-## What is built
-
-Eight slices, each a thin piece of the world taken through every layer, from sources to the
-viewer:
-
-- **Cambrian to today** runs through every layer of the design: plates, terrain and
-  coastlines from 540 Ma to the present, with sourced entities, the geologic periods and an
-  alternative time scale you can inspect and switch
-  ([docs/slices/FIRST-SLICE.md](docs/slices/FIRST-SLICE.md)). For the last 798,000 years the coast is today's
-  relief, at a tenth of a degree, under the sea level of each time, so the land bridges of
-  the ice ages open and close; and the last 120,000 years have a climate of their own, every
-  1,000 to 2,000 years.
-- **The whole span** covers all of Earth's history and its far future, coarsely: the
-  Precambrian time scale, continental blocks back to 1,800 Ma from two plate models, global
-  series such as the Sun's brightness and surface temperature, 24 sourced milestones from
-  the Solar System's oldest solids to the Sun's red-giant phase, and a basic tree of life
-  ([docs/slices/SECOND-SLICE.md](docs/slices/SECOND-SLICE.md)).
-- **Earth's states** draws the planet as the world says it was: a proto-Earth, the
-  rock-vapour atmosphere and magma ocean left by the Moon-forming impact, then oceans, and
-  the ice of the Snowball Earths. Each state is a sourced claim; the patterns it is drawn
-  with come from a seeded generator ([docs/slices/THIRD-SLICE.md](docs/slices/THIRD-SLICE.md)).
-- **Rome** is a small slice of human history: the Roman state from its legendary founding to
-  the fall of Constantinople, its borders year by year from the Cliopatria dataset, dates to
-  the day, and ancient texts as sources, with the dates they disagree on
-  ([docs/slices/FOURTH-SLICE.md](docs/slices/FOURTH-SLICE.md)).
-- **Rome the city** goes from the globe down to street level: the city as it stood in 315 CE,
-  from a snapshot of OpenHistoricalMap, 96 monuments written by hand with sources, and a
-  generated fabric of houses and streets, marked as generated, whose density follows the
-  Regionary Catalogues. Monuments rise and fall with their dates, in a 3D view with its own
-  sky, shadows and water ([docs/slices/FIFTH-SLICE.md](docs/slices/FIFTH-SLICE.md)).
-- **Life at a place and a time** paints the land from a climate for every time since the
-  Cambrian and from what had come to exist by then; adds a tree of life beside the globe, whose
-  groups light up their fossils; and lets you fly down into the Hell Creek at 66.5 Ma, a generated
-  floodplain where every animal and plant is a taxon with a fossil in the formation, sized from
-  the literature, and marked as placed by a generator ([docs/slices/SIXTH-SLICE.md](docs/slices/SIXTH-SLICE.md)).
-- **Life anywhere** lets you scroll down over any land at any time since the Cambrian, and the browser
-  makes what lived there: the land and its climate, and plants and animals from an atlas of the
-  Paleobiology Database's fossils, each saying whether it is recorded here, inferred from nearby or a
-  stand-in. Every taxon is drawn from a form on the tree of life, its own or its nearest node's, as data
-  that agents write ([docs/slices/SEVENTH-SLICE.md](docs/slices/SEVENTH-SLICE.md), and the plan in
-  [docs/LIVING-WORLD.md](docs/LIVING-WORLD.md)). The sea has an atlas of its own, of the database's
-  marine genera in the same tiers, which says what lived where but draws nothing yet.
-- **Water** routes each climate's runoff over the land of its time, into rivers and lakes from today
-  back through the glacial cycles and the Phanerozoic, and takes today's rivers wider than 30 m from what
-  Landsat saw. A scene's rivers are the world's, drawn with the channels their flow gives them
-  ([docs/slices/EIGHTH-SLICE.md](docs/slices/EIGHTH-SLICE.md)); [docs/SCENES.md](docs/SCENES.md) is the design for
-  every layer of a natural scene.
-
-Each slice's document, in [docs/slices/](docs/slices/), says what it contains, how it follows
-the design, the decisions behind it and its limitations. Beyond the slices, twenty record sets
-fill in breadth across time, life and civilization; where each stands, with what a reviewer
-should look at first, is in [docs/RECORD-SETS.md](docs/RECORD-SETS.md). The plan for running
-the project in public is in [docs/plans/PUBLIC-PROJECT.md](docs/plans/PUBLIC-PROJECT.md), and the
-site's landing page is in [site/](site/README.md).
 
 ## Quick start
 
