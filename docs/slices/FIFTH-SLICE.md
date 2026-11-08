@@ -30,7 +30,7 @@ It adds:
 
 ## Running it
 
-As for the other slices (see the [README](../README.md)). `npm run fetch` now also downloads
+As for the other slices (see the [README](../../README.md)). `npm run fetch` now also downloads
 one TINITALY tile (43.5 MB), two SRTM tiles (4.8 and 16 MB) and two ETOPO tiles (25 and
 24.5 MB). The build reads what it needs once and caches it in `.cache/import/`.
 
@@ -77,7 +77,7 @@ date on every element and a CC0 dedication. Its Rome is unusually good: mappers 
 the Colosseum, the fora, the baths and the walls from old plans.
 
 A changing database has no stable URL, so the export is kept in
-[`world/snapshots/`](../world/snapshots/) with its query, and the manifest pins its hash. It
+[`world/snapshots/`](../../world/snapshots/) with its query, and the manifest pins its hash. It
 holds what stood before 600 CE within 41.82–41.96°N, 12.38–12.60°E, plus the undated river and
 the island: 854 elements, 380 KB. `npm run world -- ohm-snapshot` exports it again and prints
 what to change in the manifest.
@@ -108,7 +108,7 @@ Ashby (1929), Lanciani (1897), Cassius Dio, Livy, and the Roma Capitale portal. 
 machine-made and proposed.
 
 `form` is a new type of claim, checked against a table of what each form can hold
-(`FORM_PARAMS` in [`core/city.ts`](../core/city.ts)):
+(`FORM_PARAMS` in [`core/city.ts`](../../core/city.ts)):
 
 ```yaml
 form:
@@ -148,7 +148,7 @@ From a few kilometres up the bed is narrower than the terrain's cells, so its wa
 
 ### The forms
 
-[`world/generators/city/forms.ts`](../world/generators/city/forms.ts) raises each of 26 forms
+[`world/generators/city/forms.ts`](../../world/generators/city/forms.ts) raises each of 26 forms
 from a structure's claims: temples with real entablatures and fluted columns, amphitheatres
 with their tiers of arcades, seating and masts for the awning, theatres, circuses with their
 spina, baths with their domes and vaults, porticoes, walls with their towers and gates,
@@ -163,7 +163,7 @@ and bronze, painted procedurally in the shader in metres, so they stay the same 
 
 ### The generated city
 
-[`gen:rome/fabric`](../world/generators/rome/fabric.yaml) fills what the map leaves empty. It
+[`gen:rome/fabric`](../../world/generators/rome/fabric.yaml) fills what the map leaves empty. It
 scatters a jittered grid of block centres inside the Aurelian Walls and more thinly along the
 roads beyond them, cuts them apart with a Voronoi pattern, clips each block away from the
 streets, the river and whatever stands in 315, and cuts it into lots. Each region's lot size
@@ -180,7 +180,7 @@ roots and integer operations, so two engines agree to the bit. Its output is mar
 
 ### Rendering
 
-[`viewer/src/gl/city.ts`](../viewer/src/gl/city.ts) is a second renderer, on WebGL 2, drawn over
+[`viewer/src/gl/city.ts`](../../viewer/src/gl/city.ts) is a second renderer, on WebGL 2, drawn over
 the globe and fading in as the camera comes down:
 
 - the sky from a small atmospheric scattering table, with aerial haze between the eye and what
@@ -197,7 +197,7 @@ the globe and fading in as the camera comes down:
 Faces are drawn from both sides in every pass, and turned by the mesh to face the way their normal
 says, so nothing can be seen through by being looked at from behind. Names are placed above each
 structure as raised, and shown only if a line of sight reaches them: every building's outline is
-kept as walls of its height, in buckets ([`viewer/src/city/skyline.ts`](../viewer/src/city/skyline.ts)).
+kept as walls of its height, in buckets ([`viewer/src/city/skyline.ts`](../../viewer/src/city/skyline.ts)).
 
 Earth's curve is applied in the shaders, so the horizon falls away, and vertices are sent to
 the GPU relative to the eye, so nothing shakes at street level. Each mesh's vertices carry an

@@ -1,1 +1,3 @@
 @AGENTS.md
+@CONTRIBUTING.md
+@docs/RECORDS.md

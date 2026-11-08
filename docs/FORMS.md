@@ -2,7 +2,7 @@
 
 A form is what a taxon's body is like, as data on a node of the tree of life. This is the brief for an agent, or a
 person, writing them. The plan they serve is [LIVING-WORLD.md](LIVING-WORLD.md); the rules in
-[AGENTS.md](../AGENTS.md) all apply. A form is a claim like any other: never invent a source, and everything a machine
+[CONTRIBUTING.md](../CONTRIBUTING.md) all apply. A form is a claim like any other: never invent a source, and everything a machine
 writes is `proposed`.
 
 The aim is every taxon, over time. A taxon with no form of its own is drawn as the nearest node above it that has one,

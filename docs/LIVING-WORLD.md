@@ -1,7 +1,7 @@
 # The living world: zoom in anywhere and see what lived there
 
-Status: the plan, November 2026. What is built of it is in [SEVENTH-SLICE.md](SEVENTH-SLICE.md). It
-follows from the [roadmap's](ROADMAP.md) aim: at any place and any time, the ground, the plants and the
+Status: the plan, November 2026. What is built of it is in [SEVENTH-SLICE.md](slices/SEVENTH-SLICE.md). It
+follows from the [roadmap's](archive/ROADMAP.md) aim: at any place and any time, the ground, the plants and the
 animals of that place and moment, and honest about which is which.
 
 ## The idea
@@ -106,7 +106,7 @@ checking these rules offline, not for the viewer.
   biome's colour on the globe, each about the colour of the next.
 - **The ground follows what is known.** The field's heights where it has them, invented detail below that,
   and marked as invented. Rivers are the world's: where Landsat saw them, and where the drainage routes them over the
-  land, with only their bends invented ([EIGHTH-SLICE.md](EIGHTH-SLICE.md)). [SCENES.md](SCENES.md) takes the
+  land, with only their bends invented ([EIGHTH-SLICE.md](slices/EIGHTH-SLICE.md)). [SCENES.md](SCENES.md) takes the
   same approach to every layer of a natural scene.
 - **Budgets, not hopes.** A frame draws at most so many instances and triangles, whatever the world holds.
 

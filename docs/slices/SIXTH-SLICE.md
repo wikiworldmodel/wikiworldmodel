@@ -1,7 +1,7 @@
 # Sixth slice: life at a place and a time
 
 Status: built and passing its tests. It is the first three steps of the
-[roadmap](ROADMAP.md): what covered the land at any time, the tree of life beside the globe, and
+[roadmap](../archive/ROADMAP.md): what covered the land at any time, the tree of life beside the globe, and
 one place and moment you can fly down into and see what lived there, the way Rome stands in 315 CE.
 
 It adds:
@@ -31,7 +31,7 @@ It adds:
 
 ## Running it
 
-As for the other slices (see the [README](../README.md)). `npm run fetch` now also downloads the
+As for the other slices (see the [README](../../README.md)). `npm run fetch` now also downloads the
 climate runs (754 MB). The build reads them once a time and keeps nothing it does not use: the
 climate file it writes is 5.4 MB.
 
@@ -67,7 +67,7 @@ The roadmap's "done when", each with where it is checked. Every test named here 
 Four of the globe's golden images changed, as they should: `today`, `k-pg-boundary`, `pangaea-280ma` and
 `roman-empire-120` now show biomes instead of land coloured by its height. `magma-ocean` and
 `sturtian-snowball` did not change by a pixel, nor did Rome's views. Those four's marker files gained the
-records of those times, most of them from the [record sets](RECORD-SETS.md), and a few dots moved down as
+records of those times, most of them from the [record sets](../RECORD-SETS.md), and a few dots moved down as
 others came to sit beside them: Rome's, and Chicxulub's by 17 px, and writing's in Mesopotamia by 51.
 
 ## What was built
@@ -206,7 +206,7 @@ reaches the shader as years from the slice, which 32-bit floats hold finely.
 
 ## Next
 
-- the rest of the twenty [record sets](ROADMAP.md), in order;
+- the rest of the twenty [record sets](../archive/ROADMAP.md), in order;
 - a second scene, to prove the parameters: the Morrison Formation, say;
 - competing climates on the globe, with Valdes et al. if a license turns up;
 - lithologic indicators against the biomes, wherever a license allows;

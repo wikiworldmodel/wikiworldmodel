@@ -1,7 +1,7 @@
 # Example world data (format stress test)
 
 Hand-written sample records for every record type in
-[docs/WORLD-MODEL.md](../docs/WORLD-MODEL.md), laid out as its section 10
+[docs/WORLD-MODEL.md](../../WORLD-MODEL.md), laid out as its section 10
 proposes. They exist to find where the format is underspecified. **They are
 not data**: sources are real works, but values, locators and external IDs are
 unchecked, and anything marked `# illustrative` is invented.
@@ -13,7 +13,7 @@ choice made here and the alternatives.
 Run the reference checker:
 
 ```bash
-python3 examples/check.py
+python3 docs/archive/examples/check.py
 ```
 
 ## Conventions these records assume (none are in the doc yet)

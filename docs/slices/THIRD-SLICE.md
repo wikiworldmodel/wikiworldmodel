@@ -27,7 +27,7 @@ It adds:
 
 ## Running it
 
-As for the other slices (see the [README](../README.md)). Nothing new is fetched.
+As for the other slices (see the [README](../../README.md)). Nothing new is fetched.
 
 ## Pass criteria
 

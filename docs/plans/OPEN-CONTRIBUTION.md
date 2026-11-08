@@ -80,7 +80,7 @@ The major risks, and how each is held:
    the larger risk for a project written mostly by agents. *Here:* AGENTS.md tells agents to "Read
    three or four records near yours" and to "copy the pattern from a neighbour"; a new way of
    holding data, a field of rows, appeared in five record sets (10, 12, 13, 15 and 18) in a single
-   commit, before anyone had judged it ([RECORD-SETS.md](RECORD-SETS.md)). *Control:* new forms go
+   commit, before anyone had judged it ([RECORD-SETS.md](../RECORD-SETS.md)). *Control:* new forms go
    to a person (section 5); agents copy a curated cookbook, never neighbours; new terms start on
    probation.
 3. **The rules changed by those they govern.** An agent whose records fail a check finds it

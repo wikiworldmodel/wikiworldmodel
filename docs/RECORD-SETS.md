@@ -1,9 +1,9 @@
 # The record sets
 
-Status: where each of the [roadmap's](ROADMAP.md) twenty record sets stands, what it added, and what a
+Status: where each of the [roadmap's](archive/ROADMAP.md) twenty record sets stands, what it added, and what a
 reviewer should look at first. All of it was written by machines and is `proposed`: nothing here has
 been checked by a person, which is set 20. The three steps that come out of sets 1–3 are in
-[SIXTH-SLICE.md](SIXTH-SLICE.md).
+[SIXTH-SLICE.md](slices/SIXTH-SLICE.md).
 
 | # | Set | Stands | Where |
 |---|---|---|---|
@@ -61,7 +61,7 @@ into one binary file, `people.lwt` (`peopleLayer` in `tools/world/src/build/laye
 - **What it says.** The legend says *reconstruction* and *not a count*, and gives the scale. A click on the land gives the cell's people, its density,
   what HYDE gives at the steps on either side, the authors' range at that time, and how the people were placed. Numbers come from the
   snapshot and the field's `params`: the scale and the range are in `world/fields/earth/population.yaml`, not in code.
-- **A snapshot, not the archive.** [AGENTS.md](../AGENTS.md) says a different file is a different dataset, so this is one:
+- **A snapshot, not the archive.** [CONTRIBUTING.md](../CONTRIBUTING.md) says a different file is a different dataset, so this is one:
   `src:hyde-3.2.1-population-grid` has its own id, file and sha256, its title and credit say the cells were added up, and its header lists each
   of the 74 members it came from with its CRC-32 and sha256. It stands in for nothing pinned, and it is what that rule asks for: the rule forbids
   swapping a file under a pinned id, not deriving a new one. Pinning the archive instead was weighed and refused. It is 5.3 GB, four times every other dataset
@@ -341,7 +341,7 @@ A reviewer should look at these first:
 
 ### The first forms
 
-Written by agents, one to each branch of the tree of life, for the [seventh slice](SEVENTH-SLICE.md). All of it is `proposed`, and a form is
+Written by agents, one to each branch of the tree of life, for the [seventh slice](slices/SEVENTH-SLICE.md). All of it is `proposed`, and a form is
 a machine's reconstruction unless its claim cites a source. Most forms were drawn from published skeletal figures and silhouettes that an agent looked
 at; a few from memory, which their claims say. A reviewer should look at a form's sheet (`npm run world -- form-sheet <taxon>`) next to a skeletal drawing.
 

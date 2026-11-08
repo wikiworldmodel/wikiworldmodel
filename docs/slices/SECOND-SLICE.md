@@ -29,7 +29,7 @@ The slice covers 4,600 Ma to 7.6 Gyr from now, with:
 
 ## Running it
 
-As for the first slice (see the [README](../README.md)). `npm run fetch` now downloads four
+As for the first slice (see the [README](../../README.md)). `npm run fetch` now downloads four
 datasets.
 
 ## Pass criteria
@@ -88,7 +88,7 @@ level. A build is 157 tiles (21 coarse, 136 fine), 63 MB uncompressed.
 - **Warp.** Logarithmic in distance from the present on both sides, log(1 + |age| / c), with
   c an eighth of the window's span, capped at 50 Myr. Windows in the past up to 400 Myr wide
   map exactly as before. (Since replaced by a fixed scale that gives recent history room: see
-  [`timescale.ts`](../viewer/src/ui/timescale.ts).)
+  [`timescale.ts`](../../core/timescale.ts).)
 - **Ticks** are chosen along the strip, so they space evenly whatever the warp. Future ages
   are marked +.
 - **Track.** A row below the bands marks every dated record: point at one for its name and

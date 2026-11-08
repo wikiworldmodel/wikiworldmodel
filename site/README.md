@@ -3,7 +3,7 @@
 The public site's front page: a still from the viewer with a way into it, what the world holds,
 and how to contribute. It is plain HTML, CSS and a few lines of script, with no build step.
 
-On the site (see [docs/PUBLIC-PROJECT.md](../docs/PUBLIC-PROJECT.md), section 7) it is served at
+On the site (see [docs/plans/PUBLIC-PROJECT.md](../docs/plans/PUBLIC-PROJECT.md), section 7) it is served at
 `/`, with the viewer (`dist/site`, from `npm run build:viewer`) at `/world/` and the builds
 beside it at `/world/builds/`. Its links into the viewer are relative, so they work wherever the
 two are served together.
@@ -31,7 +31,8 @@ project `worldmodelzero`, once the build's checks pass: `master` to production o
 and any other branch to a preview at `<branch>.worldmodelzero.pages.dev` when the workflow is
 run on it by hand (Actions → Build → Run workflow). `_headers` sets the
 caching: a build's files never change, so they are cached for a year; the index naming the
-latest build is not cached.
+latest build is not cached. The build's `ATTRIBUTION.md`, crediting every dataset it reads, is
+served at `/ATTRIBUTION.md`.
 
 Setting it up, once, in Cloudflare and GitHub:
 

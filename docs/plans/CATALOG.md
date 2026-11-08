@@ -12,9 +12,9 @@ Five places say what is built and what remains, and they overlap:
 
 | Where | Says | Kept by |
 |---|---|---|
-| [DATA-OUTLINE.md](DATA-OUTLINE.md) | 140 needs by domain, each ✓ ◐ ○, with candidate sources and licences; twenty places to start | hand |
-| [ROADMAP.md](ROADMAP.md) | twenty record sets in order, with a "Stands" column | hand |
-| [RECORD-SETS.md](RECORD-SETS.md) | the same twenty sets, where each stands, what to review first | hand |
+| [DATA-OUTLINE.md](../DATA-OUTLINE.md) | 140 needs by domain, each ✓ ◐ ○, with candidate sources and licences; twenty places to start | hand |
+| [ROADMAP.md](../archive/ROADMAP.md) | twenty record sets in order, with a "Stands" column | hand |
+| [RECORD-SETS.md](../RECORD-SETS.md) | the same twenty sets, where each stands, what to review first | hand |
 | the slice documents | what each slice built, its pass criteria and its "Next" | hand |
 | `coverage.json`, `forms-wanted` | unsourced claims, wanted records, basis by tile; taxa that most want a form | the build |
 

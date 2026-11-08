@@ -1,0 +1,24 @@
+name: A source or a dataset to bring in
+description: Suggest a work, a database or a dataset the world should draw on.
+title: "Source: "
+labels: [source]
+body:
+  - type: input
+    id: work
+    attributes:
+      label: The work or dataset
+      description: Its citation, and a link or DOI.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: What it would add
+      description: Which part of the world, which place and time, and what it would replace or corroborate (docs/DATA-OUTLINE.md lists what is wanted).
+    validations:
+      required: true
+  - type: input
+    id: license
+    attributes:
+      label: Its license, if you know it
+      description: A dataset the build reads must be CC0, CC BY or public domain. A work under other terms can still be cited.

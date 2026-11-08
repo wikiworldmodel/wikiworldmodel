@@ -1,14 +1,31 @@
 # WikiWorldModel
 
-A detailed, sourced history of Earth, life and civilization in four dimensions, and a viewer
-for flying through it. The design is in [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md).
+A detailed, sourced history of Earth, life and civilization in four dimensions, from the Solar
+System's first solids to the far future, and a viewer for flying through it. Every fact in it is
+a claim that cites a source, with a locator and a quote, and anything a generator fills in is
+marked as generated. Fly through it at [worldmodelzero.com](https://worldmodelzero.com).
 
-Seven slices are built:
+All of it so far was drafted by machines from the sources it cites, and is marked `proposed`
+until a person checks it. Checking claims is the most useful thing a newcomer can do: see
+[CONTRIBUTING.md](CONTRIBUTING.md).
+
+- **Design:** [docs/WORLD-MODEL.md](docs/WORLD-MODEL.md), and [docs/README.md](docs/README.md) for
+  a map of every document.
+- **Contributing:** [CONTRIBUTING.md](CONTRIBUTING.md) for everyone, and [AGENTS.md](AGENTS.md)
+  for AI agents. How to write a record is in [docs/RECORDS.md](docs/RECORDS.md), and what the
+  world still lacks in [docs/DATA-OUTLINE.md](docs/DATA-OUTLINE.md).
+- **Licenses:** code under [Apache-2.0](LICENSE), records and documentation under
+  [CC0 1.0](LICENSE-DATA), datasets under their own terms ([ATTRIBUTION.md](ATTRIBUTION.md)).
+
+## What is built
+
+Eight slices, each a thin piece of the world taken through every layer, from sources to the
+viewer:
 
 - **Cambrian to today** runs through every layer of the design: plates, terrain and
   coastlines from 540 Ma to the present, with sourced entities, the geologic periods and an
   alternative time scale you can inspect and switch
-  ([docs/FIRST-SLICE.md](docs/FIRST-SLICE.md)). For the last 798,000 years the coast is today's
+  ([docs/slices/FIRST-SLICE.md](docs/slices/FIRST-SLICE.md)). For the last 798,000 years the coast is today's
   relief, at a tenth of a degree, under the sea level of each time, so the land bridges of
   the ice ages open and close; and the last 120,000 years have a climate of their own, every
   1,000 to 2,000 years.
@@ -16,49 +33,44 @@ Seven slices are built:
   Precambrian time scale, continental blocks back to 1,800 Ma from two plate models, global
   series such as the Sun's brightness and surface temperature, 24 sourced milestones from
   the Solar System's oldest solids to the Sun's red-giant phase, and a basic tree of life
-  ([docs/SECOND-SLICE.md](docs/SECOND-SLICE.md)).
+  ([docs/slices/SECOND-SLICE.md](docs/slices/SECOND-SLICE.md)).
 - **Earth's states** draws the planet as the world says it was: a proto-Earth, the
   rock-vapour atmosphere and magma ocean left by the Moon-forming impact, then oceans, and
   the ice of the Snowball Earths. Each state is a sourced claim; the patterns it is drawn
-  with come from a seeded generator ([docs/THIRD-SLICE.md](docs/THIRD-SLICE.md)).
+  with come from a seeded generator ([docs/slices/THIRD-SLICE.md](docs/slices/THIRD-SLICE.md)).
 - **Rome** is a small slice of human history: the Roman state from its legendary founding to
   the fall of Constantinople, its borders year by year from the Cliopatria dataset, dates to
   the day, and ancient texts as sources, with the dates they disagree on
-  ([docs/FOURTH-SLICE.md](docs/FOURTH-SLICE.md)).
+  ([docs/slices/FOURTH-SLICE.md](docs/slices/FOURTH-SLICE.md)).
 - **Rome the city** goes from the globe down to street level: the city as it stood in 315 CE,
   from a snapshot of OpenHistoricalMap, 96 monuments written by hand with sources, and a
   generated fabric of houses and streets, marked as generated, whose density follows the
   Regionary Catalogues. Monuments rise and fall with their dates, in a 3D view with its own
-  sky, shadows and water ([docs/FIFTH-SLICE.md](docs/FIFTH-SLICE.md)).
+  sky, shadows and water ([docs/slices/FIFTH-SLICE.md](docs/slices/FIFTH-SLICE.md)).
 - **Life at a place and a time** paints the land from a climate for every time since the
   Cambrian and from what had come to exist by then; adds a tree of life beside the globe, whose
   groups light up their fossils; and lets you fly down into the Hell Creek at 66.5 Ma, a generated
   floodplain where every animal and plant is a taxon with a fossil in the formation, sized from
-  the literature, and marked as placed by a generator ([docs/SIXTH-SLICE.md](docs/SIXTH-SLICE.md)).
+  the literature, and marked as placed by a generator ([docs/slices/SIXTH-SLICE.md](docs/slices/SIXTH-SLICE.md)).
 - **Life anywhere** lets you scroll down over any land at any time since the Cambrian, and the browser
   makes what lived there: the land and its climate, and plants and animals from an atlas of the
   Paleobiology Database's fossils, each saying whether it is recorded here, inferred from nearby or a
   stand-in. Every taxon is drawn from a form on the tree of life, its own or its nearest node's, as data
-  that agents write ([docs/SEVENTH-SLICE.md](docs/SEVENTH-SLICE.md), and the plan in
+  that agents write ([docs/slices/SEVENTH-SLICE.md](docs/slices/SEVENTH-SLICE.md), and the plan in
   [docs/LIVING-WORLD.md](docs/LIVING-WORLD.md)). The sea has an atlas of its own, of the database's
   marine genera in the same tiers, which says what lived where but draws nothing yet.
 - **Water** routes each climate's runoff over the land of its time, into rivers and lakes from today
   back through the glacial cycles and the Phanerozoic, and takes today's rivers wider than 30 m from what
   Landsat saw. A scene's rivers are the world's, drawn with the channels their flow gives them
-  ([docs/EIGHTH-SLICE.md](docs/EIGHTH-SLICE.md)); [docs/SCENES.md](docs/SCENES.md) is the design for
+  ([docs/slices/EIGHTH-SLICE.md](docs/slices/EIGHTH-SLICE.md)); [docs/SCENES.md](docs/SCENES.md) is the design for
   every layer of a natural scene.
 
-Each document says what its slice contains, how it follows the design, the decisions behind
-it and its limitations. Hand-written example records for every record type, and the gaps
-they exposed in the design, are in [examples/](examples/README.md).
-
-The plan for opening the project to contributors and putting it on a public site is in
-[docs/PUBLIC-PROJECT.md](docs/PUBLIC-PROJECT.md), and the site's landing page is in
-[site/](site/README.md). To contribute, people and agents alike, start with
-[CONTRIBUTING.md](CONTRIBUTING.md) and [AGENTS.md](AGENTS.md); what the world still lacks is
-outlined in [docs/DATA-OUTLINE.md](docs/DATA-OUTLINE.md), what comes next in
-[docs/ROADMAP.md](docs/ROADMAP.md), and where each of its record sets stands, with what a reviewer
-should look at first, in [docs/RECORD-SETS.md](docs/RECORD-SETS.md).
+Each slice's document, in [docs/slices/](docs/slices/), says what it contains, how it follows
+the design, the decisions behind it and its limitations. Beyond the slices, twenty record sets
+fill in breadth across time, life and civilization; where each stands, with what a reviewer
+should look at first, is in [docs/RECORD-SETS.md](docs/RECORD-SETS.md). The plan for running
+the project in public is in [docs/plans/PUBLIC-PROJECT.md](docs/plans/PUBLIC-PROJECT.md), and the
+site's landing page is in [site/](site/README.md).
 
 ## Quick start
 
@@ -118,6 +130,8 @@ CI runs in three tiers, so that the checks on a pull request stay quick as the w
 - **Build** (`build.yml`), when master changes, when a pull request changes how the world is
   built, and by hand: every dataset, `npm run build:world`, `npm run test:build`, the viewer,
   and on master the site's deployment. It builds the world once.
+- **DCO** (`dco.yml`), on every pull request: every commit is signed off (see
+  [CONTRIBUTING.md](CONTRIBUTING.md#pull-requests)).
 - **Nightly** (`nightly.yml`), and by hand: the world built again and compared in meaning, its numbers
   within a tolerance (`npm run test:reproducible`), and the browser tests against their goldens, in three groups that can also be run alone with `--project`: `globe`, `city` (the city's
   behaviour, drawn the fast way) and `city-views` (the city at full quality, minutes a view in
@@ -137,4 +151,13 @@ After an intended change to the renderer or the world, regenerate the golden ren
 | `core/` | runtime code shared by the build and the viewer |
 | `tools/world/` | fetch, import, validate and build |
 | `viewer/` | the viewer |
-| `examples/` | example records for every record type, the gaps they found, and their checker |
+| `site/` | the public site's landing page |
+| `docs/` | the design, the guides for contributors, the slices' records and the plans ([docs/README.md](docs/README.md)) |
+
+## License
+
+The code is under the [Apache License 2.0](LICENSE). The records, vocabularies, schemas and
+documentation are dedicated to the public domain under [CC0 1.0](LICENSE-DATA), so they can be
+reused anywhere, Wikidata and OpenHistoricalMap included. Quotes inside records stay under their
+works' terms. The datasets the build reads keep their own licenses (CC BY, CC0 or public domain)
+and are credited in [ATTRIBUTION.md](ATTRIBUTION.md), as each build credits them in the viewer.
