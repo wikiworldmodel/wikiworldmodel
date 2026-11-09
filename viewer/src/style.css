@@ -249,7 +249,7 @@ html { touch-action: manipulation; overscroll-behavior-y: none; }
   .citybar button { padding: 7px 10px; }
   .life-here { white-space: normal; text-align: left; }
   .citybar .city-help { width: 30px; height: 30px; cursor: pointer; }
-  .city-enter { bottom: 40px; width: max-content; max-width: calc(100% - 24px); }
+  .city-enter { bottom: 30px; width: max-content; max-width: calc(100% - 24px); }
   /* The time keeps to one line beside its buttons: the names of its periods give way first. */
   .tb-readout { display: flex; align-items: baseline; min-width: 0; white-space: nowrap; }
   .tb-readout strong { flex: none; }
