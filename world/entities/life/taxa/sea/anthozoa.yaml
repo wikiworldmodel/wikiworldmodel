@@ -1,0 +1,37 @@
+id: life/taxa/anthozoa
+kind: taxon
+summary: >-
+  The anthozoans: corals and sea anemones, polyps of the sea floor with a ring of tentacles round the mouth; the corals build
+  skeletons of lime, most of them as colonies.
+same_as: { pbdb: "txn:4742" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Anthozoa, en: "corals and sea anemones" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: coral
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a massive coral colony with a few branches, from general knowledge; no figure was
+      compared with it. It stands for the colonial corals of every shape, and for the sea anemones, which have no skeleton and
+      are drawn as this.
+  length:
+    prop: body_length
+    value: { lo: 0.005, hi: 2 }
+    source:
+      - ref: src:zapalski-2025-gotland-corals
+        loc: "Results, \"Corals\""
+        quote: "Both solitary and colonial rugosans are small (corallite diameters of ~ 0.5 to 1.5 cm)"
+      - ref: src:coward-2020-tau-porites
+        loc: "Abstract"
+        quote: "an effort to catalogue all large (≥ 2 m diameter) Porites colonies around Ta'u"
+    method: compilation
+    note: >-
+      The colony's width, or a solitary coral's length, from small Silurian corals of half a centimetre across to the two metres
+      above which a survey of living Porites counted a colony large. Larger colonies are known, the largest in that survey 22.4 m
+      across, and lie outside the range, which stands for the ordinary run of corals.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC12661038.txt (sha256 866681243c304709), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

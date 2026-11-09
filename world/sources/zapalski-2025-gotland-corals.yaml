@@ -1,0 +1,26 @@
+id: src:zapalski-2025-gotland-corals
+type: publication
+kind: measurement
+citation: >-
+  Zapalski, M.K., Król, J.J., Łuczyński, P., Skompski, S., Berkowski, B. & Morgan, K. (2025). The oldest "brown mesophotic"
+  coral-stromatoporoid ecosystem from the Silurian of Gotland was functionally similar to modern turbid reefs. Scientific Reports
+  15, 42506.
+authors:
+  - "Zapalski, M.K."
+  - "Król, J.J."
+  - "Łuczyński, P."
+  - "Skompski, S."
+  - "Berkowski, B."
+  - "Morgan, K."
+published: 2025
+title: >-
+  The oldest "brown mesophotic" coral-stromatoporoid ecosystem from the Silurian of Gotland was functionally similar to modern
+  turbid reefs
+container: "Scientific Reports 15, 42506"
+doi: 10.1038/s41598-025-26596-8
+reliability: The sizes quoted are of the corals of one Silurian formation on Gotland, measured by the authors.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC12661038) on 9 November 2026; citation and authors checked against Crossref. The quote
+    checked by script against the text taken from the XML.

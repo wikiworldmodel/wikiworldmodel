@@ -1,0 +1,35 @@
+id: life/taxa/eurypterida
+kind: taxon
+summary: >-
+  The eurypterids or sea scorpions: chelicerates of the Palaeozoic seas, lagoons and rivers, among them the largest arthropods
+  known.
+same_as: { pbdb: "txn:18947" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Eurypterida, en: "sea scorpions" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: eurypterid
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a swimming eurypterid with paddles and a spiked tail, from general knowledge; no
+      figure was compared with it. The great pterygotids with long claws, and the walking forms without paddles, are drawn as this.
+  length:
+    prop: body_length
+    value: { lo: 0.0203, hi: 2.5 }
+    source:
+      - ref: src:wikipedia-eurypterid
+        loc: "lead"
+        quote: "the smallest eurypterid, Alkenopterus, was only 2.03 centimeters (0.80 in) long"
+      - ref: src:wikipedia-eurypterid
+        loc: "lead"
+        quote: "The largest, Jaekelopterus, reached 2.5 meters (8.2 ft) in length."
+    method: compilation
+    note: >-
+      From the smallest eurypterid to the largest, in an encyclopedia's words, cited for lack of a work that could be read. The
+      same sentence says most species were under 20 cm.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wiki-Eurypterid.txt (sha256 aafd1e5906d269f0), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

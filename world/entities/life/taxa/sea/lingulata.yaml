@@ -1,0 +1,25 @@
+id: life/taxa/lingulata
+kind: taxon
+summary: >-
+  The lingulates: brachiopods with tongue-shaped shells of phosphate and a long fleshy stalk, most of them burrowers in soft
+  sediment; Lingula still lives.
+same_as: { pbdb: "txn:26323" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Lingulata }
+    unsourced: "The classification's own name."
+  form:
+    prop: body_form
+    value:
+      mass_length: 28
+      parts:
+        shell: { rings: [[0, -0.36, 0.06, 0.04, 0.03], [0, -0.32, 0.065, 0.12, 0.05], [0, -0.22, 0.07, 0.17, 0.065], [0, -0.05, 0.075, 0.19, 0.07], [0, 0.12, 0.075, 0.2, 0.07], [0, 0.26, 0.075, 0.2, 0.065], [0, 0.34, 0.07, 0.18, 0.05], [0, 0.38, 0.068, 0.1, 0.03]] }
+        seam: { rings: [[0, -0.36, 0.06, 0.044, 0.008], [0, -0.32, 0.065, 0.125, 0.008], [0, -0.22, 0.07, 0.176, 0.008], [0, -0.05, 0.075, 0.196, 0.008], [0, 0.12, 0.075, 0.206, 0.008], [0, 0.26, 0.075, 0.206, 0.008], [0, 0.34, 0.07, 0.186, 0.008], [0, 0.38, 0.068, 0.105, 0.008]] }
+        beak: null
+        stalk: { points: [[0, -0.36, 0.06, 0.03], [0, -0.44, 0.04, 0.026], [0, -0.5, 0.01, 0.024]] }
+    unsourced: >-
+      A machine's reconstruction: the brachiopod's shell made long, narrow and flat, without a beak, with a long stalk behind, from
+      general knowledge of Lingula; no figure was compared with it. It is drawn lying on the bottom, where a living one stands in a
+      burrow with only its front edge showing.

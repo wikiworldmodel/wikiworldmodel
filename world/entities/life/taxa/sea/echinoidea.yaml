@@ -1,0 +1,31 @@
+id: life/taxa/echinoidea
+kind: taxon
+summary: >-
+  The sea urchins and their kin, the sand dollars and heart urchins: echinoderms in a rigid shell of plates covered in spines.
+same_as: { pbdb: "txn:168786" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Echinoidea, en: "sea urchins" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: echinoid
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a round, spiny, regular sea urchin, from general knowledge; no figure was compared
+      with it. The flat sand dollars and the heart urchins, which burrow, are drawn as this.
+  length:
+    prop: body_length
+    value: { lo: 0.03, hi: 0.36 }
+    source:
+      ref: src:wikipedia-sea-urchin
+      loc: "section \"Description\""
+      quote: "Urchins typically range in size from 3 to 10 cm (1 to 4 in), but the largest species can reach up to 36 cm (14 in)."
+    method: compilation
+    note: >-
+      The shell's diameter, from the usual smallest to the largest, in an encyclopedia's words, cited for lack of a work that could
+      be read; some are smaller than the lower end.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wiki-Sea-urchin.txt (sha256 240a16c8129d443c), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

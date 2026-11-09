@@ -1,0 +1,19 @@
+id: src:vermeij-2016-gigantism
+type: publication
+kind: compilation
+citation: >-
+  Vermeij, G.J. (2016). Gigantism and Its Implications for the History of Life. PLOS ONE 11(1), e0146092.
+authors:
+  - "Vermeij, G.J."
+published: 2016
+title: Gigantism and Its Implications for the History of Life
+container: "PLOS ONE 11(1), e0146092"
+doi: 10.1371/journal.pone.0146092
+reliability: >-
+  A compilation of the largest known members of ecological categories and of major clades, each from a cited work, which was not
+  read here. The sizes are the greatest linear dimension the author gives, of whatever part the cited work measured.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC4714876) on 8 November 2026, its tables included; citation and authors checked
+    against Crossref. Each quote checked by script against the text taken from the XML.

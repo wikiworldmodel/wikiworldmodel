@@ -1,0 +1,29 @@
+description: >-
+  A brachiopod: a shell of two unequal valves, one over the other, the lower with a beak that curls up over the hinge at the
+  back and a short fleshy stalk coming out of it to hold on to the bottom; it lies on the sea floor with the front edge, where
+  it gapes to feed, forward. Its length is the shell's greatest dimension, as sources give it.
+kind: animal
+hip: 0.3
+mass_length: 200
+behave: { group: [3, 20], habitat: floor, poses: [rest] }
+parts:
+  shell:
+    type: tube
+    zl: true
+    mat: shell
+    sides: [12, 6]
+    rings: [[0, -0.42, 0.16, 0.05, 0.06], [0, -0.37, 0.17, 0.19, 0.13], [0, -0.26, 0.2, 0.34, 0.19], [0, -0.11, 0.225, 0.45, 0.22], [0, 0.04, 0.23, 0.5, 0.22], [0, 0.19, 0.23, 0.48, 0.2], [0, 0.31, 0.225, 0.4, 0.16], [0, 0.4, 0.22, 0.27, 0.11], [0, 0.45, 0.215, 0.12, 0.05]]
+  seam:
+    type: tube
+    zl: true
+    mat: dark
+    near: true
+    sides: [12, 4]
+    rings: [[0, -0.42, 0.16, 0.055, 0.008], [0, -0.37, 0.17, 0.196, 0.008], [0, -0.26, 0.2, 0.348, 0.008], [0, -0.11, 0.225, 0.459, 0.008], [0, 0.04, 0.23, 0.51, 0.008], [0, 0.19, 0.23, 0.49, 0.008], [0, 0.31, 0.225, 0.409, 0.008], [0, 0.4, 0.22, 0.277, 0.008], [0, 0.45, 0.215, 0.125, 0.008]]
+  beak:
+    type: tube
+    zl: true
+    mat: shell
+    sides: [7, 4]
+    rings: [[0, -0.33, 0.25, 0.11, 0.1], [0, -0.42, 0.32, 0.065, 0.065], [0, -0.455, 0.385, 0.03, 0.03]]
+  stalk: { type: chain, zl: true, near: true, mat: hide, sides: [4, 3], points: [[0, -0.465, 0.37, 0.018], [0, -0.53, 0.18, 0.016], [0, -0.55, 0.01, 0.022]] }

@@ -1,0 +1,25 @@
+id: src:sun-2019-cetacean-body-size
+type: publication
+kind: review
+citation: >-
+  Sun, Y., Liu, Y., Sun, X., Lin, Y., Yin, D., Xu, S. & Yang, G. (2019). Insights into body size variation in cetaceans from the
+  evolution of body-size-related genes. BMC Evolutionary Biology 19, 157.
+authors:
+  - "Sun, Y."
+  - "Liu, Y."
+  - "Sun, X."
+  - "Lin, Y."
+  - "Yin, D."
+  - "Xu, S."
+  - "Yang, G."
+published: 2019
+title: Insights into body size variation in cetaceans from the evolution of body-size-related genes
+container: "BMC Evolutionary Biology 19, 157"
+doi: 10.1186/s12862-019-1461-9
+reliability: >-
+  A genetic study; the sizes quoted are its introduction's, of living cetaceans, from the works it cites, which were not read.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC6660953) on 9 November 2026; citation and authors checked against Crossref. The
+    quotes checked by script against the text taken from the XML.

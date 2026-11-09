@@ -1,0 +1,24 @@
+id: src:sun-2025-trilobite-body-size
+type: publication
+kind: measurement
+citation: >-
+  Sun, Z., Zhao, F., Zeng, H., Erwin, D.H. & Zhu, M. (2025). Episodic body size variations of early Paleozoic trilobites associated
+  with marine redox changes. Science Advances 11(18), eadt7572.
+authors:
+  - "Sun, Z."
+  - "Zhao, F."
+  - "Zeng, H."
+  - "Erwin, D.H."
+  - "Zhu, M."
+published: 2025
+title: Episodic body size variations of early Paleozoic trilobites associated with marine redox changes
+container: "Science Advances 11(18), eadt7572"
+doi: 10.1126/sciadv.adt7572
+reliability: >-
+  The lengths of 4,732 trilobite specimens measured from published figures; the range quoted is the paper's introduction, citing
+  the smallest and largest species it knows.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC12047424) on 8 November 2026; citation and authors checked against Crossref. The quote
+    checked by script against the text taken from the XML.

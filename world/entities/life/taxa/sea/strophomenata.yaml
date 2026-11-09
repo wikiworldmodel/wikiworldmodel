@@ -1,0 +1,25 @@
+id: life/taxa/strophomenata
+kind: taxon
+summary: >-
+  The strophomenates: brachiopods of the Palaeozoic with a wide straight hinge and a flat, concavo-convex shell, among them the
+  productids, which lay on the sea floor propped on spines.
+same_as: { pbdb: "txn:65923" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Strophomenata }
+    unsourced: "The classification's own name."
+  form:
+    prop: body_form
+    value:
+      mass_length: 110
+      parts:
+        shell: { rings: [[0, -0.43, 0.08, 0.1, 0.03], [0, -0.4, 0.09, 0.45, 0.05], [0, -0.32, 0.11, 0.5, 0.08], [0, -0.18, 0.13, 0.5, 0.11], [0, -0.02, 0.14, 0.48, 0.12], [0, 0.14, 0.14, 0.44, 0.115], [0, 0.27, 0.135, 0.37, 0.095], [0, 0.37, 0.13, 0.27, 0.07], [0, 0.44, 0.125, 0.13, 0.035]] }
+        seam: { rings: [[0, -0.43, 0.08, 0.105, 0.008], [0, -0.4, 0.09, 0.459, 0.008], [0, -0.32, 0.11, 0.51, 0.008], [0, -0.18, 0.13, 0.51, 0.008], [0, -0.02, 0.14, 0.49, 0.008], [0, 0.14, 0.14, 0.449, 0.008], [0, 0.27, 0.135, 0.378, 0.008], [0, 0.37, 0.13, 0.277, 0.008], [0, 0.44, 0.125, 0.136, 0.008]] }
+        beak: { rings: [[0, -0.36, 0.15, 0.06, 0.05], [0, -0.42, 0.18, 0.035, 0.035], [0, -0.445, 0.21, 0.015, 0.015]] }
+        stalk: null
+    unsourced: >-
+      A machine's reconstruction: the brachiopod's shell made flat and wide at a straight hinge, its upper valve lying in the
+      lower, with a small beak and no stalk, from general knowledge of strophomenids and productids; no figure was compared with
+      it.

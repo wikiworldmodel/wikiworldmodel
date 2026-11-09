@@ -1,0 +1,18 @@
+id: src:wikipedia-sponge
+type: database-record
+kind: review
+citation: >-
+  "Sponge." Wikipedia, the free encyclopedia (English edition), revision 1383970226.
+snapshot: 2026-11-08
+title: Sponge
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Sponge&oldid=1383970226
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for the sizes of sponges, for which no better work could be read here; the works it
+  cites for them were not read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched from Wikipedia's REST interface on 8 November 2026 and read as text; the quotes checked by script
+    against that text.

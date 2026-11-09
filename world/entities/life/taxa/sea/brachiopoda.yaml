@@ -1,0 +1,37 @@
+id: life/taxa/brachiopoda
+kind: taxon
+summary: >-
+  The brachiopods or lamp shells: animals of the sea floor in a shell of two unequal valves, top and bottom, which fed with a
+  coiled fringe of tentacles inside it. Common throughout the Palaeozoic, rarer since.
+same_as: { pbdb: "txn:26322" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Brachiopoda, en: "brachiopods" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: brachiopod
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a biconvex brachiopod with a beak and a pedicle, from general knowledge; no
+      figure was compared with it. It lies on its lower valve; many brachiopods stood on their pedicle instead, with the front
+      edge up.
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 0.375 }
+    source:
+      - ref: src:luter-2026-gwynia
+        loc: "Discussion, \"Life style\", paragraph 1"
+        quote: "Due to its minute size of around 1 mm G. capsula is certainly often overlooked"
+      - ref: src:vermeij-2016-gigantism
+        loc: "Table 1, Marine benthic suspension-feeders, Palaeozoic"
+        quote: "Gigantoproductus sp. Brachiopoda Visean 375 mm"
+    method: compilation
+    note: >-
+      From the smallest living brachiopod, Gwynia capsula, to the largest known, the Carboniferous Gigantoproductus, standing for
+      any brachiopod with no size of its own. The giant's size is its greatest dimension, as the table gives it, which in
+      Gigantoproductus is the width.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC12843560.txt (sha256 859ce667e6bad2d4), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

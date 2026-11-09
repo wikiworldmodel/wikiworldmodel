@@ -1,0 +1,15 @@
+description: >-
+  A sponge: a thick-walled vase standing on the sea floor, its sides full of small pores through which it draws water, which it
+  lets out through the wide vent at the top. It stands for sponges of every shape, branching, encrusting and massive. Its length
+  is its height.
+kind: animal
+hip: 0.5
+mass_length: 220
+behave: { group: [1, 8], habitat: floor, poses: [rest] }
+parts:
+  body: { type: tube, zl: true, mat: hide, flat: true, sides: [12, 6], rings: [[0, 0, 0.97, 0.27, 0.27], [0, 0, 0.9, 0.29, 0.29], [0, 0, 0.75, 0.285, 0.285], [0, 0, 0.55, 0.26, 0.26], [0, 0, 0.35, 0.225, 0.225], [0, 0, 0.15, 0.2, 0.2], [0, 0, 0.05, 0.2, 0.2], [0, 0, 0, 0.22, 0.22]] }
+  vent: { type: lump, zl: true, mat: dark, at: [0, 0, 0.985], r: [0.2, 0.2, 0.03], sides: [10, 5], bands: [3, 2] }
+  rim: { type: tube, zl: true, mat: hide, sides: [12, 6], rings: [[0, 0, 0.96, 0.27, 0.27], [0, 0, 0.995, 0.25, 0.25], [0, 0, 1.0, 0.22, 0.22]] }
+  pores-1: { type: knobs, zl: true, near: true, mat: dark, n: 14, at: [0, 0.3], r: [0.235, 0.235, 0.236], length: 0.004, thick: 0.012 }
+  pores-2: { type: knobs, zl: true, near: true, mat: dark, n: 16, at: [0, 0.55], r: [0.265, 0.265, 0.266], length: 0.004, thick: 0.012 }
+  pores-3: { type: knobs, zl: true, near: true, mat: dark, n: 17, at: [0, 0.78], r: [0.285, 0.285, 0.286], length: 0.004, thick: 0.012 }
