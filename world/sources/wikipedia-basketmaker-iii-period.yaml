@@ -1,0 +1,23 @@
+id: src:wikipedia-basketmaker-iii-period
+type: database-record
+kind: review
+citation: >-
+  "Basketmaker III period." Wikipedia, the free encyclopedia (English edition), revision 1366430453.
+snapshot: 2026-11-09
+title: Basketmaker III period
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Basketmaker_III_period&oldid=1366430453
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the size, frame and covering of the Basketmaker III pit house and for the size
+  of its settlements because no better work could be read here. Its section on architecture is cited to web pages of
+  Northern Arizona University's Anthropology Laboratories, the Bureau of Land Management and Mesa Verde National Park, and
+  its communities to Wenger, G.R. (1991), The Story of Mesa Verde National Park, pp. 33–37, and a page of Chaco Culture
+  National Historical Park. None of them could be reached; an excavation report or a regional synthesis should replace
+  this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1366430453, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text.

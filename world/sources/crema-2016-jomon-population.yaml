@@ -1,0 +1,27 @@
+id: src:crema-2016-jomon-population
+type: publication
+kind: measurement
+citation: >-
+  Crema, E.R., Habu, J., Kobayashi, K. & Madella, M. (2016). Summed Probability Distribution of 14C Dates Suggests Regional
+  Divergences in the Population Dynamics of the Jomon Period in Eastern Japan. PLOS ONE 11(4), e0154809.
+authors:
+  - "Crema, E.R."
+  - "Habu, J."
+  - "Kobayashi, K."
+  - "Madella, M."
+published: 2016
+title: Summed Probability Distribution of 14C Dates Suggests Regional Divergences in the Population Dynamics of the Jomon Period in Eastern Japan
+container: PLOS ONE 11(4), e0154809
+doi: 10.1371/journal.pone.0154809
+url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4851332/fullTextXML
+license: CC-BY-4.0
+via: Europe PMC (PMC4851332).
+reliability: >-
+  A study of radiocarbon dates as a measure of the number of people in three regions of eastern Japan: Hokkaido, Aomori and
+  Kanto. It is cited for the dates of the Jōmon periods, which it takes from Kobayashi's absolute chronology (not read here),
+  and for the counts of pit-dwellings that earlier studies made, which it reports at second hand.
+verified:
+  by: machine:claude-code
+  how: >-
+    The full text read from Europe PMC's XML on 9 November 2026 and kept as text; the quotes checked by script against it.
+    Volume, issue and authors from the article's XML.

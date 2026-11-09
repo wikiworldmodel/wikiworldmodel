@@ -1,0 +1,51 @@
+id: src:thompson-2022-maya-neighborhoods
+type: publication
+kind: measurement
+citation: >-
+  Thompson, A.E., Walden, J.P., Chase, A.S.Z., Hutson, S.R., Marken, D.B., Cap, B., … Chase, A.F. & Chase, D.Z. (2022).
+  Ancient Lowland Maya neighborhoods: Average Nearest Neighbor analysis and kernel density models, environments, and urban
+  scale. PLOS ONE 17(11), e0275916.
+authors:
+  - "Thompson, A.E."
+  - "Walden, J.P."
+  - "Chase, A.S.Z."
+  - "Hutson, S.R."
+  - "Marken, D.B."
+  - "Cap, B."
+  - "Fries, E.C."
+  - "Guzman Piedrasanta, M.R."
+  - "Hare, T.S."
+  - "Horn, S.W."
+  - "Micheletti, G.J."
+  - "Montgomery, S.M."
+  - "Munson, J."
+  - "Richards-Rissetto, H."
+  - "Shaw-Müller, K."
+  - "Ardren, T."
+  - "Awe, J.J."
+  - "Brown, M.K."
+  - "Callaghan, M."
+  - "Ebert, C.E."
+  - "Ford, A."
+  - "Guerra, R.A."
+  - "Hoggarth, J.A."
+  - "Kovacevich, B."
+  - "Morris, J.M."
+  - "Moyes, H."
+  - "Powis, T.G."
+  - "Yaeger, J."
+  - "Houk, B.A."
+  - "Prufer, K.M."
+  - "Chase, A.F."
+  - "Chase, D.Z."
+published: 2022
+title: "Ancient Lowland Maya neighborhoods: Average Nearest Neighbor analysis and kernel density models, environments, and urban scale"
+container: PLOS ONE
+doi: 10.1371/journal.pone.0275916
+url: https://europepmc.org/article/PMC/PMC9629605
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC's full-text XML (PMC9629605), saved as text; the quotes checked by script against that
+    text. Citation details and the authors' names from Crossref.

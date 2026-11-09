@@ -1,0 +1,104 @@
+id: people/traditions/mesopotamian-courtyard-house
+kind: tradition/building
+summary: >-
+  The house of the cities of ancient Mesopotamia: rooms of mudbrick opening onto an open court, turned inward from the street,
+  roofed with mud on poplar, probably with an upper storey on most, in the cities into which most of the south's people had
+  gathered by the Bronze Age. It is known best from the Old Babylonian houses of Ur and Nippur, and what is said here of the
+  earlier and later houses rests on general accounts.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Mudbrick courtyard house of ancient Mesopotamia }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 3999 BCE, hi: 3000 BCE }
+    source:
+      ref: src:wikipedia-architecture-of-mesopotamia
+      loc: section "Houses", "Design"
+      quote: In the 3000's BCE, courtyards were introduced to Mesopotamia. Courtyards would become the basis for Mesopotamian architecture.
+    method: expert-estimate
+    note: >-
+      "The 3000's BCE" is read as the fourth millennium BCE, the widest reading; the century from 3099 to 3000 BCE, the
+      narrowest, lies within it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-architecture-of-mesopotamia-1384588782.txt (sha256 caa4c479981c7d86), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: { lo: 600 BCE, hi: 501 BCE }
+    source:
+      ref: src:wikipedia-architecture-of-mesopotamia
+      loc: opening section
+      quote: spanning a period from the 10th millennium BC (when the first permanent structures were built) to the 6th century BC.
+    method: expert-estimate
+    note: >-
+      The end of the span the source gives for the architecture of Mesopotamia as a whole, not an end of the house: the same
+      source says the courtyard house "has been used in Mesopotamia to the present day". The tradition here is the house of
+      ancient Mesopotamia, and a later tradition, when one is written, takes up the story.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-architecture-of-mesopotamia-1384588782.txt (sha256 caa4c479981c7d86), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["59"] }
+    source:
+      ref: src:wikipedia-architecture-of-mesopotamia
+      loc: last paragraph of section "Ziggurats", on the notable remains
+      quote: Houses are mostly known from Old Babylonian remains at Nippur and Ur.
+    method: editorial
+    note: >-
+      Region 59 (Iraq), which holds Ur (people/first-cities/ur), one of the two sites the source names. The parts of
+      Mesopotamia in Syria and Turkey are left out, as the sources describe no house there. The house is not claimed for all of
+      the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-architecture-of-mesopotamia-1384588782.txt (sha256 caa4c479981c7d86), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: courtyard, court: true, storeys: { lo: 1, hi: 2 }, walls: mudbrick, roof_material: earth }
+    source:
+      - ref: src:wikipedia-architecture-of-mesopotamia
+        loc: section "Houses"
+        quote: >-
+          Although Sumerian cylinder seals depict reed houses, the courtyard house was the predominant typology, which has been
+          used in Mesopotamia to the present day.
+      - ref: src:wikipedia-architecture-of-mesopotamia
+        loc: section "Houses"
+        quote: This courtyard called tarbaṣu (Akkadian) was the primary organizing feature of the house, all the rooms opened into it.
+      - ref: src:wikipedia-architecture-of-mesopotamia
+        loc: section "Houses"
+        quote: Although most houses were made of mudbrick, mudplaster, and poplar.
+      - ref: src:wikipedia-architecture-of-mesopotamia
+        loc: section "Houses", "Construction"
+        quote: They used mud plaster for the walls, and mud and poplar for the roof.
+      - ref: src:wikipedia-architecture-of-mesopotamia
+        loc: section "Houses", "Design"
+        quote: It is likely that most houses had an upper storey.
+    method: excavation
+    note: >-
+      A roof of mud and poplar is what the vocabulary calls earth. The source thinks an upper storey likely on most houses, so
+      the storeys are one or two. It also gives a typical floor area of 90 square metres for a Sumerian house, for which a
+      dwelling here has no parameter, and says the poorest may have built of reeds outside the cities, with very little
+      evidence.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-architecture-of-mesopotamia-1384588782.txt (sha256 caa4c479981c7d86), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: nucleated, household: { lo: 4.64, hi: 5.29 } }
+    source:
+      - ref: src:chelazzi-lawrence-2026-urban-scaling
+        loc: 'Discussion, section "Mesopotamian cases: Inequality, institutions, and the city"'
+        quote: >-
+          In the south, a demographic nucleation concentrated up to 78% of the recorded population into settlements larger than
+          10 ha
+      - ref: src:chelazzi-lawrence-2026-urban-scaling
+        loc: Results, the paragraph on population density after Fig 4
+        quote: >-
+          This value sits within the range of textual estimates available for Ancient Mesopotamia, for example 5.29 persons per
+          household at Kassite Nippur [74], 4.64 at Old Babylonian Kish [75]
+    method: expert-estimate
+    note: >-
+      Nucleated, as in the Bronze Age south up to 78% of the recorded people lived in settlements of over 10 hectares. The
+      household spans the two estimates from texts that the source gives as examples of the range for ancient Mesopotamia,
+      4.64 people at Old Babylonian Kish and 5.29 at Kassite Nippur; the authors themselves use 5.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in chelazzi-lawrence-2026-urban-scaling.txt (sha256 9777dda40f3d827d), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

@@ -1,0 +1,22 @@
+id: src:wikipedia-pueblo-i-period
+type: database-record
+kind: review
+citation: >-
+  "Pueblo I period." Wikipedia, the free encyclopedia (English edition), revision 1301434019.
+snapshot: 2026-11-09
+title: Pueblo I period
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Pueblo_I_period&oldid=1301434019
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the jacal walls and flat roofs of the first pueblos, their rows of rooms, the
+  round pit houses and the number of pit houses to a settlement, because no better work could be read here. These are cited
+  there to a Mesa Verde National Park teaching aid, to Reed, P.F. (2000), Foundations of Anasazi Culture, p. 61, and to
+  Stuart, D.E. & Moczygemba-McKinsey, S.B. (2000), Anasazi America, pp. 52–53. None of them could be reached; any of them
+  should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1301434019, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text.

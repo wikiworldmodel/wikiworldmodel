@@ -1,0 +1,150 @@
+id: people/traditions/samoan-oval-house
+kind: tradition/building
+summary: >-
+  The house of Samoa from about the first century AD into the nineteenth: oval or round, with no walls, its thatched roof
+  on a ring of short posts and one to three central posts, standing on a low platform paved with river gravel. The
+  excavators read the settlement as dispersed over the land for most of the sequence, with the tight villages of the
+  1830s a late response to war and to contact. No end is given: the sources follow the house into the nineteenth century,
+  when the long fale afolau began to displace it.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Samoan oval house (fale) }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 1 CE, hi: 100 CE }
+    source:
+      ref: src:green-davidson-1974-western-samoa-2
+      loc: "Report 39 (Davidson), section \"Houses\", p. 232"
+      quote: >-
+        Two structures suggest the antiquity of round or oval structures, however. One is the posthole alignment
+        indicating a small round-ended structure at Sa-3 dating to the first century A.D.
+    method: excavation
+    note: >-
+      The oldest house plan the excavations found, at Sasoa'a in the Falefa Valley, Upolu; most earlier contexts gave
+      postholes with no plan. Davidson's conclusion (p. 243) has Samoan houses oval "throughout the known Samoan sequence",
+      and her summary of the valley's work (Report 30, p. 160) takes its occupation back at least 1800 years.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in green-davidson-1974-western-samoa-2.txt (sha256 9815838631fee5a7), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["145"] }
+    source:
+      ref: src:green-davidson-1974-western-samoa-2
+      loc: "Report 39 (Davidson), section \"Conclusion\", p. 243"
+      quote: Throughout the known Samoan sequence, Samoan houses have been oval in shape, with river gravel floors
+    method: editorial
+    note: >-
+      Region 145 (Polynesia), which holds Upolu and Savai'i, where the work was done. The region also holds Tonga, the Cook
+      Islands and French Polynesia, whose houses these sources do not describe; it is not claimed for all of it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in green-davidson-1974-western-samoa-2.txt (sha256 9815838631fee5a7), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: oval, length: 10.5, wall_height: 1.5, walls: none, roof: hip, roof_material: thatch, floor: raised }
+    source:
+      - ref: src:green-davidson-1974-western-samoa-2
+        loc: "Report 39 (Davidson), section \"Houses\", p. 232"
+        quote: >-
+          It seems clear that late prehistoric Samoan houses were, as Williams (MS 1832) described the houses of the 1830s,
+          oval with a short central ridge pole supported by one to three posts, or in the case of smaller houses, lacked
+          ridge poles altogether.
+      - ref: src:green-davidson-1974-western-samoa-2
+        loc: "Report 39 (Davidson), section \"Conclusion\", p. 243"
+        quote: Although houses have been built on low platforms and on terraces through most or all of the known sequence
+      - ref: src:green-davidson-1974-western-samoa-2
+        loc: "Report 21 (McKinlay), section \"Principal Structural Features\", p. 27"
+        quote: >-
+          Such comments indicate that social status governed the heights of platforms, particularly as Peale (Poesch 1961:
+          162) observed in 1839 that the general height of platforms in one inland village was about 1 ft, while Wilkes
+          (1845 (II): 146), speaking for Samoa generally, also suggested 1 ft.
+      - ref: src:green-davidson-1974-western-samoa-2
+        loc: "Report 21 (McKinlay), section \"Principal Structural Features\", p. 28"
+        quote: >-
+          Thus Turner (1884: 152) recorded that the ordinary house was 35 ft (about 10.5 m) in diameter, by which he
+          presumably meant the longer dimension.
+      - ref: src:wikipedia-architecture-of-samoa
+        loc: opening section
+        quote: >-
+          In general, traditional Samoan architecture is characterized by an oval or circular shape, with wooden posts
+          holding up a domed roof. There are no walls.
+      - ref: src:wikipedia-architecture-of-samoa
+        loc: section "Construction"
+        quote: >-
+          They average 3–4 inches (7.6–10.2 cm) in diameter, and extend about 5 feet (1.5 m) above the floor of the fale.
+          The height of the poulalo above the floor determines the height of the lower extremity of the roof from the
+          ground.
+      - ref: src:wikipedia-architecture-of-samoa
+        loc: section "Thatch"
+        quote: The completed, domed framework is covered with thatch (lau leaves), which is made by the women.
+    method: excavation
+    note: >-
+      The plan, the ridge and the low platform from the excavations (Davidson) and the accounts McKinlay gathers; the length
+      from Turner's description of 1884, as McKinlay gives it, read as the longer axis of an ordinary dwelling; the open
+      sides, the eaves at the top of the outer posts (poulalo) and the thatch from the encyclopedia. The sides were open,
+      closed when needed with blinds of plaited coconut leaf: the vocabulary has no word for open sides, and "none" is the
+      nearest, though the roof stops about 1.5 m above the floor rather than at the ground. An oval roof over a short ridge slopes on every side,
+      which is "hip"; the encyclopedia calls it domed. The platform was low, about a foot high for ordinary houses in the
+      accounts McKinlay gathers, higher for people of rank. The width the sources give is that of the community house,
+      not of a dwelling, and is left out.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in green-davidson-1974-western-samoa-2.txt (sha256 9815838631fee5a7), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement-dispersed:
+    prop: settlement_form
+    value: { pattern: dispersed, houses: 14, household: { lo: 3.5, hi: 4.1 } }
+    source:
+      - ref: src:green-davidson-1974-western-samoa-2
+        loc: "Report 39 (Davidson), section \"Conclusion\", p. 243"
+        quote: >-
+          Settlements have been variably located in both coastal and inland situations, and have probably formed part of a
+          dispersed settlement pattern similar to that suggested for the late prehistoric period.
+      - ref: src:green-davidson-1974-western-samoa-2
+        loc: "Report 30 (Davidson), section \"Settlement Patterns and Social Organisation\", p. 160"
+        quote: >-
+          In late prehistoric times, however, the residences of title holders and their adherents were widely dispersed
+          over the land, with individual title holders residing near their own cultivations.
+      - ref: src:green-davidson-1974-western-samoa-2
+        loc: "Report 39 (Davidson), section \"Houses\", p. 235"
+        quote: The other settlement for which similar calculations can be made is Leuluasi, where 14 houses can be assumed to be contemporary.
+      - ref: src:green-davidson-1974-western-samoa-2
+        loc: "Report 39 (Davidson), section \"Houses\", p. 235"
+        quote: >-
+          At 10 m 2 per person this means a population of 46 divided amongst the 13 dwellings, or about 3.5 people per
+          dwelling.
+      - ref: src:green-davidson-1974-western-samoa-2
+        loc: "Report 39 (Davidson), section \"Houses\", p. 235"
+        quote: >-
+          At 8.7 m 2 (the smaller figure recorded by LeBlanc for a modern Samoan village), a population of 53 is implied or
+          4.1 people to a dwelling.
+    method: survey
+    rank: preferred
+    note: >-
+      Preferred as the later reading, by the excavator of the Falefa Valley, of the surveys of both volumes: settlement
+      spread over coast and inland, with the tight clustering of Sasoa'a in the 1830s and the coastal villages of today a
+      response to war and to European contact. The 14 houses are those of Leuluasi, a late prehistoric settlement; the
+      people to a house are Davidson's estimate for the 13 dwellings of Sasoa'a, from their floor area at 10 or 8.7 m² a
+      person.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in green-davidson-1974-western-samoa-2.txt (sha256 9815838631fee5a7), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement-nucleated:
+    prop: settlement_form
+    value: { pattern: nucleated }
+    source:
+      - ref: src:green-davidson-1969-western-samoa-1
+        loc: "Report 3 (Buist), section \"House Platforms\", p. 41"
+        quote: House platforms in such a cluster comprise a nucleated settlement usually designated
+      - ref: src:green-davidson-1969-western-samoa-1
+        loc: "Report 1 (Golson), section \"Villages\", p. 15"
+        quote: >-
+          House platforms occur very rarely in isolation but, as suggested by the last paragraph, usually in groups
+          representing the site of an
+    method: survey
+    note: >-
+      The earlier reading, from field surveys on Savai'i (Buist) and Golson's reconnaissance of 1957, that house platforms
+      stand in clusters that form villages. Davidson does not deny the clusters, but reads almost all inland remains as a
+      dispersed pattern or as a passing response to war (Report 39, p. 243), and finds Golson's first impression that coastal
+      settlement was largely recent "perhaps misleading" (p. 242).
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in green-davidson-1969-western-samoa-1.txt (sha256 e85f4e2ef34d21bd), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

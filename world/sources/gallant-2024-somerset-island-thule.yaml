@@ -1,0 +1,27 @@
+id: src:gallant-2024-somerset-island-thule
+type: publication
+kind: measurement
+citation: >-
+  Gallant, L.R., Hargan, K.E., Kimpe, L.E., Michelutti, N., Grooms, C., Savelle, J.M., Smol, J.P. & Blais, J.M. (2024).
+  Sedimentary biomarkers and bone specimens reveal a history of prehistoric occupation on Somerset Island (Arctic Canada).
+  Proceedings of the Royal Society B: Biological Sciences 291(2026), 20232915.
+authors:
+  - "Gallant, L.R."
+  - "Hargan, K.E."
+  - "Kimpe, L.E."
+  - "Michelutti, N."
+  - "Grooms, C."
+  - "Savelle, J.M."
+  - "Smol, J.P."
+  - "Blais, J.M."
+published: 2024
+title: Sedimentary biomarkers and bone specimens reveal a history of prehistoric occupation on Somerset Island (Arctic Canada)
+container: "Proceedings of the Royal Society B: Biological Sciences"
+doi: 10.1098/rspb.2023.2915
+url: https://europepmc.org/article/PMC/PMC11335012
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC's full-text XML (PMC11335012), saved as text; the quotes checked by script against that
+    text. Citation details from Crossref.

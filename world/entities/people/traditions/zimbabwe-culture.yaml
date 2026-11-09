@@ -1,0 +1,136 @@
+id: people/traditions/zimbabwe-culture
+kind: tradition/building
+summary: >-
+  The houses of the Zimbabwe culture of the plateau between the Limpopo and the Zambezi: single-storeyed huts of daga, the local
+  earthen daub, on frames of poles, standing in homesteads, the élite's inside dry-stone walled enclosures or on stone-walled
+  terraces and built of thick daga, the commoners' outside the walls. It runs from Mapela Hill in the eleventh century, or from
+  Mapungubwe in the thirteenth on the received view, through Great Zimbabwe to Khami, whose span ends about 1820. The plan, size
+  and roof of the huts are not described by the sources read.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Daga houses of the Zimbabwe culture }
+    unsourced: An editorial label.
+  start-mapela:
+    prop: start
+    value: { lo: 1001 CE, hi: 1050 CE }
+    source:
+      - ref: src:chirikure-2014-mapela
+        loc: section "Discussion"
+        quote: The Bayesian chronology dates the earliest occupation of the excavated terrace to the 11th century CE
+      - ref: src:chirikure-2014-mapela
+        loc: section "Discussion"
+        quote: >-
+          By the mid-11th century CE, K2 people built houses with solid dhaka floors on massive stone-walled terraces, a
+          tradition which continued into the Mapungubwe period.
+    method: radiometric/radiocarbon
+    rank: preferred
+    note: >-
+      The first half of the eleventh century: the terrace at Mapela was first lived on in the eleventh century, and by its
+      middle houses with floors of dhaka (daga) stood on stone-walled terraces, which the source takes for the first expression
+      of the Zimbabwe culture. Preferred as the dated evidence, over the received start at Mapungubwe that the same paper argues
+      against.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in chirikure-2014-mapela-pmc4215987.txt (sha256 2bff304471186b5e), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  start-mapungubwe:
+    prop: start
+    value: 1220 CE
+    source:
+      ref: src:chirikure-2014-mapela
+      loc: abstract
+      quote: >-
+        From Mapungubwe (CE1220–1290), the Zimbabwe culture was expressed at Great Zimbabwe (CE1300–1450) and eventually Khami
+        (CE1450–1820).
+    method: expert-estimate
+    note: The received view, as the source reports it before arguing against it, that the Zimbabwe culture began at Mapungubwe.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in chirikure-2014-mapela-pmc4215987.txt (sha256 2bff304471186b5e), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 1820 CE
+    source:
+      ref: src:chirikure-2014-mapela
+      loc: abstract
+      quote: >-
+        From Mapungubwe (CE1220–1290), the Zimbabwe culture was expressed at Great Zimbabwe (CE1300–1450) and eventually Khami
+        (CE1450–1820).
+    method: expert-estimate
+    note: >-
+      The end of the span of Khami, the last of the capitals the source names. Great Zimbabwe itself was lived in later:
+      Chirikure et al. (2017) give its occupation as CE1000–1800.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in chirikure-2014-mapela-pmc4215987.txt (sha256 2bff304471186b5e), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["88", "96"] }
+    source:
+      - ref: src:chirikure-2014-mapela
+        loc: section "Introduction"
+        quote: >-
+          the heavily terraced Leopard's Kopje site of Mapela Hill, about 90 kilometres north-west of Mapungubwe in south-western
+          Zimbabwe
+      - ref: src:chirikure-2014-mapela
+        loc: section "Introduction"
+        quote: Mapungubwe (CE1220–1290) situated near the Shashe-Limpopo confluence
+      - ref: src:wikipedia-great-zimbabwe
+        loc: opening section
+        quote: Great Zimbabwe was a city in the south-eastern hills of the modern country of Zimbabwe, near Masvingo.
+    method: editorial
+    note: >-
+      Region 96 (Zambia, Zimbabwe, Malawi and Mozambique), which holds Mapela, Great Zimbabwe and Khami, and region 88 (South
+      Africa), which holds Mapungubwe by the Shashe-Limpopo confluence. North-eastern Botswana is left out: the first source
+      reports Huffman's view that the status of the walled sites there is unclear. The tradition is not claimed for all of
+      either region, nor for all of its people.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in chirikure-2014-mapela-pmc4215987.txt (sha256 2bff304471186b5e), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { walls: wattle-and-daub, storeys: 1 }
+    source:
+      - ref: src:wikipedia-great-zimbabwe
+        loc: section "Construction and growth"
+        quote: The majority of the population lived in houses made of mud on wooden frame structures
+      - ref: src:wikipedia-great-zimbabwe
+        loc: section "Construction and growth"
+        quote: >-
+          The ruling dynasty used their wealth to have houses built out of thick daga (earthen daub), rather than daga and
+          poles, and built stone walls to shield themselves from public view.
+      - ref: src:chirikure-2017-great-zimbabwe
+        loc: section "Consistency checks", the paragraph beginning "Finally"
+        quote: The huts at Great Zimbabwe were all single-storey structures, built of materials that left permanent marks.
+    method: excavation
+    note: >-
+      Walls of daga, earthen daub, on frames of poles, the houses of most people: what the vocabulary calls wattle and daub.
+      The rulers' houses were of thick daga without poles, for which the vocabulary has no word (rammed earth and mudbrick are
+      the nearest, and neither is right); Chirikure et al. (2014) call such houses solid dhaka. The huts were single-storeyed.
+      Their plan, size and roof are not described by the sources read, and are left to the generator.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-great-zimbabwe-1381423922.txt (sha256 efe33072082c85ef), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: compound }
+    source:
+      - ref: src:chirikure-2014-mapela
+        loc: section "Introduction"
+        quote: >-
+          The Zimbabwe culture refers to the practice of constructing dwellings for the élite either inside dry stone-walled
+          enclosures or on top of dry stone-walled terraces, while simultaneously confining commoners to areas outside the walls
+      - ref: src:chirikure-2017-great-zimbabwe
+        loc: section "b. Archaeology"
+        quote: >-
+          the main observation was that the layout of the houses found on the unwalled areas was like that of the walled areas
+          but solid earthen walls substituted for stone walls
+      - ref: src:chirikure-2017-great-zimbabwe
+        loc: section "a. Ethnography"
+        quote: >-
+          Shona households typically live in a homestead with clearly-defined built living spaces: kitchen, bedroom, dormitory
+          for girls, dormitory for boys, and visitors' house
+    method: excavation
+    note: >-
+      Houses grouped in homesteads inside walls: of dry stone for the élite, and at Great Zimbabwe of solid earth for the
+      others, laid out alike. A homestead of several huts, each a room of the household, is how Shona households live today,
+      and is how the second source reads the remains. How many houses stood together, and how far apart, is not given in a
+      form the generator can take.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in chirikure-2014-mapela-pmc4215987.txt (sha256 2bff304471186b5e), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

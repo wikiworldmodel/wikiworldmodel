@@ -1,0 +1,97 @@
+id: people/traditions/swahili-earth-and-thatch-house
+kind: tradition/building
+summary: >-
+  The house of the Swahili coast of East Africa: walls of wattle and daub under thatch, the "earth and thatch" of the villages and
+  towns of the coast and its islands from the seventh century, and the majority of its houses ever since, even in the
+  stonetowns of the second millennium, where some buildings were of coral and lime. The plan and size of the houses are not
+  given by the source read. The coast's stone houses, from the fourteenth century, are not written here.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Earth-and-thatch house of the Swahili coast }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 601 CE, hi: 700 CE }
+    source:
+      ref: src:fleisher-2015-swahili-maritime
+      loc: section "Stonehouses and the Maritime World"
+      quote: >-
+        Settlements from the seventh century onward were entirely of wattle and daub, which continued to provide the majority
+        of housing throughout the centuries
+    method: expert-estimate
+    note: >-
+      The seventh century. The same source has peoples from the near interior settling the coast in mixed-farming
+      earth-and-thatch villages in the late first millennium BCE to early first millennium CE, too loosely to be written as
+      years; the claim takes the century from which it says the settlements were all of wattle and daub. The tradition has no
+      end claim: the source has these houses the majority throughout the centuries since.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in fleisher-2015-swahili-maritime.txt (sha256 16f6c804c80804bf), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["93", "95"] }
+    source:
+      - ref: src:fleisher-2015-swahili-maritime
+        loc: section "VARIATION IN TOWN DEVELOPMENT"
+        quote: By C.E. 750, Unguja Ukuu grew to 17 hectares of earth-and-thatch houses.
+      - ref: src:fleisher-2015-swahili-maritime
+        loc: section "VARIATION IN TOWN DEVELOPMENT"
+        quote: Tumbe on the north coast of Pemba Island, Tanzania, covered 20 to 30 hectares, with earth-and-thatch houses
+      - ref: src:fleisher-2015-swahili-maritime
+        loc: section "BACKGROUND TO SWAHILI ARCHAEOLOGY"
+        quote: Shanga (Lamu archipelago, Kenya)
+      - ref: src:fleisher-2015-swahili-maritime
+        loc: section "VARIATION IN TOWN DEVELOPMENT"
+        quote: Between C.E. 920–1050, many earlier earth-and-thatch buildings were rebuilt in porites coral, including the central mosque.
+    method: editorial
+    note: >-
+      Region 95 (Tanzania), which holds Unguja Ukuu on Zanzibar and Tumbe on Pemba, and region 93 (Kenya), which holds Shanga
+      in the Lamu archipelago, where earlier earth-and-thatch buildings were rebuilt in coral. The source also names Mozambique
+      among the lands of the Swahili, but describes no house there, so region 96 is left out. The houses stood on the coast
+      and its islands: the tradition is not claimed for the interior of either region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in fleisher-2015-swahili-maritime.txt (sha256 16f6c804c80804bf), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { walls: wattle-and-daub, roof_material: thatch }
+    source:
+      - ref: src:fleisher-2015-swahili-maritime
+        loc: section "BACKGROUND TO SWAHILI ARCHAEOLOGY"
+        quote: >-
+          With some exceptions discussed below, first-millennium C.E. settlements were mostly small villages characterized by
+          earth-and-thatch domestic structures
+      - ref: src:fleisher-2015-swahili-maritime
+        loc: section "Maritime Architecture"
+        quote: Wood, wattle, and daub provided the building materials
+      - ref: src:fleisher-2015-swahili-maritime
+        loc: section "Stonehouses and the Maritime World"
+        quote: >-
+          Settlements from the seventh century onward were entirely of wattle and daub, which continued to provide the majority
+          of housing throughout the centuries
+    method: excavation
+    note: >-
+      Walls of wattle and daub, roofs of thatch: the "earth and thatch" of the source. Their plan, size and number of rooms are
+      not given, and are left to the generator.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in fleisher-2015-swahili-maritime.txt (sha256 16f6c804c80804bf), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: nucleated }
+    source:
+      - ref: src:fleisher-2015-swahili-maritime
+        loc: section "BACKGROUND TO SWAHILI ARCHAEOLOGY"
+        quote: >-
+          With some exceptions discussed below, first-millennium C.E. settlements were mostly small villages characterized by
+          earth-and-thatch domestic structures
+      - ref: src:fleisher-2015-swahili-maritime
+        loc: section "BACKGROUND TO SWAHILI ARCHAEOLOGY"
+        quote: >-
+          many larger towns on the coast became what are called “stonetowns,” with some portion of their buildings in stone and
+          the balance in earth and thatch. Smaller towns were largely the latter
+    method: excavation
+    note: >-
+      Villages in the first millennium, some of which grew into towns of 17 to 30 hectares; in the second millennium towns, in
+      the larger of which, the stonetowns, the houses of earth and thatch stood beside buildings of stone.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in fleisher-2015-swahili-maritime.txt (sha256 16f6c804c80804bf), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

@@ -1,0 +1,150 @@
+id: people/traditions/classic-maya-house-group
+kind: tradition/building
+summary: >-
+  The house of the Classic Maya lowlands: buildings of poles and thatch, and for some households of masonry, standing on
+  platforms of stone, most of them low, a household's few buildings set at right angles around a small patio or courtyard,
+  and the groups spread through settlements of low density, clustered into neighbourhoods. The sources describe the
+  settlements of the Classic period, 250 to 900 CE, as they were last mapped; the house before and after it is not described
+  here.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Classic Maya house and patio group }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 250 CE
+    source:
+      ref: src:thompson-2022-maya-neighborhoods
+      loc: section "Archaeological contexts and settlement data"
+      quote: >-
+        Most of the Maya centers we discuss date in their final mapped forms to the Classic Period (250–900 CE) and often
+        toward the end of that period, although some emerged earlier in the Middle Preclassic Period (800–400 BCE, e.g.,
+        Pacbitun [177]).
+    method: expert-estimate
+    note: >-
+      The start of the Classic period, to which the settlements the source analyses date as they were last mapped. Some of
+      its centres began in the Middle Preclassic, 800 to 400 BCE; the house before 250 CE is not described here.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in thompson-2022-maya-neighborhoods-PMC9629605.txt (sha256 dbea98df14ef7993), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: { lo: 900 CE, hi: 1000 CE }
+    source:
+      - ref: src:thompson-2022-maya-neighborhoods
+        loc: section "Archaeological contexts and settlement data"
+        quote: Most of the Maya centers we discuss date in their final mapped forms to the Classic Period (250–900 CE)
+      - ref: src:thompson-2022-maya-neighborhoods
+        loc: 'section "Archaeological contexts: The ancient Maya"'
+        quote: >-
+          Populations and centers continued to grow until 800 CE, when political disintegration swept across the Lowlands
+          over the next 200 years [87–89]. Many of the Classic Maya centers were largely abandoned by 1000 CE.
+      - ref: src:ringle-2021-puuc-lidar
+        loc: Introduction
+        quote: >-
+          The overwhelming majority (well over 90%) of visible Puuc archaeological features date to the Late-Terminal
+          Classic periods (c. AD 600–950)
+    method: expert-estimate
+    note: >-
+      Between the end of the Classic period, 900 CE, and 1000 CE, by which many of the Classic centres were largely
+      abandoned, in the first source; the Puuc settlement of the second runs to about 950. It is the end of the Classic
+      settlements, not of the house: the first source goes on to the Postclassic centres, 1000 to 1519 CE, which are not
+      described here.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in ringle-2021-puuc-lidar-PMC8081171.txt (sha256 daf856aa10e0374f), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["24", "25"] }
+    source:
+      - ref: src:thompson-2022-maya-neighborhoods
+        loc: section "Archaeological contexts and settlement data"
+        quote: >-
+          Data were collected by 15 archaeological projects in modern day Mexico, Guatemala, Belize, and Honduras (Fig 1).
+      - ref: src:thompson-2022-maya-neighborhoods
+        loc: section "Lowland Maya settlement patterns"; Table 1, row "Copán"
+        quote: >-
+          Some of the centers discussed in this study are large urban centers (e.g., Altar de Sacrificios, Caracol,
+          Chunchucmil, Copán, El Perú-Waka’, El Pilar, Mayapan)
+      - ref: src:ringle-2021-puuc-lidar
+        loc: title
+        quote: Lidar survey of ancient Maya settlement in the Puuc region of Yucatan, Mexico
+    method: editorial
+    note: >-
+      Region 24 (Southern Mexico, Belize, Guatemala and El Salvador), which holds the lowland centres of the sources in
+      Mexico, Guatemala and Belize, the Puuc among them; and region 25 (Honduras, Nicaragua, Costa Rica and Panama), for
+      Copán, in Honduras. The house is not claimed for all of either region, only for the lowland centres the sources name.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in ringle-2021-puuc-lidar-PMC8081171.txt (sha256 daf856aa10e0374f), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { walls: pole-and-thatch, roof_material: thatch, floor: raised }
+    source:
+      - ref: src:ringle-2021-puuc-lidar
+        loc: section "Puuc settlement research"
+        quote: >-
+          the basic unit of settlement was a stone platform delimited by retaining walls ranging from a single course to
+          several meters in height and varying greatly in area. The majority can be identified as supporting extended
+          households
+      - ref: src:ringle-2021-puuc-lidar
+        loc: section "Puuc settlement research"
+        quote: Both masonry and perishable pole-and-thatch buildings rested on these platforms (Fig 6).
+      - ref: src:thompson-2021-maya-household-inequality
+        loc: 'section "Southern Belize: The Rio Blanco valley"'
+        quote: Many of these plazuelas are small with low household structures less than 50 cm high
+      - ref: src:thompson-2021-maya-household-inequality
+        loc: 'section "Southern Belize: The Rio Blanco valley"'
+        quote: a general lack of masonry superstructures
+    method: excavation
+    note: >-
+      Pole-and-thatch walls and roof on a stone platform, from the Puuc of northern Yucatan; masonry buildings, some vaulted,
+      stood on such platforms too, for some households. The floor is given as raised, on a low base, as the many small
+      household groups of southern Belize stood less than 50 cm high, and southern Belize lacked masonry superstructures; the
+      Puuc platforms ran from a single course of stone to several metres. The size and plan of the house are not given.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in ringle-2021-puuc-lidar-PMC8081171.txt (sha256 daf856aa10e0374f), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: compound, houses: { lo: 1, hi: 6 } }
+    source:
+      - ref: src:thompson-2022-maya-neighborhoods
+        loc: section "Identification and definitions of neighborhoods in archaeological contexts"
+        quote: >-
+          Archaeologically, Maya households are represented by one or more houses, sometimes with auxiliary structures such
+          as kitchens or shrines, that represent a kin-focused group [62].
+      - ref: src:thompson-2022-maya-neighborhoods
+        loc: section "Identification and definitions of neighborhoods in archaeological contexts"
+        quote: >-
+          around a small plaza or patio (a plazuela group [20, 65] or patio group [64]), on discrete landscape features
+          (e.g., hilltop), or within walled lots (plots of land, or house lots, delineated by walls (albarradas); [2]).
+      - ref: src:thompson-2022-maya-neighborhoods
+        loc: section "Social groupings of the Maya"
+        quote: >-
+          These residential units form the basal unit of Classic Maya settlement and comprise anywhere from one to dozens of
+          structures [62] but more often one to six structures situated around an internal patio space [61].
+      - ref: src:thompson-2022-maya-neighborhoods
+        loc: section "Lowland Maya settlement patterns"
+        quote: Traditional approaches tend to conceptualize Maya settlements as dispersed, low-density urbanism
+      - ref: src:thompson-2022-maya-neighborhoods
+        loc: section "Average Nearest Neighbor results and neighborhood identification"
+        quote: OMDs vary from approximately 32 m to 216 m, with a mean and median of 101 m and 99 m, respectively.
+      - ref: src:ringle-2021-puuc-lidar
+        loc: section "Puuc settlement research"
+        quote: >-
+          often they are arranged at right angles to each other, forming the sides of a rectangular courtyard.
+      - ref: src:thompson-2021-maya-household-inequality
+        loc: 'section "Southern Belize: The Rio Blanco valley"'
+        quote: >-
+          Residential plazuelas (henceforth referred to simply as plazuelas), are composed of domestic structures situated
+          around a central plaza [68]. Generally, these are situated on discrete modified hilltops and they represent a single
+          household, or domestic unit [69, 70].
+    method: excavation
+    note: >-
+      Compound is the nearest word: a household's buildings around its own patio, which they enclose, rather than inside a
+      wall, though some groups stood in walled house lots. The houses are the one to six structures of one patio group,
+      kitchens and shrines among them, which the source calls the basal unit of settlement and which stands here for a
+      settlement; groups of more, up to dozens, are left out. The groups were spread thinly: at the 23 centres of the same
+      paper the mean distance from a group to its nearest neighbour was about 32 to 216 m, and the groups clustered into
+      neighbourhoods.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in ringle-2021-puuc-lidar-PMC8081171.txt (sha256 daf856aa10e0374f), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

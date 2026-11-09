@@ -1,0 +1,18 @@
+id: src:wikipedia-celtic-field
+type: database-record
+kind: review
+citation: >-
+  "Celtic field." Wikipedia, the free encyclopedia (English edition), revision 1143580835.
+snapshot: 2026-11-09
+title: Celtic field
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Celtic_field&oldid=1143580835
+license: CC-BY-SA-4.0
+reliability: >-
+  A short encyclopedia article (a stub), cited only for the shape of the fields of a Celtic field system, for which no
+  better work could be read here. Its description of the fields has no source of its own.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's wikitext fetched on 9 November 2026 (Wikipedia's REST interface refused with a rate limit) and read; its
+    SHA-1 matched the one the API gives for revision 1143580835. The quote checked by script against that text.

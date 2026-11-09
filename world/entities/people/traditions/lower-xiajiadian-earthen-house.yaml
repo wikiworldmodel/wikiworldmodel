@@ -1,0 +1,79 @@
+id: people/traditions/lower-xiajiadian-earthen-house
+kind: tradition/building
+summary: >-
+  The earlier house of the Lower Xiajiadian culture, in its "Type A" settlements on low platforms near the valley floors,
+  above all in western Liaoning: houses of mudbrick and earth, some sunk into the ground as pit houses and some built at
+  ground level, rebuilt again and again on the same spot, until the settlements were left in the sixteenth century BCE.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Earthen house of the Lower Xiajiadian culture }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 2101 BCE, hi: 1971 BCE }
+    source:
+      - ref: src:tang-2022-lower-xiajiadian-settlements
+        loc: section 6, "Calibration and results"
+        quote: >-
+          The modeling results show that the upper boundary 2101–1971 BC (68.3% confidence) gives the date range of the
+          earliest LXJD occupation in northeast China.
+      - ref: src:tang-2022-lower-xiajiadian-settlements
+        loc: section 7.1, "Chronological implications"
+        quote: >-
+          Type A earthen sites in western Liaoning were the earliest locations being constructed and occupied, followed by
+          stone settlements on the edge of the Mongolian Plateau.
+    method: radiometric/radiocarbon
+    note: >-
+      The start of the whole culture, as the earthen settlements were its first. The paper's summary of the earthen sites'
+      own dates is 2059–1567 BC at 68.3% confidence.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: { lo: 1597 BCE, hi: 1554 BCE }
+    source:
+      ref: src:tang-2022-lower-xiajiadian-settlements
+      loc: section 6, "Calibration and results"
+      quote: >-
+        it was during the 16th century BC, 1597–1554 BC (68.3% confidence), and 1622–1536 BC (95.4% confidence), that Type
+        A earthen sites were gradually abandoned, and Type B stone locations were constructed.
+    method: radiometric/radiocarbon
+    note: >-
+      The modelled transition at 68.3% confidence; 1622–1536 BC at 95.4%. The paper adds that some earthen settlements were
+      repaired with stone late in their use, and that the dates from one of them, Dashanqian, run as late as 1352 BC.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { walls: mudbrick }
+    source:
+      - ref: src:tang-2022-lower-xiajiadian-settlements
+        loc: section 4, "Settlement construction and relative chronology"
+        quote: They were built with mudbrick/rammed earth technology and are especially rich in cultural accumulations with dense housing constructions.
+      - ref: src:tang-2022-lower-xiajiadian-settlements
+        loc: section 4, "Settlement construction and relative chronology"
+        quote: >-
+          when the sidewall of a house collapsed, new earth and mudbricks were brought in for building new walls and floors,
+          which would be superimposed on the leveled ruins of the old ones.
+      - ref: src:tang-2022-lower-xiajiadian-settlements
+        loc: section 4, "Settlement construction and relative chronology"
+        quote: The houses in Type A sites were largely round or square, either built as semi-subterranean pit houses or ground-level dwellings.
+    method: excavation
+    note: >-
+      Walls of mudbrick and earth. The floor is left out, as the paper has both pit houses and houses at ground level in
+      these settlements; and the plan is left to the broader tradition's round, though the paper says these houses were
+      round or square.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+relations:
+  broader:
+    rel: member-of
+    to: people/traditions/lower-xiajiadian-house
+    source:
+      ref: src:tang-2022-lower-xiajiadian-settlements
+      loc: section 4, "Settlement construction and relative chronology"
+      quote: they should be regarded as one cultural group
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

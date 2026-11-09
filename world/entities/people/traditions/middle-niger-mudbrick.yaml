@@ -1,0 +1,87 @@
+id: people/traditions/middle-niger-mudbrick
+kind: tradition/building
+summary: >-
+  Building in sun-dried mud brick in the Middle Niger, the inland delta of the Niger and Bani in Mali: at Jenne-jeno from its
+  third phase, about 400 to 900 CE, when permanent mudbrick architecture and a city wall of the cylindrical bricks of
+  Djenné's masons appear, and in Djenné, beside it, to this day. Only the walls are described here; the houses' form is
+  known from Djenné in the nineteenth century, and is written as a member of this tradition.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Mudbrick building of the Middle Niger }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 400 CE, hi: 900 CE }
+    source:
+      - ref: src:wikipedia-djenne-djenno
+        loc: section "Later Phases"
+        quote: Phase III dates from about 400 to 900 AD
+      - ref: src:wikipedia-djenne-djenno
+        loc: section "Later Phases"
+        quote: >-
+          Other developments include the presence of permanent mud brick architecture, including a city wall, probably built
+          during the latter half of the first millennium CE using the cylindrical bricks historically made by Djenné masons.
+    method: expert-estimate
+    note: >-
+      Phase III of Jenne-jeno, about 400 to 900 CE, among whose developments the source counts permanent mudbrick
+      architecture; the city wall was probably built in the latter half of the first millennium. The houses of the earlier
+      phases are not described. The tradition has no end claim: nearly all of Djenné's buildings are of sun-baked brick today.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-djenne-djenno-1380966072.txt (sha256 b5351c101c20e01a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["76"] }
+    source:
+      - ref: src:wikipedia-djenne-djenno
+        loc: opening section
+        quote: is a UNESCO World Heritage Site located in the Niger River Valley in the country of Mali.
+      - ref: src:wikipedia-djenne-djenno
+        loc: section "Origins"
+        quote: >-
+          Other research at Dia indicates a subsequently complex chronology of early occupation, periodic abandonment, and
+          erosion of deposits, followed by a widespread phase of mud brick architecture in the fourteenth and fifteenth
+          centuries AD.
+    method: editorial
+    note: >-
+      Region 76 (Mali), which holds Jenne-jeno, Djenné and Dia, where the source has a widespread phase of mudbrick
+      architecture in the fourteenth and fifteenth centuries. The sources read describe the inland delta only: the tradition
+      is not claimed for the rest of the region, and the delta's mudbrick building beyond Mali is not written.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-djenne-djenno-1380966072.txt (sha256 b5351c101c20e01a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { walls: mudbrick }
+    source:
+      - ref: src:wikipedia-djenne-djenno
+        loc: section "Later Phases"
+        quote: >-
+          Other developments include the presence of permanent mud brick architecture, including a city wall, probably built
+          during the latter half of the first millennium CE using the cylindrical bricks historically made by Djenné masons.
+      - ref: src:wikipedia-djenne
+        loc: section "Architecture"
+        quote: >-
+          Nearly all of the buildings in the town, including the Great Mosque, are made from sun-baked earthen bricks which are
+          coated with plaster.
+    method: excavation
+    note: >-
+      Sun-dried mud brick, cylindrical in the old way of Djenné's masons, which the second source says were used up to the
+      1930s, and moulded rectangular bricks since. The plan, size and roof of Jenne-jeno's houses are not described by the
+      sources read, and are left to the generator.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-djenne-djenno-1380966072.txt (sha256 b5351c101c20e01a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: nucleated }
+    source:
+      ref: src:wikipedia-djenne-djenno
+      loc: section "Agriculture and urban organization"
+      quote: The Djenné-Djeno urban complex consists of 40 mounds within a four-kilometer radius.
+    method: excavation
+    note: >-
+      A clustered town: the mounds of Jenne-jeno lay close together but apart, which the source reads as communities
+      specializing in their trades, and the main mound had a city wall. The same article elsewhere has the main mound
+      surrounded by 69 other mounds. The villages of the delta are not described.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-djenne-djenno-1380966072.txt (sha256 b5351c101c20e01a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

@@ -1,0 +1,26 @@
+id: src:guiry-2025-irish-pigs
+type: publication
+kind: measurement
+citation: >-
+  Guiry, E., Beglane, F., McCormick, F., Tourigny, E. & Richards, M.P. (2025). Pigs, people, and proximity: a 6000-year
+  isotopic record of pig management in Ireland. Royal Society Open Science 12(2), 241300.
+authors:
+  - "Guiry, E."
+  - "Beglane, F."
+  - "McCormick, F."
+  - "Tourigny, E."
+  - "Richards, M.P."
+published: 2025
+title: "Pigs, people, and proximity: a 6000-year isotopic record of pig management in Ireland"
+container: Royal Society Open Science
+doi: 10.1098/rsos.241300
+url: https://europepmc.org/article/PMC/PMC11793965
+license: CC-BY-4.0
+reliability: >-
+  An isotopic study of pigs. It is cited for its summary of Irish settlement from the literature and for the dates it
+  gives the periods of Irish archaeology, which it uses to group its samples.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as text from Europe PMC's REST service (PMC11793965, fullTextXML) on 9 November 2026. Quotes checked by
+    script against it.

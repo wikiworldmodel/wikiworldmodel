@@ -1,0 +1,18 @@
+id: src:wikipedia-viking-age
+type: database-record
+kind: review
+citation: >-
+  "Viking Age." Wikipedia, the free encyclopedia (English edition), revision 1383069061.
+snapshot: 2026-11-09
+title: Viking Age
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Viking_Age&oldid=1383069061
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for the conventional span of the Viking Age, which it gives in round figures
+  without a source of its own for them.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML (revision 1383069061) fetched from Wikipedia's REST interface on 9 November 2026 and read as text;
+    the quote checked by script against that text.

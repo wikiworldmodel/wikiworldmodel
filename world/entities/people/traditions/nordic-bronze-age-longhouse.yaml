@@ -1,0 +1,118 @@
+id: people/traditions/nordic-bronze-age-longhouse
+kind: tradition/building
+summary: >-
+  The three-aisled longhouse of the Bronze Age in Scandinavia, the Netherlands and northern Germany: a long house whose roof stood
+  on two rows of posts, which divided it into three aisles, with people and livestock under one roof in separate parts. On
+  the Jutland peninsula each farmstead had one or two of them, and the farmsteads lay scattered a few kilometres apart.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Three-aisled longhouse of the Nordic Bronze Age }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 1800 BCE
+    source:
+      ref: src:brozio-2023-neolithic-copper
+      loc: section "4. Discussion—Copper in the context of the Neolithic and Bronze Age sphere"
+      quote: Shortly thereafter (ca. 1800 BC), three-aisled houses occur in Jutland
+    method: expert-estimate
+    note: >-
+      About 1800 BCE, when the source has the first three-aisled houses in Jutland, shortly after the longhouses of the Late
+      Neolithic grew larger. It rests this on Borup (2018) on the settlement at Østbirk, which was not read. In western
+      Norway, Jackson et al. (2018, Table 2) have the three-aisled longhouse by 1500 BC.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in brozio-2023-PMC10171686.txt (sha256 03721d3840da7adf), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 500 BCE
+    source:
+      - ref: src:wichmann-2025-fingerprinting-conflict
+        loc: 'section "Schleswig-Holstein (Bronze Age): Cooking pits, weapons, and fortifications"'
+        quote: >-
+          This changes fundamentally at the end of the Bronze Age from 500 BC, when the first fences appear [72], individual
+          farmsteads are abandoned in favor of hamlets, Celtic Fields structure the landscape [50], and new large urn
+          cemeteries are used communally.
+      - ref: src:wichmann-2025-fingerprinting-conflict
+        loc: 'section "Schleswig-Holstein (Bronze Age): Cooking pits, weapons, and fortifications"'
+        quote: >-
+          It was not until the Iron Age (from 500 BC) that the settlement pattern changed in favor of smaller houses in
+          hamlets and villages.
+    method: expert-estimate
+    note: >-
+      500 BCE, the end of the Bronze Age in northern Europe, when on the Jutland peninsula the scattered farmsteads gave way
+      to hamlets and villages of smaller houses. The three-aisled longhouse itself went on: the Iron Age record,
+      people/traditions/iron-age-longhouse-village, takes over here.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wichmann-2025-PMC11844905.txt (sha256 9f20a4209e5e5fb8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["39", "43"] }
+    source:
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: Introduction
+        quote: >-
+          This is due to the numerous attestations of three-aisled longhouses (see [1] for The Netherlands; [2] for Denmark),
+          that are systematically interpreted as a form of byre-house
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Kongehøj"
+        quote: Kongehøj Denmark Three-aisled long house 1 Early Bronze Age
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Snebæk"
+        quote: Snebæk (site n. 130107-292) Denmark Three-aisled long house 1 Late Bronze Age
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Elp"
+        quote: Elp Netherlands Three-aisled long house 1 Middle Bronze Age
+      - ref: src:jackson-2018-norse-greenland
+        loc: Table 2, row "Farm (Farmstead and Outbuildings)", column "West Norway"
+        quote: By 1500 BC the ‘three-isled longhouse’ composed of three longitudinal rooms supported by two parallel rows of beams.
+      - ref: src:wichmann-2025-fingerprinting-conflict
+        loc: 'section "Schleswig-Holstein (Bronze Age): Cooking pits, weapons, and fortifications"'
+        quote: >-
+          Settlements in both periods, on the other hand, consisted of individual farmsteads with or one or two longhouses,
+          which were scattered across the Jutland peninsula within a few kilometres of each other.
+    method: editorial
+    note: >-
+      Region 39 (Scandinavia) for Denmark, where the S1 Table lists three-aisled long houses of the Early, Middle and Late
+      Bronze Age, and for western Norway; region 43 (Central Europe) for the Netherlands, where it lists them from the Early
+      and Middle Bronze Age, and for Schleswig-Holstein, the German part of the Jutland peninsula. The S1 Table also lists
+      two-aisled and four-aisled houses of the period. A region named is where the sources place the house, not a claim that
+      it covered the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in nicosia-2022-PMC9432763-with-S1.txt (sha256 d9d52156e5f25fc8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: long }
+    source:
+      - ref: src:jackson-2018-norse-greenland
+        loc: Table 2, row "Farm (Farmstead and Outbuildings)", column "West Norway"
+        quote: >-
+          By 1500 BC the ‘three-isled longhouse’ composed of three longitudinal rooms supported by two parallel rows of
+          beams. In the early Bronze age, buildings divided into living quarters and barns were developed.
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: Introduction
+        quote: >-
+          All archaeological structures interpreted as byre-houses are in fact longhouses (sensu [7]), featuring separated
+          partitions for livestock and humans.
+    method: excavation
+    note: >-
+      A longhouse with its roof on two rows of posts, which made three aisles, and a byre and a dwelling under one roof. No
+      source read gives the size of an ordinary house, or its walls or roof, so the generator guesses them.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in nicosia-2022-PMC9432763-with-S1.txt (sha256 d9d52156e5f25fc8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: dispersed, houses: { lo: 1, hi: 2 } }
+    source:
+      ref: src:wichmann-2025-fingerprinting-conflict
+      loc: 'section "Schleswig-Holstein (Bronze Age): Cooking pits, weapons, and fortifications"'
+      quote: >-
+        Settlements in both periods, on the other hand, consisted of individual farmsteads with or one or two longhouses,
+        which were scattered across the Jutland peninsula within a few kilometres of each other.
+    method: expert-estimate
+    note: >-
+      The Older and the Younger Bronze Age of the Jutland peninsula. The settlement is the farmstead, with one or two
+      longhouses; the farmsteads stood a few kilometres apart, which says nothing of the spacing of houses within one.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wichmann-2025-PMC11844905.txt (sha256 9f20a4209e5e5fb8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

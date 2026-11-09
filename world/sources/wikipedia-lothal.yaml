@@ -1,0 +1,20 @@
+id: src:wikipedia-lothal
+type: database-record
+kind: review
+citation: >-
+  "Lothal." Wikipedia, the free encyclopedia (English edition), revision 1379908195.
+snapshot: 2026-11-09
+title: Lothal
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Lothal&oldid=1379908195
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the courtyard houses of Lothal in Gujarat because no better work could be read
+  here. The sentence cited rests on the excavator's own account, Rao, S.R. (1985), Lothal, Archaeological Survey of India,
+  pp. 19–24, which could not be read here and should replace it.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1379908195, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quote checked by script against that text, and its footnotes matched to the works they cite.

@@ -1,0 +1,22 @@
+id: src:spielmann-2016-southwest-transformation
+type: publication
+kind: measurement
+citation: >-
+  Spielmann, K.A., Peeples, M.A., Glowacki, D.M. & Dugmore, A. (2016). Early Warning Signals of Social Transformation: A
+  Case Study from the US Southwest. PLOS ONE 11(10), e0163685.
+authors:
+  - "Spielmann, K.A."
+  - "Peeples, M.A."
+  - "Glowacki, D.M."
+  - "Dugmore, A."
+published: 2016
+title: "Early Warning Signals of Social Transformation: A Case Study from the US Southwest"
+container: PLOS ONE
+doi: 10.1371/journal.pone.0163685
+url: https://europepmc.org/article/PMC/PMC5051805
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the article's page on PubMed Central (PMC5051805), saved as text; the quotes checked by script
+    against that text. Citation details from Crossref.

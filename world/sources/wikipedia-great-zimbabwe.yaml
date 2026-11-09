@@ -1,0 +1,22 @@
+id: src:wikipedia-great-zimbabwe
+type: database-record
+kind: review
+citation: >-
+  "Great Zimbabwe." Wikipedia, the free encyclopedia (English edition), revision 1381423922.
+snapshot: 2026-11-09
+title: Great Zimbabwe
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Great_Zimbabwe&oldid=1381423922
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited only for what the houses of Great Zimbabwe were built of, because no better work could
+  be read here. Its sentence on houses of thick daga rather than daga and poles is cited there to Beach, D., The Shona and
+  Zimbabwe 900–1850 (1980), chapter "The Shona before 1450", p. 42; its sentence on houses of mud on wooden frames to Kim,
+  N.C., Kusimba, C.M. & Keeley, L.H. (2015), Coercion and Warfare in the Rise of State Societies in Southern Zambezia, African
+  Archaeological Review 32(1), 1–34. Neither could be reached; they should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1381423922, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text, and their footnotes matched to the works they cite.

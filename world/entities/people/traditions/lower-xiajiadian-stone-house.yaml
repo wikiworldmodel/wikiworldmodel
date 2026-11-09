@@ -1,0 +1,82 @@
+id: people/traditions/lower-xiajiadian-stone-house
+kind: tradition/building
+summary: >-
+  The later house of the Lower Xiajiadian culture, in its "Type B" settlements: stone houses at ground level inside
+  hillforts walled in stone, high on the edges of valleys, most of them on the rim of the Mongolian Plateau around Chifeng,
+  built from the sixteenth century BCE until the culture's settlements were left.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Stone house of the Lower Xiajiadian culture }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 1597 BCE, hi: 1554 BCE }
+    source:
+      ref: src:tang-2022-lower-xiajiadian-settlements
+      loc: section 6, "Calibration and results"
+      quote: >-
+        it was during the 16th century BC, 1597–1554 BC (68.3% confidence), and 1622–1536 BC (95.4% confidence), that Type
+        A earthen sites were gradually abandoned, and Type B stone locations were constructed.
+    method: radiometric/radiocarbon
+    note: The modelled transition from the earthen to the stone settlements, at 68.3% confidence; 1622–1536 BC at 95.4%.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: { lo: 1375 BCE, hi: 1295 BCE }
+    source:
+      - ref: src:tang-2022-lower-xiajiadian-settlements
+        loc: section 6, "Calibration and results"
+        quote: The lower boundary 1375–1295 BC (68.3% confidence) indicates the period of abandonment of the LXJD settlements.
+      - ref: src:tang-2022-lower-xiajiadian-settlements
+        loc: section 7.1, "Chronological implications"
+        quote: >-
+          it was after 1500 BC that stone gained ultimate importance in the LXJD culture and large-scale stone-fortified
+          sites, best represented by Sanzuodian and Kangjiatun, were built and used until around 14th century BC.
+    method: radiometric/radiocarbon
+    note: >-
+      The end of the whole culture, as the stone settlements were its last. The stone sites' own dates sum to only 1580–1448 BC
+      at 68.3% confidence, but they come from three sites, and the authors think their span was likely longer.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { walls: stone, floor: ground }
+    source:
+      - ref: src:tang-2022-lower-xiajiadian-settlements
+        loc: section 4, "Settlement construction and relative chronology"
+        quote: Type B sites feature well-preserved stone houses, installations, enclosures, and paved roads surrounded by defensive stone walls.
+      - ref: src:tang-2022-lower-xiajiadian-settlements
+        loc: section 4, "Settlement construction and relative chronology"
+        quote: ground-level stone constructed houses were built on top of semi-subterranean pit houses, which were made with mudbrick walls
+    method: excavation
+    note: >-
+      Stone walls, from the first quote. The floor at ground level is from the second, which the paper reports of one site,
+      Gaojiataizi near Chifeng, where the stone houses were built over earlier pit houses of mudbrick.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: walled }
+    source:
+      ref: src:tang-2022-lower-xiajiadian-settlements
+      loc: section 4, "Settlement construction and relative chronology"
+      quote: External walls have been found in all reported Type B settlements.
+    method: excavation
+    note: >-
+      Within the walls the households still kept their walled yards, as the broader tradition says. The paper adds that most
+      small sites of the culture were not fortified.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+relations:
+  broader:
+    rel: member-of
+    to: people/traditions/lower-xiajiadian-house
+    source:
+      ref: src:tang-2022-lower-xiajiadian-settlements
+      loc: section 4, "Settlement construction and relative chronology"
+      quote: they should be regarded as one cultural group
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

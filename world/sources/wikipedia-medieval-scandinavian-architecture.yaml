@@ -1,0 +1,19 @@
+id: src:wikipedia-medieval-scandinavian-architecture
+type: database-record
+kind: review
+citation: >-
+  "Medieval Scandinavian architecture." Wikipedia, the free encyclopedia (English edition), revision 1326247970.
+snapshot: 2026-11-09
+title: Medieval Scandinavian architecture
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Medieval_Scandinavian_architecture&oldid=1326247970
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for the size and build of the Viking-Age longhouse, for which no better work
+  could be read here. Its section on the longhouse cites only a web page of the National Museum of Denmark ("Viking
+  homes"), which could not be reached. A synthesis of excavated Viking-Age houses should replace it.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML (revision 1326247970) fetched from Wikipedia's REST interface on 9 November 2026 and read as text;
+    the quotes checked by script against that text.

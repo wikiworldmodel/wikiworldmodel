@@ -1,0 +1,19 @@
+id: src:wikipedia-dong-son-drum
+type: database-record
+kind: review
+citation: >-
+  "Đông Sơn drum." Wikipedia, the free encyclopedia (English edition), revision 1362110988.
+snapshot: 2026-11-09
+title: Đông Sơn drum
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=%C4%90%C3%B4ng_S%C6%A1n_drum&oldid=1362110988
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited for the dates of the drums and for the houses on piles their scenes show,
+  because no work on the drums could be read here. Neither sentence cites a source; the article's history section names
+  Higham (1996), The Bronze Age of Southeast Asia, which was not read and should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched with the action=render view of index.php on 9 November 2026 (the parser's note names the
+    revision) and read as text, with the reference marks taken out; the quotes checked by script against that text.

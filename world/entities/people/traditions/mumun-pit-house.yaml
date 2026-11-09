@@ -1,0 +1,76 @@
+id: people/traditions/mumun-pit-house
+kind: tradition/building
+summary: >-
+  The pit-house of the Mumun pottery period in Korea, about 1500–300 BCE, when farming took hold on the peninsula: a house
+  dug into the ground, large and rectangular in the Early Mumun, smaller and square, round or oval from some time after
+  900 BCE, in settlements mostly small but in the Middle Mumun of up to several hundred houses.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Pit-house of the Mumun period }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 1500 BCE
+    source:
+      ref: src:wikipedia-mumun-pottery-period
+      loc: opening section
+      quote: The Mumun pottery period is an archaeological era in Korean prehistory that dates to approximately 1500–300 BC.
+    method: expert-estimate
+    note: The start of the Mumun period, taken as the start of its house; pit-houses were built in Korea before it too.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-mumun-pottery-period.txt (sha256 1049b51639fe2ad3), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 300 BCE
+    source:
+      - ref: src:wikipedia-mumun-pottery-period
+        loc: opening section
+        quote: The Mumun pottery period is an archaeological era in Korean prehistory that dates to approximately 1500–300 BC.
+      - ref: src:wikipedia-mumun-pottery-period
+        loc: section "Chronology", "Late Mumun"
+        quote: Thus, the Mumun is described as ending, as a cultural-technical period, by approximately 300 BC.
+    method: expert-estimate
+    note: >-
+      The end of the Mumun period. The source has pit-houses after it as well, now with composite hearth-ovens inside; they
+      are not this tradition.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-mumun-pottery-period.txt (sha256 1049b51639fe2ad3), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["117"] }
+    source:
+      ref: src:wikipedia-mumun-pottery-period
+      loc: opening section
+      quote: The Mumun pottery period is an archaeological era in Korean prehistory that dates to approximately 1500–300 BC.
+    method: editorial
+    note: >-
+      Region 117 (Korea). The sites the article names are in the south and centre of the peninsula; it also puts settlements
+      like these in northern Kyushu late in the period, which are left out here. Not claimed for all of the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-mumun-pottery-period.txt (sha256 1049b51639fe2ad3), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { floor: sunken }
+    source:
+      - ref: src:wikipedia-mumun-pottery-period
+        loc: section "Chronology", "Early Mumun"
+        quote: >-
+          The Early (or Formative) Mumun (c. 1500–850 BC) is characterized by shifting cultivation, fishing, hunting, and
+          discrete settlements with rectangular semi-subterranean pit-houses.
+      - ref: src:wikipedia-mumun-pottery-period
+        loc: section "Settlement"
+        quote: >-
+          Some time after 900 BC, small pit-houses were the norm. The plan-shape of these pit-houses are square, circular and
+          oval.
+      - ref: src:wikipedia-mumun-pottery-period
+        loc: section "Chronology", "Late Mumun"
+        quote: Pit-houses at Namsan were located inside a ring-ditch that is some 4.2 m deep and 10 m in width.
+    method: excavation
+    note: >-
+      Pit-houses in each of the three sub-periods. The plan changed within the period, so it is left to the narrower
+      tradition of the Early Mumun and, after it, to the generator: the source gives square, round and oval plans and no
+      size. A 4.2 m ditch is the Late Mumun site's, not a house's.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-mumun-pottery-period.txt (sha256 1049b51639fe2ad3), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

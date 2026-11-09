@@ -1,0 +1,90 @@
+id: people/traditions/viking-age-longhouse
+kind: tradition/building
+summary: >-
+  The longhouse of Viking-Age Scandinavia: a long house on a timber frame set on stone footings, its walls of planks, logs
+  or wattle and daub, often bowed so that the house was boat-shaped, its roof on internal posts, with a fire inside and
+  benches along the walls, and the animals in stalls at one end where there was no stable. The richer the owner, the longer
+  the house.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Viking-Age longhouse of Scandinavia }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 800 CE
+    source:
+      ref: src:wikipedia-viking-age
+      loc: lead section
+      quote: The Viking Age (about 800–1050
+    method: expert-estimate
+    note: >-
+      The start of the Viking Age, in round figures. The longhouse is older: before this,
+      people/traditions/iron-age-longhouse-village.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-Viking_Age.txt (sha256 1a75b39c997442fe), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 1050 CE
+    source:
+      ref: src:wikipedia-viking-age
+      loc: lead section
+      quote: The Viking Age (about 800–1050
+    method: expert-estimate
+    note: The end of the Viking Age, in round figures. No source read says what the house became after it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-Viking_Age.txt (sha256 1a75b39c997442fe), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["39"] }
+    source:
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Røyksund"
+        quote: Røyksund Norway Three-aisled long house 1 Viking Age
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Borg"
+        quote: Borg Norway Three-aisled long house 1, 5, 11 Viking Age
+      - ref: src:wikipedia-medieval-scandinavian-architecture
+        loc: section "Viking longhouse"
+        quote: Throughout the Norse lands, people lived in longhouses (langhús)
+    method: editorial
+    note: >-
+      Region 39 (Scandinavia), where the S1 Table lists Viking-Age three-aisled long houses in Norway and the encyclopedia
+      places the longhouse throughout the Norse lands. Iceland and Greenland, where the longhouse was built of turf, have
+      their own record, people/traditions/north-atlantic-turf-longhouse. A region named is where the sources place the
+      house, not a claim that it covered the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in nicosia-2022-PMC9432763-with-S1.txt (sha256 d9d52156e5f25fc8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: long, width: { lo: 5, hi: 7 }, length: { lo: 15, hi: 75 }, walls: timber, roof_material: thatch }
+    source:
+      - ref: src:wikipedia-medieval-scandinavian-architecture
+        loc: section "Viking longhouse"
+        quote: >-
+          Throughout the Norse lands, people lived in longhouses (langhús), which were typically 5 to 7 meters (16 to 23 ft)
+          wide and anywhere from 15 to 75 meters (49 to 246 ft) long, depending on the wealth and social position of the
+          owner.
+      - ref: src:wikipedia-medieval-scandinavian-architecture
+        loc: section "Viking longhouse"
+        quote: >-
+          In much of the Norse region, the longhouses were built around wooden frames on simple stone footings. Walls were
+          constructed of planks, of logs, or of wattle and daub.
+      - ref: src:wikipedia-medieval-scandinavian-architecture
+        loc: section "Viking longhouse"
+        quote: The roofs were thatched or slanted.
+      - ref: src:wikipedia-medieval-scandinavian-architecture
+        loc: section "Viking longhouse"
+        quote: If the owner did not have stables, the animals were housed in stalls at the end of the longhouse.
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Moi I/V"
+        quote: Moi I/V Norway Three-aisled long house 1 Viking Age
+    method: excavation
+    note: >-
+      The size, walls and roof are the encyclopedia's, which cites no study of excavated houses for them; the long end of
+      the range is the houses of the rich. The walls were of planks or logs, which the vocabulary calls timber, or of wattle
+      and daub. The roof is given as "thatched or slanted", so thatch, and no shape. The S1 Table finds Viking-Age houses
+      in Norway three-aisled, the roof on two rows of posts.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in nicosia-2022-PMC9432763-with-S1.txt (sha256 d9d52156e5f25fc8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

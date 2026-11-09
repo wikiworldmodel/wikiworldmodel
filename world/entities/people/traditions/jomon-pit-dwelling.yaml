@@ -1,0 +1,82 @@
+id: people/traditions/jomon-pit-dwelling
+kind: tradition/building
+summary: >-
+  The pit dwelling of the settled Jōmon foragers of Japan, from the Early to the Final Jōmon, about 5000–350 BCE: a house
+  dug into the ground, the usual house of its time, whose numbers archaeologists count to follow how many people there were.
+  Pit-houses are older in Japan and lasted later than this span, which is set by the source's periods.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Pit dwelling of the Jōmon }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 6950 BP
+    source:
+      - ref: src:crema-2016-jomon-population
+        loc: Introduction, "Jomon Population dynamics as inferred by site and residential unit counts"
+        quote: >-
+          In particular, we focus on the interval between 7,000 and 3,000 cal BP, which approximately corresponds to the
+          Early (6,950 ~ 5,470 cal BP), Middle (5,470 ~ 4,420 cal. BP) and the Late (4,420 ~ 3,220 cal BP) Jomon periods.
+      - ref: src:crema-2016-jomon-population
+        loc: Materials
+        quote: We excluded sites dated to Incipient and Initial Jomon periods (when the degree of sedentism was significantly lower)
+    method: radiometric/radiocarbon
+    note: >-
+      The start of the Early Jōmon in Kobayashi's absolute chronology, which the source follows: the first of the periods
+      whose settled villages and counts of dwellings it discusses. Earlier, less settled Jōmon people also built pit-houses;
+      this record does not reach back to them.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in crema-2016.txt (sha256 c1bacb0729f91d0a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 2300 BP
+    source:
+      ref: src:crema-2016-jomon-population
+      loc: Introduction, "Jomon Population dynamics as inferred by site and residential unit counts"
+      quote: Final Jomon periods (n = 1,462; 3,220~2,300 cal BP)
+    method: radiometric/radiocarbon
+    note: >-
+      The end of the Final Jōmon in the same chronology. In the same section, counts of dwellings at Hachinohe go on falling
+      through the Late and Final Jōmon. The pit-houses of the Yayoi period and after are not this tradition.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in crema-2016.txt (sha256 c1bacb0729f91d0a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["124"] }
+    source:
+      ref: src:crema-2016-jomon-population
+      loc: Introduction
+      quote: >-
+        We analyse the SPDs of three regions from Eastern Japan (Hokkaido, Aomori Prefecture, and Kanto; see Fig 1) that
+        were densely populated during the Jomon period
+    method: editorial
+    note: >-
+      Region 124 (Japan), which holds Hokkaido, Aomori and Kanto. The sources read here speak of eastern Japan, and of the
+      Middle Jōmon generally; the house is not claimed for all of the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in crema-2016.txt (sha256 c1bacb0729f91d0a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { floor: sunken }
+    source:
+      - ref: src:crema-2016-jomon-population
+        loc: Introduction
+        quote: >-
+          several authors also offered time-series of pit-dwellings [7,16–17], arguing that these provide a more dependable
+          alternative
+      - ref: src:crema-2016-jomon-population
+        loc: Introduction, "Jomon Population dynamics as inferred by site and residential unit counts"
+        quote: >-
+          seem to locate the peak in the dwelling counts between the end of the Middle Jomon and the beginning of the Late
+          Jomon period, followed by a gradual decline throughout the Late and the Final Jomon periods
+      - ref: src:wikipedia-jomon-period
+        loc: section "Middle Jōmon (3520–2470 BC)"
+        quote: This period saw a rise in complexity in the design of pit-houses, the most commonly used method of housing at the time
+    method: excavation
+    note: >-
+      The pit dwelling as the unit the counts are made of, through the Early to Final Jōmon, and as the usual house of the
+      Middle Jōmon. No source read here gives its plan, size, walls or roof; the generator guesses them.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in crema-2016.txt (sha256 c1bacb0729f91d0a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

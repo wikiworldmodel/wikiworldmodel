@@ -1,0 +1,25 @@
+id: src:driaux-2016-water-supply-egypt
+type: publication
+kind: review
+citation: >-
+  Driaux, D. (2016). Water supply of ancient Egyptian settlements: the role of the state. Overview of a relatively
+  equitable scheme from the Old to New Kingdom (ca. 2543–1077 BC). Water History 8, 43–58.
+authors:
+  - "Driaux, D."
+published: 2016
+title: "Water supply of ancient Egyptian settlements: the role of the state. Overview of a relatively equitable scheme from the Old to New Kingdom (ca. 2543–1077 BC)"
+container: Water History 8, 43–58
+doi: 10.1007/s12685-015-0150-x
+url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4811298/fullTextXML
+license: CC-BY-4.0
+via: Europe PMC (PMC4811298).
+reliability: >-
+  A review of the texts and excavations of Egyptian settlements, by an archaeologist who has worked at Amarna and Deir
+  el-Medina, published in a peer-reviewed journal. What it says of the two workmen's villages, their walls, their houses and
+  their dates, it takes from their excavators and historians (Kemp for Amarna; Valbelle and McDowell for Deir el-Medina),
+  whose works were not read here.
+verified:
+  by: machine:claude-code
+  how: >-
+    The full text read from Europe PMC's XML on 9 November 2026 and kept as text; the quotes checked by script against it.
+    Volume and pages from Europe PMC's record of the article.

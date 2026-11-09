@@ -1,0 +1,66 @@
+id: people/traditions/pueblo-planned-town
+kind: tradition/building
+summary: >-
+  The large pueblo of the thirteenth century and after: hundreds of rooms built as one great structure, or a few, often
+  around one or more open plazas, into which the people of the Mesa Verde region gathered before they left it at the end of
+  the century, and the whole people of the Zuni region between about 1260 and 1300.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Aggregated pueblo town }
+    unsourced: An editorial label.
+  start-bocinsky:
+    prop: start
+    value: 1200 CE
+    source:
+      ref: src:bocinsky-2016-pueblo-macrohistory
+      loc: Discussion
+      quote: P III is most distinctively characterized by its A.D. 1200–1285 aggregations.
+    method: dendrochronology
+    rank: preferred
+    note: >-
+      The start of the aggregations that characterize Pueblo III across the paper's northern Southwest, from the
+      frequencies of tree-ring cutting dates. Preferred as the earlier date for the region as a whole; the Zuni region
+      gathered later, as the other claim has it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in bocinsky-2016-pueblo-macrohistory-PMC4820384.txt (sha256 302f38d01d94ecdc), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  start-spielmann:
+    prop: start
+    value: { lo: 1260 CE, hi: 1300 CE }
+    source:
+      ref: src:spielmann-2016-southwest-transformation
+      loc: section "Zuni"
+      quote: Within a single generation, between about 1260 and 1300 C.E., the entire population of the Zuni region reorganized.
+    method: expert-estimate
+    note: The Zuni region only.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in spielmann-2016-early-warning-southwest-PMC5051805.txt (sha256 86a7b8335d09b74a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: room-block }
+    source:
+      - ref: src:spielmann-2016-southwest-transformation
+        loc: section "Zuni"
+        quote: >-
+          People went from living in widely distributed small residential structures clustered into communities to massive,
+          planned, nucleated towns containing from about 200 to as many as 1500 rooms within single structures
+      - ref: src:spielmann-2016-southwest-transformation
+        loc: section "Zuni"
+        quote: Room blocks in these large, planned villages were often built around one or more open plazas
+      - ref: src:spielmann-2016-southwest-transformation
+        loc: section "Mesa Verde"
+        quote: lived in increasingly aggregated settlements (up to 400–600 rooms)
+    method: excavation
+    note: >-
+      Towns of about 200 to 1500 rooms in single structures in the Zuni region, and settlements of up to 400 to 600 rooms in
+      the Mesa Verde region, where people gathered after the drought of the mid-1100s. Rooms are not houses, so no number of
+      houses is given. The Mesa Verde region was left by the end of the thirteenth century, the same paper says; no end is
+      given here, as Zuni went on.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in spielmann-2016-early-warning-southwest-PMC5051805.txt (sha256 86a7b8335d09b74a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+relations:
+  broader:
+    rel: member-of
+    to: people/traditions/ancestral-puebloan-room-block
+    unsourced: An editorial grouping.

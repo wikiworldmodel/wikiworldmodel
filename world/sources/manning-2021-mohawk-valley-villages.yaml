@@ -1,0 +1,24 @@
+id: src:manning-2021-mohawk-valley-villages
+type: publication
+kind: measurement
+citation: >-
+  Manning, S.W., Lorentzen, B. & Hart, J.P. (2021). Resolving Indigenous village occupations and social history across the
+  long century of European permanent settlement in Northeastern North America: The Mohawk River Valley ~1450–1635 CE.
+  PLOS ONE 16(10), e0258555.
+authors:
+  - "Manning, S.W."
+  - "Lorentzen, B."
+  - "Hart, J.P."
+published: 2021
+title: >-
+  Resolving Indigenous village occupations and social history across the long century of European permanent settlement in
+  Northeastern North America: The Mohawk River Valley ~1450-1635 CE
+container: PLOS ONE
+doi: 10.1371/journal.pone.0258555
+url: https://europepmc.org/article/PMC/PMC8519479
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC's full-text XML (PMC8519479), saved as text; the quotes checked by script against that
+    text. Citation details from Crossref.

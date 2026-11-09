@@ -1,0 +1,21 @@
+id: src:thompson-2021-maya-household-inequality
+type: publication
+kind: measurement
+citation: >-
+  Thompson, A.E., Feinman, G.M. & Prufer, K.M. (2021). Assessing Classic Maya multi-scalar household inequality in southern
+  Belize. PLOS ONE 16(3), e0248169.
+authors:
+  - "Thompson, A.E."
+  - "Feinman, G.M."
+  - "Prufer, K.M."
+published: 2021
+title: Assessing Classic Maya multi-scalar household inequality in southern Belize
+container: PLOS ONE
+doi: 10.1371/journal.pone.0248169
+url: https://europepmc.org/article/PMC/PMC7990175
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC's full-text XML (PMC7990175), saved as text; the quotes checked by script against that
+    text. Citation details from Crossref.
