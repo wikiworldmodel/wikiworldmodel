@@ -368,35 +368,45 @@ describe('the sea\'s atlas', () => {
     const index = json<SeaIndex>('life/sea.json');
     const forms = json<Record<string, import('../../../core/form.ts').Form>>(index.forms!);
     const p = world.fields.find((f) => f.data?.as === 'community-sea')!.params as { list_size: number; standins: number; drawn_size: number; per_class: number };
+    const SEA = new Set(['water', 'floor', 'any', 'edge', 'air']);
+    // Every problem is collected and shown at once: millions of entries are too many to expect one by one.
+    const problems: string[] = [];
     let drawnLists = 0;
     let lists = 0;
     for (const ref of index.bins) {
       const bin = json<SeaBin>(ref.file);
-      for (const key of Object.keys(bin.nodes)) {
+      // Each taxon of a stage once: its body lives in the sea, and it has a size.
+      for (const t of bin.taxa) {
+        if (!t.draw) continue;
+        const f = forms[t.draw.form];
+        if (!f || f.kind !== 'animal' || !SEA.has(f.behave?.habitat ?? '')) problems.push(`${ref.name} ${t.label}: not a body of the sea`);
+        if (t.draw.length === undefined && t.draw.mass === undefined) problems.push(`${ref.name} ${t.label}: no size`);
+      }
+      for (const key in bin.nodes) {
         const flat = bin.nodes[key];
-        const taxa = Array.from({ length: flat.length / 4 }, (_, i) => bin.taxa[flat[i * 4]]);
         lists++;
-        const first = taxa[0]?.standin ? p.standins : p.list_size;
-        expect(taxa.length).toBeLessThanOrEqual(first + p.drawn_size);
-        const drawn = taxa.filter((t) => t.draw);
-        if (drawn.length) drawnLists++;
-        // The most recorded are kept whatever their class; those added to be drawn keep to the limit.
+        const n = flat.length / 4;
+        const first = bin.taxa[flat[0]]?.standin ? p.standins : p.list_size;
+        if (n > first + p.drawn_size) problems.push(`${ref.name} ${key}: ${n} genera`);
         const perClass = new Map<string, number>();
-        for (const t of drawn) perClass.set(t.group, (perClass.get(t.group) ?? 0) + 1);
-        for (const t of taxa.slice(first)) {
-          expect(t.draw, `${ref.name} ${key} ${t.label}`).toBeDefined();
-          const kept = taxa.slice(0, first).filter((u) => u.draw && u.group === t.group).length;
-          expect(perClass.get(t.group)!, `${ref.name} ${key} ${t.group}`).toBeLessThanOrEqual(Math.max(p.per_class, kept));
+        const keptOf = new Map<string, number>();
+        let drawn = 0;
+        for (let i = 0; i < n; i++) {
+          const t = bin.taxa[flat[i * 4]];
+          if (!t.draw) {
+            if (i >= first) problems.push(`${ref.name} ${key}: ${t.label} is added but cannot be drawn`);
+            continue;
+          }
+          drawn++;
+          perClass.set(t.group, (perClass.get(t.group) ?? 0) + 1);
+          if (i < first) keptOf.set(t.group, (keptOf.get(t.group) ?? 0) + 1);
         }
-        for (const t of drawn) {
-          const f = forms[t.draw!.form];
-          expect(f, t.label).toBeDefined();
-          expect(f.kind).toBe('animal');
-          expect(['water', 'floor', 'any', 'edge', 'air']).toContain(f.behave?.habitat);
-          expect(t.draw!.length ?? t.draw!.mass, t.label).toBeDefined();
-        }
+        if (drawn) drawnLists++;
+        // The most recorded are kept whatever their class; those added to be drawn keep to the limit.
+        for (const [g, c] of perClass) if (c > Math.max(p.per_class, keptOf.get(g) ?? 0)) problems.push(`${ref.name} ${key}: ${c} of ${g}`);
       }
     }
+    expect(problems.slice(0, 20)).toEqual([]);
     // Some of the sea's lists can be drawn: how many is how far the sea's forms reach.
     expect(drawnLists).toBeGreaterThan(0);
     expect(drawnLists).toBeLessThanOrEqual(lists);
