@@ -100,6 +100,27 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
     console.log(`${text.split('\n').filter((l) => l && !l.startsWith('#')).length - 1} cells → ${SNAPSHOT}`);
     console.log(`In world/manifest.yaml the dataset is repo:${SNAPSHOT}, sha256 ${createHash('sha256').update(text).digest('hex')}, ${Buffer.byteLength(text)} bytes.`);
   },
+  // ArchaeoGLOBE's summary tables, joined into one table kept in world/snapshots. A fixed record version, so this makes the
+  // same bytes every time; it refuses a newer version until someone has read what changed.
+  async 'archaeoglobe-snapshot'() {
+    const { exportAssessments, SNAPSHOT } = await import('./archaeoglobe.ts');
+    const text = await exportAssessments();
+    writeFileSync(join(REPO, SNAPSHOT), text);
+    console.log(`${text.split('\n').filter((l) => l && !l.startsWith('#')).length - 1} rows → ${SNAPSHOT}`);
+    console.log(`In world/manifest.yaml the dataset is repo:${SNAPSHOT}, sha256 ${createHash('sha256').update(text).digest('hex')}, ${Buffer.byteLength(text)} bytes.`);
+  },
+  // What most wants a building tradition: `npm run world -- dwellings-wanted [--n 40] [--region 59]`.
+  async 'dwellings-wanted'(args) {
+    const { dwellingsWanted, wantedText } = await import('./dwellingsWanted.ts');
+    const opt = (name: string) => {
+      const i = args.indexOf(name);
+      return i >= 0 ? Number(args[i + 1]) : undefined;
+    };
+    // Every 500 years from 3000 BCE to 500 BCE, then 1 CE and every 500 years to 1500, and the survey's last times.
+    const times = [...Array.from({ length: 6 }, (_, i) => -2999 + i * 500), 1, 500, 1000, 1500, 1750, 1850];
+    const { rows } = await dwellingsWanted(times);
+    console.log(wantedText(rows, opt('--n') ?? 40, opt('--region')));
+  },
   // A sheet of a form, to look at: `npm run world -- form-sheet life/taxa/triceratops`, or `plan:ceratopsian`.
   async 'form-sheet'([name, out]) {
     const world = await loadWorld();

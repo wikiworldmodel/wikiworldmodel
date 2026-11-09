@@ -168,8 +168,10 @@ export interface Field {
     from: string;
     file?: string;
     /** what the data is read as, where it is not elevation */
-    as?: 'climate' | 'ice-sheets' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages' | 'people' | 'community' | 'community-sea' | 'relief' | 'river-widths';
+    as?: 'climate' | 'ice-sheets' | 'borders' | 'hazards' | 'polities' | 'routes' | 'languages' | 'people' | 'community' | 'community-sea' | 'relief' | 'river-widths' | 'anthromes' | 'land-use-assessment' | 'cities';
     places?: string;
+    /** for a land-use assessment by region: the dataset of the regions' shapes */
+    regions?: string;
     /** for a climate read as months from NetCDF-4: the file's variables */
     variables?: Record<'temperature' | 'precipitation' | 'time' | 'latitude' | 'longitude', string>;
     /** for relief: today's ocean and lakes, as areas */
@@ -294,7 +296,7 @@ export interface Kind {
 }
 
 export interface Property {
-  type: 'time' | 'point' | 'ref' | 'text' | 'string' | 'quantity' | 'color' | 'geometry' | 'form' | 'body-form';
+  type: 'time' | 'point' | 'ref' | 'text' | 'string' | 'quantity' | 'color' | 'geometry' | 'form' | 'body-form' | 'dwelling' | 'settlement-form' | 'field-system';
   unit?: string;
   /** for strings: the values allowed, each with what it means */
   values?: Record<string, string>;

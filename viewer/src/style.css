@@ -161,6 +161,9 @@ body.evidence .planet-row.projection .planet-value { color: var(--procedural); }
 /* The bar runs as people() in gl/globe.ts does, from the dimmed land up. */
 .people-legend { position: absolute; left: 16px; bottom: 30px; width: min(300px, calc(100% - 32px)); display: grid; gap: 3px; padding: 6px 10px 7px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 8px; font-size: 11px; pointer-events: none; }
 .people-legend[hidden] { display: none; }
+.landscape-legend .ll-items { display: flex; flex-wrap: wrap; gap: 2px 10px; }
+.landscape-legend .ll-item { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.landscape-legend .ll-item i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
 .pl-title { font-weight: 600; }
 .pl-bar { height: 8px; border-radius: 4px; background: linear-gradient(to right, #1f1a16 0%, #3a0a02 20%, #701704 40%, #d43605 60%, #f78c1e 80%, #ffedad 100%); }
 .pl-ticks { display: flex; justify-content: space-between; color: var(--muted); font-variant-numeric: tabular-nums; }
@@ -206,4 +209,13 @@ body.evidence .planet-row.projection .planet-value { color: var(--procedural); }
   color: var(--accent);
   font: inherit;
   cursor: pointer;
+}
+/* The human landscape's legend: at the right, clear of the planet's panel and the people's legend; beside the inspect panel
+   when it is open, and under the people's legend on a phone. */
+.people-legend.landscape-legend { left: auto; right: 16px; bottom: 30px; width: min(420px, calc(100% - 32px)); }
+@media (min-width: 900px) { .stage:has(.inspect:not([hidden])) .landscape-legend { right: calc(min(400px, 100vw - 32px) + 28px); } }
+@media (max-width: 899px) { .stage:has(.inspect:not([hidden])) .landscape-legend { display: none; } }
+@media (max-width: 640px) {
+  .people-legend.landscape-legend { left: 16px; right: auto; top: 162px; bottom: auto; }
+  .people-legend:not([hidden]) + .landscape-legend { display: none; }
 }

@@ -10,6 +10,11 @@ import { hashString } from '../city/math.ts';
 import { drawAnimal, drawPlant, POSE, type Detail, type Stance } from './forms.ts';
 import { CELL, CELLS, cellParts, cellKey, coverMask, EXTENT, groundGrids, LandCover, makePlan, placeLook, waterLevels, waterRibbons, waterSheet, watersFor, type CellRows, type LivingParams, type LivingPlan, type PlaceLook } from './scene/v5.ts';
 import type { Waters } from './land.ts';
+import { drawDwelling, houseSize, type HouseDetail } from '../people/dwellings.ts';
+import { LandUseMap, landUseMask, makeSettlement, type SettlementPlan } from '../people/settlement/v1.ts';
+
+/** Where houses start among a scene's kinds of mesh: a taxon's number is below it, a house's dwelling above. */
+export const HOUSE = 0x4000;
 
 export const INSTANCE_STRIDE = 28;
 
@@ -84,6 +89,12 @@ export class SceneStream {
   private keep = 1;
   private fullReach: number;
   private nearReach: number;
+  /** the people's houses, settlements and fields, where the scene has people */
+  readonly people?: SettlementPlan;
+  private landUse?: LandUseMap;
+  /** each cell's houses, by their place in the plan */
+  private houseCells = new Map<number, number[]>();
+  private houseTops: number[] = [];
 
   constructor(readonly spec: SceneSpec, private budget: Budget = FULL_BUDGET) {
     this.params = spec.generator.params as unknown as LivingParams;
@@ -94,8 +105,30 @@ export class SceneStream {
     this.ground = new GroundSampler(this.levels);
     // Where the world gives the rivers, the water's level varies over the scene; otherwise it is the place's one level.
     const levelAt = waters.paths ? waterLevels(waters) : undefined;
-    this.plan = makePlan(spec, this.ground, this.look, waters, levelAt);
-    this.cover = new LandCover(spec, this.ground, this.look.water, this.plan.focus, levelAt);
+    // The people, where the scene has any: their houses and fields, on this ground and away from this water. Where they
+    // cleared the land no tree stands. A scene of the sea has them too, on whatever ground stands above its water: a place
+    // a few metres above the sea, a delta or a lower plain, is a scene of the sea (scene/v5.ts, sea_below), and among the
+    // most crowded land there was.
+    let clearing: ((x: number, y: number) => number) | undefined;
+    if (spec.people) {
+      const water = levelAt ?? (() => this.look.water);
+      this.people = makeSettlement(spec, this.ground, water, EXTENT);
+      const use = new LandUseMap(this.people, this.ground, water, this.look.seed);
+      this.landUse = use;
+      clearing = (x, y) => {
+        const u = use.at(x, y);
+        return Math.max(u.crop, u.pasture * 0.85, u.yard);
+      };
+      this.houseTops = this.people.forms.map((f) => houseSize(f.spec).top);
+      this.people.houses.forEach((h, i) => {
+        const k = cellKey(Math.floor(h.x / CELL), Math.floor(h.y / CELL));
+        let list = this.houseCells.get(k);
+        if (!list) this.houseCells.set(k, (list = []));
+        list.push(i);
+      });
+    }
+    this.plan = makePlan(spec, this.ground, this.look, waters, levelAt, clearing);
+    this.cover = new LandCover(spec, this.ground, this.look.water, this.plan.focus, levelAt, clearing);
     this.tones = spec.taxa.map((t) => hashString(t.id) & 255);
     this.fullReach = this.params.reach.full;
     this.nearReach = this.params.reach.near;
@@ -104,6 +137,11 @@ export class SceneStream {
   /** What the ground is, as an image: as fine as asked for. */
   mask(size: number): { data: Uint8Array; box: [number, number, number, number] } {
     return { data: coverMask(this.cover, size, EXTENT), box: [-EXTENT, -EXTENT, EXTENT, EXTENT] };
+  }
+
+  /** What people made of the ground, as an image: R crops, G pasture, B yards, A paddies. Undefined where there are no people. */
+  fields(size: number): { data: Uint8Array; box: [number, number, number, number] } | undefined {
+    return this.landUse ? { data: landUseMask(this.landUse, size, EXTENT), box: [-EXTENT, -EXTENT, EXTENT, EXTENT] } : undefined;
   }
 
   /** The water: ribbons along the world's rivers, or the place's one sheet; with each vertex's flow and depth. */
@@ -123,9 +161,19 @@ export class SceneStream {
     return c;
   }
 
-  /** A mesh of one kind of body or plant: the same everywhere, within the tolerance. */
+  /** A mesh of one kind of body or plant, or of a house: the same everywhere, within the tolerance. */
   mesh(proto: number): ProtoMesh {
     const { taxon, variant, detail } = protoParts(proto);
+    if (taxon >= HOUSE) {
+      const f = this.people!.forms[taxon - HOUSE];
+      const m = new Mesh(detail >= 2 ? 2048 : 256);
+      m.entity = this.spec.taxa.length + 1 + (taxon - HOUSE);
+      // Detail 2 is the finest, as for bodies; a house's own scale runs the other way.
+      drawDwelling(m, f.spec, (2 - detail) as HouseDetail, 112 + (variant & 31));
+      const { vertices, indices } = m.arrays();
+      this.meshes.set(proto, { tris: indices.length / 3 });
+      return { proto, vertices, indices };
+    }
     const t = this.spec.taxa[taxon];
     const form = this.spec.forms[t.form];
     const m = new Mesh(detail >= 2 ? 4096 : 512);
@@ -259,6 +307,48 @@ export class SceneStream {
         b.s[b.n * 14 + 13] = form.kind === 'plant' ? shade[q] >> 2 : shade[q] >> 3;
         b.n++;
         instances++;
+      }
+      // The houses of the cell: the same at every distance, as the bodies are, further off only the lowest ranks.
+      const hs = this.houseCells.get(cellKey(i, j));
+      if (hs && this.people) {
+        for (const hi of hs) {
+          if (instances >= cap) break;
+          const h = this.people.houses[hi];
+          const dx = h.x - ex;
+          const dy = h.y - ey;
+          const dz = h.z - ez;
+          const dd = dx * dx + dy * dy + dz * dz;
+          const tall = this.houseTops[h.form] * h.size;
+          const pxs2 = (tall * tall * K * K) / dd;
+          if (pxs2 < 1) continue;
+          if (dd > R0 * 4 && h.rank * dd > 1024 * R0) continue;
+          const pxs = Math.sqrt(pxs2);
+          const detail: Detail = this.budget.fast ? (pxs >= 30 ? 1 : 0) : pxs >= 80 ? 2 : pxs >= 10 ? 1 : 0;
+          const proto = protoOf(HOUSE + h.form, h.rank & 3, detail);
+          let b = buckets.get(proto);
+          if (!b) {
+            const buf = new ArrayBuffer(INSTANCE_STRIDE * 64);
+            b = { f: new Float32Array(buf), s: new Uint16Array(buf), n: 0 };
+            buckets.set(proto, b);
+          }
+          if ((b.n + 1) * INSTANCE_STRIDE > b.f.byteLength) {
+            const buf = new ArrayBuffer(b.f.byteLength * 2);
+            new Uint8Array(buf).set(new Uint8Array(b.f.buffer));
+            b.f = new Float32Array(buf);
+            b.s = new Uint16Array(buf);
+          }
+          const o = b.n * 7;
+          b.f[o] = h.x;
+          b.f[o + 1] = h.y;
+          b.f[o + 2] = h.z;
+          b.f[o + 3] = h.size;
+          b.f[o + 4] = Math.sin(h.face);
+          b.f[o + 5] = Math.cos(h.face);
+          b.s[b.n * 14 + 12] = this.spec.taxa.length + 1 + h.form;
+          b.s[b.n * 14 + 13] = h.rank >> 3;
+          b.n++;
+          instances++;
+        }
       }
       // Names for what is close: the first of each group.
       if (d < this.fullReach * 0.6) {

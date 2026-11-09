@@ -1,0 +1,20 @@
+id: src:anthromes-12k-legend
+type: dataset
+kind: compilation
+citation: >-
+  Ellis, E. (2020). Anthromes 12K Graphics. Harvard Dataverse, version 1, doi:10.7910/DVN/CNFOE1. Its legend,
+  anthromes_12K_legend_colors_chart_2020_04_28.xlsx: the classes' names, levels and colours.
+authors:
+  - "Ellis, E."
+published: 2020
+title: Anthromes 12K Graphics
+container: Harvard Dataverse
+doi: 10.7910/DVN/CNFOE1
+url: https://doi.org/10.7910/DVN/CNFOE1
+license: CC0-1.0
+reliability: The dataset's own legend, cited for what each class is called and how its authors colour it.
+verified:
+  by: machine:claude-code
+  how: >-
+    The legend's archive (94,099 bytes, MD5 ee50e91dd9d55a5d9235a73cbe045d08 as the record gives it) downloaded from
+    Dataverse on 9 November 2026, and the spreadsheet's first sheet read.

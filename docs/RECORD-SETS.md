@@ -15,7 +15,7 @@ been checked by a person, which is set 20. The three steps that come out of sets
 | 6 | Dispersals, with ancient DNA | done | `world/entities/people/dispersals/`, `world/alternatives/leaving-africa*`, `world/alternatives/peopling-of-the-americas*` |
 | 7 | Megafauna extinctions | done | `world/entities/life/megafauna/`, `world/alternatives/megafauna-causes*` |
 | 8 | Domestication worldwide | done | `world/entities/people/domestication/` |
-| 9 | Population and land use (HYDE) | where people lived as a 1° grid over the globe, 10,000 BCE to 2015; the world's population, cropland and grazing land as series; no grid of land use | `world/fields/earth/{population,world-population,cropland,grazing-land}.yaml`, `world/snapshots/hyde-3.2.1-*.csv` |
+| 9 | Population and land use (HYDE) | where people lived as a 1° grid over the globe, 10,000 BCE to 2015; the world's population, cropland and grazing land as series; since the eleventh slice, every 5′ cell's anthrome from Anthromes 12K, ArchaeoGLOBE's assessments by region, and the lists of cities ([HUMAN-LANDSCAPE.md](HUMAN-LANDSCAPE.md)); no grid of land-use shares | `world/fields/earth/{population,world-population,cropland,grazing-land}.yaml`, `world/fields/people/`, `world/snapshots/hyde-3.2.1-*.csv`, `world/snapshots/archaeoglobe-2019-assessments.csv`, `world/snapshots/reba-2016-*.csv` |
 | 10 | States worldwide from Cliopatria | done as rows, not records | `world/fields/earth/polities.yaml` |
 | 11 | People and offices | done, for 42 rulers | `world/entities/people/rulers/`, `world/entities/people/polities/` |
 | 12 | First cities, writing, languages | done; languages as rows | `world/fields/earth/languages.yaml`, `world/entities/people/first-cities/`, `world/entities/people/writing/` |
@@ -90,6 +90,12 @@ so that they are not lost with the sessions that raised them.
 - **PaleoMIST 1.0** (`src:paleomist-1.0`). PANGAEA's page says CC BY 4.0, which is clear, but the archive was read by range requests and
   not whole. Its `calc_sl/` folder is GPL by its readme, and is not used. Its thickness was computed with RTopo-2 and ICEBRIDGE data under
   the ice, whose own licences were not read.
+- **The lists of cities** (`src:reba-2016-modelski-ancient-v2`, `src:reba-2016-chandler-v2`, eleventh slice). Taken as CC BY 4.0, as the world's
+  record of the article has it and as Europe PMC gives the article's; the figshare records' own licence fields could not be read again from
+  here, as their API host was not reachable.
+- **Anthromes 12K** (`src:anthromes-12k`). Dataverse says CC0 1.0; the archive's own readme states no licence. It classifies HYDE 3.2, whose
+  readme says CC BY 3.0, and HYDE is credited with it. The replication scripts, read for the classification's rules, are GPL v3 and limited to
+  noncommercial research by their readme, and are not imported.
 
 ### The alternatives a build shows
 
@@ -392,6 +398,39 @@ database puts on land or in fresh water alone is left out of the sea (`npm run w
 What the form language lacked, for the sea: radial symmetry of five or more; a coil (an ammonoid's shell is some sixty rings worked out by hand, so
 an involute or a heteromorph is no simple change); a tube whose section is not a whole ellipse, for two valves that meet at an edge or a concavo-convex
 shell; a sheet that is not flat; spines at angles other than 45°; and a pose for swimming.
+
+### Building traditions
+
+Written by agents, one to each part of the world, for the [eleventh slice](slices/ELEVENTH-SLICE.md), in `world/entities/people/traditions/`, on the
+brief in [DWELLINGS.md](DWELLINGS.md): 36 records, seven of them members that take what they do not say from a broader one. Of their 199 claims, 162
+cite a source and 37 do not: the names, and one end that is an editorial split (the Iron Age longhouse village ends where the Viking Age's begins).
+The 348 quotes were all found by script in the texts the agents kept, each in the file named for its source; `quote-check` records one `quoted` step
+on a claim however many sources it has, so on a claim with two sources the step names only the first text checked. Nothing has been looked at by a
+person.
+
+- **Encyclopedias.** 30 of the 68 sources are Wikipedia articles, read at a pinned revision, and 74 of the 162 sourced claims cite one, most often beside a
+  paper. Twelve traditions rest on papers alone: the Classic Maya house group, the three of the Lower Xiajiadian, the Mongolian ger, the Nordic Bronze
+  Age longhouse, the round house of Britain and Ireland, the Stony Rises' stone houses, the sunken houses of east-central Europe, the Swahili house,
+  the Thule winter house and the planned pueblo town. The four-room house, Olynthus's house and the Ancestral Puebloan pit house lean on one most.
+- **A region is drawn whole.** A tradition names the ArchaeoGLOBE regions its sources place it in, and a scene draws its houses over all of each, though
+  most notes say it is not claimed for all of it. The worst stretches: the workmen's villages of Deir el-Medina and Amarna stand for every house in Egypt
+  from 1506 to 1069 BCE; the pastas house of one city, Olynthus, for all of Southern Europe from 432 to 348 BCE; the stone houses of the lava flows of
+  western Victoria for Victoria and Tasmania; the Samoan house for all of Polynesia; the house on piles for eight regions from Thailand to Indonesia.
+  A narrower tradition takes over where one is written.
+- **Open ends.** Eight have no end, and so are drawn to the present: the Ancestral Puebloan room block and the planned pueblo town, the Middle Niger's
+  mudbrick and Djenné's courtyard house, the Mongolian ger, the Samoan house, the house on piles and the Swahili house. Their sources follow them into
+  the nineteenth or twentieth century, or say nothing of an end.
+- **A first find is not a beginning.** The Stony Rises' houses run from 1840 to 1870, the dates of the one excavated house; the paper leaves houses
+  before European contact to future work. The round house's 1500 BCE is the earliest date in a source read, not its start, and its end of 400 CE is
+  Ireland's alone.
+- **Competing claims:** the Samoan settlement, dispersed (Davidson, preferred as the later reading) or in villages (the earlier surveys); the Puebloan
+  traditions' starts and ends, Bocinsky et al. (2016) preferred over the encyclopedia's Pecos periods; the four-room house's start; and the Zimbabwe
+  culture's, at Mapela in the eleventh century (preferred, as dated evidence) or at Mapungubwe on the received view.
+- **What the vocabulary lacks:** a semi-circular wall (the Stony Rises' houses are drawn round), open sides (the Samoan house's are drawn as none),
+  thick daga without poles (the Zimbabwe culture's élite houses), stone pillars, and a cave. A size given as floor area is not stored, as the vocabulary
+  takes a diameter or a length and width.
+- **Not written:** the agents' lists of what they could not reach or did not get to are in the slice's document; `npm run world -- dwellings-wanted` lists
+  where the most people are drawn with generic houses.
 
 ### Set 16: day length and the Moon
 

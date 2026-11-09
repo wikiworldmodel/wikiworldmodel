@@ -210,6 +210,15 @@ export interface CoverageFile {
   forms?: { taxa: number; own_form: number; inherited_form: number; no_form: number; rows_drawable: number; rows_total: number; wanted: { no: number; name: string; rows: number; node: string | null }[] };
   /** the energy-balance model against the evidence it does not read (model:earth/energy-balance) */
   energyBalance?: EnergyBalanceReport;
+  /**
+   * the human landscape: at some times, the share of the land HYDE's anthromes and the region's archaeologists disagree on,
+   * and the share whose way of life rests on the archaeologists (model:people/lifeways)
+   */
+  landscape?: {
+    disagree: { t: number; land: number; disagree: number; evidence: number }[];
+    /** at each of the survey's times: regions with no farming, and how many HYDE farms under 1% of; with farming widespread, and how many HYDE farms at all and over a twentieth */
+    farming: { slice: string; year: number; none: [number, number]; widespread: [number, number, number] }[];
+  };
   /** fossil forests against the climate reconstructed for their place and time; none should be in a desert */
   forests?: { id: string; ageMa: number; keyframeMa: number; lat: number; lon: number; climate: string | null; label: string }[];
   /** which tier answers each layer, over a grid of places at times through each span (core/resolve.ts) */

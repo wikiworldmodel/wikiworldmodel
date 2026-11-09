@@ -293,7 +293,7 @@ uniform float uEvidence;
 out vec4 o;
 ${LIGHTING}
 
-const int MARBLE=1, TRAVERTINE=2, BRICK=3, PLASTER=4, TILE=5, GILT=6, BRONZE=7, GRANITE=8, WOOD=9, DARK=10, PAVING=11, BASALT=12, SAND=13, CONCRETE=14, LEAD=15, LEAF=16, TRUNK=17, GRASS=18, SHAFT=19, FACADE=20, STATUE=21, EARTH=22, SEATS=23, AWNING=24, SPIRAL=25, CLOTH=26, SKIN=27, DENTIL=28, FRIEZE=29, POOL=30, HIDE=31, HORN=32, SHELL=33, FUR=34, NEEDLE=35, FROND=36, BARK=37, BROAD=38, FEATHER=39, MEMBRANE=40, CHITIN=41;
+const int MARBLE=1, TRAVERTINE=2, BRICK=3, PLASTER=4, TILE=5, GILT=6, BRONZE=7, GRANITE=8, WOOD=9, DARK=10, PAVING=11, BASALT=12, SAND=13, CONCRETE=14, LEAD=15, LEAF=16, TRUNK=17, GRASS=18, SHAFT=19, FACADE=20, STATUE=21, EARTH=22, SEATS=23, AWNING=24, SPIRAL=25, CLOTH=26, SKIN=27, DENTIL=28, FRIEZE=29, POOL=30, HIDE=31, HORN=32, SHELL=33, FUR=34, NEEDLE=35, FROND=36, BARK=37, BROAD=38, FEATHER=39, MEMBRANE=40, CHITIN=41, THATCH=42, MUD=43;
 
 float hash(vec2 p) {
   vec3 q = fract(vec3(p.xyx) * 0.1031);
@@ -578,6 +578,19 @@ Surface surface(int m, vec3 p, vec2 uv, float tint, vec3 n, float fw, out vec3 b
     vec3 base = mix(vec3(0.26, 0.17, 0.11), vec3(0.42, 0.29, 0.17), tint);
     s.albedo = base * (0.8 + 0.34 * noiseS(p, vec3(0.3, 0.04, 0.3)));
     s.rough = 0.62;
+  } else if (m == THATCH) {
+    // Thatch of straw, reed or leaves: bundles in courses down the slope, greying where it is old.
+    vec3 straw = mix(vec3(0.42, 0.33, 0.17), vec3(0.30, 0.25, 0.15), tint);
+    float course = smoothstep(0.2, 0.8, abs(fract(p.z * 3.2 + noiseM(p, 0.6) * 0.6) - 0.5) * 2.0);
+    float streak = noiseS(p, vec3(0.04, 0.04, 0.5));
+    s.albedo = straw * (0.72 + 0.22 * course + 0.2 * streak) * (0.85 + 0.3 * fbmM(p, 1.4));
+    s.rough = 0.95;
+  } else if (m == MUD) {
+    // Mud brick or mud plaster: earth-coloured, smoothed by hand, its bricks faint in courses.
+    vec3 earth = mix(vec3(0.50, 0.40, 0.29), vec3(0.42, 0.33, 0.24), tint);
+    float bricks = smoothstep(0.88, 0.97, fract(p.z * 3.0)) * 0.08;
+    s.albedo = earth * (0.86 + 0.24 * fbmM(p, 0.9) - bricks) * (0.92 + 0.16 * noiseM(p, 0.08));
+    s.rough = 0.9;
   } else if (m == CHITIN) {
     // A hard, glossy shell of plates.
     vec3 base = mix(vec3(0.05, 0.035, 0.025), vec3(0.20, 0.13, 0.06), tint);
@@ -831,6 +844,11 @@ uniform highp sampler2D uNormal1;
 uniform highp sampler2D uNormal2;
 uniform highp sampler2D uMask;
 uniform vec4 uMaskBox;
+// What people made of the ground (gen:people/settlement): R crops, G pasture, B yards and lanes, A flooded paddies; and how
+// its plots are drawn: a plot's side in m, how much longer than wide, its kind, and whether there are any.
+uniform highp sampler2D uFields;
+uniform vec4 uFieldsBox;
+uniform vec4 uFieldStyle;
 uniform highp sampler2D uAO;
 uniform vec2 uAOSize;
 uniform float uUseAO;
@@ -902,6 +920,55 @@ vec3 countryside(vec3 p, vec3 n, float dist) {
   c = mix(c, vec3(0.38, 0.35, 0.30), smoothstep(0.3, 0.55, slope));
   return c * (0.82 + 0.36 * fbmM(p, 60.0));
 }
+// People's fields: plots as the scene's field system shapes them, each its own crop or fallow, with furrows close by;
+// flooded within their banks where they are paddies. The colours are the renderer's, and nobody's record.
+vec3 plots(vec3 p, float dist, float paddy) {
+  float side = max(8.0, uFieldStyle.x);
+  float aspect = max(1.0, uFieldStyle.y);
+  float kind = uFieldStyle.z;
+  // Kinds: 1 strips, 2 irregular, 4 paddies, 5 basins, 7 swidden; the rest as blocks.
+  float warp = kind > 1.5 && kind < 2.5 || kind > 6.5 && kind < 7.5 ? 0.55 : 0.18;
+  vec2 q = p.xy + vec2(noiseM(p, side * 1.7), noiseM(p + 61.0, side * 1.7)) * side * warp;
+  vec2 size = vec2(side / sqrt(aspect), side * sqrt(aspect));
+  vec2 cell = floor(q / size);
+  vec2 f = q / size - cell;
+  float h = hash(cell);
+  vec3 ripe = mix(vec3(0.50, 0.42, 0.21), vec3(0.42, 0.36, 0.17), hash(cell + 3.0));
+  vec3 green = mix(vec3(0.20, 0.27, 0.10), vec3(0.28, 0.32, 0.13), hash(cell + 7.0));
+  vec3 ploughed = mix(vec3(0.33, 0.25, 0.17), vec3(0.28, 0.21, 0.15), hash(cell + 9.0));
+  vec3 fallow = vec3(0.32, 0.32, 0.19);
+  vec3 c = h < 0.4 ? ripe : h < 0.72 ? green : h < 0.88 ? ploughed : fallow;
+  if (kind > 6.5 && kind < 7.5) c = h < 0.5 ? mix(ploughed, vec3(0.12, 0.10, 0.08), 0.4) : green;
+  float vis = 1.0 - smoothstep(800.0, 9000.0, dist);
+  float edge = min(min(f.x, 1.0 - f.x), min(f.y, 1.0 - f.y)) * min(size.x, size.y);
+  // A balk or a bank between plots, darker, seen until the plots melt together.
+  c *= mix(1.0, 0.78 + 0.22 * smoothstep(0.4, 1.6, edge), vis);
+  float fur = (1.0 - smoothstep(60.0, 420.0, dist)) * smoothstep(3.0, 24.0, dist);
+  c *= 1.0 - 0.07 * fur * smoothstep(0.25, 0.75, abs(fract(f.y * size.y / 1.3) - 0.5) * 2.0);
+  // Water stands in a paddy within its banks, and shows the sky.
+  float wet = paddy * smoothstep(0.4, 1.4, edge);
+  c = mix(c, vec3(0.16, 0.22, 0.24), wet * 0.75);
+  return c;
+}
+// How much of the ground at a point people made: fields, pasture and yards, all generated.
+float peopledShare(vec3 p) {
+  if (uFieldStyle.w < 0.5) return 0.0;
+  vec2 fuv = (p.xy - uFieldsBox.xy) / uFieldsBox.zw;
+  if (fuv.x <= 0.0 || fuv.y <= 0.0 || fuv.x >= 1.0 || fuv.y >= 1.0) return 0.0;
+  vec4 f = texture(uFields, fuv);
+  return max(f.r, max(f.g * 0.75, f.b));
+}
+vec3 peopled(vec3 c, vec3 p, float dist) {
+  if (uFieldStyle.w < 0.5) return c;
+  vec2 fuv = (p.xy - uFieldsBox.xy) / uFieldsBox.zw;
+  if (fuv.x <= 0.0 || fuv.y <= 0.0 || fuv.x >= 1.0 || fuv.y >= 1.0) return c;
+  vec4 f = texture(uFields, fuv);
+  vec3 grazed = mix(vec3(0.30, 0.31, 0.15), vec3(0.37, 0.35, 0.19), noiseM(p, 30.0));
+  c = mix(c, grazed, f.g * 0.75);
+  c = mix(c, plots(p, dist, f.a), f.r);
+  vec3 trodden = mix(vec3(0.40, 0.34, 0.25), vec3(0.47, 0.41, 0.31), noiseM(p, 6.0));
+  return mix(c, trodden, f.b * 0.85);
+}
 // Land nobody has farmed. The mask says what covers it: R canopy, G low plants, B bare sediment, A water.
 // Its colours and shares are the place's climate's: soil, low plants, bare ground, canopy and low plants from afar, each from one tone to another.
 vec3 wilderness(vec3 p, vec3 n, float dist, out float water) {
@@ -943,6 +1010,8 @@ vec3 wilderness(vec3 p, vec3 n, float dist, out float water) {
   c = mix(c, canopy, mask.r * far);
   vec3 distantHerb = mix(uTone[8], uTone[9], mix(0.5, fbmM(p, 90.0), grain));
   c = mix(c, distantHerb, mask.g * smoothstep(900.0, 5000.0, dist));
+  // What people made of it, where the scene has people.
+  c = peopled(c, p, dist);
   // Rock on the steep slopes, and snow where the month's climate lays it, off the steepest.
   c = mix(c, vec3(0.36, 0.33, 0.28), smoothstep(0.28, 0.5, slope));
   float snow = smoothstep(uSnow.x, uSnow.x + uSnow.y, p.z + (fbmM(p, 400.0) - 0.5) * uSnow.y) * (1.0 - smoothstep(uSnow.z - 0.1, uSnow.z + 0.1, slope));
@@ -1046,7 +1115,9 @@ void main() {
   lit = seen(lit, p, uEye);
   if (uEvidence > 0.5) {
     float hatch = step(0.62, fract((gl_FragCoord.x + gl_FragCoord.y) / 9.0));
-    lit = mix(lit, vec3(0.95, 0.65, 0.18) * 1.1, 0.08 + 0.18 * hatch);
+    // The ground is a reconstruction, amber; people's fields, pastures and yards on it were generated, magenta.
+    vec3 tint2 = mix(vec3(0.95, 0.65, 0.18), vec3(0.92, 0.25, 0.75), smoothstep(0.2, 0.6, peopledShare(p)));
+    lit = mix(lit, tint2 * 1.1, 0.08 + 0.18 * hatch);
   }
   o = vec4(lit, 1.0);
 }`;

@@ -328,6 +328,35 @@ properties:
       What is known of a structure's architecture, as the parameters a generator raises it
       from: its type, order, number of columns and so on. What a form does not say is the
       generator's guess, and evidence mode shows it as a reconstruction.
+  dwelling:
+    type: dwelling
+    interp: step
+    applies_to: [tradition/building]
+    description: >-
+      The house a building tradition put up, as the parameters the settlement generator draws it from: its plan, its
+      size, what its walls, roof and floor were made of (core/dwelling.ts). A tradition says only what differs from
+      the one it is a member of; what neither says is the generator's guess, and the panel says whose each part is.
+  settlement_form:
+    type: settlement-form
+    interp: step
+    applies_to: [tradition/building]
+    description: >-
+      How a building tradition's houses stood together: clustered in villages, standing apart, in compounds or in
+      camps; how many to a settlement, how far apart, and how many people lived in each (core/dwelling.ts).
+  field_system:
+    type: field-system
+    interp: step
+    applies_to: [tradition/building]
+    description: >-
+      The fields around a building tradition's settlements: their kind (strips, terraces, paddies, swidden plots…),
+      the size of a plot in hectares, and what divided them (core/dwelling.ts).
+  extent:
+    type: geometry
+    interp: step
+    applies_to: [tradition]
+    description: >-
+      Where a tradition is found: the rows of a dataset of regions that its sources place it in, such as the
+      ArchaeoGLOBE regions. A region named is a region where the tradition was, not a claim that it covered all of it.
   insulae:
     type: quantity
     unit: blocks
@@ -397,6 +426,11 @@ methods:
   typological:
     label: Typology
     description: Dated by the style of the objects in a deposit, such as its pottery, amphorae or their stamps, against dated examples elsewhere.
+  excavation:
+    label: Excavation
+    description: >-
+      Read from the remains themselves as excavated or surveyed and published: the plans of houses, their post-holes,
+      walls and floors, and the layout of a settlement.
   expert-estimate:
     label: Expert estimate
     description: A value a source states without the measurement behind it.

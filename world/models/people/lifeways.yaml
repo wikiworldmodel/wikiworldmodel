@@ -1,0 +1,44 @@
+# A model run here (section 4.10 of the design): what it reads, what it makes, and where each of its output's
+# parameters comes from. The values stay in the field, where the build and the viewer read them.
+id: model:people/lifeways
+type: model
+title: How people lived, from HYDE and the archaeologists
+description: >-
+  Sets two readings of the human past side by side, place by place. HYDE 3.2, through the anthromes, says where people
+  were, how many, and what at least a fifth of their land was used for; ArchaeoGLOBE's archaeologists say, region by
+  region and time by time, how widespread foraging, herding, shifting cultivation and continuous farming were, and
+  whether there were cities. Where the anthrome names a use of the land, it sets the pattern of settlement: a city, towns,
+  villages of rice, irrigation, rainfed crops or herds, hamlets, farmsteads or herders' camps. Where it names none (the
+  seminatural classes: people in woodland or open country), the region's most widespread way of life among foraging,
+  herding and shifting cultivation does. The pattern rests on the archaeologists where they say that way of life was in
+  the region then, and on HYDE alone where they do not, or where they disagree with it. It is a set of rules of thumb
+  joining a model with an expert survey: neither knows this place, only its cell and its region.
+author: machine:claude-code
+code: core/landscape.ts
+inputs:
+  - { ref: field:people/anthromes, note: "the class of the place's 5′ cell at the step nearest the time" }
+  - { ref: field:people/land-use-assessment, note: "the levels of each way of life in the place's region at the survey's time nearest the time" }
+  - { ref: field:earth/population, note: "the people of the place's 1° cell, shared over its 5′ cells by their classes" }
+outputs: [field:people/lifeways]
+params:
+  share:
+    choice: >-
+      How HYDE's people of a 1° cell are shared over its 5′ cells: by the middle of each class's band of density, which
+      the classification's thresholds set, times the cell's land. No work gives it; it keeps the total HYDE's.
+uncertainty:
+  kind: tiers
+  note: >-
+    Each answer says whether the archaeologists of the region support its way of life then (evidence), or only HYDE does
+    (model), and where the two disagree. Within a tier there is no measure. HYDE's people carry their own band (75%
+    either way at 1 CE), which the pattern does not yet carry on.
+checks:
+  - { test: tools/world/test/landscape-build.test.ts, holds: "farms nowhere the region's archaeologists found no farming" }
+  - { test: tools/world/test/landscape.test.ts, holds: "shares a 1° cell's people over its 5′ cells to the same total" }
+disagrees:
+  - with: field:people/land-use-assessment
+    note: >-
+      HYDE's anthromes farm much less land than the archaeologists say was farmed. Where the archaeologists call farming
+      widespread in a region (over a fifth of its land), the anthromes farm more than a twentieth of it in only 17 of 49
+      such regions at 2,000 BP and 37 of 82 in 1850 CE, though they farm some of it in most. Where the archaeologists found
+      no farming, the anthromes agree in every region but two, at 6,000 BP. Each build counts it again (coverage.json,
+      landscape.farming), and the panel says at each place where the two disagree.
