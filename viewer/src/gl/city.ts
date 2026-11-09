@@ -9,8 +9,8 @@ import { invert, multiply, type Mat4, type V3 } from '../mat.ts';
 import { program, setUniforms, texture2D, type GL, type Program } from './context.ts';
 import { AO_FS, BLUR_FS, BRIGHT_FS, DEPTH_FS, FULLSCREEN_VS, ID_FS, MESH_FS, MESH_VS, POST_FS, SEA, SEA_FS, SEA_VS, SKY_FS, SKY_LUT_FS, TERRAIN_FS, TERRAIN_VS, WATER_FS, WATER_VS } from './cityShaders.ts';
 
-/** Texture units, the same for every program. */
-const UNIT = { noise: 0, sky: 1, shadow: 2, ao: 3, entities: 4, ground: 5, normal: 8, mask: 11 } as const;
+/** Texture units, the same for every program; 12 to 16 are the passes' own, for their targets. */
+const UNIT = { noise: 0, sky: 1, shadow: 2, ao: 3, entities: 4, ground: 5, normal: 8, mask: 11, fields: 17 } as const;
 
 const SHADOW_SIZE = 2048;
 
@@ -158,6 +158,10 @@ export class CityRenderer {
   private grids: GroundLevel[] = [];
   private mask: WebGLTexture;
   private maskBox: [number, number, number, number] = [0, 0, 1, 1];
+  /** What people made of the ground, where a scene has people: R crops, G pasture, B yards, A paddies; and how its plots are drawn */
+  private fields: WebGLTexture;
+  private fieldsBox: [number, number, number, number] = [0, 0, 1, 1];
+  private fieldStyle: [number, number, number, number] = [0, 1, 0, 0];
   private ringVao: WebGLVertexArrayObject;
   private ringCount = 0;
   private fullCount = 0;
@@ -297,6 +301,8 @@ void main() {
 
     gl.activeTexture(gl.TEXTURE0 + UNIT.mask);
     this.mask = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0, 0, 0, 0]), filter: gl.LINEAR });
+    gl.activeTexture(gl.TEXTURE0 + UNIT.fields);
+    this.fields = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0, 0, 0, 0]), filter: gl.LINEAR });
 
     // What a mesh with no instances reads for its instance's entity: an integer attribute that is not enabled must
     // have an integer value, or every plain draw is refused.
@@ -332,7 +338,7 @@ void main() {
       }
     };
     const lit = { uNoise: UNIT.noise, uSkyLut: UNIT.sky, uShadow: UNIT.shadow, uAO: UNIT.ao, uEntities: UNIT.entities };
-    const ground = { uGround0: UNIT.ground, uGround1: UNIT.ground + 1, uGround2: UNIT.ground + 2, uNormal0: UNIT.normal, uNormal1: UNIT.normal + 1, uNormal2: UNIT.normal + 2, uMask: UNIT.mask };
+    const ground = { uGround0: UNIT.ground, uGround1: UNIT.ground + 1, uGround2: UNIT.ground + 2, uNormal0: UNIT.normal, uNormal1: UNIT.normal + 1, uNormal2: UNIT.normal + 2, uMask: UNIT.mask, uFields: UNIT.fields };
     ints(this.meshP, lit);
     ints(this.depthP, { uEntities: UNIT.entities });
     ints(this.idP, { uEntities: UNIT.entities });
@@ -525,6 +531,26 @@ void main() {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     gl.activeTexture(gl.TEXTURE0);
     this.maskBox = box;
+  }
+
+  /**
+   * What people made of the ground (gen:people/settlement): R crops, G pasture, B yards and lanes, A flooded paddies; and how
+   * the plots of its fields are drawn: their size in m, how much longer than wide, and their kind. Without it, none.
+   */
+  setFields(data: Uint8Array | null, size: number, box: [number, number, number, number], style: { plot: number; aspect: number; kind: number }): void {
+    const gl = this.gl;
+    gl.activeTexture(gl.TEXTURE0 + UNIT.fields);
+    gl.bindTexture(gl.TEXTURE_2D, this.fields);
+    gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+    if (data) {
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, size, size, 0, gl.RGBA, gl.UNSIGNED_BYTE, data);
+      gl.generateMipmap(gl.TEXTURE_2D);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    } else gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4));
+    gl.activeTexture(gl.TEXTURE0);
+    this.fieldsBox = box;
+    this.fieldStyle = [style.plot, style.aspect, style.kind, data ? 1 : 0];
   }
 
   /**
@@ -789,6 +815,10 @@ void main() {
     if (share) gl.uniform3fv(share, this.shares);
     const snow = p.uniforms.get('uSnow');
     if (snow) gl.uniform3fv(snow, this.snow);
+    const fb = p.uniforms.get('uFieldsBox');
+    if (fb) gl.uniform4f(fb, this.fieldsBox[0], this.fieldsBox[1], this.fieldsBox[2] - this.fieldsBox[0], this.fieldsBox[3] - this.fieldsBox[1]);
+    const fs = p.uniforms.get('uFieldStyle');
+    if (fs) gl.uniform4fv(fs, this.fieldStyle);
     const m = p.uniforms.get('uShadowM');
     if (m) gl.uniformMatrix4fv(m, false, this.shadowM);
   }
@@ -944,6 +974,8 @@ void main() {
     gl.bindTexture(gl.TEXTURE_2D, this.entityTex);
     gl.activeTexture(gl.TEXTURE0 + UNIT.mask);
     gl.bindTexture(gl.TEXTURE_2D, this.mask);
+    gl.activeTexture(gl.TEXTURE0 + UNIT.fields);
+    gl.bindTexture(gl.TEXTURE_2D, this.fields);
     this.groundTex.forEach((t, k) => {
       gl.activeTexture(gl.TEXTURE0 + UNIT.ground + k);
       gl.bindTexture(gl.TEXTURE_2D, t);

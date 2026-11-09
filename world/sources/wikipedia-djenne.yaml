@@ -1,0 +1,24 @@
+id: src:wikipedia-djenne
+type: database-record
+kind: review
+citation: >-
+  "Djenné." Wikipedia, the free encyclopedia (English edition), revision 1377179164.
+snapshot: 2026-11-09
+title: Djenné
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Djenn%C3%A9&oldid=1377179164
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the houses of Djenné because no better work could be read here. Its description of
+  the town in 1828 is a block quotation of the explorer René Caillié, an eyewitness, from the English translation of his
+  journey (Caillié, R., Travels through Central Africa to Timbuctoo, London: Colburn & Bentley, 1830), cited there to vol. 1
+  p. 459; it is read here at second hand, as the book could not be reached. Its sentence on the flat-roofed two-storey
+  courtyard houses is cited there to Maas, P. & Mommersteeg, G. (1992), p. 79; Bedaux, R., Diaby, B. & Maas, P. (2003),
+  p. 19; and Marchand, T.H.J. (2009), pp. 88, 127 and 221. Its sentence that nearly all of the town's buildings are of
+  sun-baked brick has no footnote.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1377179164, fetched from Wikipedia on 9 November 2026 and read as text, and its
+    wikitext at the same revision read for the footnotes; the quotes checked by script against the text.

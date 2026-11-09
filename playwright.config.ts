@@ -23,7 +23,7 @@ export default defineConfig({
   // software. Locally, `npm run test:e2e` runs all three.
   projects: [
     { name: 'globe', testMatch: /(golden|viewer|biomes|ice|tree|layers|features|coverage|foundations)\.spec\.ts$/ },
-    { name: 'city', testMatch: /(city|life)\.spec\.ts$/ },
+    { name: 'city', testMatch: /(city|life|landscape)\.spec\.ts$/ },
     { name: 'city-views', testMatch: /city-views\.spec\.ts$/ },
   ],
   webServer: {

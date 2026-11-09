@@ -1,0 +1,22 @@
+id: src:wikipedia-mumun-pottery-period
+type: database-record
+kind: review
+citation: >-
+  "Mumun pottery period." Wikipedia, the free encyclopedia (English edition), revision 1382128587.
+snapshot: 2026-11-09
+title: Mumun pottery period
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Mumun_pottery_period&oldid=1382128587
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the pit-houses of the Mumun period in Korea, their plans and its sub-periods,
+  because no better work could be read here. Its paragraphs on the houses and the sub-periods cite Bale, M.T. & Ko, M.-j.
+  (2006), "Craft Production and Social Change in Mumun Period Korea", Asian Perspectives 45(2), 159–187, and Ahn, J.-h.
+  (2000), in Hanguk Kogo-Hakbo 43, 41–66, and its span of the whole period also Bale (2001) and Crawford & Lee (2003). None
+  could be read here; Bale & Ko (2006) should replace it.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1382128587, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text, and its footnotes matched to the works they cite.

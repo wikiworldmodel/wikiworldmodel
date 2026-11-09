@@ -1,0 +1,19 @@
+id: src:wikipedia-icelandic-turf-house
+type: database-record
+kind: review
+citation: >-
+  "Icelandic turf house." Wikipedia, the free encyclopedia (English edition), revision 1378237418.
+snapshot: 2026-11-09
+title: Icelandic turf house
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Icelandic_turf_house&oldid=1378237418
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for the walls and roof of the Icelandic turf house and for when the
+  Viking-style longhouse was built and given up, for which no better work could be read here. The dates cite Iceland's
+  entry "The Turf House Tradition" on UNESCO's Tentative List, whose page could not be reached; it should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML (revision 1378237418) fetched from Wikipedia's REST interface on 9 November 2026 and read as text;
+    the quotes checked by script against that text.

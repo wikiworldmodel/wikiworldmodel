@@ -1,0 +1,115 @@
+id: people/traditions/egyptian-workmens-village-house
+kind: tradition/building
+summary: >-
+  The house of the walled villages that the Egyptian state built for its workmen in the New Kingdom, at Deir el-Medina by
+  Thebes and at Amarna: a narrow mudbrick row house of four or five rooms, at Deir el-Medina on stone foundations, with stairs
+  up to the roof or an upper floor, one of some seventy inside a village wall. They are the best-preserved houses of their time
+  in Egypt but special ones, built to one plan for the state's workmen; how the region's other people were housed is not
+  described here.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: House of the New Kingdom workmen's villages of Egypt }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 1506 BCE, hi: 1493 BCE }
+    source:
+      - ref: src:wikipedia-deir-el-medina
+        loc: section "Village"
+        quote: The first datable remains of the village belong to the reign of Thutmose I (c. 1506–1493 BC)
+      - ref: src:driaux-2016-water-supply-egypt
+        loc: section "Evidence from New Kingdom workmen's villages"
+        quote: >-
+          the small village of Deir el-Medina at Thebes housed the workmen in charge of the construction and decoration of the
+          royal tombs in the Valley of the Kings for almost five centuries (ca. 1500–1069 BC.
+    method: expert-estimate
+    note: >-
+      The reign of Thutmose I, to which the first source dates the first remains of the village at Deir el-Medina, the earlier
+      of the two villages. The second source's circa 1500 BC lies within it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-deir-el-medina-1383863269.txt (sha256 91dc1c8b3b421d6b), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 1069 BCE
+    source:
+      ref: src:driaux-2016-water-supply-egypt
+      loc: section "Evidence from New Kingdom workmen's villages"
+      quote: >-
+        the small village of Deir el-Medina at Thebes housed the workmen in charge of the construction and decoration of the
+        royal tombs in the Valley of the Kings for almost five centuries (ca. 1500–1069 BC.
+    method: expert-estimate
+    note: The end of the village at Deir el-Medina, circa 1069 BC as the source gives it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in driaux-2016-water-supply-egypt.txt (sha256 ff7f3809d63434ad), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["72"] }
+    source:
+      - ref: src:driaux-2016-water-supply-egypt
+        loc: section "Evidence from New Kingdom workmen's villages"
+        quote: >-
+          The first site is the New Kingdom workmen's village at Amarna, situated around 1.2 km east of the main city, at the
+          edge of the desert.
+      - ref: src:driaux-2016-water-supply-egypt
+        loc: section "Evidence from New Kingdom workmen's villages"
+        quote: Situated at the boundary with the desert, the small village of Deir el-Medina at Thebes
+    method: editorial
+    note: >-
+      Region 72 (Egypt), which holds both villages. They were built by the state for its workmen, and the houses of the
+      region's farmers and townspeople in the same centuries are not described by these sources: the tradition is not claimed
+      for all of Egypt.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in driaux-2016-water-supply-egypt.txt (sha256 ff7f3809d63434ad), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: rectangular, width: 5, length: 10, rooms: { lo: 4, hi: 5 }, storeys: { lo: 1, hi: 2 }, walls: mudbrick }
+    source:
+      - ref: src:wikipedia-workmens-village-amarna
+        loc: section "Walled village"
+        quote: >-
+          Each house was 5 metres (16 ft) wide and 10 metres (33 ft) long, and constructed of mudbrick with some stone used
+          around the base of the walls.
+      - ref: src:wikipedia-workmens-village-amarna
+        loc: section "Walled village"
+        quote: The interior was divided into four main rooms
+      - ref: src:wikipedia-workmens-village-amarna
+        loc: section "Walled village"
+        quote: Stairs, located either in front or rear of the house, led up to a second floor.
+      - ref: src:wikipedia-deir-el-medina
+        loc: section "Village"
+        quote: Walls were made of mudbrick on top of stone foundations.
+      - ref: src:wikipedia-deir-el-medina
+        loc: section "Village"
+        quote: >-
+          Houses consisted of four to five rooms: an entrance, main room, two smaller rooms, kitchen with cellar and staircase
+          leading to the roof.
+    method: excavation
+    note: >-
+      The size is that of the houses of the Amarna village, which were all of one size, and the plan is read from it, twice as
+      long as wide. At Deir el-Medina the houses varied in size, with an average floor space of 70 square metres, as the second
+      article says. Four rooms at Amarna, four or five at Deir el-Medina. The stairs led up to a second floor at Amarna and to
+      the roof at Deir el-Medina, so the storeys are one or two.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-deir-el-medina-1383863269.txt (sha256 91dc1c8b3b421d6b), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: walled, houses: { lo: 68, hi: 72 } }
+    source:
+      - ref: src:driaux-2016-water-supply-egypt
+        loc: section "Evidence from New Kingdom workmen's villages"
+        quote: >-
+          Surrounded by a mud-brick wall … the village contains 72 houses, built along similar and simple plans, arranged along
+          a series of parallel and narrow streets
+      - ref: src:driaux-2016-water-supply-egypt
+        loc: section "Evidence from New Kingdom workmen's villages"
+        quote: >-
+          Occupying an area of ca. 5600 m2, the village, enclosed by a mud-brick wall (Fig. 6), contained almost 68 houses in
+          its final phase
+    method: excavation
+    note: >-
+      The Amarna village (the first quote) had 72 houses besides a large one, presumably an official's; Deir el-Medina (the
+      second) almost 68 in its final phase. Both were walled, and at Amarna the houses stood along parallel narrow streets.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in driaux-2016-water-supply-egypt.txt (sha256 ff7f3809d63434ad), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

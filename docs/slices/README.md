@@ -23,3 +23,4 @@ and [STRUCTURE.md](../STRUCTURE.md).
 | 8 | [Water](EIGHTH-SLICE.md) | runoff, drainage, rivers and lakes through time, and a scene's rivers from them |
 | 9 | [The faint Sun and the ice](NINTH-SLICE.md) | an energy-balance model under the Sun of each time: the CO₂ at which the Earth froze over and thawed, held to the Archean's soils and the Snowballs |
 | 10 | [The seas](TENTH-SLICE.md) | the sea's lists drawn, bodies for its great groups, a scene of any place in the sea, and a way down through its surface to its floor |
+| 11 | [The human landscape](ELEVENTH-SLICE.md) | anthromes and the archaeologists' assessments since 10,000 BCE, cities through time, building traditions as records, and settlements, houses and fields in any scene of the land |

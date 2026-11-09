@@ -1,0 +1,29 @@
+id: src:makarewicz-2024-xiongnu-elites
+type: publication
+kind: measurement
+citation: >-
+  Makarewicz, C.A., Winter-Schuh, C., Jackson, M., Johannesson, E.G., Amartuvshin, C. & Honeychurch, W. (2024). Local
+  circulation of elites punctuated by transregional mobility enabled steppe political consolidation in the Xiongnu nomadic
+  state. PLOS ONE 19(4), e0298593.
+authors:
+  - "Makarewicz, C.A."
+  - "Winter-Schuh, C."
+  - "Jackson, M."
+  - "Johannesson, E.G."
+  - "Amartuvshin, C."
+  - "Honeychurch, W."
+published: 2024
+title: Local circulation of elites punctuated by transregional mobility enabled steppe political consolidation in the Xiongnu nomadic state
+container: PLOS ONE
+doi: 10.1371/journal.pone.0298593
+url: https://europepmc.org/article/PMC/PMC10984472
+license: CC-BY-4.0
+reliability: >-
+  An isotope study of burials at Baga Gazaryn Chuluu in the Gobi. What it says of Xiongnu campsites and dwellings is its
+  summary of earlier survey and excavation (Wright, Honeychurch & Amartuvshin 2009; Gardner & Burentogtokh 2018), not its own
+  fieldwork; those works could not be read here.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC (PMC10984472), its JATS XML fetched on 9 November 2026 and read as text; the quotes checked
+    by script against that text.

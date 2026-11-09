@@ -1,0 +1,20 @@
+id: src:wikipedia-latte-stone
+type: database-record
+kind: review
+citation: >-
+  "Latte stone." Wikipedia, the free encyclopedia (English edition), revision 1250929532.
+snapshot: 2026-11-09
+title: Latte stone
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Latte_stone&oldid=1250929532
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited for the house on latte stones because no archaeological work on it could be read
+  here. The sentences cited rest on Craib (2014), "Contents of a Latte Village", in Guampedia, an archaeologist's entry
+  in Guam's online encyclopedia, and partly on a self-published page; neither was read, and Craib's entry, or the
+  excavation reports behind it, should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched with the action=render view of index.php on 9 November 2026 (the parser's note names the
+    revision) and read whole as text, with the reference marks taken out; the quotes checked by script against that text.

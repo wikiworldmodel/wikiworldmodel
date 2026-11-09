@@ -1,0 +1,117 @@
+id: people/traditions/roundhouse-britain-ireland
+kind: tradition/building
+summary: >-
+  The round house of later prehistoric Britain and Ireland, from the Middle Bronze Age to the end of the Iron Age: a house
+  of circular plan, standing with its neighbours scattered and unenclosed over the farmland. In Ireland the round house
+  went on into the early medieval period, but inside the ditch of a ringfort.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Roundhouse of later prehistoric Britain and Ireland }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 1500 BCE
+    source:
+      - ref: src:guiry-2025-irish-pigs
+        loc: section "Sample"
+        quote: Middle–Late Bronze Age, ca 1500 BC to ca 500 BC
+      - ref: src:johnston-2011-north-cork-round-houses
+        loc: Introduction, p. 2
+        quote: >-
+          the radiocarbon date range from the houses were both within the Middle Bronze Age (although the site at
+          Ballynamona 2, with a date range from c. 1380–1030 cal BC was probably somewhat later than the houses at
+          Mitchelstown 1, where the dates ranged from c. 1490–1220 cal BC)
+      - ref: src:guiry-2025-irish-pigs
+        loc: 'section "Pigs and proximity: nitrogen isotope compositions show change"'
+        quote: >-
+          The settlement type in Iron Age Ireland was of dispersed rural unenclosed round houses, which was essentially
+          unchanged since the Bronze Age
+    method: editorial
+    note: >-
+      An editorial start: about 1500 BCE, the start of the Middle Bronze Age as Guiry et al. date it in Ireland, the period
+      of the earliest round houses dated in a source read (Mitchelstown 1, c. 1490–1220 cal BC). No source read says when
+      the round house began, and Guiry et al. have it unchanged since the Bronze Age, which may mean earlier.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in guiry-2025-PMC11793965.txt (sha256 dfdaf1fdf209da57), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 400 CE
+    source:
+      - ref: src:guiry-2025-irish-pigs
+        loc: 'section "Pigs and proximity: nitrogen isotope compositions show change"'
+        quote: >-
+          The settlement type in Iron Age Ireland was of dispersed rural unenclosed round houses, which was essentially
+          unchanged since the Bronze Age [66]. The roundhouse tradition continued but in the early medieval period the house
+          became surrounded by a formidable ditch.
+      - ref: src:guiry-2025-irish-pigs
+        loc: section "Sample"
+        quote: Iron Age, ca 500 BC to ca AD 400 (n = 86); early medieval period, ca AD 400 to ca AD 1100
+    method: expert-estimate
+    note: >-
+      About 400 CE, the end of the Iron Age in Ireland as Guiry et al. date it, when the scattered, unenclosed round houses
+      gave way to round houses inside ringforts. That is Ireland's end; no source read dates the end of the round house in
+      Britain.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in guiry-2025-PMC11793965.txt (sha256 dfdaf1fdf209da57), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["38"] }
+    source:
+      - ref: src:parker-pearson-2025-cladh-hallan-part2
+        loc: ch. 23 "Cladh Hallan in its context", section "House sizes", p. 501
+        quote: >-
+          In size the Cladh Hallan roundhouses (Table 23.1) are generally smaller than the average for Late Bronze Age
+          roundhouses in Britain (just over 50sq m) and Ireland (48sq m; Ginn 2016: 99).
+      - ref: src:parker-pearson-2025-cladh-hallan-part2
+        loc: ch. 23 "Cladh Hallan in its context", section "House sizes", p. 501
+        quote: The Cladh Hallan houses belong to a roundhouse tradition found elsewhere in Scotland as well as Ireland.
+      - ref: src:johnston-2011-north-cork-round-houses
+        loc: Introduction, p. 2
+        quote: Each site had more than one round house (at least five were identified, three at Mitchelstown 1 and two at Ballynamona 2)
+    method: editorial
+    note: >-
+      Region 38 (United Kingdom and Ireland), where the sources place round houses in Britain, Scotland and its Western Isles
+      among them, and Ireland. A region named is where the sources place the house, not a claim that it covered the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in parker-pearson-2025-cladh-hallan-part2.txt (sha256 d3eb66ef72db1f1b), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: round }
+    source:
+      - ref: src:guiry-2025-irish-pigs
+        loc: 'section "Pigs and proximity: nitrogen isotope compositions show change"'
+        quote: >-
+          The settlement type in Iron Age Ireland was of dispersed rural unenclosed round houses, which was essentially
+          unchanged since the Bronze Age
+      - ref: src:parker-pearson-2025-cladh-hallan-part2
+        loc: ch. 23 "Cladh Hallan in its context", section "House sizes", p. 501
+        quote: >-
+          In size the Cladh Hallan roundhouses (Table 23.1) are generally smaller than the average for Late Bronze Age
+          roundhouses in Britain (just over 50sq m) and Ireland (48sq m; Ginn 2016: 99). Within Scotland, Bronze Age
+          roundhouse interiors generally occupy 50–80sq m (Kruse et al. n.d.).
+    method: excavation
+    note: >-
+      A round house. Its size is given in a source read only as floor area, about 50 m² on average in the Late Bronze Age
+      (48 m² in Ireland, just over 50 m² in Britain, 50–80 m² inside in Scotland); the vocabulary takes a diameter, which
+      would have to be worked out from the area, so none is stored and the generator guesses it. Walls and roof are not
+      given for the whole tradition in a source read: at Cladh Hallan, timber-walled houses on the surface gave way to
+      sunken houses faced with stone.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in parker-pearson-2025-cladh-hallan-part2.txt (sha256 d3eb66ef72db1f1b), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: dispersed }
+    source:
+      ref: src:guiry-2025-irish-pigs
+      loc: 'section "Pigs and proximity: nitrogen isotope compositions show change"'
+      quote: >-
+        The settlement type in Iron Age Ireland was of dispersed rural unenclosed round houses, which was essentially
+        unchanged since the Bronze Age
+    method: expert-estimate
+    note: >-
+      Scattered, unenclosed round houses in Ireland, through the Bronze and Iron Ages. The excavated sites in north Cork had
+      two and three round houses each (Johnston 2011).
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in guiry-2025-PMC11793965.txt (sha256 dfdaf1fdf209da57), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

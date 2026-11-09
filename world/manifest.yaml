@@ -1304,6 +1304,226 @@ datasets:
         HYDE3_2_1-baseline.zip (5339653974 bytes, SHA-1 0d0e4ff97deb59664ce6c34dfdeeafa08e487d20 as DANS states it),
         https://archaeology.datastations.nl/api/access/datafile/5490328. The archive is far too big to fetch for two rows.
 
+  src:anthromes-12k:
+    type: dataset
+    kind: model
+    title: "Anthromes 12K: the anthropogenic biomes of every 5′ cell of land, 10,000 BCE to 2015 CE"
+    citation: >-
+      Ellis, E.C., Beusen, A.H.W. & Klein Goldewijk, K. (2020). Anthropogenic biomes: 10,000 BCE to 2015 CE. Land 9(5), 129,
+      doi:10.3390/land9050129. The data: Ellis, E. & Klein Goldewijk, K. (2020). Anthromes 12K Full Dataset. Harvard Dataverse,
+      version 3, doi:10.7910/DVN/G0QDNQ.
+    authors:
+      - "Ellis, E.C."
+      - "Beusen, A.H.W."
+      - "Klein Goldewijk, K."
+    published: 2020
+    version: >-
+      Version 3 of the Dataverse record, released 27 April 2020: anthromes_12K_full.zip, 73 zipped ArcInfo ASCII grids at 5′
+      from 10,000 BCE to 2015 CE, read on 9 November 2026
+    container: Harvard Dataverse
+    doi: 10.7910/DVN/G0QDNQ
+    url: https://doi.org/10.7910/DVN/G0QDNQ
+    credit: Anthromes from Anthromes 12K (Ellis, Beusen & Klein Goldewijk 2020), a classification of HYDE 3.2
+    license: CC0-1.0
+    license_note: >-
+      The Dataverse record says CC0 1.0. The archive's own Readme.txt states no licence. It classifies HYDE 3.2, whose readme
+      puts its data under CC BY 3.0; its authors include HYDE's, and HYDE is credited with it all the same. The replication
+      scripts are a separate record (doi:10.7910/DVN/IB4VCI) whose readme limits them to noncommercial research under the GPL
+      v3; they were read for the rules of the classification, which the field quotes, and are not imported.
+    reliability: >-
+      A classification of a reconstruction, not an observation. Each 5′ cell of HYDE 3.2's baseline goes into one of 20
+      classes by thresholds on its density of people and on the shares of its land in crops, irrigation, rice and grazing,
+      and by whether its potential vegetation is woody (anthromes.py in the replication scripts). So it carries everything
+      HYDE's allocation rules do: HYDE's own uncertainty range for population is 95% at 10,000 BCE, 75% at 1 CE and 50% at
+      850 CE. A village needs at least 100 people to the km² of the cell, so a few farmers in a cell of woodland are
+      "populated woodlands", not a village. North America, Australia and New Zealand are set as regions without villages, so
+      a dense cell there is a mixed settlement.
+    note: >-
+      The grids are labelled 10000BC to 0AD in steps of 1,000 years, 100AD to 1700AD in steps of 100, 1710AD to 1990AD in
+      steps of 10 and 2000AD to 2015AD in steps of one; 0AD is read as the axis's year 0, as HYDE's population is. The
+      legend's colours (doi:10.7910/DVN/CNFOE1, its Excel file of 28 April 2020) are the viewer's.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence, files, MD5 and description from the Dataverse record's API; the archive downloaded and its MD5 matched, its
+        73 grids and Readme.txt listed. The classification read in anthromes.py and readme.txt of the replication scripts; the
+        class names and colours from the legend's spreadsheet. The Land article was not read: its host was not reachable.
+    fetch:
+      url: https://dataverse.harvard.edu/api/access/datafile/3647930
+      sha256: 845a1fc9b227e216306a6b5939fbbd6a44246fb51d4bb3ae90de5bf7a34a5e06
+      bytes: 47465566
+      format: zip
+
+  src:archaeoglobe-2019-assessments:
+    type: dataset
+    kind: compilation
+    title: "ArchaeoGLOBE: archaeologists' assessments of land use in 146 regions at ten times from 10,000 BP to 1850 CE"
+    citation: >-
+      ArchaeoGLOBE Project (2019). ArchaeoGLOBE Public Data. Harvard Dataverse, version 3, doi:10.7910/DVN/CNCANQ: its summary
+      tables of the consensus, least, median and most answers for each land use, the urban centres, data quality, expertise
+      and published excavations, joined into one table.
+    published: 2019
+    version: >-
+      Version 3 of the Dataverse record, released 2 June 2019; its eight summary tables read on 9 November 2026, joined and
+      kept in world/snapshots
+    container: Harvard Dataverse
+    doi: 10.7910/DVN/CNCANQ
+    url: https://doi.org/10.7910/DVN/CNCANQ
+    credit: Land-use assessments from ArchaeoGLOBE (ArchaeoGLOBE Project 2019)
+    license: CC0-1.0
+    license_note: The Dataverse record says CC0 1.0 for all its files.
+    reliability: >-
+      Expert opinion, not measurement. 255 archaeologists gave 711 answers between 18 May and 31 July 2018, each for a region
+      they chose, saying for each of ten times whether foraging, extensive agriculture, intensive agriculture and pastoralism
+      used none of its land, under 1% (minimal), 1–20% (common) or over 20% (widespread), and whether it had dense urban
+      centres. The survey asked them to generalize over regions larger than anyone's expertise. The consensus is the median
+      answer with the anomalous ones amended by the co-authors. Answers are fewer for Africa, Russia and Southeast Asia, which
+      were sought late, and the README says archaeologists outside the English-language journals may not have been reached.
+    note: >-
+      The article describing the survey (Stephens et al. 2019, Science 365, 897–902, doi:10.1126/science.aax1192) was not
+      read: no copy was reachable. What is said here of the survey comes from the record's README and the copy of the survey's
+      questions it holds.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence, versions, files and MD5 from the Dataverse record's API. README.pdf and ARCHAEOGLOBE_SURVEY.pdf read in full;
+        each summary table read and checked against its MD5 by the snapshot tool.
+    fetch:
+      url: repo:world/snapshots/archaeoglobe-2019-assessments.csv
+      sha256: 8e193a3d79563868f643ae41d8fa4db246646c7aad20dc8073bcff30021f41ea
+      bytes: 260107
+      format: csv
+      via: >-
+        `npm run world -- archaeoglobe-snapshot` (tools/world/src/archaeoglobe.ts) joins the eight summary tables of
+        doi:10.7910/DVN/CNCANQ, as uploaded, each checked against the MD5 the record gives it; the file's header lists them.
+
+  src:archaeoglobe-2019-regions:
+    type: dataset
+    kind: compilation
+    title: "ArchaeoGLOBE Regions: the 146 regions of the land-use survey"
+    citation: >-
+      ArchaeoGLOBE Project (2019). ArchaeoGLOBE Regions. Harvard Dataverse, version 6, doi:10.7910/DVN/CQWUBI.
+    published: 2019
+    version: >-
+      Version 6 of the Dataverse record, released 6 February 2019: ArchaeGLOBE_Regions.zip, the full boundaries, read on
+      9 November 2026
+    container: Harvard Dataverse
+    doi: 10.7910/DVN/CQWUBI
+    url: https://doi.org/10.7910/DVN/CQWUBI
+    credit: Regions from ArchaeoGLOBE (ArchaeoGLOBE Project 2019)
+    license: CC0-1.0
+    license_note: The Dataverse record says CC0 1.0 for all its files.
+    reliability: >-
+      Units for a survey, not cultural or natural areas. The record says the regions were formed from Natural Earth's states
+      and provinces and "represent rough geographic areas that serve as analytical units", drawn with some regard to keeping
+      them of about one size, after several rounds of feedback, and that "No bounded regional system could ever truly
+      reflect the complex spatial distribution of archaeological knowledge on past human land use". Its shapes are in the
+      Eckert IV projection, in metres; the build turns them back into latitude and longitude.
+    verified:
+      by: machine:claude-code
+      how: >-
+        Licence, files and MD5 from the Dataverse record's API, and its description; the archive downloaded and its MD5
+        matched; the shapefile's projection and attribute table read.
+    fetch:
+      url: https://dataverse.harvard.edu/api/access/datafile/3196210
+      sha256: c25dea89666b84b648ad0360d8470f5578fabad173c92bf9edee50587e7683a1
+      bytes: 7487896
+      format: zip
+      files:
+        shapes:
+          path: ArchaeGLOBE_Regions.shp
+          sha256: 82d2bacc4b52d919f8efc8ca12c05ceae834d5dadaaf192736c91d6cb835ff7c
+        table:
+          path: ArchaeGLOBE_Regions.dbf
+          sha256: 1579de3d464fea7a039ed6da01024f2d437e8ea233b1284c31c6a445894568b0
+
+  src:reba-2016-modelski-ancient-v2:
+    type: dataset
+    kind: compilation
+    title: "Modelski Ancient Period Data, as digitized and placed by Reba, Reitsma & Seto (2016)"
+    citation: >-
+      Reba, M., Reitsma, F. & Seto, K.C. (2016). Spatializing 6,000 years of global urbanization from 3700 BC to AD 2000.
+      Scientific Data 3, 160034. The data: Modelski Ancient Period Data, figshare, doi:10.6084/m9.figshare.2059497,
+      version 2, the file modelskiAncientV2.csv. It digitizes the tables of Modelski, G. (2003), World Cities: −3000 to 2000.
+    authors:
+      - "Reba, M."
+      - "Reitsma, F."
+      - "Seto, K.C."
+    published: 2016
+    version: >-
+      Version 2 of the figshare record: modelskiAncientV2.csv, read on 9 November 2026 and kept in world/snapshots byte for
+      byte
+    container: figshare
+    doi: 10.6084/m9.figshare.2059497
+    url: https://doi.org/10.6084/m9.figshare.2059497
+    credit: Ancient cities from Modelski (2003), as placed by Reba, Reitsma & Seto (2016)
+    license: CC-BY-4.0
+    license_note: >-
+      As the world's source record for this work has it (src:reba-2016-urban-population), and as Europe PMC gives the
+      article's. The figshare record's own licence could not be read again here: its API host was not reachable.
+    reliability: >-
+      One compiler's estimates of the populations of the larger cities of the ancient world, in columns of years, with a
+      place for each from a gazetteer and a number for how sure the placing is (Certainty). It names no evidence row by row,
+      and its figures are often rounder and larger or smaller than later archaeological estimates: they are competing
+      claims, seldom the best. Its row for Teotihuacan has values in the columns BC_900 to BC_600 and its row for Tikal in
+      BC_900, BC_800 and BC_600, centuries before either city stood; they look like misplaced CE values and are left out
+      (field:people/cities-ancient, params.left_out).
+    verified:
+      by: machine:claude-code
+      how: >-
+        The file read from the record's version 2 as figshare's download service gives it, its header and rows read, and the
+        rows of Uruk, Ur, Memphis, Teotihuacan and Tikal compared with what the world's records cite of them.
+    fetch:
+      url: repo:world/snapshots/reba-2016-modelski-ancient-v2.csv
+      sha256: 71beafaacbdeb8d8fc156951521e9a14e20d6704b0d77be5528511c52fad3e1d
+      bytes: 16764
+      format: csv
+      via: >-
+        modelskiAncientV2.csv from https://ndownloader.figshare.com/articles/2059497/versions/2, a zip figshare makes on the
+        fly, whose own bytes therefore change; the member is kept as it came.
+
+  src:reba-2016-chandler-v2:
+    type: dataset
+    kind: compilation
+    title: "Chandler Population Data, as digitized and placed by Reba, Reitsma & Seto (2016)"
+    citation: >-
+      Reba, M., Reitsma, F. & Seto, K.C. (2016). Spatializing 6,000 years of global urbanization from 3700 BC to AD 2000.
+      Scientific Data 3, 160034. The data: Chandler Population Data, figshare, doi:10.6084/m9.figshare.2059494, version 3,
+      the file chandlerV2.csv. It digitizes the tables of Chandler, T. (1987), Four Thousand Years of Urban Growth.
+    authors:
+      - "Reba, M."
+      - "Reitsma, F."
+      - "Seto, K.C."
+    published: 2016
+    version: >-
+      Version 3 of the figshare record: chandlerV2.csv, read on 9 November 2026 and kept in world/snapshots byte for byte
+    container: figshare
+    doi: 10.6084/m9.figshare.2059494
+    url: https://doi.org/10.6084/m9.figshare.2059494
+    credit: Cities from Chandler (1987), as placed by Reba, Reitsma & Seto (2016)
+    license: CC-BY-4.0
+    license_note: >-
+      As the world's source record for this work has it (src:reba-2016-urban-population), and as Europe PMC gives the
+      article's. The figshare record's own licence could not be read again here: its API host was not reachable.
+    reliability: >-
+      One compiler's estimates of the populations of cities from 2250 BCE to 1975 CE, in columns of years, with a place for
+      each from a gazetteer and a number for how sure the placing is (Certainty). Like Modelski's, it names no evidence row
+      by row, it leans on the cities historians wrote about, and its figures are competing claims. Some rows join an ancient
+      place to a modern figure under one name: its Memphis in Egypt has 846,000 people in 1975.
+    verified:
+      by: machine:claude-code
+      how: >-
+        The file read from the record's version 3 as figshare's download service gives it, its header and rows read, and the
+        rows of Uruk, Ur, Memphis, Teotihuacan, Tikal and Cahokia looked at.
+    fetch:
+      url: repo:world/snapshots/reba-2016-chandler-v2.csv
+      sha256: 5b8df64e46988b216988eef18b46ebc2cba57ecc1adc8a5c2e1e6d5b78068031
+      bytes: 1416656
+      format: csv
+      via: >-
+        chandlerV2.csv from https://ndownloader.figshare.com/articles/2059494/versions/3, a zip figshare makes on the fly,
+        whose own bytes therefore change; the member is kept as it came.
+
   src:paleomist-1.0:
     type: dataset
     kind: model

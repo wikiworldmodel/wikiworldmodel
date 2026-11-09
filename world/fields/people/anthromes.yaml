@@ -1,0 +1,61 @@
+id: field:people/anthromes
+type: field
+kind: categorical
+title: The human landscape, as anthromes
+quantity: the anthrome of each 5′ cell of land
+description: >-
+  What kind of place each 5′ cell of land was, about 9 km across at the equator, at each of 73 times from 10,000 BCE to
+  2015 CE, as Anthromes 12K classes HYDE 3.2's baseline: dense settlements, villages (of rice, irrigation, rainfed crops
+  or herds), croplands, rangelands, seminatural woodlands and treeless lands with few people, and wildlands with none. A
+  class is set by thresholds on the cell's people and land use (params.classes), so it is a reading of HYDE, not a map
+  anyone drew: it carries HYDE's allocation rules and its uncertainty, which is large before 1500 CE. Between its steps
+  the class of the nearest step holds. The settlement generator reads it for what to draw, and model:people/lifeways
+  sets it beside what the archaeologists of each region say.
+frame: frame:earth/present-day
+grid: { kind: lonlat, res_deg: 0.0833333 }
+# Anthromes 12K labels its first grid 10000BC and its 0AD grid is the axis's year 0, as HYDE's population is read.
+time: { lo: -10000, hi: 2015 CE }
+data:
+  from: src:anthromes-12k
+  as: anthromes
+basis: reconstruction
+# One classification of HYDE's baseline. HYDE has lower and upper estimates, which this classification does not.
+spread: unknown
+interp: step
+params:
+  # How big a tile of the build is, in degrees, and how coarse the globe's picture is: choices of how to serve it.
+  tile_deg: 10
+  globe_deg: 0.25
+  # Each class: its code in the grids, name and level and colour as the legend gives them (src:anthromes-12k-legend), the
+  # people to the km² of land its rules require ([at least, below]), and the use of a fifth of its land or its potential
+  # vegetation, as anthromes.py sets them (src:anthromes-12k-scripts). The density of the classes of no use is the band
+  # their rule leaves them: residential 10–100, populated 1–10, remote 0.0001–1.
+  classes:
+    - { code: 11, label: Urban, level: Dense settlements, rgb: [168, 0, 0], density: [2500, 1000000], use: urban }
+    - { code: 12, label: Mixed settlements, level: Dense settlements, rgb: [255, 0, 0], density: [100, 2500] }
+    - { code: 21, label: Rice villages, level: Villages, rgb: [0, 112, 255], density: [100, 2500], use: rice }
+    - { code: 22, label: Irrigated villages, level: Villages, rgb: [0, 169, 230], density: [100, 2500], use: irrigated }
+    - { code: 23, label: Rainfed villages, level: Villages, rgb: [169, 0, 230], density: [100, 2500], use: rainfed }
+    - { code: 24, label: Pastoral villages, level: Villages, rgb: [255, 115, 223], density: [100, 2500], use: pastoral }
+    - { code: 31, label: Residential irrigated croplands, level: Croplands, rgb: [0, 255, 197], density: [10, 100], use: irrigated }
+    - { code: 32, label: Residential rainfed croplands, level: Croplands, rgb: [230, 230, 0], density: [10, 100], use: rainfed }
+    - { code: 33, label: Populated croplands, level: Croplands, rgb: [255, 255, 115], density: [1, 10], use: crops }
+    - { code: 34, label: Remote croplands, level: Croplands, rgb: [255, 255, 190], density: [0, 1], use: crops }
+    - { code: 41, label: Residential rangelands, level: Rangelands, rgb: [230, 152, 0], density: [10, 100], use: pastoral }
+    - { code: 42, label: Populated rangelands, level: Rangelands, rgb: [255, 211, 127], density: [1, 10], use: pastoral }
+    - { code: 43, label: Remote rangelands, level: Rangelands, rgb: [255, 235, 175], density: [0, 1], use: pastoral }
+    - { code: 51, label: Residential woodlands, level: Seminatural, rgb: [56, 168, 0], density: [10, 100], woody: true }
+    - { code: 52, label: Populated woodlands, level: Seminatural, rgb: [165, 245, 122], density: [1, 10], woody: true }
+    - { code: 53, label: Remote woodlands, level: Seminatural, rgb: [211, 255, 178], density: [0.0001, 1], woody: true }
+    - { code: 54, label: Inhabited treeless and barren lands, level: Seminatural, rgb: [178, 178, 178], density: [0.0001, 100], woody: false }
+    - { code: 61, label: Wild woodlands, level: Wildlands, rgb: [218, 242, 234], density: [0, 0.0001], woody: true }
+    - { code: 62, label: Wild treeless and barren lands, level: Wildlands, rgb: [225, 225, 225], density: [0, 0.0001], woody: false }
+    - { code: 63, label: Ice, uninhabited, level: Wildlands, rgb: [250, 255, 255], density: [0, 0.0001], woody: false }
+    - { code: 70, label: No definition, level: No data, rgb: [0, 0, 0], density: [0, 0] }
+source:
+  ref: src:anthromes-12k-scripts
+  loc: anthromes.py, calculate(), the first test of each cell
+  quote: "if ((p_urb_area >= params.anthromes_min_frac) or (popd >= 2500)):"
+uncertainty: >-
+  HYDE's own range for its population is 95% either way at 10,000 BCE, 75% at 1 CE and 50% at 850 CE, and a class
+  turns on a threshold, so near one a cell's class is a coin toss. The classification has no uncertainty of its own.

@@ -125,6 +125,8 @@ Figshare, PANGAEA, CEDA, publishers' sites, NOAA, OpenTopography, INGV. If some 
 - **Forms**: `npm run world -- forms-wanted` lists the taxa that most need a body of their own, and
   [docs/FORMS.md](docs/FORMS.md) is the brief. Any taxon with none is drawn as the nearest node of the tree that has one,
   so a coarse form on a family is worth a lot, and a form for each species is the long-run aim.
+- **Building traditions**: `npm run world -- dwellings-wanted` lists the regions and times where the most people are drawn
+  with generic houses, and [docs/DWELLINGS.md](docs/DWELLINGS.md) is the brief for a tradition's record.
 - **Wanted records**: references to records nobody has written, listed by
   `npm run validate -- --verbose` and in each build's `coverage.json`.
 - **Unsourced claims**: listed in `coverage.json`, and counted by `npm run validate`. Find a source, or

@@ -1,0 +1,83 @@
+id: people/traditions/lapita-stilt-house
+kind: tradition/building
+summary: >-
+  The house on piles of the Lapita Cultural Complex in the Bismarck Archipelago, about 3600 to 2500 years ago, when
+  Austronesian-speaking colonists spread into the southwestern Pacific: at Talepakemalai in the Mussau Islands the post
+  bases of a stilt-house survive in a waterlogged deposit. The houses were rectangular, and some stood on stilts over
+  lagoons.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Lapita stilt house }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 3600 BP
+    source:
+      ref: src:kirch-1988-talepakemalai
+      loc: abstract
+      quote: >-
+        The Lapita Cultural Complex, 3600 to 2500 B.P., represents rapid dispersal to and colonization of the southwestern
+        Pacific by Austronesian-speaking peoples.
+    method: expert-estimate
+    note: >-
+      The start of the Lapita Cultural Complex, taken as the start of its house. The abstract does not date the stilt-house
+      itself, nor say whether its years are calibrated.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in kirch-1988-talepakemalai.txt (sha256 80f463582869b22a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 2500 BP
+    source:
+      ref: src:kirch-1988-talepakemalai
+      loc: abstract
+      quote: >-
+        The transformation or replacement of Lapita culture in Mussau after 2500 B.P. remains a significant problem of
+        continuing research.
+    method: expert-estimate
+    note: The end of Lapita culture in Mussau. What came after it there, and how its houses were built, the abstract leaves open.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in kirch-1988-talepakemalai.txt (sha256 80f463582869b22a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["135"] }
+    source:
+      ref: src:kirch-1988-talepakemalai
+      loc: abstract
+      quote: >-
+        Excavations in the Mussau Islands of Papua New Guinea have concentrated on the extensive Talepakemalai (ECA) site,
+        and have incorporated a waterlogged deposit in which the post bases of a Lpita stilt-house are anaerobicaly
+        preserved.
+    method: editorial
+    note: >-
+      Region 135 (Papua New Guinea), which holds the island of New Guinea and the Bismarck Archipelago, Mussau among them.
+      Lapita sites reach on to Samoa, but the only house read of here is the one at Mussau. The region's mainland, settled
+      long before by other peoples, is not claimed.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in kirch-1988-talepakemalai.txt (sha256 80f463582869b22a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: rectangular, floor: stilts }
+    source:
+      - ref: src:kirch-1988-talepakemalai
+        loc: abstract
+        quote: >-
+          Excavations in the Mussau Islands of Papua New Guinea have concentrated on the extensive Talepakemalai (ECA)
+          site, and have incorporated a waterlogged deposit in which the post bases of a Lpita stilt-house are anaerobicaly
+          preserved.
+      - ref: src:wikipedia-lapita-culture
+        loc: section "Origin"
+        quote: >-
+          These include pottery, crops, paddy field agriculture, domesticated animals (chickens, dogs, and pigs),
+          rectangular stilt houses, tattoo chisels, quadrangular adzes
+      - ref: src:wikipedia-lapita-culture
+        loc: section "Settlements"
+        quote: Some of their houses were built on stilts over large lagoons.
+    method: excavation
+    note: >-
+      The stilts from the excavation; the rectangular plan from the encyclopedia, which lists it among the elements of Lapita
+      culture that came from Southeast Asia. The quote keeps the record's misspellings of "Lapita" and "anaerobically". No
+      source read gives a size, the walls or the roof.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in kirch-1988-talepakemalai.txt (sha256 80f463582869b22a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

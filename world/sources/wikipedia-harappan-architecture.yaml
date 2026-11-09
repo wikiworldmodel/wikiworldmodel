@@ -1,0 +1,23 @@
+id: src:wikipedia-harappan-architecture
+type: database-record
+kind: review
+citation: >-
+  "Harappan architecture." Wikipedia, the free encyclopedia (English edition), revision 1353226054.
+snapshot: 2026-11-09
+title: Harappan architecture
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Harappan_architecture&oldid=1353226054
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, tagged as needing more citations, cited for the houses' storeys, courtyards and brick and
+  for the walls round the cities, because no better work could be read here. Its sentence on the storeys and the courtyard
+  is a quotation it attributes to Miller, D., "Ideology and the Harappan Civilization", Journal of Anthropological
+  Archaeology 4, 34–71, and to an online encyclopedia, World History Encyclopedia; its paragraph on the city walls cites
+  Khan Academy and World History Encyclopedia; its sentence on the brick of Mohenjo-daro has no footnote of its own. None
+  of these could be read here; Miller's article should replace it.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1353226054, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text, and its footnotes matched to the works they cite.

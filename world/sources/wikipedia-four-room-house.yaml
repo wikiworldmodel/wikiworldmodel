@@ -1,0 +1,23 @@
+id: src:wikipedia-four-room-house
+type: database-record
+kind: review
+citation: >-
+  "Four-room house." Wikipedia, the free encyclopedia (English edition), revision 1370009931.
+snapshot: 2026-11-09
+title: Four-room house
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Four-room_house&oldid=1370009931
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the four-room house's size, storeys and span because no better work could be
+  read here. The size and the storeys are cited there to Clark, D.R. (2003), "Bricks, Sweat and Tears: The Human Investment
+  in Constructing a 'Four-Room' House", Near Eastern Archaeology 66(1/2), 34–43, and the span to Bunimovitz, S. & Faust, A.
+  (2003), "The Four Room House: Embodying Iron Age Israelite Society", Near Eastern Archaeology 66(1–2), 22–31. Neither could
+  be reached, and either should replace this. The article flags two of its sentences, on standing houses and on the walls'
+  thickness, as dubious.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1370009931, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text.

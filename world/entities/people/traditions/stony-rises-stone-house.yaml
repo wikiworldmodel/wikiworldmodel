@@ -1,0 +1,86 @@
+id: people/traditions/stony-rises-stone-house
+kind: tradition/building
+summary: >-
+  The stone house of the Gunditjmara in the Stony Rises of western Victoria: a small horseshoe of dry-stone walling, two to
+  three metres across, built straight onto the lava and roofed with saplings and bark, found by the hundred near the
+  hollows of the lava that hold water around Lake Condah. The only one excavated and dated was lived in about 1840 to
+  1870, on the pastoral frontier; whether such houses stood before European contact, and whether they made villages, is
+  still argued, so the span here is the dated house's alone.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Stone house of the Stony Rises }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 1840 CE
+    source:
+      ref: src:mcniven-2017-kurtonitj-stone-house
+      loc: abstract
+      quote: >-
+        Dating of metal objects to c.1840–1870 points to occupation during the period of violent resistance to European
+        pastoral invasion in the 1840s and/or during the subsequent period of negotiated resistance while living and working
+        on pastoral properties during the 1850s and 1860s.
+    method: excavation
+    note: >-
+      About 1840, the earliest date the metal objects give for the one excavated house, KSH-1 at Kurtonitj. It is not the
+      start of building in stone: the paper sets dating stone houses unambiguously before European contact as a task for
+      future excavation, so older ones may stand undated.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in mcniven-2017-kurtonitj.txt (sha256 2d408b9e54435ddd), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 1870 CE
+    source:
+      ref: src:mcniven-2017-kurtonitj-stone-house
+      loc: abstract
+      quote: >-
+        Dating of metal objects to c.1840–1870 points to occupation during the period of violent resistance to European
+        pastoral invasion in the 1840s and/or during the subsequent period of negotiated resistance while living and working
+        on pastoral properties during the 1850s and 1860s.
+    method: excavation
+    note: About 1870, the latest date for the excavated house. When the last of these houses was lived in, the sources do not say.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in mcniven-2017-kurtonitj.txt (sha256 2d408b9e54435ddd), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["141"] }
+    source:
+      ref: src:fink-1987-lake-condah-stone-shelters
+      loc: p. 6
+      quote: >-
+        The houses are semi-circular dry-stone walled structures about two to three metres in diameter and have only been
+        recorded in Western Victoria from areas of lava flow, known as the Stoney Rises.
+    method: editorial
+    note: >-
+      Region 141 (Victoria and Tasmania). The houses are known only from the lava flows of western Victoria, a small part of
+      the region; it is not claimed for the rest of it, nor for Tasmania.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in fink-1987-lake-condah.txt (sha256 cbb33ba436913642), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: round, diameter: { lo: 2, hi: 3 }, walls: stone, roof_material: bark, floor: ground }
+    source:
+      - ref: src:fink-1987-lake-condah-stone-shelters
+        loc: p. 6
+        quote: >-
+          The houses are semi-circular dry-stone walled structures about two to three metres in diameter and have only
+          been recorded in Western Victoria from areas of lava flow, known as the Stoney Rises.
+      - ref: src:fink-1987-lake-condah-stone-shelters
+        loc: p. 6
+        quote: >-
+          Only a few descriptions of the stone houses have been found in historical records, but it appears that the walls
+          originally supported a sapling and bark roof.
+      - ref: src:mcniven-2017-kurtonitj-stone-house
+        loc: abstract
+        quote: >-
+          Fine-grained excavation of KSH-1 within the Budj Bim (stony rises) cultural landscape revealed house construction
+          directly on to lava bedrock.
+    method: survey
+    note: >-
+      The walls, their size and the roof from the survey report; the floor on the bare rock from the excavation. A
+      semi-circular wall has no word of its own in the vocabulary, and "round" is the nearest. The roof's shape is not
+      given.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in mcniven-2017-kurtonitj.txt (sha256 2d408b9e54435ddd), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

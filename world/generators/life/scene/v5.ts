@@ -653,7 +653,11 @@ export class LandCover {
   private seed: number;
   /** what grows at each height, where the world gives the climate at a height; the one class everywhere if not */
   private heights?: Heights;
-  constructor(spec: SceneSpec, private ground: GroundSampler, private level: number, focus: [number, number], private levelAt?: (x: number, y: number) => number) {
+  /**
+   * `clearing`, where people's fields, pastures and yards are (gen:people/settlement): how much of the ground they cleared
+   * of trees, 0–1. Without it, nothing is cleared, as before people.
+   */
+  constructor(spec: SceneSpec, private ground: GroundSampler, private level: number, focus: [number, number], private levelAt?: (x: number, y: number) => number, private clearing?: (x: number, y: number) => number) {
     const p = spec.generator.params as unknown as LivingParams;
     this.c = p.cover;
     const g = growthOf(p.cover.climates[spec.biome.climate], spec.biome.cover);
@@ -704,6 +708,7 @@ export class LandCover {
     const r = Math.sqrt(dx * dx + dy * dy);
     canopy *= smooth(c.clearing, c.clearing * 1.5, r + (wob - 0.5) * c.clearing * 0.7);
     this.canopy = canopy * forest * (1 - this.bare);
+    if (this.clearing) this.canopy *= 1 - this.clearing(x, y);
     this.low = herb * (1 - this.canopy) * (1 - this.bare);
     return this;
   }
@@ -802,7 +807,7 @@ export function densityOf(t: LivingTaxon, form: Form, a: LivingParams['animals']
   return rule * prey * a.show * (0.25 + 1.5 * t.weight) * productivity;
 }
 
-export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook, waters: Waters, levelAt?: (x: number, y: number) => number): LivingPlan {
+export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook, waters: Waters, levelAt?: (x: number, y: number) => number, clearing?: (x: number, y: number) => number): LivingPlan {
   const params = spec.generator.params as unknown as LivingParams;
   const seed = look.seed;
   const level = look.water;
@@ -812,7 +817,7 @@ export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook
   const arrive = waters.river.length ? arrival(waters, 2600, params.cover.clearing * 0.72) : { at: [Math.round(hash2(4, 1, seed) * 800 - 400), Math.round(hash2(4, 2, seed) * 800 - 400)] as [number, number], toRiver: [0, 1] as [number, number] };
   const focus: [number, number] = [Math.round(arrive.at[0]), Math.round(arrive.at[1])];
   const toRiver: [number, number] = [Math.round(arrive.toRiver[0] * 1000) / 1000, Math.round(arrive.toRiver[1] * 1000) / 1000];
-  const land = new LandCover(spec, ground, level, focus, levelAt);
+  const land = new LandCover(spec, ground, level, focus, levelAt, clearing);
   const productivity = 0.2 + 0.8 * (land.forestShare > 0.5 ? 1 : land.forestShare + 0.3);
   const layouts: TaxonLayout[] = spec.taxa.map((t, index) => {
     const form = spec.forms[t.form];

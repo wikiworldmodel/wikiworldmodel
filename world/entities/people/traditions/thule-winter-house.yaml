@@ -1,0 +1,126 @@
+id: people/traditions/thule-winter-house
+kind: tradition/building
+summary: >-
+  The winter house of the Thule people, the whalers from Alaska who settled the eastern Arctic from about 1200 CE and are the
+  ancestors of the Inuit: a semisubterranean dwelling built of sod, boulders and slabs with the bones of baleen whales,
+  insulated with moss, with a kitchen niche and an open fireplace, a few of them together at a winter site, often by a pond
+  near the coast.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Thule winter house }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 1200 CE
+    source:
+      - ref: src:gallant-2024-somerset-island-thule
+        loc: Introduction
+        quote: >-
+          Canada’s High Arctic was home to several cultures including Pre-Dorset (ca 2500–500 BCE), Dorset (ca 500 BCE to ca
+          1250 CE) and Thule (ca 1200–1600 CE) people
+      - ref: src:jeppesen-2018-north-water-oasis
+        loc: section "The Late Dorset and Inuit in the NOW Polynya (13th to 15th centuries AD)"
+        quote: It was during these centuries that Alaskan Inuit groups crossed the Mackenzie Delta and settled the eastern Arctic.
+    method: expert-estimate
+    note: >-
+      About 1200 CE, the start of the Thule culture in Canada's High Arctic in the first source. In the second, "these
+      centuries" are the thirteenth and fourteenth, when the Inuit came to the North Water, between Greenland and
+      Ellesmere Island.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in jeppesen-2018-north-water-PMC5963568.txt (sha256 f88de530e459ab91), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 1600 CE
+    source:
+      - ref: src:gallant-2024-somerset-island-thule
+        loc: Introduction
+        quote: Thule (ca 1200–1600 CE)
+      - ref: src:gallant-2024-somerset-island-thule
+        loc: Introduction
+        quote: The Thule culture abandoned much of the High Arctic approximately 500 years ago
+      - ref: src:jeppesen-2018-north-water-oasis
+        loc: section "The Late Dorset and Inuit in the NOW Polynya (13th to 15th centuries AD)"
+        quote: >-
+          it is likely that the umialik institution disappeared from the North Water area at this time when also the ordinary
+          winter dwellings lost their separate kitchen to be replaced by small niches in which the source of heat was blubber
+          lamps.
+    method: expert-estimate
+    note: >-
+      About 1600 CE, the end of the Thule culture in the first source, which has much of the High Arctic left about 500
+      years ago. It is the end of the Thule culture, not of the winter house: in the North Water the dwellings went on, the
+      second source says, after they lost their kitchens to lamp niches in the fifteenth century. The winter houses of the
+      Inuit after 1600 are not described here.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in jeppesen-2018-north-water-PMC5963568.txt (sha256 f88de530e459ab91), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["4", "13"] }
+    source:
+      - ref: src:gallant-2024-somerset-island-thule
+        loc: section "Material and methods"
+        quote: >-
+          PaJs-13 and PaJs-3 (figure 1; electronic supplementary material, figures S1 and S2), located on Somerset Island in
+          the Canadian High Arctic, are archaeological sites of significant Thule presence
+      - ref: src:jeppesen-2018-north-water-oasis
+        loc: section "The Late Dorset and Inuit in the NOW Polynya (13th to 15th centuries AD)"
+        quote: >-
+          a substantial amount of Inuit moved further south in Greenland to settle all areas from south of the Melville Bay to
+          Cape Farewell, and then north into East Greenland during the late thirteenth and early fourteenth century.
+    method: editorial
+    note: >-
+      Regions 4 (Nunavut), which holds Somerset Island and the Canadian side of the North Water, and 13 (Greenland). The
+      Thule came from Alaska by way of the Mackenzie Delta, but their houses there and on the way are not described here,
+      so regions 1 to 3 are left out. The house is not claimed for all of either region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in jeppesen-2018-north-water-PMC5963568.txt (sha256 f88de530e459ab91), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { walls: sod, floor: sunken }
+    source:
+      - ref: src:jeppesen-2018-north-water-oasis
+        loc: section "The Late Dorset and Inuit in the NOW Polynya (13th to 15th centuries AD)"
+        quote: >-
+          The winter sites generally had 3–8 winter dwellings (although larger numbers have been found) built from a
+          combination of sod, boulders, and slabs, and various baleen whale bone elements. The dwellings had a separate
+          kitchen niche containing an open fireplace.
+      - ref: src:gallant-2024-somerset-island-thule
+        loc: Introduction
+        quote: >-
+          PaJs-13 (electronic supplementary material, figure S1) consists of 23 semisubterranean whalebone dwellings
+      - ref: src:gallant-2024-somerset-island-thule
+        loc: Introduction
+        quote: >-
+          The whale bones were used to build both over-wintering structures, such as permanent and semi-permanent houses, as
+          well as caches and kayak and umiak rests
+      - ref: src:gallant-2024-somerset-island-thule
+        loc: Introduction
+        quote: mosses that were used to insulate their houses
+    method: excavation
+    note: >-
+      Walls of sod, boulders and slabs with whale bone, given as sod, the nearest word; the floor sunken, as the dwellings
+      were semisubterranean. The roof, the plan and the size are not described in the sources read here. The men's houses
+      (qassi), larger and of another kind, are not this house.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in jeppesen-2018-north-water-PMC5963568.txt (sha256 f88de530e459ab91), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: hamlet, houses: { lo: 3, hi: 8 } }
+    source:
+      - ref: src:jeppesen-2018-north-water-oasis
+        loc: section "The Late Dorset and Inuit in the NOW Polynya (13th to 15th centuries AD)"
+        quote: >-
+          The winter sites generally had 3–8 winter dwellings (although larger numbers have been found)
+      - ref: src:jeppesen-2018-north-water-oasis
+        loc: section "The Late Dorset and Inuit in the NOW Polynya (13th to 15th centuries AD)"
+        quote: >-
+          Most would have housed one or two nuclear families, but many of the sites had a separate, larger and different type
+          of dwelling structure—the so-called Men’s houses, or qassi
+    method: excavation
+    note: >-
+      Three to eight dwellings at a winter site in the North Water area; larger sites are known, such as the two on Somerset
+      Island with 22 and 23 dwellings in the other source. A dwelling held one or two nuclear families, with no number of
+      people given.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in jeppesen-2018-north-water-PMC5963568.txt (sha256 f88de530e459ab91), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

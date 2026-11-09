@@ -1,0 +1,19 @@
+id: src:kirch-1988-talepakemalai
+type: publication
+kind: measurement
+citation: >-
+  Kirch, P.V. (1988). The Talepakemalai Lapita site and Oceanic prehistory. National Geographic Research 4(3), 328–342.
+authors: ["Kirch, P.V."]
+published: 1988
+title: "The Talepakemalai Lapita site and Oceanic prehistory"
+container: National Geographic Research 4(3), 328–342
+url: https://zenodo.org/records/6497401
+reliability: >-
+  Only the abstract was read, as a bibliographic record at Zenodo holds it (record 6497401, tagged for the SahulArch and
+  OCTOPUS radiocarbon databases, with no file); its misspellings ("Lpita", "anaerobicaly", "hypothess") show it is a
+  transcription. No copy of the article itself was found among the hosts reachable from here.
+verified:
+  by: machine:claude-code
+  how: >-
+    The record's metadata and abstract fetched from Zenodo's API on 9 November 2026 and read as text, with the abstract's
+    HTML entities decoded; the quotes checked by script against that text.

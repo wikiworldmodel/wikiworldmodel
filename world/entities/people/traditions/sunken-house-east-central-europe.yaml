@@ -1,0 +1,74 @@
+id: people/traditions/sunken-house-east-central-europe
+kind: tradition/building
+summary: >-
+  The sunken-featured house of the open, unfortified settlements of the ninth and tenth centuries in today's Austria, Czech
+  Republic, Slovakia and Hungary, the commonest building there, and a dwelling, unlike the sunken huts of western Europe in
+  the same centuries.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Sunken-featured house of ninth- and tenth-century east-central Europe }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 801 CE, hi: 900 CE }
+    source:
+      ref: src:herold-2012-fortified-settlements
+      loc: abstract
+      quote: >-
+        early medieval (9th–10th centuries ad) fortified settlements from central Europe, in particular today’s Austria,
+        Hungary, Czech Republic and Slovakia
+    method: expert-estimate
+    note: >-
+      The ninth century, the start of the period the source describes. The house is older: in the sixth to eighth
+      centuries, people/traditions/early-slavic-pit-house.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in herold-2012-PMC3617594.txt (sha256 318d9e61c91b1ace), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: { lo: 901 CE, hi: 1000 CE }
+    source:
+      ref: src:herold-2012-fortified-settlements
+      loc: abstract
+      quote: >-
+        early medieval (9th–10th centuries ad) fortified settlements from central Europe, in particular today’s Austria,
+        Hungary, Czech Republic and Slovakia
+    method: expert-estimate
+    note: >-
+      The tenth century, the end of the period the source describes; it does not say when the sunken house went out of use,
+      which may have been later.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in herold-2012-PMC3617594.txt (sha256 318d9e61c91b1ace), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["43", "45"] }
+    source:
+      ref: src:herold-2012-fortified-settlements
+      loc: section "OTHER BUILDINGS IN THE FORTIFIED AREA"
+      quote: >-
+        The most common type of building in the contemporary unfortified, open settlements of the region is the so-called
+        sunken-featured building (Grubenhaus).
+    method: editorial
+    note: >-
+      The region of the source is today's Austria, in region 43 (Central Europe), and the Czech Republic, Slovakia and
+      Hungary, in region 45 (Eastern Europe). A region named is where the source places the house, not a claim that it
+      covered the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in herold-2012-PMC3617594.txt (sha256 318d9e61c91b1ace), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { floor: sunken }
+    source:
+      ref: src:herold-2012-fortified-settlements
+      loc: section "OTHER BUILDINGS IN THE FORTIFIED AREA"
+      quote: >-
+        The most common type of building in the contemporary unfortified, open settlements of the region is the so-called
+        sunken-featured building (Grubenhaus). These seem to have been used mainly as dwellings, in contrast to W Europe
+        during the same period.
+    method: excavation
+    note: >-
+      A house with its floor sunk into the ground. Its plan, size, walls and roof are not given in the source, so the
+      generator guesses them.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in herold-2012-PMC3617594.txt (sha256 318d9e61c91b1ace), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

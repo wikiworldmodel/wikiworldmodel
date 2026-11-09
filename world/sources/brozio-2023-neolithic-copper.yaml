@@ -1,0 +1,30 @@
+id: src:brozio-2023-neolithic-copper
+type: publication
+kind: measurement
+citation: >-
+  Brozio, J.P., Stos-Gale, Z., Müller, J., Müller-Scheeßel, N., Schultrich, S., Fritsch, B., Jürgens, F. & Skorna, H.
+  (2023). The origin of Neolithic copper on the central Northern European plain and in Southern Scandinavia:
+  Connectivities on a European scale. PLoS ONE 18(5), e0283007.
+authors:
+  - "Brozio, J.P."
+  - "Stos-Gale, Z."
+  - "Müller, J."
+  - "Müller-Scheeßel, N."
+  - "Schultrich, S."
+  - "Fritsch, B."
+  - "Jürgens, F."
+  - "Skorna, H."
+published: 2023
+title: "The origin of Neolithic copper on the central Northern European plain and in Southern Scandinavia: Connectivities on a European scale"
+container: PLoS ONE
+doi: 10.1371/journal.pone.0283007
+url: https://europepmc.org/article/PMC/PMC10171686
+license: CC-BY-4.0
+reliability: >-
+  A study of copper provenance. It is cited only for one sentence of its discussion on when three-aisled houses appear in
+  Jutland, which rests on Borup (2018) on the settlement at Østbirk, a work not read here.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as text from Europe PMC's REST service (PMC10171686, fullTextXML) on 9 November 2026. The quote checked
+    by script against it.

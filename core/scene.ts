@@ -9,6 +9,8 @@ import type { WaterParams } from './water.ts';
 import type { Fingerprint } from './fingerprint.ts';
 import type { Form } from './form.ts';
 import type { FeatureTime } from './tileset.ts';
+import type { Tradition } from './dwelling.ts';
+import type { AnthromeClass, Assessment, Lifeway } from './landscape.ts';
 
 /** A taxon of the formation that is not drawn, and why not. */
 export interface SceneOmission {
@@ -134,6 +136,33 @@ export interface SceneClimate {
   lat: number;
 }
 
+/**
+ * The people of a scene's place and time, as the human landscape gives them (docs/HUMAN-LANDSCAPE.md): the 5′ cells
+ * around it with their anthromes, people and regions, the cities standing near, what each region's archaeologists said,
+ * and the building traditions that hold there. gen:people/settlement draws its houses, fields and pastures from it.
+ */
+export interface ScenePeople {
+  /** the time drawn, the step of the anthromes nearest it, and the survey's time nearest it */
+  t: number;
+  step: number;
+  /** the 5′ cells around the place, rows from the north: the build's class numbers, people to the km² and regions */
+  grid: { north: number; west: number; nx: number; ny: number; res: number; anthrome: number[]; density: number[]; region: number[] };
+  /** the anthromes' classes, as their field lists them */
+  classes: AnthromeClass[];
+  /** each region of the grid: its name, and what its archaeologists said at the survey's time nearest */
+  regions: { id: number; label: string; slice: string; assessment: Assessment }[];
+  /** the lifeway at the place itself */
+  lifeway: Lifeway;
+  /** the cities standing within reach of the scene then, from the lists of cities */
+  cities: { name: string; country: string; lat: number; lon: number; people: number; field: string; source: string; also?: { people: number; field: string; source: string }[] }[];
+  /** the building traditions that hold in the grid's regions at the time, merged down their tree */
+  traditions: Tradition[];
+  /** what it rests on: the fields read */
+  fields: { anthromes: string; assessment: string; population: string; lifeways: string };
+  /** the generator that draws it, and its parameters */
+  generator: { generator: string; version: number; params: Record<string, unknown> };
+}
+
 /** Everything a scene is made from: nothing else about the world goes in, and the same spec makes the same scene. */
 export interface SceneSpec {
   format: 'lightworld-scene@2';
@@ -158,6 +187,8 @@ export interface SceneSpec {
   biome: { climate: ClimateClass; label: string; field: string; ageMa: number; cover: SceneCover; node: ClimateNode };
   /** the climate at its heights and in its month; without it, the one class of the biome holds everywhere */
   climate?: SceneClimate;
+  /** the people of the place and time, where the human landscape reaches it */
+  people?: ScenePeople;
   taxa: LivingTaxon[];
   omitted: SceneOmission[];
   forms: Record<string, Form>;

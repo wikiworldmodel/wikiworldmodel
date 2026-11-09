@@ -1,0 +1,97 @@
+id: people/traditions/southeast-asian-house-on-piles
+kind: tradition/building
+summary: >-
+  The house raised on piles of mainland and island Southeast Asia: rectangular, with a pitched and gabled roof of thatch on
+  a frame of wood and bamboo, the space beneath kept for storage or animals. A broad tradition, read from encyclopedia
+  articles only, that stands until narrower ones are written. It is older than its start here, which is the earliest
+  date the sources read give for it: the bronze drums of the Đông Sơn culture in northern Vietnam, from about 600 BCE,
+  whose scenes show houses on stilts. No end is given: such houses are still built.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: House on piles of Southeast Asia }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 600 BCE
+    source:
+      - ref: src:wikipedia-dong-son-drum
+        loc: opening section
+        quote: The drums were produced from about 600 BCE or earlier until the third century CE
+      - ref: src:wikipedia-dong-son-drum
+        loc: section "Appearances"
+        quote: >-
+          The patterns on drums bear a realistic style and show stilted houses, dancing people, people pounding rice,
+          beating drums and sailing, together with animal and birds.
+    method: expert-estimate
+    note: >-
+      The earliest the drums are dated, "or earlier", taken as a date by which houses on piles stood in the Red River delta;
+      which drums show them, and when each was made, the article does not say. It is a late bound: the encyclopedia puts
+      such houses among Austronesian speakers "since at least the Late Neolithic", and the Lapita stilt-house of the
+      Bismarck Archipelago (people/traditions/lapita-stilt-house) is a thousand years older. The islands' houses are not
+      dated by any source read here.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wp-Đông_Sơn_drum.txt (sha256 da46a633fd9ea358), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["126", "128", "129", "130", "131", "132", "133", "134"] }
+    source:
+      - ref: src:wikipedia-stilt-house
+        loc: section "Asia-Pacific", "Austronesia"
+        quote: >-
+          Raised rectangular houses are one of the cultural hallmarks of the Austronesian peoples and are found throughout
+          the regions in Maritime Southeast Asia, Island Melanesia, Micronesia, and Polynesia settled by Austronesians.
+      - ref: src:wikipedia-stilt-house
+        loc: section "Types"
+        quote: Thai stilt house – A kind of house often built on freshwater, e.g., a lotus pond.
+      - ref: src:wikipedia-stilt-house
+        loc: section "Types"
+        quote: Vietnamese stilt house – Similar to the Thai ones, except having a front door with a smaller height for religious reasons.
+      - ref: src:wikipedia-dong-son-drum
+        loc: opening section
+        quote: is a type of ancient bronze drum created by the Đông Sơn culture that existed in the Red River Delta
+    method: editorial
+    note: >-
+      Thailand (126) and Vietnam and Cambodia (128) from the article's list of the stilt houses of those countries and the
+      drums of the Red River delta; the regions of island Southeast Asia (129 to 134: Peninsular Malaysia, Sumatra, Java
+      and Timor, Borneo, the Philippines and the rest of Indonesia) as Maritime Southeast Asia. Myanmar and Laos, which no
+      sentence read names, are left out, as are Island Melanesia, Micronesia and Polynesia, whose houses are other records'.
+      None is claimed for all its land.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wp-Đông_Sơn_drum.txt (sha256 da46a633fd9ea358), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: rectangular, roof: gable, roof_material: thatch, floor: stilts }
+    source:
+      - ref: src:wikipedia-stilt-house
+        loc: section "Asia-Pacific", "Austronesia"
+        quote: >-
+          Raised rectangular houses are one of the cultural hallmarks of the Austronesian peoples and are found throughout
+          the regions in Maritime Southeast Asia, Island Melanesia, Micronesia, and Polynesia settled by Austronesians.
+      - ref: src:wikipedia-austronesian-peoples
+        loc: section "Architecture"
+        quote: >-
+          Austronesian structures commonly have raised floors. The structures are raised on piles, usually with space
+          underneath also utilized for storage or domestic animals.
+      - ref: src:wikipedia-austronesian-peoples
+        loc: section "Architecture"
+        quote: Another common feature are pitched roofs with ornamented gables.
+      - ref: src:wikipedia-austronesian-peoples
+        loc: section "Architecture"
+        quote: >-
+          The majority of Austronesian structures are not permanent. They are made from perishable materials like wood,
+          bamboo, plant fiber, and leaves.
+      - ref: src:wikipedia-stilt-house
+        loc: section "Asia-Pacific", "Austronesia"
+        quote: >-
+          They can also be reconstructed linguistically from shared terms for architectural elements, like ridge-poles,
+          thatch, rafters, house posts, hearth, notched log ladders, storage racks, public buildings, and so on.
+    method: expert-estimate
+    note: >-
+      The Austronesian house as the encyclopedia generalizes it, which the mainland houses of the record are taken to share;
+      the article reports Waterson's argument that the like traditions of Kra-Dai and Austroasiatic speakers came from
+      contact with Austronesians. Walls of wood, bamboo, plant fibre or leaves have no single word in the vocabulary and are
+      left out; no size is given.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wp-Stilt_house.txt (sha256 4e935d3e0da26496), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

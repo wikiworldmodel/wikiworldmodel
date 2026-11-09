@@ -12,6 +12,10 @@ import { splitRef } from '../../../core/refs.ts';
 import { lookup, scenarioKey, type Scenario } from '../../../core/scenario.ts';
 import type { Estimate, FeatureTime } from '../../../core/tileset.ts';
 import { formatTime, fromMa, historical, PRESENT_YEAR } from '../../../core/time.ts';
+import { PATTERN_LABEL } from '../../../core/landscape.ts';
+import type { PlaceLandscape } from '../city/landscape.ts';
+
+const PATTERN_WORDS: Record<string, string> = PATTERN_LABEL;
 
 const esc = (s: unknown) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
@@ -127,6 +131,21 @@ export interface TerrainInfo {
   people?: PeopleHere;
   /** what the ice-sheet field gives here, where it has any ice near */
   ice?: IceHere;
+  /** how people lived here, as the human landscape has it at this time */
+  landscape?: LandscapeHere;
+}
+
+/** How people lived where a click fell, at the time shown (docs/HUMAN-LANDSCAPE.md). */
+export interface LandscapeHere {
+  place: PlaceLandscape;
+  /** the anthromes' class there, and their field's title */
+  className: string;
+  title: string;
+  /** the step read, and the people per km² a scene draws there */
+  density?: number;
+  regionUses?: string[];
+  cities: { name: string; people: number; km: number; list: string; also: { people: number; list: string }[] }[];
+  tradition?: { id: string; label: string; dwelling: string };
 }
 
 /** The ice-sheet field at a place and time: what it gives, and how far to trust it. */
@@ -513,7 +532,7 @@ export class InspectPanel {
       return;
     }
     // A cell can hold people where the click fell on its sea, and there it should still say so.
-    const people = info.people && (info.people.people >= 0.5 || info.elevation >= 0) ? this.peopleSection(info.people) : '';
+    const people = (info.landscape && info.elevation >= 0 ? this.landscapeSection(info.landscape) : '') + (info.people && (info.people.people >= 0.5 || info.elevation >= 0) ? this.peopleSection(info.people) : '');
     const underIce = !!info.ice?.drawn;
     this.frame(
       underIce ? 'Ice sheet' : info.elevation >= 0 ? 'Land surface' : 'Sea floor',
@@ -554,6 +573,30 @@ export class InspectPanel {
       ${i.uncertainty ? `<p class="note">${esc(i.uncertainty)}</p>` : ''}
       <p class="method">The edge drawn is the ${esc(i.marginM)} m contour of the dataset's grid, and between keyframes it moves evenly from one to the next, as the thickness does: no one reconstructed those years. <span class="badge basis-reconstruction">reconstruction</span></p>
       <p class="method">${esc(s?.citation ?? '')}${s?.doi ? ` <a href="https://doi.org/${encodeURI(s.doi)}" target="_blank" rel="noopener">doi:${esc(s.doi)}</a>` : ''}</p></div>`;
+  }
+
+  /** How people lived here: the anthrome, the way of life and how sure it is, the region's archaeologists, cities, houses. */
+  private landscapeSection(h: LandscapeHere): string {
+    const p = h.place;
+    const l = p.lifeway;
+    const tier = l.tier === 'evidence' ? 'evidence' : l.tier === 'model' ? 'reconstruction' : 'procedural';
+    const dense = h.density !== undefined && h.density > 0 ? `About ${fmtValue(h.density)} people to the km², as HYDE's people of the 1° cell are shared over its 5′ cells by their classes.` : '';
+    const region = p.region
+      ? `<p><strong>The archaeologists of ${esc(p.region.label)}</strong>, at ${esc(p.region.slice)} (ArchaeoGLOBE, their consensus): ${esc((h.regionUses ?? []).join('; '))}.</p>`
+      : '<p>No region of the archaeologists\' survey holds this place.</p>';
+    const cities = h.cities.length
+      ? `<p><strong>Cities near</strong>: ${h.cities.map((c) => `${esc(c.name)}, about ${fmtValue(c.people)} people, ${c.km} km away (${esc(c.list)}${c.also.length ? `; ${c.also.map((a) => `${esc(a.list)} gives ${fmtValue(a.people)}`).join('; ')}` : ''})`).join('; ')}.</p>`
+      : '';
+    const houses = h.tradition
+      ? `<p><strong>Houses</strong> are drawn as those of ${esc(h.tradition.label)}: ${esc(h.tradition.dwelling)}.</p>`
+      : '<p><strong>Houses</strong> here are generic: no building tradition is recorded for this region and time, so a scene draws a plain house for the way of life and the climate, and says so.</p>';
+    return `<section class="landscape"><h3>How people lived here, at ${esc(formatTime(p.t, 1e4))} <span class="badge basis-${tier}">${esc(l.tier)}</span></h3>
+      <p class="big">${esc(PATTERN_WORDS[l.pattern] ?? l.pattern)}</p>
+      <p>${esc(h.className)}, in ${esc(h.title.toLowerCase())} at their step ${esc(stepName(p.step))}. ${esc(dense)}</p>
+      <p>${esc(l.why)}</p>
+      ${l.disagrees ? `<p class="note"><strong>Where they disagree:</strong> ${esc(l.disagrees)}</p>` : ''}
+      ${region}${cities}${houses}
+      <p class="method">The anthromes are Anthromes 12K's classes of HYDE 3.2; the archaeologists' assessments are ArchaeoGLOBE's; the cities are Chandler's and Modelski's lists as Reba, Reitsma & Seto placed them. How they join is model:people/lifeways.</p></section>`;
   }
 
   /** What a grid of people gives for this cell, and how far to trust it. */

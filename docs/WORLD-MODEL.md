@@ -1,12 +1,14 @@
 # WikiWorldModel — design overview
 
-Status: draft proposal. Eight slices are built: Cambrian to today, the whole
+Status: draft proposal. Eleven slices are built: Cambrian to today, the whole
 span from the Hadean to the far future, Earth's states (a magma ocean, oceans,
 Snowball ice), Rome (a polity's borders, dates to the day, written evidence),
 Rome the city (buildings as records, generated fabric, street level), life at
 a place and a time (biomes through time, a tree of life, a generated living scene),
 life anywhere (forms on the tree of life, an atlas of who lived where, a scene of any place),
-and water (runoff, drainage, rivers and lakes through time). Their documents, in
+water (runoff, drainage, rivers and lakes through time), the faint Sun and the ice,
+the seas, and the human landscape (anthromes, the archaeologists' assessments, cities,
+building traditions, and settlements in any scene). Their documents, in
 [slices/](slices/README.md), say what they test and where they depart from this document. [STRUCTURE.md](STRUCTURE.md)
 sets the structure the world grows in (rows as claims, uncertainty as samples,
 every layer answering in a tier, field kinds, a ladder of checking), and says

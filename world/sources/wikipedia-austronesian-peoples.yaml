@@ -1,0 +1,20 @@
+id: src:wikipedia-austronesian-peoples
+type: database-record
+kind: review
+citation: >-
+  "Austronesian peoples." Wikipedia, the free encyclopedia (English edition), revision 1384216206.
+snapshot: 2026-11-09
+title: Austronesian peoples
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Austronesian_peoples&oldid=1384216206
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for the Austronesian house in its section "Architecture", because no
+  archaeological or ethnographic work on it could be read here. The sentences cited rest on Sato (1991), Arbi et al.
+  (2013), bin Tajudeen (2017), Waterson (2009), Kendall (1976) and Lico (2008), none of which was read.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched with the action=render view of index.php on 9 November 2026 (the parser's note names the
+    revision) and read as text, with the reference marks taken out; the section "Architecture" read whole, and the quotes
+    checked by script against that text.

@@ -42,6 +42,9 @@ In the viewer:
   inside a polity's territory opens its record and says which row of the borders dataset is
   drawn there.
 - Switch the geologic time scale in the toolbar: records dated by a stage follow it.
+- Press *Settlement* in the toolbar to paint the land by how people lived there, from wildlands to villages and
+  cities, at any time since 10,000 BCE; click any land to see how people lived there and how sure that is. A scene of
+  the land in that span draws their settlements, houses and fields (docs/HUMAN-LANDSCAPE.md).
 - Press `E` for evidence mode, which marks what is reconstructed or generated.
 - Scroll down over Rome, or press the button at the bottom of the globe, to come down into the
   city. There, drag to pan, right-drag or Shift-drag to turn and tilt, `W` `A` `S` `D` to walk,

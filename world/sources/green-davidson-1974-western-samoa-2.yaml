@@ -1,0 +1,25 @@
+id: src:green-davidson-1974-western-samoa-2
+type: publication
+kind: measurement
+citation: >-
+  Green, R.C. & Davidson, J.M. (eds.) (1974). Archaeology in Western Samoa, Volume II. Bulletin of the Auckland
+  Institute and Museum 7. Auckland: Auckland Institute and Museum. Including McKinlay, J.R., "Excavations at Sasoa'a: the
+  historic phase" (Report 21, pp. 13–35); Davidson, J.M., "The Upper Falefa Valley project: summary and conclusions"
+  (Report 30, pp. 155–162); and Davidson, J.M., "Samoan structural remains and settlement patterns" (Report 39,
+  pp. 225–244).
+authors: ["Green, R.C.", "Davidson, J.M."]
+published: 1974
+title: "Archaeology in Western Samoa, Volume II"
+container: Bulletin of the Auckland Institute and Museum 7
+url: https://www.biodiversitylibrary.org/part/299618
+license: CC-BY-NC-SA-4.0
+license_note: As the Biodiversity Heritage Library and its copy at Zenodo give it for the scan.
+verified:
+  by: machine:claude-code
+  how: >-
+    The Biodiversity Heritage Library's scan (part 299618), downloaded from its copy at Zenodo (record 16497473, whose MD5
+    and SHA-256 for the PDF it matched), and its text layer read with pdftotext. The OCR marks a word broken at the end of
+    a line with "¬"; the text was checked with those marks read as hyphens. Reports 21, 30 and 39 read in their sections
+    on houses, chronology and settlement; pages from the printed page numbers, the reports' spans from the contents.
+    Quotes checked by script. Table 1 of Report 21 and Table 27 of Report 39, on house sizes, are images the text layer
+    does not hold, and were not read.

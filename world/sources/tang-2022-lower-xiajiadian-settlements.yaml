@@ -1,0 +1,27 @@
+id: src:tang-2022-lower-xiajiadian-settlements
+type: publication
+kind: review
+citation: >-
+  Tang, X., Shen, S. & Su, X. (2022). From rammed earth to stone wall: Chronological insight into the settlement change of
+  the Lower Xiajiadian culture. PLOS ONE 17(8), e0273161.
+authors:
+  - "Tang, X."
+  - "Shen, S."
+  - "Su, X."
+published: 2022
+title: "From rammed earth to stone wall: Chronological insight into the settlement change of the Lower Xiajiadian culture"
+container: PLOS ONE 17(8), e0273161
+doi: 10.1371/journal.pone.0273161
+url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9394813/fullTextXML
+license: CC-BY-4.0
+via: Europe PMC (PMC9394813).
+reliability: >-
+  A synthesis of the excavation reports of 27 published Lower Xiajiadian sites, which are in Chinese and were not read here,
+  with a Bayesian model of 43 published radiocarbon dates from 10 of them. What it says of the houses is general, with a few
+  sites as examples. Its dates are modelled boundaries at 68.3% confidence, and the authors warn that only three stone-built
+  sites have reliable dates, so the span of the stone settlements is the least certain part.
+verified:
+  by: machine:claude-code
+  how: >-
+    The full text read from Europe PMC's XML on 9 November 2026 and kept as text; the quotes checked by script against it.
+    Volume, issue and authors from the article's XML.

@@ -1,0 +1,20 @@
+id: src:wikipedia-lapita-culture
+type: database-record
+kind: review
+citation: >-
+  "Lapita culture." Wikipedia, the free encyclopedia (English edition), revision 1374201618.
+snapshot: 2026-11-09
+title: Lapita culture
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Lapita_culture&oldid=1374201618
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for the plan of the Lapita house and for houses over lagoons, which the
+  abstract read for the excavation does not give. The sentence on the plan cites Pawley, Kirch (1996, Transactions of the
+  American Philosophical Society 86(5)) and Bellwood (2011); the sentence on lagoons cites nothing. None of those works
+  was read; the first is on JSTOR, which is not reachable from here.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched with the action=render view of index.php on 9 November 2026 (the parser's note names the
+    revision) and read as text, with the reference marks taken out; the quotes checked by script against that text.

@@ -1,0 +1,23 @@
+id: src:johnston-2011-north-cork-round-houses
+type: publication
+kind: measurement
+citation: >-
+  Johnston, P. (2011). Plant remains from Middle Bronze Age round houses in north Cork. A report for a Royal Irish Academy
+  Archaeology Research Grant project, 28 November 2011; deposited in Zenodo in 2014 as "Archaeobotanical remains from
+  Mitchelstown and Ballynamona, Middle/Late Bronze Age house sites in Cork, Ireland".
+authors:
+  - "Johnston, P."
+published: 2011
+title: Plant remains from Middle Bronze Age round houses in north Cork
+container: Zenodo
+doi: 10.5281/zenodo.8565
+url: https://zenodo.org/records/8565
+license: CC-BY-4.0
+reliability: >-
+  A specialist report on two excavated sites, cited for the number and the radiocarbon dates of their round houses, which
+  it takes from the excavation reports. The Zenodo record says this version supersedes an earlier one after peer review.
+verified:
+  by: machine:claude-code
+  how: >-
+    The PDF downloaded from Zenodo (record 8565) on 9 November 2026 and converted to text; the page read from the page
+    itself. Quotes checked by script against the text.

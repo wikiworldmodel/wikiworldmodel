@@ -1,0 +1,20 @@
+id: src:wikipedia-stilt-house
+type: database-record
+kind: review
+citation: >-
+  "Stilt house." Wikipedia, the free encyclopedia (English edition), revision 1380418281.
+snapshot: 2026-11-09
+title: Stilt house
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Stilt_house&oldid=1380418281
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited for where houses on piles are built in Southeast Asia and for their plan, because
+  no archaeological or historical work on them could be read here. Its paragraph on Austronesian houses cites Rainbird
+  (2004), The Archaeology of Micronesia, pp. 92–98, Sato (1991), Arbi et al. (2013) and bin Tajudeen (2017); its list of
+  Thai and Vietnamese stilt houses cites nothing. None of those works was read, and any of them should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched with the action=render view of index.php on 9 November 2026 (the parser's note names the
+    revision) and read as text, with the reference marks taken out; the quotes checked by script against that text.

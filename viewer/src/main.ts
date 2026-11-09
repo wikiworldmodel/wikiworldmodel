@@ -33,6 +33,10 @@ import { Camera, MAX_DIST, MIN_DIST } from './camera.ts';
 import { LifeAtlas, type ClimateData } from './city/lifeatlas.ts';
 import { Climates, type ClimateAt } from './climates.ts';
 import { LifeScene } from './city/life.ts';
+import type { PeopleSummary } from './city/lifeworker.ts';
+import { LandscapeAtlas } from './city/landscape.ts';
+import { anthromeOf, classAtStep, nearestStep, PATTERN_LABEL, USE_LABEL, USES, LEVEL_WORDS, type Pattern } from '../../core/landscape.ts';
+import { specText } from '../../core/dwelling.ts';
 import { CityScene } from './city/scene.ts';
 import { autoTilt, EYE_HEIGHT, groundHit, localView, lookThrough, projectLocal, rayOf, sunAt, underSea, type LocalView } from './city/view.ts';
 import { SEA } from './gl/cityShaders.ts';
@@ -44,7 +48,7 @@ import { globeLook, GlobeRenderer } from './gl/globe.ts';
 import { add, cross, norm, scale, type V3 } from './mat.ts';
 import { buildOf, DEFAULT_HOUR, fromSearch, HOURS, quantize, toSearch, type ViewState } from './state.ts';
 import { TileManager, type LoadedTile } from './tiles.ts';
-import { InspectPanel, type BiomeHere, type IceHere, type OrganismHere, type PlanetStateInfo, type RowInfo, type TerrainInfo, type TerritoryHere } from './ui/inspect.ts';
+import { InspectPanel, stepName, type BiomeHere, type IceHere, type LandscapeHere, type OrganismHere, type PlanetStateInfo, type RowInfo, type TerrainInfo, type TerritoryHere } from './ui/inspect.ts';
 import { Markers, timeFor, visibility } from './ui/markers.ts';
 import { PlanetPanel, valueAt } from './ui/planet.ts';
 import { Search } from './ui/search.ts';
@@ -100,8 +104,10 @@ export interface WikiWorldModelHandle {
   cityStats(): { cells: number; coarse: number; fine: number; megabytes: number } | null;
   /** where a structure's label would be on the screen, for tests */
   structureAt(id: string): { x: number; y: number } | undefined;
+  /** where the settlements of the scene drawn stand on the screen, those in view: the lists' cities by name */
+  settlementsAt(): { pattern: string; city?: string; houses: number; x: number; y: number }[];
   /** the living scene as the viewer has it, if one is loaded */
-  scene(): { site: string; plan: PrintCheck; taxa: { id: string; label: string; form: string; own: boolean; tier: string; km?: number; rows: number; drawn: boolean }[]; instances: number; triangles: number; meshes: number; groundMs: number; stage?: string; climate: string; climateField: string; month: number | null; snow: number | null; focus: [number, number]; toRiver: [number, number]; origin: { lat: number; lon: number }; water: { tier: string; rivers: { key: string; from: string }[] } | null; sea: boolean; list: 'land' | 'sea'; eye: { z: number; floor: number } | null } | null;
+  scene(): { site: string; plan: PrintCheck; taxa: { id: string; label: string; form: string; own: boolean; tier: string; km?: number; rows: number; drawn: boolean }[]; instances: number; triangles: number; meshes: number; groundMs: number; stage?: string; climate: string; climateField: string; month: number | null; snow: number | null; focus: [number, number]; toRiver: [number, number]; origin: { lat: number; lon: number }; water: { tier: string; rivers: { key: string; from: string }[] } | null; sea: boolean; list: 'land' | 'sea'; eye: { z: number; floor: number } | null; people: { asked: boolean; houses: number; drawn: number; expected: number; settlements: number; pattern?: string; tier?: string; forms: string[] } | null } | null;
   /** a browser's fingerprint of the scene of a place and a time, as a witness in the build has it */
   lifePrint(lat: number, lon: number, t: number): Promise<Fingerprint | null>;
   /** how far the atlas reaches, as the build says */
@@ -127,6 +133,28 @@ const RAD = Math.PI / 180;
 /** Kinds that belong to a city: they are drawn and named in the city's scene, not on the globe. */
 
 const ROOT = new URL('./', location.href).href;
+
+/** A settlement of each way of life, one and many, for the panel of a house. */
+const SETTLEMENT_WORDS: Record<Pattern, [string, string]> = {
+  none: ['place', 'places'],
+  foragers: ["foragers' camp", "foragers' camps"],
+  herders: ["herders' camp", "herders' camps"],
+  shifting: ["shifting cultivators' hamlet", "shifting cultivators' hamlets"],
+  farmsteads: ['group of farmsteads', 'groups of farmsteads'],
+  hamlets: ['hamlet', 'hamlets'],
+  villages: ['village', 'villages'],
+  towns: ['town', 'towns'],
+  city: ['city of the anthromes', 'cities of the anthromes'],
+};
+
+/** A scene's people in a few words, for its bar: the cities of the lists it holds, and how people lived at its middle. */
+function peopleWords(folk: PeopleSummary): string {
+  const names = folk.settlements.filter((x) => x.city).sort((a, b) => b.people - a.people).map((x) => x.city!);
+  const way = PATTERN_LABEL[folk.lifeway.pattern];
+  const towns = names.length > 2 ? `${names.slice(0, 2).join(', ')} and ${names.length - 2} more` : names.join(' and ');
+  const what = !names.length ? way : ['city', 'towns', 'none'].includes(folk.lifeway.pattern) ? towns : `${towns} among ${way.toLowerCase()}`;
+  return `${what}${folk.houses ? `, ${folk.houses.toLocaleString('en-US')} houses` : ''}`;
+}
 
 const HAZARD_WORDS: Record<HazardRow['kind'], string> = { eruption: 'Eruption', earthquake: 'Earthquake', tsunami: 'Tsunami' };
 const HAZARD_SIZE: Record<HazardRow['kind'], string> = { eruption: 'Volcanic explosivity index', earthquake: 'Magnitude', tsunami: 'Tsunami intensity' };
@@ -293,14 +321,59 @@ async function start(root: HTMLElement): Promise<void> {
   // Where people lived goes to the globe's shader, and loads when it is first asked for.
   const people = new PeopleLayer();
   let peopleLoading = false;
+  // The grid of people is fetched once, for the layer and for the scenes' people alike.
+  let peopleFileP: Promise<PeopleFile | null> | null = null;
+  const peopleFile = () =>
+    (peopleFileP ??= ts.files.people
+      ? getBytes(build.base + ts.files.people).then((data) => {
+          const { header, arrays } = decodeTile<PeopleHeader>(data);
+          return { ...header, cell: arrays[0] as Uint32Array, land: arrays[1] as Uint32Array, people: arrays[2] as Uint32Array } as PeopleFile;
+        })
+      : Promise.resolve(null));
   const wantPeople = () => {
     if (peopleLoading || !ts.files.people) return;
     peopleLoading = true;
-    void getBytes(build.base + ts.files.people).then((data) => {
-      const { header, arrays } = decodeTile<PeopleHeader>(data);
-      people.setFile({ ...header, cell: arrays[0] as Uint32Array, land: arrays[1] as Uint32Array, people: arrays[2] as Uint32Array } as PeopleFile);
+    void peopleFile().then((f) => {
+      if (f) people.setFile(f);
       dirty = true;
     });
+  };
+  // The anonymous human landscape (docs/HUMAN-LANDSCAPE.md): what kind of place any land was, what people a scene draws,
+  // and the globe's picture of it, which its toggle draws.
+  const landscape = ts.files.landscape ? new LandscapeAtlas(build.base, ts.files.landscape, peopleFile) : null;
+  const LANDSCAPE_TOGGLE = { key: 'landscape', label: 'Settlement', title: 'How people lived: the anthromes of HYDE, from wildlands to cities' };
+  const landscapeOn = () => !!landscape && !!state.layers?.includes(LANDSCAPE_TOGGLE.key);
+  if (landscape) void landscape.loadIndex().then(() => (dirty = true));
+  const landscapeLegend = document.createElement('div');
+  landscapeLegend.className = 'landscape-legend';
+  landscapeLegend.hidden = true;
+  let landscapeStep: number | null = null;
+  let landscapeLoading = false;
+  /** The globe's picture of the human landscape at the step nearest a time: made again only when the step changes. */
+  const drawLandscape = (t: number): boolean => {
+    if (!landscape || !landscape.index) return false;
+    const i = nearestStep(landscape.index.steps, t);
+    if (i < 0) return false;
+    if (!landscape.globe) {
+      if (!landscapeLoading) {
+        landscapeLoading = true;
+        void landscape.loadGlobe().then(() => (dirty = true));
+      }
+      return false;
+    }
+    if (landscapeStep !== i) {
+      const g = landscape.globe;
+      const map = new Uint8Array(g.nx * g.ny);
+      for (let c = 0; c < map.length; c++) map[c] = classAtStep(g, c, i);
+      globe.setAnthromes(g.nx, g.ny, map, [[0, 0, 0], ...landscape.index.classes.map((k) => k.rgb)]);
+      landscapeStep = i;
+      // The legend: the classes present, by their level.
+      const present = new Set(map);
+      landscapeLegend.innerHTML = `<div class="pl-title"><span>${landscape.index.title}, ${stepName(landscape.index.steps[i])}</span> <span class="badge basis-reconstruction">reconstruction</span></div><div class="ll-items">${landscape.index.classes
+        .map((k, n) => (present.has(n + 1) && k.code !== 70 ? `<span class="ll-item"><i style="background:rgb(${k.rgb.join(',')})"></i>${k.label}</span>` : ''))
+        .join('')}</div>`;
+    }
+    return true;
   };
   // The states of the world are the heaviest of these: loaded when a time first shows them.
   let politiesLoading: Promise<void> | null = null;
@@ -462,6 +535,19 @@ async function start(root: HTMLElement): Promise<void> {
     };
     toolbar.el.querySelector('.tg-people')!.before(b);
   }
+  if (landscape) {
+    const b = document.createElement('button');
+    b.className = `tg-${LANDSCAPE_TOGGLE.key} tg-layer`;
+    b.dataset.layer = LANDSCAPE_TOGGLE.key;
+    b.setAttribute('aria-pressed', 'false');
+    b.title = LANDSCAPE_TOGGLE.title;
+    b.textContent = LANDSCAPE_TOGGLE.label;
+    b.onclick = () => {
+      const layers = state.layers ?? [];
+      setState({ layers: (landscapeOn() ? layers.filter((k) => k !== LANDSCAPE_TOGGLE.key) : [...layers, LANDSCAPE_TOGGLE.key]).sort() });
+    };
+    toolbar.el.querySelector('.tg-people')!.before(b);
+  }
   top.append(brand, search.el, toolbar.el);
   root.appendChild(top);
 
@@ -489,6 +575,7 @@ async function start(root: HTMLElement): Promise<void> {
   stage.appendChild(planet.el);
   // The legend is over the markers, as the planet's panel is.
   stage.appendChild(people.el);
+  stage.appendChild(landscapeLegend);
   const notice = document.createElement('div');
   notice.className = 'notice';
   notice.hidden = true;
@@ -777,6 +864,7 @@ async function start(root: HTMLElement): Promise<void> {
       climateModel: energyBalance,
       ice: ts.ice?.coverage,
       people: people.file ? [people.file.steps[0], people.file.steps.at(-1)!] : undefined,
+      landscape: landscape?.resolver(),
       polities: polities.file?.rows.length ? [Math.min(...polities.file.rows.map((r) => r.from)), Math.max(...polities.file.rows.map((r) => r.to))] : undefined,
       polity: polities.file ? (lat, lon) => polities.at(lon, lat)?.name : undefined,
       genericLand: genericMask ? (lat, lon) => genericLandAt(genericMask!.mask, genericMask!.params, lat, lon) : undefined,
@@ -925,6 +1013,8 @@ async function start(root: HTMLElement): Promise<void> {
       if (people.update(state.t)) globe.setPeople(people.nx, people.ny, people.levels);
     }
     peopleDrawn = !!state.people && people.holds(state.t) && fi?.mode === 'elevation' && look.formed;
+    const anthromesDrawn = landscapeOn() && fi?.mode === 'elevation' && look.formed && drawLandscape(state.t);
+    landscapeLegend.hidden = !anthromesDrawn || !cityBar.hidden;
     if (!globeHidden) globe.render(
       {
         viewProj: camera.viewProj,
@@ -942,6 +1032,7 @@ async function start(root: HTMLElement): Promise<void> {
         climate: climateNow && climateRule ? { mix: climateNow.mix, rule: climateRule } : undefined,
         ice: iceNow ? { mix: iceNow.mix } : undefined,
         people: peopleDrawn,
+        anthromes: anthromesDrawn,
       },
       w,
       h,
@@ -992,7 +1083,10 @@ async function start(root: HTMLElement): Promise<void> {
       const taxa = (city as LifeScene).spec.taxa;
       const n = (tier: string) => taxa.filter((x) => x.tier === tier).length;
       // In the sea as on land; where none of what lived in a sea can be drawn yet, it says so.
-      const words = taxa.length ? `${n('here')} recorded here, ${n('region')} nearby, ${n('standin')} stand-ins` : (city as LifeScene).sea ? 'Nothing of the sea’s life can be drawn here yet' : 'Nothing recorded here';
+      const life = taxa.length ? `${n('here')} recorded here, ${n('region')} nearby, ${n('standin')} stand-ins` : (city as LifeScene).sea ? 'Nothing of the sea’s life can be drawn here yet' : 'Nothing recorded here';
+      // And who lived here, where the scene has people.
+      const folk = (city as LifeScene).people;
+      const words = folk ? `${life} · ${peopleWords(folk)}` : life;
       if (lifeHere.textContent !== words) lifeHere.textContent = words;
     }
     const enter = !!site && !made && !inCity && state.cam.dist < 2.2 && siteDistance(state.cam.lat, state.cam.lon) < 1.5e6;
@@ -1297,7 +1391,8 @@ async function start(root: HTMLElement): Promise<void> {
   const lifeKeyAt = (t: number, at: { lat: number; lon: number }): string => {
     const { lat, lon } = latticeOf(at.lat, at.lon);
     // A month is a different scene: its snow and its sun.
-    return `${lifeAtlas?.binAt(t)?.from}|${lat.toFixed(2)}|${lon.toFixed(2)}|${state.month ?? ''}`;
+    // And in the human landscape's span, a step of the anthromes is a different scene: its people.
+    return `${lifeAtlas?.binAt(t)?.from}|${lat.toFixed(2)}|${lon.toFixed(2)}|${state.month ?? ''}|${landscape?.stepAt(t) ?? ''}`;
   };
 
   /** The scene of wherever the camera is, or is flying down to: made once it has come to rest over a new place, and shown once it is ready. */
@@ -1341,6 +1436,14 @@ async function start(root: HTMLElement): Promise<void> {
       if (!spec) {
         lifeEmpty.add(key);
         return;
+      }
+      // Its people, where the human landscape reaches it and it is a scene of the land.
+      if (landscape && !lifeAtlas!.fromSea(spec)) {
+        const p = await landscape.peopleFor(spec.site.origin.lat, spec.site.origin.lon, t).catch((err) => {
+          console.error(`the people of ${key}: ${err instanceof Error ? err.message : String(err)}`);
+          return undefined;
+        });
+        if (p) spec.people = p;
       }
       const scene = new LifeScene(gl!, spec, null, { fast: state.quality === 'fast' });
       scene.onChange = () => (dirty = true);
@@ -1482,7 +1585,10 @@ async function start(root: HTMLElement): Promise<void> {
     flyTo({ lat, lon, dist: 1 + range / EARTH_RADIUS, heading: state.cam.dist < 1.01 ? state.cam.heading : 330, tilt: 62 }, state.cam.dist < 1.001 ? 1800 : 4600);
   }
 
+  /** Clicks so far, so that what a click fetches is shown only if no other click came after it. */
+  let clicks = 0;
   function pickAt(x: number, y: number): void {
+    const click = ++clicks;
     if (frameView && city && (state.cam.dist - 1) * EARTH_RADIUS < 6e4) {
       const dpr = canvas.width / stage.clientWidth;
       const px = Math.round(x * dpr);
@@ -1499,6 +1605,33 @@ async function start(root: HTMLElement): Promise<void> {
           shownRecord = null;
           const info = organismInfo(t.id)!;
           return inspect.showOrganism(t, info, organismSource(info));
+        }
+        // A house the settlement generator drew: what it rests on, and what of it is invented.
+        if (found.house !== undefined && city.people && city.spec.people) {
+          setState({ sel: null });
+          shownRecord = null;
+          const pp = city.people;
+          const f = pp.forms[found.house];
+          const sp = city.spec.people;
+          const gen = sp.generator;
+          const life = sp.lifeway;
+          const k = anthromeOf(sp.classes, life.anthrome);
+          const cities = pp.settlements.filter((x) => x.city).map((x) => `${x.city} (about ${x.people.toLocaleString('en-US')} people)`);
+          // Where houses of this form stand in the scene: the lists' cities first, then the settlements of each way of life.
+          const mine = pp.settlements.filter((x) => x.form === found.house);
+          const counts = new Map<Pattern, number>();
+          for (const x of mine) if (!x.city) counts.set(x.pattern as Pattern, (counts.get(x.pattern as Pattern) ?? 0) + 1);
+          const where = [
+            ...mine.filter((x) => x.city).sort((a, b) => b.people - a.people).map((x) => `${x.city}, a city of the lists, of about ${x.people.toLocaleString('en-US')} people then`),
+            ...[...counts].sort((a, b) => b[1] - a[1]).map(([p, c]) => `${c.toLocaleString('en-US')} ${SETTLEMENT_WORDS[p][c === 1 ? 0 : 1]}`),
+          ];
+          const form =
+            f.from === 'tradition'
+              ? `Its form follows the world's records of the building tradition ${f.label}: ${specText(f.spec)}. What they do not say, the generator's proportions fill in.`
+              : `No building tradition is recorded for this region and time, so this is a generic house for the way of life and the climate: ${specText(f.spec)}. It is a placeholder, and says so.`;
+          const text = `${where.length ? `Houses of this form stand in ${where.join('; ')}. ` : ''}${form} At the scene's middle, at ${formatTime(sp.t)}: ${PATTERN_LABEL[life.pattern].toLowerCase()}, ${k ? `${k.label.toLowerCase()} as the anthromes of HYDE have it at their step ${stepName(sp.step)}` : 'as the anthromes have it'}. ${life.why}${life.disagrees ? ` ${life.disagrees}` : ''} The scene draws ${pp.houses.toLocaleString('en-US')} houses for about ${pp.drawn.toLocaleString('en-US')} people; HYDE puts about ${pp.expected.toLocaleString('en-US')} in the land it covers${cities.length ? `, and the lists of cities add ${cities.join(', ')}` : ''}.`;
+          const why = `${gen.generator}, version ${gen.version}: nobody recorded this house. How many houses there are follows HYDE's people through the anthromes, and the lists of cities where they name one; what way of life, the anthromes and the region's archaeologists; where each house stands and which way it faces is invented, keyed by the world's 5′ cells.`;
+          return inspect.showGenerated(f.label, 'Generated house', text, why);
         }
         setState({ sel: null });
         shownRecord = null;
@@ -1573,7 +1706,15 @@ async function start(root: HTMLElement): Promise<void> {
     const level = seaLevelOf(fi, state.t);
     const elevation = e0 + (e1 - e0) * frameMix - level;
     const plate = build.frames.plateIndex[Math.round(p0)] || null;
-    inspect.showTerrain({
+    // How people lived here: fetched for the place, then the panel is shown again with it.
+    const asked = { t: state.t, lat: hit.lat, lon: hit.lon };
+    if (landscape && elevation >= 0 && fi.mode === 'elevation') {
+      void landscapeHere(hit.lat, hit.lon, state.t).then((lh) => {
+        if (!lh || click !== clicks || here !== null || state.t !== asked.t || state.sel) return;
+        showTerrainAt(lh);
+      });
+    }
+    const showTerrainAt = (lh?: LandscapeHere) => inspect.showTerrain({
       mode: fi.mode,
       lat: hit.lat,
       lon: hit.lon,
@@ -1595,7 +1736,29 @@ async function start(root: HTMLElement): Promise<void> {
       polity: polityHere(hit.lon, hit.lat),
       ice: iceHere(hit.point, plate),
       people: peopleDrawn ? people.here(hit.lon, hit.lat, state.t) : undefined,
+      ...(lh ? { landscape: lh } : {}),
     });
+    showTerrainAt();
+  }
+
+  /** How people lived at a place and time, for the terrain panel: the human landscape's word, with its sources' names. */
+  async function landscapeHere(lat: number, lon: number, t: number): Promise<LandscapeHere | undefined> {
+    const place = await landscape!.placeAt(lat, lon, t);
+    if (!place) return undefined;
+    const ix = landscape!.index;
+    const k = anthromeOf(ix.classes, place.anthrome);
+    const listTitle = (field: string) => landscape!.cities.lists.find((l) => l.field === field)?.title.replace(/,.*$/, '') ?? field;
+    const a = place.region?.assessment?.a;
+    const regionUses = a ? USES.map((u, i) => `${USE_LABEL[u]} ${LEVEL_WORDS[a.use[i][0]].toLowerCase()}${a.use[i][1] !== a.use[i][3] ? ` (answers from ${LEVEL_WORDS[a.use[i][1]].toLowerCase()} to ${LEVEL_WORDS[a.use[i][3]].toLowerCase()})` : ''}`).concat([`dense urban centres ${a.urban === 1 ? 'present' : 'absent'}`]) : undefined;
+    return {
+      place,
+      className: k?.label ?? 'Unclassed',
+      title: ix.title,
+      ...(place.density !== undefined ? { density: place.density } : {}),
+      ...(regionUses ? { regionUses } : {}),
+      cities: place.cities.map((c) => ({ name: c.city.name, people: c.people, km: c.km, list: listTitle(c.city.field), also: c.also.map((x) => ({ people: x.people, list: listTitle(x.city.field) })) })),
+      ...(place.tradition ? { tradition: { id: place.tradition.id, label: place.tradition.label, dwelling: specText(place.tradition.dwelling) } } : {}),
+    };
   }
 
   /** What the ice-sheet field gives at a point of the globe at the time shown, if it has any ice near. */
@@ -1837,6 +2000,7 @@ async function start(root: HTMLElement): Promise<void> {
       ['biome texture', !biomeTexReady], ['generic land', !genericReady], ['climate', !climateReady || climates.busy], ['ice', !iceReady],
       ['territory', !territoryReady], ['tree', !!treeLoading], ['cube', !cubeKey.startsWith(`${state.t}|`)],
       ['selection', !!state.sel && shownRecord !== state.sel], ['flight', !!flight || !!seaLook], ['city', cityWanted()],
+      ['landscape', landscapeOn() && (!landscape!.index || (landscapeLoading && !landscape!.globe))],
     ];
     return w.filter(([, x]) => x).map(([n]) => n);
   };
@@ -1896,13 +2060,22 @@ async function start(root: HTMLElement): Promise<void> {
       const s = city?.named.find((x) => x.id === id);
       return s && frameView ? projectLocal(frameView, s.at[0], s.at[1], s.base) : undefined;
     },
+    settlementsAt: () => {
+      if (!(city instanceof LifeScene) || !city.people || !city.ground || !frameView) return [];
+      const v = frameView;
+      const g = city.ground;
+      return city.people.settlements.flatMap((s) => {
+        const at = projectLocal(v, s.x, s.y, g.at(s.x, s.y) + 1);
+        return at && at.x >= 0 && at.y >= 0 && at.x < stage.clientWidth && at.y < stage.clientHeight ? [{ pattern: s.pattern, ...(s.city ? { city: s.city } : {}), houses: s.houses, x: at.x, y: at.y }] : [];
+      });
+    },
     scene: () => {
       const c = city instanceof LifeScene ? city : [...scenes.values()].find((x): x is LifeScene => x instanceof LifeScene);
       if (!c) return null;
       const drawn = new Set(c.named.map((x) => x.id));
       // Where the eye is in the scene drawn, above its sea, and the ground under it.
       const eye = c === city && frameView && c.ground ? { z: frameView.eye[2], floor: c.ground.at(frameView.eye[0], frameView.eye[1]) } : null;
-      return { site: c.spec.site.id, plan: c.plan, taxa: c.spec.taxa.map((t) => ({ id: t.id, label: t.label, form: t.form_label, own: t.own, tier: t.tier, km: t.km, rows: t.rows, drawn: drawn.has(t.id) })), instances: c.last.instances, triangles: c.last.triangles, meshes: c.last.meshes, groundMs: c.groundMs, stage: c.spec.site.stage, climate: c.spec.biome.climate, climateField: c.spec.biome.field, month: c.spec.climate?.month ?? null, snow: Number.isFinite(snowOf(c.spec).line) ? snowOf(c.spec).line : null, focus: c.focus, toRiver: c.toRiver, origin: c.spec.site.origin, water: c.spec.water ? { tier: c.spec.water.tier, rivers: c.spec.water.rivers.map((r) => ({ key: r.key, from: r.from })) } : null, sea: c.sea, list: listOf(c), eye };
+      return { site: c.spec.site.id, plan: c.plan, taxa: c.spec.taxa.map((t) => ({ id: t.id, label: t.label, form: t.form_label, own: t.own, tier: t.tier, km: t.km, rows: t.rows, drawn: drawn.has(t.id) })), instances: c.last.instances, triangles: c.last.triangles, meshes: c.last.meshes, groundMs: c.groundMs, stage: c.spec.site.stage, climate: c.spec.biome.climate, climateField: c.spec.biome.field, month: c.spec.climate?.month ?? null, snow: Number.isFinite(snowOf(c.spec).line) ? snowOf(c.spec).line : null, focus: c.focus, toRiver: c.toRiver, origin: c.spec.site.origin, water: c.spec.water ? { tier: c.spec.water.tier, rivers: c.spec.water.rivers.map((r) => ({ key: r.key, from: r.from })) } : null, sea: c.sea, list: listOf(c), eye, people: c.spec.people ? { asked: true, houses: c.people?.houses ?? 0, drawn: c.people?.drawn ?? 0, expected: c.people?.expected ?? 0, settlements: c.people?.settlements.length ?? 0, pattern: c.people?.lifeway.pattern, tier: c.people?.lifeway.tier, forms: c.people?.forms.map((f) => f.label) ?? [] } : null };
     },
     lifePrint: async (lat, lon, t) => {
       const spec = await lifeAtlas?.spec(lat, lon, t, {});

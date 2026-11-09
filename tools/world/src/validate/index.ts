@@ -11,6 +11,7 @@ import { join, resolve } from 'node:path';
 import { Ajv2020 } from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import { formProblem } from '../../../../core/city.ts';
+import { dwellingProblems, fieldProblems, settlementProblems } from '../../../../core/dwelling.ts';
 import { ladderCounts, LEVELS, STEPS } from '../../../../core/ladder.ts';
 import { parseRef, RefError, splitRef } from '../../../../core/refs.ts';
 import { conflictChanged, conflictIn, type Constraint, type Conflict, type Solution } from '../../../../core/stn.ts';
@@ -230,6 +231,15 @@ function checkValue(world: World, refs: RefChecker, c: Claim, issues: Issue[]): 
       for (const problem of changeProblems(v)) bad(problem);
       break;
     }
+    case 'dwelling':
+      for (const problem of dwellingProblems(v)) bad(problem);
+      break;
+    case 'settlement-form':
+      for (const problem of settlementProblems(v)) bad(problem);
+      break;
+    case 'field-system':
+      for (const problem of fieldProblems(v)) bad(problem);
+      break;
   }
 }
 

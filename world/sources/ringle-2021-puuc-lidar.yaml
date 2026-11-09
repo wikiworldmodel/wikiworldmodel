@@ -1,0 +1,24 @@
+id: src:ringle-2021-puuc-lidar
+type: publication
+kind: measurement
+citation: >-
+  Ringle, W.M., Gallareta Negrón, T., May Ciau, R., Seligson, K.E., Fernandez-Diaz, J.C. & Ortegón Zapata, D. (2021). Lidar
+  survey of ancient Maya settlement in the Puuc region of Yucatan, Mexico. PLOS ONE 16(4), e0249314.
+authors:
+  - "Ringle, W.M."
+  - "Gallareta Negrón, T."
+  - "May Ciau, R."
+  - "Seligson, K.E."
+  - "Fernandez-Diaz, J.C."
+  - "Ortegón Zapata, D."
+published: 2021
+title: Lidar survey of ancient Maya settlement in the Puuc region of Yucatan, Mexico
+container: PLOS ONE
+doi: 10.1371/journal.pone.0249314
+url: https://europepmc.org/article/PMC/PMC8081171
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC's full-text XML (PMC8081171), saved as text; the quotes checked by script against that
+    text. Citation details from Crossref.

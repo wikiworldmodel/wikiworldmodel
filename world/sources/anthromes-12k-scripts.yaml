@@ -1,0 +1,25 @@
+id: src:anthromes-12k-scripts
+type: dataset
+kind: software
+citation: >-
+  Ellis, E., Beusen, A. & Klein Goldewijk, K. (2020). Replication Scripts and Test Data for Anthromes 12K. Harvard
+  Dataverse, version 1, doi:10.7910/DVN/IB4VCI. Its script anthromes.py (revision 74 of 2 March 2020), which classifies
+  HYDE 3.2's grids into anthromes, and its readme.txt of 10 March 2020.
+authors:
+  - "Ellis, E."
+  - "Beusen, A."
+  - "Klein Goldewijk, K."
+published: 2020
+title: Replication Scripts and Test Data for Anthromes 12K
+container: Harvard Dataverse
+doi: 10.7910/DVN/IB4VCI
+url: https://doi.org/10.7910/DVN/IB4VCI
+reliability: >-
+  The code that made Anthromes 12K, cited for the rules of its classes: what it says is what was done. The Dataverse record
+  says CC0 1.0; the readme limits the scripts to noncommercial research under the GPL v3. Nothing of it is imported or run:
+  its thresholds are quoted where they are used.
+verified:
+  by: machine:claude-code
+  how: >-
+    The archive (40,554,135 bytes, MD5 8d37ba746305cba10285f30f3418c63b as the record gives it) downloaded from Dataverse on
+    9 November 2026; anthromes.py and readme.txt read in full.

@@ -1,0 +1,23 @@
+id: src:fink-1987-lake-condah-stone-shelters
+type: publication
+kind: measurement
+citation: >-
+  Fink, L. (1987). Stone shelters of the Aboriginal people of the Lake Condah area. The Ballarat Naturalist, May 1987,
+  p. 6. Reprinted from the newsletter of the Victorian Archaeological Survey.
+authors: ["Fink, L."]
+published: 1987
+title: "Stone shelters of the Aboriginal people of the Lake Condah area"
+container: The Ballarat Naturalist, May 1987
+doi: 10.5962/p.383917
+url: https://www.biodiversitylibrary.org/part/383917
+license: CC-BY-NC-SA-4.0
+license_note: As the Biodiversity Heritage Library gives it, for the Field Naturalists' Club of Ballarat.
+reliability: >-
+  A short report of a field survey on one property near Lake Condah, reprinted in a naturalists' club newsletter; it
+  names neither the property's area nor the survey's method, and gives no dates for the houses.
+verified:
+  by: machine:claude-code
+  how: >-
+    The Biodiversity Heritage Library's PDF (part 383917), downloaded from its copy at Zenodo (record 16200466, whose MD5 it
+    matched), and its text layer read with pdftotext in layout mode, the plain mode scrambling the columns; the whole note
+    read, and the quotes checked by script against that text.

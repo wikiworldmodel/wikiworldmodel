@@ -1,0 +1,28 @@
+id: field:people/cities
+type: field
+kind: points
+title: Cities and their people, after Chandler
+quantity: the people of a city, at the years its compiler gives
+unit: people
+description: >-
+  Cities of the world from 2250 BCE to 1975 CE as Tertius Chandler's Four Thousand Years of Urban Growth lists them, with
+  an estimate of their people at each of the years he gives, placed on the map by Reba, Reitsma & Seto (2016). A city
+  stands from the first year its row gives to the last, its people straight between them. The settlement generator draws
+  a town or a city of about that many people where one stands. Where Modelski's list (field:people/cities-ancient) gives
+  the same city, both are shown; the generator draws the larger.
+frame: frame:earth/present-day
+grid: { kind: rows }
+time: { lo: 2250 BCE, hi: 1975 CE }
+data:
+  from: src:reba-2016-chandler-v2
+  as: cities
+basis: reconstruction
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
+interp: linear
+params:
+  left_out: []
+  hold_yr: 50
+  # The longest gap between two of a city's figures across which it is taken to have stood all along, in years: a choice.
+  # A longer silence is not filled: the list's "St. Louis" has 15,000 people in 1000 CE and 925 in 1800, not a city between.
+  gap_yr: 600

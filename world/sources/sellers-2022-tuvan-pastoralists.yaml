@@ -1,0 +1,25 @@
+id: src:sellers-2022-tuvan-pastoralists
+type: publication
+kind: measurement
+citation: >-
+  Sellers, A.J., Khovalyg, D., Plasqui, G. & van Marken Lichtenbelt, W. (2022). High daily energy expenditure of Tuvan nomadic
+  pastoralists living in an extreme cold environment. Scientific Reports 12, 20127.
+authors:
+  - "Sellers, A.J."
+  - "Khovalyg, D."
+  - "Plasqui, G."
+  - "van Marken Lichtenbelt, W."
+published: 2022
+title: High daily energy expenditure of Tuvan nomadic pastoralists living in an extreme cold environment
+container: Scientific Reports
+doi: 10.1038/s41598-022-23975-3
+url: https://europepmc.org/article/PMC/PMC9684425
+license: CC-BY-4.0
+reliability: >-
+  A physiological study of twelve herders from eight yurts in Tuva, Russia, in winter. Its few sentences on the yurts and the
+  herders' migrations describe the households studied.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC (PMC9684425), its JATS XML fetched on 9 November 2026 and read as text; the quotes checked
+    by script against that text.

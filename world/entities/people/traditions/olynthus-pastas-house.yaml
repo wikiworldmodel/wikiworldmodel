@@ -1,0 +1,98 @@
+id: people/traditions/olynthus-pastas-house
+kind: tradition/building
+summary: >-
+  The house of Classical Olynthus in Chalcidice, northern Greece, known from the 108 buildings dug on its North Hill: houses
+  of the "pastas" type, rooms around a courtyard and a wide passage, many with an upper storey, built ten to a block in two rows
+  of five that shared their walls, on a grid of streets inside the city wall. The North Hill was settled after 432 BCE and
+  the town razed in 348 BCE.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Pastas house of Classical Olynthus }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 432 BCE
+    source:
+      - ref: src:wikipedia-olynthus
+        loc: opening section
+        quote: The city flourished between 432 BCE and its destruction by Philip II of Macedon in 348 BCE.
+      - ref: src:wikipedia-olynthus
+        loc: section "History", "Classical"
+        quote: The synoecism led to a major increase in population leading to the settlement of the North Hill.
+    method: expert-estimate
+    note: >-
+      The houses of this type stand on the North Hill, which was settled after the towns around were moved into Olynthus in
+      432 BCE.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-olynthus-1382382761.txt (sha256 563157b5903e7215), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 348 BCE
+    source:
+      ref: src:wikipedia-olynthus
+      loc: opening section
+      quote: The city flourished between 432 BCE and its destruction by Philip II of Macedon in 348 BCE.
+    method: expert-estimate
+    note: >-
+      Philip II razed the town in 348 BCE. The source says only a small part of the North Hill was lived in again afterwards,
+      until 316 BCE.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-olynthus-1382382761.txt (sha256 563157b5903e7215), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["44"] }
+    source:
+      ref: src:wikipedia-olynthus
+      loc: opening section
+      quote: is an ancient city in present-day Chalcidice, Greece.
+    method: editorial
+    note: >-
+      Region 44 (Southern Europe), which holds Chalcidice. The source describes the houses of one town; the house is not
+      claimed for all of the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-olynthus-1382382761.txt (sha256 563157b5903e7215), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: courtyard, court: true, storeys: { lo: 1, hi: 2 }, walls: mudbrick }
+    source:
+      - ref: src:wikipedia-olynthus
+        loc: section "Site topography", "Classical"
+        quote: 'Each house followed the same basic "pastas" type, usually containing a courtyard, pastas, andron, and other indistinct rooms.'
+      - ref: src:wikipedia-olynthus
+        loc: section "Site topography", "Classical"
+        quote: Many houses in Olynthus show signs of a second story.
+      - ref: src:wikipedia-ancient-greek-architecture
+        loc: section "Domestic buildings"
+        quote: >-
+          The construction of many houses employed walls of sun-dried clay bricks or wooden framework filled with fibrous
+          material such as straw or seaweed covered with clay or plaster, on a base of stone which protected the more vulnerable
+          elements from damp.
+      - ref: src:wikipedia-ancient-greek-architecture
+        loc: section "Domestic buildings"
+        quote: City houses were inward-facing, with major openings looking onto the central courtyard, rather than the street.
+    method: excavation
+    note: >-
+      The plan and the upper storey are Olynthus's, from the first source. The walls are from the second, which says of many
+      Greek houses, not of Olynthus in particular, that their walls were of sun-dried brick, or of a timber frame filled with
+      clay, on a stone base. The roof is left out: that source has thatch on simple houses and tile on substantial ones, and
+      does not say which the Olynthus houses were.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-olynthus-1382382761.txt (sha256 563157b5903e7215), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: walled }
+    source:
+      - ref: src:wikipedia-olynthus
+        loc: section "Site topography", "Classical"
+        quote: Each block had ten houses (made up of two rows of five houses with an alley between them) which shared walls with each other.
+      - ref: src:wikipedia-olynthus
+        loc: section "Site topography", "Classical"
+        quote: Both the archaic and classical city were protected by an extended land wall.
+    method: excavation
+    note: >-
+      A town inside its wall, on a grid of streets, its houses ten to a block in two rows of five that shared their walls. The
+      houses of the Villa Section, on the hill's eastern slope, kept less strictly to this plan, with empty plots between them.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-olynthus-1382382761.txt (sha256 563157b5903e7215), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

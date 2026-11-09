@@ -1,0 +1,32 @@
+id: field:people/cities-ancient
+type: field
+kind: points
+title: Ancient cities and their people, after Modelski
+quantity: the people of a city, at the years its compiler gives
+unit: people
+description: >-
+  The larger cities of the world from 3700 BCE to 1000 CE as George Modelski's World Cities lists them, with an estimate of
+  their people at each of a run of years, placed on the map by Reba, Reitsma & Seto (2016). A city stands from the first
+  year its row gives to the last, its people straight between the years given. The settlement generator draws a city of
+  about that many people where one stands, so a scene at Uruk in 3000 BCE has a city in it though HYDE's grid does not:
+  that is the human landscape's evidence of cities. Estimates differ from later archaeologists' by a factor of two or more.
+frame: frame:earth/present-day
+grid: { kind: rows }
+time: { lo: 3700 BCE, hi: 1000 CE }
+data:
+  from: src:reba-2016-modelski-ancient-v2
+  as: cities
+basis: reconstruction
+# A single value at each place and time: nobody gave its uncertainty (docs/STRUCTURE.md section 3.2).
+spread: unknown
+interp: linear
+params:
+  # Cells of the file that are left out, and why: values centuries before the city stood (the source's reliability note).
+  left_out:
+    - { city: Teotihuacan, columns: [BC_900, BC_800, BC_700, BC_600] }
+    - { city: Tikal, columns: [BC_900, BC_800, BC_600] }
+  # How long a city with one figure is held either side of it, in years: a choice, half the file's usual gap.
+  hold_yr: 50
+  # The longest gap between two of a city's figures across which it is taken to have stood all along, in years: a choice.
+  # A longer silence is not filled: the list's "St. Louis" has 15,000 people in 1000 CE and 925 in 1800, not a city between.
+  gap_yr: 600

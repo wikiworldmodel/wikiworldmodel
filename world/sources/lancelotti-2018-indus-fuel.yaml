@@ -1,0 +1,23 @@
+id: src:lancelotti-2018-indus-fuel
+type: publication
+kind: measurement
+citation: >-
+  Lancelotti, C. (2018). 'Not all that burns is wood'. A social perspective on fuel exploitation and use during the Indus
+  urban period (2600–1900 BC). PLOS ONE 13(3), e0192364.
+authors:
+  - "Lancelotti, C."
+published: 2018
+title: "'Not all that burns is wood'. A social perspective on fuel exploitation and use during the Indus urban period (2600-1900 BC)"
+container: PLOS ONE 13(3), e0192364
+doi: 10.1371/journal.pone.0192364
+url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5841642/fullTextXML
+license: CC-BY-4.0
+via: Europe PMC (PMC5841642).
+reliability: >-
+  A study of the plant remains burnt as fuel at four Indus sites. It is cited only for the span of the Indus urban period,
+  which it takes as its frame and does not itself date.
+verified:
+  by: machine:claude-code
+  how: >-
+    The full text read from Europe PMC's XML on 9 November 2026 and kept as text; the quotes checked by script against it.
+    Volume, issue and author from the article's XML.

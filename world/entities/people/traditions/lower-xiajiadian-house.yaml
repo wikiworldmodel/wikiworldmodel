@@ -1,0 +1,83 @@
+id: people/traditions/lower-xiajiadian-house
+kind: tradition/building
+summary: >-
+  The house of the Lower Xiajiadian culture, the early Bronze Age farmers of millet in southeastern Inner Mongolia and western
+  Liaoning, in the second millennium BCE: a round house with a hearth, with storage pits and lesser houses beside it, the
+  whole enclosed by a wall as one household's yard. The houses were first built of earth and mudbrick in the valleys and
+  later of stone in walled hillforts; those two are its members.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: House of the Lower Xiajiadian culture }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 2101 BCE, hi: 1971 BCE }
+    source:
+      ref: src:tang-2022-lower-xiajiadian-settlements
+      loc: section 6, "Calibration and results"
+      quote: >-
+        The modeling results show that the upper boundary 2101–1971 BC (68.3% confidence) gives the date range of the
+        earliest LXJD occupation in northeast China.
+    method: radiometric/radiocarbon
+    note: >-
+      The modelled start boundary of all the dated Lower Xiajiadian settlements, at 68.3% confidence, from 43 published
+      radiocarbon dates. The same paper gives the culture as ca. 2000–1300 BC in its introduction.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: { lo: 1375 BCE, hi: 1295 BCE }
+    source:
+      ref: src:tang-2022-lower-xiajiadian-settlements
+      loc: section 6, "Calibration and results"
+      quote: The lower boundary 1375–1295 BC (68.3% confidence) indicates the period of abandonment of the LXJD settlements.
+    method: radiometric/radiocarbon
+    note: The modelled end boundary of the same model, at 68.3% confidence.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["115", "116"] }
+    source:
+      ref: src:tang-2022-lower-xiajiadian-settlements
+      loc: section 2, "Study area"
+      quote: The LXJD culture area is centered in southeastern Inner Mongolia and the western part of Liaoning province
+    method: editorial
+    note: >-
+      Region 115 (Mongolia), which holds Inner Mongolia's Chifeng and Aohan, and region 116 (Northeastern China), which holds
+      western Liaoning; the paper's tables put excavated sites of both kinds in both provinces. The regions were matched by
+      the places' coordinates on Wikipedia against the region outlines. The tradition is not claimed for all of either region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: round }
+    source:
+      ref: src:tang-2022-lower-xiajiadian-settlements
+      loc: section 4, "Settlement construction and relative chronology"
+      quote: >-
+        houses were built in a circular shape and usually equipped with a hearth; outside the main house were storage pits
+        and associated side-houses, which were all enclosed by a wall, forming a courtyard-like residential unit
+    method: excavation
+    note: >-
+      Said of the houses of both the earthen and the stone settlements. The paper gives no size for a house.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: compound }
+    source:
+      ref: src:tang-2022-lower-xiajiadian-settlements
+      loc: section 4, "Settlement construction and relative chronology"
+      quote: >-
+        houses were built in a circular shape and usually equipped with a hearth; outside the main house were storage pits
+        and associated side-houses, which were all enclosed by a wall, forming a courtyard-like residential unit
+    method: excavation
+    note: >-
+      Each main house, its side-houses and its storage pits stood inside a wall of their own, which is what the vocabulary
+      calls a compound. The large settlements were themselves walled or ditched, but the paper says small unfortified sites,
+      some of only two or three houses, were the greater number.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in xiajiadian-2022.txt (sha256 c67e38a3b4bc7edb), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

@@ -1,0 +1,21 @@
+id: src:wikipedia-longhouse
+type: database-record
+kind: review
+citation: >-
+  "Longhouse." Wikipedia, the free encyclopedia (English edition), revision 1383936125.
+snapshot: 2026-11-09
+title: Longhouse
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Longhouse&oldid=1383936125
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the width, covering and shape of the Iroquois longhouse because no better work
+  could be read here. Its paragraph on the Iroquois longhouse is cited to Snow, D.R. (1995), Mohawk Valley Archaeology: The
+  Sites (Matson Museum of Anthropology, Pennsylvania State University), whose copy online could not be reached; it should
+  replace this, with a page.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1383936125, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text.

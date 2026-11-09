@@ -1,0 +1,28 @@
+id: src:murchie-2026-crawford-lake-sedadna
+type: publication
+kind: measurement
+citation: >-
+  Murchie, T.J., Emery, M.V., Cocker, S.L., Natola, L., Kuch, M., Rutledge, L.Y., McCarthy, F., Pisaric, M.F.J. & Poinar,
+  H.N. (2026). Sedimentary Ancient DNA Tracks Multi-Kingdom Ecosystem Reorganizations Following Sequential Human Land Use at
+  Crawford Lake. Molecular Ecology 35(17), e70529.
+authors:
+  - "Murchie, T.J."
+  - "Emery, M.V."
+  - "Cocker, S.L."
+  - "Natola, L."
+  - "Kuch, M."
+  - "Rutledge, L.Y."
+  - "McCarthy, F."
+  - "Pisaric, M.F.J."
+  - "Poinar, H.N."
+published: 2026
+title: Sedimentary Ancient DNA Tracks Multi-Kingdom Ecosystem Reorganizations Following Sequential Human Land Use at Crawford Lake
+container: Molecular Ecology
+doi: 10.1111/mec.70529
+url: https://europepmc.org/article/PMC/PMC13551257
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC's full-text XML (PMC13551257), saved as text; the quotes checked by script against that
+    text. Citation details from Crossref.

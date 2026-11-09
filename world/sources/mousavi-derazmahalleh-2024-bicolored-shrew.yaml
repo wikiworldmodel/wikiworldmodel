@@ -1,0 +1,29 @@
+id: src:mousavi-derazmahalleh-2024-bicolored-shrew
+type: publication
+kind: measurement
+citation: >-
+  Mousavi-Derazmahalleh, M., Haue, N., Kanstrup, M., Laursen, J.T., Lukehurst, S.S., Kveiborg, J. & Allentoft, M.E.
+  (2024). Far away from home? Ancient DNA shows the presence of bicolored shrew (Crocidura leucodon) in Bronze Age
+  Denmark. Ecology and Evolution 14(7), e11680.
+authors:
+  - "Mousavi-Derazmahalleh, M."
+  - "Haue, N."
+  - "Kanstrup, M."
+  - "Laursen, J.T."
+  - "Lukehurst, S.S."
+  - "Kveiborg, J."
+  - "Allentoft, M.E."
+published: 2024
+title: "Far away from home? Ancient DNA shows the presence of bicolored shrew (Crocidura leucodon) in Bronze Age Denmark"
+container: Ecology and Evolution
+doi: 10.1002/ece3.11680
+url: https://europepmc.org/article/PMC/PMC11219242
+license: CC-BY-4.0
+reliability: >-
+  A study of one find. It is cited for its description of the Early Iron Age village near Aalborg where the find was made,
+  which it gives from the excavators' internal report.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as text from Europe PMC's REST service (PMC11219242, fullTextXML) on 9 November 2026. Quotes checked by
+    script against it.

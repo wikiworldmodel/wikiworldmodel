@@ -1,0 +1,119 @@
+id: people/traditions/iron-age-longhouse-village
+kind: tradition/building
+summary: >-
+  The three-aisled longhouse of the Iron Age in Scandinavia, the Netherlands and northern Germany, before the Viking Age: smaller
+  than the longhouses of the Bronze Age, with a stable at one end and the living room at the other, each the main house of
+  a farm, the farms standing together in hamlets and villages among small square fields.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Iron Age longhouse of Scandinavia and the North Sea coast }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 500 BCE
+    source:
+      ref: src:wichmann-2025-fingerprinting-conflict
+      loc: 'section "Schleswig-Holstein (Bronze Age): Cooking pits, weapons, and fortifications"'
+      quote: >-
+        It was not until the Iron Age (from 500 BC) that the settlement pattern changed in favor of smaller houses in
+        hamlets and villages.
+    method: expert-estimate
+    note: The start of the Iron Age on the Jutland peninsula, which follows people/traditions/nordic-bronze-age-longhouse.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wichmann-2025-PMC11844905.txt (sha256 9f20a4209e5e5fb8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: { ref: people/traditions/viking-age-longhouse, edge: start }
+    unsourced: >-
+      An editorial split at the start of the Viking Age, where people/traditions/viking-age-longhouse takes over. The
+      sources date houses by period, and the three-aisled longhouse went on into the Viking Age: no source read says that
+      this house ended then.
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["39", "43"] }
+    source:
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Grøntoft"
+        quote: Grøntoft Denmark Three-aisled long house 1 Iron Age
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Vorbasse"
+        quote: Vorbasse Denmark Three-aisled long house 1 Roman Age
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Köpinge 21:2"
+        quote: Köpinge 21:2 Sweden Three-aisled long house 1 Iron Age
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Hol østre"
+        quote: Hol østre Norway Three-aisled long house 1 Iron Age
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Ezinge"
+        quote: Ezinge Netherlands Three-aisled long house 1 Iron Age
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Feddersen Wierde"
+        quote: Feddersen Wierde Germany Three-aisled long house 1 Roman Age
+    method: editorial
+    note: >-
+      Region 39 (Scandinavia), for the three-aisled long houses the S1 Table lists from the Iron Age and the Roman Iron Age
+      in Denmark, Sweden and Norway; region 43 (Central Europe), for those in the Netherlands and northern Germany. A region
+      named is where the sources place the house, not a claim that it covered the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in nicosia-2022-PMC9432763-with-S1.txt (sha256 d9d52156e5f25fc8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: long }
+    source:
+      - ref: src:mousavi-derazmahalleh-2024-bicolored-shrew
+        loc: section "Archeological context and sample description"
+        quote: >-
+          with a stable in the eastern part, a living area in the western part, and two opposing doors in the middle of the
+          longhouse. The farm thereby consists of a 16‐m‐long longhouse
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: Introduction
+        quote: >-
+          All archaeological structures interpreted as byre-houses are in fact longhouses (sensu [7]), featuring separated
+          partitions for livestock and humans.
+    method: excavation
+    note: >-
+      A longhouse with a stable at one end and the living room at the other. Wichmann et al. (2025) have the Iron Age houses
+      smaller than those of the Bronze Age, without figures. The one house a source read measures, at a village near
+      Aalborg of about 250 BC to 175 AD, is 16 m long; one house is not the type, so no length is given here and the
+      generator guesses it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in nicosia-2022-PMC9432763-with-S1.txt (sha256 d9d52156e5f25fc8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: hamlet }
+    source:
+      - ref: src:wichmann-2025-fingerprinting-conflict
+        loc: 'section "Schleswig-Holstein (Bronze Age): Cooking pits, weapons, and fortifications"'
+        quote: individual farmsteads are abandoned in favor of hamlets
+      - ref: src:mousavi-derazmahalleh-2024-bicolored-shrew
+        loc: Introduction
+        quote: >-
+          the village was established in the Early Pre‐Roman Iron Age (approx. 250 bc), increasing in size to 13 or 14
+          farms
+    method: expert-estimate
+    note: >-
+      Farms together in hamlets and villages; Wichmann et al. name both, and the vocabulary has one word, so hamlet, the one
+      they use twice. The village near Aalborg grew to 13 or 14 farms, but one village is not the type, so no number of
+      houses is given.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wichmann-2025-PMC11844905.txt (sha256 9f20a4209e5e5fb8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  fields:
+    prop: field_system
+    value: { kind: blocks }
+    source:
+      - ref: src:wichmann-2025-fingerprinting-conflict
+        loc: 'section "Schleswig-Holstein (Bronze Age): Cooking pits, weapons, and fortifications"'
+        quote: Celtic Fields structure the landscape
+      - ref: src:wikipedia-celtic-field
+        loc: lead section
+        quote: divided into a patchwork quilt of square plots
+    method: expert-estimate
+    note: >-
+      Celtic fields, which Wichmann et al. have structuring the landscape of the Jutland peninsula from 500 BC; the
+      encyclopedia describes them as small square plots, which the vocabulary calls blocks. What bounded them is not said in
+      a source read, so the bounds are left to the generator.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wichmann-2025-PMC11844905.txt (sha256 9f20a4209e5e5fb8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

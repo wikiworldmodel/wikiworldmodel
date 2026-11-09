@@ -1,0 +1,85 @@
+# The anonymous human landscape: the houses, settlements, fields and pastures of a scene. Nobody recorded any of them:
+# how many follows HYDE's people through the anthromes and the lists of cities; what way of life, the anthromes and the
+# archaeologists of the region; what the houses were like, the building tradition the world records there and then, or a
+# generic house for the way of life and the climate, which says so. Everything it makes is marked as generated.
+id: gen:people/settlement
+type: generator
+title: Houses, villages and fields of any place since 10,000 BCE
+version: 1
+code: generators/people/settlement/v1.ts
+runs_in: [build, client]
+outputs: { basis: procedural }
+inputs:
+  - { ref: field:people/anthromes, note: "where people were, how many to the km² in each class, and what they used a fifth of the land for" }
+  - { ref: field:earth/population, note: "the people of each 1° cell, shared over its 5′ cells by their classes" }
+  - { ref: field:people/land-use-assessment, note: "which way of life it was where the anthrome names no use of the land" }
+  - { ref: field:people/lifeways, note: "the pattern of settlement, from the two above" }
+  - { ref: field:people/cities, note: "the cities that stood near, and their people" }
+  - { ref: field:people/cities-ancient, note: "the cities that stood near, and their people" }
+  - { kind: tradition/building, note: "the building traditions that hold in the region at the time" }
+  - { prop: dwelling, note: "what each tradition's houses were like" }
+  - { prop: settlement_form, note: "how its houses stood together, and how many lived in each" }
+  - { prop: field_system, note: "the plots of its fields" }
+  - { prop: extent, note: "the regions each tradition was found in" }
+  - { ref: gen:life/scene, note: "the ground and the water of the scene the houses stand in" }
+checks:
+  - { test: world/generators/people/settlement/v1.test.ts, holds: "holds as many people as the world puts in the land it draws" }
+  - { test: world/generators/people/settlement/v1.test.ts, holds: "stands no house in the water or on a cliff" }
+  - { test: world/generators/people/settlement/v1.test.ts, holds: "draws fields where people farmed, pasture where they herded, and neither for foragers" }
+  - { test: world/generators/people/settlement/v1.test.ts, holds: "draws a tradition's house where it holds, and the generic one where none does" }
+  - { test: world/generators/people/settlement/v1.test.ts, holds: "draws a city of the lists where the anthromes have none" }
+  - { test: world/generators/people/settlement/v1.test.ts, holds: "puts a settlement in the same place from two scenes that overlap" }
+limits:
+  - with: field:people/anthromes
+    note: >-
+      A class is a band of density, and the people of a 1° cell are shared over its 5′ cells by the middle of each band, so a
+      5′ cell's people can be out by the factor its band spans; only the 1° total holds. Houses past the most a scene draws
+      stand for more people each, and the panel says how many.
+  - with: field:people/cities
+    note: >-
+      A city of the lists is drawn as one dense cluster of houses of its people, around the list's point: no streets,
+      walls, temples or districts, which are a city slice's work, as Rome's are. Its outline, round with an edge that
+      wanders, is invented, as a town's is.
+slots:
+  any:
+    place: >-
+      Any place on land the anthromes reach, at the step of theirs nearest the time. Each 5′ cell of the world seeds its
+      own settlements at each step, whichever scene draws them, so that overlapping scenes agree.
+    seed: people/settlement
+# Nothing below is a claim about any place or people. The numbers say how this generator lays out what the records and
+# the fields leave open: how many houses stand together where no tradition says, how much ground each takes, how much of
+# a settlement's land is in fields, and the generic houses drawn where no tradition holds.
+params:
+  household: 5
+  patterns:
+    foragers: { houses: [2, 6], lot: 900, fields: 0 }
+    herders: { houses: [2, 8], lot: 1600, fields: 0.6 }
+    shifting: { houses: [5, 25], lot: 900, fields: 0.2 }
+    farmsteads: { houses: [1, 3], lot: 2500, fields: 0.3 }
+    hamlets: { houses: [4, 15], lot: 1200, fields: 0.45 }
+    villages: { houses: [25, 150], lot: 700, fields: 0.55 }
+    towns: { houses: [150, 1500], lot: 350, fields: 0.4, storeys: 2 }
+    city: { houses: [500, 5000], lot: 200, fields: 0.3, storeys: 2 }
+  generic:
+    foragers: { plan: round, diameter: 3.5, walls: none, roof: dome, roof_material: thatch, height: 2 }
+    herders: { plan: round, diameter: 5, walls: felt, roof: tent, roof_material: felt, wall_height: 1.4, height: 2.6 }
+    town: { storeys: 2 }
+    city: { storeys: 2, court: true }
+    farm:
+      rainforest: { plan: rectangular, width: 5, length: 8, walls: pole-and-thatch, roof: gable, roof_material: thatch, floor: stilts }
+      savanna: { plan: round, diameter: 5, walls: wattle-and-daub, roof: conical, roof_material: thatch }
+      temperate: { plan: rectangular, width: 5, length: 10, walls: wattle-and-daub, roof: gable, roof_material: thatch }
+      cold: { plan: rectangular, width: 6, length: 10, walls: timber, roof: gable, roof_material: timber }
+      steppe: { plan: rectangular, width: 6, length: 8, walls: mudbrick, roof: flat, roof_material: earth }
+      desert: { plan: courtyard, width: 12, length: 12, walls: mudbrick, roof: flat, roof_material: earth }
+      tundra: { plan: round, diameter: 6, walls: sod, roof: dome, roof_material: turf }
+      ice: { plan: round, diameter: 4, walls: snow, roof: dome, roof_material: snow }
+  plots:
+    rainfed: { kind: blocks, plot: 0.5 }
+    irrigated: { kind: basins, plot: 0.3 }
+    rice: { kind: paddies, plot: 0.15 }
+    swidden: { kind: swidden, plot: 0.8 }
+    pasture: { kind: irregular, plot: 3 }
+  site: { steep: 0.25, above_water: 1.5, tries: 6 }
+  cities: { reach_km: 30, lot: 160, town_lot: 300, household: 6, city_from: 10000, most_houses: 12000 }
+  most_houses: 60000

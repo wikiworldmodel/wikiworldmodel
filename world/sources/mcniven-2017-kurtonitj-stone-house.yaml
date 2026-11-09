@@ -1,0 +1,20 @@
+id: src:mcniven-2017-kurtonitj-stone-house
+type: publication
+kind: measurement
+citation: >-
+  McNiven, I.J., Dunn, J.E., Crouch, J. & Gunditj Mirring Traditional Owners Aboriginal Corporation (2017). Kurtonitj
+  stone house: excavation of a mid-nineteenth century Aboriginal frontier site from Gunditjmara country, south-west
+  Victoria. Archaeology in Oceania 52(3), 171–197.
+authors: ["McNiven, I.J.", "Dunn, J.E.", "Crouch, J."]
+published: 2017
+title: "Kurtonitj stone house: excavation of a mid-nineteenth century Aboriginal frontier site from Gunditjmara country, south-west Victoria"
+container: Archaeology in Oceania 52(3), 171–197
+doi: 10.1002/arco.5136
+reliability: >-
+  Only the abstract was read, as the publisher deposited it with Crossref; the article is behind the publisher's paywall,
+  which is not reachable from here.
+verified:
+  by: machine:claude-code
+  how: >-
+    The abstract and the citation read from Crossref's record of the DOI on 9 November 2026, as text with its markup
+    taken out; the quotes checked by script against that text.

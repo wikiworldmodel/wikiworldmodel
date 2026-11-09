@@ -1,0 +1,26 @@
+id: src:jeppesen-2018-north-water-oasis
+type: publication
+kind: review
+citation: >-
+  Jeppesen, E., Appelt, M., Hastrup, K., Grønnow, B., Mosbech, A., Smol, J.P. & Davidson, T.A. (2018). Living in an oasis:
+  Rapid transformations, resilience, and resistance in the North Water Area societies and ecosystems. Ambio 47(Suppl. 2),
+  296–309.
+authors:
+  - "Jeppesen, E."
+  - "Appelt, M."
+  - "Hastrup, K."
+  - "Grønnow, B."
+  - "Mosbech, A."
+  - "Smol, J.P."
+  - "Davidson, T.A."
+published: 2018
+title: "Living in an oasis: Rapid transformations, resilience, and resistance in the North Water Area societies and ecosystems"
+container: Ambio
+doi: 10.1007/s13280-018-1034-y
+url: https://europepmc.org/article/PMC/PMC5963568
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC's full-text XML (PMC5963568), saved as text; the quotes checked by script against that
+    text. Citation details from Crossref.

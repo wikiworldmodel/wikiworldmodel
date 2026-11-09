@@ -1,0 +1,90 @@
+id: people/traditions/north-atlantic-turf-longhouse
+kind: tradition/building
+summary: >-
+  The longhouse of the Norse settlers of Iceland and Greenland: the Scandinavian long hall with a hearth down the middle and
+  a timber frame, but with walls and roof of turf, as timber was scarce. Built from the settlement of Iceland in the ninth
+  century until the fourteenth, when it was given up for clusters of small linked buildings.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Norse turf longhouse of Iceland and Greenland }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 801 CE, hi: 900 CE }
+    source:
+      ref: src:wikipedia-icelandic-turf-house
+      loc: lead section
+      quote: Turf houses have been constructed since Iceland was settled in the 9th century.
+    method: expert-estimate
+    note: The ninth century, when Iceland was settled; the source gives no year.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-Icelandic_turf_house.txt (sha256 b900cc0e84632141), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: { lo: 1301 CE, hi: 1400 CE }
+    source:
+      ref: src:wikipedia-icelandic-turf-house
+      loc: section "Evolution"
+      quote: >-
+        The first evolutionary step happened in the 14th century, when the Viking-style longhouses were gradually abandoned
+        and replaced with many small and specialized interconnected buildings.
+    method: expert-estimate
+    note: >-
+      The fourteenth century, when the longhouse was given up in Iceland, gradually. For Greenland, Jackson et al. (2018)
+      have both longhouses and passage houses, and no source read says when the longhouse ended there.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-Icelandic_turf_house.txt (sha256 b900cc0e84632141), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["37", "13"] }
+    source:
+      - ref: src:jackson-2018-norse-greenland
+        loc: Table 2, row "Farm (Farmstead and Outbuildings)", column "Iceland"
+        quote: Longhouses hold a strong continuity with the standard Scandinavian model.
+      - ref: src:jackson-2018-norse-greenland
+        loc: Table 2, row "Farm (Farmstead and Outbuildings)", column "Greenland"
+        quote: >-
+          Longhouse and passage house designs have a strong continuity with Icelandic internal spatial arrangements.
+          Differences are associated with use of local materials on account of limited standing timber.
+      - ref: src:nicosia-2022-oppeano-byre-houses
+        loc: S1 Table, row "Aðalstræti 16"
+        quote: Aðalstræti 16 Iceland Three-aisled long house 10 Viking Age
+    method: editorial
+    note: >-
+      Region 37 (Iceland) and region 13 (Greenland), where the Norse farms of the Eastern and Western Settlements lay in the
+      southwest. A region named is where the sources place the house, not a claim that it covered the region; in Greenland
+      the house stood only in the Norse settlements.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in nicosia-2022-PMC9432763-with-S1.txt (sha256 d9d52156e5f25fc8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: long, walls: sod, roof_material: turf }
+    source:
+      - ref: src:jackson-2018-norse-greenland
+        loc: Table 2, row "Farm (Farmstead and Outbuildings)", column "Iceland"
+        quote: >-
+          Houses would have consisted of between one and five sunken-featured buildings and a long hall with a central
+          hearth and a timber frame and supports.
+      - ref: src:jackson-2018-norse-greenland
+        loc: Table 2, row "Farm (Farmstead and Outbuildings)", column "Iceland"
+        quote: >-
+          Limited standing timber led many longhouses to innovate, using local stone and turf resources rather than wood
+          beam roof supports. The use of turf walls and stone to partition rooms is more common – showing a conformity with
+          Greenland.
+      - ref: src:jackson-2018-norse-greenland
+        loc: section "Accumulating Information – Landscape Learning in Greenland"
+        quote: >-
+          The limited availability of standing wood for the construction of longhouse structures, for example, meant wood
+          beam supports were replaced with perpendicular internal walls to support the roof
+      - ref: src:wikipedia-icelandic-turf-house
+        loc: lead section
+        quote: are timber structures with turf walls and turf as a cover for the roof.
+    method: excavation
+    note: >-
+      A long hall with a central hearth on a timber frame, its walls of turf (the vocabulary's sod) and its roof covered
+      with turf. In Greenland, where wood was short, internal walls rather than posts carried the roof. The size is not
+      given in a source read, so the generator guesses it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in jackson-2018-PMC6182579.txt (sha256 957fc9f64573e797), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

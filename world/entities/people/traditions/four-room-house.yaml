@@ -1,0 +1,137 @@
+id: people/traditions/four-room-house
+kind: tradition/building
+summary: >-
+  The four-room or pillared house of the Iron Age southern Levant, above all of Israel and Judah: a rectangular house of three
+  long rooms and one broad room across their end, the middle one often an open court, with walls of fieldstone or of mudbrick
+  on stone, a flat roof of beams, reeds and mud, and on some houses an upper floor. In the towns the houses stood in a belt
+  against the inside of the city wall.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Four-room house of the Iron Age southern Levant }
+    unsourced: An editorial label.
+  start-israel:
+    prop: start
+    value: 1200 BCE
+    source:
+      - ref: src:wikipedia-architecture-of-ancient-israel
+        loc: opening paragraph
+        quote: The domestic architecture of ancient Israel (c. 1200–587/6 BCE) is best defined by the four-room house
+      - ref: src:wikipedia-architecture-of-ancient-israel
+        loc: section "Casemate walls"
+        quote: >-
+          This tripartite plan became the dominant urban design principle throughout the Iron Age and appeared continuously
+          from the 12th century BCE through the destruction of Judah in the 6th century BCE.
+    method: expert-estimate
+    rank: preferred
+    note: >-
+      Circa 1200 BCE, the start of the domestic architecture the source defines by the four-room house. Preferred because the
+      same source has belts of houses against town walls from the 12th century BCE, and four-room houses in such belts before
+      the casemate wall, which grew out of them in the 12th and 11th centuries: earlier than the other claim allows.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-architecture-of-ancient-israel-1375836145.txt (sha256 89dd017f14fabed9), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  start-four-room:
+    prop: start
+    value: { lo: 1100 BCE, hi: 1001 BCE }
+    source:
+      ref: src:wikipedia-four-room-house
+      loc: opening section
+      quote: >-
+        the structure's popularity started during the Israelite highland settlement at the beginning of Iron Age I (late 11th
+        century BCE)
+    method: expert-estimate
+    note: >-
+      The source names both the beginning of Iron Age I and the late 11th century BCE in one sentence. The claim takes the
+      whole century, as "late" is not given in years.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-four-room-house-1370009931.txt (sha256 92d3b7a3ca8da2ed), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: { lo: 587 BCE, hi: 586 BCE }
+    source:
+      - ref: src:wikipedia-architecture-of-ancient-israel
+        loc: opening paragraph
+        quote: The domestic architecture of ancient Israel (c. 1200–587/6 BCE) is best defined by the four-room house
+      - ref: src:wikipedia-four-room-house
+        loc: opening section
+        quote: After the destruction of Judah (of the seventh and sixth centuries BCE) the architecture type was no longer utilized.
+    method: expert-estimate
+    note: >-
+      587 or 586 BCE, the end of the span the first source gives. The second says the house was no longer built after the
+      destruction of Judah, which it puts in the seventh and sixth centuries BCE.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-four-room-house-1370009931.txt (sha256 92d3b7a3ca8da2ed), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["58"] }
+    source:
+      ref: src:wikipedia-four-room-house
+      loc: opening section
+      quote: >-
+        is the name given to the mud and stone houses characteristic of the Iron Age of Levant, and most notably, in ancient
+        Israel and Judah.
+    method: editorial
+    note: >-
+      Region 58 (Syria, Cyprus and the Levant), which holds ancient Israel and Judah. The source's list of sites also names
+      Avaris in Egypt, with a question mark; it is left out. The house is not claimed for all of the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-four-room-house-1370009931.txt (sha256 92d3b7a3ca8da2ed), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value:
+      { plan: rectangular, court: true, length: { lo: 10, hi: 12 }, width: { lo: 8, hi: 10 }, rooms: 4, storeys: { lo: 1, hi: 2 }, walls: stone, roof: flat, roof_material: earth }
+    source:
+      - ref: src:wikipedia-architecture-of-ancient-israel
+        loc: section "Domestic architecture"
+        quote: >-
+          Private homes typically followed a rectangular plan known as the Four-Room House (or "pillared house"), which featured
+          three long rooms and one wide room.
+      - ref: src:wikipedia-architecture-of-ancient-israel
+        loc: section "Domestic architecture"
+        quote: The middle section was often an open-air courtyard that provided access to the other rooms.
+      - ref: src:wikipedia-four-room-house
+        loc: section "Building patterns and materials"
+        quote: The Iron I four-room houses typically measured ten to twelve meters long and eight to ten meters wide.
+      - ref: src:wikipedia-four-room-house
+        loc: section "Building patterns and materials"
+        quote: through analysis it can be concluded that some houses stood two stories tall
+      - ref: src:wikipedia-architecture-of-ancient-israel
+        loc: section "Walls and roofs"
+        quote: >-
+          Walls were constructed using either an all-stone method or a hybrid style where mudbricks were laid atop courses of
+          stone to prevent damage from moisture and runoff.
+      - ref: src:wikipedia-architecture-of-ancient-israel
+        loc: section "Walls and roofs"
+        quote: In the plains and valleys where stone was less common, mudbricks were the standard material.
+      - ref: src:wikipedia-architecture-of-ancient-israel
+        loc: section "Walls and roofs"
+        quote: >-
+          Roofs were typically flat, and served as functional workspaces … They were constructed by laying wooden beams across
+          the tops of walls, followed by a layer of reeds and twigs to support several applications of mud or chalk plaster.
+    method: excavation
+    note: >-
+      The plan, court, walls and roof are from the article on the architecture of ancient Israel; the size and the upper floor
+      from the article on the four-room house, which gives the size for the houses of Iron Age I. The middle room was often,
+      not always, an open court; the four rooms count it, and that article also has houses of two, three and five rooms. The
+      walls are stone, or mudbrick on courses of stone; in the plains and valleys, where stone was scarce, they were of
+      mudbrick. Only some houses had a second storey.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-four-room-house-1370009931.txt (sha256 92d3b7a3ca8da2ed), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: walled }
+    source:
+      ref: src:wikipedia-architecture-of-ancient-israel
+      loc: section "Casemate walls"
+      quote: >-
+        The mature casemate fortification system comprised three standardized components: the casemate city wall itself, a
+        belt of residential houses abutting the wall from the interior, and a peripheral road running along the houses' outer
+        face.
+    method: excavation
+    note: >-
+      The source calls this plan "the dominant urban design principle throughout the Iron Age". It speaks of towns: villages
+      and farmsteads are not described, and the article on the four-room house finds the houses standing alone as well as in
+      clusters.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-architecture-of-ancient-israel-1375836145.txt (sha256 89dd017f14fabed9), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

@@ -1,0 +1,21 @@
+id: src:wikipedia-ancient-greek-architecture
+type: database-record
+kind: review
+citation: >-
+  "Ancient Greek architecture." Wikipedia, the free encyclopedia (English edition), revision 1382339292.
+snapshot: 2026-11-09
+title: Ancient Greek architecture
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Ancient_Greek_architecture&oldid=1382339292
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the walls and plan of Greek town houses because no better work could be read here.
+  Its section on houses speaks of Greek houses in general, not of any one city or century, and cites Boardman, J. et al.
+  (1967), The Art and Architecture of Ancient Greece, pp. 10–14, and Sir Banister Fletcher's A History of Architecture (20th
+  ed., 1996), pp. 93–97 and 151–153, neither of which could be reached.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1382339292, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text, and its footnotes matched to the works they cite.
