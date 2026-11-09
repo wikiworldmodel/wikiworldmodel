@@ -45,7 +45,11 @@ export function fovFor(range: number): number {
   return (32 + 26 * (1 - smooth(Math.log(1500), Math.log(60000), Math.log(Math.max(range, 1))))) * RAD;
 }
 
-export function localView(s: CameraState, origin: { lat: number; lon: number }, ground: GroundSampler, width: number, height: number): LocalView {
+/**
+ * The view of a camera state. The eye is held above the ground the sampler gives; in a scene of the sea that is its floor,
+ * and `sea` is the height of its surface, which the eye may pass through and must not cut away as it does.
+ */
+export function localView(s: CameraState, origin: { lat: number; lon: number }, ground: GroundSampler, width: number, height: number, sea?: number): LocalView {
   const range = (s.dist - 1) * EARTH_RADIUS;
   const [tx, ty] = toLocal(origin, s.lat, s.lon);
   const h = (s.heading ?? 0) * RAD;
@@ -71,7 +75,8 @@ export function localView(s: CameraState, origin: { lat: number; lon: number }, 
   const clearance = Math.max(ez - g, 0.5);
   const fov = fovFor(range);
   const aspect = width / height;
-  const near = Math.max(0.2, Math.min(clearance * 0.4, range * 0.3, 40000));
+  // Under a sea, what swims may be anywhere about the eye, however high it is over the floor.
+  const near = Math.max(0.2, Math.min(clearance * 0.4, range * 0.3, 40000, sea === undefined ? Infinity : ez < sea ? 0.5 : (ez - sea) * 0.5));
   const far = Math.max(26000, clearance * 6);
   return {
     eye: [ex, ey, ez],
@@ -92,6 +97,16 @@ export function localView(s: CameraState, origin: { lat: number; lon: number }, 
     width,
     height,
   };
+}
+
+/** How much of the straight way from one point to another, in metres, lies under a sea's surface at a height. */
+export function underSea(a: V3, b: V3, sea = 0): number {
+  const d = Math.hypot(b[0] - a[0], b[1] - a[1], b[2] - a[2]);
+  const da = sea - a[2];
+  const db = sea - b[2];
+  if (da <= 0 && db <= 0) return 0;
+  if (da >= 0 && db >= 0) return d;
+  return (d * Math.max(da, db)) / Math.abs(da - db);
 }
 
 /** Where a point of the site lands on the screen, in CSS pixels; undefined if it is behind the eye. */
@@ -117,24 +132,24 @@ export function rayOf(v: LocalView, sx: number, sy: number): V3 {
   return [d[0] / l, d[1] / l, d[2] / l];
 }
 
-/** Where a ray from the eye meets the ground, marching out in growing steps. */
-export function groundHit(v: LocalView, dir: V3, ground: GroundSampler): V3 | undefined {
-  let t = Math.max(v.clearance * 0.1, 1);
+/** Where a ray from a point meets the ground, marching out in growing steps from `start` metres. */
+function march(o: V3, dir: V3, ground: GroundSampler, start: number): V3 | undefined {
+  let t = start;
   let prev = 0;
   for (let i = 0; i < 90; i++) {
-    const x = v.eye[0] + dir[0] * t;
-    const y = v.eye[1] + dir[1] * t;
-    const z = v.eye[2] + dir[2] * t;
+    const x = o[0] + dir[0] * t;
+    const y = o[1] + dir[1] * t;
+    const z = o[2] + dir[2] * t;
     if (z < ground.at(x, y)) {
       // Close in on it.
       let a = prev;
       let b = t;
       for (let k = 0; k < 16; k++) {
         const m = (a + b) / 2;
-        if (v.eye[2] + dir[2] * m < ground.at(v.eye[0] + dir[0] * m, v.eye[1] + dir[1] * m)) b = m;
+        if (o[2] + dir[2] * m < ground.at(o[0] + dir[0] * m, o[1] + dir[1] * m)) b = m;
         else a = m;
       }
-      return [v.eye[0] + dir[0] * b, v.eye[1] + dir[1] * b, v.eye[2] + dir[2] * b];
+      return [o[0] + dir[0] * b, o[1] + dir[1] * b, o[2] + dir[2] * b];
     }
     prev = t;
     t *= 1.14;
@@ -142,6 +157,25 @@ export function groundHit(v: LocalView, dir: V3, ground: GroundSampler): V3 | un
     if (t > 2e6) break;
   }
   return undefined;
+}
+
+/** Where a ray from the eye meets the ground. */
+export function groundHit(v: LocalView, dir: V3, ground: GroundSampler): V3 | undefined {
+  return march(v.eye, dir, ground, Math.max(v.clearance * 0.1, 1));
+}
+
+/**
+ * The camera that looks from an eye through a point to the ground beyond it, as a state has it: the point on the ground
+ * it looks at, its heading and tilt in degrees, and its distance. Undefined if the look never comes down to the ground.
+ */
+export function lookThrough(eye: V3, at: V3, ground: GroundSampler): { target: V3; heading: number; tilt: number; range: number } | undefined {
+  const l = Math.hypot(at[0] - eye[0], at[1] - eye[1], at[2] - eye[2]);
+  if (!l || at[2] >= eye[2]) return undefined;
+  const dir: V3 = [(at[0] - eye[0]) / l, (at[1] - eye[1]) / l, (at[2] - eye[2]) / l];
+  const target = march(eye, dir, ground, 1);
+  if (!target) return undefined;
+  const heading = ((Math.atan2(dir[0], dir[1]) / RAD) % 360 + 360) % 360;
+  return { target, heading, tilt: Math.acos(-dir[2]) / RAD, range: Math.hypot(target[0] - eye[0], target[1] - eye[1], target[2] - eye[2]) };
 }
 
 /**

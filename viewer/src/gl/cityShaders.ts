@@ -10,6 +10,52 @@ const float PLANET_RADIUS = 6371000.0;
 float drop(vec2 p) { return dot(p, p) / (2.0 * PLANET_RADIUS); }
 `;
 
+/**
+ * How the water of a scene of the sea is drawn: a look, as the haze's constant is, and not a measurement of any sea.
+ * Light of each colour, red, green and blue, is lost along a path through the water as e^(−k·metres), red first and blue
+ * last, and what the water scatters fills in its place; daylight falls with depth the same way, but never below a floor,
+ * so that the floor of a deep sea can still be seen; the water's own colour is a share of the light at its surface; and
+ * a camera under water opens up as the light there falls short of a day's at the surface, `day`, by at most `open` times.
+ */
+export const SEA = {
+  /** per metre of the way through water */
+  extinction: [0.2, 0.04, 0.03],
+  /** per metre of depth, of the daylight that reaches down */
+  light: [0.2, 0.045, 0.032],
+  /** the least daylight below, as a share of the surface's */
+  floor: [0.008, 0.028, 0.05],
+  /** the share of the light at the surface that the water sends back as its own colour */
+  body: [0.016, 0.13, 0.3],
+  /**
+   * seen from above, the light a shelf's water sends back, as a share of the light on it; the most of what is seen through
+   * the surface it takes; and the depths over which it comes, where the floor itself starts to show less, and goes
+   */
+  shelf: [0.05, 0.17, 0.16],
+  shelfShare: 0.35,
+  shallow: [10, 250],
+  day: 2.5,
+  open: 14,
+} as const;
+
+const vec3 = (v: readonly number[]) => `vec3(${v.map((x) => x.toFixed(4)).join(', ')})`;
+
+/** The light in the sea, where a scene is of the sea: what reaches a depth, and the water's own colour there. */
+const SEA_LIGHT = /* glsl */ `
+uniform float uSea;
+const vec3 WATER_K = ${vec3(SEA.extinction)};
+const vec3 WATER_LIGHT = ${vec3(SEA.light)};
+const vec3 WATER_FLOOR = ${vec3(SEA.floor)};
+const vec3 WATER_BODY = ${vec3(SEA.body)};
+// The share of the daylight at the sea's surface that reaches a height below it, in metres.
+vec3 seaLight(float z) { return max(exp(WATER_LIGHT * min(z, 0.0)), WATER_FLOOR); }
+// The water's own light, seen along a direction from a height: what it scatters of the daylight come down to there,
+// brightest looking up and darkest looking down.
+vec3 waterGlow(vec3 dir, float z) {
+  vec3 lit = uSunColor * max(uSun.z, 0.0) * 0.8 + uSkyTop * 0.6;
+  return WATER_BODY * lit * seaLight(z) * (0.12 + 0.88 * smoothstep(-0.8, 1.0, dir.z));
+}
+`;
+
 /** Rising and falling: a vertex's entity says when it stood, and evidence what it rests on. */
 const ENTITY = /* glsl */ `
 uniform highp sampler2D uEntities;
@@ -113,6 +159,7 @@ uniform vec3 uShadowFocus;
 uniform vec3 uShadowRadii;
 uniform float uHazeK;
 uniform highp sampler3D uNoise;
+${SEA_LIGHT}
 
 // Noise whose features are about \`size\` metres across (the texture holds 64 cells to its repeat).
 float noiseM(vec3 p, float size) { return texture(uNoise, p / (64.0 * size)).r; }
@@ -145,6 +192,22 @@ vec3 aerial(vec3 c, vec3 p, vec3 eye) {
   vec3 t = exp(-ext);
   vec3 air = skyColor(normalize(vec3(dir.xy, max(dir.z, 0.015))));
   return c * t + air * (1.0 - t);
+}
+
+// What the eye sees of a point: through the haze, and in a scene of the sea through the water as well, over the part of
+// the way that lies in each. A point is at its height above the sea, the eye with the Earth's curve taken off.
+vec3 seen(vec3 c, vec3 p, vec3 eye) {
+  if (uSea < 0.5) return aerial(c, p, eye);
+  float he = eye.z + drop(eye.xy);
+  if (he >= 0.0 && p.z >= 0.0) return aerial(c, p, eye);
+  vec3 v = vec3(p.xy - eye.xy, p.z - drop(p.xy) - eye.z);
+  float d = max(length(v), 1e-3);
+  // The share of the way that is under water.
+  float under = he >= 0.0 ? -p.z / (he - p.z) : p.z <= 0.0 ? 1.0 : -he / (p.z - he);
+  vec3 t = exp(-WATER_K * d * under);
+  c = c * t + waterGlow(v / d, min(he, 0.0)) * (1.0 - t);
+  // From above, the rest of the way is air, hazed as far as the surface.
+  return he >= 0.0 ? aerial(c, eye + v * (1.0 - under), eye) : c;
 }
 
 // The shadows of fair-weather clouds, broad and soft, passing over the land.
@@ -203,7 +266,9 @@ vec3 shade(vec3 albedo, float rough, float metal, vec3 n, vec3 p, vec3 eye, floa
   // The sky in a polished surface; a rough one only scatters it, and the blaze by the sun is kept out.
   float gloss = (1.0 - rough) * (1.0 - rough);
   vec3 env = min(skyColor(normalize(vec3(r.xy, abs(r.z) + 0.02))), vec3(2.0)) * (f0 + (1.0 - f0) * fres) * gloss * occl;
-  return diff + uSunColor * spec * f0 * 2.5 + env;
+  vec3 c = diff + uSunColor * spec * f0 * 2.5 + env;
+  // Under the sea, only what of the daylight comes down so far.
+  return uSea > 0.5 && p.z < 0.0 ? c * seaLight(p.z) : c;
 }
 `;
 
@@ -671,7 +736,7 @@ void main() {
   float ao = texture(uAO, gl_FragCoord.xy / uAOSize).r;
   float occl = ao * (vLight * 0.5 + 0.5);
   vec3 c = shade(s.albedo, s.rough, s.metal, w, vPos, uEye, occl, sh * mix(1.0, ao, 0.35));
-  c = aerial(c, vPos, uEye);
+  c = seen(c, vPos, uEye);
   // Evidence mode: what rests on a reconstruction is amber, what was generated magenta.
   int flags = int(vFlags);
   int basis = flags & 7;
@@ -882,6 +947,23 @@ vec3 wilderness(vec3 p, vec3 n, float dist, out float water) {
   c = mix(c, vec3(0.86, 0.88, 0.9), snow);
   return c;
 }
+// The floor of a sea: sand in the shallows and on the beach, mud further down, the grey ooze of the deep, and rock where
+// it is steep. Its colours are the renderer's, and nobody's record.
+vec3 seabed(vec3 p, vec3 n, float dist) {
+  float depth = max(-p.z, 0.0);
+  float nearby = 1.0 - smoothstep(25.0, 400.0, dist);
+  vec3 sand = mix(vec3(0.50, 0.45, 0.34), vec3(0.66, 0.60, 0.47), fbmM(p, 2.2));
+  // Ripples where the waves still stir the sand, seen close by.
+  float ripple = abs(fract(dot(p.xy, vec2(0.83, 0.56)) / 0.8 + fbmM(p, 2.5) * 2.0) - 0.5) * 2.0;
+  sand *= mix(1.0, 0.84 + 0.22 * ripple, nearby * (1.0 - smoothstep(8.0, 30.0, depth)));
+  vec3 mud = mix(vec3(0.26, 0.24, 0.19), vec3(0.36, 0.33, 0.26), fbmM(p, 6.0));
+  vec3 ooze = mix(vec3(0.20, 0.20, 0.19), vec3(0.28, 0.27, 0.25), fbmM(p, 40.0));
+  float muddy = smoothstep(20.0, 140.0, depth + (fbmM(p, 160.0) - 0.5) * 90.0);
+  vec3 c = mix(mix(sand, mud, muddy), ooze, smoothstep(300.0, 2500.0, depth));
+  // Shell and gravel in patches, and stones close by.
+  c *= 0.9 + 0.2 * (fbmM(p, 14.0) - 0.5) + 0.22 * (noiseM(p, 0.3) - 0.5) * nearby;
+  return mix(c, vec3(0.27, 0.26, 0.24) * (0.8 + 0.4 * fbmM(p, 4.0)), smoothstep(0.25, 0.5, 1.0 - n.z));
+}
 void main() {
   if (vPos.x > uInner.x && vPos.y > uInner.y && vPos.x < uInner.z && vPos.y < uInner.w) discard;
   vec3 p = vPos;
@@ -891,8 +973,8 @@ void main() {
   // Far off, the shadow map is too coarse to trust: the hills' own shading does the work.
   float sh = mix(shadowAt(p, n, fw), 1.0, smoothstep(9000.0, 22000.0, dist)) * cloudShade(p);
   float ao = uUseAO > 0.5 ? texture(uAO, gl_FragCoord.xy / uAOSize).r : 1.0;
-  // The sea: anywhere the ground lies under its surface.
-  if (shoreHeight <= 0.0) {
+  // The sea: anywhere the ground lies under its surface. A scene of the sea draws its floor instead, and its surface apart.
+  if (uSea < 0.5 && shoreHeight <= 0.0) {
     float deep = smoothstep(-5.0, -120.0, p.z);
     vec3 water = mix(vec3(0.06, 0.20, 0.22), vec3(0.015, 0.06, 0.13), deep);
     vec3 wob = vec3(noiseM(p, 8.0) - 0.5, noiseM(p + 9.0, 8.0) - 0.5, 4.0);
@@ -951,9 +1033,15 @@ void main() {
   // Wet, darker ground at the river's edge.
   if (uWild > 0.5) c = mix(c, vec3(0.15, 0.125, 0.085), smoothstep(uWater + 0.7, uWater + 0.05, p.z) * smoothstep(uWater - 9.0, uWater - 5.0, p.z) * (1.0 - smoothstep(16000.0, 18000.0, length(p.xy))) * 0.9);
   else c = mix(c, vec3(0.28, 0.25, 0.18), smoothstep(uWater + 4.0, uWater + 1.0, p.z) * 0.8);
+  // In a scene of the sea, its floor under the water, and a beach at the water's edge; no river is painted on it.
+  if (uSea > 0.5) {
+    float sunk = smoothstep(1.4, -0.4, p.z);
+    c = mix(c, seabed(p, n, dist), sunk);
+    river *= 1.0 - sunk;
+  }
   vec3 lit = shade(c, 0.92, 0.0, n, p, uEye, ao, sh);
   if (river > 0.0) lit = mix(lit, shade(vec3(0.145, 0.15, 0.085), 0.14, 0.0, vec3(0.0, 0.0, 1.0), p, uEye, 1.0, sh), river);
-  lit = aerial(lit, p, uEye);
+  lit = seen(lit, p, uEye);
   if (uEvidence > 0.5) {
     float hatch = step(0.62, fract((gl_FragCoord.x + gl_FragCoord.y) / 9.0));
     lit = mix(lit, vec3(0.95, 0.65, 0.18) * 1.1, 0.08 + 0.18 * hatch);
@@ -1025,6 +1113,103 @@ void main() {
   c = mix(c, skyColor(normalize(vec3(r.xy, abs(r.z)))), fres * 0.8);
   c += uSunColor * pow(max(dot(r, uSun), 0.0), 360.0) * 1.4 * sh;
   o = vec4(aerial(c, p, uEye), 1.0);
+}`;
+
+// ——— The sea's surface, in a scene of the sea ———
+
+/** The terrain's rings, flat at the sea's level, with the depth of the water under each point. */
+export const SEA_VS = /* glsl */ `#version 300 es
+precision highp float;
+precision highp int;
+layout(location = 0) in vec2 aGrid;
+uniform mat4 uViewProj;
+uniform vec3 uEye;
+uniform vec2 uCenter;
+uniform float uCell;
+${DROP}
+${GROUND}
+out vec3 vPos;
+out float vDepth;
+void main() {
+  // Toward its outer edge a ring's vertices slide onto the next ring's grid, as the terrain's do.
+  float edge = max(abs(aGrid.x), abs(aGrid.y));
+  float m = clamp((edge - 54.0) / 8.0, 0.0, 1.0);
+  vec2 even = floor(aGrid * 0.5 + 0.5) * 2.0;
+  vec2 p = uCenter + mix(aGrid, even, m) * uCell;
+  vPos = vec3(p, 0.0);
+  vDepth = -groundAt(p);
+  gl_Position = uViewProj * vec4(vec3(p, -drop(p)) - uEye, 1.0);
+}`;
+
+/**
+ * The sea's surface over what has been drawn, its colour premultiplied. From above it is the sky and the sun, reflected
+ * as much as the angle says, over the floor and the water already drawn under it, and tinted by the depth of the water
+ * under it, so that a shelf reads shallow and the open sea deep; from below, the sky through its window overhead and the
+ * depths reflected beyond it.
+ */
+export const SEA_FS = /* glsl */ `#version 300 es
+precision highp float;
+precision highp int;
+precision highp sampler3D;
+precision highp sampler2DArrayShadow;
+in vec3 vPos;
+in float vDepth;
+uniform vec3 uEye;
+uniform vec4 uInner;
+// The view's direction, and how far along it the surface starts: what is nearer is the near pass's.
+uniform vec3 uForward;
+uniform float uFrom;
+out vec4 o;
+${LIGHTING}
+// Waves, as a tilt of the surface: a swell, chop and ripples, stilled with distance before they could break into glitter.
+vec3 waves(vec2 p, float dist) {
+  vec2 a = vec2(texture(uNoise, vec3(p / 1300.0, 0.21)).r, texture(uNoise, vec3(p / 1300.0, 0.58)).g) - 0.5;
+  vec2 b = vec2(texture(uNoise, vec3(p / 300.0, 0.37)).b, texture(uNoise, vec3(p / 300.0, 0.81)).r) - 0.5;
+  vec2 c = vec2(texture(uNoise, vec3(p / 70.0, 0.13)).g, texture(uNoise, vec3(p / 70.0, 0.66)).b) - 0.5;
+  float amp = mix(0.13, 0.025, smoothstep(40.0, 4000.0, dist));
+  return normalize(vec3((a * 0.6 + b + c * 0.7 * (1.0 - smoothstep(20.0, 200.0, dist))) * amp, 1.0));
+}
+void main() {
+  if (vPos.x > uInner.x && vPos.y > uInner.y && vPos.x < uInner.z && vPos.y < uInner.w) discard;
+  vec3 v = vec3(vPos.xy - uEye.xy, -drop(vPos.xy) - uEye.z);
+  if (dot(v, uForward) < uFrom) discard;
+  float d = length(v);
+  vec3 dir = v / d;
+  vec3 n = waves(vPos.xy, d);
+  float he = uEye.z + drop(uEye.xy);
+  if (he >= 0.0) {
+    // From above: the sky reflected, as much of it as Fresnel's law says for water, and the sun's glitter.
+    float cosT = max(dot(n, -dir), 0.0);
+    float F = 0.02 + 0.98 * pow(1.0 - cosT, 5.0);
+    vec3 r = reflect(dir, n);
+    vec3 sky = min(skyColor(normalize(vec3(r.xy, abs(r.z) + 0.01))), vec3(4.0));
+    float sh = shadowAt(vPos, vec3(0.0, 0.0, 1.0), d * 0.002);
+    vec3 glint = uSunColor * sunSpecular(n, -dir, mix(0.07, 0.3, smoothstep(60.0, 30000.0, d))) * max(uSun.z, 0.0) * sh;
+    // Over a shelf the water sends back more of the light, the shallower the more, so that it reads shallow from above:
+    // that light takes its share of what is seen through the surface.
+    float shelf = (1.0 - F) * ${SEA.shelfShare.toFixed(3)} * smoothstep(0.0, ${SEA.shallow[0].toFixed(1)}, vDepth) * (1.0 - smoothstep(${SEA.shallow[0].toFixed(1)}, ${SEA.shallow[1].toFixed(1)}, vDepth));
+    vec3 glow = ${vec3(SEA.shelf)} * (uSunColor * max(uSun.z, 0.0) * 0.8 + uSkyTop * 0.6);
+    // Hazed as anything is: over the air, the light the surface sends and its share of what the air adds.
+    vec3 haze = aerial(vec3(0.0), vPos, uEye);
+    float a = F + shelf;
+    vec3 c = aerial(sky * F + glint + glow * shelf, vPos, uEye) - haze * (1.0 - a);
+    // At the water's edge it thins to nothing, so the shore is not a line.
+    float shore = smoothstep(0.0, 0.8, vDepth);
+    o = vec4(c * shore, a * shore);
+    return;
+  }
+  // From below: within the window over the eye the sky comes through, bent; beyond it the surface is a mirror of the
+  // depths. Then the water between it and the eye.
+  vec3 depths = waterGlow(reflect(dir, n), 0.0);
+  vec3 t = refract(dir, -n, 1.333);
+  vec3 c = depths;
+  if (dot(t, t) > 0.0) {
+    float F = 0.02 + 0.98 * pow(1.0 - max(t.z, 0.0), 5.0);
+    vec3 sky = min(skyColor(normalize(vec3(t.xy, max(t.z, 0.01)))), vec3(4.0)) + uSunColor * pow(max(dot(t, uSun), 0.0), 220.0) * 3.0;
+    c = mix(sky, depths, F);
+  }
+  vec3 k = exp(-WATER_K * d);
+  o = vec4(c * k + waterGlow(dir, he) * (1.0 - k), 1.0);
 }`;
 
 // ——— Sky ———
@@ -1116,6 +1301,10 @@ uniform highp sampler2D uSkyLut;
 uniform highp sampler3D uNoise;
 uniform float uHeight;
 uniform float uAlpha;
+// In a scene of the sea, the eye's height above it; and the light the water's colour is made from.
+uniform float uEyeSea;
+uniform vec3 uSkyTop;
+${SEA_LIGHT}
 out vec4 o;
 vec3 skyColor(vec3 d) {
   float az = acos(clamp(dot(normalize(d.xy + 1e-5), normalize(uSun.xy + 1e-5)), -1.0, 1.0)) / 3.14159265;
@@ -1133,6 +1322,11 @@ void main() {
   vec4 a = uInvViewProj * vec4(vUv * 2.0 - 1.0, -1.0, 1.0);
   vec4 b = uInvViewProj * vec4(vUv * 2.0 - 1.0, 1.0, 1.0);
   vec3 d = normalize(b.xyz / b.w - a.xyz / a.w);
+  // Under the sea, all there is beyond what is drawn is the water.
+  if (uSea > 0.5 && uEyeSea < 0.0) {
+    o = vec4(waterGlow(d, uEyeSea), 1.0);
+    return;
+  }
   vec3 c = skyColor(d);
   // The sun's disc, and its glare in the haze.
   float sd = dot(d, uSun);

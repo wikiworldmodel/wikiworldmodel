@@ -7,7 +7,7 @@ import { printCheck, settlePrint, type Fingerprint, type PrintCheck } from '../.
 import { lookup, type Scenario } from '../../../core/scenario.ts';
 import type { LivingTaxon, SceneSpec } from '../../../core/scene.ts';
 import { GroundSampler } from '../../../world/generators/city/ground.ts';
-import type { LivingParams } from '../../../world/generators/life/scene/v5.ts';
+import { placeLook, type LivingParams } from '../../../world/generators/life/scene/v5.ts';
 import { snowOf } from '../../../world/generators/life/climate.ts';
 import { declination, MID_DAY } from '../../../core/water.ts';
 import { protoParts } from '../../../world/generators/life/stream.ts';
@@ -34,7 +34,7 @@ function rendererFor(gl: GL, fast: boolean): CityRenderer {
   return r;
 }
 
-/** What a camera or a name stands on: the ground, or the top of the sea over it. */
+/** What a camera or a name stands on on land: the ground, or the top of the sea over it. In a scene of the sea, the ground. */
 class SurfaceSampler extends GroundSampler {
   override at(x: number, y: number): number {
     const z = super.at(x, y);
@@ -76,19 +76,21 @@ export class LifeScene {
   private active = false;
   private wasActive = false;
 
+  /**
+   * Whether the scene is of the sea, as its generator says of its place: then its floor is drawn at its depth under the
+   * water, and a visitor may go down to it.
+   */
+  readonly sea: boolean;
+
   constructor(gl: GL, source: SceneSpec, expected: Fingerprint | null, private opts: { fast?: boolean } = {}) {
     this.spec = source;
     this.plan.expected = expected;
     this.renderer = rendererFor(gl, !!opts.fast);
+    this.sea = placeLook(source).sea;
   }
 
   get named(): CityStructure[] {
     return this.names;
-  }
-
-  /** Whether the place itself lies under the water: then there is nothing to see yet. */
-  get atSea(): boolean {
-    return !!this.ground && this.waterLevel <= 0 && this.ground.at(0, 0) <= 0;
   }
 
   get settled(): boolean {
@@ -105,7 +107,7 @@ export class LifeScene {
         if (m.type === 'ground') {
           this.groundData = m;
           this.groundMs = m.ms;
-          this.ground = new SurfaceSampler(m.levels);
+          this.ground = this.sea ? new GroundSampler(m.levels) : new SurfaceSampler(m.levels);
           this.focus = m.focus;
           this.toRiver = m.toRiver;
           this.waterLevel = m.waterLevel;
@@ -145,6 +147,7 @@ export class LifeScene {
     this.wasActive = true;
     this.active = true;
     const g = this.groundData;
+    r.sea = this.sea;
     r.clearGround();
     r.clearInstanced();
     r.setGround(g.levels.map((l) => ({ ...l, url: '' })), g.levels.map((l) => l.z));

@@ -215,6 +215,8 @@ export interface OrganismHere {
   stage?: string;
   fossils: SceneSpec['fossils'];
   generator: string;
+  /** it is on the sea's list: its fossils are near or far by sea, and those of the region in a like belt of latitude */
+  sea?: boolean;
 }
 
 const fmt = (x: number) => (x >= 10 ? x.toFixed(0) : x >= 1 ? x.toFixed(1) : x.toFixed(2));
@@ -419,15 +421,17 @@ export class InspectPanel {
     const t = o.taxon;
     const sizes = [t.fromMass ? `${fmt(t.mass!)} kg` : t.length !== undefined ? `${fmt(t.length)} m long` : '', t.hip !== undefined ? `${fmt(t.hip)} m at the hips` : '', t.height !== undefined ? `${fmt(t.height)} m tall` : ''].filter(Boolean).join(', ');
     const rows = `${t.rows} ${t.rows === 1 ? 'occurrence' : 'occurrences'}`;
-    const where = (km: number) => (km < 20 ? 'close by' : `about ${(Math.round(km / 10) * 10).toLocaleString('en-US')} km from here, over land`);
+    const where = (km: number) => (km < 20 ? 'close by' : `about ${(Math.round(km / 10) * 10).toLocaleString('en-US')} km from here, ${o.sea ? 'by sea' : 'over land'}`);
     const recorded =
       t.tier === 'formation'
         ? `<strong>Recorded:</strong> ${rows} in ${t.collections} ${t.collections === 1 ? 'collection' : 'collections'} of ${esc(o.fossils.title)}${sizes && !t.size_from ? `; grown, ${esc(sizes)}, as the claims below say` : ''}.`
         : t.tier === 'here'
           ? `<strong>Recorded here:</strong> ${rows} of ${esc(o.fossils.title)} in this stage, the nearest ${where(t.km ?? 0)}.`
           : t.tier === 'region'
-            ? `<strong>Inferred:</strong> the nearest of its ${rows} in this stage is ${where(t.km ?? 0)}, and no fossil puts it at this spot. That it lived here too is a guess from the land and the climate between.`
-            : `<strong>A stand-in:</strong> nothing of this kind is recorded within reach: the nearest fossil of any kind is ${where(t.km ?? 0)}. ${esc(t.label)} stands for what sort of thing may have lived here, and is no claim that it did.`;
+            ? `<strong>Inferred:</strong> the nearest of its ${rows} in this stage is ${where(t.km ?? 0)}, and no fossil puts it at this spot. ${o.sea ? 'That it lived here too is a guess from the sea between, in a like belt of latitude.' : 'That it lived here too is a guess from the land and the climate between.'}`
+            : o.sea
+              ? `<strong>A stand-in:</strong> nothing is recorded in the sea within reach: the nearest fossil of any kind is ${where(t.km ?? 0)}. ${esc(t.label)} is among the commonest of this stage in a like belt of latitude, and stands for what sort of thing may have lived here; it is no claim that it did.`
+              : `<strong>A stand-in:</strong> nothing of this kind is recorded within reach: the nearest fossil of any kind is ${where(t.km ?? 0)}. ${esc(t.label)} stands for what sort of thing may have lived here, and is no claim that it did.`;
     const body = t.own ? `<p><strong>Its body:</strong> its own form, as the claims below say.</p>` : `<p><strong>Its body:</strong> drawn from the form of ${esc(t.form_label)}, the nearest node of the tree with one. No one has written its own yet.</p>`;
     const size = t.size_from ? `<p><strong>Its size:</strong> ${esc(sizes)}, within the range the record of ${esc(t.size_from)} gives. No one has measured it here.</p>` : '';
     return `<section class="here organism"><h3>In ${esc(o.site)}, ${esc(o.stage ?? formatTime(o.slice))}</h3>
@@ -435,8 +439,11 @@ export class InspectPanel {
       <p><strong>Generated:</strong> where each stands, how many there are, what each is doing, how old it is and its colour${t.fromMass ? ', and its length, from its mass and the shape of the plan' : ''}. Nobody recorded these. <span class="method">${esc(o.generator)}, shown in magenta in evidence mode.</span></p></section>`;
   }
 
-  /** What the records say lived at this place and time, in tiers, and what was made of it. */
-  showLifeHere(spec: SceneSpec, note?: string): void {
+  /**
+   * What the records say lived at this place and time, in tiers, and what was made of it. `list` is the atlas the taxa
+   * are from, the land's or the sea's; `sea` that the scene is of the sea.
+   */
+  showLifeHere(spec: SceneSpec, note?: string, where: { list: 'land' | 'sea'; sea: boolean } = { list: 'land', sea: false }): void {
     const group = (tier: string, title: string, say: string) => {
       const list = spec.taxa.filter((t) => t.tier === tier);
       if (!list.length) return '';
@@ -449,10 +456,21 @@ export class InspectPanel {
       return `<section class="here organism"><h3>${esc(title)}</h3><p class="note">${esc(say)}</p><ul>${items.join('')}</ul></section>`;
     };
     const b = spec.biome;
-    const none = spec.taxa.length ? '' : '<section class="here organism"><h3>Nothing on land</h3><p>No fossil of anything living on land is known from this stage, anywhere within reach. The land is drawn bare.</p></section>';
+    const none = spec.taxa.length
+      ? ''
+      : where.sea
+        ? '<section class="here organism"><h3>Nothing of the sea drawn</h3><p>None of what the atlas of the sea lists here, if it lists anything, has a body to draw it with yet. The sea is drawn empty: its floor, and the water over it.</p></section>'
+        : '<section class="here organism"><h3>Nothing on land</h3><p>No fossil of anything living on land is known from this stage, anywhere within reach. The land is drawn bare.</p></section>';
+    const tiers =
+      where.list === 'sea'
+        ? `${group('here', 'Recorded here', 'A fossil of it within a few hundred km by sea, from this stage.')}${group('region', 'Recorded in the region', 'A fossil of it can be reached by sea, in a like belt of latitude. That it lived at this spot is an inference.')}${group('standin', 'Stand-ins', 'Nothing is recorded in the sea within reach. These are among the commonest of the stage in a like belt of latitude, and stand for what sort of thing may have lived here; they are no claim that it did.')}`
+        : `${group('here', 'Recorded here', 'A fossil of it within a few hundred km, from this stage.')}${group('region', 'Recorded in the region', 'A fossil of it can be reached overland, in a like climate. That it lived at this spot is an inference.')}${group('standin', 'Stand-ins', 'Nothing of this kind is known within reach. These stand for what sort of thing may have lived here, and are no claim that it did.')}`;
+    const summary = where.sea
+      ? 'A sea, drawn at the depth the elevation field gives it. Every animal you see is placed by a generator: only who could be here comes from fossils.'
+      : `Where the climate field reads the land at ${esc(String(b.ageMa))} Ma it is ${esc(b.label.toLowerCase())}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%. Every plant and animal you see is placed by a generator: only who could be here comes from fossils.`;
     this.frame(spec.site.stage ?? 'This place', `<div class="meta"><span class="kind">What lived here</span> <span class="badge basis-procedural">procedural</span></div>
-      <p class="summary">Where the climate field reads the land at ${esc(String(b.ageMa))} Ma it is ${esc(b.label.toLowerCase())}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%. Every plant and animal you see is placed by a generator: only who could be here comes from fossils.</p>
-      ${none}${group('here', 'Recorded here', 'A fossil of it within a few hundred km, from this stage.')}${group('region', 'Recorded in the region', 'A fossil of it can be reached overland, in a like climate. That it lived at this spot is an inference.')}${group('standin', 'Stand-ins', 'Nothing of this kind is known within reach. These stand for what sort of thing may have lived here, and are no claim that it did.')}
+      <p class="summary">${summary}</p>
+      ${none}${tiers}
       ${note ? `<section><p class="note">${esc(note)}</p></section>` : ''}`);
   }
 

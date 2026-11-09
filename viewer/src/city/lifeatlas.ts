@@ -41,6 +41,8 @@ export class LifeAtlas {
   private seaBins = new Map<string, Promise<SeaBin>>();
   private loadedSea = new Map<string, SeaBin>();
   private seaForms: Promise<Record<string, Form>> | null = null;
+  /** the specs whose taxa are the sea's list */
+  private ofSea = new WeakSet<SceneSpec>();
   private fields = new Map<string, Promise<LoadedField | undefined>>();
   /** the rivers a place's scene is given: its own loader, as the globe's layer has its own */
   private rivers: Rivers;
@@ -224,9 +226,16 @@ export class LifeAtlas {
     if (mInfo && where && tiles.length) pw.months = placeMonths(mInfo, where, tiles, month);
     const spec = placeSpec(pw, lat, lon, ageMa);
     if (!spec) return null;
+    // Its list is the sea's where the land's atlas has none for its place, as placeSpec chooses.
+    if (!atlasHasLand(bin, this.index.grid, origin.lat, origin.lon)) this.ofSea.add(spec);
     const water = await this.waterOf(spec, when, ageMa, pw.isoline);
     if (water) spec.water = water;
     return spec;
+  }
+
+  /** Whether a scene's taxa are the sea's list, which says what is near by sea, and not the land's. */
+  fromSea(spec: SceneSpec): boolean {
+    return this.ofSea.has(spec);
   }
 
   /**

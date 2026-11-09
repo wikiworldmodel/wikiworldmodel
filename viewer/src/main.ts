@@ -28,12 +28,14 @@ import { EARTH_RADIUS, fromLocal, toLocal, type CityStructure } from '../../core
 import type { AtlasWhere } from '../../core/atlas.ts';
 import type { SceneFileV2 } from '../../core/scene.ts';
 import { latticeOf } from '../../world/generators/life/spec.ts';
+import type { LivingParams } from '../../world/generators/life/scene/v5.ts';
 import { Camera, MAX_DIST, MIN_DIST } from './camera.ts';
 import { LifeAtlas, type ClimateData } from './city/lifeatlas.ts';
 import { Climates, type ClimateAt } from './climates.ts';
 import { LifeScene } from './city/life.ts';
 import { CityScene } from './city/scene.ts';
-import { autoTilt, groundHit, localView, projectLocal, rayOf, sunAt, type LocalView } from './city/view.ts';
+import { autoTilt, EYE_HEIGHT, groundHit, localView, lookThrough, projectLocal, rayOf, sunAt, underSea, type LocalView } from './city/view.ts';
+import { SEA } from './gl/cityShaders.ts';
 import { CityLabels } from './ui/citylabels.ts';
 import { FeatureTiles } from './features.ts';
 import { fetchLog, getBytes, getJSON, latestBuild, loadBuild, loadRecord, type Build } from './data.ts';
@@ -99,7 +101,7 @@ export interface WikiWorldModelHandle {
   /** where a structure's label would be on the screen, for tests */
   structureAt(id: string): { x: number; y: number } | undefined;
   /** the living scene as the viewer has it, if one is loaded */
-  scene(): { site: string; plan: PrintCheck; taxa: { id: string; label: string; form: string; own: boolean; tier: string; km?: number; rows: number; drawn: boolean }[]; instances: number; triangles: number; meshes: number; groundMs: number; stage?: string; climate: string; climateField: string; month: number | null; snow: number | null; focus: [number, number]; toRiver: [number, number]; origin: { lat: number; lon: number }; water: { tier: string; rivers: { key: string; from: string }[] } | null } | null;
+  scene(): { site: string; plan: PrintCheck; taxa: { id: string; label: string; form: string; own: boolean; tier: string; km?: number; rows: number; drawn: boolean }[]; instances: number; triangles: number; meshes: number; groundMs: number; stage?: string; climate: string; climateField: string; month: number | null; snow: number | null; focus: [number, number]; toRiver: [number, number]; origin: { lat: number; lon: number }; water: { tier: string; rivers: { key: string; from: string }[] } | null; sea: boolean; list: 'land' | 'sea'; eye: { z: number; floor: number } | null } | null;
   /** a browser's fingerprint of the scene of a place and a time, as a witness in the build has it */
   lifePrint(lat: number, lon: number, t: number): Promise<Fingerprint | null>;
   /** how far the atlas reaches, as the build says */
@@ -119,6 +121,8 @@ const CITY_SOLID = 4.5e5;
 const LIFE_TOP = 3.2e5;
 const LIFE_SOLID = 1.2e5;
 const GLOBE_GONE = 4.5e4;
+/** How far one sees through the sea's water, as it is drawn: until its green light falls to a twentieth. */
+const SEEN_THROUGH_WATER = Math.log(20) / SEA.extinction[1];
 const RAD = Math.PI / 180;
 /** Kinds that belong to a city: they are drawn and named in the city's scene, not on the globe. */
 
@@ -396,7 +400,7 @@ async function start(root: HTMLElement): Promise<void> {
     if (!info) return;
     setState({ sel: null });
     shownRecord = null;
-    inspect.showOrganism(info.taxon, info, build.atlas?.sourceRecord);
+    inspect.showOrganism(info.taxon, info, organismSource(info));
   };
   labels.el.hidden = true;
   stage.appendChild(labels.el);
@@ -617,14 +621,22 @@ async function start(root: HTMLElement): Promise<void> {
     };
   };
 
+  /** Which atlas a living scene's list is from: the sea's, where the land's has none for its place. */
+  const listOf = (c: LifeScene): 'land' | 'sea' => (lifeAtlas?.fromSea(c.spec) ? 'sea' : 'land');
+
   /** What a living scene has of a taxon: what the records say of it there, and what was invented. */
   function organismInfo(id: string): OrganismHere | undefined {
     const c = city instanceof LifeScene ? city : [...scenes.values()].find((x): x is LifeScene => x instanceof LifeScene);
     const t = c?.taxonOf(id);
     if (!c || !t) return undefined;
     const g = c.spec.generator;
-    return { taxon: t, site: c.spec.site.place ? c.spec.site.label : 'this place', slice: c.spec.site.slice, stage: c.spec.site.stage, fossils: c.spec.fossils, generator: `${g.generator}, version ${g.version}, seed "${g.seed}"` };
+    // A genus of the sea's list rests on the sea's fossils, and is near or far by sea.
+    const sea = listOf(c) === 'sea' && !!build.sea;
+    const fossils = sea ? { ...c.spec.fossils, source: build.sea!.source, title: build.sea!.title } : c.spec.fossils;
+    return { taxon: t, site: c.spec.site.place ? c.spec.site.label : 'this place', slice: c.spec.site.slice, stage: c.spec.site.stage, fossils, generator: `${g.generator}, version ${g.version}, seed "${g.seed}"`, ...(sea ? { sea: true } : {}) };
   }
+  /** The source a taxon of a living scene is a row of: the sea's fossils, or the land's. */
+  const organismSource = (o: OrganismHere | undefined) => (o?.sea ? build.sea?.sourceRecord : build.atlas?.sourceRecord);
 
   /** An entity's interval in a scenario, from its record (for entities with no marker). */
   function recordTime(r: EntityRecord, s: Scenario): FeatureTime {
@@ -837,6 +849,7 @@ async function start(root: HTMLElement): Promise<void> {
     const range = (state.cam.dist - 1) * EARTH_RADIUS;
     maintainLife();
     arriveIfReady();
+    lookIfDown();
     const made = site === lifeSite && !!lifeSite;
     const top = made ? LIFE_TOP : CITY_TOP;
     const solidAt = made ? LIFE_SOLID : CITY_SOLID;
@@ -935,7 +948,8 @@ async function start(root: HTMLElement): Promise<void> {
     );
     frameView = null;
     if (inCity) {
-      const v = localView(state.cam, site!.origin, city!.ground, stage.clientWidth, stage.clientHeight);
+      // A scene of the sea lets the eye down through its surface, to near its floor.
+      const v = localView(state.cam, site!.origin, city!.ground, stage.clientWidth, stage.clientHeight, city instanceof LifeScene && city.sea ? 0 : undefined);
       // The scene's own frame, its pixel size in device pixels.
       v.width = stage.clientWidth;
       v.height = stage.clientHeight;
@@ -949,7 +963,9 @@ async function start(root: HTMLElement): Promise<void> {
         labels.setStructures(city!.named, city!.tops, site!.label, (s) => s.label);
         labelledSite = labelKey;
       }
-      labels.update(v, city!.ground, city!.skyline, state.t, state.sel);
+      // Under the sea a name is given only to what the water lets one see.
+      const seen = city instanceof LifeScene && city.sea ? (x: number, y: number, z: number) => underSea(v.eye, [x, y, z]) < SEEN_THROUGH_WATER : undefined;
+      labels.update(v, city!.ground, city!.skyline, state.t, state.sel, seen);
     }
     labels.el.hidden = !inCity || range > 2.2e4;
     planet.el.hidden = inCity && range < 6e4;
@@ -971,11 +987,12 @@ async function start(root: HTMLElement): Promise<void> {
     // What lives here, and how sure that is, where a scene is of a place with no formation of its own.
     const showHere = inCity && city instanceof LifeScene && !city.spec.site.place;
     lifeHere.hidden = !showHere;
-    lifeGo.hidden = !showHere || !(city as LifeScene).spec.taxa.length || (city as LifeScene).atSea;
+    lifeGo.hidden = !showHere || !(city as LifeScene).spec.taxa.length;
     if (showHere) {
       const taxa = (city as LifeScene).spec.taxa;
       const n = (tier: string) => taxa.filter((x) => x.tier === tier).length;
-      const words = (city as LifeScene).atSea ? 'At sea: nothing is drawn here yet' : taxa.length ? `${n('here')} recorded here, ${n('region')} nearby, ${n('standin')} stand-ins` : 'Nothing recorded here';
+      // In the sea as on land; where none of what lived in a sea can be drawn yet, it says so.
+      const words = taxa.length ? `${n('here')} recorded here, ${n('region')} nearby, ${n('standin')} stand-ins` : (city as LifeScene).sea ? 'Nothing of the sea’s life can be drawn here yet' : 'Nothing recorded here';
       if (lifeHere.textContent !== words) lifeHere.textContent = words;
     }
     const enter = !!site && !made && !inCity && state.cam.dist < 2.2 && siteDistance(state.cam.lat, state.cam.lon) < 1.5e6;
@@ -1181,6 +1198,8 @@ async function start(root: HTMLElement): Promise<void> {
     ms: number;
   }
   let flight: Flight | null = null;
+  /** In a scene of the sea, "Go and see" goes on to what is nearest once it is down: when it was asked, or 0 */
+  let seaLook = 0;
 
   function flyTo(to: ViewState['cam'], ms = 3600): void {
     // A link is the place it names: tests and shared views arrive at once.
@@ -1193,6 +1212,7 @@ async function start(root: HTMLElement): Promise<void> {
   function stopFlight(): void {
     flight = null;
     arriving = null;
+    seaLook = 0;
   }
 
   /** Whether a view near the ground has a scene still to come. A site's is set going; a scene of anywhere is maintainLife's. */
@@ -1362,10 +1382,58 @@ async function start(root: HTMLElement): Promise<void> {
   const lifeGo = cityBar.querySelector<HTMLButtonElement>('.life-go')!;
   lifeGo.onclick = () => {
     if (!(city instanceof LifeScene) || !site) return;
+    if (city.sea && lookUnderSea(city)) return;
     const [lat, lon] = fromLocal(site.origin, city.focus[0], city.focus[1]);
     const heading = ((Math.atan2(city.toRiver[0], city.toRiver[1]) * 180) / Math.PI + 17 + 360) % 360;
     flyTo({ lat, lon, dist: 1 + 74 / EARTH_RADIUS, heading: Math.round(heading), tilt: 81 }, 1800);
+    // In the sea, once down there and what is near has names, on to the nearest of it.
+    seaLook = city.sea ? performance.now() : 0;
   };
+  /**
+   * In a scene of the sea, where the water lets one see only so far: to a few lengths from the group nearest the arrival,
+   * a little above it and looking at it. False if nothing about the arrival has a name yet.
+   */
+  function lookUnderSea(c: LifeScene): boolean {
+    const [fx, fy] = c.focus;
+    let best = -1;
+    // About the arrival: where the generator sets something of each.
+    let near = (c.spec.generator.params as unknown as LivingParams).animals.near_radius * 1.5;
+    for (let i = 0; i < c.named.length; i++) {
+      const d = Math.hypot(c.named[i].at[0] - fx, c.named[i].at[1] - fy);
+      if (d < near) {
+        near = d;
+        best = i;
+      }
+    }
+    if (best < 0 || !site) return false;
+    const s = c.named[best];
+    const mid = (s.base + c.tops[best]) / 2;
+    const dx = s.at[0] - fx;
+    const dy = s.at[1] - fy;
+    const l = Math.hypot(dx, dy);
+    const [ux, uy] = l > 1 ? [dx / l, dy / l] : c.toRiver;
+    // Some five lengths off: near enough to see it through the water.
+    const back = Math.max(3, Math.min(14, 5 * (c.taxonOf(s.id)?.length ?? 2)));
+    const ex = s.at[0] - ux * back;
+    const ey = s.at[1] - uy * back;
+    const aim = lookThrough([ex, ey, Math.min(-1, Math.max(mid + 1.2, c.ground.at(ex, ey) + EYE_HEIGHT))], [s.at[0], s.at[1], mid], c.ground);
+    if (!aim) return false;
+    const [lat, lon] = fromLocal(site.origin, aim.target[0], aim.target[1]);
+    flyTo({ lat, lon, dist: 1 + aim.range / EARTH_RADIUS, heading: aim.heading, tilt: aim.tilt }, 1800);
+    return true;
+  }
+  /** Once a flight to the arrival in the sea has come down and the scene there has settled, on to what is nearest. */
+  function lookIfDown(): void {
+    if (!seaLook || flight) return;
+    // Not for ever: a scene that does not settle is left as it is.
+    if (!(city instanceof LifeScene) || !city.sea || performance.now() - seaLook > 30000) {
+      seaLook = 0;
+      return;
+    }
+    if (!city.settled) return;
+    seaLook = 0;
+    lookUnderSea(city);
+  }
   /** Down to where something of each is standing, once the scene of the place a taxon was asked for has come. */
   function arriveIfReady(): void {
     if (!arriving || flight) return;
@@ -1391,7 +1459,8 @@ async function start(root: HTMLElement): Promise<void> {
     if (!(city instanceof LifeScene)) return;
     setState({ sel: null });
     shownRecord = null;
-    inspect.showLifeHere(city.spec, build.atlas?.description);
+    const sea = listOf(city) === 'sea';
+    inspect.showLifeHere(city.spec, sea ? build.sea?.description : build.atlas?.description, { list: sea ? 'sea' : 'land', sea: city.sea });
   };
 
   /** Fly to a structure of the city, looking at its front, at a time it stands. */
@@ -1422,14 +1491,22 @@ async function start(root: HTMLElement): Promise<void> {
           if (!t.id.startsWith('txn:')) return setState({ sel: t.id });
           setState({ sel: null });
           shownRecord = null;
-          return inspect.showOrganism(t, organismInfo(t.id)!, build.atlas?.sourceRecord);
+          const info = organismInfo(t.id)!;
+          return inspect.showOrganism(t, info, organismSource(info));
         }
         setState({ sel: null });
         shownRecord = null;
         const b = city.spec.biome;
         const g = city.spec.generator;
+        const made = `${g.generator}, version ${g.version}, seed "${g.seed}"`;
+        if (city.sea) {
+          // In a scene of the sea: its floor, or a shore above the water.
+          const hit = groundHit(frameView, rayOf(frameView, x, y), city.ground);
+          if (!hit || hit[2] < 0) return inspect.showGenerated('The sea floor here', 'Generated ground', `The floor of a sea, drawn for this place and time under the sea of the time. Its depth is the elevation field's; its sand, mud and ripples are invented, and so is the look of the water over it: how far one sees through it, its colour, and how the daylight falls with depth.`, `${made}: nothing of this floor was recorded. Only its depth comes from the world, from the elevation field, between the field's points.`);
+          return inspect.showGenerated('The shore here', 'Generated ground', `Land at the edge of a sea, drawn for this place and time. Its height is the elevation field's, and how its shore wanders is invented. Where the climate field reads the land at ${b.ageMa} Ma, it is ${b.label.toLowerCase()}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%.`, `${made}: no stretch of this shore was recorded. Only the land comes from the world, from the elevation field.`);
+        }
         const where = city.spec.site.place ? `drawn where ${site!.label} stood` : 'drawn for this place and time';
-        return inspect.showGenerated(city.spec.site.place ? 'The floodplain' : 'The land here', 'Generated ground', `A land ${where}. Its rivers, ponds and glades are invented, so that what lived here has somewhere to stand. Where the climate field reads the land at ${b.ageMa} Ma, it is ${b.label.toLowerCase()}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%.`, `${g.generator}, version ${g.version}, seed "${g.seed}": no bend of this river was recorded. Only the land it lies in comes from the world, from the elevation field beyond its edge.`);
+        return inspect.showGenerated(city.spec.site.place ? 'The floodplain' : 'The land here', 'Generated ground', `A land ${where}. Its rivers, ponds and glades are invented, so that what lived here has somewhere to stand. Where the climate field reads the land at ${b.ageMa} Ma, it is ${b.label.toLowerCase()}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%.`, `${made}: no bend of this river was recorded. Only the land it lies in comes from the world, from the elevation field beyond its edge.`);
       }
       const found = city!.pick(px, py);
       if (found.structure) return setState({ sel: found.structure.id });
@@ -1753,7 +1830,7 @@ async function start(root: HTMLElement): Promise<void> {
       ['people', !!state.people && !people.file && !!ts.files.people], ['clouds', !cloudsReady], ['surface', !surfaceReady],
       ['biome texture', !biomeTexReady], ['generic land', !genericReady], ['climate', !climateReady || climates.busy], ['ice', !iceReady],
       ['territory', !territoryReady], ['tree', !!treeLoading], ['cube', !cubeKey.startsWith(`${state.t}|`)],
-      ['selection', !!state.sel && shownRecord !== state.sel], ['flight', !!flight], ['city', cityWanted()],
+      ['selection', !!state.sel && shownRecord !== state.sel], ['flight', !!flight || !!seaLook], ['city', cityWanted()],
     ];
     return w.filter(([, x]) => x).map(([n]) => n);
   };
@@ -1817,7 +1894,9 @@ async function start(root: HTMLElement): Promise<void> {
       const c = city instanceof LifeScene ? city : [...scenes.values()].find((x): x is LifeScene => x instanceof LifeScene);
       if (!c) return null;
       const drawn = new Set(c.named.map((x) => x.id));
-      return { site: c.spec.site.id, plan: c.plan, taxa: c.spec.taxa.map((t) => ({ id: t.id, label: t.label, form: t.form_label, own: t.own, tier: t.tier, km: t.km, rows: t.rows, drawn: drawn.has(t.id) })), instances: c.last.instances, triangles: c.last.triangles, meshes: c.last.meshes, groundMs: c.groundMs, stage: c.spec.site.stage, climate: c.spec.biome.climate, climateField: c.spec.biome.field, month: c.spec.climate?.month ?? null, snow: Number.isFinite(snowOf(c.spec).line) ? snowOf(c.spec).line : null, focus: c.focus, toRiver: c.toRiver, origin: c.spec.site.origin, water: c.spec.water ? { tier: c.spec.water.tier, rivers: c.spec.water.rivers.map((r) => ({ key: r.key, from: r.from })) } : null };
+      // Where the eye is in the scene drawn, above its sea, and the ground under it.
+      const eye = c === city && frameView && c.ground ? { z: frameView.eye[2], floor: c.ground.at(frameView.eye[0], frameView.eye[1]) } : null;
+      return { site: c.spec.site.id, plan: c.plan, taxa: c.spec.taxa.map((t) => ({ id: t.id, label: t.label, form: t.form_label, own: t.own, tier: t.tier, km: t.km, rows: t.rows, drawn: drawn.has(t.id) })), instances: c.last.instances, triangles: c.last.triangles, meshes: c.last.meshes, groundMs: c.groundMs, stage: c.spec.site.stage, climate: c.spec.biome.climate, climateField: c.spec.biome.field, month: c.spec.climate?.month ?? null, snow: Number.isFinite(snowOf(c.spec).line) ? snowOf(c.spec).line : null, focus: c.focus, toRiver: c.toRiver, origin: c.spec.site.origin, water: c.spec.water ? { tier: c.spec.water.tier, rivers: c.spec.water.rivers.map((r) => ({ key: r.key, from: r.from })) } : null, sea: c.sea, list: listOf(c), eye };
     },
     lifePrint: async (lat, lon, t) => {
       const spec = await lifeAtlas?.spec(lat, lon, t, {});
