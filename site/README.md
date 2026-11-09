@@ -36,7 +36,7 @@ served at `/ATTRIBUTION.md`.
 
 Setting it up, once, in Cloudflare and GitHub:
 
-1. **The domain on Cloudflare.** If worldmodelzero.com was bought from Cloudflare Registrar it
+1. **The domain on Cloudflare.** If wikiworldmodel.org was bought from Cloudflare Registrar it
    is already a zone in the account. If not, add it as a site (Websites → Add a domain, Free
    plan) and set the nameservers Cloudflare gives at the registrar.
 2. **An API token.** My Profile → API Tokens → Create Token → Custom token, with the account
@@ -48,5 +48,9 @@ Setting it up, once, in Cloudflare and GitHub:
 4. **The first deployment.** Push to `master`, or run the Build workflow by hand. The job
    creates the Pages project the first time.
 5. **The domain on the project.** Workers & Pages → worldmodelzero → Custom domains: add
-   `worldmodelzero.com`, and `www.worldmodelzero.com` if wanted (a redirect rule can send it to
+   `wikiworldmodel.org`, and `www.wikiworldmodel.org` if wanted (a redirect rule can send it to
    the bare domain). Cloudflare adds the DNS records and the certificate.
+6. **The old domain.** The site was first published at `worldmodelzero.com`. Remove it from the
+   project's custom domains and add a redirect rule on its zone (Rules → Redirect Rules) sending
+   every path to `https://wikiworldmodel.org` with the path and query kept, so old links still
+   arrive.

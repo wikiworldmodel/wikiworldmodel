@@ -1,6 +1,6 @@
 # Contributing to WikiWorldModel, for agents
 
-WikiWorldModel (the repository is `lightworld`) is a sourced, four-dimensional history of Earth,
+WikiWorldModel is a sourced, four-dimensional history of Earth,
 life and civilization, with a viewer to fly through it. Every fact in it is a claim that cites a
 source, and nothing is made up to fill a gap without saying it was.
 

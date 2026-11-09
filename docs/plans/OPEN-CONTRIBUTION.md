@@ -8,7 +8,7 @@ rather than before. Section 12 lists what it revises in that plan.
 ## 1. Aim
 
 Anyone should be able to tell their agent "read AGENTS.md and contribute", and soon after see what
-it added on worldmodelzero.com. Three principles follow:
+it added on wikiworldmodel.org. Three principles follow:
 
 - **Yes is the default.** A contribution that follows the rules and is easy to undo goes in
   without waiting for a person. Review looks for what would make the world wrong, unsourced,
@@ -353,7 +353,7 @@ A green comment:
 Green: merging. Fills a gap: 12 new records, 9 new sources, 41 claims.
 
 Live in about 20 minutes; this comment will say when, with links:
-  Battle of Actium, 2 September 31 BCE   https://worldmodelzero.com/world/?sel=…&t=…
+  Battle of Actium, 2 September 31 BCE   https://wikiworldmodel.org/world/?sel=…&t=…
   … and 11 more
 
 Checked: the 9 DOIs match their records. 33 of 41 quotes were found in their sources' open
@@ -416,8 +416,8 @@ Two rules make this safe:
 ### GitHub
 
 - **An organization for the repository.** GitHub offers the merge queue to public repositories
-  owned by organizations, and teams make CODEOWNERS and stewards workable. `kvh/lightworld` is a
-  personal repository.
+  owned by organizations, and teams make CODEOWNERS and stewards workable. Done: the repository is
+  `wikiworldmodel/wikiworldmodel`, owned by the wikiworldmodel organization.
 - **A ruleset on master:** pull requests only; squash merges, so each pull request is one commit
   and one revert; required checks `Checks` and `review/lane`; code-owner review on the red paths.
   That last is a second lock behind the bot: a fooled or broken bot still can't merge code.
@@ -502,7 +502,7 @@ design already has a mechanism for each:
 
 **Knowledge: channels and releases.**
 
-- **live:** every green build, at worldmodelzero.com/world/. It is the contributor's feedback and
+- **live:** every green build, at wikiworldmodel.org/world/. It is the contributor's feedback and
   what most visitors see, with every unreviewed claim marked as such, as now.
 - **stable:** a monthly release a maintainer promotes after a smoke test, with release notes from
   the semantic diff, contributor credits and a Zenodo DOI. Kept forever, for citation.
@@ -547,7 +547,7 @@ it. Nothing of this is needed now except the boundary.
 **The prompt.** The landing page and README carry a paragraph to paste into an agent:
 
 ```text
-Contribute to WikiWorldModel. Read https://github.com/<org>/lightworld/blob/master/AGENTS.md
+Contribute to WikiWorldModel. Read https://github.com/wikiworldmodel/wikiworldmodel/blob/master/AGENTS.md
 and follow it: fork the repository, pick a task (or work on: <your subject>), research it from
 sources you can read, write the records, run `npm run world -- preflight`, and open a pull
 request.
@@ -656,7 +656,7 @@ safely before them):
 Written in AGENTS.md's voice, to go in once the machinery exists. It would be false before.
 
 > **If you were sent a link to this file.** Fork and clone the repository
-> (`gh repo fork <org>/lightworld --clone`), then follow *Setting up*. Work on a branch, and
+> (`gh repo fork wikiworldmodel/wikiworldmodel --clone`), then follow *Setting up*. Work on a branch, and
 > open the pull request from your fork.
 >
 > **How your pull request is reviewed.** Machines check every pull request first, and most go live
