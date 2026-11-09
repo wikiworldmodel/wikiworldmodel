@@ -46,6 +46,15 @@ export function fovFor(range: number): number {
 }
 
 /**
+ * The vertical field of view of a screen whose narrower side spans `fov`. A wide screen's height spans it; a screen held
+ * upright, as a phone is, is as wide as that, and sees more above and below, so the globe that fills a wide screen
+ * from top to bottom fills a tall one from side to side.
+ */
+export function fovY(fov: number, aspect: number): number {
+  return aspect >= 1 ? fov : 2 * Math.atan(Math.tan(fov / 2) / aspect);
+}
+
+/**
  * The view of a camera state. The eye is held above the ground the sampler gives; in a scene of the sea that is its floor,
  * and `sea` is the height of its surface, which the eye may pass through and must not cut away as it does.
  */
@@ -73,8 +82,8 @@ export function localView(s: CameraState, origin: { lat: number; lon: number }, 
   const up: V3 = [right[1] * forward[2] - right[2] * forward[1], right[2] * forward[0] - right[0] * forward[2], right[0] * forward[1] - right[1] * forward[0]];
   const view = new Float32Array([right[0], up[0], -forward[0], 0, right[1], up[1], -forward[1], 0, right[2], up[2], -forward[2], 0, 0, 0, 0, 1]);
   const clearance = Math.max(ez - g, 0.5);
-  const fov = fovFor(range);
   const aspect = width / height;
+  const fov = fovY(fovFor(range), aspect);
   // Under a sea, what swims may be anywhere about the eye, however high it is over the floor.
   const near = Math.max(0.2, Math.min(clearance * 0.4, range * 0.3, 40000, sea === undefined ? Infinity : ez < sea ? 0.5 : (ez - sea) * 0.5));
   const far = Math.max(26000, clearance * 6);

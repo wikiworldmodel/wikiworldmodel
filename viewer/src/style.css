@@ -58,7 +58,8 @@ canvas.globe:active { cursor: grabbing; }
 .citybar { position: absolute; right: 16px; bottom: 12px; display: flex; align-items: center; gap: 10px; padding: 6px 10px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 8px; font-size: 12px; color: var(--muted); }
 .citybar input[type='range'] { width: 110px; accent-color: var(--accent); }
 .citybar button { padding: 3px 8px; border-radius: 6px; border: 1px solid var(--panel-border); background: rgba(255, 255, 255, 0.04); cursor: pointer; }
-.city-help { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--panel-border); cursor: help; }
+.citybar .city-help { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; padding: 0; border-radius: 50%; cursor: help; }
+.city-tips { position: absolute; right: 0; bottom: calc(100% + 6px); width: min(330px, calc(100vw - 24px)); margin: 0; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--panel-border); background: var(--panel); color: var(--text); font-size: 12px; }
 .city-enter { position: absolute; left: 50%; bottom: 74px; transform: translateX(-50%); padding: 7px 14px; border-radius: 18px; border: 1px solid var(--accent); background: rgba(10, 12, 18, 0.8); color: var(--accent); font: inherit; font-size: 13px; cursor: pointer; }
 canvas.globe.in-city { cursor: grab; }
 .inspect .here p { margin: 0 0 6px; }
@@ -182,22 +183,6 @@ body.evidence .planet-row.projection .planet-value { color: var(--procedural); }
 .older-build a { color: var(--accent, #f5c451); }
 .notice { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); max-width: min(560px, calc(100% - 32px)); padding: 6px 12px; border-radius: 8px; background: var(--panel); border: 1px solid var(--panel-border); color: var(--muted); font-size: 12px; text-align: center; pointer-events: none; }
 
-@media (max-width: 640px) {
-  .topbar { flex-wrap: wrap; padding: 8px 16px; }
-  .brand { display: none; }
-  .search { width: 100%; order: 3; }
-  /* Tighter, so that the toggles keep to one row and the search box under them stays clear of the scene's middle. */
-  .toolbar { max-width: none; gap: 4px; }
-  .toolbar button { padding: 7px 7px; }
-  .inspect { top: auto; height: 55vh; left: 16px; right: 16px; width: auto; }
-  .planet { top: auto; bottom: 28px; left: 16px; min-width: 0; }
-  .people-legend { top: 162px; bottom: auto; }
-}
-
-/* A short window keeps what it needs to move about, and leaves the rest of the globe clear. */
-@media (max-height: 480px) {
-  .planet, .toolbar .build { display: none; }
-}
 
 .life-here {
   white-space: nowrap;
@@ -217,7 +202,92 @@ body.evidence .planet-row.projection .planet-value { color: var(--procedural); }
 .landscape-legend { left: auto; right: 16px; bottom: 30px; width: min(420px, calc(100% - 32px)); }
 @media (min-width: 900px) { .stage:has(.inspect:not([hidden])) .landscape-legend { right: calc(min(400px, 100vw - 32px) + 28px); } }
 @media (max-width: 899px) { .stage:has(.inspect:not([hidden])) .landscape-legend { display: none; } }
-@media (max-width: 640px) {
-  .landscape-legend { left: 16px; right: auto; top: 162px; bottom: auto; }
+
+/* Phones. What is above lays the viewer out for a wide screen; what follows, for a narrow one or a short one. The toggles
+   fold behind a button beside the search; a record opens in a sheet over the foot of the view, or at the side when the
+   phone is on its side; and nothing goes where a notch or a home bar takes the screen. ui/inspect.ts and ui/timebar.ts
+   read the same breakpoints. */
+html { touch-action: manipulation; overscroll-behavior-y: none; }
+.inspect, .toolbar, .search ul, .tree-panel { overscroll-behavior: contain; }
+.menu-toggle, .menu-about, .planet-fold { display: none; }
+@media (max-width: 640px), (max-height: 500px) {
+  .topbar { align-items: center; gap: 8px; padding: max(8px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 8px max(12px, env(safe-area-inset-left)); }
+  .brand { display: none; }
+  .search { flex: 1; width: auto; max-width: 440px; }
+  /* Type smaller than 16px makes a phone zoom the page into the field. */
+  .search input { padding: 9px 12px; font-size: 16px; }
+  .search ul { max-height: 42vh; }
+  .search li { padding: 9px 10px; }
+  .menu-toggle { position: relative; display: grid; place-items: center; flex: none; width: 42px; height: 42px; margin-left: auto; padding: 0; border-radius: 10px; border: 1px solid var(--panel-border); background: var(--panel); cursor: pointer; }
+  .menu-toggle path { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+  .menu-toggle .cross, .menu-open .menu-toggle .bars { display: none; }
+  .menu-open .menu-toggle .cross { display: inline; }
+  .menu-open .menu-toggle { border-color: var(--accent); color: var(--accent); }
+  /* Something in it is on. */
+  .menu-toggle.lit::after { content: ''; position: absolute; top: 6px; right: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+  .toolbar { display: none; position: absolute; top: 100%; right: max(12px, env(safe-area-inset-right)); width: min(380px, calc(100% - 24px)); max-width: none; max-height: calc(100vh - 230px); max-height: calc(100dvh - 230px); overflow-y: auto; margin: 0; padding: 10px; gap: 6px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 12px; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5); }
+  .menu-open .toolbar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .toolbar button { padding: 9px 4px; }
+  .toolbar .menu-about, .toolbar .build, .toolbar .alts, .toolbar .legend { grid-column: 1 / -1; }
+  .toolbar .build { text-align: left; }
+  .toolbar .alts { max-height: none; }
+  .toolbar .alt-group select { width: auto; max-width: 62%; }
+  .menu-about { display: grid; gap: 1px; padding: 0 2px 4px; }
+  .menu-about strong { font-size: 14px; }
+  .menu-about span { color: var(--muted); font-size: 12px; }
+  .menu-about a { color: var(--accent); font-size: 13px; text-decoration: none; }
+  .older-build { top: calc(60px + env(safe-area-inset-top)); }
+  .timebar { padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
+  .credits { left: max(12px, env(safe-area-inset-left)); max-width: calc(100% - 24px); }
+  .credits.in-city { display: none; }
+  .people-legend { left: max(12px, env(safe-area-inset-left)); width: min(300px, calc(100% - 24px)); }
+  .landscape-legend { right: max(12px, env(safe-area-inset-right)); width: min(420px, calc(100% - 24px)); }
   .people-legend:not([hidden]) + .landscape-legend { display: none; }
+  .citybar { right: max(12px, env(safe-area-inset-right)); bottom: 8px; max-width: calc(100% - 24px); flex-wrap: wrap; justify-content: flex-end; row-gap: 6px; }
+  .citybar > label:first-child { display: flex; flex: 1; align-items: center; gap: 8px; }
+  .citybar input[type='range'] { flex: 1; width: auto; min-width: 70px; }
+  .citybar button { padding: 7px 10px; }
+  .life-here { white-space: normal; text-align: left; }
+  .citybar .city-help { width: 30px; height: 30px; cursor: pointer; }
+  .city-enter { bottom: 40px; width: max-content; max-width: calc(100% - 24px); }
+  /* The time keeps to one line beside its buttons: the names of its periods give way first. */
+  .tb-readout { display: flex; align-items: baseline; min-width: 0; white-space: nowrap; }
+  .tb-readout strong { flex: none; }
+  .tb-readout span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+}
+/* A phone held upright: the record is a sheet over the foot of the view, which its head drags taller or shorter. It rests
+   just below the middle, so that what the view is centred on, as a search flies to it, is not under it. */
+@media (max-width: 640px) and (min-height: 501px) {
+  .inspect { top: auto; left: 0; right: 0; bottom: 0; width: auto; height: max(160px, calc(50% - 36px)); padding: 0 max(16px, env(safe-area-inset-right)) 18px max(16px, env(safe-area-inset-left)); border-width: 1px 0 0; border-radius: 16px 16px 0 0; z-index: 6; box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.45); }
+  body.evidence .inspect { top: auto; }
+  .inspect.full { height: calc(100% - 60px - env(safe-area-inset-top)); }
+  .inspect header { padding-top: 20px; touch-action: none; cursor: grab; }
+  .inspect header::before { content: ''; position: absolute; top: 7px; left: 50%; width: 40px; height: 4px; margin-left: -20px; border-radius: 2px; background: rgba(230, 235, 245, 0.3); }
+  .tree-panel { left: 0; right: 0; bottom: 0; width: auto; height: min(50%, 440px); border-width: 1px 0 0; border-radius: 16px 16px 0 0; }
+  /* The planet at the time shown, under the search as on a wide screen, and folded to its state: the rest comes out under it. */
+  .planet { top: calc(58px + env(safe-area-inset-top)); left: max(12px, env(safe-area-inset-left)); min-width: 0; max-width: calc(100% - 24px); max-height: 46%; }
+  .planet:not(.open) .planet-row:not(.planet-phase, .planet-ice) { display: none; }
+  .planet-fold { display: block; padding: 3px 6px; border: 0; border-radius: 5px; background: none; color: var(--muted); font-size: 12px; text-align: left; cursor: pointer; }
+  /* What sits at the foot of the view gives way to a sheet over it. */
+  .stage:has(.inspect:not([hidden])) :is(.credits, .people-legend, .landscape-legend, .city-enter, .citybar, .notice),
+  .stage:has(.tree-panel:not([hidden])) :is(.credits, .people-legend, .landscape-legend, .city-enter, .notice) { display: none; }
+}
+/* A phone on its side: a record opens in a column of its own at the right, the whole height of the screen, and the view and
+   the time control share the rest; the planet's panel is left out, so that the globe keeps what room there is. */
+@media (max-height: 500px) {
+  .inspect, body.evidence .inspect { position: fixed; top: max(8px, env(safe-area-inset-top)); right: max(8px, env(safe-area-inset-right)); bottom: max(8px, env(safe-area-inset-bottom)); width: var(--side); z-index: 6; }
+  :root { --side: min(360px, 46vw); }
+  #app:has(.inspect:not([hidden])), #app:has(.inspect:not([hidden])) .topbar { right: calc(var(--side) + max(8px, env(safe-area-inset-right))); }
+  .tree-panel { left: max(12px, env(safe-area-inset-left)); bottom: 8px; width: min(440px, 50vw); height: calc(100% - 66px - env(safe-area-inset-top)); }
+  .planet { display: none; }
+  .timebar-controls { padding: 3px 10px 1px; }
+  .timebar .timebar-controls button { min-height: 28px; }
+}
+/* A fingertip is broader than a pointer: what it taps has room around it. Fingers go through the names and markers to the
+   view, so that two of them turn and pinch wherever they fall, and a tap opens the one it falls nearest (main.ts). */
+@media (pointer: coarse) {
+  .marker .dot, .marker .label, .city-label { pointer-events: none; }
+  .timebar-controls button { min-width: 40px; min-height: 34px; }
+  .inspect .close, .tree-panel .close { min-width: 40px; min-height: 40px; }
+  .planet-row { padding: 6px 8px; }
 }

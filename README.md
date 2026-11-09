@@ -49,6 +49,11 @@ In the viewer:
 - Scroll down over Rome, or press the button at the bottom of the globe, to come down into the
   city. There, drag to pan, right-drag or Shift-drag to turn and tilt, `W` `A` `S` `D` to walk,
   and move the Light slider or press `L` to change the hour. Click a monument to open its record.
+- On a phone or a tablet, drag with one finger and pinch with two, on the globe and on the time
+  strip; near the ground, twist two fingers to turn, and move them up or down together to tilt.
+  Tap anything to open it. On a narrow screen the toggles fold behind the button beside the
+  search, and a record opens in a sheet at the foot of the screen: tap or drag its head to make
+  it taller, and drag it down to close it.
 
 The coverage page (`coverage` under the title, or http://localhost:5173/coverage.html) shows how much of
 the world each layer knows: each layer is a strip along the time strip's own scale, coloured by the

@@ -156,6 +156,10 @@ function peopleWords(folk: PeopleSummary): string {
   return `${what}${folk.houses ? `, ${folk.houses.toLocaleString('en-US')} houses` : ''}`;
 }
 
+/** How to move about near the ground, with a mouse and keys, and on a touch screen. */
+const MOUSE_HELP = 'Drag to move over the ground. Right-drag or shift-drag to turn and tilt. Scroll to go towards what the pointer is on. W, A, S and D to walk. L for the light. Click anything to see how we know.';
+const TOUCH_HELP = 'Drag to move over the ground. Pinch to come nearer or go back, twist two fingers to turn, and move two fingers up or down together to tilt. Tap anything to see how we know.';
+
 const HAZARD_WORDS: Record<HazardRow['kind'], string> = { eruption: 'Eruption', earthquake: 'Earthquake', tsunami: 'Tsunami' };
 const HAZARD_SIZE: Record<HazardRow['kind'], string> = { eruption: 'Volcanic explosivity index', earthquake: 'Magnitude', tsunami: 'Tsunami intensity' };
 
@@ -480,7 +484,7 @@ async function start(root: HTMLElement): Promise<void> {
   const cityBar = document.createElement('div');
   cityBar.className = 'citybar';
   cityBar.hidden = true;
-  cityBar.innerHTML = `<label title="The hour of the day">Light <input type="range" min="${HOURS[0]}" max="${HOURS[1]}" step="0.05" aria-label="Hour of the day" /></label><label class="life-month" hidden title="The month the land is drawn in: its snow and the sun's height. Unless one is chosen, the place's warmest month">Month <select aria-label="Month of the year"><option value="">warmest</option>${MONTH_NAMES.map((m, i) => `<option value="${i + 1}">${m}</option>`).join('')}</select></label><button class="life-here" hidden title="What the records say lived here, and how sure that is"></button><button class="life-go" hidden title="Go down to where something of each is standing">Go and see</button><button class="to-globe" title="Back out to the whole Earth">Globe</button><span class="city-help" title="Drag to move over the ground. Right-drag or shift-drag to turn and tilt. Scroll to go towards what the pointer is on. W, A, S and D to walk. L for the light. Click anything to see how we know.">?</span>`;
+  cityBar.innerHTML = `<label title="The hour of the day">Light <input type="range" min="${HOURS[0]}" max="${HOURS[1]}" step="0.05" aria-label="Hour of the day" /></label><label class="life-month" hidden title="The month the land is drawn in: its snow and the sun's height. Unless one is chosen, the place's warmest month">Month <select aria-label="Month of the year"><option value="">warmest</option>${MONTH_NAMES.map((m, i) => `<option value="${i + 1}">${m}</option>`).join('')}</select></label><button class="life-here" hidden title="What the records say lived here, and how sure that is"></button><button class="life-go" hidden title="Go down to where something of each is standing">Go and see</button><button class="to-globe" title="Back out to the whole Earth">Globe</button><button class="city-help" aria-expanded="false" aria-label="How to move about" title="${MOUSE_HELP}">?</button><p class="city-tips" hidden></p>`;
   stage.appendChild(cityBar);
   const cityEnter = document.createElement('button');
   cityEnter.className = 'city-enter';
@@ -502,12 +506,17 @@ async function start(root: HTMLElement): Promise<void> {
   const scenario = (): Scenario => ({ alts: state.alt, picks: state.picks });
   const inspect = new InspectPanel({
     onPick: (group, claim) => setState({ picks: [...state.picks.filter((p) => !group.includes(p)), ...(claim ? [claim] : [])].sort() }),
-    onClose: () => setState({ sel: null }),
+    onClose: () => closePanel(),
     onOpen: (id) => setState({ sel: id }),
     labelOf,
     altTitle,
   });
   stage.appendChild(inspect.el);
+  /** Close the panel. One that is not a record's (the ground, a row of a dataset, a series) has no selection to clear. */
+  const closePanel = () => {
+    if (!state.sel) inspect.hide();
+    setState({ sel: null });
+  };
 
   const top = document.createElement('div');
   top.className = 'topbar';
@@ -548,7 +557,22 @@ async function start(root: HTMLElement): Promise<void> {
     };
     toolbar.el.querySelector('.tg-people')!.before(b);
   }
-  top.append(brand, search.el, toolbar.el);
+  // On a phone the toggles fold away behind a button, with the world's name and the way to how much of it is known.
+  const menu = document.createElement('button');
+  menu.className = 'menu-toggle';
+  menu.setAttribute('aria-expanded', 'false');
+  menu.setAttribute('aria-label', 'Layers and options');
+  menu.title = 'Layers and options';
+  menu.innerHTML = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path class="bars" d="M3 5.5h14M3 10h14M3 14.5h14"/><path class="cross" d="M5 5l10 10M15 5 5 15"/></svg>';
+  const about = brand.cloneNode(true) as HTMLElement;
+  about.className = 'menu-about';
+  toolbar.el.prepend(about);
+  const openMenu = (open: boolean) => {
+    top.classList.toggle('menu-open', open);
+    menu.setAttribute('aria-expanded', String(open));
+  };
+  menu.onclick = () => openMenu(!top.classList.contains('menu-open'));
+  top.append(brand, search.el, menu, toolbar.el);
   root.appendChild(top);
 
   const timebar = new Timebar(build.periods.periods, limits, dataRange, {
@@ -597,6 +621,8 @@ async function start(root: HTMLElement): Promise<void> {
 
   // State.
   let dirty = true;
+  // The view is drawn again whenever it changes size: with the window, and on a phone when a panel takes room from it.
+  new ResizeObserver(() => (dirty = true)).observe(stage);
   let urlTimer = 0;
   let playing = false;
   let lastFrame = performance.now();
@@ -1147,6 +1173,8 @@ async function start(root: HTMLElement): Promise<void> {
     timebar.set(state.t, state.window, playing);
     planet.update(state.t, look, state.alt);
     toolbar.set({ evidence: state.evidence, clouds: state.clouds, alt: state.alt, tree: !!state.tree, layers: state.layers ?? [], people: !!state.people });
+    // The folded toggles' button lights while any of them is on, so that what is drawn can be undone from it.
+    menu.classList.toggle('lit', state.evidence || !state.clouds || !!state.tree || !!state.layers?.length || !!state.people || state.alt.length > 0);
     document.body.classList.toggle('evidence', state.evidence);
   }
 
@@ -1172,47 +1200,147 @@ async function start(root: HTMLElement): Promise<void> {
   }
 
   // Globe interaction, and near the ground, a map's: drag the ground, turn with the right button
-  // or shift, and scroll towards what the pointer is on.
-  let drag: { x: number; y: number; cam: ViewState['cam']; moved: boolean; turn: boolean } | null = null;
+  // or shift, and scroll towards what the pointer is on. On a touch screen two fingers pinch towards what is between
+  // them and carry the view as one finger does; near the ground they also twist to turn, or go up or down together to tilt.
+  let drag: { x: number; y: number; cam: ViewState['cam']; moved: boolean; turn: boolean; slop: number } | null = null;
+  /** the pointers down on the globe, where each is now */
+  const pointers = new Map<number, { x: number; y: number }>();
+  /** Two fingers on the globe: where they were when what they do was last applied, and what that is, once they have moved enough to say. */
+  let pinch: { at: { x: number; y: number }[]; gesture: 'pinch' | 'tilt' | null } | null = null;
+  /** The camera moved as a drag of (dx, dy) pixels moves it: near the ground the ground follows the pointer, and higher up the globe turns. */
+  function dragged(cam: ViewState['cam'], dx: number, dy: number): ViewState['cam'] {
+    const range = (cam.dist - 1) * EARTH_RADIUS;
+    if (frameView && range < 6e5) {
+      // The ground follows the pointer.
+      const v = frameView;
+      const tilt = ((cam.tilt ?? 0) * Math.PI) / 180;
+      const k = (range * 2 * Math.tan(v.fov / 2)) / v.height;
+      const along = (dy * k) / Math.max(0.3, Math.cos(Math.min(tilt, 1.2)));
+      const h = ((cam.heading ?? 0) * Math.PI) / 180;
+      const mx = -dx * k * Math.cos(h) + along * Math.sin(h);
+      const my = dx * k * Math.sin(h) + along * Math.cos(h);
+      const [x, y] = toLocal(site!.origin, cam.lat, cam.lon);
+      const [lat, lon] = fromLocal(site!.origin, x + mx, y + my);
+      return { ...cam, lat, lon };
+    }
+    const k = (0.22 * (cam.dist - 1)) / 2.3;
+    return { ...cam, lat: cam.lat + dy * k, lon: cam.lon - dx * k };
+  }
+  /** Two fingers: both up or both down together tilt the view near the ground; anything else pinches, and carries the view with them. */
+  function twoFingers(g: NonNullable<typeof pinch>): void {
+    const [a0, b0] = g.at;
+    const [a, b] = [...pointers.values()];
+    if (!g.gesture) {
+      const moves = [[a.x - a0.x, a.y - a0.y], [b.x - b0.x, b.y - b0.y]];
+      const moved = moves.map(([x, y]) => Math.hypot(x, y));
+      // Each finger's move comes on its own: it is not yet told until both have moved, or one has gone some way alone.
+      if (Math.max(...moved) < 10 || (Math.min(...moved) < 4 && Math.max(...moved) < 24)) return;
+      const together = moves.every(([x, y]) => Math.abs(y) > 2 * Math.abs(x)) && moves[0][1] * moves[1][1] > 0;
+      g.gesture = frameView && together ? 'tilt' : 'pinch';
+    }
+    g.at = [{ ...a }, { ...b }];
+    const mid0 = [(a0.x + b0.x) / 2, (a0.y + b0.y) / 2];
+    const mid = [(a.x + b.x) / 2, (a.y + b.y) / 2];
+    if (g.gesture === 'tilt') {
+      // Up tilts towards the horizon, as on a map.
+      const tilt = Math.max(0, Math.min(112, (state.cam.tilt ?? 0) - (mid[1] - mid0[1]) * 0.22));
+      return setState({ cam: { ...state.cam, tilt } });
+    }
+    // Spreading the fingers comes nearer as a turn of the wheel does, towards the point between them.
+    const span0 = Math.hypot(b0.x - a0.x, b0.y - a0.y);
+    const span = Math.hypot(b.x - a.x, b.y - a.y);
+    const box = canvas.getBoundingClientRect();
+    if (span0 > 0 && span > 0 && Math.abs(span - span0) > 0.01) zoomBy(-Math.log(span / span0) / 0.0012, mid[0] - box.left, mid[1] - box.top);
+    let cam = dragged(state.cam, mid[0] - mid0[0], mid[1] - mid0[1]);
+    if (frameView) {
+      // Near the ground the view turns with a twist, so that what is under the fingers turns with them.
+      const turn = ((((Math.atan2(b.y - a.y, b.x - a.x) - Math.atan2(b0.y - a0.y, b0.x - a0.x)) * 180) / Math.PI + 540) % 360) - 180;
+      cam = { ...cam, heading: (cam.heading ?? 0) - turn };
+    }
+    setState({ cam });
+  }
   canvas.addEventListener('contextmenu', (e) => e.preventDefault());
   canvas.addEventListener('pointerdown', (e) => {
     canvas.setPointerCapture(e.pointerId);
     stopFlight();
-    drag = { x: e.clientX, y: e.clientY, cam: { ...state.cam }, moved: false, turn: e.button === 2 || e.shiftKey || e.altKey };
+    openMenu(false);
+    // The first pointer down starts afresh, whatever was missed of the last gesture.
+    if (e.isPrimary) {
+      pointers.clear();
+      pinch = null;
+    }
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pointers.size === 2) {
+      // A second finger: the two take over from the first.
+      drag = null;
+      pinch = { at: [...pointers.values()].map((p) => ({ ...p })), gesture: null };
+      return;
+    }
+    if (pointers.size > 2) return;
+    // A finger wavers more than a mouse does before it means to move.
+    drag = { x: e.clientX, y: e.clientY, cam: { ...state.cam }, moved: false, turn: e.button === 2 || e.shiftKey || e.altKey, slop: e.pointerType === 'mouse' ? 3 : 10 };
   });
   canvas.addEventListener('pointermove', (e) => {
+    const p = pointers.get(e.pointerId);
+    if (!p) return;
+    p.x = e.clientX;
+    p.y = e.clientY;
+    if (pinch) return twoFingers(pinch);
     if (!drag) return;
     const dx = e.clientX - drag.x;
     const dy = e.clientY - drag.y;
-    if (Math.abs(dx) + Math.abs(dy) > 3) drag.moved = true;
-    const range = (drag.cam.dist - 1) * EARTH_RADIUS;
+    if (Math.abs(dx) + Math.abs(dy) > drag.slop) drag.moved = true;
+    // Until a finger has gone past its slop it may yet be a tap, and the view holds still under it.
+    if (!drag.moved && e.pointerType !== 'mouse') return;
     if (frameView && drag.turn) {
       setState({ cam: { ...drag.cam, heading: (drag.cam.heading ?? 0) + dx * 0.28, tilt: Math.max(0, Math.min(112, (drag.cam.tilt ?? 0) + dy * 0.22)) } });
       return;
     }
-    if (frameView && range < 6e5) {
-      // The ground follows the pointer.
-      const v = frameView;
-      const tilt = ((drag.cam.tilt ?? 0) * Math.PI) / 180;
-      const k = (range * 2 * Math.tan(v.fov / 2)) / v.height;
-      const along = (dy * k) / Math.max(0.3, Math.cos(Math.min(tilt, 1.2)));
-      const h = ((drag.cam.heading ?? 0) * Math.PI) / 180;
-      const mx = -dx * k * Math.cos(h) + along * Math.sin(h);
-      const my = dx * k * Math.sin(h) + along * Math.cos(h);
-      const [x, y] = toLocal(site!.origin, drag.cam.lat, drag.cam.lon);
-      const [lat, lon] = fromLocal(site!.origin, x + mx, y + my);
-      setState({ cam: { ...drag.cam, lat, lon } });
+    setState({ cam: dragged(drag.cam, dx, dy) });
+  });
+  /**
+   * On a touch screen the names and markers over the view let fingers through to it (style.css), so that two fingers turn
+   * and pinch wherever they fall; a tap opens the one it falls on or nearest, within a fingertip's reach.
+   */
+  function tappedOver(x: number, y: number): HTMLElement | null {
+    let best: HTMLElement | null = null;
+    let reach = 12;
+    for (const el of stage.querySelectorAll<HTMLElement>('.marker, .city-label')) {
+      if (el.style.display === 'none' || el.closest('[hidden]')) continue;
+      for (const part of el.classList.contains('marker') ? el.querySelectorAll<HTMLElement>('.dot, .label') : [el]) {
+        const r = part.getBoundingClientRect();
+        if (!r.width) continue;
+        const d = Math.hypot(Math.max(r.left - x, 0, x - r.right), Math.max(r.top - y, 0, y - r.bottom));
+        if (d < reach) [best, reach] = [el, d];
+      }
+    }
+    return best;
+  }
+  /** A pointer lifted, or the browser took it away: a tap picks what is under it, and a finger left after two carries on. */
+  const lift = (e: PointerEvent) => {
+    if (!pointers.delete(e.pointerId)) return;
+    if (canvas.hasPointerCapture(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
+    if (pinch) {
+      if (pointers.size >= 2) {
+        pinch = { at: [...pointers.values()].slice(0, 2).map((p) => ({ ...p })), gesture: pinch.gesture };
+        return;
+      }
+      pinch = null;
+      // It carries on from where it is, and picks nothing when it lifts.
+      const [rest] = [...pointers.values()];
+      drag = rest ? { x: rest.x, y: rest.y, cam: { ...state.cam }, moved: true, turn: false, slop: 10 } : null;
       return;
     }
-    const k = (0.22 * (drag.cam.dist - 1)) / 2.3;
-    setState({ cam: { ...drag.cam, lat: drag.cam.lat + dy * k, lon: drag.cam.lon - dx * k } });
-  });
-  canvas.addEventListener('pointerup', (e) => {
     const d = drag;
     drag = null;
-    if (canvas.hasPointerCapture(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
-    if (d && !d.moved) pickAt(e.offsetX, e.offsetY);
-  });
+    if (!d || d.moved || e.type !== 'pointerup') return;
+    const over = e.pointerType === 'mouse' ? null : tappedOver(e.clientX, e.clientY);
+    if (over) over.click();
+    else pickAt(e.offsetX, e.offsetY);
+  };
+  canvas.addEventListener('pointerup', lift);
+  canvas.addEventListener('pointercancel', lift);
+  canvas.addEventListener('lostpointercapture', lift);
   canvas.addEventListener('wheel', (e) => {
     e.preventDefault();
     stopFlight();
@@ -1484,6 +1612,14 @@ async function start(root: HTMLElement): Promise<void> {
   cityBar.querySelector<HTMLInputElement>('input')!.oninput = (e) => setState({ hour: Number((e.target as HTMLInputElement).value) });
   cityBar.querySelector<HTMLSelectElement>('.life-month select')!.onchange = (e) => setState({ month: Number((e.target as HTMLSelectElement).value) || undefined });
   cityBar.querySelector<HTMLButtonElement>('.to-globe')!.onclick = () => flyTo({ lat: state.cam.lat, lon: state.cam.lon, dist: 2.6 }, 4200);
+  // A title is never seen on a touch screen: the help opens on a tap, in the words for the screen it is on.
+  const cityHelp = cityBar.querySelector<HTMLButtonElement>('.city-help')!;
+  const cityTips = cityBar.querySelector<HTMLElement>('.city-tips')!;
+  cityHelp.onclick = () => {
+    cityTips.textContent = matchMedia('(pointer: coarse)').matches ? TOUCH_HELP : MOUSE_HELP;
+    cityTips.hidden = !cityTips.hidden;
+    cityHelp.setAttribute('aria-expanded', String(!cityTips.hidden));
+  };
   const lifeGo = cityBar.querySelector<HTMLButtonElement>('.life-go')!;
   lifeGo.onclick = () => {
     if (!(city instanceof LifeScene) || !site) return;
@@ -1969,7 +2105,10 @@ async function start(root: HTMLElement): Promise<void> {
     else if (e.key === 'ArrowRight') setState({ t: timebar.stepFrom(state.t, 1 / 200) });
     else if (e.key === 'l' || e.key === 'L') setState({ hour: state.hour >= HOURS[1] ? HOURS[0] : state.hour + 0.4 });
     else if (e.key === '/') search.focus();
-    else if (e.key === 'Escape') setState({ sel: null });
+    else if (e.key === 'Escape') {
+      openMenu(false);
+      closePanel();
+    }
     else return;
     e.preventDefault();
   });

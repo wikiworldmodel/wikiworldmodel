@@ -64,16 +64,45 @@ export function fitWindow(a: number, b: number, limits: Win, margin = 0.06): Win
   return windowAlong(p0 - span * margin, span * (1 + 2 * margin), limits);
 }
 
-const ROWS: { rank: string; h: number }[] = [
-  { rank: 'eon', h: 13 },
-  { rank: 'era', h: 15 },
-  { rank: 'period', h: 18 },
-  { rank: 'epoch', h: 15 },
-  { rank: 'stage', h: 13 },
-];
-const RULER = 22;
-const TRACK = 16;
-const PAD = 4;
+/**
+ * The strip's rows, top to bottom: a ruler, a band for each rank of the named periods, the track of records, and the
+ * planet's states along its foot. A short screen, a phone on its side, has fewer and thinner bands, so that the view
+ * keeps room above them.
+ */
+interface Rows {
+  ruler: number;
+  bands: { rank: string; h: number }[];
+  track: number;
+  pad: number;
+  font: string;
+}
+const TALL: Rows = {
+  ruler: 22,
+  bands: [
+    { rank: 'eon', h: 13 },
+    { rank: 'era', h: 15 },
+    { rank: 'period', h: 18 },
+    { rank: 'epoch', h: 15 },
+    { rank: 'stage', h: 13 },
+  ],
+  track: 16,
+  pad: 4,
+  font: '11px system-ui, -apple-system, Segoe UI, sans-serif',
+};
+const SHORT: Rows = {
+  ruler: 18,
+  bands: [
+    { rank: 'eon', h: 11 },
+    { rank: 'era', h: 12 },
+    { rank: 'period', h: 14 },
+    { rank: 'epoch', h: 12 },
+  ],
+  track: 15,
+  pad: 3,
+  font: '10px system-ui, -apple-system, Segoe UI, sans-serif',
+};
+/** A short screen, as style.css has it. */
+const SHORT_SCREEN = '(max-height: 500px)';
 
 /** Steps worth a tick, finest first: 1, 2 and 5 times a power of ten, from a year to 5 Gyr. */
 const STEPS: number[] = [];
@@ -193,6 +222,11 @@ export class Timebar {
   private t = 0;
   private win: Win;
   private drag: { mode: 'scrub' | 'pan'; x: number; win: Win } | null = null;
+  /** the pointers down on the strip, where each is along it */
+  private pointers = new Map<number, number>();
+  /** two fingers on the strip: the window, where they were and how far apart when they came down, and the time before the first scrubbed it */
+  private pinch: { win: Win; mid: number; span: number } | null = null;
+  private before: number | null = null;
   private keyframes: number[] = [];
   private track: TrackItem[] = [];
   private states: StateBand[] = [];
@@ -202,6 +236,8 @@ export class Timebar {
 
   /** the periods as the current scenario dates them */
   private periods: PeriodRecord[];
+  /** whether the screen is short, and the strip's rows are a short screen's */
+  private short: MediaQueryList;
 
   constructor(
     private all: PeriodRecord[],
@@ -212,6 +248,8 @@ export class Timebar {
   ) {
     this.win = limits;
     this.periods = all;
+    this.short = matchMedia(SHORT_SCREEN);
+    this.short.addEventListener('change', () => this.draw());
     this.el = document.createElement('div');
     this.el.className = 'timebar';
     this.el.innerHTML = `
@@ -294,8 +332,13 @@ export class Timebar {
     return this.canvas.clientWidth || 1;
   }
 
+  private get rows(): Rows {
+    return this.short.matches ? SHORT : TALL;
+  }
+
   private height(): number {
-    return RULER + ROWS.reduce((s, r) => s + r.h, 0) + TRACK + PAD;
+    const { ruler, bands, track, pad } = this.rows;
+    return ruler + bands.reduce((s, r) => s + r.h, 0) + track + pad;
   }
 
   private zoom(factor: number, tp: number, s?: number): void {
@@ -303,12 +346,13 @@ export class Timebar {
     this.cb.onWindow(zoomAround(this.win, tp, frac, factor, this.limits));
   }
 
-  /** The track item under a point of the strip, if any: above the band of the planet's states. */
-  private itemAt(x: number, y: number): TrackItem | null {
+  /** The track item under a point of the strip, if any: above the band of the planet's states, within `reach` pixels of the point. */
+  private itemAt(x: number, y: number, reach = 7): TrackItem | null {
+    const { track: TRACK, pad: PAD } = this.rows;
     const top = this.height() - PAD - TRACK;
     if (y < top - 2 || y >= top + TRACK - 5) return null;
     let best: TrackItem | null = null;
-    let bestD = 7;
+    let bestD = reach;
     for (const it of this.track) {
       const d = Math.abs(xOf(it.start, this.win, this.width()) - x);
       if (d < bestD) (best = it), (bestD = d);
@@ -318,6 +362,7 @@ export class Timebar {
 
   /** The planet's state under a point of its band, if any: an episode before the phase it is in. */
   private stateAt(x: number, y: number): StateBand | null {
+    const { track: TRACK, pad: PAD } = this.rows;
     const top = this.height() - PAD - TRACK;
     if (y < top + TRACK - 5 || y > top + TRACK + PAD) return null;
     const t = tOf(x, this.win, this.width());
@@ -348,7 +393,24 @@ export class Timebar {
   }
 
   private down(e: PointerEvent): void {
-    const it = this.itemAt(e.offsetX, e.offsetY);
+    // The first pointer down starts afresh, whatever was missed of the last gesture. A mouse has no second finger.
+    if (e.isPrimary) {
+      this.pointers.clear();
+      this.pinch = null;
+    }
+    if (e.pointerType !== 'mouse') this.pointers.set(e.pointerId, e.offsetX);
+    if (this.pointers.size === 2) {
+      // A second finger: the two zoom the window between them, and the time goes back to where it was before the first moved it.
+      if (this.drag?.mode === 'scrub' && this.before !== null) this.cb.onTime(this.before);
+      this.drag = null;
+      this.canvas.setPointerCapture(e.pointerId);
+      const [a, b] = [...this.pointers.values()];
+      this.pinch = { win: this.win, mid: (a + b) / 2, span: Math.abs(b - a) };
+      return;
+    }
+    if (this.pointers.size > 2) return;
+    // A finger is broader than a pointer: the record nearest it is reached from further off.
+    const it = this.itemAt(e.offsetX, e.offsetY, e.pointerType === 'touch' ? 14 : 7);
     if (it) {
       this.cb.onRecord(it.entry.id);
       return;
@@ -359,14 +421,27 @@ export class Timebar {
       return;
     }
     this.canvas.setPointerCapture(e.pointerId);
-    const mode = e.offsetY < RULER || e.shiftKey ? 'pan' : 'scrub';
+    const mode = e.offsetY < this.rows.ruler || e.shiftKey ? 'pan' : 'scrub';
     this.drag = { mode, x: e.offsetX, win: this.win };
+    this.before = this.t;
     if (mode === 'scrub') this.scrubTo(e.offsetX);
   }
 
   private move(e: PointerEvent): void {
+    const pressed = this.pointers.has(e.pointerId);
+    if (pressed) this.pointers.set(e.pointerId, e.offsetX);
+    if (this.pinch) {
+      if (this.pointers.size < 2) return;
+      // The time between the fingers when they came down stays between them, and the window grows or shrinks with their spread.
+      const [a, b] = [...this.pointers.values()];
+      const p = this.pinch;
+      const w = this.width();
+      const zoomed = zoomAround(p.win, tOf(p.mid, p.win, w), p.mid / w, Math.max(8, Math.abs(b - a)) / Math.max(8, p.span), this.limits);
+      this.cb.onWindow(panWindow(zoomed, (a + b) / 2 - p.mid, w, this.limits));
+      return;
+    }
     if (!this.drag) {
-      this.hover(this.itemAt(e.offsetX, e.offsetY) ?? this.stateAt(e.offsetX, e.offsetY), e.offsetX);
+      if (!pressed) this.hover(this.itemAt(e.offsetX, e.offsetY) ?? this.stateAt(e.offsetX, e.offsetY), e.offsetX);
       return;
     }
     if (this.drag.mode === 'scrub') this.scrubTo(e.offsetX);
@@ -376,7 +451,10 @@ export class Timebar {
   }
 
   private up(e: PointerEvent): void {
+    this.pointers.delete(e.pointerId);
     if (this.canvas.hasPointerCapture(e.pointerId)) this.canvas.releasePointerCapture(e.pointerId);
+    // A finger left after two does nothing more until it lifts.
+    if (this.pinch && this.pointers.size < 2) this.pinch = null;
     this.drag = null;
   }
 
@@ -386,8 +464,8 @@ export class Timebar {
   }
 
   private bandAt(x: number, y: number): PeriodRecord | undefined {
-    let top = RULER;
-    for (const row of ROWS) {
+    let top = this.rows.ruler;
+    for (const row of this.rows.bands) {
       if (y >= top && y < top + row.h) {
         const t = tOf(x, this.win, this.width());
         return this.periods.find((p) => p.rank === row.rank && p.start <= t && t <= p.end);
@@ -441,10 +519,11 @@ export class Timebar {
     const x = (t: number) => xOf(t, this.win, w);
 
     // Bands.
+    const { ruler: RULER, bands, track: TRACK, font } = this.rows;
     let top = RULER;
-    g.font = '11px system-ui, -apple-system, Segoe UI, sans-serif';
+    g.font = font;
     g.textBaseline = 'middle';
-    for (const row of ROWS) {
+    for (const row of bands) {
       for (const p of this.periods) {
         if (p.rank !== row.rank || p.end < this.win[0] || p.start > this.win[1]) continue;
         const x0 = Math.max(0, x(p.start));

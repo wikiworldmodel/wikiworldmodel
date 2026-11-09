@@ -66,6 +66,8 @@ export class Search {
   private choose(h: SearchHit): void {
     this.close();
     this.input.value = '';
+    // On a touch screen the keyboard goes, so that what was chosen can be seen.
+    if (matchMedia('(pointer: coarse)').matches) this.input.blur();
     this.onChoose(h);
   }
 

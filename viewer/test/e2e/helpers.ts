@@ -74,3 +74,17 @@ export async function canvasPatch(page: Page, fx: number, fy: number, size = 9):
     return sum.map((s) => Math.round(s / (d.length / 4))) as [number, number, number];
   }, [fx, fy, size]);
 }
+
+/** Points from one place to another, in steps. */
+export const line = (from: [number, number], to: [number, number], steps = 8): [number, number][] =>
+  Array.from({ length: steps + 1 }, (_, i) => [from[0] + ((to[0] - from[0]) * i) / steps, from[1] + ((to[1] - from[1]) * i) / steps]);
+
+/** Fingers on the screen, through the browser's own touch input: a path of points for each, all as long. The page's context needs `hasTouch`. */
+export async function touch(page: Page, paths: [number, number][][]): Promise<void> {
+  const cdp = await page.context().newCDPSession(page);
+  const at = (i: number) => paths.map((p, id) => ({ x: p[i][0], y: p[i][1], id }));
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: at(0) });
+  for (let i = 1; i < paths[0].length; i++) await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: at(i) });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await cdp.detach();
+}
