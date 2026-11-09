@@ -20,8 +20,8 @@ contribute, and before anyone at all can open the site.
 ## 2. Where it stood
 
 This section describes the repository when the plan was written. Since then: the licenses are
-chosen and in place (Apache-2.0 for code, CC0 for records and documents, the DCO for
-contributions; section 4), each build writes its `ATTRIBUTION.md`, CI is green and runs in
+chosen and in place (Apache-2.0 for code, CC0 for records and documents, contributions under
+the same licenses; section 4), each build writes its `ATTRIBUTION.md`, CI is green and runs in
 tiers, master is published to `worldmodelzero.com` on Cloudflare Pages, and
 [CONTRIBUTING.md](../../CONTRIBUTING.md), a code of conduct, a security policy, templates and
 `CODEOWNERS` exist. Still open: no claim has been reviewed by a person, the datasets still come
@@ -83,7 +83,7 @@ What is missing:
 | Generated output (clouds, the city fabric, renders) | CC0-1.0 | it is made by our code from our records | — |
 | Builds | mixed, with credits | the license filter admits only CC0, CC BY and public domain; each build ships `ATTRIBUTION.md` and the viewer shows the credits (it already does) | — |
 | Assets (glTF, scans) | per asset, through the same filter | section 13: a license per source and per asset | — |
-| Contributor terms | **DCO** (`git commit -s`), inbound = outbound | lighter than a CLA, and common in open data and code | a CLA, if relicensing later must stay possible |
+| Contributor terms | inbound = outbound: a contribution is made under the license of what it changes | no paperwork for contributors; a DCO sign-off was tried and dropped as more ceremony than protection | the DCO, or a CLA if relicensing later must stay possible |
 
 The datasets keep their own licenses: CC BY 4.0 for PALEOMAP, Cliopatria and TINITALY; CC0
 for the OHM snapshot; public domain for SRTM and ETOPO. Their credits stay in the manifest.
@@ -512,7 +512,7 @@ request:
 - [x] Make CI green on `main`, and quick: checks on every pull request, the build when
       the code that makes it changes, the renders nightly (section 10).
 - [x] Choose and add the licenses (section 4): `LICENSE` (code), `LICENSE-DATA` (records),
-      the DCO check, `ATTRIBUTION.md` written by the build.
+      `ATTRIBUTION.md` written by the build.
 - [x] `README` for newcomers, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`,
       issue and pull-request templates, `CODEOWNERS`.
 - [ ] Policies: sourcing, contested history, people and remains, machine contributions,
@@ -573,7 +573,7 @@ queue without leaving the site.
 ## 12. Decisions needed
 
 1. **Licenses:** decided: Apache-2.0 for code, CC0 for records and documents.
-2. **Contributor terms:** decided: the DCO.
+2. **Contributor terms:** decided: inbound = outbound, with no sign-off (the DCO was tried and dropped).
 3. **Domain and hosting account:** Cloudflare recommended. The project's name also needs
    checking.
 4. **Governance at the start:** the founder as maintainer and steward, with stewards
@@ -593,7 +593,7 @@ queue without leaving the site.
 | Review does not keep up | review is the easiest contribution; the queue is prioritised by where people go; machine pre-checks of quotes; stewards recruited per area |
 | Edit wars over contested history | alternatives instead of overwrites; the contested-history policy; two stewards on disputed topics |
 | A dataset or host disappears | the sha256 mirror; snapshots kept for changing databases |
-| A license mistake gets into a build | the license filter in CI, a license per asset, DCO, a takedown route |
+| A license mistake gets into a build | the license filter in CI, a license per asset, a takedown route |
 | Hosting costs or abuse spike | no egress fees; immutable caching; rate limits on the Workers and the editor |
 | Low-end devices can't run the city | quality tiers; entity pages work without WebGL |
 | One maintainer | written policies, a documented release process, a second maintainer recruited in Phase 1 |

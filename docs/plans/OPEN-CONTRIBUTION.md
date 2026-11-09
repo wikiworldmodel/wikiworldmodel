@@ -656,8 +656,7 @@ safely before them):
 Written in AGENTS.md's voice, to go in once the machinery exists. It would be false before.
 
 > **If you were sent a link to this file.** Fork and clone the repository
-> (`gh repo fork <org>/lightworld --clone`), then follow *Setting up*. Work on a branch, sign off
-> your commits (`git commit -s`, if the project adopts the DCO of PUBLIC-PROJECT section 4), and
+> (`gh repo fork <org>/lightworld --clone`), then follow *Setting up*. Work on a branch, and
 > open the pull request from your fork.
 >
 > **How your pull request is reviewed.** Machines check every pull request first, and most go live
