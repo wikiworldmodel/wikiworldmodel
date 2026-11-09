@@ -57,8 +57,8 @@ over the sea (`air`); and it needs a size there too. A list then keeps its twelv
 the most recorded of the rest that can be drawn, up to ten drawn in all and no more than three of a class among those
 added. The genera's whole forms go in `life/sea-forms.json`, keyed as the land's are, so that a browser merges the two.
 
-In the build of this slice, 97% of the sea's 389,767 lists draw something, nine genera on average, and of the 13,022 lists
-with a genus recorded within reach, 12,598. What they draw most, by class: bivalves, rhynchonelliform brachiopods,
+In the build of this slice, 97% of the sea's 389,767 lists draw something, nine genera on average, and of the 13,026 lists
+with a genus recorded within reach, 12,569. What they draw most, by class: bivalves, rhynchonelliform brachiopods,
 cephalopods, snails, corals, trilobites, strophomenate brachiopods, sharks and lingulids.
 
 ### The scene
