@@ -22,3 +22,4 @@ and [STRUCTURE.md](../STRUCTURE.md).
 | 7 | [Life anywhere](SEVENTH-SLICE.md) | forms on the tree of life, an atlas of who lived where, a scene of any place on land |
 | 8 | [Water](EIGHTH-SLICE.md) | runoff, drainage, rivers and lakes through time, and a scene's rivers from them |
 | 9 | [The faint Sun and the ice](NINTH-SLICE.md) | an energy-balance model under the Sun of each time: the CO₂ at which the Earth froze over and thawed, held to the Archean's soils and the Snowballs |
+| 10 | [The seas](TENTH-SLICE.md) | the sea's lists drawn, bodies for its great groups, a scene of any place in the sea, and a way down through its surface to its floor |

@@ -368,8 +368,8 @@ a row that is not straight; a forking `tuft`, a swollen foot to a stem, a liverw
 ### The sea's forms
 
 Written by an agent for the [tenth slice](slices/TENTH-SLICE.md), in `world/plans/` and `world/entities/life/taxa/sea/`: fifteen plans and
-twenty-five records, which take the share of the sea snapshot's rows that can be drawn from 35% to 63%
-(`npm run world -- forms-wanted --sea`). Every plan was looked at on its sheet; each says it is a machine's reconstruction.
+twenty-five records, which take the share of the sea snapshot's rows that can be drawn from 35% to 63%, and to 62% once a genus the
+database puts on land or in fresh water alone is left out of the sea (`npm run world -- forms-wanted --sea`). Every plan was looked at on its sheet; each says it is a machine's reconstruction.
 
 - **Sizes, and where they rest.** Papers read in full from Europe PMC give the trilobites (Sun et al. 2025), the cephalopods' large end (Klug et al. 2025),
   the brachiopods' ends (Lüter et al. 2026; Vermeij 2016), the corals (Zapalski et al. 2025; Coward et al. 2020), the whales (Sun et al. 2019), the
