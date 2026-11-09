@@ -1,5 +1,5 @@
 # Builds the world and the viewer, checks the build (reproducible to the byte, and what it holds),
-# and publishes the site to Cloudflare Pages: master to worldmodelzero.com. It runs when master
+# and publishes the site to Cloudflare Pages: master to wikiworldmodel.org. It runs when master
 # changes, when a pull request changes how the world is built, and by hand on any branch, which
 # publishes a preview. Pull requests that only change records don't need it: the checks validate
 # them.
