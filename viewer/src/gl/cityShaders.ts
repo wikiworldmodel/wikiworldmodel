@@ -36,7 +36,7 @@ export const SEA = {
   shelfShare: 0.35,
   shallow: [10, 250],
   day: 2.5,
-  open: 16,
+  open: 24,
 } as const;
 
 const vec3 = (v: readonly number[]) => `vec3(${v.map((x) => x.toFixed(4)).join(', ')})`;

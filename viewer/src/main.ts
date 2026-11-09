@@ -1198,8 +1198,10 @@ async function start(root: HTMLElement): Promise<void> {
     ms: number;
   }
   let flight: Flight | null = null;
-  /** In a scene of the sea, "Go and see" goes on to what is nearest once it is down: when it was asked, or 0 */
+  /** In a scene of the sea, "Go and see" goes on to the biggest of what is near once it is down: when it was asked, or 0 */
   let seaLook = 0;
+  /** and the frames drawn since its flight came down */
+  let seaDown = 0;
 
   function flyTo(to: ViewState['cam'], ms = 3600): void {
     // A link is the place it names: tests and shared views arrive at once.
@@ -1386,24 +1388,23 @@ async function start(root: HTMLElement): Promise<void> {
     const [lat, lon] = fromLocal(site.origin, city.focus[0], city.focus[1]);
     const heading = ((Math.atan2(city.toRiver[0], city.toRiver[1]) * 180) / Math.PI + 17 + 360) % 360;
     flyTo({ lat, lon, dist: 1 + 74 / EARTH_RADIUS, heading: Math.round(heading), tilt: 81 }, 1800);
-    // In the sea, once down there and what is near has names, on to the nearest of it.
+    // In the sea, once down there and what is near has names, on to the biggest of it.
     seaLook = city.sea ? performance.now() : 0;
   };
   /**
-   * In a scene of the sea, where the water lets one see only so far: to a few lengths from the group nearest the arrival,
-   * a little above it and looking at it. False if nothing about the arrival has a name yet.
+   * In a scene of the sea, where the water lets one see only so far: to a few lengths from the biggest of what is about
+   * the arrival, a little above it and looking at it. False if nothing about the arrival has a name yet.
    */
   function lookUnderSea(c: LifeScene): boolean {
     const [fx, fy] = c.focus;
+    // About the arrival: where the generator sets something of each. The biggest of it, and of those the nearest.
+    const reach = (c.spec.generator.params as unknown as LivingParams).animals.near_radius * 1.5;
+    const length = (i: number) => c.taxonOf(c.named[i].id)?.length ?? 0;
+    const from = (i: number) => Math.hypot(c.named[i].at[0] - fx, c.named[i].at[1] - fy);
     let best = -1;
-    // About the arrival: where the generator sets something of each.
-    let near = (c.spec.generator.params as unknown as LivingParams).animals.near_radius * 1.5;
     for (let i = 0; i < c.named.length; i++) {
-      const d = Math.hypot(c.named[i].at[0] - fx, c.named[i].at[1] - fy);
-      if (d < near) {
-        near = d;
-        best = i;
-      }
+      if (from(i) > reach) continue;
+      if (best < 0 || length(i) > length(best) || (length(i) === length(best) && from(i) < from(best))) best = i;
     }
     if (best < 0 || !site) return false;
     const s = c.named[best];
@@ -1413,7 +1414,7 @@ async function start(root: HTMLElement): Promise<void> {
     const l = Math.hypot(dx, dy);
     const [ux, uy] = l > 1 ? [dx / l, dy / l] : c.toRiver;
     // Some five lengths off: near enough to see it through the water, and a small one from as near as the eye may come.
-    const back = Math.max(1, Math.min(14, 5 * (c.taxonOf(s.id)?.length ?? 2)));
+    const back = Math.max(1, Math.min(14, 5 * (length(best) || 2)));
     const ex = s.at[0] - ux * back;
     const ey = s.at[1] - uy * back;
     const aim = lookThrough([ex, ey, Math.min(-1, Math.max(mid + 1.2, c.ground.at(ex, ey) + EYE_HEIGHT))], [s.at[0], s.at[1], mid], c.ground);
@@ -1422,15 +1423,20 @@ async function start(root: HTMLElement): Promise<void> {
     flyTo({ lat, lon, dist: 1 + aim.range / EARTH_RADIUS, heading: aim.heading, tilt: aim.tilt }, 1800);
     return true;
   }
-  /** Once a flight to the arrival in the sea has come down and the scene there has settled, on to what is nearest. */
+  /** Once a flight to the arrival in the sea has come down and the scene there has settled, on to the biggest of what is near. */
   function lookIfDown(): void {
-    if (!seaLook || flight) return;
+    if (!seaLook) return;
+    if (flight) {
+      seaDown = 0;
+      return;
+    }
     // Not for ever: a scene that does not settle is left as it is.
     if (!(city instanceof LifeScene) || !city.sea || performance.now() - seaLook > 30000) {
       seaLook = 0;
       return;
     }
-    if (!city.settled) return;
+    // Only once the scene has been drawn from where the flight came down can what is near there have names.
+    if (seaDown++ < 1 || !city.settled) return;
     seaLook = 0;
     lookUnderSea(city);
   }
