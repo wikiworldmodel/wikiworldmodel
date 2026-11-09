@@ -183,6 +183,7 @@ export class LifeAtlas {
       bin,
       list: (la, lo) => (atlasHasLand(bin, this.index.grid, la, lo) ? atlasList(bin, this.index.grid, la, lo) : undefined),
       seaList: seaBin && sea ? (la, lo) => seaDrawList(seaBin, sea.grid, la, lo) : undefined,
+      seaAtlas: sea,
       forms,
       keyAge,
       step,

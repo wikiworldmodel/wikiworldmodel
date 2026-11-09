@@ -598,6 +598,8 @@ export function buildAtlas(s: Solved, periods: PeriodRecord[], elevation: Snapsh
  * animal's, nor a plant's.
  */
 const SEA_HABITATS = new Set(['water', 'floor', 'any', 'edge', 'air']);
+/** An environment the database gives a taxon that is some water of the sea, as against land or fresh water alone. */
+const SEA_WATERS = /marine|brackish|coastal|shelf|oceanic|lagoonal|hypersaline/;
 
 /**
  * What the snapshot's taxa are, to the atlas: only those that can be drawn, because some node above them has a plan. For
@@ -657,7 +659,10 @@ export function classify(w: World, snap: LandSnapshot, p: Pick<AtlasParams, 'big
     // water's edge is not left out for it.
     const env = word(t[9]);
     const habitat = form.behave?.habitat;
-    if (mode === 'land' ? env === 'marine' && habitat !== 'air' && habitat !== 'edge' && habitat !== 'wet' : form.kind !== 'animal' || !SEA_HABITATS.has(habitat ?? '')) {
+    // In the sea, a taxon the database says lived on land or in fresh water only is not drawn, whatever its body: a bear
+    // whose bones lie in a marine bed does not walk on the sea's floor. One it says nothing of, or that flies, may be.
+    const landOnly = !!env && !SEA_WATERS.test(env) && habitat !== 'air';
+    if (mode === 'land' ? env === 'marine' && habitat !== 'air' && habitat !== 'edge' && habitat !== 'wet' : form.kind !== 'animal' || !SEA_HABITATS.has(habitat ?? '') || landOnly) {
       results.set(no, null);
       return null;
     }

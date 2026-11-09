@@ -177,6 +177,8 @@ export interface PlaceWorld {
   list: (lat: number, lon: number) => AtlasEntry[] | undefined;
   /** where there is no land, the sea's list for the place: the genera it can draw, as the land's atlas lists a taxon; undefined if there is no sea there either */
   seaList?: (lat: number, lon: number) => AtlasEntry[] | undefined;
+  /** the sea's atlas, whose fossils a scene from its list rests on */
+  seaAtlas?: Pick<AtlasIndex, 'source' | 'title'>;
   forms: Record<string, Form>;
   /** the keyframe of the elevation nearest the time, its height every `step` degrees (a whole degree if not said), and its plate at a place */
   keyAge: number;
@@ -222,8 +224,11 @@ export function placeSpec(w: PlaceWorld, lat: number, lon: number, ageMa: number
   const plate = w.plate(origin.lat, origin.lon);
   const [rl, ro] = plate ? w.carry(plate, origin.lat, origin.lon, ageMa, w.keyAge) : [origin.lat, origin.lon];
   const relief_at = { lat: round5(rl), lon: round5(ro) };
-  const list = w.list(origin.lat, origin.lon) ?? w.seaList?.(origin.lat, origin.lon);
+  const land = w.list(origin.lat, origin.lon);
+  const list = land ?? w.seaList?.(origin.lat, origin.lon);
   if (!list) return undefined;
+  // A scene from the sea's list rests on the sea's fossils.
+  const atlas = !land && w.seaAtlas ? w.seaAtlas : w.atlas;
   // The months of the finest climate where there are some, and the deep past's runs' numbers where not.
   const m = w.months;
   const [ml, mo] = m && plate ? w.carry(plate, origin.lat, origin.lon, ageMa, m.frameMa) : [origin.lat, origin.lon];
@@ -234,7 +239,7 @@ export function placeSpec(w: PlaceWorld, lat: number, lon: number, ageMa: number
   const relief = reliefPatch(relief_at.lat, relief_at.lon, w.elevation, w.isoline, w.step);
   const field = here ? m!.field : w.climateField;
   const age = here ? m!.ageMa : w.climateAge;
-  const spec = specFor({ atlas: w.atlas, bin: w.bin, origin: { lat: round5(origin.lat), lon: round5(origin.lon) }, list, forms: w.forms, relief, node, rule: w.rule, climateField: field, climateAge: age, cover: w.cover, generator: w.generator });
+  const spec = specFor({ atlas, bin: w.bin, origin: { lat: round5(origin.lat), lon: round5(origin.lon) }, list, forms: w.forms, relief, node, rule: w.rule, climateField: field, climateAge: age, cover: w.cover, generator: w.generator });
   spec.site.relief_at = relief_at;
   if (here) {
     const months: Months = { t: here.months.t.map(round2), p: here.months.p.map(round2) };

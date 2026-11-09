@@ -227,7 +227,7 @@ export function buildScene(s: Solved, elevation: Snapshot[], climate: ClimateKey
 }
 
 /** The questions a place's spec asks, answered from the build's files. */
-export function placeWorld(s: Solved, index: AtlasIndex, bin: AtlasBin, forms: Record<string, Form>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, sea?: { bin: SeaBin; grid: AtlasGrid }): PlaceWorld {
+export function placeWorld(s: Solved, index: AtlasIndex, bin: AtlasBin, forms: Record<string, Form>, elevation: Snapshot[], climate: ClimateKeyframe[], climateGridInfo: { step: number; nx: number; ny: number; lon0: number; lat0: number }, rule: ClimateRule, planet: PlanetFile, sea?: { bin: SeaBin; grid: AtlasGrid; index: Pick<AtlasIndex, 'source' | 'title'> }): PlaceWorld {
   const w = s.world;
   const gen = w.generators.find((g) => g.id === SCENE)!;
   const { site: _site, ...rest } = gen.params as unknown as LivingParams & { site: unknown };
@@ -241,6 +241,7 @@ export function placeWorld(s: Solved, index: AtlasIndex, bin: AtlasBin, forms: R
     bin,
     list: (lat, lon) => (atlasHasLand(bin, index.grid, lat, lon) ? atlasList(bin, index.grid, lat, lon) : undefined),
     seaList: sea ? (lat, lon) => seaDrawList(sea.bin, sea.grid, lat, lon) : undefined,
+    seaAtlas: sea?.index,
     forms,
     keyAge: key.ageMa,
     elevation: elevationOf(key),
@@ -284,7 +285,7 @@ export function witnesses(s: Solved, index: AtlasIndex, files: Map<string, strin
     const bin = JSON.parse(files.get(ref.file)!) as AtlasBin;
     // The sea's stage of the same span, if its atlas has one.
     const seaBin = sea?.bins.find((b) => b.from === bin.from && b.to === bin.to);
-    const pw = placeWorld(s, index, bin, forms, elevation, climate, climateGridInfo, rule, planet, seaBin && sea ? { bin: seaBin, grid: sea.index.grid } : undefined);
+    const pw = placeWorld(s, index, bin, forms, elevation, climate, climateGridInfo, rule, planet, seaBin && sea ? { bin: seaBin, grid: sea.index.grid, index: sea.index } : undefined);
     const keys = Object.keys(bin.nodes).map(Number);
     const places: [number, number][] = [patchPlace(keys.sort((a, b) => bin.nodes[String(b)].length - bin.nodes[String(a)].length || a - b)[0])];
     if (order === 1) {

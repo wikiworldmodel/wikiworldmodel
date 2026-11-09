@@ -369,6 +369,11 @@ describe('the sea\'s atlas', () => {
     const forms = json<Record<string, import('../../../core/form.ts').Form>>(index.forms!);
     const p = world.fields.find((f) => f.data?.as === 'community-sea')!.params as { list_size: number; standins: number; drawn_size: number; per_class: number };
     const SEA = new Set(['water', 'floor', 'any', 'edge', 'air']);
+    // What the database says of where each genus lived: none it puts on land or in fresh water alone is drawn in the sea.
+    const seaField = world.fields.find((f) => f.data?.as === 'community-sea')!;
+    const snap = JSON.parse(readFileSync(datasetFile(seaField.data!.from, world.manifest.datasets[seaField.data!.from], seaField.data!.file), 'utf8')) as LandSnapshot;
+    const envOf = new Map(snap.taxa.map((t) => [t[0], snap.words[t[9] as number] ?? '']));
+    const SEA_WATERS = /marine|brackish|coastal|shelf|oceanic|lagoonal|hypersaline/;
     // Every problem is collected and shown at once: millions of entries are too many to expect one by one.
     const problems: string[] = [];
     let drawnLists = 0;
@@ -381,6 +386,8 @@ describe('the sea\'s atlas', () => {
         const f = forms[t.draw.form];
         if (!f || f.kind !== 'animal' || !SEA.has(f.behave?.habitat ?? '')) problems.push(`${ref.name} ${t.label}: not a body of the sea`);
         if (t.draw.length === undefined && t.draw.mass === undefined) problems.push(`${ref.name} ${t.label}: no size`);
+        const env = envOf.get(t.no) ?? '';
+        if (env && !SEA_WATERS.test(env) && f?.behave?.habitat !== 'air') problems.push(`${ref.name} ${t.label}: lived ${env}, not in the sea`);
       }
       for (const key in bin.nodes) {
         const flat = bin.nodes[key];
