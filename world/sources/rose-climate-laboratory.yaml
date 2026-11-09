@@ -1,0 +1,32 @@
+id: src:rose-climate-laboratory
+type: publication
+kind: review
+citation: >-
+  Rose, B.E.J. The Climate Laboratory: A hands-on approach to climate physics and climate modeling. An open
+  textbook, University at Albany (SUNY), with its source and notebooks at
+  github.com/brian-rose/ClimateLaboratoryBook.
+authors:
+  - "Rose, B.E.J."
+title: "The Climate Laboratory: A hands-on approach to climate physics and climate modeling"
+doi: 10.5281/zenodo.4265097
+url: https://brian-rose.github.io/ClimateLaboratoryBook
+license: CC-BY-4.0
+license_note: >-
+  The book's README and its myst.yml, read on 8 November 2026, give Creative Commons Attribution 4.0
+  International for its contents. Only short quotes and the parameters of its model are used here.
+reliability: >-
+  A course textbook, kept up to date as a living document. Its one-dimensional energy-balance model is the
+  classic Budyko–Sellers model, with the parameters its own software, climlab, gives it: tuned to today's
+  climate, with no uncertainty given for any of them. The book shows its results as the notebooks print them.
+note: >-
+  The book's chapters are notebooks, cited by their file and section, such as "albedo-snowball.ipynb, section
+  3". Its text outputs are part of the published pages and are quoted as such.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read on 8 November 2026 from the notebooks on the main branch of the book's source repository
+    (courseware/one-dim-ebm.ipynb, albedo-snowball.ipynb and insolation.ipynb), converted to text with their
+    text outputs; the published pages at brian-rose.github.io could not be reached from here. The DOI is the
+    one the repository's myst.yml gives; it was not resolved. The model's parameters were copied from the
+    parameter dictionary of albedo-snowball.ipynb section 3 and the insolation function's signature printed in
+    insolation.ipynb section 2.

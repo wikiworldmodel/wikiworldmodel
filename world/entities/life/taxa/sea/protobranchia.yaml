@@ -1,0 +1,19 @@
+id: life/taxa/protobranchia
+kind: taxon
+summary: >-
+  The nut clams and their kin: small bivalves of the sea floor, mostly of muddy bottoms, which feed on the sediment with long
+  palps.
+same_as: { pbdb: "txn:83704" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Protobranchia, en: "nut clams" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: clam
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is the clam's of the sea floor, a machine's reconstruction from general knowledge; no figure was compared with it.
+      It has no size of its own, and takes the class's.

@@ -40,6 +40,8 @@ export interface ResolveWorld {
   /** the gridded geography, by field, with the span each covers [older, younger] on the axis */
   geography: { title: string; mode: 'elevation' | 'blocks'; coverage: [number, number] }[];
   climate?: [number, number];
+  /** the energy-balance model (model:earth/energy-balance): the span it covers, and the CO₂ below which it freezes over */
+  climateModel?: { span: [number, number]; freezeBelow?: (t: number) => number | null };
   ice?: [number, number];
   people?: [number, number];
   polities?: [number, number];
@@ -68,9 +70,15 @@ export function resolve(w: ResolveWorld, layer: LayerId, lat: number, lon: numbe
       const land = w.genericLand?.(lat, lon);
       return a('generic', land ? 'land' : 'sea', 'Nothing records where the land was at this time: generic land is drawn, its places invented and its amount a placeholder.');
     }
-    case 'climate':
+    case 'climate': {
       if (within(w.climate, t)) return a('model', 'climate field', 'A climate model\'s run covers this time.');
+      if (within(w.climateModel?.span, t)) {
+        const below = w.climateModel?.freezeBelow?.(t);
+        const at = typeof below === 'number' ? `, below ${Number(below.toPrecision(2))} bar of CO₂ under the Sun of this time` : '';
+        return a('model', 'energy-balance model', `No climate model's run covers this time. An energy-balance model gives the CO₂ at which the Earth froze over${at}: set it beside what the evidence says the CO₂ was, where it says.`);
+      }
       return a('generic', look.surface ?? 'plain', 'No climate field covers this time: the planet\'s state stands in for it.');
+    }
     case 'ice':
       if (within(w.ice, t)) return a('model', 'ice-sheet field', 'A reconstruction of the ice sheets covers this time.');
       if (look.ice) return a('evidence', look.iceReach, 'A glaciation\'s records say how far its ice reached.');

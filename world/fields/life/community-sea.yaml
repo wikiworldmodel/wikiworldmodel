@@ -49,6 +49,9 @@ params:
   shortest_bin: 0.5
   list_size: 12
   standins: 4
+  # Besides those, how many genera a scene can draw a list keeps, and at most how many of one class among them.
+  drawn_size: 10
+  per_class: 3
   # The edges of the belts of latitude, low, middle and high, in degrees from the equator; and how much a row of
   # another belt counts.
   belts: [30, 60]

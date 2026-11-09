@@ -1,0 +1,17 @@
+description: >-
+  A bryozoan colony of the branching kind: a small stony bush of blunt twigs on the sea floor, each twig made of thousands of tiny
+  tubes, each tube the home of one feeding zooid. It stands for the colonies of every shape, fans, sheets and crusts too. Its
+  length is the colony's height.
+kind: animal
+hip: 0.5
+mass_length: 17
+behave: { group: [2, 12], habitat: floor, poses: [rest] }
+parts:
+  stem: { type: chain, zl: true, mat: shell, sides: [6, 4], points: [[0, 0, 0.04, 0.06], [0, 0, 0.15, 0.055], [0, 0, 0.22, 0.05]] }
+  fork-front: { type: chain, zl: true, mat: shell, sides: [6, 4], points: [[0, 0, 0.2, 0.045], [0, 0.09, 0.395, 0.04], [0, 0.18, 0.55, 0.035]] }
+  fork-back: { type: chain, zl: true, mat: shell, sides: [6, 4], points: [[0, 0, 0.2, 0.045], [-0.01, -0.1, 0.37, 0.04], [-0.02, -0.2, 0.5, 0.035]] }
+  forks-side: { type: chain, zl: true, mat: shell, mirror: true, sides: [6, 4], points: [[0, 0, 0.2, 0.045], [0.1, 0.02, 0.36, 0.04], [0.2, 0.04, 0.48, 0.035]] }
+  twigs-front: { type: chain, zl: true, mat: shell, mirror: true, sides: [6, 4], points: [[0, 0.18, 0.55, 0.033], [0.06, 0.24, 0.755, 0.029], [0.12, 0.3, 0.92, 0.026]] }
+  twigs-back: { type: chain, zl: true, mat: shell, mirror: true, sides: [6, 4], points: [[-0.02, -0.2, 0.5, 0.033], [0.04, -0.265, 0.7, 0.029], [0.1, -0.33, 0.86, 0.026]] }
+  twigs-side: { type: chain, zl: true, mat: shell, mirror: true, sides: [6, 4], points: [[0.2, 0.04, 0.48, 0.033], [0.28, 0.08, 0.66, 0.029], [0.36, 0.12, 0.8, 0.026]] }
+  twigs-out: { type: chain, zl: true, mat: shell, mirror: true, sides: [6, 4], points: [[0.2, 0.04, 0.48, 0.033], [0.26, -0.04, 0.75, 0.029], [0.32, -0.12, 0.98, 0.026]] }

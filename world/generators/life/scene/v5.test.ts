@@ -10,7 +10,7 @@ import type { LivingTaxon, ReliefPatch, SceneCover, SceneSpec } from '../../../.
 import type { FeatureTime } from '../../../../core/tileset.ts';
 import { cubeRoot, latticeOf, sizeWithin } from '../spec.ts';
 import { FAST_BUDGET, FULL_BUDGET, INSTANCE_STRIDE, protoParts, SceneStream, type LifeView } from '../stream.ts';
-import { CELL, cellParts, densityOf, EXTENT, GENERATOR, placeLook, VERSION, watersFor, type CellRows, type LivingParams } from './v4.ts';
+import { CELL, cellParts, densityOf, EXTENT, GENERATOR, placeLook, VERSION, watersFor, type CellRows, type LivingParams } from './v5.ts';
 import type { ChannelLaws } from '../../../../core/scene.ts';
 import { snowOf } from '../climate.ts';
 
@@ -497,5 +497,49 @@ describe('where the world gives the rivers', () => {
     // A visitor arrives by it.
     const [fx, fy] = s.plan.focus;
     expect(toGuide(fx, fy)).toBeLessThan(path.plain);
+  });
+});
+
+describe('a scene of the sea', () => {
+  it('puts what lives on the sea floor on it, and what swims in the water over it, never on land', () => {
+    // A made-up shelf sea 60 m deep: a swimmer, something that lives on the floor (a mussel's body, told to), something
+    // that lives anywhere, and a land animal, which has nowhere to stand.
+    const floor: Form = { ...plans.mussel, behave: { ...plans.mussel.behave, habitat: 'floor' } };
+    const sea: LivingTaxon[] = [taxon('swimmer', 'fish', 0.6), { ...taxon('sitter', 'mussel', 0.1), form: 'test-floor' }, taxon('creeper', 'snail', 0.05), taxon('horned', 'ceratopsian', 8, { hip: 2.6 })];
+    const spec = specOf({ relief: flat(-60), taxa: sea });
+    spec.forms['test-floor'] = floor;
+    const s = new SceneStream(spec);
+    expect(s.look.sea).toBe(true);
+    expect(s.look.rivers).toBe(false);
+    const swimM = (PARAMS as LivingParams).sea!.swim_m;
+    const seen = { swimmer: 0, sitter: 0, creeper: 0, horned: 0 };
+    for (const c of cellsOf(s, 1, 2000)) {
+      for (let q = 0; q < c.count; q++) {
+        const t = sea[c.taxon[q]];
+        const [x, y, z] = [c.place[q * 6], c.place[q * 6 + 1], c.place[q * 6 + 2]];
+        const g = s.ground.at(x, y);
+        seen[t.label as keyof typeof seen]++;
+        if (t.label === 'swimmer') {
+          expect(z).toBeGreaterThan(g);
+          expect(z).toBeLessThan(s.look.water);
+          expect(z - g).toBeLessThanOrEqual(swimM + 1e-6);
+        } else {
+          expect(z, t.label).toBeCloseTo(g, 5);
+          expect(g, t.label).toBeLessThan(s.look.water - 0.5);
+        }
+      }
+    }
+    expect(seen.swimmer).toBeGreaterThan(0);
+    expect(seen.sitter).toBeGreaterThan(0);
+    expect(seen.creeper).toBeGreaterThan(0);
+    expect(seen.horned).toBe(0);
+  });
+
+  it('makes on land what version 4 made: nothing that swims, and no river invented at sea only', () => {
+    const land = new SceneStream(specOf());
+    expect(land.look.sea).toBe(false);
+    const fish: LivingTaxon[] = [...TAXA, taxon('swimmer', 'fish', 0.6)];
+    const withFish = new SceneStream(specOf({ taxa: fish }));
+    for (const c of cellsOf(withFish, 1)) for (let q = 0; q < c.count; q++) expect(fish[c.taxon[q]].label).not.toBe('swimmer');
   });
 });

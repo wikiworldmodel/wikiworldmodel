@@ -1,0 +1,19 @@
+id: src:luter-2026-gwynia
+type: publication
+kind: measurement
+citation: >-
+  Lüter, C., Sänger, A. & Wagner, F. (2026). First record of the smallest extant brachiopod Gwynia capsula (Jeffreys, 1859) from
+  the German Bight. PLOS One 21(1), e0341600.
+authors:
+  - "Lüter, C."
+  - "Sänger, A."
+  - "Wagner, F."
+published: 2026
+title: First record of the smallest extant brachiopod Gwynia capsula (Jeffreys, 1859) from the German Bight
+container: "PLOS One 21(1), e0341600"
+doi: 10.1371/journal.pone.0341600
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC12843560) on 8 November 2026; citation and authors checked against Crossref. The quote
+    checked by script against the text taken from the XML.

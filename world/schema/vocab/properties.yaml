@@ -76,6 +76,7 @@ properties:
     values:
       tidal-rhythmite: Thin layers laid down with the tides, whose counts give the days in a month or the months in a year.
       cyclostratigraphy: Rhythmic beds paced by the slow cycles of the Earth's orbit and axis, whose periods give the rate of its precession.
+      paleosol: A soil preserved in the rock record, whose weathering records something of the air and the rain it formed under.
       body-fossil: The remains of an organism, such as a bone, a shell, a leaf or a cell.
       trace-fossil: Something an organism left, such as a track, a burrow or a root trace.
       palynomorph: Spores or pollen.
@@ -230,6 +231,15 @@ properties:
     description: >-
       The mean distance from the Earth to the Moon, the semi-major axis of the Moon's orbit,
       when a rock or a fossil formed, in Earth radii of 6378 km. The tides push the Moon away.
+  co2_pressure:
+    type: quantity
+    unit: bar
+    interp: step
+    applies_to: [sample, event/glaciation]
+    description: >-
+      The partial pressure of carbon dioxide in the atmosphere when a rock formed, such as a soil that is now a
+      paleosol, or at the moment of a glaciation that the claim's note names, such as its end. A source that gives
+      a mixing ratio or a multiple of the present level is converted in the note, saying how.
   sea_level:
     type: quantity
     unit: m

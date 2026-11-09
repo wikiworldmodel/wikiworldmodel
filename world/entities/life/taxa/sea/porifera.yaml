@@ -1,0 +1,36 @@
+id: life/taxa/porifera
+kind: taxon
+summary: >-
+  The sponges: animals without organs or tissues of the usual kind, filtering water through the pores of their bodies; with them,
+  in the database's classification, the archaeocyaths and the stromatoporoids.
+same_as: { pbdb: "txn:2894" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Porifera, en: "sponges" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: sponge
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a vase-shaped sponge, from general knowledge; no figure was compared with it. The
+      branching, encrusting and massive sponges, the cup-shaped archaeocyaths and the mound-shaped stromatoporoids are drawn as
+      this.
+  length:
+    prop: body_length
+    value: { lo: 0.001, hi: 1 }
+    source:
+      - ref: src:wikipedia-sponge
+        loc: "section \"Basic structure\", \"Water flow and body structures\""
+        quote: "Asconoid sponges seldom exceed 1 mm (0.039 in) in diameter."
+      - ref: src:wikipedia-sponge
+        loc: "section \"Basic structure\", \"Water flow and body structures\""
+        quote: "Leuconid sponges grow to over 1 m (3.3 ft) in diameter"
+    method: compilation
+    note: >-
+      From the simplest, smallest sponges to the largest, in an encyclopedia's words, cited for lack of a work that could be read.
+      The sizes are diameters, taken here for the height of the vase.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wiki-Sponge.txt (sha256 92ece37ae260b2c6), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

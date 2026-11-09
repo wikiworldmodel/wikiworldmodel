@@ -1,0 +1,37 @@
+id: life/taxa/autobranchia
+kind: taxon
+summary: >-
+  The bivalves other than the nut clams: scallops, oysters, mussels, cockles, clams and their kin, nearly all of the sea; the
+  freshwater mussels are among them.
+same_as: { pbdb: "txn:83700" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Autobranchia }
+    unsourced: "The classification's own name."
+  body-plan:
+    prop: body_plan
+    value: clam
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a rounded, ribbed clam of the sea floor, from general knowledge; no figure was
+      compared with it. The freshwater mussels below it keep the mussel's body, by claims of their own; other bivalves of fresh
+      water with no record, such as Corbicula, are drawn as this.
+  length:
+    prop: body_length
+    value: { lo: 0.0005, hi: 3 }
+    source:
+      - ref: src:czekanski-moir-2020-small-invertebrates
+        loc: "section \"Endless tiny forms\""
+        quote: "Condylonucula, a snail and a clam genus, respectively, that each contain at least one species that never gets larger than a half a millimeter"
+      - ref: src:vermeij-2016-gigantism
+        loc: "Table 1, Marine benthic suspension-feeders, Mesozoic"
+        quote: "Platyceramus platinus Bivalvia Campanian 3 m"
+    method: compilation
+    note: >-
+      The bivalves of the sea, from the smallest to the largest known: the giant is an inoceramid of this subclass, but the dwarf,
+      Condylonucula, is a nut clam, outside it, standing for the subclass's smallest, which no work read gives. The freshwater
+      mussels have ranges of their own. Today's largest, the giant clam, is given in the same table at 137 cm.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC4714876.txt (sha256 cc3dfe4126d15d99), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

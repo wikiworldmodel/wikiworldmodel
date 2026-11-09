@@ -1,0 +1,52 @@
+id: earth/samples/pronto-paleosol
+kind: sample
+summary: >-
+  An Archean soil, now a paleosol, in Canada, whose weathering gives an estimate of the CO₂ in the air of
+  about 2.46 billion years ago: 0.05 to 0.15 bar.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: "Pronto/NAN paleosol" }
+    source:
+      ref: src:catling-zahnle-2020-archean-atmosphere
+      loc: 'Table 1, row "Pronto/NAN paleosol, Canada"'
+      quote: "Pronto/NAN paleosol, Canada (43)"
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC7043912.txt (sha256 d8f443e84a186441), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }
+  evidence:
+    prop: evidence
+    value: paleosol
+    source:
+      ref: src:catling-zahnle-2020-archean-atmosphere
+      loc: "Carbon gases in the Archean: CO2, CH4, and CO"
+      quote: Paleosols provide some estimates. Acid leaching in Archean soils arose from CO2 dissolved in rainwater.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC7043912.txt (sha256 d8f443e84a186441), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }
+  date:
+    prop: date
+    value: 2.46 Ga
+    source:
+      ref: src:catling-zahnle-2020-archean-atmosphere
+      loc: 'Table 1, row "Pronto/NAN paleosol, Canada"'
+      quote: "0.05–0.15 bar 2.46 Ga Pronto/NAN paleosol, Canada (43)"
+    method: compilation
+    note: The table gives the age to a hundredth of a billion years, with no uncertainty.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC7043912.txt (sha256 d8f443e84a186441), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }
+  co2:
+    prop: co2_pressure
+    value: { lo: 0.05, hi: 0.15 }
+    source:
+      - ref: src:catling-zahnle-2020-archean-atmosphere
+        loc: 'Table 1, row "Pronto/NAN paleosol, Canada"'
+        quote: "0.05–0.15 bar 2.46 Ga Pronto/NAN paleosol, Canada (43)"
+      - ref: src:catling-zahnle-2020-archean-atmosphere
+        loc: "Carbon gases in the Archean: CO2, CH4, and CO"
+        quote: "160 to 490 PAL at 2.46 Ga ago"
+    method: compilation
+    basis: reconstruction
+    note: >-
+      Kanzaki and Murakami's (2015) estimate, the review's reference 43; that paper was not read here. It is the last paleosol estimate in the review before the Makganyene glaciation. A range, with nothing to say where in it the value lies.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC7043912.txt (sha256 d8f443e84a186441), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }

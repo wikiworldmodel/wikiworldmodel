@@ -1,0 +1,20 @@
+id: src:feulner-2012-faint-young-sun
+type: publication
+kind: review
+citation: >-
+  Feulner, G. (2012). The faint young Sun problem. Reviews of Geophysics 50(2), RG2006.
+authors:
+  - "Feulner, G."
+published: 2012
+title: The faint young Sun problem
+container: Reviews of Geophysics 50(2), RG2006
+doi: 10.1029/2011RG000375
+reliability: >-
+  An invited review. The amounts of CO₂ it gives for keeping the early Earth warm are those of one-dimensional
+  radiative-convective models, which it calls lower limits, since they leave out the ice-albedo feedback.
+verified:
+  by: machine:claude-code
+  how: >-
+    Read on 8 November 2026 as arXiv:1204.4449v1, the manuscript "accepted for publication in Reviews of
+    Geophysics" (its arXiv comment), not the journal's typeset version, so page numbers are not given; text
+    taken from the PDF with pdftotext. Citation and DOI from Crossref.

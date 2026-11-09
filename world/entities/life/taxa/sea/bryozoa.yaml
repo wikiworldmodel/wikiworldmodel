@@ -1,0 +1,35 @@
+id: life/taxa/bryozoa
+kind: taxon
+summary: >-
+  The bryozoans or moss animals: colonies of tiny zooids, each feeding with a crown of tentacles, building crusts, fans and
+  branching twigs of lime on the sea floor.
+same_as: { pbdb: "txn:24773" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Bryozoa, en: "bryozoans" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: bryozoan
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a branching colony, from general knowledge; no figure was compared with it. The
+      encrusting, fan-shaped and screw-shaped colonies are drawn as this.
+  length:
+    prop: body_length
+    value: { lo: 0.0005, hi: 0.66 }
+    source:
+      - ref: src:wikipedia-bryozoa
+        loc: "section \"Types of zooid\""
+        quote: "Individual members of a bryozoan colony are about 0.5 mm"
+      - ref: src:wikipedia-bryozoa
+        loc: "section \"Fossil record\""
+        quote: "The largest known fossil colonies are branching trepostome bryozoans from Ordovician rocks in the United States, reaching 66 centimeters in height."
+    method: compilation
+    note: >-
+      The colony's height, from a single zooid, the smallest a colony can be, to the largest known colony, in an encyclopedia's
+      words, cited for lack of a work that could be read.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wiki-Bryozoa.txt (sha256 6f0440e1e5354456), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

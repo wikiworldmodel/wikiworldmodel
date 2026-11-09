@@ -1,0 +1,30 @@
+id: life/taxa/plesiosauria
+kind: taxon
+summary: >-
+  The plesiosaurs: marine reptiles of the Jurassic and Cretaceous that swam with four long flippers, the long-necked ones and the
+  short-necked, big-headed pliosaurs.
+same_as: { pbdb: "txn:36454" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Plesiosauria, en: "plesiosaurs" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: plesiosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a long-necked plesiosaur, from general knowledge; no figure was compared with it.
+      The pliosaurs, with short necks and long heads, are drawn with this neck until they have a body of their own.
+  length:
+    prop: body_length
+    value: { lo: 1.5, hi: 15 }
+    source:
+      ref: src:wikipedia-plesiosauria
+      loc: "section \"Description\", \"Size\""
+      quote: "In general, plesiosaurians varied in adult length from between 1.5 meters (4.9 ft) to about 15 meters (49 ft)."
+    method: compilation
+    note: The order's range in an encyclopedia's words, cited for lack of a work that could be read.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wiki-Plesiosauria.txt (sha256 7d7e83474cceda6f), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

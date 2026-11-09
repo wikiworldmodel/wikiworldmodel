@@ -1,0 +1,27 @@
+id: life/taxa/coleoidea
+kind: taxon
+summary: >-
+  The coleoids: cephalopods whose shell is inside the body or gone, the squids, cuttlefish, octopuses and the extinct belemnites.
+same_as: { pbdb: "txn:59785" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Coleoidea, en: "squids, octopuses and belemnites" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      mass_length: 9
+      parts:
+        shell: { mat: hide, rings: [[0, -0.5, 0.1, 0.006, 0.006], [0, -0.46, 0.1, 0.03, 0.028], [0, -0.38, 0.1, 0.055, 0.051], [0, -0.26, 0.1, 0.07, 0.064], [0, -0.1, 0.1, 0.075, 0.069], [0, 0.06, 0.1, 0.072, 0.066], [0, 0.16, 0.1, 0.066, 0.061], [0, 0.2, 0.1, 0.06, 0.055]] }
+        fins: { type: sheet, zl: true, mat: hide, mirror: true, gap: 0.002, points: [[0.03, -0.44, 0.1], [0.14, -0.36, 0.1], [0.06, -0.22, 0.1], [0.03, -0.26, 0.1]] }
+        body: { at: [0, 0.25, 0.1], r: [0.055, 0.06, 0.05] }
+        eyes: { at: [0.048, 0.26, 0.112], r: [0.016, 0.022, 0.022] }
+        arms-low: { from: [0.02, 0.29, 0.08], to: [0.04, 0.5, 0.05], r: 0.011 }
+        arms-mid: { from: [0.03, 0.29, 0.1], to: [0.07, 0.51, 0.09], r: 0.011 }
+        arms-high: { from: [0.02, 0.29, 0.12], to: [0.04, 0.5, 0.14], r: 0.01 }
+    unsourced: >-
+      A machine's reconstruction of a squid-like body, a torpedo mantle with fins behind and arms in front, standing for the
+      belemnites too, from general knowledge; no figure was compared with it. The octopuses, with no fins and a round body, are
+      drawn as this. Its length is the mantle's, the measure the cephalopod paper gives for them.

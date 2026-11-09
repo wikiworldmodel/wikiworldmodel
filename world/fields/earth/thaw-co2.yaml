@@ -1,0 +1,18 @@
+# Computed, not stored: the build runs the energy-balance model over the span (section 9.1). Its parameters are
+# field:earth/snowball-co2's: the same model, started frozen instead of warm.
+id: field:earth/thaw-co2
+type: field
+title: CO₂ a frozen Earth needs to thaw (energy-balance model)
+quantity: partial pressure of CO₂ above which a frozen Earth thaws under the Sun of the time
+unit: bar
+description: >-
+  The CO₂ it takes to melt an Earth already frozen to the equator, under the Sun of each time, in the same
+  energy-balance model: the white ice reflects so much of the light that far more CO₂ is needed to leave a Snowball
+  than to stay out of one. Set it beside the CO₂ that the rocks record at the end of a Snowball. Its rule for CO₂ was
+  fitted to small changes around today, and a thaw needs many doublings, so it asks too much.
+grid: { kind: series }
+time: { lo: 4.3 Ga, hi: 0 Ma, step: 10 Myr }
+derived: true
+rule: energy-balance-thaw
+source: { ref: src:rose-climate-laboratory, loc: "albedo-snowball.ipynb, section 8, How to un-freeze the Snowball" }
+interp: linear

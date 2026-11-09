@@ -365,6 +365,34 @@ at; a few from memory, which their claims say. A reviewer should look at a form'
 What agents found the form language lacks, for the next version of it: a spike that curves; a foreleg with an elbow and a wrist, a human leg and a flat foot (`digitigrade` bends at fixed places); parts that follow the neck, such as a mane;
 a row that is not straight; a forking `tuft`, a swollen foot to a stem, a liverwort's thallus; a wing given by its span, and a body that bends sideways; and a depth for what swims, as fish are listed and not drawn.
 
+### The sea's forms
+
+Written by an agent for the [tenth slice](slices/TENTH-SLICE.md), in `world/plans/` and `world/entities/life/taxa/sea/`: fifteen plans and
+twenty-five records, which take the share of the sea snapshot's rows that can be drawn from 35% to 63%, and to 62% once a genus the
+database puts on land or in fresh water alone is left out of the sea (`npm run world -- forms-wanted --sea`). Every plan was looked at on its sheet; each says it is a machine's reconstruction.
+
+- **Sizes, and where they rest.** Papers read in full from Europe PMC give the trilobites (Sun et al. 2025), the cephalopods' large end (Klug et al. 2025),
+  the brachiopods' ends (Lüter et al. 2026; Vermeij 2016), the corals (Zapalski et al. 2025; Coward et al. 2020), the whales (Sun et al. 2019), the
+  ichthyosaurs' large end (Pimiento et al. 2024) and the clams' ends (Czekanski-Moir & Rundell 2020; Vermeij 2016). The rest rest on Wikipedia, at a
+  pinned revision, each saying which better work it cites and should be replaced by: the smallest ammonoid, bryozoans, sponges, sea urchins, mosasaurs,
+  plesiosaurs, eurypterids, sea turtles, rugose corals and the ichthyosaurs' small end.
+- **Values to doubt.** Anthozoa's 2 m is what a survey calls a large colony, not the largest: real colonies reach far more, and the note says the
+  smaller figure was kept so that a scene's corals stay of a plausible size. Clams' 0.5 mm is a nut clam outside the subclass it stands for. Sea urchins'
+  3 cm is the usual smallest, not the least. Sea turtles' range is of living species only. A bryozoan's small end is a single zooid.
+- **What has a body and no size, and so is not drawn:** crinoids (10,311 rows) and sea stars (1,072): no smallest size could be sourced.
+- **Bodies that stand in for what they do not fit:** endoceratids and multiceratids, which are numbers of the sea's snapshot only, inherit the coiled shell;
+  heteromorph ammonoids, octopuses, feather stars, pliosaurs and sand dollars take their group's general body. Gastropods are drawn with the land snail's
+  plan and sizes.
+- **The land's lists.** Bivalves and sea turtles the database calls marine are now left out on land, as the land atlas intends, so 82 more of the land's
+  taxa have no form; freshwater bivalves under Autobranchia with no record of their own take the clam's body, which a scene on land never places, and
+  Unionida and Sphaeriidae keep the mussel's.
+- **Blocked:** the CC0 body sizes of marine genera (Heim, Payne et al., on Dryad), which would give most genera a size of their own, could not be
+  downloaded from here.
+
+What the form language lacked, for the sea: radial symmetry of five or more; a coil (an ammonoid's shell is some sixty rings worked out by hand, so
+an involute or a heteromorph is no simple change); a tube whose section is not a whole ellipse, for two valves that meet at an edge or a concavo-convex
+shell; a sheet that is not flat; spines at angles other than 45°; and a pose for swimming.
+
 ### Set 16: day length and the Moon
 
 - 21 measurements from the Moodies Group (3.22 Ga) to today, 13 with the Earth–Moon distance, as records; the series are read

@@ -8,7 +8,7 @@ import { fingerprint, type Fingerprint, type Part } from '../../../core/fingerpr
 import { Mesh, meshParts } from '../city/kit.ts';
 import { hashString } from '../city/math.ts';
 import { drawAnimal, drawPlant, POSE, type Detail, type Stance } from './forms.ts';
-import { CELL, CELLS, cellParts, cellKey, coverMask, EXTENT, groundGrids, LandCover, makePlan, placeLook, waterLevels, waterRibbons, waterSheet, watersFor, type CellRows, type LivingParams, type LivingPlan, type PlaceLook } from './scene/v4.ts';
+import { CELL, CELLS, cellParts, cellKey, coverMask, EXTENT, groundGrids, LandCover, makePlan, placeLook, waterLevels, waterRibbons, waterSheet, watersFor, type CellRows, type LivingParams, type LivingPlan, type PlaceLook } from './scene/v5.ts';
 import type { Waters } from './land.ts';
 
 export const INSTANCE_STRIDE = 28;

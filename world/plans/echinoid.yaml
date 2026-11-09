@@ -1,0 +1,14 @@
+description: >-
+  A sea urchin: a round, domed shell of plates sitting on the sea floor, its mouth beneath, bristling with long spines all over.
+  Its length is the shell's diameter, without the spines.
+kind: animal
+hip: 0.4
+mass_length: 200
+behave: { group: [2, 12], habitat: floor, poses: [stand, walk] }
+parts:
+  test: { type: lump, zl: true, mat: shell, at: [0, 0, 0.21], r: [0.5, 0.5, 0.21], sides: [12, 6], bands: [6, 3] }
+  spines-1: { type: knobs, zl: true, near: true, mat: shell, n: 18, at: [0, 0.08], r: [0.49, 0.49, 0.68], length: 0.19, thick: 0.014 }
+  spines-2: { type: knobs, zl: true, near: true, mat: shell, n: 16, at: [0, 0.22], r: [0.44, 0.44, 0.67], length: 0.23, thick: 0.014 }
+  spines-3: { type: knobs, zl: true, near: true, mat: shell, n: 13, at: [0, 0.33], r: [0.32, 0.32, 0.54], length: 0.22, thick: 0.013 }
+  spines-4: { type: knobs, zl: true, near: true, mat: shell, n: 8, at: [0, 0.4], r: [0.16, 0.16, 0.32], length: 0.16, thick: 0.012 }
+  spines: { type: lump, zl: true, far: true, mat: shell, at: [0, 0, 0.24], r: [0.62, 0.62, 0.26], sides: [10, 5], bands: [4, 3] }

@@ -1,0 +1,21 @@
+id: life/taxa/productida
+kind: taxon
+summary: >-
+  The productids: the largest and most varied of the strophomenate brachiopods, from the Devonian to the end of the Permian,
+  their shells set with spines.
+same_as: { pbdb: "txn:55005" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Productida, en: "productids" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      parts:
+        spines: { type: row, zl: true, near: true, mat: shell, mirror: true, n: 7, item: spike, from: [0.36, -0.32, 0.12], to: [0.3, 0.26, 0.12], r: [0.12, 0.02, -0.08], thick: 0.008 }
+        hinge-spines: { type: row, zl: true, near: true, mat: shell, mirror: true, n: 3, item: spike, from: [0.18, -0.4, 0.13], to: [0.44, -0.4, 0.12], r: [0.03, -0.12, 0.04], thick: 0.008 }
+    unsourced: >-
+      A machine's reconstruction: spines along the sides and the hinge, on which the shell rested on the sea floor, from general
+      knowledge of productids; no figure was compared with it, and the number and length of the spines vary greatly.

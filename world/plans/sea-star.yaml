@@ -1,0 +1,12 @@
+description: >-
+  A sea star: five thick arms tapering out from a central disc, lying flat on the sea floor, crawling on tube feet beneath. Its
+  length is its span across, from arm tip to arm tip.
+kind: animal
+hip: 0.2
+mass_length: 20
+behave: { group: [1, 6], habitat: floor, poses: [stand, walk] }
+parts:
+  disc: { type: lump, zl: true, mat: hide, at: [0, 0, 0.06], r: [0.12, 0.12, 0.06], sides: [10, 5], bands: [4, 2] }
+  arm-front: { type: chain, zl: true, mat: hide, sides: [6, 4], points: [[0, 0.05, 0.07, 0.075], [0, 0.18, 0.058, 0.06], [0, 0.32, 0.042, 0.04], [0, 0.45, 0.024, 0.02], [0, 0.5, 0.014, 0.008]] }
+  arms-fore: { type: chain, zl: true, mat: hide, mirror: true, sides: [6, 4], points: [[0.048, 0.015, 0.07, 0.075], [0.171, 0.056, 0.058, 0.06], [0.304, 0.099, 0.042, 0.04], [0.428, 0.139, 0.024, 0.02], [0.476, 0.155, 0.014, 0.008]] }
+  arms-hind: { type: chain, zl: true, mat: hide, mirror: true, sides: [6, 4], points: [[0.029, -0.04, 0.07, 0.075], [0.106, -0.146, 0.058, 0.06], [0.188, -0.259, 0.042, 0.04], [0.265, -0.364, 0.024, 0.02], [0.294, -0.405, 0.014, 0.008]] }

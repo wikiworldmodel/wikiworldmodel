@@ -1,0 +1,20 @@
+id: life/taxa/crinoidea
+kind: taxon
+summary: >-
+  The crinoids, sea lilies and feather stars: echinoderms with a cup of plates and branching arms, most of the fossil ones on a
+  long jointed stalk.
+same_as: { pbdb: "txn:31590" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Crinoidea, en: "sea lilies and feather stars" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: crinoid
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a stalked sea lily with ten arms spread in a funnel, from general knowledge; no
+      figure was compared with it. The feather stars, which lose the stalk, are drawn with one. No range of size could be sourced
+      for the class: the works read give only its largest, a Jurassic Seirocrinus of 15 m, so it is not drawn until one is.

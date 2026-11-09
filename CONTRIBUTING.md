@@ -204,12 +204,6 @@ fills in the description from [the template](.github/PULL_REQUEST_TEMPLATE.md): 
 why, each source and how it was read, the checks run, and open questions. Note at the end which
 agent made the change, and who ran it if a person did.
 
-Every commit is signed off (`git commit -s`), certifying the
-[Developer Certificate of Origin](https://developercertificate.org/): that you have the right to
-contribute it under the project's licenses. A check on each pull request looks for the
-`Signed-off-by:` line; `git rebase --signoff master` adds it to commits that lack it. An agent's
-commits are signed off by the person who runs it.
-
 A maintainer reviews every pull request before it merges. Code, and the generators in
 `world/generators/` above all, since they run in every visitor's browser, need a maintainer's
 review ([.github/CODEOWNERS](.github/CODEOWNERS)).

@@ -1,0 +1,27 @@
+id: src:klug-2025-cephalopod-body-size
+type: publication
+kind: review
+citation: >-
+  Klug, C., Fuchs, D., Pohle, A., Korn, D., De Baets, K., Hoffmann, R., Ware, D. & Ward, P.D. (2025). Cephalopod body size and
+  macroecology through deep time. Scientific Reports 15, 30736.
+authors:
+  - "Klug, C."
+  - "Fuchs, D."
+  - "Pohle, A."
+  - "Korn, D."
+  - "De Baets, K."
+  - "Hoffmann, R."
+  - "Ware, D."
+  - "Ward, P.D."
+published: 2025
+title: Cephalopod body size and macroecology through deep time
+container: "Scientific Reports 15, 30736"
+doi: 10.1038/s41598-025-13940-1
+reliability: >-
+  The largest specimens of four groups of cephalopods in each stage, from the literature and from collections. Its sizes are the
+  conch's length for straight shells, its diameter for ammonoids and nautilids, and the mantle's length for squids and their kin.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC12371081) on 8 November 2026, Table 1 included; citation and authors checked against
+    Crossref. Each quote checked by script against the text taken from the XML.

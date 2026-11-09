@@ -71,8 +71,6 @@ CI runs in three tiers, so that the checks on a pull request stay quick as the w
 - **Build** (`build.yml`), when master changes, when a pull request changes how the world is
   built, and by hand: every dataset, `npm run build:world`, `npm run test:build`, the viewer,
   and on master the site's deployment. It builds the world once.
-- **DCO** (`dco.yml`), on every pull request: every commit is signed off (see
-  [CONTRIBUTING.md](CONTRIBUTING.md#pull-requests)).
 - **Nightly** (`nightly.yml`), and by hand: the world built again and compared in meaning, its numbers
   within a tolerance (`npm run test:reproducible`), and the browser tests against their goldens, in three groups that can also be run alone with `--project`: `globe`, `city` (the city's
   behaviour, drawn the fast way) and `city-views` (the city at full quality, minutes a view in

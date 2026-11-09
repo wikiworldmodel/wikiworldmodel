@@ -1,0 +1,26 @@
+id: life/taxa/orthoceratoidea
+kind: taxon
+summary: >-
+  The orthoceratoids: cephalopods of the Palaeozoic and Triassic with long, straight, chambered shells, the orthocerids and their
+  kin.
+same_as: { pbdb: "txn:122586" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Orthoceratoidea, en: "orthocones" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      mass_length: 3.5
+      parts:
+        shell: { rings: [[0, -0.5, 0.1, 0.004, 0.004], [0, -0.455, 0.1, 0.006, 0.006], [0, -0.41, 0.1, 0.009, 0.009], [0, -0.365, 0.1, 0.011, 0.011], [0, -0.32, 0.1, 0.014, 0.014], [0, -0.275, 0.1, 0.016, 0.016], [0, -0.23, 0.1, 0.02, 0.02], [0, -0.185, 0.1, 0.021, 0.021], [0, -0.14, 0.1, 0.025, 0.025], [0, -0.095, 0.1, 0.025, 0.025], [0, -0.05, 0.1, 0.03, 0.03], [0, -0.005, 0.1, 0.03, 0.03], [0, 0.04, 0.1, 0.035, 0.035], [0, 0.085, 0.1, 0.035, 0.035], [0, 0.13, 0.1, 0.04, 0.04], [0, 0.175, 0.1, 0.04, 0.04], [0, 0.22, 0.1, 0.046, 0.046], [0, 0.265, 0.1, 0.045, 0.045], [0, 0.31, 0.1, 0.051, 0.051], [0, 0.355, 0.1, 0.05, 0.05], [0, 0.4, 0.1, 0.056, 0.056]] }
+        body: { at: [0, 0.44, 0.1], r: [0.05, 0.05, 0.05] }
+        eyes: { at: [0.042, 0.452, 0.118], r: [0.014, 0.018, 0.018] }
+        arms-low: { from: [0.02, 0.47, 0.08], to: [0.05, 0.64, 0.04], r: 0.011 }
+        arms-mid: { from: [0.03, 0.47, 0.1], to: [0.08, 0.65, 0.09], r: 0.011 }
+        arms-high: { from: [0.02, 0.47, 0.12], to: [0.05, 0.64, 0.15], r: 0.01 }
+    unsourced: >-
+      A machine's reconstruction: the coiled shell straightened into a slender cone, apex behind, with the head and arms at its
+      opening, from general knowledge of orthocones; no figure was compared with it. Its length is the shell's.

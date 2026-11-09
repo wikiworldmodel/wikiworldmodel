@@ -1,0 +1,50 @@
+id: life/taxa/rugosa
+kind: taxon
+summary: >-
+  The rugose corals of the Palaeozoic, many of them solitary horn corals, some colonial.
+same_as: { pbdb: "txn:5113" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Rugosa, en: "rugose corals" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      mass_length: 22
+      parts:
+        dome: null
+        lobe-front: null
+        lobe-back: null
+        lobes-side: null
+        crown: null
+        finger-front: null
+        finger-back: null
+        fingers-side: null
+        fingers-low: null
+        cups-1: null
+        cups-2: null
+        cups-3: null
+        horn: { type: tube, zl: true, mat: shell, sides: [10, 5], rings: [[0, -0.42, 0.041, 0.012, 0.012], [0, -0.362, 0.051, 0.02, 0.02], [0, -0.304, 0.069, 0.031, 0.031], [0, -0.247, 0.089, 0.037, 0.037], [0, -0.192, 0.121, 0.049, 0.049], [0, -0.139, 0.151, 0.054, 0.054], [0, -0.09, 0.194, 0.068, 0.068], [0, -0.043, 0.233, 0.071, 0.071], [0, -0.001, 0.287, 0.086, 0.086], [0, 0.037, 0.333, 0.088, 0.088], [0, 0.071, 0.396, 0.105, 0.105], [0, 0.1, 0.447, 0.105, 0.105], [0, 0.123, 0.517, 0.123, 0.123], [0, 0.141, 0.572, 0.122, 0.122], [0, 0.153, 0.647, 0.142, 0.142]] }
+        cup: { type: lump, zl: true, mat: dark, at: [0, 0.157, 0.746], r: [0.114, 0.114, 0.02], sides: [8, 4], bands: [3, 2] }
+        tentacles: { type: knobs, zl: true, near: true, mat: hide, n: 12, at: [0.153, 0.754], r: [0.02, 0.099, 0.135], length: 0.05, thick: 0.01 }
+    unsourced: >-
+      A machine's reconstruction of a solitary horn coral, a wrinkled cone curving up from its tip to the cup of the polyp, from
+      general knowledge; no figure was compared with it. The colonial rugose corals are drawn as horns too.
+  length:
+    prop: body_length
+    value: { lo: 0.005, hi: 1 }
+    source:
+      - ref: src:zapalski-2025-gotland-corals
+        loc: "Results, \"Corals\""
+        quote: "Both solitary and colonial rugosans are small (corallite diameters of ~ 0.5 to 1.5 cm)"
+      - ref: src:wikipedia-rugosa
+        loc: "lead"
+        quote: "Some solitary rugosans reached nearly a meter (3 ft 3 in) in length."
+    method: compilation
+    note: >-
+      From small Silurian rugose corals, whose width is all the paper gives, to the longest solitary horn corals, in an
+      encyclopedia's words, cited for lack of a work that could be read.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC12661038.txt (sha256 866681243c304709), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

@@ -29,7 +29,8 @@ export class CityLabels {
     this.named = list.map((s, index) => ({ s, index })).filter(({ s }) => !/map does not name|^A stretch/.test(s.label) && s.label !== site && s.kind !== 'works/road' && s.kind !== 'open/district');
   }
 
-  update(v: LocalView, ground: GroundSampler, skyline: Skyline, t: number, selected: string | null): void {
+  /** Place the names for a view. `visible`, where it is given, says whether a point can be seen from the eye at all. */
+  update(v: LocalView, ground: GroundSampler, skyline: Skyline, t: number, selected: string | null, visible?: (x: number, y: number, z: number) => boolean): void {
     const boxes: [number, number, number, number][] = [];
     const seen = new Set<string>();
     const near: { s: CityStructure; x: number; y: number; d: number }[] = [];
@@ -59,6 +60,7 @@ export class CityLabels {
         }
       }
       if (hidden || (selected !== s.id && skyline.blocked(v.eye[0], v.eye[1], v.eye[2], s.at[0], s.at[1], top, t, index))) continue;
+      if (visible && selected !== s.id && !visible(s.at[0], s.at[1], s.base)) continue;
       near.push({ s, x: p.x, y: p.y, d });
     }
     near.sort((a, b) => a.s.rank - b.s.rank || a.d - b.d || (a.s.id < b.s.id ? -1 : 1));

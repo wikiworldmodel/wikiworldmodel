@@ -1,0 +1,20 @@
+# Computed, not stored: the build runs the energy-balance model on the CO₂ of each time (section 9.1).
+id: field:earth/temperature-energy-balance
+type: field
+title: Global mean surface temperature (energy-balance model)
+quantity: global average surface temperature in the energy-balance model, on the CO₂ the world's evidence gives
+unit: °C
+description: >-
+  What the energy-balance model makes of the Sun and the CO₂ of the last 420 million years: the global mean
+  temperature of the climate it settles into from a warm start, once for each of the CO₂ series' members. It is a
+  check, not a reconstruction: set it beside the temperature the rocks give. Besides CO₂ and the Sun it knows nothing:
+  not the continents, the oceans' currents, the other gases or the ice sheets' own height.
+grid: { kind: series }
+time: { lo: 419.5039 Ma, hi: 0 Ma }
+derived: true
+rule: energy-balance-temperature
+params:
+  members: 16
+  atmosphere_bar: 1
+source: { ref: src:rose-climate-laboratory, loc: "albedo-snowball.ipynb, sections 2–4" }
+interp: linear

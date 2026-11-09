@@ -13,7 +13,6 @@ Each work cited, and how it was read (publisher's page, archive.org scan, Perseu
 - [ ] `npm test` passes; for a change to how the world is built, `npm run build:world` and
       `npm run test:build` too (or: could not fetch <dataset>, so not run)
 - [ ] seen in the viewer at <link>
-- [ ] every commit is signed off (`git commit -s`), under the Developer Certificate of Origin
 
 ## Open questions
 

@@ -121,11 +121,20 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
     console.log(file);
   },
   // What most wants a form: the taxa that most often come up in the atlas with none of their own. Give a
-  // name to see only what is under it, and --missing to see what has no form at any node above it.
+  // name to see only what is under it, --missing to see what has no form at any node above it, and --sea to rank
+  // the sea's fossils for bodies that live in the sea.
   async 'forms-wanted'(args) {
     const world = await loadWorld();
     const { formsWanted } = await import('./formsWanted.ts');
-    console.log(formsWanted(world, args));
+    let sea: import('./pbdb.ts').LandSnapshot | undefined;
+    if (args.includes('--sea')) {
+      const { datasetFile } = await import('./manifest.ts');
+      const f = world.fields.find((x) => x.data?.as === 'community-sea');
+      if (!f) throw new Error('no field reads the sea\'s fossils');
+      const id = f.data!.from;
+      sea = JSON.parse(readFileSync(datasetFile(id, world.manifest.datasets[id], f.data!.file), 'utf8'));
+    }
+    console.log(formsWanted(world, args, sea));
   },
   // The first step of checking a claim: its quote found in the text its source was read in. Records the step on
   // each claim whose quote is found: `npm run world -- quote-check src:… <text file> [--by machine:<tool>] [--dry-run]`.

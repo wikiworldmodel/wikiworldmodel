@@ -1,0 +1,19 @@
+id: src:wikipedia-ammonoidea
+type: database-record
+kind: review
+citation: >-
+  "Ammonoidea." Wikipedia, the free encyclopedia (English edition), revision 1380225373.
+snapshot: 2026-11-08
+title: Ammonoidea
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Ammonoidea&oldid=1380225373
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for the smallest ammonoid's size, for which no better work could be read here. The
+  sentence cites Nishiguchi & Mapes (2008), a chapter in Phylogeny and Evolution of the Mollusca, whose copy online could not be
+  reached; it should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched from Wikipedia's REST interface on 8 November 2026 and read as text; the quote checked by script
+    against that text.

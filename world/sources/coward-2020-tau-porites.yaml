@@ -1,0 +1,25 @@
+id: src:coward-2020-tau-porites
+type: publication
+kind: measurement
+citation: >-
+  Coward, G., Lawrence, A., Ripley, N., Brown, V., Sudek, M., Brown, E., Moffitt, I., Fuiava, B. & Vargas-Ángel, B. (2020). A new
+  record for a massive Porites colony at Ta'u Island, American Samoa. Scientific Reports 10, 21359.
+authors:
+  - "Coward, G."
+  - "Lawrence, A."
+  - "Ripley, N."
+  - "Brown, V."
+  - "Sudek, M."
+  - "Brown, E."
+  - "Moffitt, I."
+  - "Fuiava, B."
+  - "Vargas-Ángel, B."
+published: 2020
+title: A new record for a massive Porites colony at Ta'u Island, American Samoa
+container: "Scientific Reports 10, 21359"
+doi: 10.1038/s41598-020-77776-7
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC7721870) on 9 November 2026; citation and authors checked against Crossref. The quote
+    checked by script against the text taken from the XML.

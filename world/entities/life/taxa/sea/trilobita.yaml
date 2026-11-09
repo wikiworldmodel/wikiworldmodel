@@ -1,0 +1,32 @@
+id: life/taxa/trilobita
+kind: taxon
+summary: >-
+  The trilobites: arthropods of the Palaeozoic seas whose shield of calcite over the back was divided lengthwise into three lobes.
+same_as: { pbdb: "txn:19100" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Trilobita, en: "trilobites" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: trilobite
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a generalized trilobite (head shield with eyes and genal spines, a thorax of
+      segments, a tail shield, three lobes lengthwise, legs and antennae beneath), from general knowledge; no figure was compared
+      with it. Many trilobites lacked the genal spines, and the eyes and the length of the thorax vary greatly.
+  length:
+    prop: body_length
+    value: { lo: 0.002, hi: 0.7 }
+    source:
+      ref: src:sun-2025-trilobite-body-size
+      loc: "Introduction, paragraph 3"
+      quote: "With body sizes ranging from ~2 mm (Acanthopleurella stipulae) to more than 700 mm (Isotelus rex or Ogyginus forteyi)"
+    method: compilation
+    note: >-
+      The class's range, from the smallest and largest species the paper names, standing for any trilobite with no length of its
+      own. The largest is given as more than 700 mm, so the upper end is a floor.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC12047424.txt (sha256 179609ae4408ad2b), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
