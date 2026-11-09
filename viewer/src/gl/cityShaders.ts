@@ -13,17 +13,19 @@ float drop(vec2 p) { return dot(p, p) / (2.0 * PLANET_RADIUS); }
 /**
  * How the water of a scene of the sea is drawn: a look, as the haze's constant is, and not a measurement of any sea.
  * Light of each colour, red, green and blue, is lost along a path through the water as e^(−k·metres), red first and blue
- * last, and what the water scatters fills in its place; daylight falls with depth the same way, but never below a floor,
- * so that the floor of a deep sea can still be seen; the water's own colour is a share of the light at its surface; and
- * a camera under water opens up as the light there falls short of a day's at the surface, `day`, by at most `open` times.
+ * last, and what the water scatters fills in its place; daylight falls with depth the same way, but never below a floor
+ * that itself fades only slowly with depth, so that the floor of a deep sea can still be seen, and an abyss is darker than
+ * a shelf; the water's own colour is a share of the light at its surface; and a camera under water opens up as the light
+ * there falls short of a day's at the surface, `day`, by at most `open` times.
  */
 export const SEA = {
   /** per metre of the way through water */
   extinction: [0.2, 0.04, 0.03],
   /** per metre of depth, of the daylight that reaches down */
   light: [0.2, 0.045, 0.032],
-  /** the least daylight below, as a share of the surface's */
-  floor: [0.008, 0.028, 0.05],
+  /** the least daylight below, as a share of the surface's; and the depth, in metres, over which even that fades by e */
+  floor: [0.012, 0.045, 0.08],
+  deep: 2500,
   /** the share of the light at the surface that the water sends back as its own colour */
   body: [0.016, 0.13, 0.3],
   /**
@@ -34,7 +36,7 @@ export const SEA = {
   shelfShare: 0.35,
   shallow: [10, 250],
   day: 2.5,
-  open: 14,
+  open: 16,
 } as const;
 
 const vec3 = (v: readonly number[]) => `vec3(${v.map((x) => x.toFixed(4)).join(', ')})`;
@@ -47,7 +49,7 @@ const vec3 WATER_LIGHT = ${vec3(SEA.light)};
 const vec3 WATER_FLOOR = ${vec3(SEA.floor)};
 const vec3 WATER_BODY = ${vec3(SEA.body)};
 // The share of the daylight at the sea's surface that reaches a height below it, in metres.
-vec3 seaLight(float z) { return max(exp(WATER_LIGHT * min(z, 0.0)), WATER_FLOOR); }
+vec3 seaLight(float z) { return max(exp(WATER_LIGHT * min(z, 0.0)), WATER_FLOOR * exp(min(z, 0.0) / ${SEA.deep.toFixed(1)})); }
 // The water's own light, seen along a direction from a height: what it scatters of the daylight come down to there,
 // brightest looking up and darkest looking down.
 vec3 waterGlow(vec3 dir, float z) {

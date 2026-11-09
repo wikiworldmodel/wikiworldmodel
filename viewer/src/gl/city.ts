@@ -96,7 +96,7 @@ const luminance = (c: ArrayLike<number>) => 0.2126 * c[0] + 0.7152 * c[1] + 0.07
  */
 function underExposure(z: number, lit: V3): number {
   if (z >= 0) return 1;
-  const light = SEA.light.map((k, i) => Math.max(Math.exp(k * z), SEA.floor[i]));
+  const light = SEA.light.map((k, i) => Math.max(Math.exp(k * z), SEA.floor[i] * Math.exp(z / SEA.deep)));
   return Math.max(1, Math.min(SEA.open, SEA.day / Math.max(1e-6, luminance(lit) * luminance(light))));
 }
 

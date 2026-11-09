@@ -1412,8 +1412,8 @@ async function start(root: HTMLElement): Promise<void> {
     const dy = s.at[1] - fy;
     const l = Math.hypot(dx, dy);
     const [ux, uy] = l > 1 ? [dx / l, dy / l] : c.toRiver;
-    // Some five lengths off: near enough to see it through the water.
-    const back = Math.max(3, Math.min(14, 5 * (c.taxonOf(s.id)?.length ?? 2)));
+    // Some five lengths off: near enough to see it through the water, and a small one from as near as the eye may come.
+    const back = Math.max(1, Math.min(14, 5 * (c.taxonOf(s.id)?.length ?? 2)));
     const ex = s.at[0] - ux * back;
     const ey = s.at[1] - uy * back;
     const aim = lookThrough([ex, ey, Math.min(-1, Math.max(mid + 1.2, c.ground.at(ex, ey) + EYE_HEIGHT))], [s.at[0], s.at[1], mid], c.ground);
