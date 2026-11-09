@@ -210,7 +210,18 @@ does, from the tiles it has fetched.
 All of it here, in the session that made it: `npm run typecheck`; `npm test` (480 unit tests); `npm run validate --
 --verbose`, with no errors or warnings over 3,277 entities; a full build with all 36 traditions, and its build tests;
 and the browser tests of this slice, `viewer/test/e2e/landscape.spec.ts`, in software WebGL, as CI draws them.
-BROWSER_GROUPS
+
+The other browser groups were run here too. Of the globe group's 79 tests, 74 passed at first. Three of the failures were
+this slice's: its legend and its section of the panel had taken the people layer's class names, so the people layer's
+tests found two of each; with names of their own, the three pass. The shared link passed when run again alone. The ice
+sheets at the Last Glacial Maximum time out at two minutes on this machine, and do the same with the viewer as it was
+before this slice, on the same build. Of the city group's 32 tests, 27 passed at first. Four failures were this slice's:
+at 640 px wide its new toggle wrapped the toolbar onto a second row, which put the search box over the middle of the
+scene, where those tests click; the toolbar is tighter on narrow screens now, and they pass. The fifth, a record's way
+to go and see where it lived, runs close to its two minutes here with the viewer as it was before this slice and after
+(1.5 and 1.7 minutes), and ran over once. With the fixes, the city group was run again whole, and all 32 passed; so did
+the people layer's three. The city-views group, Rome's views at full quality, was not run here: the terrain's new code
+is skipped in a scene with no people, as Rome's is.
 
 It was also looked at, by an agent, in screenshots that `viewer/test/look-landscape.mts` takes: the globe under
 *Settlement* in 2000 BCE, 1 CE and 1500 CE, and scenes of the Nile delta in 1500 BCE, of Uruk in 3000 BCE, from afar and

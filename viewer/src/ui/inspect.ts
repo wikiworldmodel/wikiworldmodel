@@ -590,7 +590,7 @@ export class InspectPanel {
     const houses = h.tradition
       ? `<p><strong>Houses</strong> are drawn as those of ${esc(h.tradition.label)}: ${esc(h.tradition.dwelling)}.</p>`
       : '<p><strong>Houses</strong> here are generic: no building tradition is recorded for this region and time, so a scene draws a plain house for the way of life and the climate, and says so.</p>';
-    return `<section class="people"><h3>How people lived here, at ${esc(formatTime(p.t, 1e4))} <span class="badge basis-${tier}">${esc(l.tier)}</span></h3>
+    return `<section class="landscape"><h3>How people lived here, at ${esc(formatTime(p.t, 1e4))} <span class="badge basis-${tier}">${esc(l.tier)}</span></h3>
       <p class="big">${esc(PATTERN_WORDS[l.pattern] ?? l.pattern)}</p>
       <p>${esc(h.className)}, in ${esc(h.title.toLowerCase())} at their step ${esc(stepName(p.step))}. ${esc(dense)}</p>
       <p>${esc(l.why)}</p>

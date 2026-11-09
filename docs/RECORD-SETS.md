@@ -424,7 +424,8 @@ person.
   before European contact to future work. The round house's 1500 BCE is the earliest date in a source read, not its start, and its end of 400 CE is
   Ireland's alone.
 - **Competing claims:** the Samoan settlement, dispersed (Davidson, preferred as the later reading) or in villages (the earlier surveys); the Puebloan
-  traditions' starts and ends, Bocinsky et al. (2016) preferred over the encyclopedia's Pecos periods; the four-room house's start; and the Zimbabwe
+  traditions' starts and ends, where Bocinsky et al. (2016) is preferred over the encyclopedia's Pecos periods, and for the planned town over
+  Spielmann et al. (2016); the four-room house's start; and the Zimbabwe
   culture's, at Mapela in the eleventh century (preferred, as dated evidence) or at Mapungubwe on the received view.
 - **What the vocabulary lacks:** a semi-circular wall (the Stony Rises' houses are drawn round), open sides (the Samoan house's are drawn as none),
   thick daga without poles (the Zimbabwe culture's élite houses), stone pillars, and a cave. A size given as floor area is not stored, as the vocabulary

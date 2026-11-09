@@ -343,9 +343,9 @@ async function start(root: HTMLElement): Promise<void> {
   const landscape = ts.files.landscape ? new LandscapeAtlas(build.base, ts.files.landscape, peopleFile) : null;
   const LANDSCAPE_TOGGLE = { key: 'landscape', label: 'Settlement', title: 'How people lived: the anthromes of HYDE, from wildlands to cities' };
   const landscapeOn = () => !!landscape && !!state.layers?.includes(LANDSCAPE_TOGGLE.key);
-  if (landscape) void landscape.load().then(() => (dirty = true));
+  if (landscape) void landscape.loadIndex().then(() => (dirty = true));
   const landscapeLegend = document.createElement('div');
-  landscapeLegend.className = 'people-legend landscape-legend';
+  landscapeLegend.className = 'landscape-legend';
   landscapeLegend.hidden = true;
   let landscapeStep: number | null = null;
   let landscapeLoading = false;

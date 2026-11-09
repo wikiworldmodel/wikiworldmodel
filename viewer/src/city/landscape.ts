@@ -38,6 +38,7 @@ export class LandscapeAtlas {
   traditions: Tradition[] = [];
   cities!: CitiesFile;
   globe?: AnthromeTile;
+  private indexed: Promise<void> | null = null;
   private ready: Promise<void> | null = null;
   private tiles = new Map<string, Promise<AnthromeTile | undefined>>();
   private loaded = new Map<string, AnthromeTile | undefined>();
@@ -45,10 +46,18 @@ export class LandscapeAtlas {
   /** `people` is HYDE's grid of people, once it has come; it is fetched for the scenes if no one has asked for it yet. */
   constructor(private base: string, private file: string, private people: () => Promise<PeopleFile | null>) {}
 
-  /** The index, the assessments, the traditions and the cities: small, and fetched once. */
+  /** The index alone: what a scene is keyed by. A few kilobytes, fetched when the viewer starts. */
+  loadIndex(): Promise<void> {
+    this.indexed ??= getJSON<LandscapeIndex>(this.base + this.file).then((ix) => {
+      this.index = ix;
+    });
+    return this.indexed;
+  }
+
+  /** The index, the assessments, the traditions and the cities, fetched once, when a scene, a click or the globe first wants them. */
   load(): Promise<void> {
     this.ready ??= (async () => {
-      this.index = await getJSON<LandscapeIndex>(this.base + this.file);
+      await this.loadIndex();
       const [a, tr, c] = await Promise.all([getJSON<AssessmentsFile>(this.base + this.index.assessments), getJSON<TraditionsFile>(this.base + this.index.traditions), getJSON<CitiesFile>(this.base + this.index.cities)]);
       this.assessments = a;
       this.traditions = tr.traditions;
@@ -128,11 +137,14 @@ export class LandscapeAtlas {
 
   /**
    * What the people layer of `resolve` asks (core/resolve.ts), as the build answers it: the lifeway at a place from its 5′
-   * cell, and whether a city of the lists stands near. Undefined until the index has come; a place whose tile has not come
-   * yet has no answer, and asking fetches it.
+   * cell, and whether a city of the lists stands near. Undefined until the index, the assessments and the cities have come,
+   * and a place whose tile has not come has no answer: asking fetches what is missing.
    */
   resolver(): ResolveWorld['landscape'] {
-    if (!this.index || !this.assessments) return undefined;
+    if (!this.index || !this.assessments || !this.cities) {
+      void this.load();
+      return undefined;
+    }
     const ix = this.index;
     return {
       span: [ix.steps[0], ix.steps.at(-1)!],
