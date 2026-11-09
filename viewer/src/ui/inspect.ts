@@ -241,8 +241,12 @@ export interface SeriesValue {
 
 /** A number to three significant figures, as people write it. */
 export const fmtValue = (x: number): string => {
-  // Three significant figures however small: a pressure of 0.0000113 bar is not 0.
-  const three = (v: number) => Number(v.toPrecision(3)).toLocaleString('en-US', { maximumFractionDigits: 20 });
+  // Three significant figures however small: a pressure of 0.0000113 bar is not 0. A fraction is written as it is; the
+  // locale's own formatter, which is quick, is kept for the rest, for its thousands.
+  const three = (v: number) => {
+    const r = Number(v.toPrecision(3));
+    return Math.abs(r) < 1 ? String(r) : r.toLocaleString('en-US');
+  };
   const size = Math.abs(x);
   return size >= 1e9 ? `${three(x / 1e9)} billion` : size >= 1e6 ? `${three(x / 1e6)} million` : three(x);
 };
