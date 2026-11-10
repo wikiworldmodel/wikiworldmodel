@@ -1,10 +1,10 @@
 // Pass criteria for the city: a link lands in it and the browser's generated fabric matches the
 // build's within the tolerance of core/fingerprint.ts; the wheel comes down from the globe without a seam; what stands depends on
 // the time shown; a click opens a monument's record, or says a house is the generator's; and deep
-// time lifts the camera off a ground that isn't there yet. The views it is drawn in are checked in
-// city-views.spec.ts.
+// time lifts the camera off a ground that isn't there yet; and on a touch screen, two fingers turn, tilt and come nearer.
+// The views it is drawn in are checked in city-views.spec.ts.
 import { expect, test } from '@playwright/test';
-import { canvasPng, idle, latestBuild, settledUrl } from './helpers.ts';
+import { canvasPng, idle, latestBuild, line, settledUrl, touch } from './helpers.ts';
 
 // The city's passes are slow in software: a smaller picture, drawn the fast way (no shadows,
 // occlusion, bloom or multisampling, coarse meshes only), keeps the behaviour tests short. The
@@ -171,5 +171,32 @@ test.describe('names', () => {
     await page.goto(`/?b=${latestBuild()}&${over(41.8902, 12.4922, 400)}&${FAST}`);
     await idle(page);
     expect(await labelled(page, 'rome/colosseum')).toBe(true);
+  });
+});
+
+test.describe('on a touch screen', () => {
+  test.use({ ...small, hasTouch: true });
+
+  test('two fingers twist the view round, go up together to tilt it, and spread to come nearer', async ({ page }) => {
+    await page.goto(`/?b=${latestBuild()}&${OVERVIEW}&${FAST}`);
+    await idle(page);
+    const cam = async () => (await page.evaluate(() => window.__wikiworldmodel!.state())).cam;
+    const c0 = await cam();
+    // An eighth of a turn, clockwise on the screen, clear of the city's bar: what is under the fingers turns with them, so
+    // the view turns the other way.
+    const round = (side: number) => Array.from({ length: 9 }, (_, i) => [260 + side * 50 * Math.cos((i / 8) * (Math.PI / 4)), 150 + side * 50 * Math.sin((i / 8) * (Math.PI / 4))] as [number, number]);
+    await touch(page, [round(-1), round(1)]);
+    const c1 = await cam();
+    expect((((c0.heading! - c1.heading! + 540) % 360) - 180)).toBeCloseTo(45, 0);
+    expect(c1.tilt).toBe(c0.tilt);
+    // Both up together tilts it towards the horizon, and nothing else.
+    await touch(page, [line([200, 200], [200, 120]), line([320, 200], [320, 120])]);
+    const c2 = await cam();
+    expect(c2.tilt!).toBeGreaterThan(c1.tilt! + 10);
+    expect(c2.heading).toBe(c1.heading);
+    expect(c2.dist).toBe(c1.dist);
+    // Spread apart, they come nearer the ground.
+    await touch(page, [line([240, 150], [160, 150]), line([280, 150], [360, 150])]);
+    expect((await cam()).dist).toBeLessThan(c2.dist);
   });
 });

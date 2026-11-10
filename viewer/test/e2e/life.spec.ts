@@ -11,7 +11,10 @@ import type { SiteInfo, Tileset } from '../../../core/tileset.ts';
 import { FAST_BUDGET } from '../../../world/generators/life/stream.ts';
 import { buildFile, canvasPng, idle, latestBuild, settledUrl } from './helpers.ts';
 
-const small = { viewport: { width: 640, height: 380 } };
+// A short window, which has the time control of a phone on its side: the view is 640 × 226, as these tests were written
+// for. A taller view of the Hell Creek passes the fast budget's cap on what it draws, and what it draws under the cap
+// depends on how it was streamed in, so that two loads of one link may not give the same pixels.
+const small = { viewport: { width: 640, height: 345 } };
 const FAST = 'quality=fast';
 const site = () => buildFile<Tileset>('tileset.json').sites!.find((s) => s.kind === 'life') as SiteInfo;
 const RAD = Math.PI / 180;

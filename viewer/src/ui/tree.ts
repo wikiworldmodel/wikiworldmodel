@@ -36,6 +36,12 @@ export class TreePanel {
   private lit = new Set<number>();
   private litFor: string | null = null;
   private drawKey = '';
+  /** fingers on the rows, where each is up and down them */
+  private fingers = new Map<number, number>();
+  /** what the fingers began from: the scroll, the row height, where they were and how far apart */
+  private held: { scroll: number; rowH: number; y: number; span: number } | null = null;
+  /** the fingers have moved the rows, so their lifting chooses nothing */
+  private slid = false;
   onSelect: (id: string) => void = () => {};
   onClose: () => void = () => {};
 
@@ -62,10 +68,61 @@ export class TreePanel {
       this.clampScroll();
       this.redraw();
     }, { passive: false });
-    this.canvas.addEventListener('pointermove', (e) => this.hoverAt(e.offsetX, e.offsetY));
+    // A finger drags the rows, and two spread them apart or together, as the wheel does; a tap chooses, as a click does.
+    this.canvas.addEventListener('pointerdown', (e) => this.press(e));
+    this.canvas.addEventListener('pointermove', (e) => {
+      if (e.pointerType === 'touch') this.slide(e);
+      else this.hoverAt(e.offsetX, e.offsetY);
+    });
+    this.canvas.addEventListener('pointerup', (e) => this.release(e));
+    this.canvas.addEventListener('pointercancel', (e) => this.release(e));
     this.canvas.addEventListener('pointerleave', () => this.hoverAt(-1, -1));
-    this.canvas.addEventListener('click', (e) => this.clickAt(e.offsetX, e.offsetY));
+    this.canvas.addEventListener('click', (e) => {
+      if (this.slid) this.slid = false;
+      else this.clickAt(e.offsetX, e.offsetY);
+    });
     window.addEventListener('resize', () => this.redraw());
+  }
+
+  private press(e: PointerEvent): void {
+    if (e.pointerType !== 'touch') return;
+    if (e.isPrimary) {
+      this.fingers.clear();
+      this.slid = false;
+    }
+    this.fingers.set(e.pointerId, e.offsetY);
+    this.canvas.setPointerCapture(e.pointerId);
+    this.hold();
+  }
+
+  /** Begin again from where the fingers are now. */
+  private hold(): void {
+    const ys = [...this.fingers.values()];
+    this.held = ys.length ? { scroll: this.scroll, rowH: this.rowH, y: ys.reduce((s, y) => s + y, 0) / ys.length, span: ys.length > 1 ? Math.abs(ys[1] - ys[0]) : 0 } : null;
+  }
+
+  private slide(e: PointerEvent): void {
+    const h = this.held;
+    if (!h || !this.fingers.has(e.pointerId)) return;
+    this.fingers.set(e.pointerId, e.offsetY);
+    const ys = [...this.fingers.values()];
+    const y = ys.reduce((s, v) => s + v, 0) / ys.length;
+    const span = ys.length > 1 ? Math.abs(ys[1] - ys[0]) : 0;
+    // A tap that wavers is still a tap.
+    if (!this.slid && Math.abs(y - h.y) < 8 && Math.abs(span - h.span) < 8) return;
+    this.slid = true;
+    if (span > 0 && h.span > 0) {
+      // The row between the fingers stays between them.
+      const next = Math.max(MIN_ROW, Math.min(ROW * 1.4, (h.rowH * span) / h.span));
+      this.scroll = ((h.scroll + h.y) * next) / h.rowH - y;
+      this.rowH = next;
+    } else this.scroll = h.scroll - (y - h.y);
+    this.clampScroll();
+    this.redraw();
+  }
+
+  private release(e: PointerEvent): void {
+    if (this.fingers.delete(e.pointerId)) this.hold();
   }
 
   setFile(file: TreeFile): void {

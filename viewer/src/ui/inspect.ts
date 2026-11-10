@@ -292,6 +292,9 @@ function checkedTitle(c: ClaimRecord): string {
   return [LEVEL_LABEL[c.level], ...(c.checked ?? []).map((s) => `${s.step} by ${s.by}${s.on ? ` on ${s.on}` : ''}: ${s.how}`)].join('\n');
 }
 
+/** A phone held upright, where the panel is a sheet over the foot of the view (style.css lays it out so). */
+const UPRIGHT = '(max-width: 640px) and (min-height: 501px)';
+
 export class InspectPanel {
   readonly el: HTMLElement;
 
@@ -300,11 +303,41 @@ export class InspectPanel {
     this.el.className = 'inspect';
     this.el.hidden = true;
     this.el.setAttribute('aria-live', 'polite');
+    // As a sheet, a tap on its head makes it as tall as the view or brings it back down, a drag leaves it where it is let
+    // go, and a drag well down closes it.
+    let held: { y: number; h: number; moved: boolean } | null = null;
+    this.el.addEventListener('pointerdown', (e) => {
+      const t = e.target as HTMLElement;
+      if (!matchMedia(UPRIGHT).matches || !t.closest('header') || t.closest('button, a, input, select, label')) return;
+      held = { y: e.clientY, h: this.el.getBoundingClientRect().height, moved: false };
+      t.setPointerCapture(e.pointerId);
+    });
+    this.el.addEventListener('pointermove', (e) => {
+      if (!held) return;
+      const dy = e.clientY - held.y;
+      if (!held.moved && Math.abs(dy) < 6) return;
+      held.moved = true;
+      this.el.style.height = `${Math.max(64, held.h - dy)}px`;
+    });
+    const letGo = () => {
+      if (!held) return;
+      const { h, moved } = held;
+      held = null;
+      const now = this.el.getBoundingClientRect().height;
+      this.el.style.height = '';
+      if (!moved) return void this.el.classList.toggle('full');
+      const room = this.el.parentElement?.clientHeight ?? now;
+      if (now < Math.min(h, room / 2) * 0.6) return this.cb.onClose();
+      this.el.classList.toggle('full', now > room * 0.62);
+    };
+    this.el.addEventListener('pointerup', letGo);
+    this.el.addEventListener('pointercancel', letGo);
   }
 
   hide(): void {
     this.el.hidden = true;
     this.el.innerHTML = '';
+    this.el.classList.remove('full');
   }
 
   private frame(title: string, body: string): void {

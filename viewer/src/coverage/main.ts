@@ -412,7 +412,7 @@ class Page {
       row.append(label, track);
       this.strips.push({ layer, track, canvas });
       track.addEventListener('pointermove', (e) => this.hover({ kind: 'cell', layer, col: this.colAt(track, e.clientX) }, track, e));
-      track.addEventListener('click', (e) => this.select({ kind: 'cell', layer, col: this.colAt(track, e.clientX) }));
+      track.addEventListener('click', (e) => this.select({ kind: 'cell', layer, col: this.colAt(track, e.clientX) }, true));
       track.addEventListener('keydown', (e) => {
         const cur = this.pick?.kind === 'cell' && this.pick.layer === layer ? this.pick.col : this.colOf(fromAge(66e6));
         const step = e.shiftKey ? 10 : 1;
@@ -484,7 +484,7 @@ class Page {
         this.crosshair.hidden = true;
       });
       bar.addEventListener('pointerleave', () => (this.tip.hidden = true));
-      bar.addEventListener('click', () => this.select(b.pick));
+      bar.addEventListener('click', () => this.select(b.pick, true));
       track.append(bar);
     }
     row.append(label, track);
@@ -538,7 +538,7 @@ class Page {
       row.append(label, track);
       this.recordStrips.push({ group: grp.key, track, canvas, counts });
       track.addEventListener('pointermove', (e) => this.hover({ kind: 'records', group: grp.key, col: this.colAt(track, e.clientX) }, track, e));
-      track.addEventListener('click', (e) => this.select({ kind: 'records', group: grp.key, col: this.colAt(track, e.clientX) }));
+      track.addEventListener('click', (e) => this.select({ kind: 'records', group: grp.key, col: this.colAt(track, e.clientX) }, true));
       g.append(row);
     }
     return g;
@@ -678,7 +678,8 @@ class Page {
     this.picked.hidden = false;
   }
 
-  select(p: Pick) {
+  /** Show what was picked. `reveal`: it was clicked, and where the panel is under the chart, as on a phone, it is brought into view. */
+  select(p: Pick, reveal = false) {
     this.pick = p;
     this.redrawPicked();
     const d = this.detail;
@@ -687,6 +688,7 @@ class Page {
     else if (p.kind === 'records') this.recordsDetail(p.group, p.col);
     else if (p.kind === 'source') this.barDetail(p.source.title, `${TIER_LABEL[p.source.tier]}${grainText(p.source) ? ` · ${grainText(p.source)}` : ''}`, p.source.span, p.source.id);
     else this.barDetail(p.title, p.sub, p.span, p.id);
+    if (reveal && d.getBoundingClientRect().top >= this.chart.getBoundingClientRect().bottom) d.scrollIntoView({ block: 'nearest' });
   }
 
   globeLink(t: number, at?: { lat: number; lon: number }, sel?: string): string {

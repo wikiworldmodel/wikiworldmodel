@@ -2,7 +2,7 @@
 // frame at the current time, so a link to a place 250 Ma looks at where that place was.
 import { unitVector, toLatLon } from '../../core/quat.ts';
 import { invert, lookAt, multiply, norm, perspective, sub, transform, type Mat4, type V3 } from './mat.ts';
-import { fovFor } from './city/view.ts';
+import { fovFor, fovY } from './city/view.ts';
 
 export interface CameraState {
   lat: number;
@@ -35,7 +35,8 @@ export class Camera {
     this.tilted = !!(s.tilt || s.heading);
     const lat = Math.max(-89.5, Math.min(89.5, s.lat));
     const near = Math.min(0.02, (s.dist - 1) * 0.4);
-    const fov = s.dist < 1.05 ? fovFor((s.dist - 1) * 6371000) : FOV;
+    // The same as the scene near the ground has (city/view.ts), so that the two meet as one fades into the other.
+    const fov = fovY(s.dist < 1.05 ? fovFor((s.dist - 1) * 6371000) : FOV, width / height);
     if (s.tilt || s.heading) {
       // Looking at a point on the ground, from `dist − 1` away, at a heading and a tilt.
       const n = unitVector(lat, s.lon) as V3;
