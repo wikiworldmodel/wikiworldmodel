@@ -27,8 +27,9 @@ build the world and the viewer, then `npm run build:site` and serve `dist/public
 ## Publishing
 
 The Build workflow (`.github/workflows/build.yml`) publishes the site to Cloudflare Pages,
-project `worldmodelzero`, once the build's checks pass: `master` to production on every push,
-and any other branch to a preview at `<branch>.worldmodelzero.pages.dev` when the workflow is
+project `wikiworldmodel`, once the build's checks pass: `master` to production on every push,
+and any other branch to a preview at `<branch>.worldmodelzero.pages.dev` (the project kept the subdomain it had
+before it was renamed) when the workflow is
 run on it by hand (Actions → Build → Run workflow). `_headers` sets the
 caching: a build's files never change, so they are cached for a year; the index naming the
 latest build is not cached. The build's `ATTRIBUTION.md`, crediting every dataset it reads, is
@@ -47,7 +48,7 @@ Setting it up, once, in Cloudflare and GitHub:
    workflow fails on master, saying why.
 4. **The first deployment.** Push to `master`, or run the Build workflow by hand. The job
    creates the Pages project the first time.
-5. **The domain on the project.** Workers & Pages → worldmodelzero → Custom domains: add
+5. **The domain on the project.** Workers & Pages → wikiworldmodel → Custom domains: add
    `wikiworldmodel.org`, and `www.wikiworldmodel.org` if wanted (a redirect rule can send it to
    the bare domain). Cloudflare adds the DNS records and the certificate.
 6. **The old domain.** The site was first published at `worldmodelzero.com`. Remove it from the
