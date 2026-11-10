@@ -44,7 +44,7 @@ import { CityLabels } from './ui/citylabels.ts';
 import { FeatureTiles } from './features.ts';
 import { fetchLog, getBytes, getJSON, latestBuild, loadBuild, loadRecord, type Build } from './data.ts';
 import { FieldRenderer, type FieldTileGPU } from './gl/field.ts';
-import { globeLook, GlobeRenderer } from './gl/globe.ts';
+import { globeLook, GlobeRenderer, type CloudDrift } from './gl/globe.ts';
 import { add, cross, norm, scale, type V3 } from './mat.ts';
 import { buildOf, DEFAULT_HOUR, fromSearch, HOURS, quantize, toSearch, type ViewState } from './state.ts';
 import { TileManager, type LoadedTile } from './tiles.ts';
@@ -118,6 +118,8 @@ export interface WikiWorldModelHandle {
   organismsAt(id: string): { x: number; y: number; depth: number }[];
   organismPlaces(id: string): { lat: number; lon: number; x: number; y: number }[];
   set(s: Partial<ViewState>): void;
+  /** for a capture: how far the clouds have drifted along their bands, or null to put them back */
+  driftClouds(d: CloudDrift | null): void;
 }
 
 /** Below this the city's scene is drawn, fading in over the globe; and below the lower height the globe is gone. */
@@ -239,6 +241,8 @@ async function start(root: HTMLElement): Promise<void> {
   let cloudSpec: GeneratorConstraint | null = null;
   const clouds = printCheck();
   let cloudsReady = false;
+  /** how far a capture has drifted the clouds, if one has */
+  let cloudDrift: CloudDrift | undefined;
   let surfaceSpec: GeneratorConstraint | null = null;
   const surface = printCheck();
   let surfaceReady = false;
@@ -1059,6 +1063,7 @@ async function start(root: HTMLElement): Promise<void> {
         ice: iceNow ? { mix: iceNow.mix } : undefined,
         people: peopleDrawn,
         anthromes: anthromesDrawn,
+        drift: cloudDrift,
       },
       w,
       h,
@@ -2241,6 +2246,10 @@ async function start(root: HTMLElement): Promise<void> {
       return city.named.filter((x) => x.id === id).map((x) => projectLocal(v, x.at[0], x.at[1], x.base + 1)).filter((p): p is { x: number; y: number; depth: number } => !!p && p.x >= 0 && p.y >= 0 && p.x < stage.clientWidth && p.y < stage.clientHeight);
     },
     set: (s) => setState(s),
+    driftClouds: (d) => {
+      cloudDrift = d ?? undefined;
+      dirty = true;
+    },
   };
   atSite(state.t, state.cam);
   if (state.sel) void showSelection();

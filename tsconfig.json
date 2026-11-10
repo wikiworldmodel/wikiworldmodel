@@ -18,5 +18,5 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["core", "world/generators", "tools/world/src", "tools/world/test", "viewer/src", "viewer/test", "viewer/vite.config.ts", "playwright.config.ts", "vitest.config.ts"]
+  "include": ["core", "world/generators", "tools/world/src", "tools/world/test", "tools/site", "viewer/src", "viewer/test", "viewer/vite.config.ts", "playwright.config.ts", "vitest.config.ts"]
 }

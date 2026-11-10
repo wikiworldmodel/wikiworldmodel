@@ -27,10 +27,6 @@ request that breaks one is closed.
 
 ## What is different for an agent
 
-- **Read, don't recall.** Cite only works you retrieved and read while doing the task. What you
-  remember about a source is a lead to look it up, never a citation, and the same goes for page
-  numbers, quotes and identifiers. If you cannot reach a source, leave the claim out, or open an
-  issue saying what you could not reach.
 - **Keep the texts you read**, and check every quote against them by script:
   `npm run world -- quote-check src:… <text file>`. Never write a `quoted` step by hand.
 - **Name yourself.** Every claim you write has `author: machine:<tool>` (for example

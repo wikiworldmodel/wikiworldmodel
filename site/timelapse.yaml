@@ -1,0 +1,114 @@
+# The landing page's timelapse: the Earth from its molten start to Rome, drawn by the viewer and
+# captured frame by frame (tools/site/timelapse.ts).
+#
+# Every time here is a record's, read from the build: the start or end of an event, of a phase of
+# the planet, of the span a field covers, or the time a city's scene describes. When a date in the
+# world changes, the next render follows it. The numbers written here are seconds of video,
+# cameras, and ages between the beats, where nothing in particular happens.
+fps: 30
+
+# The time shown at so many seconds into the video. In between, time runs along a smooth curve in
+# the logarithm of the age, never backwards.
+#   start: / end:  a record (earth/events/…), a phase of one (space/bodies/earth@oceans), or a field
+#                  (field:…), whose span starts and ends where its coverage does
+#   age:           an age in Ma, where nothing in particular happens
+#   scene:         a site the viewer draws near the ground (a city): the time its scene describes
+#   dissolve:      the picture changes at once here (a phase, a glaciation, another map): hold time
+#                  still for so many seconds, and dissolve from the world just before to just after
+#   skip:          leave out the time from here to the next beat: the one dissolves into the other
+#                  over the seconds between them
+time:
+  - { at: 0.0, age: 4562 }
+  # The Moon-forming impact, as a cut: the planet glows through an atmosphere of rock vapour.
+  - { at: 1.6, start: space/bodies/earth@rock-vapour }
+  - { at: 2.4, end: space/bodies/earth@rock-vapour, dissolve: 0.4 }
+  - { at: 3.4, age: 4537.0 }
+  - { at: 4.8, age: 4535.45 }
+  - { at: 5.2, start: space/bodies/earth@oceans, dissolve: 0.6 }
+  - { at: 6.9, age: 3800 }
+  - { at: 7.6, start: earth/events/makganyene-glaciation, dissolve: 0.3 }
+  - { at: 8.4, end: earth/events/makganyene-glaciation, dissolve: 0.3 }
+  # The oldest map; then over the rest of the Proterozoic, with its other plate model and its later
+  # snowballs, to the first map of land and sea.
+  - { at: 9.6, start: field:earth/continental-blocks-deep, dissolve: 0.5 }
+  - { at: 11.4, end: field:earth/continental-blocks-deep, skip: true }
+  - { at: 12.2, start: field:earth/elevation }
+  - { at: 13.5, end: ics/cambrian }
+  - { at: 14.8, start: ics/permian }
+  - { at: 16.0, end: ics/permian }
+  - { at: 17.4, start: ics/cretaceous }
+  - { at: 18.8, age: 70 }
+  - { at: 19.6, start: earth/events/chicxulub-impact }
+  - { at: 20.4, age: 62 }
+  - { at: 22.1, start: earth/ice-ages/northern-hemisphere-glaciation }
+  - { at: 22.5, end: earth/ice-ages/northern-hemisphere-glaciation }
+  - { at: 23.2, age: 0.08 }
+  - { at: 23.6, start: earth/ice-ages/last-glacial-maximum }
+  - { at: 24.2, end: earth/ice-ages/last-glacial-maximum }
+  # Rome: its state from the founding the Romans dated, through the republic, to the empire; then
+  # down into the city in the year its scene describes, that of Constantine's arch.
+  - { at: 26.0, start: people/polities/rome }
+  - { at: 26.6, start: people/polities/rome@republic }
+  - { at: 27.6, start: people/polities/rome@empire }
+  - { at: 28.5, scene: rome }
+  - { at: 33.0, scene: rome }
+
+# Where the camera is at so many seconds: latitude and longitude over the planet as it was at the
+# time shown, the distance from its centre in Earth radii, and the heading and tilt (h, v), as the
+# viewer's links give them; without them it looks straight down, north up. Near the ground the
+# point is the one looked at. Longitude runs on past ±180, so that a turn goes the way it is
+# written; a heading turns the short way. `arrive:` is the view a site's "Fly down into" button
+# arrives at.
+camera:
+  - { at: 0.0, lat: 10, lon: 60, d: 3.6 }
+  - { at: 5.4, lat: 10, lon: 20, d: 3.3 }
+  - { at: 9.6, lat: 0, lon: -120, d: 3.3 }
+  # Slowly over the skip: the oldest map and Gondwana show well from much the same place.
+  - { at: 11.4, lat: -8, lon: -165, d: 3.3 }
+  - { at: 12.2, lat: -12, lon: -185, d: 3.3 }
+  - { at: 15.4, lat: -32, lon: -325, d: 3.1 }
+  - { at: 17.4, lat: -14, lon: -398, d: 3.0 }
+  - { at: 19.6, lat: 14, lon: -426, d: 3.0 }
+  # The ice sheets of the last glacial maximum, then the Mediterranean.
+  - { at: 23.6, lat: 34, lon: -372, d: 3.0 }
+  - { at: 26.0, lat: 39, lon: -347, d: 2.1 }
+  - { at: 28.5, lat: 41.6, lon: -347.2, d: 1.42 }
+  # Down into Rome. On the way down the city's scene takes over from the globe, and its sea does not
+  # meet the globe's cleanly yet, so the camera looks at the hills inland of the city, with the coast
+  # off the frame, and comes round to the city only once it is low.
+  - { at: 29.2, lat: 42.2, lon: -347.0, d: 1.17 }
+  - { at: 29.9, lat: 42.28, lon: -346.99, d: 1.07 }
+  - { at: 30.4, lat: 42.18, lon: -347.13, d: 1.025, h: 355, v: 3 }
+  - { at: 30.9, lat: 41.99, lon: -347.36, d: 1.0095, h: 345, v: 12 }
+  - { at: 31.6, lat: 41.915, lon: -347.47, d: 1.0025, h: 322, v: 38 }
+  - { at: 32.6, arrive: rome }
+  - { at: 33.0, arrive: rome }
+
+# The clouds are made up (gen:earth/clouds), so they drift along their bands, by so many degrees
+# a second: west in the tropics and east beyond them, the one giving way to the other between these
+# latitudes. This shows that weather passes without claiming any. At the last frame they are where
+# the viewer has them, since the viewer itself leaves them still.
+clouds: { tropics: -2.5, beyond: 2.5, between: [16, 32] }
+
+# The hour the city is lit by: early evening, the sun low over the Tiber.
+hour: 18
+
+# What is said over the video, from and to so many seconds: a record's label (for a field, its
+# title and its source), and a note in our own words if wanted. The age of the time shown goes
+# with it. The capture warns of a caption shown more than half a second before its record's span
+# begins or after it ends.
+captions:
+  - { from: 0.2, to: 1.5, label: space/bodies/earth@proto-earth }
+  - { from: 1.6, to: 2.7, label: earth/events/moon-forming-impact }
+  - { from: 2.8, to: 5.1, label: space/bodies/earth@magma-ocean }
+  - { from: 5.8, to: 7.5, label: space/bodies/earth@oceans, note: "no map of the land survives, so the land drawn is a stand-in" }
+  - { from: 7.6, to: 8.7, label: earth/events/makganyene-glaciation }
+  - { from: 9.6, to: 11.3, label: field:earth/continental-blocks-deep, note: "the oldest map here" }
+  - { from: 12.2, to: 13.5, label: ics/cambrian }
+  - { from: 14.8, to: 16.0, label: ics/permian }
+  - { from: 17.4, to: 19.0, label: ics/cretaceous }
+  - { from: 19.2, to: 20.4, label: earth/events/chicxulub-impact }
+  - { from: 21.9, to: 22.8, label: earth/ice-ages/northern-hemisphere-glaciation }
+  - { from: 23.6, to: 24.3, label: earth/ice-ages/last-glacial-maximum }
+  - { from: 26.2, to: 28.5, label: people/polities/rome, note: "its territory as the Cliopatria borders give it" }
+  - { from: 31.0, to: 33.0, label: places/rome, note: "its monuments as recorded, its houses generated" }

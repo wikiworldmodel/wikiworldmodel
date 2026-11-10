@@ -61,8 +61,6 @@ These are not style preferences. A pull request that breaks one is closed.
    stay short (the schema caps them at 400 characters); never copy a text wholesale.
 7. **Ids are stable and mean nothing.** Never rename an id or reuse one. No tool reads meaning
    into an id, and neither should you; moving a file never changes its id.
-8. **Small, scoped, green.** One topic or area per pull request, with every check passing.
-   Don't reformat files you aren't changing.
 
 ## Setting up
 
@@ -222,15 +220,3 @@ A contribution is made under the license of what it changes:
 Quotes inside records stay under their works' terms: they are short quotations used as evidence.
 Datasets keep their own licenses, and only CC0, CC BY and public-domain data may come in (rule 6).
 What the build reads, and whom it credits, is in [ATTRIBUTION.md](ATTRIBUTION.md).
-
-## Don't
-
-- Don't cite a source you haven't read, or a page number you didn't see.
-- Don't paraphrase a quote; copy it.
-- Don't record a check you did not make.
-- Don't mark anything `accepted`, or change a claim's rank without saying why.
-- Don't store a date, position or geometry the build can derive.
-- Don't import share-alike, non-commercial or unlicensed data.
-- Don't add a vocabulary term when an existing one fits.
-- Don't open a pull request that changes hundreds of records at once without agreeing it in an
-  issue first.

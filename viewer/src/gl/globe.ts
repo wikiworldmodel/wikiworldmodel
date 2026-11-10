@@ -109,6 +109,19 @@ float smoothElev(vec3 n, vec3 t1, vec3 t2, float h) {
   return s / 16.0;
 }
 
+// The same, of each keyframe on its own.
+vec2 smoothKeys(vec3 n, vec3 t1, vec3 t2, float h) {
+  vec2 s = 4.0 * texture(uField, n).rg;
+  s += 2.0 * (texture(uField, normalize(n + t1 * h)).rg + texture(uField, normalize(n - t1 * h)).rg + texture(uField, normalize(n + t2 * h)).rg + texture(uField, normalize(n - t2 * h)).rg);
+  s += texture(uField, normalize(n + (t1 + t2) * h)).rg + texture(uField, normalize(n + (t1 - t2) * h)).rg + texture(uField, normalize(n - (t1 - t2) * h)).rg + texture(uField, normalize(n - (t1 + t2) * h)).rg;
+  return s / 16.0;
+}
+
+// The coastline at an isoline, about one pixel wide, from how far a spot is from it and how fast that changes.
+float coastLine(float e, float de) {
+  return 1.0 - smoothstep(0.5, 1.5, abs(e) / de);
+}
+
 vec3 ramp(float e) {
   if (e < 0.0) {
     float d = clamp(-e / 6500.0, 0.0, 1.0);
@@ -339,7 +352,18 @@ void main() {
   vec3 ref = abs(n.z) < 0.99 ? vec3(0.0, 0.0, 1.0) : vec3(1.0, 0.0, 0.0);
   vec3 t1 = normalize(cross(ref, n));
   vec3 t2 = cross(n, t1);
-  float e = smoothElev(n, t1, t2, uSmooth) - uCoast;
+  // Blocks are flat, inside a block or not, so a blend of two keyframes' values has no coast to
+  // find: a block in one keyframe and not the other would cross the isoline everywhere at once, and
+  // be drawn as all coastline. Between keyframes, the one's blocks dissolve into the other's instead.
+  vec2 k = vec2(0.0);
+  float e;
+  if (uMode == 1) {
+    k = smoothKeys(n, t1, t2, uSmooth) - uCoast;
+    e = mix(k.x, k.y, uMix);
+  } else {
+    e = smoothElev(n, t1, t2, uSmooth) - uCoast;
+  }
+  vec2 dk = max(fwidth(k), vec2(1.0));
   float h = uTexel;
   float ex = elev(normalize(n + t1 * h)) - elev(normalize(n - t1 * h));
   float ey = elev(normalize(n + t2 * h)) - elev(normalize(n - t2 * h));
@@ -347,7 +371,7 @@ void main() {
   vec3 grad = (t1 * ex + t2 * ey) / (2.0 * h * 6371000.0) * exaggeration;
   vec3 bump = normalize(n - grad);
   float diffuse = max(dot(bump, uSun), 0.0);
-  vec3 base = uMode == 1 ? blockRamp(e) : ramp(e);
+  vec3 base = uMode == 1 ? mix(blockRamp(k.x), blockRamp(k.y), uMix) : ramp(e);
   if (uMode == 0 && uClimateOn > 0.5) {
     // Close up the cover's texture is finer: from a third of an Earth radius above the ground.
     float reach = smoothstep(1.9, 1.25, length(uEye));
@@ -360,15 +384,17 @@ void main() {
     }
   }
   vec3 c = base * (0.22 + 0.85 * diffuse);
-  if (e < 0.0) {
+  float sea = uMode == 1 ? mix(float(k.x < 0.0), float(k.y < 0.0), uMix) : float(e < 0.0);
+  if (sea > 0.0) {
     float spec = pow(max(dot(reflect(-uSun, n), view), 0.0), 60.0);
-    c += vec3(0.55, 0.65, 0.75) * spec * 0.35;
+    c += vec3(0.55, 0.65, 0.75) * spec * 0.35 * sea;
   }
   // Ice: sheets over the land, sea ice over the water, their pattern procedural.
   float de = max(fwidth(e), 1.0);
   float ice = iceCover(n, p);
   if (ice > 0.0) {
-    vec3 sheet = mix(vec3(0.80, 0.87, 0.93) * (0.86 + 0.24 * p.a), vec3(0.93, 0.95, 0.97), smoothstep(-0.5, 0.5, e / de));
+    float ground = uMode == 1 ? mix(smoothstep(-0.5, 0.5, k.x / dk.x), smoothstep(-0.5, 0.5, k.y / dk.y), uMix) : smoothstep(-0.5, 0.5, e / de);
+    vec3 sheet = mix(vec3(0.80, 0.87, 0.93) * (0.86 + 0.24 * p.a), vec3(0.93, 0.95, 0.97), ground);
     c = mix(c, sheet * (0.35 + 0.75 * diffuse), ice);
   }
   // The ice sheets of a field: their edge between the keyframes is where the distance to it, moved
@@ -391,7 +417,7 @@ void main() {
     }
   }
   // Coastline: the sea-level isoline, about one pixel wide; fainter under ice.
-  float line = 1.0 - smoothstep(0.5, 1.5, abs(e) / de);
+  float line = uMode == 1 ? mix(coastLine(k.x, dk.x), coastLine(k.y, dk.y), uMix) : coastLine(e, de);
   if (uPeopleOn > 0.5) c = people(c, n, smoothstep(0.5, 1.5, e / de));
   if (uAnthromesOn > 0.5) c = anthromes(c, n, smoothstep(0.5, 1.5, e / de));
   if (uTerritoryOn > 0.5) c = territory(c, n, smoothstep(0.5, 1.5, e / de), diffuse);
@@ -413,6 +439,9 @@ uniform float uOpacity;
 uniform float uBase;
 uniform vec3 uTint;
 uniform vec3 uGlow;
+// How far the clouds have drifted east along their bands, in radians: in the tropics, beyond them,
+// and the latitudes between which the one gives way to the other (GlobeFrame's drift).
+uniform vec4 uDrift;
 in vec3 vN;
 out vec4 o;
 void main() {
@@ -420,7 +449,13 @@ void main() {
   float lon = atan(n.y, n.x);
   float lat = asin(clamp(n.z, -1.0, 1.0));
   vec2 uv = vec2(lon / 6.28318530718 + 0.5, 0.5 - lat / 3.14159265359);
-  float d = textureGrad(uClouds, uv, vec2(0.0), vec2(0.0)).r;
+  float d = textureGrad(uClouds, uv + vec2(uDrift.x / 6.28318530718, 0.0), vec2(0.0), vec2(0.0)).r;
+  // Each band drifts as a whole, and between them the one's clouds give way to the other's: a drift
+  // that varied smoothly with latitude would shear them, more the longer it ran, into streaks.
+  if (uDrift.y != uDrift.x) {
+    float beyond = textureGrad(uClouds, uv + vec2(uDrift.y / 6.28318530718, 0.0), vec2(0.0), vec2(0.0)).r;
+    d = mix(d, beyond, smoothstep(uDrift.z, uDrift.w, abs(lat)));
+  }
   float light = 0.35 + 0.75 * max(dot(n, uSun), 0.0);
   // Lit from above, and from below by anything glowing under the clouds.
   vec3 c = uTint * light + uGlow * max(1.0 - light, 0.0);
@@ -587,6 +622,20 @@ export interface GlobeFrame {
   people?: boolean;
   /** the human landscape's classes are drawn */
   anthromes?: boolean;
+  /** how far the clouds have drifted along their bands; none unless a capture asks */
+  drift?: CloudDrift;
+}
+
+/**
+ * How far the clouds have drifted east along their bands, in degrees: in the tropics, beyond them,
+ * and the latitudes between which the one gives way to the other. The weather is made up, like the
+ * clouds themselves (gen:earth/clouds), so the viewer leaves them where the generator put them;
+ * a capture moves them, to show that weather passes (tools/site/timelapse.ts).
+ */
+export interface CloudDrift {
+  tropics: number;
+  beyond: number;
+  between: [number, number];
 }
 
 export class GlobeRenderer {
@@ -809,7 +858,10 @@ export class GlobeRenderer {
       gl.bindTexture(gl.TEXTURE_2D, this.cloudTex);
       setUniforms(gl, this.clouds, { uClouds: 0 }, ['uClouds']);
       const thin = f.people ? 0.3 : 1;
-      setUniforms(gl, this.clouds, { uViewProj: f.viewProj, uRadius: 1.008, uSun: f.sun, uEye: f.eye, uEvidence: f.evidence, uOpacity: look.clouds.opacity * thin, uBase: look.clouds.base * thin, uTint: look.clouds.tint, uGlow: look.clouds.glow });
+      const d = f.drift;
+      const rad = Math.PI / 180;
+      const drift = d ? [d.tropics * rad, d.beyond * rad, d.between[0] * rad, d.between[1] * rad] : [0, 0, 0, 1];
+      setUniforms(gl, this.clouds, { uViewProj: f.viewProj, uRadius: 1.008, uSun: f.sun, uEye: f.eye, uEvidence: f.evidence, uOpacity: look.clouds.opacity * thin, uBase: look.clouds.base * thin, uTint: look.clouds.tint, uGlow: look.clouds.glow, uDrift: drift });
       gl.drawElements(gl.TRIANGLES, this.count, gl.UNSIGNED_INT, 0);
       gl.depthMask(true);
       gl.disable(gl.BLEND);
