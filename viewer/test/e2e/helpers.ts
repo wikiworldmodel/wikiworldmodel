@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import type { Page } from '@playwright/test';
+import { test, type Page } from '@playwright/test';
 
 const REPO = join(import.meta.dirname, '../../..');
 
@@ -9,8 +9,12 @@ export function latestBuild(): string {
   return JSON.parse(readFileSync(join(REPO, 'dist/builds/index.json'), 'utf8')).latest;
 }
 
-/** How long one wait for the view to settle may take before it says what it is still waiting on. */
-const IDLE_MS = 100_000;
+/**
+ * How long one wait for the view to settle may take before it says what it is still waiting on: as
+ * long as the test may run, less a margin to say it in. A test that needs longer for its view, such
+ * as a full-quality city in software, says so with its own timeout, and its waits follow.
+ */
+const idleMs = (): number => Math.max(10_000, (test.info().timeout || 120_000) - 10_000);
 
 /** Wait until the viewer has loaded what the view needs and drawn it, twice in a row. */
 export async function idle(page: Page): Promise<void> {
@@ -20,11 +24,12 @@ export async function idle(page: Page): Promise<void> {
 }
 
 async function settle(page: Page): Promise<void> {
+  const ms = idleMs();
   try {
-    await page.waitForFunction(() => window.__wikiworldmodel?.idle(), null, { polling: 100, timeout: IDLE_MS });
+    await page.waitForFunction(() => window.__wikiworldmodel?.idle(), null, { polling: 100, timeout: ms });
   } catch (e) {
     const waiting = await page.evaluate(() => window.__wikiworldmodel?.waiting() ?? ['the page']).catch(() => ['the page']);
-    throw new Error(`the view did not settle in ${IDLE_MS / 1000} s: still waiting on ${waiting.join(', ')}`, { cause: e });
+    throw new Error(`the view did not settle in ${Math.round(ms / 1000)} s: still waiting on ${waiting.join(', ')}`, { cause: e });
   }
 }
 
@@ -40,17 +45,21 @@ export async function settledUrl(page: Page): Promise<string> {
   return page.url();
 }
 
-/** Visible markers and their screen positions, rounded to whole pixels. */
+/**
+ * Visible markers and their screen positions, rounded to whole pixels, in the order of their ids. The
+ * markers' elements are in the order their tiles arrived, which is not the same from one run to the next.
+ */
 export async function markerPositions(page: Page): Promise<Record<string, [number, number]>> {
-  return page.evaluate(() => {
-    const out: Record<string, [number, number]> = {};
+  const found = await page.evaluate(() => {
+    const out: [string, [number, number]][] = [];
     for (const el of document.querySelectorAll<HTMLElement>('.marker')) {
       if (el.style.display === 'none') continue;
       const m = /translate\(([-\d.]+)px, ([-\d.]+)px\)/.exec(el.style.transform);
-      if (m) out[el.dataset.entity!] = [Math.round(Number(m[1])), Math.round(Number(m[2]))];
+      if (m) out.push([el.dataset.entity!, [Math.round(Number(m[1])), Math.round(Number(m[2]))]]);
     }
     return out;
   });
+  return Object.fromEntries(found.sort(([a], [b]) => (a < b ? -1 : a > b ? 1 : 0)));
 }
 
 /** A file of the latest world build, parsed. */

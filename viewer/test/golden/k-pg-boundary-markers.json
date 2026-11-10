@@ -1,7 +1,15 @@
 {
- "life/occurrences/forest-strathcona-fiord": [
-  743,
-  -125
+ "earth/events/chicxulub-impact": [
+  588,
+  173
+ ],
+ "earth/lips/central-atlantic-magmatic-province": [
+  1039,
+  359
+ ],
+ "earth/structures/chicxulub-crater": [
+  588,
+  190
  ],
  "life/hell-creek/ecosystem": [
   551,
@@ -11,16 +19,8 @@
   1045,
   162
  ],
- "earth/events/chicxulub-impact": [
-  588,
-  173
- ],
- "earth/structures/chicxulub-crater": [
-  588,
-  190
- ],
- "earth/lips/central-atlantic-magmatic-province": [
-  1039,
-  359
+ "life/occurrences/forest-strathcona-fiord": [
+  743,
+  -125
  ]
 }

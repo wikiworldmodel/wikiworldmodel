@@ -4,8 +4,9 @@ import { defineConfig } from '@playwright/test';
 // machine's GPU; goldens are shared across platforms.
 export default defineConfig({
   testDir: 'viewer/test/e2e',
-  // Software rendering is slow but not this slow: fail fast rather than hang CI.
-  timeout: 120_000,
+  // Software rendering is slow, and slowest on CI's runners, where views that settle in under a
+  // minute on a laptop have taken two: give them room, but fail rather than hang CI.
+  timeout: 300_000,
   globalTimeout: 15 * 60_000,
   expect: { timeout: 45_000 },
   fullyParallel: false,
