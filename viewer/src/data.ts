@@ -1,7 +1,8 @@
 // Loading a build: its index files, and records on demand. Every URL is under the build's
-// own directory, so a link that names a build keeps showing that build.
+// own directory, so a link that names a build keeps showing that build. The builds' directories
+// are where the index of builds says: beside it, or in the object storage the public site uses.
 import type { PlanetFile } from '../../core/planet.ts';
-import type { BuildIndex, EntityRecord, PeriodsFile, SearchFile, SeriesFile } from '../../core/records.ts';
+import { buildStore, type BuildIndex, type EntityRecord, type PeriodsFile, type SearchFile, type SeriesFile } from '../../core/records.ts';
 import { PlateModels, RotationModel } from '../../core/rotation-model.ts';
 import { PRESENT_YEAR } from '../../core/time.ts';
 import type { AtlasIndex, SeaIndex } from '../../core/atlas.ts';
@@ -45,12 +46,16 @@ export async function getBytes(url: string): Promise<ArrayBuffer> {
   return res.arrayBuffer();
 }
 
-export async function latestBuild(root: string): Promise<string> {
-  return (await getJSON<BuildIndex>(`${root}builds/index.json`)).latest;
+/** The builds of a viewer at `root` (an absolute URL ending in a slash): the latest's id, and the directory they are in. */
+export async function builds(root: string): Promise<{ latest: string; store: string }> {
+  const url = new URL('builds/index.json', root).href;
+  const index = await getJSON<BuildIndex>(url);
+  return { latest: index.latest, store: buildStore(index, url) };
 }
 
-export async function loadBuild(root: string, id: string): Promise<Build> {
-  const base = `${root}builds/${id}/`;
+/** A build from `store`, the directory the builds are in. */
+export async function loadBuild(store: string, id: string): Promise<Build> {
+  const base = `${store}${id}/`;
   const tileset = await getJSON<Tileset>(`${base}tileset.json`);
   const [frames, periods, search, series, planet, features, atlas, sea] = await Promise.all([
     getJSON<FramesFile>(base + tileset.files.frames),

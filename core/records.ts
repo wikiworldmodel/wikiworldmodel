@@ -265,4 +265,16 @@ export interface OverlaysFile {
 export interface BuildIndex {
   latest: string;
   builds: { id: string; commit: string; dirty: boolean }[];
+  /**
+   * Where the builds' directories are, when not beside the index: a URL, absolute or relative to the
+   * index. The public site keeps its builds in object storage, apart from the viewer, so a build stays
+   * at its address after the next one is published.
+   */
+  store?: string;
+}
+
+/** The URL of the directory that holds the builds of an index read from `indexUrl`, ending in a slash. */
+export function buildStore(index: Pick<BuildIndex, 'store'>, indexUrl: string): string {
+  const store = new URL(index.store ?? './', indexUrl).href;
+  return store.endsWith('/') ? store : `${store}/`;
 }

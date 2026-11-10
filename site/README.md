@@ -30,10 +30,17 @@ The Build workflow (`.github/workflows/build.yml`) publishes the site to Cloudfl
 project `wikiworldmodel`, once the build's checks pass: `master` to production on every push,
 and any other branch to a preview at `<branch>.worldmodelzero.pages.dev` (the project kept the subdomain it had
 before it was renamed) when the workflow is
-run on it by hand (Actions → Build → Run workflow). `_headers` sets the
-caching: a build's files never change, so they are cached for a year; the index naming the
-latest build is not cached. The build's `ATTRIBUTION.md`, crediting every dataset it reads, is
-served at `/ATTRIBUTION.md`.
+run on it by hand (Actions → Build → Run workflow). The build's `ATTRIBUTION.md`, crediting
+every dataset it reads, is served at `/ATTRIBUTION.md`.
+
+The builds are not in the Pages deployment: each is put into the R2 bucket `wikiworldmodel-builds`
+under its id (`tools/world/publish-build.sh`), and served from it at
+`https://builds.wikiworldmodel.org/<id>/`. A build's id is its content, so it is put once, never
+changed and never deleted, and a link that names a build keeps working after the next is
+published. Its files are cached for a year. The site's `/world/builds/index.json` names the latest
+build and the store (`store` in the index); it is not cached. A build in R2 has no limit of 25 MiB a
+file or 20,000 files a deployment, which Pages has. Before it publishes the site, the workflow checks
+that the store serves the build, so the site never points at a build that is not there.
 
 Setting it up, once, in Cloudflare and GitHub:
 
@@ -41,7 +48,10 @@ Setting it up, once, in Cloudflare and GitHub:
    is already a zone in the account. If not, add it as a site (Websites → Add a domain, Free
    plan) and set the nameservers Cloudflare gives at the registrar.
 2. **An API token.** My Profile → API Tokens → Create Token → Custom token, with the account
-   permission *Cloudflare Pages: Edit*. Note the account ID too (on the account's home page).
+   permissions *Cloudflare Pages: Edit* and *Workers R2 Storage: Edit*. Note the account ID too
+   (on the account's home page). The workflow reaches R2 through its S3 API with this token: the
+   token's id is the access key and the SHA-256 of its value the secret, so no other secret is
+   needed.
 3. **The secrets.** In GitHub, Settings → Secrets and variables → Actions: add
    `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as *repository* secrets (not environment,
    Codespaces or Dependabot secrets, which this workflow cannot see). Without them the Build
@@ -51,7 +61,12 @@ Setting it up, once, in Cloudflare and GitHub:
 5. **The domain on the project.** Workers & Pages → wikiworldmodel → Custom domains: add
    `wikiworldmodel.org`, and `www.wikiworldmodel.org` if wanted (a redirect rule can send it to
    the bare domain). Cloudflare adds the DNS records and the certificate.
-6. **The old domain.** The site was first published at `worldmodelzero.com`. Remove it from the
+6. **The builds' bucket.** R2 → Create bucket `wikiworldmodel-builds`; in its settings, add the
+   custom domain `builds.wikiworldmodel.org`, and a CORS policy that allows `GET` and `HEAD` from
+   any origin (`*`), since the viewer reads the builds from wikiworldmodel.org and anyone may read
+   them from elsewhere. With wrangler: `wrangler r2 bucket create`, `wrangler r2 bucket domain
+   add … --zone-id <the zone's id>`, `wrangler r2 bucket cors set`.
+7. **The old domain.** The site was first published at `worldmodelzero.com`. Remove it from the
    project's custom domains and add a redirect rule on its zone (Rules → Redirect Rules) sending
    every path to `https://wikiworldmodel.org` with the path and query kept, so old links still
    arrive.

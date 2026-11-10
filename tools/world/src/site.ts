@@ -1,8 +1,11 @@
 // The public site, put together for Cloudflare Pages: the landing page (site/) at /, the viewer
-// (dist/site) at /world/, and the latest world build at /world/builds/, where the viewer looks for
-// it, with the build's ATTRIBUTION.md at /ATTRIBUTION.md. Pages refuses a deployment with a file over 25 MiB or more than 20,000 files, so both are
-// checked here, where the error can say which file.
-import { cpSync, existsSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
+// (dist/site) at /world/, the index of builds at /world/builds/index.json, where the viewer looks for
+// it, and the latest build's ATTRIBUTION.md at /ATTRIBUTION.md. The builds themselves are in object
+// storage (a store), each put there once and kept, so a link that names a build keeps working after
+// the next is published; the index says where. Without a store, the latest build goes beside the
+// index, as it does locally. Pages refuses a deployment with a file over 25 MiB or more than 20,000
+// files, so both are checked here, where the error can say which file.
+import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative } from 'node:path';
 
 export const PAGES_MAX_FILE = 25 * 1024 * 1024;
@@ -11,6 +14,7 @@ export const PAGES_MAX_FILES = 20_000;
 interface BuildIndex {
   latest: string;
   builds: { id: string }[];
+  store?: string;
 }
 
 export interface SiteOptions {
@@ -22,9 +26,11 @@ export interface SiteOptions {
   builds: string;
   /** Where to write the site; emptied first. */
   out: string;
+  /** The URL of the directory in object storage that holds the builds, if they are kept there. */
+  store?: string;
 }
 
-export function assembleSite({ landing, viewer, builds, out }: SiteOptions): { build: string; files: number; bytes: number } {
+export function assembleSite({ landing, viewer, builds, out, store }: SiteOptions): { build: string; files: number; bytes: number } {
   const index = JSON.parse(readFileSync(join(builds, 'index.json'), 'utf8')) as BuildIndex;
   const build = index.latest;
   const entry = index.builds.find((b) => b.id === build);
@@ -33,13 +39,18 @@ export function assembleSite({ landing, viewer, builds, out }: SiteOptions): { b
   rmSync(out, { recursive: true, force: true });
   cpSync(landing, out, { recursive: true, filter: (p) => relative(landing, p) !== 'README.md' });
   cpSync(viewer, join(out, 'world'), { recursive: true });
-  cpSync(join(builds, build), join(out, 'world/builds', build), { recursive: true });
+  if (store) {
+    if (!/^https:\/\/.+\/$/.test(store)) throw new Error(`a store is an https URL ending in a slash, not ${store}`);
+    mkdirSync(join(out, 'world/builds'), { recursive: true });
+  } else cpSync(join(builds, build), join(out, 'world/builds', build), { recursive: true });
   // The site shows the build's data, so it carries the build's credits.
   const attribution = join(builds, build, 'ATTRIBUTION.md');
   if (!existsSync(attribution)) throw new Error(`build ${build} has no ATTRIBUTION.md: build the world again`);
   cpSync(attribution, join(out, 'ATTRIBUTION.md'));
-  // Only the latest build is published, so the index lists only it.
-  writeFileSync(join(out, 'world/builds/index.json'), JSON.stringify({ builds: [entry], latest: build }, null, 1) + '\n');
+  // The index lists the latest build only: it is the one this site puts out, and the one in the store
+  // that this deployment's viewer is known to read.
+  const published: BuildIndex = { builds: [entry], latest: build, ...(store ? { store } : {}) };
+  writeFileSync(join(out, 'world/builds/index.json'), JSON.stringify(published, null, 1) + '\n');
 
   let files = 0;
   let bytes = 0;

@@ -42,7 +42,7 @@ import { autoTilt, EYE_HEIGHT, groundHit, localView, lookThrough, projectLocal, 
 import { SEA } from './gl/cityShaders.ts';
 import { CityLabels } from './ui/citylabels.ts';
 import { FeatureTiles } from './features.ts';
-import { fetchLog, getBytes, getJSON, latestBuild, loadBuild, loadRecord, type Build } from './data.ts';
+import { builds, fetchLog, getBytes, getJSON, loadBuild, loadRecord, type Build } from './data.ts';
 import { FieldRenderer, type FieldTileGPU } from './gl/field.ts';
 import { globeLook, GlobeRenderer, type CloudDrift } from './gl/globe.ts';
 import { add, cross, norm, scale, type V3 } from './mat.ts';
@@ -184,9 +184,10 @@ function fail(root: HTMLElement, message: string): void {
 
 async function start(root: HTMLElement): Promise<void> {
   const linked = buildOf(location.search);
-  const newest = await latestBuild(ROOT).catch(() => linked ?? '');
+  // Without the index, a linked build is looked for where builds are when nothing says otherwise.
+  const { latest: newest, store } = await builds(ROOT).catch(() => ({ latest: linked ?? '', store: `${ROOT}builds/` }));
   const buildId = linked ?? newest;
-  const build: Build = await loadBuild(ROOT, buildId);
+  const build: Build = await loadBuild(store, buildId);
   const ts = build.tileset;
   const dataRange: [number, number] = ts.timeRange;
   // The time control reaches a little past the data at each end, so the data's edges show.
