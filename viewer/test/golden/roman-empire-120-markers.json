@@ -1,43 +1,51 @@
 {
+ "earth/lips/central-atlantic-magmatic-province": [
+  307,
+  551
+ ],
+ "earth/lips/deccan-traps": [
+  1104,
+  355
+ ],
  "earth/lips/siberian-traps": [
   843,
   -102
- ],
- "people/domestication/dog": [
-  926,
-  -78
- ],
- "people/domestication/horse": [
-  852,
-  139
  ],
  "earth/orogens/himalaya": [
   1108,
   204
  ],
- "people/events/augustus-named": [
-  586,
-  250
+ "people/developments/writing-mesopotamia": [
+  922,
+  343
  ],
- "people/rulers/hadrian": [
-  586,
-  267
+ "people/domestication/barley": [
+  835,
+  359
  ],
- "places/rome": [
-  586,
-  284
+ "people/domestication/cattle": [
+  844,
+  335
  ],
- "people/objects/flaminian-obelisk": [
-  586,
-  301
+ "people/domestication/dog": [
+  926,
+  -78
  ],
- "people/rulers/antoninus-pius": [
-  588,
-  304
+ "people/domestication/einkorn": [
+  855,
+  315
  ],
- "places/constantinople": [
-  748,
-  257
+ "people/domestication/emmer": [
+  835,
+  384
+ ],
+ "people/domestication/goat": [
+  929,
+  302
+ ],
+ "people/domestication/horse": [
+  852,
+  139
  ],
  "people/domestication/pig-near-east": [
   853,
@@ -47,93 +55,41 @@
   853,
   292
  ],
- "people/domestication/einkorn": [
-  855,
-  315
+ "people/domestication/sorghum": [
+  852,
+  549
  ],
- "people/objects/pergamon-altar": [
-  733,
-  284
- ],
- "people/domestication/cattle": [
-  844,
-  335
- ],
- "people/writing/greek-alphabet": [
-  699,
-  302
- ],
- "people/objects/parthenon-sculptures": [
-  699,
-  319
- ],
- "people/domestication/goat": [
-  929,
-  302
- ],
- "people/trade/palmyra-tariff": [
-  849,
-  358
- ],
- "people/trade/palmyrene-caravan-trade": [
-  849,
-  375
- ],
- "people/objects/code-of-hammurabi": [
-  941,
-  324
- ],
- "people/objects/stele-of-naram-sin": [
-  941,
-  341
- ],
- "people/writing/phoenician-alphabet": [
-  825,
-  335
- ],
- "people/domestication/barley": [
-  835,
-  359
- ],
- "people/developments/writing-mesopotamia": [
-  922,
-  343
- ],
- "people/first-cities/uruk": [
-  922,
-  360
- ],
- "people/domestication/emmer": [
-  835,
-  384
- ],
- "earth/lips/deccan-traps": [
-  1104,
-  355
- ],
- "people/objects/cleopatras-needle-new-york": [
-  771,
-  383
- ],
- "people/objects/rosetta-stone": [
-  781,
-  401
+ "people/events/augustus-named": [
+  586,
+  250
  ],
  "people/first-cities/memphis": [
   787,
   414
  ],
- "people/writing/proto-sinaitic": [
-  811,
-  403
+ "people/first-cities/meroe": [
+  823,
+  542
+ ],
+ "people/first-cities/uruk": [
+  922,
+  360
  ],
  "people/objects/bust-of-nefertiti": [
   786,
   442
  ],
- "people/writing/egyptian-hieroglyphs": [
-  798,
-  458
+ "people/objects/cleopatras-needle-new-york": [
+  771,
+  383
+ ],
+ "people/objects/code-of-hammurabi": [
+  941,
+  324
+ ],
+ "people/objects/flaminian-obelisk": [
+  586,
+  301
  ],
  "people/objects/lateran-obelisk": [
   807,
@@ -143,16 +99,60 @@
   806,
   480
  ],
- "people/first-cities/meroe": [
-  823,
-  542
+ "people/objects/parthenon-sculptures": [
+  699,
+  319
  ],
- "people/domestication/sorghum": [
-  852,
-  549
+ "people/objects/pergamon-altar": [
+  733,
+  284
  ],
- "earth/lips/central-atlantic-magmatic-province": [
-  307,
-  551
+ "people/objects/rosetta-stone": [
+  781,
+  401
+ ],
+ "people/objects/stele-of-naram-sin": [
+  941,
+  341
+ ],
+ "people/rulers/antoninus-pius": [
+  588,
+  304
+ ],
+ "people/rulers/hadrian": [
+  586,
+  267
+ ],
+ "people/trade/palmyra-tariff": [
+  849,
+  358
+ ],
+ "people/trade/palmyrene-caravan-trade": [
+  849,
+  375
+ ],
+ "people/writing/egyptian-hieroglyphs": [
+  798,
+  458
+ ],
+ "people/writing/greek-alphabet": [
+  699,
+  302
+ ],
+ "people/writing/phoenician-alphabet": [
+  825,
+  335
+ ],
+ "people/writing/proto-sinaitic": [
+  811,
+  403
+ ],
+ "places/constantinople": [
+  748,
+  257
+ ],
+ "places/rome": [
+  586,
+  284
  ]
 }

@@ -1679,8 +1679,13 @@ async function start(root: HTMLElement): Promise<void> {
       seaLook = 0;
       return;
     }
-    // Only once the scene has been drawn from where the flight came down can what is near there have names.
-    if (seaDown++ < 1 || !city.settled) return;
+    // Only once the scene has been drawn from where the flight came down can what is near there have names. Until
+    // then, draw again: a still scene asks for no frames, and without them this would wait, and the view with it,
+    // for ever.
+    if (seaDown++ < 1 || !city.settled) {
+      dirty = true;
+      return;
+    }
     seaLook = 0;
     lookUnderSea(city);
   }
