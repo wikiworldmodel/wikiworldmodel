@@ -1,0 +1,22 @@
+id: src:hart-2017-iroquoia-dispersal
+type: publication
+kind: measurement
+citation: >-
+  Hart, J.P., Birch, J. & Gates St-Pierre, C. (2017). Effects of population dispersal on regional signaling networks: An
+  example from northern Iroquoia. Science Advances 3(8), e1700497.
+authors:
+  - "Hart, J.P."
+  - "Birch, J."
+  - "Gates St-Pierre, C."
+published: 2017
+title: "Effects of population dispersal on regional signaling networks: An example from northern Iroquoia"
+container: Science Advances
+doi: 10.1126/sciadv.1700497
+url: https://europepmc.org/article/PMC/PMC5550228
+license: CC-BY-NC-4.0
+license_note: Short quotes, with credit.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC's full-text XML (PMC5550228), saved as text; the quotes checked by script against that
+    text. Citation details from Crossref.

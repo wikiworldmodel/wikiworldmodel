@@ -51,8 +51,9 @@
       "properties": {
         "from": { "$ref": "defs.json#/$defs/ref" },
         "file": { "type": "string", "description": "The dataset's file, where it has several" },
-        "as": { "enum": ["climate", "ice-sheets", "borders", "hazards", "polities", "routes", "languages", "people", "community", "community-sea", "relief", "river-widths"], "description": "What the data is read as, where it is not elevation of each time: relief is today's ground on a fixed datum, held through the times the field covers, which a coastline reads at the sea level of each time" },
+        "as": { "enum": ["climate", "ice-sheets", "borders", "hazards", "polities", "routes", "languages", "people", "community", "community-sea", "relief", "river-widths", "anthromes", "land-use-assessment", "cities"], "description": "What the data is read as, where it is not elevation of each time: relief is today's ground on a fixed datum, held through the times the field covers, which a coastline reads at the sea level of each time" },
         "places": { "$ref": "defs.json#/$defs/ref", "description": "For borders: the dataset of places that goes with them" },
+        "regions": { "$ref": "defs.json#/$defs/ref", "description": "For a land-use assessment by region: the dataset of the regions' shapes" },
         "variables": {
           "type": "object",
           "description": "For a climate read as months from NetCDF-4: the file's variables of temperature and precipitation, each by time, month, latitude and longitude, and of those dimensions",
@@ -117,7 +118,7 @@
     },
     "derived": { "const": true },
     "from": { "type": "array", "minItems": 1, "items": { "$ref": "defs.json#/$defs/ref" }, "description": "The fields it is derived from. For an isoline: the field it is drawn on, and for a field on a fixed datum a series of sea level, relative to today's, that the isoline rises and falls with" },
-    "rule": { "enum": ["isoline", "gough-1981", "biome-from-climate", "ice-equivalent-sea-level", "water-balance", "drainage", "lapse-rate"] },
+    "rule": { "enum": ["isoline", "gough-1981", "biome-from-climate", "ice-equivalent-sea-level", "water-balance", "drainage", "lapse-rate", "energy-balance-freeze", "energy-balance-thaw", "energy-balance-temperature", "lifeways"] },
     "isoline_m": { "type": "number" },
     "params": { "type": "object", "description": "The rule's parameters, or for a grid read by the build what it needs besides its data" },
     "source": { "$ref": "defs.json#/$defs/citation", "description": "Where the rule or those parameters come from" },
@@ -204,7 +205,8 @@
       "else": { "required": ["data", "basis", "grid", "time", "spread"] }
     },
     { "if": { "required": ["rule"], "properties": { "rule": { "const": "isoline" } } }, "then": { "required": ["from"] } },
-    { "if": { "required": ["rule"], "properties": { "rule": { "enum": ["gough-1981", "ice-equivalent-sea-level"] } } }, "then": { "required": ["grid", "time", "params", "source"] } },
+    { "if": { "required": ["rule"], "properties": { "rule": { "enum": ["gough-1981", "ice-equivalent-sea-level", "energy-balance-freeze", "energy-balance-temperature"] } } }, "then": { "required": ["grid", "time", "params", "source"] } },
+    { "if": { "required": ["rule"], "properties": { "rule": { "const": "energy-balance-thaw" } } }, "then": { "required": ["grid", "time", "source"] } },
     { "if": { "required": ["grid"], "properties": { "grid": { "type": "object", "properties": { "kind": { "const": "lonlat" } } } } }, "then": { "required": ["frame"] } }
   ]
 }

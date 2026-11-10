@@ -1,0 +1,84 @@
+id: people/traditions/indus-courtyard-house
+kind: tradition/building
+summary: >-
+  The house of the cities and towns of the Indus civilization in its urban phase, about 2600–1900 BCE: rooms of brick
+  around an inner courtyard, of one or two storeys, opening onto the courtyard and the side lanes rather than the street.
+  It is known from Harappa, Mohenjo-daro, Rakhigarhi and Lothal. Where the houses were of fired brick is a narrower
+  tradition; what the houses of the villages were like is not said here.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Courtyard house of the Indus cities }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 2600 BCE
+    source:
+      - ref: src:wikipedia-indus-valley-civilisation
+        loc: opening section
+        quote: in its mature form from 2600 BCE to 1900 BCE
+      - ref: src:lancelotti-2018-indus-fuel
+        loc: Abstract
+        quote: At its urban apex, the populations of the Indus Civilisation (2600–1900 BC) produced a wide range of objects and crafts
+    method: expert-estimate
+    note: The start of the mature, urban phase of the civilization, taken as the start of its city house.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in lancelotti-2018.txt (sha256 ed18977fa1f8f878), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 1900 BCE
+    source:
+      - ref: src:wikipedia-indus-valley-civilisation
+        loc: opening section
+        quote: in its mature form from 2600 BCE to 1900 BCE
+      - ref: src:lancelotti-2018-indus-fuel
+        loc: Abstract
+        quote: At its urban apex, the populations of the Indus Civilisation (2600–1900 BC) produced a wide range of objects and crafts
+    method: expert-estimate
+    note: >-
+      The end of the urban phase. People went on living at Lothal and elsewhere after it, the Lothal article says in "poorly
+      built houses and reed huts"; that later housing is not this tradition.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in lancelotti-2018.txt (sha256 ed18977fa1f8f878), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["105", "107", "109"] }
+    source:
+      - ref: src:wikipedia-indus-valley-civilisation
+        loc: section "Mature Harappan", "Cities"
+        quote: >-
+          As seen in Harappa, Mohenjo-daro and the 2010s partially excavated Rakhigarhi, this urban plan included the world's
+          first known city sanitation systems. … Houses opened only to inner courtyards and smaller lanes.
+      - ref: src:wikipedia-lothal
+        loc: section "Acropolis and lower town"
+        quote: The identified bathing platforms are located in the acropolis, and part of mostly two-roomed houses with open courtyards.
+    method: editorial
+    note: >-
+      Region 105 (Pakistan) for Harappa and Mohenjo-daro, region 107 (Northern India) for Rakhigarhi in Haryana, and region
+      109 (Northwestern India) for Lothal in Gujarat, matched by the sites' coordinates on Wikipedia against the region
+      outlines. The house is not claimed for all of any of them: the sources describe the cities, and say that most people
+      lived in the countryside.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-indus-valley-civilisation.txt (sha256 b60abe492ff0c871), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: courtyard, court: true, storeys: { lo: 1, hi: 2 } }
+    source:
+      - ref: src:wikipedia-harappan-architecture
+        loc: section "Materials"
+        quote: Houses range from 1–2 stories in height, with a central courtyard around which the rooms were arranged
+      - ref: src:wikipedia-indus-valley-civilisation
+        loc: section "Mature Harappan", "Cities"
+        quote: Houses opened only to inner courtyards and smaller lanes.
+      - ref: src:wikipedia-lothal
+        loc: section "Acropolis and lower town"
+        quote: The identified bathing platforms are located in the acropolis, and part of mostly two-roomed houses with open courtyards.
+    method: excavation
+    note: >-
+      The plan and the storeys are from the first quote, which the article itself quotes from Miller and from World History
+      Encyclopedia; the other two place courtyards at the cities named and at Lothal. The walls are left to the narrower
+      tradition and the generator: the same article says the houses of the cities were of baked brick and those of the
+      countryside of mud brick, and the Lothal article has houses of mud and brick there. No source read gives a house's size.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-indus-valley-civilisation.txt (sha256 b60abe492ff0c871), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

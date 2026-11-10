@@ -1,0 +1,76 @@
+id: people/traditions/indus-fired-brick-house
+kind: tradition/building
+summary: >-
+  The courtyard house of the Indus cities where it was built of fired brick laid in mortar, as at Mohenjo-daro in Sindh, in
+  the urban phase of about 2600–1900 BCE. Some houses had parts of sun-dried mudbrick and timber above.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Fired-brick courtyard house of the Indus cities }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 2600 BCE
+    source:
+      ref: src:wikipedia-indus-valley-civilisation
+      loc: opening section
+      quote: in its mature form from 2600 BCE to 1900 BCE
+    method: expert-estimate
+    note: The start of the urban phase, as for the broader tradition.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-indus-valley-civilisation.txt (sha256 b60abe492ff0c871), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 1900 BCE
+    source:
+      ref: src:wikipedia-indus-valley-civilisation
+      loc: opening section
+      quote: in its mature form from 2600 BCE to 1900 BCE
+    method: expert-estimate
+    note: The end of the urban phase, as for the broader tradition.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-indus-valley-civilisation.txt (sha256 b60abe492ff0c871), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["105"] }
+    source:
+      ref: src:wikipedia-harappan-architecture
+      loc: section "Overview", "Planning"
+      quote: >-
+        Mohenjo-daro had a planned layout with rectilinear buildings arranged on a grid plan. … Most were built of fired and
+        mortared brick; some incorporated sun-dried mud-brick and wooden superstructures.
+    method: editorial
+    note: >-
+      Region 105 (Pakistan), which holds Mohenjo-daro, the city the source describes. Fired brick is also known at Harappa in
+      the same region, but no source read here says so of its houses; and at Lothal, in India, the article read has houses
+      of mud and brick, so the other regions are left to the broader tradition. Not claimed for all of the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-harappan-architecture.txt (sha256 27a90a20286a1fdd), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { walls: fired-brick }
+    source:
+      - ref: src:wikipedia-indus-valley-civilisation
+        loc: opening section
+        quote: >-
+          The cities of the ancient Indus were noted for their urban planning, baked brick houses, elaborate drainage
+          systems, water supply systems, clusters of large non-residential buildings, and techniques of handicraft and
+          metallurgy.
+      - ref: src:wikipedia-harappan-architecture
+        loc: section "Materials"
+        quote: If the house was more rural the bricks would be mud. If the house was in an urban area then the bricks would be baked.
+      - ref: src:wikipedia-harappan-architecture
+        loc: section "Overview", "Planning"
+        quote: Most were built of fired and mortared brick; some incorporated sun-dried mud-brick and wooden superstructures.
+    method: excavation
+    note: >-
+      Fired brick, which the sources call baked; the last quote is of the buildings of Mohenjo-daro. The rest of the house is
+      the broader tradition's.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-indus-valley-civilisation.txt (sha256 b60abe492ff0c871), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+relations:
+  broader:
+    rel: member-of
+    to: people/traditions/indus-courtyard-house
+    unsourced: An editorial grouping.

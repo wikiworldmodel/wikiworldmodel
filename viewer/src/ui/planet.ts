@@ -27,6 +27,8 @@ export class PlanetPanel {
   readonly el: HTMLElement;
   private rows = new Map<string, { value: HTMLElement; row: HTMLElement }>();
   private phase: { row: HTMLButtonElement; value: HTMLElement } | null = null;
+  /** on a phone, what lets out the rows the panel folds away */
+  private fold: HTMLButtonElement;
   private ice: { row: HTMLButtonElement; title: HTMLElement; value: HTMLElement } | null = null;
   /** the records the state rows open */
   private open = { phase: '', ice: '' };
@@ -63,6 +65,24 @@ export class PlanetPanel {
       this.el.appendChild(row);
       this.rows.set(s.id, { value: row.querySelector('.planet-value')!, row });
     }
+    // On a phone the panel folds to the planet's state and its ice (style.css), and this lets out the rest.
+    this.fold = document.createElement('button');
+    this.fold.className = 'planet-fold';
+    this.fold.setAttribute('aria-expanded', 'false');
+    this.fold.onclick = () => {
+      const open = !this.el.classList.contains('open');
+      this.el.classList.toggle('open', open);
+      this.fold.setAttribute('aria-expanded', String(open));
+      this.showFold();
+    };
+    this.el.appendChild(this.fold);
+  }
+
+  private showFold(): void {
+    const folded = [...this.rows.values()].filter((r) => !r.row.hidden).length;
+    const text = this.el.classList.contains('open') ? 'Fewer ▴' : `${folded} more ▾`;
+    if (this.fold.textContent !== text) this.fold.textContent = text;
+    this.fold.hidden = folded === 0;
   }
 
   update(t: number, look?: Look, alts: readonly string[] = []): void {
@@ -91,5 +111,6 @@ export class PlanetPanel {
       if (r.value.textContent !== text) r.value.textContent = text;
       r.row.classList.toggle('projection', s.projectedAfter !== undefined && t > s.projectedAfter);
     });
+    this.showFold();
   }
 }

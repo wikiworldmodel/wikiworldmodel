@@ -1,0 +1,80 @@
+id: people/traditions/early-mumun-pit-house
+kind: tradition/building
+summary: >-
+  The large rectangular pit-house of the Early Mumun in Korea, about 1500–850 BCE, with one or more hearths, the largest
+  with up to six for several generations of one household under one roof, among fields cleared by slash-and-burn.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Rectangular pit-house of the Early Mumun }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 1500 BCE
+    source:
+      ref: src:wikipedia-mumun-pottery-period
+      loc: section "Chronology", "Early Mumun"
+      quote: >-
+        The Early (or Formative) Mumun (c. 1500–850 BC) is characterized by shifting cultivation, fishing, hunting, and
+        discrete settlements with rectangular semi-subterranean pit-houses.
+    method: expert-estimate
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-mumun-pottery-period.txt (sha256 1049b51639fe2ad3), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 850 BCE
+    source:
+      ref: src:wikipedia-mumun-pottery-period
+      loc: section "Chronology", "Early Mumun"
+      quote: >-
+        The Early (or Formative) Mumun (c. 1500–850 BC) is characterized by shifting cultivation, fishing, hunting, and
+        discrete settlements with rectangular semi-subterranean pit-houses.
+    method: expert-estimate
+    note: >-
+      The end of the Early Mumun. The section on settlement puts the change to small pit-houses "some time after 900 BC".
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-mumun-pottery-period.txt (sha256 1049b51639fe2ad3), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: rectangular }
+    source:
+      - ref: src:wikipedia-mumun-pottery-period
+        loc: section "Settlement"
+        quote: >-
+          Large rectangular-shaped pit-houses were used in Early Mumun. These pit-houses had one or more hearths, and
+          pit-houses with up to 6 hearths indicate that such features were the living spaces for multiple generations of the
+          same household.
+      - ref: src:wikipedia-mumun-pottery-period
+        loc: section "Chronology", "Early Mumun"
+        quote: >-
+          The Early (or Formative) Mumun (c. 1500–850 BC) is characterized by shifting cultivation, fishing, hunting, and
+          discrete settlements with rectangular semi-subterranean pit-houses.
+    method: excavation
+    note: >-
+      Rectangular, and large; the source gives no size. The same article calls the houses of the large settlements of the
+      later Early Mumun long-houses, which may be what the vocabulary calls a longhouse, but it gives no proportions, so the
+      plan is the plainer word. The sunken floor is the broader tradition's.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-mumun-pottery-period.txt (sha256 1049b51639fe2ad3), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  fields:
+    prop: field_system
+    value: { kind: swidden }
+    source:
+      - ref: src:wikipedia-mumun-pottery-period
+        loc: section "Chronology", "Early Mumun"
+        quote: >-
+          The Early (or Formative) Mumun (c. 1500–850 BC) is characterized by shifting cultivation, fishing, hunting, and
+          discrete settlements with rectangular semi-subterranean pit-houses.
+      - ref: src:wikipedia-mumun-pottery-period
+        loc: opening section
+        quote: Slash-and-burn cultivators who used Mumun pottery displaced people using Jeulmun period subsistence patterns.
+    method: expert-estimate
+    note: Shifting, slash-and-burn cultivation is what the vocabulary calls swidden. The source gives no plot size.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-mumun-pottery-period.txt (sha256 1049b51639fe2ad3), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+relations:
+  broader:
+    rel: member-of
+    to: people/traditions/mumun-pit-house
+    unsourced: An editorial grouping.

@@ -14,6 +14,7 @@ genus under it until someone writes theirs. Work from the top of the list down.
 ```sh
 npm run world -- forms-wanted --missing Reptilia  # the largest groups under a name that nothing can draw
 npm run world -- forms-wanted Theropoda --n 40    # the taxa that most often come up with no form of their own
+npm run world -- forms-wanted --sea --missing     # the same for the sea's fossils, for bodies that live in the sea
 npm run world -- form-sheet life/taxa/triceratops # draw it, and print where its body comes from (also plan:<name>)
 npm run validate -- --no-frames                   # every form is compiled and checked
 ```
@@ -137,7 +138,9 @@ or `four`, `sides: [fine, coarse]`.
 
 And for any form, `behave` says how the generator lays it out, which is no claim about the animal:
 
-- `group: [least, most]`, `habitat` (open, any, edge, forest, air, canopy, wet, water), `poses: [...]` (stand, walk, graze, drink, alert, rest, fly), `flies: [low, high]` in metres.
+- `group: [least, most]`, `habitat` (open, any, edge, forest, air, canopy, wet, water, floor), `poses: [...]` (stand, walk, graze, drink, alert, rest, fly), `flies: [low, high]` in metres.
+  In a scene of the sea, `water` swims above the floor and `floor` rests on it, as do `any` and `edge` under water; only
+  a body whose plan says one of these, or `air`, is drawn in the sea.
 - For a plant: `layer` (canopy, under, float), `weight`, `wet`.
 
 `hip` says how high the hips are as a share of the length, where no claim does; `mass_length` what the body weighs in kg per

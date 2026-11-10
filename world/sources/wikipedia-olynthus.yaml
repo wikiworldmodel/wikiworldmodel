@@ -1,0 +1,20 @@
+id: src:wikipedia-olynthus
+type: database-record
+kind: review
+citation: >-
+  "Olynthus." Wikipedia, the free encyclopedia (English edition), revision 1382382761.
+snapshot: 2026-11-09
+title: Olynthus
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Olynthus&oldid=1382382761
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the houses and plan of Classical Olynthus and the city's dates because no better
+  work could be read here. Those sentences are cited there to Cahill, N. (2002), Household and City Organization at Olynthus
+  (Yale University Press), pp. 27, 29–30, 36, 38 and 78–82, which could not be reached and should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML (revision 1382382761) fetched from Wikipedia's REST interface on 9 November 2026 and read as text; the
+    quotes checked by script against that text.

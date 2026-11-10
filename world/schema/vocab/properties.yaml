@@ -76,6 +76,7 @@ properties:
     values:
       tidal-rhythmite: Thin layers laid down with the tides, whose counts give the days in a month or the months in a year.
       cyclostratigraphy: Rhythmic beds paced by the slow cycles of the Earth's orbit and axis, whose periods give the rate of its precession.
+      paleosol: A soil preserved in the rock record, whose weathering records something of the air and the rain it formed under.
       body-fossil: The remains of an organism, such as a bone, a shell, a leaf or a cell.
       trace-fossil: Something an organism left, such as a track, a burrow or a root trace.
       palynomorph: Spores or pollen.
@@ -230,6 +231,15 @@ properties:
     description: >-
       The mean distance from the Earth to the Moon, the semi-major axis of the Moon's orbit,
       when a rock or a fossil formed, in Earth radii of 6378 km. The tides push the Moon away.
+  co2_pressure:
+    type: quantity
+    unit: bar
+    interp: step
+    applies_to: [sample, event/glaciation]
+    description: >-
+      The partial pressure of carbon dioxide in the atmosphere when a rock formed, such as a soil that is now a
+      paleosol, or at the moment of a glaciation that the claim's note names, such as its end. A source that gives
+      a mixing ratio or a multiple of the present level is converted in the note, saying how.
   sea_level:
     type: quantity
     unit: m
@@ -318,6 +328,35 @@ properties:
       What is known of a structure's architecture, as the parameters a generator raises it
       from: its type, order, number of columns and so on. What a form does not say is the
       generator's guess, and evidence mode shows it as a reconstruction.
+  dwelling:
+    type: dwelling
+    interp: step
+    applies_to: [tradition/building]
+    description: >-
+      The house a building tradition put up, as the parameters the settlement generator draws it from: its plan, its
+      size, what its walls, roof and floor were made of (core/dwelling.ts). A tradition says only what differs from
+      the one it is a member of; what neither says is the generator's guess, and the panel says whose each part is.
+  settlement_form:
+    type: settlement-form
+    interp: step
+    applies_to: [tradition/building]
+    description: >-
+      How a building tradition's houses stood together: clustered in villages, standing apart, in compounds or in
+      camps; how many to a settlement, how far apart, and how many people lived in each (core/dwelling.ts).
+  field_system:
+    type: field-system
+    interp: step
+    applies_to: [tradition/building]
+    description: >-
+      The fields around a building tradition's settlements: their kind (strips, terraces, paddies, swidden plots…),
+      the size of a plot in hectares, and what divided them (core/dwelling.ts).
+  extent:
+    type: geometry
+    interp: step
+    applies_to: [tradition]
+    description: >-
+      Where a tradition is found: the rows of a dataset of regions that its sources place it in, such as the
+      ArchaeoGLOBE regions. A region named is a region where the tradition was, not a claim that it covered all of it.
   insulae:
     type: quantity
     unit: blocks
@@ -387,6 +426,11 @@ methods:
   typological:
     label: Typology
     description: Dated by the style of the objects in a deposit, such as its pottery, amphorae or their stamps, against dated examples elsewhere.
+  excavation:
+    label: Excavation
+    description: >-
+      Read from the remains themselves as excavated or surveyed and published: the plans of houses, their post-holes,
+      walls and floors, and the layout of a settlement.
   expert-estimate:
     label: Expert estimate
     description: A value a source states without the measurement behind it.

@@ -208,6 +208,17 @@ export interface CoverageFile {
   wanted: { ref: string; from: string[] }[];
   /** how far the world's forms reach, and what most wants one */
   forms?: { taxa: number; own_form: number; inherited_form: number; no_form: number; rows_drawable: number; rows_total: number; wanted: { no: number; name: string; rows: number; node: string | null }[] };
+  /** the energy-balance model against the evidence it does not read (model:earth/energy-balance) */
+  energyBalance?: EnergyBalanceReport;
+  /**
+   * the human landscape: at some times, the share of the land HYDE's anthromes and the region's archaeologists disagree on,
+   * and the share whose way of life rests on the archaeologists (model:people/lifeways)
+   */
+  landscape?: {
+    disagree: { t: number; land: number; disagree: number; evidence: number }[];
+    /** at each of the survey's times: regions with no farming, and how many HYDE farms under 1% of; with farming widespread, and how many HYDE farms at all and over a twentieth */
+    farming: { slice: string; year: number; none: [number, number]; widespread: [number, number, number] }[];
+  };
   /** fossil forests against the climate reconstructed for their place and time; none should be in a desert */
   forests?: { id: string; ageMa: number; keyframeMa: number; lat: number; lon: number; climate: string | null; label: string }[];
   /** which tier answers each layer, over a grid of places at times through each span (core/resolve.ts) */
@@ -216,6 +227,22 @@ export interface CoverageFile {
   matrix?: CoverageMatrix;
   /** how much of each area and era rests on each basis: features per tile, by basis */
   tiles: { tile: string; bbox: [number, number, number, number]; time: [number, number]; features: Partial<Record<Basis, number>> }[];
+}
+
+/**
+ * The energy-balance model against the evidence (tools/world/src/build/energybalance.ts). Pressures are in bar, ages in
+ * Ma, temperatures in °C; `luminosity` is the Sun's, relative to today's.
+ */
+export interface EnergyBalanceReport {
+  model: string;
+  /** today's Sun at the model's reference CO₂, against the temperature series' present value */
+  present: { mean: number; iceEdge: number; against?: string; value?: number; lo?: number | null; hi?: number | null };
+  /** each sample whose CO₂ is claimed: the model run from a warm start on members across its range */
+  evidence: { id: string; claim: string; ageMa: number; luminosity: number; co2: [number, number]; freezeBelow: number; frozen: number; members: number; mean: [number, number, number]; verdict: 'unfrozen' | 'partly-frozen' | 'frozen' }[];
+  /** each glaciation whose ice reached the equator: the CO₂ the model needs to freeze at its start and to thaw at its end */
+  glaciations: { id: string; startMa: number; endMa: number; freezeBelowAtStart: number; thawAboveAtEnd: number | null; co2AtEnd?: { claim: string; value: [number, number] }; thawsAtEnd?: boolean }[];
+  /** the model's temperature over the Phanerozoic against the rocks' */
+  phanerozoic?: { against: string; points: number; meanDifference: number; rms: number; correlation: number };
 }
 
 /** What overlays say of the rows of datasets they name (docs/STRUCTURE.md section 3.1), by row: src:<dataset>#<key>. */

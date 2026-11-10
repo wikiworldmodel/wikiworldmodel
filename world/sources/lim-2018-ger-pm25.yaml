@@ -1,0 +1,29 @@
+id: src:lim-2018-ger-pm25
+type: publication
+kind: measurement
+citation: >-
+  Lim, M., Myagmarchuluun, S., Ban, H., Hwang, Y., Ochir, C., Lodoisamba, D. & Lee, K. (2018). Characteristics of Indoor PM2.5
+  Concentration in Gers Using Coal Stoves in Ulaanbaatar, Mongolia. International Journal of Environmental Research and Public
+  Health 15(11), 2524.
+authors:
+  - "Lim, M."
+  - "Myagmarchuluun, S."
+  - "Ban, H."
+  - "Hwang, Y."
+  - "Ochir, C."
+  - "Lodoisamba, D."
+  - "Lee, K."
+published: 2018
+title: Characteristics of Indoor PM2.5 Concentration in Gers Using Coal Stoves in Ulaanbaatar, Mongolia
+container: International Journal of Environmental Research and Public Health
+doi: 10.3390/ijerph15112524
+url: https://europepmc.org/article/PMC/PMC6267369
+license: CC-BY-4.0
+reliability: >-
+  A study of air quality in 60 gers in two districts of Ulaanbaatar in the winter of 2016, not a study of the dwelling: it
+  describes the ger in one sentence and counts the people living in each.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC (PMC6267369), its JATS XML fetched on 9 November 2026 and read as text; the quotes checked
+    by script against that text.

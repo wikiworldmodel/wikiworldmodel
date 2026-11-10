@@ -1,0 +1,21 @@
+id: src:wikipedia-jomon-period
+type: database-record
+kind: review
+citation: >-
+  "Jōmon period." Wikipedia, the free encyclopedia (English edition), revision 1380542509.
+snapshot: 2026-11-09
+title: Jōmon period
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=J%C5%8Dmon_period&oldid=1380542509
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited only for the pit-house as the usual house of the Middle Jōmon, because no better
+  work saying so could be read here. The sentence rests on two web pages of the sites of Sannai Maruyama and Ofune and on
+  Moriya, T. (2015), "A Study of the Utilization of Wood to Build Pit Dwellings from the Epi-Jomon Culture", Journal of the
+  Graduate School of Letters (Hokkaido University) 10, 71–85; none could be read here.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1380542509, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quote checked by script against that text, and its footnotes matched to the works they cite.

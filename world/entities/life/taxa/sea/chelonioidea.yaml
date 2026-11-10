@@ -1,0 +1,41 @@
+id: life/taxa/chelonioidea
+kind: taxon
+summary: >-
+  The sea turtles and their extinct kin, turtles of the open sea with forelimbs made into long flippers.
+same_as: { pbdb: "txn:37685" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Chelonioidea, en: "sea turtles" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  form:
+    prop: body_form
+    value:
+      behave: { group: [1, 3], habitat: water, poses: [stand, walk] }
+      mass_length: 80
+      parts:
+        shell: { r: [0.38, 0.5, 0.17] }
+        fore: null
+        hind: null
+        flippers: { type: sheet, zl: true, mat: hide, mirror: true, gap: 0.003, points: [[0.2, 0.28, 0.12], [0.42, 0.2, 0.1], [0.62, 0.02, 0.08], [0.6, -0.02, 0.08], [0.4, 0.12, 0.1], [0.22, 0.18, 0.12]] }
+        rear-flippers: { type: sheet, zl: true, mat: hide, mirror: true, gap: 0.003, points: [[0.14, -0.36, 0.1], [0.24, -0.46, 0.08], [0.22, -0.54, 0.07], [0.12, -0.46, 0.09]] }
+    unsourced: >-
+      A machine's reconstruction: the turtle's legs made into a pair of long, swept-back front flippers and a pair of small hind
+      ones, and its shell flatter, from general knowledge of sea turtles; no figure was compared with it.
+  length:
+    prop: body_length
+    value: { lo: 0.6, hi: 1.8 }
+    source:
+      - ref: src:wikipedia-sea-turtle
+        loc: "section \"Description\""
+        quote: "ranging from as little as 60 cm (2 ft) long in the case of the Kemp's ridley, which is the smallest sea turtle species"
+      - ref: src:wikipedia-sea-turtle
+        loc: "section \"Description\""
+        quote: "The leatherback sea turtle is the largest sea turtle, reaching 1.4 to more than 1.8 m (4.6 to 5.9 ft) in length"
+    method: compilation
+    note: >-
+      The living sea turtles' range, in an encyclopedia's words, cited for lack of a work that could be read; taken as the shell's
+      length, as the plan measures it. Extinct relatives such as Archelon were larger, and lie outside it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wiki-Sea-turtle.txt (sha256 62ed8481462dcbd6), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

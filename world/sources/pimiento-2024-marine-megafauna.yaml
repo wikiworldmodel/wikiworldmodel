@@ -1,0 +1,31 @@
+id: src:pimiento-2024-marine-megafauna
+type: publication
+kind: review
+citation: >-
+  Pimiento, C., Kocáková, K., Mathes, G.H., Argyriou, T., Cadena, E.-A., Cooper, J.A., … & Zanatta, C. (2024). The extinct marine
+  megafauna of the Phanerozoic. Cambridge Prisms: Extinction 2, e7.
+authors:
+  - "Pimiento, C."
+  - "Kocáková, K."
+  - "Mathes, G.H."
+  - "Argyriou, T."
+  - "Cadena, E.-A."
+  - "Cooper, J.A."
+  - "Cortés, D."
+  - "Field, D.J."
+  - "Klug, C."
+  - "Scheyer, T.M."
+  - "Valenzuela-Toro, A.M."
+published: 2024
+title: The extinct marine megafauna of the Phanerozoic
+container: "Cambridge Prisms: Extinction 2, e7"
+doi: 10.1017/ext.2024.12
+reliability: >-
+  A review of the literature for every extinct marine animal of a metre or more; the sizes are those of the works it cites, which
+  were not read. Its data table, Data S1, was not among the supplementary files that could be reached.
+note: The authors listed are the first eleven of thirty-six.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC11895749) on 8 November 2026; citation and authors checked against Crossref. The
+    quotes checked by script against the text taken from the XML.

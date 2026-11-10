@@ -1,0 +1,22 @@
+id: src:wikipedia-workmens-village-amarna
+type: database-record
+kind: review
+citation: >-
+  "Workmen's Village, Amarna." Wikipedia, the free encyclopedia (English edition), revision 1365212082.
+snapshot: 2026-11-09
+title: Workmen's Village, Amarna
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Workmen%27s_Village,_Amarna&oldid=1365212082
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the size, walls, rooms and stairs of the houses of the walled village because no
+  better work could be read here. Those sentences are cited there to the excavation report, Peet, T.E. & Woolley, C.L. (1923),
+  The City of Akhenaten I, pp. 55–65, and to Kemp, B.J. (1979), Journal of Egyptian Archaeology 65, 47–53; the report's copy
+  online could not be reached, and it should replace this. The same paragraph gives the walled village's area as about 70
+  square metres, which cannot be right for 72 houses of 5 by 10 metres; that figure is not used.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1365212082, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text, and its footnotes matched to the works they cite.

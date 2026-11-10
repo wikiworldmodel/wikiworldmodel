@@ -78,6 +78,18 @@ describe('resolve', () => {
     expect(resolve(world, 'water', 10, 0, GA(0.6)).tier).toBe('generic');
   });
 
+  it('answers the climate from the energy-balance model where no climate run covers the time, with its threshold', () => {
+    expect(resolve(WORLD, 'climate', 0, 0, GA(3)).tier).toBe('generic');
+    const w: ResolveWorld = { ...WORLD, climateModel: { span: [GA(4.3), 1950], freezeBelow: (t) => (t < GA(2) ? 0.0123 : 0.0001) } };
+    const deep = resolve(w, 'climate', 0, 0, GA(3));
+    expect(deep.tier).toBe('model');
+    expect(deep.why).toContain('0.012 bar');
+    // A climate model's run, where one covers the time, still answers first.
+    expect(resolve(w, 'climate', 0, 0, GA(0.05)).value).toBe('climate field');
+    // Before the model's span, the planet's state stands in, as before.
+    expect(resolve(w, 'climate', 0, 0, GA(4.35)).tier).toBe('generic');
+  });
+
   it('counts the tiers each layer answers in', () => {
     const counts = tierCounts(WORLD, [[60, 0], [10, 0]], [GA(3), GA(0.05)]);
     for (const layer of LAYERS) expect(Object.values(counts[layer]).reduce((a, b) => a + b, 0)).toBe(4);

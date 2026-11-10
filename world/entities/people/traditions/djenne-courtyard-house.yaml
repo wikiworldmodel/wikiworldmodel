@@ -1,0 +1,88 @@
+id: people/traditions/djenne-courtyard-house
+kind: tradition/building
+summary: >-
+  The town house of Djenné on the Middle Niger: rooms of sun-dried brick around an inner court, with a stair to the flat roof,
+  in 1828 of one storey in most houses and with no windows outside, and of two storeys in the traditional houses described
+  today; the town stood inside an earth wall. René Caillié's account of 1828 is the earliest description read; the house is
+  older, but how much is not dated here.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Flat-roofed courtyard house of Djenné }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 1828 CE
+    source:
+      ref: src:wikipedia-djenne
+      loc: section "After the Songhai"
+      quote: >-
+        In 1828 the French explorer René Caillié, who travelled disguised as a Muslim, became the first European to visit
+        Djenné. He published a detailed description in his book Travels through Central Africa to Timbuctoo
+    method: documentary
+    note: >-
+      The year of Caillié's visit, the earliest description of the houses read here. It bounds the start rather than dating
+      it: the house is older. The tradition has no end claim, as the same source describes such houses today.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-djenne-1377179164.txt (sha256 192be4828b6b492b), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["76"] }
+    source:
+      ref: src:wikipedia-djenne
+      loc: opening section
+      quote: is a town and urban commune in the Inland Niger Delta region of central Mali.
+    method: editorial
+    note: Region 76 (Mali), which holds Djenné. The house is described for the town alone, and is not claimed for the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-djenne-1377179164.txt (sha256 192be4828b6b492b), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: courtyard, court: true, storeys: { lo: 1, hi: 2 }, walls: mudbrick, roof: flat }
+    source:
+      - ref: src:wikipedia-djenne
+        loc: section "After the Songhai", Caillié's description of 1828
+        quote: >-
+          The houses are built of bricks dried in the sun. The sand of the isle of Jenné is mixed with a little clay, and it is
+          employed to make bricks of a round form which are sufficiently solid.
+      - ref: src:wikipedia-djenne
+        loc: section "After the Songhai", Caillié's description of 1828
+        quote: >-
+          The greater part have only one storey ... They are all terraced, have no windows externally, and the apartments
+          receive no air except from an inner court.
+      - ref: src:wikipedia-djenne
+        loc: section "After the Songhai", Caillié's description of 1828
+        quote: In each house there is a staircase leading to the terrace
+      - ref: src:wikipedia-djenne
+        loc: section "Architecture"
+        quote: The traditional flat-roofed two-storey houses are built around a small central courtyard
+    method: documentary
+    note: >-
+      Caillié's houses of 1828 were of sun-dried bricks of a round form, mostly of one storey, all with a terrace roof reached
+      by a stair, their rooms long and narrow and lit only from an inner court; the traditional houses of the town today, as
+      the article describes them, are flat-roofed, of two storeys, around a small central court. The storeys span the two. The
+      houses' size is given only as "as large as those of European villages", and is left to the generator.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-djenne-1377179164.txt (sha256 192be4828b6b492b), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: walled }
+    source:
+      - ref: src:wikipedia-djenne
+        loc: section "After the Songhai", Caillié's description of 1828
+        quote: >-
+          The town of Jenné is about two miles and half in circumference; it is surrounded by a very ill constructed earth
+          wall, about ten feet high, and fourteen inches thick.
+      - ref: src:wikipedia-djenne
+        loc: section "After the Songhai"
+        quote: At the time of his visit the town was still encircled by an adobe wall.
+    method: documentary
+    note: A walled town in 1828, and still in 1895, when Félix Dubois visited it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-djenne-1377179164.txt (sha256 192be4828b6b492b), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+relations:
+  broader:
+    rel: member-of
+    to: people/traditions/middle-niger-mudbrick
+    unsourced: An editorial grouping.

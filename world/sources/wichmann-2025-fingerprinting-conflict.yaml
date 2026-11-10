@@ -1,0 +1,35 @@
+id: src:wichmann-2025-fingerprinting-conflict
+type: publication
+kind: review
+citation: >-
+  Wichmann, S., Loy, A.K., Andersen, A.T., Bleile, R., Jonjić, D., Kneisel, J., Nübler, N., Santamaria, A., Schneeweiß, J.,
+  Schwedler, G., Zerzeropulos, K., Kienle, L. & Nakoinz, O. (2025). Fingerprinting conflict: A comparative model with
+  applications to archaeological and historical data. PLoS ONE 20(2), e0313895.
+authors:
+  - "Wichmann, S."
+  - "Loy, A.K."
+  - "Andersen, A.T."
+  - "Bleile, R."
+  - "Jonjić, D."
+  - "Kneisel, J."
+  - "Nübler, N."
+  - "Santamaria, A."
+  - "Schneeweiß, J."
+  - "Schwedler, G."
+  - "Zerzeropulos, K."
+  - "Kienle, L."
+  - "Nakoinz, O."
+published: 2025
+title: "Fingerprinting conflict: A comparative model with applications to archaeological and historical data"
+container: PLoS ONE
+doi: 10.1371/journal.pone.0313895
+url: https://europepmc.org/article/PMC/PMC11844905
+license: CC-BY-4.0
+reliability: >-
+  A model of conflict tried on case studies. It is cited for its case study of Bronze Age Schleswig-Holstein, whose
+  background section summarizes the settlement of the Jutland peninsula from the literature.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as text from Europe PMC's REST service (PMC11844905, fullTextXML) on 9 November 2026. Quotes checked by
+    script against it.

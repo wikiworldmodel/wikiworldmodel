@@ -1,0 +1,22 @@
+id: src:wikipedia-deir-el-medina
+type: database-record
+kind: review
+citation: >-
+  "Deir el-Medina." Wikipedia, the free encyclopedia (English edition), revision 1383863269.
+snapshot: 2026-11-09
+title: Deir el-Medina
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Deir_el-Medina&oldid=1383863269
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the houses of the village at Deir el-Medina, their walls and rooms, and the date
+  of its first remains, because no better work could be read here. Those sentences are cited there to McDowell, A.G., Village
+  Life in Ancient Egypt: Laundry Lists and Love Songs (Oxford University Press, 2002 in the article's list of works), pp. 9,
+  11–12, 18 and 21, and to Oakes, L., The Illustrated Encyclopedia of Pyramids, Temples and Tombs of Ancient Egypt (2006),
+  p. 110, neither of which could be reached; McDowell should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1383863269, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text, and its footnotes matched to the works they cite.

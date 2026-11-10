@@ -1,0 +1,32 @@
+id: src:nicosia-2022-oppeano-byre-houses
+type: publication
+kind: measurement
+citation: >-
+  Nicosia, C., Polisca, F., Miller, C., Ligouis, B., Mentzer, S., Mangani, C. & Gonzato, F. (2022). High-resolution
+  sediment analysis reveals Middle Bronze Age byre-houses at the site of Oppeano (Verona province, NE Italy). PLoS ONE
+  17(8), e0272561. With its S1 Table, a list of the sites in Europe where byre-houses have been identified, with each
+  house's type and the period the excavators give it.
+authors:
+  - "Nicosia, C."
+  - "Polisca, F."
+  - "Miller, C."
+  - "Ligouis, B."
+  - "Mentzer, S."
+  - "Mangani, C."
+  - "Gonzato, F."
+published: 2022
+title: High-resolution sediment analysis reveals Middle Bronze Age byre-houses at the site of Oppeano (Verona province, NE Italy)
+container: PLoS ONE
+doi: 10.1371/journal.pone.0272561
+url: https://europepmc.org/article/PMC/PMC9432763
+license: CC-BY-4.0
+reliability: >-
+  A paper on one Italian site. It is cited here for its introduction and its S1 Table, which compile from the literature
+  where three-aisled longhouses, read as byre-houses, have been found in northern Europe. The table gives each house a
+  period (Early Bronze Age, Iron Age, Viking Age…), not a date in years.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as text from Europe PMC's REST service (PMC9432763, fullTextXML) on 9 November 2026, and the S1 Table
+    (pone.0272561.s001.docx) from the same service's supplementary files, converted to text. Quotes checked by script
+    against the two together.

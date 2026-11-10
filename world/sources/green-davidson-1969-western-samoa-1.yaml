@@ -1,0 +1,21 @@
+id: src:green-davidson-1969-western-samoa-1
+type: publication
+kind: measurement
+citation: >-
+  Green, R.C. & Davidson, J.M. (eds.) (1969). Archaeology in Western Samoa, Volume I. Bulletin of the Auckland Institute
+  and Museum 6. Auckland: Auckland Institute and Museum. Including Golson, J., "Preliminary research: archaeology in
+  Western Samoa, 1957" (Report 1, pp. 14–20), and Buist, A.G., "Field archaeology on Savai'i" (Report 3, pp. 34–68).
+authors: ["Green, R.C.", "Davidson, J.M."]
+published: 1969
+title: "Archaeology in Western Samoa, Volume I"
+container: Bulletin of the Auckland Institute and Museum 6
+url: https://www.biodiversitylibrary.org/part/299617
+license: CC-BY-NC-SA-4.0
+license_note: As the Biodiversity Heritage Library and its copy at Zenodo give it for the scan.
+verified:
+  by: machine:claude-code
+  how: >-
+    The Biodiversity Heritage Library's scan (part 299617), downloaded from its copy at Zenodo (record 16493521, whose MD5
+    and SHA-256 for the PDF it matched), and its text layer read with pdftotext. The OCR marks a word broken at the end of
+    a line with "¬"; the text was checked with those marks read as hyphens. Reports 1 and 3 read in the parts on house
+    platforms and villages; pages from the printed page numbers, the contents from pp. v–vii. Quotes checked by script.

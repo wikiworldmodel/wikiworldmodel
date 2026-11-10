@@ -1,0 +1,37 @@
+id: life/taxa/cephalopoda
+kind: taxon
+summary: >-
+  The cephalopods: molluscs of the open sea with a ring of arms round the head, swimming by jet; most of the fossil ones, the
+  ammonoids, nautiloids and orthocones, in chambered shells.
+same_as: { pbdb: "txn:12315" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cephalopoda, en: "cephalopods" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: ammonoid
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The coiled shell stands for every cephalopod with no body nearer to it, as the ammonoids are nearly all of the class's
+      fossils. The straight-shelled orthocones have their own change below; the squids, belemnites and octopuses have no body yet,
+      and are drawn as this.
+  length:
+    prop: body_length
+    value: { lo: 0.01, hi: 5 }
+    source:
+      - ref: src:wikipedia-ammonoidea
+        loc: "section \"Description\", \"Size\""
+        quote: "The smallest ammonoid was Maximites from the Upper Carboniferous. Adult specimens reached only 10 mm (0.39 in) in shell diameter."
+      - ref: src:klug-2025-cephalopod-body-size
+        loc: "Results, \"What are the largest representatives of each group?\""
+        quote: "For the orthocones, it was the endoceratids that reached a conch length of at least close to five meters"
+    method: compilation
+    note: >-
+      From the smallest ammonoid's shell diameter, in an encyclopedia's words, cited for lack of a work that could be read, to the
+      longest straight shell, standing for any cephalopod with no size nearer to it. The sizes are of the shell, its diameter if
+      coiled and its length if straight.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC12371081.txt (sha256 66307680d661c775), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

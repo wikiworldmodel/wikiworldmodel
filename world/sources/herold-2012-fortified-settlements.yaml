@@ -1,0 +1,22 @@
+id: src:herold-2012-fortified-settlements
+type: publication
+kind: review
+citation: >-
+  Herold, H. (2012). Fortified Settlements of the 9th and 10th Centuries AD in Central Europe: Structure, Function and
+  Symbolism. Medieval Archaeology 56(1), 60–84.
+authors:
+  - "Herold, H."
+published: 2012
+title: "Fortified Settlements of the 9th and 10th Centuries AD in Central Europe: Structure, Function and Symbolism"
+container: Medieval Archaeology
+doi: 10.1179/0076609712z.0000000003
+url: https://europepmc.org/article/PMC/PMC3617594
+license: CC-BY-4.0
+reliability: >-
+  A review of the fortified settlements of today's Austria, Hungary, Czech Republic and Slovakia, with new work at
+  Gars-Thunau. It is cited for one passage on the buildings of the open settlements of the same region and time.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as text from Europe PMC's REST service (PMC3617594, fullTextXML) on 9 November 2026. Quotes checked by
+    script against it.

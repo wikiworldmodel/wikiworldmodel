@@ -8,7 +8,9 @@ description: >-
   in a like belt of latitude; and stand-in, where nothing is near and the stage's commonest genera of that belt stand for
   them. Distance is over the sea of the time, the shelf cheapest, the open ocean dearer, and the land dearest. It is a
   simple distribution model, on the land atlas's stages and patches, and its lists partly show where people have
-  collected: the record leans to Europe and North America, and to the shelves.
+  collected: the record leans to Europe and North America, and to the shelves. After a list's most recorded genera,
+  which are often too small to see, come the genera a scene can draw: those a node above them gives a body that lives
+  in the sea, with the size its records give.
 author: machine:claude-code
 code: tools/world/src/build/sea.ts
 inputs:
@@ -16,6 +18,9 @@ inputs:
   - { kind: period/stage, note: "the bins it lists by" }
   - { ref: field:earth/elevation, note: "the plates and the sea of each time, which carry the rows and set the distances" }
   - { ref: field:earth/coastline, note: "what is land and what is sea" }
+  - { prop: body_plan, note: "which genera a scene can draw, and with what body: only one that swims, lives on the sea floor or flies over it" }
+  - { prop: body_length, note: "how big each is drawn, the nearest node's range" }
+  - { prop: body_mass, note: "the same, where a node gives a mass instead" }
 outputs: [field:life/community-sea]
 params:
   grid_deg: { choice: "The size of a patch of sea the lists are kept for: the land atlas's, so that a stage's lists of land and sea meet." }
@@ -32,6 +37,14 @@ params:
   shortest_bin: { choice: "The shortest a bin may be before it is merged: the land atlas's." }
   list_size: { choice: "How many genera a list holds." }
   standins: { choice: "How many genera stand in where nothing is recorded within reach." }
+  drawn_size:
+    choice: >-
+      How many genera a scene can draw a list keeps besides its most recorded, which are often too small to see: the
+      most recorded of the genera a node above them gives a body for the sea, up to ten in all that are drawn.
+  per_class:
+    choice: >-
+      At most how many genera of one class a list draws, so that a scene of a Paleozoic shelf is not ten brachiopods.
+      It changes which genera are drawn, not what the list says lived there.
   belts: { choice: "Where the belts of latitude that stand for a like sea meet: a stand-in for sea temperature, which no field here gives for the sea." }
   other_belt: { choice: "How much a row of another belt of latitude counts, against one of the same belt." }
 uncertainty:

@@ -1,0 +1,18 @@
+id: life/taxa/asteroidea
+kind: taxon
+summary: >-
+  The sea stars or starfish: echinoderms with arms, most often five, spreading from a central disc, crawling on tube feet.
+same_as: { pbdb: "txn:31341" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Asteroidea, en: "sea stars" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: sea-star
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a five-armed sea star, from general knowledge; no figure was compared with it. No
+      size could be sourced for the class, so it is not drawn until one is.

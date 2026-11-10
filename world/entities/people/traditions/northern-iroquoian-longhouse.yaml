@@ -1,0 +1,162 @@
+id: people/traditions/northern-iroquoian-longhouse
+kind: tradition/building
+summary: >-
+  The longhouse village of the Northern Iroquoians of southern Ontario, southern Quebec and upper New York: long houses about
+  6 to 7 m wide, covered with bark or boards on a frame in the shape of an arbor, each sheltering several related families
+  and lengthened as they grew, in farming villages of maize fields cleared by fire, moved every few decades. From about 1450
+  many villages gathered into larger towns behind palisades.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Northern Iroquoian longhouse village }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 1300 CE
+    source:
+      ref: src:hart-2017-iroquoia-dispersal
+      loc: section "Regional setting"
+      quote: >-
+        These are generally characterized as small, seasonally occupied base camps (50, 51). By A.D. 1300, Iroquoian
+        populations were living in longhouse villages sustained by extensive maize-based agricultural systems (52, 53)
+    method: expert-estimate
+    note: >-
+      "By A.D. 1300" in the source, held here at that year. Before it the source has small base camps, occupied for part of
+      the year, from about 1000.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in hart-2017-iroquoia-dispersal-PMC5550228.txt (sha256 58b876009d207332), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: { lo: 1600 CE }
+    source:
+      - ref: src:hart-2017-iroquoia-dispersal
+        loc: section "Regional setting"
+        quote: >-
+          In the late 1500s and early 1600s, formative nations related to these defensive communities developed into the
+          historically documented Haudenosaunee (Iroquois) confederacy in New York and the Wendat (Huron) and Neutral
+          confederacies in Ontario, each of which was encountered by early European explorers and missionaries in the 17th
+          century
+      - ref: src:manning-2021-mohawk-valley-villages
+        loc: abstract
+        quote: Garoga of ~1550–1582
+      - ref: src:manning-2021-mohawk-valley-villages
+        loc: section "Radiocarbon samples, dating, and site contexts"
+        quote: Garoga site Feature 36 was a cylindrical pit measuring 122 cm in diameter and 147 cm deep within Longhouse 9
+    method: expert-estimate
+    note: >-
+      A bound, not an end: the villages went on into the seventeenth century, when Europeans met the confederacies they had
+      formed, and longhouses stood at Garoga, in the Mohawk valley, in the village the second source dates to about 1550 to
+      1582 (68.3% probability). No source read here says when the longhouse went out of use.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in hart-2017-iroquoia-dispersal-PMC5550228.txt (sha256 58b876009d207332), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["9", "10", "19"] }
+    source:
+      - ref: src:hart-2017-iroquoia-dispersal
+        loc: section "Regional setting"
+        quote: >-
+          Sites recognizable as Iroquoian appear in the archaeological record of southern Ontario, southern Quebec, and upper
+          New York by approximately A.D. 1000. … By A.D. 1300, Iroquoian populations were living in longhouse villages
+      - ref: src:manning-2021-mohawk-valley-villages
+        loc: abstract
+        quote: village sites in New York (Smith-Pagerie, Klock and Garoga)
+    method: editorial
+    note: >-
+      Regions 9 (Ontario), 10 (Quebec) and 19 (Northeastern USA), which hold southern Ontario, the St Lawrence valley of
+      southern Quebec and upper New York. The longhouse is not claimed for all of the three regions, only for the parts the
+      source names.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in hart-2017-iroquoia-dispersal-PMC5550228.txt (sha256 58b876009d207332), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: long, width: { lo: 6, hi: 7 }, walls: bark, roof: vault, roof_material: bark }
+    source:
+      - ref: src:wikipedia-longhouse
+        loc: section "Americas"
+        quote: >-
+          The longhouses inhabited by the Iroquois were wood boards/bark-covered structures of standardized design "in the
+          shape of an arbor" about 6 to 7 metres (20 to 23 ft) wide providing shelter for several related families.
+      - ref: src:wikipedia-longhouse
+        loc: section "Americas"
+        quote: >-
+          Each longhouse would house several generations of an extended family; a house was built proportionately to the
+          number of families it was expected to contain and might be lengthened over time to accommodate growth.
+      - ref: src:hart-2016-southern-ontario-nations
+        loc: section "Geopolitical change in south-central Ontario, ca. A.D. 1350–1650"
+        quote: >-
+          The settlement plans of formative coalescent communities exhibit evidence of longhouse and palisade expansion and
+          the addition of new clusters of longhouses
+    method: excavation
+    note: >-
+      The width, covering and shape are from the encyclopedia, whose paragraph on the Iroquois longhouse cites a survey of
+      the archaeological sites of the Mohawk valley; the archaeological papers read here call the houses of all three regions
+      longhouses without describing them.
+      The arbor-shaped roof is given as a barrel vault, the nearest word; walls and roof as bark, which the source names with
+      wood boards. No length is given: a house was built to the number of families it was to hold and lengthened as they
+      grew, and the paper on Ontario finds longhouses lengthened in its town plans. Nor is a household given: the source says
+      several related families, with no number of people.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in hart-2016-southern-ontario-PMC4880188.txt (sha256 a0c70436bbc0d31e), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: nucleated }
+    source:
+      - ref: src:hart-2017-iroquoia-dispersal
+        loc: section "Regional setting"
+        quote: >-
+          After A.D. 1450, sites become fewer, larger, increasingly situated in defensive locations, and surrounded by
+          multirow palisades (4).
+      - ref: src:hart-2016-southern-ontario-nations
+        loc: section "Introduction"
+        quote: The fact that Iroquoian villages were occupied for an average of 10–40 years [10,11,14] and only rarely re-occupied
+      - ref: src:hart-2016-southern-ontario-nations
+        loc: section "Geopolitical change in south-central Ontario, ca. A.D. 1350–1650"
+        quote: >-
+          After ca. 1450, populations inhabiting drainage-based site clusters, together with populations originating further
+          afield, aggregated into larger, coalescent village communities.
+    method: excavation
+    note: >-
+      Villages, occupied for 10 to 40 years and moved. After about 1450 many gathered into larger towns surrounded by
+      palisades, for which walled would be the word; this record keeps the village, and a narrower record could take the
+      towns.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in hart-2017-iroquoia-dispersal-PMC5550228.txt (sha256 58b876009d207332), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  fields:
+    prop: field_system
+    value: { kind: swidden }
+    source:
+      - ref: src:murchie-2026-crawford-lake-sedadna
+        loc: section "Palaeoecology and Human Settlement"
+        quote: >-
+          an increase in charcoal particles coincides with the rise of cultigen pollen during the 14th–15th century
+          settlement, signalling that the inhabitants used controlled burning to clear fields and improve soil fertility
+      - ref: src:murchie-2026-crawford-lake-sedadna
+        loc: section "Palaeoecology and Human Settlement"
+        quote: >-
+          Overall these patterns align with Late Woodland agricultural practices where fields were typically left to fallow
+          and villages moved as local resources and soil fertility declined, allowing secondary forest succession in former
+          clearings
+      - ref: src:hart-feranec-2020-iroquoian-fields
+        loc: Introduction
+        quote: >-
+          Given the large number of acres under cultivation it seems unlikely that Iroquoian farmers practiced frequent
+          shifting cultivation throughout the occupational spans of each settlement [37]. Ethnohistoric accounts indicate
+          continuous cultivation of fields for 10–30 years;
+      - ref: src:hart-feranec-2020-iroquoian-fields
+        loc: Introduction
+        quote: the mounding (“corn hill”) systems in temperate northeastern North America
+      - ref: src:hart-feranec-2020-iroquoian-fields
+        loc: Introduction
+        quote: >-
+          Common bean vines often were grown in the same hills with maize whose stalks acted as climbing poles for the bean
+          vines, while squash vines were planted at intervals and occupied spaces around the mounds
+    method: expert-estimate
+    note: >-
+      Swidden is the nearest word: fields cleared in the forest with fire, at Crawford Lake in Ontario, and left to grow back
+      to forest when the village moved. They were cropped for longer than the word says, 10 to 30 years by ethnohistoric
+      accounts, and the second paper doubts that fields were shifted often while a village stood. Maize was grown in hills,
+      with beans in the same hills and squash between them.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in hart-feranec-2020-iroquoian-fields-PMC7141618.txt (sha256 57fcc1529dbb8da1), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

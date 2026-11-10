@@ -53,6 +53,7 @@ domains:
       settlement: 6
       development: 6
       industry: 5
+      tradition: 4
       artefact: 4
       person: 4
 scale:

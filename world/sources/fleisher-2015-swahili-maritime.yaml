@@ -1,0 +1,31 @@
+id: src:fleisher-2015-swahili-maritime
+type: publication
+kind: review
+citation: >-
+  Fleisher, J., Lane, P., LaViolette, A., Horton, M., Pollard, E., Quintana Morales, E., Vernet, T., Christie, A. &
+  Wynne-Jones, S. (2015). When Did the Swahili Become Maritime? American Anthropologist 117(1), 100–115.
+authors:
+  - "Fleisher, J."
+  - "Lane, P."
+  - "LaViolette, A."
+  - "Horton, M."
+  - "Pollard, E."
+  - "Quintana Morales, E."
+  - "Vernet, T."
+  - "Christie, A."
+  - "Wynne-Jones, S."
+published: 2015
+title: When Did the Swahili Become Maritime?
+container: American Anthropologist
+doi: 10.1111/aman.12171
+url: https://europepmc.org/article/PMC/PMC4368416
+license: CC-BY-NC-ND-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A synthesis by archaeologists of the Swahili coast, several of them excavators of the sites it discusses (Shanga, Tumbe,
+  Songo Mnara). Its statements on houses summarize excavations published elsewhere.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC (PMC4368416), its JATS XML fetched on 9 November 2026 and read as text; the quotes checked
+    by script against that text.

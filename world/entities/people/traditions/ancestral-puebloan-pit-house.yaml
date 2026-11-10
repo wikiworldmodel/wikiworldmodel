@@ -1,0 +1,140 @@
+id: people/traditions/ancestral-puebloan-pit-house
+kind: tradition/building
+summary: >-
+  The pit house of the Basketmaker III period on the Colorado Plateau: a round house dug several feet into the ground, 2.4 to
+  6.1 m across, its log frame covered with woven reeds, grass and mud and entered through the roof, the houses standing in
+  small groups on the mesa tops. In the Pueblo I period stores and then dwellings moved into rooms above ground
+  (people/traditions/ancestral-puebloan-room-block).
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Basketmaker III pit house }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 500 CE
+    source:
+      - ref: src:bocinsky-2016-pueblo-macrohistory
+        loc: Results
+        quote: >-
+          The revised Pecos periods (bounded to be within A.D. 500–1400) are as follows: BM III, A.D. 500–700; P I, A.D.
+          700–890; P II, A.D. 890–1145; P III, A.D. 1145–1285; and P IV, A.D. 1285–1400.
+      - ref: src:wikipedia-basketmaker-iii-period
+        loc: opening section
+        quote: >-
+          The Basketmaker III period (500 to 750 CE) also called the "Modified Basketmaker" period, was the third period in
+          which ancient Pueblo people were cultivating food, began making pottery and living in more sophisticated clusters
+          of pit-house dwellings.
+    method: expert-estimate
+    note: >-
+      The start of the Basketmaker III period, which both sources put at 500 CE; the paper's study begins there, so its 500 is
+      a bound of the study as well. The pit house is older than the period, whose people, the article says, went on living
+      in pit houses; this record is the house of this period only.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in bocinsky-2016-pueblo-macrohistory-PMC4820384.txt (sha256 302f38d01d94ecdc), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end-bocinsky:
+    prop: end
+    value: 700 CE
+    source:
+      - ref: src:bocinsky-2016-pueblo-macrohistory
+        loc: Results
+        quote: >-
+          The revised Pecos periods (bounded to be within A.D. 500–1400) are as follows: BM III, A.D. 500–700; P I, A.D.
+          700–890;
+      - ref: src:bocinsky-2016-pueblo-macrohistory
+        loc: Discussion
+        quote: >-
+          The typical practice of storing maize in underground cists outside the pit house in the BM III period gave way, in
+          P I, to a system in which storage became concentrated in aboveground rooms integrated with other household living
+          spaces.
+    method: dendrochronology
+    rank: preferred
+    note: >-
+      The end of Basketmaker III as the paper redates the Pecos periods from the frequencies of tree-ring cutting dates.
+      Preferred over the encyclopedia's 750 CE as the period dated from evidence, in a peer-reviewed paper. It is the end of
+      the period, when stores moved above ground, not the last pit house.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in bocinsky-2016-pueblo-macrohistory-PMC4820384.txt (sha256 302f38d01d94ecdc), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end-wikipedia:
+    prop: end
+    value: 750 CE
+    source:
+      ref: src:wikipedia-basketmaker-iii-period
+      loc: opening section
+      quote: The Basketmaker III period (500 to 750 CE)
+    method: expert-estimate
+    note: The conventional end of the period, as the encyclopedia gives it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-basketmaker-iii-period-1366430453.txt (sha256 c4e1ef600cd68432), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["15"] }
+    source:
+      - ref: src:bocinsky-2016-pueblo-macrohistory
+        loc: Introduction
+        quote: >-
+          They discerned eight periods labeled Basketmaker (BM) I to BM III and Pueblo (P) I to P V, each characterized by a
+          constellation of architecture, ceramics, and settlement configurations that was widespread across the northern
+          Southwest
+      - ref: src:wikipedia-basketmaker-iii-period
+        loc: section "Communities"
+        quote: Small groupings of pit houses were built on the top of mesas.
+      - ref: src:wikipedia-basketmaker-iii-period
+        loc: section "Communities"
+        quote: From about 450–700 CE more than 200 Basketmaker sites sat on Chaco Canyon mesas, ridges, and the canyon floor.
+    method: editorial
+    note: >-
+      Region 15 (Southwestern USA), which holds the northern Southwest of the paper, its tree-ring-dated sites in Utah,
+      Colorado, Arizona and New Mexico, and the encyclopedia's Mesa Verde and Chaco Canyon. The house is not claimed for all
+      of the region, only for the places the sources name.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in bocinsky-2016-pueblo-macrohistory-PMC4820384.txt (sha256 302f38d01d94ecdc), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: round, diameter: { lo: 2.4, hi: 6.1 }, floor: sunken, walls: wattle-and-daub, roof_material: earth }
+    source:
+      - ref: src:wikipedia-basketmaker-iii-period
+        loc: section "Architecture"
+        quote: >-
+          Pit-houses were built in a hole several feet deep between 8 and 20 feet (2.4 and 6.1 m) in diameter. A log frame
+          was built to support side walls and a roof that were covered with woven reeds, grass and, lastly, mud for
+          weatherproofing. In the center of a roof was an opening used for ventilation and an entrance to the dwelling.
+      - ref: src:wikipedia-pueblo-i-period
+        loc: section "Architecture"
+        quote: During this period round pit-houses began to evolve into ceremonial kivas.
+      - ref: src:bocinsky-2016-pueblo-macrohistory
+        loc: Discussion
+        quote: storing maize in underground cists outside the pit house in the BM III period
+    method: excavation
+    note: >-
+      The size, the pit, the frame and its covering are from the article on Basketmaker III; the round plan from its giving a
+      diameter and from the article on Pueblo I, which has round pit houses in the next period. The walls above the pit were
+      a log frame covered with woven reeds, grass and mud, given as wattle and daub, the nearest word; the roof was covered
+      the same way, given as earth over beams and matting. The same article says the houses of this period were larger than
+      before, divided into sections, with a central hearth, vestibules and walls lined with slabs of stone. The paper is cited
+      for the pit house as the dwelling of the period.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in bocinsky-2016-pueblo-macrohistory-PMC4820384.txt (sha256 302f38d01d94ecdc), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: hamlet, houses: { lo: 1, hi: 20 } }
+    source:
+      - ref: src:wikipedia-basketmaker-iii-period
+        loc: section "Communities"
+        quote: Small groupings of pit houses were built on the top of mesas.
+      - ref: src:wikipedia-basketmaker-iii-period
+        loc: section "Communities"
+        quote: The sites had clusters of 1–20 pit-houses.
+      - ref: src:wikipedia-pueblo-i-period
+        loc: section "Communities"
+        quote: >-
+          The Pueblo I villages were larger than the settlements of the preceding Basket Maker period; In the Four Corners
+          region the average of 5 to 10 pit-house per settlement rose to 20 to 30 pit-houses per community.
+    method: expert-estimate
+    note: >-
+      The range of 1 to 20 pit houses is for the Basketmaker sites of Chaco Canyon; the average of 5 to 10 a settlement, from
+      the article on Pueblo I, is for the Four Corners region. One Chaco Canyon village the article names, Shabik'eschee, had
+      18.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-basketmaker-iii-period-1366430453.txt (sha256 c4e1ef600cd68432), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

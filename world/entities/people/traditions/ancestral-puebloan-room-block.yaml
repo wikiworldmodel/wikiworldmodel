@@ -1,0 +1,114 @@
+id: people/traditions/ancestral-puebloan-room-block
+kind: tradition/building
+summary: >-
+  The pueblo of the Ancestral Puebloans and their descendants: flat-roofed rooms built at ground level and joined wall to
+  wall in rows and blocks, of jacal at first (people/traditions/pueblo-i-jacal-room-block) and of stone masonry from the
+  Pueblo II period on, the residential structures of a few to twenty rooms standing close together in hamlets and clusters,
+  until in the thirteenth century people gathered into large planned towns (people/traditions/pueblo-planned-town). No end
+  is given: the Zuni region, one of the sources says, was farmed by settled people continuously into the present.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Ancestral Puebloan room block }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 700 CE
+    source:
+      - ref: src:bocinsky-2016-pueblo-macrohistory
+        loc: Results
+        quote: >-
+          The revised Pecos periods (bounded to be within A.D. 500–1400) are as follows: BM III, A.D. 500–700; P I, A.D.
+          700–890;
+      - ref: src:bocinsky-2016-pueblo-macrohistory
+        loc: Discussion
+        quote: >-
+          The typical practice of storing maize in underground cists outside the pit house in the BM III period gave way, in
+          P I, to a system in which storage became concentrated in aboveground rooms integrated with other household living
+          spaces.
+    method: dendrochronology
+    note: >-
+      The start of Pueblo I as the paper redates it from the frequencies of tree-ring cutting dates, when stores moved into
+      rooms above ground. The encyclopedia's conventional start of the period, 750 CE, is a competing claim on the first
+      pueblos (people/traditions/pueblo-i-jacal-room-block); it is not repeated here, as a member cannot start before the
+      tradition it belongs to.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in bocinsky-2016-pueblo-macrohistory-PMC4820384.txt (sha256 302f38d01d94ecdc), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["15"] }
+    source:
+      - ref: src:wikipedia-ancestral-puebloans
+        loc: section "Architecture"
+        quote: >-
+          Population centers such as Chaco Canyon (outside Crownpoint, New Mexico), Mesa Verde (near Cortez, Colorado), and
+          Bandelier National Monument (near Los Alamos, New Mexico) have brought renown to the Ancestral Pueblo peoples.
+      - ref: src:spielmann-2016-southwest-transformation
+        loc: section "Zuni"
+        quote: >-
+          The Zuni region is one of only a few places in the Southwestern US that was densely occupied by sedentary
+          small-scale farmers continuously from at least the last millennium B.C.E., through Spanish conquest, and into the
+          present
+    method: editorial
+    note: >-
+      Region 15 (Southwestern USA), which holds Chaco Canyon, Mesa Verde, Bandelier and the Zuni region. The pueblo is not
+      claimed for all of the region, only for the places the sources name.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in spielmann-2016-early-warning-southwest-PMC5051805.txt (sha256 86a7b8335d09b74a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: room-block, rooms: { lo: 2, hi: 20 }, floor: ground, roof: flat, walls: stone }
+    source:
+      - ref: src:wikipedia-pueblo-i-period
+        loc: section "Architecture"
+        quote: People constructed and lived in pueblos, which were surface level, flat-roofed homes.
+      - ref: src:wikipedia-pueblo-i-period
+        loc: section "Architecture"
+        quote: The pueblos made of several rooms that formed a straight row or in a crescent shape.
+      - ref: src:spielmann-2016-southwest-transformation
+        loc: section "Zuni"
+        quote: >-
+          A few of the largest communities included as many as 500 rooms distributed among closely spaced residential
+          structures, typically ranging from about 2 to 20 rooms.
+      - ref: src:bocinsky-2016-pueblo-macrohistory
+        loc: Materials and Methods, "Archaeological tree-ring dates"
+        quote: poorer preservation in BM III and P I habitations lacking stone masonry
+      - ref: src:wikipedia-ancestral-puebloans
+        loc: section "Cultural characteristics"
+        quote: >-
+          The Ancestral Puebloan culture is perhaps best known for the stone and earth dwellings its people built along cliff
+          walls, particularly during the Pueblo II and Pueblo III eras, from about 900 to 1350 CE in total.
+      - ref: src:wikipedia-ancestral-puebloans
+        loc: section "Cliff communities"
+        quote: These were built mostly of blocks of hard sandstone, held together and plastered with adobe mortar.
+    method: excavation
+    note: >-
+      The plan, the floor at ground level and the flat roof are from the article on Pueblo I; the rooms are those of one
+      residential structure in the Zuni region in the eleventh to thirteenth centuries, in the paper on Zuni and Mesa Verde.
+      The walls are stone from Pueblo II on: the first paper has the habitations of Basketmaker III and Pueblo I lacking stone
+      masonry, and the rooms of Pueblo I, of jacal, are a record of their own. The article on the Ancestral Puebloans also
+      names adobe mud among their materials.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in bocinsky-2016-pueblo-macrohistory-PMC4820384.txt (sha256 302f38d01d94ecdc), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: hamlet }
+    source:
+      - ref: src:spielmann-2016-southwest-transformation
+        loc: section "Zuni"
+        quote: >-
+          The 11th century was marked by the greatest extent of settlement with both hamlets and a smaller number of large
+          settlement clusters
+      - ref: src:spielmann-2016-southwest-transformation
+        loc: section "Zuni"
+        quote: >-
+          People went from living in widely distributed small residential structures clustered into communities to massive,
+          planned, nucleated towns
+    method: excavation
+    note: >-
+      The Zuni region from the eleventh century to the reorganization of about 1260 to 1300; larger clusters, some around
+      great houses, stood among the hamlets. The villages of Pueblo I and the planned towns of the late thirteenth century
+      on are records of their own.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in spielmann-2016-early-warning-southwest-PMC5051805.txt (sha256 86a7b8335d09b74a), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

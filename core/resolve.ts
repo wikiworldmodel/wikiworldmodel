@@ -40,8 +40,15 @@ export interface ResolveWorld {
   /** the gridded geography, by field, with the span each covers [older, younger] on the axis */
   geography: { title: string; mode: 'elevation' | 'blocks'; coverage: [number, number] }[];
   climate?: [number, number];
+  /** the energy-balance model (model:earth/energy-balance): the span it covers, and the CO₂ below which it freezes over */
+  climateModel?: { span: [number, number]; freezeBelow?: (t: number) => number | null };
   ice?: [number, number];
   people?: [number, number];
+  /**
+   * The human landscape (core/landscape.ts): the span its anthromes hold, and the lifeway at a place and time, with whether a
+   * city of the lists stands near; undefined where the place is no land.
+   */
+  landscape?: { span: [number, number]; at: (lat: number, lon: number, t: number) => { tier: Tier; pattern: string; city?: string } | undefined };
   polities?: [number, number];
   /** the rivers: where a dataset saw them and when it is evidence for, and the spans the drainage model routes */
   water?: { observed?: { span: [number, number]; at: (lat: number, lon: number) => boolean }; model: [number, number][] };
@@ -68,9 +75,15 @@ export function resolve(w: ResolveWorld, layer: LayerId, lat: number, lon: numbe
       const land = w.genericLand?.(lat, lon);
       return a('generic', land ? 'land' : 'sea', 'Nothing records where the land was at this time: generic land is drawn, its places invented and its amount a placeholder.');
     }
-    case 'climate':
+    case 'climate': {
       if (within(w.climate, t)) return a('model', 'climate field', 'A climate model\'s run covers this time.');
+      if (within(w.climateModel?.span, t)) {
+        const below = w.climateModel?.freezeBelow?.(t);
+        const at = typeof below === 'number' ? `, below ${Number(below.toPrecision(2))} bar of CO₂ under the Sun of this time` : '';
+        return a('model', 'energy-balance model', `No climate model's run covers this time. An energy-balance model gives the CO₂ at which the Earth froze over${at}: set it beside what the evidence says the CO₂ was, where it says.`);
+      }
       return a('generic', look.surface ?? 'plain', 'No climate field covers this time: the planet\'s state stands in for it.');
+    }
     case 'ice':
       if (within(w.ice, t)) return a('model', 'ice-sheet field', 'A reconstruction of the ice sheets covers this time.');
       if (look.ice) return a('evidence', look.iceReach, 'A glaciation\'s records say how far its ice reached.');
@@ -92,9 +105,15 @@ export function resolve(w: ResolveWorld, layer: LayerId, lat: number, lon: numbe
       if (tier === 'sea-standin') return a('generic', tier, 'Nothing is recorded in the sea near here: the commonest genera of the stage in a like belt of latitude stand in.');
       return a('unknown', tier, tier === 'sea' ? 'Neither atlas has a list for this sea then.' : 'No record of life here then.');
     }
-    case 'people':
+    case 'people': {
+      const here = within(w.landscape?.span, t) ? w.landscape!.at(lat, lon, t) : undefined;
+      if (here?.city) return a('evidence', here.city, 'A list of cities puts a city here then, with its people.');
+      if (here?.tier === 'evidence') return a('evidence', here.pattern, "The region's archaeologists say this way of life was there then; HYDE says where and how many.");
+      if (here?.tier === 'model') return a('model', here.pattern, "HYDE's people and land use, classed as anthromes, say how people lived here; the region's archaeologists do not say it, or disagree.");
+      if (here?.tier === 'generic') return a('generic', here.pattern, 'HYDE has people here and nothing says how they lived: foragers stand in.');
       if (within(w.people, t)) return a('model', 'population grid', 'A reconstruction of where people lived covers this time.');
       return a('unknown', null, 'No grid of where people lived covers this time.');
+    }
     case 'polity': {
       if (!within(w.polities, t)) return a('unknown', null, 'No dataset of states covers this time.');
       const name = w.polity?.(lat, lon, t);

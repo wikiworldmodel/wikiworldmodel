@@ -1,16 +1,20 @@
 // Pass criteria for living scenes: a link lands in one and the browser makes what the build recorded, within the
 // tolerance of core/fingerprint.ts; the
 // way down from the globe; a scene of any place on land, from what is fetched; what a click says is recorded,
-// inferred and generated; generated life shows in evidence mode; and the time each is drawn for.
+// inferred and generated; generated life shows in evidence mode; the time each is drawn for; and the way down into
+// a scene of the sea, below its surface.
 import { expect, test } from '@playwright/test';
-import type { AtlasIndex } from '../../../core/atlas.ts';
+import { atlasHasLand, seaList, type AtlasBin, type AtlasIndex, type SeaBin, type SeaIndex } from '../../../core/atlas.ts';
 import { fingerprintProblems, type Fingerprint } from '../../../core/fingerprint.ts';
 import type { SceneFileV2 } from '../../../core/scene.ts';
 import type { SiteInfo, Tileset } from '../../../core/tileset.ts';
 import { FAST_BUDGET } from '../../../world/generators/life/stream.ts';
 import { buildFile, canvasPng, idle, latestBuild, settledUrl } from './helpers.ts';
 
-const small = { viewport: { width: 640, height: 380 } };
+// A short window, which has the time control of a phone on its side: the view is 640 × 226, as these tests were written
+// for. A taller view of the Hell Creek passes the fast budget's cap on what it draws, and what it draws under the cap
+// depends on how it was streamed in, so that two loads of one link may not give the same pixels.
+const small = { viewport: { width: 640, height: 345 } };
 const FAST = 'quality=fast';
 const site = () => buildFile<Tileset>('tileset.json').sites!.find((s) => s.kind === 'life') as SiteInfo;
 const RAD = Math.PI / 180;
@@ -21,6 +25,7 @@ const arrival = (s: SiteInfo, metres = s.view.range) => {
 };
 const witnesses = () => buildFile<{ lat: number; lon: number; t: number; print: Fingerprint; taxa: number }[]>('life/witness.json');
 const atlas = () => buildFile<AtlasIndex>('life/atlas.json');
+const seaAtlas = () => buildFile<SeaIndex>('life/sea.json');
 const lowOver = (lat: number, lon: number, t: number, metres = 200) => `t=${t}&lat=${lat}&lon=${lon}&d=${1 + metres / 6371000}&h=30&v=75`;
 
 test.describe('the Hell Creek', () => {
@@ -105,7 +110,7 @@ test.describe('the Hell Creek', () => {
     await expect(panel.locator('.organism')).toContainText('Its body:');
     await expect(panel.locator('.organism')).toContainText('Generated:');
     await expect(panel.locator('.organism')).toContainText('where each stands');
-    await expect(panel.locator('.organism')).toContainText('gen:life/scene, version 4');
+    await expect(panel.locator('.organism')).toContainText(`gen:life/scene, version ${file.spec.generator.version}`);
   });
 
   test('a click on the ground says it is generated, and where it rests on the world', async ({ page }) => {
@@ -299,15 +304,55 @@ test.describe('anywhere else', () => {
     expect(text).toMatch(/generated|Generated/);
   });
 
-  test('over the sea there is no way down', async ({ page }) => {
-    // The middle of the Pacific, at the present's last stage.
-    const bin = atlas().bins[atlas().bins.length - 1];
-    await page.goto(`/?b=${latestBuild()}&t=${bin.slice}&lat=0&lon=-160&d=1.4&${FAST}`);
+  test('over the sea, where its atlas has a list, the way goes down into a scene of the sea, to near its floor', async ({ page }) => {
+    // The sea over the Paris Basin in the Thanetian, a shelf a few tens of metres deep: no land of the land's list, and
+    // a list of the sea's.
+    const [lat, lon] = [48, 2];
+    const ref = seaAtlas().bins.find((b) => b.name === 'Thanetian')!;
+    const land = atlas().bins.find((b) => b.from === ref.from)!;
+    expect(atlasHasLand(buildFile<AtlasBin>(land.file), atlas().grid, lat, lon)).toBe(false);
+    expect(seaList(buildFile<SeaBin>(ref.file), seaAtlas().grid, lat, lon)).toBeDefined();
+    await page.goto(`/?b=${latestBuild()}&${lowOver(lat, lon, ref.slice, 600)}&${FAST}`);
+    await idle(page);
+    const scene = (await page.evaluate(() => window.__wikiworldmodel!.scene()))!;
+    expect(scene.sea).toBe(true);
+    expect(scene.list).toBe('sea');
+    // The bar says what lived here, as on land; or, where nothing of it can be drawn yet, says so.
+    const here = page.locator('.life-here');
+    if (scene.taxa.length) await expect(here).toContainText('recorded here');
+    else await expect(here).toHaveText('Nothing of the sea’s life can be drawn here yet');
+    await expect(page.locator('.life-go')).toBeVisible({ visible: scene.taxa.length > 0 });
+    // As low as the camera goes: under the surface, and a little over the floor.
+    await page.evaluate((c) => window.__wikiworldmodel!.set({ cam: { lat: c.lat, lon: c.lon, dist: 1 + 2 / 6371000, heading: 30, tilt: 80 } }), { lat, lon });
+    await idle(page);
+    const eye = (await page.evaluate(() => window.__wikiworldmodel!.scene()))!.eye!;
+    expect(eye.z).toBeLessThan(0);
+    expect(eye.z - eye.floor).toBeGreaterThan(1.5);
+    expect(eye.z - eye.floor).toBeLessThan(3);
+    // Going to see takes a visitor down to what lives here, under the surface.
+    if (scene.taxa.length) {
+      await page.evaluate((c) => window.__wikiworldmodel!.set({ cam: { lat: c.lat, lon: c.lon, dist: 1 + 600 / 6371000, heading: 30, tilt: 75 } }), { lat, lon });
+      await idle(page);
+      await page.locator('.life-go').click();
+      await idle(page);
+      const there = (await page.evaluate(() => window.__wikiworldmodel!.scene()))!;
+      expect(there.site).toBe(scene.site);
+      expect(there.eye!.z).toBeLessThan(0);
+      expect(there.eye!.z).toBeGreaterThan(there.eye!.floor);
+    }
+  });
+
+  test('where neither atlas has a list, there is still no way down', async ({ page }) => {
+    // Every patch of every stage has a list of the land's or of the sea's: so the middle of the Pacific before the first
+    // stage of either.
+    const t = Math.min(atlas().bins[0].from, seaAtlas().bins[0].from) - 2e7;
+    await page.goto(`/?b=${latestBuild()}&t=${t}&lat=0&lon=-160&d=1.4&${FAST}`);
     await idle(page);
     await page.evaluate(() => window.__wikiworldmodel!.set({ cam: { lat: 0, lon: -160, dist: 1 + 200 / 6371000 } }));
     await idle(page);
     const state = await page.evaluate(() => window.__wikiworldmodel!.state());
     expect((state.cam.dist - 1) * 6371).toBeGreaterThan(50);
+    expect(await page.evaluate(() => window.__wikiworldmodel!.scene())).toBeNull();
   });
 
   test('a scene by a river Landsat saw draws that river, and arrives beside it', async ({ page }) => {

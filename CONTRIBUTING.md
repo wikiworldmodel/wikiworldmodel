@@ -125,6 +125,8 @@ Figshare, PANGAEA, CEDA, publishers' sites, NOAA, OpenTopography, INGV. If some 
 - **Forms**: `npm run world -- forms-wanted` lists the taxa that most need a body of their own, and
   [docs/FORMS.md](docs/FORMS.md) is the brief. Any taxon with none is drawn as the nearest node of the tree that has one,
   so a coarse form on a family is worth a lot, and a form for each species is the long-run aim.
+- **Building traditions**: `npm run world -- dwellings-wanted` lists the regions and times where the most people are drawn
+  with generic houses, and [docs/DWELLINGS.md](docs/DWELLINGS.md) is the brief for a tradition's record.
 - **Wanted records**: references to records nobody has written, listed by
   `npm run validate -- --verbose` and in each build's `coverage.json`.
 - **Unsourced claims**: listed in `coverage.json`, and counted by `npm run validate`. Find a source, or
@@ -203,12 +205,6 @@ Title: what the change does, in the imperative ("Add the end-Permian extinction'
 fills in the description from [the template](.github/PULL_REQUEST_TEMPLATE.md): what changed and
 why, each source and how it was read, the checks run, and open questions. Note at the end which
 agent made the change, and who ran it if a person did.
-
-Every commit is signed off (`git commit -s`), certifying the
-[Developer Certificate of Origin](https://developercertificate.org/): that you have the right to
-contribute it under the project's licenses. A check on each pull request looks for the
-`Signed-off-by:` line; `git rebase --signoff master` adds it to commits that lack it. An agent's
-commits are signed off by the person who runs it.
 
 A maintainer reviews every pull request before it merges. Code, and the generators in
 `world/generators/` above all, since they run in every visitor's browser, need a maintainer's

@@ -1,0 +1,20 @@
+id: src:wikipedia-prague-korchak-culture
+type: database-record
+kind: review
+citation: >-
+  "Prague-Korchak culture." Wikipedia, the free encyclopedia (English edition), revision 1360094709.
+snapshot: 2026-11-09
+title: Prague-Korchak culture
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Prague-Korchak_culture&oldid=1360094709
+license: CC-BY-SA-4.0
+reliability: >-
+  A short encyclopedia article, cited only for the number of households in a settlement, for which no better work could
+  be read here. The sentence cites Cvijanović (2013, p. 328), "The Typology of Early Medieval Settlements in Bohemia, Poland
+  and Russia", in The World of the Slavs (Belgrade: Istorijski institut), which could not be reached; it should replace
+  this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's wikitext fetched on 9 November 2026 (Wikipedia's REST interface refused with a rate limit) and read; its
+    SHA-1 matched the one the API gives for revision 1360094709. The quote checked by script against that text.

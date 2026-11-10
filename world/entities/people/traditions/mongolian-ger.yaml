@@ -1,0 +1,97 @@
+id: people/traditions/mongolian-ger
+kind: tradition/building
+summary: >-
+  The ger of the herders of the Mongolian steppe: a portable round tent of felt over a wooden lattice frame, put up at camps and
+  moved with the herds between seasonal pastures. Xiongnu herders' campsites, a hearth with no built structure around it, fit
+  the portable dwellings drawn on Xiongnu birch-bark containers, so the tent goes back at least to the Xiongnu period; it is
+  still lived in, on the steppe and in the ger districts of Ulaanbaatar. How much older it is, is not dated by what was read.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Felt tent (ger) of the Mongolian steppe }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 250 BCE
+    source:
+      - ref: src:makarewicz-2024-xiongnu-elites
+        loc: caption of Fig 1
+        quote: The extent of the Xiongnu Empire (ca 250 BCE– 150 AD)
+      - ref: src:makarewicz-2024-xiongnu-elites
+        loc: section "The Xiongnu archaeological record"
+        quote: >-
+          This material patterning is consistent with the use of portable dwellings (i.e., yurts or gers) depicted in images on
+          a number of Xiongnu birch bark containers
+    method: expert-estimate
+    note: >-
+      Circa 250 BCE, the beginning of the Xiongnu period, the earliest time the sources read here place the tent in: the
+      seasonal campsites of Xiongnu herders fit the portable dwellings drawn on Xiongnu birch-bark containers. It bounds the
+      start rather than dating it, as the tent may be older. The tent has no end claim: it is lived in today.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in makarewicz-2024-xiongnu-elites.txt (sha256 19988d8593535de4), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["115"] }
+    source:
+      - ref: src:makarewicz-2024-xiongnu-elites
+        loc: section "The Xiongnu archaeological record"
+        quote: >-
+          our knowledge of Xiongnu socio-political organization and interaction is based primarily on archaeological research
+          from Mongolia, the Transbaikal region South Siberia and Inner Mongolia
+      - ref: src:lim-2018-ger-pm25
+        loc: section "1. Introduction"
+        quote: A ger is a traditional Mongolian dwelling.
+      - ref: src:lim-2018-ger-pm25
+        loc: section "1. Introduction"
+        quote: There are more than 160,000 gers in Ulaanbaatar
+    method: editorial
+    note: >-
+      Region 115 (Mongolia), where the works the first source cites for the Xiongnu campsites were surveyed (in the Egiin Gol
+      and Khanuy valleys), and where the second counts the gers of Ulaanbaatar today. The Xiongnu also lived in Transbaikalia
+      and Inner Mongolia, and yurts are lived in today in Tuva (region 54), as the third source has it; those regions are left
+      out, as no source read here dates the tent there. It is not claimed for every household of the region: the first source
+      also has walled settlements of the Xiongnu élite and small settlements of semi-subterranean dwellings.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in makarewicz-2024-xiongnu-elites.txt (sha256 19988d8593535de4), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: round, diameter: 5.6, walls: felt, roof_material: felt }
+    source:
+      - ref: src:lim-2018-ger-pm25
+        loc: section "1. Introduction"
+        quote: It is a portable, circular, felt-covered, wood lattice-framed dwelling that is equipped with a stove for heating and cooking.
+      - ref: src:sellers-2022-tuvan-pastoralists
+        loc: section "General lifestyle of the participants"
+        quote: The Tuvan yurts are round (mean diameter 5.6 m).
+    method: survey
+    note: >-
+      The plan and the felt over a wooden lattice frame are from the first source, on the gers of Ulaanbaatar today; it calls
+      the ger felt-covered, read here as felt on walls and roof alike. The diameter is the mean the second source gives for the
+      eight yurts of the Tuvan herders it studied, across the border in Russia: no measure of a Mongolian ger was read. The
+      shape of the roof is not stated, and is left to the generator.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in lim-2018-ger-pm25.txt (sha256 2af02ac0e6cc367f), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: camp, household: 4 }
+    source:
+      - ref: src:makarewicz-2024-xiongnu-elites
+        loc: section "The Xiongnu archaeological record"
+        quote: >-
+          Seasonally occupied nomadic campsites used by Xiongnu herders are usually represented by a central hearth feature
+          surrounded by sparse artifact scatters with minimal debris accumulation and no detectable architectural investment.
+      - ref: src:sellers-2022-tuvan-pastoralists
+        loc: section "General lifestyle of the participants"
+        quote: Seasonal migration varied from 2 to 6 times per year in the current sample
+      - ref: src:lim-2018-ger-pm25
+        loc: section "3.2. Characteristics and Indoor PM2.5 Concentrations of 60 Gers"
+        quote: The households cooked an average of 2.2 ± 1.4 times per day and contained an average of 4.0 ± 1.6 family members.
+    method: survey
+    note: >-
+      Camps, as the Xiongnu campsites were, and as today's herders in Tuva move theirs between seasonal pastures two to six
+      times a year. The household is the mean of the 60 gers of the third source, 4.0 people with a standard deviation of 1.6:
+      households of a city's ger districts in 2016, not of herders' camps, and the only count read. How many tents stood in a
+      camp is not stated.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in makarewicz-2024-xiongnu-elites.txt (sha256 19988d8593535de4), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

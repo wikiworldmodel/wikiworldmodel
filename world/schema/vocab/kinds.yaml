@@ -169,6 +169,22 @@ kinds:
       who made it is a claim of its own. Its origin is no later than its oldest member found.
     start: latest
     end: latest
+  tradition:
+    label: Tradition
+    description: >-
+      A way of doing something that archaeologists or historians recognize across many places over a span of time,
+      such as a way of building houses. It names a pattern in what was made, not a people: who made it is a claim of
+      its own. Traditions nest: a broader one has narrower ones as its members, which say only what differs. An end
+      given as a range, or only as "after", is held to the latest time it allows: a tradition lasts as long as it is
+      found.
+    end: latest
+    children:
+      building:
+        label: Building tradition
+        description: >-
+          A way of building houses and setting them out, recognized across sites: the dwelling its sources describe,
+          the settlement those houses stood in and the fields around it, where and when it held. The settlement
+          generator draws its houses (docs/DWELLINGS.md).
   artefact:
     label: Artefact
     description: >-

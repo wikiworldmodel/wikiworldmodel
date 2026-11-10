@@ -1,0 +1,107 @@
+id: people/traditions/pueblo-i-jacal-room-block
+kind: tradition/building
+summary: >-
+  The first pueblos, of the Pueblo I period: flat-roofed rooms at ground level in rows or crescents, built of jacal, a frame
+  of wooden posts holding woven material covered with mud, with stone slabs at the foot of the walls late in the period, in
+  villages larger than the Basketmaker settlements before them, where pit houses were still in use.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Pueblo I jacal room block }
+    unsourced: An editorial label.
+  start-bocinsky:
+    prop: start
+    value: 700 CE
+    source:
+      ref: src:bocinsky-2016-pueblo-macrohistory
+      loc: Results
+      quote: >-
+        The revised Pecos periods (bounded to be within A.D. 500–1400) are as follows: BM III, A.D. 500–700; P I, A.D.
+        700–890; P II, A.D. 890–1145;
+    method: dendrochronology
+    rank: preferred
+    note: >-
+      Pueblo I as the paper redates it from the frequencies of tree-ring cutting dates. Preferred over the encyclopedia's
+      dates as the period dated from evidence, in a peer-reviewed paper.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in bocinsky-2016-pueblo-macrohistory-PMC4820384.txt (sha256 302f38d01d94ecdc), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  start-wikipedia:
+    prop: start
+    value: 750 CE
+    source:
+      ref: src:wikipedia-pueblo-i-period
+      loc: opening section
+      quote: The Pueblo I period (750-900)
+    method: expert-estimate
+    note: The conventional start of the period, as the encyclopedia gives it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-pueblo-i-period-1301434019.txt (sha256 d2343d54c9db5eb9), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end-bocinsky:
+    prop: end
+    value: 890 CE
+    source:
+      ref: src:bocinsky-2016-pueblo-macrohistory
+      loc: Results
+      quote: >-
+        The revised Pecos periods (bounded to be within A.D. 500–1400) are as follows: BM III, A.D. 500–700; P I, A.D.
+        700–890; P II, A.D. 890–1145;
+    method: dendrochronology
+    rank: preferred
+    note: The end of Pueblo I as the paper redates it, preferred for the same reason as its start.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in bocinsky-2016-pueblo-macrohistory-PMC4820384.txt (sha256 302f38d01d94ecdc), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end-wikipedia:
+    prop: end
+    value: 900 CE
+    source:
+      ref: src:wikipedia-pueblo-i-period
+      loc: opening section
+      quote: The Pueblo I period (750-900)
+    method: expert-estimate
+    note: The conventional end of the period, as the encyclopedia gives it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wikipedia-pueblo-i-period-1301434019.txt (sha256 d2343d54c9db5eb9), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { walls: wattle-and-daub }
+    source:
+      - ref: src:wikipedia-pueblo-i-period
+        loc: section "Architecture"
+        quote: >-
+          At the beginning of the period pueblos were made with jacal construction. Wooden posts were used to create a frame
+          to supported woven material and a covering of mud. Later in the period, stone slabs were sometimes used around the
+          dwelling foundation.
+      - ref: src:bocinsky-2016-pueblo-macrohistory
+        loc: Materials and Methods, "Archaeological tree-ring dates"
+        quote: poorer preservation in BM III and P I habitations lacking stone masonry
+    method: excavation
+    note: >-
+      Jacal, posts holding woven material covered with mud, is given as wattle and daub, the nearest word. The plan, floor,
+      roof and rooms are the room block's (people/traditions/ancestral-puebloan-room-block).
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in bocinsky-2016-pueblo-macrohistory-PMC4820384.txt (sha256 302f38d01d94ecdc), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: nucleated }
+    source:
+      - ref: src:bocinsky-2016-pueblo-macrohistory
+        loc: Discussion
+        quote: P I is connected with the villages most common between A.D. 790 and 890
+      - ref: src:wikipedia-pueblo-i-period
+        loc: section "Communities"
+        quote: >-
+          The Pueblo I villages were larger than the settlements of the preceding Basket Maker period; In the Four Corners
+          region the average of 5 to 10 pit-house per settlement rose to 20 to 30 pit-houses per community.
+    method: excavation
+    note: >-
+      Villages, in which pit houses stood with the rooms above ground: 20 to 30 of them to a community in the Four Corners
+      region, the article says. It also says that some communities still lived in Basketmaker settlements early in the
+      period.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in bocinsky-2016-pueblo-macrohistory-PMC4820384.txt (sha256 302f38d01d94ecdc), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+relations:
+  broader:
+    rel: member-of
+    to: people/traditions/ancestral-puebloan-room-block
+    unsourced: An editorial grouping.

@@ -1,0 +1,35 @@
+id: life/taxa/mosasauridae
+kind: taxon
+summary: >-
+  The mosasaurs: great marine lizards of the Late Cretaceous seas, the top predators of their time.
+same_as: { pbdb: "txn:38049" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Mosasauridae, en: "mosasaurs" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: mosasaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction, from general knowledge; no figure was compared with it. The tail fin follows the
+      description of the later mosasaurs; the earliest had none, and are drawn with it.
+  length:
+    prop: body_length
+    value: { lo: 1, hi: 13 }
+    source:
+      - ref: src:wikipedia-mosasaur
+        loc: "section \"Description\""
+        quote: "The smallest-known mosasaur was Dallasaurus turneri, which was less than 1 m (3.3 ft) long."
+      - ref: src:wikipedia-mosasaur
+        loc: "section \"Environment\""
+        quote: "measuring 13.05 m (42 ft 9.75 in) from nose tip to tail tip"
+    method: compilation
+    note: >-
+      From the smallest mosasaur to the largest specimen on display, a Tylosaurus, in an encyclopedia's words, cited for lack of a
+      work that could be read. The same article gives Mosasaurus hoffmannii up to 17 m, an estimate it calls probably too high,
+      and 11 m elsewhere.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wiki-Mosasaur.txt (sha256 f3ba026ecd667f1b), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

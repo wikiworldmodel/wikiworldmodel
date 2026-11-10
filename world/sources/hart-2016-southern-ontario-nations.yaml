@@ -1,0 +1,23 @@
+id: src:hart-2016-southern-ontario-nations
+type: publication
+kind: measurement
+citation: >-
+  Hart, J.P., Shafie, T., Birch, J., Dermarkar, S. & Williamson, R.F. (2016). Nation Building and Social Signaling in
+  Southern Ontario: A.D. 1350–1650. PLOS ONE 11(5), e0156178.
+authors:
+  - "Hart, J.P."
+  - "Shafie, T."
+  - "Birch, J."
+  - "Dermarkar, S."
+  - "Williamson, R.F."
+published: 2016
+title: "Nation Building and Social Signaling in Southern Ontario: A.D. 1350–1650"
+container: PLOS ONE
+doi: 10.1371/journal.pone.0156178
+url: https://europepmc.org/article/PMC/PMC4880188
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from the article's page on PubMed Central (PMC4880188), saved as text; the quotes checked by script
+    against that text. Citation details from Crossref.

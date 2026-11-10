@@ -19,3 +19,10 @@ claims:
     method: compilation
     note: >-
       Of Unionidae, the largest family of the order. The account gives Smith (2001), which was not read.
+  body-plan:
+    prop: body_plan
+    value: mussel
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      Added when the bivalves of the sea were given a clam's body on Autobranchia, which this order is under, so that the
+      freshwater mussels keep the body they had from Bivalvia.

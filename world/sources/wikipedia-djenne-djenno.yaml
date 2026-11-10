@@ -1,0 +1,23 @@
+id: src:wikipedia-djenne-djenno
+type: database-record
+kind: review
+citation: >-
+  "Djenné-Djenno." Wikipedia, the free encyclopedia (English edition), revision 1380966072.
+snapshot: 2026-11-09
+title: Djenné-Djenno
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Djenn%C3%A9-Djenno&oldid=1380966072
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the phases of Jenne-jeno, its mudbrick architecture and the layout of its mounds,
+  because no better work could be read here. Those sentences are cited there to the excavators: McIntosh, S.K. & McIntosh,
+  R.J. (1980), Jenne-Jeno: An Ancient African City, Archaeology 33(1), 8–14; (1979), Initial Perspectives on Prehistoric
+  Subsistence in the Inland Niger Delta, World Archaeology 11(2), 227–243; (2003), Early urban configurations on the Middle
+  Niger, in Smith, M.L. (ed.), The Social Construction of Ancient Cities, pp. 103–120; and Shaw, T. et al. (eds.) (1993), The
+  Archaeology of Africa, p. 632. None of them could be reached; they should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1380966072, fetched from Wikipedia on 9 November 2026 and read as text, and its
+    wikitext at the same revision read for the footnotes; the quotes checked by script against the text.

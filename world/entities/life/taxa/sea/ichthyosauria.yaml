@@ -1,0 +1,36 @@
+id: life/taxa/ichthyosauria
+kind: taxon
+summary: >-
+  The ichthyosaurs: marine reptiles of the Triassic, Jurassic and early Cretaceous shaped like dolphins, which bore live young at
+  sea.
+same_as: { pbdb: "txn:36543" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ichthyosauria, en: "ichthyosaurs" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: ichthyosaur
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a fish-shaped ichthyosaur, from general knowledge; no figure was compared with it.
+      Its tail follows the encyclopedia article's description of a two-lobed fin with the backbone in the lower lobe. The early,
+      long-bodied forms of the Triassic, with low tails, are drawn as this.
+  length:
+    prop: body_length
+    value: { lo: 1, hi: 21 }
+    source:
+      - ref: src:wikipedia-ichthyosauria
+        loc: "lead"
+        quote: "Ichthyosaurian species varied from 1 to 26 metres (3 to 85 ft) in length."
+      - ref: src:pimiento-2024-marine-megafauna
+        loc: "Literature review"
+        quote: "The largest size attained by any extinct marine megafauna sampled was 21 m by Shonisaurus sikanniensis, an oceanic, pelagic, macropredatory ichthyosaur from the Upper Triassic"
+    method: compilation
+    note: >-
+      The lower end in an encyclopedia's words, cited for lack of a work that could be read; the upper from a review. The
+      encyclopedia's 26 m rests on Ichthyotitan, known from jaw bones and scaled up, which the review does not include.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC11895749.txt (sha256 737ec77bbbfdb815), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

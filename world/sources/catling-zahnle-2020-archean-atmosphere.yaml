@@ -1,0 +1,22 @@
+id: src:catling-zahnle-2020-archean-atmosphere
+type: publication
+kind: review
+citation: >-
+  Catling, D.C. & Zahnle, K.J. (2020). The Archean atmosphere. Science Advances 6(9), eaax1420.
+authors:
+  - "Catling, D.C."
+  - "Zahnle, K.J."
+published: 2020
+title: The Archean atmosphere
+container: Science Advances 6(9), eaax1420
+doi: 10.1126/sciadv.aax1420
+reliability: >-
+  A review. Its Table 1 compiles published constraints on the Archean atmosphere in the units of the papers
+  it cites; the paleosol estimates of CO₂ in it are other works' calculations, which assume how the soils
+  weathered, and the review notes that they disagree with one another.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read on 8 November 2026 from Europe PMC (PMC7043912, its JATS XML converted to text); citation
+    and authors from Crossref. The primary papers behind Table 1's paleosol rows (Kanzaki & Murakami 2015;
+    Driese et al. 2011) were not read.

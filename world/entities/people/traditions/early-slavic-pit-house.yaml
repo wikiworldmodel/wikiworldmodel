@@ -1,0 +1,101 @@
+id: people/traditions/early-slavic-pit-house
+kind: tradition/building
+summary: >-
+  The pit house of the early Slavs, the Prague or Prague-Korchak group of the sixth to eighth centuries: a house dug below
+  the ground, with some log houses at ground level, in small unfortified settlements. It appears in Romania and Slovakia in
+  the sixth century, and in northern Poland and northeastern Germany not before the later seventh.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: Early Slavic pit house (Prague group) }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: { lo: 501 CE, hi: 600 CE }
+    source:
+      ref: src:gretzinger-2025-slavs
+      loc: Supplementary Note 1.2 (F. Biermann), "The archaeological debate on Slavic expansion"
+      quote: The Prague group and its offshoots can be dated to the 6th-8th centuries.
+    method: expert-estimate
+    note: >-
+      The sixth century. The same note dates the start region by region: the sixth century in Romania and Slovakia,
+      560–645 CE (radiocarbon) at Prague-Roztoky in Bohemia, 628–635 CE (tree rings) at Kraków-Wyciąże in Lesser Poland, and
+      not before the second half of the seventh century in northern Poland and northeastern Germany.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in gretzinger-2025-PMC12507669-with-SI.txt (sha256 d607fb2a8efa123f), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: { lo: 701 CE, hi: 800 CE }
+    source:
+      ref: src:gretzinger-2025-slavs
+      loc: Supplementary Note 1.2 (F. Biermann), "The archaeological debate on Slavic expansion"
+      quote: The Prague group and its offshoots can be dated to the 6th-8th centuries.
+    method: expert-estimate
+    note: >-
+      The eighth century, the end of the span the source gives the Prague group. The pit house went on after it: Herold
+      (2012) has it as the commonest building of the open settlements of the ninth and tenth centuries in Austria, the Czech
+      Republic, Slovakia and Hungary, which people/traditions/sunken-house-east-central-europe records.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in gretzinger-2025-PMC12507669-with-SI.txt (sha256 d607fb2a8efa123f), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["43", "45", "48"] }
+    source:
+      ref: src:gretzinger-2025-slavs
+      loc: Supplementary Note 1.2 (F. Biermann), "The archaeological debate on Slavic expansion"
+      quote: >-
+        While it can be dated to as early as the 6th century in Romania and Slovakia … to the 6th/7th centuries in Bohemia …
+        to the first half of the 7th century in the case of Lesser Poland … it cannot be documented before the second half of
+        the 7th century in Northern Poland and Northeastern Germany
+    method: editorial
+    note: >-
+      Region 48 (Romania, Bulgaria and Moldova) for Romania; region 45 (Eastern Europe) for Slovakia, Bohemia and Poland;
+      region 43 (Central Europe) for northeastern Germany. The source also has the culture "very similar from the Balkans to
+      the Baltic Sea, from the Elbe to the Dnieper", but the regions named are those it dates. A region named is where the
+      source places the house, not a claim that it covered the region.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in gretzinger-2025-PMC12507669-with-SI.txt (sha256 d607fb2a8efa123f), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { floor: sunken }
+    source:
+      - ref: src:gretzinger-2025-slavs
+        loc: main text, section "Main", third paragraph
+        quote: >-
+          Where Slavs lived, Roman, Germanic and other pre-Slavic infrastructures were usually replaced by rather simple ways
+          of life, archaeologically characterized by small settlements of pit houses, cremation burials, handmade,
+          undecorated pottery and modest, low-metal material culture
+      - ref: src:gretzinger-2025-slavs
+        loc: Supplementary Note 1.1 (W. Pohl), "A historical overview of Slavic expansion", subsection "Problems of Slavic identity"
+        quote: characterized by simple handmade pottery, sunken huts, cremation burials
+      - ref: src:gretzinger-2025-slavs
+        loc: Supplementary Note 1.2 (F. Biermann), "The archaeological debate on Slavic expansion"
+        quote: mostly rather small settlements characterized by pit houses or ground-level blockhouses
+    method: excavation
+    note: >-
+      A house dug into the ground. Some settlements had log houses at ground level instead ("blockhouses"), which this
+      claim leaves out. The plan, size, walls and roof are not given in a source read, so the generator guesses them.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in gretzinger-2025-PMC12507669-with-SI.txt (sha256 d607fb2a8efa123f), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  settlement:
+    prop: settlement_form
+    value: { pattern: hamlet, houses: { lo: 8, hi: 20 } }
+    source:
+      - ref: src:gretzinger-2025-slavs
+        loc: Supplementary Note 1.2 (F. Biermann), "The archaeological debate on Slavic expansion"
+        quote: >-
+          Archaeologists associate the early Slavs in Central and Eastern Europe with a widespread cultural phenomenon,
+          defined by handmade, undecorated pottery, the custom of cremation burial (usually in urns) and mostly rather small
+          settlements characterized by pit houses or ground-level blockhouses.
+      - ref: src:wikipedia-prague-korchak-culture
+        loc: lead section
+        quote: >-
+          Settlements were as a rule placed at rivers, near water sources, and were typically unfortified, with 8–20
+          households with courtyards.
+    method: expert-estimate
+    note: >-
+      Small settlements, which the vocabulary calls hamlets. The number of houses is the encyclopedia's 8–20 households,
+      taken as one house each; it cites Cvijanović (2013, p. 328), which could not be read.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in gretzinger-2025-PMC12507669-with-SI.txt (sha256 d607fb2a8efa123f), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

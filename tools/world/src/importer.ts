@@ -36,7 +36,8 @@ export function fieldAgesMa(f: Field): { maxAgeMa: number; minAgeMa: number; ste
  * blocks are), or today's relief on a fixed datum, which a coastline reads at the sea level of
  * each time. Those three are carried by the tiles; the climate, the ice sheets and the people have files of their own.
  */
-export function fieldSource(f: Field): 'elevation' | 'blocks' | 'relief' | 'climate' | 'ice' | 'people' {
+export function fieldSource(f: Field): 'elevation' | 'blocks' | 'relief' | 'climate' | 'ice' | 'people' | 'landscape' {
+  if (f.data?.as === 'anthromes' || f.data?.as === 'land-use-assessment' || f.data?.as === 'cities') return 'landscape';
   if (f.data?.as === 'relief') return 'relief';
   if (f.data?.as === 'climate') return 'climate';
   if (f.data?.as === 'ice-sheets') return 'ice';

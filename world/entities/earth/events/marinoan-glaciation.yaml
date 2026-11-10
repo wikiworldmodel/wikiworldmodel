@@ -21,6 +21,8 @@ claims:
       Only loosely constrained: by a pre-Marinoan Re–Os age of 645.1 ± 4.8 Ma in South
       Australia and a syn-glacial U–Pb age of 639.29 ± 0.26 Ma in Namibia (Prave et al.
       2016). The table's errors are 2σ.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC5677351.txt (sha256 3d1d8d9bd72830a8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }
   end-hoffman-2017:
     prop: end
     value: { lo: 636.0 Ma, hi: 634.7 Ma }
@@ -31,6 +33,8 @@ claims:
     method: compilation
     rank: preferred
     note: The deglaciation, marked by the cap carbonate; the table's errors are 2σ.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC5677351.txt (sha256 3d1d8d9bd72830a8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }
   end-prave-2016:
     prop: end
     value: { mean: 635.21 Ma, sd: 0.46 Myr }
@@ -60,6 +64,8 @@ claims:
       Glacial deposits laid down at sea level at low paleomagnetic latitudes; in the Snowball
       Earth the paper reviews, sea ice covered the whole ocean as well. The abstract's ≥5-Myr
       glaciation is the Marinoan.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC5677351.txt (sha256 3d1d8d9bd72830a8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }
   ice-reach-abbot-2011:
     prop: ice_reach
     value: 10
@@ -78,6 +84,24 @@ claims:
       abstract gives no latitude for the ice's edge; Hoffman et al. (2017), citing it, put the
       sea-ice margin at 5° to 15°, recorded here as the middle, 10°. Ice sheets could still
       grow on high ground near the equator.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC5677351.txt (sha256 3d1d8d9bd72830a8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }
+  co2-end-hoffman-2017:
+    prop: co2_pressure
+    value: 0.028
+    source:
+      ref: src:hoffman-2017-snowball-earth
+      loc: abstract
+      quote: Geochemical data imply that CO2 was 10² PAL (present atmospheric level) at the younger termination, consistent with a global ice cover.
+    method: compilation
+    basis: reconstruction
+    note: >-
+      The CO₂ at the end of the glaciation, the younger of the two Cryogenian terminations. The abstract gives an
+      order of magnitude, 10² times the present atmospheric level, with no uncertainty and without saying which
+      present level it means; it is converted here at 0.00028 bar a level, the pre-industrial partial pressure
+      Feulner (2012) gives, so 0.028 bar.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC5677351.txt (sha256 3d1d8d9bd72830a8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }
 relations:
   after-sturtian:
     rel: after
@@ -86,3 +110,5 @@ relations:
       ref: src:hoffman-2017-snowball-earth
       loc: introduction, with Fig. 2
       quote: the paired Neoproterozoic Snowball Earths and the brief nonglacial interlude
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC5677351.txt (sha256 3d1d8d9bd72830a8), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-08" }

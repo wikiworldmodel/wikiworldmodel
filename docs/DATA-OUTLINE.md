@@ -183,7 +183,9 @@ What every other domain leans on.
 | Radiocarbon-dated sites | ○ | p3k14c; XRONOS; regional databases (CARD, etc.) | ? | D |
 | The first farming in each centre, and its spread | ◐ | literature; radiocarbon databases | — | R + F |
 | Population, 10,000 BCE to now (grid) | ✓ a 1° grid of people to 2015, over the globe, and the world's total as a series | HYDE 3.2.1 (on DANS: its grids read one by one, CC BY 3.0 by its readme); HYDE 3.3 (to 2023, behind a bot check) | ✓ 3.2.1 | F |
-| Land use: cropland, pasture, irrigation | ◐ the world's cropland and grazing land as series; no grid, no irrigation | HYDE 3.2.1 (its grids of land use, read as its grids of people are); LandCover6k | ✓ 3.2.1 | F |
+| Land use: cropland, pasture, irrigation | ◐ the world's cropland and grazing land as series; every 5′ cell's anthrome (cropland, rice, irrigation, grazing as classes) from Anthromes 12K; no grid of shares | HYDE 3.2.1 (its grids of land use, read as its grids of people are); Anthromes 12K (CC0); LandCover6k | ✓ 3.2.1, CC0 | F |
+| How people lived, by region and time | ✓ ArchaeoGLOBE's 146 regions at ten times, its consensus and spread, and a model joining it with HYDE | ArchaeoGLOBE Public Data and Regions (CC0) | ✓ | D + F |
+| Building traditions: houses, settlements, fields | ◐ a first batch by region, as records | excavation reports; regional syntheses | — | R |
 | Rock art and early symbolic artefacts | ◐ six artefacts | literature | — | R |
 
 ---
@@ -198,7 +200,7 @@ region's sources.
 | Polities and their borders, year by year | ◐ all of Cliopatria's as a layer of rows, and Rome as records | Cliopatria; OpenHistoricalMap | ✓ | D |
 | Polities, other compilations | ○ | Seshat (CC BY-NC-SA); CShapes 2.0 (1886–2019); GeaCron and Euratlas (closed) | ✗ / ? | cite only |
 | Rulers, offices and reigns | ◐ 42 rulers, 27 of them Roman | Wikidata; regnal lists in standard references | ✓ | R |
-| Cities: founding, size, population through time | ◐ Rome, Constantinople, 18 first cities with area and population | Reba, Reitsma & Seto 2016 (6,000 years of urbanization); Chandler, Modelski | ? | D + R |
+| Cities: founding, size, population through time | ◐ Rome, Constantinople, 18 first cities with area and population as records; Chandler's and Modelski's lists, as Reba, Reitsma & Seto placed them, as datasets | Reba, Reitsma & Seto 2016 (6,000 years of urbanization); Chandler, Modelski | ✓ CC BY | D + R |
 | Events: battles, treaties, foundations, disasters | ◐ Rome | Wikidata; primary and secondary literature | ✓ | R |
 | People | ◐ rulers | Wikidata | ✓ | R |
 | Roads and routes | ◐ Roman roads, as a layer | Itiner-e (Roman roads); ORBIS; OpenHistoricalMap | ✓ Itiner-e; ? others | D |
@@ -260,7 +262,7 @@ region's sources.
 | A second ancient city (Ostia, Constantinople, Athens, Alexandria) | ○ | OHM; excavation reports; Pleiades | ✓ | slice |
 | Cities of other cultures (Chang'an, Tenochtitlan, Teotihuacan, Angkor, Babylon, Mohenjo-daro) | ○ | literature; lidar and excavation plans | — | slices |
 | Ground levels and ancient topography | ◐ around the Forum | geoarchaeological studies; Lanciani | — | R + F |
-| Building typologies for each culture and era (houses, temples, markets) | ◐ Roman insula, domus | architectural histories | — | G |
+| Building typologies for each culture and era (houses, temples, markets) | ◐ Roman insula, domus; houses of a first batch of building traditions (docs/DWELLINGS.md), and generic ones by way of life and climate | architectural histories; excavation reports | — | R + G |
 | 3D models of surviving monuments | ○ | Smithsonian 3D (CC0); Sketchfab (per model: keep CC0 and CC BY); Europeana (mixed) | ◐ | assets |
 | Interiors (the Pantheon, the Hagia Sophia) | ○ | surveys; literature | — | assets + R |
 | Population and density of a city, by district | ◐ Rome's regions | Regionary Catalogues; census records | ✓ | R |
@@ -300,8 +302,8 @@ region's sources.
 |---|---|---|
 | Clouds that follow the climate of their time | temperature, CO₂, land and sea fields | ◐ one generic layer |
 | Surface paint: biomes, deserts, ice, vegetation | biome reconstructions, climate fields | ◐ planet states |
-| Fields and farms around settlements | population, land use (HYDE), soils | ○ |
-| Cities of other cultures and eras | typologies, density from records | ◐ Rome |
+| Fields and farms around settlements | population, land use (HYDE), soils | ◐ settlements, houses and fields from the anthromes and HYDE's people (gen:people/settlement) |
+| Cities of other cultures and eras | typologies, density from records | ◐ Rome; elsewhere a dense cluster of a tradition's houses where the lists of cities put one |
 | Roads and paths where no map exists | settlements, terrain | ○ |
 | Ships, carts, crowds | routes, population | ◐ crowds |
 | Night lights | population, buildings | ○ |

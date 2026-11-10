@@ -1,0 +1,29 @@
+id: src:parker-pearson-2025-cladh-hallan-part2
+type: publication
+kind: measurement
+citation: >-
+  Parker Pearson, M., Mulville, J., Smith, H. & Marshall, P. (2025). Cladh Hallan: Roundhouses and the Dead in the
+  Hebridean Bronze Age and Iron Age. Part 2: Material culture, subsistence, skeletons and synthesis. Sheffield
+  Environmental and Archaeological Research Campaign in the Hebrides, Volume 10. Oxford and Philadelphia: Oxbow Books.
+  Including Parker Pearson, M., "Cladh Hallan in its context", chapter 23.
+authors:
+  - "Parker Pearson, M."
+  - "Mulville, J."
+  - "Smith, H."
+  - "Marshall, P."
+published: 2025
+title: "Cladh Hallan: Roundhouses and the Dead in the Hebridean Bronze Age and Iron Age. Part 2: Material culture, subsistence, skeletons and synthesis"
+container: Sheffield Environmental and Archaeological Research Campaign in the Hebrides 10
+doi: 10.2307/jj.36075897
+url: https://zenodo.org/records/19851415
+license: CC-BY-3.0
+license_note: The book's imprint page says its open-access online version is licensed under CC BY 3.0.
+reliability: >-
+  The excavation report of a Late Bronze Age and Iron Age settlement of roundhouses in South Uist, Outer Hebrides. It is
+  cited for its synthesis chapter, which sets the site's houses against the roundhouses of Britain and Ireland from the
+  literature.
+verified:
+  by: machine:claude-code
+  how: >-
+    The PDF of the open-access edition downloaded from Zenodo (record 19851415) on 9 November 2026 and converted to text;
+    the page number of the quotes read from the page itself. Quotes checked by script against the text.

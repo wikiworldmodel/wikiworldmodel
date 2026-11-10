@@ -1,0 +1,16 @@
+description: >-
+  A eurypterid or sea scorpion: a rounded head shield with a pair of eyes, a long body of twelve segments, broad in front and
+  narrowing behind to a long spike, a pair of broad paddles behind the head to swim with, and walking legs beneath. Its length is
+  from the front of the head to the end of the spike.
+kind: animal
+hip: 0.1
+mass_length: 8.5
+behave: { group: [1, 4], habitat: floor, poses: [stand, walk] }
+parts:
+  body: { type: tube, zl: true, mat: chitin, sides: [8, 4], rings: [[0, 0.5, 0.05, 0.03, 0.012], [0, 0.47, 0.052, 0.1, 0.022], [0, 0.4, 0.055, 0.135, 0.03], [0, 0.32, 0.056, 0.14, 0.032], [0, 0.26, 0.056, 0.13, 0.03], [0, 0.22, 0.054, 0.13, 0.03], [0, 0.195, 0.054, 0.117, 0.028], [0, 0.17, 0.054, 0.145, 0.03], [0, 0.145, 0.054, 0.131, 0.028], [0, 0.12, 0.054, 0.155, 0.03], [0, 0.095, 0.054, 0.14, 0.028], [0, 0.07, 0.054, 0.16, 0.03], [0, 0.045, 0.054, 0.144, 0.028], [0, 0.02, 0.054, 0.158, 0.03], [0, -0.005, 0.054, 0.142, 0.028], [0, -0.03, 0.054, 0.15, 0.03], [0, -0.055, 0.054, 0.135, 0.028], [0, -0.08, 0.054, 0.135, 0.03], [0, -0.105, 0.054, 0.122, 0.028], [0, -0.13, 0.054, 0.11, 0.03], [0, -0.155, 0.054, 0.099, 0.028], [0, -0.18, 0.054, 0.085, 0.03], [0, -0.205, 0.054, 0.077, 0.028], [0, -0.23, 0.054, 0.065, 0.03], [0, -0.255, 0.054, 0.059, 0.028], [0, -0.28, 0.054, 0.05, 0.03], [0, -0.305, 0.054, 0.045, 0.028], [0, -0.33, 0.054, 0.042, 0.03], [0, -0.355, 0.054, 0.038, 0.028], [0, -0.37, 0.054, 0.035, 0.02]] }
+  telson: { type: spike, zl: true, mat: chitin, sides: [4, 3], from: [0, -0.36, 0.054], to: [0, -0.5, 0.05], r: 0.022 }
+  eyes: { type: lump, zl: true, near: true, mat: dark, mirror: true, at: [0.06, 0.4, 0.08], r: [0.02, 0.03, 0.016], sides: [5, 4], bands: [3, 2] }
+  paddles: { type: sheet, zl: true, mat: chitin, mirror: true, gap: 0.003, points: [[0.1, 0.3, 0.035], [0.24, 0.2, 0.03], [0.3, 0.12, 0.028], [0.26, 0.08, 0.028], [0.12, 0.24, 0.035]] }
+  legs-1: { type: chain, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.06, 0.42, 0.04, 0.008], [0.14, 0.5, 0.05, 0.007], [0.2, 0.56, 0.006, 0.005]] }
+  legs-2: { type: chain, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.07, 0.38, 0.04, 0.008], [0.17, 0.44, 0.05, 0.007], [0.24, 0.46, 0.006, 0.005]] }
+  legs-3: { type: chain, zl: true, near: true, mat: chitin, mirror: true, sides: [3, 3], points: [[0.08, 0.34, 0.04, 0.009], [0.19, 0.36, 0.05, 0.008], [0.26, 0.36, 0.006, 0.006]] }

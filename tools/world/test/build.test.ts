@@ -152,7 +152,10 @@ describe('build', () => {
   it('records what it was made from: commit, datasets, generators, alternatives shown, license filter', () => {
     const b = JSON.parse(readFileSync(join(latestBuild(), 'build.json'), 'utf8'));
     expect(Object.keys(b.datasets)).toEqual([
+      'src:anthromes-12k',
       'src:ar6-wg1-fig2-4',
+      'src:archaeoglobe-2019-assessments',
+      'src:archaeoglobe-2019-regions',
       'src:beyer-2020-late-quaternary',
       'src:cao-2024-plate-model',
       'src:cliopatria-0.2.1',
@@ -181,6 +184,8 @@ describe('build', () => {
       'src:pbdb-hell-creek-2026-11-04',
       'src:pbdb-land-2026-11-05',
       'src:pbdb-sea-2026-11-06',
+      'src:reba-2016-chandler-v2',
+      'src:reba-2016-modelski-ancient-v2',
       'src:spratt-lisiecki-2016-sea-level',
       'src:srtm-gl1-n41e012',
       'src:srtm-gl1-n42e012',

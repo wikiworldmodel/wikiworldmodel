@@ -12,8 +12,8 @@ export type Pose = 'stand' | 'walk' | 'graze' | 'drink' | 'alert' | 'rest' | 'fl
 export interface Behave {
   /** the fewest and most in a group */
   group?: [number, number];
-  /** where it is looked for */
-  habitat?: 'open' | 'any' | 'edge' | 'forest' | 'air' | 'canopy' | 'wet' | 'water';
+  /** where it is looked for, and where it lives: on land, in the air, by the water, swimming in it (water), or on the sea's floor (floor) */
+  habitat?: 'open' | 'any' | 'edge' | 'forest' | 'air' | 'canopy' | 'wet' | 'water' | 'floor';
   /** the poses it may be in */
   poses?: Pose[];
   /** how high it flies, in metres, least and most */

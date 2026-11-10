@@ -12,6 +12,10 @@ import { splitRef } from '../../../core/refs.ts';
 import { lookup, scenarioKey, type Scenario } from '../../../core/scenario.ts';
 import type { Estimate, FeatureTime } from '../../../core/tileset.ts';
 import { formatTime, fromMa, historical, PRESENT_YEAR } from '../../../core/time.ts';
+import { PATTERN_LABEL } from '../../../core/landscape.ts';
+import type { PlaceLandscape } from '../city/landscape.ts';
+
+const PATTERN_WORDS: Record<string, string> = PATTERN_LABEL;
 
 const esc = (s: unknown) =>
   String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
@@ -127,6 +131,21 @@ export interface TerrainInfo {
   people?: PeopleHere;
   /** what the ice-sheet field gives here, where it has any ice near */
   ice?: IceHere;
+  /** how people lived here, as the human landscape has it at this time */
+  landscape?: LandscapeHere;
+}
+
+/** How people lived where a click fell, at the time shown (docs/HUMAN-LANDSCAPE.md). */
+export interface LandscapeHere {
+  place: PlaceLandscape;
+  /** the anthromes' class there, and their field's title */
+  className: string;
+  title: string;
+  /** the step read, and the people per km² a scene draws there */
+  density?: number;
+  regionUses?: string[];
+  cities: { name: string; people: number; km: number; list: string; also: { people: number; list: string }[] }[];
+  tradition?: { id: string; label: string; dwelling: string };
 }
 
 /** The ice-sheet field at a place and time: what it gives, and how far to trust it. */
@@ -215,6 +234,8 @@ export interface OrganismHere {
   stage?: string;
   fossils: SceneSpec['fossils'];
   generator: string;
+  /** it is on the sea's list: its fossils are near or far by sea, and those of the region in a like belt of latitude */
+  sea?: boolean;
 }
 
 const fmt = (x: number) => (x >= 10 ? x.toFixed(0) : x >= 1 ? x.toFixed(1) : x.toFixed(2));
@@ -239,7 +260,12 @@ export interface SeriesValue {
 
 /** A number to three significant figures, as people write it. */
 export const fmtValue = (x: number): string => {
-  const three = (v: number) => Number(v.toPrecision(3)).toLocaleString('en-US');
+  // Three significant figures however small: a pressure of 0.0000113 bar is not 0. A fraction is written as it is; the
+  // locale's own formatter, which is quick, is kept for the rest, for its thousands.
+  const three = (v: number) => {
+    const r = Number(v.toPrecision(3));
+    return Math.abs(r) < 1 ? String(r) : r.toLocaleString('en-US');
+  };
   const size = Math.abs(x);
   return size >= 1e9 ? `${three(x / 1e9)} billion` : size >= 1e6 ? `${three(x / 1e6)} million` : three(x);
 };
@@ -266,6 +292,9 @@ function checkedTitle(c: ClaimRecord): string {
   return [LEVEL_LABEL[c.level], ...(c.checked ?? []).map((s) => `${s.step} by ${s.by}${s.on ? ` on ${s.on}` : ''}: ${s.how}`)].join('\n');
 }
 
+/** A phone held upright, where the panel is a sheet over the foot of the view (style.css lays it out so). */
+const UPRIGHT = '(max-width: 640px) and (min-height: 501px)';
+
 export class InspectPanel {
   readonly el: HTMLElement;
 
@@ -274,11 +303,41 @@ export class InspectPanel {
     this.el.className = 'inspect';
     this.el.hidden = true;
     this.el.setAttribute('aria-live', 'polite');
+    // As a sheet, a tap on its head makes it as tall as the view or brings it back down, a drag leaves it where it is let
+    // go, and a drag well down closes it.
+    let held: { y: number; h: number; moved: boolean } | null = null;
+    this.el.addEventListener('pointerdown', (e) => {
+      const t = e.target as HTMLElement;
+      if (!matchMedia(UPRIGHT).matches || !t.closest('header') || t.closest('button, a, input, select, label')) return;
+      held = { y: e.clientY, h: this.el.getBoundingClientRect().height, moved: false };
+      t.setPointerCapture(e.pointerId);
+    });
+    this.el.addEventListener('pointermove', (e) => {
+      if (!held) return;
+      const dy = e.clientY - held.y;
+      if (!held.moved && Math.abs(dy) < 6) return;
+      held.moved = true;
+      this.el.style.height = `${Math.max(64, held.h - dy)}px`;
+    });
+    const letGo = () => {
+      if (!held) return;
+      const { h, moved } = held;
+      held = null;
+      const now = this.el.getBoundingClientRect().height;
+      this.el.style.height = '';
+      if (!moved) return void this.el.classList.toggle('full');
+      const room = this.el.parentElement?.clientHeight ?? now;
+      if (now < Math.min(h, room / 2) * 0.6) return this.cb.onClose();
+      this.el.classList.toggle('full', now > room * 0.62);
+    };
+    this.el.addEventListener('pointerup', letGo);
+    this.el.addEventListener('pointercancel', letGo);
   }
 
   hide(): void {
     this.el.hidden = true;
     this.el.innerHTML = '';
+    this.el.classList.remove('full');
   }
 
   private frame(title: string, body: string): void {
@@ -418,15 +477,17 @@ export class InspectPanel {
     const t = o.taxon;
     const sizes = [t.fromMass ? `${fmt(t.mass!)} kg` : t.length !== undefined ? `${fmt(t.length)} m long` : '', t.hip !== undefined ? `${fmt(t.hip)} m at the hips` : '', t.height !== undefined ? `${fmt(t.height)} m tall` : ''].filter(Boolean).join(', ');
     const rows = `${t.rows} ${t.rows === 1 ? 'occurrence' : 'occurrences'}`;
-    const where = (km: number) => (km < 20 ? 'close by' : `about ${(Math.round(km / 10) * 10).toLocaleString('en-US')} km from here, over land`);
+    const where = (km: number) => (km < 20 ? 'close by' : `about ${(Math.round(km / 10) * 10).toLocaleString('en-US')} km from here, ${o.sea ? 'by sea' : 'over land'}`);
     const recorded =
       t.tier === 'formation'
         ? `<strong>Recorded:</strong> ${rows} in ${t.collections} ${t.collections === 1 ? 'collection' : 'collections'} of ${esc(o.fossils.title)}${sizes && !t.size_from ? `; grown, ${esc(sizes)}, as the claims below say` : ''}.`
         : t.tier === 'here'
           ? `<strong>Recorded here:</strong> ${rows} of ${esc(o.fossils.title)} in this stage, the nearest ${where(t.km ?? 0)}.`
           : t.tier === 'region'
-            ? `<strong>Inferred:</strong> the nearest of its ${rows} in this stage is ${where(t.km ?? 0)}, and no fossil puts it at this spot. That it lived here too is a guess from the land and the climate between.`
-            : `<strong>A stand-in:</strong> nothing of this kind is recorded within reach: the nearest fossil of any kind is ${where(t.km ?? 0)}. ${esc(t.label)} stands for what sort of thing may have lived here, and is no claim that it did.`;
+            ? `<strong>Inferred:</strong> the nearest of its ${rows} in this stage is ${where(t.km ?? 0)}, and no fossil puts it at this spot. ${o.sea ? 'That it lived here too is a guess from the sea between, in a like belt of latitude.' : 'That it lived here too is a guess from the land and the climate between.'}`
+            : o.sea
+              ? `<strong>A stand-in:</strong> nothing is recorded in the sea within reach: the nearest fossil of any kind is ${where(t.km ?? 0)}. ${esc(t.label)} is among the commonest of this stage in a like belt of latitude, and stands for what sort of thing may have lived here; it is no claim that it did.`
+              : `<strong>A stand-in:</strong> nothing of this kind is recorded within reach: the nearest fossil of any kind is ${where(t.km ?? 0)}. ${esc(t.label)} stands for what sort of thing may have lived here, and is no claim that it did.`;
     const body = t.own ? `<p><strong>Its body:</strong> its own form, as the claims below say.</p>` : `<p><strong>Its body:</strong> drawn from the form of ${esc(t.form_label)}, the nearest node of the tree with one. No one has written its own yet.</p>`;
     const size = t.size_from ? `<p><strong>Its size:</strong> ${esc(sizes)}, within the range the record of ${esc(t.size_from)} gives. No one has measured it here.</p>` : '';
     return `<section class="here organism"><h3>In ${esc(o.site)}, ${esc(o.stage ?? formatTime(o.slice))}</h3>
@@ -434,8 +495,11 @@ export class InspectPanel {
       <p><strong>Generated:</strong> where each stands, how many there are, what each is doing, how old it is and its colour${t.fromMass ? ', and its length, from its mass and the shape of the plan' : ''}. Nobody recorded these. <span class="method">${esc(o.generator)}, shown in magenta in evidence mode.</span></p></section>`;
   }
 
-  /** What the records say lived at this place and time, in tiers, and what was made of it. */
-  showLifeHere(spec: SceneSpec, note?: string): void {
+  /**
+   * What the records say lived at this place and time, in tiers, and what was made of it. `list` is the atlas the taxa
+   * are from, the land's or the sea's; `sea` that the scene is of the sea.
+   */
+  showLifeHere(spec: SceneSpec, note?: string, where: { list: 'land' | 'sea'; sea: boolean } = { list: 'land', sea: false }): void {
     const group = (tier: string, title: string, say: string) => {
       const list = spec.taxa.filter((t) => t.tier === tier);
       if (!list.length) return '';
@@ -448,10 +512,21 @@ export class InspectPanel {
       return `<section class="here organism"><h3>${esc(title)}</h3><p class="note">${esc(say)}</p><ul>${items.join('')}</ul></section>`;
     };
     const b = spec.biome;
-    const none = spec.taxa.length ? '' : '<section class="here organism"><h3>Nothing on land</h3><p>No fossil of anything living on land is known from this stage, anywhere within reach. The land is drawn bare.</p></section>';
+    const none = spec.taxa.length
+      ? ''
+      : where.sea
+        ? '<section class="here organism"><h3>Nothing of the sea drawn</h3><p>None of what the atlas of the sea lists here, if it lists anything, has a body to draw it with yet. The sea is drawn empty: its floor, and the water over it.</p></section>'
+        : '<section class="here organism"><h3>Nothing on land</h3><p>No fossil of anything living on land is known from this stage, anywhere within reach. The land is drawn bare.</p></section>';
+    const tiers =
+      where.list === 'sea'
+        ? `${group('here', 'Recorded here', 'A fossil of it within a few hundred km by sea, from this stage.')}${group('region', 'Recorded in the region', 'A fossil of it can be reached by sea, in a like belt of latitude. That it lived at this spot is an inference.')}${group('standin', 'Stand-ins', 'Nothing is recorded in the sea within reach. These are among the commonest of the stage in a like belt of latitude, and stand for what sort of thing may have lived here; they are no claim that it did.')}`
+        : `${group('here', 'Recorded here', 'A fossil of it within a few hundred km, from this stage.')}${group('region', 'Recorded in the region', 'A fossil of it can be reached overland, in a like climate. That it lived at this spot is an inference.')}${group('standin', 'Stand-ins', 'Nothing of this kind is known within reach. These stand for what sort of thing may have lived here, and are no claim that it did.')}`;
+    const summary = where.sea
+      ? 'A sea, drawn at the depth the elevation field gives it. Every animal you see is placed by a generator: only who could be here comes from fossils.'
+      : `Where the climate field reads the land at ${esc(String(b.ageMa))} Ma it is ${esc(b.label.toLowerCase())}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%. Every plant and animal you see is placed by a generator: only who could be here comes from fossils.`;
     this.frame(spec.site.stage ?? 'This place', `<div class="meta"><span class="kind">What lived here</span> <span class="badge basis-procedural">procedural</span></div>
-      <p class="summary">Where the climate field reads the land at ${esc(String(b.ageMa))} Ma it is ${esc(b.label.toLowerCase())}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%. Every plant and animal you see is placed by a generator: only who could be here comes from fossils.</p>
-      ${none}${group('here', 'Recorded here', 'A fossil of it within a few hundred km, from this stage.')}${group('region', 'Recorded in the region', 'A fossil of it can be reached overland, in a like climate. That it lived at this spot is an inference.')}${group('standin', 'Stand-ins', 'Nothing of this kind is known within reach. These stand for what sort of thing may have lived here, and are no claim that it did.')}
+      <p class="summary">${summary}</p>
+      ${none}${tiers}
       ${note ? `<section><p class="note">${esc(note)}</p></section>` : ''}`);
   }
 
@@ -490,7 +565,7 @@ export class InspectPanel {
       return;
     }
     // A cell can hold people where the click fell on its sea, and there it should still say so.
-    const people = info.people && (info.people.people >= 0.5 || info.elevation >= 0) ? this.peopleSection(info.people) : '';
+    const people = (info.landscape && info.elevation >= 0 ? this.landscapeSection(info.landscape) : '') + (info.people && (info.people.people >= 0.5 || info.elevation >= 0) ? this.peopleSection(info.people) : '');
     const underIce = !!info.ice?.drawn;
     this.frame(
       underIce ? 'Ice sheet' : info.elevation >= 0 ? 'Land surface' : 'Sea floor',
@@ -531,6 +606,30 @@ export class InspectPanel {
       ${i.uncertainty ? `<p class="note">${esc(i.uncertainty)}</p>` : ''}
       <p class="method">The edge drawn is the ${esc(i.marginM)} m contour of the dataset's grid, and between keyframes it moves evenly from one to the next, as the thickness does: no one reconstructed those years. <span class="badge basis-reconstruction">reconstruction</span></p>
       <p class="method">${esc(s?.citation ?? '')}${s?.doi ? ` <a href="https://doi.org/${encodeURI(s.doi)}" target="_blank" rel="noopener">doi:${esc(s.doi)}</a>` : ''}</p></div>`;
+  }
+
+  /** How people lived here: the anthrome, the way of life and how sure it is, the region's archaeologists, cities, houses. */
+  private landscapeSection(h: LandscapeHere): string {
+    const p = h.place;
+    const l = p.lifeway;
+    const tier = l.tier === 'evidence' ? 'evidence' : l.tier === 'model' ? 'reconstruction' : 'procedural';
+    const dense = h.density !== undefined && h.density > 0 ? `About ${fmtValue(h.density)} people to the km², as HYDE's people of the 1° cell are shared over its 5′ cells by their classes.` : '';
+    const region = p.region
+      ? `<p><strong>The archaeologists of ${esc(p.region.label)}</strong>, at ${esc(p.region.slice)} (ArchaeoGLOBE, their consensus): ${esc((h.regionUses ?? []).join('; '))}.</p>`
+      : '<p>No region of the archaeologists\' survey holds this place.</p>';
+    const cities = h.cities.length
+      ? `<p><strong>Cities near</strong>: ${h.cities.map((c) => `${esc(c.name)}, about ${fmtValue(c.people)} people, ${c.km} km away (${esc(c.list)}${c.also.length ? `; ${c.also.map((a) => `${esc(a.list)} gives ${fmtValue(a.people)}`).join('; ')}` : ''})`).join('; ')}.</p>`
+      : '';
+    const houses = h.tradition
+      ? `<p><strong>Houses</strong> are drawn as those of ${esc(h.tradition.label)}: ${esc(h.tradition.dwelling)}.</p>`
+      : '<p><strong>Houses</strong> here are generic: no building tradition is recorded for this region and time, so a scene draws a plain house for the way of life and the climate, and says so.</p>';
+    return `<section class="landscape"><h3>How people lived here, at ${esc(formatTime(p.t, 1e4))} <span class="badge basis-${tier}">${esc(l.tier)}</span></h3>
+      <p class="big">${esc(PATTERN_WORDS[l.pattern] ?? l.pattern)}</p>
+      <p>${esc(h.className)}, in ${esc(h.title.toLowerCase())} at their step ${esc(stepName(p.step))}. ${esc(dense)}</p>
+      <p>${esc(l.why)}</p>
+      ${l.disagrees ? `<p class="note"><strong>Where they disagree:</strong> ${esc(l.disagrees)}</p>` : ''}
+      ${region}${cities}${houses}
+      <p class="method">The anthromes are Anthromes 12K's classes of HYDE 3.2; the archaeologists' assessments are ArchaeoGLOBE's; the cities are Chandler's and Modelski's lists as Reba, Reitsma & Seto placed them. How they join is model:people/lifeways.</p></section>`;
   }
 
   /** What a grid of people gives for this cell, and how far to trust it. */

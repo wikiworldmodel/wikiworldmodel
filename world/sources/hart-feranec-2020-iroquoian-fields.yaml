@@ -1,0 +1,20 @@
+id: src:hart-feranec-2020-iroquoian-fields
+type: publication
+kind: measurement
+citation: >-
+  Hart, J.P. & Feranec, R.S. (2020). Using Maize δ15N values to assess soil fertility in fifteenth- and sixteenth-century AD
+  Iroquoian agricultural fields. PLOS ONE 15(4), e0230952.
+authors:
+  - "Hart, J.P."
+  - "Feranec, R.S."
+published: 2020
+title: Using Maize δ15N values to assess soil fertility in fifteenth- and sixteenth-century ad Iroquoian agricultural fields
+container: PLOS ONE
+doi: 10.1371/journal.pone.0230952
+url: https://europepmc.org/article/PMC/PMC7141618
+license: CC-BY-4.0
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC's full-text XML (PMC7141618), saved as text; the quotes checked by script against that
+    text. Citation details from Crossref.

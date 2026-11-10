@@ -1,0 +1,22 @@
+id: src:wikipedia-indus-valley-civilisation
+type: database-record
+kind: review
+citation: >-
+  "Indus Valley Civilisation." Wikipedia, the free encyclopedia (English edition), revision 1384245886.
+snapshot: 2026-11-09
+title: Indus Valley Civilisation
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Indus_Valley_Civilisation&oldid=1384245886
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the brick and the courtyards of Indus houses and for the span of the mature
+  phase, because no peer-reviewed description of the houses could be read here. The span rests on Wright (2009), The Ancient
+  Indus, p. 1; the list of the cities' features in the opening section, baked brick houses among them, carries a note citing
+  Wright (2009), pp. 115–125; the paragraph on the houses and their courtyards ends with a note citing Lal (2002), pp. 93–95.
+  Neither work could be read here, and either, or the excavators' accounts of Harappa and Mohenjo-daro, should replace it.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1384245886, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text, and its footnotes matched to the works they cite.

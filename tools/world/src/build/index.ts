@@ -50,6 +50,7 @@ import { FEATURE_INDEX } from '../../../../core/featuretiles.ts';
 import { prominenceOf, tileFeatures } from './featuretiles.ts';
 import { buildIce, type IceBuilt } from './ice.ts';
 import { hazardLayer, peopleLayer, polityLayer, presentLayer } from './layers.ts';
+import { buildLandscape, disagreement, farmingAgreement, landscapeResolve } from './landscape.ts';
 import { fieldLayers } from './fieldlayers.ts';
 import { buildAtlas } from './atlas.ts';
 import { buildSeaAtlas, type SeaOut, type SeaParams } from './sea.ts';
@@ -58,6 +59,7 @@ import { buildScene, witnesses } from './scene.ts';
 import { features as buildFeatures, periods as buildPeriods, records as buildRecords, search as buildSearch, sourceRecord, type Solved } from './records.ts';
 import { planet as buildPlanet } from './planet.ts';
 import { series as buildSeries } from './series.ts';
+import { energyBalanceReport, RULES as ENERGY_BALANCE, seriesAt } from './energybalance.ts';
 import { territory as buildTerritory } from './territory.ts';
 import { tree as buildTree } from './tree.ts';
 
@@ -127,6 +129,7 @@ export function resolveWorldOf(
   atlas: ReturnType<typeof buildAtlas>,
   sea?: SeaOut,
   rivers?: { info: RiversInfo; seen?: Uint8Array },
+  series: SeriesFile['series'] = [],
 ): ResolveWorld {
   const land = world.generators.find((g) => g.id === GENERIC_LAND);
   const landParams = land?.params as unknown as GenericLandParams | undefined;
@@ -147,6 +150,7 @@ export function resolveWorldOf(
     planet: buildPlanet(solved),
     geography: grids.map((g) => ({ title: g.field.title, mode: g.mode, coverage: [fromMa(g.coverMa[0]), fromMa(g.coverMa[1])] })),
     climate: ages.length ? [fromMa(Math.max(...ages)), fromMa(Math.min(...ages))] : undefined,
+    climateModel: energyBalanceOf(world, series),
     ice: ice?.coverage,
     people: people ? [people.header.steps[0], people.header.steps.at(-1)!] : undefined,
     polities: polities?.rows.length ? [Math.min(...polities.rows.map((r) => r.from)), Math.max(...polities.rows.map((r) => r.to))] : undefined,
@@ -170,6 +174,14 @@ export function resolveWorldOf(
         }
       : undefined,
   };
+}
+
+/** The energy-balance model's answer for the climate (core/resolve.ts): the span of its freezing threshold, and its value. */
+export function energyBalanceOf(world: World, series: SeriesFile['series']): ResolveWorld['climateModel'] {
+  const field = world.fields.find((f) => f.rule === ENERGY_BALANCE.freeze);
+  const freeze = field && series.find((x) => x.id === field.id);
+  if (!freeze?.points.length) return undefined;
+  return { span: [freeze.points[0][0], freeze.points.at(-1)![0]], freezeBelow: (t) => seriesAt(freeze.points, t) };
 }
 
 /** The 1° cell of a grid of where rivers were seen that a place falls in. */
@@ -226,6 +238,10 @@ export function coverageSources(
     const steps = ages.slice(1).map((a, i) => Math.round((a - ages[i]) * 1e6)).sort((a, b) => a - b);
     out.push({ layer: 'climate', id: c.field.id, title: c.field.title, tier: 'model', span: [fromMa(ages.at(-1)!), fromMa(ages[0])], ...(steps.length ? { step_yr: steps[steps.length >> 1] } : {}), ...grain(c.field) });
   }
+  // The energy-balance model answers the climate where no climate model's run does, as the CO₂ it would take to freeze.
+  const ebm = world.fields.find((f) => f.rule === ENERGY_BALANCE.freeze);
+  const ebmSeries = ebm && series.find((x) => x.id === ebm.id);
+  if (ebm && ebmSeries?.points.length) out.push({ layer: 'climate', id: ebm.id, title: ebm.title, tier: 'model', span: [ebmSeries.points[0][0], ebmSeries.points.at(-1)![0]], lane: 'energy-balance', ...grain(ebm) });
   if (ice) out.push({ layer: 'ice', id: ice.field.id, title: ice.field.title, tier: 'model', span: ice.built.coverage, ...grain(ice.field) });
   for (const ep of planet.episodes) out.push({ layer: 'ice', id: ep.subject, title: ep.label, tier: 'evidence', span: clip(spanOf(ep, {})), lane: 'glaciations' });
   if (rivers) {
@@ -343,6 +359,7 @@ export async function runBuild(args: string[]): Promise<number> {
   const log = (s: string) => console.log(s);
   const out = new Map<string, Uint8Array | string>(); // path → content
   const put = (path: string, content: Uint8Array | string) => out.set(path, content);
+  let coverageLandscape: ReturnType<typeof disagreement> | undefined;
 
   // 1. Validate.
   const world = await loadWorld();
@@ -794,6 +811,17 @@ export async function runBuild(args: string[]): Promise<number> {
   }
   // The outline's check of the biomes, and how much of the world rests on what.
   const coverageFile = coverage(world, wanted, allFeatures, tiles);
+  // The energy-balance model against the evidence it does not read: soils, Snowballs, today, the Phanerozoic.
+  const balance = energyBalanceReport(world, buildPlanet(solved), seriesList);
+  if (balance) {
+    coverageFile.energyBalance = balance;
+    for (const e of balance.evidence) log(`climate  energy balance at ${e.id} (${e.ageMa} Ma, ${e.co2.join('–')} bar): freezes below ${e.freezeBelow} bar; ${e.frozen} of ${e.members} runs frozen`);
+    for (const g of balance.glaciations) log(`climate  energy balance for ${g.id}: freezes below ${g.freezeBelowAtStart} bar at its start, thaws ${g.thawAboveAtEnd === null ? 'only above the model\'s limit' : `above ${g.thawAboveAtEnd} bar`} at its end${g.co2AtEnd ? `; the rocks give ${[...new Set(g.co2AtEnd.value)].join('–')} bar` : ''}`);
+    if (balance.phanerozoic) {
+      const d = balance.phanerozoic.meanDifference;
+      log(`climate  energy balance over the Phanerozoic against ${balance.phanerozoic.against}: ${Math.abs(d)} °C ${d < 0 ? 'colder' : 'warmer'} on average, r = ${balance.phanerozoic.correlation}`);
+    }
+  }
   if (climateKeys.length && biomeField) {
     const forests = forestChecks(solved, climateKeys, climateGrid((climateField!.grid as { res_deg: number }).res_deg), biomeField.params as unknown as ClimateRule);
     coverageFile.forests = forests;
@@ -817,6 +845,14 @@ export async function runBuild(args: string[]): Promise<number> {
   // Where people lived: a grid, drawn as a picture of the surface, and so a file of numbers rather than of rows.
   const people = await peopleLayer(world);
   if (people) put('people.lwt', encodeTile(people.header as unknown as Record<string, unknown>, people.arrays, stableStringify));
+  // The anonymous human landscape: anthromes, the archaeologists' assessments, cities and building traditions.
+  const landscape = await buildLandscape(solved, log);
+  if (landscape) {
+    for (const [p, c] of landscape.files) put(p, c);
+    const share = disagreement(landscape, [-2999, -999, 1, 1000, 1500], 2);
+    coverageLandscape = share;
+    for (const x of share) log(`landscape  at ${x.t}: HYDE and the archaeologists disagree on ${(x.disagree * 100).toFixed(0)}% of the land; ${(x.evidence * 100).toFixed(0)}% rests on the archaeologists`);
+  }
   // The living scene, on the land and climate above.
   const sites: SiteInfo[] = [];
   let atlasFile: string | undefined;
@@ -837,6 +873,19 @@ export async function runBuild(args: string[]): Promise<number> {
       const lp = world.generators.find((g) => g.id === 'gen:life/scene')!.params as unknown as { site: { window: string[] }; view: { range: number; turn: number; tilt: number } };
       const heading = (Math.atan2(f.to_river[0], f.to_river[1]) * 180) / Math.PI + lp.view.turn * (180 / Math.PI);
       sites.push({ kind: 'life', id: spec.site.id, label: spec.site.label, file: `scene/${spec.site.id}.json`, place: spec.site.place, origin: spec.site.origin, span: spec.site.span, slice: spec.site.slice, near: spec.site.span, window: lp.site.window.map((p) => parsePoint(p as TimePointInput).t) as [number, number], view: { x: f.focus[0], y: f.focus[1], range: lp.view.range, heading: Math.round(((heading % 360) + 360) % 360), tilt: lp.view.tilt } });
+    }
+    // Who lived in the sea, on the same stages and patches, and the genera a scene of it can draw: before the witnesses,
+    // which hold a scene of the sea to the browser's too.
+    const seaField = world.fields.find((f) => f.data?.as === 'community-sea');
+    if (seaField) {
+      const id = seaField.data!.from;
+      const d = world.manifest.datasets[id];
+      const snap = JSON.parse(await readFile(datasetFile(id, d, seaField.data!.file), 'utf8')) as LandSnapshot;
+      const isoline = world.fields.find((f) => f.id === 'field:earth/coastline')?.isoline_m ?? 20;
+      const started = Date.now();
+      seaAtlas = buildSeaAtlas(solved, periodList, elevation.snapshots, snap, id, seaField.params as unknown as SeaParams, isoline, log);
+      for (const [path, content] of seaAtlas.files) put(path, content);
+      log(`sea     built in ${((Date.now() - started) / 1000).toFixed(1)} s`);
     }
     // Who lived where, for a scene of any place on land.
     const atlas = buildAtlas(solved, periodList, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, log);
@@ -861,28 +910,22 @@ export async function runBuild(args: string[]): Promise<number> {
             return tiles.length ? placeMonths(monthsInfo, where, tiles) : undefined;
           }
         : undefined;
-      const seen = witnesses(solved, atlas.index, atlas.files, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, buildPlanet(solved), log, waterAt, monthsAt);
+      const seen = witnesses(solved, atlas.index, atlas.files, elevation.snapshots, climateKeys, cg, biomeField.params as unknown as ClimateRule, buildPlanet(solved), log, waterAt, monthsAt, seaAtlas);
       put('life/witness.json', stableStringify(seen));
       atlasFile = 'life/atlas.json';
       coverageFile.forms = { ...atlas.index.coverage, wanted: atlas.wanted.slice(0, 200) };
       lifeAtlas = atlas;
     }
-    // Who lived in the sea, on the same stages and patches: genera, with no forms.
-    const seaField = world.fields.find((f) => f.data?.as === 'community-sea');
-    if (seaField) {
-      const id = seaField.data!.from;
-      const d = world.manifest.datasets[id];
-      const snap = JSON.parse(await readFile(datasetFile(id, d, seaField.data!.file), 'utf8')) as LandSnapshot;
-      const isoline = world.fields.find((f) => f.id === 'field:earth/coastline')?.isoline_m ?? 20;
-      const started = Date.now();
-      seaAtlas = buildSeaAtlas(solved, periodList, elevation.snapshots, snap, id, seaField.params as unknown as SeaParams, isoline, log);
-      for (const [path, content] of seaAtlas.files) put(path, content);
-      log(`sea     built in ${((Date.now() - started) / 1000).toFixed(1)} s`);
-    }
   }
 
   // Every layer answers everywhere, in a tier (docs/STRUCTURE.md section 3.3): how much of the world each tier holds.
-  const resolveWorld = resolveWorldOf(world, solved, grids, climateKeys, ice, people, polities, lifeAtlas, seaAtlas, riversInfo ? { info: riversInfo, seen: riversSeen } : undefined);
+  const resolveWorld = resolveWorldOf(world, solved, grids, climateKeys, ice, people, polities, lifeAtlas, seaAtlas, riversInfo ? { info: riversInfo, seen: riversSeen } : undefined, seriesList);
+  if (landscape) resolveWorld.landscape = landscapeResolve(landscape);
+  if (coverageLandscape && landscape) {
+    const farming = farmingAgreement(landscape);
+    coverageFile.landscape = { disagree: coverageLandscape, farming };
+    for (const f of farming) if (f.none[1] || f.widespread[2]) log(`landscape  ${f.slice}: no farming in ${f.none[1]} regions, HYDE farms under 1% of ${f.none[0]}; farming widespread in ${f.widespread[2]}, HYDE farms ${f.widespread[0]} at all and ${f.widespread[1]} over a twentieth`);
+  }
   coverageFile.tiers = TIER_SPANS.map((sp) => {
     const times = Array.from({ length: 8 }, (_, i) => fromMa(sp.olderMa + ((sp.youngerMa - sp.olderMa) * (i + 0.5)) / 8));
     return { span: sp.label, layers: tierCounts(resolveWorld, gridPlaces(10), times) };
@@ -904,6 +947,16 @@ export async function runBuild(args: string[]): Promise<number> {
     seaAtlas,
     riversInfo,
   );
+  if (landscape) {
+    const af = world.fields.find((f) => f.data?.as === 'anthromes')!;
+    const lf = world.fields.find((f) => f.data?.as === 'land-use-assessment')!;
+    sources.push({ layer: 'people', id: af.id, title: af.title, tier: 'model', span: landscape.span, res_deg: landscape.index.res, lane: 'anthromes' });
+    sources.push({ layer: 'people', id: lf.id, title: lf.title, tier: 'evidence', span: landscape.assessed, lane: 'assessments' });
+    for (const f of world.fields.filter((x) => x.data?.as === 'cities')) {
+      const own = landscape.cities.cities.filter((c) => c.field === f.id).flatMap((c) => c.pops.map((p) => p[0]));
+      if (own.length) sources.push({ layer: 'people', id: f.id, title: f.title, tier: 'evidence', span: [Math.min(...own), Math.max(...own)], lane: 'cities' });
+    }
+  }
   coverageFile.matrix = coverageMatrix(resolveWorld, span, COVERAGE.columns, COVERAGE.step, COVERAGE.samples, sources);
   log(`coverage  ${COVERAGE.columns} columns × ${coverageFile.matrix.layers.length} layers over a ${COVERAGE.step}° grid in ${((Date.now() - started) / 1000).toFixed(1)} s`);
   put('coverage.json', stableStringify(coverageFile));
@@ -915,7 +968,7 @@ export async function runBuild(args: string[]): Promise<number> {
     timeRange: span,
     lods: lods.map((l) => ({ lod: l.lod, step: l.step, cell: [l.cells[0][2] - l.cells[0][0], l.cells[0][3] - l.cells[0][1]], binsMa: l.binsMa })),
     tiles,
-    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(overlays ? { overlays: 'overlays.json' } : {}), ...(people ? { people: 'people.lwt' } : {}), ...(atlasFile ? { atlas: atlasFile } : {}), ...(seaAtlas ? { sea: 'life/sea.json' } : {}), features: FEATURE_INDEX },
+    files: { frames: 'frames.json', periods: 'periods.json', search: 'search.json', records: 'records/', coverage: 'coverage.json', series: 'series.json', planet: 'planet.json', territory: 'territory.json', city: city ? `city/${city.file.site.id}.json` : undefined, climate: climateKeys.length ? 'climate.lwt' : undefined, ice: ice ? 'ice.lwt' : undefined, tree: 'tree.json', ...(present ? { present: 'present.json' } : {}), ...(hazards ? { hazards: 'hazards.json' } : {}), ...(polities ? { polities: 'polities.json' } : {}), ...(overlays ? { overlays: 'overlays.json' } : {}), ...(people ? { people: 'people.lwt' } : {}), ...(atlasFile ? { atlas: atlasFile } : {}), ...(seaAtlas ? { sea: 'life/sea.json' } : {}), ...(landscape ? { landscape: 'people/landscape.json' } : {}), features: FEATURE_INDEX },
     rivers: riversInfo,
     months: monthsInfo,
     climates: recentClimates.length

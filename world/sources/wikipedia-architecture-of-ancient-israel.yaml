@@ -1,0 +1,24 @@
+id: src:wikipedia-architecture-of-ancient-israel
+type: database-record
+kind: review
+citation: >-
+  "Architecture of ancient Israel." Wikipedia, the free encyclopedia (English edition), revision 1375836145.
+snapshot: 2026-11-09
+title: Architecture of ancient Israel
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Architecture_of_ancient_Israel&oldid=1375836145
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the walls, roofs and plan of the four-room house and for the span of the domestic
+  architecture it defines, because no better work could be read here. Its sections on walls, roofs and houses cite Avraham, A.
+  (2018), "Ancient Building Techniques: A Brief Overview", in Farber, Z.I. & Wright, J.L. (eds.), Archaeology and History of
+  Eighth-Century Judah (SBL Press), pp. 299–306, an open-access book whose host could not be reached; its section on casemate
+  walls cites Shiloh, Y. (1987), Bulletin of the American Schools of Oriental Research 268, 3–15, and Garfinkel, Y. (2023),
+  Jerusalem Journal of Archaeology 4, 87–107. Those works should replace this. The span in its opening sentence is cited to
+  no work.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1375836145, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text.

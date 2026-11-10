@@ -1,0 +1,25 @@
+id: src:wikipedia-architecture-of-mesopotamia
+type: database-record
+kind: review
+citation: >-
+  "Architecture of Mesopotamia." Wikipedia, the free encyclopedia (English edition), revision 1384588782.
+snapshot: 2026-11-09
+title: Architecture of Mesopotamia
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Architecture_of_Mesopotamia&oldid=1384588782
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the Mesopotamian courtyard house's plan, materials and upper storey because no
+  better work could be read here. Its section on houses rests on works of uneven weight, from handbooks (Postgate 1994, Early
+  Mesopotamia; Bryce 2009, The Routledge Handbook of the Peoples and Places of Ancient Western Asia; Gates 2011, Ancient
+  Cities) and a book on daily life (Nemet-Nejat 1998) to a news article in Science (Balter 1998), an online encyclopedia (Mark
+  2018) and a book for children (Hunter 2015); the introduction of courtyards rests on Ur, J. (2014), "Households and the
+  Emergence of Cities in Ancient Mesopotamia", Cambridge Archaeological Journal 24(2), 249–268. None could be read here.
+  The excavated houses it names, at Ur and Nippur, are Old Babylonian, and what it says of earlier and later houses is
+  general. Ur (2014) and Stone (1987), Nippur Neighborhoods, should replace it.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1384588782, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text, and its footnotes matched to the works they cite.

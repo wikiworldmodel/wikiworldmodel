@@ -7,10 +7,10 @@ import type { GroundLevel } from '../../../core/city.ts';
 import { hash3 } from '../../../world/generators/city/math.ts';
 import { invert, multiply, type Mat4, type V3 } from '../mat.ts';
 import { program, setUniforms, texture2D, type GL, type Program } from './context.ts';
-import { AO_FS, BLUR_FS, BRIGHT_FS, DEPTH_FS, FULLSCREEN_VS, ID_FS, MESH_FS, MESH_VS, POST_FS, SKY_FS, SKY_LUT_FS, TERRAIN_FS, TERRAIN_VS, WATER_FS, WATER_VS } from './cityShaders.ts';
+import { AO_FS, BLUR_FS, BRIGHT_FS, DEPTH_FS, FULLSCREEN_VS, ID_FS, MESH_FS, MESH_VS, POST_FS, SEA, SEA_FS, SEA_VS, SKY_FS, SKY_LUT_FS, TERRAIN_FS, TERRAIN_VS, WATER_FS, WATER_VS } from './cityShaders.ts';
 
-/** Texture units, the same for every program. */
-const UNIT = { noise: 0, sky: 1, shadow: 2, ao: 3, entities: 4, ground: 5, normal: 8, mask: 11 } as const;
+/** Texture units, the same for every program; 12 to 16 are the passes' own, for their targets. */
+const UNIT = { noise: 0, sky: 1, shadow: 2, ao: 3, entities: 4, ground: 5, normal: 8, mask: 11, fields: 17 } as const;
 
 const SHADOW_SIZE = 2048;
 
@@ -85,6 +85,21 @@ const nrm = (a: V3): V3 => {
 const crs = (a: V3, b: V3): V3 => [a[1] * b[2] - a[2] * b[1], a[2] * b[0] - a[0] * b[2], a[0] * b[1] - a[1] * b[0]];
 const dt = (a: V3, b: V3) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 
+/** The eye's height above the sea: the GPU's eye has the Earth's curve taken off, as the shaders' `drop` takes it. */
+const aboveSea = (eye: V3) => eye[2] + (eye[0] * eye[0] + eye[1] * eye[1]) / (2 * 6371000);
+
+const luminance = (c: ArrayLike<number>) => 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+
+/**
+ * How much a camera under the sea opens up at a height below it, with this much light falling on the sea: as far as the
+ * daylight there falls short of a day's at the surface, up to a limit.
+ */
+function underExposure(z: number, lit: V3): number {
+  if (z >= 0) return 1;
+  const light = SEA.light.map((k, i) => Math.max(Math.exp(k * z), SEA.floor[i] * Math.exp(z / SEA.deep)));
+  return Math.max(1, Math.min(SEA.open, SEA.day / Math.max(1e-6, luminance(lit) * luminance(light))));
+}
+
 /** A square grid of the terrain's vertices, with the middle of it left out or not. */
 function ringMesh(n: number, hole: number): { positions: Float32Array; indices: Uint32Array; ringCount: number } {
   const side = n * 2 + 1;
@@ -115,6 +130,7 @@ export class CityRenderer {
   private terrainP: Program;
   private terrainDepthP: Program;
   private waterP: Program;
+  private seaP: Program;
   private skyP: Program;
   private lutP: Program;
   private aoP: Program;
@@ -142,6 +158,10 @@ export class CityRenderer {
   private grids: GroundLevel[] = [];
   private mask: WebGLTexture;
   private maskBox: [number, number, number, number] = [0, 0, 1, 1];
+  /** What people made of the ground, where a scene has people: R crops, G pasture, B yards, A paddies; and how its plots are drawn */
+  private fields: WebGLTexture;
+  private fieldsBox: [number, number, number, number] = [0, 0, 1, 1];
+  private fieldStyle: [number, number, number, number] = [0, 1, 0, 0];
   private ringVao: WebGLVertexArrayObject;
   private ringCount = 0;
   private fullCount = 0;
@@ -156,6 +176,13 @@ export class CityRenderer {
   private waterBias = 0;
   /** the ground is land nobody has farmed: what the mask says of it is a wild place's */
   wild = false;
+  /**
+   * the scene is of the sea: its floor is drawn at its depth, the water's surface over it apart, and everything under the
+   * water is seen through it; a visitor may go down into it
+   */
+  sea = false;
+  /** how much the camera opens up this frame, under the sea */
+  private exposure = 1;
   /** what the wild land's colours are, ten tones in threes; and its shares of forest, low plants and bare ground */
   private tones: Float32Array = new Float32Array(30);
   private shares: V3 = [1, 1, 0];
@@ -217,6 +244,7 @@ void main() {
   o = vec4(0.0);
 }`);
     this.waterP = program(gl, 'city water', WATER_VS, WATER_FS);
+    this.seaP = program(gl, 'city sea', SEA_VS, SEA_FS);
     this.skyP = program(gl, 'city sky', FULLSCREEN_VS, SKY_FS);
     this.lutP = program(gl, 'city sky table', FULLSCREEN_VS, SKY_LUT_FS);
     this.aoP = program(gl, 'city ao', FULLSCREEN_VS, AO_FS);
@@ -273,6 +301,8 @@ void main() {
 
     gl.activeTexture(gl.TEXTURE0 + UNIT.mask);
     this.mask = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0, 0, 0, 0]), filter: gl.LINEAR });
+    gl.activeTexture(gl.TEXTURE0 + UNIT.fields);
+    this.fields = texture2D(gl, { width: 1, height: 1, internal: gl.RGBA8, format: gl.RGBA, type: gl.UNSIGNED_BYTE, data: new Uint8Array([0, 0, 0, 0]), filter: gl.LINEAR });
 
     // What a mesh with no instances reads for its instance's entity: an integer attribute that is not enabled must
     // have an integer value, or every plain draw is refused.
@@ -308,13 +338,14 @@ void main() {
       }
     };
     const lit = { uNoise: UNIT.noise, uSkyLut: UNIT.sky, uShadow: UNIT.shadow, uAO: UNIT.ao, uEntities: UNIT.entities };
-    const ground = { uGround0: UNIT.ground, uGround1: UNIT.ground + 1, uGround2: UNIT.ground + 2, uNormal0: UNIT.normal, uNormal1: UNIT.normal + 1, uNormal2: UNIT.normal + 2, uMask: UNIT.mask };
+    const ground = { uGround0: UNIT.ground, uGround1: UNIT.ground + 1, uGround2: UNIT.ground + 2, uNormal0: UNIT.normal, uNormal1: UNIT.normal + 1, uNormal2: UNIT.normal + 2, uMask: UNIT.mask, uFields: UNIT.fields };
     ints(this.meshP, lit);
     ints(this.depthP, { uEntities: UNIT.entities });
     ints(this.idP, { uEntities: UNIT.entities });
     ints(this.terrainP, { ...lit, ...ground });
     ints(this.terrainDepthP, ground);
     ints(this.waterP, lit);
+    ints(this.seaP, { ...lit, ...ground });
     ints(this.skyP, { uNoise: UNIT.noise, uSkyLut: UNIT.sky });
     ints(this.aoP, { uDepth: 12 });
     ints(this.blurP, { uTex: 13, uDepth: 12 });
@@ -500,6 +531,26 @@ void main() {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     gl.activeTexture(gl.TEXTURE0);
     this.maskBox = box;
+  }
+
+  /**
+   * What people made of the ground (gen:people/settlement): R crops, G pasture, B yards and lanes, A flooded paddies; and how
+   * the plots of its fields are drawn: their size in m, how much longer than wide, and their kind. Without it, none.
+   */
+  setFields(data: Uint8Array | null, size: number, box: [number, number, number, number], style: { plot: number; aspect: number; kind: number }): void {
+    const gl = this.gl;
+    gl.activeTexture(gl.TEXTURE0 + UNIT.fields);
+    gl.bindTexture(gl.TEXTURE_2D, this.fields);
+    gl.pixelStorei(gl.UNPACK_ALIGNMENT, 1);
+    if (data) {
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, size, size, 0, gl.RGBA, gl.UNSIGNED_BYTE, data);
+      gl.generateMipmap(gl.TEXTURE_2D);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+    } else gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA8, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array(4));
+    gl.activeTexture(gl.TEXTURE0);
+    this.fieldsBox = box;
+    this.fieldStyle = [style.plot, style.aspect, style.kind, data ? 1 : 0];
   }
 
   /**
@@ -755,7 +806,8 @@ void main() {
       uAOSize: [this.w, this.h],
       uEvidence: f.evidence ? 1 : 0,
       uWild: this.wild ? 1 : 0,
-      uSeaSurface: this.wild ? 1 : 0,
+      uSeaSurface: this.seaSurface,
+      uSea: this.sea ? 1 : 0,
     });
     const tone = p.uniforms.get('uTone');
     if (tone) gl.uniform3fv(tone, this.tones);
@@ -763,8 +815,17 @@ void main() {
     if (share) gl.uniform3fv(share, this.shares);
     const snow = p.uniforms.get('uSnow');
     if (snow) gl.uniform3fv(snow, this.snow);
+    const fb = p.uniforms.get('uFieldsBox');
+    if (fb) gl.uniform4f(fb, this.fieldsBox[0], this.fieldsBox[1], this.fieldsBox[2] - this.fieldsBox[0], this.fieldsBox[3] - this.fieldsBox[1]);
+    const fs = p.uniforms.get('uFieldStyle');
+    if (fs) gl.uniform4fv(fs, this.fieldStyle);
     const m = p.uniforms.get('uShadowM');
     if (m) gl.uniformMatrix4fv(m, false, this.shadowM);
+  }
+
+  /** Whether the terrain is drawn at the sea's surface where it lies under it: on wild land, but not in a scene of the sea. */
+  private get seaSurface(): number {
+    return this.wild && !this.sea ? 1 : 0;
   }
 
   private setGrids(p: Program): void {
@@ -775,8 +836,11 @@ void main() {
     if (size) gl.uniform2fv(size, this.grids.flatMap((g) => [g.nx, g.ny]));
   }
 
-  /** Draw a span of the terrain's rings: each twice the size of the last, centred on the eye. */
-  private drawRings(p: Program, eye: V3, from: number, to: number, finest: number): void {
+  /**
+   * Draw a span of the terrain's rings: each twice the size of the last, centred on the eye. `each` is told of each ring
+   * before it is drawn; `edge` is how far into the finer ring, in its cells, a ring's hole stops.
+   */
+  private drawRings(p: Program, eye: V3, from: number, to: number, finest: number, each?: (k: number) => void, edge = 63.5): void {
     const gl = this.gl;
     gl.bindVertexArray(this.ringVao);
     const cellLoc = p.uniforms.get('uCell');
@@ -787,6 +851,7 @@ void main() {
       const snap = cell * 2;
       const cx = Math.round(eye[0] / snap) * snap;
       const cy = Math.round(eye[1] / snap) * snap;
+      each?.(k);
       gl.uniform1f(cellLoc!, cell);
       gl.uniform2f(centerLoc!, cx, cy);
       if (k === finest) {
@@ -798,7 +863,7 @@ void main() {
         const fx = Math.round(eye[0] / fsnap) * fsnap;
         const fy = Math.round(eye[1] / fsnap) * fsnap;
         // Short of the finer ring's edge: exactly at it, a pixel can fall between the two and show as a dash.
-        const ext = fine * 63.5;
+        const ext = fine * edge;
         gl.uniform4f(innerLoc!, fx - ext, fy - ext, fx + ext, fy + ext);
         gl.drawElements(gl.TRIANGLES, this.ringCount, gl.UNSIGNED_INT, 0);
       }
@@ -871,7 +936,7 @@ void main() {
       gl.enable(gl.CULL_FACE);
       // The hills cast shadows too.
       gl.useProgram(this.terrainDepthP.program);
-      setUniforms(gl, this.terrainDepthP, { uViewProj: m, uEye: [0, 0, 0], uSeaSurface: this.wild ? 1 : 0 });
+      setUniforms(gl, this.terrainDepthP, { uViewProj: m, uEye: [0, 0, 0], uSeaSurface: this.seaSurface });
       this.setGrids(this.terrainDepthP);
       const ring = Math.max(0, Math.ceil(Math.log2((r * 2.2) / 320)));
       this.drawRings(this.terrainDepthP, f.focus, ring, ring, ring);
@@ -892,6 +957,11 @@ void main() {
     const vp = multiply(f.proj, f.view);
     const farVp = multiply(f.farProj, f.view);
     const { finest, split, last } = this.ringsFor(f);
+    const eyeSea = aboveSea(f.eye);
+    const under = this.sea && eyeSea < 0;
+    // The light on the sea, as the shaders' water has it.
+    const s = Math.max(f.sun[2], 0) * 0.8;
+    this.exposure = this.sea ? underExposure(eyeSea, [this.sunColor[0] * s + this.skyTop[0] * 0.6, this.sunColor[1] * s + this.skyTop[1] * 0.6, this.sunColor[2] * s + this.skyTop[2] * 0.6]) : 1;
 
     // The bindings every lit program reads.
     gl.activeTexture(gl.TEXTURE0 + UNIT.noise);
@@ -904,6 +974,8 @@ void main() {
     gl.bindTexture(gl.TEXTURE_2D, this.entityTex);
     gl.activeTexture(gl.TEXTURE0 + UNIT.mask);
     gl.bindTexture(gl.TEXTURE_2D, this.mask);
+    gl.activeTexture(gl.TEXTURE0 + UNIT.fields);
+    gl.bindTexture(gl.TEXTURE_2D, this.fields);
     this.groundTex.forEach((t, k) => {
       gl.activeTexture(gl.TEXTURE0 + UNIT.ground + k);
       gl.bindTexture(gl.TEXTURE_2D, t);
@@ -922,9 +994,9 @@ void main() {
     gl.disable(gl.CULL_FACE);
     gl.disable(gl.DEPTH_TEST);
 
-    // The sky.
+    // The sky; under the sea, the water.
     gl.useProgram(this.skyP.program);
-    setUniforms(gl, this.skyP, { uInvViewProj: invert(farVp), uSun: f.sun, uSunColor: this.sunColor, uHeight: f.eye[2], uAlpha: f.solid ? 1 : 0 });
+    setUniforms(gl, this.skyP, { uInvViewProj: invert(farVp), uSun: f.sun, uSunColor: this.sunColor, uHeight: f.eye[2], uAlpha: f.solid || under ? 1 : 0, uSea: this.sea ? 1 : 0, uEyeSea: eyeSea, uSkyTop: this.skyTop });
     gl.activeTexture(gl.TEXTURE0 + UNIT.ao);
     gl.bindTexture(gl.TEXTURE_2D, null);
     gl.bindVertexArray(this.emptyVao);
@@ -945,6 +1017,8 @@ void main() {
       setUniforms(gl, this.terrainP, { uUseAO: 0, uMaskBox: [this.maskBox[0], this.maskBox[1], this.maskBox[2] - this.maskBox[0], this.maskBox[3] - this.maskBox[1]], uWater: this.waterLevel });
       this.setGrids(this.terrainP);
       this.drawRings(this.terrainP, f.eye, Math.max(split, finest), last, -1);
+      // Over it, the sea's surface beyond the near pass's reach: the ring both passes draw is the far one's only past it.
+      if (this.sea) this.drawSea(f, farVp, Math.max(split, finest), last, -1, (k) => (k === split ? f.far : -1e9));
     }
     gl.clear(gl.DEPTH_BUFFER_BIT);
 
@@ -953,7 +1027,7 @@ void main() {
     if (!this.fast) {
       gl.colorMask(false, false, false, false);
       gl.useProgram(this.terrainDepthP.program);
-      setUniforms(gl, this.terrainDepthP, { uViewProj: vp, uEye: f.eye, uSeaSurface: this.wild ? 1 : 0 });
+      setUniforms(gl, this.terrainDepthP, { uViewProj: vp, uEye: f.eye, uSeaSurface: this.seaSurface });
       this.setGrids(this.terrainDepthP);
       this.drawRings(this.terrainDepthP, f.eye, finest, Math.min(split, last), finest);
       gl.useProgram(this.depthP.program);
@@ -1002,12 +1076,38 @@ void main() {
       gl.drawElements(gl.TRIANGLES, this.waterCount, gl.UNSIGNED_INT, 0);
     }
     gl.bindVertexArray(null);
+    // The sea's surface, over all of it.
+    if (this.sea) this.drawSea(f, vp, finest, Math.min(split, last), finest, () => -1e9);
 
     // Resolve, then finish.
     gl.bindFramebuffer(gl.READ_FRAMEBUFFER, this.msFb);
     gl.bindFramebuffer(gl.DRAW_FRAMEBUFFER, this.resolveFb);
     gl.blitFramebuffer(0, 0, this.w, this.h, 0, 0, this.w, this.h, gl.COLOR_BUFFER_BIT, gl.NEAREST);
     this.finish(f);
+  }
+
+  /**
+   * The sea's surface, in a scene of the sea: the terrain's rings at its level, blended over what is drawn and hiding
+   * nothing. `from` says, for each ring, how far along the view it starts.
+   */
+  private drawSea(f: CityFrame, vp: Mat4, first: number, to: number, finest: number, from: (k: number) => number): void {
+    const gl = this.gl;
+    this.useLit(this.seaP, f, vp);
+    this.setGrids(this.seaP);
+    setUniforms(gl, this.seaP, { uForward: [-f.view[2], -f.view[6], -f.view[10]] });
+    const at = this.seaP.uniforms.get('uFrom');
+    const culled = gl.isEnabled(gl.CULL_FACE);
+    gl.enable(gl.BLEND);
+    // Its colour is premultiplied; what is drawn keeps its own share of the frame.
+    gl.blendFuncSeparate(gl.ONE, gl.ONE_MINUS_SRC_ALPHA, gl.ZERO, gl.ONE);
+    gl.depthMask(false);
+    // Seen from above and from below.
+    gl.disable(gl.CULL_FACE);
+    // A ring's hole is exactly the finer ring's square, as what is blended must not be drawn twice.
+    this.drawRings(this.seaP, f.eye, first, to, finest, (k) => gl.uniform1f(at!, from(k)), 64);
+    if (culled) gl.enable(gl.CULL_FACE);
+    gl.disable(gl.BLEND);
+    gl.depthMask(true);
   }
 
   private occlusion(f: CityFrame): void {
@@ -1084,8 +1184,8 @@ void main() {
     gl.bindTexture(gl.TEXTURE_2D, this.bloomTex[1]);
     gl.activeTexture(gl.TEXTURE16);
     gl.bindTexture(gl.TEXTURE_2D, this.bloomTex[2]);
-    // A camera stops down for a high sun.
-    setUniforms(gl, this.postP, { uExposure: 0.62 * (1 - 0.42 * Math.max(f.sun[2], 0)), uAlpha: f.alpha });
+    // A camera stops down for a high sun, and under the sea opens up as the daylight falls.
+    setUniforms(gl, this.postP, { uExposure: 0.62 * (1 - 0.42 * Math.max(f.sun[2], 0)) * this.exposure, uAlpha: f.alpha });
     if (f.alpha < 1 || !f.solid) {
       gl.enable(gl.BLEND);
       gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
@@ -1132,7 +1232,7 @@ void main() {
     // The ground first, so it hides what lies behind a hill.
     gl.colorMask(false, false, false, false);
     gl.useProgram(this.terrainDepthP.program);
-    setUniforms(gl, this.terrainDepthP, { uViewProj: vp, uEye: f.eye, uSeaSurface: this.wild ? 1 : 0 });
+    setUniforms(gl, this.terrainDepthP, { uViewProj: vp, uEye: f.eye, uSeaSurface: this.seaSurface });
     this.setGrids(this.terrainDepthP);
     const { finest, split, last } = this.ringsFor(f);
     this.drawRings(this.terrainDepthP, f.eye, finest, Math.min(split, last), finest);

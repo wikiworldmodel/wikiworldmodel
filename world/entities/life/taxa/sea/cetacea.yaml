@@ -1,0 +1,35 @@
+id: life/taxa/cetacea
+kind: taxon
+summary: >-
+  The whales, dolphins and porpoises: mammals that went back to the sea, from the Eocene on.
+same_as: { pbdb: "txn:36652" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Cetacea, en: "whales, dolphins and porpoises" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  body-plan:
+    prop: body_plan
+    value: whale
+    unsourced: "Which plan draws it and everything below it: an editorial classification, from its place in the tree."
+    note: >-
+      The plan is a machine's reconstruction of a streamlined whale with a horizontal fluke, from general knowledge; no figure was
+      compared with it. It stands for the toothed whales and dolphins too, and for the early whales of the Eocene, which still had
+      hind legs and are drawn without them. Before this record the whales inherited the hoofed mammals' body from Artiodactyla.
+  length:
+    prop: body_length
+    value: { lo: 1.4, hi: 30 }
+    source:
+      - ref: src:sun-2019-cetacean-body-size
+        loc: "Background, paragraph 2"
+        quote: "vaquita Phocoena sinus, the smallest cetacean, is only 1.4 m in body length"
+      - ref: src:sun-2019-cetacean-body-size
+        loc: "Background, paragraph 2"
+        quote: "from less than 2 m in length and less than 50 kg in weight for porpoises to over 30 m and more than 150 tons for blue whales"
+    method: compilation
+    note: >-
+      From the smallest living cetacean to the blue whale, standing for any cetacean with no length of its own; fossil whales lie
+      within it.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC6660953.txt (sha256 0773b7dd55816994), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

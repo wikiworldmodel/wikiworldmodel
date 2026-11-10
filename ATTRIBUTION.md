@@ -330,6 +330,56 @@ Klein Goldewijk, K., Beusen, A., Doelman, J. & Stehfest, E. (2017). Anthropogeni
 - From: <https://doi.org/10.17026/dans-25g-gez3>
 - Source id: `src:hyde-3.2.1-world-land-use`
 
+### Anthromes 12K: the anthropogenic biomes of every 5′ cell of land, 10,000 BCE to 2015 CE
+
+Ellis, E.C., Beusen, A.H.W. & Klein Goldewijk, K. (2020). Anthropogenic biomes: 10,000 BCE to 2015 CE. Land 9(5), 129, doi:10.3390/land9050129. The data: Ellis, E. & Klein Goldewijk, K. (2020). Anthromes 12K Full Dataset. Harvard Dataverse, version 3, doi:10.7910/DVN/G0QDNQ.
+
+- Licence: CC0-1.0. The Dataverse record says CC0 1.0. The archive's own Readme.txt states no licence. It classifies HYDE 3.2, whose readme puts its data under CC BY 3.0; its authors include HYDE's, and HYDE is credited with it all the same. The replication scripts are a separate record (doi:10.7910/DVN/IB4VCI) whose readme limits them to noncommercial research under the GPL v3; they were read for the rules of the classification, which the field quotes, and are not imported.
+- Credit: Anthromes from Anthromes 12K (Ellis, Beusen & Klein Goldewijk 2020), a classification of HYDE 3.2
+- DOI: [10.7910/DVN/G0QDNQ](https://doi.org/10.7910/DVN/G0QDNQ)
+- From: <https://doi.org/10.7910/DVN/G0QDNQ>
+- Source id: `src:anthromes-12k`
+
+### ArchaeoGLOBE: archaeologists' assessments of land use in 146 regions at ten times from 10,000 BP to 1850 CE
+
+ArchaeoGLOBE Project (2019). ArchaeoGLOBE Public Data. Harvard Dataverse, version 3, doi:10.7910/DVN/CNCANQ: its summary tables of the consensus, least, median and most answers for each land use, the urban centres, data quality, expertise and published excavations, joined into one table.
+
+- Licence: CC0-1.0. The Dataverse record says CC0 1.0 for all its files.
+- Credit: Land-use assessments from ArchaeoGLOBE (ArchaeoGLOBE Project 2019)
+- DOI: [10.7910/DVN/CNCANQ](https://doi.org/10.7910/DVN/CNCANQ)
+- From: <https://doi.org/10.7910/DVN/CNCANQ>
+- Source id: `src:archaeoglobe-2019-assessments`
+
+### ArchaeoGLOBE Regions: the 146 regions of the land-use survey
+
+ArchaeoGLOBE Project (2019). ArchaeoGLOBE Regions. Harvard Dataverse, version 6, doi:10.7910/DVN/CQWUBI.
+
+- Licence: CC0-1.0. The Dataverse record says CC0 1.0 for all its files.
+- Credit: Regions from ArchaeoGLOBE (ArchaeoGLOBE Project 2019)
+- DOI: [10.7910/DVN/CQWUBI](https://doi.org/10.7910/DVN/CQWUBI)
+- From: <https://doi.org/10.7910/DVN/CQWUBI>
+- Source id: `src:archaeoglobe-2019-regions`
+
+### Modelski Ancient Period Data, as digitized and placed by Reba, Reitsma & Seto (2016)
+
+Reba, M., Reitsma, F. & Seto, K.C. (2016). Spatializing 6,000 years of global urbanization from 3700 BC to AD 2000. Scientific Data 3, 160034. The data: Modelski Ancient Period Data, figshare, doi:10.6084/m9.figshare.2059497, version 2, the file modelskiAncientV2.csv. It digitizes the tables of Modelski, G. (2003), World Cities: −3000 to 2000.
+
+- Licence: CC-BY-4.0. As the world's source record for this work has it (src:reba-2016-urban-population), and as Europe PMC gives the article's. The figshare record's own licence could not be read again here: its API host was not reachable.
+- Credit: Ancient cities from Modelski (2003), as placed by Reba, Reitsma & Seto (2016)
+- DOI: [10.6084/m9.figshare.2059497](https://doi.org/10.6084/m9.figshare.2059497)
+- From: <https://doi.org/10.6084/m9.figshare.2059497>
+- Source id: `src:reba-2016-modelski-ancient-v2`
+
+### Chandler Population Data, as digitized and placed by Reba, Reitsma & Seto (2016)
+
+Reba, M., Reitsma, F. & Seto, K.C. (2016). Spatializing 6,000 years of global urbanization from 3700 BC to AD 2000. Scientific Data 3, 160034. The data: Chandler Population Data, figshare, doi:10.6084/m9.figshare.2059494, version 3, the file chandlerV2.csv. It digitizes the tables of Chandler, T. (1987), Four Thousand Years of Urban Growth.
+
+- Licence: CC-BY-4.0. As the world's source record for this work has it (src:reba-2016-urban-population), and as Europe PMC gives the article's. The figshare record's own licence could not be read again here: its API host was not reachable.
+- Credit: Cities from Chandler (1987), as placed by Reba, Reitsma & Seto (2016)
+- DOI: [10.6084/m9.figshare.2059494](https://doi.org/10.6084/m9.figshare.2059494)
+- From: <https://doi.org/10.6084/m9.figshare.2059494>
+- Source id: `src:reba-2016-chandler-v2`
+
 ### PaleoMIST 1.0: a global ice sheet reconstruction for the past 80,000 years
 
 Gowan, E.J. (2019). Global ice sheet reconstruction for the past 80000 years [dataset]. PANGAEA, https://doi.org/10.1594/PANGAEA.905800. Supplement to: Gowan, E.J., Zhang, X., Khosravi, S., Rovere, A., Stocchi, P., Hughes, A.L.C., Gyllencreutz, R., Mangerud, J., Svendsen, J.I. & Lohmann, G. (2021). A new global ice sheet reconstruction for the past 80 000 years. Nature Communications 12, 1199.

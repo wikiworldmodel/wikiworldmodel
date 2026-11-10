@@ -1,0 +1,84 @@
+id: people/traditions/latte-house
+kind: tradition/building
+summary: >-
+  The house on latte stones of the Mariana Islands, from about 900 CE: a rectangular house raised on two rows of stone
+  pillars, eight to fourteen of them, each capped with a hemispherical stone. Spanish accounts of the sixteenth and
+  seventeenth centuries say houses stood on them; whether everyone lived in such houses, or only people of rank, is
+  argued. After Spanish colonization they fell out of use, and they were abandoned by about 1700. Read from an
+  encyclopedia article only.
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { en: House on latte stones }
+    unsourced: An editorial label.
+  start:
+    prop: start
+    value: 900 CE
+    source:
+      ref: src:wikipedia-latte-stone
+      loc: section "Use"
+      quote: >-
+        Latte stones began to be used in about 900 A.D. and became increasingly more common until the arrival of Ferdinand
+        Magellan in 1521 and Spanish colonization, when they fell rapidly out of use and were entirely abandoned by about
+        1700.
+    method: expert-estimate
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wp-Latte_stone.txt (sha256 01126542cf782d86), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  end:
+    prop: end
+    value: 1700 CE
+    source:
+      ref: src:wikipedia-latte-stone
+      loc: section "Use"
+      quote: >-
+        Latte stones began to be used in about 900 A.D. and became increasingly more common until the arrival of Ferdinand
+        Magellan in 1521 and Spanish colonization, when they fell rapidly out of use and were entirely abandoned by about
+        1700.
+    method: expert-estimate
+    note: When the last were abandoned; they were falling out of use from Spanish colonization on.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wp-Latte_stone.txt (sha256 01126542cf782d86), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  extent:
+    prop: extent
+    value: { from: src:archaeoglobe-2019-regions, names: ["144"] }
+    source:
+      ref: src:wikipedia-latte-stone
+      loc: section "Use"
+      quote: Latte stones have been found on Guam and the southern islands in the Commonwealth of the Northern Mariana Islands
+    method: editorial
+    note: >-
+      Region 144 (Micronesia), which holds the Mariana Islands. The article calls the latte stone unique to the Marianas in
+      Oceania, so the rest of the region, from Palau to the Marshall Islands, is not claimed.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wp-Latte_stone.txt (sha256 01126542cf782d86), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }
+  dwelling:
+    prop: dwelling
+    value: { plan: rectangular, floor: stilts }
+    source:
+      - ref: src:wikipedia-latte-stone
+        loc: section "Use"
+        quote: >-
+          Undisturbed stones are found usually arranged in parallel pairs of between eight and fourteen lattes framing a
+          rectangular space.
+      - ref: src:wikipedia-latte-stone
+        loc: section "Use"
+        quote: several Spanish accounts from the 16th and 17th centuries state that houses were erected on the stones
+      - ref: src:wikipedia-latte-stone
+        loc: section "Construction"
+        quote: Typical pillars range in height from 60 centimeters to three meters, and generally narrow towards the top.
+      - ref: src:wikipedia-latte-stone
+        loc: section "Use"
+        quote: >-
+          Some archaeologists believe that only high status Chamorros lived in structures built on latte stones, while
+          others have put forward the theory that all Chamorros in the Latte Period lived in latte structures, and that the
+          height and number of the stones in the structure indicated social status.
+    method: survey
+    note: >-
+      The plan from the stones' arrangement in the field, the house on them from the Spanish accounts. The supports are
+      capped stone pillars, 0.6 to 3 m high, not wooden posts; "stilts" is the nearest word. Whether ordinary people lived
+      in these houses is disputed, and the article puts the cooking huts, canoe houses and young men's houses of a latte
+      village on the ground; the generator draws every house of the tradition on latte. The walls, roof and size of the
+      house are not given.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in wp-Latte_stone.txt (sha256 01126542cf782d86), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

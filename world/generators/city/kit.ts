@@ -47,6 +47,8 @@ export const MAT = {
   feather: 39,
   membrane: 40,
   chitin: 41,
+  thatch: 42,
+  mud: 43,
 } as const;
 
 export type Material = (typeof MAT)[keyof typeof MAT];

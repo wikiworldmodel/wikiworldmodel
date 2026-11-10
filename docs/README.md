@@ -22,6 +22,7 @@ yet, they say so.
 | [WORLD-MODEL.md](WORLD-MODEL.md) | the design overview: entities, claims, alternatives, relations, frames, fields, models, time, levels of detail, coherence, storage, licensing |
 | [STRUCTURE.md](STRUCTURE.md) | the structural decisions the world grows in: rows as claims, uncertainty as samples, every layer answering in a tier, models and generators, field kinds, the checking ladder; and what of each is built |
 | [LIVING-WORLD.md](LIVING-WORLD.md) | life at any place and time: the atlas of who lived where, forms on the tree of life, and how a scene is made |
+| [HUMAN-LANDSCAPE.md](HUMAN-LANDSCAPE.md) | people at any place since 10,000 BCE: anthromes, the archaeologists' assessments, cities, building traditions, and the settlements a scene draws |
 | [SCENES.md](SCENES.md) | natural scenes, layer by layer: ground, water, soil, cover and weather |
 | [FEATURE-TILES.md](FEATURE-TILES.md) | how the globe's markers are stored and fetched by time, place and prominence |
 
@@ -32,10 +33,11 @@ yet, they say so.
 | [DATA-OUTLINE.md](DATA-OUTLINE.md) | everything a complete history needs, domain by domain, with candidate datasets and their licenses: the menu for contributors |
 | [RECORD-SETS.md](RECORD-SETS.md) | where each of the twenty record sets stands, and what a reviewer should check first |
 | [FORMS.md](FORMS.md) | the brief for writing a taxon's form, its body as data |
+| [DWELLINGS.md](DWELLINGS.md) | the brief for writing a building tradition: its houses, settlements and fields as data |
 
 ## Slices
 
-[slices/](slices/README.md): one document for each of the eight slices built so far, each a thin
+[slices/](slices/README.md): one document for each of the slices built so far, each a thin
 piece of the world taken through every layer, with its pass criteria and where each is tested,
 its decisions, its limitations and what it left for later. They are the record of how the world
 came to be as it is. Where a later slice changed something, the later document describes the

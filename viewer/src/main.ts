@@ -28,12 +28,18 @@ import { EARTH_RADIUS, fromLocal, toLocal, type CityStructure } from '../../core
 import type { AtlasWhere } from '../../core/atlas.ts';
 import type { SceneFileV2 } from '../../core/scene.ts';
 import { latticeOf } from '../../world/generators/life/spec.ts';
+import type { LivingParams } from '../../world/generators/life/scene/v5.ts';
 import { Camera, MAX_DIST, MIN_DIST } from './camera.ts';
 import { LifeAtlas, type ClimateData } from './city/lifeatlas.ts';
 import { Climates, type ClimateAt } from './climates.ts';
 import { LifeScene } from './city/life.ts';
+import type { PeopleSummary } from './city/lifeworker.ts';
+import { LandscapeAtlas } from './city/landscape.ts';
+import { anthromeOf, classAtStep, nearestStep, PATTERN_LABEL, USE_LABEL, USES, LEVEL_WORDS, type Pattern } from '../../core/landscape.ts';
+import { specText } from '../../core/dwelling.ts';
 import { CityScene } from './city/scene.ts';
-import { autoTilt, groundHit, localView, projectLocal, rayOf, sunAt, type LocalView } from './city/view.ts';
+import { autoTilt, EYE_HEIGHT, groundHit, localView, lookThrough, projectLocal, rayOf, sunAt, underSea, type LocalView } from './city/view.ts';
+import { SEA } from './gl/cityShaders.ts';
 import { CityLabels } from './ui/citylabels.ts';
 import { FeatureTiles } from './features.ts';
 import { fetchLog, getBytes, getJSON, latestBuild, loadBuild, loadRecord, type Build } from './data.ts';
@@ -42,7 +48,7 @@ import { globeLook, GlobeRenderer } from './gl/globe.ts';
 import { add, cross, norm, scale, type V3 } from './mat.ts';
 import { buildOf, DEFAULT_HOUR, fromSearch, HOURS, quantize, toSearch, type ViewState } from './state.ts';
 import { TileManager, type LoadedTile } from './tiles.ts';
-import { InspectPanel, type BiomeHere, type IceHere, type OrganismHere, type PlanetStateInfo, type RowInfo, type TerrainInfo, type TerritoryHere } from './ui/inspect.ts';
+import { InspectPanel, stepName, type BiomeHere, type IceHere, type LandscapeHere, type OrganismHere, type PlanetStateInfo, type RowInfo, type TerrainInfo, type TerritoryHere } from './ui/inspect.ts';
 import { Markers, timeFor, visibility } from './ui/markers.ts';
 import { PlanetPanel, valueAt } from './ui/planet.ts';
 import { Search } from './ui/search.ts';
@@ -98,8 +104,10 @@ export interface WikiWorldModelHandle {
   cityStats(): { cells: number; coarse: number; fine: number; megabytes: number } | null;
   /** where a structure's label would be on the screen, for tests */
   structureAt(id: string): { x: number; y: number } | undefined;
+  /** where the settlements of the scene drawn stand on the screen, those in view: the lists' cities by name */
+  settlementsAt(): { pattern: string; city?: string; houses: number; x: number; y: number }[];
   /** the living scene as the viewer has it, if one is loaded */
-  scene(): { site: string; plan: PrintCheck; taxa: { id: string; label: string; form: string; own: boolean; tier: string; km?: number; rows: number; drawn: boolean }[]; instances: number; triangles: number; meshes: number; groundMs: number; stage?: string; climate: string; climateField: string; month: number | null; snow: number | null; focus: [number, number]; toRiver: [number, number]; origin: { lat: number; lon: number }; water: { tier: string; rivers: { key: string; from: string }[] } | null } | null;
+  scene(): { site: string; plan: PrintCheck; taxa: { id: string; label: string; form: string; own: boolean; tier: string; km?: number; rows: number; drawn: boolean }[]; instances: number; triangles: number; meshes: number; groundMs: number; stage?: string; climate: string; climateField: string; month: number | null; snow: number | null; focus: [number, number]; toRiver: [number, number]; origin: { lat: number; lon: number }; water: { tier: string; rivers: { key: string; from: string }[] } | null; sea: boolean; list: 'land' | 'sea'; eye: { z: number; floor: number } | null; people: { asked: boolean; houses: number; drawn: number; expected: number; settlements: number; pattern?: string; tier?: string; forms: string[] } | null } | null;
   /** a browser's fingerprint of the scene of a place and a time, as a witness in the build has it */
   lifePrint(lat: number, lon: number, t: number): Promise<Fingerprint | null>;
   /** how far the atlas reaches, as the build says */
@@ -119,10 +127,38 @@ const CITY_SOLID = 4.5e5;
 const LIFE_TOP = 3.2e5;
 const LIFE_SOLID = 1.2e5;
 const GLOBE_GONE = 4.5e4;
+/** How far one sees through the sea's water, as it is drawn: until its green light falls to a twentieth. */
+const SEEN_THROUGH_WATER = Math.log(20) / SEA.extinction[1];
 const RAD = Math.PI / 180;
 /** Kinds that belong to a city: they are drawn and named in the city's scene, not on the globe. */
 
 const ROOT = new URL('./', location.href).href;
+
+/** A settlement of each way of life, one and many, for the panel of a house. */
+const SETTLEMENT_WORDS: Record<Pattern, [string, string]> = {
+  none: ['place', 'places'],
+  foragers: ["foragers' camp", "foragers' camps"],
+  herders: ["herders' camp", "herders' camps"],
+  shifting: ["shifting cultivators' hamlet", "shifting cultivators' hamlets"],
+  farmsteads: ['group of farmsteads', 'groups of farmsteads'],
+  hamlets: ['hamlet', 'hamlets'],
+  villages: ['village', 'villages'],
+  towns: ['town', 'towns'],
+  city: ['city of the anthromes', 'cities of the anthromes'],
+};
+
+/** A scene's people in a few words, for its bar: the cities of the lists it holds, and how people lived at its middle. */
+function peopleWords(folk: PeopleSummary): string {
+  const names = folk.settlements.filter((x) => x.city).sort((a, b) => b.people - a.people).map((x) => x.city!);
+  const way = PATTERN_LABEL[folk.lifeway.pattern];
+  const towns = names.length > 2 ? `${names.slice(0, 2).join(', ')} and ${names.length - 2} more` : names.join(' and ');
+  const what = !names.length ? way : ['city', 'towns', 'none'].includes(folk.lifeway.pattern) ? towns : `${towns} among ${way.toLowerCase()}`;
+  return `${what}${folk.houses ? `, ${folk.houses.toLocaleString('en-US')} houses` : ''}`;
+}
+
+/** How to move about near the ground, with a mouse and keys, and on a touch screen. */
+const MOUSE_HELP = 'Drag to move over the ground. Right-drag or shift-drag to turn and tilt. Scroll to go towards what the pointer is on. W, A, S and D to walk. L for the light. Click anything to see how we know.';
+const TOUCH_HELP = 'Drag to move over the ground. Pinch to come nearer or go back, twist two fingers to turn, and move two fingers up or down together to tilt. Tap anything to see how we know.';
 
 const HAZARD_WORDS: Record<HazardRow['kind'], string> = { eruption: 'Eruption', earthquake: 'Earthquake', tsunami: 'Tsunami' };
 const HAZARD_SIZE: Record<HazardRow['kind'], string> = { eruption: 'Volcanic explosivity index', earthquake: 'Magnitude', tsunami: 'Tsunami intensity' };
@@ -289,14 +325,59 @@ async function start(root: HTMLElement): Promise<void> {
   // Where people lived goes to the globe's shader, and loads when it is first asked for.
   const people = new PeopleLayer();
   let peopleLoading = false;
+  // The grid of people is fetched once, for the layer and for the scenes' people alike.
+  let peopleFileP: Promise<PeopleFile | null> | null = null;
+  const peopleFile = () =>
+    (peopleFileP ??= ts.files.people
+      ? getBytes(build.base + ts.files.people).then((data) => {
+          const { header, arrays } = decodeTile<PeopleHeader>(data);
+          return { ...header, cell: arrays[0] as Uint32Array, land: arrays[1] as Uint32Array, people: arrays[2] as Uint32Array } as PeopleFile;
+        })
+      : Promise.resolve(null));
   const wantPeople = () => {
     if (peopleLoading || !ts.files.people) return;
     peopleLoading = true;
-    void getBytes(build.base + ts.files.people).then((data) => {
-      const { header, arrays } = decodeTile<PeopleHeader>(data);
-      people.setFile({ ...header, cell: arrays[0] as Uint32Array, land: arrays[1] as Uint32Array, people: arrays[2] as Uint32Array } as PeopleFile);
+    void peopleFile().then((f) => {
+      if (f) people.setFile(f);
       dirty = true;
     });
+  };
+  // The anonymous human landscape (docs/HUMAN-LANDSCAPE.md): what kind of place any land was, what people a scene draws,
+  // and the globe's picture of it, which its toggle draws.
+  const landscape = ts.files.landscape ? new LandscapeAtlas(build.base, ts.files.landscape, peopleFile) : null;
+  const LANDSCAPE_TOGGLE = { key: 'landscape', label: 'Settlement', title: 'How people lived: the anthromes of HYDE, from wildlands to cities' };
+  const landscapeOn = () => !!landscape && !!state.layers?.includes(LANDSCAPE_TOGGLE.key);
+  if (landscape) void landscape.loadIndex().then(() => (dirty = true));
+  const landscapeLegend = document.createElement('div');
+  landscapeLegend.className = 'landscape-legend';
+  landscapeLegend.hidden = true;
+  let landscapeStep: number | null = null;
+  let landscapeLoading = false;
+  /** The globe's picture of the human landscape at the step nearest a time: made again only when the step changes. */
+  const drawLandscape = (t: number): boolean => {
+    if (!landscape || !landscape.index) return false;
+    const i = nearestStep(landscape.index.steps, t);
+    if (i < 0) return false;
+    if (!landscape.globe) {
+      if (!landscapeLoading) {
+        landscapeLoading = true;
+        void landscape.loadGlobe().then(() => (dirty = true));
+      }
+      return false;
+    }
+    if (landscapeStep !== i) {
+      const g = landscape.globe;
+      const map = new Uint8Array(g.nx * g.ny);
+      for (let c = 0; c < map.length; c++) map[c] = classAtStep(g, c, i);
+      globe.setAnthromes(g.nx, g.ny, map, [[0, 0, 0], ...landscape.index.classes.map((k) => k.rgb)]);
+      landscapeStep = i;
+      // The legend: the classes present, by their level.
+      const present = new Set(map);
+      landscapeLegend.innerHTML = `<div class="pl-title"><span>${landscape.index.title}, ${stepName(landscape.index.steps[i])}</span> <span class="badge basis-reconstruction">reconstruction</span></div><div class="ll-items">${landscape.index.classes
+        .map((k, n) => (present.has(n + 1) && k.code !== 70 ? `<span class="ll-item"><i style="background:rgb(${k.rgb.join(',')})"></i>${k.label}</span>` : ''))
+        .join('')}</div>`;
+    }
+    return true;
   };
   // The states of the world are the heaviest of these: loaded when a time first shows them.
   let politiesLoading: Promise<void> | null = null;
@@ -396,14 +477,14 @@ async function start(root: HTMLElement): Promise<void> {
     if (!info) return;
     setState({ sel: null });
     shownRecord = null;
-    inspect.showOrganism(info.taxon, info, build.atlas?.sourceRecord);
+    inspect.showOrganism(info.taxon, info, organismSource(info));
   };
   labels.el.hidden = true;
   stage.appendChild(labels.el);
   const cityBar = document.createElement('div');
   cityBar.className = 'citybar';
   cityBar.hidden = true;
-  cityBar.innerHTML = `<label title="The hour of the day">Light <input type="range" min="${HOURS[0]}" max="${HOURS[1]}" step="0.05" aria-label="Hour of the day" /></label><label class="life-month" hidden title="The month the land is drawn in: its snow and the sun's height. Unless one is chosen, the place's warmest month">Month <select aria-label="Month of the year"><option value="">warmest</option>${MONTH_NAMES.map((m, i) => `<option value="${i + 1}">${m}</option>`).join('')}</select></label><button class="life-here" hidden title="What the records say lived here, and how sure that is"></button><button class="life-go" hidden title="Go down to where something of each is standing">Go and see</button><button class="to-globe" title="Back out to the whole Earth">Globe</button><span class="city-help" title="Drag to move over the ground. Right-drag or shift-drag to turn and tilt. Scroll to go towards what the pointer is on. W, A, S and D to walk. L for the light. Click anything to see how we know.">?</span>`;
+  cityBar.innerHTML = `<label title="The hour of the day">Light <input type="range" min="${HOURS[0]}" max="${HOURS[1]}" step="0.05" aria-label="Hour of the day" /></label><label class="life-month" hidden title="The month the land is drawn in: its snow and the sun's height. Unless one is chosen, the place's warmest month">Month <select aria-label="Month of the year"><option value="">warmest</option>${MONTH_NAMES.map((m, i) => `<option value="${i + 1}">${m}</option>`).join('')}</select></label><button class="life-here" hidden title="What the records say lived here, and how sure that is"></button><button class="life-go" hidden title="Go down to where something of each is standing">Go and see</button><button class="to-globe" title="Back out to the whole Earth">Globe</button><button class="city-help" aria-expanded="false" aria-label="How to move about" title="${MOUSE_HELP}">?</button><p class="city-tips" hidden></p>`;
   stage.appendChild(cityBar);
   const cityEnter = document.createElement('button');
   cityEnter.className = 'city-enter';
@@ -425,12 +506,17 @@ async function start(root: HTMLElement): Promise<void> {
   const scenario = (): Scenario => ({ alts: state.alt, picks: state.picks });
   const inspect = new InspectPanel({
     onPick: (group, claim) => setState({ picks: [...state.picks.filter((p) => !group.includes(p)), ...(claim ? [claim] : [])].sort() }),
-    onClose: () => setState({ sel: null }),
+    onClose: () => closePanel(),
     onOpen: (id) => setState({ sel: id }),
     labelOf,
     altTitle,
   });
   stage.appendChild(inspect.el);
+  /** Close the panel. One that is not a record's (the ground, a row of a dataset, a series) has no selection to clear. */
+  const closePanel = () => {
+    if (!state.sel) inspect.hide();
+    setState({ sel: null });
+  };
 
   const top = document.createElement('div');
   top.className = 'topbar';
@@ -458,7 +544,35 @@ async function start(root: HTMLElement): Promise<void> {
     };
     toolbar.el.querySelector('.tg-people')!.before(b);
   }
-  top.append(brand, search.el, toolbar.el);
+  if (landscape) {
+    const b = document.createElement('button');
+    b.className = `tg-${LANDSCAPE_TOGGLE.key} tg-layer`;
+    b.dataset.layer = LANDSCAPE_TOGGLE.key;
+    b.setAttribute('aria-pressed', 'false');
+    b.title = LANDSCAPE_TOGGLE.title;
+    b.textContent = LANDSCAPE_TOGGLE.label;
+    b.onclick = () => {
+      const layers = state.layers ?? [];
+      setState({ layers: (landscapeOn() ? layers.filter((k) => k !== LANDSCAPE_TOGGLE.key) : [...layers, LANDSCAPE_TOGGLE.key]).sort() });
+    };
+    toolbar.el.querySelector('.tg-people')!.before(b);
+  }
+  // On a phone the toggles fold away behind a button, with the world's name and the way to how much of it is known.
+  const menu = document.createElement('button');
+  menu.className = 'menu-toggle';
+  menu.setAttribute('aria-expanded', 'false');
+  menu.setAttribute('aria-label', 'Layers and options');
+  menu.title = 'Layers and options';
+  menu.innerHTML = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><path class="bars" d="M3 5.5h14M3 10h14M3 14.5h14"/><path class="cross" d="M5 5l10 10M15 5 5 15"/></svg>';
+  const about = brand.cloneNode(true) as HTMLElement;
+  about.className = 'menu-about';
+  toolbar.el.prepend(about);
+  const openMenu = (open: boolean) => {
+    top.classList.toggle('menu-open', open);
+    menu.setAttribute('aria-expanded', String(open));
+  };
+  menu.onclick = () => openMenu(!top.classList.contains('menu-open'));
+  top.append(brand, search.el, menu, toolbar.el);
   root.appendChild(top);
 
   const timebar = new Timebar(build.periods.periods, limits, dataRange, {
@@ -485,6 +599,7 @@ async function start(root: HTMLElement): Promise<void> {
   stage.appendChild(planet.el);
   // The legend is over the markers, as the planet's panel is.
   stage.appendChild(people.el);
+  stage.appendChild(landscapeLegend);
   const notice = document.createElement('div');
   notice.className = 'notice';
   notice.hidden = true;
@@ -506,6 +621,8 @@ async function start(root: HTMLElement): Promise<void> {
 
   // State.
   let dirty = true;
+  // The view is drawn again whenever it changes size: with the window, and on a phone when a panel takes room from it.
+  new ResizeObserver(() => (dirty = true)).observe(stage);
   let urlTimer = 0;
   let playing = false;
   let lastFrame = performance.now();
@@ -617,14 +734,22 @@ async function start(root: HTMLElement): Promise<void> {
     };
   };
 
+  /** Which atlas a living scene's list is from: the sea's, where the land's has none for its place. */
+  const listOf = (c: LifeScene): 'land' | 'sea' => (lifeAtlas?.fromSea(c.spec) ? 'sea' : 'land');
+
   /** What a living scene has of a taxon: what the records say of it there, and what was invented. */
   function organismInfo(id: string): OrganismHere | undefined {
     const c = city instanceof LifeScene ? city : [...scenes.values()].find((x): x is LifeScene => x instanceof LifeScene);
     const t = c?.taxonOf(id);
     if (!c || !t) return undefined;
     const g = c.spec.generator;
-    return { taxon: t, site: c.spec.site.place ? c.spec.site.label : 'this place', slice: c.spec.site.slice, stage: c.spec.site.stage, fossils: c.spec.fossils, generator: `${g.generator}, version ${g.version}, seed "${g.seed}"` };
+    // A genus of the sea's list rests on the sea's fossils, and is near or far by sea.
+    const sea = listOf(c) === 'sea' && !!build.sea;
+    const fossils = sea ? { ...c.spec.fossils, source: build.sea!.source, title: build.sea!.title } : c.spec.fossils;
+    return { taxon: t, site: c.spec.site.place ? c.spec.site.label : 'this place', slice: c.spec.site.slice, stage: c.spec.site.stage, fossils, generator: `${g.generator}, version ${g.version}, seed "${g.seed}"`, ...(sea ? { sea: true } : {}) };
   }
+  /** The source a taxon of a living scene is a row of: the sea's fossils, or the land's. */
+  const organismSource = (o: OrganismHere | undefined) => (o?.sea ? build.sea?.sourceRecord : build.atlas?.sourceRecord);
 
   /** An entity's interval in a scenario, from its record (for entities with no marker). */
   function recordTime(r: EntityRecord, s: Scenario): FeatureTime {
@@ -749,6 +874,12 @@ async function start(root: HTMLElement): Promise<void> {
     dirty = true;
   }
 
+  /** The energy-balance model's answer for the climate where no climate model's run covers the time: its freezing threshold. */
+  const freezing = build.series.series.find((x) => x.rule?.name === 'energy-balance-freeze');
+  const energyBalance: ResolveWorld['climateModel'] = freezing?.points.length
+    ? { span: [freezing.points[0][0], freezing.points.at(-1)![0]], freezeBelow: (t) => valueAt(freezing, t)?.value ?? null }
+    : undefined;
+
   /** What resolve reads in the viewer: what has loaded so far (core/resolve.ts). */
   function resolveWorld(): ResolveWorld {
     const span = climates.spanMa();
@@ -756,8 +887,10 @@ async function start(root: HTMLElement): Promise<void> {
       planet: build.planet,
       geography: ts.fields.map((f) => ({ title: f.title, mode: f.mode, coverage: f.coverage })),
       climate: span ? [fromMa(span[0]), fromMa(span[1])] : undefined,
+      climateModel: energyBalance,
       ice: ts.ice?.coverage,
       people: people.file ? [people.file.steps[0], people.file.steps.at(-1)!] : undefined,
+      landscape: landscape?.resolver(),
       polities: polities.file?.rows.length ? [Math.min(...polities.file.rows.map((r) => r.from)), Math.max(...polities.file.rows.map((r) => r.to))] : undefined,
       polity: polities.file ? (lat, lon) => polities.at(lon, lat)?.name : undefined,
       genericLand: genericMask ? (lat, lon) => genericLandAt(genericMask!.mask, genericMask!.params, lat, lon) : undefined,
@@ -830,6 +963,7 @@ async function start(root: HTMLElement): Promise<void> {
     const range = (state.cam.dist - 1) * EARTH_RADIUS;
     maintainLife();
     arriveIfReady();
+    lookIfDown();
     const made = site === lifeSite && !!lifeSite;
     const top = made ? LIFE_TOP : CITY_TOP;
     const solidAt = made ? LIFE_SOLID : CITY_SOLID;
@@ -905,6 +1039,8 @@ async function start(root: HTMLElement): Promise<void> {
       if (people.update(state.t)) globe.setPeople(people.nx, people.ny, people.levels);
     }
     peopleDrawn = !!state.people && people.holds(state.t) && fi?.mode === 'elevation' && look.formed;
+    const anthromesDrawn = landscapeOn() && fi?.mode === 'elevation' && look.formed && drawLandscape(state.t);
+    landscapeLegend.hidden = !anthromesDrawn || !cityBar.hidden;
     if (!globeHidden) globe.render(
       {
         viewProj: camera.viewProj,
@@ -922,13 +1058,15 @@ async function start(root: HTMLElement): Promise<void> {
         climate: climateNow && climateRule ? { mix: climateNow.mix, rule: climateRule } : undefined,
         ice: iceNow ? { mix: iceNow.mix } : undefined,
         people: peopleDrawn,
+        anthromes: anthromesDrawn,
       },
       w,
       h,
     );
     frameView = null;
     if (inCity) {
-      const v = localView(state.cam, site!.origin, city!.ground, stage.clientWidth, stage.clientHeight);
+      // A scene of the sea lets the eye down through its surface, to near its floor.
+      const v = localView(state.cam, site!.origin, city!.ground, stage.clientWidth, stage.clientHeight, city instanceof LifeScene && city.sea ? 0 : undefined);
       // The scene's own frame, its pixel size in device pixels.
       v.width = stage.clientWidth;
       v.height = stage.clientHeight;
@@ -942,7 +1080,9 @@ async function start(root: HTMLElement): Promise<void> {
         labels.setStructures(city!.named, city!.tops, site!.label, (s) => s.label);
         labelledSite = labelKey;
       }
-      labels.update(v, city!.ground, city!.skyline, state.t, state.sel);
+      // Under the sea a name is given only to what the water lets one see.
+      const seen = city instanceof LifeScene && city.sea ? (x: number, y: number, z: number) => underSea(v.eye, [x, y, z]) < SEEN_THROUGH_WATER : undefined;
+      labels.update(v, city!.ground, city!.skyline, state.t, state.sel, seen);
     }
     labels.el.hidden = !inCity || range > 2.2e4;
     planet.el.hidden = inCity && range < 6e4;
@@ -964,11 +1104,15 @@ async function start(root: HTMLElement): Promise<void> {
     // What lives here, and how sure that is, where a scene is of a place with no formation of its own.
     const showHere = inCity && city instanceof LifeScene && !city.spec.site.place;
     lifeHere.hidden = !showHere;
-    lifeGo.hidden = !showHere || !(city as LifeScene).spec.taxa.length || (city as LifeScene).atSea;
+    lifeGo.hidden = !showHere || !(city as LifeScene).spec.taxa.length;
     if (showHere) {
       const taxa = (city as LifeScene).spec.taxa;
       const n = (tier: string) => taxa.filter((x) => x.tier === tier).length;
-      const words = (city as LifeScene).atSea ? 'At sea: nothing is drawn here yet' : taxa.length ? `${n('here')} recorded here, ${n('region')} nearby, ${n('standin')} stand-ins` : 'Nothing recorded here';
+      // In the sea as on land; where none of what lived in a sea can be drawn yet, it says so.
+      const life = taxa.length ? `${n('here')} recorded here, ${n('region')} nearby, ${n('standin')} stand-ins` : (city as LifeScene).sea ? 'Nothing of the sea’s life can be drawn here yet' : 'Nothing recorded here';
+      // And who lived here, where the scene has people.
+      const folk = (city as LifeScene).people;
+      const words = folk ? `${life} · ${peopleWords(folk)}` : life;
       if (lifeHere.textContent !== words) lifeHere.textContent = words;
     }
     const enter = !!site && !made && !inCity && state.cam.dist < 2.2 && siteDistance(state.cam.lat, state.cam.lon) < 1.5e6;
@@ -1029,6 +1173,8 @@ async function start(root: HTMLElement): Promise<void> {
     timebar.set(state.t, state.window, playing);
     planet.update(state.t, look, state.alt);
     toolbar.set({ evidence: state.evidence, clouds: state.clouds, alt: state.alt, tree: !!state.tree, layers: state.layers ?? [], people: !!state.people });
+    // The folded toggles' button lights while any of them is on, so that what is drawn can be undone from it.
+    menu.classList.toggle('lit', state.evidence || !state.clouds || !!state.tree || !!state.layers?.length || !!state.people || state.alt.length > 0);
     document.body.classList.toggle('evidence', state.evidence);
   }
 
@@ -1054,47 +1200,147 @@ async function start(root: HTMLElement): Promise<void> {
   }
 
   // Globe interaction, and near the ground, a map's: drag the ground, turn with the right button
-  // or shift, and scroll towards what the pointer is on.
-  let drag: { x: number; y: number; cam: ViewState['cam']; moved: boolean; turn: boolean } | null = null;
+  // or shift, and scroll towards what the pointer is on. On a touch screen two fingers pinch towards what is between
+  // them and carry the view as one finger does; near the ground they also twist to turn, or go up or down together to tilt.
+  let drag: { x: number; y: number; cam: ViewState['cam']; moved: boolean; turn: boolean; slop: number } | null = null;
+  /** the pointers down on the globe, where each is now */
+  const pointers = new Map<number, { x: number; y: number }>();
+  /** Two fingers on the globe: where they were when what they do was last applied, and what that is, once they have moved enough to say. */
+  let pinch: { at: { x: number; y: number }[]; gesture: 'pinch' | 'tilt' | null } | null = null;
+  /** The camera moved as a drag of (dx, dy) pixels moves it: near the ground the ground follows the pointer, and higher up the globe turns. */
+  function dragged(cam: ViewState['cam'], dx: number, dy: number): ViewState['cam'] {
+    const range = (cam.dist - 1) * EARTH_RADIUS;
+    if (frameView && range < 6e5) {
+      // The ground follows the pointer.
+      const v = frameView;
+      const tilt = ((cam.tilt ?? 0) * Math.PI) / 180;
+      const k = (range * 2 * Math.tan(v.fov / 2)) / v.height;
+      const along = (dy * k) / Math.max(0.3, Math.cos(Math.min(tilt, 1.2)));
+      const h = ((cam.heading ?? 0) * Math.PI) / 180;
+      const mx = -dx * k * Math.cos(h) + along * Math.sin(h);
+      const my = dx * k * Math.sin(h) + along * Math.cos(h);
+      const [x, y] = toLocal(site!.origin, cam.lat, cam.lon);
+      const [lat, lon] = fromLocal(site!.origin, x + mx, y + my);
+      return { ...cam, lat, lon };
+    }
+    const k = (0.22 * (cam.dist - 1)) / 2.3;
+    return { ...cam, lat: cam.lat + dy * k, lon: cam.lon - dx * k };
+  }
+  /** Two fingers: both up or both down together tilt the view near the ground; anything else pinches, and carries the view with them. */
+  function twoFingers(g: NonNullable<typeof pinch>): void {
+    const [a0, b0] = g.at;
+    const [a, b] = [...pointers.values()];
+    if (!g.gesture) {
+      const moves = [[a.x - a0.x, a.y - a0.y], [b.x - b0.x, b.y - b0.y]];
+      const moved = moves.map(([x, y]) => Math.hypot(x, y));
+      // Each finger's move comes on its own: it is not yet told until both have moved, or one has gone some way alone.
+      if (Math.max(...moved) < 10 || (Math.min(...moved) < 4 && Math.max(...moved) < 24)) return;
+      const together = moves.every(([x, y]) => Math.abs(y) > 2 * Math.abs(x)) && moves[0][1] * moves[1][1] > 0;
+      g.gesture = frameView && together ? 'tilt' : 'pinch';
+    }
+    g.at = [{ ...a }, { ...b }];
+    const mid0 = [(a0.x + b0.x) / 2, (a0.y + b0.y) / 2];
+    const mid = [(a.x + b.x) / 2, (a.y + b.y) / 2];
+    if (g.gesture === 'tilt') {
+      // Up tilts towards the horizon, as on a map.
+      const tilt = Math.max(0, Math.min(112, (state.cam.tilt ?? 0) - (mid[1] - mid0[1]) * 0.22));
+      return setState({ cam: { ...state.cam, tilt } });
+    }
+    // Spreading the fingers comes nearer as a turn of the wheel does, towards the point between them.
+    const span0 = Math.hypot(b0.x - a0.x, b0.y - a0.y);
+    const span = Math.hypot(b.x - a.x, b.y - a.y);
+    const box = canvas.getBoundingClientRect();
+    if (span0 > 0 && span > 0 && Math.abs(span - span0) > 0.01) zoomBy(-Math.log(span / span0) / 0.0012, mid[0] - box.left, mid[1] - box.top);
+    let cam = dragged(state.cam, mid[0] - mid0[0], mid[1] - mid0[1]);
+    if (frameView) {
+      // Near the ground the view turns with a twist, so that what is under the fingers turns with them.
+      const turn = ((((Math.atan2(b.y - a.y, b.x - a.x) - Math.atan2(b0.y - a0.y, b0.x - a0.x)) * 180) / Math.PI + 540) % 360) - 180;
+      cam = { ...cam, heading: (cam.heading ?? 0) - turn };
+    }
+    setState({ cam });
+  }
   canvas.addEventListener('contextmenu', (e) => e.preventDefault());
   canvas.addEventListener('pointerdown', (e) => {
     canvas.setPointerCapture(e.pointerId);
     stopFlight();
-    drag = { x: e.clientX, y: e.clientY, cam: { ...state.cam }, moved: false, turn: e.button === 2 || e.shiftKey || e.altKey };
+    openMenu(false);
+    // The first pointer down starts afresh, whatever was missed of the last gesture.
+    if (e.isPrimary) {
+      pointers.clear();
+      pinch = null;
+    }
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pointers.size === 2) {
+      // A second finger: the two take over from the first.
+      drag = null;
+      pinch = { at: [...pointers.values()].map((p) => ({ ...p })), gesture: null };
+      return;
+    }
+    if (pointers.size > 2) return;
+    // A finger wavers more than a mouse does before it means to move.
+    drag = { x: e.clientX, y: e.clientY, cam: { ...state.cam }, moved: false, turn: e.button === 2 || e.shiftKey || e.altKey, slop: e.pointerType === 'mouse' ? 3 : 10 };
   });
   canvas.addEventListener('pointermove', (e) => {
+    const p = pointers.get(e.pointerId);
+    if (!p) return;
+    p.x = e.clientX;
+    p.y = e.clientY;
+    if (pinch) return twoFingers(pinch);
     if (!drag) return;
     const dx = e.clientX - drag.x;
     const dy = e.clientY - drag.y;
-    if (Math.abs(dx) + Math.abs(dy) > 3) drag.moved = true;
-    const range = (drag.cam.dist - 1) * EARTH_RADIUS;
+    if (Math.abs(dx) + Math.abs(dy) > drag.slop) drag.moved = true;
+    // Until a finger has gone past its slop it may yet be a tap, and the view holds still under it.
+    if (!drag.moved && e.pointerType !== 'mouse') return;
     if (frameView && drag.turn) {
       setState({ cam: { ...drag.cam, heading: (drag.cam.heading ?? 0) + dx * 0.28, tilt: Math.max(0, Math.min(112, (drag.cam.tilt ?? 0) + dy * 0.22)) } });
       return;
     }
-    if (frameView && range < 6e5) {
-      // The ground follows the pointer.
-      const v = frameView;
-      const tilt = ((drag.cam.tilt ?? 0) * Math.PI) / 180;
-      const k = (range * 2 * Math.tan(v.fov / 2)) / v.height;
-      const along = (dy * k) / Math.max(0.3, Math.cos(Math.min(tilt, 1.2)));
-      const h = ((drag.cam.heading ?? 0) * Math.PI) / 180;
-      const mx = -dx * k * Math.cos(h) + along * Math.sin(h);
-      const my = dx * k * Math.sin(h) + along * Math.cos(h);
-      const [x, y] = toLocal(site!.origin, drag.cam.lat, drag.cam.lon);
-      const [lat, lon] = fromLocal(site!.origin, x + mx, y + my);
-      setState({ cam: { ...drag.cam, lat, lon } });
+    setState({ cam: dragged(drag.cam, dx, dy) });
+  });
+  /**
+   * On a touch screen the names and markers over the view let fingers through to it (style.css), so that two fingers turn
+   * and pinch wherever they fall; a tap opens the one it falls on or nearest, within a fingertip's reach.
+   */
+  function tappedOver(x: number, y: number): HTMLElement | null {
+    let best: HTMLElement | null = null;
+    let reach = 12;
+    for (const el of stage.querySelectorAll<HTMLElement>('.marker, .city-label')) {
+      if (el.style.display === 'none' || el.closest('[hidden]')) continue;
+      for (const part of el.classList.contains('marker') ? el.querySelectorAll<HTMLElement>('.dot, .label') : [el]) {
+        const r = part.getBoundingClientRect();
+        if (!r.width) continue;
+        const d = Math.hypot(Math.max(r.left - x, 0, x - r.right), Math.max(r.top - y, 0, y - r.bottom));
+        if (d < reach) [best, reach] = [el, d];
+      }
+    }
+    return best;
+  }
+  /** A pointer lifted, or the browser took it away: a tap picks what is under it, and a finger left after two carries on. */
+  const lift = (e: PointerEvent) => {
+    if (!pointers.delete(e.pointerId)) return;
+    if (canvas.hasPointerCapture(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
+    if (pinch) {
+      if (pointers.size >= 2) {
+        pinch = { at: [...pointers.values()].slice(0, 2).map((p) => ({ ...p })), gesture: pinch.gesture };
+        return;
+      }
+      pinch = null;
+      // It carries on from where it is, and picks nothing when it lifts.
+      const [rest] = [...pointers.values()];
+      drag = rest ? { x: rest.x, y: rest.y, cam: { ...state.cam }, moved: true, turn: false, slop: 10 } : null;
       return;
     }
-    const k = (0.22 * (drag.cam.dist - 1)) / 2.3;
-    setState({ cam: { ...drag.cam, lat: drag.cam.lat + dy * k, lon: drag.cam.lon - dx * k } });
-  });
-  canvas.addEventListener('pointerup', (e) => {
     const d = drag;
     drag = null;
-    if (canvas.hasPointerCapture(e.pointerId)) canvas.releasePointerCapture(e.pointerId);
-    if (d && !d.moved) pickAt(e.offsetX, e.offsetY);
-  });
+    if (!d || d.moved || e.type !== 'pointerup') return;
+    const over = e.pointerType === 'mouse' ? null : tappedOver(e.clientX, e.clientY);
+    if (over) over.click();
+    else pickAt(e.offsetX, e.offsetY);
+  };
+  canvas.addEventListener('pointerup', lift);
+  canvas.addEventListener('pointercancel', lift);
+  canvas.addEventListener('lostpointercapture', lift);
   canvas.addEventListener('wheel', (e) => {
     e.preventDefault();
     stopFlight();
@@ -1174,6 +1420,10 @@ async function start(root: HTMLElement): Promise<void> {
     ms: number;
   }
   let flight: Flight | null = null;
+  /** In a scene of the sea, "Go and see" goes on to the biggest of what is near once it is down: when it was asked, or 0 */
+  let seaLook = 0;
+  /** and the frames drawn since its flight came down */
+  let seaDown = 0;
 
   function flyTo(to: ViewState['cam'], ms = 3600): void {
     // A link is the place it names: tests and shared views arrive at once.
@@ -1186,6 +1436,7 @@ async function start(root: HTMLElement): Promise<void> {
   function stopFlight(): void {
     flight = null;
     arriving = null;
+    seaLook = 0;
   }
 
   /** Whether a view near the ground has a scene still to come. A site's is set going; a scene of anywhere is maintainLife's. */
@@ -1268,7 +1519,8 @@ async function start(root: HTMLElement): Promise<void> {
   const lifeKeyAt = (t: number, at: { lat: number; lon: number }): string => {
     const { lat, lon } = latticeOf(at.lat, at.lon);
     // A month is a different scene: its snow and its sun.
-    return `${lifeAtlas?.binAt(t)?.from}|${lat.toFixed(2)}|${lon.toFixed(2)}|${state.month ?? ''}`;
+    // And in the human landscape's span, a step of the anthromes is a different scene: its people.
+    return `${lifeAtlas?.binAt(t)?.from}|${lat.toFixed(2)}|${lon.toFixed(2)}|${state.month ?? ''}|${landscape?.stepAt(t) ?? ''}`;
   };
 
   /** The scene of wherever the camera is, or is flying down to: made once it has come to rest over a new place, and shown once it is ready. */
@@ -1313,6 +1565,14 @@ async function start(root: HTMLElement): Promise<void> {
         lifeEmpty.add(key);
         return;
       }
+      // Its people, where the human landscape reaches it and it is a scene of the land.
+      if (landscape && !lifeAtlas!.fromSea(spec)) {
+        const p = await landscape.peopleFor(spec.site.origin.lat, spec.site.origin.lon, t).catch((err) => {
+          console.error(`the people of ${key}: ${err instanceof Error ? err.message : String(err)}`);
+          return undefined;
+        });
+        if (p) spec.people = p;
+      }
       const scene = new LifeScene(gl!, spec, null, { fast: state.quality === 'fast' });
       scene.onChange = () => (dirty = true);
       await scene.load();
@@ -1352,13 +1612,73 @@ async function start(root: HTMLElement): Promise<void> {
   cityBar.querySelector<HTMLInputElement>('input')!.oninput = (e) => setState({ hour: Number((e.target as HTMLInputElement).value) });
   cityBar.querySelector<HTMLSelectElement>('.life-month select')!.onchange = (e) => setState({ month: Number((e.target as HTMLSelectElement).value) || undefined });
   cityBar.querySelector<HTMLButtonElement>('.to-globe')!.onclick = () => flyTo({ lat: state.cam.lat, lon: state.cam.lon, dist: 2.6 }, 4200);
+  // A title is never seen on a touch screen: the help opens on a tap, in the words for the screen it is on.
+  const cityHelp = cityBar.querySelector<HTMLButtonElement>('.city-help')!;
+  const cityTips = cityBar.querySelector<HTMLElement>('.city-tips')!;
+  cityHelp.onclick = () => {
+    cityTips.textContent = matchMedia('(pointer: coarse)').matches ? TOUCH_HELP : MOUSE_HELP;
+    cityTips.hidden = !cityTips.hidden;
+    cityHelp.setAttribute('aria-expanded', String(!cityTips.hidden));
+  };
   const lifeGo = cityBar.querySelector<HTMLButtonElement>('.life-go')!;
   lifeGo.onclick = () => {
     if (!(city instanceof LifeScene) || !site) return;
+    if (city.sea && lookUnderSea(city)) return;
     const [lat, lon] = fromLocal(site.origin, city.focus[0], city.focus[1]);
     const heading = ((Math.atan2(city.toRiver[0], city.toRiver[1]) * 180) / Math.PI + 17 + 360) % 360;
     flyTo({ lat, lon, dist: 1 + 74 / EARTH_RADIUS, heading: Math.round(heading), tilt: 81 }, 1800);
+    // In the sea, once down there and what is near has names, on to the biggest of it.
+    seaLook = city.sea ? performance.now() : 0;
   };
+  /**
+   * In a scene of the sea, where the water lets one see only so far: to a few lengths from the biggest of what is about
+   * the arrival, a little above it and looking at it. False if nothing about the arrival has a name yet.
+   */
+  function lookUnderSea(c: LifeScene): boolean {
+    const [fx, fy] = c.focus;
+    // About the arrival: where the generator sets something of each. The biggest of it, and of those the nearest.
+    const reach = (c.spec.generator.params as unknown as LivingParams).animals.near_radius * 1.5;
+    const length = (i: number) => c.taxonOf(c.named[i].id)?.length ?? 0;
+    const from = (i: number) => Math.hypot(c.named[i].at[0] - fx, c.named[i].at[1] - fy);
+    let best = -1;
+    for (let i = 0; i < c.named.length; i++) {
+      if (from(i) > reach) continue;
+      if (best < 0 || length(i) > length(best) || (length(i) === length(best) && from(i) < from(best))) best = i;
+    }
+    if (best < 0 || !site) return false;
+    const s = c.named[best];
+    const mid = (s.base + c.tops[best]) / 2;
+    const dx = s.at[0] - fx;
+    const dy = s.at[1] - fy;
+    const l = Math.hypot(dx, dy);
+    const [ux, uy] = l > 1 ? [dx / l, dy / l] : c.toRiver;
+    // Some five lengths off: near enough to see it through the water, and a small one from as near as the eye may come.
+    const back = Math.max(1, Math.min(14, 5 * (length(best) || 2)));
+    const ex = s.at[0] - ux * back;
+    const ey = s.at[1] - uy * back;
+    const aim = lookThrough([ex, ey, Math.min(-1, Math.max(mid + 1.2, c.ground.at(ex, ey) + EYE_HEIGHT))], [s.at[0], s.at[1], mid], c.ground);
+    if (!aim) return false;
+    const [lat, lon] = fromLocal(site.origin, aim.target[0], aim.target[1]);
+    flyTo({ lat, lon, dist: 1 + aim.range / EARTH_RADIUS, heading: aim.heading, tilt: aim.tilt }, 1800);
+    return true;
+  }
+  /** Once a flight to the arrival in the sea has come down and the scene there has settled, on to the biggest of what is near. */
+  function lookIfDown(): void {
+    if (!seaLook) return;
+    if (flight) {
+      seaDown = 0;
+      return;
+    }
+    // Not for ever: a scene that does not settle is left as it is.
+    if (!(city instanceof LifeScene) || !city.sea || performance.now() - seaLook > 30000) {
+      seaLook = 0;
+      return;
+    }
+    // Only once the scene has been drawn from where the flight came down can what is near there have names.
+    if (seaDown++ < 1 || !city.settled) return;
+    seaLook = 0;
+    lookUnderSea(city);
+  }
   /** Down to where something of each is standing, once the scene of the place a taxon was asked for has come. */
   function arriveIfReady(): void {
     if (!arriving || flight) return;
@@ -1384,7 +1704,8 @@ async function start(root: HTMLElement): Promise<void> {
     if (!(city instanceof LifeScene)) return;
     setState({ sel: null });
     shownRecord = null;
-    inspect.showLifeHere(city.spec, build.atlas?.description);
+    const sea = listOf(city) === 'sea';
+    inspect.showLifeHere(city.spec, sea ? build.sea?.description : build.atlas?.description, { list: sea ? 'sea' : 'land', sea: city.sea });
   };
 
   /** Fly to a structure of the city, looking at its front, at a time it stands. */
@@ -1400,7 +1721,10 @@ async function start(root: HTMLElement): Promise<void> {
     flyTo({ lat, lon, dist: 1 + range / EARTH_RADIUS, heading: state.cam.dist < 1.01 ? state.cam.heading : 330, tilt: 62 }, state.cam.dist < 1.001 ? 1800 : 4600);
   }
 
+  /** Clicks so far, so that what a click fetches is shown only if no other click came after it. */
+  let clicks = 0;
   function pickAt(x: number, y: number): void {
+    const click = ++clicks;
     if (frameView && city && (state.cam.dist - 1) * EARTH_RADIUS < 6e4) {
       const dpr = canvas.width / stage.clientWidth;
       const px = Math.round(x * dpr);
@@ -1415,14 +1739,49 @@ async function start(root: HTMLElement): Promise<void> {
           if (!t.id.startsWith('txn:')) return setState({ sel: t.id });
           setState({ sel: null });
           shownRecord = null;
-          return inspect.showOrganism(t, organismInfo(t.id)!, build.atlas?.sourceRecord);
+          const info = organismInfo(t.id)!;
+          return inspect.showOrganism(t, info, organismSource(info));
+        }
+        // A house the settlement generator drew: what it rests on, and what of it is invented.
+        if (found.house !== undefined && city.people && city.spec.people) {
+          setState({ sel: null });
+          shownRecord = null;
+          const pp = city.people;
+          const f = pp.forms[found.house];
+          const sp = city.spec.people;
+          const gen = sp.generator;
+          const life = sp.lifeway;
+          const k = anthromeOf(sp.classes, life.anthrome);
+          const cities = pp.settlements.filter((x) => x.city).map((x) => `${x.city} (about ${x.people.toLocaleString('en-US')} people)`);
+          // Where houses of this form stand in the scene: the lists' cities first, then the settlements of each way of life.
+          const mine = pp.settlements.filter((x) => x.form === found.house);
+          const counts = new Map<Pattern, number>();
+          for (const x of mine) if (!x.city) counts.set(x.pattern as Pattern, (counts.get(x.pattern as Pattern) ?? 0) + 1);
+          const where = [
+            ...mine.filter((x) => x.city).sort((a, b) => b.people - a.people).map((x) => `${x.city}, a city of the lists, of about ${x.people.toLocaleString('en-US')} people then`),
+            ...[...counts].sort((a, b) => b[1] - a[1]).map(([p, c]) => `${c.toLocaleString('en-US')} ${SETTLEMENT_WORDS[p][c === 1 ? 0 : 1]}`),
+          ];
+          const form =
+            f.from === 'tradition'
+              ? `Its form follows the world's records of the building tradition ${f.label}: ${specText(f.spec)}. What they do not say, the generator's proportions fill in.`
+              : `No building tradition is recorded for this region and time, so this is a generic house for the way of life and the climate: ${specText(f.spec)}. It is a placeholder, and says so.`;
+          const text = `${where.length ? `Houses of this form stand in ${where.join('; ')}. ` : ''}${form} At the scene's middle, at ${formatTime(sp.t)}: ${PATTERN_LABEL[life.pattern].toLowerCase()}, ${k ? `${k.label.toLowerCase()} as the anthromes of HYDE have it at their step ${stepName(sp.step)}` : 'as the anthromes have it'}. ${life.why}${life.disagrees ? ` ${life.disagrees}` : ''} The scene draws ${pp.houses.toLocaleString('en-US')} houses for about ${pp.drawn.toLocaleString('en-US')} people; HYDE puts about ${pp.expected.toLocaleString('en-US')} in the land it covers${cities.length ? `, and the lists of cities add ${cities.join(', ')}` : ''}.`;
+          const why = `${gen.generator}, version ${gen.version}: nobody recorded this house. How many houses there are follows HYDE's people through the anthromes, and the lists of cities where they name one; what way of life, the anthromes and the region's archaeologists; where each house stands and which way it faces is invented, keyed by the world's 5′ cells.`;
+          return inspect.showGenerated(f.label, 'Generated house', text, why);
         }
         setState({ sel: null });
         shownRecord = null;
         const b = city.spec.biome;
         const g = city.spec.generator;
+        const made = `${g.generator}, version ${g.version}, seed "${g.seed}"`;
+        if (city.sea) {
+          // In a scene of the sea: its floor, or a shore above the water.
+          const hit = groundHit(frameView, rayOf(frameView, x, y), city.ground);
+          if (!hit || hit[2] < 0) return inspect.showGenerated('The sea floor here', 'Generated ground', `The floor of a sea, drawn for this place and time under the sea of the time. Its depth is the elevation field's; its sand, mud and ripples are invented, and so is the look of the water over it: how far one sees through it, its colour, and how the daylight falls with depth.`, `${made}: nothing of this floor was recorded. Only its depth comes from the world, from the elevation field, between the field's points.`);
+          return inspect.showGenerated('The shore here', 'Generated ground', `Land at the edge of a sea, drawn for this place and time. Its height is the elevation field's, and how its shore wanders is invented. Where the climate field reads the land at ${b.ageMa} Ma, it is ${b.label.toLowerCase()}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%.`, `${made}: no stretch of this shore was recorded. Only the land comes from the world, from the elevation field.`);
+        }
         const where = city.spec.site.place ? `drawn where ${site!.label} stood` : 'drawn for this place and time';
-        return inspect.showGenerated(city.spec.site.place ? 'The floodplain' : 'The land here', 'Generated ground', `A land ${where}. Its rivers, ponds and glades are invented, so that what lived here has somewhere to stand. Where the climate field reads the land at ${b.ageMa} Ma, it is ${b.label.toLowerCase()}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%.`, `${g.generator}, version ${g.version}, seed "${g.seed}": no bend of this river was recorded. Only the land it lies in comes from the world, from the elevation field beyond its edge.`);
+        return inspect.showGenerated(city.spec.site.place ? 'The floodplain' : 'The land here', 'Generated ground', `A land ${where}. Its rivers, ponds and glades are invented, so that what lived here has somewhere to stand. Where the climate field reads the land at ${b.ageMa} Ma, it is ${b.label.toLowerCase()}, and the transitions allow forest over ${Math.round(b.cover.forests * 100)}% of it and grass over ${Math.round(b.cover.grasses * 100)}%.`, `${made}: no bend of this river was recorded. Only the land it lies in comes from the world, from the elevation field beyond its edge.`);
       }
       const found = city!.pick(px, py);
       if (found.structure) return setState({ sel: found.structure.id });
@@ -1483,7 +1842,15 @@ async function start(root: HTMLElement): Promise<void> {
     const level = seaLevelOf(fi, state.t);
     const elevation = e0 + (e1 - e0) * frameMix - level;
     const plate = build.frames.plateIndex[Math.round(p0)] || null;
-    inspect.showTerrain({
+    // How people lived here: fetched for the place, then the panel is shown again with it.
+    const asked = { t: state.t, lat: hit.lat, lon: hit.lon };
+    if (landscape && elevation >= 0 && fi.mode === 'elevation') {
+      void landscapeHere(hit.lat, hit.lon, state.t).then((lh) => {
+        if (!lh || click !== clicks || here !== null || state.t !== asked.t || state.sel) return;
+        showTerrainAt(lh);
+      });
+    }
+    const showTerrainAt = (lh?: LandscapeHere) => inspect.showTerrain({
       mode: fi.mode,
       lat: hit.lat,
       lon: hit.lon,
@@ -1505,7 +1872,29 @@ async function start(root: HTMLElement): Promise<void> {
       polity: polityHere(hit.lon, hit.lat),
       ice: iceHere(hit.point, plate),
       people: peopleDrawn ? people.here(hit.lon, hit.lat, state.t) : undefined,
+      ...(lh ? { landscape: lh } : {}),
     });
+    showTerrainAt();
+  }
+
+  /** How people lived at a place and time, for the terrain panel: the human landscape's word, with its sources' names. */
+  async function landscapeHere(lat: number, lon: number, t: number): Promise<LandscapeHere | undefined> {
+    const place = await landscape!.placeAt(lat, lon, t);
+    if (!place) return undefined;
+    const ix = landscape!.index;
+    const k = anthromeOf(ix.classes, place.anthrome);
+    const listTitle = (field: string) => landscape!.cities.lists.find((l) => l.field === field)?.title.replace(/,.*$/, '') ?? field;
+    const a = place.region?.assessment?.a;
+    const regionUses = a ? USES.map((u, i) => `${USE_LABEL[u]} ${LEVEL_WORDS[a.use[i][0]].toLowerCase()}${a.use[i][1] !== a.use[i][3] ? ` (answers from ${LEVEL_WORDS[a.use[i][1]].toLowerCase()} to ${LEVEL_WORDS[a.use[i][3]].toLowerCase()})` : ''}`).concat([`dense urban centres ${a.urban === 1 ? 'present' : 'absent'}`]) : undefined;
+    return {
+      place,
+      className: k?.label ?? 'Unclassed',
+      title: ix.title,
+      ...(place.density !== undefined ? { density: place.density } : {}),
+      ...(regionUses ? { regionUses } : {}),
+      cities: place.cities.map((c) => ({ name: c.city.name, people: c.people, km: c.km, list: listTitle(c.city.field), also: c.also.map((x) => ({ people: x.people, list: listTitle(x.city.field) })) })),
+      ...(place.tradition ? { tradition: { id: place.tradition.id, label: place.tradition.label, dwelling: specText(place.tradition.dwelling) } } : {}),
+    };
   }
 
   /** What the ice-sheet field gives at a point of the globe at the time shown, if it has any ice near. */
@@ -1716,7 +2105,10 @@ async function start(root: HTMLElement): Promise<void> {
     else if (e.key === 'ArrowRight') setState({ t: timebar.stepFrom(state.t, 1 / 200) });
     else if (e.key === 'l' || e.key === 'L') setState({ hour: state.hour >= HOURS[1] ? HOURS[0] : state.hour + 0.4 });
     else if (e.key === '/') search.focus();
-    else if (e.key === 'Escape') setState({ sel: null });
+    else if (e.key === 'Escape') {
+      openMenu(false);
+      closePanel();
+    }
     else return;
     e.preventDefault();
   });
@@ -1746,7 +2138,8 @@ async function start(root: HTMLElement): Promise<void> {
       ['people', !!state.people && !people.file && !!ts.files.people], ['clouds', !cloudsReady], ['surface', !surfaceReady],
       ['biome texture', !biomeTexReady], ['generic land', !genericReady], ['climate', !climateReady || climates.busy], ['ice', !iceReady],
       ['territory', !territoryReady], ['tree', !!treeLoading], ['cube', !cubeKey.startsWith(`${state.t}|`)],
-      ['selection', !!state.sel && shownRecord !== state.sel], ['flight', !!flight], ['city', cityWanted()],
+      ['selection', !!state.sel && shownRecord !== state.sel], ['flight', !!flight || !!seaLook], ['city', cityWanted()],
+      ['landscape', landscapeOn() && (!landscape!.index || (landscapeLoading && !landscape!.globe))],
     ];
     return w.filter(([, x]) => x).map(([n]) => n);
   };
@@ -1806,11 +2199,22 @@ async function start(root: HTMLElement): Promise<void> {
       const s = city?.named.find((x) => x.id === id);
       return s && frameView ? projectLocal(frameView, s.at[0], s.at[1], s.base) : undefined;
     },
+    settlementsAt: () => {
+      if (!(city instanceof LifeScene) || !city.people || !city.ground || !frameView) return [];
+      const v = frameView;
+      const g = city.ground;
+      return city.people.settlements.flatMap((s) => {
+        const at = projectLocal(v, s.x, s.y, g.at(s.x, s.y) + 1);
+        return at && at.x >= 0 && at.y >= 0 && at.x < stage.clientWidth && at.y < stage.clientHeight ? [{ pattern: s.pattern, ...(s.city ? { city: s.city } : {}), houses: s.houses, x: at.x, y: at.y }] : [];
+      });
+    },
     scene: () => {
       const c = city instanceof LifeScene ? city : [...scenes.values()].find((x): x is LifeScene => x instanceof LifeScene);
       if (!c) return null;
       const drawn = new Set(c.named.map((x) => x.id));
-      return { site: c.spec.site.id, plan: c.plan, taxa: c.spec.taxa.map((t) => ({ id: t.id, label: t.label, form: t.form_label, own: t.own, tier: t.tier, km: t.km, rows: t.rows, drawn: drawn.has(t.id) })), instances: c.last.instances, triangles: c.last.triangles, meshes: c.last.meshes, groundMs: c.groundMs, stage: c.spec.site.stage, climate: c.spec.biome.climate, climateField: c.spec.biome.field, month: c.spec.climate?.month ?? null, snow: Number.isFinite(snowOf(c.spec).line) ? snowOf(c.spec).line : null, focus: c.focus, toRiver: c.toRiver, origin: c.spec.site.origin, water: c.spec.water ? { tier: c.spec.water.tier, rivers: c.spec.water.rivers.map((r) => ({ key: r.key, from: r.from })) } : null };
+      // Where the eye is in the scene drawn, above its sea, and the ground under it.
+      const eye = c === city && frameView && c.ground ? { z: frameView.eye[2], floor: c.ground.at(frameView.eye[0], frameView.eye[1]) } : null;
+      return { site: c.spec.site.id, plan: c.plan, taxa: c.spec.taxa.map((t) => ({ id: t.id, label: t.label, form: t.form_label, own: t.own, tier: t.tier, km: t.km, rows: t.rows, drawn: drawn.has(t.id) })), instances: c.last.instances, triangles: c.last.triangles, meshes: c.last.meshes, groundMs: c.groundMs, stage: c.spec.site.stage, climate: c.spec.biome.climate, climateField: c.spec.biome.field, month: c.spec.climate?.month ?? null, snow: Number.isFinite(snowOf(c.spec).line) ? snowOf(c.spec).line : null, focus: c.focus, toRiver: c.toRiver, origin: c.spec.site.origin, water: c.spec.water ? { tier: c.spec.water.tier, rivers: c.spec.water.rivers.map((r) => ({ key: r.key, from: r.from })) } : null, sea: c.sea, list: listOf(c), eye, people: c.spec.people ? { asked: true, houses: c.people?.houses ?? 0, drawn: c.people?.drawn ?? 0, expected: c.people?.expected ?? 0, settlements: c.people?.settlements.length ?? 0, pattern: c.people?.lifeway.pattern, tier: c.people?.lifeway.tier, forms: c.people?.forms.map((f) => f.label) ?? [] } : null };
     },
     lifePrint: async (lat, lon, t) => {
       const spec = await lifeAtlas?.spec(lat, lon, t, {});

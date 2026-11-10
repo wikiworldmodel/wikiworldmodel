@@ -1,0 +1,28 @@
+id: src:jackson-2018-norse-greenland
+type: publication
+kind: review
+citation: >-
+  Jackson, R., Arneborg, J., Dugmore, A., Madsen, C., McGovern, T., Smiarowski, K. & Streeter, R. (2018). Disequilibrium,
+  Adaptation, and the Norse Settlement of Greenland. Human Ecology 46(5), 665–684.
+authors:
+  - "Jackson, R."
+  - "Arneborg, J."
+  - "Dugmore, A."
+  - "Madsen, C."
+  - "McGovern, T."
+  - "Smiarowski, K."
+  - "Streeter, R."
+published: 2018
+title: Disequilibrium, Adaptation, and the Norse Settlement of Greenland
+container: Human Ecology
+doi: 10.1007/s10745-018-0020-0
+url: https://europepmc.org/article/PMC/PMC6182579
+license: CC-BY-4.0
+reliability: >-
+  A synthesis. Its Table 2 compares the farms of Norse Greenland, Iceland and western Norway from the literature, one
+  column each; the cells cited here say which column they are in.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as text from Europe PMC's REST service (PMC6182579, fullTextXML) on 9 November 2026, its tables row by
+    row with the cells apart. Quotes checked by script against it.

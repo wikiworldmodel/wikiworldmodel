@@ -1,0 +1,28 @@
+id: life/taxa/ammonoidea
+kind: taxon
+summary: >-
+  The ammonoids: cephalopods with coiled, chambered shells, from the Devonian to the end of the Cretaceous.
+same_as: { pbdb: "txn:14505" }
+author: machine:claude-code
+claims:
+  name:
+    prop: name
+    value: { la: Ammonoidea, en: "ammonoids" }
+    unsourced: "The classification's own name; the English an editorial gloss."
+  length:
+    prop: body_length
+    value: { lo: 0.01, hi: 2 }
+    source:
+      - ref: src:wikipedia-ammonoidea
+        loc: "section \"Description\", \"Size\""
+        quote: "The smallest ammonoid was Maximites from the Upper Carboniferous. Adult specimens reached only 10 mm (0.39 in) in shell diameter."
+      - ref: src:klug-2025-cephalopod-body-size
+        loc: "Results, \"What are the largest representatives of each group?\""
+        quote: "Ammonoids attained conch diameters of about two meters or more"
+    method: compilation
+    note: >-
+      The shell's diameter, from the smallest ammonoid, in an encyclopedia's words, cited for lack of a work that could be read, to
+      the largest, Parapuzosia, which the same paper's Table 1 gives at 2050 mm; standing for any ammonoid with no size of its own.
+      The heteromorphs, partly uncoiled, are drawn coiled.
+    checked:
+      - { step: quoted, by: machine:quote-check, how: "Found in PMC12371081.txt (sha256 66307680d661c775), after normalizing whitespace and typography, by npm run world -- quote-check.", on: "2026-11-09" }

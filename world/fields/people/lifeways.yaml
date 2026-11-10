@@ -1,0 +1,21 @@
+# A derived field: declared, never stored (section 9.1). The viewer and the scenes work it out where they are asked,
+# from the anthromes, the archaeologists' assessments and the people of HYDE (model:people/lifeways, core/landscape.ts).
+id: field:people/lifeways
+type: field
+kind: categorical
+title: How people lived
+description: >-
+  How people lived on a piece of land at a time, as the settlement generator draws it: in no settlement at all, in the
+  camps of foragers or herders, as shifting cultivators, in scattered farmsteads, hamlets or villages, in towns, or in a
+  city; with fields of rainfed crops, irrigated crops, rice or swidden, or pasture; and how many people to the km². The
+  anthrome of the place says where people were, how many and what they did with a fifth of the land; where it says
+  nothing of their use of the land, the archaeologists of the region say which way of life it was. It rests on the
+  archaeologists (evidence) where they say that way of life was there then, and on HYDE alone (model) where they do not
+  or they disagree; the panel says which, and what they disagree on.
+derived: true
+from: [field:people/anthromes, field:people/land-use-assessment, field:earth/population]
+rule: lifeways
+params:
+  # The people of a 1° cell of HYDE are shared over its 5′ cells in proportion to the middle of each class's band of
+  # density, times its land: a choice, which keeps the scenes' people adding up to HYDE's.
+  share: geometric-middle

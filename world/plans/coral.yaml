@@ -1,0 +1,20 @@
+description: >-
+  A coral colony of the massive kind: a lumpy dome on the sea floor, built by many small polyps whose cups dot its surface. It
+  stands for the colonial corals of every shape, branching and plate-like ones too. Its length is the colony's greatest width.
+kind: animal
+hip: 0.5
+mass_length: 310
+behave: { group: [1, 8], habitat: floor, poses: [rest] }
+parts:
+  dome: { type: lump, zl: true, mat: shell, at: [0, 0, 0.2], r: [0.42, 0.4, 0.21], sides: [12, 6], bands: [6, 3] }
+  lobe-front: { type: lump, zl: true, mat: shell, at: [0.06, 0.2, 0.17], r: [0.24, 0.28, 0.17], sides: [9, 5], bands: [4, 2] }
+  lobe-back: { type: lump, zl: true, mat: shell, at: [-0.1, -0.22, 0.16], r: [0.27, 0.25, 0.16], sides: [9, 5], bands: [4, 2] }
+  lobes-side: { type: lump, zl: true, mat: shell, mirror: true, at: [0.24, -0.02, 0.15], r: [0.24, 0.27, 0.15], sides: [9, 5], bands: [4, 2] }
+  crown: { type: lump, zl: true, mat: shell, at: [-0.02, 0.02, 0.33], r: [0.24, 0.24, 0.14], sides: [9, 5], bands: [4, 2] }
+  finger-front: { type: chain, zl: true, mat: shell, sides: [6, 4], points: [[0.02, 0.12, 0.36, 0.06], [0.04, 0.2, 0.5, 0.05], [0.05, 0.24, 0.6, 0.042]] }
+  finger-back: { type: chain, zl: true, mat: shell, sides: [6, 4], points: [[-0.05, -0.1, 0.36, 0.06], [-0.08, -0.16, 0.52, 0.05], [-0.08, -0.18, 0.64, 0.044]] }
+  fingers-side: { type: chain, zl: true, mat: shell, mirror: true, sides: [6, 4], points: [[0.12, 0.0, 0.34, 0.058], [0.2, 0.02, 0.47, 0.048], [0.24, 0.03, 0.56, 0.04]] }
+  fingers-low: { type: chain, zl: true, mat: shell, mirror: true, sides: [6, 4], points: [[0.22, -0.18, 0.24, 0.055], [0.32, -0.24, 0.36, 0.045], [0.35, -0.27, 0.44, 0.038]] }
+  cups-1: { type: knobs, zl: true, near: true, mat: dark, n: 6, at: [0, 0.44], r: [0.1, 0.1, 0.102], length: 0.006, thick: 0.014 }
+  cups-2: { type: knobs, zl: true, near: true, mat: dark, n: 10, at: [0, 0.4], r: [0.2, 0.2, 0.204], length: 0.006, thick: 0.014 }
+  cups-3: { type: knobs, zl: true, near: true, mat: dark, n: 14, at: [0, 0.32], r: [0.32, 0.32, 0.326], length: 0.006, thick: 0.014 }

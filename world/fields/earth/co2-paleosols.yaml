@@ -1,0 +1,20 @@
+id: field:earth/co2-paleosols
+type: field
+title: CO₂ from ancient soils
+quantity: partial pressure of CO₂ in the air, from the weathering of soils now preserved as paleosols
+unit: bar
+description: >-
+  The world's own estimates of the CO₂ of the late Archean and earliest Proterozoic air, each from a soil that
+  weathered under it, at that soil's date: each point one study's range, as a review compiles them. The estimates
+  disagree with one another by ten times and more, and each assumes how its soil weathered. Set them beside the CO₂
+  below which the energy-balance model freezes over.
+grid: { kind: series }
+time: { lo: 2.77 Ga, hi: 2.46 Ga }
+data:
+  from: src:catling-zahnle-2020-archean-atmosphere
+  prop: co2_pressure
+  band: the range each estimate gives
+basis: evidence
+# Each value is a claim of the world, with that claim's uncertainty.
+spread: claims
+interp: linear

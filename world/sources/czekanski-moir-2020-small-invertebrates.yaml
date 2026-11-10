@@ -1,0 +1,21 @@
+id: src:czekanski-moir-2020-small-invertebrates
+type: publication
+kind: review
+citation: >-
+  Czekanski-Moir, J.E. & Rundell, R.J. (2020). Endless forms most stupid, icky, and small: The preponderance of noncharismatic
+  invertebrates as integral to a biologically sound view of life. Ecology and Evolution 10(23), 12638–12649.
+authors:
+  - "Czekanski-Moir, J.E."
+  - "Rundell, R.J."
+published: 2020
+title: >-
+  Endless forms most stupid, icky, and small: The preponderance of noncharismatic invertebrates as integral to a biologically sound
+  view of life
+container: "Ecology and Evolution 10(23), 12638–12649"
+doi: 10.1002/ece3.6892
+reliability: An essay; the size quoted is given in passing, without its own reference.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as XML from Europe PMC (PMC7713927) on 9 November 2026; citation and authors checked against Crossref. The quote
+    checked by script against the text taken from the XML.

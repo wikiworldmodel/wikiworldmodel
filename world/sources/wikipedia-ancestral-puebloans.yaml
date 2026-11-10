@@ -1,0 +1,20 @@
+id: src:wikipedia-ancestral-puebloans
+type: database-record
+kind: review
+citation: >-
+  "Ancestral Puebloans." Wikipedia, the free encyclopedia (English edition), revision 1372951038.
+snapshot: 2026-11-09
+title: Ancestral Puebloans
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Ancestral_Puebloans&oldid=1372951038
+license: CC-BY-SA-4.0
+license_note: Short quotes, with credit.
+reliability: >-
+  A general encyclopedia article, cited for the stone of the pueblos' walls and for where the pueblos stood, because no
+  better work could be read here. Of the sentences quoted, only the one on the cliff dwellings' sandstone is cited there, to
+  Kantner, J. (2004), Ancient Puebloan Southwest, pp. 161–166, which could not be reached and should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML, rendered from revision 1372951038, fetched from Wikipedia on 9 November 2026 and read as text; the
+    quotes checked by script against that text.

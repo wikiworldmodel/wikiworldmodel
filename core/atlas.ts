@@ -136,8 +136,8 @@ export function atlasList(bin: AtlasBin, grid: AtlasGrid, lat: number, lon: numb
   return out;
 }
 
-// The sea's atlas (tools/world/src/build/sea.ts): the same stages, patches and tiers over the sea, of genera with no
-// forms, since the sea's great groups have none in the world yet. Its lists say what lived where; they draw nothing.
+// The sea's atlas (tools/world/src/build/sea.ts): the same stages, patches and tiers over the sea. Its lists say what
+// lived where, the most recorded first; then the genera a scene can draw, where a node above them has a body for the sea.
 
 /** A genus on a list of the sea, and the class or phylum the database puts it in. */
 export interface SeaTaxon {
@@ -151,6 +151,14 @@ export interface SeaTaxon {
   span: [number, number];
   /** listed because nothing is recorded near: the stage's commonest of a like belt of latitude */
   standin?: boolean;
+  /** how it is drawn, where a node above it has a body for the sea: as the land's atlas gives a taxon's */
+  draw?: Omit<AtlasTaxon, 'no' | 'label' | 'rank' | 'rows' | 'span' | 'standin'>;
+}
+
+/** A taxon of the sea as the land's atlas would list it, to draw it: undefined if nothing above it has a body for the sea. */
+export function seaAsAtlas(t: SeaTaxon): AtlasTaxon | undefined {
+  if (!t.draw) return undefined;
+  return { no: t.no, label: t.label, rank: t.rank, rows: t.rows, span: t.span, ...(t.standin ? { standin: true } : {}), ...t.draw };
 }
 
 /** One stage of the sea: `nodes` maps a patch of sea to flat fours, as the land's do. */
@@ -175,6 +183,8 @@ export interface SeaIndex {
   here_km: number;
   region_km: number;
   bins: AtlasBinRef[];
+  /** the file of whole forms its genera are drawn with, by key, as the land's atlas's */
+  forms?: string;
 }
 
 /** The list for a place of the sea in a stage; undefined where the stage has no sea there. */
@@ -184,4 +194,17 @@ export function seaList(bin: SeaBin, grid: AtlasGrid, lat: number, lon: number):
   const out: { taxon: SeaTaxon; weight: number; tier: Tier; km: number }[] = [];
   for (let i = 0; i + 3 < flat.length; i += 4) out.push({ taxon: bin.taxa[flat[i]], weight: flat[i + 1], tier: flat[i + 2] as Tier, km: flat[i + 3] * 10 });
   return out;
+}
+
+/**
+ * The sea's list for a place as a scene reads a list, the land's way: only the genera it can draw, in its order.
+ * Undefined where the stage has no sea there; empty where it has, but nothing on its list can be drawn.
+ */
+export function seaDrawList(bin: SeaBin, grid: AtlasGrid, lat: number, lon: number): AtlasEntry[] | undefined {
+  const list = seaList(bin, grid, lat, lon);
+  if (!list) return undefined;
+  return list.flatMap((e) => {
+    const taxon = seaAsAtlas(e.taxon);
+    return taxon ? [{ taxon, weight: e.weight, tier: e.tier, km: e.km }] : [];
+  });
 }

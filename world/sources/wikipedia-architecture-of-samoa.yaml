@@ -1,0 +1,21 @@
+id: src:wikipedia-architecture-of-samoa
+type: database-record
+kind: review
+citation: >-
+  "Architecture of Samoa." Wikipedia, the free encyclopedia (English edition), revision 1332300393.
+snapshot: 2026-11-09
+title: Architecture of Samoa
+container: Wikipedia
+url: https://en.wikipedia.org/w/index.php?title=Architecture_of_Samoa&oldid=1332300393
+license: CC-BY-SA-4.0
+reliability: >-
+  A general encyclopedia article, cited only for what the excavation reports read here do not say of the house: that it
+  had no walls, the height of its eaves and its thatch. Its section on thatch cites Te Rangi Hiroa (Buck), Samoan Material
+  Culture (1930), p. 22, and its section on construction ends with a citation of Te'o Tuvale, An Account of Samoan History
+  up to 1918; its opening sentence on the walls cites nothing. Both works are on the New Zealand Electronic Text Collection, whose host refused
+  the connection from here; they should replace this.
+verified:
+  by: machine:claude-code
+  how: >-
+    The article's HTML fetched with the action=render view of index.php on 9 November 2026 (the parser's note names the
+    revision) and read as text, with the reference marks taken out; the quotes checked by script against that text.

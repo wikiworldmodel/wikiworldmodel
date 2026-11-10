@@ -42,10 +42,18 @@ In the viewer:
   inside a polity's territory opens its record and says which row of the borders dataset is
   drawn there.
 - Switch the geologic time scale in the toolbar: records dated by a stage follow it.
+- Press *Settlement* in the toolbar to paint the land by how people lived there, from wildlands to villages and
+  cities, at any time since 10,000 BCE; click any land to see how people lived there and how sure that is. A scene of
+  the land in that span draws their settlements, houses and fields (docs/HUMAN-LANDSCAPE.md).
 - Press `E` for evidence mode, which marks what is reconstructed or generated.
 - Scroll down over Rome, or press the button at the bottom of the globe, to come down into the
   city. There, drag to pan, right-drag or Shift-drag to turn and tilt, `W` `A` `S` `D` to walk,
   and move the Light slider or press `L` to change the hour. Click a monument to open its record.
+- On a phone or a tablet, drag with one finger and pinch with two, on the globe and on the time
+  strip; near the ground, twist two fingers to turn, and move them up or down together to tilt.
+  Tap anything to open it. On a narrow screen the toggles fold behind the button beside the
+  search, and a record opens in a sheet at the foot of the screen: tap or drag its head to make
+  it taller, and drag it down to close it.
 
 The coverage page (`coverage` under the title, or http://localhost:5173/coverage.html) shows how much of
 the world each layer knows: each layer is a strip along the time strip's own scale, coloured by the
@@ -71,8 +79,6 @@ CI runs in three tiers, so that the checks on a pull request stay quick as the w
 - **Build** (`build.yml`), when master changes, when a pull request changes how the world is
   built, and by hand: every dataset, `npm run build:world`, `npm run test:build`, the viewer,
   and on master the site's deployment. It builds the world once.
-- **DCO** (`dco.yml`), on every pull request: every commit is signed off (see
-  [CONTRIBUTING.md](CONTRIBUTING.md#pull-requests)).
 - **Nightly** (`nightly.yml`), and by hand: the world built again and compared in meaning, its numbers
   within a tolerance (`npm run test:reproducible`), and the browser tests against their goldens, in three groups that can also be run alone with `--project`: `globe`, `city` (the city's
   behaviour, drawn the fast way) and `city-views` (the city at full quality, minutes a view in

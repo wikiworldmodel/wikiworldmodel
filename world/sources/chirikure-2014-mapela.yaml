@@ -1,0 +1,29 @@
+id: src:chirikure-2014-mapela
+type: publication
+kind: measurement
+citation: >-
+  Chirikure, S., Manyanga, M., Pollard, A.M., Bandama, F., Mahachi, G. & Pikirayi, I. (2014). Zimbabwe Culture before
+  Mapungubwe: New Evidence from Mapela Hill, South-Western Zimbabwe. PLoS ONE 9(10), e111224.
+authors:
+  - "Chirikure, S."
+  - "Manyanga, M."
+  - "Pollard, A.M."
+  - "Bandama, F."
+  - "Mahachi, G."
+  - "Pikirayi, I."
+published: 2014
+title: "Zimbabwe Culture before Mapungubwe: New Evidence from Mapela Hill, South-Western Zimbabwe"
+container: PLoS ONE
+doi: 10.1371/journal.pone.0111224
+url: https://europepmc.org/article/PMC/PMC4215987
+license: CC-BY
+license_note: The article says the Creative Commons Attribution License, without a version.
+reliability: >-
+  The report of survey and excavation at Mapela Hill with a Bayesian radiocarbon chronology, arguing that the Zimbabwe culture
+  began there before Mapungubwe. The dates it gives for Mapungubwe, Great Zimbabwe and Khami are the received ones, which it
+  reports rather than measures.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC (PMC4215987), its JATS XML fetched on 9 November 2026 and read as text; the quotes checked
+    by script against that text.

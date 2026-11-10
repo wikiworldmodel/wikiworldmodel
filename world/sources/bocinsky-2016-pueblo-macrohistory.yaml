@@ -1,0 +1,23 @@
+id: src:bocinsky-2016-pueblo-macrohistory
+type: publication
+kind: measurement
+citation: >-
+  Bocinsky, R.K., Rush, J., Kintigh, K.W. & Kohler, T.A. (2016). Exploration and exploitation in the macrohistory of the
+  pre-Hispanic Pueblo Southwest. Science Advances 2(4), e1501532.
+authors:
+  - "Bocinsky, R.K."
+  - "Rush, J."
+  - "Kintigh, K.W."
+  - "Kohler, T.A."
+published: 2016
+title: Exploration and exploitation in the macrohistory of the pre-Hispanic Pueblo Southwest
+container: Science Advances
+doi: 10.1126/sciadv.1501532
+url: https://europepmc.org/article/PMC/PMC4820384
+license: CC-BY-NC-4.0
+license_note: Short quotes, with credit.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read from Europe PMC's full-text XML (PMC4820384), saved as text; the quotes checked by script against that
+    text. Citation details from Crossref.

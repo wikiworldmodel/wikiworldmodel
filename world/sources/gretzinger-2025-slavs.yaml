@@ -1,0 +1,66 @@
+id: src:gretzinger-2025-slavs
+type: publication
+kind: measurement
+citation: >-
+  Gretzinger, J., Biermann, F., Mager, H., King, B., Zlámalová, D., Traverso, L., Gnecchi Ruscone, G.A., … Hofmanová, Z. &
+  Krause, J. (2025). Ancient DNA connects large-scale migration with the spread of Slavs. Nature 646(8084), 384–393. With
+  its Supplementary Information, whose Supplementary Notes 1.1, "A historical overview of Slavic expansion", and 1.2, "The
+  archaeological debate on Slavic expansion", are by Walter Pohl and by Felix Biermann.
+authors:
+  - "Gretzinger, J."
+  - "Biermann, F."
+  - "Mager, H."
+  - "King, B."
+  - "Zlámalová, D."
+  - "Traverso, L."
+  - "Gnecchi Ruscone, G.A."
+  - "Peltola, S."
+  - "Salmela, E."
+  - "Neumann, G.U."
+  - "Radzeviciute, R."
+  - "Ingrová, P."
+  - "Liwoch, R."
+  - "Wronka, I."
+  - "Jurić, R."
+  - "Hyrchała, A."
+  - "Niezabitowska-Wiśniewska, B."
+  - "Bartecki, B."
+  - "Borowska, B."
+  - "Dzieńkowski, T."
+  - "Wołoszyn, M."
+  - "Wojenka, M."
+  - "Wilczyński, J."
+  - "Kot, M."
+  - "Müller, E."
+  - "Orschiedt, J."
+  - "Zariņa, G."
+  - "Onkamo, P."
+  - "Daim, F."
+  - "Muhl, A."
+  - "Schwarz, R."
+  - "Majer, M."
+  - "McCormick, M."
+  - "Květina, J."
+  - "Vida, T."
+  - "Geary, P.J."
+  - "Macháček, J."
+  - "Šlaus, M."
+  - "Meller, H."
+  - "Pohl, W."
+  - "Hofmanová, Z."
+  - "Krause, J."
+published: 2025
+title: Ancient DNA connects large-scale migration with the spread of Slavs
+container: Nature
+doi: 10.1038/s41586-025-09437-6
+url: https://europepmc.org/article/PMC/PMC12507669
+license: CC-BY-4.0
+reliability: >-
+  A genetic study. It is cited for its summary of the archaeology of the early Slavs, in the main text and in Supplementary
+  Notes 1.1 and 1.2, which review the literature; 1.2 gives the regional dates of the earliest Slavic settlements.
+verified:
+  by: machine:claude-code
+  how: >-
+    Full text read as text from Europe PMC's REST service (PMC12507669, fullTextXML) on 9 November 2026, and the
+    Supplementary Information (41586_2025_9437_MOESM1_ESM.docx) from the same service's supplementary files, converted to
+    text with its superscripts kept as plain text. Quotes checked by script against the two together.

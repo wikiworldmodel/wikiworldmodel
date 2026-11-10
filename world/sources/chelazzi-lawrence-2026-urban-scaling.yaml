@@ -1,0 +1,26 @@
+id: src:chelazzi-lawrence-2026-urban-scaling
+type: publication
+kind: review
+citation: >-
+  Chelazzi, F. & Lawrence, D. (2026). The emergence of urban scaling in Ancient Southwest Asia. PLOS ONE 21(8), e0355479.
+authors:
+  - "Chelazzi, F."
+  - "Lawrence, D."
+published: 2026
+title: The emergence of urban scaling in Ancient Southwest Asia
+container: PLOS ONE 21(8), e0355479
+doi: 10.1371/journal.pone.0355479
+url: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC13489426/fullTextXML
+license: CC-BY-4.0
+via: Europe PMC (PMC13489426).
+reliability: >-
+  A statistical study of the sizes of 1,852 buildings, houses for the most part, at 80 archaeological sites of Southwest Asia,
+  as published by their excavators. It is cited here for two estimates
+  of the number of people in a Mesopotamian household, which it takes from texts as read by Tenney (2011) for Kassite Nippur
+  and Donbaz & Yoffee (1986) for Old Babylonian Kish, neither of them read here, and for its summary of how the people of
+  southern Mesopotamia gathered into cities in the Bronze Age.
+verified:
+  by: machine:claude-code
+  how: >-
+    The full text read from Europe PMC's XML on 9 November 2026 and kept as text; the quotes checked by script against it.
+    Volume and issue from Europe PMC's record of the article.

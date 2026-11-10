@@ -1,7 +1,7 @@
 // Who lived where, in the browser: the atlas's index and forms, a stage's lists as they are wanted, and what a
 // place's spec needs from the climate and the land the viewer already has. A descent fetches a stage's lists
 // and the tiles of the land under it, and no ground or plant or animal: those it makes.
-import { atlasHasLand, atlasList, type AtlasBin, type AtlasIndex } from '../../../core/atlas.ts';
+import { atlasHasLand, atlasList, seaDrawList, seaList, type AtlasBin, type AtlasIndex, type SeaBin } from '../../../core/atlas.ts';
 import { decodeTile } from '../../../core/container.ts';
 import { decodeNode, type ClimateHeader, type ClimateRule } from '../../../core/climate.ts';
 import type { Form } from '../../../core/form.ts';
@@ -37,6 +37,12 @@ export class LifeAtlas {
   private bins = new Map<string, Promise<AtlasBin>>();
   private loadedBins = new Map<string, AtlasBin>();
   private forms: Promise<Record<string, Form>> | null = null;
+  /** the sea's lists, by file, and its forms */
+  private seaBins = new Map<string, Promise<SeaBin>>();
+  private loadedSea = new Map<string, SeaBin>();
+  private seaForms: Promise<Record<string, Form>> | null = null;
+  /** the specs whose taxa are the sea's list */
+  private ofSea = new WeakSet<SceneSpec>();
   private fields = new Map<string, Promise<LoadedField | undefined>>();
   /** the rivers a place's scene is given: its own loader, as the globe's layer has its own */
   private rivers: Rivers;
@@ -65,7 +71,24 @@ export class LifeAtlas {
     return p;
   }
 
-  /** Could a scene be drawn here and now? Yes if the stage's lists say so, or until they have come. */
+  /** The sea's stage at a time, the same stage as the land's, if the sea's atlas covers it. */
+  private seaRefAt(t: number) {
+    return this.build.sea?.bins.find((b) => t >= b.from && t <= b.to);
+  }
+
+  private loadSea(file: string): Promise<SeaBin> {
+    let p = this.seaBins.get(file);
+    if (!p) {
+      p = getJSON<SeaBin>(this.build.base + file).then((b) => {
+        this.loadedSea.set(file, b);
+        return b;
+      });
+      this.seaBins.set(file, p);
+    }
+    return p;
+  }
+
+  /** Could a scene be drawn here and now? Yes if the stage's lists say so, the land's or the sea's, or until they have come. */
   canDraw(t: number, lat: number, lon: number): boolean {
     const ref = this.binAt(t);
     if (!ref) return false;
@@ -74,8 +97,17 @@ export class LifeAtlas {
       void this.load(ref.file);
       return true;
     }
-    return atlasHasLand(bin, this.index.grid, lat, lon);
+    if (atlasHasLand(bin, this.index.grid, lat, lon)) return true;
+    const sea = this.seaRefAt(t);
+    if (!sea || !this.build.sea) return false;
+    const sb = this.loadedSea.get(sea.file);
+    if (!sb) {
+      void this.loadSea(sea.file);
+      return true;
+    }
+    return seaList(sb, this.build.sea.grid, lat, lon) !== undefined;
   }
+
 
   /** The tile of the land that holds a place at a keyframe: the finer level, as the tiles are the land's only copy. */
   private fieldOf(ref: TileRef, ageMa: number): Promise<LoadedField | undefined> {
@@ -97,7 +129,16 @@ export class LifeAtlas {
     const ref = this.binAt(t);
     const clim = this.climate();
     if (!ref || !clim) return null;
-    const [bin, forms] = await Promise.all([this.load(ref.file), (this.forms ??= getJSON<Record<string, Form>>(this.build.base + this.index.forms))]);
+    const seaRef = this.seaRefAt(t);
+    const sea = this.build.sea;
+    const [bin, landForms, seaBin, seaForms] = await Promise.all([
+      this.load(ref.file),
+      (this.forms ??= getJSON<Record<string, Form>>(this.build.base + this.index.forms)),
+      seaRef && sea ? this.loadSea(seaRef.file) : Promise.resolve(undefined),
+      sea?.forms ? (this.seaForms ??= getJSON<Record<string, Form>>(this.build.base + sea.forms)) : Promise.resolve({} as Record<string, Form>),
+    ]);
+    // The forms are keyed by what they are, so the land's and the sea's never clash.
+    const forms = { ...seaForms, ...landForms };
     // Its taxa are its stage's; its ground, its sea and its rivers are those of the time shown, within the stage.
     const when = Math.min(bin.to, Math.max(bin.from, t));
     const ageMa = toMa(when);
@@ -141,6 +182,8 @@ export class LifeAtlas {
       atlas: this.index,
       bin,
       list: (la, lo) => (atlasHasLand(bin, this.index.grid, la, lo) ? atlasList(bin, this.index.grid, la, lo) : undefined),
+      seaList: seaBin && sea ? (la, lo) => seaDrawList(seaBin, sea.grid, la, lo) : undefined,
+      seaAtlas: sea,
       forms,
       keyAge,
       step,
@@ -184,9 +227,16 @@ export class LifeAtlas {
     if (mInfo && where && tiles.length) pw.months = placeMonths(mInfo, where, tiles, month);
     const spec = placeSpec(pw, lat, lon, ageMa);
     if (!spec) return null;
+    // Its list is the sea's where the land's atlas has none for its place, as placeSpec chooses.
+    if (!atlasHasLand(bin, this.index.grid, origin.lat, origin.lon)) this.ofSea.add(spec);
     const water = await this.waterOf(spec, when, ageMa, pw.isoline);
     if (water) spec.water = water;
     return spec;
+  }
+
+  /** Whether a scene's taxa are the sea's list, which says what is near by sea, and not the land's. */
+  fromSea(spec: SceneSpec): boolean {
+    return this.ofSea.has(spec);
   }
 
   /**

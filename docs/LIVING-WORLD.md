@@ -136,5 +136,5 @@ Each step is usable by itself, and each is tested. The first four are the sevent
    eighth slice); the rest of the ground is still keyed by the scene.
 6. **Agents at scale.** Batches of forms, by clade, as long as anyone runs them; and more body plans. *A first
    batch is written.*
-7. **The seas,** with their own forms and depth layers.
+7. **The seas,** with their own forms and depth layers. *Built* ([TENTH-SLICE.md](slices/TENTH-SLICE.md)): the sea's lists draw, its great groups have bodies, and a scene of the sea has what lives on its floor and what swims above it; its depth layers are only those two.
 8. **Today and the recent past,** which have far more data and a different licence check.

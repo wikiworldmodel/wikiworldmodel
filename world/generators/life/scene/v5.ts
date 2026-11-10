@@ -1,4 +1,4 @@
-// A living scene, version 4: any place on land at any moment, from a spec. Nothing is laid out until it is looked at:
+// A living scene, version 5: any place at any moment, on land or in the sea, from a spec. Nothing is laid out until it is looked at:
 // each 400 m cell makes what stands in it from hashes of where it is, so the scene has no edge to speak of, and what a
 // far view shows is the top of the same list a near view shows in full. The records say which taxa could be here and how
 // big they grew; this says where each stands, how many there are, what it is doing and what colour it is, all invented
@@ -6,7 +6,9 @@
 // centreline or a reach of the drainage model, drawn with the channel its flow gives it, its water falling downstream,
 // and its floodplain and valley following it rather than the scene's middle. Since version 4 each height grows what its
 // own climate bears and snow lies where the scene's month holds it (docs/SCENES.md), from the twelve months at the
-// scene's place. The build and every browser are held to agree within the tolerance of core/fingerprint.ts.
+// scene's place. Since version 5 a place in the sea is a scene of the sea (docs/slices/TENTH-SLICE.md): its floor the
+// field's, no invented river, what lives on the floor on it and what swims in the water over it. A place on land makes
+// what version 4 made. The build and every browser are held to agree within the tolerance of core/fingerprint.ts.
 import type { Part } from '../../../../core/fingerprint.ts';
 import type { Form, Pose } from '../../../../core/form.ts';
 import type { LivingTaxon, ReliefPatch, SceneCover, SceneSpec } from '../../../../core/scene.ts';
@@ -19,7 +21,7 @@ import { arrival, distanceField, fbm, noise, plainGrid, watersOf, type GridSpec,
 import { drawRiver, meet, type Oxbow, type RiverChoices, type RiverPath } from '../rivers.ts';
 
 export const GENERATOR = 'gen:life/scene';
-export const VERSION = 4;
+export const VERSION = 5;
 
 /** The side of a cell of the ground, in metres. */
 export const CELL = 400;
@@ -33,6 +35,8 @@ export const EARTH = 6371000;
 const DEG = PI / 180;
 
 export interface LivingParams {
+  /** the sea, where a place lies in it: how far above its floor what swims is drawn, in metres, at most */
+  sea?: { swim_m: number };
   site?: { id: string; label: string; ecosystem: string; snapshot: string; slice: string; window: [string, string] };
   /** the plain around a place: as a scene's river and floodplain, and how it gives way to the land the field reconstructs */
   ground: {
@@ -253,7 +257,8 @@ export function placeLook(spec: SceneSpec): PlaceLook {
   const sea = e0 < g.sea_below;
   const clim = params.cover.climates[spec.biome.climate];
   // Where the world says where the rivers run, they are its; where it says nothing, a weighted coin.
-  const rivers = spec.water ? spec.water.rivers.length > 0 : (clim?.river ?? 0) * Math.min(1, spec.biome.cover.plants + 0.5) > hash2(3, 3, seed);
+  // At sea there is no river to invent.
+  const rivers = spec.water ? spec.water.rivers.length > 0 : !sea && (clim?.river ?? 0) * Math.min(1, spec.biome.cover.plants + 0.5) > hash2(3, 3, seed);
   return { water: sea ? 0 : Math.round(e0 < g.lowest_water ? g.lowest_water : e0), sea, flow: g.flow ?? downhill(r, seed), rivers, relief: hi - lo, seed };
 }
 
@@ -648,7 +653,11 @@ export class LandCover {
   private seed: number;
   /** what grows at each height, where the world gives the climate at a height; the one class everywhere if not */
   private heights?: Heights;
-  constructor(spec: SceneSpec, private ground: GroundSampler, private level: number, focus: [number, number], private levelAt?: (x: number, y: number) => number) {
+  /**
+   * `clearing`, where people's fields, pastures and yards are (gen:people/settlement): how much of the ground they cleared
+   * of trees, 0–1. Without it, nothing is cleared, as before people.
+   */
+  constructor(spec: SceneSpec, private ground: GroundSampler, private level: number, focus: [number, number], private levelAt?: (x: number, y: number) => number, private clearing?: (x: number, y: number) => number) {
     const p = spec.generator.params as unknown as LivingParams;
     this.c = p.cover;
     const g = growthOf(p.cover.climates[spec.biome.climate], spec.biome.cover);
@@ -699,6 +708,7 @@ export class LandCover {
     const r = Math.sqrt(dx * dx + dy * dy);
     canopy *= smooth(c.clearing, c.clearing * 1.5, r + (wob - 0.5) * c.clearing * 0.7);
     this.canopy = canopy * forest * (1 - this.bare);
+    if (this.clearing) this.canopy *= 1 - this.clearing(x, y);
     this.low = herb * (1 - this.canopy) * (1 - this.bare);
     return this;
   }
@@ -797,7 +807,7 @@ export function densityOf(t: LivingTaxon, form: Form, a: LivingParams['animals']
   return rule * prey * a.show * (0.25 + 1.5 * t.weight) * productivity;
 }
 
-export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook, waters: Waters, levelAt?: (x: number, y: number) => number): LivingPlan {
+export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook, waters: Waters, levelAt?: (x: number, y: number) => number, clearing?: (x: number, y: number) => number): LivingPlan {
   const params = spec.generator.params as unknown as LivingParams;
   const seed = look.seed;
   const level = look.water;
@@ -807,7 +817,7 @@ export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook
   const arrive = waters.river.length ? arrival(waters, 2600, params.cover.clearing * 0.72) : { at: [Math.round(hash2(4, 1, seed) * 800 - 400), Math.round(hash2(4, 2, seed) * 800 - 400)] as [number, number], toRiver: [0, 1] as [number, number] };
   const focus: [number, number] = [Math.round(arrive.at[0]), Math.round(arrive.at[1])];
   const toRiver: [number, number] = [Math.round(arrive.toRiver[0] * 1000) / 1000, Math.round(arrive.toRiver[1] * 1000) / 1000];
-  const land = new LandCover(spec, ground, level, focus, levelAt);
+  const land = new LandCover(spec, ground, level, focus, levelAt, clearing);
   const productivity = 0.2 + 0.8 * (land.forestShare > 0.5 ? 1 : land.forestShare + 0.3);
   const layouts: TaxonLayout[] = spec.taxa.map((t, index) => {
     const form = spec.forms[t.form];
@@ -822,7 +832,12 @@ export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook
   const canopy = layouts.filter((x) => x.plant && (x.form.behave?.layer ?? 'canopy') === 'canopy' && x.t.height !== undefined);
   const under = layouts.filter((x) => x.plant && x.form.behave?.layer === 'under' && x.t.height !== undefined);
   const mats = layouts.filter((x) => x.plant && x.form.behave?.layer === 'float');
-  const animals = layouts.filter((x) => !x.plant && x.t.length !== undefined && x.habitat !== 'water').sort((a, b) => b.size - a.size || (a.t.id < b.t.id ? -1 : 1));
+  // On land, nothing that has to swim; in the sea, all of it.
+  const atSea = look.sea;
+  const animals = layouts.filter((x) => !x.plant && x.t.length !== undefined && (atSea || x.habitat !== 'water')).sort((a, b) => b.size - a.size || (a.t.id < b.t.id ? -1 : 1));
+  const swim = params.sea?.swim_m ?? 40;
+  /** How deep the water is over a place, in metres: zero on land. */
+  const depthAt = (x: number, y: number) => Math.max(0, (levelAt ? levelAt(x, y) : level) - ground.at(x, y));
   const plantWeight = (e: TaxonLayout, wet: number) => (0.1 + e.t.weight) * ((e.form.behave?.weight ?? 1) + (e.form.behave?.wet ?? 0) * wet);
   const choose = (of: TaxonLayout[], wet: number, u0: number): TaxonLayout => {
     let sum = 0;
@@ -871,6 +886,15 @@ export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook
   const accept = (habitat: string, x: number, y: number, relaxed: boolean): boolean => {
     land.at(x, y);
     if (habitat === 'air') return true;
+    // In the sea: what swims needs water over it, what lives on the floor the floor under water; what lives anywhere, or
+    // at the water's edge, may be on the sea's floor too, or on whatever land the scene has.
+    if (atSea) {
+      const deep = depthAt(x, y);
+      if (habitat === 'water') return deep > 2;
+      if (habitat === 'floor') return deep > 0.5;
+      if ((habitat === 'any' || habitat === 'edge') && deep > 0.5) return true;
+    }
+    if (habitat === 'water' || habitat === 'floor') return false;
     if (habitat === 'edge' || habitat === 'wet') return land.above > -1.8 && land.above < 1.1;
     if (land.water) return false;
     if (relaxed) return true;
@@ -900,7 +924,16 @@ export function makePlan(spec: SceneSpec, ground: GroundSampler, look: PlaceLook
       let pose: number = a.poses[Math.floor(rng.next() * a.poses.length)];
       const gz = ground.at(x, y);
       let z = gz;
-      if (a.habitat === 'edge' || a.habitat === 'wet') {
+      const deep = atSea ? depthAt(x, y) : 0;
+      if (deep > 0.5 && a.habitat === 'water') {
+        // Swimming: above the floor by at least half its length, below the surface, and within `swim` of the floor.
+        const lo = Math.min(deep * 0.5, L * scale * 0.6);
+        const hi = Math.max(lo, Math.min(deep - L * scale * 0.6, swim));
+        z = gz + lo + (hi - lo) * rng.next();
+      } else if (deep > 0.5) {
+        // On the sea's floor: what lives there, and what lives anywhere or at the edge, rests on it.
+        z = gz;
+      } else if (a.habitat === 'edge' || a.habitat === 'wet') {
         const H = (a.t.hip ?? L * (a.form.hip ?? 0.2)) * scale;
         // Afloat where it is deep enough: with the water at the middle of its body.
         const lv = levelAt ? levelAt(x, y) : level;
