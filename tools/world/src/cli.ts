@@ -198,10 +198,13 @@ const commands: Record<string, (args: string[]) => Promise<number | void>> = {
     writeFileSync(join(REPO, out), attributionMarkdown(await loadWorld()));
     console.log(`attribution → ${out}`);
   },
-  // The public site for Cloudflare Pages, from site/, the built viewer and the latest build.
+  // The public site for Cloudflare Pages, from site/, the built viewer and the latest build. With
+  // BUILD_STORE set to the URL of the builds' object storage, the index points there and the build
+  // stays out of the site.
   async site([out = 'dist/public']) {
     const { assembleSite } = await import('./site.ts');
-    const r = assembleSite({ landing: join(REPO, 'site'), viewer: join(REPO, 'dist/site'), builds: join(REPO, 'dist/builds'), out: join(REPO, out) });
+    const store = process.env.BUILD_STORE || undefined;
+    const r = assembleSite({ landing: join(REPO, 'site'), viewer: join(REPO, 'dist/site'), builds: join(REPO, 'dist/builds'), out: join(REPO, out), store });
     console.log(`site: build ${r.build}, ${r.files} files, ${(r.bytes / 1e6).toFixed(1)} MB → ${out}`);
   },
 };

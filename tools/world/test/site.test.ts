@@ -41,6 +41,26 @@ describe('the public site', () => {
     expect(JSON.parse(readFileSync(join(out, 'world/builds/index.json'), 'utf8'))).toEqual({ builds: [{ id: 'b-new', commit: 'c2' }], latest: 'b-new' });
   });
 
+  it('with a store, leaves the build out and points the index at the store', () => {
+    const { root, opts } = fixture();
+    const r = assembleSite({ ...opts, store: 'https://builds.example.org/' });
+    const out = join(root, 'out');
+    expect(r.build).toBe('b-new');
+    expect(existsSync(join(out, 'world/builds/b-new'))).toBe(false);
+    expect(readFileSync(join(out, 'ATTRIBUTION.md'), 'utf8')).toBe('# Attribution');
+    expect(JSON.parse(readFileSync(join(out, 'world/builds/index.json'), 'utf8'))).toEqual({
+      builds: [{ id: 'b-new', commit: 'c2' }],
+      latest: 'b-new',
+      store: 'https://builds.example.org/',
+    });
+  });
+
+  it('refuses a store that is not an https URL of a directory', () => {
+    const { opts } = fixture();
+    expect(() => assembleSite({ ...opts, store: 'https://builds.example.org' })).toThrow(/ending in a slash/);
+    expect(() => assembleSite({ ...opts, store: 'http://builds.example.org/' })).toThrow(/https/);
+  });
+
   it('refuses a build without its ATTRIBUTION.md, since the site must credit its data', () => {
     const { root, opts } = fixture();
     rmSync(join(root, 'builds/b-new/ATTRIBUTION.md'));

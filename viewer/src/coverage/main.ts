@@ -10,7 +10,7 @@ import { LAYERS, TIERS, type LayerId, type Tier } from '../../../core/resolve.ts
 import { formatDuration, formatTime, PRESENT_YEAR, timeToParam } from '../../../core/time.ts';
 import { positionOf, timeAt } from '../../../core/timescale.ts';
 import type { Tileset } from '../../../core/tileset.ts';
-import { getJSON, latestBuild } from '../data.ts';
+import { builds, getJSON } from '../data.ts';
 import { rulerTicks } from '../ui/timebar.ts';
 import './coverage.css';
 
@@ -34,7 +34,7 @@ const GRAIN: { label: string; maxKm: number }[] = [
 ];
 const KM_PER_DEG = 111.32;
 
-const ROOT = './';
+const ROOT = new URL('./', location.href).href;
 const app = document.getElementById('cov')!;
 
 function el<K extends keyof HTMLElementTagNameMap>(tag: K, cls?: string, text?: string): HTMLElementTagNameMap[K] {
@@ -49,8 +49,9 @@ const count = (n: number) => n.toLocaleString('en');
 
 async function main() {
   const params = new URLSearchParams(location.search);
-  const id = params.get('b') ?? (await latestBuild(ROOT));
-  const base = `${ROOT}builds/${id}/`;
+  const { latest, store } = await builds(ROOT);
+  const id = params.get('b') ?? latest;
+  const base = `${store}${id}/`;
   const ts = await getJSON<Tileset>(`${base}tileset.json`);
   const [cov, search, periods, series, info] = await Promise.all([
     getJSON<CoverageFile>(base + ts.files.coverage),
