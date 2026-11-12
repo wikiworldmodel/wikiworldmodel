@@ -61,6 +61,7 @@ import { RIVERS_TOGGLE, RiversLayer, type RiverNear, type RiversDrawn } from './
 import { TreePanel } from './ui/tree.ts';
 import { clampWindow, fitWindow, Timebar, xOf, type StateBand } from './ui/timebar.ts';
 import { Toolbar } from './ui/toolbar.ts';
+import logoUrl from '../../site/img/logo.svg';
 
 declare global {
   interface Window {
@@ -530,7 +531,8 @@ async function start(root: HTMLElement): Promise<void> {
   // Named for the span the build covers: the finest named period at its start, to its end.
   const named = (t: number) => ['period', 'era', 'eon'].map((rank) => build.periods.periods.find((p) => p.rank === rank && p.start <= t && t <= p.end)).find(Boolean);
   const until = dataRange[1] > PRESENT_YEAR ? formatTime(dataRange[1]) : 'today';
-  brand.innerHTML = `<strong>WikiWorldModel</strong><span>${named(dataRange[0])?.name ?? formatTime(dataRange[0])} to ${until}</span><a class="coverage-link" title="How much of the world each layer knows, across time and the globe">How much is known →</a>`;
+  // The name, with the site's logo, leads back to the site's front page, beside the viewer's folder.
+  brand.innerHTML = `<a class="home" href="../" title="WikiWorldModel: about the project"><img src="${logoUrl}" width="16" height="16" alt="" /><strong>WikiWorldModel</strong></a><span>${named(dataRange[0])?.name ?? formatTime(dataRange[0])} to ${until}</span><a class="coverage-link" title="How much of the world each layer knows, across time and the globe">How much is known →</a>`;
   brand.querySelector<HTMLAnchorElement>('.coverage-link')!.href = `./coverage.html?b=${encodeURIComponent(build.id)}`;
   const search = new Search(build.search, build.periods.periods, kindLabel);
   const toolbar = new Toolbar(build.id, ts.alternatives, ts.layers ?? []);

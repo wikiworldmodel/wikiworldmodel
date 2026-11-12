@@ -15,6 +15,9 @@ canvas.globe:active { cursor: grabbing; }
 .topbar > * { pointer-events: auto; }
 .brand { display: flex; flex-direction: column; padding: 6px 10px; background: var(--panel); border: 1px solid var(--panel-border); border-radius: 8px; }
 .brand strong { font-size: 14px; letter-spacing: 0.02em; }
+.brand .home, .menu-about .home { display: flex; align-items: center; gap: 7px; color: var(--text); text-decoration: none; }
+.brand .home img, .menu-about .home img { width: 16px; height: 16px; flex: none; }
+.brand .home:hover strong, .menu-about .home:hover strong { color: var(--accent); }
 .brand span { color: var(--muted); font-size: 11px; }
 .brand a { color: var(--muted); font-size: 11px; text-decoration: none; }
 .brand a:hover { color: var(--accent); }
